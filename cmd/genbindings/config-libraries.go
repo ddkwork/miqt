@@ -31,7 +31,7 @@ func ProcessLibraries(clangBin, outDir, extraLibsDir string) {
 				return Widgets_AllowHeader(fullpath)
 			},
 			clangBin,
-			"--std=c++17 "+pkgConfigCflags("Qt6Widgets"),
+			"--std=c++17 "+pkgConfigCflags("Qt6Widgets"), //todo copy .pc files from linux to extraLibsDir ?
 			outDir,
 			ClangMatchSameHeaderDefinitionOnly,
 		)
@@ -170,188 +170,188 @@ func ProcessLibraries(clangBin, outDir, extraLibsDir string) {
 		)
 	}
 	qt6()
-	return
-	qt5 := func() {
-		flushKnownTypes()
-		InsertTypedefs(false)
-
-		generate(
-			"qt",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtCore",
-				"/usr/include/x86_64-linux-gnu/qt5/QtGui",
-				"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
-			},
-			func(fullpath string) bool {
-				// Block cbor and generate it separately
-				fname := filepath.Base(fullpath)
-				if strings.HasPrefix(fname, "qcbor") {
-					return false
-				}
-
-				return Widgets_AllowHeader(fullpath)
-			},
-			clangBin,
-			pkgConfigCflags("Qt5Widgets"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		generate(
-			"qt/cbor",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtCore",
-			},
-			func(fullpath string) bool {
-				// Only include the same json, xml, cbor files excluded above
-				fname := filepath.Base(fullpath)
-				return strings.HasPrefix(fname, "qcbor")
-			},
-			clangBin,
-			pkgConfigCflags("Qt5Core"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		generate(
-			"qt/printsupport",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5PrintSupport"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		generate(
-			"qt/svg",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtSvg",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5Svg"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		generate(
-			"qt/network",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtNetwork",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5Network"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		generate(
-			"qt/multimedia",
-			[]string{
-				// Theoretically, QtMultimediaWidgets and QtMultimedia are different
-				// packages, but QtMultimedia qcamera.h has a dependency on qvideowidget.
-				// Bind them together since our base /qt/ package is Widgets anyway.
-				"/usr/include/x86_64-linux-gnu/qt5/QtMultimedia",
-				"/usr/include/x86_64-linux-gnu/qt5/QtMultimediaWidgets",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5MultimediaWidgets"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		generate(
-			"qt/script",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtScript",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5Script"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		// Qt 5 QWebkit: depends on Qt5PrintSupport but only at runtime, not at
-		// codegen time
-		generate(
-			"qt/webkit",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtWebKit",
-				"/usr/include/x86_64-linux-gnu/qt5/QtWebKitWidgets",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5WebKitWidgets"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		// Qt 5 QWebChannel
-		generate(
-			"qt/webchannel",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtWebChannel",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5WebChannel"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		// Qt 5 QWebEngine
-		generate(
-			"qt/webengine",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/QtWebEngine",
-				"/usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore",
-				"/usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets",
-			},
-
-			func(fullpath string) bool {
-				baseName := filepath.Base(fullpath)
-				if baseName == "qquickwebengineprofile.h" || baseName == "qquickwebenginescript.h" {
-					return false
-				}
-				return true
-			},
-			clangBin,
-			pkgConfigCflags("Qt5WebEngineWidgets"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		// Depends on QtCore/Gui/Widgets, QPrintSupport
-		generate(
-			"qt-restricted-extras/qscintilla",
-			[]string{
-				"/usr/include/x86_64-linux-gnu/qt5/Qsci",
-			},
-			AllowAllHeaders,
-			clangBin,
-			pkgConfigCflags("Qt5PrintSupport"),
-			outDir,
-			ClangMatchSameHeaderDefinitionOnly,
-		)
-
-		// Depends on QtCore/Gui/Widgets
-		generate(
-			"qt-extras/scintillaedit",
-			[]string{
-				filepath.Join(extraLibsDir, "scintilla/qt/ScintillaEdit/ScintillaEdit.h"),
-			},
-			AllowAllHeaders,
-			clangBin,
-			"--std=c++1z "+pkgConfigCflags("ScintillaEdit"),
-			outDir,
-			(&clangMatchUnderPath{filepath.Join(extraLibsDir, "scintilla")}).Match,
-		)
-	}
-	qt5()
+	//return
+	//qt5 := func() {
+	//	flushKnownTypes()
+	//	InsertTypedefs(false)
+	//
+	//	generate(
+	//		"qt",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtCore",
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtGui",
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
+	//		},
+	//		func(fullpath string) bool {
+	//			// Block cbor and generate it separately
+	//			fname := filepath.Base(fullpath)
+	//			if strings.HasPrefix(fname, "qcbor") {
+	//				return false
+	//			}
+	//
+	//			return Widgets_AllowHeader(fullpath)
+	//		},
+	//		clangBin,
+	//		pkgConfigCflags("Qt5Widgets"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	generate(
+	//		"qt/cbor",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtCore",
+	//		},
+	//		func(fullpath string) bool {
+	//			// Only include the same json, xml, cbor files excluded above
+	//			fname := filepath.Base(fullpath)
+	//			return strings.HasPrefix(fname, "qcbor")
+	//		},
+	//		clangBin,
+	//		pkgConfigCflags("Qt5Core"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	generate(
+	//		"qt/printsupport",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtPrintSupport",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5PrintSupport"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	generate(
+	//		"qt/svg",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtSvg",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5Svg"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	generate(
+	//		"qt/network",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtNetwork",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5Network"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	generate(
+	//		"qt/multimedia",
+	//		[]string{
+	//			// Theoretically, QtMultimediaWidgets and QtMultimedia are different
+	//			// packages, but QtMultimedia qcamera.h has a dependency on qvideowidget.
+	//			// Bind them together since our base /qt/ package is Widgets anyway.
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtMultimedia",
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtMultimediaWidgets",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5MultimediaWidgets"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	generate(
+	//		"qt/script",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtScript",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5Script"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	// Qt 5 QWebkit: depends on Qt5PrintSupport but only at runtime, not at
+	//	// codegen time
+	//	generate(
+	//		"qt/webkit",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWebKit",
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWebKitWidgets",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5WebKitWidgets"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	// Qt 5 QWebChannel
+	//	generate(
+	//		"qt/webchannel",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWebChannel",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5WebChannel"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	// Qt 5 QWebEngine
+	//	generate(
+	//		"qt/webengine",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWebEngine",
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWebEngineCore",
+	//			"/usr/include/x86_64-linux-gnu/qt5/QtWebEngineWidgets",
+	//		},
+	//
+	//		func(fullpath string) bool {
+	//			baseName := filepath.Base(fullpath)
+	//			if baseName == "qquickwebengineprofile.h" || baseName == "qquickwebenginescript.h" {
+	//				return false
+	//			}
+	//			return true
+	//		},
+	//		clangBin,
+	//		pkgConfigCflags("Qt5WebEngineWidgets"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	// Depends on QtCore/Gui/Widgets, QPrintSupport
+	//	generate(
+	//		"qt-restricted-extras/qscintilla",
+	//		[]string{
+	//			"/usr/include/x86_64-linux-gnu/qt5/Qsci",
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		pkgConfigCflags("Qt5PrintSupport"),
+	//		outDir,
+	//		ClangMatchSameHeaderDefinitionOnly,
+	//	)
+	//
+	//	// Depends on QtCore/Gui/Widgets
+	//	generate(
+	//		"qt-extras/scintillaedit",
+	//		[]string{
+	//			filepath.Join(extraLibsDir, "scintilla/qt/ScintillaEdit/ScintillaEdit.h"),
+	//		},
+	//		AllowAllHeaders,
+	//		clangBin,
+	//		"--std=c++1z "+pkgConfigCflags("ScintillaEdit"),
+	//		outDir,
+	//		(&clangMatchUnderPath{filepath.Join(extraLibsDir, "scintilla")}).Match,
+	//	)
+	//}
+	//qt5()
 }
