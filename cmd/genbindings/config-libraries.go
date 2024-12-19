@@ -17,9 +17,12 @@ func ProcessLibraries(clangBin, outDir, extraLibsDir string) {
 		generate(
 			"qt6",
 			[]string{
-				"/usr/include/x86_64-linux-gnu/qt6/QtCore",
-				"/usr/include/x86_64-linux-gnu/qt6/QtGui",
-				"/usr/include/x86_64-linux-gnu/qt6/QtWidgets",
+				//"/usr/include/x86_64-linux-gnu/qt6/QtCore",
+				//"/usr/include/x86_64-linux-gnu/qt6/QtGui",
+				//"/usr/include/x86_64-linux-gnu/qt6/QtWidgets",
+				"D:\\qt6\\qt_static\\include\\QtCore",
+				"D:\\qt6\\qt_static\\include\\QtGui",
+				"D:\\qt6\\qt_static\\include\\QtWidgets",
 			},
 			func(fullpath string) bool {
 				// Block cbor and generate it separately
