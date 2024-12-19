@@ -6,7 +6,6 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -77,7 +76,7 @@ func init() {
 		panic(err)
 	}
 
-	err = ioutil.WriteFile(*outputGo, outputData, 0o644)
+	err = os.WriteFile(*outputGo, outputData, 0o644)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Writing to '%s': %s\n", *outputGo, err.Error())
 		os.Exit(1)

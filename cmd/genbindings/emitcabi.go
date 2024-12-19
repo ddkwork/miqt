@@ -890,7 +890,7 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 					}
 					ret.WriteString("\t\t}\n")
 
-					paramArgs := []string{}
+					var paramArgs []string
 					if m.IsConst {
 						// We're calling a Cgo-exported function, but Cgo can't
 						// describe a const pointer to a custom class, unless
@@ -916,7 +916,6 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 							returnTransformP + "\n" +
 							"\t\t" + ifv(maybeReturn == "", "", "return "+returnTransformF+";") + "\n" +
 							"\t}\n" +
-
 							"\n",
 					)
 				}
@@ -944,7 +943,6 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 							vbpreamble + "\n" +
 							emitAssignCppToCabi("\t\treturn ", m.ReturnType, vbCallTarget) + "\n" +
 							"\t}\n" +
-
 							"\n",
 					)
 

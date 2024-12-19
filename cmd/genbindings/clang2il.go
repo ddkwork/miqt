@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	ErrTooComplex = errors.New("Type declaration is too complex to parse")
-	ErrNoContent  = errors.New("There's no content to include")
+	ErrTooComplex = errors.New("type declaration is too complex to parse")
+	ErrNoContent  = errors.New("there's no content to include")
 )
 
 // parseHeader parses a whole C++ header into our CppParsedHeader intermediate format.
@@ -180,7 +180,7 @@ func processTypedef(node map[string]any, addNamePrefix string) (CppTypedef, erro
 		}
 	}
 
-	return CppTypedef{}, errors.New("processTypedef: ???")
+	return CppTypedef{}, errors.New("processTypedef: ")
 }
 
 type visibilityState int
@@ -622,7 +622,7 @@ nextEnumEntry:
 
 	afterParse:
 		if cee.EntryValue == "" {
-			return ret, fmt.Errorf("Complex enum %q entry %q", ret.EnumName, entryname)
+			return ret, fmt.Errorf("complex enum %q entry %q", ret.EnumName, entryname)
 		}
 
 		var err error
@@ -631,7 +631,7 @@ nextEnumEntry:
 		} else {
 			lastImplicitValue, err = strconv.ParseInt(cee.EntryValue, 10, 64)
 			if err != nil {
-				return ret, fmt.Errorf("Enum %q entry %q has non-parseable value %q: %w", ret.EnumName, entryname, cee.EntryValue, err)
+				return ret, fmt.Errorf("enum %q entry %q has non-parseable value %q: %w", ret.EnumName, entryname, cee.EntryValue, err)
 			}
 		}
 
@@ -760,7 +760,7 @@ func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, err
 	epos := strings.LastIndex(typeString, `)`)
 
 	if opos == -1 || epos == -1 {
-		return CppParameter{}, nil, false, fmt.Errorf("Type string %q missing brackets", typeString)
+		return CppParameter{}, nil, false, fmt.Errorf("type string %q missing brackets", typeString)
 	}
 
 	isConst := false
@@ -806,7 +806,7 @@ func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, err
 func tokenizeMultipleParameters(p string) []string {
 	// Tokenize into top-level strings
 	templateDepth := 0
-	tokens := []string{}
+	var tokens []string
 	wip := ""
 	p = strings.TrimSpace(p)
 	for _, c := range p {
@@ -833,7 +833,7 @@ func tokenizeMultipleParameters(p string) []string {
 func tokenizeSingleParameter(p string) []string {
 	// Tokenize into top-level strings
 	templateDepth := 0
-	tokens := []string{}
+	var tokens []string
 	wip := ""
 	p = strings.TrimSpace(p)
 	for _, c := range p {

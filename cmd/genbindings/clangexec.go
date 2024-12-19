@@ -53,7 +53,7 @@ func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []strin
 
 	err = cmd.Start()
 	if err != nil {
-		return nil, fmt.Errorf("Start: %w", err)
+		return nil, fmt.Errorf("start: %w", err)
 	}
 
 	var wg sync.WaitGroup
@@ -68,7 +68,7 @@ func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []strin
 
 	err = cmd.Wait()
 	if err != nil {
-		return nil, fmt.Errorf("Command: %w", err)
+		return nil, fmt.Errorf("command: %w", err)
 	}
 
 	wg.Wait()

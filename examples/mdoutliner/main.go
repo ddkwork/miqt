@@ -3,7 +3,6 @@ package main
 import (
 	"embed"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -126,7 +125,7 @@ func (a *AppWindow) handleFileOpen() {
 		return
 	}
 
-	contents, err := ioutil.ReadFile(fname)
+	contents, err := os.ReadFile(fname)
 	if err != nil {
 		qt.QMessageBox_Warning(a.w.QWidget, "Failed to open file", fmt.Sprintf("Opening file %q: %v", fname, err))
 		return
