@@ -138,7 +138,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 		}
 
 		// Json decode
-		var astInner []interface{} = nil
+		var astInner []any = nil
 		err = json.Unmarshal(astJson, &astInner)
 		if err != nil {
 			panic(err)
