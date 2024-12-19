@@ -48,7 +48,6 @@ func UnsafeNewQVersionNumber(h unsafe.Pointer) *QVersionNumber {
 
 // NewQVersionNumber constructs a new QVersionNumber object.
 func NewQVersionNumber() *QVersionNumber {
-
 	ret := newQVersionNumber(C.QVersionNumber_new())
 	ret.isSubclass = true
 	return ret
@@ -70,7 +69,6 @@ func NewQVersionNumber2(seg []int) *QVersionNumber {
 
 // NewQVersionNumber3 constructs a new QVersionNumber object.
 func NewQVersionNumber3(maj int) *QVersionNumber {
-
 	ret := newQVersionNumber(C.QVersionNumber_new3((C.int)(maj)))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +76,6 @@ func NewQVersionNumber3(maj int) *QVersionNumber {
 
 // NewQVersionNumber4 constructs a new QVersionNumber object.
 func NewQVersionNumber4(maj int, min int) *QVersionNumber {
-
 	ret := newQVersionNumber(C.QVersionNumber_new4((C.int)(maj), (C.int)(min)))
 	ret.isSubclass = true
 	return ret
@@ -86,7 +83,6 @@ func NewQVersionNumber4(maj int, min int) *QVersionNumber {
 
 // NewQVersionNumber5 constructs a new QVersionNumber object.
 func NewQVersionNumber5(maj int, min int, mic int) *QVersionNumber {
-
 	ret := newQVersionNumber(C.QVersionNumber_new5((C.int)(maj), (C.int)(min), (C.int)(mic)))
 	ret.isSubclass = true
 	return ret
@@ -94,7 +90,6 @@ func NewQVersionNumber5(maj int, min int, mic int) *QVersionNumber {
 
 // NewQVersionNumber6 constructs a new QVersionNumber object.
 func NewQVersionNumber6(param1 *QVersionNumber) *QVersionNumber {
-
 	ret := newQVersionNumber(C.QVersionNumber_new6(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -226,7 +221,6 @@ func UnsafeNewQTypeRevision(h unsafe.Pointer) *QTypeRevision {
 
 // NewQTypeRevision constructs a new QTypeRevision object.
 func NewQTypeRevision() *QTypeRevision {
-
 	ret := newQTypeRevision(C.QTypeRevision_new())
 	ret.isSubclass = true
 	return ret
@@ -234,7 +228,6 @@ func NewQTypeRevision() *QTypeRevision {
 
 // NewQTypeRevision2 constructs a new QTypeRevision object.
 func NewQTypeRevision2(param1 *QTypeRevision) *QTypeRevision {
-
 	ret := newQTypeRevision(C.QTypeRevision_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

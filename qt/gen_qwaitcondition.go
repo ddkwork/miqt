@@ -48,7 +48,6 @@ func UnsafeNewQWaitCondition(h unsafe.Pointer) *QWaitCondition {
 
 // NewQWaitCondition constructs a new QWaitCondition object.
 func NewQWaitCondition() *QWaitCondition {
-
 	ret := newQWaitCondition(C.QWaitCondition_new())
 	ret.isSubclass = true
 	return ret

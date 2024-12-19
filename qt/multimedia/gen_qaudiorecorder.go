@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioRecorder struct {
@@ -43,8 +44,10 @@ func newQAudioRecorder(h *C.QAudioRecorder) *QAudioRecorder {
 	var outptr_QMediaRecorder *C.QMediaRecorder = nil
 	C.QAudioRecorder_virtbase(h, &outptr_QMediaRecorder)
 
-	return &QAudioRecorder{h: h,
-		QMediaRecorder: newQMediaRecorder(outptr_QMediaRecorder)}
+	return &QAudioRecorder{
+		h:              h,
+		QMediaRecorder: newQMediaRecorder(outptr_QMediaRecorder),
+	}
 }
 
 // UnsafeNewQAudioRecorder constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQAudioRecorder(h unsafe.Pointer) *QAudioRecorder {
 
 // NewQAudioRecorder constructs a new QAudioRecorder object.
 func NewQAudioRecorder() *QAudioRecorder {
-
 	ret := newQAudioRecorder(C.QAudioRecorder_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQAudioRecorder() *QAudioRecorder {
 
 // NewQAudioRecorder2 constructs a new QAudioRecorder object.
 func NewQAudioRecorder2(parent *qt.QObject) *QAudioRecorder {
-
 	ret := newQAudioRecorder(C.QAudioRecorder_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -149,6 +150,7 @@ func (this *QAudioRecorder) AudioInputChanged(name string) {
 	defer C.free(unsafe.Pointer(name_ms.data))
 	C.QAudioRecorder_AudioInputChanged(this.h, name_ms)
 }
+
 func (this *QAudioRecorder) OnAudioInputChanged(slot func(name string)) {
 	C.QAudioRecorder_connect_AudioInputChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -172,6 +174,7 @@ func miqt_exec_callback_QAudioRecorder_AudioInputChanged(cb C.intptr_t, name C.s
 func (this *QAudioRecorder) AvailableAudioInputsChanged() {
 	C.QAudioRecorder_AvailableAudioInputsChanged(this.h)
 }
+
 func (this *QAudioRecorder) OnAvailableAudioInputsChanged(slot func()) {
 	C.QAudioRecorder_connect_AvailableAudioInputsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -231,10 +234,9 @@ func QAudioRecorder_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QAudioRecorder) callVirtualBase_MediaObject() *QMediaObject {
-
 	return newQMediaObject(C.QAudioRecorder_virtualbase_MediaObject(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAudioRecorder) OnMediaObject(slot func(super func() *QMediaObject) *QMediaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -252,14 +254,12 @@ func miqt_exec_callback_QAudioRecorder_MediaObject(self *C.QAudioRecorder, cb C.
 	virtualReturn := gofunc((&QAudioRecorder{h: self}).callVirtualBase_MediaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAudioRecorder) callVirtualBase_SetMediaObject(object *QMediaObject) bool {
-
 	return (bool)(C.QAudioRecorder_virtualbase_SetMediaObject(unsafe.Pointer(this.h), object.cPointer()))
-
 }
+
 func (this *QAudioRecorder) OnSetMediaObject(slot func(super func(object *QMediaObject) bool, object *QMediaObject) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -280,7 +280,6 @@ func miqt_exec_callback_QAudioRecorder_SetMediaObject(self *C.QAudioRecorder, cb
 	virtualReturn := gofunc((&QAudioRecorder{h: self}).callVirtualBase_SetMediaObject, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

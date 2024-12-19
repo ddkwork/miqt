@@ -42,8 +42,10 @@ func newQBitmap(h *C.QBitmap) *QBitmap {
 	var outptr_QPixmap *C.QPixmap = nil
 	C.QBitmap_virtbase(h, &outptr_QPixmap)
 
-	return &QBitmap{h: h,
-		QPixmap: newQPixmap(outptr_QPixmap)}
+	return &QBitmap{
+		h:       h,
+		QPixmap: newQPixmap(outptr_QPixmap),
+	}
 }
 
 // UnsafeNewQBitmap constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQBitmap(h unsafe.Pointer) *QBitmap {
 
 // NewQBitmap constructs a new QBitmap object.
 func NewQBitmap() *QBitmap {
-
 	ret := newQBitmap(C.QBitmap_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQBitmap() *QBitmap {
 
 // NewQBitmap2 constructs a new QBitmap object.
 func NewQBitmap2(param1 *QPixmap) *QBitmap {
-
 	ret := newQBitmap(C.QBitmap_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQBitmap2(param1 *QPixmap) *QBitmap {
 
 // NewQBitmap3 constructs a new QBitmap object.
 func NewQBitmap3(w int, h int) *QBitmap {
-
 	ret := newQBitmap(C.QBitmap_new3((C.int)(w), (C.int)(h)))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQBitmap3(w int, h int) *QBitmap {
 
 // NewQBitmap4 constructs a new QBitmap object.
 func NewQBitmap4(param1 *QSize) *QBitmap {
-
 	ret := newQBitmap(C.QBitmap_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -97,7 +95,6 @@ func NewQBitmap5(fileName string) *QBitmap {
 
 // NewQBitmap6 constructs a new QBitmap object.
 func NewQBitmap6(param1 *QBitmap) *QBitmap {
-
 	ret := newQBitmap(C.QBitmap_new6(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -170,10 +167,9 @@ func QBitmap_FromData3(size *QSize, bits *byte, monoFormat QImage__Format) *QBit
 }
 
 func (this *QBitmap) callVirtualBase_DevType() int {
-
 	return (int)(C.QBitmap_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QBitmap) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -191,14 +187,12 @@ func miqt_exec_callback_QBitmap_DevType(self *C.QBitmap, cb C.intptr_t) C.int {
 	virtualReturn := gofunc((&QBitmap{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QBitmap) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QBitmap_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QBitmap) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -216,14 +210,12 @@ func miqt_exec_callback_QBitmap_PaintEngine(self *C.QBitmap, cb C.intptr_t) *C.Q
 	virtualReturn := gofunc((&QBitmap{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QBitmap) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QBitmap_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QBitmap) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -244,7 +236,6 @@ func miqt_exec_callback_QBitmap_Metric(self *C.QBitmap, cb C.intptr_t, param1 C.
 	virtualReturn := gofunc((&QBitmap{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaControl struct {
@@ -42,8 +43,10 @@ func newQMediaControl(h *C.QMediaControl) *QMediaControl {
 	var outptr_QObject *C.QObject = nil
 	C.QMediaControl_virtbase(h, &outptr_QObject)
 
-	return &QMediaControl{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QMediaControl{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQMediaControl constructs the type using only unsafe pointers.

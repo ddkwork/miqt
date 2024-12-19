@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMetaDataWriterControl struct {
@@ -43,8 +44,10 @@ func newQMetaDataWriterControl(h *C.QMetaDataWriterControl) *QMetaDataWriterCont
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMetaDataWriterControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMetaDataWriterControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMetaDataWriterControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMetaDataWriterControl constructs the type using only unsafe pointers.
@@ -122,6 +125,7 @@ func (this *QMetaDataWriterControl) AvailableMetaData() []string {
 func (this *QMetaDataWriterControl) MetaDataChanged() {
 	C.QMetaDataWriterControl_MetaDataChanged(this.h)
 }
+
 func (this *QMetaDataWriterControl) OnMetaDataChanged(slot func()) {
 	C.QMetaDataWriterControl_connect_MetaDataChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -143,6 +147,7 @@ func (this *QMetaDataWriterControl) MetaDataChanged2(key string, value *qt.QVari
 	defer C.free(unsafe.Pointer(key_ms.data))
 	C.QMetaDataWriterControl_MetaDataChanged2(this.h, key_ms, (*C.QVariant)(value.UnsafePointer()))
 }
+
 func (this *QMetaDataWriterControl) OnMetaDataChanged2(slot func(key string, value *qt.QVariant)) {
 	C.QMetaDataWriterControl_connect_MetaDataChanged2(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -167,6 +172,7 @@ func miqt_exec_callback_QMetaDataWriterControl_MetaDataChanged2(cb C.intptr_t, k
 func (this *QMetaDataWriterControl) WritableChanged(writable bool) {
 	C.QMetaDataWriterControl_WritableChanged(this.h, (C.bool)(writable))
 }
+
 func (this *QMetaDataWriterControl) OnWritableChanged(slot func(writable bool)) {
 	C.QMetaDataWriterControl_connect_WritableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -187,6 +193,7 @@ func miqt_exec_callback_QMetaDataWriterControl_WritableChanged(cb C.intptr_t, wr
 func (this *QMetaDataWriterControl) MetaDataAvailableChanged(available bool) {
 	C.QMetaDataWriterControl_MetaDataAvailableChanged(this.h, (C.bool)(available))
 }
+
 func (this *QMetaDataWriterControl) OnMetaDataAvailableChanged(slot func(available bool)) {
 	C.QMetaDataWriterControl_connect_MetaDataAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

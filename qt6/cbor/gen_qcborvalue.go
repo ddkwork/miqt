@@ -9,9 +9,10 @@ package cbor
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QCborValue__EncodingOption int
@@ -143,7 +144,6 @@ func UnsafeNewQCborValue(h unsafe.Pointer) *QCborValue {
 
 // NewQCborValue constructs a new QCborValue object.
 func NewQCborValue() *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new())
 	ret.isSubclass = true
 	return ret
@@ -151,7 +151,6 @@ func NewQCborValue() *QCborValue {
 
 // NewQCborValue2 constructs a new QCborValue object.
 func NewQCborValue2(t_ QCborValue__Type) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new2((C.int)(t_)))
 	ret.isSubclass = true
 	return ret
@@ -159,7 +158,6 @@ func NewQCborValue2(t_ QCborValue__Type) *QCborValue {
 
 // NewQCborValue3 constructs a new QCborValue object.
 func NewQCborValue3(b_ bool) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new3((C.bool)(b_)))
 	ret.isSubclass = true
 	return ret
@@ -167,7 +165,6 @@ func NewQCborValue3(b_ bool) *QCborValue {
 
 // NewQCborValue4 constructs a new QCborValue object.
 func NewQCborValue4(i int) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new4((C.int)(i)))
 	ret.isSubclass = true
 	return ret
@@ -175,7 +172,6 @@ func NewQCborValue4(i int) *QCborValue {
 
 // NewQCborValue5 constructs a new QCborValue object.
 func NewQCborValue5(u uint) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new5((C.uint)(u)))
 	ret.isSubclass = true
 	return ret
@@ -183,7 +179,6 @@ func NewQCborValue5(u uint) *QCborValue {
 
 // NewQCborValue6 constructs a new QCborValue object.
 func NewQCborValue6(i int64) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new6((C.longlong)(i)))
 	ret.isSubclass = true
 	return ret
@@ -191,7 +186,6 @@ func NewQCborValue6(i int64) *QCborValue {
 
 // NewQCborValue7 constructs a new QCborValue object.
 func NewQCborValue7(v float64) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new7((C.double)(v)))
 	ret.isSubclass = true
 	return ret
@@ -199,7 +193,6 @@ func NewQCborValue7(v float64) *QCborValue {
 
 // NewQCborValue8 constructs a new QCborValue object.
 func NewQCborValue8(st QCborSimpleType) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new8((C.uint8_t)(st)))
 	ret.isSubclass = true
 	return ret
@@ -240,7 +233,6 @@ func NewQCborValue11(s string) *QCborValue {
 
 // NewQCborValue12 constructs a new QCborValue object.
 func NewQCborValue12(a *QCborArray) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new12(a.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -248,7 +240,6 @@ func NewQCborValue12(a *QCborArray) *QCborValue {
 
 // NewQCborValue13 constructs a new QCborValue object.
 func NewQCborValue13(m *QCborMap) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new13(m.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -256,7 +247,6 @@ func NewQCborValue13(m *QCborMap) *QCborValue {
 
 // NewQCborValue14 constructs a new QCborValue object.
 func NewQCborValue14(tag QCborTag) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new14((C.uint64_t)(tag)))
 	ret.isSubclass = true
 	return ret
@@ -264,7 +254,6 @@ func NewQCborValue14(tag QCborTag) *QCborValue {
 
 // NewQCborValue15 constructs a new QCborValue object.
 func NewQCborValue15(t_ QCborKnownTags) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new15((C.int)(t_)))
 	ret.isSubclass = true
 	return ret
@@ -272,7 +261,6 @@ func NewQCborValue15(t_ QCborKnownTags) *QCborValue {
 
 // NewQCborValue16 constructs a new QCborValue object.
 func NewQCborValue16(dt *qt6.QDateTime) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new16((*C.QDateTime)(dt.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -280,7 +268,6 @@ func NewQCborValue16(dt *qt6.QDateTime) *QCborValue {
 
 // NewQCborValue17 constructs a new QCborValue object.
 func NewQCborValue17(url *qt6.QUrl) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new17((*C.QUrl)(url.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -288,7 +275,6 @@ func NewQCborValue17(url *qt6.QUrl) *QCborValue {
 
 // NewQCborValue18 constructs a new QCborValue object.
 func NewQCborValue18(rx *qt6.QRegularExpression) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new18((*C.QRegularExpression)(rx.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -296,7 +282,6 @@ func NewQCborValue18(rx *qt6.QRegularExpression) *QCborValue {
 
 // NewQCborValue19 constructs a new QCborValue object.
 func NewQCborValue19(uuid *qt6.QUuid) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new19((*C.QUuid)(uuid.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -304,7 +289,6 @@ func NewQCborValue19(uuid *qt6.QUuid) *QCborValue {
 
 // NewQCborValue20 constructs a new QCborValue object.
 func NewQCborValue20(other *QCborValue) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new20(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -312,7 +296,6 @@ func NewQCborValue20(other *QCborValue) *QCborValue {
 
 // NewQCborValue21 constructs a new QCborValue object.
 func NewQCborValue21(tag QCborTag, taggedValue *QCborValue) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new21((C.uint64_t)(tag), taggedValue.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -320,7 +303,6 @@ func NewQCborValue21(tag QCborTag, taggedValue *QCborValue) *QCborValue {
 
 // NewQCborValue22 constructs a new QCborValue object.
 func NewQCborValue22(t_ QCborKnownTags, tv *QCborValue) *QCborValue {
-
 	ret := newQCborValue(C.QCborValue_new22((C.int)(t_), tv.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -786,7 +768,6 @@ func UnsafeNewQCborValueConstRef(h unsafe.Pointer) *QCborValueConstRef {
 
 // NewQCborValueConstRef constructs a new QCborValueConstRef object.
 func NewQCborValueConstRef(param1 *QCborValueConstRef) *QCborValueConstRef {
-
 	ret := newQCborValueConstRef(C.QCborValueConstRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1157,8 +1138,10 @@ func newQCborValueRef(h *C.QCborValueRef) *QCborValueRef {
 	var outptr_QCborValueConstRef *C.QCborValueConstRef = nil
 	C.QCborValueRef_virtbase(h, &outptr_QCborValueConstRef)
 
-	return &QCborValueRef{h: h,
-		QCborValueConstRef: newQCborValueConstRef(outptr_QCborValueConstRef)}
+	return &QCborValueRef{
+		h:                  h,
+		QCborValueConstRef: newQCborValueConstRef(outptr_QCborValueConstRef),
+	}
 }
 
 // UnsafeNewQCborValueRef constructs the type using only unsafe pointers.
@@ -1168,7 +1151,6 @@ func UnsafeNewQCborValueRef(h unsafe.Pointer) *QCborValueRef {
 
 // NewQCborValueRef constructs a new QCborValueRef object.
 func NewQCborValueRef(param1 *QCborValueRef) *QCborValueRef {
-
 	ret := newQCborValueRef(C.QCborValueRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

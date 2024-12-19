@@ -139,7 +139,6 @@ func UnsafeNewQKeySequence(h unsafe.Pointer) *QKeySequence {
 
 // NewQKeySequence constructs a new QKeySequence object.
 func NewQKeySequence() *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new())
 	ret.isSubclass = true
 	return ret
@@ -159,7 +158,6 @@ func NewQKeySequence2(key string) *QKeySequence {
 
 // NewQKeySequence3 constructs a new QKeySequence object.
 func NewQKeySequence3(k1 int) *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new3((C.int)(k1)))
 	ret.isSubclass = true
 	return ret
@@ -167,7 +165,6 @@ func NewQKeySequence3(k1 int) *QKeySequence {
 
 // NewQKeySequence4 constructs a new QKeySequence object.
 func NewQKeySequence4(ks *QKeySequence) *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new4(ks.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -175,7 +172,6 @@ func NewQKeySequence4(ks *QKeySequence) *QKeySequence {
 
 // NewQKeySequence5 constructs a new QKeySequence object.
 func NewQKeySequence5(key QKeySequence__StandardKey) *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new5((C.int)(key)))
 	ret.isSubclass = true
 	return ret
@@ -195,7 +191,6 @@ func NewQKeySequence6(key string, format QKeySequence__SequenceFormat) *QKeySequ
 
 // NewQKeySequence7 constructs a new QKeySequence object.
 func NewQKeySequence7(k1 int, k2 int) *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new7((C.int)(k1), (C.int)(k2)))
 	ret.isSubclass = true
 	return ret
@@ -203,7 +198,6 @@ func NewQKeySequence7(k1 int, k2 int) *QKeySequence {
 
 // NewQKeySequence8 constructs a new QKeySequence object.
 func NewQKeySequence8(k1 int, k2 int, k3 int) *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new8((C.int)(k1), (C.int)(k2), (C.int)(k3)))
 	ret.isSubclass = true
 	return ret
@@ -211,7 +205,6 @@ func NewQKeySequence8(k1 int, k2 int, k3 int) *QKeySequence {
 
 // NewQKeySequence9 constructs a new QKeySequence object.
 func NewQKeySequence9(k1 int, k2 int, k3 int, k4 int) *QKeySequence {
-
 	ret := newQKeySequence(C.QKeySequence_new9((C.int)(k1), (C.int)(k2), (C.int)(k3), (C.int)(k4)))
 	ret.isSubclass = true
 	return ret

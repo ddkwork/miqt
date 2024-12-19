@@ -42,8 +42,10 @@ func newQSplitter(h *C.QSplitter) *QSplitter {
 	var outptr_QFrame *C.QFrame = nil
 	C.QSplitter_virtbase(h, &outptr_QFrame)
 
-	return &QSplitter{h: h,
-		QFrame: newQFrame(outptr_QFrame)}
+	return &QSplitter{
+		h:      h,
+		QFrame: newQFrame(outptr_QFrame),
+	}
 }
 
 // UnsafeNewQSplitter constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQSplitter(h unsafe.Pointer) *QSplitter {
 
 // NewQSplitter constructs a new QSplitter object.
 func NewQSplitter(parent *QWidget) *QSplitter {
-
 	ret := newQSplitter(C.QSplitter_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQSplitter(parent *QWidget) *QSplitter {
 
 // NewQSplitter2 constructs a new QSplitter object.
 func NewQSplitter2() *QSplitter {
-
 	ret := newQSplitter(C.QSplitter_new2())
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQSplitter2() *QSplitter {
 
 // NewQSplitter3 constructs a new QSplitter object.
 func NewQSplitter3(param1 Orientation) *QSplitter {
-
 	ret := newQSplitter(C.QSplitter_new3((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQSplitter3(param1 Orientation) *QSplitter {
 
 // NewQSplitter4 constructs a new QSplitter object.
 func NewQSplitter4(param1 Orientation, parent *QWidget) *QSplitter {
-
 	ret := newQSplitter(C.QSplitter_new4((C.int)(param1), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -240,6 +238,7 @@ func (this *QSplitter) SetStretchFactor(index int, stretch int) {
 func (this *QSplitter) SplitterMoved(pos int, index int) {
 	C.QSplitter_SplitterMoved(this.h, (C.int)(pos), (C.int)(index))
 }
+
 func (this *QSplitter) OnSplitterMoved(slot func(pos int, index int)) {
 	C.QSplitter_connect_SplitterMoved(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -308,12 +307,11 @@ func (this *QSplitter) SetOpaqueResize1(opaque bool) {
 }
 
 func (this *QSplitter) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QSplitter_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplitter) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -331,16 +329,14 @@ func miqt_exec_callback_QSplitter_SizeHint(self *C.QSplitter, cb C.intptr_t) *C.
 	virtualReturn := gofunc((&QSplitter{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitter) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QSplitter_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplitter) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -358,14 +354,12 @@ func miqt_exec_callback_QSplitter_MinimumSizeHint(self *C.QSplitter, cb C.intptr
 	virtualReturn := gofunc((&QSplitter{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitter) callVirtualBase_CreateHandle() *QSplitterHandle {
-
 	return newQSplitterHandle(C.QSplitter_virtualbase_CreateHandle(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplitter) OnCreateHandle(slot func(super func() *QSplitterHandle) *QSplitterHandle) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -383,14 +377,12 @@ func miqt_exec_callback_QSplitter_CreateHandle(self *C.QSplitter, cb C.intptr_t)
 	virtualReturn := gofunc((&QSplitter{h: self}).callVirtualBase_CreateHandle)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitter) callVirtualBase_ChildEvent(param1 *QChildEvent) {
-
 	C.QSplitter_virtualbase_ChildEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitter) OnChildEvent(slot func(super func(param1 *QChildEvent), param1 *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -409,14 +401,12 @@ func miqt_exec_callback_QSplitter_ChildEvent(self *C.QSplitter, cb C.intptr_t, p
 	slotval1 := newQChildEvent(param1)
 
 	gofunc((&QSplitter{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QSplitter) callVirtualBase_Event(param1 *QEvent) bool {
-
 	return (bool)(C.QSplitter_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QSplitter) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -437,14 +427,12 @@ func miqt_exec_callback_QSplitter_Event(self *C.QSplitter, cb C.intptr_t, param1
 	virtualReturn := gofunc((&QSplitter{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplitter) callVirtualBase_ResizeEvent(param1 *QResizeEvent) {
-
 	C.QSplitter_virtualbase_ResizeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitter) OnResizeEvent(slot func(super func(param1 *QResizeEvent), param1 *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -463,14 +451,12 @@ func miqt_exec_callback_QSplitter_ResizeEvent(self *C.QSplitter, cb C.intptr_t, 
 	slotval1 := newQResizeEvent(param1)
 
 	gofunc((&QSplitter{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QSplitter) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QSplitter_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitter) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -489,14 +475,12 @@ func miqt_exec_callback_QSplitter_ChangeEvent(self *C.QSplitter, cb C.intptr_t, 
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QSplitter{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QSplitter) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QSplitter_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitter) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -515,7 +499,6 @@ func miqt_exec_callback_QSplitter_PaintEvent(self *C.QSplitter, cb C.intptr_t, p
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QSplitter{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -560,8 +543,10 @@ func newQSplitterHandle(h *C.QSplitterHandle) *QSplitterHandle {
 	var outptr_QWidget *C.QWidget = nil
 	C.QSplitterHandle_virtbase(h, &outptr_QWidget)
 
-	return &QSplitterHandle{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
+	return &QSplitterHandle{
+		h:       h,
+		QWidget: newQWidget(outptr_QWidget),
+	}
 }
 
 // UnsafeNewQSplitterHandle constructs the type using only unsafe pointers.
@@ -571,7 +556,6 @@ func UnsafeNewQSplitterHandle(h unsafe.Pointer) *QSplitterHandle {
 
 // NewQSplitterHandle constructs a new QSplitterHandle object.
 func NewQSplitterHandle(o Orientation, parent *QSplitter) *QSplitterHandle {
-
 	ret := newQSplitterHandle(C.QSplitterHandle_new((C.int)(o), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -672,12 +656,11 @@ func QSplitterHandle_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QSplitterHandle) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QSplitterHandle_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplitterHandle) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -695,14 +678,12 @@ func miqt_exec_callback_QSplitterHandle_SizeHint(self *C.QSplitterHandle, cb C.i
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QSplitterHandle_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -721,14 +702,12 @@ func miqt_exec_callback_QSplitterHandle_PaintEvent(self *C.QSplitterHandle, cb C
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_MouseMoveEvent(param1 *QMouseEvent) {
-
 	C.QSplitterHandle_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnMouseMoveEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -747,14 +726,12 @@ func miqt_exec_callback_QSplitterHandle_MouseMoveEvent(self *C.QSplitterHandle, 
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_MousePressEvent(param1 *QMouseEvent) {
-
 	C.QSplitterHandle_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnMousePressEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -773,14 +750,12 @@ func miqt_exec_callback_QSplitterHandle_MousePressEvent(self *C.QSplitterHandle,
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_MouseReleaseEvent(param1 *QMouseEvent) {
-
 	C.QSplitterHandle_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnMouseReleaseEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -799,14 +774,12 @@ func miqt_exec_callback_QSplitterHandle_MouseReleaseEvent(self *C.QSplitterHandl
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_ResizeEvent(param1 *QResizeEvent) {
-
 	C.QSplitterHandle_virtualbase_ResizeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnResizeEvent(slot func(super func(param1 *QResizeEvent), param1 *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -825,14 +798,12 @@ func miqt_exec_callback_QSplitterHandle_ResizeEvent(self *C.QSplitterHandle, cb 
 	slotval1 := newQResizeEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_Event(param1 *QEvent) bool {
-
 	return (bool)(C.QSplitterHandle_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QSplitterHandle) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -853,14 +824,12 @@ func miqt_exec_callback_QSplitterHandle_Event(self *C.QSplitterHandle, cb C.intp
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_DevType() int {
-
 	return (int)(C.QSplitterHandle_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplitterHandle) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -878,14 +847,12 @@ func miqt_exec_callback_QSplitterHandle_DevType(self *C.QSplitterHandle, cb C.in
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_SetVisible(visible bool) {
-
 	C.QSplitterHandle_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QSplitterHandle) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -904,16 +871,14 @@ func miqt_exec_callback_QSplitterHandle_SetVisible(self *C.QSplitterHandle, cb C
 	slotval1 := (bool)(visible)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QSplitterHandle_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplitterHandle) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -931,14 +896,12 @@ func miqt_exec_callback_QSplitterHandle_MinimumSizeHint(self *C.QSplitterHandle,
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QSplitterHandle_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QSplitterHandle) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -959,14 +922,12 @@ func miqt_exec_callback_QSplitterHandle_HeightForWidth(self *C.QSplitterHandle, 
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QSplitterHandle_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplitterHandle) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -984,14 +945,12 @@ func miqt_exec_callback_QSplitterHandle_HasHeightForWidth(self *C.QSplitterHandl
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QSplitterHandle_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplitterHandle) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1009,14 +968,12 @@ func miqt_exec_callback_QSplitterHandle_PaintEngine(self *C.QSplitterHandle, cb 
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_MouseDoubleClickEvent(event *QMouseEvent) {
-
 	C.QSplitterHandle_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnMouseDoubleClickEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1035,14 +992,12 @@ func miqt_exec_callback_QSplitterHandle_MouseDoubleClickEvent(self *C.QSplitterH
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_WheelEvent(event *QWheelEvent) {
-
 	C.QSplitterHandle_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnWheelEvent(slot func(super func(event *QWheelEvent), event *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1061,14 +1016,12 @@ func miqt_exec_callback_QSplitterHandle_WheelEvent(self *C.QSplitterHandle, cb C
 	slotval1 := newQWheelEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
-
 	C.QSplitterHandle_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1087,14 +1040,12 @@ func miqt_exec_callback_QSplitterHandle_KeyPressEvent(self *C.QSplitterHandle, c
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
-
 	C.QSplitterHandle_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1113,14 +1064,12 @@ func miqt_exec_callback_QSplitterHandle_KeyReleaseEvent(self *C.QSplitterHandle,
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_FocusInEvent(event *QFocusEvent) {
-
 	C.QSplitterHandle_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1139,14 +1088,12 @@ func miqt_exec_callback_QSplitterHandle_FocusInEvent(self *C.QSplitterHandle, cb
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
-
 	C.QSplitterHandle_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1165,14 +1112,12 @@ func miqt_exec_callback_QSplitterHandle_FocusOutEvent(self *C.QSplitterHandle, c
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_EnterEvent(event *QEvent) {
-
 	C.QSplitterHandle_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnEnterEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1191,14 +1136,12 @@ func miqt_exec_callback_QSplitterHandle_EnterEvent(self *C.QSplitterHandle, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_LeaveEvent(event *QEvent) {
-
 	C.QSplitterHandle_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1217,14 +1160,12 @@ func miqt_exec_callback_QSplitterHandle_LeaveEvent(self *C.QSplitterHandle, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_MoveEvent(event *QMoveEvent) {
-
 	C.QSplitterHandle_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1243,14 +1184,12 @@ func miqt_exec_callback_QSplitterHandle_MoveEvent(self *C.QSplitterHandle, cb C.
 	slotval1 := newQMoveEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QSplitterHandle_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1269,14 +1208,12 @@ func miqt_exec_callback_QSplitterHandle_CloseEvent(self *C.QSplitterHandle, cb C
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_ContextMenuEvent(event *QContextMenuEvent) {
-
 	C.QSplitterHandle_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnContextMenuEvent(slot func(super func(event *QContextMenuEvent), event *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1295,14 +1232,12 @@ func miqt_exec_callback_QSplitterHandle_ContextMenuEvent(self *C.QSplitterHandle
 	slotval1 := newQContextMenuEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_TabletEvent(event *QTabletEvent) {
-
 	C.QSplitterHandle_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1321,14 +1256,12 @@ func miqt_exec_callback_QSplitterHandle_TabletEvent(self *C.QSplitterHandle, cb 
 	slotval1 := newQTabletEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_ActionEvent(event *QActionEvent) {
-
 	C.QSplitterHandle_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1347,14 +1280,12 @@ func miqt_exec_callback_QSplitterHandle_ActionEvent(self *C.QSplitterHandle, cb 
 	slotval1 := newQActionEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_DragEnterEvent(event *QDragEnterEvent) {
-
 	C.QSplitterHandle_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnDragEnterEvent(slot func(super func(event *QDragEnterEvent), event *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1373,14 +1304,12 @@ func miqt_exec_callback_QSplitterHandle_DragEnterEvent(self *C.QSplitterHandle, 
 	slotval1 := newQDragEnterEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_DragMoveEvent(event *QDragMoveEvent) {
-
 	C.QSplitterHandle_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnDragMoveEvent(slot func(super func(event *QDragMoveEvent), event *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1399,14 +1328,12 @@ func miqt_exec_callback_QSplitterHandle_DragMoveEvent(self *C.QSplitterHandle, c
 	slotval1 := newQDragMoveEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_DragLeaveEvent(event *QDragLeaveEvent) {
-
 	C.QSplitterHandle_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnDragLeaveEvent(slot func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1425,14 +1352,12 @@ func miqt_exec_callback_QSplitterHandle_DragLeaveEvent(self *C.QSplitterHandle, 
 	slotval1 := newQDragLeaveEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_DropEvent(event *QDropEvent) {
-
 	C.QSplitterHandle_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnDropEvent(slot func(super func(event *QDropEvent), event *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1451,14 +1376,12 @@ func miqt_exec_callback_QSplitterHandle_DropEvent(self *C.QSplitterHandle, cb C.
 	slotval1 := newQDropEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QSplitterHandle_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1477,14 +1400,12 @@ func miqt_exec_callback_QSplitterHandle_ShowEvent(self *C.QSplitterHandle, cb C.
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QSplitterHandle_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1503,7 +1424,6 @@ func miqt_exec_callback_QSplitterHandle_HideEvent(self *C.QSplitterHandle, cb C.
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
@@ -1512,8 +1432,8 @@ func (this *QSplitterHandle) callVirtualBase_NativeEvent(eventType []byte, messa
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QSplitterHandle_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
-
 }
+
 func (this *QSplitterHandle) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1540,14 +1460,12 @@ func miqt_exec_callback_QSplitterHandle_NativeEvent(self *C.QSplitterHandle, cb 
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QSplitterHandle_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1566,14 +1484,12 @@ func miqt_exec_callback_QSplitterHandle_ChangeEvent(self *C.QSplitterHandle, cb 
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QSplitterHandle_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QSplitterHandle) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1594,14 +1510,12 @@ func miqt_exec_callback_QSplitterHandle_Metric(self *C.QSplitterHandle, cb C.int
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QSplitterHandle_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1620,14 +1534,12 @@ func miqt_exec_callback_QSplitterHandle_InitPainter(self *C.QSplitterHandle, cb 
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QSplitterHandle_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QSplitterHandle) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1648,14 +1560,12 @@ func miqt_exec_callback_QSplitterHandle_Redirected(self *C.QSplitterHandle, cb C
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QSplitterHandle_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplitterHandle) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1673,14 +1583,12 @@ func miqt_exec_callback_QSplitterHandle_SharedPainter(self *C.QSplitterHandle, c
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
-
 	C.QSplitterHandle_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplitterHandle) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1699,16 +1607,14 @@ func miqt_exec_callback_QSplitterHandle_InputMethodEvent(self *C.QSplitterHandle
 	slotval1 := newQInputMethodEvent(param1)
 
 	gofunc((&QSplitterHandle{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QSplitterHandle_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplitterHandle) OnInputMethodQuery(slot func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1729,14 +1635,12 @@ func miqt_exec_callback_QSplitterHandle_InputMethodQuery(self *C.QSplitterHandle
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplitterHandle) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QSplitterHandle_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QSplitterHandle) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1757,7 +1661,6 @@ func miqt_exec_callback_QSplitterHandle_FocusNextPrevChild(self *C.QSplitterHand
 	virtualReturn := gofunc((&QSplitterHandle{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

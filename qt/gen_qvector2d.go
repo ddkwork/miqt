@@ -48,7 +48,6 @@ func UnsafeNewQVector2D(h unsafe.Pointer) *QVector2D {
 
 // NewQVector2D constructs a new QVector2D object.
 func NewQVector2D() *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQVector2D() *QVector2D {
 
 // NewQVector2D2 constructs a new QVector2D object.
 func NewQVector2D2(param1 Initialization) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new2((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQVector2D2(param1 Initialization) *QVector2D {
 
 // NewQVector2D3 constructs a new QVector2D object.
 func NewQVector2D3(xpos float32, ypos float32) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new3((C.float)(xpos), (C.float)(ypos)))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +69,6 @@ func NewQVector2D3(xpos float32, ypos float32) *QVector2D {
 
 // NewQVector2D4 constructs a new QVector2D object.
 func NewQVector2D4(point *QPoint) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new4(point.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -80,7 +76,6 @@ func NewQVector2D4(point *QPoint) *QVector2D {
 
 // NewQVector2D5 constructs a new QVector2D object.
 func NewQVector2D5(point *QPointF) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new5(point.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -88,7 +83,6 @@ func NewQVector2D5(point *QPointF) *QVector2D {
 
 // NewQVector2D6 constructs a new QVector2D object.
 func NewQVector2D6(vector *QVector3D) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new6(vector.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,7 +90,6 @@ func NewQVector2D6(vector *QVector3D) *QVector2D {
 
 // NewQVector2D7 constructs a new QVector2D object.
 func NewQVector2D7(vector *QVector4D) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new7(vector.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -104,7 +97,6 @@ func NewQVector2D7(vector *QVector4D) *QVector2D {
 
 // NewQVector2D8 constructs a new QVector2D object.
 func NewQVector2D8(param1 *QVector2D) *QVector2D {
-
 	ret := newQVector2D(C.QVector2D_new8(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

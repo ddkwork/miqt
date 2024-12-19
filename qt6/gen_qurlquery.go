@@ -48,7 +48,6 @@ func UnsafeNewQUrlQuery(h unsafe.Pointer) *QUrlQuery {
 
 // NewQUrlQuery constructs a new QUrlQuery object.
 func NewQUrlQuery() *QUrlQuery {
-
 	ret := newQUrlQuery(C.QUrlQuery_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQUrlQuery() *QUrlQuery {
 
 // NewQUrlQuery2 constructs a new QUrlQuery object.
 func NewQUrlQuery2(url *QUrl) *QUrlQuery {
-
 	ret := newQUrlQuery(C.QUrlQuery_new2(url.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -76,7 +74,6 @@ func NewQUrlQuery3(queryString string) *QUrlQuery {
 
 // NewQUrlQuery4 constructs a new QUrlQuery object.
 func NewQUrlQuery4(other *QUrlQuery) *QUrlQuery {
-
 	ret := newQUrlQuery(C.QUrlQuery_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -151,7 +148,8 @@ func (this *QUrlQuery) QueryPairDelimiter() *QChar {
 func (this *QUrlQuery) SetQueryItems(query []struct {
 	First  string
 	Second string
-}) {
+},
+) {
 	query_CArray := (*[0xffff]C.struct_miqt_map)(C.malloc(C.size_t(8 * len(query))))
 	defer C.free(unsafe.Pointer(query_CArray))
 	for i := range query {

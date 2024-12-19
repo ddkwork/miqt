@@ -59,7 +59,6 @@ func UnsafeNewQTransform(h unsafe.Pointer) *QTransform {
 
 // NewQTransform constructs a new QTransform object.
 func NewQTransform(param1 Initialization) *QTransform {
-
 	ret := newQTransform(C.QTransform_new((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -67,7 +66,6 @@ func NewQTransform(param1 Initialization) *QTransform {
 
 // NewQTransform2 constructs a new QTransform object.
 func NewQTransform2() *QTransform {
-
 	ret := newQTransform(C.QTransform_new2())
 	ret.isSubclass = true
 	return ret
@@ -75,7 +73,6 @@ func NewQTransform2() *QTransform {
 
 // NewQTransform3 constructs a new QTransform object.
 func NewQTransform3(h11 float64, h12 float64, h13 float64, h21 float64, h22 float64, h23 float64, h31 float64, h32 float64, h33 float64) *QTransform {
-
 	ret := newQTransform(C.QTransform_new3((C.double)(h11), (C.double)(h12), (C.double)(h13), (C.double)(h21), (C.double)(h22), (C.double)(h23), (C.double)(h31), (C.double)(h32), (C.double)(h33)))
 	ret.isSubclass = true
 	return ret
@@ -83,7 +80,6 @@ func NewQTransform3(h11 float64, h12 float64, h13 float64, h21 float64, h22 floa
 
 // NewQTransform4 constructs a new QTransform object.
 func NewQTransform4(h11 float64, h12 float64, h21 float64, h22 float64, dx float64, dy float64) *QTransform {
-
 	ret := newQTransform(C.QTransform_new4((C.double)(h11), (C.double)(h12), (C.double)(h21), (C.double)(h22), (C.double)(dx), (C.double)(dy)))
 	ret.isSubclass = true
 	return ret
@@ -91,7 +87,6 @@ func NewQTransform4(h11 float64, h12 float64, h21 float64, h22 float64, dx float
 
 // NewQTransform5 constructs a new QTransform object.
 func NewQTransform5(other *QTransform) *QTransform {
-
 	ret := newQTransform(C.QTransform_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret

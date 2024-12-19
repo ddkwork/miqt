@@ -60,7 +60,6 @@ func UnsafeNewQFutureInterfaceBase(h unsafe.Pointer) *QFutureInterfaceBase {
 
 // NewQFutureInterfaceBase constructs a new QFutureInterfaceBase object.
 func NewQFutureInterfaceBase() *QFutureInterfaceBase {
-
 	ret := newQFutureInterfaceBase(C.QFutureInterfaceBase_new())
 	ret.isSubclass = true
 	return ret
@@ -68,7 +67,6 @@ func NewQFutureInterfaceBase() *QFutureInterfaceBase {
 
 // NewQFutureInterfaceBase2 constructs a new QFutureInterfaceBase object.
 func NewQFutureInterfaceBase2(other *QFutureInterfaceBase) *QFutureInterfaceBase {
-
 	ret := newQFutureInterfaceBase(C.QFutureInterfaceBase_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -76,7 +74,6 @@ func NewQFutureInterfaceBase2(other *QFutureInterfaceBase) *QFutureInterfaceBase
 
 // NewQFutureInterfaceBase3 constructs a new QFutureInterfaceBase object.
 func NewQFutureInterfaceBase3(initialState QFutureInterfaceBase__State) *QFutureInterfaceBase {
-
 	ret := newQFutureInterfaceBase(C.QFutureInterfaceBase_new3((C.int)(initialState)))
 	ret.isSubclass = true
 	return ret

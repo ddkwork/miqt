@@ -90,7 +90,6 @@ func UnsafeNewQDir(h unsafe.Pointer) *QDir {
 
 // NewQDir constructs a new QDir object.
 func NewQDir(param1 *QDir) *QDir {
-
 	ret := newQDir(C.QDir_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -98,7 +97,6 @@ func NewQDir(param1 *QDir) *QDir {
 
 // NewQDir2 constructs a new QDir object.
 func NewQDir2() *QDir {
-
 	ret := newQDir(C.QDir_new2())
 	ret.isSubclass = true
 	return ret

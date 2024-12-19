@@ -9,9 +9,10 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QNetworkInformation__Reachability int
@@ -71,8 +72,10 @@ func newQNetworkInformation(h *C.QNetworkInformation) *QNetworkInformation {
 	var outptr_QObject *C.QObject = nil
 	C.QNetworkInformation_virtbase(h, &outptr_QObject)
 
-	return &QNetworkInformation{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QNetworkInformation{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQNetworkInformation constructs the type using only unsafe pointers.
@@ -162,6 +165,7 @@ func QNetworkInformation_Instance() *QNetworkInformation {
 func (this *QNetworkInformation) ReachabilityChanged(newReachability QNetworkInformation__Reachability) {
 	C.QNetworkInformation_ReachabilityChanged(this.h, (C.int)(newReachability))
 }
+
 func (this *QNetworkInformation) OnReachabilityChanged(slot func(newReachability QNetworkInformation__Reachability)) {
 	C.QNetworkInformation_connect_ReachabilityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -182,6 +186,7 @@ func miqt_exec_callback_QNetworkInformation_ReachabilityChanged(cb C.intptr_t, n
 func (this *QNetworkInformation) IsBehindCaptivePortalChanged(state bool) {
 	C.QNetworkInformation_IsBehindCaptivePortalChanged(this.h, (C.bool)(state))
 }
+
 func (this *QNetworkInformation) OnIsBehindCaptivePortalChanged(slot func(state bool)) {
 	C.QNetworkInformation_connect_IsBehindCaptivePortalChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -202,6 +207,7 @@ func miqt_exec_callback_QNetworkInformation_IsBehindCaptivePortalChanged(cb C.in
 func (this *QNetworkInformation) TransportMediumChanged(current QNetworkInformation__TransportMedium) {
 	C.QNetworkInformation_TransportMediumChanged(this.h, (C.int)(current))
 }
+
 func (this *QNetworkInformation) OnTransportMediumChanged(slot func(current QNetworkInformation__TransportMedium)) {
 	C.QNetworkInformation_connect_TransportMediumChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -222,6 +228,7 @@ func miqt_exec_callback_QNetworkInformation_TransportMediumChanged(cb C.intptr_t
 func (this *QNetworkInformation) IsMeteredChanged(isMetered bool) {
 	C.QNetworkInformation_IsMeteredChanged(this.h, (C.bool)(isMetered))
 }
+
 func (this *QNetworkInformation) OnIsMeteredChanged(slot func(isMetered bool)) {
 	C.QNetworkInformation_connect_IsMeteredChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

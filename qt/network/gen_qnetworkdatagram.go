@@ -48,7 +48,6 @@ func UnsafeNewQNetworkDatagram(h unsafe.Pointer) *QNetworkDatagram {
 
 // NewQNetworkDatagram constructs a new QNetworkDatagram object.
 func NewQNetworkDatagram() *QNetworkDatagram {
-
 	ret := newQNetworkDatagram(C.QNetworkDatagram_new())
 	ret.isSubclass = true
 	return ret
@@ -67,7 +66,6 @@ func NewQNetworkDatagram2(data []byte) *QNetworkDatagram {
 
 // NewQNetworkDatagram3 constructs a new QNetworkDatagram object.
 func NewQNetworkDatagram3(other *QNetworkDatagram) *QNetworkDatagram {
-
 	ret := newQNetworkDatagram(C.QNetworkDatagram_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

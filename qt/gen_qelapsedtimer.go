@@ -58,7 +58,6 @@ func UnsafeNewQElapsedTimer(h unsafe.Pointer) *QElapsedTimer {
 
 // NewQElapsedTimer constructs a new QElapsedTimer object.
 func NewQElapsedTimer() *QElapsedTimer {
-
 	ret := newQElapsedTimer(C.QElapsedTimer_new())
 	ret.isSubclass = true
 	return ret

@@ -9,8 +9,9 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt/network"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt/network"
 )
 
 type QWebEngineClientCertificateStore struct {

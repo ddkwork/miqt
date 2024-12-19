@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraViewfinderSettingsControl__ViewfinderParameter int
@@ -53,8 +54,10 @@ func newQCameraViewfinderSettingsControl(h *C.QCameraViewfinderSettingsControl) 
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraViewfinderSettingsControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraViewfinderSettingsControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraViewfinderSettingsControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraViewfinderSettingsControl constructs the type using only unsafe pointers.
@@ -190,8 +193,10 @@ func newQCameraViewfinderSettingsControl2(h *C.QCameraViewfinderSettingsControl2
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraViewfinderSettingsControl2_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraViewfinderSettingsControl2{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraViewfinderSettingsControl2{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraViewfinderSettingsControl2 constructs the type using only unsafe pointers.

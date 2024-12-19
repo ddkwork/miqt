@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QVideoFrame__FieldType int
@@ -100,7 +101,6 @@ func UnsafeNewQVideoFrame(h unsafe.Pointer) *QVideoFrame {
 
 // NewQVideoFrame constructs a new QVideoFrame object.
 func NewQVideoFrame() *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new())
 	ret.isSubclass = true
 	return ret
@@ -108,7 +108,6 @@ func NewQVideoFrame() *QVideoFrame {
 
 // NewQVideoFrame2 constructs a new QVideoFrame object.
 func NewQVideoFrame2(bytes int, size *qt.QSize, bytesPerLine int, format QVideoFrame__PixelFormat) *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new2((C.int)(bytes), (*C.QSize)(size.UnsafePointer()), (C.int)(bytesPerLine), (C.int)(format)))
 	ret.isSubclass = true
 	return ret
@@ -116,7 +115,6 @@ func NewQVideoFrame2(bytes int, size *qt.QSize, bytesPerLine int, format QVideoF
 
 // NewQVideoFrame3 constructs a new QVideoFrame object.
 func NewQVideoFrame3(image *qt.QImage) *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new3((*C.QImage)(image.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -124,7 +122,6 @@ func NewQVideoFrame3(image *qt.QImage) *QVideoFrame {
 
 // NewQVideoFrame4 constructs a new QVideoFrame object.
 func NewQVideoFrame4(other *QVideoFrame) *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

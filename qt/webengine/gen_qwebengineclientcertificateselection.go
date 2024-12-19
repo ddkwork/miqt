@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
-	"github.com/mappu/miqt/qt/network"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
+	"github.com/mappu/miqt/qt/network"
 )
 
 type QWebEngineClientCertificateSelection struct {
@@ -50,7 +51,6 @@ func UnsafeNewQWebEngineClientCertificateSelection(h unsafe.Pointer) *QWebEngine
 
 // NewQWebEngineClientCertificateSelection constructs a new QWebEngineClientCertificateSelection object.
 func NewQWebEngineClientCertificateSelection(param1 *QWebEngineClientCertificateSelection) *QWebEngineClientCertificateSelection {
-
 	ret := newQWebEngineClientCertificateSelection(C.QWebEngineClientCertificateSelection_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -48,7 +48,6 @@ func UnsafeNewQPageRanges(h unsafe.Pointer) *QPageRanges {
 
 // NewQPageRanges constructs a new QPageRanges object.
 func NewQPageRanges() *QPageRanges {
-
 	ret := newQPageRanges(C.QPageRanges_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQPageRanges() *QPageRanges {
 
 // NewQPageRanges2 constructs a new QPageRanges object.
 func NewQPageRanges2(other *QPageRanges) *QPageRanges {
-
 	ret := newQPageRanges(C.QPageRanges_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -180,7 +178,6 @@ func UnsafeNewQPageRanges__Range(h unsafe.Pointer) *QPageRanges__Range {
 
 // NewQPageRanges__Range constructs a new QPageRanges::Range object.
 func NewQPageRanges__Range() *QPageRanges__Range {
-
 	ret := newQPageRanges__Range(C.QPageRanges__Range_new())
 	ret.isSubclass = true
 	return ret
@@ -188,7 +185,6 @@ func NewQPageRanges__Range() *QPageRanges__Range {
 
 // NewQPageRanges__Range2 constructs a new QPageRanges::Range object.
 func NewQPageRanges__Range2(param1 *QPageRanges__Range) *QPageRanges__Range {
-
 	ret := newQPageRanges__Range(C.QPageRanges__Range_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

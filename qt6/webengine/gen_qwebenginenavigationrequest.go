@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineNavigationRequest__NavigationType int
@@ -62,8 +63,10 @@ func newQWebEngineNavigationRequest(h *C.QWebEngineNavigationRequest) *QWebEngin
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineNavigationRequest_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineNavigationRequest{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineNavigationRequest{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineNavigationRequest constructs the type using only unsafe pointers.
@@ -115,6 +118,7 @@ func (this *QWebEngineNavigationRequest) Reject() {
 func (this *QWebEngineNavigationRequest) ActionChanged() {
 	C.QWebEngineNavigationRequest_ActionChanged(this.h)
 }
+
 func (this *QWebEngineNavigationRequest) OnActionChanged(slot func()) {
 	C.QWebEngineNavigationRequest_connect_ActionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

@@ -63,7 +63,6 @@ func UnsafeNewQPartialOrdering(h unsafe.Pointer) *QPartialOrdering {
 
 // NewQPartialOrdering constructs a new QPartialOrdering object.
 func NewQPartialOrdering(param1 *QPartialOrdering) *QPartialOrdering {
-
 	ret := newQPartialOrdering(C.QPartialOrdering_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -58,8 +58,10 @@ func newQInputDialog(h *C.QInputDialog) *QInputDialog {
 	var outptr_QDialog *C.QDialog = nil
 	C.QInputDialog_virtbase(h, &outptr_QDialog)
 
-	return &QInputDialog{h: h,
-		QDialog: newQDialog(outptr_QDialog)}
+	return &QInputDialog{
+		h:       h,
+		QDialog: newQDialog(outptr_QDialog),
+	}
 }
 
 // UnsafeNewQInputDialog constructs the type using only unsafe pointers.
@@ -69,7 +71,6 @@ func UnsafeNewQInputDialog(h unsafe.Pointer) *QInputDialog {
 
 // NewQInputDialog constructs a new QInputDialog object.
 func NewQInputDialog(parent *QWidget) *QInputDialog {
-
 	ret := newQInputDialog(C.QInputDialog_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +78,6 @@ func NewQInputDialog(parent *QWidget) *QInputDialog {
 
 // NewQInputDialog2 constructs a new QInputDialog object.
 func NewQInputDialog2() *QInputDialog {
-
 	ret := newQInputDialog(C.QInputDialog_new2())
 	ret.isSubclass = true
 	return ret
@@ -85,7 +85,6 @@ func NewQInputDialog2() *QInputDialog {
 
 // NewQInputDialog3 constructs a new QInputDialog object.
 func NewQInputDialog3(parent *QWidget, flags WindowType) *QInputDialog {
-
 	ret := newQInputDialog(C.QInputDialog_new3(parent.cPointer(), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -440,6 +439,7 @@ func (this *QInputDialog) TextValueChanged(text string) {
 	defer C.free(unsafe.Pointer(text_ms.data))
 	C.QInputDialog_TextValueChanged(this.h, text_ms)
 }
+
 func (this *QInputDialog) OnTextValueChanged(slot func(text string)) {
 	C.QInputDialog_connect_TextValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -467,6 +467,7 @@ func (this *QInputDialog) TextValueSelected(text string) {
 	defer C.free(unsafe.Pointer(text_ms.data))
 	C.QInputDialog_TextValueSelected(this.h, text_ms)
 }
+
 func (this *QInputDialog) OnTextValueSelected(slot func(text string)) {
 	C.QInputDialog_connect_TextValueSelected(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -490,6 +491,7 @@ func miqt_exec_callback_QInputDialog_TextValueSelected(cb C.intptr_t, text C.str
 func (this *QInputDialog) IntValueChanged(value int) {
 	C.QInputDialog_IntValueChanged(this.h, (C.int)(value))
 }
+
 func (this *QInputDialog) OnIntValueChanged(slot func(value int)) {
 	C.QInputDialog_connect_IntValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -510,6 +512,7 @@ func miqt_exec_callback_QInputDialog_IntValueChanged(cb C.intptr_t, value C.int)
 func (this *QInputDialog) IntValueSelected(value int) {
 	C.QInputDialog_IntValueSelected(this.h, (C.int)(value))
 }
+
 func (this *QInputDialog) OnIntValueSelected(slot func(value int)) {
 	C.QInputDialog_connect_IntValueSelected(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -530,6 +533,7 @@ func miqt_exec_callback_QInputDialog_IntValueSelected(cb C.intptr_t, value C.int
 func (this *QInputDialog) DoubleValueChanged(value float64) {
 	C.QInputDialog_DoubleValueChanged(this.h, (C.double)(value))
 }
+
 func (this *QInputDialog) OnDoubleValueChanged(slot func(value float64)) {
 	C.QInputDialog_connect_DoubleValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -550,6 +554,7 @@ func miqt_exec_callback_QInputDialog_DoubleValueChanged(cb C.intptr_t, value C.d
 func (this *QInputDialog) DoubleValueSelected(value float64) {
 	C.QInputDialog_DoubleValueSelected(this.h, (C.double)(value))
 }
+
 func (this *QInputDialog) OnDoubleValueSelected(slot func(value float64)) {
 	C.QInputDialog_connect_DoubleValueSelected(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -1056,12 +1061,11 @@ func QInputDialog_GetDouble9(parent *QWidget, title string, label string, value 
 }
 
 func (this *QInputDialog) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QInputDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QInputDialog) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1079,16 +1083,14 @@ func miqt_exec_callback_QInputDialog_MinimumSizeHint(self *C.QInputDialog, cb C.
 	virtualReturn := gofunc((&QInputDialog{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QInputDialog) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QInputDialog_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QInputDialog) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1106,14 +1108,12 @@ func miqt_exec_callback_QInputDialog_SizeHint(self *C.QInputDialog, cb C.intptr_
 	virtualReturn := gofunc((&QInputDialog{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QInputDialog) callVirtualBase_SetVisible(visible bool) {
-
 	C.QInputDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QInputDialog) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1132,14 +1132,12 @@ func miqt_exec_callback_QInputDialog_SetVisible(self *C.QInputDialog, cb C.intpt
 	slotval1 := (bool)(visible)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_Done(result int) {
-
 	C.QInputDialog_virtualbase_Done(unsafe.Pointer(this.h), (C.int)(result))
-
 }
+
 func (this *QInputDialog) OnDone(slot func(super func(result int), result int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1158,14 +1156,12 @@ func miqt_exec_callback_QInputDialog_Done(self *C.QInputDialog, cb C.intptr_t, r
 	slotval1 := (int)(result)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_Done, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_Open() {
-
 	C.QInputDialog_virtualbase_Open(unsafe.Pointer(this.h))
-
 }
+
 func (this *QInputDialog) OnOpen(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1181,14 +1177,12 @@ func miqt_exec_callback_QInputDialog_Open(self *C.QInputDialog, cb C.intptr_t) {
 	}
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_Open)
-
 }
 
 func (this *QInputDialog) callVirtualBase_Exec() int {
-
 	return (int)(C.QInputDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QInputDialog) OnExec(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1206,14 +1200,12 @@ func miqt_exec_callback_QInputDialog_Exec(self *C.QInputDialog, cb C.intptr_t) C
 	virtualReturn := gofunc((&QInputDialog{h: self}).callVirtualBase_Exec)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QInputDialog) callVirtualBase_Accept() {
-
 	C.QInputDialog_virtualbase_Accept(unsafe.Pointer(this.h))
-
 }
+
 func (this *QInputDialog) OnAccept(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1229,14 +1221,12 @@ func miqt_exec_callback_QInputDialog_Accept(self *C.QInputDialog, cb C.intptr_t)
 	}
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_Accept)
-
 }
 
 func (this *QInputDialog) callVirtualBase_Reject() {
-
 	C.QInputDialog_virtualbase_Reject(unsafe.Pointer(this.h))
-
 }
+
 func (this *QInputDialog) OnReject(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1252,14 +1242,12 @@ func miqt_exec_callback_QInputDialog_Reject(self *C.QInputDialog, cb C.intptr_t)
 	}
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_Reject)
-
 }
 
 func (this *QInputDialog) callVirtualBase_KeyPressEvent(param1 *QKeyEvent) {
-
 	C.QInputDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QInputDialog) OnKeyPressEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1278,14 +1266,12 @@ func miqt_exec_callback_QInputDialog_KeyPressEvent(self *C.QInputDialog, cb C.in
 	slotval1 := newQKeyEvent(param1)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_CloseEvent(param1 *QCloseEvent) {
-
 	C.QInputDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QInputDialog) OnCloseEvent(slot func(super func(param1 *QCloseEvent), param1 *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1304,14 +1290,12 @@ func miqt_exec_callback_QInputDialog_CloseEvent(self *C.QInputDialog, cb C.intpt
 	slotval1 := newQCloseEvent(param1)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_ShowEvent(param1 *QShowEvent) {
-
 	C.QInputDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QInputDialog) OnShowEvent(slot func(super func(param1 *QShowEvent), param1 *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1330,14 +1314,12 @@ func miqt_exec_callback_QInputDialog_ShowEvent(self *C.QInputDialog, cb C.intptr
 	slotval1 := newQShowEvent(param1)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_ResizeEvent(param1 *QResizeEvent) {
-
 	C.QInputDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QInputDialog) OnResizeEvent(slot func(super func(param1 *QResizeEvent), param1 *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1356,14 +1338,12 @@ func miqt_exec_callback_QInputDialog_ResizeEvent(self *C.QInputDialog, cb C.intp
 	slotval1 := newQResizeEvent(param1)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
-
 	C.QInputDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QInputDialog) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1382,14 +1362,12 @@ func miqt_exec_callback_QInputDialog_ContextMenuEvent(self *C.QInputDialog, cb C
 	slotval1 := newQContextMenuEvent(param1)
 
 	gofunc((&QInputDialog{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QInputDialog) callVirtualBase_EventFilter(param1 *QObject, param2 *QEvent) bool {
-
 	return (bool)(C.QInputDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
 }
+
 func (this *QInputDialog) OnEventFilter(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1412,7 +1390,6 @@ func miqt_exec_callback_QInputDialog_EventFilter(self *C.QInputDialog, cb C.intp
 	virtualReturn := gofunc((&QInputDialog{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

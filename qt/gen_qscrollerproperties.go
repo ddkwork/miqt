@@ -91,7 +91,6 @@ func UnsafeNewQScrollerProperties(h unsafe.Pointer) *QScrollerProperties {
 
 // NewQScrollerProperties constructs a new QScrollerProperties object.
 func NewQScrollerProperties() *QScrollerProperties {
-
 	ret := newQScrollerProperties(C.QScrollerProperties_new())
 	ret.isSubclass = true
 	return ret
@@ -99,7 +98,6 @@ func NewQScrollerProperties() *QScrollerProperties {
 
 // NewQScrollerProperties2 constructs a new QScrollerProperties object.
 func NewQScrollerProperties2(sp *QScrollerProperties) *QScrollerProperties {
-
 	ret := newQScrollerProperties(C.QScrollerProperties_new2(sp.cPointer()))
 	ret.isSubclass = true
 	return ret

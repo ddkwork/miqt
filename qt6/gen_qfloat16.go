@@ -48,7 +48,6 @@ func UnsafeNewqfloat16(h unsafe.Pointer) *qfloat16 {
 
 // Newqfloat16 constructs a new qfloat16 object.
 func Newqfloat16() *qfloat16 {
-
 	ret := newqfloat16(C.qfloat16_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func Newqfloat16() *qfloat16 {
 
 // Newqfloat162 constructs a new qfloat16 object.
 func Newqfloat162(param1 Initialization) *qfloat16 {
-
 	ret := newqfloat16(C.qfloat16_new2((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func Newqfloat162(param1 Initialization) *qfloat16 {
 
 // Newqfloat163 constructs a new qfloat16 object.
 func Newqfloat163(f float32) *qfloat16 {
-
 	ret := newqfloat16(C.qfloat16_new3((C.float)(f)))
 	ret.isSubclass = true
 	return ret

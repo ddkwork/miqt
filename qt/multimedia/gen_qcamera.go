@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCamera__Status int
@@ -118,8 +119,10 @@ func newQCamera(h *C.QCamera) *QCamera {
 	var outptr_QMediaObject *C.QMediaObject = nil
 	C.QCamera_virtbase(h, &outptr_QMediaObject)
 
-	return &QCamera{h: h,
-		QMediaObject: newQMediaObject(outptr_QMediaObject)}
+	return &QCamera{
+		h:            h,
+		QMediaObject: newQMediaObject(outptr_QMediaObject),
+	}
 }
 
 // UnsafeNewQCamera constructs the type using only unsafe pointers.
@@ -129,7 +132,6 @@ func UnsafeNewQCamera(h unsafe.Pointer) *QCamera {
 
 // NewQCamera constructs a new QCamera object.
 func NewQCamera() *QCamera {
-
 	ret := newQCamera(C.QCamera_new())
 	ret.isSubclass = true
 	return ret
@@ -148,7 +150,6 @@ func NewQCamera2(deviceName []byte) *QCamera {
 
 // NewQCamera3 constructs a new QCamera object.
 func NewQCamera3(cameraInfo *QCameraInfo) *QCamera {
-
 	ret := newQCamera(C.QCamera_new3(cameraInfo.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -156,7 +157,6 @@ func NewQCamera3(cameraInfo *QCameraInfo) *QCamera {
 
 // NewQCamera4 constructs a new QCamera object.
 func NewQCamera4(position QCamera__Position) *QCamera {
-
 	ret := newQCamera(C.QCamera_new4((C.int)(position)))
 	ret.isSubclass = true
 	return ret
@@ -164,7 +164,6 @@ func NewQCamera4(position QCamera__Position) *QCamera {
 
 // NewQCamera5 constructs a new QCamera object.
 func NewQCamera5(parent *qt.QObject) *QCamera {
-
 	ret := newQCamera(C.QCamera_new5((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -183,7 +182,6 @@ func NewQCamera6(deviceName []byte, parent *qt.QObject) *QCamera {
 
 // NewQCamera7 constructs a new QCamera object.
 func NewQCamera7(cameraInfo *QCameraInfo, parent *qt.QObject) *QCamera {
-
 	ret := newQCamera(C.QCamera_new7(cameraInfo.cPointer(), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -191,7 +189,6 @@ func NewQCamera7(cameraInfo *QCameraInfo, parent *qt.QObject) *QCamera {
 
 // NewQCamera8 constructs a new QCamera object.
 func NewQCamera8(position QCamera__Position, parent *qt.QObject) *QCamera {
-
 	ret := newQCamera(C.QCamera_new8((C.int)(position), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -414,6 +411,7 @@ func (this *QCamera) UnlockWithLocks(locks QCamera__LockType) {
 func (this *QCamera) StateChanged(state QCamera__State) {
 	C.QCamera_StateChanged(this.h, (C.int)(state))
 }
+
 func (this *QCamera) OnStateChanged(slot func(state QCamera__State)) {
 	C.QCamera_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -434,6 +432,7 @@ func miqt_exec_callback_QCamera_StateChanged(cb C.intptr_t, state C.int) {
 func (this *QCamera) CaptureModeChanged(param1 QCamera__CaptureMode) {
 	C.QCamera_CaptureModeChanged(this.h, (C.int)(param1))
 }
+
 func (this *QCamera) OnCaptureModeChanged(slot func(param1 QCamera__CaptureMode)) {
 	C.QCamera_connect_CaptureModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -454,6 +453,7 @@ func miqt_exec_callback_QCamera_CaptureModeChanged(cb C.intptr_t, param1 C.int) 
 func (this *QCamera) StatusChanged(status QCamera__Status) {
 	C.QCamera_StatusChanged(this.h, (C.int)(status))
 }
+
 func (this *QCamera) OnStatusChanged(slot func(status QCamera__Status)) {
 	C.QCamera_connect_StatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -474,6 +474,7 @@ func miqt_exec_callback_QCamera_StatusChanged(cb C.intptr_t, status C.int) {
 func (this *QCamera) Locked() {
 	C.QCamera_Locked(this.h)
 }
+
 func (this *QCamera) OnLocked(slot func()) {
 	C.QCamera_connect_Locked(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -491,6 +492,7 @@ func miqt_exec_callback_QCamera_Locked(cb C.intptr_t) {
 func (this *QCamera) LockFailed() {
 	C.QCamera_LockFailed(this.h)
 }
+
 func (this *QCamera) OnLockFailed(slot func()) {
 	C.QCamera_connect_LockFailed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -508,6 +510,7 @@ func miqt_exec_callback_QCamera_LockFailed(cb C.intptr_t) {
 func (this *QCamera) LockStatusChanged(status QCamera__LockStatus, reason QCamera__LockChangeReason) {
 	C.QCamera_LockStatusChanged(this.h, (C.int)(status), (C.int)(reason))
 }
+
 func (this *QCamera) OnLockStatusChanged(slot func(status QCamera__LockStatus, reason QCamera__LockChangeReason)) {
 	C.QCamera_connect_LockStatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -530,6 +533,7 @@ func miqt_exec_callback_QCamera_LockStatusChanged(cb C.intptr_t, status C.int, r
 func (this *QCamera) LockStatusChanged2(lock QCamera__LockType, status QCamera__LockStatus, reason QCamera__LockChangeReason) {
 	C.QCamera_LockStatusChanged2(this.h, (C.int)(lock), (C.int)(status), (C.int)(reason))
 }
+
 func (this *QCamera) OnLockStatusChanged2(slot func(lock QCamera__LockType, status QCamera__LockStatus, reason QCamera__LockChangeReason)) {
 	C.QCamera_connect_LockStatusChanged2(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -554,6 +558,7 @@ func miqt_exec_callback_QCamera_LockStatusChanged2(cb C.intptr_t, lock C.int, st
 func (this *QCamera) ErrorWithQCameraError(param1 QCamera__Error) {
 	C.QCamera_ErrorWithQCameraError(this.h, (C.int)(param1))
 }
+
 func (this *QCamera) OnErrorWithQCameraError(slot func(param1 QCamera__Error)) {
 	C.QCamera_connect_ErrorWithQCameraError(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -574,6 +579,7 @@ func miqt_exec_callback_QCamera_ErrorWithQCameraError(cb C.intptr_t, param1 C.in
 func (this *QCamera) ErrorOccurred(param1 QCamera__Error) {
 	C.QCamera_ErrorOccurred(this.h, (C.int)(param1))
 }
+
 func (this *QCamera) OnErrorOccurred(slot func(param1 QCamera__Error)) {
 	C.QCamera_connect_ErrorOccurred(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -682,10 +688,9 @@ func (this *QCamera) SupportedViewfinderPixelFormats1(settings *QCameraViewfinde
 }
 
 func (this *QCamera) callVirtualBase_Availability() QMultimedia__AvailabilityStatus {
-
 	return (QMultimedia__AvailabilityStatus)(C.QCamera_virtualbase_Availability(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCamera) OnAvailability(slot func(super func() QMultimedia__AvailabilityStatus) QMultimedia__AvailabilityStatus) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -703,14 +708,12 @@ func miqt_exec_callback_QCamera_Availability(self *C.QCamera, cb C.intptr_t) C.i
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_Availability)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QCamera) callVirtualBase_IsAvailable() bool {
-
 	return (bool)(C.QCamera_virtualbase_IsAvailable(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCamera) OnIsAvailable(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -728,14 +731,12 @@ func miqt_exec_callback_QCamera_IsAvailable(self *C.QCamera, cb C.intptr_t) C.bo
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_IsAvailable)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCamera) callVirtualBase_Service() *QMediaService {
-
 	return newQMediaService(C.QCamera_virtualbase_Service(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCamera) OnService(slot func(super func() *QMediaService) *QMediaService) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -753,14 +754,12 @@ func miqt_exec_callback_QCamera_Service(self *C.QCamera, cb C.intptr_t) *C.QMedi
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_Service)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCamera) callVirtualBase_Bind(param1 *qt.QObject) bool {
-
 	return (bool)(C.QCamera_virtualbase_Bind(unsafe.Pointer(this.h), (*C.QObject)(param1.UnsafePointer())))
-
 }
+
 func (this *QCamera) OnBind(slot func(super func(param1 *qt.QObject) bool, param1 *qt.QObject) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -781,14 +780,12 @@ func miqt_exec_callback_QCamera_Bind(self *C.QCamera, cb C.intptr_t, param1 *C.Q
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_Bind, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCamera) callVirtualBase_Unbind(param1 *qt.QObject) {
-
 	C.QCamera_virtualbase_Unbind(unsafe.Pointer(this.h), (*C.QObject)(param1.UnsafePointer()))
-
 }
+
 func (this *QCamera) OnUnbind(slot func(super func(param1 *qt.QObject), param1 *qt.QObject)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -807,7 +804,6 @@ func miqt_exec_callback_QCamera_Unbind(self *C.QCamera, cb C.intptr_t, param1 *C
 	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(param1))
 
 	gofunc((&QCamera{h: self}).callVirtualBase_Unbind, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -859,7 +855,6 @@ func UnsafeNewQCamera__FrameRateRange(h unsafe.Pointer) *QCamera__FrameRateRange
 
 // NewQCamera__FrameRateRange constructs a new QCamera::FrameRateRange object.
 func NewQCamera__FrameRateRange() *QCamera__FrameRateRange {
-
 	ret := newQCamera__FrameRateRange(C.QCamera__FrameRateRange_new())
 	ret.isSubclass = true
 	return ret
@@ -867,7 +862,6 @@ func NewQCamera__FrameRateRange() *QCamera__FrameRateRange {
 
 // NewQCamera__FrameRateRange2 constructs a new QCamera::FrameRateRange object.
 func NewQCamera__FrameRateRange2(minimum float64, maximum float64) *QCamera__FrameRateRange {
-
 	ret := newQCamera__FrameRateRange(C.QCamera__FrameRateRange_new2((C.double)(minimum), (C.double)(maximum)))
 	ret.isSubclass = true
 	return ret
@@ -875,7 +869,6 @@ func NewQCamera__FrameRateRange2(minimum float64, maximum float64) *QCamera__Fra
 
 // NewQCamera__FrameRateRange3 constructs a new QCamera::FrameRateRange object.
 func NewQCamera__FrameRateRange3(param1 *QCamera__FrameRateRange) *QCamera__FrameRateRange {
-
 	ret := newQCamera__FrameRateRange(C.QCamera__FrameRateRange_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioEncoderSettings struct {
@@ -49,7 +50,6 @@ func UnsafeNewQAudioEncoderSettings(h unsafe.Pointer) *QAudioEncoderSettings {
 
 // NewQAudioEncoderSettings constructs a new QAudioEncoderSettings object.
 func NewQAudioEncoderSettings() *QAudioEncoderSettings {
-
 	ret := newQAudioEncoderSettings(C.QAudioEncoderSettings_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQAudioEncoderSettings() *QAudioEncoderSettings {
 
 // NewQAudioEncoderSettings2 constructs a new QAudioEncoderSettings object.
 func NewQAudioEncoderSettings2(other *QAudioEncoderSettings) *QAudioEncoderSettings {
-
 	ret := newQAudioEncoderSettings(C.QAudioEncoderSettings_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -243,7 +242,6 @@ func UnsafeNewQVideoEncoderSettings(h unsafe.Pointer) *QVideoEncoderSettings {
 
 // NewQVideoEncoderSettings constructs a new QVideoEncoderSettings object.
 func NewQVideoEncoderSettings() *QVideoEncoderSettings {
-
 	ret := newQVideoEncoderSettings(C.QVideoEncoderSettings_new())
 	ret.isSubclass = true
 	return ret
@@ -251,7 +249,6 @@ func NewQVideoEncoderSettings() *QVideoEncoderSettings {
 
 // NewQVideoEncoderSettings2 constructs a new QVideoEncoderSettings object.
 func NewQVideoEncoderSettings2(other *QVideoEncoderSettings) *QVideoEncoderSettings {
-
 	ret := newQVideoEncoderSettings(C.QVideoEncoderSettings_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -443,7 +440,6 @@ func UnsafeNewQImageEncoderSettings(h unsafe.Pointer) *QImageEncoderSettings {
 
 // NewQImageEncoderSettings constructs a new QImageEncoderSettings object.
 func NewQImageEncoderSettings() *QImageEncoderSettings {
-
 	ret := newQImageEncoderSettings(C.QImageEncoderSettings_new())
 	ret.isSubclass = true
 	return ret
@@ -451,7 +447,6 @@ func NewQImageEncoderSettings() *QImageEncoderSettings {
 
 // NewQImageEncoderSettings2 constructs a new QImageEncoderSettings object.
 func NewQImageEncoderSettings2(other *QImageEncoderSettings) *QImageEncoderSettings {
-
 	ret := newQImageEncoderSettings(C.QImageEncoderSettings_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QRadioDataControl struct {
@@ -43,8 +44,10 @@ func newQRadioDataControl(h *C.QRadioDataControl) *QRadioDataControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QRadioDataControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QRadioDataControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QRadioDataControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQRadioDataControl constructs the type using only unsafe pointers.
@@ -138,6 +141,7 @@ func (this *QRadioDataControl) StationIdChanged(stationId string) {
 	defer C.free(unsafe.Pointer(stationId_ms.data))
 	C.QRadioDataControl_StationIdChanged(this.h, stationId_ms)
 }
+
 func (this *QRadioDataControl) OnStationIdChanged(slot func(stationId string)) {
 	C.QRadioDataControl_connect_StationIdChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -161,6 +165,7 @@ func miqt_exec_callback_QRadioDataControl_StationIdChanged(cb C.intptr_t, statio
 func (this *QRadioDataControl) ProgramTypeChanged(programType QRadioData__ProgramType) {
 	C.QRadioDataControl_ProgramTypeChanged(this.h, (C.int)(programType))
 }
+
 func (this *QRadioDataControl) OnProgramTypeChanged(slot func(programType QRadioData__ProgramType)) {
 	C.QRadioDataControl_connect_ProgramTypeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -185,6 +190,7 @@ func (this *QRadioDataControl) ProgramTypeNameChanged(programTypeName string) {
 	defer C.free(unsafe.Pointer(programTypeName_ms.data))
 	C.QRadioDataControl_ProgramTypeNameChanged(this.h, programTypeName_ms)
 }
+
 func (this *QRadioDataControl) OnProgramTypeNameChanged(slot func(programTypeName string)) {
 	C.QRadioDataControl_connect_ProgramTypeNameChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -212,6 +218,7 @@ func (this *QRadioDataControl) StationNameChanged(stationName string) {
 	defer C.free(unsafe.Pointer(stationName_ms.data))
 	C.QRadioDataControl_StationNameChanged(this.h, stationName_ms)
 }
+
 func (this *QRadioDataControl) OnStationNameChanged(slot func(stationName string)) {
 	C.QRadioDataControl_connect_StationNameChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -239,6 +246,7 @@ func (this *QRadioDataControl) RadioTextChanged(radioText string) {
 	defer C.free(unsafe.Pointer(radioText_ms.data))
 	C.QRadioDataControl_RadioTextChanged(this.h, radioText_ms)
 }
+
 func (this *QRadioDataControl) OnRadioTextChanged(slot func(radioText string)) {
 	C.QRadioDataControl_connect_RadioTextChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -262,6 +270,7 @@ func miqt_exec_callback_QRadioDataControl_RadioTextChanged(cb C.intptr_t, radioT
 func (this *QRadioDataControl) AlternativeFrequenciesEnabledChanged(enabled bool) {
 	C.QRadioDataControl_AlternativeFrequenciesEnabledChanged(this.h, (C.bool)(enabled))
 }
+
 func (this *QRadioDataControl) OnAlternativeFrequenciesEnabledChanged(slot func(enabled bool)) {
 	C.QRadioDataControl_connect_AlternativeFrequenciesEnabledChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -282,6 +291,7 @@ func miqt_exec_callback_QRadioDataControl_AlternativeFrequenciesEnabledChanged(c
 func (this *QRadioDataControl) ErrorWithErr(err QRadioData__Error) {
 	C.QRadioDataControl_ErrorWithErr(this.h, (C.int)(err))
 }
+
 func (this *QRadioDataControl) OnErrorWithErr(slot func(err QRadioData__Error)) {
 	C.QRadioDataControl_connect_ErrorWithErr(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

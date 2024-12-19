@@ -42,8 +42,10 @@ func newQGraphicsLayout(h *C.QGraphicsLayout) *QGraphicsLayout {
 	var outptr_QGraphicsLayoutItem *C.QGraphicsLayoutItem = nil
 	C.QGraphicsLayout_virtbase(h, &outptr_QGraphicsLayoutItem)
 
-	return &QGraphicsLayout{h: h,
-		QGraphicsLayoutItem: newQGraphicsLayoutItem(outptr_QGraphicsLayoutItem)}
+	return &QGraphicsLayout{
+		h:                   h,
+		QGraphicsLayoutItem: newQGraphicsLayoutItem(outptr_QGraphicsLayoutItem),
+	}
 }
 
 // UnsafeNewQGraphicsLayout constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQGraphicsLayout(h unsafe.Pointer) *QGraphicsLayout {
 
 // NewQGraphicsLayout constructs a new QGraphicsLayout object.
 func NewQGraphicsLayout() *QGraphicsLayout {
-
 	ret := newQGraphicsLayout(C.QGraphicsLayout_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQGraphicsLayout() *QGraphicsLayout {
 
 // NewQGraphicsLayout2 constructs a new QGraphicsLayout object.
 func NewQGraphicsLayout2(parent *QGraphicsLayoutItem) *QGraphicsLayout {
-
 	ret := newQGraphicsLayout(C.QGraphicsLayout_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -116,10 +116,9 @@ func QGraphicsLayout_InstantInvalidatePropagation() bool {
 }
 
 func (this *QGraphicsLayout) callVirtualBase_GetContentsMargins(left *float64, top *float64, right *float64, bottom *float64) {
-
 	C.QGraphicsLayout_virtualbase_GetContentsMargins(unsafe.Pointer(this.h), (*C.double)(unsafe.Pointer(left)), (*C.double)(unsafe.Pointer(top)), (*C.double)(unsafe.Pointer(right)), (*C.double)(unsafe.Pointer(bottom)))
-
 }
+
 func (this *QGraphicsLayout) OnGetContentsMargins(slot func(super func(left *float64, top *float64, right *float64, bottom *float64), left *float64, top *float64, right *float64, bottom *float64)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -144,14 +143,12 @@ func miqt_exec_callback_QGraphicsLayout_GetContentsMargins(self *C.QGraphicsLayo
 	slotval4 := (*float64)(unsafe.Pointer(bottom))
 
 	gofunc((&QGraphicsLayout{h: self}).callVirtualBase_GetContentsMargins, slotval1, slotval2, slotval3, slotval4)
-
 }
 
 func (this *QGraphicsLayout) callVirtualBase_Invalidate() {
-
 	C.QGraphicsLayout_virtualbase_Invalidate(unsafe.Pointer(this.h))
-
 }
+
 func (this *QGraphicsLayout) OnInvalidate(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -167,14 +164,12 @@ func miqt_exec_callback_QGraphicsLayout_Invalidate(self *C.QGraphicsLayout, cb C
 	}
 
 	gofunc((&QGraphicsLayout{h: self}).callVirtualBase_Invalidate)
-
 }
 
 func (this *QGraphicsLayout) callVirtualBase_UpdateGeometry() {
-
 	C.QGraphicsLayout_virtualbase_UpdateGeometry(unsafe.Pointer(this.h))
-
 }
+
 func (this *QGraphicsLayout) OnUpdateGeometry(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -190,14 +185,12 @@ func miqt_exec_callback_QGraphicsLayout_UpdateGeometry(self *C.QGraphicsLayout, 
 	}
 
 	gofunc((&QGraphicsLayout{h: self}).callVirtualBase_UpdateGeometry)
-
 }
 
 func (this *QGraphicsLayout) callVirtualBase_WidgetEvent(e *QEvent) {
-
 	C.QGraphicsLayout_virtualbase_WidgetEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QGraphicsLayout) OnWidgetEvent(slot func(super func(e *QEvent), e *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -216,8 +209,8 @@ func miqt_exec_callback_QGraphicsLayout_WidgetEvent(self *C.QGraphicsLayout, cb 
 	slotval1 := newQEvent(e)
 
 	gofunc((&QGraphicsLayout{h: self}).callVirtualBase_WidgetEvent, slotval1)
-
 }
+
 func (this *QGraphicsLayout) OnCount(slot func() int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -235,8 +228,8 @@ func miqt_exec_callback_QGraphicsLayout_Count(self *C.QGraphicsLayout, cb C.intp
 	virtualReturn := gofunc()
 
 	return (C.int)(virtualReturn)
-
 }
+
 func (this *QGraphicsLayout) OnItemAt(slot func(i int) *QGraphicsLayoutItem) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -257,8 +250,8 @@ func miqt_exec_callback_QGraphicsLayout_ItemAt(self *C.QGraphicsLayout, cb C.int
 	virtualReturn := gofunc(slotval1)
 
 	return virtualReturn.cPointer()
-
 }
+
 func (this *QGraphicsLayout) OnRemoveAt(slot func(index int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -277,14 +270,12 @@ func miqt_exec_callback_QGraphicsLayout_RemoveAt(self *C.QGraphicsLayout, cb C.i
 	slotval1 := (int)(index)
 
 	gofunc(slotval1)
-
 }
 
 func (this *QGraphicsLayout) callVirtualBase_SetGeometry(rect *QRectF) {
-
 	C.QGraphicsLayout_virtualbase_SetGeometry(unsafe.Pointer(this.h), rect.cPointer())
-
 }
+
 func (this *QGraphicsLayout) OnSetGeometry(slot func(super func(rect *QRectF), rect *QRectF)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -303,14 +294,12 @@ func miqt_exec_callback_QGraphicsLayout_SetGeometry(self *C.QGraphicsLayout, cb 
 	slotval1 := newQRectF(rect)
 
 	gofunc((&QGraphicsLayout{h: self}).callVirtualBase_SetGeometry, slotval1)
-
 }
 
 func (this *QGraphicsLayout) callVirtualBase_IsEmpty() bool {
-
 	return (bool)(C.QGraphicsLayout_virtualbase_IsEmpty(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QGraphicsLayout) OnIsEmpty(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -328,8 +317,8 @@ func miqt_exec_callback_QGraphicsLayout_IsEmpty(self *C.QGraphicsLayout, cb C.in
 	virtualReturn := gofunc((&QGraphicsLayout{h: self}).callVirtualBase_IsEmpty)
 
 	return (C.bool)(virtualReturn)
-
 }
+
 func (this *QGraphicsLayout) OnSizeHint(slot func(which SizeHint, constraint *QSizeF) *QSizeF) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -352,7 +341,6 @@ func miqt_exec_callback_QGraphicsLayout_SizeHint(self *C.QGraphicsLayout, cb C.i
 	virtualReturn := gofunc(slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

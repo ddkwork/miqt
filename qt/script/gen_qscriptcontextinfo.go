@@ -57,7 +57,6 @@ func UnsafeNewQScriptContextInfo(h unsafe.Pointer) *QScriptContextInfo {
 
 // NewQScriptContextInfo constructs a new QScriptContextInfo object.
 func NewQScriptContextInfo(context *QScriptContext) *QScriptContextInfo {
-
 	ret := newQScriptContextInfo(C.QScriptContextInfo_new(context.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -65,7 +64,6 @@ func NewQScriptContextInfo(context *QScriptContext) *QScriptContextInfo {
 
 // NewQScriptContextInfo2 constructs a new QScriptContextInfo object.
 func NewQScriptContextInfo2(other *QScriptContextInfo) *QScriptContextInfo {
-
 	ret := newQScriptContextInfo(C.QScriptContextInfo_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -73,7 +71,6 @@ func NewQScriptContextInfo2(other *QScriptContextInfo) *QScriptContextInfo {
 
 // NewQScriptContextInfo3 constructs a new QScriptContextInfo object.
 func NewQScriptContextInfo3() *QScriptContextInfo {
-
 	ret := newQScriptContextInfo(C.QScriptContextInfo_new3())
 	ret.isSubclass = true
 	return ret

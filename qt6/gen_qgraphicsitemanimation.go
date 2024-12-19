@@ -42,8 +42,10 @@ func newQGraphicsItemAnimation(h *C.QGraphicsItemAnimation) *QGraphicsItemAnimat
 	var outptr_QObject *C.QObject = nil
 	C.QGraphicsItemAnimation_virtbase(h, &outptr_QObject)
 
-	return &QGraphicsItemAnimation{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QGraphicsItemAnimation{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQGraphicsItemAnimation constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQGraphicsItemAnimation(h unsafe.Pointer) *QGraphicsItemAnimation {
 
 // NewQGraphicsItemAnimation constructs a new QGraphicsItemAnimation object.
 func NewQGraphicsItemAnimation() *QGraphicsItemAnimation {
-
 	ret := newQGraphicsItemAnimation(C.QGraphicsItemAnimation_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQGraphicsItemAnimation() *QGraphicsItemAnimation {
 
 // NewQGraphicsItemAnimation2 constructs a new QGraphicsItemAnimation object.
 func NewQGraphicsItemAnimation2(parent *QObject) *QGraphicsItemAnimation {
-
 	ret := newQGraphicsItemAnimation(C.QGraphicsItemAnimation_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -331,10 +331,9 @@ func QGraphicsItemAnimation_Tr3(s string, c string, n int) string {
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_BeforeAnimationStep(step float64) {
-
 	C.QGraphicsItemAnimation_virtualbase_BeforeAnimationStep(unsafe.Pointer(this.h), (C.double)(step))
-
 }
+
 func (this *QGraphicsItemAnimation) OnBeforeAnimationStep(slot func(super func(step float64), step float64)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -353,14 +352,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_BeforeAnimationStep(self *C.QGrap
 	slotval1 := (float64)(step)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_BeforeAnimationStep, slotval1)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_AfterAnimationStep(step float64) {
-
 	C.QGraphicsItemAnimation_virtualbase_AfterAnimationStep(unsafe.Pointer(this.h), (C.double)(step))
-
 }
+
 func (this *QGraphicsItemAnimation) OnAfterAnimationStep(slot func(super func(step float64), step float64)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -379,14 +376,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_AfterAnimationStep(self *C.QGraph
 	slotval1 := (float64)(step)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_AfterAnimationStep, slotval1)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QGraphicsItemAnimation_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QGraphicsItemAnimation) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -407,14 +402,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_Event(self *C.QGraphicsItemAnimat
 	virtualReturn := gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QGraphicsItemAnimation_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QGraphicsItemAnimation) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -437,14 +430,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_EventFilter(self *C.QGraphicsItem
 	virtualReturn := gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QGraphicsItemAnimation_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsItemAnimation) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -463,14 +454,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_TimerEvent(self *C.QGraphicsItemA
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QGraphicsItemAnimation_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsItemAnimation) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -489,14 +478,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_ChildEvent(self *C.QGraphicsItemA
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QGraphicsItemAnimation_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsItemAnimation) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -515,14 +502,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_CustomEvent(self *C.QGraphicsItem
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QGraphicsItemAnimation_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QGraphicsItemAnimation) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -541,14 +526,12 @@ func miqt_exec_callback_QGraphicsItemAnimation_ConnectNotify(self *C.QGraphicsIt
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QGraphicsItemAnimation) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QGraphicsItemAnimation_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QGraphicsItemAnimation) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -567,7 +550,6 @@ func miqt_exec_callback_QGraphicsItemAnimation_DisconnectNotify(self *C.QGraphic
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QGraphicsItemAnimation{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

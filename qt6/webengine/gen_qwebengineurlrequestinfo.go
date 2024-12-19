@@ -9,8 +9,9 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineUrlRequestInfo__ResourceType int

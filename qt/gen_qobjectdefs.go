@@ -66,7 +66,6 @@ func UnsafeNewQGenericArgument(h unsafe.Pointer) *QGenericArgument {
 
 // NewQGenericArgument constructs a new QGenericArgument object.
 func NewQGenericArgument() *QGenericArgument {
-
 	ret := newQGenericArgument(C.QGenericArgument_new())
 	ret.isSubclass = true
 	return ret
@@ -74,7 +73,6 @@ func NewQGenericArgument() *QGenericArgument {
 
 // NewQGenericArgument2 constructs a new QGenericArgument object.
 func NewQGenericArgument2(param1 *QGenericArgument) *QGenericArgument {
-
 	ret := newQGenericArgument(C.QGenericArgument_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -151,8 +149,10 @@ func newQGenericReturnArgument(h *C.QGenericReturnArgument) *QGenericReturnArgum
 	var outptr_QGenericArgument *C.QGenericArgument = nil
 	C.QGenericReturnArgument_virtbase(h, &outptr_QGenericArgument)
 
-	return &QGenericReturnArgument{h: h,
-		QGenericArgument: newQGenericArgument(outptr_QGenericArgument)}
+	return &QGenericReturnArgument{
+		h:                h,
+		QGenericArgument: newQGenericArgument(outptr_QGenericArgument),
+	}
 }
 
 // UnsafeNewQGenericReturnArgument constructs the type using only unsafe pointers.
@@ -162,7 +162,6 @@ func UnsafeNewQGenericReturnArgument(h unsafe.Pointer) *QGenericReturnArgument {
 
 // NewQGenericReturnArgument constructs a new QGenericReturnArgument object.
 func NewQGenericReturnArgument() *QGenericReturnArgument {
-
 	ret := newQGenericReturnArgument(C.QGenericReturnArgument_new())
 	ret.isSubclass = true
 	return ret
@@ -170,7 +169,6 @@ func NewQGenericReturnArgument() *QGenericReturnArgument {
 
 // NewQGenericReturnArgument2 constructs a new QGenericReturnArgument object.
 func NewQGenericReturnArgument2(param1 *QGenericReturnArgument) *QGenericReturnArgument {
-
 	ret := newQGenericReturnArgument(C.QGenericReturnArgument_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -245,7 +243,6 @@ func UnsafeNewQMetaObject(h unsafe.Pointer) *QMetaObject {
 
 // NewQMetaObject constructs a new QMetaObject object.
 func NewQMetaObject() *QMetaObject {
-
 	ret := newQMetaObject(C.QMetaObject_new())
 	ret.isSubclass = true
 	return ret
@@ -253,7 +250,6 @@ func NewQMetaObject() *QMetaObject {
 
 // NewQMetaObject2 constructs a new QMetaObject object.
 func NewQMetaObject2(param1 *QMetaObject) *QMetaObject {
-
 	ret := newQMetaObject(C.QMetaObject_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -833,7 +829,6 @@ func UnsafeNewQMetaObject__Connection(h unsafe.Pointer) *QMetaObject__Connection
 
 // NewQMetaObject__Connection constructs a new QMetaObject::Connection object.
 func NewQMetaObject__Connection() *QMetaObject__Connection {
-
 	ret := newQMetaObject__Connection(C.QMetaObject__Connection_new())
 	ret.isSubclass = true
 	return ret
@@ -841,7 +836,6 @@ func NewQMetaObject__Connection() *QMetaObject__Connection {
 
 // NewQMetaObject__Connection2 constructs a new QMetaObject::Connection object.
 func NewQMetaObject__Connection2(other *QMetaObject__Connection) *QMetaObject__Connection {
-
 	ret := newQMetaObject__Connection(C.QMetaObject__Connection_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -900,7 +894,6 @@ func UnsafeNewQMetaObject__SuperData(h unsafe.Pointer) *QMetaObject__SuperData {
 
 // NewQMetaObject__SuperData constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData() *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(C.QMetaObject__SuperData_new())
 	ret.isSubclass = true
 	return ret
@@ -908,7 +901,6 @@ func NewQMetaObject__SuperData() *QMetaObject__SuperData {
 
 // NewQMetaObject__SuperData2 constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData2(mo *QMetaObject) *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(C.QMetaObject__SuperData_new2(mo.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -916,7 +908,6 @@ func NewQMetaObject__SuperData2(mo *QMetaObject) *QMetaObject__SuperData {
 
 // NewQMetaObject__SuperData3 constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData3(param1 *QMetaObject__SuperData) *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(C.QMetaObject__SuperData_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -66,7 +66,6 @@ func normalizeEnumName(s string) string {
 }
 
 func renderIcon(iconVal *UiIcon, ret *strings.Builder) string {
-
 	iconName := fmt.Sprintf("icon%d", IconCounter)
 	IconCounter++
 
@@ -105,7 +104,6 @@ func renderIcon(iconVal *UiIcon, ret *strings.Builder) string {
 }
 
 func renderProperties(properties []UiProperty, ret *strings.Builder, targetName, parentClass string, isLayout bool) error {
-
 	contentsMargins := [4]int{DefaultGridMargin, DefaultGridMargin, DefaultGridMargin, DefaultGridMargin} // left, top, right, bottom
 	customContentsMargins := false
 	customSpacing := false
@@ -117,13 +115,10 @@ func renderProperties(properties []UiProperty, ret *strings.Builder, targetName,
 			if !(prop.RectVal.X == 0 && prop.RectVal.Y == 0) {
 				// Set all 4x properties
 				ret.WriteString(`ui.` + targetName + `.SetGeometry(qt.NewQRect(` + fmt.Sprintf("%d, %d, %d, %d", prop.RectVal.X, prop.RectVal.Y, prop.RectVal.Width, prop.RectVal.Height) + "))\n")
-
 			} else if !(prop.RectVal.Width == 0 && prop.RectVal.Height == 0) {
 				// Only width/height were supplied
 				ret.WriteString(`ui.` + targetName + `.Resize(` + fmt.Sprintf("%d, %d", prop.RectVal.Width, prop.RectVal.Height) + ")\n")
-
 			}
-
 		} else if prop.Name == "leftMargin" {
 			contentsMargins[0] = mustParseInt(*prop.NumberVal)
 			customContentsMargins = true
@@ -143,7 +138,6 @@ func renderProperties(properties []UiProperty, ret *strings.Builder, targetName,
 		} else if prop.StringVal != nil {
 			//  "windowTitle", "title", "text"
 			ret.WriteString(`ui.` + targetName + setterFunc + `(` + generateString(prop.StringVal, parentClass) + ")\n")
-
 		} else if prop.NumberVal != nil {
 			// "currentIndex"
 			if prop.Name == "spacing" {
@@ -154,7 +148,6 @@ func renderProperties(properties []UiProperty, ret *strings.Builder, targetName,
 		} else if prop.BoolVal != nil {
 			// "childrenCollapsible"
 			ret.WriteString(`ui.` + targetName + setterFunc + `(` + formatBool(*prop.BoolVal) + ")\n")
-
 		} else if prop.EnumVal != nil {
 			// "frameShape"
 
@@ -162,7 +155,6 @@ func renderProperties(properties []UiProperty, ret *strings.Builder, targetName,
 			// names (A::B::C) but miqt changed to use the short names. Need to
 			// detect the case and convert it to match
 			ret.WriteString(`ui.` + targetName + setterFunc + `(` + normalizeEnumName(*prop.EnumVal) + ")\n")
-
 		} else if prop.SetVal != nil {
 			// QDialogButtonBox::"standardButtons"
 			// <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
@@ -194,7 +186,6 @@ func renderProperties(properties []UiProperty, ret *strings.Builder, targetName,
 	if !customSpacing && isLayout {
 		// Layouts must specify spacing, unless, we specified it already
 		ret.WriteString(`ui.` + targetName + `.SetSpacing(` + fmt.Sprintf("%d", DefaultSpacing) + ")\n")
-
 	}
 
 	return nil
@@ -225,19 +216,14 @@ func generateWidget(w UiWidget, parentName string, parentClass string) (string, 
 	for _, attr := range w.Attributes {
 		if parentClass == "QTabWidget" && attr.Name == "title" {
 			ret.WriteString(parentName + `.SetTabText(` + parentName + ".IndexOf(ui." + w.Name + "), " + generateString(attr.StringVal, parentClass) + ")\n")
-
 		} else if w.Class == "QDockWidget" && parentClass == "QMainWindow" && attr.Name == "dockWidgetArea" {
 			ret.WriteString(parentName + `.AddDockWidget(qt.DockWidgetArea(` + *attr.NumberVal + `), ui.` + w.Name + `)` + "\n")
-
 		} else if w.Class == "QToolBar" && parentClass == "QMainWindow" && attr.Name == "toolBarArea" {
 			ret.WriteString(parentName + `.AddToolBar(` + normalizeEnumName(*attr.EnumVal) + `, ui.` + w.Name + `)` + "\n")
-
 		} else if parentClass == "QTabWidget" && attr.Name == "icon" {
 			// This will be handled when we call .AddTab() on the parent QTabWidget
-
 		} else {
 			ret.WriteString("/* miqt-uic: no handler for " + w.Name + " attribute '" + attr.Name + "' */\n")
-
 		}
 	}
 
@@ -376,7 +362,6 @@ func generateWidget(w UiWidget, parentName string, parentClass string) (string, 
 				ret.WriteString("ui." + w.Name + `.SetItemText(` + fmt.Sprintf("%d", itemNo) + `, ` + generateString(prop.StringVal, w.Class) + `)` + "\n")
 			} else {
 				ret.WriteString("/* miqt-uic: no handler for item property '" + prop.Name + "' */\n")
-
 			}
 		}
 	}
@@ -384,7 +369,6 @@ func generateWidget(w UiWidget, parentName string, parentClass string) (string, 
 	// Columns
 
 	for colNo, col := range w.Columns {
-
 		for _, prop := range col.Properties {
 			if prop.Name == "text" {
 				ret.WriteString("ui." + w.Name + ".HeaderItem().SetText(" + fmt.Sprintf("%d", colNo) + ", " + generateString(prop.StringVal, w.Class) + ")\n")
@@ -392,7 +376,6 @@ func generateWidget(w UiWidget, parentName string, parentClass string) (string, 
 				ret.WriteString("/* miqt-uic: no handler for column property '" + prop.Name + "' */\n")
 			}
 		}
-
 	}
 
 	// Recurse children
@@ -465,7 +448,6 @@ func generateWidget(w UiWidget, parentName string, parentClass string) (string, 
 		if a.Name == "separator" {
 			// TODO how does Qt Designer disambiguate a real QAction with name="separator" ?
 			ret.WriteString("ui." + w.Name + ".AddSeparator()\n")
-
 		} else {
 			// If we are a menubar, then <addaction> refers to top-level QMenu instead of QAction
 			if w.Class == "QMenuBar" {
@@ -491,7 +473,6 @@ func generateWidget(w UiWidget, parentName string, parentClass string) (string, 
 }
 
 func generate(packageName string, goGenerateArgs string, u UiFile) ([]byte, error) {
-
 	ret := strings.Builder{}
 
 	// Update globals for layoutdefault, if present

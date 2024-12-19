@@ -62,7 +62,6 @@ func UnsafeNewQCommandLineParser(h unsafe.Pointer) *QCommandLineParser {
 
 // NewQCommandLineParser constructs a new QCommandLineParser object.
 func NewQCommandLineParser() *QCommandLineParser {
-
 	ret := newQCommandLineParser(C.QCommandLineParser_new())
 	ret.isSubclass = true
 	return ret

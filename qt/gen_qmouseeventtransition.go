@@ -42,8 +42,10 @@ func newQMouseEventTransition(h *C.QMouseEventTransition) *QMouseEventTransition
 	var outptr_QEventTransition *C.QEventTransition = nil
 	C.QMouseEventTransition_virtbase(h, &outptr_QEventTransition)
 
-	return &QMouseEventTransition{h: h,
-		QEventTransition: newQEventTransition(outptr_QEventTransition)}
+	return &QMouseEventTransition{
+		h:                h,
+		QEventTransition: newQEventTransition(outptr_QEventTransition),
+	}
 }
 
 // UnsafeNewQMouseEventTransition constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQMouseEventTransition(h unsafe.Pointer) *QMouseEventTransition {
 
 // NewQMouseEventTransition constructs a new QMouseEventTransition object.
 func NewQMouseEventTransition() *QMouseEventTransition {
-
 	ret := newQMouseEventTransition(C.QMouseEventTransition_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQMouseEventTransition() *QMouseEventTransition {
 
 // NewQMouseEventTransition2 constructs a new QMouseEventTransition object.
 func NewQMouseEventTransition2(object *QObject, typeVal QEvent__Type, button MouseButton) *QMouseEventTransition {
-
 	ret := newQMouseEventTransition(C.QMouseEventTransition_new2(object.cPointer(), (C.int)(typeVal), (C.int)(button)))
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQMouseEventTransition2(object *QObject, typeVal QEvent__Type, button Mou
 
 // NewQMouseEventTransition3 constructs a new QMouseEventTransition object.
 func NewQMouseEventTransition3(sourceState *QState) *QMouseEventTransition {
-
 	ret := newQMouseEventTransition(C.QMouseEventTransition_new3(sourceState.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQMouseEventTransition3(sourceState *QState) *QMouseEventTransition {
 
 // NewQMouseEventTransition4 constructs a new QMouseEventTransition object.
 func NewQMouseEventTransition4(object *QObject, typeVal QEvent__Type, button MouseButton, sourceState *QState) *QMouseEventTransition {
-
 	ret := newQMouseEventTransition(C.QMouseEventTransition_new4(object.cPointer(), (C.int)(typeVal), (C.int)(button), sourceState.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -182,10 +180,9 @@ func QMouseEventTransition_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QMouseEventTransition) callVirtualBase_OnTransition(event *QEvent) {
-
 	C.QMouseEventTransition_virtualbase_OnTransition(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QMouseEventTransition) OnOnTransition(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -204,14 +201,12 @@ func miqt_exec_callback_QMouseEventTransition_OnTransition(self *C.QMouseEventTr
 	slotval1 := newQEvent(event)
 
 	gofunc((&QMouseEventTransition{h: self}).callVirtualBase_OnTransition, slotval1)
-
 }
 
 func (this *QMouseEventTransition) callVirtualBase_EventTest(event *QEvent) bool {
-
 	return (bool)(C.QMouseEventTransition_virtualbase_EventTest(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QMouseEventTransition) OnEventTest(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -232,14 +227,12 @@ func miqt_exec_callback_QMouseEventTransition_EventTest(self *C.QMouseEventTrans
 	virtualReturn := gofunc((&QMouseEventTransition{h: self}).callVirtualBase_EventTest, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QMouseEventTransition) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QMouseEventTransition_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QMouseEventTransition) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -260,7 +253,6 @@ func miqt_exec_callback_QMouseEventTransition_Event(self *C.QMouseEventTransitio
 	virtualReturn := gofunc((&QMouseEventTransition{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

@@ -48,7 +48,6 @@ func UnsafeNewQScriptString(h unsafe.Pointer) *QScriptString {
 
 // NewQScriptString constructs a new QScriptString object.
 func NewQScriptString() *QScriptString {
-
 	ret := newQScriptString(C.QScriptString_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQScriptString() *QScriptString {
 
 // NewQScriptString2 constructs a new QScriptString object.
 func NewQScriptString2(other *QScriptString) *QScriptString {
-
 	ret := newQScriptString(C.QScriptString_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

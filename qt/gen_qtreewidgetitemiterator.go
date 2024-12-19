@@ -73,7 +73,6 @@ func UnsafeNewQTreeWidgetItemIterator(h unsafe.Pointer) *QTreeWidgetItemIterator
 
 // NewQTreeWidgetItemIterator constructs a new QTreeWidgetItemIterator object.
 func NewQTreeWidgetItemIterator(it *QTreeWidgetItemIterator) *QTreeWidgetItemIterator {
-
 	ret := newQTreeWidgetItemIterator(C.QTreeWidgetItemIterator_new(it.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -81,7 +80,6 @@ func NewQTreeWidgetItemIterator(it *QTreeWidgetItemIterator) *QTreeWidgetItemIte
 
 // NewQTreeWidgetItemIterator2 constructs a new QTreeWidgetItemIterator object.
 func NewQTreeWidgetItemIterator2(widget *QTreeWidget) *QTreeWidgetItemIterator {
-
 	ret := newQTreeWidgetItemIterator(C.QTreeWidgetItemIterator_new2(widget.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -89,7 +87,6 @@ func NewQTreeWidgetItemIterator2(widget *QTreeWidget) *QTreeWidgetItemIterator {
 
 // NewQTreeWidgetItemIterator3 constructs a new QTreeWidgetItemIterator object.
 func NewQTreeWidgetItemIterator3(item *QTreeWidgetItem) *QTreeWidgetItemIterator {
-
 	ret := newQTreeWidgetItemIterator(C.QTreeWidgetItemIterator_new3(item.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -97,7 +94,6 @@ func NewQTreeWidgetItemIterator3(item *QTreeWidgetItem) *QTreeWidgetItemIterator
 
 // NewQTreeWidgetItemIterator4 constructs a new QTreeWidgetItemIterator object.
 func NewQTreeWidgetItemIterator4(widget *QTreeWidget, flags QTreeWidgetItemIterator__IteratorFlag) *QTreeWidgetItemIterator {
-
 	ret := newQTreeWidgetItemIterator(C.QTreeWidgetItemIterator_new4(widget.cPointer(), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -105,7 +101,6 @@ func NewQTreeWidgetItemIterator4(widget *QTreeWidget, flags QTreeWidgetItemItera
 
 // NewQTreeWidgetItemIterator5 constructs a new QTreeWidgetItemIterator object.
 func NewQTreeWidgetItemIterator5(item *QTreeWidgetItem, flags QTreeWidgetItemIterator__IteratorFlag) *QTreeWidgetItemIterator {
-
 	ret := newQTreeWidgetItemIterator(C.QTreeWidgetItemIterator_new5(item.cPointer(), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret

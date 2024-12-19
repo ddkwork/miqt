@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaRecorderControl struct {
@@ -43,8 +44,10 @@ func newQMediaRecorderControl(h *C.QMediaRecorderControl) *QMediaRecorderControl
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaRecorderControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaRecorderControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaRecorderControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaRecorderControl constructs the type using only unsafe pointers.
@@ -117,6 +120,7 @@ func (this *QMediaRecorderControl) ApplySettings() {
 func (this *QMediaRecorderControl) StateChanged(state QMediaRecorder__State) {
 	C.QMediaRecorderControl_StateChanged(this.h, (C.int)(state))
 }
+
 func (this *QMediaRecorderControl) OnStateChanged(slot func(state QMediaRecorder__State)) {
 	C.QMediaRecorderControl_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -137,6 +141,7 @@ func miqt_exec_callback_QMediaRecorderControl_StateChanged(cb C.intptr_t, state 
 func (this *QMediaRecorderControl) StatusChanged(status QMediaRecorder__Status) {
 	C.QMediaRecorderControl_StatusChanged(this.h, (C.int)(status))
 }
+
 func (this *QMediaRecorderControl) OnStatusChanged(slot func(status QMediaRecorder__Status)) {
 	C.QMediaRecorderControl_connect_StatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -157,6 +162,7 @@ func miqt_exec_callback_QMediaRecorderControl_StatusChanged(cb C.intptr_t, statu
 func (this *QMediaRecorderControl) DurationChanged(position int64) {
 	C.QMediaRecorderControl_DurationChanged(this.h, (C.longlong)(position))
 }
+
 func (this *QMediaRecorderControl) OnDurationChanged(slot func(position int64)) {
 	C.QMediaRecorderControl_connect_DurationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -177,6 +183,7 @@ func miqt_exec_callback_QMediaRecorderControl_DurationChanged(cb C.intptr_t, pos
 func (this *QMediaRecorderControl) MutedChanged(muted bool) {
 	C.QMediaRecorderControl_MutedChanged(this.h, (C.bool)(muted))
 }
+
 func (this *QMediaRecorderControl) OnMutedChanged(slot func(muted bool)) {
 	C.QMediaRecorderControl_connect_MutedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -197,6 +204,7 @@ func miqt_exec_callback_QMediaRecorderControl_MutedChanged(cb C.intptr_t, muted 
 func (this *QMediaRecorderControl) VolumeChanged(volume float64) {
 	C.QMediaRecorderControl_VolumeChanged(this.h, (C.double)(volume))
 }
+
 func (this *QMediaRecorderControl) OnVolumeChanged(slot func(volume float64)) {
 	C.QMediaRecorderControl_connect_VolumeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -217,6 +225,7 @@ func miqt_exec_callback_QMediaRecorderControl_VolumeChanged(cb C.intptr_t, volum
 func (this *QMediaRecorderControl) ActualLocationChanged(location *qt.QUrl) {
 	C.QMediaRecorderControl_ActualLocationChanged(this.h, (*C.QUrl)(location.UnsafePointer()))
 }
+
 func (this *QMediaRecorderControl) OnActualLocationChanged(slot func(location *qt.QUrl)) {
 	C.QMediaRecorderControl_connect_ActualLocationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -241,6 +250,7 @@ func (this *QMediaRecorderControl) Error(error int, errorString string) {
 	defer C.free(unsafe.Pointer(errorString_ms.data))
 	C.QMediaRecorderControl_Error(this.h, (C.int)(error), errorString_ms)
 }
+
 func (this *QMediaRecorderControl) OnError(slot func(error int, errorString string)) {
 	C.QMediaRecorderControl_connect_Error(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

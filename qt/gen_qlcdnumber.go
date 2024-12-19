@@ -59,8 +59,10 @@ func newQLCDNumber(h *C.QLCDNumber) *QLCDNumber {
 	var outptr_QFrame *C.QFrame = nil
 	C.QLCDNumber_virtbase(h, &outptr_QFrame)
 
-	return &QLCDNumber{h: h,
-		QFrame: newQFrame(outptr_QFrame)}
+	return &QLCDNumber{
+		h:      h,
+		QFrame: newQFrame(outptr_QFrame),
+	}
 }
 
 // UnsafeNewQLCDNumber constructs the type using only unsafe pointers.
@@ -70,7 +72,6 @@ func UnsafeNewQLCDNumber(h unsafe.Pointer) *QLCDNumber {
 
 // NewQLCDNumber constructs a new QLCDNumber object.
 func NewQLCDNumber(parent *QWidget) *QLCDNumber {
-
 	ret := newQLCDNumber(C.QLCDNumber_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +79,6 @@ func NewQLCDNumber(parent *QWidget) *QLCDNumber {
 
 // NewQLCDNumber2 constructs a new QLCDNumber object.
 func NewQLCDNumber2() *QLCDNumber {
-
 	ret := newQLCDNumber(C.QLCDNumber_new2())
 	ret.isSubclass = true
 	return ret
@@ -86,7 +86,6 @@ func NewQLCDNumber2() *QLCDNumber {
 
 // NewQLCDNumber3 constructs a new QLCDNumber object.
 func NewQLCDNumber3(numDigits uint) *QLCDNumber {
-
 	ret := newQLCDNumber(C.QLCDNumber_new3((C.uint)(numDigits)))
 	ret.isSubclass = true
 	return ret
@@ -94,7 +93,6 @@ func NewQLCDNumber3(numDigits uint) *QLCDNumber {
 
 // NewQLCDNumber4 constructs a new QLCDNumber object.
 func NewQLCDNumber4(numDigits uint, parent *QWidget) *QLCDNumber {
-
 	ret := newQLCDNumber(C.QLCDNumber_new4((C.uint)(numDigits), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -217,6 +215,7 @@ func (this *QLCDNumber) SetSmallDecimalPoint(smallDecimalPoint bool) {
 func (this *QLCDNumber) Overflow() {
 	C.QLCDNumber_Overflow(this.h)
 }
+
 func (this *QLCDNumber) OnOverflow(slot func()) {
 	C.QLCDNumber_connect_Overflow(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -276,12 +275,11 @@ func QLCDNumber_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QLCDNumber) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QLCDNumber_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QLCDNumber) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -299,14 +297,12 @@ func miqt_exec_callback_QLCDNumber_SizeHint(self *C.QLCDNumber, cb C.intptr_t) *
 	virtualReturn := gofunc((&QLCDNumber{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLCDNumber) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QLCDNumber_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QLCDNumber) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -327,14 +323,12 @@ func miqt_exec_callback_QLCDNumber_Event(self *C.QLCDNumber, cb C.intptr_t, e *C
 	virtualReturn := gofunc((&QLCDNumber{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QLCDNumber) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QLCDNumber_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLCDNumber) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -353,14 +347,12 @@ func miqt_exec_callback_QLCDNumber_PaintEvent(self *C.QLCDNumber, cb C.intptr_t,
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QLCDNumber{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QLCDNumber) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QLCDNumber_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLCDNumber) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -379,7 +371,6 @@ func miqt_exec_callback_QLCDNumber_ChangeEvent(self *C.QLCDNumber, cb C.intptr_t
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QLCDNumber{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 // Delete this object from C++ memory.

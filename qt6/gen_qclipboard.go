@@ -50,8 +50,10 @@ func newQClipboard(h *C.QClipboard) *QClipboard {
 	var outptr_QObject *C.QObject = nil
 	C.QClipboard_virtbase(h, &outptr_QObject)
 
-	return &QClipboard{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QClipboard{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQClipboard constructs the type using only unsafe pointers.
@@ -159,6 +161,7 @@ func (this *QClipboard) SetPixmap(param1 *QPixmap) {
 func (this *QClipboard) Changed(mode QClipboard__Mode) {
 	C.QClipboard_Changed(this.h, (C.int)(mode))
 }
+
 func (this *QClipboard) OnChanged(slot func(mode QClipboard__Mode)) {
 	C.QClipboard_connect_Changed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -179,6 +182,7 @@ func miqt_exec_callback_QClipboard_Changed(cb C.intptr_t, mode C.int) {
 func (this *QClipboard) SelectionChanged() {
 	C.QClipboard_SelectionChanged(this.h)
 }
+
 func (this *QClipboard) OnSelectionChanged(slot func()) {
 	C.QClipboard_connect_SelectionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -196,6 +200,7 @@ func miqt_exec_callback_QClipboard_SelectionChanged(cb C.intptr_t) {
 func (this *QClipboard) FindBufferChanged() {
 	C.QClipboard_FindBufferChanged(this.h)
 }
+
 func (this *QClipboard) OnFindBufferChanged(slot func()) {
 	C.QClipboard_connect_FindBufferChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -213,6 +218,7 @@ func miqt_exec_callback_QClipboard_FindBufferChanged(cb C.intptr_t) {
 func (this *QClipboard) DataChanged() {
 	C.QClipboard_DataChanged(this.h)
 }
+
 func (this *QClipboard) OnDataChanged(slot func()) {
 	C.QClipboard_connect_DataChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

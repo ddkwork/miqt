@@ -1139,7 +1139,6 @@ func UnsafeNewQAccessibleEvent(h unsafe.Pointer) *QAccessibleEvent {
 
 // NewQAccessibleEvent constructs a new QAccessibleEvent object.
 func NewQAccessibleEvent(obj *QObject, typ QAccessible__Event) *QAccessibleEvent {
-
 	ret := newQAccessibleEvent(C.QAccessibleEvent_new(obj.cPointer(), (C.int)(typ)))
 	ret.isSubclass = true
 	return ret
@@ -1147,7 +1146,6 @@ func NewQAccessibleEvent(obj *QObject, typ QAccessible__Event) *QAccessibleEvent
 
 // NewQAccessibleEvent2 constructs a new QAccessibleEvent object.
 func NewQAccessibleEvent2(iface *QAccessibleInterface, typ QAccessible__Event) *QAccessibleEvent {
-
 	ret := newQAccessibleEvent(C.QAccessibleEvent_new2(iface.cPointer(), (C.int)(typ)))
 	ret.isSubclass = true
 	return ret
@@ -1178,10 +1176,9 @@ func (this *QAccessibleEvent) AccessibleInterface() *QAccessibleInterface {
 }
 
 func (this *QAccessibleEvent) callVirtualBase_AccessibleInterface() *QAccessibleInterface {
-
 	return newQAccessibleInterface(C.QAccessibleEvent_virtualbase_AccessibleInterface(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAccessibleEvent) OnAccessibleInterface(slot func(super func() *QAccessibleInterface) *QAccessibleInterface) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1199,7 +1196,6 @@ func miqt_exec_callback_QAccessibleEvent_AccessibleInterface(self *C.QAccessible
 	virtualReturn := gofunc((&QAccessibleEvent{h: self}).callVirtualBase_AccessibleInterface)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.
@@ -1244,8 +1240,10 @@ func newQAccessibleStateChangeEvent(h *C.QAccessibleStateChangeEvent) *QAccessib
 	var outptr_QAccessibleEvent *C.QAccessibleEvent = nil
 	C.QAccessibleStateChangeEvent_virtbase(h, &outptr_QAccessibleEvent)
 
-	return &QAccessibleStateChangeEvent{h: h,
-		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent)}
+	return &QAccessibleStateChangeEvent{
+		h:                h,
+		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent),
+	}
 }
 
 // UnsafeNewQAccessibleStateChangeEvent constructs the type using only unsafe pointers.
@@ -1255,7 +1253,6 @@ func UnsafeNewQAccessibleStateChangeEvent(h unsafe.Pointer) *QAccessibleStateCha
 
 // NewQAccessibleStateChangeEvent constructs a new QAccessibleStateChangeEvent object.
 func NewQAccessibleStateChangeEvent(obj *QObject, state QAccessible__State) *QAccessibleStateChangeEvent {
-
 	ret := newQAccessibleStateChangeEvent(C.QAccessibleStateChangeEvent_new(obj.cPointer(), state.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1263,7 +1260,6 @@ func NewQAccessibleStateChangeEvent(obj *QObject, state QAccessible__State) *QAc
 
 // NewQAccessibleStateChangeEvent2 constructs a new QAccessibleStateChangeEvent object.
 func NewQAccessibleStateChangeEvent2(iface *QAccessibleInterface, state QAccessible__State) *QAccessibleStateChangeEvent {
-
 	ret := newQAccessibleStateChangeEvent(C.QAccessibleStateChangeEvent_new2(iface.cPointer(), state.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1276,10 +1272,9 @@ func (this *QAccessibleStateChangeEvent) ChangedStates() *QAccessible__State {
 }
 
 func (this *QAccessibleStateChangeEvent) callVirtualBase_AccessibleInterface() *QAccessibleInterface {
-
 	return newQAccessibleInterface(C.QAccessibleStateChangeEvent_virtualbase_AccessibleInterface(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAccessibleStateChangeEvent) OnAccessibleInterface(slot func(super func() *QAccessibleInterface) *QAccessibleInterface) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1297,7 +1292,6 @@ func miqt_exec_callback_QAccessibleStateChangeEvent_AccessibleInterface(self *C.
 	virtualReturn := gofunc((&QAccessibleStateChangeEvent{h: self}).callVirtualBase_AccessibleInterface)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.
@@ -1342,8 +1336,10 @@ func newQAccessibleTextCursorEvent(h *C.QAccessibleTextCursorEvent) *QAccessible
 	var outptr_QAccessibleEvent *C.QAccessibleEvent = nil
 	C.QAccessibleTextCursorEvent_virtbase(h, &outptr_QAccessibleEvent)
 
-	return &QAccessibleTextCursorEvent{h: h,
-		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent)}
+	return &QAccessibleTextCursorEvent{
+		h:                h,
+		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent),
+	}
 }
 
 // UnsafeNewQAccessibleTextCursorEvent constructs the type using only unsafe pointers.
@@ -1353,7 +1349,6 @@ func UnsafeNewQAccessibleTextCursorEvent(h unsafe.Pointer) *QAccessibleTextCurso
 
 // NewQAccessibleTextCursorEvent constructs a new QAccessibleTextCursorEvent object.
 func NewQAccessibleTextCursorEvent(obj *QObject, cursorPos int) *QAccessibleTextCursorEvent {
-
 	ret := newQAccessibleTextCursorEvent(C.QAccessibleTextCursorEvent_new(obj.cPointer(), (C.int)(cursorPos)))
 	ret.isSubclass = true
 	return ret
@@ -1361,7 +1356,6 @@ func NewQAccessibleTextCursorEvent(obj *QObject, cursorPos int) *QAccessibleText
 
 // NewQAccessibleTextCursorEvent2 constructs a new QAccessibleTextCursorEvent object.
 func NewQAccessibleTextCursorEvent2(iface *QAccessibleInterface, cursorPos int) *QAccessibleTextCursorEvent {
-
 	ret := newQAccessibleTextCursorEvent(C.QAccessibleTextCursorEvent_new2(iface.cPointer(), (C.int)(cursorPos)))
 	ret.isSubclass = true
 	return ret
@@ -1376,10 +1370,9 @@ func (this *QAccessibleTextCursorEvent) CursorPosition() int {
 }
 
 func (this *QAccessibleTextCursorEvent) callVirtualBase_AccessibleInterface() *QAccessibleInterface {
-
 	return newQAccessibleInterface(C.QAccessibleTextCursorEvent_virtualbase_AccessibleInterface(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAccessibleTextCursorEvent) OnAccessibleInterface(slot func(super func() *QAccessibleInterface) *QAccessibleInterface) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1397,7 +1390,6 @@ func miqt_exec_callback_QAccessibleTextCursorEvent_AccessibleInterface(self *C.Q
 	virtualReturn := gofunc((&QAccessibleTextCursorEvent{h: self}).callVirtualBase_AccessibleInterface)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.
@@ -1442,8 +1434,10 @@ func newQAccessibleTextSelectionEvent(h *C.QAccessibleTextSelectionEvent) *QAcce
 	var outptr_QAccessibleTextCursorEvent *C.QAccessibleTextCursorEvent = nil
 	C.QAccessibleTextSelectionEvent_virtbase(h, &outptr_QAccessibleTextCursorEvent)
 
-	return &QAccessibleTextSelectionEvent{h: h,
-		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent)}
+	return &QAccessibleTextSelectionEvent{
+		h:                          h,
+		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent),
+	}
 }
 
 // UnsafeNewQAccessibleTextSelectionEvent constructs the type using only unsafe pointers.
@@ -1453,7 +1447,6 @@ func UnsafeNewQAccessibleTextSelectionEvent(h unsafe.Pointer) *QAccessibleTextSe
 
 // NewQAccessibleTextSelectionEvent constructs a new QAccessibleTextSelectionEvent object.
 func NewQAccessibleTextSelectionEvent(obj *QObject, start int, end int) *QAccessibleTextSelectionEvent {
-
 	ret := newQAccessibleTextSelectionEvent(C.QAccessibleTextSelectionEvent_new(obj.cPointer(), (C.int)(start), (C.int)(end)))
 	ret.isSubclass = true
 	return ret
@@ -1461,7 +1454,6 @@ func NewQAccessibleTextSelectionEvent(obj *QObject, start int, end int) *QAccess
 
 // NewQAccessibleTextSelectionEvent2 constructs a new QAccessibleTextSelectionEvent object.
 func NewQAccessibleTextSelectionEvent2(iface *QAccessibleInterface, start int, end int) *QAccessibleTextSelectionEvent {
-
 	ret := newQAccessibleTextSelectionEvent(C.QAccessibleTextSelectionEvent_new2(iface.cPointer(), (C.int)(start), (C.int)(end)))
 	ret.isSubclass = true
 	return ret
@@ -1521,8 +1513,10 @@ func newQAccessibleTextInsertEvent(h *C.QAccessibleTextInsertEvent) *QAccessible
 	var outptr_QAccessibleTextCursorEvent *C.QAccessibleTextCursorEvent = nil
 	C.QAccessibleTextInsertEvent_virtbase(h, &outptr_QAccessibleTextCursorEvent)
 
-	return &QAccessibleTextInsertEvent{h: h,
-		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent)}
+	return &QAccessibleTextInsertEvent{
+		h:                          h,
+		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent),
+	}
 }
 
 // UnsafeNewQAccessibleTextInsertEvent constructs the type using only unsafe pointers.
@@ -1607,8 +1601,10 @@ func newQAccessibleTextRemoveEvent(h *C.QAccessibleTextRemoveEvent) *QAccessible
 	var outptr_QAccessibleTextCursorEvent *C.QAccessibleTextCursorEvent = nil
 	C.QAccessibleTextRemoveEvent_virtbase(h, &outptr_QAccessibleTextCursorEvent)
 
-	return &QAccessibleTextRemoveEvent{h: h,
-		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent)}
+	return &QAccessibleTextRemoveEvent{
+		h:                          h,
+		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent),
+	}
 }
 
 // UnsafeNewQAccessibleTextRemoveEvent constructs the type using only unsafe pointers.
@@ -1693,8 +1689,10 @@ func newQAccessibleTextUpdateEvent(h *C.QAccessibleTextUpdateEvent) *QAccessible
 	var outptr_QAccessibleTextCursorEvent *C.QAccessibleTextCursorEvent = nil
 	C.QAccessibleTextUpdateEvent_virtbase(h, &outptr_QAccessibleTextCursorEvent)
 
-	return &QAccessibleTextUpdateEvent{h: h,
-		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent)}
+	return &QAccessibleTextUpdateEvent{
+		h:                          h,
+		QAccessibleTextCursorEvent: newQAccessibleTextCursorEvent(outptr_QAccessibleTextCursorEvent),
+	}
 }
 
 // UnsafeNewQAccessibleTextUpdateEvent constructs the type using only unsafe pointers.
@@ -1794,8 +1792,10 @@ func newQAccessibleValueChangeEvent(h *C.QAccessibleValueChangeEvent) *QAccessib
 	var outptr_QAccessibleEvent *C.QAccessibleEvent = nil
 	C.QAccessibleValueChangeEvent_virtbase(h, &outptr_QAccessibleEvent)
 
-	return &QAccessibleValueChangeEvent{h: h,
-		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent)}
+	return &QAccessibleValueChangeEvent{
+		h:                h,
+		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent),
+	}
 }
 
 // UnsafeNewQAccessibleValueChangeEvent constructs the type using only unsafe pointers.
@@ -1805,7 +1805,6 @@ func UnsafeNewQAccessibleValueChangeEvent(h unsafe.Pointer) *QAccessibleValueCha
 
 // NewQAccessibleValueChangeEvent constructs a new QAccessibleValueChangeEvent object.
 func NewQAccessibleValueChangeEvent(obj *QObject, val *QVariant) *QAccessibleValueChangeEvent {
-
 	ret := newQAccessibleValueChangeEvent(C.QAccessibleValueChangeEvent_new(obj.cPointer(), val.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1813,7 +1812,6 @@ func NewQAccessibleValueChangeEvent(obj *QObject, val *QVariant) *QAccessibleVal
 
 // NewQAccessibleValueChangeEvent2 constructs a new QAccessibleValueChangeEvent object.
 func NewQAccessibleValueChangeEvent2(iface *QAccessibleInterface, val *QVariant) *QAccessibleValueChangeEvent {
-
 	ret := newQAccessibleValueChangeEvent(C.QAccessibleValueChangeEvent_new2(iface.cPointer(), val.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1830,10 +1828,9 @@ func (this *QAccessibleValueChangeEvent) Value() *QVariant {
 }
 
 func (this *QAccessibleValueChangeEvent) callVirtualBase_AccessibleInterface() *QAccessibleInterface {
-
 	return newQAccessibleInterface(C.QAccessibleValueChangeEvent_virtualbase_AccessibleInterface(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAccessibleValueChangeEvent) OnAccessibleInterface(slot func(super func() *QAccessibleInterface) *QAccessibleInterface) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1851,7 +1848,6 @@ func miqt_exec_callback_QAccessibleValueChangeEvent_AccessibleInterface(self *C.
 	virtualReturn := gofunc((&QAccessibleValueChangeEvent{h: self}).callVirtualBase_AccessibleInterface)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.
@@ -1896,8 +1892,10 @@ func newQAccessibleTableModelChangeEvent(h *C.QAccessibleTableModelChangeEvent) 
 	var outptr_QAccessibleEvent *C.QAccessibleEvent = nil
 	C.QAccessibleTableModelChangeEvent_virtbase(h, &outptr_QAccessibleEvent)
 
-	return &QAccessibleTableModelChangeEvent{h: h,
-		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent)}
+	return &QAccessibleTableModelChangeEvent{
+		h:                h,
+		QAccessibleEvent: newQAccessibleEvent(outptr_QAccessibleEvent),
+	}
 }
 
 // UnsafeNewQAccessibleTableModelChangeEvent constructs the type using only unsafe pointers.
@@ -1907,7 +1905,6 @@ func UnsafeNewQAccessibleTableModelChangeEvent(h unsafe.Pointer) *QAccessibleTab
 
 // NewQAccessibleTableModelChangeEvent constructs a new QAccessibleTableModelChangeEvent object.
 func NewQAccessibleTableModelChangeEvent(obj *QObject, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
-
 	ret := newQAccessibleTableModelChangeEvent(C.QAccessibleTableModelChangeEvent_new(obj.cPointer(), (C.int)(changeType)))
 	ret.isSubclass = true
 	return ret
@@ -1915,7 +1912,6 @@ func NewQAccessibleTableModelChangeEvent(obj *QObject, changeType QAccessibleTab
 
 // NewQAccessibleTableModelChangeEvent2 constructs a new QAccessibleTableModelChangeEvent object.
 func NewQAccessibleTableModelChangeEvent2(iface *QAccessibleInterface, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
-
 	ret := newQAccessibleTableModelChangeEvent(C.QAccessibleTableModelChangeEvent_new2(iface.cPointer(), (C.int)(changeType)))
 	ret.isSubclass = true
 	return ret
@@ -1962,10 +1958,9 @@ func (this *QAccessibleTableModelChangeEvent) LastColumn() int {
 }
 
 func (this *QAccessibleTableModelChangeEvent) callVirtualBase_AccessibleInterface() *QAccessibleInterface {
-
 	return newQAccessibleInterface(C.QAccessibleTableModelChangeEvent_virtualbase_AccessibleInterface(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAccessibleTableModelChangeEvent) OnAccessibleInterface(slot func(super func() *QAccessibleInterface) *QAccessibleInterface) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1983,7 +1978,6 @@ func miqt_exec_callback_QAccessibleTableModelChangeEvent_AccessibleInterface(sel
 	virtualReturn := gofunc((&QAccessibleTableModelChangeEvent{h: self}).callVirtualBase_AccessibleInterface)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

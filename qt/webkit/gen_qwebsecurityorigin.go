@@ -9,9 +9,10 @@ package webkit
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebSecurityOrigin__SubdomainSetting int
@@ -56,7 +57,6 @@ func UnsafeNewQWebSecurityOrigin(h unsafe.Pointer) *QWebSecurityOrigin {
 
 // NewQWebSecurityOrigin constructs a new QWebSecurityOrigin object.
 func NewQWebSecurityOrigin(url *qt.QUrl) *QWebSecurityOrigin {
-
 	ret := newQWebSecurityOrigin(C.QWebSecurityOrigin_new((*C.QUrl)(url.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +64,6 @@ func NewQWebSecurityOrigin(url *qt.QUrl) *QWebSecurityOrigin {
 
 // NewQWebSecurityOrigin2 constructs a new QWebSecurityOrigin object.
 func NewQWebSecurityOrigin2(other *QWebSecurityOrigin) *QWebSecurityOrigin {
-
 	ret := newQWebSecurityOrigin(C.QWebSecurityOrigin_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QVideoWindowControl struct {
@@ -43,8 +44,10 @@ func newQVideoWindowControl(h *C.QVideoWindowControl) *QVideoWindowControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QVideoWindowControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QVideoWindowControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QVideoWindowControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQVideoWindowControl constructs the type using only unsafe pointers.
@@ -159,6 +162,7 @@ func (this *QVideoWindowControl) SetSaturation(saturation int) {
 func (this *QVideoWindowControl) FullScreenChanged(fullScreen bool) {
 	C.QVideoWindowControl_FullScreenChanged(this.h, (C.bool)(fullScreen))
 }
+
 func (this *QVideoWindowControl) OnFullScreenChanged(slot func(fullScreen bool)) {
 	C.QVideoWindowControl_connect_FullScreenChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -179,6 +183,7 @@ func miqt_exec_callback_QVideoWindowControl_FullScreenChanged(cb C.intptr_t, ful
 func (this *QVideoWindowControl) BrightnessChanged(brightness int) {
 	C.QVideoWindowControl_BrightnessChanged(this.h, (C.int)(brightness))
 }
+
 func (this *QVideoWindowControl) OnBrightnessChanged(slot func(brightness int)) {
 	C.QVideoWindowControl_connect_BrightnessChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -199,6 +204,7 @@ func miqt_exec_callback_QVideoWindowControl_BrightnessChanged(cb C.intptr_t, bri
 func (this *QVideoWindowControl) ContrastChanged(contrast int) {
 	C.QVideoWindowControl_ContrastChanged(this.h, (C.int)(contrast))
 }
+
 func (this *QVideoWindowControl) OnContrastChanged(slot func(contrast int)) {
 	C.QVideoWindowControl_connect_ContrastChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -219,6 +225,7 @@ func miqt_exec_callback_QVideoWindowControl_ContrastChanged(cb C.intptr_t, contr
 func (this *QVideoWindowControl) HueChanged(hue int) {
 	C.QVideoWindowControl_HueChanged(this.h, (C.int)(hue))
 }
+
 func (this *QVideoWindowControl) OnHueChanged(slot func(hue int)) {
 	C.QVideoWindowControl_connect_HueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -239,6 +246,7 @@ func miqt_exec_callback_QVideoWindowControl_HueChanged(cb C.intptr_t, hue C.int)
 func (this *QVideoWindowControl) SaturationChanged(saturation int) {
 	C.QVideoWindowControl_SaturationChanged(this.h, (C.int)(saturation))
 }
+
 func (this *QVideoWindowControl) OnSaturationChanged(slot func(saturation int)) {
 	C.QVideoWindowControl_connect_SaturationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -259,6 +267,7 @@ func miqt_exec_callback_QVideoWindowControl_SaturationChanged(cb C.intptr_t, sat
 func (this *QVideoWindowControl) NativeSizeChanged() {
 	C.QVideoWindowControl_NativeSizeChanged(this.h)
 }
+
 func (this *QVideoWindowControl) OnNativeSizeChanged(slot func()) {
 	C.QVideoWindowControl_connect_NativeSizeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

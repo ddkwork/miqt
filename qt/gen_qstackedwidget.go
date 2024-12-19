@@ -42,8 +42,10 @@ func newQStackedWidget(h *C.QStackedWidget) *QStackedWidget {
 	var outptr_QFrame *C.QFrame = nil
 	C.QStackedWidget_virtbase(h, &outptr_QFrame)
 
-	return &QStackedWidget{h: h,
-		QFrame: newQFrame(outptr_QFrame)}
+	return &QStackedWidget{
+		h:      h,
+		QFrame: newQFrame(outptr_QFrame),
+	}
 }
 
 // UnsafeNewQStackedWidget constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQStackedWidget(h unsafe.Pointer) *QStackedWidget {
 
 // NewQStackedWidget constructs a new QStackedWidget object.
 func NewQStackedWidget(parent *QWidget) *QStackedWidget {
-
 	ret := newQStackedWidget(C.QStackedWidget_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQStackedWidget(parent *QWidget) *QStackedWidget {
 
 // NewQStackedWidget2 constructs a new QStackedWidget object.
 func NewQStackedWidget2() *QStackedWidget {
-
 	ret := newQStackedWidget(C.QStackedWidget_new2())
 	ret.isSubclass = true
 	return ret
@@ -138,6 +138,7 @@ func (this *QStackedWidget) SetCurrentWidget(w *QWidget) {
 func (this *QStackedWidget) CurrentChanged(param1 int) {
 	C.QStackedWidget_CurrentChanged(this.h, (C.int)(param1))
 }
+
 func (this *QStackedWidget) OnCurrentChanged(slot func(param1 int)) {
 	C.QStackedWidget_connect_CurrentChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -158,6 +159,7 @@ func miqt_exec_callback_QStackedWidget_CurrentChanged(cb C.intptr_t, param1 C.in
 func (this *QStackedWidget) WidgetRemoved(index int) {
 	C.QStackedWidget_WidgetRemoved(this.h, (C.int)(index))
 }
+
 func (this *QStackedWidget) OnWidgetRemoved(slot func(index int)) {
 	C.QStackedWidget_connect_WidgetRemoved(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -220,10 +222,9 @@ func QStackedWidget_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QStackedWidget) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QStackedWidget_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QStackedWidget) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -244,16 +245,14 @@ func miqt_exec_callback_QStackedWidget_Event(self *C.QStackedWidget, cb C.intptr
 	virtualReturn := gofunc((&QStackedWidget{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QStackedWidget) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QStackedWidget_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QStackedWidget) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -271,14 +270,12 @@ func miqt_exec_callback_QStackedWidget_SizeHint(self *C.QStackedWidget, cb C.int
 	virtualReturn := gofunc((&QStackedWidget{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QStackedWidget) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QStackedWidget_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QStackedWidget) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -297,14 +294,12 @@ func miqt_exec_callback_QStackedWidget_PaintEvent(self *C.QStackedWidget, cb C.i
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QStackedWidget{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QStackedWidget) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QStackedWidget_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QStackedWidget) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -323,7 +318,6 @@ func miqt_exec_callback_QStackedWidget_ChangeEvent(self *C.QStackedWidget, cb C.
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QStackedWidget{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 // Delete this object from C++ memory.

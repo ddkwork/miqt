@@ -9,9 +9,10 @@ package qscintilla
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QsciLexerOctave struct {
@@ -42,8 +43,10 @@ func newQsciLexerOctave(h *C.QsciLexerOctave) *QsciLexerOctave {
 	var outptr_QsciLexerMatlab *C.QsciLexerMatlab = nil
 	C.QsciLexerOctave_virtbase(h, &outptr_QsciLexerMatlab)
 
-	return &QsciLexerOctave{h: h,
-		QsciLexerMatlab: newQsciLexerMatlab(outptr_QsciLexerMatlab)}
+	return &QsciLexerOctave{
+		h:               h,
+		QsciLexerMatlab: newQsciLexerMatlab(outptr_QsciLexerMatlab),
+	}
 }
 
 // UnsafeNewQsciLexerOctave constructs the type using only unsafe pointers.
@@ -53,7 +56,6 @@ func UnsafeNewQsciLexerOctave(h unsafe.Pointer) *QsciLexerOctave {
 
 // NewQsciLexerOctave constructs a new QsciLexerOctave object.
 func NewQsciLexerOctave() *QsciLexerOctave {
-
 	ret := newQsciLexerOctave(C.QsciLexerOctave_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +63,6 @@ func NewQsciLexerOctave() *QsciLexerOctave {
 
 // NewQsciLexerOctave2 constructs a new QsciLexerOctave object.
 func NewQsciLexerOctave2(parent *qt.QObject) *QsciLexerOctave {
-
 	ret := newQsciLexerOctave(C.QsciLexerOctave_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret

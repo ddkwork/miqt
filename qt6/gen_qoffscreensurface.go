@@ -44,9 +44,11 @@ func newQOffscreenSurface(h *C.QOffscreenSurface) *QOffscreenSurface {
 	var outptr_QSurface *C.QSurface = nil
 	C.QOffscreenSurface_virtbase(h, &outptr_QObject, &outptr_QSurface)
 
-	return &QOffscreenSurface{h: h,
+	return &QOffscreenSurface{
+		h:        h,
 		QObject:  newQObject(outptr_QObject),
-		QSurface: newQSurface(outptr_QSurface)}
+		QSurface: newQSurface(outptr_QSurface),
+	}
 }
 
 // UnsafeNewQOffscreenSurface constructs the type using only unsafe pointers.
@@ -56,7 +58,6 @@ func UnsafeNewQOffscreenSurface(h unsafe.Pointer) *QOffscreenSurface {
 
 // NewQOffscreenSurface constructs a new QOffscreenSurface object.
 func NewQOffscreenSurface() *QOffscreenSurface {
-
 	ret := newQOffscreenSurface(C.QOffscreenSurface_new())
 	ret.isSubclass = true
 	return ret
@@ -64,7 +65,6 @@ func NewQOffscreenSurface() *QOffscreenSurface {
 
 // NewQOffscreenSurface2 constructs a new QOffscreenSurface object.
 func NewQOffscreenSurface2(screen *QScreen) *QOffscreenSurface {
-
 	ret := newQOffscreenSurface(C.QOffscreenSurface_new2(screen.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +72,6 @@ func NewQOffscreenSurface2(screen *QScreen) *QOffscreenSurface {
 
 // NewQOffscreenSurface3 constructs a new QOffscreenSurface object.
 func NewQOffscreenSurface3(screen *QScreen, parent *QObject) *QOffscreenSurface {
-
 	ret := newQOffscreenSurface(C.QOffscreenSurface_new3(screen.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -146,6 +145,7 @@ func (this *QOffscreenSurface) SetScreen(screen *QScreen) {
 func (this *QOffscreenSurface) ScreenChanged(screen *QScreen) {
 	C.QOffscreenSurface_ScreenChanged(this.h, screen.cPointer())
 }
+
 func (this *QOffscreenSurface) OnScreenChanged(slot func(screen *QScreen)) {
 	C.QOffscreenSurface_connect_ScreenChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -186,10 +186,9 @@ func QOffscreenSurface_Tr3(s string, c string, n int) string {
 }
 
 func (this *QOffscreenSurface) callVirtualBase_SurfaceType() QSurface__SurfaceType {
-
 	return (QSurface__SurfaceType)(C.QOffscreenSurface_virtualbase_SurfaceType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QOffscreenSurface) OnSurfaceType(slot func(super func() QSurface__SurfaceType) QSurface__SurfaceType) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -207,16 +206,14 @@ func miqt_exec_callback_QOffscreenSurface_SurfaceType(self *C.QOffscreenSurface,
 	virtualReturn := gofunc((&QOffscreenSurface{h: self}).callVirtualBase_SurfaceType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_Format() *QSurfaceFormat {
-
 	_goptr := newQSurfaceFormat(C.QOffscreenSurface_virtualbase_Format(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QOffscreenSurface) OnFormat(slot func(super func() *QSurfaceFormat) *QSurfaceFormat) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -234,16 +231,14 @@ func miqt_exec_callback_QOffscreenSurface_Format(self *C.QOffscreenSurface, cb C
 	virtualReturn := gofunc((&QOffscreenSurface{h: self}).callVirtualBase_Format)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_Size() *QSize {
-
 	_goptr := newQSize(C.QOffscreenSurface_virtualbase_Size(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QOffscreenSurface) OnSize(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -261,14 +256,12 @@ func miqt_exec_callback_QOffscreenSurface_Size(self *C.QOffscreenSurface, cb C.i
 	virtualReturn := gofunc((&QOffscreenSurface{h: self}).callVirtualBase_Size)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QOffscreenSurface_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QOffscreenSurface) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -289,14 +282,12 @@ func miqt_exec_callback_QOffscreenSurface_Event(self *C.QOffscreenSurface, cb C.
 	virtualReturn := gofunc((&QOffscreenSurface{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QOffscreenSurface_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QOffscreenSurface) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -319,14 +310,12 @@ func miqt_exec_callback_QOffscreenSurface_EventFilter(self *C.QOffscreenSurface,
 	virtualReturn := gofunc((&QOffscreenSurface{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QOffscreenSurface_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QOffscreenSurface) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -345,14 +334,12 @@ func miqt_exec_callback_QOffscreenSurface_TimerEvent(self *C.QOffscreenSurface, 
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QOffscreenSurface{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QOffscreenSurface_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QOffscreenSurface) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -371,14 +358,12 @@ func miqt_exec_callback_QOffscreenSurface_ChildEvent(self *C.QOffscreenSurface, 
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QOffscreenSurface{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QOffscreenSurface_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QOffscreenSurface) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -397,14 +382,12 @@ func miqt_exec_callback_QOffscreenSurface_CustomEvent(self *C.QOffscreenSurface,
 	slotval1 := newQEvent(event)
 
 	gofunc((&QOffscreenSurface{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QOffscreenSurface_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QOffscreenSurface) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -423,14 +406,12 @@ func miqt_exec_callback_QOffscreenSurface_ConnectNotify(self *C.QOffscreenSurfac
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QOffscreenSurface{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QOffscreenSurface) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QOffscreenSurface_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QOffscreenSurface) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -449,7 +430,6 @@ func miqt_exec_callback_QOffscreenSurface_DisconnectNotify(self *C.QOffscreenSur
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QOffscreenSurface{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

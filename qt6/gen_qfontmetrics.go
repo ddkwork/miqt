@@ -48,7 +48,6 @@ func UnsafeNewQFontMetrics(h unsafe.Pointer) *QFontMetrics {
 
 // NewQFontMetrics constructs a new QFontMetrics object.
 func NewQFontMetrics(param1 *QFont) *QFontMetrics {
-
 	ret := newQFontMetrics(C.QFontMetrics_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQFontMetrics(param1 *QFont) *QFontMetrics {
 
 // NewQFontMetrics2 constructs a new QFontMetrics object.
 func NewQFontMetrics2(font *QFont, pd *QPaintDevice) *QFontMetrics {
-
 	ret := newQFontMetrics(C.QFontMetrics_new2(font.cPointer(), pd.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQFontMetrics2(font *QFont, pd *QPaintDevice) *QFontMetrics {
 
 // NewQFontMetrics3 constructs a new QFontMetrics object.
 func NewQFontMetrics3(param1 *QFontMetrics) *QFontMetrics {
-
 	ret := newQFontMetrics(C.QFontMetrics_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -401,7 +398,6 @@ func UnsafeNewQFontMetricsF(h unsafe.Pointer) *QFontMetricsF {
 
 // NewQFontMetricsF constructs a new QFontMetricsF object.
 func NewQFontMetricsF(font *QFont) *QFontMetricsF {
-
 	ret := newQFontMetricsF(C.QFontMetricsF_new(font.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -409,7 +405,6 @@ func NewQFontMetricsF(font *QFont) *QFontMetricsF {
 
 // NewQFontMetricsF2 constructs a new QFontMetricsF object.
 func NewQFontMetricsF2(font *QFont, pd *QPaintDevice) *QFontMetricsF {
-
 	ret := newQFontMetricsF(C.QFontMetricsF_new2(font.cPointer(), pd.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -417,7 +412,6 @@ func NewQFontMetricsF2(font *QFont, pd *QPaintDevice) *QFontMetricsF {
 
 // NewQFontMetricsF3 constructs a new QFontMetricsF object.
 func NewQFontMetricsF3(param1 *QFontMetrics) *QFontMetricsF {
-
 	ret := newQFontMetricsF(C.QFontMetricsF_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -425,7 +419,6 @@ func NewQFontMetricsF3(param1 *QFontMetrics) *QFontMetricsF {
 
 // NewQFontMetricsF4 constructs a new QFontMetricsF object.
 func NewQFontMetricsF4(param1 *QFontMetricsF) *QFontMetricsF {
-
 	ret := newQFontMetricsF(C.QFontMetricsF_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

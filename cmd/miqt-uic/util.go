@@ -49,7 +49,6 @@ func lineDiff(a, b string) string {
 // xmlConvertToSelfClosing converts a multiline XML file, where if a line
 // consists of <foo ...></foo>, it is replaced with <foo />.
 func xmlConvertToSelfClosing(input string) string {
-
 	lines := strings.Split(input, "\n")
 
 	for i, l := range lines {

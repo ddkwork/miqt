@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraViewfinderSettings struct {
@@ -49,7 +50,6 @@ func UnsafeNewQCameraViewfinderSettings(h unsafe.Pointer) *QCameraViewfinderSett
 
 // NewQCameraViewfinderSettings constructs a new QCameraViewfinderSettings object.
 func NewQCameraViewfinderSettings() *QCameraViewfinderSettings {
-
 	ret := newQCameraViewfinderSettings(C.QCameraViewfinderSettings_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQCameraViewfinderSettings() *QCameraViewfinderSettings {
 
 // NewQCameraViewfinderSettings2 constructs a new QCameraViewfinderSettings object.
 func NewQCameraViewfinderSettings2(other *QCameraViewfinderSettings) *QCameraViewfinderSettings {
-
 	ret := newQCameraViewfinderSettings(C.QCameraViewfinderSettings_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

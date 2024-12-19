@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineHttpRequest__Method int
@@ -56,7 +57,6 @@ func UnsafeNewQWebEngineHttpRequest(h unsafe.Pointer) *QWebEngineHttpRequest {
 
 // NewQWebEngineHttpRequest constructs a new QWebEngineHttpRequest object.
 func NewQWebEngineHttpRequest() *QWebEngineHttpRequest {
-
 	ret := newQWebEngineHttpRequest(C.QWebEngineHttpRequest_new())
 	ret.isSubclass = true
 	return ret
@@ -64,7 +64,6 @@ func NewQWebEngineHttpRequest() *QWebEngineHttpRequest {
 
 // NewQWebEngineHttpRequest2 constructs a new QWebEngineHttpRequest object.
 func NewQWebEngineHttpRequest2(other *QWebEngineHttpRequest) *QWebEngineHttpRequest {
-
 	ret := newQWebEngineHttpRequest(C.QWebEngineHttpRequest_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +71,6 @@ func NewQWebEngineHttpRequest2(other *QWebEngineHttpRequest) *QWebEngineHttpRequ
 
 // NewQWebEngineHttpRequest3 constructs a new QWebEngineHttpRequest object.
 func NewQWebEngineHttpRequest3(url *qt6.QUrl) *QWebEngineHttpRequest {
-
 	ret := newQWebEngineHttpRequest(C.QWebEngineHttpRequest_new3((*C.QUrl)(url.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -80,7 +78,6 @@ func NewQWebEngineHttpRequest3(url *qt6.QUrl) *QWebEngineHttpRequest {
 
 // NewQWebEngineHttpRequest4 constructs a new QWebEngineHttpRequest object.
 func NewQWebEngineHttpRequest4(url *qt6.QUrl, method *QWebEngineHttpRequest__Method) *QWebEngineHttpRequest {
-
 	ret := newQWebEngineHttpRequest(C.QWebEngineHttpRequest_new4((*C.QUrl)(url.UnsafePointer()), (*C.int)(unsafe.Pointer(method))))
 	ret.isSubclass = true
 	return ret

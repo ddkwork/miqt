@@ -9,10 +9,11 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QSctpSocket struct {
@@ -43,8 +44,10 @@ func newQSctpSocket(h *C.QSctpSocket) *QSctpSocket {
 	var outptr_QTcpSocket *C.QTcpSocket = nil
 	C.QSctpSocket_virtbase(h, &outptr_QTcpSocket)
 
-	return &QSctpSocket{h: h,
-		QTcpSocket: newQTcpSocket(outptr_QTcpSocket)}
+	return &QSctpSocket{
+		h:          h,
+		QTcpSocket: newQTcpSocket(outptr_QTcpSocket),
+	}
 }
 
 // UnsafeNewQSctpSocket constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQSctpSocket(h unsafe.Pointer) *QSctpSocket {
 
 // NewQSctpSocket constructs a new QSctpSocket object.
 func NewQSctpSocket() *QSctpSocket {
-
 	ret := newQSctpSocket(C.QSctpSocket_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQSctpSocket() *QSctpSocket {
 
 // NewQSctpSocket2 constructs a new QSctpSocket object.
 func NewQSctpSocket2(parent *qt6.QObject) *QSctpSocket {
-
 	ret := newQSctpSocket(C.QSctpSocket_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -140,10 +141,9 @@ func QSctpSocket_Tr3(s string, c string, n int) string {
 }
 
 func (this *QSctpSocket) callVirtualBase_Close() {
-
 	C.QSctpSocket_virtualbase_Close(unsafe.Pointer(this.h))
-
 }
+
 func (this *QSctpSocket) OnClose(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -159,14 +159,12 @@ func miqt_exec_callback_QSctpSocket_Close(self *C.QSctpSocket, cb C.intptr_t) {
 	}
 
 	gofunc((&QSctpSocket{h: self}).callVirtualBase_Close)
-
 }
 
 func (this *QSctpSocket) callVirtualBase_DisconnectFromHost() {
-
 	C.QSctpSocket_virtualbase_DisconnectFromHost(unsafe.Pointer(this.h))
-
 }
+
 func (this *QSctpSocket) OnDisconnectFromHost(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -182,7 +180,6 @@ func miqt_exec_callback_QSctpSocket_DisconnectFromHost(self *C.QSctpSocket, cb C
 	}
 
 	gofunc((&QSctpSocket{h: self}).callVirtualBase_DisconnectFromHost)
-
 }
 
 func (this *QSctpSocket) callVirtualBase_ReadData(data string, maxlen int64) int64 {
@@ -190,8 +187,8 @@ func (this *QSctpSocket) callVirtualBase_ReadData(data string, maxlen int64) int
 	defer C.free(unsafe.Pointer(data_Cstring))
 
 	return (int64)(C.QSctpSocket_virtualbase_ReadData(unsafe.Pointer(this.h), data_Cstring, (C.longlong)(maxlen)))
-
 }
+
 func (this *QSctpSocket) OnReadData(slot func(super func(data string, maxlen int64) int64, data string, maxlen int64) int64) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -215,7 +212,6 @@ func miqt_exec_callback_QSctpSocket_ReadData(self *C.QSctpSocket, cb C.intptr_t,
 	virtualReturn := gofunc((&QSctpSocket{h: self}).callVirtualBase_ReadData, slotval1, slotval2)
 
 	return (C.longlong)(virtualReturn)
-
 }
 
 func (this *QSctpSocket) callVirtualBase_ReadLineData(data string, maxlen int64) int64 {
@@ -223,8 +219,8 @@ func (this *QSctpSocket) callVirtualBase_ReadLineData(data string, maxlen int64)
 	defer C.free(unsafe.Pointer(data_Cstring))
 
 	return (int64)(C.QSctpSocket_virtualbase_ReadLineData(unsafe.Pointer(this.h), data_Cstring, (C.longlong)(maxlen)))
-
 }
+
 func (this *QSctpSocket) OnReadLineData(slot func(super func(data string, maxlen int64) int64, data string, maxlen int64) int64) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -248,7 +244,6 @@ func miqt_exec_callback_QSctpSocket_ReadLineData(self *C.QSctpSocket, cb C.intpt
 	virtualReturn := gofunc((&QSctpSocket{h: self}).callVirtualBase_ReadLineData, slotval1, slotval2)
 
 	return (C.longlong)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

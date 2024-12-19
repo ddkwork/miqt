@@ -58,8 +58,10 @@ func newQLineEdit(h *C.QLineEdit) *QLineEdit {
 	var outptr_QWidget *C.QWidget = nil
 	C.QLineEdit_virtbase(h, &outptr_QWidget)
 
-	return &QLineEdit{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
+	return &QLineEdit{
+		h:       h,
+		QWidget: newQWidget(outptr_QWidget),
+	}
 }
 
 // UnsafeNewQLineEdit constructs the type using only unsafe pointers.
@@ -69,7 +71,6 @@ func UnsafeNewQLineEdit(h unsafe.Pointer) *QLineEdit {
 
 // NewQLineEdit constructs a new QLineEdit object.
 func NewQLineEdit(parent *QWidget) *QLineEdit {
-
 	ret := newQLineEdit(C.QLineEdit_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +78,6 @@ func NewQLineEdit(parent *QWidget) *QLineEdit {
 
 // NewQLineEdit2 constructs a new QLineEdit object.
 func NewQLineEdit2() *QLineEdit {
-
 	ret := newQLineEdit(C.QLineEdit_new2())
 	ret.isSubclass = true
 	return ret
@@ -434,6 +434,7 @@ func (this *QLineEdit) TextChanged(param1 string) {
 	defer C.free(unsafe.Pointer(param1_ms.data))
 	C.QLineEdit_TextChanged(this.h, param1_ms)
 }
+
 func (this *QLineEdit) OnTextChanged(slot func(param1 string)) {
 	C.QLineEdit_connect_TextChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -461,6 +462,7 @@ func (this *QLineEdit) TextEdited(param1 string) {
 	defer C.free(unsafe.Pointer(param1_ms.data))
 	C.QLineEdit_TextEdited(this.h, param1_ms)
 }
+
 func (this *QLineEdit) OnTextEdited(slot func(param1 string)) {
 	C.QLineEdit_connect_TextEdited(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -484,6 +486,7 @@ func miqt_exec_callback_QLineEdit_TextEdited(cb C.intptr_t, param1 C.struct_miqt
 func (this *QLineEdit) CursorPositionChanged(param1 int, param2 int) {
 	C.QLineEdit_CursorPositionChanged(this.h, (C.int)(param1), (C.int)(param2))
 }
+
 func (this *QLineEdit) OnCursorPositionChanged(slot func(param1 int, param2 int)) {
 	C.QLineEdit_connect_CursorPositionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -506,6 +509,7 @@ func miqt_exec_callback_QLineEdit_CursorPositionChanged(cb C.intptr_t, param1 C.
 func (this *QLineEdit) ReturnPressed() {
 	C.QLineEdit_ReturnPressed(this.h)
 }
+
 func (this *QLineEdit) OnReturnPressed(slot func()) {
 	C.QLineEdit_connect_ReturnPressed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -523,6 +527,7 @@ func miqt_exec_callback_QLineEdit_ReturnPressed(cb C.intptr_t) {
 func (this *QLineEdit) EditingFinished() {
 	C.QLineEdit_EditingFinished(this.h)
 }
+
 func (this *QLineEdit) OnEditingFinished(slot func()) {
 	C.QLineEdit_connect_EditingFinished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -540,6 +545,7 @@ func miqt_exec_callback_QLineEdit_EditingFinished(cb C.intptr_t) {
 func (this *QLineEdit) SelectionChanged() {
 	C.QLineEdit_SelectionChanged(this.h)
 }
+
 func (this *QLineEdit) OnSelectionChanged(slot func()) {
 	C.QLineEdit_connect_SelectionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -557,6 +563,7 @@ func miqt_exec_callback_QLineEdit_SelectionChanged(cb C.intptr_t) {
 func (this *QLineEdit) InputRejected() {
 	C.QLineEdit_InputRejected(this.h)
 }
+
 func (this *QLineEdit) OnInputRejected(slot func()) {
 	C.QLineEdit_connect_InputRejected(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -622,12 +629,11 @@ func (this *QLineEdit) CursorBackward2(mark bool, steps int) {
 }
 
 func (this *QLineEdit) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QLineEdit_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QLineEdit) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -645,16 +651,14 @@ func miqt_exec_callback_QLineEdit_SizeHint(self *C.QLineEdit, cb C.intptr_t) *C.
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLineEdit) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QLineEdit_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QLineEdit) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -672,14 +676,12 @@ func miqt_exec_callback_QLineEdit_MinimumSizeHint(self *C.QLineEdit, cb C.intptr
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLineEdit) callVirtualBase_MousePressEvent(param1 *QMouseEvent) {
-
 	C.QLineEdit_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnMousePressEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -698,14 +700,12 @@ func miqt_exec_callback_QLineEdit_MousePressEvent(self *C.QLineEdit, cb C.intptr
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_MouseMoveEvent(param1 *QMouseEvent) {
-
 	C.QLineEdit_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnMouseMoveEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -724,14 +724,12 @@ func miqt_exec_callback_QLineEdit_MouseMoveEvent(self *C.QLineEdit, cb C.intptr_
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_MouseReleaseEvent(param1 *QMouseEvent) {
-
 	C.QLineEdit_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnMouseReleaseEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -750,14 +748,12 @@ func miqt_exec_callback_QLineEdit_MouseReleaseEvent(self *C.QLineEdit, cb C.intp
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_MouseDoubleClickEvent(param1 *QMouseEvent) {
-
 	C.QLineEdit_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnMouseDoubleClickEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -776,14 +772,12 @@ func miqt_exec_callback_QLineEdit_MouseDoubleClickEvent(self *C.QLineEdit, cb C.
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_KeyPressEvent(param1 *QKeyEvent) {
-
 	C.QLineEdit_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnKeyPressEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -802,14 +796,12 @@ func miqt_exec_callback_QLineEdit_KeyPressEvent(self *C.QLineEdit, cb C.intptr_t
 	slotval1 := newQKeyEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_KeyReleaseEvent(param1 *QKeyEvent) {
-
 	C.QLineEdit_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnKeyReleaseEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -828,14 +820,12 @@ func miqt_exec_callback_QLineEdit_KeyReleaseEvent(self *C.QLineEdit, cb C.intptr
 	slotval1 := newQKeyEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_FocusInEvent(param1 *QFocusEvent) {
-
 	C.QLineEdit_virtualbase_FocusInEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnFocusInEvent(slot func(super func(param1 *QFocusEvent), param1 *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -854,14 +844,12 @@ func miqt_exec_callback_QLineEdit_FocusInEvent(self *C.QLineEdit, cb C.intptr_t,
 	slotval1 := newQFocusEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_FocusOutEvent(param1 *QFocusEvent) {
-
 	C.QLineEdit_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnFocusOutEvent(slot func(super func(param1 *QFocusEvent), param1 *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -880,14 +868,12 @@ func miqt_exec_callback_QLineEdit_FocusOutEvent(self *C.QLineEdit, cb C.intptr_t
 	slotval1 := newQFocusEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QLineEdit_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -906,14 +892,12 @@ func miqt_exec_callback_QLineEdit_PaintEvent(self *C.QLineEdit, cb C.intptr_t, p
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_DragEnterEvent(param1 *QDragEnterEvent) {
-
 	C.QLineEdit_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnDragEnterEvent(slot func(super func(param1 *QDragEnterEvent), param1 *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -932,14 +916,12 @@ func miqt_exec_callback_QLineEdit_DragEnterEvent(self *C.QLineEdit, cb C.intptr_
 	slotval1 := newQDragEnterEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_DragMoveEvent(e *QDragMoveEvent) {
-
 	C.QLineEdit_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QLineEdit) OnDragMoveEvent(slot func(super func(e *QDragMoveEvent), e *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -958,14 +940,12 @@ func miqt_exec_callback_QLineEdit_DragMoveEvent(self *C.QLineEdit, cb C.intptr_t
 	slotval1 := newQDragMoveEvent(e)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_DragLeaveEvent(e *QDragLeaveEvent) {
-
 	C.QLineEdit_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QLineEdit) OnDragLeaveEvent(slot func(super func(e *QDragLeaveEvent), e *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -984,14 +964,12 @@ func miqt_exec_callback_QLineEdit_DragLeaveEvent(self *C.QLineEdit, cb C.intptr_
 	slotval1 := newQDragLeaveEvent(e)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_DropEvent(param1 *QDropEvent) {
-
 	C.QLineEdit_virtualbase_DropEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnDropEvent(slot func(super func(param1 *QDropEvent), param1 *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1010,14 +988,12 @@ func miqt_exec_callback_QLineEdit_DropEvent(self *C.QLineEdit, cb C.intptr_t, pa
 	slotval1 := newQDropEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QLineEdit_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1036,14 +1012,12 @@ func miqt_exec_callback_QLineEdit_ChangeEvent(self *C.QLineEdit, cb C.intptr_t, 
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
-
 	C.QLineEdit_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1062,14 +1036,12 @@ func miqt_exec_callback_QLineEdit_ContextMenuEvent(self *C.QLineEdit, cb C.intpt
 	slotval1 := newQContextMenuEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
-
 	C.QLineEdit_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1088,14 +1060,12 @@ func miqt_exec_callback_QLineEdit_InputMethodEvent(self *C.QLineEdit, cb C.intpt
 	slotval1 := newQInputMethodEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_InitStyleOption(option *QStyleOptionFrame) {
-
 	C.QLineEdit_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
 }
+
 func (this *QLineEdit) OnInitStyleOption(slot func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1114,16 +1084,14 @@ func miqt_exec_callback_QLineEdit_InitStyleOption(self *C.QLineEdit, cb C.intptr
 	slotval1 := newQStyleOptionFrame(option)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QLineEdit_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QLineEdit) OnInputMethodQuery(slot func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1144,14 +1112,12 @@ func miqt_exec_callback_QLineEdit_InputMethodQuery(self *C.QLineEdit, cb C.intpt
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLineEdit) callVirtualBase_TimerEvent(param1 *QTimerEvent) {
-
 	C.QLineEdit_virtualbase_TimerEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QLineEdit) OnTimerEvent(slot func(super func(param1 *QTimerEvent), param1 *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1170,14 +1136,12 @@ func miqt_exec_callback_QLineEdit_TimerEvent(self *C.QLineEdit, cb C.intptr_t, p
 	slotval1 := newQTimerEvent(param1)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_Event(param1 *QEvent) bool {
-
 	return (bool)(C.QLineEdit_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QLineEdit) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1198,14 +1162,12 @@ func miqt_exec_callback_QLineEdit_Event(self *C.QLineEdit, cb C.intptr_t, param1
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QLineEdit) callVirtualBase_DevType() int {
-
 	return (int)(C.QLineEdit_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QLineEdit) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1223,14 +1185,12 @@ func miqt_exec_callback_QLineEdit_DevType(self *C.QLineEdit, cb C.intptr_t) C.in
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QLineEdit) callVirtualBase_SetVisible(visible bool) {
-
 	C.QLineEdit_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QLineEdit) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1249,14 +1209,12 @@ func miqt_exec_callback_QLineEdit_SetVisible(self *C.QLineEdit, cb C.intptr_t, v
 	slotval1 := (bool)(visible)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QLineEdit_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QLineEdit) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1277,14 +1235,12 @@ func miqt_exec_callback_QLineEdit_HeightForWidth(self *C.QLineEdit, cb C.intptr_
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QLineEdit) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QLineEdit_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QLineEdit) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1302,14 +1258,12 @@ func miqt_exec_callback_QLineEdit_HasHeightForWidth(self *C.QLineEdit, cb C.intp
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QLineEdit) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QLineEdit_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QLineEdit) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1327,14 +1281,12 @@ func miqt_exec_callback_QLineEdit_PaintEngine(self *C.QLineEdit, cb C.intptr_t) 
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLineEdit) callVirtualBase_WheelEvent(event *QWheelEvent) {
-
 	C.QLineEdit_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnWheelEvent(slot func(super func(event *QWheelEvent), event *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1353,14 +1305,12 @@ func miqt_exec_callback_QLineEdit_WheelEvent(self *C.QLineEdit, cb C.intptr_t, e
 	slotval1 := newQWheelEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_EnterEvent(event *QEnterEvent) {
-
 	C.QLineEdit_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnEnterEvent(slot func(super func(event *QEnterEvent), event *QEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1379,14 +1329,12 @@ func miqt_exec_callback_QLineEdit_EnterEvent(self *C.QLineEdit, cb C.intptr_t, e
 	slotval1 := newQEnterEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_LeaveEvent(event *QEvent) {
-
 	C.QLineEdit_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1405,14 +1353,12 @@ func miqt_exec_callback_QLineEdit_LeaveEvent(self *C.QLineEdit, cb C.intptr_t, e
 	slotval1 := newQEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_MoveEvent(event *QMoveEvent) {
-
 	C.QLineEdit_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1431,14 +1377,12 @@ func miqt_exec_callback_QLineEdit_MoveEvent(self *C.QLineEdit, cb C.intptr_t, ev
 	slotval1 := newQMoveEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_ResizeEvent(event *QResizeEvent) {
-
 	C.QLineEdit_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1457,14 +1401,12 @@ func miqt_exec_callback_QLineEdit_ResizeEvent(self *C.QLineEdit, cb C.intptr_t, 
 	slotval1 := newQResizeEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QLineEdit_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1483,14 +1425,12 @@ func miqt_exec_callback_QLineEdit_CloseEvent(self *C.QLineEdit, cb C.intptr_t, e
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_TabletEvent(event *QTabletEvent) {
-
 	C.QLineEdit_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1509,14 +1449,12 @@ func miqt_exec_callback_QLineEdit_TabletEvent(self *C.QLineEdit, cb C.intptr_t, 
 	slotval1 := newQTabletEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_ActionEvent(event *QActionEvent) {
-
 	C.QLineEdit_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1535,14 +1473,12 @@ func miqt_exec_callback_QLineEdit_ActionEvent(self *C.QLineEdit, cb C.intptr_t, 
 	slotval1 := newQActionEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QLineEdit_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1561,14 +1497,12 @@ func miqt_exec_callback_QLineEdit_ShowEvent(self *C.QLineEdit, cb C.intptr_t, ev
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QLineEdit_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QLineEdit) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1587,7 +1521,6 @@ func miqt_exec_callback_QLineEdit_HideEvent(self *C.QLineEdit, cb C.intptr_t, ev
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *uintptr) bool {
@@ -1596,8 +1529,8 @@ func (this *QLineEdit) callVirtualBase_NativeEvent(eventType []byte, message uns
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QLineEdit_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.intptr_t)(unsafe.Pointer(result))))
-
 }
+
 func (this *QLineEdit) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *uintptr) bool, eventType []byte, message unsafe.Pointer, result *uintptr) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1624,14 +1557,12 @@ func miqt_exec_callback_QLineEdit_NativeEvent(self *C.QLineEdit, cb C.intptr_t, 
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QLineEdit) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QLineEdit_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QLineEdit) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1652,14 +1583,12 @@ func miqt_exec_callback_QLineEdit_Metric(self *C.QLineEdit, cb C.intptr_t, param
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QLineEdit) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QLineEdit_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QLineEdit) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1678,14 +1607,12 @@ func miqt_exec_callback_QLineEdit_InitPainter(self *C.QLineEdit, cb C.intptr_t, 
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QLineEdit{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QLineEdit) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QLineEdit_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QLineEdit) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1706,14 +1633,12 @@ func miqt_exec_callback_QLineEdit_Redirected(self *C.QLineEdit, cb C.intptr_t, o
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLineEdit) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QLineEdit_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QLineEdit) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1731,14 +1656,12 @@ func miqt_exec_callback_QLineEdit_SharedPainter(self *C.QLineEdit, cb C.intptr_t
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QLineEdit) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QLineEdit_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QLineEdit) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1759,7 +1682,6 @@ func miqt_exec_callback_QLineEdit_FocusNextPrevChild(self *C.QLineEdit, cb C.int
 	virtualReturn := gofunc((&QLineEdit{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

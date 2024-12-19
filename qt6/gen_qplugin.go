@@ -152,7 +152,6 @@ func UnsafeNewQPluginMetaData__Header(h unsafe.Pointer) *QPluginMetaData__Header
 
 // NewQPluginMetaData__Header constructs a new QPluginMetaData::Header object.
 func NewQPluginMetaData__Header(param1 *QPluginMetaData__Header) *QPluginMetaData__Header {
-
 	ret := newQPluginMetaData__Header(C.QPluginMetaData__Header_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -207,7 +206,6 @@ func UnsafeNewQPluginMetaData__MagicHeader(h unsafe.Pointer) *QPluginMetaData__M
 
 // NewQPluginMetaData__MagicHeader constructs a new QPluginMetaData::MagicHeader object.
 func NewQPluginMetaData__MagicHeader() *QPluginMetaData__MagicHeader {
-
 	ret := newQPluginMetaData__MagicHeader(C.QPluginMetaData__MagicHeader_new())
 	ret.isSubclass = true
 	return ret
@@ -262,7 +260,6 @@ func UnsafeNewQPluginMetaData__ElfNoteHeader(h unsafe.Pointer) *QPluginMetaData_
 
 // NewQPluginMetaData__ElfNoteHeader constructs a new QPluginMetaData::ElfNoteHeader object.
 func NewQPluginMetaData__ElfNoteHeader(payloadSize uint) *QPluginMetaData__ElfNoteHeader {
-
 	ret := newQPluginMetaData__ElfNoteHeader(C.QPluginMetaData__ElfNoteHeader_new((C.uint)(payloadSize)))
 	ret.isSubclass = true
 	return ret
@@ -270,7 +267,6 @@ func NewQPluginMetaData__ElfNoteHeader(payloadSize uint) *QPluginMetaData__ElfNo
 
 // NewQPluginMetaData__ElfNoteHeader2 constructs a new QPluginMetaData::ElfNoteHeader object.
 func NewQPluginMetaData__ElfNoteHeader2(param1 *QPluginMetaData__ElfNoteHeader) *QPluginMetaData__ElfNoteHeader {
-
 	ret := newQPluginMetaData__ElfNoteHeader(C.QPluginMetaData__ElfNoteHeader_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

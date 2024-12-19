@@ -42,8 +42,10 @@ func newQTextList(h *C.QTextList) *QTextList {
 	var outptr_QTextBlockGroup *C.QTextBlockGroup = nil
 	C.QTextList_virtbase(h, &outptr_QTextBlockGroup)
 
-	return &QTextList{h: h,
-		QTextBlockGroup: newQTextBlockGroup(outptr_QTextBlockGroup)}
+	return &QTextList{
+		h:               h,
+		QTextBlockGroup: newQTextBlockGroup(outptr_QTextBlockGroup),
+	}
 }
 
 // UnsafeNewQTextList constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQTextList(h unsafe.Pointer) *QTextList {
 
 // NewQTextList constructs a new QTextList object.
 func NewQTextList(doc *QTextDocument) *QTextList {
-
 	ret := newQTextList(C.QTextList_new(doc.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -179,10 +180,9 @@ func QTextList_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QTextList) callVirtualBase_BlockInserted(block *QTextBlock) {
-
 	C.QTextList_virtualbase_BlockInserted(unsafe.Pointer(this.h), block.cPointer())
-
 }
+
 func (this *QTextList) OnBlockInserted(slot func(super func(block *QTextBlock), block *QTextBlock)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -201,14 +201,12 @@ func miqt_exec_callback_QTextList_BlockInserted(self *C.QTextList, cb C.intptr_t
 	slotval1 := newQTextBlock(block)
 
 	gofunc((&QTextList{h: self}).callVirtualBase_BlockInserted, slotval1)
-
 }
 
 func (this *QTextList) callVirtualBase_BlockRemoved(block *QTextBlock) {
-
 	C.QTextList_virtualbase_BlockRemoved(unsafe.Pointer(this.h), block.cPointer())
-
 }
+
 func (this *QTextList) OnBlockRemoved(slot func(super func(block *QTextBlock), block *QTextBlock)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -227,14 +225,12 @@ func miqt_exec_callback_QTextList_BlockRemoved(self *C.QTextList, cb C.intptr_t,
 	slotval1 := newQTextBlock(block)
 
 	gofunc((&QTextList{h: self}).callVirtualBase_BlockRemoved, slotval1)
-
 }
 
 func (this *QTextList) callVirtualBase_BlockFormatChanged(block *QTextBlock) {
-
 	C.QTextList_virtualbase_BlockFormatChanged(unsafe.Pointer(this.h), block.cPointer())
-
 }
+
 func (this *QTextList) OnBlockFormatChanged(slot func(super func(block *QTextBlock), block *QTextBlock)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -253,7 +249,6 @@ func miqt_exec_callback_QTextList_BlockFormatChanged(self *C.QTextList, cb C.int
 	slotval1 := newQTextBlock(block)
 
 	gofunc((&QTextList{h: self}).callVirtualBase_BlockFormatChanged, slotval1)
-
 }
 
 // Delete this object from C++ memory.

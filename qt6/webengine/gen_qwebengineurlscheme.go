@@ -76,7 +76,6 @@ func UnsafeNewQWebEngineUrlScheme(h unsafe.Pointer) *QWebEngineUrlScheme {
 
 // NewQWebEngineUrlScheme constructs a new QWebEngineUrlScheme object.
 func NewQWebEngineUrlScheme() *QWebEngineUrlScheme {
-
 	ret := newQWebEngineUrlScheme(C.QWebEngineUrlScheme_new())
 	ret.isSubclass = true
 	return ret
@@ -95,7 +94,6 @@ func NewQWebEngineUrlScheme2(name []byte) *QWebEngineUrlScheme {
 
 // NewQWebEngineUrlScheme3 constructs a new QWebEngineUrlScheme object.
 func NewQWebEngineUrlScheme3(that *QWebEngineUrlScheme) *QWebEngineUrlScheme {
-
 	ret := newQWebEngineUrlScheme(C.QWebEngineUrlScheme_new3(that.cPointer()))
 	ret.isSubclass = true
 	return ret

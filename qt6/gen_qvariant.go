@@ -113,7 +113,6 @@ func UnsafeNewQVariant(h unsafe.Pointer) *QVariant {
 
 // NewQVariant constructs a new QVariant object.
 func NewQVariant() *QVariant {
-
 	ret := newQVariant(C.QVariant_new())
 	ret.isSubclass = true
 	return ret
@@ -121,7 +120,6 @@ func NewQVariant() *QVariant {
 
 // NewQVariant2 constructs a new QVariant object.
 func NewQVariant2(typeVal QMetaType) *QVariant {
-
 	ret := newQVariant(C.QVariant_new2(typeVal.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -129,7 +127,6 @@ func NewQVariant2(typeVal QMetaType) *QVariant {
 
 // NewQVariant3 constructs a new QVariant object.
 func NewQVariant3(other *QVariant) *QVariant {
-
 	ret := newQVariant(C.QVariant_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -137,7 +134,6 @@ func NewQVariant3(other *QVariant) *QVariant {
 
 // NewQVariant4 constructs a new QVariant object.
 func NewQVariant4(i int) *QVariant {
-
 	ret := newQVariant(C.QVariant_new4((C.int)(i)))
 	ret.isSubclass = true
 	return ret
@@ -145,7 +141,6 @@ func NewQVariant4(i int) *QVariant {
 
 // NewQVariant5 constructs a new QVariant object.
 func NewQVariant5(ui uint) *QVariant {
-
 	ret := newQVariant(C.QVariant_new5((C.uint)(ui)))
 	ret.isSubclass = true
 	return ret
@@ -153,7 +148,6 @@ func NewQVariant5(ui uint) *QVariant {
 
 // NewQVariant6 constructs a new QVariant object.
 func NewQVariant6(ll int64) *QVariant {
-
 	ret := newQVariant(C.QVariant_new6((C.longlong)(ll)))
 	ret.isSubclass = true
 	return ret
@@ -161,7 +155,6 @@ func NewQVariant6(ll int64) *QVariant {
 
 // NewQVariant7 constructs a new QVariant object.
 func NewQVariant7(ull uint64) *QVariant {
-
 	ret := newQVariant(C.QVariant_new7((C.ulonglong)(ull)))
 	ret.isSubclass = true
 	return ret
@@ -169,7 +162,6 @@ func NewQVariant7(ull uint64) *QVariant {
 
 // NewQVariant8 constructs a new QVariant object.
 func NewQVariant8(b bool) *QVariant {
-
 	ret := newQVariant(C.QVariant_new8((C.bool)(b)))
 	ret.isSubclass = true
 	return ret
@@ -177,7 +169,6 @@ func NewQVariant8(b bool) *QVariant {
 
 // NewQVariant9 constructs a new QVariant object.
 func NewQVariant9(d float64) *QVariant {
-
 	ret := newQVariant(C.QVariant_new9((C.double)(d)))
 	ret.isSubclass = true
 	return ret
@@ -185,7 +176,6 @@ func NewQVariant9(d float64) *QVariant {
 
 // NewQVariant10 constructs a new QVariant object.
 func NewQVariant10(f float32) *QVariant {
-
 	ret := newQVariant(C.QVariant_new10((C.float)(f)))
 	ret.isSubclass = true
 	return ret
@@ -214,7 +204,6 @@ func NewQVariant12(bytearray []byte) *QVariant {
 
 // NewQVariant13 constructs a new QVariant object.
 func NewQVariant13(bitarray *QBitArray) *QVariant {
-
 	ret := newQVariant(C.QVariant_new13(bitarray.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -252,7 +241,6 @@ func NewQVariant15(stringlist []string) *QVariant {
 
 // NewQVariant16 constructs a new QVariant object.
 func NewQVariant16(qchar QChar) *QVariant {
-
 	ret := newQVariant(C.QVariant_new16(qchar.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -260,7 +248,6 @@ func NewQVariant16(qchar QChar) *QVariant {
 
 // NewQVariant17 constructs a new QVariant object.
 func NewQVariant17(date QDate) *QVariant {
-
 	ret := newQVariant(C.QVariant_new17(date.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -268,7 +255,6 @@ func NewQVariant17(date QDate) *QVariant {
 
 // NewQVariant18 constructs a new QVariant object.
 func NewQVariant18(time QTime) *QVariant {
-
 	ret := newQVariant(C.QVariant_new18(time.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -276,7 +262,6 @@ func NewQVariant18(time QTime) *QVariant {
 
 // NewQVariant19 constructs a new QVariant object.
 func NewQVariant19(datetime *QDateTime) *QVariant {
-
 	ret := newQVariant(C.QVariant_new19(datetime.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -338,7 +323,6 @@ func NewQVariant21(hash map[string]QVariant) *QVariant {
 
 // NewQVariant22 constructs a new QVariant object.
 func NewQVariant22(size *QSize) *QVariant {
-
 	ret := newQVariant(C.QVariant_new22(size.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -346,7 +330,6 @@ func NewQVariant22(size *QSize) *QVariant {
 
 // NewQVariant23 constructs a new QVariant object.
 func NewQVariant23(size *QSizeF) *QVariant {
-
 	ret := newQVariant(C.QVariant_new23(size.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -354,7 +337,6 @@ func NewQVariant23(size *QSizeF) *QVariant {
 
 // NewQVariant24 constructs a new QVariant object.
 func NewQVariant24(pt *QPoint) *QVariant {
-
 	ret := newQVariant(C.QVariant_new24(pt.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -362,7 +344,6 @@ func NewQVariant24(pt *QPoint) *QVariant {
 
 // NewQVariant25 constructs a new QVariant object.
 func NewQVariant25(pt *QPointF) *QVariant {
-
 	ret := newQVariant(C.QVariant_new25(pt.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -370,7 +351,6 @@ func NewQVariant25(pt *QPointF) *QVariant {
 
 // NewQVariant26 constructs a new QVariant object.
 func NewQVariant26(line *QLine) *QVariant {
-
 	ret := newQVariant(C.QVariant_new26(line.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -378,7 +358,6 @@ func NewQVariant26(line *QLine) *QVariant {
 
 // NewQVariant27 constructs a new QVariant object.
 func NewQVariant27(line *QLineF) *QVariant {
-
 	ret := newQVariant(C.QVariant_new27(line.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -386,7 +365,6 @@ func NewQVariant27(line *QLineF) *QVariant {
 
 // NewQVariant28 constructs a new QVariant object.
 func NewQVariant28(rect *QRect) *QVariant {
-
 	ret := newQVariant(C.QVariant_new28(rect.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -394,7 +372,6 @@ func NewQVariant28(rect *QRect) *QVariant {
 
 // NewQVariant29 constructs a new QVariant object.
 func NewQVariant29(rect *QRectF) *QVariant {
-
 	ret := newQVariant(C.QVariant_new29(rect.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -402,7 +379,6 @@ func NewQVariant29(rect *QRectF) *QVariant {
 
 // NewQVariant30 constructs a new QVariant object.
 func NewQVariant30(locale *QLocale) *QVariant {
-
 	ret := newQVariant(C.QVariant_new30(locale.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -410,7 +386,6 @@ func NewQVariant30(locale *QLocale) *QVariant {
 
 // NewQVariant31 constructs a new QVariant object.
 func NewQVariant31(re *QRegularExpression) *QVariant {
-
 	ret := newQVariant(C.QVariant_new31(re.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -418,7 +393,6 @@ func NewQVariant31(re *QRegularExpression) *QVariant {
 
 // NewQVariant32 constructs a new QVariant object.
 func NewQVariant32(easing *QEasingCurve) *QVariant {
-
 	ret := newQVariant(C.QVariant_new32(easing.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -426,7 +400,6 @@ func NewQVariant32(easing *QEasingCurve) *QVariant {
 
 // NewQVariant33 constructs a new QVariant object.
 func NewQVariant33(uuid *QUuid) *QVariant {
-
 	ret := newQVariant(C.QVariant_new33(uuid.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -434,7 +407,6 @@ func NewQVariant33(uuid *QUuid) *QVariant {
 
 // NewQVariant34 constructs a new QVariant object.
 func NewQVariant34(url *QUrl) *QVariant {
-
 	ret := newQVariant(C.QVariant_new34(url.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -442,7 +414,6 @@ func NewQVariant34(url *QUrl) *QVariant {
 
 // NewQVariant35 constructs a new QVariant object.
 func NewQVariant35(jsonValue *QJsonValue) *QVariant {
-
 	ret := newQVariant(C.QVariant_new35(jsonValue.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -450,7 +421,6 @@ func NewQVariant35(jsonValue *QJsonValue) *QVariant {
 
 // NewQVariant36 constructs a new QVariant object.
 func NewQVariant36(jsonObject *QJsonObject) *QVariant {
-
 	ret := newQVariant(C.QVariant_new36(jsonObject.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -458,7 +428,6 @@ func NewQVariant36(jsonObject *QJsonObject) *QVariant {
 
 // NewQVariant37 constructs a new QVariant object.
 func NewQVariant37(jsonArray *QJsonArray) *QVariant {
-
 	ret := newQVariant(C.QVariant_new37(jsonArray.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -466,7 +435,6 @@ func NewQVariant37(jsonArray *QJsonArray) *QVariant {
 
 // NewQVariant38 constructs a new QVariant object.
 func NewQVariant38(jsonDocument *QJsonDocument) *QVariant {
-
 	ret := newQVariant(C.QVariant_new38(jsonDocument.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -474,7 +442,6 @@ func NewQVariant38(jsonDocument *QJsonDocument) *QVariant {
 
 // NewQVariant39 constructs a new QVariant object.
 func NewQVariant39(modelIndex *QModelIndex) *QVariant {
-
 	ret := newQVariant(C.QVariant_new39(modelIndex.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -482,7 +449,6 @@ func NewQVariant39(modelIndex *QModelIndex) *QVariant {
 
 // NewQVariant40 constructs a new QVariant object.
 func NewQVariant40(modelIndex *QPersistentModelIndex) *QVariant {
-
 	ret := newQVariant(C.QVariant_new40(modelIndex.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -490,7 +456,6 @@ func NewQVariant40(modelIndex *QPersistentModelIndex) *QVariant {
 
 // NewQVariant41 constructs a new QVariant object.
 func NewQVariant41(typeVal QVariant__Type) *QVariant {
-
 	ret := newQVariant(C.QVariant_new41((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -498,7 +463,6 @@ func NewQVariant41(typeVal QVariant__Type) *QVariant {
 
 // NewQVariant42 constructs a new QVariant object.
 func NewQVariant42(typeVal QMetaType, copyVal unsafe.Pointer) *QVariant {
-
 	ret := newQVariant(C.QVariant_new42(typeVal.cPointer(), copyVal))
 	ret.isSubclass = true
 	return ret
@@ -934,7 +898,6 @@ func UnsafeNewQVariantConstPointer(h unsafe.Pointer) *QVariantConstPointer {
 
 // NewQVariantConstPointer constructs a new QVariantConstPointer object.
 func NewQVariantConstPointer(variant QVariant) *QVariantConstPointer {
-
 	ret := newQVariantConstPointer(C.QVariantConstPointer_new(variant.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -942,7 +905,6 @@ func NewQVariantConstPointer(variant QVariant) *QVariantConstPointer {
 
 // NewQVariantConstPointer2 constructs a new QVariantConstPointer object.
 func NewQVariantConstPointer2(param1 *QVariantConstPointer) *QVariantConstPointer {
-
 	ret := newQVariantConstPointer(C.QVariantConstPointer_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaAudioProbeControl struct {
@@ -43,8 +44,10 @@ func newQMediaAudioProbeControl(h *C.QMediaAudioProbeControl) *QMediaAudioProbeC
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaAudioProbeControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaAudioProbeControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaAudioProbeControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaAudioProbeControl constructs the type using only unsafe pointers.
@@ -83,6 +86,7 @@ func QMediaAudioProbeControl_TrUtf8(s string) string {
 func (this *QMediaAudioProbeControl) AudioBufferProbed(buffer *QAudioBuffer) {
 	C.QMediaAudioProbeControl_AudioBufferProbed(this.h, buffer.cPointer())
 }
+
 func (this *QMediaAudioProbeControl) OnAudioBufferProbed(slot func(buffer *QAudioBuffer)) {
 	C.QMediaAudioProbeControl_connect_AudioBufferProbed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -103,6 +107,7 @@ func miqt_exec_callback_QMediaAudioProbeControl_AudioBufferProbed(cb C.intptr_t,
 func (this *QMediaAudioProbeControl) Flush() {
 	C.QMediaAudioProbeControl_Flush(this.h)
 }
+
 func (this *QMediaAudioProbeControl) OnFlush(slot func()) {
 	C.QMediaAudioProbeControl_connect_Flush(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

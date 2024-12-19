@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaServiceProviderHint__Type int
@@ -68,7 +69,6 @@ func UnsafeNewQMediaServiceProviderHint(h unsafe.Pointer) *QMediaServiceProvider
 
 // NewQMediaServiceProviderHint constructs a new QMediaServiceProviderHint object.
 func NewQMediaServiceProviderHint() *QMediaServiceProviderHint {
-
 	ret := newQMediaServiceProviderHint(C.QMediaServiceProviderHint_new())
 	ret.isSubclass = true
 	return ret
@@ -109,7 +109,6 @@ func NewQMediaServiceProviderHint3(device []byte) *QMediaServiceProviderHint {
 
 // NewQMediaServiceProviderHint4 constructs a new QMediaServiceProviderHint object.
 func NewQMediaServiceProviderHint4(position QCamera__Position) *QMediaServiceProviderHint {
-
 	ret := newQMediaServiceProviderHint(C.QMediaServiceProviderHint_new4((C.int)(position)))
 	ret.isSubclass = true
 	return ret
@@ -117,7 +116,6 @@ func NewQMediaServiceProviderHint4(position QCamera__Position) *QMediaServicePro
 
 // NewQMediaServiceProviderHint5 constructs a new QMediaServiceProviderHint object.
 func NewQMediaServiceProviderHint5(features QMediaServiceProviderHint__Feature) *QMediaServiceProviderHint {
-
 	ret := newQMediaServiceProviderHint(C.QMediaServiceProviderHint_new5((C.int)(features)))
 	ret.isSubclass = true
 	return ret
@@ -125,7 +123,6 @@ func NewQMediaServiceProviderHint5(features QMediaServiceProviderHint__Feature) 
 
 // NewQMediaServiceProviderHint6 constructs a new QMediaServiceProviderHint object.
 func NewQMediaServiceProviderHint6(other *QMediaServiceProviderHint) *QMediaServiceProviderHint {
-
 	ret := newQMediaServiceProviderHint(C.QMediaServiceProviderHint_new6(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -639,9 +636,11 @@ func newQMediaServiceProviderPlugin(h *C.QMediaServiceProviderPlugin) *QMediaSer
 	var outptr_QMediaServiceProviderFactoryInterface *C.QMediaServiceProviderFactoryInterface = nil
 	C.QMediaServiceProviderPlugin_virtbase(h, &outptr_QObject, &outptr_QMediaServiceProviderFactoryInterface)
 
-	return &QMediaServiceProviderPlugin{h: h,
+	return &QMediaServiceProviderPlugin{
+		h:                                     h,
 		QObject:                               qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
-		QMediaServiceProviderFactoryInterface: newQMediaServiceProviderFactoryInterface(outptr_QMediaServiceProviderFactoryInterface)}
+		QMediaServiceProviderFactoryInterface: newQMediaServiceProviderFactoryInterface(outptr_QMediaServiceProviderFactoryInterface),
+	}
 }
 
 // UnsafeNewQMediaServiceProviderPlugin constructs the type using only unsafe pointers.

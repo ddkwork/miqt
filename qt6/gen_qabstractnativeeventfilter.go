@@ -49,7 +49,6 @@ func UnsafeNewQAbstractNativeEventFilter(h unsafe.Pointer) *QAbstractNativeEvent
 
 // NewQAbstractNativeEventFilter constructs a new QAbstractNativeEventFilter object.
 func NewQAbstractNativeEventFilter() *QAbstractNativeEventFilter {
-
 	ret := newQAbstractNativeEventFilter(C.QAbstractNativeEventFilter_new())
 	ret.isSubclass = true
 	return ret
@@ -61,6 +60,7 @@ func (this *QAbstractNativeEventFilter) NativeEventFilter(eventType []byte, mess
 	eventType_alias.len = C.size_t(len(eventType))
 	return (bool)(C.QAbstractNativeEventFilter_NativeEventFilter(this.h, eventType_alias, message, (*C.intptr_t)(unsafe.Pointer(result))))
 }
+
 func (this *QAbstractNativeEventFilter) OnNativeEventFilter(slot func(eventType []byte, message unsafe.Pointer, result *uintptr) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -87,7 +87,6 @@ func miqt_exec_callback_QAbstractNativeEventFilter_NativeEventFilter(self *C.QAb
 	virtualReturn := gofunc(slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

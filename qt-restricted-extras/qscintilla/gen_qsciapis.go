@@ -9,10 +9,11 @@ package qscintilla
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QsciAPIs struct {
@@ -43,8 +44,10 @@ func newQsciAPIs(h *C.QsciAPIs) *QsciAPIs {
 	var outptr_QsciAbstractAPIs *C.QsciAbstractAPIs = nil
 	C.QsciAPIs_virtbase(h, &outptr_QsciAbstractAPIs)
 
-	return &QsciAPIs{h: h,
-		QsciAbstractAPIs: newQsciAbstractAPIs(outptr_QsciAbstractAPIs)}
+	return &QsciAPIs{
+		h:                h,
+		QsciAbstractAPIs: newQsciAbstractAPIs(outptr_QsciAbstractAPIs),
+	}
 }
 
 // UnsafeNewQsciAPIs constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQsciAPIs(h unsafe.Pointer) *QsciAPIs {
 
 // NewQsciAPIs constructs a new QsciAPIs object.
 func NewQsciAPIs(lexer *QsciLexer) *QsciAPIs {
-
 	ret := newQsciAPIs(C.QsciAPIs_new(lexer.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -224,6 +226,7 @@ func (this *QsciAPIs) InstalledAPIFiles() []string {
 func (this *QsciAPIs) ApiPreparationCancelled() {
 	C.QsciAPIs_ApiPreparationCancelled(this.h)
 }
+
 func (this *QsciAPIs) OnApiPreparationCancelled(slot func()) {
 	C.QsciAPIs_connect_ApiPreparationCancelled(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -241,6 +244,7 @@ func miqt_exec_callback_QsciAPIs_ApiPreparationCancelled(cb C.intptr_t) {
 func (this *QsciAPIs) ApiPreparationStarted() {
 	C.QsciAPIs_ApiPreparationStarted(this.h)
 }
+
 func (this *QsciAPIs) OnApiPreparationStarted(slot func()) {
 	C.QsciAPIs_connect_ApiPreparationStarted(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -258,6 +262,7 @@ func miqt_exec_callback_QsciAPIs_ApiPreparationStarted(cb C.intptr_t) {
 func (this *QsciAPIs) ApiPreparationFinished() {
 	C.QsciAPIs_ApiPreparationFinished(this.h)
 }
+
 func (this *QsciAPIs) OnApiPreparationFinished(slot func()) {
 	C.QsciAPIs_connect_ApiPreparationFinished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -363,8 +368,8 @@ func (this *QsciAPIs) callVirtualBase_UpdateAutoCompletionList(context []string,
 	list_ma := C.struct_miqt_array{len: C.size_t(len(list)), data: unsafe.Pointer(list_CArray)}
 
 	C.QsciAPIs_virtualbase_UpdateAutoCompletionList(unsafe.Pointer(this.h), context_ma, list_ma)
-
 }
+
 func (this *QsciAPIs) OnUpdateAutoCompletionList(slot func(super func(context []string, list []string), context []string, list []string)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -403,7 +408,6 @@ func miqt_exec_callback_QsciAPIs_UpdateAutoCompletionList(self *C.QsciAPIs, cb C
 	slotval2 := list_ret
 
 	gofunc((&QsciAPIs{h: self}).callVirtualBase_UpdateAutoCompletionList, slotval1, slotval2)
-
 }
 
 func (this *QsciAPIs) callVirtualBase_AutoCompletionSelected(sel string) {
@@ -413,8 +417,8 @@ func (this *QsciAPIs) callVirtualBase_AutoCompletionSelected(sel string) {
 	defer C.free(unsafe.Pointer(sel_ms.data))
 
 	C.QsciAPIs_virtualbase_AutoCompletionSelected(unsafe.Pointer(this.h), sel_ms)
-
 }
+
 func (this *QsciAPIs) OnAutoCompletionSelected(slot func(super func(sel string), sel string)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -436,7 +440,6 @@ func miqt_exec_callback_QsciAPIs_AutoCompletionSelected(self *C.QsciAPIs, cb C.i
 	slotval1 := sel_ret
 
 	gofunc((&QsciAPIs{h: self}).callVirtualBase_AutoCompletionSelected, slotval1)
-
 }
 
 func (this *QsciAPIs) callVirtualBase_CallTips(context []string, commas int, style QsciScintilla__CallTipsStyle, shifts []int) []string {
@@ -467,8 +470,8 @@ func (this *QsciAPIs) callVirtualBase_CallTips(context []string, commas int, sty
 		_ret[i] = _lv_ret
 	}
 	return _ret
-
 }
+
 func (this *QsciAPIs) OnCallTips(slot func(super func(context []string, commas int, style QsciScintilla__CallTipsStyle, shifts []int) []string, context []string, commas int, style QsciScintilla__CallTipsStyle, shifts []int) []string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -520,14 +523,12 @@ func miqt_exec_callback_QsciAPIs_CallTips(self *C.QsciAPIs, cb C.intptr_t, conte
 	virtualReturn_ma := C.struct_miqt_array{len: C.size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
 
 	return virtualReturn_ma
-
 }
 
 func (this *QsciAPIs) callVirtualBase_Event(e *qt.QEvent) bool {
-
 	return (bool)(C.QsciAPIs_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(e.UnsafePointer())))
-
 }
+
 func (this *QsciAPIs) OnEvent(slot func(super func(e *qt.QEvent) bool, e *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -548,7 +549,6 @@ func miqt_exec_callback_QsciAPIs_Event(self *C.QsciAPIs, cb C.intptr_t, e *C.QEv
 	virtualReturn := gofunc((&QsciAPIs{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

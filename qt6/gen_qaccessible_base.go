@@ -362,7 +362,6 @@ func UnsafeNewQAccessible__State(h unsafe.Pointer) *QAccessible__State {
 
 // NewQAccessible__State constructs a new QAccessible::State object.
 func NewQAccessible__State() *QAccessible__State {
-
 	ret := newQAccessible__State(C.QAccessible__State_new())
 	ret.isSubclass = true
 	return ret

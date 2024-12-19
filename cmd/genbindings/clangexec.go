@@ -39,7 +39,6 @@ func (c *clangMatchUnderPath) Match(astNodeFilename string) bool {
 //
 
 func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []string, matcher ClangMatcher) ([]any, error) {
-
 	clangArgs := []string{`-x`, `c++`}
 	clangArgs = append(clangArgs, cflags...)
 	clangArgs = append(clangArgs, `-Xclang`, `-ast-dump=json`, `-fsyntax-only`, inputHeader)
@@ -78,7 +77,6 @@ func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []strin
 }
 
 func mustClangExec(ctx context.Context, clangBin, inputHeader string, cflags []string, matcher ClangMatcher) []any {
-
 	for i := 0; i < ClangMaxRetries; i++ {
 		astInner, err := clangExec(ctx, clangBin, inputHeader, cflags, matcher)
 		if err != nil {
@@ -104,8 +102,7 @@ func mustClangExec(ctx context.Context, clangBin, inputHeader string, cflags []s
 // #included file.
 // @ref https://stackoverflow.com/a/71128654
 func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]any, error) {
-
-	var obj = map[string]any{}
+	obj := map[string]any{}
 	err := json.NewDecoder(stdout).Decode(&obj)
 	if err != nil {
 		return nil, fmt.Errorf("json.Decode: %v", err)
@@ -131,7 +128,7 @@ func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]any, error) {
 		// Check where this AST node came from, if it was directly written
 		// in this header or if it as part of an #include
 
-		var match_filename = ""
+		match_filename := ""
 
 		if loc, ok := entry["loc"].(map[string]any); ok {
 			if includedFrom, ok := loc["includedFrom"].(map[string]any); ok {
@@ -144,7 +141,6 @@ func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]any, error) {
 				if expansionloc, ok := loc["expansionLoc"].(map[string]any); ok {
 					if filename, ok := expansionloc["file"].(string); ok {
 						match_filename = filename
-
 					} else if includedFrom, ok := expansionloc["includedFrom"].(map[string]any); ok {
 						if filename, ok := includedFrom["file"].(string); ok {
 							match_filename = filename

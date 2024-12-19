@@ -56,7 +56,6 @@ func UnsafeNewQResource(h unsafe.Pointer) *QResource {
 
 // NewQResource constructs a new QResource object.
 func NewQResource() *QResource {
-
 	ret := newQResource(C.QResource_new())
 	ret.isSubclass = true
 	return ret

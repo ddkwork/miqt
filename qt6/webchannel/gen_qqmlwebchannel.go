@@ -9,9 +9,10 @@ package webchannel
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QQmlWebChannel struct {
@@ -42,8 +43,10 @@ func newQQmlWebChannel(h *C.QQmlWebChannel) *QQmlWebChannel {
 	var outptr_QWebChannel *C.QWebChannel = nil
 	C.QQmlWebChannel_virtbase(h, &outptr_QWebChannel)
 
-	return &QQmlWebChannel{h: h,
-		QWebChannel: newQWebChannel(outptr_QWebChannel)}
+	return &QQmlWebChannel{
+		h:           h,
+		QWebChannel: newQWebChannel(outptr_QWebChannel),
+	}
 }
 
 // UnsafeNewQQmlWebChannel constructs the type using only unsafe pointers.
@@ -53,7 +56,6 @@ func UnsafeNewQQmlWebChannel(h unsafe.Pointer) *QQmlWebChannel {
 
 // NewQQmlWebChannel constructs a new QQmlWebChannel object.
 func NewQQmlWebChannel() *QQmlWebChannel {
-
 	ret := newQQmlWebChannel(C.QQmlWebChannel_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +63,6 @@ func NewQQmlWebChannel() *QQmlWebChannel {
 
 // NewQQmlWebChannel2 constructs a new QQmlWebChannel object.
 func NewQQmlWebChannel2(parent *qt6.QObject) *QQmlWebChannel {
-
 	ret := newQQmlWebChannel(C.QQmlWebChannel_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraFocusControl struct {
@@ -43,8 +44,10 @@ func newQCameraFocusControl(h *C.QCameraFocusControl) *QCameraFocusControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraFocusControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraFocusControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraFocusControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraFocusControl constructs the type using only unsafe pointers.
@@ -129,6 +132,7 @@ func (this *QCameraFocusControl) FocusZones() []QCameraFocusZone {
 func (this *QCameraFocusControl) FocusModeChanged(mode QCameraFocus__FocusMode) {
 	C.QCameraFocusControl_FocusModeChanged(this.h, (C.int)(mode))
 }
+
 func (this *QCameraFocusControl) OnFocusModeChanged(slot func(mode QCameraFocus__FocusMode)) {
 	C.QCameraFocusControl_connect_FocusModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -149,6 +153,7 @@ func miqt_exec_callback_QCameraFocusControl_FocusModeChanged(cb C.intptr_t, mode
 func (this *QCameraFocusControl) FocusPointModeChanged(mode QCameraFocus__FocusPointMode) {
 	C.QCameraFocusControl_FocusPointModeChanged(this.h, (C.int)(mode))
 }
+
 func (this *QCameraFocusControl) OnFocusPointModeChanged(slot func(mode QCameraFocus__FocusPointMode)) {
 	C.QCameraFocusControl_connect_FocusPointModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -169,6 +174,7 @@ func miqt_exec_callback_QCameraFocusControl_FocusPointModeChanged(cb C.intptr_t,
 func (this *QCameraFocusControl) CustomFocusPointChanged(point *qt.QPointF) {
 	C.QCameraFocusControl_CustomFocusPointChanged(this.h, (*C.QPointF)(point.UnsafePointer()))
 }
+
 func (this *QCameraFocusControl) OnCustomFocusPointChanged(slot func(point *qt.QPointF)) {
 	C.QCameraFocusControl_connect_CustomFocusPointChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -189,6 +195,7 @@ func miqt_exec_callback_QCameraFocusControl_CustomFocusPointChanged(cb C.intptr_
 func (this *QCameraFocusControl) FocusZonesChanged() {
 	C.QCameraFocusControl_FocusZonesChanged(this.h)
 }
+
 func (this *QCameraFocusControl) OnFocusZonesChanged(slot func()) {
 	C.QCameraFocusControl_connect_FocusZonesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

@@ -48,7 +48,6 @@ func UnsafeNewQHashSeed(h unsafe.Pointer) *QHashSeed {
 
 // NewQHashSeed constructs a new QHashSeed object.
 func NewQHashSeed() *QHashSeed {
-
 	ret := newQHashSeed(C.QHashSeed_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQHashSeed() *QHashSeed {
 
 // NewQHashSeed2 constructs a new QHashSeed object.
 func NewQHashSeed2(d uint64) *QHashSeed {
-
 	ret := newQHashSeed(C.QHashSeed_new2((C.size_t)(d)))
 	ret.isSubclass = true
 	return ret

@@ -8,7 +8,6 @@ import (
 )
 
 func TestFixtureMarshalRoundtrip(t *testing.T) {
-
 	testFixture := func(fixtureFile string) {
 		in, err := ioutil.ReadFile(fixtureFile)
 		if err != nil {
@@ -40,7 +39,6 @@ func TestFixtureMarshalRoundtrip(t *testing.T) {
 			t.Errorf("Mismatch")
 			t.Log(lineDiff(string(in), string(ret)))
 		}
-
 	}
 
 	testFixture("../../examples/uidesigner/design.ui")

@@ -49,8 +49,10 @@ func newQGraphicsSceneEvent(h *C.QGraphicsSceneEvent) *QGraphicsSceneEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QGraphicsSceneEvent_virtbase(h, &outptr_QEvent)
 
-	return &QGraphicsSceneEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QGraphicsSceneEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneEvent constructs the type using only unsafe pointers.
@@ -60,7 +62,6 @@ func UnsafeNewQGraphicsSceneEvent(h unsafe.Pointer) *QGraphicsSceneEvent {
 
 // NewQGraphicsSceneEvent constructs a new QGraphicsSceneEvent object.
 func NewQGraphicsSceneEvent(typeVal QEvent__Type) *QGraphicsSceneEvent {
-
 	ret := newQGraphicsSceneEvent(C.QGraphicsSceneEvent_new((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -116,8 +117,10 @@ func newQGraphicsSceneMouseEvent(h *C.QGraphicsSceneMouseEvent) *QGraphicsSceneM
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneMouseEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneMouseEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneMouseEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneMouseEvent constructs the type using only unsafe pointers.
@@ -127,7 +130,6 @@ func UnsafeNewQGraphicsSceneMouseEvent(h unsafe.Pointer) *QGraphicsSceneMouseEve
 
 // NewQGraphicsSceneMouseEvent constructs a new QGraphicsSceneMouseEvent object.
 func NewQGraphicsSceneMouseEvent() *QGraphicsSceneMouseEvent {
-
 	ret := newQGraphicsSceneMouseEvent(C.QGraphicsSceneMouseEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -135,7 +137,6 @@ func NewQGraphicsSceneMouseEvent() *QGraphicsSceneMouseEvent {
 
 // NewQGraphicsSceneMouseEvent2 constructs a new QGraphicsSceneMouseEvent object.
 func NewQGraphicsSceneMouseEvent2(typeVal QEvent__Type) *QGraphicsSceneMouseEvent {
-
 	ret := newQGraphicsSceneMouseEvent(C.QGraphicsSceneMouseEvent_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -313,8 +314,10 @@ func newQGraphicsSceneWheelEvent(h *C.QGraphicsSceneWheelEvent) *QGraphicsSceneW
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneWheelEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneWheelEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneWheelEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneWheelEvent constructs the type using only unsafe pointers.
@@ -324,7 +327,6 @@ func UnsafeNewQGraphicsSceneWheelEvent(h unsafe.Pointer) *QGraphicsSceneWheelEve
 
 // NewQGraphicsSceneWheelEvent constructs a new QGraphicsSceneWheelEvent object.
 func NewQGraphicsSceneWheelEvent() *QGraphicsSceneWheelEvent {
-
 	ret := newQGraphicsSceneWheelEvent(C.QGraphicsSceneWheelEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -332,7 +334,6 @@ func NewQGraphicsSceneWheelEvent() *QGraphicsSceneWheelEvent {
 
 // NewQGraphicsSceneWheelEvent2 constructs a new QGraphicsSceneWheelEvent object.
 func NewQGraphicsSceneWheelEvent2(typeVal QEvent__Type) *QGraphicsSceneWheelEvent {
-
 	ret := newQGraphicsSceneWheelEvent(C.QGraphicsSceneWheelEvent_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -442,8 +443,10 @@ func newQGraphicsSceneContextMenuEvent(h *C.QGraphicsSceneContextMenuEvent) *QGr
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneContextMenuEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneContextMenuEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneContextMenuEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneContextMenuEvent constructs the type using only unsafe pointers.
@@ -453,7 +456,6 @@ func UnsafeNewQGraphicsSceneContextMenuEvent(h unsafe.Pointer) *QGraphicsSceneCo
 
 // NewQGraphicsSceneContextMenuEvent constructs a new QGraphicsSceneContextMenuEvent object.
 func NewQGraphicsSceneContextMenuEvent() *QGraphicsSceneContextMenuEvent {
-
 	ret := newQGraphicsSceneContextMenuEvent(C.QGraphicsSceneContextMenuEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -461,7 +463,6 @@ func NewQGraphicsSceneContextMenuEvent() *QGraphicsSceneContextMenuEvent {
 
 // NewQGraphicsSceneContextMenuEvent2 constructs a new QGraphicsSceneContextMenuEvent object.
 func NewQGraphicsSceneContextMenuEvent2(typeVal QEvent__Type) *QGraphicsSceneContextMenuEvent {
-
 	ret := newQGraphicsSceneContextMenuEvent(C.QGraphicsSceneContextMenuEvent_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -555,8 +556,10 @@ func newQGraphicsSceneHoverEvent(h *C.QGraphicsSceneHoverEvent) *QGraphicsSceneH
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneHoverEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneHoverEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneHoverEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneHoverEvent constructs the type using only unsafe pointers.
@@ -566,7 +569,6 @@ func UnsafeNewQGraphicsSceneHoverEvent(h unsafe.Pointer) *QGraphicsSceneHoverEve
 
 // NewQGraphicsSceneHoverEvent constructs a new QGraphicsSceneHoverEvent object.
 func NewQGraphicsSceneHoverEvent() *QGraphicsSceneHoverEvent {
-
 	ret := newQGraphicsSceneHoverEvent(C.QGraphicsSceneHoverEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -574,7 +576,6 @@ func NewQGraphicsSceneHoverEvent() *QGraphicsSceneHoverEvent {
 
 // NewQGraphicsSceneHoverEvent2 constructs a new QGraphicsSceneHoverEvent object.
 func NewQGraphicsSceneHoverEvent2(typeVal QEvent__Type) *QGraphicsSceneHoverEvent {
-
 	ret := newQGraphicsSceneHoverEvent(C.QGraphicsSceneHoverEvent_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -690,8 +691,10 @@ func newQGraphicsSceneHelpEvent(h *C.QGraphicsSceneHelpEvent) *QGraphicsSceneHel
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneHelpEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneHelpEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneHelpEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneHelpEvent constructs the type using only unsafe pointers.
@@ -701,7 +704,6 @@ func UnsafeNewQGraphicsSceneHelpEvent(h unsafe.Pointer) *QGraphicsSceneHelpEvent
 
 // NewQGraphicsSceneHelpEvent constructs a new QGraphicsSceneHelpEvent object.
 func NewQGraphicsSceneHelpEvent() *QGraphicsSceneHelpEvent {
-
 	ret := newQGraphicsSceneHelpEvent(C.QGraphicsSceneHelpEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -709,7 +711,6 @@ func NewQGraphicsSceneHelpEvent() *QGraphicsSceneHelpEvent {
 
 // NewQGraphicsSceneHelpEvent2 constructs a new QGraphicsSceneHelpEvent object.
 func NewQGraphicsSceneHelpEvent2(typeVal QEvent__Type) *QGraphicsSceneHelpEvent {
-
 	ret := newQGraphicsSceneHelpEvent(C.QGraphicsSceneHelpEvent_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -777,8 +778,10 @@ func newQGraphicsSceneDragDropEvent(h *C.QGraphicsSceneDragDropEvent) *QGraphics
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneDragDropEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneDragDropEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneDragDropEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneDragDropEvent constructs the type using only unsafe pointers.
@@ -788,7 +791,6 @@ func UnsafeNewQGraphicsSceneDragDropEvent(h unsafe.Pointer) *QGraphicsSceneDragD
 
 // NewQGraphicsSceneDragDropEvent constructs a new QGraphicsSceneDragDropEvent object.
 func NewQGraphicsSceneDragDropEvent() *QGraphicsSceneDragDropEvent {
-
 	ret := newQGraphicsSceneDragDropEvent(C.QGraphicsSceneDragDropEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -796,7 +798,6 @@ func NewQGraphicsSceneDragDropEvent() *QGraphicsSceneDragDropEvent {
 
 // NewQGraphicsSceneDragDropEvent2 constructs a new QGraphicsSceneDragDropEvent object.
 func NewQGraphicsSceneDragDropEvent2(typeVal QEvent__Type) *QGraphicsSceneDragDropEvent {
-
 	ret := newQGraphicsSceneDragDropEvent(C.QGraphicsSceneDragDropEvent_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -934,8 +935,10 @@ func newQGraphicsSceneResizeEvent(h *C.QGraphicsSceneResizeEvent) *QGraphicsScen
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneResizeEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneResizeEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneResizeEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneResizeEvent constructs the type using only unsafe pointers.
@@ -945,7 +948,6 @@ func UnsafeNewQGraphicsSceneResizeEvent(h unsafe.Pointer) *QGraphicsSceneResizeE
 
 // NewQGraphicsSceneResizeEvent constructs a new QGraphicsSceneResizeEvent object.
 func NewQGraphicsSceneResizeEvent() *QGraphicsSceneResizeEvent {
-
 	ret := newQGraphicsSceneResizeEvent(C.QGraphicsSceneResizeEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -1013,8 +1015,10 @@ func newQGraphicsSceneMoveEvent(h *C.QGraphicsSceneMoveEvent) *QGraphicsSceneMov
 	var outptr_QGraphicsSceneEvent *C.QGraphicsSceneEvent = nil
 	C.QGraphicsSceneMoveEvent_virtbase(h, &outptr_QGraphicsSceneEvent)
 
-	return &QGraphicsSceneMoveEvent{h: h,
-		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent)}
+	return &QGraphicsSceneMoveEvent{
+		h:                   h,
+		QGraphicsSceneEvent: newQGraphicsSceneEvent(outptr_QGraphicsSceneEvent),
+	}
 }
 
 // UnsafeNewQGraphicsSceneMoveEvent constructs the type using only unsafe pointers.
@@ -1024,7 +1028,6 @@ func UnsafeNewQGraphicsSceneMoveEvent(h unsafe.Pointer) *QGraphicsSceneMoveEvent
 
 // NewQGraphicsSceneMoveEvent constructs a new QGraphicsSceneMoveEvent object.
 func NewQGraphicsSceneMoveEvent() *QGraphicsSceneMoveEvent {
-
 	ret := newQGraphicsSceneMoveEvent(C.QGraphicsSceneMoveEvent_new())
 	ret.isSubclass = true
 	return ret

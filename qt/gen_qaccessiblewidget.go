@@ -42,9 +42,11 @@ func newQAccessibleWidget(h *C.QAccessibleWidget) *QAccessibleWidget {
 	var outptr_QAccessibleActionInterface *C.QAccessibleActionInterface = nil
 	C.QAccessibleWidget_virtbase(h, &outptr_QAccessibleObject, &outptr_QAccessibleActionInterface)
 
-	return &QAccessibleWidget{h: h,
+	return &QAccessibleWidget{
+		h:                          h,
 		QAccessibleObject:          newQAccessibleObject(outptr_QAccessibleObject),
-		QAccessibleActionInterface: newQAccessibleActionInterface(outptr_QAccessibleActionInterface)}
+		QAccessibleActionInterface: newQAccessibleActionInterface(outptr_QAccessibleActionInterface),
+	}
 }
 
 // UnsafeNewQAccessibleWidget constructs the type using only unsafe pointers.
@@ -54,7 +56,6 @@ func UnsafeNewQAccessibleWidget(h unsafe.Pointer) *QAccessibleWidget {
 
 // NewQAccessibleWidget constructs a new QAccessibleWidget object.
 func NewQAccessibleWidget(o *QWidget) *QAccessibleWidget {
-
 	ret := newQAccessibleWidget(C.QAccessibleWidget_new(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -62,7 +63,6 @@ func NewQAccessibleWidget(o *QWidget) *QAccessibleWidget {
 
 // NewQAccessibleWidget2 constructs a new QAccessibleWidget object.
 func NewQAccessibleWidget2(o *QWidget, r QAccessible__Role) *QAccessibleWidget {
-
 	ret := newQAccessibleWidget(C.QAccessibleWidget_new2(o.cPointer(), (C.int)(r)))
 	ret.isSubclass = true
 	return ret

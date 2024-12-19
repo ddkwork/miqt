@@ -42,8 +42,10 @@ func newQVariantAnimation(h *C.QVariantAnimation) *QVariantAnimation {
 	var outptr_QAbstractAnimation *C.QAbstractAnimation = nil
 	C.QVariantAnimation_virtbase(h, &outptr_QAbstractAnimation)
 
-	return &QVariantAnimation{h: h,
-		QAbstractAnimation: newQAbstractAnimation(outptr_QAbstractAnimation)}
+	return &QVariantAnimation{
+		h:                  h,
+		QAbstractAnimation: newQAbstractAnimation(outptr_QAbstractAnimation),
+	}
 }
 
 // UnsafeNewQVariantAnimation constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQVariantAnimation(h unsafe.Pointer) *QVariantAnimation {
 
 // NewQVariantAnimation constructs a new QVariantAnimation object.
 func NewQVariantAnimation() *QVariantAnimation {
-
 	ret := newQVariantAnimation(C.QVariantAnimation_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQVariantAnimation() *QVariantAnimation {
 
 // NewQVariantAnimation2 constructs a new QVariantAnimation object.
 func NewQVariantAnimation2(parent *QObject) *QVariantAnimation {
-
 	ret := newQVariantAnimation(C.QVariantAnimation_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -156,7 +156,8 @@ func (this *QVariantAnimation) KeyValues() []struct {
 func (this *QVariantAnimation) SetKeyValues(values []struct {
 	First  float64
 	Second QVariant
-}) {
+},
+) {
 	values_CArray := (*[0xffff]C.struct_miqt_map)(C.malloc(C.size_t(8 * len(values))))
 	defer C.free(unsafe.Pointer(values_CArray))
 	for i := range values {
@@ -204,6 +205,7 @@ func (this *QVariantAnimation) SetEasingCurve(easing *QEasingCurve) {
 func (this *QVariantAnimation) ValueChanged(value *QVariant) {
 	C.QVariantAnimation_ValueChanged(this.h, value.cPointer())
 }
+
 func (this *QVariantAnimation) OnValueChanged(slot func(value *QVariant)) {
 	C.QVariantAnimation_connect_ValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -266,10 +268,9 @@ func QVariantAnimation_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QVariantAnimation) callVirtualBase_Duration() int {
-
 	return (int)(C.QVariantAnimation_virtualbase_Duration(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QVariantAnimation) OnDuration(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -287,14 +288,12 @@ func miqt_exec_callback_QVariantAnimation_Duration(self *C.QVariantAnimation, cb
 	virtualReturn := gofunc((&QVariantAnimation{h: self}).callVirtualBase_Duration)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QVariantAnimation) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QVariantAnimation_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QVariantAnimation) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -315,14 +314,12 @@ func miqt_exec_callback_QVariantAnimation_Event(self *C.QVariantAnimation, cb C.
 	virtualReturn := gofunc((&QVariantAnimation{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QVariantAnimation) callVirtualBase_UpdateCurrentTime(param1 int) {
-
 	C.QVariantAnimation_virtualbase_UpdateCurrentTime(unsafe.Pointer(this.h), (C.int)(param1))
-
 }
+
 func (this *QVariantAnimation) OnUpdateCurrentTime(slot func(super func(param1 int), param1 int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -341,14 +338,12 @@ func miqt_exec_callback_QVariantAnimation_UpdateCurrentTime(self *C.QVariantAnim
 	slotval1 := (int)(param1)
 
 	gofunc((&QVariantAnimation{h: self}).callVirtualBase_UpdateCurrentTime, slotval1)
-
 }
 
 func (this *QVariantAnimation) callVirtualBase_UpdateState(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
-
 	C.QVariantAnimation_virtualbase_UpdateState(unsafe.Pointer(this.h), (C.int)(newState), (C.int)(oldState))
-
 }
+
 func (this *QVariantAnimation) OnUpdateState(slot func(super func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State), newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -369,14 +364,12 @@ func miqt_exec_callback_QVariantAnimation_UpdateState(self *C.QVariantAnimation,
 	slotval2 := (QAbstractAnimation__State)(oldState)
 
 	gofunc((&QVariantAnimation{h: self}).callVirtualBase_UpdateState, slotval1, slotval2)
-
 }
 
 func (this *QVariantAnimation) callVirtualBase_UpdateCurrentValue(value *QVariant) {
-
 	C.QVariantAnimation_virtualbase_UpdateCurrentValue(unsafe.Pointer(this.h), value.cPointer())
-
 }
+
 func (this *QVariantAnimation) OnUpdateCurrentValue(slot func(super func(value *QVariant), value *QVariant)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -395,16 +388,14 @@ func miqt_exec_callback_QVariantAnimation_UpdateCurrentValue(self *C.QVariantAni
 	slotval1 := newQVariant(value)
 
 	gofunc((&QVariantAnimation{h: self}).callVirtualBase_UpdateCurrentValue, slotval1)
-
 }
 
 func (this *QVariantAnimation) callVirtualBase_Interpolated(from *QVariant, to *QVariant, progress float64) *QVariant {
-
 	_goptr := newQVariant(C.QVariantAnimation_virtualbase_Interpolated(unsafe.Pointer(this.h), from.cPointer(), to.cPointer(), (C.double)(progress)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QVariantAnimation) OnInterpolated(slot func(super func(from *QVariant, to *QVariant, progress float64) *QVariant, from *QVariant, to *QVariant, progress float64) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -429,14 +420,12 @@ func miqt_exec_callback_QVariantAnimation_Interpolated(self *C.QVariantAnimation
 	virtualReturn := gofunc((&QVariantAnimation{h: self}).callVirtualBase_Interpolated, slotval1, slotval2, slotval3)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QVariantAnimation) callVirtualBase_UpdateDirection(direction QAbstractAnimation__Direction) {
-
 	C.QVariantAnimation_virtualbase_UpdateDirection(unsafe.Pointer(this.h), (C.int)(direction))
-
 }
+
 func (this *QVariantAnimation) OnUpdateDirection(slot func(super func(direction QAbstractAnimation__Direction), direction QAbstractAnimation__Direction)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -455,7 +444,6 @@ func miqt_exec_callback_QVariantAnimation_UpdateDirection(self *C.QVariantAnimat
 	slotval1 := (QAbstractAnimation__Direction)(direction)
 
 	gofunc((&QVariantAnimation{h: self}).callVirtualBase_UpdateDirection, slotval1)
-
 }
 
 // Delete this object from C++ memory.

@@ -65,8 +65,10 @@ func newQCalendarWidget(h *C.QCalendarWidget) *QCalendarWidget {
 	var outptr_QWidget *C.QWidget = nil
 	C.QCalendarWidget_virtbase(h, &outptr_QWidget)
 
-	return &QCalendarWidget{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
+	return &QCalendarWidget{
+		h:       h,
+		QWidget: newQWidget(outptr_QWidget),
+	}
 }
 
 // UnsafeNewQCalendarWidget constructs the type using only unsafe pointers.
@@ -76,7 +78,6 @@ func UnsafeNewQCalendarWidget(h unsafe.Pointer) *QCalendarWidget {
 
 // NewQCalendarWidget constructs a new QCalendarWidget object.
 func NewQCalendarWidget(parent *QWidget) *QCalendarWidget {
-
 	ret := newQCalendarWidget(C.QCalendarWidget_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -84,7 +85,6 @@ func NewQCalendarWidget(parent *QWidget) *QCalendarWidget {
 
 // NewQCalendarWidget2 constructs a new QCalendarWidget object.
 func NewQCalendarWidget2() *QCalendarWidget {
-
 	ret := newQCalendarWidget(C.QCalendarWidget_new2())
 	ret.isSubclass = true
 	return ret
@@ -326,6 +326,7 @@ func (this *QCalendarWidget) ShowToday() {
 func (this *QCalendarWidget) SelectionChanged() {
 	C.QCalendarWidget_SelectionChanged(this.h)
 }
+
 func (this *QCalendarWidget) OnSelectionChanged(slot func()) {
 	C.QCalendarWidget_connect_SelectionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -343,6 +344,7 @@ func miqt_exec_callback_QCalendarWidget_SelectionChanged(cb C.intptr_t) {
 func (this *QCalendarWidget) Clicked(date *QDate) {
 	C.QCalendarWidget_Clicked(this.h, date.cPointer())
 }
+
 func (this *QCalendarWidget) OnClicked(slot func(date *QDate)) {
 	C.QCalendarWidget_connect_Clicked(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -363,6 +365,7 @@ func miqt_exec_callback_QCalendarWidget_Clicked(cb C.intptr_t, date *C.QDate) {
 func (this *QCalendarWidget) Activated(date *QDate) {
 	C.QCalendarWidget_Activated(this.h, date.cPointer())
 }
+
 func (this *QCalendarWidget) OnActivated(slot func(date *QDate)) {
 	C.QCalendarWidget_connect_Activated(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -383,6 +386,7 @@ func miqt_exec_callback_QCalendarWidget_Activated(cb C.intptr_t, date *C.QDate) 
 func (this *QCalendarWidget) CurrentPageChanged(year int, month int) {
 	C.QCalendarWidget_CurrentPageChanged(this.h, (C.int)(year), (C.int)(month))
 }
+
 func (this *QCalendarWidget) OnCurrentPageChanged(slot func(year int, month int)) {
 	C.QCalendarWidget_connect_CurrentPageChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -447,12 +451,11 @@ func QCalendarWidget_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QCalendarWidget) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QCalendarWidget_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QCalendarWidget) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -470,16 +473,14 @@ func miqt_exec_callback_QCalendarWidget_SizeHint(self *C.QCalendarWidget, cb C.i
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QCalendarWidget_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QCalendarWidget) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -497,14 +498,12 @@ func miqt_exec_callback_QCalendarWidget_MinimumSizeHint(self *C.QCalendarWidget,
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QCalendarWidget_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QCalendarWidget) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -525,14 +524,12 @@ func miqt_exec_callback_QCalendarWidget_Event(self *C.QCalendarWidget, cb C.intp
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QCalendarWidget_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QCalendarWidget) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -555,14 +552,12 @@ func miqt_exec_callback_QCalendarWidget_EventFilter(self *C.QCalendarWidget, cb 
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_MousePressEvent(event *QMouseEvent) {
-
 	C.QCalendarWidget_virtualbase_MousePressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnMousePressEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -581,14 +576,12 @@ func miqt_exec_callback_QCalendarWidget_MousePressEvent(self *C.QCalendarWidget,
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_ResizeEvent(event *QResizeEvent) {
-
 	C.QCalendarWidget_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -607,14 +600,12 @@ func miqt_exec_callback_QCalendarWidget_ResizeEvent(self *C.QCalendarWidget, cb 
 	slotval1 := newQResizeEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
-
 	C.QCalendarWidget_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -633,14 +624,12 @@ func miqt_exec_callback_QCalendarWidget_KeyPressEvent(self *C.QCalendarWidget, c
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_PaintCell(painter *QPainter, rect *QRect, date *QDate) {
-
 	C.QCalendarWidget_virtualbase_PaintCell(unsafe.Pointer(this.h), painter.cPointer(), rect.cPointer(), date.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnPaintCell(slot func(super func(painter *QPainter, rect *QRect, date *QDate), painter *QPainter, rect *QRect, date *QDate)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -663,14 +652,12 @@ func miqt_exec_callback_QCalendarWidget_PaintCell(self *C.QCalendarWidget, cb C.
 	slotval3 := newQDate(date)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_PaintCell, slotval1, slotval2, slotval3)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_DevType() int {
-
 	return (int)(C.QCalendarWidget_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCalendarWidget) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -688,14 +675,12 @@ func miqt_exec_callback_QCalendarWidget_DevType(self *C.QCalendarWidget, cb C.in
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_SetVisible(visible bool) {
-
 	C.QCalendarWidget_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QCalendarWidget) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -714,14 +699,12 @@ func miqt_exec_callback_QCalendarWidget_SetVisible(self *C.QCalendarWidget, cb C
 	slotval1 := (bool)(visible)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QCalendarWidget_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QCalendarWidget) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -742,14 +725,12 @@ func miqt_exec_callback_QCalendarWidget_HeightForWidth(self *C.QCalendarWidget, 
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QCalendarWidget_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCalendarWidget) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -767,14 +748,12 @@ func miqt_exec_callback_QCalendarWidget_HasHeightForWidth(self *C.QCalendarWidge
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QCalendarWidget_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCalendarWidget) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -792,14 +771,12 @@ func miqt_exec_callback_QCalendarWidget_PaintEngine(self *C.QCalendarWidget, cb 
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_MouseReleaseEvent(event *QMouseEvent) {
-
 	C.QCalendarWidget_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnMouseReleaseEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -818,14 +795,12 @@ func miqt_exec_callback_QCalendarWidget_MouseReleaseEvent(self *C.QCalendarWidge
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_MouseDoubleClickEvent(event *QMouseEvent) {
-
 	C.QCalendarWidget_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnMouseDoubleClickEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -844,14 +819,12 @@ func miqt_exec_callback_QCalendarWidget_MouseDoubleClickEvent(self *C.QCalendarW
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_MouseMoveEvent(event *QMouseEvent) {
-
 	C.QCalendarWidget_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnMouseMoveEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -870,14 +843,12 @@ func miqt_exec_callback_QCalendarWidget_MouseMoveEvent(self *C.QCalendarWidget, 
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_WheelEvent(event *QWheelEvent) {
-
 	C.QCalendarWidget_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnWheelEvent(slot func(super func(event *QWheelEvent), event *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -896,14 +867,12 @@ func miqt_exec_callback_QCalendarWidget_WheelEvent(self *C.QCalendarWidget, cb C
 	slotval1 := newQWheelEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
-
 	C.QCalendarWidget_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -922,14 +891,12 @@ func miqt_exec_callback_QCalendarWidget_KeyReleaseEvent(self *C.QCalendarWidget,
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_FocusInEvent(event *QFocusEvent) {
-
 	C.QCalendarWidget_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -948,14 +915,12 @@ func miqt_exec_callback_QCalendarWidget_FocusInEvent(self *C.QCalendarWidget, cb
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
-
 	C.QCalendarWidget_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -974,14 +939,12 @@ func miqt_exec_callback_QCalendarWidget_FocusOutEvent(self *C.QCalendarWidget, c
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_EnterEvent(event *QEvent) {
-
 	C.QCalendarWidget_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnEnterEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1000,14 +963,12 @@ func miqt_exec_callback_QCalendarWidget_EnterEvent(self *C.QCalendarWidget, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_LeaveEvent(event *QEvent) {
-
 	C.QCalendarWidget_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1026,14 +987,12 @@ func miqt_exec_callback_QCalendarWidget_LeaveEvent(self *C.QCalendarWidget, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_PaintEvent(event *QPaintEvent) {
-
 	C.QCalendarWidget_virtualbase_PaintEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnPaintEvent(slot func(super func(event *QPaintEvent), event *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1052,14 +1011,12 @@ func miqt_exec_callback_QCalendarWidget_PaintEvent(self *C.QCalendarWidget, cb C
 	slotval1 := newQPaintEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_MoveEvent(event *QMoveEvent) {
-
 	C.QCalendarWidget_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1078,14 +1035,12 @@ func miqt_exec_callback_QCalendarWidget_MoveEvent(self *C.QCalendarWidget, cb C.
 	slotval1 := newQMoveEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QCalendarWidget_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1104,14 +1059,12 @@ func miqt_exec_callback_QCalendarWidget_CloseEvent(self *C.QCalendarWidget, cb C
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_ContextMenuEvent(event *QContextMenuEvent) {
-
 	C.QCalendarWidget_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnContextMenuEvent(slot func(super func(event *QContextMenuEvent), event *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1130,14 +1083,12 @@ func miqt_exec_callback_QCalendarWidget_ContextMenuEvent(self *C.QCalendarWidget
 	slotval1 := newQContextMenuEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_TabletEvent(event *QTabletEvent) {
-
 	C.QCalendarWidget_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1156,14 +1107,12 @@ func miqt_exec_callback_QCalendarWidget_TabletEvent(self *C.QCalendarWidget, cb 
 	slotval1 := newQTabletEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_ActionEvent(event *QActionEvent) {
-
 	C.QCalendarWidget_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1182,14 +1131,12 @@ func miqt_exec_callback_QCalendarWidget_ActionEvent(self *C.QCalendarWidget, cb 
 	slotval1 := newQActionEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_DragEnterEvent(event *QDragEnterEvent) {
-
 	C.QCalendarWidget_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnDragEnterEvent(slot func(super func(event *QDragEnterEvent), event *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1208,14 +1155,12 @@ func miqt_exec_callback_QCalendarWidget_DragEnterEvent(self *C.QCalendarWidget, 
 	slotval1 := newQDragEnterEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_DragMoveEvent(event *QDragMoveEvent) {
-
 	C.QCalendarWidget_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnDragMoveEvent(slot func(super func(event *QDragMoveEvent), event *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1234,14 +1179,12 @@ func miqt_exec_callback_QCalendarWidget_DragMoveEvent(self *C.QCalendarWidget, c
 	slotval1 := newQDragMoveEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_DragLeaveEvent(event *QDragLeaveEvent) {
-
 	C.QCalendarWidget_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnDragLeaveEvent(slot func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1260,14 +1203,12 @@ func miqt_exec_callback_QCalendarWidget_DragLeaveEvent(self *C.QCalendarWidget, 
 	slotval1 := newQDragLeaveEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_DropEvent(event *QDropEvent) {
-
 	C.QCalendarWidget_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnDropEvent(slot func(super func(event *QDropEvent), event *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1286,14 +1227,12 @@ func miqt_exec_callback_QCalendarWidget_DropEvent(self *C.QCalendarWidget, cb C.
 	slotval1 := newQDropEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QCalendarWidget_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1312,14 +1251,12 @@ func miqt_exec_callback_QCalendarWidget_ShowEvent(self *C.QCalendarWidget, cb C.
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QCalendarWidget_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1338,7 +1275,6 @@ func miqt_exec_callback_QCalendarWidget_HideEvent(self *C.QCalendarWidget, cb C.
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
@@ -1347,8 +1283,8 @@ func (this *QCalendarWidget) callVirtualBase_NativeEvent(eventType []byte, messa
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QCalendarWidget_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
-
 }
+
 func (this *QCalendarWidget) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1375,14 +1311,12 @@ func miqt_exec_callback_QCalendarWidget_NativeEvent(self *C.QCalendarWidget, cb 
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QCalendarWidget_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1401,14 +1335,12 @@ func miqt_exec_callback_QCalendarWidget_ChangeEvent(self *C.QCalendarWidget, cb 
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QCalendarWidget_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QCalendarWidget) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1429,14 +1361,12 @@ func miqt_exec_callback_QCalendarWidget_Metric(self *C.QCalendarWidget, cb C.int
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QCalendarWidget_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1455,14 +1385,12 @@ func miqt_exec_callback_QCalendarWidget_InitPainter(self *C.QCalendarWidget, cb 
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QCalendarWidget_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QCalendarWidget) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1483,14 +1411,12 @@ func miqt_exec_callback_QCalendarWidget_Redirected(self *C.QCalendarWidget, cb C
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QCalendarWidget_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCalendarWidget) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1508,14 +1434,12 @@ func miqt_exec_callback_QCalendarWidget_SharedPainter(self *C.QCalendarWidget, c
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
-
 	C.QCalendarWidget_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QCalendarWidget) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1534,16 +1458,14 @@ func miqt_exec_callback_QCalendarWidget_InputMethodEvent(self *C.QCalendarWidget
 	slotval1 := newQInputMethodEvent(param1)
 
 	gofunc((&QCalendarWidget{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QCalendarWidget_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QCalendarWidget) OnInputMethodQuery(slot func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1564,14 +1486,12 @@ func miqt_exec_callback_QCalendarWidget_InputMethodQuery(self *C.QCalendarWidget
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCalendarWidget) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QCalendarWidget_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QCalendarWidget) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1592,7 +1512,6 @@ func miqt_exec_callback_QCalendarWidget_FocusNextPrevChild(self *C.QCalendarWidg
 	virtualReturn := gofunc((&QCalendarWidget{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

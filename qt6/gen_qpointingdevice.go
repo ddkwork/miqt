@@ -73,7 +73,6 @@ func UnsafeNewQPointingDeviceUniqueId(h unsafe.Pointer) *QPointingDeviceUniqueId
 
 // NewQPointingDeviceUniqueId constructs a new QPointingDeviceUniqueId object.
 func NewQPointingDeviceUniqueId() *QPointingDeviceUniqueId {
-
 	ret := newQPointingDeviceUniqueId(C.QPointingDeviceUniqueId_new())
 	ret.isSubclass = true
 	return ret
@@ -81,7 +80,6 @@ func NewQPointingDeviceUniqueId() *QPointingDeviceUniqueId {
 
 // NewQPointingDeviceUniqueId2 constructs a new QPointingDeviceUniqueId object.
 func NewQPointingDeviceUniqueId2(param1 *QPointingDeviceUniqueId) *QPointingDeviceUniqueId {
-
 	ret := newQPointingDeviceUniqueId(C.QPointingDeviceUniqueId_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -143,8 +141,10 @@ func newQPointingDevice(h *C.QPointingDevice) *QPointingDevice {
 	var outptr_QInputDevice *C.QInputDevice = nil
 	C.QPointingDevice_virtbase(h, &outptr_QInputDevice)
 
-	return &QPointingDevice{h: h,
-		QInputDevice: newQInputDevice(outptr_QInputDevice)}
+	return &QPointingDevice{
+		h:            h,
+		QInputDevice: newQInputDevice(outptr_QInputDevice),
+	}
 }
 
 // UnsafeNewQPointingDevice constructs the type using only unsafe pointers.
@@ -154,7 +154,6 @@ func UnsafeNewQPointingDevice(h unsafe.Pointer) *QPointingDevice {
 
 // NewQPointingDevice constructs a new QPointingDevice object.
 func NewQPointingDevice() *QPointingDevice {
-
 	ret := newQPointingDevice(C.QPointingDevice_new())
 	ret.isSubclass = true
 	return ret
@@ -174,7 +173,6 @@ func NewQPointingDevice2(name string, systemId int64, devType QInputDevice__Devi
 
 // NewQPointingDevice3 constructs a new QPointingDevice object.
 func NewQPointingDevice3(parent *QObject) *QPointingDevice {
-
 	ret := newQPointingDevice(C.QPointingDevice_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -288,6 +286,7 @@ func (this *QPointingDevice) OperatorEqual(other *QPointingDevice) bool {
 func (this *QPointingDevice) GrabChanged(grabber *QObject, transition QPointingDevice__GrabTransition, event *QPointerEvent, point *QEventPoint) {
 	C.QPointingDevice_GrabChanged(this.h, grabber.cPointer(), (C.int)(transition), event.cPointer(), point.cPointer())
 }
+
 func (this *QPointingDevice) OnGrabChanged(slot func(grabber *QObject, transition QPointingDevice__GrabTransition, event *QPointerEvent, point *QEventPoint)) {
 	C.QPointingDevice_connect_GrabChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

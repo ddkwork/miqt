@@ -9,10 +9,11 @@ package webchannel
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebChannel struct {
@@ -43,8 +44,10 @@ func newQWebChannel(h *C.QWebChannel) *QWebChannel {
 	var outptr_QObject *C.QObject = nil
 	C.QWebChannel_virtbase(h, &outptr_QObject)
 
-	return &QWebChannel{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebChannel{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebChannel constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQWebChannel(h unsafe.Pointer) *QWebChannel {
 
 // NewQWebChannel constructs a new QWebChannel object.
 func NewQWebChannel() *QWebChannel {
-
 	ret := newQWebChannel(C.QWebChannel_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQWebChannel() *QWebChannel {
 
 // NewQWebChannel2 constructs a new QWebChannel object.
 func NewQWebChannel2(parent *qt.QObject) *QWebChannel {
-
 	ret := newQWebChannel(C.QWebChannel_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -159,6 +160,7 @@ func (this *QWebChannel) SetBlockUpdates(block bool) {
 func (this *QWebChannel) BlockUpdatesChanged(block bool) {
 	C.QWebChannel_BlockUpdatesChanged(this.h, (C.bool)(block))
 }
+
 func (this *QWebChannel) OnBlockUpdatesChanged(slot func(block bool)) {
 	C.QWebChannel_connect_BlockUpdatesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -229,10 +231,9 @@ func QWebChannel_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QWebChannel) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QWebChannel_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QWebChannel) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -253,14 +254,12 @@ func miqt_exec_callback_QWebChannel_Event(self *C.QWebChannel, cb C.intptr_t, ev
 	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QWebChannel) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QWebChannel_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QWebChannel) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -283,14 +282,12 @@ func miqt_exec_callback_QWebChannel_EventFilter(self *C.QWebChannel, cb C.intptr
 	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QWebChannel) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QWebChannel_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebChannel) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -309,14 +306,12 @@ func miqt_exec_callback_QWebChannel_TimerEvent(self *C.QWebChannel, cb C.intptr_
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebChannel{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QWebChannel) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QWebChannel_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebChannel) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -335,14 +330,12 @@ func miqt_exec_callback_QWebChannel_ChildEvent(self *C.QWebChannel, cb C.intptr_
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebChannel{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QWebChannel) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QWebChannel_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebChannel) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -361,14 +354,12 @@ func miqt_exec_callback_QWebChannel_CustomEvent(self *C.QWebChannel, cb C.intptr
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebChannel{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QWebChannel) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QWebChannel_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QWebChannel) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -387,14 +378,12 @@ func miqt_exec_callback_QWebChannel_ConnectNotify(self *C.QWebChannel, cb C.intp
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QWebChannel{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QWebChannel) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QWebChannel_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QWebChannel) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -413,7 +402,6 @@ func miqt_exec_callback_QWebChannel_DisconnectNotify(self *C.QWebChannel, cb C.i
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QWebChannel{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

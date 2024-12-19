@@ -49,8 +49,10 @@ func newQHistoryState(h *C.QHistoryState) *QHistoryState {
 	var outptr_QAbstractState *C.QAbstractState = nil
 	C.QHistoryState_virtbase(h, &outptr_QAbstractState)
 
-	return &QHistoryState{h: h,
-		QAbstractState: newQAbstractState(outptr_QAbstractState)}
+	return &QHistoryState{
+		h:              h,
+		QAbstractState: newQAbstractState(outptr_QAbstractState),
+	}
 }
 
 // UnsafeNewQHistoryState constructs the type using only unsafe pointers.
@@ -60,7 +62,6 @@ func UnsafeNewQHistoryState(h unsafe.Pointer) *QHistoryState {
 
 // NewQHistoryState constructs a new QHistoryState object.
 func NewQHistoryState() *QHistoryState {
-
 	ret := newQHistoryState(C.QHistoryState_new())
 	ret.isSubclass = true
 	return ret
@@ -68,7 +69,6 @@ func NewQHistoryState() *QHistoryState {
 
 // NewQHistoryState2 constructs a new QHistoryState object.
 func NewQHistoryState2(typeVal QHistoryState__HistoryType) *QHistoryState {
-
 	ret := newQHistoryState(C.QHistoryState_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -76,7 +76,6 @@ func NewQHistoryState2(typeVal QHistoryState__HistoryType) *QHistoryState {
 
 // NewQHistoryState3 constructs a new QHistoryState object.
 func NewQHistoryState3(parent *QState) *QHistoryState {
-
 	ret := newQHistoryState(C.QHistoryState_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -84,7 +83,6 @@ func NewQHistoryState3(parent *QState) *QHistoryState {
 
 // NewQHistoryState4 constructs a new QHistoryState object.
 func NewQHistoryState4(typeVal QHistoryState__HistoryType, parent *QState) *QHistoryState {
-
 	ret := newQHistoryState(C.QHistoryState_new4((C.int)(typeVal), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -187,10 +185,9 @@ func QHistoryState_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QHistoryState) callVirtualBase_OnEntry(event *QEvent) {
-
 	C.QHistoryState_virtualbase_OnEntry(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QHistoryState) OnOnEntry(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -209,14 +206,12 @@ func miqt_exec_callback_QHistoryState_OnEntry(self *C.QHistoryState, cb C.intptr
 	slotval1 := newQEvent(event)
 
 	gofunc((&QHistoryState{h: self}).callVirtualBase_OnEntry, slotval1)
-
 }
 
 func (this *QHistoryState) callVirtualBase_OnExit(event *QEvent) {
-
 	C.QHistoryState_virtualbase_OnExit(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QHistoryState) OnOnExit(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -235,14 +230,12 @@ func miqt_exec_callback_QHistoryState_OnExit(self *C.QHistoryState, cb C.intptr_
 	slotval1 := newQEvent(event)
 
 	gofunc((&QHistoryState{h: self}).callVirtualBase_OnExit, slotval1)
-
 }
 
 func (this *QHistoryState) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QHistoryState_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QHistoryState) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -263,7 +256,6 @@ func miqt_exec_callback_QHistoryState_Event(self *C.QHistoryState, cb C.intptr_t
 	virtualReturn := gofunc((&QHistoryState{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

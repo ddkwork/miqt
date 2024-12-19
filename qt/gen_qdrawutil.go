@@ -66,7 +66,6 @@ func UnsafeNewQTileRules(h unsafe.Pointer) *QTileRules {
 
 // NewQTileRules constructs a new QTileRules object.
 func NewQTileRules(horizontalRule TileRule, verticalRule TileRule) *QTileRules {
-
 	ret := newQTileRules(C.QTileRules_new((C.int)(horizontalRule), (C.int)(verticalRule)))
 	ret.isSubclass = true
 	return ret
@@ -74,7 +73,6 @@ func NewQTileRules(horizontalRule TileRule, verticalRule TileRule) *QTileRules {
 
 // NewQTileRules2 constructs a new QTileRules object.
 func NewQTileRules2() *QTileRules {
-
 	ret := newQTileRules(C.QTileRules_new2())
 	ret.isSubclass = true
 	return ret
@@ -82,7 +80,6 @@ func NewQTileRules2() *QTileRules {
 
 // NewQTileRules3 constructs a new QTileRules object.
 func NewQTileRules3(param1 *QTileRules) *QTileRules {
-
 	ret := newQTileRules(C.QTileRules_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -90,7 +87,6 @@ func NewQTileRules3(param1 *QTileRules) *QTileRules {
 
 // NewQTileRules4 constructs a new QTileRules object.
 func NewQTileRules4(rule TileRule) *QTileRules {
-
 	ret := newQTileRules(C.QTileRules_new4((C.int)(rule)))
 	ret.isSubclass = true
 	return ret

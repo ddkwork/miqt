@@ -31,7 +31,7 @@ func ProcessLibraries(clangBin, outDir, extraLibsDir string) {
 				return Widgets_AllowHeader(fullpath)
 			},
 			clangBin,
-			"--std=c++17 "+pkgConfigCflags("Qt6Widgets"), //todo copy .pc files from linux to extraLibsDir ?
+			"--std=c++17 "+pkgConfigCflags("Qt6Widgets"), // todo copy .pc files from linux to extraLibsDir ?
 			outDir,
 			ClangMatchSameHeaderDefinitionOnly,
 		)

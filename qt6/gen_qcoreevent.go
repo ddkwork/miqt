@@ -227,7 +227,6 @@ func UnsafeNewQEvent(h unsafe.Pointer) *QEvent {
 
 // NewQEvent constructs a new QEvent object.
 func NewQEvent(typeVal QEvent__Type) *QEvent {
-
 	ret := newQEvent(C.QEvent_new((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -282,10 +281,9 @@ func QEvent_RegisterEventType1(hint int) int {
 }
 
 func (this *QEvent) callVirtualBase_SetAccepted(accepted bool) {
-
 	C.QEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (C.bool)(accepted))
-
 }
+
 func (this *QEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -304,14 +302,12 @@ func miqt_exec_callback_QEvent_SetAccepted(self *C.QEvent, cb C.intptr_t, accept
 	slotval1 := (bool)(accepted)
 
 	gofunc((&QEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
 }
 
 func (this *QEvent) callVirtualBase_Clone() *QEvent {
-
 	return newQEvent(C.QEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QEvent) OnClone(slot func(super func() *QEvent) *QEvent) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -329,7 +325,6 @@ func miqt_exec_callback_QEvent_Clone(self *C.QEvent, cb C.intptr_t) *C.QEvent {
 	virtualReturn := gofunc((&QEvent{h: self}).callVirtualBase_Clone)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.
@@ -374,8 +369,10 @@ func newQTimerEvent(h *C.QTimerEvent) *QTimerEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QTimerEvent_virtbase(h, &outptr_QEvent)
 
-	return &QTimerEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QTimerEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQTimerEvent constructs the type using only unsafe pointers.
@@ -385,7 +382,6 @@ func UnsafeNewQTimerEvent(h unsafe.Pointer) *QTimerEvent {
 
 // NewQTimerEvent constructs a new QTimerEvent object.
 func NewQTimerEvent(timerId int) *QTimerEvent {
-
 	ret := newQTimerEvent(C.QTimerEvent_new((C.int)(timerId)))
 	ret.isSubclass = true
 	return ret
@@ -400,10 +396,9 @@ func (this *QTimerEvent) TimerId() int {
 }
 
 func (this *QTimerEvent) callVirtualBase_Clone() *QTimerEvent {
-
 	return newQTimerEvent(C.QTimerEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QTimerEvent) OnClone(slot func(super func() *QTimerEvent) *QTimerEvent) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -421,14 +416,12 @@ func miqt_exec_callback_QTimerEvent_Clone(self *C.QTimerEvent, cb C.intptr_t) *C
 	virtualReturn := gofunc((&QTimerEvent{h: self}).callVirtualBase_Clone)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QTimerEvent) callVirtualBase_SetAccepted(accepted bool) {
-
 	C.QTimerEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (C.bool)(accepted))
-
 }
+
 func (this *QTimerEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -447,7 +440,6 @@ func miqt_exec_callback_QTimerEvent_SetAccepted(self *C.QTimerEvent, cb C.intptr
 	slotval1 := (bool)(accepted)
 
 	gofunc((&QTimerEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -492,8 +484,10 @@ func newQChildEvent(h *C.QChildEvent) *QChildEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QChildEvent_virtbase(h, &outptr_QEvent)
 
-	return &QChildEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QChildEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQChildEvent constructs the type using only unsafe pointers.
@@ -503,7 +497,6 @@ func UnsafeNewQChildEvent(h unsafe.Pointer) *QChildEvent {
 
 // NewQChildEvent constructs a new QChildEvent object.
 func NewQChildEvent(typeVal QEvent__Type, child *QObject) *QChildEvent {
-
 	ret := newQChildEvent(C.QChildEvent_new((C.int)(typeVal), child.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -530,10 +523,9 @@ func (this *QChildEvent) Removed() bool {
 }
 
 func (this *QChildEvent) callVirtualBase_Clone() *QChildEvent {
-
 	return newQChildEvent(C.QChildEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QChildEvent) OnClone(slot func(super func() *QChildEvent) *QChildEvent) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -551,14 +543,12 @@ func miqt_exec_callback_QChildEvent_Clone(self *C.QChildEvent, cb C.intptr_t) *C
 	virtualReturn := gofunc((&QChildEvent{h: self}).callVirtualBase_Clone)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QChildEvent) callVirtualBase_SetAccepted(accepted bool) {
-
 	C.QChildEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (C.bool)(accepted))
-
 }
+
 func (this *QChildEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -577,7 +567,6 @@ func miqt_exec_callback_QChildEvent_SetAccepted(self *C.QChildEvent, cb C.intptr
 	slotval1 := (bool)(accepted)
 
 	gofunc((&QChildEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -622,8 +611,10 @@ func newQDynamicPropertyChangeEvent(h *C.QDynamicPropertyChangeEvent) *QDynamicP
 	var outptr_QEvent *C.QEvent = nil
 	C.QDynamicPropertyChangeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QDynamicPropertyChangeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QDynamicPropertyChangeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQDynamicPropertyChangeEvent constructs the type using only unsafe pointers.
@@ -654,10 +645,9 @@ func (this *QDynamicPropertyChangeEvent) PropertyName() []byte {
 }
 
 func (this *QDynamicPropertyChangeEvent) callVirtualBase_Clone() *QDynamicPropertyChangeEvent {
-
 	return newQDynamicPropertyChangeEvent(C.QDynamicPropertyChangeEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QDynamicPropertyChangeEvent) OnClone(slot func(super func() *QDynamicPropertyChangeEvent) *QDynamicPropertyChangeEvent) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -675,14 +665,12 @@ func miqt_exec_callback_QDynamicPropertyChangeEvent_Clone(self *C.QDynamicProper
 	virtualReturn := gofunc((&QDynamicPropertyChangeEvent{h: self}).callVirtualBase_Clone)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDynamicPropertyChangeEvent) callVirtualBase_SetAccepted(accepted bool) {
-
 	C.QDynamicPropertyChangeEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (C.bool)(accepted))
-
 }
+
 func (this *QDynamicPropertyChangeEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -701,7 +689,6 @@ func miqt_exec_callback_QDynamicPropertyChangeEvent_SetAccepted(self *C.QDynamic
 	slotval1 := (bool)(accepted)
 
 	gofunc((&QDynamicPropertyChangeEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
 }
 
 // Delete this object from C++ memory.

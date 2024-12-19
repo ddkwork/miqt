@@ -104,7 +104,6 @@ func UnsafeNewQAudioFormat(h unsafe.Pointer) *QAudioFormat {
 
 // NewQAudioFormat constructs a new QAudioFormat object.
 func NewQAudioFormat() *QAudioFormat {
-
 	ret := newQAudioFormat(C.QAudioFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -112,7 +111,6 @@ func NewQAudioFormat() *QAudioFormat {
 
 // NewQAudioFormat2 constructs a new QAudioFormat object.
 func NewQAudioFormat2(param1 *QAudioFormat) *QAudioFormat {
-
 	ret := newQAudioFormat(C.QAudioFormat_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -48,7 +48,6 @@ func UnsafeNewQScriptable(h unsafe.Pointer) *QScriptable {
 
 // NewQScriptable constructs a new QScriptable object.
 func NewQScriptable() *QScriptable {
-
 	ret := newQScriptable(C.QScriptable_new())
 	ret.isSubclass = true
 	return ret

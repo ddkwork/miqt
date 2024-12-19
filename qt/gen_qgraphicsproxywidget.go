@@ -48,8 +48,10 @@ func newQGraphicsProxyWidget(h *C.QGraphicsProxyWidget) *QGraphicsProxyWidget {
 	var outptr_QGraphicsWidget *C.QGraphicsWidget = nil
 	C.QGraphicsProxyWidget_virtbase(h, &outptr_QGraphicsWidget)
 
-	return &QGraphicsProxyWidget{h: h,
-		QGraphicsWidget: newQGraphicsWidget(outptr_QGraphicsWidget)}
+	return &QGraphicsProxyWidget{
+		h:               h,
+		QGraphicsWidget: newQGraphicsWidget(outptr_QGraphicsWidget),
+	}
 }
 
 // UnsafeNewQGraphicsProxyWidget constructs the type using only unsafe pointers.
@@ -59,7 +61,6 @@ func UnsafeNewQGraphicsProxyWidget(h unsafe.Pointer) *QGraphicsProxyWidget {
 
 // NewQGraphicsProxyWidget constructs a new QGraphicsProxyWidget object.
 func NewQGraphicsProxyWidget() *QGraphicsProxyWidget {
-
 	ret := newQGraphicsProxyWidget(C.QGraphicsProxyWidget_new())
 	ret.isSubclass = true
 	return ret
@@ -67,7 +68,6 @@ func NewQGraphicsProxyWidget() *QGraphicsProxyWidget {
 
 // NewQGraphicsProxyWidget2 constructs a new QGraphicsProxyWidget object.
 func NewQGraphicsProxyWidget2(parent *QGraphicsItem) *QGraphicsProxyWidget {
-
 	ret := newQGraphicsProxyWidget(C.QGraphicsProxyWidget_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -75,7 +75,6 @@ func NewQGraphicsProxyWidget2(parent *QGraphicsItem) *QGraphicsProxyWidget {
 
 // NewQGraphicsProxyWidget3 constructs a new QGraphicsProxyWidget object.
 func NewQGraphicsProxyWidget3(parent *QGraphicsItem, wFlags WindowType) *QGraphicsProxyWidget {
-
 	ret := newQGraphicsProxyWidget(C.QGraphicsProxyWidget_new3(parent.cPointer(), (C.int)(wFlags)))
 	ret.isSubclass = true
 	return ret
@@ -184,10 +183,9 @@ func QGraphicsProxyWidget_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_SetGeometry(rect *QRectF) {
-
 	C.QGraphicsProxyWidget_virtualbase_SetGeometry(unsafe.Pointer(this.h), rect.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnSetGeometry(slot func(super func(rect *QRectF), rect *QRectF)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -206,14 +204,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_SetGeometry(self *C.QGraphicsProxyW
 	slotval1 := newQRectF(rect)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_SetGeometry, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_Paint(painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget) {
-
 	C.QGraphicsProxyWidget_virtualbase_Paint(unsafe.Pointer(this.h), painter.cPointer(), option.cPointer(), widget.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnPaint(slot func(super func(painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget), painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -236,14 +232,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_Paint(self *C.QGraphicsProxyWidget,
 	slotval3 := newQWidget(widget)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_Paint, slotval1, slotval2, slotval3)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_Type() int {
-
 	return (int)(C.QGraphicsProxyWidget_virtualbase_Type(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QGraphicsProxyWidget) OnType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -261,16 +255,14 @@ func miqt_exec_callback_QGraphicsProxyWidget_Type(self *C.QGraphicsProxyWidget, 
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_Type)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_ItemChange(change QGraphicsItem__GraphicsItemChange, value *QVariant) *QVariant {
-
 	_goptr := newQVariant(C.QGraphicsProxyWidget_virtualbase_ItemChange(unsafe.Pointer(this.h), (C.int)(change), value.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QGraphicsProxyWidget) OnItemChange(slot func(super func(change QGraphicsItem__GraphicsItemChange, value *QVariant) *QVariant, change QGraphicsItem__GraphicsItemChange, value *QVariant) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -293,14 +285,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_ItemChange(self *C.QGraphicsProxyWi
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_ItemChange, slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QGraphicsProxyWidget_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QGraphicsProxyWidget) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -321,14 +311,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_Event(self *C.QGraphicsProxyWidget,
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_EventFilter(object *QObject, event *QEvent) bool {
-
 	return (bool)(C.QGraphicsProxyWidget_virtualbase_EventFilter(unsafe.Pointer(this.h), object.cPointer(), event.cPointer()))
-
 }
+
 func (this *QGraphicsProxyWidget) OnEventFilter(slot func(super func(object *QObject, event *QEvent) bool, object *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -351,14 +339,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_EventFilter(self *C.QGraphicsProxyW
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -377,14 +363,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_ShowEvent(self *C.QGraphicsProxyWid
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -403,14 +387,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_HideEvent(self *C.QGraphicsProxyWid
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_ContextMenuEvent(event *QGraphicsSceneContextMenuEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnContextMenuEvent(slot func(super func(event *QGraphicsSceneContextMenuEvent), event *QGraphicsSceneContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -429,14 +411,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_ContextMenuEvent(self *C.QGraphicsP
 	slotval1 := newQGraphicsSceneContextMenuEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_DragEnterEvent(event *QGraphicsSceneDragDropEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnDragEnterEvent(slot func(super func(event *QGraphicsSceneDragDropEvent), event *QGraphicsSceneDragDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -455,14 +435,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_DragEnterEvent(self *C.QGraphicsPro
 	slotval1 := newQGraphicsSceneDragDropEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_DragLeaveEvent(event *QGraphicsSceneDragDropEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnDragLeaveEvent(slot func(super func(event *QGraphicsSceneDragDropEvent), event *QGraphicsSceneDragDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -481,14 +459,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_DragLeaveEvent(self *C.QGraphicsPro
 	slotval1 := newQGraphicsSceneDragDropEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_DragMoveEvent(event *QGraphicsSceneDragDropEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnDragMoveEvent(slot func(super func(event *QGraphicsSceneDragDropEvent), event *QGraphicsSceneDragDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -507,14 +483,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_DragMoveEvent(self *C.QGraphicsProx
 	slotval1 := newQGraphicsSceneDragDropEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_DropEvent(event *QGraphicsSceneDragDropEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnDropEvent(slot func(super func(event *QGraphicsSceneDragDropEvent), event *QGraphicsSceneDragDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -533,14 +507,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_DropEvent(self *C.QGraphicsProxyWid
 	slotval1 := newQGraphicsSceneDragDropEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_HoverEnterEvent(event *QGraphicsSceneHoverEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_HoverEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnHoverEnterEvent(slot func(super func(event *QGraphicsSceneHoverEvent), event *QGraphicsSceneHoverEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -559,14 +531,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_HoverEnterEvent(self *C.QGraphicsPr
 	slotval1 := newQGraphicsSceneHoverEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_HoverEnterEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_HoverLeaveEvent(event *QGraphicsSceneHoverEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_HoverLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnHoverLeaveEvent(slot func(super func(event *QGraphicsSceneHoverEvent), event *QGraphicsSceneHoverEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -585,14 +555,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_HoverLeaveEvent(self *C.QGraphicsPr
 	slotval1 := newQGraphicsSceneHoverEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_HoverLeaveEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_HoverMoveEvent(event *QGraphicsSceneHoverEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_HoverMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnHoverMoveEvent(slot func(super func(event *QGraphicsSceneHoverEvent), event *QGraphicsSceneHoverEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -611,14 +579,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_HoverMoveEvent(self *C.QGraphicsPro
 	slotval1 := newQGraphicsSceneHoverEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_HoverMoveEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_GrabMouseEvent(event *QEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_GrabMouseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnGrabMouseEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -637,14 +603,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_GrabMouseEvent(self *C.QGraphicsPro
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_GrabMouseEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_UngrabMouseEvent(event *QEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_UngrabMouseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnUngrabMouseEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -663,14 +627,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_UngrabMouseEvent(self *C.QGraphicsP
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_UngrabMouseEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_MouseMoveEvent(event *QGraphicsSceneMouseEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnMouseMoveEvent(slot func(super func(event *QGraphicsSceneMouseEvent), event *QGraphicsSceneMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -689,14 +651,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_MouseMoveEvent(self *C.QGraphicsPro
 	slotval1 := newQGraphicsSceneMouseEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_MousePressEvent(event *QGraphicsSceneMouseEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_MousePressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnMousePressEvent(slot func(super func(event *QGraphicsSceneMouseEvent), event *QGraphicsSceneMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -715,14 +675,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_MousePressEvent(self *C.QGraphicsPr
 	slotval1 := newQGraphicsSceneMouseEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_MouseReleaseEvent(event *QGraphicsSceneMouseEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnMouseReleaseEvent(slot func(super func(event *QGraphicsSceneMouseEvent), event *QGraphicsSceneMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -741,14 +699,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_MouseReleaseEvent(self *C.QGraphics
 	slotval1 := newQGraphicsSceneMouseEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_MouseDoubleClickEvent(event *QGraphicsSceneMouseEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnMouseDoubleClickEvent(slot func(super func(event *QGraphicsSceneMouseEvent), event *QGraphicsSceneMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -767,14 +723,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_MouseDoubleClickEvent(self *C.QGrap
 	slotval1 := newQGraphicsSceneMouseEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_WheelEvent(event *QGraphicsSceneWheelEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnWheelEvent(slot func(super func(event *QGraphicsSceneWheelEvent), event *QGraphicsSceneWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -793,14 +747,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_WheelEvent(self *C.QGraphicsProxyWi
 	slotval1 := newQGraphicsSceneWheelEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -819,14 +771,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_KeyPressEvent(self *C.QGraphicsProx
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -845,14 +795,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_KeyReleaseEvent(self *C.QGraphicsPr
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_FocusInEvent(event *QFocusEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -871,14 +819,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_FocusInEvent(self *C.QGraphicsProxy
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -897,14 +843,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_FocusOutEvent(self *C.QGraphicsProx
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QGraphicsProxyWidget_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QGraphicsProxyWidget) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -925,16 +869,14 @@ func miqt_exec_callback_QGraphicsProxyWidget_FocusNextPrevChild(self *C.QGraphic
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_InputMethodQuery(query InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QGraphicsProxyWidget_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(query)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QGraphicsProxyWidget) OnInputMethodQuery(slot func(super func(query InputMethodQuery) *QVariant, query InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -955,14 +897,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_InputMethodQuery(self *C.QGraphicsP
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_InputMethodEvent(event *QInputMethodEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnInputMethodEvent(slot func(super func(event *QInputMethodEvent), event *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -981,16 +921,14 @@ func miqt_exec_callback_QGraphicsProxyWidget_InputMethodEvent(self *C.QGraphicsP
 	slotval1 := newQInputMethodEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_SizeHint(which SizeHint, constraint *QSizeF) *QSizeF {
-
 	_goptr := newQSizeF(C.QGraphicsProxyWidget_virtualbase_SizeHint(unsafe.Pointer(this.h), (C.int)(which), constraint.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QGraphicsProxyWidget) OnSizeHint(slot func(super func(which SizeHint, constraint *QSizeF) *QSizeF, which SizeHint, constraint *QSizeF) *QSizeF) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1013,14 +951,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_SizeHint(self *C.QGraphicsProxyWidg
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_SizeHint, slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_ResizeEvent(event *QGraphicsSceneResizeEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnResizeEvent(slot func(super func(event *QGraphicsSceneResizeEvent), event *QGraphicsSceneResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1039,14 +975,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_ResizeEvent(self *C.QGraphicsProxyW
 	slotval1 := newQGraphicsSceneResizeEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_GetContentsMargins(left *float64, top *float64, right *float64, bottom *float64) {
-
 	C.QGraphicsProxyWidget_virtualbase_GetContentsMargins(unsafe.Pointer(this.h), (*C.double)(unsafe.Pointer(left)), (*C.double)(unsafe.Pointer(top)), (*C.double)(unsafe.Pointer(right)), (*C.double)(unsafe.Pointer(bottom)))
-
 }
+
 func (this *QGraphicsProxyWidget) OnGetContentsMargins(slot func(super func(left *float64, top *float64, right *float64, bottom *float64), left *float64, top *float64, right *float64, bottom *float64)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1071,14 +1005,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_GetContentsMargins(self *C.QGraphic
 	slotval4 := (*float64)(unsafe.Pointer(bottom))
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_GetContentsMargins, slotval1, slotval2, slotval3, slotval4)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_PaintWindowFrame(painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget) {
-
 	C.QGraphicsProxyWidget_virtualbase_PaintWindowFrame(unsafe.Pointer(this.h), painter.cPointer(), option.cPointer(), widget.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnPaintWindowFrame(slot func(super func(painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget), painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1101,16 +1033,14 @@ func miqt_exec_callback_QGraphicsProxyWidget_PaintWindowFrame(self *C.QGraphicsP
 	slotval3 := newQWidget(widget)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_PaintWindowFrame, slotval1, slotval2, slotval3)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_BoundingRect() *QRectF {
-
 	_goptr := newQRectF(C.QGraphicsProxyWidget_virtualbase_BoundingRect(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QGraphicsProxyWidget) OnBoundingRect(slot func(super func() *QRectF) *QRectF) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1128,16 +1058,14 @@ func miqt_exec_callback_QGraphicsProxyWidget_BoundingRect(self *C.QGraphicsProxy
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_BoundingRect)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_Shape() *QPainterPath {
-
 	_goptr := newQPainterPath(C.QGraphicsProxyWidget_virtualbase_Shape(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QGraphicsProxyWidget) OnShape(slot func(super func() *QPainterPath) *QPainterPath) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1155,14 +1083,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_Shape(self *C.QGraphicsProxyWidget,
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_Shape)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_InitStyleOption(option *QStyleOption) {
-
 	C.QGraphicsProxyWidget_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnInitStyleOption(slot func(super func(option *QStyleOption), option *QStyleOption)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1181,14 +1107,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_InitStyleOption(self *C.QGraphicsPr
 	slotval1 := newQStyleOption(option)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_UpdateGeometry() {
-
 	C.QGraphicsProxyWidget_virtualbase_UpdateGeometry(unsafe.Pointer(this.h))
-
 }
+
 func (this *QGraphicsProxyWidget) OnUpdateGeometry(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1204,7 +1128,6 @@ func miqt_exec_callback_QGraphicsProxyWidget_UpdateGeometry(self *C.QGraphicsPro
 	}
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_UpdateGeometry)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_PropertyChange(propertyName string, value *QVariant) *QVariant {
@@ -1216,8 +1139,8 @@ func (this *QGraphicsProxyWidget) callVirtualBase_PropertyChange(propertyName st
 	_goptr := newQVariant(C.QGraphicsProxyWidget_virtualbase_PropertyChange(unsafe.Pointer(this.h), propertyName_ms, value.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QGraphicsProxyWidget) OnPropertyChange(slot func(super func(propertyName string, value *QVariant) *QVariant, propertyName string, value *QVariant) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1242,14 +1165,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_PropertyChange(self *C.QGraphicsPro
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_PropertyChange, slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_SceneEvent(event *QEvent) bool {
-
 	return (bool)(C.QGraphicsProxyWidget_virtualbase_SceneEvent(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QGraphicsProxyWidget) OnSceneEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1270,14 +1191,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_SceneEvent(self *C.QGraphicsProxyWi
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_SceneEvent, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_WindowFrameEvent(e *QEvent) bool {
-
 	return (bool)(C.QGraphicsProxyWidget_virtualbase_WindowFrameEvent(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QGraphicsProxyWidget) OnWindowFrameEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1298,14 +1217,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_WindowFrameEvent(self *C.QGraphicsP
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_WindowFrameEvent, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_WindowFrameSectionAt(pos *QPointF) WindowFrameSection {
-
 	return (WindowFrameSection)(C.QGraphicsProxyWidget_virtualbase_WindowFrameSectionAt(unsafe.Pointer(this.h), pos.cPointer()))
-
 }
+
 func (this *QGraphicsProxyWidget) OnWindowFrameSectionAt(slot func(super func(pos *QPointF) WindowFrameSection, pos *QPointF) WindowFrameSection) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1326,14 +1243,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_WindowFrameSectionAt(self *C.QGraph
 	virtualReturn := gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_WindowFrameSectionAt, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_ChangeEvent(event *QEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnChangeEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1352,14 +1267,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_ChangeEvent(self *C.QGraphicsProxyW
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1378,14 +1291,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_CloseEvent(self *C.QGraphicsProxyWi
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_MoveEvent(event *QGraphicsSceneMoveEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnMoveEvent(slot func(super func(event *QGraphicsSceneMoveEvent), event *QGraphicsSceneMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1404,14 +1315,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_MoveEvent(self *C.QGraphicsProxyWid
 	slotval1 := newQGraphicsSceneMoveEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_PolishEvent() {
-
 	C.QGraphicsProxyWidget_virtualbase_PolishEvent(unsafe.Pointer(this.h))
-
 }
+
 func (this *QGraphicsProxyWidget) OnPolishEvent(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1427,14 +1336,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_PolishEvent(self *C.QGraphicsProxyW
 	}
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_PolishEvent)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_GrabKeyboardEvent(event *QEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_GrabKeyboardEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnGrabKeyboardEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1453,14 +1360,12 @@ func miqt_exec_callback_QGraphicsProxyWidget_GrabKeyboardEvent(self *C.QGraphics
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_GrabKeyboardEvent, slotval1)
-
 }
 
 func (this *QGraphicsProxyWidget) callVirtualBase_UngrabKeyboardEvent(event *QEvent) {
-
 	C.QGraphicsProxyWidget_virtualbase_UngrabKeyboardEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsProxyWidget) OnUngrabKeyboardEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1479,7 +1384,6 @@ func miqt_exec_callback_QGraphicsProxyWidget_UngrabKeyboardEvent(self *C.QGraphi
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsProxyWidget{h: self}).callVirtualBase_UngrabKeyboardEvent, slotval1)
-
 }
 
 // Delete this object from C++ memory.

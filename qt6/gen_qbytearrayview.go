@@ -48,7 +48,6 @@ func UnsafeNewQByteArrayView(h unsafe.Pointer) *QByteArrayView {
 
 // NewQByteArrayView constructs a new QByteArrayView object.
 func NewQByteArrayView() *QByteArrayView {
-
 	ret := newQByteArrayView(C.QByteArrayView_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQByteArrayView() *QByteArrayView {
 
 // NewQByteArrayView2 constructs a new QByteArrayView object.
 func NewQByteArrayView2(param1 *QByteArrayView) *QByteArrayView {
-
 	ret := newQByteArrayView(C.QByteArrayView_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

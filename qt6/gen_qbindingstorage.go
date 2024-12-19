@@ -95,7 +95,6 @@ func UnsafeNewQBindingStorage(h unsafe.Pointer) *QBindingStorage {
 
 // NewQBindingStorage constructs a new QBindingStorage object.
 func NewQBindingStorage() *QBindingStorage {
-
 	ret := newQBindingStorage(C.QBindingStorage_new())
 	ret.isSubclass = true
 	return ret

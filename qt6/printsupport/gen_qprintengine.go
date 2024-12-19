@@ -9,9 +9,10 @@ package printsupport
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QPrintEngine__PrintEnginePropertyKey int

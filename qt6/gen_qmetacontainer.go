@@ -74,7 +74,6 @@ func UnsafeNewQMetaContainer(h unsafe.Pointer) *QMetaContainer {
 
 // NewQMetaContainer constructs a new QMetaContainer object.
 func NewQMetaContainer() *QMetaContainer {
-
 	ret := newQMetaContainer(C.QMetaContainer_new())
 	ret.isSubclass = true
 	return ret
@@ -82,7 +81,6 @@ func NewQMetaContainer() *QMetaContainer {
 
 // NewQMetaContainer2 constructs a new QMetaContainer object.
 func NewQMetaContainer2(param1 *QMetaContainer) *QMetaContainer {
-
 	ret := newQMetaContainer(C.QMetaContainer_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -226,8 +224,10 @@ func newQMetaSequence(h *C.QMetaSequence) *QMetaSequence {
 	var outptr_QMetaContainer *C.QMetaContainer = nil
 	C.QMetaSequence_virtbase(h, &outptr_QMetaContainer)
 
-	return &QMetaSequence{h: h,
-		QMetaContainer: newQMetaContainer(outptr_QMetaContainer)}
+	return &QMetaSequence{
+		h:              h,
+		QMetaContainer: newQMetaContainer(outptr_QMetaContainer),
+	}
 }
 
 // UnsafeNewQMetaSequence constructs the type using only unsafe pointers.
@@ -237,7 +237,6 @@ func UnsafeNewQMetaSequence(h unsafe.Pointer) *QMetaSequence {
 
 // NewQMetaSequence constructs a new QMetaSequence object.
 func NewQMetaSequence() *QMetaSequence {
-
 	ret := newQMetaSequence(C.QMetaSequence_new())
 	ret.isSubclass = true
 	return ret
@@ -407,8 +406,10 @@ func newQMetaAssociation(h *C.QMetaAssociation) *QMetaAssociation {
 	var outptr_QMetaContainer *C.QMetaContainer = nil
 	C.QMetaAssociation_virtbase(h, &outptr_QMetaContainer)
 
-	return &QMetaAssociation{h: h,
-		QMetaContainer: newQMetaContainer(outptr_QMetaContainer)}
+	return &QMetaAssociation{
+		h:              h,
+		QMetaContainer: newQMetaContainer(outptr_QMetaContainer),
+	}
 }
 
 // UnsafeNewQMetaAssociation constructs the type using only unsafe pointers.
@@ -418,7 +419,6 @@ func UnsafeNewQMetaAssociation(h unsafe.Pointer) *QMetaAssociation {
 
 // NewQMetaAssociation constructs a new QMetaAssociation object.
 func NewQMetaAssociation() *QMetaAssociation {
-
 	ret := newQMetaAssociation(C.QMetaAssociation_new())
 	ret.isSubclass = true
 	return ret

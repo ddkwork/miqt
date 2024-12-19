@@ -39,5 +39,4 @@ func astTransformChildClasses(parsed *CppParsedHeader) {
 	}
 
 	parsed.Classes = append(parsed.Classes, taken...)
-
 }

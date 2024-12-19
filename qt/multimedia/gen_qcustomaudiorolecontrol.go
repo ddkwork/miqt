@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCustomAudioRoleControl struct {
@@ -43,8 +44,10 @@ func newQCustomAudioRoleControl(h *C.QCustomAudioRoleControl) *QCustomAudioRoleC
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCustomAudioRoleControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCustomAudioRoleControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCustomAudioRoleControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCustomAudioRoleControl constructs the type using only unsafe pointers.
@@ -115,6 +118,7 @@ func (this *QCustomAudioRoleControl) CustomAudioRoleChanged(role string) {
 	defer C.free(unsafe.Pointer(role_ms.data))
 	C.QCustomAudioRoleControl_CustomAudioRoleChanged(this.h, role_ms)
 }
+
 func (this *QCustomAudioRoleControl) OnCustomAudioRoleChanged(slot func(role string)) {
 	C.QCustomAudioRoleControl_connect_CustomAudioRoleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

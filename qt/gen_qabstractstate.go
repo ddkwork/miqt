@@ -42,8 +42,10 @@ func newQAbstractState(h *C.QAbstractState) *QAbstractState {
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractState_virtbase(h, &outptr_QObject)
 
-	return &QAbstractState{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QAbstractState{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQAbstractState constructs the type using only unsafe pointers.
@@ -94,6 +96,7 @@ func (this *QAbstractState) Active() bool {
 func (this *QAbstractState) ActiveChanged(active bool) {
 	C.QAbstractState_ActiveChanged(this.h, (C.bool)(active))
 }
+
 func (this *QAbstractState) OnActiveChanged(slot func(active bool)) {
 	C.QAbstractState_connect_ActiveChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

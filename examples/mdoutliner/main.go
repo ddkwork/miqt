@@ -57,7 +57,6 @@ func NewAppTab() *AppTab {
 }
 
 func NewAppWindow() *AppWindow {
-
 	ret := AppWindow{}
 
 	ret.w = qt.NewQMainWindow2()
@@ -137,7 +136,6 @@ func (a *AppWindow) handleFileOpen() {
 }
 
 func (a *AppWindow) createTabWithContents(tabTitle, tabContent string) {
-
 	tab := NewAppTab()
 	tab.textArea.SetText(tabContent)
 

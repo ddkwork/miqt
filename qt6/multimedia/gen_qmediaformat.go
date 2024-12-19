@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QMediaFormat__FileFormat int
@@ -119,7 +120,6 @@ func UnsafeNewQMediaFormat(h unsafe.Pointer) *QMediaFormat {
 
 // NewQMediaFormat constructs a new QMediaFormat object.
 func NewQMediaFormat() *QMediaFormat {
-
 	ret := newQMediaFormat(C.QMediaFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -127,7 +127,6 @@ func NewQMediaFormat() *QMediaFormat {
 
 // NewQMediaFormat2 constructs a new QMediaFormat object.
 func NewQMediaFormat2(other *QMediaFormat) *QMediaFormat {
-
 	ret := newQMediaFormat(C.QMediaFormat_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -135,7 +134,6 @@ func NewQMediaFormat2(other *QMediaFormat) *QMediaFormat {
 
 // NewQMediaFormat3 constructs a new QMediaFormat object.
 func NewQMediaFormat3(format QMediaFormat__FileFormat) *QMediaFormat {
-
 	ret := newQMediaFormat(C.QMediaFormat_new3((C.int)(format)))
 	ret.isSubclass = true
 	return ret

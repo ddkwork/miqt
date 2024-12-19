@@ -48,7 +48,6 @@ func UnsafeNewQLinkedListData(h unsafe.Pointer) *QLinkedListData {
 
 // NewQLinkedListData constructs a new QLinkedListData object.
 func NewQLinkedListData() *QLinkedListData {
-
 	ret := newQLinkedListData(C.QLinkedListData_new())
 	ret.isSubclass = true
 	return ret

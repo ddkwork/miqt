@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QVideoFrame__HandleType int
@@ -80,7 +81,6 @@ func UnsafeNewQVideoFrame(h unsafe.Pointer) *QVideoFrame {
 
 // NewQVideoFrame constructs a new QVideoFrame object.
 func NewQVideoFrame() *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new())
 	ret.isSubclass = true
 	return ret
@@ -88,7 +88,6 @@ func NewQVideoFrame() *QVideoFrame {
 
 // NewQVideoFrame2 constructs a new QVideoFrame object.
 func NewQVideoFrame2(format *QVideoFrameFormat) *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new2(format.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,7 +95,6 @@ func NewQVideoFrame2(format *QVideoFrameFormat) *QVideoFrame {
 
 // NewQVideoFrame3 constructs a new QVideoFrame object.
 func NewQVideoFrame3(other *QVideoFrame) *QVideoFrame {
-
 	ret := newQVideoFrame(C.QVideoFrame_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

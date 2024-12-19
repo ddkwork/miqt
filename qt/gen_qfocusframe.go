@@ -42,8 +42,10 @@ func newQFocusFrame(h *C.QFocusFrame) *QFocusFrame {
 	var outptr_QWidget *C.QWidget = nil
 	C.QFocusFrame_virtbase(h, &outptr_QWidget)
 
-	return &QFocusFrame{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
+	return &QFocusFrame{
+		h:       h,
+		QWidget: newQWidget(outptr_QWidget),
+	}
 }
 
 // UnsafeNewQFocusFrame constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQFocusFrame(h unsafe.Pointer) *QFocusFrame {
 
 // NewQFocusFrame constructs a new QFocusFrame object.
 func NewQFocusFrame(parent *QWidget) *QFocusFrame {
-
 	ret := newQFocusFrame(C.QFocusFrame_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQFocusFrame(parent *QWidget) *QFocusFrame {
 
 // NewQFocusFrame2 constructs a new QFocusFrame object.
 func NewQFocusFrame2() *QFocusFrame {
-
 	ret := newQFocusFrame(C.QFocusFrame_new2())
 	ret.isSubclass = true
 	return ret
@@ -148,10 +148,9 @@ func QFocusFrame_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QFocusFrame) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QFocusFrame_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QFocusFrame) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -172,14 +171,12 @@ func miqt_exec_callback_QFocusFrame_Event(self *C.QFocusFrame, cb C.intptr_t, e 
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_EventFilter(param1 *QObject, param2 *QEvent) bool {
-
 	return (bool)(C.QFocusFrame_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
 }
+
 func (this *QFocusFrame) OnEventFilter(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -202,14 +199,12 @@ func miqt_exec_callback_QFocusFrame_EventFilter(self *C.QFocusFrame, cb C.intptr
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QFocusFrame_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QFocusFrame) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -228,14 +223,12 @@ func miqt_exec_callback_QFocusFrame_PaintEvent(self *C.QFocusFrame, cb C.intptr_
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_DevType() int {
-
 	return (int)(C.QFocusFrame_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QFocusFrame) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -253,14 +246,12 @@ func miqt_exec_callback_QFocusFrame_DevType(self *C.QFocusFrame, cb C.intptr_t) 
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_SetVisible(visible bool) {
-
 	C.QFocusFrame_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QFocusFrame) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -279,16 +270,14 @@ func miqt_exec_callback_QFocusFrame_SetVisible(self *C.QFocusFrame, cb C.intptr_
 	slotval1 := (bool)(visible)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QFocusFrame_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QFocusFrame) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -306,16 +295,14 @@ func miqt_exec_callback_QFocusFrame_SizeHint(self *C.QFocusFrame, cb C.intptr_t)
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QFocusFrame) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QFocusFrame_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QFocusFrame) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -333,14 +320,12 @@ func miqt_exec_callback_QFocusFrame_MinimumSizeHint(self *C.QFocusFrame, cb C.in
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QFocusFrame) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QFocusFrame_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QFocusFrame) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -361,14 +346,12 @@ func miqt_exec_callback_QFocusFrame_HeightForWidth(self *C.QFocusFrame, cb C.int
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QFocusFrame_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QFocusFrame) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -386,14 +369,12 @@ func miqt_exec_callback_QFocusFrame_HasHeightForWidth(self *C.QFocusFrame, cb C.
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QFocusFrame_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QFocusFrame) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -411,14 +392,12 @@ func miqt_exec_callback_QFocusFrame_PaintEngine(self *C.QFocusFrame, cb C.intptr
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QFocusFrame) callVirtualBase_MousePressEvent(event *QMouseEvent) {
-
 	C.QFocusFrame_virtualbase_MousePressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnMousePressEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -437,14 +416,12 @@ func miqt_exec_callback_QFocusFrame_MousePressEvent(self *C.QFocusFrame, cb C.in
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_MouseReleaseEvent(event *QMouseEvent) {
-
 	C.QFocusFrame_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnMouseReleaseEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -463,14 +440,12 @@ func miqt_exec_callback_QFocusFrame_MouseReleaseEvent(self *C.QFocusFrame, cb C.
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_MouseDoubleClickEvent(event *QMouseEvent) {
-
 	C.QFocusFrame_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnMouseDoubleClickEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -489,14 +464,12 @@ func miqt_exec_callback_QFocusFrame_MouseDoubleClickEvent(self *C.QFocusFrame, c
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_MouseMoveEvent(event *QMouseEvent) {
-
 	C.QFocusFrame_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnMouseMoveEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -515,14 +488,12 @@ func miqt_exec_callback_QFocusFrame_MouseMoveEvent(self *C.QFocusFrame, cb C.int
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_WheelEvent(event *QWheelEvent) {
-
 	C.QFocusFrame_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnWheelEvent(slot func(super func(event *QWheelEvent), event *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -541,14 +512,12 @@ func miqt_exec_callback_QFocusFrame_WheelEvent(self *C.QFocusFrame, cb C.intptr_
 	slotval1 := newQWheelEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
-
 	C.QFocusFrame_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -567,14 +536,12 @@ func miqt_exec_callback_QFocusFrame_KeyPressEvent(self *C.QFocusFrame, cb C.intp
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
-
 	C.QFocusFrame_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -593,14 +560,12 @@ func miqt_exec_callback_QFocusFrame_KeyReleaseEvent(self *C.QFocusFrame, cb C.in
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_FocusInEvent(event *QFocusEvent) {
-
 	C.QFocusFrame_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -619,14 +584,12 @@ func miqt_exec_callback_QFocusFrame_FocusInEvent(self *C.QFocusFrame, cb C.intpt
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
-
 	C.QFocusFrame_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -645,14 +608,12 @@ func miqt_exec_callback_QFocusFrame_FocusOutEvent(self *C.QFocusFrame, cb C.intp
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_EnterEvent(event *QEvent) {
-
 	C.QFocusFrame_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnEnterEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -671,14 +632,12 @@ func miqt_exec_callback_QFocusFrame_EnterEvent(self *C.QFocusFrame, cb C.intptr_
 	slotval1 := newQEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_LeaveEvent(event *QEvent) {
-
 	C.QFocusFrame_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -697,14 +656,12 @@ func miqt_exec_callback_QFocusFrame_LeaveEvent(self *C.QFocusFrame, cb C.intptr_
 	slotval1 := newQEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_MoveEvent(event *QMoveEvent) {
-
 	C.QFocusFrame_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -723,14 +680,12 @@ func miqt_exec_callback_QFocusFrame_MoveEvent(self *C.QFocusFrame, cb C.intptr_t
 	slotval1 := newQMoveEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_ResizeEvent(event *QResizeEvent) {
-
 	C.QFocusFrame_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -749,14 +704,12 @@ func miqt_exec_callback_QFocusFrame_ResizeEvent(self *C.QFocusFrame, cb C.intptr
 	slotval1 := newQResizeEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QFocusFrame_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -775,14 +728,12 @@ func miqt_exec_callback_QFocusFrame_CloseEvent(self *C.QFocusFrame, cb C.intptr_
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_ContextMenuEvent(event *QContextMenuEvent) {
-
 	C.QFocusFrame_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnContextMenuEvent(slot func(super func(event *QContextMenuEvent), event *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -801,14 +752,12 @@ func miqt_exec_callback_QFocusFrame_ContextMenuEvent(self *C.QFocusFrame, cb C.i
 	slotval1 := newQContextMenuEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_TabletEvent(event *QTabletEvent) {
-
 	C.QFocusFrame_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -827,14 +776,12 @@ func miqt_exec_callback_QFocusFrame_TabletEvent(self *C.QFocusFrame, cb C.intptr
 	slotval1 := newQTabletEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_ActionEvent(event *QActionEvent) {
-
 	C.QFocusFrame_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -853,14 +800,12 @@ func miqt_exec_callback_QFocusFrame_ActionEvent(self *C.QFocusFrame, cb C.intptr
 	slotval1 := newQActionEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_DragEnterEvent(event *QDragEnterEvent) {
-
 	C.QFocusFrame_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnDragEnterEvent(slot func(super func(event *QDragEnterEvent), event *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -879,14 +824,12 @@ func miqt_exec_callback_QFocusFrame_DragEnterEvent(self *C.QFocusFrame, cb C.int
 	slotval1 := newQDragEnterEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_DragMoveEvent(event *QDragMoveEvent) {
-
 	C.QFocusFrame_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnDragMoveEvent(slot func(super func(event *QDragMoveEvent), event *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -905,14 +848,12 @@ func miqt_exec_callback_QFocusFrame_DragMoveEvent(self *C.QFocusFrame, cb C.intp
 	slotval1 := newQDragMoveEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_DragLeaveEvent(event *QDragLeaveEvent) {
-
 	C.QFocusFrame_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnDragLeaveEvent(slot func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -931,14 +872,12 @@ func miqt_exec_callback_QFocusFrame_DragLeaveEvent(self *C.QFocusFrame, cb C.int
 	slotval1 := newQDragLeaveEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_DropEvent(event *QDropEvent) {
-
 	C.QFocusFrame_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnDropEvent(slot func(super func(event *QDropEvent), event *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -957,14 +896,12 @@ func miqt_exec_callback_QFocusFrame_DropEvent(self *C.QFocusFrame, cb C.intptr_t
 	slotval1 := newQDropEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QFocusFrame_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -983,14 +920,12 @@ func miqt_exec_callback_QFocusFrame_ShowEvent(self *C.QFocusFrame, cb C.intptr_t
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QFocusFrame_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFocusFrame) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1009,7 +944,6 @@ func miqt_exec_callback_QFocusFrame_HideEvent(self *C.QFocusFrame, cb C.intptr_t
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
@@ -1018,8 +952,8 @@ func (this *QFocusFrame) callVirtualBase_NativeEvent(eventType []byte, message u
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QFocusFrame_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
-
 }
+
 func (this *QFocusFrame) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1046,14 +980,12 @@ func miqt_exec_callback_QFocusFrame_NativeEvent(self *C.QFocusFrame, cb C.intptr
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QFocusFrame_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QFocusFrame) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1072,14 +1004,12 @@ func miqt_exec_callback_QFocusFrame_ChangeEvent(self *C.QFocusFrame, cb C.intptr
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QFocusFrame_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QFocusFrame) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1100,14 +1030,12 @@ func miqt_exec_callback_QFocusFrame_Metric(self *C.QFocusFrame, cb C.intptr_t, p
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QFocusFrame_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QFocusFrame) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1126,14 +1054,12 @@ func miqt_exec_callback_QFocusFrame_InitPainter(self *C.QFocusFrame, cb C.intptr
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QFocusFrame_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QFocusFrame) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1154,14 +1080,12 @@ func miqt_exec_callback_QFocusFrame_Redirected(self *C.QFocusFrame, cb C.intptr_
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QFocusFrame) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QFocusFrame_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QFocusFrame) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1179,14 +1103,12 @@ func miqt_exec_callback_QFocusFrame_SharedPainter(self *C.QFocusFrame, cb C.intp
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QFocusFrame) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
-
 	C.QFocusFrame_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QFocusFrame) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1205,16 +1127,14 @@ func miqt_exec_callback_QFocusFrame_InputMethodEvent(self *C.QFocusFrame, cb C.i
 	slotval1 := newQInputMethodEvent(param1)
 
 	gofunc((&QFocusFrame{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QFocusFrame) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QFocusFrame_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QFocusFrame) OnInputMethodQuery(slot func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1235,14 +1155,12 @@ func miqt_exec_callback_QFocusFrame_InputMethodQuery(self *C.QFocusFrame, cb C.i
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QFocusFrame) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QFocusFrame_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QFocusFrame) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1263,7 +1181,6 @@ func miqt_exec_callback_QFocusFrame_FocusNextPrevChild(self *C.QFocusFrame, cb C
 	virtualReturn := gofunc((&QFocusFrame{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

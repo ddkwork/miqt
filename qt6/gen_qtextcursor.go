@@ -94,7 +94,6 @@ func UnsafeNewQTextCursor(h unsafe.Pointer) *QTextCursor {
 
 // NewQTextCursor constructs a new QTextCursor object.
 func NewQTextCursor() *QTextCursor {
-
 	ret := newQTextCursor(C.QTextCursor_new())
 	ret.isSubclass = true
 	return ret
@@ -102,7 +101,6 @@ func NewQTextCursor() *QTextCursor {
 
 // NewQTextCursor2 constructs a new QTextCursor object.
 func NewQTextCursor2(document *QTextDocument) *QTextCursor {
-
 	ret := newQTextCursor(C.QTextCursor_new2(document.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -110,7 +108,6 @@ func NewQTextCursor2(document *QTextDocument) *QTextCursor {
 
 // NewQTextCursor3 constructs a new QTextCursor object.
 func NewQTextCursor3(frame *QTextFrame) *QTextCursor {
-
 	ret := newQTextCursor(C.QTextCursor_new3(frame.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -118,7 +115,6 @@ func NewQTextCursor3(frame *QTextFrame) *QTextCursor {
 
 // NewQTextCursor4 constructs a new QTextCursor object.
 func NewQTextCursor4(block *QTextBlock) *QTextCursor {
-
 	ret := newQTextCursor(C.QTextCursor_new4(block.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -126,7 +122,6 @@ func NewQTextCursor4(block *QTextBlock) *QTextCursor {
 
 // NewQTextCursor5 constructs a new QTextCursor object.
 func NewQTextCursor5(cursor *QTextCursor) *QTextCursor {
-
 	ret := newQTextCursor(C.QTextCursor_new5(cursor.cPointer()))
 	ret.isSubclass = true
 	return ret

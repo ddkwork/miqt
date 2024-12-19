@@ -9,10 +9,11 @@ package script
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QScriptSyntaxCheckResult__State int
@@ -80,7 +81,6 @@ func UnsafeNewQScriptSyntaxCheckResult(h unsafe.Pointer) *QScriptSyntaxCheckResu
 
 // NewQScriptSyntaxCheckResult constructs a new QScriptSyntaxCheckResult object.
 func NewQScriptSyntaxCheckResult(other *QScriptSyntaxCheckResult) *QScriptSyntaxCheckResult {
-
 	ret := newQScriptSyntaxCheckResult(C.QScriptSyntaxCheckResult_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -151,8 +151,10 @@ func newQScriptEngine(h *C.QScriptEngine) *QScriptEngine {
 	var outptr_QObject *C.QObject = nil
 	C.QScriptEngine_virtbase(h, &outptr_QObject)
 
-	return &QScriptEngine{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QScriptEngine{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQScriptEngine constructs the type using only unsafe pointers.
@@ -162,7 +164,6 @@ func UnsafeNewQScriptEngine(h unsafe.Pointer) *QScriptEngine {
 
 // NewQScriptEngine constructs a new QScriptEngine object.
 func NewQScriptEngine() *QScriptEngine {
-
 	ret := newQScriptEngine(C.QScriptEngine_new())
 	ret.isSubclass = true
 	return ret
@@ -170,7 +171,6 @@ func NewQScriptEngine() *QScriptEngine {
 
 // NewQScriptEngine2 constructs a new QScriptEngine object.
 func NewQScriptEngine2(parent *qt.QObject) *QScriptEngine {
-
 	ret := newQScriptEngine(C.QScriptEngine_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -496,6 +496,7 @@ func (this *QScriptEngine) ObjectById(id int64) *QScriptValue {
 func (this *QScriptEngine) SignalHandlerException(exception *QScriptValue) {
 	C.QScriptEngine_SignalHandlerException(this.h, exception.cPointer())
 }
+
 func (this *QScriptEngine) OnSignalHandlerException(slot func(exception *QScriptValue)) {
 	C.QScriptEngine_connect_SignalHandlerException(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -636,10 +637,9 @@ func (this *QScriptEngine) InstallTranslatorFunctions1(object *QScriptValue) {
 }
 
 func (this *QScriptEngine) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QScriptEngine_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QScriptEngine) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -660,14 +660,12 @@ func miqt_exec_callback_QScriptEngine_Event(self *C.QScriptEngine, cb C.intptr_t
 	virtualReturn := gofunc((&QScriptEngine{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QScriptEngine) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QScriptEngine_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QScriptEngine) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -690,14 +688,12 @@ func miqt_exec_callback_QScriptEngine_EventFilter(self *C.QScriptEngine, cb C.in
 	virtualReturn := gofunc((&QScriptEngine{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QScriptEngine) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QScriptEngine_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QScriptEngine) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -716,14 +712,12 @@ func miqt_exec_callback_QScriptEngine_TimerEvent(self *C.QScriptEngine, cb C.int
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QScriptEngine{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QScriptEngine) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QScriptEngine_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QScriptEngine) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -742,14 +736,12 @@ func miqt_exec_callback_QScriptEngine_ChildEvent(self *C.QScriptEngine, cb C.int
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QScriptEngine{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QScriptEngine) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QScriptEngine_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QScriptEngine) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -768,14 +760,12 @@ func miqt_exec_callback_QScriptEngine_CustomEvent(self *C.QScriptEngine, cb C.in
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QScriptEngine{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QScriptEngine) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QScriptEngine_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QScriptEngine) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -794,14 +784,12 @@ func miqt_exec_callback_QScriptEngine_ConnectNotify(self *C.QScriptEngine, cb C.
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QScriptEngine{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QScriptEngine) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QScriptEngine_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QScriptEngine) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -820,7 +808,6 @@ func miqt_exec_callback_QScriptEngine_DisconnectNotify(self *C.QScriptEngine, cb
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QScriptEngine{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

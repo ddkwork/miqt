@@ -48,7 +48,6 @@ func UnsafeNewQStringMatcher(h unsafe.Pointer) *QStringMatcher {
 
 // NewQStringMatcher constructs a new QStringMatcher object.
 func NewQStringMatcher() *QStringMatcher {
-
 	ret := newQStringMatcher(C.QStringMatcher_new())
 	ret.isSubclass = true
 	return ret
@@ -68,7 +67,6 @@ func NewQStringMatcher2(pattern string) *QStringMatcher {
 
 // NewQStringMatcher3 constructs a new QStringMatcher object.
 func NewQStringMatcher3(uc *QChar, lenVal int64) *QStringMatcher {
-
 	ret := newQStringMatcher(C.QStringMatcher_new3(uc.cPointer(), (C.ptrdiff_t)(lenVal)))
 	ret.isSubclass = true
 	return ret
@@ -76,7 +74,6 @@ func NewQStringMatcher3(uc *QChar, lenVal int64) *QStringMatcher {
 
 // NewQStringMatcher4 constructs a new QStringMatcher object.
 func NewQStringMatcher4(other *QStringMatcher) *QStringMatcher {
-
 	ret := newQStringMatcher(C.QStringMatcher_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,7 +93,6 @@ func NewQStringMatcher5(pattern string, cs CaseSensitivity) *QStringMatcher {
 
 // NewQStringMatcher6 constructs a new QStringMatcher object.
 func NewQStringMatcher6(uc *QChar, lenVal int64, cs CaseSensitivity) *QStringMatcher {
-
 	ret := newQStringMatcher(C.QStringMatcher_new6(uc.cPointer(), (C.ptrdiff_t)(lenVal), (C.int)(cs)))
 	ret.isSubclass = true
 	return ret

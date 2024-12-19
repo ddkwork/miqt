@@ -63,8 +63,10 @@ func newQSharedMemory(h *C.QSharedMemory) *QSharedMemory {
 	var outptr_QObject *C.QObject = nil
 	C.QSharedMemory_virtbase(h, &outptr_QObject)
 
-	return &QSharedMemory{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QSharedMemory{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQSharedMemory constructs the type using only unsafe pointers.
@@ -74,7 +76,6 @@ func UnsafeNewQSharedMemory(h unsafe.Pointer) *QSharedMemory {
 
 // NewQSharedMemory constructs a new QSharedMemory object.
 func NewQSharedMemory() *QSharedMemory {
-
 	ret := newQSharedMemory(C.QSharedMemory_new())
 	ret.isSubclass = true
 	return ret
@@ -94,7 +95,6 @@ func NewQSharedMemory2(key string) *QSharedMemory {
 
 // NewQSharedMemory3 constructs a new QSharedMemory object.
 func NewQSharedMemory3(parent *QObject) *QSharedMemory {
-
 	ret := newQSharedMemory(C.QSharedMemory_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -243,10 +243,9 @@ func (this *QSharedMemory) Attach1(mode QSharedMemory__AccessMode) bool {
 }
 
 func (this *QSharedMemory) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QSharedMemory_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QSharedMemory) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -267,14 +266,12 @@ func miqt_exec_callback_QSharedMemory_Event(self *C.QSharedMemory, cb C.intptr_t
 	virtualReturn := gofunc((&QSharedMemory{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSharedMemory) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QSharedMemory_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QSharedMemory) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -297,14 +294,12 @@ func miqt_exec_callback_QSharedMemory_EventFilter(self *C.QSharedMemory, cb C.in
 	virtualReturn := gofunc((&QSharedMemory{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSharedMemory) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QSharedMemory_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSharedMemory) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -323,14 +318,12 @@ func miqt_exec_callback_QSharedMemory_TimerEvent(self *C.QSharedMemory, cb C.int
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QSharedMemory{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QSharedMemory) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QSharedMemory_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSharedMemory) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -349,14 +342,12 @@ func miqt_exec_callback_QSharedMemory_ChildEvent(self *C.QSharedMemory, cb C.int
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QSharedMemory{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QSharedMemory) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QSharedMemory_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSharedMemory) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -375,14 +366,12 @@ func miqt_exec_callback_QSharedMemory_CustomEvent(self *C.QSharedMemory, cb C.in
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSharedMemory{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QSharedMemory) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QSharedMemory_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QSharedMemory) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -401,14 +390,12 @@ func miqt_exec_callback_QSharedMemory_ConnectNotify(self *C.QSharedMemory, cb C.
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QSharedMemory{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QSharedMemory) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QSharedMemory_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QSharedMemory) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -427,7 +414,6 @@ func miqt_exec_callback_QSharedMemory_DisconnectNotify(self *C.QSharedMemory, cb
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QSharedMemory{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

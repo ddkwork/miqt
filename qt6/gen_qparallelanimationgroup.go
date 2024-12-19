@@ -42,8 +42,10 @@ func newQParallelAnimationGroup(h *C.QParallelAnimationGroup) *QParallelAnimatio
 	var outptr_QAnimationGroup *C.QAnimationGroup = nil
 	C.QParallelAnimationGroup_virtbase(h, &outptr_QAnimationGroup)
 
-	return &QParallelAnimationGroup{h: h,
-		QAnimationGroup: newQAnimationGroup(outptr_QAnimationGroup)}
+	return &QParallelAnimationGroup{
+		h:               h,
+		QAnimationGroup: newQAnimationGroup(outptr_QAnimationGroup),
+	}
 }
 
 // UnsafeNewQParallelAnimationGroup constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQParallelAnimationGroup(h unsafe.Pointer) *QParallelAnimationGroup
 
 // NewQParallelAnimationGroup constructs a new QParallelAnimationGroup object.
 func NewQParallelAnimationGroup() *QParallelAnimationGroup {
-
 	ret := newQParallelAnimationGroup(C.QParallelAnimationGroup_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQParallelAnimationGroup() *QParallelAnimationGroup {
 
 // NewQParallelAnimationGroup2 constructs a new QParallelAnimationGroup object.
 func NewQParallelAnimationGroup2(parent *QObject) *QParallelAnimationGroup {
-
 	ret := newQParallelAnimationGroup(C.QParallelAnimationGroup_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -113,10 +113,9 @@ func QParallelAnimationGroup_Tr3(s string, c string, n int) string {
 }
 
 func (this *QParallelAnimationGroup) callVirtualBase_Duration() int {
-
 	return (int)(C.QParallelAnimationGroup_virtualbase_Duration(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QParallelAnimationGroup) OnDuration(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -134,14 +133,12 @@ func miqt_exec_callback_QParallelAnimationGroup_Duration(self *C.QParallelAnimat
 	virtualReturn := gofunc((&QParallelAnimationGroup{h: self}).callVirtualBase_Duration)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QParallelAnimationGroup) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QParallelAnimationGroup_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QParallelAnimationGroup) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -162,14 +159,12 @@ func miqt_exec_callback_QParallelAnimationGroup_Event(self *C.QParallelAnimation
 	virtualReturn := gofunc((&QParallelAnimationGroup{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QParallelAnimationGroup) callVirtualBase_UpdateCurrentTime(currentTime int) {
-
 	C.QParallelAnimationGroup_virtualbase_UpdateCurrentTime(unsafe.Pointer(this.h), (C.int)(currentTime))
-
 }
+
 func (this *QParallelAnimationGroup) OnUpdateCurrentTime(slot func(super func(currentTime int), currentTime int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -188,14 +183,12 @@ func miqt_exec_callback_QParallelAnimationGroup_UpdateCurrentTime(self *C.QParal
 	slotval1 := (int)(currentTime)
 
 	gofunc((&QParallelAnimationGroup{h: self}).callVirtualBase_UpdateCurrentTime, slotval1)
-
 }
 
 func (this *QParallelAnimationGroup) callVirtualBase_UpdateState(newState QAbstractAnimation__State, oldState QAbstractAnimation__State) {
-
 	C.QParallelAnimationGroup_virtualbase_UpdateState(unsafe.Pointer(this.h), (C.int)(newState), (C.int)(oldState))
-
 }
+
 func (this *QParallelAnimationGroup) OnUpdateState(slot func(super func(newState QAbstractAnimation__State, oldState QAbstractAnimation__State), newState QAbstractAnimation__State, oldState QAbstractAnimation__State)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -216,14 +209,12 @@ func miqt_exec_callback_QParallelAnimationGroup_UpdateState(self *C.QParallelAni
 	slotval2 := (QAbstractAnimation__State)(oldState)
 
 	gofunc((&QParallelAnimationGroup{h: self}).callVirtualBase_UpdateState, slotval1, slotval2)
-
 }
 
 func (this *QParallelAnimationGroup) callVirtualBase_UpdateDirection(direction QAbstractAnimation__Direction) {
-
 	C.QParallelAnimationGroup_virtualbase_UpdateDirection(unsafe.Pointer(this.h), (C.int)(direction))
-
 }
+
 func (this *QParallelAnimationGroup) OnUpdateDirection(slot func(super func(direction QAbstractAnimation__Direction), direction QAbstractAnimation__Direction)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -242,7 +233,6 @@ func miqt_exec_callback_QParallelAnimationGroup_UpdateDirection(self *C.QParalle
 	slotval1 := (QAbstractAnimation__Direction)(direction)
 
 	gofunc((&QParallelAnimationGroup{h: self}).callVirtualBase_UpdateDirection, slotval1)
-
 }
 
 // Delete this object from C++ memory.

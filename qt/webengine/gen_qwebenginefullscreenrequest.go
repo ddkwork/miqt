@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineFullScreenRequest struct {
@@ -49,7 +50,6 @@ func UnsafeNewQWebEngineFullScreenRequest(h unsafe.Pointer) *QWebEngineFullScree
 
 // NewQWebEngineFullScreenRequest constructs a new QWebEngineFullScreenRequest object.
 func NewQWebEngineFullScreenRequest(param1 *QWebEngineFullScreenRequest) *QWebEngineFullScreenRequest {
-
 	ret := newQWebEngineFullScreenRequest(C.QWebEngineFullScreenRequest_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

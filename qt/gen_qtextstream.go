@@ -84,7 +84,6 @@ func UnsafeNewQTextStream(h unsafe.Pointer) *QTextStream {
 
 // NewQTextStream constructs a new QTextStream object.
 func NewQTextStream() *QTextStream {
-
 	ret := newQTextStream(C.QTextStream_new())
 	ret.isSubclass = true
 	return ret
@@ -92,7 +91,6 @@ func NewQTextStream() *QTextStream {
 
 // NewQTextStream2 constructs a new QTextStream object.
 func NewQTextStream2(device *QIODevice) *QTextStream {
-
 	ret := newQTextStream(C.QTextStream_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
-	"github.com/mappu/miqt/qt/network"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
+	"github.com/mappu/miqt/qt/network"
 )
 
 type QMediaResource struct {
@@ -50,7 +51,6 @@ func UnsafeNewQMediaResource(h unsafe.Pointer) *QMediaResource {
 
 // NewQMediaResource constructs a new QMediaResource object.
 func NewQMediaResource() *QMediaResource {
-
 	ret := newQMediaResource(C.QMediaResource_new())
 	ret.isSubclass = true
 	return ret
@@ -58,7 +58,6 @@ func NewQMediaResource() *QMediaResource {
 
 // NewQMediaResource2 constructs a new QMediaResource object.
 func NewQMediaResource2(url *qt.QUrl) *QMediaResource {
-
 	ret := newQMediaResource(C.QMediaResource_new2((*C.QUrl)(url.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -66,7 +65,6 @@ func NewQMediaResource2(url *qt.QUrl) *QMediaResource {
 
 // NewQMediaResource3 constructs a new QMediaResource object.
 func NewQMediaResource3(request *network.QNetworkRequest) *QMediaResource {
-
 	ret := newQMediaResource(C.QMediaResource_new3((*C.QNetworkRequest)(request.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -74,7 +72,6 @@ func NewQMediaResource3(request *network.QNetworkRequest) *QMediaResource {
 
 // NewQMediaResource4 constructs a new QMediaResource object.
 func NewQMediaResource4(other *QMediaResource) *QMediaResource {
-
 	ret := newQMediaResource(C.QMediaResource_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

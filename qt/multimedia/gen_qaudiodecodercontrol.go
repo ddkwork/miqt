@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioDecoderControl struct {
@@ -43,8 +44,10 @@ func newQAudioDecoderControl(h *C.QAudioDecoderControl) *QAudioDecoderControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QAudioDecoderControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QAudioDecoderControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QAudioDecoderControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQAudioDecoderControl constructs the type using only unsafe pointers.
@@ -146,6 +149,7 @@ func (this *QAudioDecoderControl) Duration() int64 {
 func (this *QAudioDecoderControl) StateChanged(newState QAudioDecoder__State) {
 	C.QAudioDecoderControl_StateChanged(this.h, (C.int)(newState))
 }
+
 func (this *QAudioDecoderControl) OnStateChanged(slot func(newState QAudioDecoder__State)) {
 	C.QAudioDecoderControl_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -166,6 +170,7 @@ func miqt_exec_callback_QAudioDecoderControl_StateChanged(cb C.intptr_t, newStat
 func (this *QAudioDecoderControl) FormatChanged(format *QAudioFormat) {
 	C.QAudioDecoderControl_FormatChanged(this.h, format.cPointer())
 }
+
 func (this *QAudioDecoderControl) OnFormatChanged(slot func(format *QAudioFormat)) {
 	C.QAudioDecoderControl_connect_FormatChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -186,6 +191,7 @@ func miqt_exec_callback_QAudioDecoderControl_FormatChanged(cb C.intptr_t, format
 func (this *QAudioDecoderControl) SourceChanged() {
 	C.QAudioDecoderControl_SourceChanged(this.h)
 }
+
 func (this *QAudioDecoderControl) OnSourceChanged(slot func()) {
 	C.QAudioDecoderControl_connect_SourceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -207,6 +213,7 @@ func (this *QAudioDecoderControl) Error(error int, errorString string) {
 	defer C.free(unsafe.Pointer(errorString_ms.data))
 	C.QAudioDecoderControl_Error(this.h, (C.int)(error), errorString_ms)
 }
+
 func (this *QAudioDecoderControl) OnError(slot func(error int, errorString string)) {
 	C.QAudioDecoderControl_connect_Error(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -232,6 +239,7 @@ func miqt_exec_callback_QAudioDecoderControl_Error(cb C.intptr_t, error C.int, e
 func (this *QAudioDecoderControl) BufferReady() {
 	C.QAudioDecoderControl_BufferReady(this.h)
 }
+
 func (this *QAudioDecoderControl) OnBufferReady(slot func()) {
 	C.QAudioDecoderControl_connect_BufferReady(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -249,6 +257,7 @@ func miqt_exec_callback_QAudioDecoderControl_BufferReady(cb C.intptr_t) {
 func (this *QAudioDecoderControl) BufferAvailableChanged(available bool) {
 	C.QAudioDecoderControl_BufferAvailableChanged(this.h, (C.bool)(available))
 }
+
 func (this *QAudioDecoderControl) OnBufferAvailableChanged(slot func(available bool)) {
 	C.QAudioDecoderControl_connect_BufferAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -269,6 +278,7 @@ func miqt_exec_callback_QAudioDecoderControl_BufferAvailableChanged(cb C.intptr_
 func (this *QAudioDecoderControl) Finished() {
 	C.QAudioDecoderControl_Finished(this.h)
 }
+
 func (this *QAudioDecoderControl) OnFinished(slot func()) {
 	C.QAudioDecoderControl_connect_Finished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -286,6 +296,7 @@ func miqt_exec_callback_QAudioDecoderControl_Finished(cb C.intptr_t) {
 func (this *QAudioDecoderControl) PositionChanged(position int64) {
 	C.QAudioDecoderControl_PositionChanged(this.h, (C.longlong)(position))
 }
+
 func (this *QAudioDecoderControl) OnPositionChanged(slot func(position int64)) {
 	C.QAudioDecoderControl_connect_PositionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -306,6 +317,7 @@ func miqt_exec_callback_QAudioDecoderControl_PositionChanged(cb C.intptr_t, posi
 func (this *QAudioDecoderControl) DurationChanged(duration int64) {
 	C.QAudioDecoderControl_DurationChanged(this.h, (C.longlong)(duration))
 }
+
 func (this *QAudioDecoderControl) OnDurationChanged(slot func(duration int64)) {
 	C.QAudioDecoderControl_connect_DurationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

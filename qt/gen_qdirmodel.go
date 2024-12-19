@@ -50,8 +50,10 @@ func newQDirModel(h *C.QDirModel) *QDirModel {
 	var outptr_QAbstractItemModel *C.QAbstractItemModel = nil
 	C.QDirModel_virtbase(h, &outptr_QAbstractItemModel)
 
-	return &QDirModel{h: h,
-		QAbstractItemModel: newQAbstractItemModel(outptr_QAbstractItemModel)}
+	return &QDirModel{
+		h:                  h,
+		QAbstractItemModel: newQAbstractItemModel(outptr_QAbstractItemModel),
+	}
 }
 
 // UnsafeNewQDirModel constructs the type using only unsafe pointers.
@@ -79,7 +81,6 @@ func NewQDirModel(nameFilters []string, filters QDir__Filter, sort QDir__SortFla
 
 // NewQDirModel2 constructs a new QDirModel object.
 func NewQDirModel2() *QDirModel {
-
 	ret := newQDirModel(C.QDirModel_new2())
 	ret.isSubclass = true
 	return ret
@@ -105,7 +106,6 @@ func NewQDirModel3(nameFilters []string, filters QDir__Filter, sort QDir__SortFl
 
 // NewQDirModel4 constructs a new QDirModel object.
 func NewQDirModel4(parent *QObject) *QDirModel {
-
 	ret := newQDirModel(C.QDirModel_new4(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -414,12 +414,11 @@ func (this *QDirModel) Refresh1(parent *QModelIndex) {
 }
 
 func (this *QDirModel) callVirtualBase_Index(row int, column int, parent *QModelIndex) *QModelIndex {
-
 	_goptr := newQModelIndex(C.QDirModel_virtualbase_Index(unsafe.Pointer(this.h), (C.int)(row), (C.int)(column), parent.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnIndex(slot func(super func(row int, column int, parent *QModelIndex) *QModelIndex, row int, column int, parent *QModelIndex) *QModelIndex) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -444,16 +443,14 @@ func miqt_exec_callback_QDirModel_Index(self *C.QDirModel, cb C.intptr_t, row C.
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Index, slotval1, slotval2, slotval3)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_Parent(child *QModelIndex) *QModelIndex {
-
 	_goptr := newQModelIndex(C.QDirModel_virtualbase_Parent(unsafe.Pointer(this.h), child.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnParent(slot func(super func(child *QModelIndex) *QModelIndex, child *QModelIndex) *QModelIndex) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -474,14 +471,12 @@ func miqt_exec_callback_QDirModel_Parent(self *C.QDirModel, cb C.intptr_t, child
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Parent, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_RowCount(parent *QModelIndex) int {
-
 	return (int)(C.QDirModel_virtualbase_RowCount(unsafe.Pointer(this.h), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnRowCount(slot func(super func(parent *QModelIndex) int, parent *QModelIndex) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -502,14 +497,12 @@ func miqt_exec_callback_QDirModel_RowCount(self *C.QDirModel, cb C.intptr_t, par
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_RowCount, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_ColumnCount(parent *QModelIndex) int {
-
 	return (int)(C.QDirModel_virtualbase_ColumnCount(unsafe.Pointer(this.h), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnColumnCount(slot func(super func(parent *QModelIndex) int, parent *QModelIndex) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -530,16 +523,14 @@ func miqt_exec_callback_QDirModel_ColumnCount(self *C.QDirModel, cb C.intptr_t, 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_ColumnCount, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_Data(index *QModelIndex, role int) *QVariant {
-
 	_goptr := newQVariant(C.QDirModel_virtualbase_Data(unsafe.Pointer(this.h), index.cPointer(), (C.int)(role)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnData(slot func(super func(index *QModelIndex, role int) *QVariant, index *QModelIndex, role int) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -562,14 +553,12 @@ func miqt_exec_callback_QDirModel_Data(self *C.QDirModel, cb C.intptr_t, index *
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Data, slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_SetData(index *QModelIndex, value *QVariant, role int) bool {
-
 	return (bool)(C.QDirModel_virtualbase_SetData(unsafe.Pointer(this.h), index.cPointer(), value.cPointer(), (C.int)(role)))
-
 }
+
 func (this *QDirModel) OnSetData(slot func(super func(index *QModelIndex, value *QVariant, role int) bool, index *QModelIndex, value *QVariant, role int) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -594,16 +583,14 @@ func miqt_exec_callback_QDirModel_SetData(self *C.QDirModel, cb C.intptr_t, inde
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_SetData, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_HeaderData(section int, orientation Orientation, role int) *QVariant {
-
 	_goptr := newQVariant(C.QDirModel_virtualbase_HeaderData(unsafe.Pointer(this.h), (C.int)(section), (C.int)(orientation), (C.int)(role)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnHeaderData(slot func(super func(section int, orientation Orientation, role int) *QVariant, section int, orientation Orientation, role int) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -628,14 +615,12 @@ func miqt_exec_callback_QDirModel_HeaderData(self *C.QDirModel, cb C.intptr_t, s
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_HeaderData, slotval1, slotval2, slotval3)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_HasChildren(index *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_HasChildren(unsafe.Pointer(this.h), index.cPointer()))
-
 }
+
 func (this *QDirModel) OnHasChildren(slot func(super func(index *QModelIndex) bool, index *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -656,14 +641,12 @@ func miqt_exec_callback_QDirModel_HasChildren(self *C.QDirModel, cb C.intptr_t, 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_HasChildren, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_Flags(index *QModelIndex) ItemFlag {
-
 	return (ItemFlag)(C.QDirModel_virtualbase_Flags(unsafe.Pointer(this.h), index.cPointer()))
-
 }
+
 func (this *QDirModel) OnFlags(slot func(super func(index *QModelIndex) ItemFlag, index *QModelIndex) ItemFlag) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -684,14 +667,12 @@ func miqt_exec_callback_QDirModel_Flags(self *C.QDirModel, cb C.intptr_t, index 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Flags, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_Sort(column int, order SortOrder) {
-
 	C.QDirModel_virtualbase_Sort(unsafe.Pointer(this.h), (C.int)(column), (C.int)(order))
-
 }
+
 func (this *QDirModel) OnSort(slot func(super func(column int, order SortOrder), column int, order SortOrder)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -712,11 +693,9 @@ func miqt_exec_callback_QDirModel_Sort(self *C.QDirModel, cb C.intptr_t, column 
 	slotval2 := (SortOrder)(order)
 
 	gofunc((&QDirModel{h: self}).callVirtualBase_Sort, slotval1, slotval2)
-
 }
 
 func (this *QDirModel) callVirtualBase_MimeTypes() []string {
-
 	var _ma C.struct_miqt_array = C.QDirModel_virtualbase_MimeTypes(unsafe.Pointer(this.h))
 	_ret := make([]string, int(_ma.len))
 	_outCast := (*[0xffff]C.struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
@@ -727,8 +706,8 @@ func (this *QDirModel) callVirtualBase_MimeTypes() []string {
 		_ret[i] = _lv_ret
 	}
 	return _ret
-
 }
+
 func (this *QDirModel) OnMimeTypes(slot func(super func() []string) []string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -756,7 +735,6 @@ func miqt_exec_callback_QDirModel_MimeTypes(self *C.QDirModel, cb C.intptr_t) C.
 	virtualReturn_ma := C.struct_miqt_array{len: C.size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
 
 	return virtualReturn_ma
-
 }
 
 func (this *QDirModel) callVirtualBase_MimeData(indexes []QModelIndex) *QMimeData {
@@ -768,8 +746,8 @@ func (this *QDirModel) callVirtualBase_MimeData(indexes []QModelIndex) *QMimeDat
 	indexes_ma := C.struct_miqt_array{len: C.size_t(len(indexes)), data: unsafe.Pointer(indexes_CArray)}
 
 	return newQMimeData(C.QDirModel_virtualbase_MimeData(unsafe.Pointer(this.h), indexes_ma))
-
 }
+
 func (this *QDirModel) OnMimeData(slot func(super func(indexes []QModelIndex) *QMimeData, indexes []QModelIndex) *QMimeData) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -798,14 +776,12 @@ func miqt_exec_callback_QDirModel_MimeData(self *C.QDirModel, cb C.intptr_t, ind
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_MimeData, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_DropMimeData(data *QMimeData, action DropAction, row int, column int, parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_DropMimeData(unsafe.Pointer(this.h), data.cPointer(), (C.int)(action), (C.int)(row), (C.int)(column), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnDropMimeData(slot func(super func(data *QMimeData, action DropAction, row int, column int, parent *QModelIndex) bool, data *QMimeData, action DropAction, row int, column int, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -834,14 +810,12 @@ func miqt_exec_callback_QDirModel_DropMimeData(self *C.QDirModel, cb C.intptr_t,
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_DropMimeData, slotval1, slotval2, slotval3, slotval4, slotval5)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_SupportedDropActions() DropAction {
-
 	return (DropAction)(C.QDirModel_virtualbase_SupportedDropActions(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QDirModel) OnSupportedDropActions(slot func(super func() DropAction) DropAction) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -859,16 +833,14 @@ func miqt_exec_callback_QDirModel_SupportedDropActions(self *C.QDirModel, cb C.i
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_SupportedDropActions)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_Sibling(row int, column int, idx *QModelIndex) *QModelIndex {
-
 	_goptr := newQModelIndex(C.QDirModel_virtualbase_Sibling(unsafe.Pointer(this.h), (C.int)(row), (C.int)(column), idx.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnSibling(slot func(super func(row int, column int, idx *QModelIndex) *QModelIndex, row int, column int, idx *QModelIndex) *QModelIndex) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -893,14 +865,12 @@ func miqt_exec_callback_QDirModel_Sibling(self *C.QDirModel, cb C.intptr_t, row 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Sibling, slotval1, slotval2, slotval3)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_SetHeaderData(section int, orientation Orientation, value *QVariant, role int) bool {
-
 	return (bool)(C.QDirModel_virtualbase_SetHeaderData(unsafe.Pointer(this.h), (C.int)(section), (C.int)(orientation), value.cPointer(), (C.int)(role)))
-
 }
+
 func (this *QDirModel) OnSetHeaderData(slot func(super func(section int, orientation Orientation, value *QVariant, role int) bool, section int, orientation Orientation, value *QVariant, role int) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -927,11 +897,9 @@ func miqt_exec_callback_QDirModel_SetHeaderData(self *C.QDirModel, cb C.intptr_t
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_SetHeaderData, slotval1, slotval2, slotval3, slotval4)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_ItemData(index *QModelIndex) map[int]QVariant {
-
 	var _mm C.struct_miqt_map = C.QDirModel_virtualbase_ItemData(unsafe.Pointer(this.h), index.cPointer())
 	_ret := make(map[int]QVariant, int(_mm.len))
 	_Keys := (*[0xffff]C.int)(unsafe.Pointer(_mm.keys))
@@ -946,8 +914,8 @@ func (this *QDirModel) callVirtualBase_ItemData(index *QModelIndex) map[int]QVar
 		_ret[_entry_Key] = _entry_Value
 	}
 	return _ret
-
 }
+
 func (this *QDirModel) OnItemData(slot func(super func(index *QModelIndex) map[int]QVariant, index *QModelIndex) map[int]QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -983,7 +951,6 @@ func miqt_exec_callback_QDirModel_ItemData(self *C.QDirModel, cb C.intptr_t, ind
 	}
 
 	return virtualReturn_mm
-
 }
 
 func (this *QDirModel) callVirtualBase_SetItemData(index *QModelIndex, roles map[int]QVariant) bool {
@@ -1004,8 +971,8 @@ func (this *QDirModel) callVirtualBase_SetItemData(index *QModelIndex, roles map
 	}
 
 	return (bool)(C.QDirModel_virtualbase_SetItemData(unsafe.Pointer(this.h), index.cPointer(), roles_mm))
-
 }
+
 func (this *QDirModel) OnSetItemData(slot func(super func(index *QModelIndex, roles map[int]QVariant) bool, index *QModelIndex, roles map[int]QVariant) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1041,14 +1008,12 @@ func miqt_exec_callback_QDirModel_SetItemData(self *C.QDirModel, cb C.intptr_t, 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_SetItemData, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_CanDropMimeData(data *QMimeData, action DropAction, row int, column int, parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_CanDropMimeData(unsafe.Pointer(this.h), data.cPointer(), (C.int)(action), (C.int)(row), (C.int)(column), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnCanDropMimeData(slot func(super func(data *QMimeData, action DropAction, row int, column int, parent *QModelIndex) bool, data *QMimeData, action DropAction, row int, column int, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1077,14 +1042,12 @@ func miqt_exec_callback_QDirModel_CanDropMimeData(self *C.QDirModel, cb C.intptr
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_CanDropMimeData, slotval1, slotval2, slotval3, slotval4, slotval5)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_SupportedDragActions() DropAction {
-
 	return (DropAction)(C.QDirModel_virtualbase_SupportedDragActions(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QDirModel) OnSupportedDragActions(slot func(super func() DropAction) DropAction) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1102,14 +1065,12 @@ func miqt_exec_callback_QDirModel_SupportedDragActions(self *C.QDirModel, cb C.i
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_SupportedDragActions)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_InsertRows(row int, count int, parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_InsertRows(unsafe.Pointer(this.h), (C.int)(row), (C.int)(count), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnInsertRows(slot func(super func(row int, count int, parent *QModelIndex) bool, row int, count int, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1134,14 +1095,12 @@ func miqt_exec_callback_QDirModel_InsertRows(self *C.QDirModel, cb C.intptr_t, r
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_InsertRows, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_InsertColumns(column int, count int, parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_InsertColumns(unsafe.Pointer(this.h), (C.int)(column), (C.int)(count), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnInsertColumns(slot func(super func(column int, count int, parent *QModelIndex) bool, column int, count int, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1166,14 +1125,12 @@ func miqt_exec_callback_QDirModel_InsertColumns(self *C.QDirModel, cb C.intptr_t
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_InsertColumns, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_RemoveRows(row int, count int, parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_RemoveRows(unsafe.Pointer(this.h), (C.int)(row), (C.int)(count), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnRemoveRows(slot func(super func(row int, count int, parent *QModelIndex) bool, row int, count int, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1198,14 +1155,12 @@ func miqt_exec_callback_QDirModel_RemoveRows(self *C.QDirModel, cb C.intptr_t, r
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_RemoveRows, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_RemoveColumns(column int, count int, parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_RemoveColumns(unsafe.Pointer(this.h), (C.int)(column), (C.int)(count), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnRemoveColumns(slot func(super func(column int, count int, parent *QModelIndex) bool, column int, count int, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1230,14 +1185,12 @@ func miqt_exec_callback_QDirModel_RemoveColumns(self *C.QDirModel, cb C.intptr_t
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_RemoveColumns, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_MoveRows(sourceParent *QModelIndex, sourceRow int, count int, destinationParent *QModelIndex, destinationChild int) bool {
-
 	return (bool)(C.QDirModel_virtualbase_MoveRows(unsafe.Pointer(this.h), sourceParent.cPointer(), (C.int)(sourceRow), (C.int)(count), destinationParent.cPointer(), (C.int)(destinationChild)))
-
 }
+
 func (this *QDirModel) OnMoveRows(slot func(super func(sourceParent *QModelIndex, sourceRow int, count int, destinationParent *QModelIndex, destinationChild int) bool, sourceParent *QModelIndex, sourceRow int, count int, destinationParent *QModelIndex, destinationChild int) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1266,14 +1219,12 @@ func miqt_exec_callback_QDirModel_MoveRows(self *C.QDirModel, cb C.intptr_t, sou
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_MoveRows, slotval1, slotval2, slotval3, slotval4, slotval5)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_MoveColumns(sourceParent *QModelIndex, sourceColumn int, count int, destinationParent *QModelIndex, destinationChild int) bool {
-
 	return (bool)(C.QDirModel_virtualbase_MoveColumns(unsafe.Pointer(this.h), sourceParent.cPointer(), (C.int)(sourceColumn), (C.int)(count), destinationParent.cPointer(), (C.int)(destinationChild)))
-
 }
+
 func (this *QDirModel) OnMoveColumns(slot func(super func(sourceParent *QModelIndex, sourceColumn int, count int, destinationParent *QModelIndex, destinationChild int) bool, sourceParent *QModelIndex, sourceColumn int, count int, destinationParent *QModelIndex, destinationChild int) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1302,14 +1253,12 @@ func miqt_exec_callback_QDirModel_MoveColumns(self *C.QDirModel, cb C.intptr_t, 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_MoveColumns, slotval1, slotval2, slotval3, slotval4, slotval5)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_FetchMore(parent *QModelIndex) {
-
 	C.QDirModel_virtualbase_FetchMore(unsafe.Pointer(this.h), parent.cPointer())
-
 }
+
 func (this *QDirModel) OnFetchMore(slot func(super func(parent *QModelIndex), parent *QModelIndex)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1328,14 +1277,12 @@ func miqt_exec_callback_QDirModel_FetchMore(self *C.QDirModel, cb C.intptr_t, pa
 	slotval1 := newQModelIndex(parent)
 
 	gofunc((&QDirModel{h: self}).callVirtualBase_FetchMore, slotval1)
-
 }
 
 func (this *QDirModel) callVirtualBase_CanFetchMore(parent *QModelIndex) bool {
-
 	return (bool)(C.QDirModel_virtualbase_CanFetchMore(unsafe.Pointer(this.h), parent.cPointer()))
-
 }
+
 func (this *QDirModel) OnCanFetchMore(slot func(super func(parent *QModelIndex) bool, parent *QModelIndex) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1356,16 +1303,14 @@ func miqt_exec_callback_QDirModel_CanFetchMore(self *C.QDirModel, cb C.intptr_t,
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_CanFetchMore, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_Buddy(index *QModelIndex) *QModelIndex {
-
 	_goptr := newQModelIndex(C.QDirModel_virtualbase_Buddy(unsafe.Pointer(this.h), index.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnBuddy(slot func(super func(index *QModelIndex) *QModelIndex, index *QModelIndex) *QModelIndex) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1386,11 +1331,9 @@ func miqt_exec_callback_QDirModel_Buddy(self *C.QDirModel, cb C.intptr_t, index 
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Buddy, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_Match(start *QModelIndex, role int, value *QVariant, hits int, flags MatchFlag) []QModelIndex {
-
 	var _ma C.struct_miqt_array = C.QDirModel_virtualbase_Match(unsafe.Pointer(this.h), start.cPointer(), (C.int)(role), value.cPointer(), (C.int)(hits), (C.int)(flags))
 	_ret := make([]QModelIndex, int(_ma.len))
 	_outCast := (*[0xffff]*C.QModelIndex)(unsafe.Pointer(_ma.data)) // hey ya
@@ -1400,8 +1343,8 @@ func (this *QDirModel) callVirtualBase_Match(start *QModelIndex, role int, value
 		_ret[i] = *_lv_goptr
 	}
 	return _ret
-
 }
+
 func (this *QDirModel) OnMatch(slot func(super func(start *QModelIndex, role int, value *QVariant, hits int, flags MatchFlag) []QModelIndex, start *QModelIndex, role int, value *QVariant, hits int, flags MatchFlag) []QModelIndex) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1436,16 +1379,14 @@ func miqt_exec_callback_QDirModel_Match(self *C.QDirModel, cb C.intptr_t, start 
 	virtualReturn_ma := C.struct_miqt_array{len: C.size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
 
 	return virtualReturn_ma
-
 }
 
 func (this *QDirModel) callVirtualBase_Span(index *QModelIndex) *QSize {
-
 	_goptr := newQSize(C.QDirModel_virtualbase_Span(unsafe.Pointer(this.h), index.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QDirModel) OnSpan(slot func(super func(index *QModelIndex) *QSize, index *QModelIndex) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1466,11 +1407,9 @@ func miqt_exec_callback_QDirModel_Span(self *C.QDirModel, cb C.intptr_t, index *
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Span, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QDirModel) callVirtualBase_RoleNames() map[int][]byte {
-
 	var _mm C.struct_miqt_map = C.QDirModel_virtualbase_RoleNames(unsafe.Pointer(this.h))
 	_ret := make(map[int][]byte, int(_mm.len))
 	_Keys := (*[0xffff]C.int)(unsafe.Pointer(_mm.keys))
@@ -1485,8 +1424,8 @@ func (this *QDirModel) callVirtualBase_RoleNames() map[int][]byte {
 		_ret[_entry_Key] = _entry_Value
 	}
 	return _ret
-
 }
+
 func (this *QDirModel) OnRoleNames(slot func(super func() map[int][]byte) map[int][]byte) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1522,14 +1461,12 @@ func miqt_exec_callback_QDirModel_RoleNames(self *C.QDirModel, cb C.intptr_t) C.
 	}
 
 	return virtualReturn_mm
-
 }
 
 func (this *QDirModel) callVirtualBase_Submit() bool {
-
 	return (bool)(C.QDirModel_virtualbase_Submit(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QDirModel) OnSubmit(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1547,14 +1484,12 @@ func miqt_exec_callback_QDirModel_Submit(self *C.QDirModel, cb C.intptr_t) C.boo
 	virtualReturn := gofunc((&QDirModel{h: self}).callVirtualBase_Submit)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDirModel) callVirtualBase_Revert() {
-
 	C.QDirModel_virtualbase_Revert(unsafe.Pointer(this.h))
-
 }
+
 func (this *QDirModel) OnRevert(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1570,7 +1505,6 @@ func miqt_exec_callback_QDirModel_Revert(self *C.QDirModel, cb C.intptr_t) {
 	}
 
 	gofunc((&QDirModel{h: self}).callVirtualBase_Revert)
-
 }
 
 // Delete this object from C++ memory.

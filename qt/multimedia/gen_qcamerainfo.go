@@ -48,7 +48,6 @@ func UnsafeNewQCameraInfo(h unsafe.Pointer) *QCameraInfo {
 
 // NewQCameraInfo constructs a new QCameraInfo object.
 func NewQCameraInfo() *QCameraInfo {
-
 	ret := newQCameraInfo(C.QCameraInfo_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQCameraInfo() *QCameraInfo {
 
 // NewQCameraInfo2 constructs a new QCameraInfo object.
 func NewQCameraInfo2(camera *QCamera) *QCameraInfo {
-
 	ret := newQCameraInfo(C.QCameraInfo_new2(camera.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQCameraInfo2(camera *QCamera) *QCameraInfo {
 
 // NewQCameraInfo3 constructs a new QCameraInfo object.
 func NewQCameraInfo3(other *QCameraInfo) *QCameraInfo {
-
 	ret := newQCameraInfo(C.QCameraInfo_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

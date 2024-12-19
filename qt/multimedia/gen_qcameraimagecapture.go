@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraImageCapture__Error int
@@ -69,9 +70,11 @@ func newQCameraImageCapture(h *C.QCameraImageCapture) *QCameraImageCapture {
 	var outptr_QMediaBindableInterface *C.QMediaBindableInterface = nil
 	C.QCameraImageCapture_virtbase(h, &outptr_QObject, &outptr_QMediaBindableInterface)
 
-	return &QCameraImageCapture{h: h,
+	return &QCameraImageCapture{
+		h:                       h,
 		QObject:                 qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
-		QMediaBindableInterface: newQMediaBindableInterface(outptr_QMediaBindableInterface)}
+		QMediaBindableInterface: newQMediaBindableInterface(outptr_QMediaBindableInterface),
+	}
 }
 
 // UnsafeNewQCameraImageCapture constructs the type using only unsafe pointers.
@@ -81,7 +84,6 @@ func UnsafeNewQCameraImageCapture(h unsafe.Pointer) *QCameraImageCapture {
 
 // NewQCameraImageCapture constructs a new QCameraImageCapture object.
 func NewQCameraImageCapture(mediaObject *QMediaObject) *QCameraImageCapture {
-
 	ret := newQCameraImageCapture(C.QCameraImageCapture_new(mediaObject.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -89,7 +91,6 @@ func NewQCameraImageCapture(mediaObject *QMediaObject) *QCameraImageCapture {
 
 // NewQCameraImageCapture2 constructs a new QCameraImageCapture object.
 func NewQCameraImageCapture2(mediaObject *QMediaObject, parent *qt.QObject) *QCameraImageCapture {
-
 	ret := newQCameraImageCapture(C.QCameraImageCapture_new2(mediaObject.cPointer(), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -241,6 +242,7 @@ func (this *QCameraImageCapture) Error2(id int, error QCameraImageCapture__Error
 	defer C.free(unsafe.Pointer(errorString_ms.data))
 	C.QCameraImageCapture_Error2(this.h, (C.int)(id), (C.int)(error), errorString_ms)
 }
+
 func (this *QCameraImageCapture) OnError2(slot func(id int, error QCameraImageCapture__Error, errorString string)) {
 	C.QCameraImageCapture_connect_Error2(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -268,6 +270,7 @@ func miqt_exec_callback_QCameraImageCapture_Error2(cb C.intptr_t, id C.int, erro
 func (this *QCameraImageCapture) ReadyForCaptureChanged(ready bool) {
 	C.QCameraImageCapture_ReadyForCaptureChanged(this.h, (C.bool)(ready))
 }
+
 func (this *QCameraImageCapture) OnReadyForCaptureChanged(slot func(ready bool)) {
 	C.QCameraImageCapture_connect_ReadyForCaptureChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -288,6 +291,7 @@ func miqt_exec_callback_QCameraImageCapture_ReadyForCaptureChanged(cb C.intptr_t
 func (this *QCameraImageCapture) BufferFormatChanged(format QVideoFrame__PixelFormat) {
 	C.QCameraImageCapture_BufferFormatChanged(this.h, (C.int)(format))
 }
+
 func (this *QCameraImageCapture) OnBufferFormatChanged(slot func(format QVideoFrame__PixelFormat)) {
 	C.QCameraImageCapture_connect_BufferFormatChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -308,6 +312,7 @@ func miqt_exec_callback_QCameraImageCapture_BufferFormatChanged(cb C.intptr_t, f
 func (this *QCameraImageCapture) CaptureDestinationChanged(destination QCameraImageCapture__CaptureDestination) {
 	C.QCameraImageCapture_CaptureDestinationChanged(this.h, (C.int)(destination))
 }
+
 func (this *QCameraImageCapture) OnCaptureDestinationChanged(slot func(destination QCameraImageCapture__CaptureDestination)) {
 	C.QCameraImageCapture_connect_CaptureDestinationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -328,6 +333,7 @@ func miqt_exec_callback_QCameraImageCapture_CaptureDestinationChanged(cb C.intpt
 func (this *QCameraImageCapture) ImageExposed(id int) {
 	C.QCameraImageCapture_ImageExposed(this.h, (C.int)(id))
 }
+
 func (this *QCameraImageCapture) OnImageExposed(slot func(id int)) {
 	C.QCameraImageCapture_connect_ImageExposed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -348,6 +354,7 @@ func miqt_exec_callback_QCameraImageCapture_ImageExposed(cb C.intptr_t, id C.int
 func (this *QCameraImageCapture) ImageCaptured(id int, preview *qt.QImage) {
 	C.QCameraImageCapture_ImageCaptured(this.h, (C.int)(id), (*C.QImage)(preview.UnsafePointer()))
 }
+
 func (this *QCameraImageCapture) OnImageCaptured(slot func(id int, preview *qt.QImage)) {
 	C.QCameraImageCapture_connect_ImageCaptured(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -374,6 +381,7 @@ func (this *QCameraImageCapture) ImageMetadataAvailable(id int, key string, valu
 	defer C.free(unsafe.Pointer(key_ms.data))
 	C.QCameraImageCapture_ImageMetadataAvailable(this.h, (C.int)(id), key_ms, (*C.QVariant)(value.UnsafePointer()))
 }
+
 func (this *QCameraImageCapture) OnImageMetadataAvailable(slot func(id int, key string, value *qt.QVariant)) {
 	C.QCameraImageCapture_connect_ImageMetadataAvailable(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -400,6 +408,7 @@ func miqt_exec_callback_QCameraImageCapture_ImageMetadataAvailable(cb C.intptr_t
 func (this *QCameraImageCapture) ImageAvailable(id int, frame *QVideoFrame) {
 	C.QCameraImageCapture_ImageAvailable(this.h, (C.int)(id), frame.cPointer())
 }
+
 func (this *QCameraImageCapture) OnImageAvailable(slot func(id int, frame *QVideoFrame)) {
 	C.QCameraImageCapture_connect_ImageAvailable(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -426,6 +435,7 @@ func (this *QCameraImageCapture) ImageSaved(id int, fileName string) {
 	defer C.free(unsafe.Pointer(fileName_ms.data))
 	C.QCameraImageCapture_ImageSaved(this.h, (C.int)(id), fileName_ms)
 }
+
 func (this *QCameraImageCapture) OnImageSaved(slot func(id int, fileName string)) {
 	C.QCameraImageCapture_connect_ImageSaved(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -525,10 +535,9 @@ func (this *QCameraImageCapture) Capture1(location string) int {
 }
 
 func (this *QCameraImageCapture) callVirtualBase_MediaObject() *QMediaObject {
-
 	return newQMediaObject(C.QCameraImageCapture_virtualbase_MediaObject(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QCameraImageCapture) OnMediaObject(slot func(super func() *QMediaObject) *QMediaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -546,14 +555,12 @@ func miqt_exec_callback_QCameraImageCapture_MediaObject(self *C.QCameraImageCapt
 	virtualReturn := gofunc((&QCameraImageCapture{h: self}).callVirtualBase_MediaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_SetMediaObject(mediaObject *QMediaObject) bool {
-
 	return (bool)(C.QCameraImageCapture_virtualbase_SetMediaObject(unsafe.Pointer(this.h), mediaObject.cPointer()))
-
 }
+
 func (this *QCameraImageCapture) OnSetMediaObject(slot func(super func(mediaObject *QMediaObject) bool, mediaObject *QMediaObject) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -574,14 +581,12 @@ func miqt_exec_callback_QCameraImageCapture_SetMediaObject(self *C.QCameraImageC
 	virtualReturn := gofunc((&QCameraImageCapture{h: self}).callVirtualBase_SetMediaObject, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QCameraImageCapture_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QCameraImageCapture) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -602,14 +607,12 @@ func miqt_exec_callback_QCameraImageCapture_Event(self *C.QCameraImageCapture, c
 	virtualReturn := gofunc((&QCameraImageCapture{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QCameraImageCapture_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QCameraImageCapture) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -632,14 +635,12 @@ func miqt_exec_callback_QCameraImageCapture_EventFilter(self *C.QCameraImageCapt
 	virtualReturn := gofunc((&QCameraImageCapture{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QCameraImageCapture_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QCameraImageCapture) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -658,14 +659,12 @@ func miqt_exec_callback_QCameraImageCapture_TimerEvent(self *C.QCameraImageCaptu
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QCameraImageCapture{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QCameraImageCapture_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QCameraImageCapture) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -684,14 +683,12 @@ func miqt_exec_callback_QCameraImageCapture_ChildEvent(self *C.QCameraImageCaptu
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QCameraImageCapture{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QCameraImageCapture_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QCameraImageCapture) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -710,14 +707,12 @@ func miqt_exec_callback_QCameraImageCapture_CustomEvent(self *C.QCameraImageCapt
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QCameraImageCapture{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QCameraImageCapture_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QCameraImageCapture) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -736,14 +731,12 @@ func miqt_exec_callback_QCameraImageCapture_ConnectNotify(self *C.QCameraImageCa
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QCameraImageCapture{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QCameraImageCapture) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QCameraImageCapture_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QCameraImageCapture) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -762,7 +755,6 @@ func miqt_exec_callback_QCameraImageCapture_DisconnectNotify(self *C.QCameraImag
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QCameraImageCapture{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

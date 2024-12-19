@@ -42,8 +42,10 @@ func newQFutureWatcherBase(h *C.QFutureWatcherBase) *QFutureWatcherBase {
 	var outptr_QObject *C.QObject = nil
 	C.QFutureWatcherBase_virtbase(h, &outptr_QObject)
 
-	return &QFutureWatcherBase{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QFutureWatcherBase{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQFutureWatcherBase constructs the type using only unsafe pointers.
@@ -132,6 +134,7 @@ func (this *QFutureWatcherBase) Event(event *QEvent) bool {
 func (this *QFutureWatcherBase) Started() {
 	C.QFutureWatcherBase_Started(this.h)
 }
+
 func (this *QFutureWatcherBase) OnStarted(slot func()) {
 	C.QFutureWatcherBase_connect_Started(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -149,6 +152,7 @@ func miqt_exec_callback_QFutureWatcherBase_Started(cb C.intptr_t) {
 func (this *QFutureWatcherBase) Finished() {
 	C.QFutureWatcherBase_Finished(this.h)
 }
+
 func (this *QFutureWatcherBase) OnFinished(slot func()) {
 	C.QFutureWatcherBase_connect_Finished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -166,6 +170,7 @@ func miqt_exec_callback_QFutureWatcherBase_Finished(cb C.intptr_t) {
 func (this *QFutureWatcherBase) Canceled() {
 	C.QFutureWatcherBase_Canceled(this.h)
 }
+
 func (this *QFutureWatcherBase) OnCanceled(slot func()) {
 	C.QFutureWatcherBase_connect_Canceled(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -183,6 +188,7 @@ func miqt_exec_callback_QFutureWatcherBase_Canceled(cb C.intptr_t) {
 func (this *QFutureWatcherBase) Paused() {
 	C.QFutureWatcherBase_Paused(this.h)
 }
+
 func (this *QFutureWatcherBase) OnPaused(slot func()) {
 	C.QFutureWatcherBase_connect_Paused(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -200,6 +206,7 @@ func miqt_exec_callback_QFutureWatcherBase_Paused(cb C.intptr_t) {
 func (this *QFutureWatcherBase) Suspending() {
 	C.QFutureWatcherBase_Suspending(this.h)
 }
+
 func (this *QFutureWatcherBase) OnSuspending(slot func()) {
 	C.QFutureWatcherBase_connect_Suspending(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -217,6 +224,7 @@ func miqt_exec_callback_QFutureWatcherBase_Suspending(cb C.intptr_t) {
 func (this *QFutureWatcherBase) Suspended() {
 	C.QFutureWatcherBase_Suspended(this.h)
 }
+
 func (this *QFutureWatcherBase) OnSuspended(slot func()) {
 	C.QFutureWatcherBase_connect_Suspended(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -234,6 +242,7 @@ func miqt_exec_callback_QFutureWatcherBase_Suspended(cb C.intptr_t) {
 func (this *QFutureWatcherBase) Resumed() {
 	C.QFutureWatcherBase_Resumed(this.h)
 }
+
 func (this *QFutureWatcherBase) OnResumed(slot func()) {
 	C.QFutureWatcherBase_connect_Resumed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -251,6 +260,7 @@ func miqt_exec_callback_QFutureWatcherBase_Resumed(cb C.intptr_t) {
 func (this *QFutureWatcherBase) ResultReadyAt(resultIndex int) {
 	C.QFutureWatcherBase_ResultReadyAt(this.h, (C.int)(resultIndex))
 }
+
 func (this *QFutureWatcherBase) OnResultReadyAt(slot func(resultIndex int)) {
 	C.QFutureWatcherBase_connect_ResultReadyAt(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -271,6 +281,7 @@ func miqt_exec_callback_QFutureWatcherBase_ResultReadyAt(cb C.intptr_t, resultIn
 func (this *QFutureWatcherBase) ResultsReadyAt(beginIndex int, endIndex int) {
 	C.QFutureWatcherBase_ResultsReadyAt(this.h, (C.int)(beginIndex), (C.int)(endIndex))
 }
+
 func (this *QFutureWatcherBase) OnResultsReadyAt(slot func(beginIndex int, endIndex int)) {
 	C.QFutureWatcherBase_connect_ResultsReadyAt(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -293,6 +304,7 @@ func miqt_exec_callback_QFutureWatcherBase_ResultsReadyAt(cb C.intptr_t, beginIn
 func (this *QFutureWatcherBase) ProgressRangeChanged(minimum int, maximum int) {
 	C.QFutureWatcherBase_ProgressRangeChanged(this.h, (C.int)(minimum), (C.int)(maximum))
 }
+
 func (this *QFutureWatcherBase) OnProgressRangeChanged(slot func(minimum int, maximum int)) {
 	C.QFutureWatcherBase_connect_ProgressRangeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -315,6 +327,7 @@ func miqt_exec_callback_QFutureWatcherBase_ProgressRangeChanged(cb C.intptr_t, m
 func (this *QFutureWatcherBase) ProgressValueChanged(progressValue int) {
 	C.QFutureWatcherBase_ProgressValueChanged(this.h, (C.int)(progressValue))
 }
+
 func (this *QFutureWatcherBase) OnProgressValueChanged(slot func(progressValue int)) {
 	C.QFutureWatcherBase_connect_ProgressValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -339,6 +352,7 @@ func (this *QFutureWatcherBase) ProgressTextChanged(progressText string) {
 	defer C.free(unsafe.Pointer(progressText_ms.data))
 	C.QFutureWatcherBase_ProgressTextChanged(this.h, progressText_ms)
 }
+
 func (this *QFutureWatcherBase) OnProgressTextChanged(slot func(progressText string)) {
 	C.QFutureWatcherBase_connect_ProgressTextChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

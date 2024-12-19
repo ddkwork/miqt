@@ -56,7 +56,6 @@ func UnsafeNewQDirIterator(h unsafe.Pointer) *QDirIterator {
 
 // NewQDirIterator constructs a new QDirIterator object.
 func NewQDirIterator(dir *QDir) *QDirIterator {
-
 	ret := newQDirIterator(C.QDirIterator_new(dir.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -110,7 +109,6 @@ func NewQDirIterator4(path string, nameFilters []string) *QDirIterator {
 
 // NewQDirIterator5 constructs a new QDirIterator object.
 func NewQDirIterator5(dir *QDir, flags QDirIterator__IteratorFlag) *QDirIterator {
-
 	ret := newQDirIterator(C.QDirIterator_new5(dir.cPointer(), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret

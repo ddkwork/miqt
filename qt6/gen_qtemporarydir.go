@@ -48,7 +48,6 @@ func UnsafeNewQTemporaryDir(h unsafe.Pointer) *QTemporaryDir {
 
 // NewQTemporaryDir constructs a new QTemporaryDir object.
 func NewQTemporaryDir() *QTemporaryDir {
-
 	ret := newQTemporaryDir(C.QTemporaryDir_new())
 	ret.isSubclass = true
 	return ret

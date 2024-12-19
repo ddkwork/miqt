@@ -56,7 +56,6 @@ func UnsafeNewQLine(h unsafe.Pointer) *QLine {
 
 // NewQLine constructs a new QLine object.
 func NewQLine() *QLine {
-
 	ret := newQLine(C.QLine_new())
 	ret.isSubclass = true
 	return ret
@@ -64,7 +63,6 @@ func NewQLine() *QLine {
 
 // NewQLine2 constructs a new QLine object.
 func NewQLine2(pt1 *QPoint, pt2 *QPoint) *QLine {
-
 	ret := newQLine(C.QLine_new2(pt1.cPointer(), pt2.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +70,6 @@ func NewQLine2(pt1 *QPoint, pt2 *QPoint) *QLine {
 
 // NewQLine3 constructs a new QLine object.
 func NewQLine3(x1 int, y1 int, x2 int, y2 int) *QLine {
-
 	ret := newQLine(C.QLine_new3((C.int)(x1), (C.int)(y1), (C.int)(x2), (C.int)(y2)))
 	ret.isSubclass = true
 	return ret
@@ -80,7 +77,6 @@ func NewQLine3(x1 int, y1 int, x2 int, y2 int) *QLine {
 
 // NewQLine4 constructs a new QLine object.
 func NewQLine4(param1 *QLine) *QLine {
-
 	ret := newQLine(C.QLine_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -231,7 +227,6 @@ func UnsafeNewQLineF(h unsafe.Pointer) *QLineF {
 
 // NewQLineF constructs a new QLineF object.
 func NewQLineF() *QLineF {
-
 	ret := newQLineF(C.QLineF_new())
 	ret.isSubclass = true
 	return ret
@@ -239,7 +234,6 @@ func NewQLineF() *QLineF {
 
 // NewQLineF2 constructs a new QLineF object.
 func NewQLineF2(pt1 *QPointF, pt2 *QPointF) *QLineF {
-
 	ret := newQLineF(C.QLineF_new2(pt1.cPointer(), pt2.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -247,7 +241,6 @@ func NewQLineF2(pt1 *QPointF, pt2 *QPointF) *QLineF {
 
 // NewQLineF3 constructs a new QLineF object.
 func NewQLineF3(x1 float64, y1 float64, x2 float64, y2 float64) *QLineF {
-
 	ret := newQLineF(C.QLineF_new3((C.double)(x1), (C.double)(y1), (C.double)(x2), (C.double)(y2)))
 	ret.isSubclass = true
 	return ret
@@ -255,7 +248,6 @@ func NewQLineF3(x1 float64, y1 float64, x2 float64, y2 float64) *QLineF {
 
 // NewQLineF4 constructs a new QLineF object.
 func NewQLineF4(line *QLine) *QLineF {
-
 	ret := newQLineF(C.QLineF_new4(line.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -263,7 +255,6 @@ func NewQLineF4(line *QLine) *QLineF {
 
 // NewQLineF5 constructs a new QLineF object.
 func NewQLineF5(param1 *QLineF) *QLineF {
-
 	ret := newQLineF(C.QLineF_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

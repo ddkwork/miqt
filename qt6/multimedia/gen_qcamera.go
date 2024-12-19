@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QCamera__Error int
@@ -124,8 +125,10 @@ func newQCamera(h *C.QCamera) *QCamera {
 	var outptr_QObject *C.QObject = nil
 	C.QCamera_virtbase(h, &outptr_QObject)
 
-	return &QCamera{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QCamera{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQCamera constructs the type using only unsafe pointers.
@@ -135,7 +138,6 @@ func UnsafeNewQCamera(h unsafe.Pointer) *QCamera {
 
 // NewQCamera constructs a new QCamera object.
 func NewQCamera() *QCamera {
-
 	ret := newQCamera(C.QCamera_new())
 	ret.isSubclass = true
 	return ret
@@ -143,7 +145,6 @@ func NewQCamera() *QCamera {
 
 // NewQCamera2 constructs a new QCamera object.
 func NewQCamera2(cameraDevice *QCameraDevice) *QCamera {
-
 	ret := newQCamera(C.QCamera_new2(cameraDevice.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -151,7 +152,6 @@ func NewQCamera2(cameraDevice *QCameraDevice) *QCamera {
 
 // NewQCamera3 constructs a new QCamera object.
 func NewQCamera3(position QCameraDevice__Position) *QCamera {
-
 	ret := newQCamera(C.QCamera_new3((C.int)(position)))
 	ret.isSubclass = true
 	return ret
@@ -159,7 +159,6 @@ func NewQCamera3(position QCameraDevice__Position) *QCamera {
 
 // NewQCamera4 constructs a new QCamera object.
 func NewQCamera4(parent *qt6.QObject) *QCamera {
-
 	ret := newQCamera(C.QCamera_new4((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -167,7 +166,6 @@ func NewQCamera4(parent *qt6.QObject) *QCamera {
 
 // NewQCamera5 constructs a new QCamera object.
 func NewQCamera5(cameraDevice *QCameraDevice, parent *qt6.QObject) *QCamera {
-
 	ret := newQCamera(C.QCamera_new5(cameraDevice.cPointer(), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -175,7 +173,6 @@ func NewQCamera5(cameraDevice *QCameraDevice, parent *qt6.QObject) *QCamera {
 
 // NewQCamera6 constructs a new QCamera object.
 func NewQCamera6(position QCameraDevice__Position, parent *qt6.QObject) *QCamera {
-
 	ret := newQCamera(C.QCamera_new6((C.int)(position), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -434,6 +431,7 @@ func (this *QCamera) SetColorTemperature(colorTemperature int) {
 func (this *QCamera) ActiveChanged(param1 bool) {
 	C.QCamera_ActiveChanged(this.h, (C.bool)(param1))
 }
+
 func (this *QCamera) OnActiveChanged(slot func(param1 bool)) {
 	C.QCamera_connect_ActiveChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -454,6 +452,7 @@ func miqt_exec_callback_QCamera_ActiveChanged(cb C.intptr_t, param1 C.bool) {
 func (this *QCamera) ErrorChanged() {
 	C.QCamera_ErrorChanged(this.h)
 }
+
 func (this *QCamera) OnErrorChanged(slot func()) {
 	C.QCamera_connect_ErrorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -475,6 +474,7 @@ func (this *QCamera) ErrorOccurred(error QCamera__Error, errorString string) {
 	defer C.free(unsafe.Pointer(errorString_ms.data))
 	C.QCamera_ErrorOccurred(this.h, (C.int)(error), errorString_ms)
 }
+
 func (this *QCamera) OnErrorOccurred(slot func(error QCamera__Error, errorString string)) {
 	C.QCamera_connect_ErrorOccurred(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -500,6 +500,7 @@ func miqt_exec_callback_QCamera_ErrorOccurred(cb C.intptr_t, error C.int, errorS
 func (this *QCamera) CameraDeviceChanged() {
 	C.QCamera_CameraDeviceChanged(this.h)
 }
+
 func (this *QCamera) OnCameraDeviceChanged(slot func()) {
 	C.QCamera_connect_CameraDeviceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -517,6 +518,7 @@ func miqt_exec_callback_QCamera_CameraDeviceChanged(cb C.intptr_t) {
 func (this *QCamera) CameraFormatChanged() {
 	C.QCamera_CameraFormatChanged(this.h)
 }
+
 func (this *QCamera) OnCameraFormatChanged(slot func()) {
 	C.QCamera_connect_CameraFormatChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -534,6 +536,7 @@ func miqt_exec_callback_QCamera_CameraFormatChanged(cb C.intptr_t) {
 func (this *QCamera) SupportedFeaturesChanged() {
 	C.QCamera_SupportedFeaturesChanged(this.h)
 }
+
 func (this *QCamera) OnSupportedFeaturesChanged(slot func()) {
 	C.QCamera_connect_SupportedFeaturesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -551,6 +554,7 @@ func miqt_exec_callback_QCamera_SupportedFeaturesChanged(cb C.intptr_t) {
 func (this *QCamera) FocusModeChanged() {
 	C.QCamera_FocusModeChanged(this.h)
 }
+
 func (this *QCamera) OnFocusModeChanged(slot func()) {
 	C.QCamera_connect_FocusModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -568,6 +572,7 @@ func miqt_exec_callback_QCamera_FocusModeChanged(cb C.intptr_t) {
 func (this *QCamera) ZoomFactorChanged(param1 float32) {
 	C.QCamera_ZoomFactorChanged(this.h, (C.float)(param1))
 }
+
 func (this *QCamera) OnZoomFactorChanged(slot func(param1 float32)) {
 	C.QCamera_connect_ZoomFactorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -588,6 +593,7 @@ func miqt_exec_callback_QCamera_ZoomFactorChanged(cb C.intptr_t, param1 C.float)
 func (this *QCamera) MinimumZoomFactorChanged(param1 float32) {
 	C.QCamera_MinimumZoomFactorChanged(this.h, (C.float)(param1))
 }
+
 func (this *QCamera) OnMinimumZoomFactorChanged(slot func(param1 float32)) {
 	C.QCamera_connect_MinimumZoomFactorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -608,6 +614,7 @@ func miqt_exec_callback_QCamera_MinimumZoomFactorChanged(cb C.intptr_t, param1 C
 func (this *QCamera) MaximumZoomFactorChanged(param1 float32) {
 	C.QCamera_MaximumZoomFactorChanged(this.h, (C.float)(param1))
 }
+
 func (this *QCamera) OnMaximumZoomFactorChanged(slot func(param1 float32)) {
 	C.QCamera_connect_MaximumZoomFactorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -628,6 +635,7 @@ func miqt_exec_callback_QCamera_MaximumZoomFactorChanged(cb C.intptr_t, param1 C
 func (this *QCamera) FocusDistanceChanged(param1 float32) {
 	C.QCamera_FocusDistanceChanged(this.h, (C.float)(param1))
 }
+
 func (this *QCamera) OnFocusDistanceChanged(slot func(param1 float32)) {
 	C.QCamera_connect_FocusDistanceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -648,6 +656,7 @@ func miqt_exec_callback_QCamera_FocusDistanceChanged(cb C.intptr_t, param1 C.flo
 func (this *QCamera) FocusPointChanged() {
 	C.QCamera_FocusPointChanged(this.h)
 }
+
 func (this *QCamera) OnFocusPointChanged(slot func()) {
 	C.QCamera_connect_FocusPointChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -665,6 +674,7 @@ func miqt_exec_callback_QCamera_FocusPointChanged(cb C.intptr_t) {
 func (this *QCamera) CustomFocusPointChanged() {
 	C.QCamera_CustomFocusPointChanged(this.h)
 }
+
 func (this *QCamera) OnCustomFocusPointChanged(slot func()) {
 	C.QCamera_connect_CustomFocusPointChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -682,6 +692,7 @@ func miqt_exec_callback_QCamera_CustomFocusPointChanged(cb C.intptr_t) {
 func (this *QCamera) FlashReady(param1 bool) {
 	C.QCamera_FlashReady(this.h, (C.bool)(param1))
 }
+
 func (this *QCamera) OnFlashReady(slot func(param1 bool)) {
 	C.QCamera_connect_FlashReady(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -702,6 +713,7 @@ func miqt_exec_callback_QCamera_FlashReady(cb C.intptr_t, param1 C.bool) {
 func (this *QCamera) FlashModeChanged() {
 	C.QCamera_FlashModeChanged(this.h)
 }
+
 func (this *QCamera) OnFlashModeChanged(slot func()) {
 	C.QCamera_connect_FlashModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -719,6 +731,7 @@ func miqt_exec_callback_QCamera_FlashModeChanged(cb C.intptr_t) {
 func (this *QCamera) TorchModeChanged() {
 	C.QCamera_TorchModeChanged(this.h)
 }
+
 func (this *QCamera) OnTorchModeChanged(slot func()) {
 	C.QCamera_connect_TorchModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -736,6 +749,7 @@ func miqt_exec_callback_QCamera_TorchModeChanged(cb C.intptr_t) {
 func (this *QCamera) ExposureTimeChanged(speed float32) {
 	C.QCamera_ExposureTimeChanged(this.h, (C.float)(speed))
 }
+
 func (this *QCamera) OnExposureTimeChanged(slot func(speed float32)) {
 	C.QCamera_connect_ExposureTimeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -756,6 +770,7 @@ func miqt_exec_callback_QCamera_ExposureTimeChanged(cb C.intptr_t, speed C.float
 func (this *QCamera) ManualExposureTimeChanged(speed float32) {
 	C.QCamera_ManualExposureTimeChanged(this.h, (C.float)(speed))
 }
+
 func (this *QCamera) OnManualExposureTimeChanged(slot func(speed float32)) {
 	C.QCamera_connect_ManualExposureTimeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -776,6 +791,7 @@ func miqt_exec_callback_QCamera_ManualExposureTimeChanged(cb C.intptr_t, speed C
 func (this *QCamera) IsoSensitivityChanged(param1 int) {
 	C.QCamera_IsoSensitivityChanged(this.h, (C.int)(param1))
 }
+
 func (this *QCamera) OnIsoSensitivityChanged(slot func(param1 int)) {
 	C.QCamera_connect_IsoSensitivityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -796,6 +812,7 @@ func miqt_exec_callback_QCamera_IsoSensitivityChanged(cb C.intptr_t, param1 C.in
 func (this *QCamera) ManualIsoSensitivityChanged(param1 int) {
 	C.QCamera_ManualIsoSensitivityChanged(this.h, (C.int)(param1))
 }
+
 func (this *QCamera) OnManualIsoSensitivityChanged(slot func(param1 int)) {
 	C.QCamera_connect_ManualIsoSensitivityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -816,6 +833,7 @@ func miqt_exec_callback_QCamera_ManualIsoSensitivityChanged(cb C.intptr_t, param
 func (this *QCamera) ExposureCompensationChanged(param1 float32) {
 	C.QCamera_ExposureCompensationChanged(this.h, (C.float)(param1))
 }
+
 func (this *QCamera) OnExposureCompensationChanged(slot func(param1 float32)) {
 	C.QCamera_connect_ExposureCompensationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -836,6 +854,7 @@ func miqt_exec_callback_QCamera_ExposureCompensationChanged(cb C.intptr_t, param
 func (this *QCamera) ExposureModeChanged() {
 	C.QCamera_ExposureModeChanged(this.h)
 }
+
 func (this *QCamera) OnExposureModeChanged(slot func()) {
 	C.QCamera_connect_ExposureModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -853,6 +872,7 @@ func miqt_exec_callback_QCamera_ExposureModeChanged(cb C.intptr_t) {
 func (this *QCamera) WhiteBalanceModeChanged() {
 	C.QCamera_WhiteBalanceModeChanged(this.h)
 }
+
 func (this *QCamera) OnWhiteBalanceModeChanged(slot func()) {
 	C.QCamera_connect_WhiteBalanceModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -870,6 +890,7 @@ func miqt_exec_callback_QCamera_WhiteBalanceModeChanged(cb C.intptr_t) {
 func (this *QCamera) ColorTemperatureChanged() {
 	C.QCamera_ColorTemperatureChanged(this.h)
 }
+
 func (this *QCamera) OnColorTemperatureChanged(slot func()) {
 	C.QCamera_connect_ColorTemperatureChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -887,6 +908,7 @@ func miqt_exec_callback_QCamera_ColorTemperatureChanged(cb C.intptr_t) {
 func (this *QCamera) BrightnessChanged() {
 	C.QCamera_BrightnessChanged(this.h)
 }
+
 func (this *QCamera) OnBrightnessChanged(slot func()) {
 	C.QCamera_connect_BrightnessChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -904,6 +926,7 @@ func miqt_exec_callback_QCamera_BrightnessChanged(cb C.intptr_t) {
 func (this *QCamera) ContrastChanged() {
 	C.QCamera_ContrastChanged(this.h)
 }
+
 func (this *QCamera) OnContrastChanged(slot func()) {
 	C.QCamera_connect_ContrastChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -921,6 +944,7 @@ func miqt_exec_callback_QCamera_ContrastChanged(cb C.intptr_t) {
 func (this *QCamera) SaturationChanged() {
 	C.QCamera_SaturationChanged(this.h)
 }
+
 func (this *QCamera) OnSaturationChanged(slot func()) {
 	C.QCamera_connect_SaturationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -938,6 +962,7 @@ func miqt_exec_callback_QCamera_SaturationChanged(cb C.intptr_t) {
 func (this *QCamera) HueChanged() {
 	C.QCamera_HueChanged(this.h)
 }
+
 func (this *QCamera) OnHueChanged(slot func()) {
 	C.QCamera_connect_HueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -975,10 +1000,9 @@ func QCamera_Tr3(s string, c string, n int) string {
 }
 
 func (this *QCamera) callVirtualBase_Event(event *qt6.QEvent) bool {
-
 	return (bool)(C.QCamera_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QCamera) OnEvent(slot func(super func(event *qt6.QEvent) bool, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -999,14 +1023,12 @@ func miqt_exec_callback_QCamera_Event(self *C.QCamera, cb C.intptr_t, event *C.Q
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCamera) callVirtualBase_EventFilter(watched *qt6.QObject, event *qt6.QEvent) bool {
-
 	return (bool)(C.QCamera_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QCamera) OnEventFilter(slot func(super func(watched *qt6.QObject, event *qt6.QEvent) bool, watched *qt6.QObject, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1029,14 +1051,12 @@ func miqt_exec_callback_QCamera_EventFilter(self *C.QCamera, cb C.intptr_t, watc
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCamera) callVirtualBase_TimerEvent(event *qt6.QTimerEvent) {
-
 	C.QCamera_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QCamera) OnTimerEvent(slot func(super func(event *qt6.QTimerEvent), event *qt6.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1055,14 +1075,12 @@ func miqt_exec_callback_QCamera_TimerEvent(self *C.QCamera, cb C.intptr_t, event
 	slotval1 := qt6.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QCamera{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QCamera) callVirtualBase_ChildEvent(event *qt6.QChildEvent) {
-
 	C.QCamera_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QCamera) OnChildEvent(slot func(super func(event *qt6.QChildEvent), event *qt6.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1081,14 +1099,12 @@ func miqt_exec_callback_QCamera_ChildEvent(self *C.QCamera, cb C.intptr_t, event
 	slotval1 := qt6.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QCamera{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QCamera) callVirtualBase_CustomEvent(event *qt6.QEvent) {
-
 	C.QCamera_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QCamera) OnCustomEvent(slot func(super func(event *qt6.QEvent), event *qt6.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1107,14 +1123,12 @@ func miqt_exec_callback_QCamera_CustomEvent(self *C.QCamera, cb C.intptr_t, even
 	slotval1 := qt6.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QCamera{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QCamera) callVirtualBase_ConnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QCamera_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QCamera) OnConnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1133,14 +1147,12 @@ func miqt_exec_callback_QCamera_ConnectNotify(self *C.QCamera, cb C.intptr_t, si
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QCamera{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QCamera) callVirtualBase_DisconnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QCamera_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QCamera) OnDisconnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1159,7 +1171,6 @@ func miqt_exec_callback_QCamera_DisconnectNotify(self *C.QCamera, cb C.intptr_t,
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QCamera{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

@@ -42,8 +42,10 @@ func newQGraphicsTransform(h *C.QGraphicsTransform) *QGraphicsTransform {
 	var outptr_QObject *C.QObject = nil
 	C.QGraphicsTransform_virtbase(h, &outptr_QObject)
 
-	return &QGraphicsTransform{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QGraphicsTransform{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQGraphicsTransform constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQGraphicsTransform(h unsafe.Pointer) *QGraphicsTransform {
 
 // NewQGraphicsTransform constructs a new QGraphicsTransform object.
 func NewQGraphicsTransform() *QGraphicsTransform {
-
 	ret := newQGraphicsTransform(C.QGraphicsTransform_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQGraphicsTransform() *QGraphicsTransform {
 
 // NewQGraphicsTransform2 constructs a new QGraphicsTransform object.
 func NewQGraphicsTransform2(parent *QObject) *QGraphicsTransform {
-
 	ret := newQGraphicsTransform(C.QGraphicsTransform_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -111,6 +111,7 @@ func QGraphicsTransform_Tr3(s string, c string, n int) string {
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QGraphicsTransform) OnApplyTo(slot func(matrix *QMatrix4x4)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -129,14 +130,12 @@ func miqt_exec_callback_QGraphicsTransform_ApplyTo(self *C.QGraphicsTransform, c
 	slotval1 := newQMatrix4x4(matrix)
 
 	gofunc(slotval1)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QGraphicsTransform_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QGraphicsTransform) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -157,14 +156,12 @@ func miqt_exec_callback_QGraphicsTransform_Event(self *C.QGraphicsTransform, cb 
 	virtualReturn := gofunc((&QGraphicsTransform{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QGraphicsTransform_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QGraphicsTransform) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -187,14 +184,12 @@ func miqt_exec_callback_QGraphicsTransform_EventFilter(self *C.QGraphicsTransfor
 	virtualReturn := gofunc((&QGraphicsTransform{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QGraphicsTransform_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsTransform) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -213,14 +208,12 @@ func miqt_exec_callback_QGraphicsTransform_TimerEvent(self *C.QGraphicsTransform
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QGraphicsTransform{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QGraphicsTransform_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsTransform) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -239,14 +232,12 @@ func miqt_exec_callback_QGraphicsTransform_ChildEvent(self *C.QGraphicsTransform
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QGraphicsTransform{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QGraphicsTransform_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGraphicsTransform) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -265,14 +256,12 @@ func miqt_exec_callback_QGraphicsTransform_CustomEvent(self *C.QGraphicsTransfor
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGraphicsTransform{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QGraphicsTransform_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QGraphicsTransform) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -291,14 +280,12 @@ func miqt_exec_callback_QGraphicsTransform_ConnectNotify(self *C.QGraphicsTransf
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QGraphicsTransform{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QGraphicsTransform) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QGraphicsTransform_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QGraphicsTransform) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -317,7 +304,6 @@ func miqt_exec_callback_QGraphicsTransform_DisconnectNotify(self *C.QGraphicsTra
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QGraphicsTransform{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -362,8 +348,10 @@ func newQGraphicsScale(h *C.QGraphicsScale) *QGraphicsScale {
 	var outptr_QGraphicsTransform *C.QGraphicsTransform = nil
 	C.QGraphicsScale_virtbase(h, &outptr_QGraphicsTransform)
 
-	return &QGraphicsScale{h: h,
-		QGraphicsTransform: newQGraphicsTransform(outptr_QGraphicsTransform)}
+	return &QGraphicsScale{
+		h:                  h,
+		QGraphicsTransform: newQGraphicsTransform(outptr_QGraphicsTransform),
+	}
 }
 
 // UnsafeNewQGraphicsScale constructs the type using only unsafe pointers.
@@ -373,7 +361,6 @@ func UnsafeNewQGraphicsScale(h unsafe.Pointer) *QGraphicsScale {
 
 // NewQGraphicsScale constructs a new QGraphicsScale object.
 func NewQGraphicsScale() *QGraphicsScale {
-
 	ret := newQGraphicsScale(C.QGraphicsScale_new())
 	ret.isSubclass = true
 	return ret
@@ -381,7 +368,6 @@ func NewQGraphicsScale() *QGraphicsScale {
 
 // NewQGraphicsScale2 constructs a new QGraphicsScale object.
 func NewQGraphicsScale2(parent *QObject) *QGraphicsScale {
-
 	ret := newQGraphicsScale(C.QGraphicsScale_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -447,6 +433,7 @@ func (this *QGraphicsScale) ApplyTo(matrix *QMatrix4x4) {
 func (this *QGraphicsScale) OriginChanged() {
 	C.QGraphicsScale_OriginChanged(this.h)
 }
+
 func (this *QGraphicsScale) OnOriginChanged(slot func()) {
 	C.QGraphicsScale_connect_OriginChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -464,6 +451,7 @@ func miqt_exec_callback_QGraphicsScale_OriginChanged(cb C.intptr_t) {
 func (this *QGraphicsScale) XScaleChanged() {
 	C.QGraphicsScale_XScaleChanged(this.h)
 }
+
 func (this *QGraphicsScale) OnXScaleChanged(slot func()) {
 	C.QGraphicsScale_connect_XScaleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -481,6 +469,7 @@ func miqt_exec_callback_QGraphicsScale_XScaleChanged(cb C.intptr_t) {
 func (this *QGraphicsScale) YScaleChanged() {
 	C.QGraphicsScale_YScaleChanged(this.h)
 }
+
 func (this *QGraphicsScale) OnYScaleChanged(slot func()) {
 	C.QGraphicsScale_connect_YScaleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -498,6 +487,7 @@ func miqt_exec_callback_QGraphicsScale_YScaleChanged(cb C.intptr_t) {
 func (this *QGraphicsScale) ZScaleChanged() {
 	C.QGraphicsScale_ZScaleChanged(this.h)
 }
+
 func (this *QGraphicsScale) OnZScaleChanged(slot func()) {
 	C.QGraphicsScale_connect_ZScaleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -515,6 +505,7 @@ func miqt_exec_callback_QGraphicsScale_ZScaleChanged(cb C.intptr_t) {
 func (this *QGraphicsScale) ScaleChanged() {
 	C.QGraphicsScale_ScaleChanged(this.h)
 }
+
 func (this *QGraphicsScale) OnScaleChanged(slot func()) {
 	C.QGraphicsScale_connect_ScaleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -552,10 +543,9 @@ func QGraphicsScale_Tr3(s string, c string, n int) string {
 }
 
 func (this *QGraphicsScale) callVirtualBase_ApplyTo(matrix *QMatrix4x4) {
-
 	C.QGraphicsScale_virtualbase_ApplyTo(unsafe.Pointer(this.h), matrix.cPointer())
-
 }
+
 func (this *QGraphicsScale) OnApplyTo(slot func(super func(matrix *QMatrix4x4), matrix *QMatrix4x4)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -574,7 +564,6 @@ func miqt_exec_callback_QGraphicsScale_ApplyTo(self *C.QGraphicsScale, cb C.intp
 	slotval1 := newQMatrix4x4(matrix)
 
 	gofunc((&QGraphicsScale{h: self}).callVirtualBase_ApplyTo, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -619,8 +608,10 @@ func newQGraphicsRotation(h *C.QGraphicsRotation) *QGraphicsRotation {
 	var outptr_QGraphicsTransform *C.QGraphicsTransform = nil
 	C.QGraphicsRotation_virtbase(h, &outptr_QGraphicsTransform)
 
-	return &QGraphicsRotation{h: h,
-		QGraphicsTransform: newQGraphicsTransform(outptr_QGraphicsTransform)}
+	return &QGraphicsRotation{
+		h:                  h,
+		QGraphicsTransform: newQGraphicsTransform(outptr_QGraphicsTransform),
+	}
 }
 
 // UnsafeNewQGraphicsRotation constructs the type using only unsafe pointers.
@@ -630,7 +621,6 @@ func UnsafeNewQGraphicsRotation(h unsafe.Pointer) *QGraphicsRotation {
 
 // NewQGraphicsRotation constructs a new QGraphicsRotation object.
 func NewQGraphicsRotation() *QGraphicsRotation {
-
 	ret := newQGraphicsRotation(C.QGraphicsRotation_new())
 	ret.isSubclass = true
 	return ret
@@ -638,7 +628,6 @@ func NewQGraphicsRotation() *QGraphicsRotation {
 
 // NewQGraphicsRotation2 constructs a new QGraphicsRotation object.
 func NewQGraphicsRotation2(parent *QObject) *QGraphicsRotation {
-
 	ret := newQGraphicsRotation(C.QGraphicsRotation_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -702,6 +691,7 @@ func (this *QGraphicsRotation) ApplyTo(matrix *QMatrix4x4) {
 func (this *QGraphicsRotation) OriginChanged() {
 	C.QGraphicsRotation_OriginChanged(this.h)
 }
+
 func (this *QGraphicsRotation) OnOriginChanged(slot func()) {
 	C.QGraphicsRotation_connect_OriginChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -719,6 +709,7 @@ func miqt_exec_callback_QGraphicsRotation_OriginChanged(cb C.intptr_t) {
 func (this *QGraphicsRotation) AngleChanged() {
 	C.QGraphicsRotation_AngleChanged(this.h)
 }
+
 func (this *QGraphicsRotation) OnAngleChanged(slot func()) {
 	C.QGraphicsRotation_connect_AngleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -736,6 +727,7 @@ func miqt_exec_callback_QGraphicsRotation_AngleChanged(cb C.intptr_t) {
 func (this *QGraphicsRotation) AxisChanged() {
 	C.QGraphicsRotation_AxisChanged(this.h)
 }
+
 func (this *QGraphicsRotation) OnAxisChanged(slot func()) {
 	C.QGraphicsRotation_connect_AxisChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -773,10 +765,9 @@ func QGraphicsRotation_Tr3(s string, c string, n int) string {
 }
 
 func (this *QGraphicsRotation) callVirtualBase_ApplyTo(matrix *QMatrix4x4) {
-
 	C.QGraphicsRotation_virtualbase_ApplyTo(unsafe.Pointer(this.h), matrix.cPointer())
-
 }
+
 func (this *QGraphicsRotation) OnApplyTo(slot func(super func(matrix *QMatrix4x4), matrix *QMatrix4x4)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -795,7 +786,6 @@ func miqt_exec_callback_QGraphicsRotation_ApplyTo(self *C.QGraphicsRotation, cb 
 	slotval1 := newQMatrix4x4(matrix)
 
 	gofunc((&QGraphicsRotation{h: self}).callVirtualBase_ApplyTo, slotval1)
-
 }
 
 // Delete this object from C++ memory.

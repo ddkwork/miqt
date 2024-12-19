@@ -9,10 +9,11 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QSslServer struct {
@@ -43,8 +44,10 @@ func newQSslServer(h *C.QSslServer) *QSslServer {
 	var outptr_QTcpServer *C.QTcpServer = nil
 	C.QSslServer_virtbase(h, &outptr_QTcpServer)
 
-	return &QSslServer{h: h,
-		QTcpServer: newQTcpServer(outptr_QTcpServer)}
+	return &QSslServer{
+		h:          h,
+		QTcpServer: newQTcpServer(outptr_QTcpServer),
+	}
 }
 
 // UnsafeNewQSslServer constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQSslServer(h unsafe.Pointer) *QSslServer {
 
 // NewQSslServer constructs a new QSslServer object.
 func NewQSslServer() *QSslServer {
-
 	ret := newQSslServer(C.QSslServer_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQSslServer() *QSslServer {
 
 // NewQSslServer2 constructs a new QSslServer object.
 func NewQSslServer2(parent *qt6.QObject) *QSslServer {
-
 	ret := newQSslServer(C.QSslServer_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -114,6 +115,7 @@ func (this *QSslServer) SslErrors(socket *QSslSocket, errors []QSslError) {
 	errors_ma := C.struct_miqt_array{len: C.size_t(len(errors)), data: unsafe.Pointer(errors_CArray)}
 	C.QSslServer_SslErrors(this.h, socket.cPointer(), errors_ma)
 }
+
 func (this *QSslServer) OnSslErrors(slot func(socket *QSslSocket, errors []QSslError)) {
 	C.QSslServer_connect_SslErrors(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -144,6 +146,7 @@ func miqt_exec_callback_QSslServer_SslErrors(cb C.intptr_t, socket *C.QSslSocket
 func (this *QSslServer) PeerVerifyError(socket *QSslSocket, error *QSslError) {
 	C.QSslServer_PeerVerifyError(this.h, socket.cPointer(), error.cPointer())
 }
+
 func (this *QSslServer) OnPeerVerifyError(slot func(socket *QSslSocket, error *QSslError)) {
 	C.QSslServer_connect_PeerVerifyError(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -166,6 +169,7 @@ func miqt_exec_callback_QSslServer_PeerVerifyError(cb C.intptr_t, socket *C.QSsl
 func (this *QSslServer) ErrorOccurred(socket *QSslSocket, error QAbstractSocket__SocketError) {
 	C.QSslServer_ErrorOccurred(this.h, socket.cPointer(), (C.int)(error))
 }
+
 func (this *QSslServer) OnErrorOccurred(slot func(socket *QSslSocket, error QAbstractSocket__SocketError)) {
 	C.QSslServer_connect_ErrorOccurred(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -188,6 +192,7 @@ func miqt_exec_callback_QSslServer_ErrorOccurred(cb C.intptr_t, socket *C.QSslSo
 func (this *QSslServer) PreSharedKeyAuthenticationRequired(socket *QSslSocket, authenticator *QSslPreSharedKeyAuthenticator) {
 	C.QSslServer_PreSharedKeyAuthenticationRequired(this.h, socket.cPointer(), authenticator.cPointer())
 }
+
 func (this *QSslServer) OnPreSharedKeyAuthenticationRequired(slot func(socket *QSslSocket, authenticator *QSslPreSharedKeyAuthenticator)) {
 	C.QSslServer_connect_PreSharedKeyAuthenticationRequired(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -214,6 +219,7 @@ func (this *QSslServer) AlertSent(socket *QSslSocket, level QSsl__AlertLevel, ty
 	defer C.free(unsafe.Pointer(description_ms.data))
 	C.QSslServer_AlertSent(this.h, socket.cPointer(), (C.int)(level), (C.int)(typeVal), description_ms)
 }
+
 func (this *QSslServer) OnAlertSent(slot func(socket *QSslSocket, level QSsl__AlertLevel, typeVal QSsl__AlertType, description string)) {
 	C.QSslServer_connect_AlertSent(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -247,6 +253,7 @@ func (this *QSslServer) AlertReceived(socket *QSslSocket, level QSsl__AlertLevel
 	defer C.free(unsafe.Pointer(description_ms.data))
 	C.QSslServer_AlertReceived(this.h, socket.cPointer(), (C.int)(level), (C.int)(typeVal), description_ms)
 }
+
 func (this *QSslServer) OnAlertReceived(slot func(socket *QSslSocket, level QSsl__AlertLevel, typeVal QSsl__AlertType, description string)) {
 	C.QSslServer_connect_AlertReceived(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -276,6 +283,7 @@ func miqt_exec_callback_QSslServer_AlertReceived(cb C.intptr_t, socket *C.QSslSo
 func (this *QSslServer) HandshakeInterruptedOnError(socket *QSslSocket, error *QSslError) {
 	C.QSslServer_HandshakeInterruptedOnError(this.h, socket.cPointer(), error.cPointer())
 }
+
 func (this *QSslServer) OnHandshakeInterruptedOnError(slot func(socket *QSslSocket, error *QSslError)) {
 	C.QSslServer_connect_HandshakeInterruptedOnError(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -298,6 +306,7 @@ func miqt_exec_callback_QSslServer_HandshakeInterruptedOnError(cb C.intptr_t, so
 func (this *QSslServer) StartedEncryptionHandshake(socket *QSslSocket) {
 	C.QSslServer_StartedEncryptionHandshake(this.h, socket.cPointer())
 }
+
 func (this *QSslServer) OnStartedEncryptionHandshake(slot func(socket *QSslSocket)) {
 	C.QSslServer_connect_StartedEncryptionHandshake(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -338,10 +347,9 @@ func QSslServer_Tr3(s string, c string, n int) string {
 }
 
 func (this *QSslServer) callVirtualBase_IncomingConnection(socket uintptr) {
-
 	C.QSslServer_virtualbase_IncomingConnection(unsafe.Pointer(this.h), (C.intptr_t)(socket))
-
 }
+
 func (this *QSslServer) OnIncomingConnection(slot func(super func(socket uintptr), socket uintptr)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -360,14 +368,12 @@ func miqt_exec_callback_QSslServer_IncomingConnection(self *C.QSslServer, cb C.i
 	slotval1 := (uintptr)(socket)
 
 	gofunc((&QSslServer{h: self}).callVirtualBase_IncomingConnection, slotval1)
-
 }
 
 func (this *QSslServer) callVirtualBase_HasPendingConnections() bool {
-
 	return (bool)(C.QSslServer_virtualbase_HasPendingConnections(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSslServer) OnHasPendingConnections(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -385,14 +391,12 @@ func miqt_exec_callback_QSslServer_HasPendingConnections(self *C.QSslServer, cb 
 	virtualReturn := gofunc((&QSslServer{h: self}).callVirtualBase_HasPendingConnections)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSslServer) callVirtualBase_NextPendingConnection() *QTcpSocket {
-
 	return newQTcpSocket(C.QSslServer_virtualbase_NextPendingConnection(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSslServer) OnNextPendingConnection(slot func(super func() *QTcpSocket) *QTcpSocket) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -410,7 +414,6 @@ func miqt_exec_callback_QSslServer_NextPendingConnection(self *C.QSslServer, cb 
 	virtualReturn := gofunc((&QSslServer{h: self}).callVirtualBase_NextPendingConnection)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

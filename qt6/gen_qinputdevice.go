@@ -77,8 +77,10 @@ func newQInputDevice(h *C.QInputDevice) *QInputDevice {
 	var outptr_QObject *C.QObject = nil
 	C.QInputDevice_virtbase(h, &outptr_QObject)
 
-	return &QInputDevice{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QInputDevice{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQInputDevice constructs the type using only unsafe pointers.
@@ -88,7 +90,6 @@ func UnsafeNewQInputDevice(h unsafe.Pointer) *QInputDevice {
 
 // NewQInputDevice constructs a new QInputDevice object.
 func NewQInputDevice() *QInputDevice {
-
 	ret := newQInputDevice(C.QInputDevice_new())
 	ret.isSubclass = true
 	return ret
@@ -108,7 +109,6 @@ func NewQInputDevice2(name string, systemId int64, typeVal QInputDevice__DeviceT
 
 // NewQInputDevice3 constructs a new QInputDevice object.
 func NewQInputDevice3(parent *QObject) *QInputDevice {
-
 	ret := newQInputDevice(C.QInputDevice_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -235,6 +235,7 @@ func (this *QInputDevice) OperatorEqual(other *QInputDevice) bool {
 func (this *QInputDevice) AvailableVirtualGeometryChanged(area QRect) {
 	C.QInputDevice_AvailableVirtualGeometryChanged(this.h, area.cPointer())
 }
+
 func (this *QInputDevice) OnAvailableVirtualGeometryChanged(slot func(area QRect)) {
 	C.QInputDevice_connect_AvailableVirtualGeometryChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -285,10 +286,9 @@ func QInputDevice_PrimaryKeyboard1(seatName string) *QInputDevice {
 }
 
 func (this *QInputDevice) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QInputDevice_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QInputDevice) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -309,14 +309,12 @@ func miqt_exec_callback_QInputDevice_Event(self *C.QInputDevice, cb C.intptr_t, 
 	virtualReturn := gofunc((&QInputDevice{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QInputDevice) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QInputDevice_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QInputDevice) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -339,14 +337,12 @@ func miqt_exec_callback_QInputDevice_EventFilter(self *C.QInputDevice, cb C.intp
 	virtualReturn := gofunc((&QInputDevice{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QInputDevice) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QInputDevice_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QInputDevice) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -365,14 +361,12 @@ func miqt_exec_callback_QInputDevice_TimerEvent(self *C.QInputDevice, cb C.intpt
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QInputDevice{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QInputDevice) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QInputDevice_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QInputDevice) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -391,14 +385,12 @@ func miqt_exec_callback_QInputDevice_ChildEvent(self *C.QInputDevice, cb C.intpt
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QInputDevice{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QInputDevice) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QInputDevice_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QInputDevice) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -417,14 +409,12 @@ func miqt_exec_callback_QInputDevice_CustomEvent(self *C.QInputDevice, cb C.intp
 	slotval1 := newQEvent(event)
 
 	gofunc((&QInputDevice{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QInputDevice) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QInputDevice_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QInputDevice) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -443,14 +433,12 @@ func miqt_exec_callback_QInputDevice_ConnectNotify(self *C.QInputDevice, cb C.in
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QInputDevice{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QInputDevice) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QInputDevice_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QInputDevice) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -469,7 +457,6 @@ func miqt_exec_callback_QInputDevice_DisconnectNotify(self *C.QInputDevice, cb C
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QInputDevice{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

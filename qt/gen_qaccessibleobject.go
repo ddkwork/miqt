@@ -41,8 +41,10 @@ func newQAccessibleObject(h *C.QAccessibleObject) *QAccessibleObject {
 	var outptr_QAccessibleInterface *C.QAccessibleInterface = nil
 	C.QAccessibleObject_virtbase(h, &outptr_QAccessibleInterface)
 
-	return &QAccessibleObject{h: h,
-		QAccessibleInterface: newQAccessibleInterface(outptr_QAccessibleInterface)}
+	return &QAccessibleObject{
+		h:                    h,
+		QAccessibleInterface: newQAccessibleInterface(outptr_QAccessibleInterface),
+	}
 }
 
 // UnsafeNewQAccessibleObject constructs the type using only unsafe pointers.
@@ -104,8 +106,10 @@ func newQAccessibleApplication(h *C.QAccessibleApplication) *QAccessibleApplicat
 	var outptr_QAccessibleObject *C.QAccessibleObject = nil
 	C.QAccessibleApplication_virtbase(h, &outptr_QAccessibleObject)
 
-	return &QAccessibleApplication{h: h,
-		QAccessibleObject: newQAccessibleObject(outptr_QAccessibleObject)}
+	return &QAccessibleApplication{
+		h:                 h,
+		QAccessibleObject: newQAccessibleObject(outptr_QAccessibleObject),
+	}
 }
 
 // UnsafeNewQAccessibleApplication constructs the type using only unsafe pointers.
@@ -115,7 +119,6 @@ func UnsafeNewQAccessibleApplication(h unsafe.Pointer) *QAccessibleApplication {
 
 // NewQAccessibleApplication constructs a new QAccessibleApplication object.
 func NewQAccessibleApplication() *QAccessibleApplication {
-
 	ret := newQAccessibleApplication(C.QAccessibleApplication_new())
 	ret.isSubclass = true
 	return ret

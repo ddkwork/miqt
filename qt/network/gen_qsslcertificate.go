@@ -9,9 +9,10 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslCertificate__SubjectInfo int
@@ -71,7 +72,6 @@ func UnsafeNewQSslCertificate(h unsafe.Pointer) *QSslCertificate {
 
 // NewQSslCertificate constructs a new QSslCertificate object.
 func NewQSslCertificate(device *qt.QIODevice) *QSslCertificate {
-
 	ret := newQSslCertificate(C.QSslCertificate_new((*C.QIODevice)(device.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -79,7 +79,6 @@ func NewQSslCertificate(device *qt.QIODevice) *QSslCertificate {
 
 // NewQSslCertificate2 constructs a new QSslCertificate object.
 func NewQSslCertificate2() *QSslCertificate {
-
 	ret := newQSslCertificate(C.QSslCertificate_new2())
 	ret.isSubclass = true
 	return ret
@@ -87,7 +86,6 @@ func NewQSslCertificate2() *QSslCertificate {
 
 // NewQSslCertificate3 constructs a new QSslCertificate object.
 func NewQSslCertificate3(other *QSslCertificate) *QSslCertificate {
-
 	ret := newQSslCertificate(C.QSslCertificate_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -95,7 +93,6 @@ func NewQSslCertificate3(other *QSslCertificate) *QSslCertificate {
 
 // NewQSslCertificate4 constructs a new QSslCertificate object.
 func NewQSslCertificate4(device *qt.QIODevice, format QSsl__EncodingFormat) *QSslCertificate {
-
 	ret := newQSslCertificate(C.QSslCertificate_new4((*C.QIODevice)(device.UnsafePointer()), (C.int)(format)))
 	ret.isSubclass = true
 	return ret

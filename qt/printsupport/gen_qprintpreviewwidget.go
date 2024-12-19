@@ -9,10 +9,11 @@ package printsupport
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QPrintPreviewWidget__ViewMode int
@@ -59,8 +60,10 @@ func newQPrintPreviewWidget(h *C.QPrintPreviewWidget) *QPrintPreviewWidget {
 	var outptr_QWidget *C.QWidget = nil
 	C.QPrintPreviewWidget_virtbase(h, &outptr_QWidget)
 
-	return &QPrintPreviewWidget{h: h,
-		QWidget: qt.UnsafeNewQWidget(unsafe.Pointer(outptr_QWidget))}
+	return &QPrintPreviewWidget{
+		h:       h,
+		QWidget: qt.UnsafeNewQWidget(unsafe.Pointer(outptr_QWidget)),
+	}
 }
 
 // UnsafeNewQPrintPreviewWidget constructs the type using only unsafe pointers.
@@ -70,7 +73,6 @@ func UnsafeNewQPrintPreviewWidget(h unsafe.Pointer) *QPrintPreviewWidget {
 
 // NewQPrintPreviewWidget constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget(parent *qt.QWidget) *QPrintPreviewWidget {
-
 	ret := newQPrintPreviewWidget(C.QPrintPreviewWidget_new((*C.QWidget)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +80,6 @@ func NewQPrintPreviewWidget(parent *qt.QWidget) *QPrintPreviewWidget {
 
 // NewQPrintPreviewWidget2 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget2(printer *QPrinter) *QPrintPreviewWidget {
-
 	ret := newQPrintPreviewWidget(C.QPrintPreviewWidget_new2(printer.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -86,7 +87,6 @@ func NewQPrintPreviewWidget2(printer *QPrinter) *QPrintPreviewWidget {
 
 // NewQPrintPreviewWidget3 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget3() *QPrintPreviewWidget {
-
 	ret := newQPrintPreviewWidget(C.QPrintPreviewWidget_new3())
 	ret.isSubclass = true
 	return ret
@@ -94,7 +94,6 @@ func NewQPrintPreviewWidget3() *QPrintPreviewWidget {
 
 // NewQPrintPreviewWidget4 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget4(printer *QPrinter, parent *qt.QWidget) *QPrintPreviewWidget {
-
 	ret := newQPrintPreviewWidget(C.QPrintPreviewWidget_new4(printer.cPointer(), (*C.QWidget)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -102,7 +101,6 @@ func NewQPrintPreviewWidget4(printer *QPrinter, parent *qt.QWidget) *QPrintPrevi
 
 // NewQPrintPreviewWidget5 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget5(printer *QPrinter, parent *qt.QWidget, flags qt.WindowType) *QPrintPreviewWidget {
-
 	ret := newQPrintPreviewWidget(C.QPrintPreviewWidget_new5(printer.cPointer(), (*C.QWidget)(parent.UnsafePointer()), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -110,7 +108,6 @@ func NewQPrintPreviewWidget5(printer *QPrinter, parent *qt.QWidget, flags qt.Win
 
 // NewQPrintPreviewWidget6 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget6(parent *qt.QWidget, flags qt.WindowType) *QPrintPreviewWidget {
-
 	ret := newQPrintPreviewWidget(C.QPrintPreviewWidget_new6((*C.QWidget)(parent.UnsafePointer()), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -239,6 +236,7 @@ func (this *QPrintPreviewWidget) UpdatePreview() {
 func (this *QPrintPreviewWidget) PaintRequested(printer *QPrinter) {
 	C.QPrintPreviewWidget_PaintRequested(this.h, printer.cPointer())
 }
+
 func (this *QPrintPreviewWidget) OnPaintRequested(slot func(printer *QPrinter)) {
 	C.QPrintPreviewWidget_connect_PaintRequested(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -259,6 +257,7 @@ func miqt_exec_callback_QPrintPreviewWidget_PaintRequested(cb C.intptr_t, printe
 func (this *QPrintPreviewWidget) PreviewChanged() {
 	C.QPrintPreviewWidget_PreviewChanged(this.h)
 }
+
 func (this *QPrintPreviewWidget) OnPreviewChanged(slot func()) {
 	C.QPrintPreviewWidget_connect_PreviewChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -326,10 +325,9 @@ func (this *QPrintPreviewWidget) ZoomOut1(zoom float64) {
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_SetVisible(visible bool) {
-
 	C.QPrintPreviewWidget_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QPrintPreviewWidget) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -348,14 +346,12 @@ func miqt_exec_callback_QPrintPreviewWidget_SetVisible(self *C.QPrintPreviewWidg
 	slotval1 := (bool)(visible)
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_DevType() int {
-
 	return (int)(C.QPrintPreviewWidget_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QPrintPreviewWidget) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -373,16 +369,14 @@ func miqt_exec_callback_QPrintPreviewWidget_DevType(self *C.QPrintPreviewWidget,
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_SizeHint() *qt.QSize {
-
 	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(C.QPrintPreviewWidget_virtualbase_SizeHint(unsafe.Pointer(this.h))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QPrintPreviewWidget) OnSizeHint(slot func(super func() *qt.QSize) *qt.QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -400,16 +394,14 @@ func miqt_exec_callback_QPrintPreviewWidget_SizeHint(self *C.QPrintPreviewWidget
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_SizeHint)
 
 	return (*C.QSize)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_MinimumSizeHint() *qt.QSize {
-
 	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(C.QPrintPreviewWidget_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QPrintPreviewWidget) OnMinimumSizeHint(slot func(super func() *qt.QSize) *qt.QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -427,14 +419,12 @@ func miqt_exec_callback_QPrintPreviewWidget_MinimumSizeHint(self *C.QPrintPrevie
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return (*C.QSize)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QPrintPreviewWidget_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QPrintPreviewWidget) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -455,14 +445,12 @@ func miqt_exec_callback_QPrintPreviewWidget_HeightForWidth(self *C.QPrintPreview
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QPrintPreviewWidget_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QPrintPreviewWidget) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -480,14 +468,12 @@ func miqt_exec_callback_QPrintPreviewWidget_HasHeightForWidth(self *C.QPrintPrev
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_PaintEngine() *qt.QPaintEngine {
-
 	return qt.UnsafeNewQPaintEngine(unsafe.Pointer(C.QPrintPreviewWidget_virtualbase_PaintEngine(unsafe.Pointer(this.h))))
-
 }
+
 func (this *QPrintPreviewWidget) OnPaintEngine(slot func(super func() *qt.QPaintEngine) *qt.QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -505,14 +491,12 @@ func miqt_exec_callback_QPrintPreviewWidget_PaintEngine(self *C.QPrintPreviewWid
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_PaintEngine)
 
 	return (*C.QPaintEngine)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QPrintPreviewWidget_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QPrintPreviewWidget) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -533,14 +517,12 @@ func miqt_exec_callback_QPrintPreviewWidget_Event(self *C.QPrintPreviewWidget, c
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_MousePressEvent(event *qt.QMouseEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_MousePressEvent(unsafe.Pointer(this.h), (*C.QMouseEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnMousePressEvent(slot func(super func(event *qt.QMouseEvent), event *qt.QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -559,14 +541,12 @@ func miqt_exec_callback_QPrintPreviewWidget_MousePressEvent(self *C.QPrintPrevie
 	slotval1 := qt.UnsafeNewQMouseEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_MouseReleaseEvent(event *qt.QMouseEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), (*C.QMouseEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnMouseReleaseEvent(slot func(super func(event *qt.QMouseEvent), event *qt.QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -585,14 +565,12 @@ func miqt_exec_callback_QPrintPreviewWidget_MouseReleaseEvent(self *C.QPrintPrev
 	slotval1 := qt.UnsafeNewQMouseEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_MouseDoubleClickEvent(event *qt.QMouseEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), (*C.QMouseEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnMouseDoubleClickEvent(slot func(super func(event *qt.QMouseEvent), event *qt.QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -611,14 +589,12 @@ func miqt_exec_callback_QPrintPreviewWidget_MouseDoubleClickEvent(self *C.QPrint
 	slotval1 := qt.UnsafeNewQMouseEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_MouseMoveEvent(event *qt.QMouseEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), (*C.QMouseEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnMouseMoveEvent(slot func(super func(event *qt.QMouseEvent), event *qt.QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -637,14 +613,12 @@ func miqt_exec_callback_QPrintPreviewWidget_MouseMoveEvent(self *C.QPrintPreview
 	slotval1 := qt.UnsafeNewQMouseEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_WheelEvent(event *qt.QWheelEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_WheelEvent(unsafe.Pointer(this.h), (*C.QWheelEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnWheelEvent(slot func(super func(event *qt.QWheelEvent), event *qt.QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -663,14 +637,12 @@ func miqt_exec_callback_QPrintPreviewWidget_WheelEvent(self *C.QPrintPreviewWidg
 	slotval1 := qt.UnsafeNewQWheelEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_KeyPressEvent(event *qt.QKeyEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), (*C.QKeyEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnKeyPressEvent(slot func(super func(event *qt.QKeyEvent), event *qt.QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -689,14 +661,12 @@ func miqt_exec_callback_QPrintPreviewWidget_KeyPressEvent(self *C.QPrintPreviewW
 	slotval1 := qt.UnsafeNewQKeyEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_KeyReleaseEvent(event *qt.QKeyEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), (*C.QKeyEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnKeyReleaseEvent(slot func(super func(event *qt.QKeyEvent), event *qt.QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -715,14 +685,12 @@ func miqt_exec_callback_QPrintPreviewWidget_KeyReleaseEvent(self *C.QPrintPrevie
 	slotval1 := qt.UnsafeNewQKeyEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_FocusInEvent(event *qt.QFocusEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_FocusInEvent(unsafe.Pointer(this.h), (*C.QFocusEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnFocusInEvent(slot func(super func(event *qt.QFocusEvent), event *qt.QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -741,14 +709,12 @@ func miqt_exec_callback_QPrintPreviewWidget_FocusInEvent(self *C.QPrintPreviewWi
 	slotval1 := qt.UnsafeNewQFocusEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_FocusOutEvent(event *qt.QFocusEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), (*C.QFocusEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnFocusOutEvent(slot func(super func(event *qt.QFocusEvent), event *qt.QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -767,14 +733,12 @@ func miqt_exec_callback_QPrintPreviewWidget_FocusOutEvent(self *C.QPrintPreviewW
 	slotval1 := qt.UnsafeNewQFocusEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_EnterEvent(event *qt.QEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_EnterEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnEnterEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -793,14 +757,12 @@ func miqt_exec_callback_QPrintPreviewWidget_EnterEvent(self *C.QPrintPreviewWidg
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_LeaveEvent(event *qt.QEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_LeaveEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnLeaveEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -819,14 +781,12 @@ func miqt_exec_callback_QPrintPreviewWidget_LeaveEvent(self *C.QPrintPreviewWidg
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_PaintEvent(event *qt.QPaintEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_PaintEvent(unsafe.Pointer(this.h), (*C.QPaintEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnPaintEvent(slot func(super func(event *qt.QPaintEvent), event *qt.QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -845,14 +805,12 @@ func miqt_exec_callback_QPrintPreviewWidget_PaintEvent(self *C.QPrintPreviewWidg
 	slotval1 := qt.UnsafeNewQPaintEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_MoveEvent(event *qt.QMoveEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_MoveEvent(unsafe.Pointer(this.h), (*C.QMoveEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnMoveEvent(slot func(super func(event *qt.QMoveEvent), event *qt.QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -871,14 +829,12 @@ func miqt_exec_callback_QPrintPreviewWidget_MoveEvent(self *C.QPrintPreviewWidge
 	slotval1 := qt.UnsafeNewQMoveEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_ResizeEvent(event *qt.QResizeEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_ResizeEvent(unsafe.Pointer(this.h), (*C.QResizeEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnResizeEvent(slot func(super func(event *qt.QResizeEvent), event *qt.QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -897,14 +853,12 @@ func miqt_exec_callback_QPrintPreviewWidget_ResizeEvent(self *C.QPrintPreviewWid
 	slotval1 := qt.UnsafeNewQResizeEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_CloseEvent(event *qt.QCloseEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_CloseEvent(unsafe.Pointer(this.h), (*C.QCloseEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnCloseEvent(slot func(super func(event *qt.QCloseEvent), event *qt.QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -923,14 +877,12 @@ func miqt_exec_callback_QPrintPreviewWidget_CloseEvent(self *C.QPrintPreviewWidg
 	slotval1 := qt.UnsafeNewQCloseEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_ContextMenuEvent(event *qt.QContextMenuEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), (*C.QContextMenuEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnContextMenuEvent(slot func(super func(event *qt.QContextMenuEvent), event *qt.QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -949,14 +901,12 @@ func miqt_exec_callback_QPrintPreviewWidget_ContextMenuEvent(self *C.QPrintPrevi
 	slotval1 := qt.UnsafeNewQContextMenuEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_TabletEvent(event *qt.QTabletEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_TabletEvent(unsafe.Pointer(this.h), (*C.QTabletEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnTabletEvent(slot func(super func(event *qt.QTabletEvent), event *qt.QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -975,14 +925,12 @@ func miqt_exec_callback_QPrintPreviewWidget_TabletEvent(self *C.QPrintPreviewWid
 	slotval1 := qt.UnsafeNewQTabletEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_ActionEvent(event *qt.QActionEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_ActionEvent(unsafe.Pointer(this.h), (*C.QActionEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnActionEvent(slot func(super func(event *qt.QActionEvent), event *qt.QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1001,14 +949,12 @@ func miqt_exec_callback_QPrintPreviewWidget_ActionEvent(self *C.QPrintPreviewWid
 	slotval1 := qt.UnsafeNewQActionEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_DragEnterEvent(event *qt.QDragEnterEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), (*C.QDragEnterEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnDragEnterEvent(slot func(super func(event *qt.QDragEnterEvent), event *qt.QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1027,14 +973,12 @@ func miqt_exec_callback_QPrintPreviewWidget_DragEnterEvent(self *C.QPrintPreview
 	slotval1 := qt.UnsafeNewQDragEnterEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_DragMoveEvent(event *qt.QDragMoveEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), (*C.QDragMoveEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnDragMoveEvent(slot func(super func(event *qt.QDragMoveEvent), event *qt.QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1053,14 +997,12 @@ func miqt_exec_callback_QPrintPreviewWidget_DragMoveEvent(self *C.QPrintPreviewW
 	slotval1 := qt.UnsafeNewQDragMoveEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_DragLeaveEvent(event *qt.QDragLeaveEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), (*C.QDragLeaveEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnDragLeaveEvent(slot func(super func(event *qt.QDragLeaveEvent), event *qt.QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1079,14 +1021,12 @@ func miqt_exec_callback_QPrintPreviewWidget_DragLeaveEvent(self *C.QPrintPreview
 	slotval1 := qt.UnsafeNewQDragLeaveEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_DropEvent(event *qt.QDropEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_DropEvent(unsafe.Pointer(this.h), (*C.QDropEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnDropEvent(slot func(super func(event *qt.QDropEvent), event *qt.QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1105,14 +1045,12 @@ func miqt_exec_callback_QPrintPreviewWidget_DropEvent(self *C.QPrintPreviewWidge
 	slotval1 := qt.UnsafeNewQDropEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_ShowEvent(event *qt.QShowEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_ShowEvent(unsafe.Pointer(this.h), (*C.QShowEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnShowEvent(slot func(super func(event *qt.QShowEvent), event *qt.QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1131,14 +1069,12 @@ func miqt_exec_callback_QPrintPreviewWidget_ShowEvent(self *C.QPrintPreviewWidge
 	slotval1 := qt.UnsafeNewQShowEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_HideEvent(event *qt.QHideEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_HideEvent(unsafe.Pointer(this.h), (*C.QHideEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnHideEvent(slot func(super func(event *qt.QHideEvent), event *qt.QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1157,7 +1093,6 @@ func miqt_exec_callback_QPrintPreviewWidget_HideEvent(self *C.QPrintPreviewWidge
 	slotval1 := qt.UnsafeNewQHideEvent(unsafe.Pointer(event))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
@@ -1166,8 +1101,8 @@ func (this *QPrintPreviewWidget) callVirtualBase_NativeEvent(eventType []byte, m
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QPrintPreviewWidget_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
-
 }
+
 func (this *QPrintPreviewWidget) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1194,14 +1129,12 @@ func miqt_exec_callback_QPrintPreviewWidget_NativeEvent(self *C.QPrintPreviewWid
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_ChangeEvent(param1 *qt.QEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_ChangeEvent(unsafe.Pointer(this.h), (*C.QEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnChangeEvent(slot func(super func(param1 *qt.QEvent), param1 *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1220,14 +1153,12 @@ func miqt_exec_callback_QPrintPreviewWidget_ChangeEvent(self *C.QPrintPreviewWid
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_Metric(param1 qt.QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QPrintPreviewWidget_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QPrintPreviewWidget) OnMetric(slot func(super func(param1 qt.QPaintDevice__PaintDeviceMetric) int, param1 qt.QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1248,14 +1179,12 @@ func miqt_exec_callback_QPrintPreviewWidget_Metric(self *C.QPrintPreviewWidget, 
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_InitPainter(painter *qt.QPainter) {
-
 	C.QPrintPreviewWidget_virtualbase_InitPainter(unsafe.Pointer(this.h), (*C.QPainter)(painter.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnInitPainter(slot func(super func(painter *qt.QPainter), painter *qt.QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1274,14 +1203,12 @@ func miqt_exec_callback_QPrintPreviewWidget_InitPainter(self *C.QPrintPreviewWid
 	slotval1 := qt.UnsafeNewQPainter(unsafe.Pointer(painter))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_Redirected(offset *qt.QPoint) *qt.QPaintDevice {
-
 	return qt.UnsafeNewQPaintDevice(unsafe.Pointer(C.QPrintPreviewWidget_virtualbase_Redirected(unsafe.Pointer(this.h), (*C.QPoint)(offset.UnsafePointer()))))
-
 }
+
 func (this *QPrintPreviewWidget) OnRedirected(slot func(super func(offset *qt.QPoint) *qt.QPaintDevice, offset *qt.QPoint) *qt.QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1302,14 +1229,12 @@ func miqt_exec_callback_QPrintPreviewWidget_Redirected(self *C.QPrintPreviewWidg
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return (*C.QPaintDevice)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_SharedPainter() *qt.QPainter {
-
 	return qt.UnsafeNewQPainter(unsafe.Pointer(C.QPrintPreviewWidget_virtualbase_SharedPainter(unsafe.Pointer(this.h))))
-
 }
+
 func (this *QPrintPreviewWidget) OnSharedPainter(slot func(super func() *qt.QPainter) *qt.QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1327,14 +1252,12 @@ func miqt_exec_callback_QPrintPreviewWidget_SharedPainter(self *C.QPrintPreviewW
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_SharedPainter)
 
 	return (*C.QPainter)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_InputMethodEvent(param1 *qt.QInputMethodEvent) {
-
 	C.QPrintPreviewWidget_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), (*C.QInputMethodEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPrintPreviewWidget) OnInputMethodEvent(slot func(super func(param1 *qt.QInputMethodEvent), param1 *qt.QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1353,16 +1276,14 @@ func miqt_exec_callback_QPrintPreviewWidget_InputMethodEvent(self *C.QPrintPrevi
 	slotval1 := qt.UnsafeNewQInputMethodEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_InputMethodQuery(param1 qt.InputMethodQuery) *qt.QVariant {
-
 	_goptr := qt.UnsafeNewQVariant(unsafe.Pointer(C.QPrintPreviewWidget_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QPrintPreviewWidget) OnInputMethodQuery(slot func(super func(param1 qt.InputMethodQuery) *qt.QVariant, param1 qt.InputMethodQuery) *qt.QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1383,14 +1304,12 @@ func miqt_exec_callback_QPrintPreviewWidget_InputMethodQuery(self *C.QPrintPrevi
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return (*C.QVariant)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPrintPreviewWidget) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QPrintPreviewWidget_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QPrintPreviewWidget) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1411,7 +1330,6 @@ func miqt_exec_callback_QPrintPreviewWidget_FocusNextPrevChild(self *C.QPrintPre
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

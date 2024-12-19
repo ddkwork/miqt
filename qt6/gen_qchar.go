@@ -388,7 +388,6 @@ func UnsafeNewQLatin1Char(h unsafe.Pointer) *QLatin1Char {
 
 // NewQLatin1Char constructs a new QLatin1Char object.
 func NewQLatin1Char(c int8) *QLatin1Char {
-
 	ret := newQLatin1Char(C.QLatin1Char_new((C.char)(c)))
 	ret.isSubclass = true
 	return ret
@@ -396,7 +395,6 @@ func NewQLatin1Char(c int8) *QLatin1Char {
 
 // NewQLatin1Char2 constructs a new QLatin1Char object.
 func NewQLatin1Char2(param1 *QLatin1Char) *QLatin1Char {
-
 	ret := newQLatin1Char(C.QLatin1Char_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -455,7 +453,6 @@ func UnsafeNewQChar(h unsafe.Pointer) *QChar {
 
 // NewQChar constructs a new QChar object.
 func NewQChar() *QChar {
-
 	ret := newQChar(C.QChar_new())
 	ret.isSubclass = true
 	return ret
@@ -463,7 +460,6 @@ func NewQChar() *QChar {
 
 // NewQChar2 constructs a new QChar object.
 func NewQChar2(rc uint16) *QChar {
-
 	ret := newQChar(C.QChar_new2((C.uint16_t)(rc)))
 	ret.isSubclass = true
 	return ret
@@ -471,7 +467,6 @@ func NewQChar2(rc uint16) *QChar {
 
 // NewQChar3 constructs a new QChar object.
 func NewQChar3(c byte, r byte) *QChar {
-
 	ret := newQChar(C.QChar_new3((C.uchar)(c), (C.uchar)(r)))
 	ret.isSubclass = true
 	return ret
@@ -479,7 +474,6 @@ func NewQChar3(c byte, r byte) *QChar {
 
 // NewQChar4 constructs a new QChar object.
 func NewQChar4(rc int16) *QChar {
-
 	ret := newQChar(C.QChar_new4((C.int16_t)(rc)))
 	ret.isSubclass = true
 	return ret
@@ -487,7 +481,6 @@ func NewQChar4(rc int16) *QChar {
 
 // NewQChar5 constructs a new QChar object.
 func NewQChar5(rc uint) *QChar {
-
 	ret := newQChar(C.QChar_new5((C.uint)(rc)))
 	ret.isSubclass = true
 	return ret
@@ -495,7 +488,6 @@ func NewQChar5(rc uint) *QChar {
 
 // NewQChar6 constructs a new QChar object.
 func NewQChar6(rc int) *QChar {
-
 	ret := newQChar(C.QChar_new6((C.int)(rc)))
 	ret.isSubclass = true
 	return ret
@@ -503,7 +495,6 @@ func NewQChar6(rc int) *QChar {
 
 // NewQChar7 constructs a new QChar object.
 func NewQChar7(s QChar__SpecialCharacter) *QChar {
-
 	ret := newQChar(C.QChar_new7((C.int)(s)))
 	ret.isSubclass = true
 	return ret
@@ -511,7 +502,6 @@ func NewQChar7(s QChar__SpecialCharacter) *QChar {
 
 // NewQChar8 constructs a new QChar object.
 func NewQChar8(ch QLatin1Char) *QChar {
-
 	ret := newQChar(C.QChar_new8(ch.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -519,7 +509,6 @@ func NewQChar8(ch QLatin1Char) *QChar {
 
 // NewQChar9 constructs a new QChar object.
 func NewQChar9(c int8) *QChar {
-
 	ret := newQChar(C.QChar_new9((C.char)(c)))
 	ret.isSubclass = true
 	return ret
@@ -527,7 +516,6 @@ func NewQChar9(c int8) *QChar {
 
 // NewQChar10 constructs a new QChar object.
 func NewQChar10(c byte) *QChar {
-
 	ret := newQChar(C.QChar_new10((C.uchar)(c)))
 	ret.isSubclass = true
 	return ret
@@ -535,7 +523,6 @@ func NewQChar10(c byte) *QChar {
 
 // NewQChar11 constructs a new QChar object.
 func NewQChar11(param1 *QChar) *QChar {
-
 	ret := newQChar(C.QChar_new11(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

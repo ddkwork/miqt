@@ -63,8 +63,10 @@ func newQMdiArea(h *C.QMdiArea) *QMdiArea {
 	var outptr_QAbstractScrollArea *C.QAbstractScrollArea = nil
 	C.QMdiArea_virtbase(h, &outptr_QAbstractScrollArea)
 
-	return &QMdiArea{h: h,
-		QAbstractScrollArea: newQAbstractScrollArea(outptr_QAbstractScrollArea)}
+	return &QMdiArea{
+		h:                   h,
+		QAbstractScrollArea: newQAbstractScrollArea(outptr_QAbstractScrollArea),
+	}
 }
 
 // UnsafeNewQMdiArea constructs the type using only unsafe pointers.
@@ -74,7 +76,6 @@ func UnsafeNewQMdiArea(h unsafe.Pointer) *QMdiArea {
 
 // NewQMdiArea constructs a new QMdiArea object.
 func NewQMdiArea(parent *QWidget) *QMdiArea {
-
 	ret := newQMdiArea(C.QMdiArea_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -82,7 +83,6 @@ func NewQMdiArea(parent *QWidget) *QMdiArea {
 
 // NewQMdiArea2 constructs a new QMdiArea object.
 func NewQMdiArea2() *QMdiArea {
-
 	ret := newQMdiArea(C.QMdiArea_new2())
 	ret.isSubclass = true
 	return ret
@@ -231,6 +231,7 @@ func (this *QMdiArea) TabPosition() QTabWidget__TabPosition {
 func (this *QMdiArea) SubWindowActivated(param1 *QMdiSubWindow) {
 	C.QMdiArea_SubWindowActivated(this.h, param1.cPointer())
 }
+
 func (this *QMdiArea) OnSubWindowActivated(slot func(param1 *QMdiSubWindow)) {
 	C.QMdiArea_connect_SubWindowActivated(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -339,12 +340,11 @@ func (this *QMdiArea) SetOption2(option QMdiArea__AreaOption, on bool) {
 }
 
 func (this *QMdiArea) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QMdiArea_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QMdiArea) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -362,16 +362,14 @@ func miqt_exec_callback_QMdiArea_SizeHint(self *C.QMdiArea, cb C.intptr_t) *C.QS
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QMdiArea) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QMdiArea_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QMdiArea) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -389,14 +387,12 @@ func miqt_exec_callback_QMdiArea_MinimumSizeHint(self *C.QMdiArea, cb C.intptr_t
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QMdiArea) callVirtualBase_SetupViewport(viewport *QWidget) {
-
 	C.QMdiArea_virtualbase_SetupViewport(unsafe.Pointer(this.h), viewport.cPointer())
-
 }
+
 func (this *QMdiArea) OnSetupViewport(slot func(super func(viewport *QWidget), viewport *QWidget)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -415,14 +411,12 @@ func miqt_exec_callback_QMdiArea_SetupViewport(self *C.QMdiArea, cb C.intptr_t, 
 	slotval1 := newQWidget(viewport)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_SetupViewport, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QMdiArea_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QMdiArea) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -443,14 +437,12 @@ func miqt_exec_callback_QMdiArea_Event(self *C.QMdiArea, cb C.intptr_t, event *C
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QMdiArea) callVirtualBase_EventFilter(object *QObject, event *QEvent) bool {
-
 	return (bool)(C.QMdiArea_virtualbase_EventFilter(unsafe.Pointer(this.h), object.cPointer(), event.cPointer()))
-
 }
+
 func (this *QMdiArea) OnEventFilter(slot func(super func(object *QObject, event *QEvent) bool, object *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -473,14 +465,12 @@ func miqt_exec_callback_QMdiArea_EventFilter(self *C.QMdiArea, cb C.intptr_t, ob
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QMdiArea) callVirtualBase_PaintEvent(paintEvent *QPaintEvent) {
-
 	C.QMdiArea_virtualbase_PaintEvent(unsafe.Pointer(this.h), paintEvent.cPointer())
-
 }
+
 func (this *QMdiArea) OnPaintEvent(slot func(super func(paintEvent *QPaintEvent), paintEvent *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -499,14 +489,12 @@ func miqt_exec_callback_QMdiArea_PaintEvent(self *C.QMdiArea, cb C.intptr_t, pai
 	slotval1 := newQPaintEvent(paintEvent)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ChildEvent(childEvent *QChildEvent) {
-
 	C.QMdiArea_virtualbase_ChildEvent(unsafe.Pointer(this.h), childEvent.cPointer())
-
 }
+
 func (this *QMdiArea) OnChildEvent(slot func(super func(childEvent *QChildEvent), childEvent *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -525,14 +513,12 @@ func miqt_exec_callback_QMdiArea_ChildEvent(self *C.QMdiArea, cb C.intptr_t, chi
 	slotval1 := newQChildEvent(childEvent)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ResizeEvent(resizeEvent *QResizeEvent) {
-
 	C.QMdiArea_virtualbase_ResizeEvent(unsafe.Pointer(this.h), resizeEvent.cPointer())
-
 }
+
 func (this *QMdiArea) OnResizeEvent(slot func(super func(resizeEvent *QResizeEvent), resizeEvent *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -551,14 +537,12 @@ func miqt_exec_callback_QMdiArea_ResizeEvent(self *C.QMdiArea, cb C.intptr_t, re
 	slotval1 := newQResizeEvent(resizeEvent)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_TimerEvent(timerEvent *QTimerEvent) {
-
 	C.QMdiArea_virtualbase_TimerEvent(unsafe.Pointer(this.h), timerEvent.cPointer())
-
 }
+
 func (this *QMdiArea) OnTimerEvent(slot func(super func(timerEvent *QTimerEvent), timerEvent *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -577,14 +561,12 @@ func miqt_exec_callback_QMdiArea_TimerEvent(self *C.QMdiArea, cb C.intptr_t, tim
 	slotval1 := newQTimerEvent(timerEvent)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ShowEvent(showEvent *QShowEvent) {
-
 	C.QMdiArea_virtualbase_ShowEvent(unsafe.Pointer(this.h), showEvent.cPointer())
-
 }
+
 func (this *QMdiArea) OnShowEvent(slot func(super func(showEvent *QShowEvent), showEvent *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -603,14 +585,12 @@ func miqt_exec_callback_QMdiArea_ShowEvent(self *C.QMdiArea, cb C.intptr_t, show
 	slotval1 := newQShowEvent(showEvent)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ViewportEvent(event *QEvent) bool {
-
 	return (bool)(C.QMdiArea_virtualbase_ViewportEvent(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QMdiArea) OnViewportEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -631,14 +611,12 @@ func miqt_exec_callback_QMdiArea_ViewportEvent(self *C.QMdiArea, cb C.intptr_t, 
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_ViewportEvent, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ScrollContentsBy(dx int, dy int) {
-
 	C.QMdiArea_virtualbase_ScrollContentsBy(unsafe.Pointer(this.h), (C.int)(dx), (C.int)(dy))
-
 }
+
 func (this *QMdiArea) OnScrollContentsBy(slot func(super func(dx int, dy int), dx int, dy int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -659,14 +637,12 @@ func miqt_exec_callback_QMdiArea_ScrollContentsBy(self *C.QMdiArea, cb C.intptr_
 	slotval2 := (int)(dy)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_ScrollContentsBy, slotval1, slotval2)
-
 }
 
 func (this *QMdiArea) callVirtualBase_MousePressEvent(param1 *QMouseEvent) {
-
 	C.QMdiArea_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnMousePressEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -685,14 +661,12 @@ func miqt_exec_callback_QMdiArea_MousePressEvent(self *C.QMdiArea, cb C.intptr_t
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_MouseReleaseEvent(param1 *QMouseEvent) {
-
 	C.QMdiArea_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnMouseReleaseEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -711,14 +685,12 @@ func miqt_exec_callback_QMdiArea_MouseReleaseEvent(self *C.QMdiArea, cb C.intptr
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_MouseDoubleClickEvent(param1 *QMouseEvent) {
-
 	C.QMdiArea_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnMouseDoubleClickEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -737,14 +709,12 @@ func miqt_exec_callback_QMdiArea_MouseDoubleClickEvent(self *C.QMdiArea, cb C.in
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_MouseMoveEvent(param1 *QMouseEvent) {
-
 	C.QMdiArea_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnMouseMoveEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -763,14 +733,12 @@ func miqt_exec_callback_QMdiArea_MouseMoveEvent(self *C.QMdiArea, cb C.intptr_t,
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_WheelEvent(param1 *QWheelEvent) {
-
 	C.QMdiArea_virtualbase_WheelEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnWheelEvent(slot func(super func(param1 *QWheelEvent), param1 *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -789,14 +757,12 @@ func miqt_exec_callback_QMdiArea_WheelEvent(self *C.QMdiArea, cb C.intptr_t, par
 	slotval1 := newQWheelEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
-
 	C.QMdiArea_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -815,14 +781,12 @@ func miqt_exec_callback_QMdiArea_ContextMenuEvent(self *C.QMdiArea, cb C.intptr_
 	slotval1 := newQContextMenuEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_DragEnterEvent(param1 *QDragEnterEvent) {
-
 	C.QMdiArea_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnDragEnterEvent(slot func(super func(param1 *QDragEnterEvent), param1 *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -841,14 +805,12 @@ func miqt_exec_callback_QMdiArea_DragEnterEvent(self *C.QMdiArea, cb C.intptr_t,
 	slotval1 := newQDragEnterEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_DragMoveEvent(param1 *QDragMoveEvent) {
-
 	C.QMdiArea_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnDragMoveEvent(slot func(super func(param1 *QDragMoveEvent), param1 *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -867,14 +829,12 @@ func miqt_exec_callback_QMdiArea_DragMoveEvent(self *C.QMdiArea, cb C.intptr_t, 
 	slotval1 := newQDragMoveEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_DragLeaveEvent(param1 *QDragLeaveEvent) {
-
 	C.QMdiArea_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnDragLeaveEvent(slot func(super func(param1 *QDragLeaveEvent), param1 *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -893,14 +853,12 @@ func miqt_exec_callback_QMdiArea_DragLeaveEvent(self *C.QMdiArea, cb C.intptr_t,
 	slotval1 := newQDragLeaveEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_DropEvent(param1 *QDropEvent) {
-
 	C.QMdiArea_virtualbase_DropEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnDropEvent(slot func(super func(param1 *QDropEvent), param1 *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -919,14 +877,12 @@ func miqt_exec_callback_QMdiArea_DropEvent(self *C.QMdiArea, cb C.intptr_t, para
 	slotval1 := newQDropEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_KeyPressEvent(param1 *QKeyEvent) {
-
 	C.QMdiArea_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QMdiArea) OnKeyPressEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -945,16 +901,14 @@ func miqt_exec_callback_QMdiArea_KeyPressEvent(self *C.QMdiArea, cb C.intptr_t, 
 	slotval1 := newQKeyEvent(param1)
 
 	gofunc((&QMdiArea{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QMdiArea) callVirtualBase_ViewportSizeHint() *QSize {
-
 	_goptr := newQSize(C.QMdiArea_virtualbase_ViewportSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QMdiArea) OnViewportSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -972,7 +926,6 @@ func miqt_exec_callback_QMdiArea_ViewportSizeHint(self *C.QMdiArea, cb C.intptr_
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_ViewportSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

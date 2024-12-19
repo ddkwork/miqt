@@ -9,9 +9,10 @@ package webkit
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebElement__StyleResolveStrategy int
@@ -57,7 +58,6 @@ func UnsafeNewQWebElement(h unsafe.Pointer) *QWebElement {
 
 // NewQWebElement constructs a new QWebElement object.
 func NewQWebElement() *QWebElement {
-
 	ret := newQWebElement(C.QWebElement_new())
 	ret.isSubclass = true
 	return ret
@@ -65,7 +65,6 @@ func NewQWebElement() *QWebElement {
 
 // NewQWebElement2 constructs a new QWebElement object.
 func NewQWebElement2(param1 *QWebElement) *QWebElement {
-
 	ret := newQWebElement(C.QWebElement_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -633,7 +632,6 @@ func UnsafeNewQWebElementCollection(h unsafe.Pointer) *QWebElementCollection {
 
 // NewQWebElementCollection constructs a new QWebElementCollection object.
 func NewQWebElementCollection() *QWebElementCollection {
-
 	ret := newQWebElementCollection(C.QWebElementCollection_new())
 	ret.isSubclass = true
 	return ret
@@ -653,7 +651,6 @@ func NewQWebElementCollection2(contextElement *QWebElement, query string) *QWebE
 
 // NewQWebElementCollection3 constructs a new QWebElementCollection object.
 func NewQWebElementCollection3(param1 *QWebElementCollection) *QWebElementCollection {
-
 	ret := newQWebElementCollection(C.QWebElementCollection_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -802,7 +799,6 @@ func UnsafeNewQWebElementCollection__const_iterator(h unsafe.Pointer) *QWebEleme
 
 // NewQWebElementCollection__const_iterator constructs a new QWebElementCollection::const_iterator object.
 func NewQWebElementCollection__const_iterator(collection_ *QWebElementCollection, index int) *QWebElementCollection__const_iterator {
-
 	ret := newQWebElementCollection__const_iterator(C.QWebElementCollection__const_iterator_new(collection_.cPointer(), (C.int)(index)))
 	ret.isSubclass = true
 	return ret
@@ -810,7 +806,6 @@ func NewQWebElementCollection__const_iterator(collection_ *QWebElementCollection
 
 // NewQWebElementCollection__const_iterator2 constructs a new QWebElementCollection::const_iterator object.
 func NewQWebElementCollection__const_iterator2(o *QWebElementCollection__const_iterator) *QWebElementCollection__const_iterator {
-
 	ret := newQWebElementCollection__const_iterator(C.QWebElementCollection__const_iterator_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -939,7 +934,6 @@ func UnsafeNewQWebElementCollection__iterator(h unsafe.Pointer) *QWebElementColl
 
 // NewQWebElementCollection__iterator constructs a new QWebElementCollection::iterator object.
 func NewQWebElementCollection__iterator(collection_ *QWebElementCollection, index int) *QWebElementCollection__iterator {
-
 	ret := newQWebElementCollection__iterator(C.QWebElementCollection__iterator_new(collection_.cPointer(), (C.int)(index)))
 	ret.isSubclass = true
 	return ret
@@ -947,7 +941,6 @@ func NewQWebElementCollection__iterator(collection_ *QWebElementCollection, inde
 
 // NewQWebElementCollection__iterator2 constructs a new QWebElementCollection::iterator object.
 func NewQWebElementCollection__iterator2(o *QWebElementCollection__iterator) *QWebElementCollection__iterator {
-
 	ret := newQWebElementCollection__iterator(C.QWebElementCollection__iterator_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -43,9 +43,11 @@ func newQPaintDeviceWindow(h *C.QPaintDeviceWindow) *QPaintDeviceWindow {
 	var outptr_QPaintDevice *C.QPaintDevice = nil
 	C.QPaintDeviceWindow_virtbase(h, &outptr_QWindow, &outptr_QPaintDevice)
 
-	return &QPaintDeviceWindow{h: h,
+	return &QPaintDeviceWindow{
+		h:            h,
 		QWindow:      newQWindow(outptr_QWindow),
-		QPaintDevice: newQPaintDevice(outptr_QPaintDevice)}
+		QPaintDevice: newQPaintDevice(outptr_QPaintDevice),
+	}
 }
 
 // UnsafeNewQPaintDeviceWindow constructs the type using only unsafe pointers.

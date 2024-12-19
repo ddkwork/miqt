@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraFocusZone__FocusZoneStatus int
@@ -79,7 +80,6 @@ func UnsafeNewQCameraFocusZone(h unsafe.Pointer) *QCameraFocusZone {
 
 // NewQCameraFocusZone constructs a new QCameraFocusZone object.
 func NewQCameraFocusZone() *QCameraFocusZone {
-
 	ret := newQCameraFocusZone(C.QCameraFocusZone_new())
 	ret.isSubclass = true
 	return ret
@@ -87,7 +87,6 @@ func NewQCameraFocusZone() *QCameraFocusZone {
 
 // NewQCameraFocusZone2 constructs a new QCameraFocusZone object.
 func NewQCameraFocusZone2(area *qt.QRectF) *QCameraFocusZone {
-
 	ret := newQCameraFocusZone(C.QCameraFocusZone_new2((*C.QRectF)(area.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -95,7 +94,6 @@ func NewQCameraFocusZone2(area *qt.QRectF) *QCameraFocusZone {
 
 // NewQCameraFocusZone3 constructs a new QCameraFocusZone object.
 func NewQCameraFocusZone3(other *QCameraFocusZone) *QCameraFocusZone {
-
 	ret := newQCameraFocusZone(C.QCameraFocusZone_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -103,7 +101,6 @@ func NewQCameraFocusZone3(other *QCameraFocusZone) *QCameraFocusZone {
 
 // NewQCameraFocusZone4 constructs a new QCameraFocusZone object.
 func NewQCameraFocusZone4(area *qt.QRectF, status QCameraFocusZone__FocusZoneStatus) *QCameraFocusZone {
-
 	ret := newQCameraFocusZone(C.QCameraFocusZone_new4((*C.QRectF)(area.UnsafePointer()), (C.int)(status)))
 	ret.isSubclass = true
 	return ret
@@ -181,8 +178,10 @@ func newQCameraFocus(h *C.QCameraFocus) *QCameraFocus {
 	var outptr_QObject *C.QObject = nil
 	C.QCameraFocus_virtbase(h, &outptr_QObject)
 
-	return &QCameraFocus{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QCameraFocus{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQCameraFocus constructs the type using only unsafe pointers.
@@ -291,6 +290,7 @@ func (this *QCameraFocus) ZoomTo(opticalZoom float64, digitalZoom float64) {
 func (this *QCameraFocus) OpticalZoomChanged(param1 float64) {
 	C.QCameraFocus_OpticalZoomChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraFocus) OnOpticalZoomChanged(slot func(param1 float64)) {
 	C.QCameraFocus_connect_OpticalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -311,6 +311,7 @@ func miqt_exec_callback_QCameraFocus_OpticalZoomChanged(cb C.intptr_t, param1 C.
 func (this *QCameraFocus) DigitalZoomChanged(param1 float64) {
 	C.QCameraFocus_DigitalZoomChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraFocus) OnDigitalZoomChanged(slot func(param1 float64)) {
 	C.QCameraFocus_connect_DigitalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -331,6 +332,7 @@ func miqt_exec_callback_QCameraFocus_DigitalZoomChanged(cb C.intptr_t, param1 C.
 func (this *QCameraFocus) FocusZonesChanged() {
 	C.QCameraFocus_FocusZonesChanged(this.h)
 }
+
 func (this *QCameraFocus) OnFocusZonesChanged(slot func()) {
 	C.QCameraFocus_connect_FocusZonesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -348,6 +350,7 @@ func miqt_exec_callback_QCameraFocus_FocusZonesChanged(cb C.intptr_t) {
 func (this *QCameraFocus) MaximumOpticalZoomChanged(param1 float64) {
 	C.QCameraFocus_MaximumOpticalZoomChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraFocus) OnMaximumOpticalZoomChanged(slot func(param1 float64)) {
 	C.QCameraFocus_connect_MaximumOpticalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -368,6 +371,7 @@ func miqt_exec_callback_QCameraFocus_MaximumOpticalZoomChanged(cb C.intptr_t, pa
 func (this *QCameraFocus) MaximumDigitalZoomChanged(param1 float64) {
 	C.QCameraFocus_MaximumDigitalZoomChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraFocus) OnMaximumDigitalZoomChanged(slot func(param1 float64)) {
 	C.QCameraFocus_connect_MaximumDigitalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

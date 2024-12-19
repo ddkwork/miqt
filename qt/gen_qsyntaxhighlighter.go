@@ -42,8 +42,10 @@ func newQSyntaxHighlighter(h *C.QSyntaxHighlighter) *QSyntaxHighlighter {
 	var outptr_QObject *C.QObject = nil
 	C.QSyntaxHighlighter_virtbase(h, &outptr_QObject)
 
-	return &QSyntaxHighlighter{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QSyntaxHighlighter{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQSyntaxHighlighter constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQSyntaxHighlighter(h unsafe.Pointer) *QSyntaxHighlighter {
 
 // NewQSyntaxHighlighter constructs a new QSyntaxHighlighter object.
 func NewQSyntaxHighlighter(parent *QObject) *QSyntaxHighlighter {
-
 	ret := newQSyntaxHighlighter(C.QSyntaxHighlighter_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQSyntaxHighlighter(parent *QObject) *QSyntaxHighlighter {
 
 // NewQSyntaxHighlighter2 constructs a new QSyntaxHighlighter object.
 func NewQSyntaxHighlighter2(parent *QTextDocument) *QSyntaxHighlighter {
-
 	ret := newQSyntaxHighlighter(C.QSyntaxHighlighter_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -154,6 +154,7 @@ func QSyntaxHighlighter_TrUtf83(s string, c string, n int) string {
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QSyntaxHighlighter) OnHighlightBlock(slot func(text string)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -175,14 +176,12 @@ func miqt_exec_callback_QSyntaxHighlighter_HighlightBlock(self *C.QSyntaxHighlig
 	slotval1 := text_ret
 
 	gofunc(slotval1)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QSyntaxHighlighter_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QSyntaxHighlighter) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -203,14 +202,12 @@ func miqt_exec_callback_QSyntaxHighlighter_Event(self *C.QSyntaxHighlighter, cb 
 	virtualReturn := gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QSyntaxHighlighter_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QSyntaxHighlighter) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -233,14 +230,12 @@ func miqt_exec_callback_QSyntaxHighlighter_EventFilter(self *C.QSyntaxHighlighte
 	virtualReturn := gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QSyntaxHighlighter_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSyntaxHighlighter) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -259,14 +254,12 @@ func miqt_exec_callback_QSyntaxHighlighter_TimerEvent(self *C.QSyntaxHighlighter
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QSyntaxHighlighter_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSyntaxHighlighter) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -285,14 +278,12 @@ func miqt_exec_callback_QSyntaxHighlighter_ChildEvent(self *C.QSyntaxHighlighter
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QSyntaxHighlighter_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSyntaxHighlighter) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -311,14 +302,12 @@ func miqt_exec_callback_QSyntaxHighlighter_CustomEvent(self *C.QSyntaxHighlighte
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QSyntaxHighlighter_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QSyntaxHighlighter) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -337,14 +326,12 @@ func miqt_exec_callback_QSyntaxHighlighter_ConnectNotify(self *C.QSyntaxHighligh
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QSyntaxHighlighter) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QSyntaxHighlighter_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QSyntaxHighlighter) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -363,7 +350,6 @@ func miqt_exec_callback_QSyntaxHighlighter_DisconnectNotify(self *C.QSyntaxHighl
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QSyntaxHighlighter{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

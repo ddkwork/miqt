@@ -67,7 +67,6 @@ func UnsafeNewQAbstractFileIconProvider(h unsafe.Pointer) *QAbstractFileIconProv
 
 // NewQAbstractFileIconProvider constructs a new QAbstractFileIconProvider object.
 func NewQAbstractFileIconProvider() *QAbstractFileIconProvider {
-
 	ret := newQAbstractFileIconProvider(C.QAbstractFileIconProvider_new())
 	ret.isSubclass = true
 	return ret
@@ -101,12 +100,11 @@ func (this *QAbstractFileIconProvider) Options() QAbstractFileIconProvider__Opti
 }
 
 func (this *QAbstractFileIconProvider) callVirtualBase_Icon(param1 QAbstractFileIconProvider__IconType) *QIcon {
-
 	_goptr := newQIcon(C.QAbstractFileIconProvider_virtualbase_Icon(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QAbstractFileIconProvider) OnIcon(slot func(super func(param1 QAbstractFileIconProvider__IconType) *QIcon, param1 QAbstractFileIconProvider__IconType) *QIcon) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -127,16 +125,14 @@ func miqt_exec_callback_QAbstractFileIconProvider_Icon(self *C.QAbstractFileIcon
 	virtualReturn := gofunc((&QAbstractFileIconProvider{h: self}).callVirtualBase_Icon, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractFileIconProvider) callVirtualBase_IconWithQFileInfo(param1 *QFileInfo) *QIcon {
-
 	_goptr := newQIcon(C.QAbstractFileIconProvider_virtualbase_IconWithQFileInfo(unsafe.Pointer(this.h), param1.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QAbstractFileIconProvider) OnIconWithQFileInfo(slot func(super func(param1 *QFileInfo) *QIcon, param1 *QFileInfo) *QIcon) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -157,16 +153,15 @@ func miqt_exec_callback_QAbstractFileIconProvider_IconWithQFileInfo(self *C.QAbs
 	virtualReturn := gofunc((&QAbstractFileIconProvider{h: self}).callVirtualBase_IconWithQFileInfo, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractFileIconProvider) callVirtualBase_Type(param1 *QFileInfo) string {
-
 	var _ms C.struct_miqt_string = C.QAbstractFileIconProvider_virtualbase_Type(unsafe.Pointer(this.h), param1.cPointer())
 	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QAbstractFileIconProvider) OnType(slot func(super func(param1 *QFileInfo) string, param1 *QFileInfo) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -191,14 +186,12 @@ func miqt_exec_callback_QAbstractFileIconProvider_Type(self *C.QAbstractFileIcon
 	defer C.free(unsafe.Pointer(virtualReturn_ms.data))
 
 	return virtualReturn_ms
-
 }
 
 func (this *QAbstractFileIconProvider) callVirtualBase_SetOptions(options QAbstractFileIconProvider__Option) {
-
 	C.QAbstractFileIconProvider_virtualbase_SetOptions(unsafe.Pointer(this.h), (C.int)(options))
-
 }
+
 func (this *QAbstractFileIconProvider) OnSetOptions(slot func(super func(options QAbstractFileIconProvider__Option), options QAbstractFileIconProvider__Option)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -217,14 +210,12 @@ func miqt_exec_callback_QAbstractFileIconProvider_SetOptions(self *C.QAbstractFi
 	slotval1 := (QAbstractFileIconProvider__Option)(options)
 
 	gofunc((&QAbstractFileIconProvider{h: self}).callVirtualBase_SetOptions, slotval1)
-
 }
 
 func (this *QAbstractFileIconProvider) callVirtualBase_Options() QAbstractFileIconProvider__Option {
-
 	return (QAbstractFileIconProvider__Option)(C.QAbstractFileIconProvider_virtualbase_Options(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAbstractFileIconProvider) OnOptions(slot func(super func() QAbstractFileIconProvider__Option) QAbstractFileIconProvider__Option) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -242,7 +233,6 @@ func miqt_exec_callback_QAbstractFileIconProvider_Options(self *C.QAbstractFileI
 	virtualReturn := gofunc((&QAbstractFileIconProvider{h: self}).callVirtualBase_Options)
 
 	return (C.int)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

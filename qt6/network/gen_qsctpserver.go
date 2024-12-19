@@ -9,10 +9,11 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QSctpServer struct {
@@ -43,8 +44,10 @@ func newQSctpServer(h *C.QSctpServer) *QSctpServer {
 	var outptr_QTcpServer *C.QTcpServer = nil
 	C.QSctpServer_virtbase(h, &outptr_QTcpServer)
 
-	return &QSctpServer{h: h,
-		QTcpServer: newQTcpServer(outptr_QTcpServer)}
+	return &QSctpServer{
+		h:          h,
+		QTcpServer: newQTcpServer(outptr_QTcpServer),
+	}
 }
 
 // UnsafeNewQSctpServer constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQSctpServer(h unsafe.Pointer) *QSctpServer {
 
 // NewQSctpServer constructs a new QSctpServer object.
 func NewQSctpServer() *QSctpServer {
-
 	ret := newQSctpServer(C.QSctpServer_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQSctpServer() *QSctpServer {
 
 // NewQSctpServer2 constructs a new QSctpServer object.
 func NewQSctpServer2(parent *qt6.QObject) *QSctpServer {
-
 	ret := newQSctpServer(C.QSctpServer_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -122,10 +123,9 @@ func QSctpServer_Tr3(s string, c string, n int) string {
 }
 
 func (this *QSctpServer) callVirtualBase_IncomingConnection(handle uintptr) {
-
 	C.QSctpServer_virtualbase_IncomingConnection(unsafe.Pointer(this.h), (C.intptr_t)(handle))
-
 }
+
 func (this *QSctpServer) OnIncomingConnection(slot func(super func(handle uintptr), handle uintptr)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -144,14 +144,12 @@ func miqt_exec_callback_QSctpServer_IncomingConnection(self *C.QSctpServer, cb C
 	slotval1 := (uintptr)(handle)
 
 	gofunc((&QSctpServer{h: self}).callVirtualBase_IncomingConnection, slotval1)
-
 }
 
 func (this *QSctpServer) callVirtualBase_HasPendingConnections() bool {
-
 	return (bool)(C.QSctpServer_virtualbase_HasPendingConnections(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSctpServer) OnHasPendingConnections(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -169,14 +167,12 @@ func miqt_exec_callback_QSctpServer_HasPendingConnections(self *C.QSctpServer, c
 	virtualReturn := gofunc((&QSctpServer{h: self}).callVirtualBase_HasPendingConnections)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSctpServer) callVirtualBase_NextPendingConnection() *QTcpSocket {
-
 	return newQTcpSocket(C.QSctpServer_virtualbase_NextPendingConnection(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSctpServer) OnNextPendingConnection(slot func(super func() *QTcpSocket) *QTcpSocket) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -194,7 +190,6 @@ func miqt_exec_callback_QSctpServer_NextPendingConnection(self *C.QSctpServer, c
 	virtualReturn := gofunc((&QSctpServer{h: self}).callVirtualBase_NextPendingConnection)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

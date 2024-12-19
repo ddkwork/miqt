@@ -48,7 +48,6 @@ func UnsafeNewQMessageAuthenticationCode(h unsafe.Pointer) *QMessageAuthenticati
 
 // NewQMessageAuthenticationCode constructs a new QMessageAuthenticationCode object.
 func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm) *QMessageAuthenticationCode {
-
 	ret := newQMessageAuthenticationCode(C.QMessageAuthenticationCode_new((C.int)(method)))
 	ret.isSubclass = true
 	return ret

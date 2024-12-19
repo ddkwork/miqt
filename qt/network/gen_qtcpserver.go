@@ -9,10 +9,11 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QTcpServer struct {
@@ -43,8 +44,10 @@ func newQTcpServer(h *C.QTcpServer) *QTcpServer {
 	var outptr_QObject *C.QObject = nil
 	C.QTcpServer_virtbase(h, &outptr_QObject)
 
-	return &QTcpServer{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QTcpServer{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQTcpServer constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQTcpServer(h unsafe.Pointer) *QTcpServer {
 
 // NewQTcpServer constructs a new QTcpServer object.
 func NewQTcpServer() *QTcpServer {
-
 	ret := newQTcpServer(C.QTcpServer_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQTcpServer() *QTcpServer {
 
 // NewQTcpServer2 constructs a new QTcpServer object.
 func NewQTcpServer2(parent *qt.QObject) *QTcpServer {
-
 	ret := newQTcpServer(C.QTcpServer_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -178,6 +179,7 @@ func (this *QTcpServer) Proxy() *QNetworkProxy {
 func (this *QTcpServer) NewConnection() {
 	C.QTcpServer_NewConnection(this.h)
 }
+
 func (this *QTcpServer) OnNewConnection(slot func()) {
 	C.QTcpServer_connect_NewConnection(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -195,6 +197,7 @@ func miqt_exec_callback_QTcpServer_NewConnection(cb C.intptr_t) {
 func (this *QTcpServer) AcceptError(socketError QAbstractSocket__SocketError) {
 	C.QTcpServer_AcceptError(this.h, (C.int)(socketError))
 }
+
 func (this *QTcpServer) OnAcceptError(slot func(socketError QAbstractSocket__SocketError)) {
 	C.QTcpServer_connect_AcceptError(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -273,10 +276,9 @@ func (this *QTcpServer) WaitForNewConnection2(msec int, timedOut *bool) bool {
 }
 
 func (this *QTcpServer) callVirtualBase_HasPendingConnections() bool {
-
 	return (bool)(C.QTcpServer_virtualbase_HasPendingConnections(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QTcpServer) OnHasPendingConnections(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -294,14 +296,12 @@ func miqt_exec_callback_QTcpServer_HasPendingConnections(self *C.QTcpServer, cb 
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_HasPendingConnections)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QTcpServer) callVirtualBase_NextPendingConnection() *QTcpSocket {
-
 	return newQTcpSocket(C.QTcpServer_virtualbase_NextPendingConnection(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QTcpServer) OnNextPendingConnection(slot func(super func() *QTcpSocket) *QTcpSocket) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -319,14 +319,12 @@ func miqt_exec_callback_QTcpServer_NextPendingConnection(self *C.QTcpServer, cb 
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_NextPendingConnection)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QTcpServer) callVirtualBase_IncomingConnection(handle uintptr) {
-
 	C.QTcpServer_virtualbase_IncomingConnection(unsafe.Pointer(this.h), (C.intptr_t)(handle))
-
 }
+
 func (this *QTcpServer) OnIncomingConnection(slot func(super func(handle uintptr), handle uintptr)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -345,14 +343,12 @@ func miqt_exec_callback_QTcpServer_IncomingConnection(self *C.QTcpServer, cb C.i
 	slotval1 := (uintptr)(handle)
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_IncomingConnection, slotval1)
-
 }
 
 func (this *QTcpServer) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QTcpServer_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QTcpServer) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -373,14 +369,12 @@ func miqt_exec_callback_QTcpServer_Event(self *C.QTcpServer, cb C.intptr_t, even
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QTcpServer) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QTcpServer_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QTcpServer) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -403,14 +397,12 @@ func miqt_exec_callback_QTcpServer_EventFilter(self *C.QTcpServer, cb C.intptr_t
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QTcpServer) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QTcpServer_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QTcpServer) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -429,14 +421,12 @@ func miqt_exec_callback_QTcpServer_TimerEvent(self *C.QTcpServer, cb C.intptr_t,
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QTcpServer) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QTcpServer_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QTcpServer) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -455,14 +445,12 @@ func miqt_exec_callback_QTcpServer_ChildEvent(self *C.QTcpServer, cb C.intptr_t,
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QTcpServer) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QTcpServer_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QTcpServer) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -481,14 +469,12 @@ func miqt_exec_callback_QTcpServer_CustomEvent(self *C.QTcpServer, cb C.intptr_t
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QTcpServer) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QTcpServer_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QTcpServer) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -507,14 +493,12 @@ func miqt_exec_callback_QTcpServer_ConnectNotify(self *C.QTcpServer, cb C.intptr
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QTcpServer) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QTcpServer_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QTcpServer) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -533,7 +517,6 @@ func miqt_exec_callback_QTcpServer_DisconnectNotify(self *C.QTcpServer, cb C.int
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

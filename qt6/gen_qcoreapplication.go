@@ -48,8 +48,10 @@ func newQCoreApplication(h *C.QCoreApplication) *QCoreApplication {
 	var outptr_QObject *C.QObject = nil
 	C.QCoreApplication_virtbase(h, &outptr_QObject)
 
-	return &QCoreApplication{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QCoreApplication{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQCoreApplication constructs the type using only unsafe pointers.
@@ -334,6 +336,7 @@ func QCoreApplication_Translate(context string, key string) string {
 func (this *QCoreApplication) InstallNativeEventFilter(filterObj *QAbstractNativeEventFilter) {
 	C.QCoreApplication_InstallNativeEventFilter(this.h, filterObj.cPointer())
 }
+
 func (this *QCoreApplication) OnInstallNativeEventFilter(slot func(filterObj *QAbstractNativeEventFilter)) {
 	C.QCoreApplication_connect_InstallNativeEventFilter(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -354,6 +357,7 @@ func miqt_exec_callback_QCoreApplication_InstallNativeEventFilter(cb C.intptr_t,
 func (this *QCoreApplication) RemoveNativeEventFilter(filterObj *QAbstractNativeEventFilter) {
 	C.QCoreApplication_RemoveNativeEventFilter(this.h, filterObj.cPointer())
 }
+
 func (this *QCoreApplication) OnRemoveNativeEventFilter(slot func(filterObj *QAbstractNativeEventFilter)) {
 	C.QCoreApplication_connect_RemoveNativeEventFilter(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -390,6 +394,7 @@ func QCoreApplication_Exit() {
 func (this *QCoreApplication) OrganizationNameChanged() {
 	C.QCoreApplication_OrganizationNameChanged(this.h)
 }
+
 func (this *QCoreApplication) OnOrganizationNameChanged(slot func()) {
 	C.QCoreApplication_connect_OrganizationNameChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -407,6 +412,7 @@ func miqt_exec_callback_QCoreApplication_OrganizationNameChanged(cb C.intptr_t) 
 func (this *QCoreApplication) OrganizationDomainChanged() {
 	C.QCoreApplication_OrganizationDomainChanged(this.h)
 }
+
 func (this *QCoreApplication) OnOrganizationDomainChanged(slot func()) {
 	C.QCoreApplication_connect_OrganizationDomainChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -424,6 +430,7 @@ func miqt_exec_callback_QCoreApplication_OrganizationDomainChanged(cb C.intptr_t
 func (this *QCoreApplication) ApplicationNameChanged() {
 	C.QCoreApplication_ApplicationNameChanged(this.h)
 }
+
 func (this *QCoreApplication) OnApplicationNameChanged(slot func()) {
 	C.QCoreApplication_connect_ApplicationNameChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -441,6 +448,7 @@ func miqt_exec_callback_QCoreApplication_ApplicationNameChanged(cb C.intptr_t) {
 func (this *QCoreApplication) ApplicationVersionChanged() {
 	C.QCoreApplication_ApplicationVersionChanged(this.h)
 }
+
 func (this *QCoreApplication) OnApplicationVersionChanged(slot func()) {
 	C.QCoreApplication_connect_ApplicationVersionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -532,10 +540,9 @@ func QCoreApplication_Exit1(retcode int) {
 }
 
 func (this *QCoreApplication) callVirtualBase_Notify(param1 *QObject, param2 *QEvent) bool {
-
 	return (bool)(C.QCoreApplication_virtualbase_Notify(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
 }
+
 func (this *QCoreApplication) OnNotify(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -558,14 +565,12 @@ func miqt_exec_callback_QCoreApplication_Notify(self *C.QCoreApplication, cb C.i
 	virtualReturn := gofunc((&QCoreApplication{h: self}).callVirtualBase_Notify, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_Event(param1 *QEvent) bool {
-
 	return (bool)(C.QCoreApplication_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QCoreApplication) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -586,14 +591,12 @@ func miqt_exec_callback_QCoreApplication_Event(self *C.QCoreApplication, cb C.in
 	virtualReturn := gofunc((&QCoreApplication{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QCoreApplication_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QCoreApplication) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -616,14 +619,12 @@ func miqt_exec_callback_QCoreApplication_EventFilter(self *C.QCoreApplication, c
 	virtualReturn := gofunc((&QCoreApplication{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QCoreApplication_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCoreApplication) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -642,14 +643,12 @@ func miqt_exec_callback_QCoreApplication_TimerEvent(self *C.QCoreApplication, cb
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QCoreApplication{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QCoreApplication_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCoreApplication) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -668,14 +667,12 @@ func miqt_exec_callback_QCoreApplication_ChildEvent(self *C.QCoreApplication, cb
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QCoreApplication{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QCoreApplication_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QCoreApplication) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -694,14 +691,12 @@ func miqt_exec_callback_QCoreApplication_CustomEvent(self *C.QCoreApplication, c
 	slotval1 := newQEvent(event)
 
 	gofunc((&QCoreApplication{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QCoreApplication_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QCoreApplication) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -720,14 +715,12 @@ func miqt_exec_callback_QCoreApplication_ConnectNotify(self *C.QCoreApplication,
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QCoreApplication{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QCoreApplication) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QCoreApplication_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QCoreApplication) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -746,7 +739,6 @@ func miqt_exec_callback_QCoreApplication_DisconnectNotify(self *C.QCoreApplicati
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QCoreApplication{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

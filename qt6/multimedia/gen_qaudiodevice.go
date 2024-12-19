@@ -56,7 +56,6 @@ func UnsafeNewQAudioDevice(h unsafe.Pointer) *QAudioDevice {
 
 // NewQAudioDevice constructs a new QAudioDevice object.
 func NewQAudioDevice() *QAudioDevice {
-
 	ret := newQAudioDevice(C.QAudioDevice_new())
 	ret.isSubclass = true
 	return ret
@@ -64,7 +63,6 @@ func NewQAudioDevice() *QAudioDevice {
 
 // NewQAudioDevice2 constructs a new QAudioDevice object.
 func NewQAudioDevice2(other *QAudioDevice) *QAudioDevice {
-
 	ret := newQAudioDevice(C.QAudioDevice_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -10,7 +10,6 @@ import (
 )
 
 func testMarshalling(t *testing.T) {
-
 	// Bool
 	t.Run("Bool", func(t *testing.T) {
 		b := qt.NewQCheckBox2()
@@ -73,7 +72,6 @@ func testMarshalling(t *testing.T) {
 
 	// QList<Qt type>
 	t.Run("QList<Q*>", func(t *testing.T) {
-
 		var expect []qt.QKeySequence
 		expect = append(expect, *qt.QKeySequence_FromString("F1"))
 		expect = append(expect, *qt.QKeySequence_FromString("F2"))
@@ -96,7 +94,6 @@ func testMarshalling(t *testing.T) {
 
 	// QByteArray
 	t.Run("QByteArray", func(t *testing.T) {
-
 		input := "foo bar baz"
 		ba := qt.QFile_EncodeName(input)
 		got := qt.QFile_DecodeName(ba)
@@ -120,7 +117,7 @@ func testMarshalling(t *testing.T) {
 			t.Fatalf("QMap: expected len %d, got len %d", len(input), len(got))
 		}
 
-		for src_key, _ := range input {
+		for src_key := range input {
 			qvalue, ok := got[src_key]
 			if !ok {
 				t.Fatalf("QMap: missing entry %q", src_key)
@@ -133,11 +130,9 @@ func testMarshalling(t *testing.T) {
 			}
 		}
 	})
-
 }
 
 func TestMarshalling(t *testing.T) {
-
 	qt.NewQApplication(os.Args)
 
 	// In case of heap corruption, run the whole test multiple times.
@@ -145,5 +140,4 @@ func TestMarshalling(t *testing.T) {
 	for i := 0; i < 5; i++ {
 		testMarshalling(t)
 	}
-
 }

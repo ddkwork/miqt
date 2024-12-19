@@ -57,7 +57,6 @@ func UnsafeNewQImageWriter(h unsafe.Pointer) *QImageWriter {
 
 // NewQImageWriter constructs a new QImageWriter object.
 func NewQImageWriter() *QImageWriter {
-
 	ret := newQImageWriter(C.QImageWriter_new())
 	ret.isSubclass = true
 	return ret

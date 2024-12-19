@@ -48,7 +48,6 @@ func UnsafeNewQBasicMutex(h unsafe.Pointer) *QBasicMutex {
 
 // NewQBasicMutex constructs a new QBasicMutex object.
 func NewQBasicMutex() *QBasicMutex {
-
 	ret := newQBasicMutex(C.QBasicMutex_new())
 	ret.isSubclass = true
 	return ret
@@ -112,8 +111,10 @@ func newQMutex(h *C.QMutex) *QMutex {
 	var outptr_QBasicMutex *C.QBasicMutex = nil
 	C.QMutex_virtbase(h, &outptr_QBasicMutex)
 
-	return &QMutex{h: h,
-		QBasicMutex: newQBasicMutex(outptr_QBasicMutex)}
+	return &QMutex{
+		h:           h,
+		QBasicMutex: newQBasicMutex(outptr_QBasicMutex),
+	}
 }
 
 // UnsafeNewQMutex constructs the type using only unsafe pointers.
@@ -123,7 +124,6 @@ func UnsafeNewQMutex(h unsafe.Pointer) *QMutex {
 
 // NewQMutex constructs a new QMutex object.
 func NewQMutex() *QMutex {
-
 	ret := newQMutex(C.QMutex_new())
 	ret.isSubclass = true
 	return ret
@@ -186,7 +186,6 @@ func UnsafeNewQRecursiveMutex(h unsafe.Pointer) *QRecursiveMutex {
 
 // NewQRecursiveMutex constructs a new QRecursiveMutex object.
 func NewQRecursiveMutex() *QRecursiveMutex {
-
 	ret := newQRecursiveMutex(C.QRecursiveMutex_new())
 	ret.isSubclass = true
 	return ret

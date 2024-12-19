@@ -10,7 +10,6 @@ import (
 // n.b. May need LD_LIBRARY_PATH= env var set to find the necessary .so file
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	area := scintillaedit.NewScintillaEdit2()

@@ -171,7 +171,6 @@ func UnsafeNewQFont(h unsafe.Pointer) *QFont {
 
 // NewQFont constructs a new QFont object.
 func NewQFont() *QFont {
-
 	ret := newQFont(C.QFont_new())
 	ret.isSubclass = true
 	return ret
@@ -209,7 +208,6 @@ func NewQFont3(families []string) *QFont {
 
 // NewQFont4 constructs a new QFont object.
 func NewQFont4(font *QFont, pd *QPaintDevice) *QFont {
-
 	ret := newQFont(C.QFont_new4(font.cPointer(), pd.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -217,7 +215,6 @@ func NewQFont4(font *QFont, pd *QPaintDevice) *QFont {
 
 // NewQFont5 constructs a new QFont object.
 func NewQFont5(font *QFont) *QFont {
-
 	ret := newQFont(C.QFont_new5(font.cPointer()))
 	ret.isSubclass = true
 	return ret

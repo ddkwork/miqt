@@ -9,9 +9,10 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkCacheMetaData struct {
@@ -49,7 +50,6 @@ func UnsafeNewQNetworkCacheMetaData(h unsafe.Pointer) *QNetworkCacheMetaData {
 
 // NewQNetworkCacheMetaData constructs a new QNetworkCacheMetaData object.
 func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
-
 	ret := newQNetworkCacheMetaData(C.QNetworkCacheMetaData_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
 
 // NewQNetworkCacheMetaData2 constructs a new QNetworkCacheMetaData object.
 func NewQNetworkCacheMetaData2(other *QNetworkCacheMetaData) *QNetworkCacheMetaData {
-
 	ret := newQNetworkCacheMetaData(C.QNetworkCacheMetaData_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -126,7 +125,8 @@ func (this *QNetworkCacheMetaData) RawHeaders() []struct {
 func (this *QNetworkCacheMetaData) SetRawHeaders(headers []struct {
 	First  []byte
 	Second []byte
-}) {
+},
+) {
 	headers_CArray := (*[0xffff]C.struct_miqt_map)(C.malloc(C.size_t(8 * len(headers))))
 	defer C.free(unsafe.Pointer(headers_CArray))
 	for i := range headers {
@@ -259,8 +259,10 @@ func newQAbstractNetworkCache(h *C.QAbstractNetworkCache) *QAbstractNetworkCache
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractNetworkCache_virtbase(h, &outptr_QObject)
 
-	return &QAbstractNetworkCache{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QAbstractNetworkCache{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQAbstractNetworkCache constructs the type using only unsafe pointers.

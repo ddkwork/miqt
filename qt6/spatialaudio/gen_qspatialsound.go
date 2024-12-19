@@ -9,10 +9,11 @@ package spatialaudio
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QSpatialSound__Loops int
@@ -58,8 +59,10 @@ func newQSpatialSound(h *C.QSpatialSound) *QSpatialSound {
 	var outptr_QObject *C.QObject = nil
 	C.QSpatialSound_virtbase(h, &outptr_QObject)
 
-	return &QSpatialSound{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QSpatialSound{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQSpatialSound constructs the type using only unsafe pointers.
@@ -69,7 +72,6 @@ func UnsafeNewQSpatialSound(h unsafe.Pointer) *QSpatialSound {
 
 // NewQSpatialSound constructs a new QSpatialSound object.
 func NewQSpatialSound(engine *QAudioEngine) *QSpatialSound {
-
 	ret := newQSpatialSound(C.QSpatialSound_new(engine.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -219,6 +221,7 @@ func (this *QSpatialSound) Engine() *QAudioEngine {
 func (this *QSpatialSound) SourceChanged() {
 	C.QSpatialSound_SourceChanged(this.h)
 }
+
 func (this *QSpatialSound) OnSourceChanged(slot func()) {
 	C.QSpatialSound_connect_SourceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -236,6 +239,7 @@ func miqt_exec_callback_QSpatialSound_SourceChanged(cb C.intptr_t) {
 func (this *QSpatialSound) LoopsChanged() {
 	C.QSpatialSound_LoopsChanged(this.h)
 }
+
 func (this *QSpatialSound) OnLoopsChanged(slot func()) {
 	C.QSpatialSound_connect_LoopsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -253,6 +257,7 @@ func miqt_exec_callback_QSpatialSound_LoopsChanged(cb C.intptr_t) {
 func (this *QSpatialSound) AutoPlayChanged() {
 	C.QSpatialSound_AutoPlayChanged(this.h)
 }
+
 func (this *QSpatialSound) OnAutoPlayChanged(slot func()) {
 	C.QSpatialSound_connect_AutoPlayChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -270,6 +275,7 @@ func miqt_exec_callback_QSpatialSound_AutoPlayChanged(cb C.intptr_t) {
 func (this *QSpatialSound) PositionChanged() {
 	C.QSpatialSound_PositionChanged(this.h)
 }
+
 func (this *QSpatialSound) OnPositionChanged(slot func()) {
 	C.QSpatialSound_connect_PositionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -287,6 +293,7 @@ func miqt_exec_callback_QSpatialSound_PositionChanged(cb C.intptr_t) {
 func (this *QSpatialSound) RotationChanged() {
 	C.QSpatialSound_RotationChanged(this.h)
 }
+
 func (this *QSpatialSound) OnRotationChanged(slot func()) {
 	C.QSpatialSound_connect_RotationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -304,6 +311,7 @@ func miqt_exec_callback_QSpatialSound_RotationChanged(cb C.intptr_t) {
 func (this *QSpatialSound) VolumeChanged() {
 	C.QSpatialSound_VolumeChanged(this.h)
 }
+
 func (this *QSpatialSound) OnVolumeChanged(slot func()) {
 	C.QSpatialSound_connect_VolumeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -321,6 +329,7 @@ func miqt_exec_callback_QSpatialSound_VolumeChanged(cb C.intptr_t) {
 func (this *QSpatialSound) DistanceModelChanged() {
 	C.QSpatialSound_DistanceModelChanged(this.h)
 }
+
 func (this *QSpatialSound) OnDistanceModelChanged(slot func()) {
 	C.QSpatialSound_connect_DistanceModelChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -338,6 +347,7 @@ func miqt_exec_callback_QSpatialSound_DistanceModelChanged(cb C.intptr_t) {
 func (this *QSpatialSound) SizeChanged() {
 	C.QSpatialSound_SizeChanged(this.h)
 }
+
 func (this *QSpatialSound) OnSizeChanged(slot func()) {
 	C.QSpatialSound_connect_SizeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -355,6 +365,7 @@ func miqt_exec_callback_QSpatialSound_SizeChanged(cb C.intptr_t) {
 func (this *QSpatialSound) DistanceCutoffChanged() {
 	C.QSpatialSound_DistanceCutoffChanged(this.h)
 }
+
 func (this *QSpatialSound) OnDistanceCutoffChanged(slot func()) {
 	C.QSpatialSound_connect_DistanceCutoffChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -372,6 +383,7 @@ func miqt_exec_callback_QSpatialSound_DistanceCutoffChanged(cb C.intptr_t) {
 func (this *QSpatialSound) ManualAttenuationChanged() {
 	C.QSpatialSound_ManualAttenuationChanged(this.h)
 }
+
 func (this *QSpatialSound) OnManualAttenuationChanged(slot func()) {
 	C.QSpatialSound_connect_ManualAttenuationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -389,6 +401,7 @@ func miqt_exec_callback_QSpatialSound_ManualAttenuationChanged(cb C.intptr_t) {
 func (this *QSpatialSound) OcclusionIntensityChanged() {
 	C.QSpatialSound_OcclusionIntensityChanged(this.h)
 }
+
 func (this *QSpatialSound) OnOcclusionIntensityChanged(slot func()) {
 	C.QSpatialSound_connect_OcclusionIntensityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -406,6 +419,7 @@ func miqt_exec_callback_QSpatialSound_OcclusionIntensityChanged(cb C.intptr_t) {
 func (this *QSpatialSound) DirectivityChanged() {
 	C.QSpatialSound_DirectivityChanged(this.h)
 }
+
 func (this *QSpatialSound) OnDirectivityChanged(slot func()) {
 	C.QSpatialSound_connect_DirectivityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -423,6 +437,7 @@ func miqt_exec_callback_QSpatialSound_DirectivityChanged(cb C.intptr_t) {
 func (this *QSpatialSound) DirectivityOrderChanged() {
 	C.QSpatialSound_DirectivityOrderChanged(this.h)
 }
+
 func (this *QSpatialSound) OnDirectivityOrderChanged(slot func()) {
 	C.QSpatialSound_connect_DirectivityOrderChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -440,6 +455,7 @@ func miqt_exec_callback_QSpatialSound_DirectivityOrderChanged(cb C.intptr_t) {
 func (this *QSpatialSound) NearFieldGainChanged() {
 	C.QSpatialSound_NearFieldGainChanged(this.h)
 }
+
 func (this *QSpatialSound) OnNearFieldGainChanged(slot func()) {
 	C.QSpatialSound_connect_NearFieldGainChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -489,10 +505,9 @@ func QSpatialSound_Tr3(s string, c string, n int) string {
 }
 
 func (this *QSpatialSound) callVirtualBase_Event(event *qt6.QEvent) bool {
-
 	return (bool)(C.QSpatialSound_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QSpatialSound) OnEvent(slot func(super func(event *qt6.QEvent) bool, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -513,14 +528,12 @@ func miqt_exec_callback_QSpatialSound_Event(self *C.QSpatialSound, cb C.intptr_t
 	virtualReturn := gofunc((&QSpatialSound{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSpatialSound) callVirtualBase_EventFilter(watched *qt6.QObject, event *qt6.QEvent) bool {
-
 	return (bool)(C.QSpatialSound_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QSpatialSound) OnEventFilter(slot func(super func(watched *qt6.QObject, event *qt6.QEvent) bool, watched *qt6.QObject, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -543,14 +556,12 @@ func miqt_exec_callback_QSpatialSound_EventFilter(self *C.QSpatialSound, cb C.in
 	virtualReturn := gofunc((&QSpatialSound{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSpatialSound) callVirtualBase_TimerEvent(event *qt6.QTimerEvent) {
-
 	C.QSpatialSound_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QSpatialSound) OnTimerEvent(slot func(super func(event *qt6.QTimerEvent), event *qt6.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -569,14 +580,12 @@ func miqt_exec_callback_QSpatialSound_TimerEvent(self *C.QSpatialSound, cb C.int
 	slotval1 := qt6.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QSpatialSound{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QSpatialSound) callVirtualBase_ChildEvent(event *qt6.QChildEvent) {
-
 	C.QSpatialSound_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QSpatialSound) OnChildEvent(slot func(super func(event *qt6.QChildEvent), event *qt6.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -595,14 +604,12 @@ func miqt_exec_callback_QSpatialSound_ChildEvent(self *C.QSpatialSound, cb C.int
 	slotval1 := qt6.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QSpatialSound{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QSpatialSound) callVirtualBase_CustomEvent(event *qt6.QEvent) {
-
 	C.QSpatialSound_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QSpatialSound) OnCustomEvent(slot func(super func(event *qt6.QEvent), event *qt6.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -621,14 +628,12 @@ func miqt_exec_callback_QSpatialSound_CustomEvent(self *C.QSpatialSound, cb C.in
 	slotval1 := qt6.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QSpatialSound{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QSpatialSound) callVirtualBase_ConnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QSpatialSound_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QSpatialSound) OnConnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -647,14 +652,12 @@ func miqt_exec_callback_QSpatialSound_ConnectNotify(self *C.QSpatialSound, cb C.
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QSpatialSound{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QSpatialSound) callVirtualBase_DisconnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QSpatialSound_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QSpatialSound) OnDisconnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -673,7 +676,6 @@ func miqt_exec_callback_QSpatialSound_DisconnectNotify(self *C.QSpatialSound, cb
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QSpatialSound{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

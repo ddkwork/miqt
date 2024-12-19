@@ -42,8 +42,10 @@ func newQTest__QTouchEventWidgetSequence(h *C.QTest__QTouchEventWidgetSequence) 
 	var outptr_QTest__QTouchEventSequence *C.QTest__QTouchEventSequence = nil
 	C.QTest__QTouchEventWidgetSequence_virtbase(h, &outptr_QTest__QTouchEventSequence)
 
-	return &QTest__QTouchEventWidgetSequence{h: h,
-		QTest__QTouchEventSequence: newQTest__QTouchEventSequence(outptr_QTest__QTouchEventSequence)}
+	return &QTest__QTouchEventWidgetSequence{
+		h:                          h,
+		QTest__QTouchEventSequence: newQTest__QTouchEventSequence(outptr_QTest__QTouchEventSequence),
+	}
 }
 
 // UnsafeNewQTest__QTouchEventWidgetSequence constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQTest__QTouchEventWidgetSequence(h unsafe.Pointer) *QTest__QTouchE
 
 // NewQTest__QTouchEventWidgetSequence constructs a new QTest::QTouchEventWidgetSequence object.
 func NewQTest__QTouchEventWidgetSequence(param1 *QTest__QTouchEventWidgetSequence) *QTest__QTouchEventWidgetSequence {
-
 	ret := newQTest__QTouchEventWidgetSequence(C.QTest__QTouchEventWidgetSequence_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -92,10 +93,9 @@ func (this *QTest__QTouchEventWidgetSequence) Release3(touchId int, pt *QPoint, 
 }
 
 func (this *QTest__QTouchEventWidgetSequence) callVirtualBase_Stationary(touchId int) *QTest__QTouchEventWidgetSequence {
-
 	return newQTest__QTouchEventWidgetSequence(C.QTest__QTouchEventWidgetSequence_virtualbase_Stationary(unsafe.Pointer(this.h), (C.int)(touchId)))
-
 }
+
 func (this *QTest__QTouchEventWidgetSequence) OnStationary(slot func(super func(touchId int) *QTest__QTouchEventWidgetSequence, touchId int) *QTest__QTouchEventWidgetSequence) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -116,14 +116,12 @@ func miqt_exec_callback_QTest__QTouchEventWidgetSequence_Stationary(self *C.QTes
 	virtualReturn := gofunc((&QTest__QTouchEventWidgetSequence{h: self}).callVirtualBase_Stationary, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QTest__QTouchEventWidgetSequence) callVirtualBase_Commit(processEvents bool) bool {
-
 	return (bool)(C.QTest__QTouchEventWidgetSequence_virtualbase_Commit(unsafe.Pointer(this.h), (C.bool)(processEvents)))
-
 }
+
 func (this *QTest__QTouchEventWidgetSequence) OnCommit(slot func(super func(processEvents bool) bool, processEvents bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -144,7 +142,6 @@ func miqt_exec_callback_QTest__QTouchEventWidgetSequence_Commit(self *C.QTest__Q
 	virtualReturn := gofunc((&QTest__QTouchEventWidgetSequence{h: self}).callVirtualBase_Commit, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

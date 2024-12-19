@@ -67,8 +67,10 @@ func newQScroller(h *C.QScroller) *QScroller {
 	var outptr_QObject *C.QObject = nil
 	C.QScroller_virtbase(h, &outptr_QObject)
 
-	return &QScroller{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QScroller{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQScroller constructs the type using only unsafe pointers.
@@ -224,6 +226,7 @@ func (this *QScroller) ResendPrepareEvent() {
 func (this *QScroller) StateChanged(newstate QScroller__State) {
 	C.QScroller_StateChanged(this.h, (C.int)(newstate))
 }
+
 func (this *QScroller) OnStateChanged(slot func(newstate QScroller__State)) {
 	C.QScroller_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -244,6 +247,7 @@ func miqt_exec_callback_QScroller_StateChanged(cb C.intptr_t, newstate C.int) {
 func (this *QScroller) ScrollerPropertiesChanged(param1 *QScrollerProperties) {
 	C.QScroller_ScrollerPropertiesChanged(this.h, param1.cPointer())
 }
+
 func (this *QScroller) OnScrollerPropertiesChanged(slot func(param1 *QScrollerProperties)) {
 	C.QScroller_connect_ScrollerPropertiesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

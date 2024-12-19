@@ -109,7 +109,6 @@ func UnsafeNewQPainter(h unsafe.Pointer) *QPainter {
 
 // NewQPainter constructs a new QPainter object.
 func NewQPainter() *QPainter {
-
 	ret := newQPainter(C.QPainter_new())
 	ret.isSubclass = true
 	return ret
@@ -117,7 +116,6 @@ func NewQPainter() *QPainter {
 
 // NewQPainter2 constructs a new QPainter object.
 func NewQPainter2(param1 *QPaintDevice) *QPainter {
-
 	ret := newQPainter(C.QPainter_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

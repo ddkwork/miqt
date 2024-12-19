@@ -42,8 +42,10 @@ func newQSplashScreen(h *C.QSplashScreen) *QSplashScreen {
 	var outptr_QWidget *C.QWidget = nil
 	C.QSplashScreen_virtbase(h, &outptr_QWidget)
 
-	return &QSplashScreen{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
+	return &QSplashScreen{
+		h:       h,
+		QWidget: newQWidget(outptr_QWidget),
+	}
 }
 
 // UnsafeNewQSplashScreen constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQSplashScreen(h unsafe.Pointer) *QSplashScreen {
 
 // NewQSplashScreen constructs a new QSplashScreen object.
 func NewQSplashScreen(parent *QWidget) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQSplashScreen(parent *QWidget) *QSplashScreen {
 
 // NewQSplashScreen2 constructs a new QSplashScreen object.
 func NewQSplashScreen2() *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new2())
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQSplashScreen2() *QSplashScreen {
 
 // NewQSplashScreen3 constructs a new QSplashScreen object.
 func NewQSplashScreen3(screen *QScreen) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new3(screen.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQSplashScreen3(screen *QScreen) *QSplashScreen {
 
 // NewQSplashScreen4 constructs a new QSplashScreen object.
 func NewQSplashScreen4(pixmap *QPixmap) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new4(pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -85,7 +83,6 @@ func NewQSplashScreen4(pixmap *QPixmap) *QSplashScreen {
 
 // NewQSplashScreen5 constructs a new QSplashScreen object.
 func NewQSplashScreen5(pixmap *QPixmap, f WindowType) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new5(pixmap.cPointer(), (C.int)(f)))
 	ret.isSubclass = true
 	return ret
@@ -93,7 +90,6 @@ func NewQSplashScreen5(pixmap *QPixmap, f WindowType) *QSplashScreen {
 
 // NewQSplashScreen6 constructs a new QSplashScreen object.
 func NewQSplashScreen6(screen *QScreen, pixmap *QPixmap) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new6(screen.cPointer(), pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -101,7 +97,6 @@ func NewQSplashScreen6(screen *QScreen, pixmap *QPixmap) *QSplashScreen {
 
 // NewQSplashScreen7 constructs a new QSplashScreen object.
 func NewQSplashScreen7(screen *QScreen, pixmap *QPixmap, f WindowType) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new7(screen.cPointer(), pixmap.cPointer(), (C.int)(f)))
 	ret.isSubclass = true
 	return ret
@@ -109,7 +104,6 @@ func NewQSplashScreen7(screen *QScreen, pixmap *QPixmap, f WindowType) *QSplashS
 
 // NewQSplashScreen8 constructs a new QSplashScreen object.
 func NewQSplashScreen8(parent *QWidget, pixmap *QPixmap) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new8(parent.cPointer(), pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -117,7 +111,6 @@ func NewQSplashScreen8(parent *QWidget, pixmap *QPixmap) *QSplashScreen {
 
 // NewQSplashScreen9 constructs a new QSplashScreen object.
 func NewQSplashScreen9(parent *QWidget, pixmap *QPixmap, f WindowType) *QSplashScreen {
-
 	ret := newQSplashScreen(C.QSplashScreen_new9(parent.cPointer(), pixmap.cPointer(), (C.int)(f)))
 	ret.isSubclass = true
 	return ret
@@ -195,6 +188,7 @@ func (this *QSplashScreen) MessageChanged(message string) {
 	defer C.free(unsafe.Pointer(message_ms.data))
 	C.QSplashScreen_MessageChanged(this.h, message_ms)
 }
+
 func (this *QSplashScreen) OnMessageChanged(slot func(message string)) {
 	C.QSplashScreen_connect_MessageChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -276,10 +270,9 @@ func (this *QSplashScreen) ShowMessage3(message string, alignment int, color *QC
 }
 
 func (this *QSplashScreen) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QSplashScreen_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QSplashScreen) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -300,14 +293,12 @@ func miqt_exec_callback_QSplashScreen_Event(self *C.QSplashScreen, cb C.intptr_t
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_DrawContents(painter *QPainter) {
-
 	C.QSplashScreen_virtualbase_DrawContents(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QSplashScreen) OnDrawContents(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -326,14 +317,12 @@ func miqt_exec_callback_QSplashScreen_DrawContents(self *C.QSplashScreen, cb C.i
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_DrawContents, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_MousePressEvent(param1 *QMouseEvent) {
-
 	C.QSplashScreen_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplashScreen) OnMousePressEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -352,14 +341,12 @@ func miqt_exec_callback_QSplashScreen_MousePressEvent(self *C.QSplashScreen, cb 
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_DevType() int {
-
 	return (int)(C.QSplashScreen_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplashScreen) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -377,14 +364,12 @@ func miqt_exec_callback_QSplashScreen_DevType(self *C.QSplashScreen, cb C.intptr
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_SetVisible(visible bool) {
-
 	C.QSplashScreen_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QSplashScreen) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -403,16 +388,14 @@ func miqt_exec_callback_QSplashScreen_SetVisible(self *C.QSplashScreen, cb C.int
 	slotval1 := (bool)(visible)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QSplashScreen_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplashScreen) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -430,16 +413,14 @@ func miqt_exec_callback_QSplashScreen_SizeHint(self *C.QSplashScreen, cb C.intpt
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplashScreen) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QSplashScreen_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplashScreen) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -457,14 +438,12 @@ func miqt_exec_callback_QSplashScreen_MinimumSizeHint(self *C.QSplashScreen, cb 
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplashScreen) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QSplashScreen_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QSplashScreen) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -485,14 +464,12 @@ func miqt_exec_callback_QSplashScreen_HeightForWidth(self *C.QSplashScreen, cb C
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QSplashScreen_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplashScreen) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -510,14 +487,12 @@ func miqt_exec_callback_QSplashScreen_HasHeightForWidth(self *C.QSplashScreen, c
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QSplashScreen_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplashScreen) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -535,14 +510,12 @@ func miqt_exec_callback_QSplashScreen_PaintEngine(self *C.QSplashScreen, cb C.in
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplashScreen) callVirtualBase_MouseReleaseEvent(event *QMouseEvent) {
-
 	C.QSplashScreen_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnMouseReleaseEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -561,14 +534,12 @@ func miqt_exec_callback_QSplashScreen_MouseReleaseEvent(self *C.QSplashScreen, c
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_MouseDoubleClickEvent(event *QMouseEvent) {
-
 	C.QSplashScreen_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnMouseDoubleClickEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -587,14 +558,12 @@ func miqt_exec_callback_QSplashScreen_MouseDoubleClickEvent(self *C.QSplashScree
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_MouseMoveEvent(event *QMouseEvent) {
-
 	C.QSplashScreen_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnMouseMoveEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -613,14 +582,12 @@ func miqt_exec_callback_QSplashScreen_MouseMoveEvent(self *C.QSplashScreen, cb C
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_WheelEvent(event *QWheelEvent) {
-
 	C.QSplashScreen_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnWheelEvent(slot func(super func(event *QWheelEvent), event *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -639,14 +606,12 @@ func miqt_exec_callback_QSplashScreen_WheelEvent(self *C.QSplashScreen, cb C.int
 	slotval1 := newQWheelEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
-
 	C.QSplashScreen_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -665,14 +630,12 @@ func miqt_exec_callback_QSplashScreen_KeyPressEvent(self *C.QSplashScreen, cb C.
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
-
 	C.QSplashScreen_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -691,14 +654,12 @@ func miqt_exec_callback_QSplashScreen_KeyReleaseEvent(self *C.QSplashScreen, cb 
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_FocusInEvent(event *QFocusEvent) {
-
 	C.QSplashScreen_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -717,14 +678,12 @@ func miqt_exec_callback_QSplashScreen_FocusInEvent(self *C.QSplashScreen, cb C.i
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
-
 	C.QSplashScreen_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -743,14 +702,12 @@ func miqt_exec_callback_QSplashScreen_FocusOutEvent(self *C.QSplashScreen, cb C.
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_EnterEvent(event *QEvent) {
-
 	C.QSplashScreen_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnEnterEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -769,14 +726,12 @@ func miqt_exec_callback_QSplashScreen_EnterEvent(self *C.QSplashScreen, cb C.int
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_LeaveEvent(event *QEvent) {
-
 	C.QSplashScreen_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -795,14 +750,12 @@ func miqt_exec_callback_QSplashScreen_LeaveEvent(self *C.QSplashScreen, cb C.int
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_PaintEvent(event *QPaintEvent) {
-
 	C.QSplashScreen_virtualbase_PaintEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnPaintEvent(slot func(super func(event *QPaintEvent), event *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -821,14 +774,12 @@ func miqt_exec_callback_QSplashScreen_PaintEvent(self *C.QSplashScreen, cb C.int
 	slotval1 := newQPaintEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_MoveEvent(event *QMoveEvent) {
-
 	C.QSplashScreen_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -847,14 +798,12 @@ func miqt_exec_callback_QSplashScreen_MoveEvent(self *C.QSplashScreen, cb C.intp
 	slotval1 := newQMoveEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_ResizeEvent(event *QResizeEvent) {
-
 	C.QSplashScreen_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -873,14 +822,12 @@ func miqt_exec_callback_QSplashScreen_ResizeEvent(self *C.QSplashScreen, cb C.in
 	slotval1 := newQResizeEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QSplashScreen_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -899,14 +846,12 @@ func miqt_exec_callback_QSplashScreen_CloseEvent(self *C.QSplashScreen, cb C.int
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_ContextMenuEvent(event *QContextMenuEvent) {
-
 	C.QSplashScreen_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnContextMenuEvent(slot func(super func(event *QContextMenuEvent), event *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -925,14 +870,12 @@ func miqt_exec_callback_QSplashScreen_ContextMenuEvent(self *C.QSplashScreen, cb
 	slotval1 := newQContextMenuEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_TabletEvent(event *QTabletEvent) {
-
 	C.QSplashScreen_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -951,14 +894,12 @@ func miqt_exec_callback_QSplashScreen_TabletEvent(self *C.QSplashScreen, cb C.in
 	slotval1 := newQTabletEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_ActionEvent(event *QActionEvent) {
-
 	C.QSplashScreen_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -977,14 +918,12 @@ func miqt_exec_callback_QSplashScreen_ActionEvent(self *C.QSplashScreen, cb C.in
 	slotval1 := newQActionEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_DragEnterEvent(event *QDragEnterEvent) {
-
 	C.QSplashScreen_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnDragEnterEvent(slot func(super func(event *QDragEnterEvent), event *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1003,14 +942,12 @@ func miqt_exec_callback_QSplashScreen_DragEnterEvent(self *C.QSplashScreen, cb C
 	slotval1 := newQDragEnterEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_DragMoveEvent(event *QDragMoveEvent) {
-
 	C.QSplashScreen_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnDragMoveEvent(slot func(super func(event *QDragMoveEvent), event *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1029,14 +966,12 @@ func miqt_exec_callback_QSplashScreen_DragMoveEvent(self *C.QSplashScreen, cb C.
 	slotval1 := newQDragMoveEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_DragLeaveEvent(event *QDragLeaveEvent) {
-
 	C.QSplashScreen_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnDragLeaveEvent(slot func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1055,14 +990,12 @@ func miqt_exec_callback_QSplashScreen_DragLeaveEvent(self *C.QSplashScreen, cb C
 	slotval1 := newQDragLeaveEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_DropEvent(event *QDropEvent) {
-
 	C.QSplashScreen_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnDropEvent(slot func(super func(event *QDropEvent), event *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1081,14 +1014,12 @@ func miqt_exec_callback_QSplashScreen_DropEvent(self *C.QSplashScreen, cb C.intp
 	slotval1 := newQDropEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QSplashScreen_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1107,14 +1038,12 @@ func miqt_exec_callback_QSplashScreen_ShowEvent(self *C.QSplashScreen, cb C.intp
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QSplashScreen_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSplashScreen) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1133,7 +1062,6 @@ func miqt_exec_callback_QSplashScreen_HideEvent(self *C.QSplashScreen, cb C.intp
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
@@ -1142,8 +1070,8 @@ func (this *QSplashScreen) callVirtualBase_NativeEvent(eventType []byte, message
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QSplashScreen_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
-
 }
+
 func (this *QSplashScreen) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1170,14 +1098,12 @@ func miqt_exec_callback_QSplashScreen_NativeEvent(self *C.QSplashScreen, cb C.in
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QSplashScreen_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplashScreen) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1196,14 +1122,12 @@ func miqt_exec_callback_QSplashScreen_ChangeEvent(self *C.QSplashScreen, cb C.in
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QSplashScreen_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QSplashScreen) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1224,14 +1148,12 @@ func miqt_exec_callback_QSplashScreen_Metric(self *C.QSplashScreen, cb C.intptr_
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QSplashScreen_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QSplashScreen) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1250,14 +1172,12 @@ func miqt_exec_callback_QSplashScreen_InitPainter(self *C.QSplashScreen, cb C.in
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QSplashScreen_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QSplashScreen) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1278,14 +1198,12 @@ func miqt_exec_callback_QSplashScreen_Redirected(self *C.QSplashScreen, cb C.int
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplashScreen) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QSplashScreen_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QSplashScreen) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1303,14 +1221,12 @@ func miqt_exec_callback_QSplashScreen_SharedPainter(self *C.QSplashScreen, cb C.
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplashScreen) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
-
 	C.QSplashScreen_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QSplashScreen) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1329,16 +1245,14 @@ func miqt_exec_callback_QSplashScreen_InputMethodEvent(self *C.QSplashScreen, cb
 	slotval1 := newQInputMethodEvent(param1)
 
 	gofunc((&QSplashScreen{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QSplashScreen) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QSplashScreen_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QSplashScreen) OnInputMethodQuery(slot func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1359,14 +1273,12 @@ func miqt_exec_callback_QSplashScreen_InputMethodQuery(self *C.QSplashScreen, cb
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QSplashScreen) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QSplashScreen_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QSplashScreen) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1387,7 +1299,6 @@ func miqt_exec_callback_QSplashScreen_FocusNextPrevChild(self *C.QSplashScreen, 
 	virtualReturn := gofunc((&QSplashScreen{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

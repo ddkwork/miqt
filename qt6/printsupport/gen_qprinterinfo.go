@@ -9,9 +9,10 @@ package printsupport
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QPrinterInfo struct {
@@ -49,7 +50,6 @@ func UnsafeNewQPrinterInfo(h unsafe.Pointer) *QPrinterInfo {
 
 // NewQPrinterInfo constructs a new QPrinterInfo object.
 func NewQPrinterInfo() *QPrinterInfo {
-
 	ret := newQPrinterInfo(C.QPrinterInfo_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQPrinterInfo() *QPrinterInfo {
 
 // NewQPrinterInfo2 constructs a new QPrinterInfo object.
 func NewQPrinterInfo2(other *QPrinterInfo) *QPrinterInfo {
-
 	ret := newQPrinterInfo(C.QPrinterInfo_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -65,7 +64,6 @@ func NewQPrinterInfo2(other *QPrinterInfo) *QPrinterInfo {
 
 // NewQPrinterInfo3 constructs a new QPrinterInfo object.
 func NewQPrinterInfo3(printer *QPrinter) *QPrinterInfo {
-
 	ret := newQPrinterInfo(C.QPrinterInfo_new3(printer.cPointer()))
 	ret.isSubclass = true
 	return ret

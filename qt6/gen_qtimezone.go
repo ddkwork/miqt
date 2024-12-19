@@ -72,7 +72,6 @@ func UnsafeNewQTimeZone(h unsafe.Pointer) *QTimeZone {
 
 // NewQTimeZone constructs a new QTimeZone object.
 func NewQTimeZone() *QTimeZone {
-
 	ret := newQTimeZone(C.QTimeZone_new())
 	ret.isSubclass = true
 	return ret
@@ -91,7 +90,6 @@ func NewQTimeZone2(ianaId []byte) *QTimeZone {
 
 // NewQTimeZone3 constructs a new QTimeZone object.
 func NewQTimeZone3(offsetSeconds int) *QTimeZone {
-
 	ret := newQTimeZone(C.QTimeZone_new3((C.int)(offsetSeconds)))
 	ret.isSubclass = true
 	return ret
@@ -118,7 +116,6 @@ func NewQTimeZone4(zoneId []byte, offsetSeconds int, name string, abbreviation s
 
 // NewQTimeZone5 constructs a new QTimeZone object.
 func NewQTimeZone5(other *QTimeZone) *QTimeZone {
-
 	ret := newQTimeZone(C.QTimeZone_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -479,7 +476,6 @@ func UnsafeNewQTimeZone__OffsetData(h unsafe.Pointer) *QTimeZone__OffsetData {
 
 // NewQTimeZone__OffsetData constructs a new QTimeZone::OffsetData object.
 func NewQTimeZone__OffsetData(param1 *QTimeZone__OffsetData) *QTimeZone__OffsetData {
-
 	ret := newQTimeZone__OffsetData(C.QTimeZone__OffsetData_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

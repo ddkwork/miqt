@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaPlayerControl struct {
@@ -43,8 +44,10 @@ func newQMediaPlayerControl(h *C.QMediaPlayerControl) *QMediaPlayerControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaPlayerControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaPlayerControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaPlayerControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaPlayerControl constructs the type using only unsafe pointers.
@@ -175,6 +178,7 @@ func (this *QMediaPlayerControl) Stop() {
 func (this *QMediaPlayerControl) MediaChanged(content *QMediaContent) {
 	C.QMediaPlayerControl_MediaChanged(this.h, content.cPointer())
 }
+
 func (this *QMediaPlayerControl) OnMediaChanged(slot func(content *QMediaContent)) {
 	C.QMediaPlayerControl_connect_MediaChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -195,6 +199,7 @@ func miqt_exec_callback_QMediaPlayerControl_MediaChanged(cb C.intptr_t, content 
 func (this *QMediaPlayerControl) DurationChanged(duration int64) {
 	C.QMediaPlayerControl_DurationChanged(this.h, (C.longlong)(duration))
 }
+
 func (this *QMediaPlayerControl) OnDurationChanged(slot func(duration int64)) {
 	C.QMediaPlayerControl_connect_DurationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -215,6 +220,7 @@ func miqt_exec_callback_QMediaPlayerControl_DurationChanged(cb C.intptr_t, durat
 func (this *QMediaPlayerControl) PositionChanged(position int64) {
 	C.QMediaPlayerControl_PositionChanged(this.h, (C.longlong)(position))
 }
+
 func (this *QMediaPlayerControl) OnPositionChanged(slot func(position int64)) {
 	C.QMediaPlayerControl_connect_PositionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -235,6 +241,7 @@ func miqt_exec_callback_QMediaPlayerControl_PositionChanged(cb C.intptr_t, posit
 func (this *QMediaPlayerControl) StateChanged(newState QMediaPlayer__State) {
 	C.QMediaPlayerControl_StateChanged(this.h, (C.int)(newState))
 }
+
 func (this *QMediaPlayerControl) OnStateChanged(slot func(newState QMediaPlayer__State)) {
 	C.QMediaPlayerControl_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -255,6 +262,7 @@ func miqt_exec_callback_QMediaPlayerControl_StateChanged(cb C.intptr_t, newState
 func (this *QMediaPlayerControl) MediaStatusChanged(status QMediaPlayer__MediaStatus) {
 	C.QMediaPlayerControl_MediaStatusChanged(this.h, (C.int)(status))
 }
+
 func (this *QMediaPlayerControl) OnMediaStatusChanged(slot func(status QMediaPlayer__MediaStatus)) {
 	C.QMediaPlayerControl_connect_MediaStatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -275,6 +283,7 @@ func miqt_exec_callback_QMediaPlayerControl_MediaStatusChanged(cb C.intptr_t, st
 func (this *QMediaPlayerControl) VolumeChanged(volume int) {
 	C.QMediaPlayerControl_VolumeChanged(this.h, (C.int)(volume))
 }
+
 func (this *QMediaPlayerControl) OnVolumeChanged(slot func(volume int)) {
 	C.QMediaPlayerControl_connect_VolumeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -295,6 +304,7 @@ func miqt_exec_callback_QMediaPlayerControl_VolumeChanged(cb C.intptr_t, volume 
 func (this *QMediaPlayerControl) MutedChanged(mute bool) {
 	C.QMediaPlayerControl_MutedChanged(this.h, (C.bool)(mute))
 }
+
 func (this *QMediaPlayerControl) OnMutedChanged(slot func(mute bool)) {
 	C.QMediaPlayerControl_connect_MutedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -315,6 +325,7 @@ func miqt_exec_callback_QMediaPlayerControl_MutedChanged(cb C.intptr_t, mute C.b
 func (this *QMediaPlayerControl) AudioAvailableChanged(audioAvailable bool) {
 	C.QMediaPlayerControl_AudioAvailableChanged(this.h, (C.bool)(audioAvailable))
 }
+
 func (this *QMediaPlayerControl) OnAudioAvailableChanged(slot func(audioAvailable bool)) {
 	C.QMediaPlayerControl_connect_AudioAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -335,6 +346,7 @@ func miqt_exec_callback_QMediaPlayerControl_AudioAvailableChanged(cb C.intptr_t,
 func (this *QMediaPlayerControl) VideoAvailableChanged(videoAvailable bool) {
 	C.QMediaPlayerControl_VideoAvailableChanged(this.h, (C.bool)(videoAvailable))
 }
+
 func (this *QMediaPlayerControl) OnVideoAvailableChanged(slot func(videoAvailable bool)) {
 	C.QMediaPlayerControl_connect_VideoAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -355,6 +367,7 @@ func miqt_exec_callback_QMediaPlayerControl_VideoAvailableChanged(cb C.intptr_t,
 func (this *QMediaPlayerControl) BufferStatusChanged(percentFilled int) {
 	C.QMediaPlayerControl_BufferStatusChanged(this.h, (C.int)(percentFilled))
 }
+
 func (this *QMediaPlayerControl) OnBufferStatusChanged(slot func(percentFilled int)) {
 	C.QMediaPlayerControl_connect_BufferStatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -375,6 +388,7 @@ func miqt_exec_callback_QMediaPlayerControl_BufferStatusChanged(cb C.intptr_t, p
 func (this *QMediaPlayerControl) SeekableChanged(seekable bool) {
 	C.QMediaPlayerControl_SeekableChanged(this.h, (C.bool)(seekable))
 }
+
 func (this *QMediaPlayerControl) OnSeekableChanged(slot func(seekable bool)) {
 	C.QMediaPlayerControl_connect_SeekableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -395,6 +409,7 @@ func miqt_exec_callback_QMediaPlayerControl_SeekableChanged(cb C.intptr_t, seeka
 func (this *QMediaPlayerControl) AvailablePlaybackRangesChanged(ranges *QMediaTimeRange) {
 	C.QMediaPlayerControl_AvailablePlaybackRangesChanged(this.h, ranges.cPointer())
 }
+
 func (this *QMediaPlayerControl) OnAvailablePlaybackRangesChanged(slot func(ranges *QMediaTimeRange)) {
 	C.QMediaPlayerControl_connect_AvailablePlaybackRangesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -415,6 +430,7 @@ func miqt_exec_callback_QMediaPlayerControl_AvailablePlaybackRangesChanged(cb C.
 func (this *QMediaPlayerControl) PlaybackRateChanged(rate float64) {
 	C.QMediaPlayerControl_PlaybackRateChanged(this.h, (C.double)(rate))
 }
+
 func (this *QMediaPlayerControl) OnPlaybackRateChanged(slot func(rate float64)) {
 	C.QMediaPlayerControl_connect_PlaybackRateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -439,6 +455,7 @@ func (this *QMediaPlayerControl) Error(error int, errorString string) {
 	defer C.free(unsafe.Pointer(errorString_ms.data))
 	C.QMediaPlayerControl_Error(this.h, (C.int)(error), errorString_ms)
 }
+
 func (this *QMediaPlayerControl) OnError(slot func(error int, errorString string)) {
 	C.QMediaPlayerControl_connect_Error(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

@@ -49,8 +49,10 @@ func newQDebug(h *C.QDebug) *QDebug {
 	var outptr_QIODeviceBase *C.QIODeviceBase = nil
 	C.QDebug_virtbase(h, &outptr_QIODeviceBase)
 
-	return &QDebug{h: h,
-		QIODeviceBase: newQIODeviceBase(outptr_QIODeviceBase)}
+	return &QDebug{
+		h:             h,
+		QIODeviceBase: newQIODeviceBase(outptr_QIODeviceBase),
+	}
 }
 
 // UnsafeNewQDebug constructs the type using only unsafe pointers.
@@ -60,7 +62,6 @@ func UnsafeNewQDebug(h unsafe.Pointer) *QDebug {
 
 // NewQDebug constructs a new QDebug object.
 func NewQDebug(device *QIODevice) *QDebug {
-
 	ret := newQDebug(C.QDebug_new(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -68,7 +69,6 @@ func NewQDebug(device *QIODevice) *QDebug {
 
 // NewQDebug2 constructs a new QDebug object.
 func NewQDebug2(o *QDebug) *QDebug {
-
 	ret := newQDebug(C.QDebug_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -264,7 +264,6 @@ func UnsafeNewQDebugStateSaver(h unsafe.Pointer) *QDebugStateSaver {
 
 // NewQDebugStateSaver constructs a new QDebugStateSaver object.
 func NewQDebugStateSaver(dbg *QDebug) *QDebugStateSaver {
-
 	ret := newQDebugStateSaver(C.QDebugStateSaver_new(dbg.cPointer()))
 	ret.isSubclass = true
 	return ret

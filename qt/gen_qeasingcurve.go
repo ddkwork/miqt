@@ -102,7 +102,6 @@ func UnsafeNewQEasingCurve(h unsafe.Pointer) *QEasingCurve {
 
 // NewQEasingCurve constructs a new QEasingCurve object.
 func NewQEasingCurve() *QEasingCurve {
-
 	ret := newQEasingCurve(C.QEasingCurve_new())
 	ret.isSubclass = true
 	return ret
@@ -110,7 +109,6 @@ func NewQEasingCurve() *QEasingCurve {
 
 // NewQEasingCurve2 constructs a new QEasingCurve object.
 func NewQEasingCurve2(other *QEasingCurve) *QEasingCurve {
-
 	ret := newQEasingCurve(C.QEasingCurve_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -118,7 +116,6 @@ func NewQEasingCurve2(other *QEasingCurve) *QEasingCurve {
 
 // NewQEasingCurve3 constructs a new QEasingCurve object.
 func NewQEasingCurve3(typeVal QEasingCurve__Type) *QEasingCurve {
-
 	ret := newQEasingCurve(C.QEasingCurve_new3((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraControl__PropertyChangeType int
@@ -53,8 +54,10 @@ func newQCameraControl(h *C.QCameraControl) *QCameraControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraControl constructs the type using only unsafe pointers.
@@ -121,6 +124,7 @@ func (this *QCameraControl) CanChangeProperty(changeType QCameraControl__Propert
 func (this *QCameraControl) StateChanged(param1 QCamera__State) {
 	C.QCameraControl_StateChanged(this.h, (C.int)(param1))
 }
+
 func (this *QCameraControl) OnStateChanged(slot func(param1 QCamera__State)) {
 	C.QCameraControl_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -141,6 +145,7 @@ func miqt_exec_callback_QCameraControl_StateChanged(cb C.intptr_t, param1 C.int)
 func (this *QCameraControl) StatusChanged(param1 QCamera__Status) {
 	C.QCameraControl_StatusChanged(this.h, (C.int)(param1))
 }
+
 func (this *QCameraControl) OnStatusChanged(slot func(param1 QCamera__Status)) {
 	C.QCameraControl_connect_StatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -165,6 +170,7 @@ func (this *QCameraControl) Error(error int, errorString string) {
 	defer C.free(unsafe.Pointer(errorString_ms.data))
 	C.QCameraControl_Error(this.h, (C.int)(error), errorString_ms)
 }
+
 func (this *QCameraControl) OnError(slot func(error int, errorString string)) {
 	C.QCameraControl_connect_Error(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -190,6 +196,7 @@ func miqt_exec_callback_QCameraControl_Error(cb C.intptr_t, error C.int, errorSt
 func (this *QCameraControl) CaptureModeChanged(mode QCamera__CaptureMode) {
 	C.QCameraControl_CaptureModeChanged(this.h, (C.int)(mode))
 }
+
 func (this *QCameraControl) OnCaptureModeChanged(slot func(mode QCamera__CaptureMode)) {
 	C.QCameraControl_connect_CaptureModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

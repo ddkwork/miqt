@@ -9,9 +9,10 @@ package webkit
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebFullScreenRequest struct {
@@ -49,7 +50,6 @@ func UnsafeNewQWebFullScreenRequest(h unsafe.Pointer) *QWebFullScreenRequest {
 
 // NewQWebFullScreenRequest constructs a new QWebFullScreenRequest object.
 func NewQWebFullScreenRequest() *QWebFullScreenRequest {
-
 	ret := newQWebFullScreenRequest(C.QWebFullScreenRequest_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQWebFullScreenRequest() *QWebFullScreenRequest {
 
 // NewQWebFullScreenRequest2 constructs a new QWebFullScreenRequest object.
 func NewQWebFullScreenRequest2(param1 *QWebFullScreenRequest) *QWebFullScreenRequest {
-
 	ret := newQWebFullScreenRequest(C.QWebFullScreenRequest_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

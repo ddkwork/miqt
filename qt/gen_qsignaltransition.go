@@ -42,8 +42,10 @@ func newQSignalTransition(h *C.QSignalTransition) *QSignalTransition {
 	var outptr_QAbstractTransition *C.QAbstractTransition = nil
 	C.QSignalTransition_virtbase(h, &outptr_QAbstractTransition)
 
-	return &QSignalTransition{h: h,
-		QAbstractTransition: newQAbstractTransition(outptr_QAbstractTransition)}
+	return &QSignalTransition{
+		h:                   h,
+		QAbstractTransition: newQAbstractTransition(outptr_QAbstractTransition),
+	}
 }
 
 // UnsafeNewQSignalTransition constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQSignalTransition(h unsafe.Pointer) *QSignalTransition {
 
 // NewQSignalTransition constructs a new QSignalTransition object.
 func NewQSignalTransition() *QSignalTransition {
-
 	ret := newQSignalTransition(C.QSignalTransition_new())
 	ret.isSubclass = true
 	return ret
@@ -71,7 +72,6 @@ func NewQSignalTransition2(sender *QObject, signal string) *QSignalTransition {
 
 // NewQSignalTransition3 constructs a new QSignalTransition object.
 func NewQSignalTransition3(sourceState *QState) *QSignalTransition {
-
 	ret := newQSignalTransition(C.QSignalTransition_new3(sourceState.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -182,10 +182,9 @@ func QSignalTransition_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QSignalTransition) callVirtualBase_EventTest(event *QEvent) bool {
-
 	return (bool)(C.QSignalTransition_virtualbase_EventTest(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QSignalTransition) OnEventTest(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -206,14 +205,12 @@ func miqt_exec_callback_QSignalTransition_EventTest(self *C.QSignalTransition, c
 	virtualReturn := gofunc((&QSignalTransition{h: self}).callVirtualBase_EventTest, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QSignalTransition) callVirtualBase_OnTransition(event *QEvent) {
-
 	C.QSignalTransition_virtualbase_OnTransition(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QSignalTransition) OnOnTransition(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -232,14 +229,12 @@ func miqt_exec_callback_QSignalTransition_OnTransition(self *C.QSignalTransition
 	slotval1 := newQEvent(event)
 
 	gofunc((&QSignalTransition{h: self}).callVirtualBase_OnTransition, slotval1)
-
 }
 
 func (this *QSignalTransition) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QSignalTransition_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QSignalTransition) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -260,7 +255,6 @@ func miqt_exec_callback_QSignalTransition_Event(self *C.QSignalTransition, cb C.
 	virtualReturn := gofunc((&QSignalTransition{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

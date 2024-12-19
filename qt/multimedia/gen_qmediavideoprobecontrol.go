@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaVideoProbeControl struct {
@@ -43,8 +44,10 @@ func newQMediaVideoProbeControl(h *C.QMediaVideoProbeControl) *QMediaVideoProbeC
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaVideoProbeControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaVideoProbeControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaVideoProbeControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaVideoProbeControl constructs the type using only unsafe pointers.
@@ -83,6 +86,7 @@ func QMediaVideoProbeControl_TrUtf8(s string) string {
 func (this *QMediaVideoProbeControl) VideoFrameProbed(frame *QVideoFrame) {
 	C.QMediaVideoProbeControl_VideoFrameProbed(this.h, frame.cPointer())
 }
+
 func (this *QMediaVideoProbeControl) OnVideoFrameProbed(slot func(frame *QVideoFrame)) {
 	C.QMediaVideoProbeControl_connect_VideoFrameProbed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -103,6 +107,7 @@ func miqt_exec_callback_QMediaVideoProbeControl_VideoFrameProbed(cb C.intptr_t, 
 func (this *QMediaVideoProbeControl) Flush() {
 	C.QMediaVideoProbeControl_Flush(this.h)
 }
+
 func (this *QMediaVideoProbeControl) OnFlush(slot func()) {
 	C.QMediaVideoProbeControl_connect_Flush(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

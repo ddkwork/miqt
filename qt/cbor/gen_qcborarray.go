@@ -9,9 +9,10 @@ package cbor
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCborArray struct {
@@ -49,7 +50,6 @@ func UnsafeNewQCborArray(h unsafe.Pointer) *QCborArray {
 
 // NewQCborArray constructs a new QCborArray object.
 func NewQCborArray() *QCborArray {
-
 	ret := newQCborArray(C.QCborArray_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQCborArray() *QCborArray {
 
 // NewQCborArray2 constructs a new QCborArray object.
 func NewQCborArray2(other *QCborArray) *QCborArray {
-
 	ret := newQCborArray(C.QCborArray_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -388,7 +387,6 @@ func UnsafeNewQCborArray__Iterator(h unsafe.Pointer) *QCborArray__Iterator {
 
 // NewQCborArray__Iterator constructs a new QCborArray::Iterator object.
 func NewQCborArray__Iterator() *QCborArray__Iterator {
-
 	ret := newQCborArray__Iterator(C.QCborArray__Iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -396,7 +394,6 @@ func NewQCborArray__Iterator() *QCborArray__Iterator {
 
 // NewQCborArray__Iterator2 constructs a new QCborArray::Iterator object.
 func NewQCborArray__Iterator2(param1 *QCborArray__Iterator) *QCborArray__Iterator {
-
 	ret := newQCborArray__Iterator(C.QCborArray__Iterator_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -563,7 +560,6 @@ func UnsafeNewQCborArray__ConstIterator(h unsafe.Pointer) *QCborArray__ConstIter
 
 // NewQCborArray__ConstIterator constructs a new QCborArray::ConstIterator object.
 func NewQCborArray__ConstIterator() *QCborArray__ConstIterator {
-
 	ret := newQCborArray__ConstIterator(C.QCborArray__ConstIterator_new())
 	ret.isSubclass = true
 	return ret
@@ -571,7 +567,6 @@ func NewQCborArray__ConstIterator() *QCborArray__ConstIterator {
 
 // NewQCborArray__ConstIterator2 constructs a new QCborArray::ConstIterator object.
 func NewQCborArray__ConstIterator2(param1 *QCborArray__ConstIterator) *QCborArray__ConstIterator {
-
 	ret := newQCborArray__ConstIterator(C.QCborArray__ConstIterator_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -48,7 +48,6 @@ func UnsafeNewQMediaTimeInterval(h unsafe.Pointer) *QMediaTimeInterval {
 
 // NewQMediaTimeInterval constructs a new QMediaTimeInterval object.
 func NewQMediaTimeInterval() *QMediaTimeInterval {
-
 	ret := newQMediaTimeInterval(C.QMediaTimeInterval_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQMediaTimeInterval() *QMediaTimeInterval {
 
 // NewQMediaTimeInterval2 constructs a new QMediaTimeInterval object.
 func NewQMediaTimeInterval2(start int64, end int64) *QMediaTimeInterval {
-
 	ret := newQMediaTimeInterval(C.QMediaTimeInterval_new2((C.longlong)(start), (C.longlong)(end)))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQMediaTimeInterval2(start int64, end int64) *QMediaTimeInterval {
 
 // NewQMediaTimeInterval3 constructs a new QMediaTimeInterval object.
 func NewQMediaTimeInterval3(param1 *QMediaTimeInterval) *QMediaTimeInterval {
-
 	ret := newQMediaTimeInterval(C.QMediaTimeInterval_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -151,7 +148,6 @@ func UnsafeNewQMediaTimeRange(h unsafe.Pointer) *QMediaTimeRange {
 
 // NewQMediaTimeRange constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange() *QMediaTimeRange {
-
 	ret := newQMediaTimeRange(C.QMediaTimeRange_new())
 	ret.isSubclass = true
 	return ret
@@ -159,7 +155,6 @@ func NewQMediaTimeRange() *QMediaTimeRange {
 
 // NewQMediaTimeRange2 constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange2(start int64, end int64) *QMediaTimeRange {
-
 	ret := newQMediaTimeRange(C.QMediaTimeRange_new2((C.longlong)(start), (C.longlong)(end)))
 	ret.isSubclass = true
 	return ret
@@ -167,7 +162,6 @@ func NewQMediaTimeRange2(start int64, end int64) *QMediaTimeRange {
 
 // NewQMediaTimeRange3 constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange3(param1 *QMediaTimeInterval) *QMediaTimeRange {
-
 	ret := newQMediaTimeRange(C.QMediaTimeRange_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -175,7 +169,6 @@ func NewQMediaTimeRange3(param1 *QMediaTimeInterval) *QMediaTimeRange {
 
 // NewQMediaTimeRange4 constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange4(rangeVal *QMediaTimeRange) *QMediaTimeRange {
-
 	ret := newQMediaTimeRange(C.QMediaTimeRange_new4(rangeVal.cPointer()))
 	ret.isSubclass = true
 	return ret

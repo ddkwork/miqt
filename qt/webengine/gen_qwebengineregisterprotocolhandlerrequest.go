@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineRegisterProtocolHandlerRequest struct {
@@ -49,7 +50,6 @@ func UnsafeNewQWebEngineRegisterProtocolHandlerRequest(h unsafe.Pointer) *QWebEn
 
 // NewQWebEngineRegisterProtocolHandlerRequest constructs a new QWebEngineRegisterProtocolHandlerRequest object.
 func NewQWebEngineRegisterProtocolHandlerRequest() *QWebEngineRegisterProtocolHandlerRequest {
-
 	ret := newQWebEngineRegisterProtocolHandlerRequest(C.QWebEngineRegisterProtocolHandlerRequest_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQWebEngineRegisterProtocolHandlerRequest() *QWebEngineRegisterProtocolHa
 
 // NewQWebEngineRegisterProtocolHandlerRequest2 constructs a new QWebEngineRegisterProtocolHandlerRequest object.
 func NewQWebEngineRegisterProtocolHandlerRequest2(param1 *QWebEngineRegisterProtocolHandlerRequest) *QWebEngineRegisterProtocolHandlerRequest {
-
 	ret := newQWebEngineRegisterProtocolHandlerRequest(C.QWebEngineRegisterProtocolHandlerRequest_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -55,7 +55,6 @@ func UnsafeNewQDate(h unsafe.Pointer) *QDate {
 
 // NewQDate constructs a new QDate object.
 func NewQDate() *QDate {
-
 	ret := newQDate(C.QDate_new())
 	ret.isSubclass = true
 	return ret
@@ -63,7 +62,6 @@ func NewQDate() *QDate {
 
 // NewQDate2 constructs a new QDate object.
 func NewQDate2(y int, m int, d int) *QDate {
-
 	ret := newQDate(C.QDate_new2((C.int)(y), (C.int)(m), (C.int)(d)))
 	ret.isSubclass = true
 	return ret
@@ -71,7 +69,6 @@ func NewQDate2(y int, m int, d int) *QDate {
 
 // NewQDate3 constructs a new QDate object.
 func NewQDate3(y int, m int, d int, cal QCalendar) *QDate {
-
 	ret := newQDate(C.QDate_new3((C.int)(y), (C.int)(m), (C.int)(d), cal.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -79,7 +76,6 @@ func NewQDate3(y int, m int, d int, cal QCalendar) *QDate {
 
 // NewQDate4 constructs a new QDate object.
 func NewQDate4(param1 *QDate) *QDate {
-
 	ret := newQDate(C.QDate_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -408,7 +404,6 @@ func UnsafeNewQTime(h unsafe.Pointer) *QTime {
 
 // NewQTime constructs a new QTime object.
 func NewQTime() *QTime {
-
 	ret := newQTime(C.QTime_new())
 	ret.isSubclass = true
 	return ret
@@ -416,7 +411,6 @@ func NewQTime() *QTime {
 
 // NewQTime2 constructs a new QTime object.
 func NewQTime2(h int, m int) *QTime {
-
 	ret := newQTime(C.QTime_new2((C.int)(h), (C.int)(m)))
 	ret.isSubclass = true
 	return ret
@@ -424,7 +418,6 @@ func NewQTime2(h int, m int) *QTime {
 
 // NewQTime3 constructs a new QTime object.
 func NewQTime3(param1 *QTime) *QTime {
-
 	ret := newQTime(C.QTime_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -432,7 +425,6 @@ func NewQTime3(param1 *QTime) *QTime {
 
 // NewQTime4 constructs a new QTime object.
 func NewQTime4(h int, m int, s int) *QTime {
-
 	ret := newQTime(C.QTime_new4((C.int)(h), (C.int)(m), (C.int)(s)))
 	ret.isSubclass = true
 	return ret
@@ -440,7 +432,6 @@ func NewQTime4(h int, m int, s int) *QTime {
 
 // NewQTime5 constructs a new QTime object.
 func NewQTime5(h int, m int, s int, ms int) *QTime {
-
 	ret := newQTime(C.QTime_new5((C.int)(h), (C.int)(m), (C.int)(s), (C.int)(ms)))
 	ret.isSubclass = true
 	return ret
@@ -630,7 +621,6 @@ func UnsafeNewQDateTime(h unsafe.Pointer) *QDateTime {
 
 // NewQDateTime constructs a new QDateTime object.
 func NewQDateTime() *QDateTime {
-
 	ret := newQDateTime(C.QDateTime_new())
 	ret.isSubclass = true
 	return ret
@@ -638,7 +628,6 @@ func NewQDateTime() *QDateTime {
 
 // NewQDateTime2 constructs a new QDateTime object.
 func NewQDateTime2(date QDate, time QTime) *QDateTime {
-
 	ret := newQDateTime(C.QDateTime_new2(date.cPointer(), time.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -646,7 +635,6 @@ func NewQDateTime2(date QDate, time QTime) *QDateTime {
 
 // NewQDateTime3 constructs a new QDateTime object.
 func NewQDateTime3(date QDate, time QTime, timeZone *QTimeZone) *QDateTime {
-
 	ret := newQDateTime(C.QDateTime_new3(date.cPointer(), time.cPointer(), timeZone.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -654,7 +642,6 @@ func NewQDateTime3(date QDate, time QTime, timeZone *QTimeZone) *QDateTime {
 
 // NewQDateTime4 constructs a new QDateTime object.
 func NewQDateTime4(other *QDateTime) *QDateTime {
-
 	ret := newQDateTime(C.QDateTime_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -662,7 +649,6 @@ func NewQDateTime4(other *QDateTime) *QDateTime {
 
 // NewQDateTime5 constructs a new QDateTime object.
 func NewQDateTime5(date QDate, time QTime, spec TimeSpec) *QDateTime {
-
 	ret := newQDateTime(C.QDateTime_new5(date.cPointer(), time.cPointer(), (C.int)(spec)))
 	ret.isSubclass = true
 	return ret
@@ -670,7 +656,6 @@ func NewQDateTime5(date QDate, time QTime, spec TimeSpec) *QDateTime {
 
 // NewQDateTime6 constructs a new QDateTime object.
 func NewQDateTime6(date QDate, time QTime, spec TimeSpec, offsetSeconds int) *QDateTime {
-
 	ret := newQDateTime(C.QDateTime_new6(date.cPointer(), time.cPointer(), (C.int)(spec), (C.int)(offsetSeconds)))
 	ret.isSubclass = true
 	return ret

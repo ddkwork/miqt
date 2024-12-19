@@ -122,7 +122,6 @@ func UnsafeNewQHostAddress(h unsafe.Pointer) *QHostAddress {
 
 // NewQHostAddress constructs a new QHostAddress object.
 func NewQHostAddress() *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new())
 	ret.isSubclass = true
 	return ret
@@ -130,7 +129,6 @@ func NewQHostAddress() *QHostAddress {
 
 // NewQHostAddress2 constructs a new QHostAddress object.
 func NewQHostAddress2(ip4Addr uint) *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new2((C.uint)(ip4Addr)))
 	ret.isSubclass = true
 	return ret
@@ -138,7 +136,6 @@ func NewQHostAddress2(ip4Addr uint) *QHostAddress {
 
 // NewQHostAddress3 constructs a new QHostAddress object.
 func NewQHostAddress3(ip6Addr *byte) *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new3((*C.uchar)(unsafe.Pointer(ip6Addr))))
 	ret.isSubclass = true
 	return ret
@@ -146,7 +143,6 @@ func NewQHostAddress3(ip6Addr *byte) *QHostAddress {
 
 // NewQHostAddress4 constructs a new QHostAddress object.
 func NewQHostAddress4(ip6Addr *byte) *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new4((*C.uchar)(unsafe.Pointer(ip6Addr))))
 	ret.isSubclass = true
 	return ret
@@ -154,7 +150,6 @@ func NewQHostAddress4(ip6Addr *byte) *QHostAddress {
 
 // NewQHostAddress5 constructs a new QHostAddress object.
 func NewQHostAddress5(ip6Addr *QIPv6Address) *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new5(ip6Addr.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -174,7 +169,6 @@ func NewQHostAddress6(address string) *QHostAddress {
 
 // NewQHostAddress7 constructs a new QHostAddress object.
 func NewQHostAddress7(copyVal *QHostAddress) *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new7(copyVal.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -182,7 +176,6 @@ func NewQHostAddress7(copyVal *QHostAddress) *QHostAddress {
 
 // NewQHostAddress8 constructs a new QHostAddress object.
 func NewQHostAddress8(address QHostAddress__SpecialAddress) *QHostAddress {
-
 	ret := newQHostAddress(C.QHostAddress_new8((C.int)(address)))
 	ret.isSubclass = true
 	return ret
@@ -311,7 +304,8 @@ func (this *QHostAddress) IsInSubnet(subnet *QHostAddress, netmask int) bool {
 func (this *QHostAddress) IsInSubnetWithSubnet(subnet struct {
 	First  QHostAddress
 	Second int
-}) bool {
+},
+) bool {
 	subnet_First_CArray := (*[0xffff]*C.QHostAddress)(C.malloc(C.size_t(8)))
 	defer C.free(unsafe.Pointer(subnet_First_CArray))
 	subnet_Second_CArray := (*[0xffff]C.int)(C.malloc(C.size_t(8)))

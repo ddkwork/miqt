@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineHistoryModel__Roles int
@@ -58,7 +59,6 @@ func UnsafeNewQWebEngineHistoryItem(h unsafe.Pointer) *QWebEngineHistoryItem {
 
 // NewQWebEngineHistoryItem constructs a new QWebEngineHistoryItem object.
 func NewQWebEngineHistoryItem(other *QWebEngineHistoryItem) *QWebEngineHistoryItem {
-
 	ret := newQWebEngineHistoryItem(C.QWebEngineHistoryItem_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -149,8 +149,10 @@ func newQWebEngineHistoryModel(h *C.QWebEngineHistoryModel) *QWebEngineHistoryMo
 	var outptr_QAbstractListModel *C.QAbstractListModel = nil
 	C.QWebEngineHistoryModel_virtbase(h, &outptr_QAbstractListModel)
 
-	return &QWebEngineHistoryModel{h: h,
-		QAbstractListModel: qt6.UnsafeNewQAbstractListModel(unsafe.Pointer(outptr_QAbstractListModel))}
+	return &QWebEngineHistoryModel{
+		h:                  h,
+		QAbstractListModel: qt6.UnsafeNewQAbstractListModel(unsafe.Pointer(outptr_QAbstractListModel)),
+	}
 }
 
 // UnsafeNewQWebEngineHistoryModel constructs the type using only unsafe pointers.
@@ -258,8 +260,10 @@ func newQWebEngineHistory(h *C.QWebEngineHistory) *QWebEngineHistory {
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineHistory_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineHistory{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineHistory{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineHistory constructs the type using only unsafe pointers.

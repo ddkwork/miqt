@@ -55,8 +55,10 @@ func newQThread(h *C.QThread) *QThread {
 	var outptr_QObject *C.QObject = nil
 	C.QThread_virtbase(h, &outptr_QObject)
 
-	return &QThread{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QThread{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQThread constructs the type using only unsafe pointers.
@@ -66,7 +68,6 @@ func UnsafeNewQThread(h unsafe.Pointer) *QThread {
 
 // NewQThread constructs a new QThread object.
 func NewQThread() *QThread {
-
 	ret := newQThread(C.QThread_new())
 	ret.isSubclass = true
 	return ret
@@ -74,7 +75,6 @@ func NewQThread() *QThread {
 
 // NewQThread2 constructs a new QThread object.
 func NewQThread2(parent *QObject) *QThread {
-
 	ret := newQThread(C.QThread_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -265,10 +265,9 @@ func (this *QThread) Wait1(deadline QDeadlineTimer) bool {
 }
 
 func (this *QThread) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QThread_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QThread) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -289,14 +288,12 @@ func miqt_exec_callback_QThread_Event(self *C.QThread, cb C.intptr_t, event *C.Q
 	virtualReturn := gofunc((&QThread{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QThread) callVirtualBase_Run() {
-
 	C.QThread_virtualbase_Run(unsafe.Pointer(this.h))
-
 }
+
 func (this *QThread) OnRun(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -312,14 +309,12 @@ func miqt_exec_callback_QThread_Run(self *C.QThread, cb C.intptr_t) {
 	}
 
 	gofunc((&QThread{h: self}).callVirtualBase_Run)
-
 }
 
 func (this *QThread) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QThread_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QThread) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -342,14 +337,12 @@ func miqt_exec_callback_QThread_EventFilter(self *C.QThread, cb C.intptr_t, watc
 	virtualReturn := gofunc((&QThread{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QThread) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QThread_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QThread) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -368,14 +361,12 @@ func miqt_exec_callback_QThread_TimerEvent(self *C.QThread, cb C.intptr_t, event
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QThread{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QThread) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QThread_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QThread) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -394,14 +385,12 @@ func miqt_exec_callback_QThread_ChildEvent(self *C.QThread, cb C.intptr_t, event
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QThread{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QThread) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QThread_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QThread) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -420,14 +409,12 @@ func miqt_exec_callback_QThread_CustomEvent(self *C.QThread, cb C.intptr_t, even
 	slotval1 := newQEvent(event)
 
 	gofunc((&QThread{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QThread) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QThread_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QThread) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -446,14 +433,12 @@ func miqt_exec_callback_QThread_ConnectNotify(self *C.QThread, cb C.intptr_t, si
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QThread{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QThread) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QThread_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QThread) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -472,7 +457,6 @@ func miqt_exec_callback_QThread_DisconnectNotify(self *C.QThread, cb C.intptr_t,
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QThread{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

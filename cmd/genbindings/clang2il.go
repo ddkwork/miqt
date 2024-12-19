@@ -15,7 +15,6 @@ var (
 
 // parseHeader parses a whole C++ header into our CppParsedHeader intermediate format.
 func parseHeader(topLevel []any, addNamePrefix string) (*CppParsedHeader, error) {
-
 	var ret CppParsedHeader
 
 nextTopLevel:
@@ -87,7 +86,6 @@ nextTopLevel:
 				// the rest of this whole file, we are in this namespace
 				// Update our own `addNamePrefix` accordingly
 				addNamePrefix += namespace + "::"
-
 			} else {
 
 				contents, err := parseHeader(namespaceInner, addNamePrefix+namespace+"::")
@@ -368,7 +366,6 @@ nextMethod:
 			if isImplicit, ok := node["isImplicit"].(bool); ok && isImplicit {
 				// This is an implicit ctor. Therefore the class is constructable
 				// even if we're currently in a `private:` block.
-
 			} else if visibility != VsPublic {
 				continue // Skip private/protected
 			}
@@ -492,7 +489,6 @@ nextMethod:
 
 // isExplicitlyDeleted checks if this node is marked `= delete`.
 func isExplicitlyDeleted(node map[string]any) bool {
-
 	if explicitlyDeleted, ok := node["explicitlyDeleted"].(bool); ok && explicitlyDeleted {
 		return true
 	}
@@ -522,7 +518,6 @@ func processEnum(node map[string]any, addNamePrefix string) (CppEnum, error) {
 		// An unnamed enum is possible (e.g. qcalendar.h)
 		// It defines integer constants just in the current scope
 		ret.EnumName = addNamePrefix
-
 	} else {
 		ret.EnumName = addNamePrefix + nodename
 	}
@@ -633,7 +628,6 @@ nextEnumEntry:
 		var err error
 		if cee.EntryValue == "true" || cee.EntryValue == "false" {
 			ret.UnderlyingType = parseSingleTypeString("bool")
-
 		} else {
 			lastImplicitValue, err = strconv.ParseInt(cee.EntryValue, 10, 64)
 			if err != nil {
@@ -649,7 +643,6 @@ nextEnumEntry:
 
 // parseMethod parses a Clang method into our CppMethod intermediate format.
 func parseMethod(node map[string]any, mm *CppMethod) error {
-
 	if typobj, ok := node["type"].(map[string]any); ok {
 		if qualType, ok := typobj["qualType"].(string); ok {
 			// The qualType is the whole type of the method, including its parameter types
@@ -689,12 +682,10 @@ func parseMethod(node map[string]any, mm *CppMethod) error {
 				// Parameter variable
 				parmName, _ := methodObj["name"].(string) // n.b. may be unnamed
 				if parmName == "" {
-
 					// Generate a default parameter name
 					// Super nice autogen names if this is a Q_PROPERTY setter:
 					if len(mm.Parameters) == 1 && strings.HasPrefix(mm.MethodName, "set") {
 						parmName = strings.ToLower(string(mm.MethodName[3])) + mm.MethodName[4:]
-
 					} else {
 						// Otherwise - default
 						parmName = fmt.Sprintf("param%d", paramCounter+1)
@@ -760,7 +751,6 @@ func parseMethod(node map[string]any, mm *CppMethod) error {
 // These clang strings never contain the parameter's name, so the names here are
 // not filled in.
 func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, error) {
-
 	if strings.Contains(typeString, `&&`) { // TODO Rvalue references
 		return CppParameter{}, nil, false, ErrTooComplex
 	}
@@ -879,30 +869,23 @@ func tokenizeSingleParameter(p string) []string {
 // parseSingleTypeString parses the Clang qualType for a single type into our
 // CppParameter intermediate format.
 func parseSingleTypeString(p string) CppParameter {
-
 	isSigned := false
 
 	tokens := tokenizeSingleParameter(p)
 	insert := CppParameter{}
 	for _, tok := range tokens {
-
 		if tok == "" {
 			continue // extra space
-
 		} else if tok == "const" {
 			insert.Const = true
-
 		} else if tok == "class" {
 			// QNetwork has some references to 'class QSslCertificate'. Flatten
 			continue
-
 		} else if tok == "&" { // U+0026
 			insert.ByRef = true
-
 		} else if tok == "signed" {
 			// We don't need this - UNLESS it's 'signed char'
 			isSigned = true
-
 		} else if tok == "*" {
 			insert.Pointer = true
 			insert.PointerCount++

@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraFeedbackControl__EventType int
@@ -58,8 +59,10 @@ func newQCameraFeedbackControl(h *C.QCameraFeedbackControl) *QCameraFeedbackCont
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraFeedbackControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraFeedbackControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraFeedbackControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraFeedbackControl constructs the type using only unsafe pointers.

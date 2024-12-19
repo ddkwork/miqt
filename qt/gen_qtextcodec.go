@@ -280,7 +280,6 @@ func UnsafeNewQTextEncoder(h unsafe.Pointer) *QTextEncoder {
 
 // NewQTextEncoder constructs a new QTextEncoder object.
 func NewQTextEncoder(codec *QTextCodec) *QTextEncoder {
-
 	ret := newQTextEncoder(C.QTextEncoder_new(codec.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -288,7 +287,6 @@ func NewQTextEncoder(codec *QTextCodec) *QTextEncoder {
 
 // NewQTextEncoder2 constructs a new QTextEncoder object.
 func NewQTextEncoder2(codec *QTextCodec, flags QTextCodec__ConversionFlag) *QTextEncoder {
-
 	ret := newQTextEncoder(C.QTextEncoder_new2(codec.cPointer(), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -365,7 +363,6 @@ func UnsafeNewQTextDecoder(h unsafe.Pointer) *QTextDecoder {
 
 // NewQTextDecoder constructs a new QTextDecoder object.
 func NewQTextDecoder(codec *QTextCodec) *QTextDecoder {
-
 	ret := newQTextDecoder(C.QTextDecoder_new(codec.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -373,7 +370,6 @@ func NewQTextDecoder(codec *QTextCodec) *QTextDecoder {
 
 // NewQTextDecoder2 constructs a new QTextDecoder object.
 func NewQTextDecoder2(codec *QTextCodec, flags QTextCodec__ConversionFlag) *QTextDecoder {
-
 	ret := newQTextDecoder(C.QTextDecoder_new2(codec.cPointer(), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -455,7 +451,6 @@ func UnsafeNewQTextCodec__ConverterState(h unsafe.Pointer) *QTextCodec__Converte
 
 // NewQTextCodec__ConverterState constructs a new QTextCodec::ConverterState object.
 func NewQTextCodec__ConverterState() *QTextCodec__ConverterState {
-
 	ret := newQTextCodec__ConverterState(C.QTextCodec__ConverterState_new())
 	ret.isSubclass = true
 	return ret
@@ -463,7 +458,6 @@ func NewQTextCodec__ConverterState() *QTextCodec__ConverterState {
 
 // NewQTextCodec__ConverterState2 constructs a new QTextCodec::ConverterState object.
 func NewQTextCodec__ConverterState2(f QTextCodec__ConversionFlag) *QTextCodec__ConverterState {
-
 	ret := newQTextCodec__ConverterState(C.QTextCodec__ConverterState_new2((C.int)(f)))
 	ret.isSubclass = true
 	return ret

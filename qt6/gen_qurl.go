@@ -101,7 +101,6 @@ func UnsafeNewQUrl(h unsafe.Pointer) *QUrl {
 
 // NewQUrl constructs a new QUrl object.
 func NewQUrl() *QUrl {
-
 	ret := newQUrl(C.QUrl_new())
 	ret.isSubclass = true
 	return ret
@@ -109,7 +108,6 @@ func NewQUrl() *QUrl {
 
 // NewQUrl2 constructs a new QUrl object.
 func NewQUrl2(copyVal *QUrl) *QUrl {
-
 	ret := newQUrl(C.QUrl_new2(copyVal.cPointer()))
 	ret.isSubclass = true
 	return ret

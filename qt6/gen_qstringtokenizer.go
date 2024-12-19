@@ -47,7 +47,6 @@ func UnsafeNewQStringTokenizerBaseBase(h unsafe.Pointer) *QStringTokenizerBaseBa
 
 // NewQStringTokenizerBaseBase constructs a new QStringTokenizerBaseBase object.
 func NewQStringTokenizerBaseBase(param1 *QStringTokenizerBaseBase) *QStringTokenizerBaseBase {
-
 	ret := newQStringTokenizerBaseBase(C.QStringTokenizerBaseBase_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

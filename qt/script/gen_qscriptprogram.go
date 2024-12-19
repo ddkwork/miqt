@@ -48,7 +48,6 @@ func UnsafeNewQScriptProgram(h unsafe.Pointer) *QScriptProgram {
 
 // NewQScriptProgram constructs a new QScriptProgram object.
 func NewQScriptProgram() *QScriptProgram {
-
 	ret := newQScriptProgram(C.QScriptProgram_new())
 	ret.isSubclass = true
 	return ret
@@ -68,7 +67,6 @@ func NewQScriptProgram2(sourceCode string) *QScriptProgram {
 
 // NewQScriptProgram3 constructs a new QScriptProgram object.
 func NewQScriptProgram3(other *QScriptProgram) *QScriptProgram {
-
 	ret := newQScriptProgram(C.QScriptProgram_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

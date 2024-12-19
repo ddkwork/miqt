@@ -67,7 +67,6 @@ func UnsafeNewQTouchDevice(h unsafe.Pointer) *QTouchDevice {
 
 // NewQTouchDevice constructs a new QTouchDevice object.
 func NewQTouchDevice() *QTouchDevice {
-
 	ret := newQTouchDevice(C.QTouchDevice_new())
 	ret.isSubclass = true
 	return ret

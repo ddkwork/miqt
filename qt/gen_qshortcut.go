@@ -42,8 +42,10 @@ func newQShortcut(h *C.QShortcut) *QShortcut {
 	var outptr_QObject *C.QObject = nil
 	C.QShortcut_virtbase(h, &outptr_QObject)
 
-	return &QShortcut{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QShortcut{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQShortcut constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQShortcut(h unsafe.Pointer) *QShortcut {
 
 // NewQShortcut constructs a new QShortcut object.
 func NewQShortcut(parent *QWidget) *QShortcut {
-
 	ret := newQShortcut(C.QShortcut_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQShortcut(parent *QWidget) *QShortcut {
 
 // NewQShortcut2 constructs a new QShortcut object.
 func NewQShortcut2(key *QKeySequence, parent *QWidget) *QShortcut {
-
 	ret := newQShortcut(C.QShortcut_new2(key.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -189,6 +189,7 @@ func (this *QShortcut) ParentWidget() *QWidget {
 func (this *QShortcut) Activated() {
 	C.QShortcut_Activated(this.h)
 }
+
 func (this *QShortcut) OnActivated(slot func()) {
 	C.QShortcut_connect_Activated(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -206,6 +207,7 @@ func miqt_exec_callback_QShortcut_Activated(cb C.intptr_t) {
 func (this *QShortcut) ActivatedAmbiguously() {
 	C.QShortcut_ActivatedAmbiguously(this.h)
 }
+
 func (this *QShortcut) OnActivatedAmbiguously(slot func()) {
 	C.QShortcut_connect_ActivatedAmbiguously(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -265,10 +267,9 @@ func QShortcut_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QShortcut) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QShortcut_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QShortcut) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -289,14 +290,12 @@ func miqt_exec_callback_QShortcut_Event(self *C.QShortcut, cb C.intptr_t, e *C.Q
 	virtualReturn := gofunc((&QShortcut{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QShortcut) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QShortcut_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QShortcut) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -319,14 +318,12 @@ func miqt_exec_callback_QShortcut_EventFilter(self *C.QShortcut, cb C.intptr_t, 
 	virtualReturn := gofunc((&QShortcut{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QShortcut) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QShortcut_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QShortcut) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -345,14 +342,12 @@ func miqt_exec_callback_QShortcut_TimerEvent(self *C.QShortcut, cb C.intptr_t, e
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QShortcut{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QShortcut) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QShortcut_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QShortcut) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -371,14 +366,12 @@ func miqt_exec_callback_QShortcut_ChildEvent(self *C.QShortcut, cb C.intptr_t, e
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QShortcut{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QShortcut) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QShortcut_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QShortcut) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -397,14 +390,12 @@ func miqt_exec_callback_QShortcut_CustomEvent(self *C.QShortcut, cb C.intptr_t, 
 	slotval1 := newQEvent(event)
 
 	gofunc((&QShortcut{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QShortcut) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QShortcut_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QShortcut) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -423,14 +414,12 @@ func miqt_exec_callback_QShortcut_ConnectNotify(self *C.QShortcut, cb C.intptr_t
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QShortcut{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QShortcut) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QShortcut_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QShortcut) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -449,7 +438,6 @@ func miqt_exec_callback_QShortcut_DisconnectNotify(self *C.QShortcut, cb C.intpt
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QShortcut{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

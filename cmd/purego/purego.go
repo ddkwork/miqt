@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github.com/ebitengine/purego"
-	"golang.org/x/sys/windows"
 	"runtime"
 	"syscall"
 	"unsafe"
+
+	"github.com/ebitengine/purego"
+	"golang.org/x/sys/windows"
 )
 
 func main() {
@@ -34,7 +35,7 @@ var (
 )
 
 func init() {
-	//check(windows.SetDllDirectory("plugins/platforms"))
+	// check(windows.SetDllDirectory("plugins/platforms"))
 	check(windows.SetDllDirectory("."))
 
 	dll := syscall.MustLoadDLL("purego.dll")
@@ -48,7 +49,7 @@ func init() {
 }
 
 type App struct {
-	handle uintptr //todo add more fields from C++ class members
+	handle uintptr // todo add more fields from C++ class members
 }
 
 func NewApp(argc int, argv []string) *App {
@@ -67,14 +68,15 @@ func NewApp(argc int, argv []string) *App {
 func (a *App) Exec() {
 	QApplication_execProc.Call(a.handle)
 }
+
 func check(err error) {
 	if err != nil {
-		//panic(err)
+		// panic(err)
 	}
 }
 
 type QWidget struct {
-	handle uintptr //todo add more fields from C++ class members
+	handle uintptr // todo add more fields from C++ class members
 }
 
 func NewWidget() *QWidget {
@@ -82,12 +84,13 @@ func NewWidget() *QWidget {
 	check(err)
 	return &QWidget{handle: r1}
 }
+
 func (w *QWidget) Show() {
 	QWidget_showProc.Call(w.handle)
 }
 
 type Button struct {
-	handle uintptr //todo add more fields from C++ class members
+	handle uintptr // todo add more fields from C++ class members
 }
 
 func NewButton(text string, parent *QWidget) *Button {

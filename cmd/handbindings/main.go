@@ -6,7 +6,6 @@ import (
 )
 
 func main() {
-
 	app := NewQApplication(os.Args)
 	_ = app
 

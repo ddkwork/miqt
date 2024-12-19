@@ -69,7 +69,6 @@ func UnsafeNewQTextInlineObject(h unsafe.Pointer) *QTextInlineObject {
 
 // NewQTextInlineObject constructs a new QTextInlineObject object.
 func NewQTextInlineObject() *QTextInlineObject {
-
 	ret := newQTextInlineObject(C.QTextInlineObject_new())
 	ret.isSubclass = true
 	return ret
@@ -180,7 +179,6 @@ func UnsafeNewQTextLayout(h unsafe.Pointer) *QTextLayout {
 
 // NewQTextLayout constructs a new QTextLayout object.
 func NewQTextLayout() *QTextLayout {
-
 	ret := newQTextLayout(C.QTextLayout_new())
 	ret.isSubclass = true
 	return ret
@@ -212,7 +210,6 @@ func NewQTextLayout3(text string, font *QFont) *QTextLayout {
 
 // NewQTextLayout4 constructs a new QTextLayout object.
 func NewQTextLayout4(b *QTextBlock) *QTextLayout {
-
 	ret := newQTextLayout(C.QTextLayout_new4(b.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -561,7 +558,6 @@ func UnsafeNewQTextLine(h unsafe.Pointer) *QTextLine {
 
 // NewQTextLine constructs a new QTextLine object.
 func NewQTextLine() *QTextLine {
-
 	ret := newQTextLine(C.QTextLine_new())
 	ret.isSubclass = true
 	return ret

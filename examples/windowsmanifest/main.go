@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	btn := qt.NewQPushButton2("Hello world!")

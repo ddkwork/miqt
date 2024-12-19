@@ -73,7 +73,6 @@ func UnsafeNewQMetaMethod(h unsafe.Pointer) *QMetaMethod {
 
 // NewQMetaMethod constructs a new QMetaMethod object.
 func NewQMetaMethod() *QMetaMethod {
-
 	ret := newQMetaMethod(C.QMetaMethod_new())
 	ret.isSubclass = true
 	return ret
@@ -81,7 +80,6 @@ func NewQMetaMethod() *QMetaMethod {
 
 // NewQMetaMethod2 constructs a new QMetaMethod object.
 func NewQMetaMethod2(param1 *QMetaMethod) *QMetaMethod {
-
 	ret := newQMetaMethod(C.QMetaMethod_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -521,7 +519,6 @@ func UnsafeNewQMetaEnum(h unsafe.Pointer) *QMetaEnum {
 
 // NewQMetaEnum constructs a new QMetaEnum object.
 func NewQMetaEnum() *QMetaEnum {
-
 	ret := newQMetaEnum(C.QMetaEnum_new())
 	ret.isSubclass = true
 	return ret
@@ -529,7 +526,6 @@ func NewQMetaEnum() *QMetaEnum {
 
 // NewQMetaEnum2 constructs a new QMetaEnum object.
 func NewQMetaEnum2(param1 *QMetaEnum) *QMetaEnum {
-
 	ret := newQMetaEnum(C.QMetaEnum_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -664,7 +660,6 @@ func UnsafeNewQMetaProperty(h unsafe.Pointer) *QMetaProperty {
 
 // NewQMetaProperty constructs a new QMetaProperty object.
 func NewQMetaProperty() *QMetaProperty {
-
 	ret := newQMetaProperty(C.QMetaProperty_new())
 	ret.isSubclass = true
 	return ret
@@ -881,7 +876,6 @@ func UnsafeNewQMetaClassInfo(h unsafe.Pointer) *QMetaClassInfo {
 
 // NewQMetaClassInfo constructs a new QMetaClassInfo object.
 func NewQMetaClassInfo() *QMetaClassInfo {
-
 	ret := newQMetaClassInfo(C.QMetaClassInfo_new())
 	ret.isSubclass = true
 	return ret

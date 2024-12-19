@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineScript__InjectionPoint int
@@ -65,7 +66,6 @@ func UnsafeNewQWebEngineScript(h unsafe.Pointer) *QWebEngineScript {
 
 // NewQWebEngineScript constructs a new QWebEngineScript object.
 func NewQWebEngineScript() *QWebEngineScript {
-
 	ret := newQWebEngineScript(C.QWebEngineScript_new())
 	ret.isSubclass = true
 	return ret
@@ -73,7 +73,6 @@ func NewQWebEngineScript() *QWebEngineScript {
 
 // NewQWebEngineScript2 constructs a new QWebEngineScript object.
 func NewQWebEngineScript2(other *QWebEngineScript) *QWebEngineScript {
-
 	ret := newQWebEngineScript(C.QWebEngineScript_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

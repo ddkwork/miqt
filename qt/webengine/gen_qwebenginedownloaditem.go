@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineDownloadItem__DownloadState int
@@ -100,8 +101,10 @@ func newQWebEngineDownloadItem(h *C.QWebEngineDownloadItem) *QWebEngineDownloadI
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineDownloadItem_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineDownloadItem{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineDownloadItem{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineDownloadItem constructs the type using only unsafe pointers.
@@ -276,6 +279,7 @@ func (this *QWebEngineDownloadItem) Resume() {
 func (this *QWebEngineDownloadItem) Finished() {
 	C.QWebEngineDownloadItem_Finished(this.h)
 }
+
 func (this *QWebEngineDownloadItem) OnFinished(slot func()) {
 	C.QWebEngineDownloadItem_connect_Finished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -293,6 +297,7 @@ func miqt_exec_callback_QWebEngineDownloadItem_Finished(cb C.intptr_t) {
 func (this *QWebEngineDownloadItem) StateChanged(state QWebEngineDownloadItem__DownloadState) {
 	C.QWebEngineDownloadItem_StateChanged(this.h, (C.int)(state))
 }
+
 func (this *QWebEngineDownloadItem) OnStateChanged(slot func(state QWebEngineDownloadItem__DownloadState)) {
 	C.QWebEngineDownloadItem_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -313,6 +318,7 @@ func miqt_exec_callback_QWebEngineDownloadItem_StateChanged(cb C.intptr_t, state
 func (this *QWebEngineDownloadItem) DownloadProgress(bytesReceived int64, bytesTotal int64) {
 	C.QWebEngineDownloadItem_DownloadProgress(this.h, (C.longlong)(bytesReceived), (C.longlong)(bytesTotal))
 }
+
 func (this *QWebEngineDownloadItem) OnDownloadProgress(slot func(bytesReceived int64, bytesTotal int64)) {
 	C.QWebEngineDownloadItem_connect_DownloadProgress(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -335,6 +341,7 @@ func miqt_exec_callback_QWebEngineDownloadItem_DownloadProgress(cb C.intptr_t, b
 func (this *QWebEngineDownloadItem) IsPausedChanged(isPaused bool) {
 	C.QWebEngineDownloadItem_IsPausedChanged(this.h, (C.bool)(isPaused))
 }
+
 func (this *QWebEngineDownloadItem) OnIsPausedChanged(slot func(isPaused bool)) {
 	C.QWebEngineDownloadItem_connect_IsPausedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

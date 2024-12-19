@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaGaplessPlaybackControl struct {
@@ -43,8 +44,10 @@ func newQMediaGaplessPlaybackControl(h *C.QMediaGaplessPlaybackControl) *QMediaG
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaGaplessPlaybackControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaGaplessPlaybackControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaGaplessPlaybackControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaGaplessPlaybackControl constructs the type using only unsafe pointers.
@@ -105,6 +108,7 @@ func (this *QMediaGaplessPlaybackControl) SetCrossfadeTime(crossfadeTime float64
 func (this *QMediaGaplessPlaybackControl) CrossfadeTimeChanged(crossfadeTime float64) {
 	C.QMediaGaplessPlaybackControl_CrossfadeTimeChanged(this.h, (C.double)(crossfadeTime))
 }
+
 func (this *QMediaGaplessPlaybackControl) OnCrossfadeTimeChanged(slot func(crossfadeTime float64)) {
 	C.QMediaGaplessPlaybackControl_connect_CrossfadeTimeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -125,6 +129,7 @@ func miqt_exec_callback_QMediaGaplessPlaybackControl_CrossfadeTimeChanged(cb C.i
 func (this *QMediaGaplessPlaybackControl) NextMediaChanged(media *QMediaContent) {
 	C.QMediaGaplessPlaybackControl_NextMediaChanged(this.h, media.cPointer())
 }
+
 func (this *QMediaGaplessPlaybackControl) OnNextMediaChanged(slot func(media *QMediaContent)) {
 	C.QMediaGaplessPlaybackControl_connect_NextMediaChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -145,6 +150,7 @@ func miqt_exec_callback_QMediaGaplessPlaybackControl_NextMediaChanged(cb C.intpt
 func (this *QMediaGaplessPlaybackControl) AdvancedToNextMedia() {
 	C.QMediaGaplessPlaybackControl_AdvancedToNextMedia(this.h)
 }
+
 func (this *QMediaGaplessPlaybackControl) OnAdvancedToNextMedia(slot func()) {
 	C.QMediaGaplessPlaybackControl_connect_AdvancedToNextMedia(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

@@ -60,7 +60,6 @@ func UnsafeNewQJsonValue(h unsafe.Pointer) *QJsonValue {
 
 // NewQJsonValue constructs a new QJsonValue object.
 func NewQJsonValue() *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new())
 	ret.isSubclass = true
 	return ret
@@ -68,7 +67,6 @@ func NewQJsonValue() *QJsonValue {
 
 // NewQJsonValue2 constructs a new QJsonValue object.
 func NewQJsonValue2(b bool) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new2((C.bool)(b)))
 	ret.isSubclass = true
 	return ret
@@ -76,7 +74,6 @@ func NewQJsonValue2(b bool) *QJsonValue {
 
 // NewQJsonValue3 constructs a new QJsonValue object.
 func NewQJsonValue3(n float64) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new3((C.double)(n)))
 	ret.isSubclass = true
 	return ret
@@ -84,7 +81,6 @@ func NewQJsonValue3(n float64) *QJsonValue {
 
 // NewQJsonValue4 constructs a new QJsonValue object.
 func NewQJsonValue4(n int) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new4((C.int)(n)))
 	ret.isSubclass = true
 	return ret
@@ -92,7 +88,6 @@ func NewQJsonValue4(n int) *QJsonValue {
 
 // NewQJsonValue5 constructs a new QJsonValue object.
 func NewQJsonValue5(v int64) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new5((C.longlong)(v)))
 	ret.isSubclass = true
 	return ret
@@ -122,7 +117,6 @@ func NewQJsonValue7(s string) *QJsonValue {
 
 // NewQJsonValue8 constructs a new QJsonValue object.
 func NewQJsonValue8(a *QJsonArray) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new8(a.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -130,7 +124,6 @@ func NewQJsonValue8(a *QJsonArray) *QJsonValue {
 
 // NewQJsonValue9 constructs a new QJsonValue object.
 func NewQJsonValue9(o *QJsonObject) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new9(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -138,7 +131,6 @@ func NewQJsonValue9(o *QJsonObject) *QJsonValue {
 
 // NewQJsonValue10 constructs a new QJsonValue object.
 func NewQJsonValue10(other *QJsonValue) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new10(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -146,7 +138,6 @@ func NewQJsonValue10(other *QJsonValue) *QJsonValue {
 
 // NewQJsonValue11 constructs a new QJsonValue object.
 func NewQJsonValue11(param1 QJsonValue__Type) *QJsonValue {
-
 	ret := newQJsonValue(C.QJsonValue_new11((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -351,7 +342,6 @@ func UnsafeNewQJsonValueConstRef(h unsafe.Pointer) *QJsonValueConstRef {
 
 // NewQJsonValueConstRef constructs a new QJsonValueConstRef object.
 func NewQJsonValueConstRef(param1 *QJsonValueConstRef) *QJsonValueConstRef {
-
 	ret := newQJsonValueConstRef(C.QJsonValueConstRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -513,8 +503,10 @@ func newQJsonValueRef(h *C.QJsonValueRef) *QJsonValueRef {
 	var outptr_QJsonValueConstRef *C.QJsonValueConstRef = nil
 	C.QJsonValueRef_virtbase(h, &outptr_QJsonValueConstRef)
 
-	return &QJsonValueRef{h: h,
-		QJsonValueConstRef: newQJsonValueConstRef(outptr_QJsonValueConstRef)}
+	return &QJsonValueRef{
+		h:                  h,
+		QJsonValueConstRef: newQJsonValueConstRef(outptr_QJsonValueConstRef),
+	}
 }
 
 // UnsafeNewQJsonValueRef constructs the type using only unsafe pointers.
@@ -524,7 +516,6 @@ func UnsafeNewQJsonValueRef(h unsafe.Pointer) *QJsonValueRef {
 
 // NewQJsonValueRef constructs a new QJsonValueRef object.
 func NewQJsonValueRef(param1 *QJsonValueRef) *QJsonValueRef {
-
 	ret := newQJsonValueRef(C.QJsonValueRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -532,7 +523,6 @@ func NewQJsonValueRef(param1 *QJsonValueRef) *QJsonValueRef {
 
 // NewQJsonValueRef2 constructs a new QJsonValueRef object.
 func NewQJsonValueRef2(array *QJsonArray, idx int64) *QJsonValueRef {
-
 	ret := newQJsonValueRef(C.QJsonValueRef_new2(array.cPointer(), (C.ptrdiff_t)(idx)))
 	ret.isSubclass = true
 	return ret
@@ -540,7 +530,6 @@ func NewQJsonValueRef2(array *QJsonArray, idx int64) *QJsonValueRef {
 
 // NewQJsonValueRef3 constructs a new QJsonValueRef object.
 func NewQJsonValueRef3(object *QJsonObject, idx int64) *QJsonValueRef {
-
 	ret := newQJsonValueRef(C.QJsonValueRef_new3(object.cPointer(), (C.ptrdiff_t)(idx)))
 	ret.isSubclass = true
 	return ret

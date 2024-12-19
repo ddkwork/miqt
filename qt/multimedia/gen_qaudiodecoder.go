@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioDecoder__State int
@@ -60,8 +61,10 @@ func newQAudioDecoder(h *C.QAudioDecoder) *QAudioDecoder {
 	var outptr_QMediaObject *C.QMediaObject = nil
 	C.QAudioDecoder_virtbase(h, &outptr_QMediaObject)
 
-	return &QAudioDecoder{h: h,
-		QMediaObject: newQMediaObject(outptr_QMediaObject)}
+	return &QAudioDecoder{
+		h:            h,
+		QMediaObject: newQMediaObject(outptr_QMediaObject),
+	}
 }
 
 // UnsafeNewQAudioDecoder constructs the type using only unsafe pointers.
@@ -71,7 +74,6 @@ func UnsafeNewQAudioDecoder(h unsafe.Pointer) *QAudioDecoder {
 
 // NewQAudioDecoder constructs a new QAudioDecoder object.
 func NewQAudioDecoder() *QAudioDecoder {
-
 	ret := newQAudioDecoder(C.QAudioDecoder_new())
 	ret.isSubclass = true
 	return ret
@@ -79,7 +81,6 @@ func NewQAudioDecoder() *QAudioDecoder {
 
 // NewQAudioDecoder2 constructs a new QAudioDecoder object.
 func NewQAudioDecoder2(parent *qt.QObject) *QAudioDecoder {
-
 	ret := newQAudioDecoder(C.QAudioDecoder_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -198,6 +199,7 @@ func (this *QAudioDecoder) Stop() {
 func (this *QAudioDecoder) BufferAvailableChanged(param1 bool) {
 	C.QAudioDecoder_BufferAvailableChanged(this.h, (C.bool)(param1))
 }
+
 func (this *QAudioDecoder) OnBufferAvailableChanged(slot func(param1 bool)) {
 	C.QAudioDecoder_connect_BufferAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -218,6 +220,7 @@ func miqt_exec_callback_QAudioDecoder_BufferAvailableChanged(cb C.intptr_t, para
 func (this *QAudioDecoder) BufferReady() {
 	C.QAudioDecoder_BufferReady(this.h)
 }
+
 func (this *QAudioDecoder) OnBufferReady(slot func()) {
 	C.QAudioDecoder_connect_BufferReady(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -235,6 +238,7 @@ func miqt_exec_callback_QAudioDecoder_BufferReady(cb C.intptr_t) {
 func (this *QAudioDecoder) Finished() {
 	C.QAudioDecoder_Finished(this.h)
 }
+
 func (this *QAudioDecoder) OnFinished(slot func()) {
 	C.QAudioDecoder_connect_Finished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -252,6 +256,7 @@ func miqt_exec_callback_QAudioDecoder_Finished(cb C.intptr_t) {
 func (this *QAudioDecoder) StateChanged(newState QAudioDecoder__State) {
 	C.QAudioDecoder_StateChanged(this.h, (C.int)(newState))
 }
+
 func (this *QAudioDecoder) OnStateChanged(slot func(newState QAudioDecoder__State)) {
 	C.QAudioDecoder_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -272,6 +277,7 @@ func miqt_exec_callback_QAudioDecoder_StateChanged(cb C.intptr_t, newState C.int
 func (this *QAudioDecoder) FormatChanged(format *QAudioFormat) {
 	C.QAudioDecoder_FormatChanged(this.h, format.cPointer())
 }
+
 func (this *QAudioDecoder) OnFormatChanged(slot func(format *QAudioFormat)) {
 	C.QAudioDecoder_connect_FormatChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -292,6 +298,7 @@ func miqt_exec_callback_QAudioDecoder_FormatChanged(cb C.intptr_t, format *C.QAu
 func (this *QAudioDecoder) ErrorWithError(error QAudioDecoder__Error) {
 	C.QAudioDecoder_ErrorWithError(this.h, (C.int)(error))
 }
+
 func (this *QAudioDecoder) OnErrorWithError(slot func(error QAudioDecoder__Error)) {
 	C.QAudioDecoder_connect_ErrorWithError(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -312,6 +319,7 @@ func miqt_exec_callback_QAudioDecoder_ErrorWithError(cb C.intptr_t, error C.int)
 func (this *QAudioDecoder) SourceChanged() {
 	C.QAudioDecoder_SourceChanged(this.h)
 }
+
 func (this *QAudioDecoder) OnSourceChanged(slot func()) {
 	C.QAudioDecoder_connect_SourceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -329,6 +337,7 @@ func miqt_exec_callback_QAudioDecoder_SourceChanged(cb C.intptr_t) {
 func (this *QAudioDecoder) PositionChanged(position int64) {
 	C.QAudioDecoder_PositionChanged(this.h, (C.longlong)(position))
 }
+
 func (this *QAudioDecoder) OnPositionChanged(slot func(position int64)) {
 	C.QAudioDecoder_connect_PositionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -349,6 +358,7 @@ func miqt_exec_callback_QAudioDecoder_PositionChanged(cb C.intptr_t, position C.
 func (this *QAudioDecoder) DurationChanged(duration int64) {
 	C.QAudioDecoder_DurationChanged(this.h, (C.longlong)(duration))
 }
+
 func (this *QAudioDecoder) OnDurationChanged(slot func(duration int64)) {
 	C.QAudioDecoder_connect_DurationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -437,10 +447,9 @@ func QAudioDecoder_HasSupport2(mimeType string, codecs []string) QMultimedia__Su
 }
 
 func (this *QAudioDecoder) callVirtualBase_Bind(param1 *qt.QObject) bool {
-
 	return (bool)(C.QAudioDecoder_virtualbase_Bind(unsafe.Pointer(this.h), (*C.QObject)(param1.UnsafePointer())))
-
 }
+
 func (this *QAudioDecoder) OnBind(slot func(super func(param1 *qt.QObject) bool, param1 *qt.QObject) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -461,14 +470,12 @@ func miqt_exec_callback_QAudioDecoder_Bind(self *C.QAudioDecoder, cb C.intptr_t,
 	virtualReturn := gofunc((&QAudioDecoder{h: self}).callVirtualBase_Bind, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioDecoder) callVirtualBase_Unbind(param1 *qt.QObject) {
-
 	C.QAudioDecoder_virtualbase_Unbind(unsafe.Pointer(this.h), (*C.QObject)(param1.UnsafePointer()))
-
 }
+
 func (this *QAudioDecoder) OnUnbind(slot func(super func(param1 *qt.QObject), param1 *qt.QObject)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -487,14 +494,12 @@ func miqt_exec_callback_QAudioDecoder_Unbind(self *C.QAudioDecoder, cb C.intptr_
 	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(param1))
 
 	gofunc((&QAudioDecoder{h: self}).callVirtualBase_Unbind, slotval1)
-
 }
 
 func (this *QAudioDecoder) callVirtualBase_IsAvailable() bool {
-
 	return (bool)(C.QAudioDecoder_virtualbase_IsAvailable(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAudioDecoder) OnIsAvailable(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -512,14 +517,12 @@ func miqt_exec_callback_QAudioDecoder_IsAvailable(self *C.QAudioDecoder, cb C.in
 	virtualReturn := gofunc((&QAudioDecoder{h: self}).callVirtualBase_IsAvailable)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioDecoder) callVirtualBase_Availability() QMultimedia__AvailabilityStatus {
-
 	return (QMultimedia__AvailabilityStatus)(C.QAudioDecoder_virtualbase_Availability(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAudioDecoder) OnAvailability(slot func(super func() QMultimedia__AvailabilityStatus) QMultimedia__AvailabilityStatus) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -537,14 +540,12 @@ func miqt_exec_callback_QAudioDecoder_Availability(self *C.QAudioDecoder, cb C.i
 	virtualReturn := gofunc((&QAudioDecoder{h: self}).callVirtualBase_Availability)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QAudioDecoder) callVirtualBase_Service() *QMediaService {
-
 	return newQMediaService(C.QAudioDecoder_virtualbase_Service(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAudioDecoder) OnService(slot func(super func() *QMediaService) *QMediaService) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -562,7 +563,6 @@ func miqt_exec_callback_QAudioDecoder_Service(self *C.QAudioDecoder, cb C.intptr
 	virtualReturn := gofunc((&QAudioDecoder{h: self}).callVirtualBase_Service)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

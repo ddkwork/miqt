@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraImageProcessingControl__ProcessingParameter int
@@ -61,8 +62,10 @@ func newQCameraImageProcessingControl(h *C.QCameraImageProcessingControl) *QCame
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraImageProcessingControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraImageProcessingControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraImageProcessingControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraImageProcessingControl constructs the type using only unsafe pointers.

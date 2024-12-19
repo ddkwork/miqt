@@ -48,7 +48,6 @@ func UnsafeNewQThreadStorageData(h unsafe.Pointer) *QThreadStorageData {
 
 // NewQThreadStorageData constructs a new QThreadStorageData object.
 func NewQThreadStorageData(param1 *QThreadStorageData) *QThreadStorageData {
-
 	ret := newQThreadStorageData(C.QThreadStorageData_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

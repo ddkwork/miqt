@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QVideoDeviceSelectorControl struct {
@@ -43,8 +44,10 @@ func newQVideoDeviceSelectorControl(h *C.QVideoDeviceSelectorControl) *QVideoDev
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QVideoDeviceSelectorControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QVideoDeviceSelectorControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QVideoDeviceSelectorControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQVideoDeviceSelectorControl constructs the type using only unsafe pointers.
@@ -113,6 +116,7 @@ func (this *QVideoDeviceSelectorControl) SetSelectedDevice(index int) {
 func (this *QVideoDeviceSelectorControl) SelectedDeviceChanged(index int) {
 	C.QVideoDeviceSelectorControl_SelectedDeviceChanged(this.h, (C.int)(index))
 }
+
 func (this *QVideoDeviceSelectorControl) OnSelectedDeviceChanged(slot func(index int)) {
 	C.QVideoDeviceSelectorControl_connect_SelectedDeviceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -137,6 +141,7 @@ func (this *QVideoDeviceSelectorControl) SelectedDeviceChangedWithName(name stri
 	defer C.free(unsafe.Pointer(name_ms.data))
 	C.QVideoDeviceSelectorControl_SelectedDeviceChangedWithName(this.h, name_ms)
 }
+
 func (this *QVideoDeviceSelectorControl) OnSelectedDeviceChangedWithName(slot func(name string)) {
 	C.QVideoDeviceSelectorControl_connect_SelectedDeviceChangedWithName(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -160,6 +165,7 @@ func miqt_exec_callback_QVideoDeviceSelectorControl_SelectedDeviceChangedWithNam
 func (this *QVideoDeviceSelectorControl) DevicesChanged() {
 	C.QVideoDeviceSelectorControl_DevicesChanged(this.h)
 }
+
 func (this *QVideoDeviceSelectorControl) OnDevicesChanged(slot func()) {
 	C.QVideoDeviceSelectorControl_connect_DevicesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

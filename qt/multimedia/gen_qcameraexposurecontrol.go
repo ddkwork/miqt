@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraExposureControl__ExposureParameter int
@@ -59,8 +60,10 @@ func newQCameraExposureControl(h *C.QCameraExposureControl) *QCameraExposureCont
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraExposureControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraExposureControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraExposureControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraExposureControl constructs the type using only unsafe pointers.
@@ -119,6 +122,7 @@ func (this *QCameraExposureControl) SetValue(parameter QCameraExposureControl__E
 func (this *QCameraExposureControl) RequestedValueChanged(parameter int) {
 	C.QCameraExposureControl_RequestedValueChanged(this.h, (C.int)(parameter))
 }
+
 func (this *QCameraExposureControl) OnRequestedValueChanged(slot func(parameter int)) {
 	C.QCameraExposureControl_connect_RequestedValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -139,6 +143,7 @@ func miqt_exec_callback_QCameraExposureControl_RequestedValueChanged(cb C.intptr
 func (this *QCameraExposureControl) ActualValueChanged(parameter int) {
 	C.QCameraExposureControl_ActualValueChanged(this.h, (C.int)(parameter))
 }
+
 func (this *QCameraExposureControl) OnActualValueChanged(slot func(parameter int)) {
 	C.QCameraExposureControl_connect_ActualValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -159,6 +164,7 @@ func miqt_exec_callback_QCameraExposureControl_ActualValueChanged(cb C.intptr_t,
 func (this *QCameraExposureControl) ParameterRangeChanged(parameter int) {
 	C.QCameraExposureControl_ParameterRangeChanged(this.h, (C.int)(parameter))
 }
+
 func (this *QCameraExposureControl) OnParameterRangeChanged(slot func(parameter int)) {
 	C.QCameraExposureControl_connect_ParameterRangeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

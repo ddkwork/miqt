@@ -9,11 +9,12 @@ package spatialaudio
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
-	"github.com/mappu/miqt/qt6/multimedia"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
+	"github.com/mappu/miqt/qt6/multimedia"
 )
 
 type QAudioEngine__OutputMode int
@@ -52,8 +53,10 @@ func newQAudioEngine(h *C.QAudioEngine) *QAudioEngine {
 	var outptr_QObject *C.QObject = nil
 	C.QAudioEngine_virtbase(h, &outptr_QObject)
 
-	return &QAudioEngine{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QAudioEngine{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQAudioEngine constructs the type using only unsafe pointers.
@@ -63,7 +66,6 @@ func UnsafeNewQAudioEngine(h unsafe.Pointer) *QAudioEngine {
 
 // NewQAudioEngine constructs a new QAudioEngine object.
 func NewQAudioEngine() *QAudioEngine {
-
 	ret := newQAudioEngine(C.QAudioEngine_new())
 	ret.isSubclass = true
 	return ret
@@ -71,7 +73,6 @@ func NewQAudioEngine() *QAudioEngine {
 
 // NewQAudioEngine2 constructs a new QAudioEngine object.
 func NewQAudioEngine2(parent *qt6.QObject) *QAudioEngine {
-
 	ret := newQAudioEngine(C.QAudioEngine_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -79,7 +80,6 @@ func NewQAudioEngine2(parent *qt6.QObject) *QAudioEngine {
 
 // NewQAudioEngine3 constructs a new QAudioEngine object.
 func NewQAudioEngine3(sampleRate int) *QAudioEngine {
-
 	ret := newQAudioEngine(C.QAudioEngine_new3((C.int)(sampleRate)))
 	ret.isSubclass = true
 	return ret
@@ -87,7 +87,6 @@ func NewQAudioEngine3(sampleRate int) *QAudioEngine {
 
 // NewQAudioEngine4 constructs a new QAudioEngine object.
 func NewQAudioEngine4(sampleRate int, parent *qt6.QObject) *QAudioEngine {
-
 	ret := newQAudioEngine(C.QAudioEngine_new4((C.int)(sampleRate), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -169,6 +168,7 @@ func (this *QAudioEngine) DistanceScale() float32 {
 func (this *QAudioEngine) OutputModeChanged() {
 	C.QAudioEngine_OutputModeChanged(this.h)
 }
+
 func (this *QAudioEngine) OnOutputModeChanged(slot func()) {
 	C.QAudioEngine_connect_OutputModeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -186,6 +186,7 @@ func miqt_exec_callback_QAudioEngine_OutputModeChanged(cb C.intptr_t) {
 func (this *QAudioEngine) OutputDeviceChanged() {
 	C.QAudioEngine_OutputDeviceChanged(this.h)
 }
+
 func (this *QAudioEngine) OnOutputDeviceChanged(slot func()) {
 	C.QAudioEngine_connect_OutputDeviceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -203,6 +204,7 @@ func miqt_exec_callback_QAudioEngine_OutputDeviceChanged(cb C.intptr_t) {
 func (this *QAudioEngine) MasterVolumeChanged() {
 	C.QAudioEngine_MasterVolumeChanged(this.h)
 }
+
 func (this *QAudioEngine) OnMasterVolumeChanged(slot func()) {
 	C.QAudioEngine_connect_MasterVolumeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -220,6 +222,7 @@ func miqt_exec_callback_QAudioEngine_MasterVolumeChanged(cb C.intptr_t) {
 func (this *QAudioEngine) PausedChanged() {
 	C.QAudioEngine_PausedChanged(this.h)
 }
+
 func (this *QAudioEngine) OnPausedChanged(slot func()) {
 	C.QAudioEngine_connect_PausedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -237,6 +240,7 @@ func miqt_exec_callback_QAudioEngine_PausedChanged(cb C.intptr_t) {
 func (this *QAudioEngine) DistanceScaleChanged() {
 	C.QAudioEngine_DistanceScaleChanged(this.h)
 }
+
 func (this *QAudioEngine) OnDistanceScaleChanged(slot func()) {
 	C.QAudioEngine_connect_DistanceScaleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -290,10 +294,9 @@ func QAudioEngine_Tr3(s string, c string, n int) string {
 }
 
 func (this *QAudioEngine) callVirtualBase_Event(event *qt6.QEvent) bool {
-
 	return (bool)(C.QAudioEngine_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QAudioEngine) OnEvent(slot func(super func(event *qt6.QEvent) bool, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -314,14 +317,12 @@ func miqt_exec_callback_QAudioEngine_Event(self *C.QAudioEngine, cb C.intptr_t, 
 	virtualReturn := gofunc((&QAudioEngine{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioEngine) callVirtualBase_EventFilter(watched *qt6.QObject, event *qt6.QEvent) bool {
-
 	return (bool)(C.QAudioEngine_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QAudioEngine) OnEventFilter(slot func(super func(watched *qt6.QObject, event *qt6.QEvent) bool, watched *qt6.QObject, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -344,14 +345,12 @@ func miqt_exec_callback_QAudioEngine_EventFilter(self *C.QAudioEngine, cb C.intp
 	virtualReturn := gofunc((&QAudioEngine{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioEngine) callVirtualBase_TimerEvent(event *qt6.QTimerEvent) {
-
 	C.QAudioEngine_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioEngine) OnTimerEvent(slot func(super func(event *qt6.QTimerEvent), event *qt6.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -370,14 +369,12 @@ func miqt_exec_callback_QAudioEngine_TimerEvent(self *C.QAudioEngine, cb C.intpt
 	slotval1 := qt6.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioEngine{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QAudioEngine) callVirtualBase_ChildEvent(event *qt6.QChildEvent) {
-
 	C.QAudioEngine_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioEngine) OnChildEvent(slot func(super func(event *qt6.QChildEvent), event *qt6.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -396,14 +393,12 @@ func miqt_exec_callback_QAudioEngine_ChildEvent(self *C.QAudioEngine, cb C.intpt
 	slotval1 := qt6.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioEngine{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QAudioEngine) callVirtualBase_CustomEvent(event *qt6.QEvent) {
-
 	C.QAudioEngine_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioEngine) OnCustomEvent(slot func(super func(event *qt6.QEvent), event *qt6.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -422,14 +417,12 @@ func miqt_exec_callback_QAudioEngine_CustomEvent(self *C.QAudioEngine, cb C.intp
 	slotval1 := qt6.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioEngine{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QAudioEngine) callVirtualBase_ConnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QAudioEngine_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QAudioEngine) OnConnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -448,14 +441,12 @@ func miqt_exec_callback_QAudioEngine_ConnectNotify(self *C.QAudioEngine, cb C.in
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QAudioEngine{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QAudioEngine) callVirtualBase_DisconnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QAudioEngine_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QAudioEngine) OnDisconnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -474,7 +465,6 @@ func miqt_exec_callback_QAudioEngine_DisconnectNotify(self *C.QAudioEngine, cb C
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QAudioEngine{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

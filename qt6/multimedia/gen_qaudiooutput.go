@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QAudioOutput struct {
@@ -43,8 +44,10 @@ func newQAudioOutput(h *C.QAudioOutput) *QAudioOutput {
 	var outptr_QObject *C.QObject = nil
 	C.QAudioOutput_virtbase(h, &outptr_QObject)
 
-	return &QAudioOutput{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QAudioOutput{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQAudioOutput constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQAudioOutput(h unsafe.Pointer) *QAudioOutput {
 
 // NewQAudioOutput constructs a new QAudioOutput object.
 func NewQAudioOutput() *QAudioOutput {
-
 	ret := newQAudioOutput(C.QAudioOutput_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQAudioOutput() *QAudioOutput {
 
 // NewQAudioOutput2 constructs a new QAudioOutput object.
 func NewQAudioOutput2(device *QAudioDevice) *QAudioOutput {
-
 	ret := newQAudioOutput(C.QAudioOutput_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -70,7 +71,6 @@ func NewQAudioOutput2(device *QAudioDevice) *QAudioOutput {
 
 // NewQAudioOutput3 constructs a new QAudioOutput object.
 func NewQAudioOutput3(parent *qt6.QObject) *QAudioOutput {
-
 	ret := newQAudioOutput(C.QAudioOutput_new3((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +78,6 @@ func NewQAudioOutput3(parent *qt6.QObject) *QAudioOutput {
 
 // NewQAudioOutput4 constructs a new QAudioOutput object.
 func NewQAudioOutput4(device *QAudioDevice, parent *qt6.QObject) *QAudioOutput {
-
 	ret := newQAudioOutput(C.QAudioOutput_new4(device.cPointer(), (*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -132,6 +131,7 @@ func (this *QAudioOutput) SetMuted(muted bool) {
 func (this *QAudioOutput) DeviceChanged() {
 	C.QAudioOutput_DeviceChanged(this.h)
 }
+
 func (this *QAudioOutput) OnDeviceChanged(slot func()) {
 	C.QAudioOutput_connect_DeviceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -149,6 +149,7 @@ func miqt_exec_callback_QAudioOutput_DeviceChanged(cb C.intptr_t) {
 func (this *QAudioOutput) VolumeChanged(volume float32) {
 	C.QAudioOutput_VolumeChanged(this.h, (C.float)(volume))
 }
+
 func (this *QAudioOutput) OnVolumeChanged(slot func(volume float32)) {
 	C.QAudioOutput_connect_VolumeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -169,6 +170,7 @@ func miqt_exec_callback_QAudioOutput_VolumeChanged(cb C.intptr_t, volume C.float
 func (this *QAudioOutput) MutedChanged(muted bool) {
 	C.QAudioOutput_MutedChanged(this.h, (C.bool)(muted))
 }
+
 func (this *QAudioOutput) OnMutedChanged(slot func(muted bool)) {
 	C.QAudioOutput_connect_MutedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -209,10 +211,9 @@ func QAudioOutput_Tr3(s string, c string, n int) string {
 }
 
 func (this *QAudioOutput) callVirtualBase_Event(event *qt6.QEvent) bool {
-
 	return (bool)(C.QAudioOutput_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QAudioOutput) OnEvent(slot func(super func(event *qt6.QEvent) bool, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -233,14 +234,12 @@ func miqt_exec_callback_QAudioOutput_Event(self *C.QAudioOutput, cb C.intptr_t, 
 	virtualReturn := gofunc((&QAudioOutput{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioOutput) callVirtualBase_EventFilter(watched *qt6.QObject, event *qt6.QEvent) bool {
-
 	return (bool)(C.QAudioOutput_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QAudioOutput) OnEventFilter(slot func(super func(watched *qt6.QObject, event *qt6.QEvent) bool, watched *qt6.QObject, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -263,14 +262,12 @@ func miqt_exec_callback_QAudioOutput_EventFilter(self *C.QAudioOutput, cb C.intp
 	virtualReturn := gofunc((&QAudioOutput{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioOutput) callVirtualBase_TimerEvent(event *qt6.QTimerEvent) {
-
 	C.QAudioOutput_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioOutput) OnTimerEvent(slot func(super func(event *qt6.QTimerEvent), event *qt6.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -289,14 +286,12 @@ func miqt_exec_callback_QAudioOutput_TimerEvent(self *C.QAudioOutput, cb C.intpt
 	slotval1 := qt6.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioOutput{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QAudioOutput) callVirtualBase_ChildEvent(event *qt6.QChildEvent) {
-
 	C.QAudioOutput_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioOutput) OnChildEvent(slot func(super func(event *qt6.QChildEvent), event *qt6.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -315,14 +310,12 @@ func miqt_exec_callback_QAudioOutput_ChildEvent(self *C.QAudioOutput, cb C.intpt
 	slotval1 := qt6.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioOutput{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QAudioOutput) callVirtualBase_CustomEvent(event *qt6.QEvent) {
-
 	C.QAudioOutput_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioOutput) OnCustomEvent(slot func(super func(event *qt6.QEvent), event *qt6.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -341,14 +334,12 @@ func miqt_exec_callback_QAudioOutput_CustomEvent(self *C.QAudioOutput, cb C.intp
 	slotval1 := qt6.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioOutput{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QAudioOutput) callVirtualBase_ConnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QAudioOutput_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QAudioOutput) OnConnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -367,14 +358,12 @@ func miqt_exec_callback_QAudioOutput_ConnectNotify(self *C.QAudioOutput, cb C.in
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QAudioOutput{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QAudioOutput) callVirtualBase_DisconnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QAudioOutput_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QAudioOutput) OnDisconnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -393,7 +382,6 @@ func miqt_exec_callback_QAudioOutput_DisconnectNotify(self *C.QAudioOutput, cb C
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QAudioOutput{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

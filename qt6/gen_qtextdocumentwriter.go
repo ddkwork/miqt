@@ -48,7 +48,6 @@ func UnsafeNewQTextDocumentWriter(h unsafe.Pointer) *QTextDocumentWriter {
 
 // NewQTextDocumentWriter constructs a new QTextDocumentWriter object.
 func NewQTextDocumentWriter() *QTextDocumentWriter {
-
 	ret := newQTextDocumentWriter(C.QTextDocumentWriter_new())
 	ret.isSubclass = true
 	return ret

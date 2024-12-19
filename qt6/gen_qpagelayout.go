@@ -73,7 +73,6 @@ func UnsafeNewQPageLayout(h unsafe.Pointer) *QPageLayout {
 
 // NewQPageLayout constructs a new QPageLayout object.
 func NewQPageLayout() *QPageLayout {
-
 	ret := newQPageLayout(C.QPageLayout_new())
 	ret.isSubclass = true
 	return ret
@@ -81,7 +80,6 @@ func NewQPageLayout() *QPageLayout {
 
 // NewQPageLayout2 constructs a new QPageLayout object.
 func NewQPageLayout2(pageSize *QPageSize, orientation QPageLayout__Orientation, margins *QMarginsF) *QPageLayout {
-
 	ret := newQPageLayout(C.QPageLayout_new2(pageSize.cPointer(), (C.int)(orientation), margins.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -89,7 +87,6 @@ func NewQPageLayout2(pageSize *QPageSize, orientation QPageLayout__Orientation, 
 
 // NewQPageLayout3 constructs a new QPageLayout object.
 func NewQPageLayout3(other *QPageLayout) *QPageLayout {
-
 	ret := newQPageLayout(C.QPageLayout_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -97,7 +94,6 @@ func NewQPageLayout3(other *QPageLayout) *QPageLayout {
 
 // NewQPageLayout4 constructs a new QPageLayout object.
 func NewQPageLayout4(pageSize *QPageSize, orientation QPageLayout__Orientation, margins *QMarginsF, units QPageLayout__Unit) *QPageLayout {
-
 	ret := newQPageLayout(C.QPageLayout_new4(pageSize.cPointer(), (C.int)(orientation), margins.cPointer(), (C.int)(units)))
 	ret.isSubclass = true
 	return ret
@@ -105,7 +101,6 @@ func NewQPageLayout4(pageSize *QPageSize, orientation QPageLayout__Orientation, 
 
 // NewQPageLayout5 constructs a new QPageLayout object.
 func NewQPageLayout5(pageSize *QPageSize, orientation QPageLayout__Orientation, margins *QMarginsF, units QPageLayout__Unit, minMargins *QMarginsF) *QPageLayout {
-
 	ret := newQPageLayout(C.QPageLayout_new5(pageSize.cPointer(), (C.int)(orientation), margins.cPointer(), (C.int)(units), minMargins.cPointer()))
 	ret.isSubclass = true
 	return ret

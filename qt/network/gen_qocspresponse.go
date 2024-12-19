@@ -70,7 +70,6 @@ func UnsafeNewQOcspResponse(h unsafe.Pointer) *QOcspResponse {
 
 // NewQOcspResponse constructs a new QOcspResponse object.
 func NewQOcspResponse() *QOcspResponse {
-
 	ret := newQOcspResponse(C.QOcspResponse_new())
 	ret.isSubclass = true
 	return ret
@@ -78,7 +77,6 @@ func NewQOcspResponse() *QOcspResponse {
 
 // NewQOcspResponse2 constructs a new QOcspResponse object.
 func NewQOcspResponse2(other *QOcspResponse) *QOcspResponse {
-
 	ret := newQOcspResponse(C.QOcspResponse_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

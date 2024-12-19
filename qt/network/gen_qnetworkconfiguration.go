@@ -93,7 +93,6 @@ func UnsafeNewQNetworkConfiguration(h unsafe.Pointer) *QNetworkConfiguration {
 
 // NewQNetworkConfiguration constructs a new QNetworkConfiguration object.
 func NewQNetworkConfiguration() *QNetworkConfiguration {
-
 	ret := newQNetworkConfiguration(C.QNetworkConfiguration_new())
 	ret.isSubclass = true
 	return ret
@@ -101,7 +100,6 @@ func NewQNetworkConfiguration() *QNetworkConfiguration {
 
 // NewQNetworkConfiguration2 constructs a new QNetworkConfiguration object.
 func NewQNetworkConfiguration2(other *QNetworkConfiguration) *QNetworkConfiguration {
-
 	ret := newQNetworkConfiguration(C.QNetworkConfiguration_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

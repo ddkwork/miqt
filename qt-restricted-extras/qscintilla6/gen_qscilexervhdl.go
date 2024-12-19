@@ -9,10 +9,11 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QsciLexerVHDL__ int
@@ -64,8 +65,10 @@ func newQsciLexerVHDL(h *C.QsciLexerVHDL) *QsciLexerVHDL {
 	var outptr_QsciLexer *C.QsciLexer = nil
 	C.QsciLexerVHDL_virtbase(h, &outptr_QsciLexer)
 
-	return &QsciLexerVHDL{h: h,
-		QsciLexer: newQsciLexer(outptr_QsciLexer)}
+	return &QsciLexerVHDL{
+		h:         h,
+		QsciLexer: newQsciLexer(outptr_QsciLexer),
+	}
 }
 
 // UnsafeNewQsciLexerVHDL constructs the type using only unsafe pointers.
@@ -75,7 +78,6 @@ func UnsafeNewQsciLexerVHDL(h unsafe.Pointer) *QsciLexerVHDL {
 
 // NewQsciLexerVHDL constructs a new QsciLexerVHDL object.
 func NewQsciLexerVHDL() *QsciLexerVHDL {
-
 	ret := newQsciLexerVHDL(C.QsciLexerVHDL_new())
 	ret.isSubclass = true
 	return ret
@@ -83,7 +85,6 @@ func NewQsciLexerVHDL() *QsciLexerVHDL {
 
 // NewQsciLexerVHDL2 constructs a new QsciLexerVHDL object.
 func NewQsciLexerVHDL2(parent *qt6.QObject) *QsciLexerVHDL {
-
 	ret := newQsciLexerVHDL(C.QsciLexerVHDL_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -223,10 +224,9 @@ func QsciLexerVHDL_Tr3(s string, c string, n int) string {
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetFoldComments(fold bool) {
-
 	C.QsciLexerVHDL_virtualbase_SetFoldComments(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerVHDL) OnSetFoldComments(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -245,14 +245,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetFoldComments(self *C.QsciLexerVHDL, cb 
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetFoldComments, slotval1)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetFoldCompact(fold bool) {
-
 	C.QsciLexerVHDL_virtualbase_SetFoldCompact(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerVHDL) OnSetFoldCompact(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -271,14 +269,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetFoldCompact(self *C.QsciLexerVHDL, cb C
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetFoldCompact, slotval1)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetFoldAtElse(fold bool) {
-
 	C.QsciLexerVHDL_virtualbase_SetFoldAtElse(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerVHDL) OnSetFoldAtElse(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -297,14 +293,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetFoldAtElse(self *C.QsciLexerVHDL, cb C.
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetFoldAtElse, slotval1)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetFoldAtBegin(fold bool) {
-
 	C.QsciLexerVHDL_virtualbase_SetFoldAtBegin(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerVHDL) OnSetFoldAtBegin(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -323,14 +317,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetFoldAtBegin(self *C.QsciLexerVHDL, cb C
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetFoldAtBegin, slotval1)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetFoldAtParenthesis(fold bool) {
-
 	C.QsciLexerVHDL_virtualbase_SetFoldAtParenthesis(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerVHDL) OnSetFoldAtParenthesis(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -349,8 +341,8 @@ func miqt_exec_callback_QsciLexerVHDL_SetFoldAtParenthesis(self *C.QsciLexerVHDL
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetFoldAtParenthesis, slotval1)
-
 }
+
 func (this *QsciLexerVHDL) OnLanguage(slot func() string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -370,15 +362,13 @@ func miqt_exec_callback_QsciLexerVHDL_Language(self *C.QsciLexerVHDL, cb C.intpt
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_Lexer() string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_Lexer(unsafe.Pointer(this.h))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnLexer(slot func(super func() string) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -398,14 +388,12 @@ func miqt_exec_callback_QsciLexerVHDL_Lexer(self *C.QsciLexerVHDL, cb C.intptr_t
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_LexerId() int {
-
 	return (int)(C.QsciLexerVHDL_virtualbase_LexerId(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnLexerId(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -423,15 +411,13 @@ func miqt_exec_callback_QsciLexerVHDL_LexerId(self *C.QsciLexerVHDL, cb C.intptr
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_LexerId)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_AutoCompletionFillups() string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_AutoCompletionFillups(unsafe.Pointer(this.h))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnAutoCompletionFillups(slot func(super func() string) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -451,11 +437,9 @@ func miqt_exec_callback_QsciLexerVHDL_AutoCompletionFillups(self *C.QsciLexerVHD
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_AutoCompletionWordSeparators() []string {
-
 	var _ma C.struct_miqt_array = C.QsciLexerVHDL_virtualbase_AutoCompletionWordSeparators(unsafe.Pointer(this.h))
 	_ret := make([]string, int(_ma.len))
 	_outCast := (*[0xffff]C.struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
@@ -466,8 +450,8 @@ func (this *QsciLexerVHDL) callVirtualBase_AutoCompletionWordSeparators() []stri
 		_ret[i] = _lv_ret
 	}
 	return _ret
-
 }
+
 func (this *QsciLexerVHDL) OnAutoCompletionWordSeparators(slot func(super func() []string) []string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -495,15 +479,13 @@ func miqt_exec_callback_QsciLexerVHDL_AutoCompletionWordSeparators(self *C.QsciL
 	virtualReturn_ma := C.struct_miqt_array{len: C.size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
 
 	return virtualReturn_ma
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_BlockEnd(style *int) string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_BlockEnd(unsafe.Pointer(this.h), (*C.int)(unsafe.Pointer(style)))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnBlockEnd(slot func(super func(style *int) string, style *int) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -526,14 +508,12 @@ func miqt_exec_callback_QsciLexerVHDL_BlockEnd(self *C.QsciLexerVHDL, cb C.intpt
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_BlockLookback() int {
-
 	return (int)(C.QsciLexerVHDL_virtualbase_BlockLookback(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnBlockLookback(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -551,15 +531,13 @@ func miqt_exec_callback_QsciLexerVHDL_BlockLookback(self *C.QsciLexerVHDL, cb C.
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_BlockLookback)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_BlockStart(style *int) string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_BlockStart(unsafe.Pointer(this.h), (*C.int)(unsafe.Pointer(style)))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnBlockStart(slot func(super func(style *int) string, style *int) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -582,15 +560,13 @@ func miqt_exec_callback_QsciLexerVHDL_BlockStart(self *C.QsciLexerVHDL, cb C.int
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_BlockStartKeyword(style *int) string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_BlockStartKeyword(unsafe.Pointer(this.h), (*C.int)(unsafe.Pointer(style)))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnBlockStartKeyword(slot func(super func(style *int) string, style *int) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -613,14 +589,12 @@ func miqt_exec_callback_QsciLexerVHDL_BlockStartKeyword(self *C.QsciLexerVHDL, c
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_BraceStyle() int {
-
 	return (int)(C.QsciLexerVHDL_virtualbase_BraceStyle(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnBraceStyle(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -638,14 +612,12 @@ func miqt_exec_callback_QsciLexerVHDL_BraceStyle(self *C.QsciLexerVHDL, cb C.int
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_BraceStyle)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_CaseSensitive() bool {
-
 	return (bool)(C.QsciLexerVHDL_virtualbase_CaseSensitive(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnCaseSensitive(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -663,16 +635,14 @@ func miqt_exec_callback_QsciLexerVHDL_CaseSensitive(self *C.QsciLexerVHDL, cb C.
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_CaseSensitive)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_Color(style int) *qt6.QColor {
-
 	_goptr := qt6.UnsafeNewQColor(unsafe.Pointer(C.QsciLexerVHDL_virtualbase_Color(unsafe.Pointer(this.h), (C.int)(style))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QsciLexerVHDL) OnColor(slot func(super func(style int) *qt6.QColor, style int) *qt6.QColor) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -693,14 +663,12 @@ func miqt_exec_callback_QsciLexerVHDL_Color(self *C.QsciLexerVHDL, cb C.intptr_t
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_Color, slotval1)
 
 	return (*C.QColor)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_EolFill(style int) bool {
-
 	return (bool)(C.QsciLexerVHDL_virtualbase_EolFill(unsafe.Pointer(this.h), (C.int)(style)))
-
 }
+
 func (this *QsciLexerVHDL) OnEolFill(slot func(super func(style int) bool, style int) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -721,16 +689,14 @@ func miqt_exec_callback_QsciLexerVHDL_EolFill(self *C.QsciLexerVHDL, cb C.intptr
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_EolFill, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_Font(style int) *qt6.QFont {
-
 	_goptr := qt6.UnsafeNewQFont(unsafe.Pointer(C.QsciLexerVHDL_virtualbase_Font(unsafe.Pointer(this.h), (C.int)(style))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QsciLexerVHDL) OnFont(slot func(super func(style int) *qt6.QFont, style int) *qt6.QFont) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -751,14 +717,12 @@ func miqt_exec_callback_QsciLexerVHDL_Font(self *C.QsciLexerVHDL, cb C.intptr_t,
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_Font, slotval1)
 
 	return (*C.QFont)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_IndentationGuideView() int {
-
 	return (int)(C.QsciLexerVHDL_virtualbase_IndentationGuideView(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnIndentationGuideView(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -776,15 +740,13 @@ func miqt_exec_callback_QsciLexerVHDL_IndentationGuideView(self *C.QsciLexerVHDL
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_IndentationGuideView)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_Keywords(set int) string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_Keywords(unsafe.Pointer(this.h), (C.int)(set))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnKeywords(slot func(super func(set int) string, set int) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -807,14 +769,12 @@ func miqt_exec_callback_QsciLexerVHDL_Keywords(self *C.QsciLexerVHDL, cb C.intpt
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_DefaultStyle() int {
-
 	return (int)(C.QsciLexerVHDL_virtualbase_DefaultStyle(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnDefaultStyle(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -832,8 +792,8 @@ func miqt_exec_callback_QsciLexerVHDL_DefaultStyle(self *C.QsciLexerVHDL, cb C.i
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_DefaultStyle)
 
 	return (C.int)(virtualReturn)
-
 }
+
 func (this *QsciLexerVHDL) OnDescription(slot func(style int) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -858,16 +818,14 @@ func miqt_exec_callback_QsciLexerVHDL_Description(self *C.QsciLexerVHDL, cb C.in
 	defer C.free(unsafe.Pointer(virtualReturn_ms.data))
 
 	return virtualReturn_ms
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_Paper(style int) *qt6.QColor {
-
 	_goptr := qt6.UnsafeNewQColor(unsafe.Pointer(C.QsciLexerVHDL_virtualbase_Paper(unsafe.Pointer(this.h), (C.int)(style))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QsciLexerVHDL) OnPaper(slot func(super func(style int) *qt6.QColor, style int) *qt6.QColor) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -888,16 +846,14 @@ func miqt_exec_callback_QsciLexerVHDL_Paper(self *C.QsciLexerVHDL, cb C.intptr_t
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_Paper, slotval1)
 
 	return (*C.QColor)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_DefaultColorWithStyle(style int) *qt6.QColor {
-
 	_goptr := qt6.UnsafeNewQColor(unsafe.Pointer(C.QsciLexerVHDL_virtualbase_DefaultColorWithStyle(unsafe.Pointer(this.h), (C.int)(style))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QsciLexerVHDL) OnDefaultColorWithStyle(slot func(super func(style int) *qt6.QColor, style int) *qt6.QColor) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -918,14 +874,12 @@ func miqt_exec_callback_QsciLexerVHDL_DefaultColorWithStyle(self *C.QsciLexerVHD
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_DefaultColorWithStyle, slotval1)
 
 	return (*C.QColor)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_DefaultEolFill(style int) bool {
-
 	return (bool)(C.QsciLexerVHDL_virtualbase_DefaultEolFill(unsafe.Pointer(this.h), (C.int)(style)))
-
 }
+
 func (this *QsciLexerVHDL) OnDefaultEolFill(slot func(super func(style int) bool, style int) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -946,16 +900,14 @@ func miqt_exec_callback_QsciLexerVHDL_DefaultEolFill(self *C.QsciLexerVHDL, cb C
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_DefaultEolFill, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_DefaultFontWithStyle(style int) *qt6.QFont {
-
 	_goptr := qt6.UnsafeNewQFont(unsafe.Pointer(C.QsciLexerVHDL_virtualbase_DefaultFontWithStyle(unsafe.Pointer(this.h), (C.int)(style))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QsciLexerVHDL) OnDefaultFontWithStyle(slot func(super func(style int) *qt6.QFont, style int) *qt6.QFont) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -976,16 +928,14 @@ func miqt_exec_callback_QsciLexerVHDL_DefaultFontWithStyle(self *C.QsciLexerVHDL
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_DefaultFontWithStyle, slotval1)
 
 	return (*C.QFont)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_DefaultPaperWithStyle(style int) *qt6.QColor {
-
 	_goptr := qt6.UnsafeNewQColor(unsafe.Pointer(C.QsciLexerVHDL_virtualbase_DefaultPaperWithStyle(unsafe.Pointer(this.h), (C.int)(style))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QsciLexerVHDL) OnDefaultPaperWithStyle(slot func(super func(style int) *qt6.QColor, style int) *qt6.QColor) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1006,14 +956,12 @@ func miqt_exec_callback_QsciLexerVHDL_DefaultPaperWithStyle(self *C.QsciLexerVHD
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_DefaultPaperWithStyle, slotval1)
 
 	return (*C.QColor)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetEditor(editor *QsciScintilla) {
-
 	C.QsciLexerVHDL_virtualbase_SetEditor(unsafe.Pointer(this.h), editor.cPointer())
-
 }
+
 func (this *QsciLexerVHDL) OnSetEditor(slot func(super func(editor *QsciScintilla), editor *QsciScintilla)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1032,14 +980,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetEditor(self *C.QsciLexerVHDL, cb C.intp
 	slotval1 := newQsciScintilla(editor)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetEditor, slotval1)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_RefreshProperties() {
-
 	C.QsciLexerVHDL_virtualbase_RefreshProperties(unsafe.Pointer(this.h))
-
 }
+
 func (this *QsciLexerVHDL) OnRefreshProperties(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1055,14 +1001,12 @@ func miqt_exec_callback_QsciLexerVHDL_RefreshProperties(self *C.QsciLexerVHDL, c
 	}
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_RefreshProperties)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_StyleBitsNeeded() int {
-
 	return (int)(C.QsciLexerVHDL_virtualbase_StyleBitsNeeded(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciLexerVHDL) OnStyleBitsNeeded(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1080,15 +1024,13 @@ func miqt_exec_callback_QsciLexerVHDL_StyleBitsNeeded(self *C.QsciLexerVHDL, cb 
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_StyleBitsNeeded)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_WordCharacters() string {
-
 	_ret := C.QsciLexerVHDL_virtualbase_WordCharacters(unsafe.Pointer(this.h))
 	return C.GoString(_ret)
-
 }
+
 func (this *QsciLexerVHDL) OnWordCharacters(slot func(super func() string) string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1108,14 +1050,12 @@ func miqt_exec_callback_QsciLexerVHDL_WordCharacters(self *C.QsciLexerVHDL, cb C
 	defer C.free(unsafe.Pointer(virtualReturn_Cstring))
 
 	return virtualReturn_Cstring
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetAutoIndentStyle(autoindentstyle int) {
-
 	C.QsciLexerVHDL_virtualbase_SetAutoIndentStyle(unsafe.Pointer(this.h), (C.int)(autoindentstyle))
-
 }
+
 func (this *QsciLexerVHDL) OnSetAutoIndentStyle(slot func(super func(autoindentstyle int), autoindentstyle int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1134,14 +1074,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetAutoIndentStyle(self *C.QsciLexerVHDL, 
 	slotval1 := (int)(autoindentstyle)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetAutoIndentStyle, slotval1)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetColor(c *qt6.QColor, style int) {
-
 	C.QsciLexerVHDL_virtualbase_SetColor(unsafe.Pointer(this.h), (*C.QColor)(c.UnsafePointer()), (C.int)(style))
-
 }
+
 func (this *QsciLexerVHDL) OnSetColor(slot func(super func(c *qt6.QColor, style int), c *qt6.QColor, style int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1162,14 +1100,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetColor(self *C.QsciLexerVHDL, cb C.intpt
 	slotval2 := (int)(style)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetColor, slotval1, slotval2)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetEolFill(eoffill bool, style int) {
-
 	C.QsciLexerVHDL_virtualbase_SetEolFill(unsafe.Pointer(this.h), (C.bool)(eoffill), (C.int)(style))
-
 }
+
 func (this *QsciLexerVHDL) OnSetEolFill(slot func(super func(eoffill bool, style int), eoffill bool, style int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1190,14 +1126,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetEolFill(self *C.QsciLexerVHDL, cb C.int
 	slotval2 := (int)(style)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetEolFill, slotval1, slotval2)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetFont(f *qt6.QFont, style int) {
-
 	C.QsciLexerVHDL_virtualbase_SetFont(unsafe.Pointer(this.h), (*C.QFont)(f.UnsafePointer()), (C.int)(style))
-
 }
+
 func (this *QsciLexerVHDL) OnSetFont(slot func(super func(f *qt6.QFont, style int), f *qt6.QFont, style int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1218,14 +1152,12 @@ func miqt_exec_callback_QsciLexerVHDL_SetFont(self *C.QsciLexerVHDL, cb C.intptr
 	slotval2 := (int)(style)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetFont, slotval1, slotval2)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_SetPaper(c *qt6.QColor, style int) {
-
 	C.QsciLexerVHDL_virtualbase_SetPaper(unsafe.Pointer(this.h), (*C.QColor)(c.UnsafePointer()), (C.int)(style))
-
 }
+
 func (this *QsciLexerVHDL) OnSetPaper(slot func(super func(c *qt6.QColor, style int), c *qt6.QColor, style int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1246,7 +1178,6 @@ func miqt_exec_callback_QsciLexerVHDL_SetPaper(self *C.QsciLexerVHDL, cb C.intpt
 	slotval2 := (int)(style)
 
 	gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_SetPaper, slotval1, slotval2)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_ReadProperties(qs *qt6.QSettings, prefix string) bool {
@@ -1256,8 +1187,8 @@ func (this *QsciLexerVHDL) callVirtualBase_ReadProperties(qs *qt6.QSettings, pre
 	defer C.free(unsafe.Pointer(prefix_ms.data))
 
 	return (bool)(C.QsciLexerVHDL_virtualbase_ReadProperties(unsafe.Pointer(this.h), (*C.QSettings)(qs.UnsafePointer()), prefix_ms))
-
 }
+
 func (this *QsciLexerVHDL) OnReadProperties(slot func(super func(qs *qt6.QSettings, prefix string) bool, qs *qt6.QSettings, prefix string) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1283,7 +1214,6 @@ func miqt_exec_callback_QsciLexerVHDL_ReadProperties(self *C.QsciLexerVHDL, cb C
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_ReadProperties, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QsciLexerVHDL) callVirtualBase_WriteProperties(qs *qt6.QSettings, prefix string) bool {
@@ -1293,8 +1223,8 @@ func (this *QsciLexerVHDL) callVirtualBase_WriteProperties(qs *qt6.QSettings, pr
 	defer C.free(unsafe.Pointer(prefix_ms.data))
 
 	return (bool)(C.QsciLexerVHDL_virtualbase_WriteProperties(unsafe.Pointer(this.h), (*C.QSettings)(qs.UnsafePointer()), prefix_ms))
-
 }
+
 func (this *QsciLexerVHDL) OnWriteProperties(slot func(super func(qs *qt6.QSettings, prefix string) bool, qs *qt6.QSettings, prefix string) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1320,7 +1250,6 @@ func miqt_exec_callback_QsciLexerVHDL_WriteProperties(self *C.QsciLexerVHDL, cb 
 	virtualReturn := gofunc((&QsciLexerVHDL{h: self}).callVirtualBase_WriteProperties, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

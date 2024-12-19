@@ -42,8 +42,10 @@ func newQFinalState(h *C.QFinalState) *QFinalState {
 	var outptr_QAbstractState *C.QAbstractState = nil
 	C.QFinalState_virtbase(h, &outptr_QAbstractState)
 
-	return &QFinalState{h: h,
-		QAbstractState: newQAbstractState(outptr_QAbstractState)}
+	return &QFinalState{
+		h:              h,
+		QAbstractState: newQAbstractState(outptr_QAbstractState),
+	}
 }
 
 // UnsafeNewQFinalState constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQFinalState(h unsafe.Pointer) *QFinalState {
 
 // NewQFinalState constructs a new QFinalState object.
 func NewQFinalState() *QFinalState {
-
 	ret := newQFinalState(C.QFinalState_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQFinalState() *QFinalState {
 
 // NewQFinalState2 constructs a new QFinalState object.
 func NewQFinalState2(parent *QState) *QFinalState {
-
 	ret := newQFinalState(C.QFinalState_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -140,10 +140,9 @@ func QFinalState_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QFinalState) callVirtualBase_OnEntry(event *QEvent) {
-
 	C.QFinalState_virtualbase_OnEntry(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFinalState) OnOnEntry(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -162,14 +161,12 @@ func miqt_exec_callback_QFinalState_OnEntry(self *C.QFinalState, cb C.intptr_t, 
 	slotval1 := newQEvent(event)
 
 	gofunc((&QFinalState{h: self}).callVirtualBase_OnEntry, slotval1)
-
 }
 
 func (this *QFinalState) callVirtualBase_OnExit(event *QEvent) {
-
 	C.QFinalState_virtualbase_OnExit(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QFinalState) OnOnExit(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -188,14 +185,12 @@ func miqt_exec_callback_QFinalState_OnExit(self *C.QFinalState, cb C.intptr_t, e
 	slotval1 := newQEvent(event)
 
 	gofunc((&QFinalState{h: self}).callVirtualBase_OnExit, slotval1)
-
 }
 
 func (this *QFinalState) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QFinalState_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QFinalState) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -216,7 +211,6 @@ func miqt_exec_callback_QFinalState_Event(self *C.QFinalState, cb C.intptr_t, e 
 	virtualReturn := gofunc((&QFinalState{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

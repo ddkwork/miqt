@@ -48,7 +48,6 @@ func UnsafeNewQMimeType(h unsafe.Pointer) *QMimeType {
 
 // NewQMimeType constructs a new QMimeType object.
 func NewQMimeType() *QMimeType {
-
 	ret := newQMimeType(C.QMimeType_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQMimeType() *QMimeType {
 
 // NewQMimeType2 constructs a new QMimeType object.
 func NewQMimeType2(other *QMimeType) *QMimeType {
-
 	ret := newQMimeType(C.QMimeType_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

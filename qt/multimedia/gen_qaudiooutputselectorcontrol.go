@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioOutputSelectorControl struct {
@@ -43,8 +44,10 @@ func newQAudioOutputSelectorControl(h *C.QAudioOutputSelectorControl) *QAudioOut
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QAudioOutputSelectorControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QAudioOutputSelectorControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QAudioOutputSelectorControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQAudioOutputSelectorControl constructs the type using only unsafe pointers.
@@ -133,6 +136,7 @@ func (this *QAudioOutputSelectorControl) ActiveOutputChanged(name string) {
 	defer C.free(unsafe.Pointer(name_ms.data))
 	C.QAudioOutputSelectorControl_ActiveOutputChanged(this.h, name_ms)
 }
+
 func (this *QAudioOutputSelectorControl) OnActiveOutputChanged(slot func(name string)) {
 	C.QAudioOutputSelectorControl_connect_ActiveOutputChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -156,6 +160,7 @@ func miqt_exec_callback_QAudioOutputSelectorControl_ActiveOutputChanged(cb C.int
 func (this *QAudioOutputSelectorControl) AvailableOutputsChanged() {
 	C.QAudioOutputSelectorControl_AvailableOutputsChanged(this.h)
 }
+
 func (this *QAudioOutputSelectorControl) OnAvailableOutputsChanged(slot func()) {
 	C.QAudioOutputSelectorControl_connect_AvailableOutputsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

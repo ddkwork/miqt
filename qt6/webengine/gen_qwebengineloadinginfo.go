@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineLoadingInfo__LoadStatus int
@@ -71,7 +72,6 @@ func UnsafeNewQWebEngineLoadingInfo(h unsafe.Pointer) *QWebEngineLoadingInfo {
 
 // NewQWebEngineLoadingInfo constructs a new QWebEngineLoadingInfo object.
 func NewQWebEngineLoadingInfo(other *QWebEngineLoadingInfo) *QWebEngineLoadingInfo {
-
 	ret := newQWebEngineLoadingInfo(C.QWebEngineLoadingInfo_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret

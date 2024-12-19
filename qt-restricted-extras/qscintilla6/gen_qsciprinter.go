@@ -9,11 +9,12 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
-	"github.com/mappu/miqt/qt6/printsupport"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
+	"github.com/mappu/miqt/qt6/printsupport"
 )
 
 type QsciPrinter struct {
@@ -44,8 +45,10 @@ func newQsciPrinter(h *C.QsciPrinter) *QsciPrinter {
 	var outptr_QPrinter *C.QPrinter = nil
 	C.QsciPrinter_virtbase(h, &outptr_QPrinter)
 
-	return &QsciPrinter{h: h,
-		QPrinter: printsupport.UnsafeNewQPrinter(unsafe.Pointer(outptr_QPrinter))}
+	return &QsciPrinter{
+		h:        h,
+		QPrinter: printsupport.UnsafeNewQPrinter(unsafe.Pointer(outptr_QPrinter)),
+	}
 }
 
 // UnsafeNewQsciPrinter constructs the type using only unsafe pointers.
@@ -55,7 +58,6 @@ func UnsafeNewQsciPrinter(h unsafe.Pointer) *QsciPrinter {
 
 // NewQsciPrinter constructs a new QsciPrinter object.
 func NewQsciPrinter() *QsciPrinter {
-
 	ret := newQsciPrinter(C.QsciPrinter_new())
 	ret.isSubclass = true
 	return ret
@@ -63,7 +65,6 @@ func NewQsciPrinter() *QsciPrinter {
 
 // NewQsciPrinter2 constructs a new QsciPrinter object.
 func NewQsciPrinter2(mode printsupport.QPrinter__PrinterMode) *QsciPrinter {
-
 	ret := newQsciPrinter(C.QsciPrinter_new2((C.int)(mode)))
 	ret.isSubclass = true
 	return ret
@@ -98,10 +99,9 @@ func (this *QsciPrinter) SetWrapMode(wmode QsciScintilla__WrapMode) {
 }
 
 func (this *QsciPrinter) callVirtualBase_FormatPage(painter *qt6.QPainter, drawing bool, area *qt6.QRect, pagenr int) {
-
 	C.QsciPrinter_virtualbase_FormatPage(unsafe.Pointer(this.h), (*C.QPainter)(painter.UnsafePointer()), (C.bool)(drawing), (*C.QRect)(area.UnsafePointer()), (C.int)(pagenr))
-
 }
+
 func (this *QsciPrinter) OnFormatPage(slot func(super func(painter *qt6.QPainter, drawing bool, area *qt6.QRect, pagenr int), painter *qt6.QPainter, drawing bool, area *qt6.QRect, pagenr int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -126,14 +126,12 @@ func miqt_exec_callback_QsciPrinter_FormatPage(self *C.QsciPrinter, cb C.intptr_
 	slotval4 := (int)(pagenr)
 
 	gofunc((&QsciPrinter{h: self}).callVirtualBase_FormatPage, slotval1, slotval2, slotval3, slotval4)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_SetMagnification(magnification int) {
-
 	C.QsciPrinter_virtualbase_SetMagnification(unsafe.Pointer(this.h), (C.int)(magnification))
-
 }
+
 func (this *QsciPrinter) OnSetMagnification(slot func(super func(magnification int), magnification int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -152,14 +150,12 @@ func miqt_exec_callback_QsciPrinter_SetMagnification(self *C.QsciPrinter, cb C.i
 	slotval1 := (int)(magnification)
 
 	gofunc((&QsciPrinter{h: self}).callVirtualBase_SetMagnification, slotval1)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_PrintRange(qsb *QsciScintillaBase, painter *qt6.QPainter, from int, to int) int {
-
 	return (int)(C.QsciPrinter_virtualbase_PrintRange(unsafe.Pointer(this.h), qsb.cPointer(), (*C.QPainter)(painter.UnsafePointer()), (C.int)(from), (C.int)(to)))
-
 }
+
 func (this *QsciPrinter) OnPrintRange(slot func(super func(qsb *QsciScintillaBase, painter *qt6.QPainter, from int, to int) int, qsb *QsciScintillaBase, painter *qt6.QPainter, from int, to int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -186,14 +182,12 @@ func miqt_exec_callback_QsciPrinter_PrintRange(self *C.QsciPrinter, cb C.intptr_
 	virtualReturn := gofunc((&QsciPrinter{h: self}).callVirtualBase_PrintRange, slotval1, slotval2, slotval3, slotval4)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_PrintRange2(qsb *QsciScintillaBase, from int, to int) int {
-
 	return (int)(C.QsciPrinter_virtualbase_PrintRange2(unsafe.Pointer(this.h), qsb.cPointer(), (C.int)(from), (C.int)(to)))
-
 }
+
 func (this *QsciPrinter) OnPrintRange2(slot func(super func(qsb *QsciScintillaBase, from int, to int) int, qsb *QsciScintillaBase, from int, to int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -218,14 +212,12 @@ func miqt_exec_callback_QsciPrinter_PrintRange2(self *C.QsciPrinter, cb C.intptr
 	virtualReturn := gofunc((&QsciPrinter{h: self}).callVirtualBase_PrintRange2, slotval1, slotval2, slotval3)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_SetWrapMode(wmode QsciScintilla__WrapMode) {
-
 	C.QsciPrinter_virtualbase_SetWrapMode(unsafe.Pointer(this.h), (C.int)(wmode))
-
 }
+
 func (this *QsciPrinter) OnSetWrapMode(slot func(super func(wmode QsciScintilla__WrapMode), wmode QsciScintilla__WrapMode)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -244,14 +236,12 @@ func miqt_exec_callback_QsciPrinter_SetWrapMode(self *C.QsciPrinter, cb C.intptr
 	slotval1 := (QsciScintilla__WrapMode)(wmode)
 
 	gofunc((&QsciPrinter{h: self}).callVirtualBase_SetWrapMode, slotval1)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_DevType() int {
-
 	return (int)(C.QsciPrinter_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciPrinter) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -269,14 +259,12 @@ func miqt_exec_callback_QsciPrinter_DevType(self *C.QsciPrinter, cb C.intptr_t) 
 	virtualReturn := gofunc((&QsciPrinter{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_NewPage() bool {
-
 	return (bool)(C.QsciPrinter_virtualbase_NewPage(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QsciPrinter) OnNewPage(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -294,14 +282,12 @@ func miqt_exec_callback_QsciPrinter_NewPage(self *C.QsciPrinter, cb C.intptr_t) 
 	virtualReturn := gofunc((&QsciPrinter{h: self}).callVirtualBase_NewPage)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QsciPrinter) callVirtualBase_PaintEngine() *qt6.QPaintEngine {
-
 	return qt6.UnsafeNewQPaintEngine(unsafe.Pointer(C.QsciPrinter_virtualbase_PaintEngine(unsafe.Pointer(this.h))))
-
 }
+
 func (this *QsciPrinter) OnPaintEngine(slot func(super func() *qt6.QPaintEngine) *qt6.QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -319,14 +305,12 @@ func miqt_exec_callback_QsciPrinter_PaintEngine(self *C.QsciPrinter, cb C.intptr
 	virtualReturn := gofunc((&QsciPrinter{h: self}).callVirtualBase_PaintEngine)
 
 	return (*C.QPaintEngine)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QsciPrinter) callVirtualBase_Metric(param1 qt6.QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QsciPrinter_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QsciPrinter) OnMetric(slot func(super func(param1 qt6.QPaintDevice__PaintDeviceMetric) int, param1 qt6.QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -347,7 +331,6 @@ func miqt_exec_callback_QsciPrinter_Metric(self *C.QsciPrinter, cb C.intptr_t, p
 	virtualReturn := gofunc((&QsciPrinter{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

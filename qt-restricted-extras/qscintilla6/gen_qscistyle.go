@@ -9,9 +9,10 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QsciStyle__TextCase int
@@ -57,7 +58,6 @@ func UnsafeNewQsciStyle(h unsafe.Pointer) *QsciStyle {
 
 // NewQsciStyle constructs a new QsciStyle object.
 func NewQsciStyle() *QsciStyle {
-
 	ret := newQsciStyle(C.QsciStyle_new())
 	ret.isSubclass = true
 	return ret
@@ -77,7 +77,6 @@ func NewQsciStyle2(style int, description string, color *qt6.QColor, paper *qt6.
 
 // NewQsciStyle3 constructs a new QsciStyle object.
 func NewQsciStyle3(param1 *QsciStyle) *QsciStyle {
-
 	ret := newQsciStyle(C.QsciStyle_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -85,7 +84,6 @@ func NewQsciStyle3(param1 *QsciStyle) *QsciStyle {
 
 // NewQsciStyle4 constructs a new QsciStyle object.
 func NewQsciStyle4(style int) *QsciStyle {
-
 	ret := newQsciStyle(C.QsciStyle_new4((C.int)(style)))
 	ret.isSubclass = true
 	return ret

@@ -9,8 +9,9 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraImageProcessing__WhiteBalanceMode int
@@ -71,8 +72,10 @@ func newQCameraImageProcessing(h *C.QCameraImageProcessing) *QCameraImageProcess
 	var outptr_QObject *C.QObject = nil
 	C.QCameraImageProcessing_virtbase(h, &outptr_QObject)
 
-	return &QCameraImageProcessing{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QCameraImageProcessing{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQCameraImageProcessing constructs the type using only unsafe pointers.

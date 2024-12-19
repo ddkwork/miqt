@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAbstractAudioDeviceInfo struct {
@@ -43,8 +44,10 @@ func newQAbstractAudioDeviceInfo(h *C.QAbstractAudioDeviceInfo) *QAbstractAudioD
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractAudioDeviceInfo_virtbase(h, &outptr_QObject)
 
-	return &QAbstractAudioDeviceInfo{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QAbstractAudioDeviceInfo{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQAbstractAudioDeviceInfo constructs the type using only unsafe pointers.
@@ -246,8 +249,10 @@ func newQAbstractAudioOutput(h *C.QAbstractAudioOutput) *QAbstractAudioOutput {
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractAudioOutput_virtbase(h, &outptr_QObject)
 
-	return &QAbstractAudioOutput{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QAbstractAudioOutput{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQAbstractAudioOutput constructs the type using only unsafe pointers.
@@ -383,6 +388,7 @@ func (this *QAbstractAudioOutput) SetCategory(category string) {
 func (this *QAbstractAudioOutput) ErrorChanged(error QAudio__Error) {
 	C.QAbstractAudioOutput_ErrorChanged(this.h, (C.int)(error))
 }
+
 func (this *QAbstractAudioOutput) OnErrorChanged(slot func(error QAudio__Error)) {
 	C.QAbstractAudioOutput_connect_ErrorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -403,6 +409,7 @@ func miqt_exec_callback_QAbstractAudioOutput_ErrorChanged(cb C.intptr_t, error C
 func (this *QAbstractAudioOutput) StateChanged(state QAudio__State) {
 	C.QAbstractAudioOutput_StateChanged(this.h, (C.int)(state))
 }
+
 func (this *QAbstractAudioOutput) OnStateChanged(slot func(state QAudio__State)) {
 	C.QAbstractAudioOutput_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -423,6 +430,7 @@ func miqt_exec_callback_QAbstractAudioOutput_StateChanged(cb C.intptr_t, state C
 func (this *QAbstractAudioOutput) Notify() {
 	C.QAbstractAudioOutput_Notify(this.h)
 }
+
 func (this *QAbstractAudioOutput) OnNotify(slot func()) {
 	C.QAbstractAudioOutput_connect_Notify(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -523,8 +531,10 @@ func newQAbstractAudioInput(h *C.QAbstractAudioInput) *QAbstractAudioInput {
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractAudioInput_virtbase(h, &outptr_QObject)
 
-	return &QAbstractAudioInput{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QAbstractAudioInput{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQAbstractAudioInput constructs the type using only unsafe pointers.
@@ -645,6 +655,7 @@ func (this *QAbstractAudioInput) Volume() float64 {
 func (this *QAbstractAudioInput) ErrorChanged(error QAudio__Error) {
 	C.QAbstractAudioInput_ErrorChanged(this.h, (C.int)(error))
 }
+
 func (this *QAbstractAudioInput) OnErrorChanged(slot func(error QAudio__Error)) {
 	C.QAbstractAudioInput_connect_ErrorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -665,6 +676,7 @@ func miqt_exec_callback_QAbstractAudioInput_ErrorChanged(cb C.intptr_t, error C.
 func (this *QAbstractAudioInput) StateChanged(state QAudio__State) {
 	C.QAbstractAudioInput_StateChanged(this.h, (C.int)(state))
 }
+
 func (this *QAbstractAudioInput) OnStateChanged(slot func(state QAudio__State)) {
 	C.QAbstractAudioInput_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -685,6 +697,7 @@ func miqt_exec_callback_QAbstractAudioInput_StateChanged(cb C.intptr_t, state C.
 func (this *QAbstractAudioInput) Notify() {
 	C.QAbstractAudioInput_Notify(this.h)
 }
+
 func (this *QAbstractAudioInput) OnNotify(slot func()) {
 	C.QAbstractAudioInput_connect_Notify(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

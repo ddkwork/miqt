@@ -101,8 +101,10 @@ func newQFileDevice(h *C.QFileDevice) *QFileDevice {
 	var outptr_QIODevice *C.QIODevice = nil
 	C.QFileDevice_virtbase(h, &outptr_QIODevice)
 
-	return &QFileDevice{h: h,
-		QIODevice: newQIODevice(outptr_QIODevice)}
+	return &QFileDevice{
+		h:         h,
+		QIODevice: newQIODevice(outptr_QIODevice),
+	}
 }
 
 // UnsafeNewQFileDevice constructs the type using only unsafe pointers.

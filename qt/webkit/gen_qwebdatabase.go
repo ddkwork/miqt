@@ -48,7 +48,6 @@ func UnsafeNewQWebDatabase(h unsafe.Pointer) *QWebDatabase {
 
 // NewQWebDatabase constructs a new QWebDatabase object.
 func NewQWebDatabase(other *QWebDatabase) *QWebDatabase {
-
 	ret := newQWebDatabase(C.QWebDatabase_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret

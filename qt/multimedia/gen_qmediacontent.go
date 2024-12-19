@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
-	"github.com/mappu/miqt/qt/network"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
+	"github.com/mappu/miqt/qt/network"
 )
 
 type QMediaContent struct {
@@ -50,7 +51,6 @@ func UnsafeNewQMediaContent(h unsafe.Pointer) *QMediaContent {
 
 // NewQMediaContent constructs a new QMediaContent object.
 func NewQMediaContent() *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new())
 	ret.isSubclass = true
 	return ret
@@ -58,7 +58,6 @@ func NewQMediaContent() *QMediaContent {
 
 // NewQMediaContent2 constructs a new QMediaContent object.
 func NewQMediaContent2(contentUrl *qt.QUrl) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new2((*C.QUrl)(contentUrl.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -66,7 +65,6 @@ func NewQMediaContent2(contentUrl *qt.QUrl) *QMediaContent {
 
 // NewQMediaContent3 constructs a new QMediaContent object.
 func NewQMediaContent3(contentRequest *network.QNetworkRequest) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new3((*C.QNetworkRequest)(contentRequest.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -74,7 +72,6 @@ func NewQMediaContent3(contentRequest *network.QNetworkRequest) *QMediaContent {
 
 // NewQMediaContent4 constructs a new QMediaContent object.
 func NewQMediaContent4(contentResource *QMediaResource) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new4(contentResource.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,7 +93,6 @@ func NewQMediaContent5(resources []QMediaResource) *QMediaContent {
 
 // NewQMediaContent6 constructs a new QMediaContent object.
 func NewQMediaContent6(other *QMediaContent) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new6(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -104,7 +100,6 @@ func NewQMediaContent6(other *QMediaContent) *QMediaContent {
 
 // NewQMediaContent7 constructs a new QMediaContent object.
 func NewQMediaContent7(playlist *QMediaPlaylist) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new7(playlist.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -112,7 +107,6 @@ func NewQMediaContent7(playlist *QMediaPlaylist) *QMediaContent {
 
 // NewQMediaContent8 constructs a new QMediaContent object.
 func NewQMediaContent8(playlist *QMediaPlaylist, contentUrl *qt.QUrl) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new8(playlist.cPointer(), (*C.QUrl)(contentUrl.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -120,7 +114,6 @@ func NewQMediaContent8(playlist *QMediaPlaylist, contentUrl *qt.QUrl) *QMediaCon
 
 // NewQMediaContent9 constructs a new QMediaContent object.
 func NewQMediaContent9(playlist *QMediaPlaylist, contentUrl *qt.QUrl, takeOwnership bool) *QMediaContent {
-
 	ret := newQMediaContent(C.QMediaContent_new9(playlist.cPointer(), (*C.QUrl)(contentUrl.UnsafePointer()), (C.bool)(takeOwnership)))
 	ret.isSubclass = true
 	return ret

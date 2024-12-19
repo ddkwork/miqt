@@ -49,8 +49,10 @@ func newQAbstractTransition(h *C.QAbstractTransition) *QAbstractTransition {
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractTransition_virtbase(h, &outptr_QObject)
 
-	return &QAbstractTransition{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QAbstractTransition{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQAbstractTransition constructs the type using only unsafe pointers.
@@ -60,7 +62,6 @@ func UnsafeNewQAbstractTransition(h unsafe.Pointer) *QAbstractTransition {
 
 // NewQAbstractTransition constructs a new QAbstractTransition object.
 func NewQAbstractTransition() *QAbstractTransition {
-
 	ret := newQAbstractTransition(C.QAbstractTransition_new())
 	ret.isSubclass = true
 	return ret
@@ -68,7 +69,6 @@ func NewQAbstractTransition() *QAbstractTransition {
 
 // NewQAbstractTransition2 constructs a new QAbstractTransition object.
 func NewQAbstractTransition2(sourceState *QState) *QAbstractTransition {
-
 	ret := newQAbstractTransition(C.QAbstractTransition_new2(sourceState.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -207,6 +207,7 @@ func QAbstractTransition_TrUtf83(s string, c string, n int) string {
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QAbstractTransition) OnEventTest(slot func(event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -227,8 +228,8 @@ func miqt_exec_callback_QAbstractTransition_EventTest(self *C.QAbstractTransitio
 	virtualReturn := gofunc(slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
+
 func (this *QAbstractTransition) OnOnTransition(slot func(event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -247,14 +248,12 @@ func miqt_exec_callback_QAbstractTransition_OnTransition(self *C.QAbstractTransi
 	slotval1 := newQEvent(event)
 
 	gofunc(slotval1)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QAbstractTransition_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QAbstractTransition) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -275,14 +274,12 @@ func miqt_exec_callback_QAbstractTransition_Event(self *C.QAbstractTransition, c
 	virtualReturn := gofunc((&QAbstractTransition{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QAbstractTransition_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QAbstractTransition) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -305,14 +302,12 @@ func miqt_exec_callback_QAbstractTransition_EventFilter(self *C.QAbstractTransit
 	virtualReturn := gofunc((&QAbstractTransition{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QAbstractTransition_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractTransition) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -331,14 +326,12 @@ func miqt_exec_callback_QAbstractTransition_TimerEvent(self *C.QAbstractTransiti
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QAbstractTransition{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QAbstractTransition_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractTransition) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -357,14 +350,12 @@ func miqt_exec_callback_QAbstractTransition_ChildEvent(self *C.QAbstractTransiti
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QAbstractTransition{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QAbstractTransition_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractTransition) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -383,14 +374,12 @@ func miqt_exec_callback_QAbstractTransition_CustomEvent(self *C.QAbstractTransit
 	slotval1 := newQEvent(event)
 
 	gofunc((&QAbstractTransition{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QAbstractTransition_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QAbstractTransition) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -409,14 +398,12 @@ func miqt_exec_callback_QAbstractTransition_ConnectNotify(self *C.QAbstractTrans
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QAbstractTransition{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QAbstractTransition) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QAbstractTransition_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QAbstractTransition) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -435,7 +422,6 @@ func miqt_exec_callback_QAbstractTransition_DisconnectNotify(self *C.QAbstractTr
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QAbstractTransition{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineHistoryItem struct {
@@ -49,7 +50,6 @@ func UnsafeNewQWebEngineHistoryItem(h unsafe.Pointer) *QWebEngineHistoryItem {
 
 // NewQWebEngineHistoryItem constructs a new QWebEngineHistoryItem object.
 func NewQWebEngineHistoryItem(other *QWebEngineHistoryItem) *QWebEngineHistoryItem {
-
 	ret := newQWebEngineHistoryItem(C.QWebEngineHistoryItem_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret

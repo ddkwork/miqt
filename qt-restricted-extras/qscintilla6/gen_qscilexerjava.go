@@ -9,10 +9,11 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QsciLexerJava struct {
@@ -43,8 +44,10 @@ func newQsciLexerJava(h *C.QsciLexerJava) *QsciLexerJava {
 	var outptr_QsciLexerCPP *C.QsciLexerCPP = nil
 	C.QsciLexerJava_virtbase(h, &outptr_QsciLexerCPP)
 
-	return &QsciLexerJava{h: h,
-		QsciLexerCPP: newQsciLexerCPP(outptr_QsciLexerCPP)}
+	return &QsciLexerJava{
+		h:            h,
+		QsciLexerCPP: newQsciLexerCPP(outptr_QsciLexerCPP),
+	}
 }
 
 // UnsafeNewQsciLexerJava constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQsciLexerJava(h unsafe.Pointer) *QsciLexerJava {
 
 // NewQsciLexerJava constructs a new QsciLexerJava object.
 func NewQsciLexerJava() *QsciLexerJava {
-
 	ret := newQsciLexerJava(C.QsciLexerJava_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQsciLexerJava() *QsciLexerJava {
 
 // NewQsciLexerJava2 constructs a new QsciLexerJava object.
 func NewQsciLexerJava2(parent *qt6.QObject) *QsciLexerJava {
-
 	ret := newQsciLexerJava(C.QsciLexerJava_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -120,10 +121,9 @@ func QsciLexerJava_Tr3(s string, c string, n int) string {
 }
 
 func (this *QsciLexerJava) callVirtualBase_SetFoldAtElse(fold bool) {
-
 	C.QsciLexerJava_virtualbase_SetFoldAtElse(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerJava) OnSetFoldAtElse(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -142,14 +142,12 @@ func miqt_exec_callback_QsciLexerJava_SetFoldAtElse(self *C.QsciLexerJava, cb C.
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerJava{h: self}).callVirtualBase_SetFoldAtElse, slotval1)
-
 }
 
 func (this *QsciLexerJava) callVirtualBase_SetFoldComments(fold bool) {
-
 	C.QsciLexerJava_virtualbase_SetFoldComments(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerJava) OnSetFoldComments(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -168,14 +166,12 @@ func miqt_exec_callback_QsciLexerJava_SetFoldComments(self *C.QsciLexerJava, cb 
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerJava{h: self}).callVirtualBase_SetFoldComments, slotval1)
-
 }
 
 func (this *QsciLexerJava) callVirtualBase_SetFoldCompact(fold bool) {
-
 	C.QsciLexerJava_virtualbase_SetFoldCompact(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerJava) OnSetFoldCompact(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -194,14 +190,12 @@ func miqt_exec_callback_QsciLexerJava_SetFoldCompact(self *C.QsciLexerJava, cb C
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerJava{h: self}).callVirtualBase_SetFoldCompact, slotval1)
-
 }
 
 func (this *QsciLexerJava) callVirtualBase_SetFoldPreprocessor(fold bool) {
-
 	C.QsciLexerJava_virtualbase_SetFoldPreprocessor(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerJava) OnSetFoldPreprocessor(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -220,14 +214,12 @@ func miqt_exec_callback_QsciLexerJava_SetFoldPreprocessor(self *C.QsciLexerJava,
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerJava{h: self}).callVirtualBase_SetFoldPreprocessor, slotval1)
-
 }
 
 func (this *QsciLexerJava) callVirtualBase_SetStylePreprocessor(style bool) {
-
 	C.QsciLexerJava_virtualbase_SetStylePreprocessor(unsafe.Pointer(this.h), (C.bool)(style))
-
 }
+
 func (this *QsciLexerJava) OnSetStylePreprocessor(slot func(super func(style bool), style bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -246,7 +238,6 @@ func miqt_exec_callback_QsciLexerJava_SetStylePreprocessor(self *C.QsciLexerJava
 	slotval1 := (bool)(style)
 
 	gofunc((&QsciLexerJava{h: self}).callVirtualBase_SetStylePreprocessor, slotval1)
-
 }
 
 // Delete this object from C++ memory.

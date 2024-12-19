@@ -9,7 +9,6 @@ import (
 // This is so that UIC can safely assume this for types.
 // @ref https://github.com/mappu/miqt/issues/46
 func astTransformConstructorOrder(parsed *CppParsedHeader) {
-
 	// QFoo(QWidget* parent);
 	checkIsDefaultCtor := func(candidate CppMethod) bool {
 		return len(candidate.Parameters) == 1 &&

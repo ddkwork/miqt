@@ -49,8 +49,10 @@ func newQPagedPaintDevice(h *C.QPagedPaintDevice) *QPagedPaintDevice {
 	var outptr_QPaintDevice *C.QPaintDevice = nil
 	C.QPagedPaintDevice_virtbase(h, &outptr_QPaintDevice)
 
-	return &QPagedPaintDevice{h: h,
-		QPaintDevice: newQPaintDevice(outptr_QPaintDevice)}
+	return &QPagedPaintDevice{
+		h:            h,
+		QPaintDevice: newQPaintDevice(outptr_QPaintDevice),
+	}
 }
 
 // UnsafeNewQPagedPaintDevice constructs the type using only unsafe pointers.

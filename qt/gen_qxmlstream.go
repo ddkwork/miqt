@@ -82,7 +82,6 @@ func UnsafeNewQXmlStreamStringRef(h unsafe.Pointer) *QXmlStreamStringRef {
 
 // NewQXmlStreamStringRef constructs a new QXmlStreamStringRef object.
 func NewQXmlStreamStringRef() *QXmlStreamStringRef {
-
 	ret := newQXmlStreamStringRef(C.QXmlStreamStringRef_new())
 	ret.isSubclass = true
 	return ret
@@ -102,7 +101,6 @@ func NewQXmlStreamStringRef2(aString string) *QXmlStreamStringRef {
 
 // NewQXmlStreamStringRef3 constructs a new QXmlStreamStringRef object.
 func NewQXmlStreamStringRef3(other *QXmlStreamStringRef) *QXmlStreamStringRef {
-
 	ret := newQXmlStreamStringRef(C.QXmlStreamStringRef_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -184,7 +182,6 @@ func UnsafeNewQXmlStreamAttribute(h unsafe.Pointer) *QXmlStreamAttribute {
 
 // NewQXmlStreamAttribute constructs a new QXmlStreamAttribute object.
 func NewQXmlStreamAttribute() *QXmlStreamAttribute {
-
 	ret := newQXmlStreamAttribute(C.QXmlStreamAttribute_new())
 	ret.isSubclass = true
 	return ret
@@ -228,7 +225,6 @@ func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QX
 
 // NewQXmlStreamAttribute4 constructs a new QXmlStreamAttribute object.
 func NewQXmlStreamAttribute4(param1 *QXmlStreamAttribute) *QXmlStreamAttribute {
-
 	ret := newQXmlStreamAttribute(C.QXmlStreamAttribute_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -299,7 +295,6 @@ func UnsafeNewQXmlStreamNamespaceDeclaration(h unsafe.Pointer) *QXmlStreamNamesp
 
 // NewQXmlStreamNamespaceDeclaration constructs a new QXmlStreamNamespaceDeclaration object.
 func NewQXmlStreamNamespaceDeclaration() *QXmlStreamNamespaceDeclaration {
-
 	ret := newQXmlStreamNamespaceDeclaration(C.QXmlStreamNamespaceDeclaration_new())
 	ret.isSubclass = true
 	return ret
@@ -323,7 +318,6 @@ func NewQXmlStreamNamespaceDeclaration2(prefix string, namespaceUri string) *QXm
 
 // NewQXmlStreamNamespaceDeclaration3 constructs a new QXmlStreamNamespaceDeclaration object.
 func NewQXmlStreamNamespaceDeclaration3(param1 *QXmlStreamNamespaceDeclaration) *QXmlStreamNamespaceDeclaration {
-
 	ret := newQXmlStreamNamespaceDeclaration(C.QXmlStreamNamespaceDeclaration_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -390,7 +384,6 @@ func UnsafeNewQXmlStreamNotationDeclaration(h unsafe.Pointer) *QXmlStreamNotatio
 
 // NewQXmlStreamNotationDeclaration constructs a new QXmlStreamNotationDeclaration object.
 func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
-
 	ret := newQXmlStreamNotationDeclaration(C.QXmlStreamNotationDeclaration_new())
 	ret.isSubclass = true
 	return ret
@@ -398,7 +391,6 @@ func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
 
 // NewQXmlStreamNotationDeclaration2 constructs a new QXmlStreamNotationDeclaration object.
 func NewQXmlStreamNotationDeclaration2(param1 *QXmlStreamNotationDeclaration) *QXmlStreamNotationDeclaration {
-
 	ret := newQXmlStreamNotationDeclaration(C.QXmlStreamNotationDeclaration_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -465,7 +457,6 @@ func UnsafeNewQXmlStreamEntityDeclaration(h unsafe.Pointer) *QXmlStreamEntityDec
 
 // NewQXmlStreamEntityDeclaration constructs a new QXmlStreamEntityDeclaration object.
 func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
-
 	ret := newQXmlStreamEntityDeclaration(C.QXmlStreamEntityDeclaration_new())
 	ret.isSubclass = true
 	return ret
@@ -473,7 +464,6 @@ func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
 
 // NewQXmlStreamEntityDeclaration2 constructs a new QXmlStreamEntityDeclaration object.
 func NewQXmlStreamEntityDeclaration2(param1 *QXmlStreamEntityDeclaration) *QXmlStreamEntityDeclaration {
-
 	ret := newQXmlStreamEntityDeclaration(C.QXmlStreamEntityDeclaration_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -613,7 +603,6 @@ func UnsafeNewQXmlStreamReader(h unsafe.Pointer) *QXmlStreamReader {
 
 // NewQXmlStreamReader constructs a new QXmlStreamReader object.
 func NewQXmlStreamReader() *QXmlStreamReader {
-
 	ret := newQXmlStreamReader(C.QXmlStreamReader_new())
 	ret.isSubclass = true
 	return ret
@@ -621,7 +610,6 @@ func NewQXmlStreamReader() *QXmlStreamReader {
 
 // NewQXmlStreamReader2 constructs a new QXmlStreamReader object.
 func NewQXmlStreamReader2(device *QIODevice) *QXmlStreamReader {
-
 	ret := newQXmlStreamReader(C.QXmlStreamReader_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -944,7 +932,6 @@ func UnsafeNewQXmlStreamWriter(h unsafe.Pointer) *QXmlStreamWriter {
 
 // NewQXmlStreamWriter constructs a new QXmlStreamWriter object.
 func NewQXmlStreamWriter() *QXmlStreamWriter {
-
 	ret := newQXmlStreamWriter(C.QXmlStreamWriter_new())
 	ret.isSubclass = true
 	return ret
@@ -952,7 +939,6 @@ func NewQXmlStreamWriter() *QXmlStreamWriter {
 
 // NewQXmlStreamWriter2 constructs a new QXmlStreamWriter object.
 func NewQXmlStreamWriter2(device *QIODevice) *QXmlStreamWriter {
-
 	ret := newQXmlStreamWriter(C.QXmlStreamWriter_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret

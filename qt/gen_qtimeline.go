@@ -68,8 +68,10 @@ func newQTimeLine(h *C.QTimeLine) *QTimeLine {
 	var outptr_QObject *C.QObject = nil
 	C.QTimeLine_virtbase(h, &outptr_QObject)
 
-	return &QTimeLine{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QTimeLine{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQTimeLine constructs the type using only unsafe pointers.
@@ -79,7 +81,6 @@ func UnsafeNewQTimeLine(h unsafe.Pointer) *QTimeLine {
 
 // NewQTimeLine constructs a new QTimeLine object.
 func NewQTimeLine() *QTimeLine {
-
 	ret := newQTimeLine(C.QTimeLine_new())
 	ret.isSubclass = true
 	return ret
@@ -87,7 +88,6 @@ func NewQTimeLine() *QTimeLine {
 
 // NewQTimeLine2 constructs a new QTimeLine object.
 func NewQTimeLine2(duration int) *QTimeLine {
-
 	ret := newQTimeLine(C.QTimeLine_new2((C.int)(duration)))
 	ret.isSubclass = true
 	return ret
@@ -95,7 +95,6 @@ func NewQTimeLine2(duration int) *QTimeLine {
 
 // NewQTimeLine3 constructs a new QTimeLine object.
 func NewQTimeLine3(duration int, parent *QObject) *QTimeLine {
-
 	ret := newQTimeLine(C.QTimeLine_new3((C.int)(duration), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -292,10 +291,9 @@ func QTimeLine_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QTimeLine) callVirtualBase_ValueForTime(msec int) float64 {
-
 	return (float64)(C.QTimeLine_virtualbase_ValueForTime(unsafe.Pointer(this.h), (C.int)(msec)))
-
 }
+
 func (this *QTimeLine) OnValueForTime(slot func(super func(msec int) float64, msec int) float64) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -316,14 +314,12 @@ func miqt_exec_callback_QTimeLine_ValueForTime(self *C.QTimeLine, cb C.intptr_t,
 	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_ValueForTime, slotval1)
 
 	return (C.double)(virtualReturn)
-
 }
 
 func (this *QTimeLine) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QTimeLine_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QTimeLine) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -342,14 +338,12 @@ func miqt_exec_callback_QTimeLine_TimerEvent(self *C.QTimeLine, cb C.intptr_t, e
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QTimeLine{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QTimeLine) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QTimeLine_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QTimeLine) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -370,14 +364,12 @@ func miqt_exec_callback_QTimeLine_Event(self *C.QTimeLine, cb C.intptr_t, event 
 	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QTimeLine) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QTimeLine_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QTimeLine) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -400,14 +392,12 @@ func miqt_exec_callback_QTimeLine_EventFilter(self *C.QTimeLine, cb C.intptr_t, 
 	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QTimeLine) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QTimeLine_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QTimeLine) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -426,14 +416,12 @@ func miqt_exec_callback_QTimeLine_ChildEvent(self *C.QTimeLine, cb C.intptr_t, e
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QTimeLine{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QTimeLine) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QTimeLine_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QTimeLine) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -452,14 +440,12 @@ func miqt_exec_callback_QTimeLine_CustomEvent(self *C.QTimeLine, cb C.intptr_t, 
 	slotval1 := newQEvent(event)
 
 	gofunc((&QTimeLine{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QTimeLine) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QTimeLine_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QTimeLine) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -478,14 +464,12 @@ func miqt_exec_callback_QTimeLine_ConnectNotify(self *C.QTimeLine, cb C.intptr_t
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QTimeLine{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QTimeLine) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QTimeLine_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QTimeLine) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -504,7 +488,6 @@ func miqt_exec_callback_QTimeLine_DisconnectNotify(self *C.QTimeLine, cb C.intpt
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QTimeLine{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

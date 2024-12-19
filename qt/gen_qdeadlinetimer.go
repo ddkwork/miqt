@@ -54,7 +54,6 @@ func UnsafeNewQDeadlineTimer(h unsafe.Pointer) *QDeadlineTimer {
 
 // NewQDeadlineTimer constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer() *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +61,6 @@ func NewQDeadlineTimer() *QDeadlineTimer {
 
 // NewQDeadlineTimer2 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer2(param1 QDeadlineTimer__ForeverConstant) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new2((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -70,7 +68,6 @@ func NewQDeadlineTimer2(param1 QDeadlineTimer__ForeverConstant) *QDeadlineTimer 
 
 // NewQDeadlineTimer3 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer3(msecs int64) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new3((C.longlong)(msecs)))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +75,6 @@ func NewQDeadlineTimer3(msecs int64) *QDeadlineTimer {
 
 // NewQDeadlineTimer4 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer4(param1 *QDeadlineTimer) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -86,7 +82,6 @@ func NewQDeadlineTimer4(param1 *QDeadlineTimer) *QDeadlineTimer {
 
 // NewQDeadlineTimer5 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer5(type_ TimerType) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new5((C.int)(type_)))
 	ret.isSubclass = true
 	return ret
@@ -94,7 +89,6 @@ func NewQDeadlineTimer5(type_ TimerType) *QDeadlineTimer {
 
 // NewQDeadlineTimer6 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer6(param1 QDeadlineTimer__ForeverConstant, type_ TimerType) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new6((C.int)(param1), (C.int)(type_)))
 	ret.isSubclass = true
 	return ret
@@ -102,7 +96,6 @@ func NewQDeadlineTimer6(param1 QDeadlineTimer__ForeverConstant, type_ TimerType)
 
 // NewQDeadlineTimer7 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer7(msecs int64, typeVal TimerType) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(C.QDeadlineTimer_new7((C.longlong)(msecs), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret

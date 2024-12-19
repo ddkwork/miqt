@@ -48,7 +48,6 @@ func UnsafeNewQBitArray(h unsafe.Pointer) *QBitArray {
 
 // NewQBitArray constructs a new QBitArray object.
 func NewQBitArray() *QBitArray {
-
 	ret := newQBitArray(C.QBitArray_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQBitArray() *QBitArray {
 
 // NewQBitArray2 constructs a new QBitArray object.
 func NewQBitArray2(size int64) *QBitArray {
-
 	ret := newQBitArray(C.QBitArray_new2((C.ptrdiff_t)(size)))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQBitArray2(size int64) *QBitArray {
 
 // NewQBitArray3 constructs a new QBitArray object.
 func NewQBitArray3(other *QBitArray) *QBitArray {
-
 	ret := newQBitArray(C.QBitArray_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +69,6 @@ func NewQBitArray3(other *QBitArray) *QBitArray {
 
 // NewQBitArray4 constructs a new QBitArray object.
 func NewQBitArray4(size int64, val bool) *QBitArray {
-
 	ret := newQBitArray(C.QBitArray_new4((C.ptrdiff_t)(size), (C.bool)(val)))
 	ret.isSubclass = true
 	return ret
@@ -262,7 +258,6 @@ func UnsafeNewQBitRef(h unsafe.Pointer) *QBitRef {
 
 // NewQBitRef constructs a new QBitRef object.
 func NewQBitRef(param1 *QBitRef) *QBitRef {
-
 	ret := newQBitRef(C.QBitRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

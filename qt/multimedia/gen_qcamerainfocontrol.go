@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraInfoControl struct {
@@ -42,8 +43,10 @@ func newQCameraInfoControl(h *C.QCameraInfoControl) *QCameraInfoControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraInfoControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraInfoControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraInfoControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraInfoControl constructs the type using only unsafe pointers.

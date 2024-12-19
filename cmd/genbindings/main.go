@@ -55,7 +55,7 @@ func findHeadersInDir(srcDir string, allowHeader func(string) bool) []string {
 func cleanGeneratedFilesInDir(dirpath string) {
 	log.Printf("Cleaning up output directory %q...", dirpath)
 
-	_ = os.MkdirAll(dirpath, 0755)
+	_ = os.MkdirAll(dirpath, 0o755)
 
 	existing, err := os.ReadDir(dirpath)
 	if err != nil {
@@ -93,7 +93,6 @@ func pkgConfigCflags(packageName string) string {
 }
 
 func generate(packageName string, srcDirs []string, allowHeaderFn func(string) bool, clangBin, cflagsCombined, outDir string, matcher ClangMatcher) {
-
 	var includeFiles []string
 	for _, srcDir := range srcDirs {
 		if strings.HasSuffix(srcDir, `.h`) {
@@ -188,7 +187,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 				panic(err)
 			}
 
-			err = os.WriteFile(cacheFilePath(parsed.Filename)+".ours.json", jb, 0644)
+			err = os.WriteFile(cacheFilePath(parsed.Filename)+".ours.json", jb, 0o644)
 			if err != nil {
 				panic(err)
 			}
@@ -207,7 +206,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 		// there are filename collisions (e.g. Qt 6 has QtWidgets/qaction.h include
 		// QtGui/qaction.h as a compatibility measure).
 		// If the path exists, disambiguate it
-		var counter = 0
+		counter := 0
 		for {
 			testName := outputName
 			if counter > 0 {
@@ -227,7 +226,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 			panic(err)
 		}
 
-		err = os.WriteFile(outputName+".go", []byte(goSrc), 0644)
+		err = os.WriteFile(outputName+".go", []byte(goSrc), 0o644)
 		if err != nil {
 			panic(err)
 		}
@@ -237,7 +236,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 			panic(err)
 		}
 
-		err = os.WriteFile(outputName+".cpp", []byte(bindingCppSrc), 0644)
+		err = os.WriteFile(outputName+".cpp", []byte(bindingCppSrc), 0o644)
 		if err != nil {
 			panic(err)
 		}
@@ -247,7 +246,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 			panic(err)
 		}
 
-		err = os.WriteFile(outputName+".h", []byte(bindingHSrc), 0644)
+		err = os.WriteFile(outputName+".h", []byte(bindingHSrc), 0o644)
 		if err != nil {
 			panic(err)
 		}
@@ -260,8 +259,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 }
 
 func generateClangCaches(includeFiles []string, clangBin string, cflags []string, matcher ClangMatcher) {
-
-	var clangChan = make(chan string)
+	clangChan := make(chan string)
 	var clangWg sync.WaitGroup
 	ctx := context.Background()
 
@@ -289,7 +287,7 @@ func generateClangCaches(includeFiles []string, clangBin string, cflags []string
 					panic(err)
 				}
 
-				err = os.WriteFile(cacheFilePath(inputHeader), jb, 0644)
+				err = os.WriteFile(cacheFilePath(inputHeader), jb, 0o644)
 				if err != nil {
 					panic(err)
 				}

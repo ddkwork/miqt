@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QtWebEngineCore__ReferrerPolicy int
@@ -98,8 +99,10 @@ func newQWebEngineContextMenuRequest(h *C.QWebEngineContextMenuRequest) *QWebEng
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineContextMenuRequest_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineContextMenuRequest{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineContextMenuRequest{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineContextMenuRequest constructs the type using only unsafe pointers.

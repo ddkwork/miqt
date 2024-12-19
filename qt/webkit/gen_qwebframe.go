@@ -9,12 +9,13 @@ package webkit
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
-	"github.com/mappu/miqt/qt/network"
-	"github.com/mappu/miqt/qt/printsupport"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
+	"github.com/mappu/miqt/qt/network"
+	"github.com/mappu/miqt/qt/printsupport"
 )
 
 type QWebFrame__ValueOwnership int
@@ -69,7 +70,6 @@ func UnsafeNewQWebHitTestResult(h unsafe.Pointer) *QWebHitTestResult {
 
 // NewQWebHitTestResult constructs a new QWebHitTestResult object.
 func NewQWebHitTestResult() *QWebHitTestResult {
-
 	ret := newQWebHitTestResult(C.QWebHitTestResult_new())
 	ret.isSubclass = true
 	return ret
@@ -77,7 +77,6 @@ func NewQWebHitTestResult() *QWebHitTestResult {
 
 // NewQWebHitTestResult2 constructs a new QWebHitTestResult object.
 func NewQWebHitTestResult2(other *QWebHitTestResult) *QWebHitTestResult {
-
 	ret := newQWebHitTestResult(C.QWebHitTestResult_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -237,8 +236,10 @@ func newQWebFrame(h *C.QWebFrame) *QWebFrame {
 	var outptr_QObject *C.QObject = nil
 	C.QWebFrame_virtbase(h, &outptr_QObject)
 
-	return &QWebFrame{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebFrame{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebFrame constructs the type using only unsafe pointers.
@@ -546,6 +547,7 @@ func (this *QWebFrame) Print(printer *printsupport.QPrinter) {
 func (this *QWebFrame) JavaScriptWindowObjectCleared() {
 	C.QWebFrame_JavaScriptWindowObjectCleared(this.h)
 }
+
 func (this *QWebFrame) OnJavaScriptWindowObjectCleared(slot func()) {
 	C.QWebFrame_connect_JavaScriptWindowObjectCleared(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -563,6 +565,7 @@ func miqt_exec_callback_QWebFrame_JavaScriptWindowObjectCleared(cb C.intptr_t) {
 func (this *QWebFrame) ProvisionalLoad() {
 	C.QWebFrame_ProvisionalLoad(this.h)
 }
+
 func (this *QWebFrame) OnProvisionalLoad(slot func()) {
 	C.QWebFrame_connect_ProvisionalLoad(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -584,6 +587,7 @@ func (this *QWebFrame) TitleChanged(title string) {
 	defer C.free(unsafe.Pointer(title_ms.data))
 	C.QWebFrame_TitleChanged(this.h, title_ms)
 }
+
 func (this *QWebFrame) OnTitleChanged(slot func(title string)) {
 	C.QWebFrame_connect_TitleChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -607,6 +611,7 @@ func miqt_exec_callback_QWebFrame_TitleChanged(cb C.intptr_t, title C.struct_miq
 func (this *QWebFrame) UrlChanged(url *qt.QUrl) {
 	C.QWebFrame_UrlChanged(this.h, (*C.QUrl)(url.UnsafePointer()))
 }
+
 func (this *QWebFrame) OnUrlChanged(slot func(url *qt.QUrl)) {
 	C.QWebFrame_connect_UrlChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -627,6 +632,7 @@ func miqt_exec_callback_QWebFrame_UrlChanged(cb C.intptr_t, url *C.QUrl) {
 func (this *QWebFrame) InitialLayoutCompleted() {
 	C.QWebFrame_InitialLayoutCompleted(this.h)
 }
+
 func (this *QWebFrame) OnInitialLayoutCompleted(slot func()) {
 	C.QWebFrame_connect_InitialLayoutCompleted(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -644,6 +650,7 @@ func miqt_exec_callback_QWebFrame_InitialLayoutCompleted(cb C.intptr_t) {
 func (this *QWebFrame) IconChanged() {
 	C.QWebFrame_IconChanged(this.h)
 }
+
 func (this *QWebFrame) OnIconChanged(slot func()) {
 	C.QWebFrame_connect_IconChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -661,6 +668,7 @@ func miqt_exec_callback_QWebFrame_IconChanged(cb C.intptr_t) {
 func (this *QWebFrame) ContentsSizeChanged(size *qt.QSize) {
 	C.QWebFrame_ContentsSizeChanged(this.h, (*C.QSize)(size.UnsafePointer()))
 }
+
 func (this *QWebFrame) OnContentsSizeChanged(slot func(size *qt.QSize)) {
 	C.QWebFrame_connect_ContentsSizeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -681,6 +689,7 @@ func miqt_exec_callback_QWebFrame_ContentsSizeChanged(cb C.intptr_t, size *C.QSi
 func (this *QWebFrame) LoadStarted() {
 	C.QWebFrame_LoadStarted(this.h)
 }
+
 func (this *QWebFrame) OnLoadStarted(slot func()) {
 	C.QWebFrame_connect_LoadStarted(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -698,6 +707,7 @@ func miqt_exec_callback_QWebFrame_LoadStarted(cb C.intptr_t) {
 func (this *QWebFrame) LoadFinished(ok bool) {
 	C.QWebFrame_LoadFinished(this.h, (C.bool)(ok))
 }
+
 func (this *QWebFrame) OnLoadFinished(slot func(ok bool)) {
 	C.QWebFrame_connect_LoadFinished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -718,6 +728,7 @@ func miqt_exec_callback_QWebFrame_LoadFinished(cb C.intptr_t, ok C.bool) {
 func (this *QWebFrame) PageChanged() {
 	C.QWebFrame_PageChanged(this.h)
 }
+
 func (this *QWebFrame) OnPageChanged(slot func()) {
 	C.QWebFrame_connect_PageChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

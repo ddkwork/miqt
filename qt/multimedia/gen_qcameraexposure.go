@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraExposure__FlashMode int
@@ -92,8 +93,10 @@ func newQCameraExposure(h *C.QCameraExposure) *QCameraExposure {
 	var outptr_QObject *C.QObject = nil
 	C.QCameraExposure_virtbase(h, &outptr_QObject)
 
-	return &QCameraExposure{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QCameraExposure{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQCameraExposure constructs the type using only unsafe pointers.
@@ -272,6 +275,7 @@ func (this *QCameraExposure) SetAutoShutterSpeed() {
 func (this *QCameraExposure) FlashReady(param1 bool) {
 	C.QCameraExposure_FlashReady(this.h, (C.bool)(param1))
 }
+
 func (this *QCameraExposure) OnFlashReady(slot func(param1 bool)) {
 	C.QCameraExposure_connect_FlashReady(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -292,6 +296,7 @@ func miqt_exec_callback_QCameraExposure_FlashReady(cb C.intptr_t, param1 C.bool)
 func (this *QCameraExposure) ApertureChanged(param1 float64) {
 	C.QCameraExposure_ApertureChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraExposure) OnApertureChanged(slot func(param1 float64)) {
 	C.QCameraExposure_connect_ApertureChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -312,6 +317,7 @@ func miqt_exec_callback_QCameraExposure_ApertureChanged(cb C.intptr_t, param1 C.
 func (this *QCameraExposure) ApertureRangeChanged() {
 	C.QCameraExposure_ApertureRangeChanged(this.h)
 }
+
 func (this *QCameraExposure) OnApertureRangeChanged(slot func()) {
 	C.QCameraExposure_connect_ApertureRangeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -329,6 +335,7 @@ func miqt_exec_callback_QCameraExposure_ApertureRangeChanged(cb C.intptr_t) {
 func (this *QCameraExposure) ShutterSpeedChanged(speed float64) {
 	C.QCameraExposure_ShutterSpeedChanged(this.h, (C.double)(speed))
 }
+
 func (this *QCameraExposure) OnShutterSpeedChanged(slot func(speed float64)) {
 	C.QCameraExposure_connect_ShutterSpeedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -349,6 +356,7 @@ func miqt_exec_callback_QCameraExposure_ShutterSpeedChanged(cb C.intptr_t, speed
 func (this *QCameraExposure) ShutterSpeedRangeChanged() {
 	C.QCameraExposure_ShutterSpeedRangeChanged(this.h)
 }
+
 func (this *QCameraExposure) OnShutterSpeedRangeChanged(slot func()) {
 	C.QCameraExposure_connect_ShutterSpeedRangeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -366,6 +374,7 @@ func miqt_exec_callback_QCameraExposure_ShutterSpeedRangeChanged(cb C.intptr_t) 
 func (this *QCameraExposure) IsoSensitivityChanged(param1 int) {
 	C.QCameraExposure_IsoSensitivityChanged(this.h, (C.int)(param1))
 }
+
 func (this *QCameraExposure) OnIsoSensitivityChanged(slot func(param1 int)) {
 	C.QCameraExposure_connect_IsoSensitivityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -386,6 +395,7 @@ func miqt_exec_callback_QCameraExposure_IsoSensitivityChanged(cb C.intptr_t, par
 func (this *QCameraExposure) ExposureCompensationChanged(param1 float64) {
 	C.QCameraExposure_ExposureCompensationChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraExposure) OnExposureCompensationChanged(slot func(param1 float64)) {
 	C.QCameraExposure_connect_ExposureCompensationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

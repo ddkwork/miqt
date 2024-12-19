@@ -111,7 +111,6 @@ func (p CppParameter) RenderTypeGo(gfs *goFileState) string {
 	default:
 
 		if ft, ok := p.QFlagsOf(); ok {
-
 			if enumInfo, ok := KnownEnums[ft.ParameterType]; ok && enumInfo.PackageName != gfs.currentPackageName {
 				// Cross-package
 				ret += path.Base(enumInfo.PackageName) + "." + cabiClassName(ft.ParameterType)
@@ -120,7 +119,6 @@ func (p CppParameter) RenderTypeGo(gfs *goFileState) string {
 				// Same package
 				ret += cabiClassName(ft.ParameterType)
 			}
-
 		} else if enumInfo, ok := KnownEnums[p.ParameterType]; ok {
 			if enumInfo.PackageName != gfs.currentPackageName {
 				// Cross-package
@@ -130,11 +128,9 @@ func (p CppParameter) RenderTypeGo(gfs *goFileState) string {
 				// Same package
 				ret += cabiClassName(p.ParameterType)
 			}
-
 		} else if strings.Contains(p.ParameterType, `::`) {
 			// Inner class
 			ret += cabiClassName(p.ParameterType)
-
 		} else {
 			// Do not transform this type
 			ret += p.ParameterType
@@ -234,7 +230,6 @@ func (gfs *goFileState) emitParametersGo(params []CppParameter) string {
 	skipNext := false
 
 	for i, p := range params {
-
 		if IsArgcArgv(params, i) {
 			skipNext = true
 			tmp = append(tmp, "args []string")
@@ -242,11 +237,9 @@ func (gfs *goFileState) emitParametersGo(params []CppParameter) string {
 		} else if skipNext {
 			// Skip this parameter, already handled
 			skipNext = false
-
 		} else {
 			// Ordinary parameter
 			tmp = append(tmp, p.ParameterName+" "+p.RenderTypeGo(gfs))
-
 		}
 	}
 	return strings.Join(tmp, ", ")
@@ -267,7 +260,6 @@ func (gfs *goFileState) emitParametersGo2CABIForwarding(m CppMethod) (preamble s
 	skipNext := false
 
 	for i, p := range m.Parameters {
-
 		if IsArgcArgv(m.Parameters, i) {
 			skipNext = true
 			// QApplication constructor. Convert 'args' into Qt's wanted types
@@ -295,7 +287,6 @@ func (gfs *goFileState) emitParametersGo2CABIForwarding(m CppMethod) (preamble s
 		} else if skipNext {
 			// Skip this parameter, already handled
 			skipNext = false
-
 		} else {
 			addPreamble, rvalue := gfs.emitParameterGo2CABIForwarding(p)
 
@@ -309,7 +300,6 @@ func (gfs *goFileState) emitParametersGo2CABIForwarding(m CppMethod) (preamble s
 }
 
 func (gfs *goFileState) emitParameterGo2CABIForwarding(p CppParameter) (preamble string, rvalue string) {
-
 	nameprefix := makeNamePrefix(p.ParameterName)
 
 	if p.ParameterType == "QString" {
@@ -362,7 +352,6 @@ func (gfs *goFileState) emitParameterGo2CABIForwarding(p CppParameter) (preamble
 
 	} else if _, ok := p.QSetOf(); ok {
 		panic("QSet<> arguments are not yet implemented") // n.b. doesn't seem to exist in QtCore/QtGui/QtWidgets at all
-
 	} else if kType, vType, ok := p.QMapOf(); ok {
 		// QMap<T>
 
@@ -441,7 +430,6 @@ func (gfs *goFileState) emitParameterGo2CABIForwarding(p CppParameter) (preamble
 			// Same package
 			rvalue = p.ParameterName + ".cPointer()"
 		}
-
 	} else if p.IntType() || p.IsFlagType() || p.IsKnownEnum() || p.ParameterType == "bool" {
 		if p.Pointer || p.ByRef {
 			gfs.imports["unsafe"] = struct{}{}
@@ -449,7 +437,6 @@ func (gfs *goFileState) emitParameterGo2CABIForwarding(p CppParameter) (preamble
 		} else {
 			rvalue = "(" + p.parameterTypeCgo() + ")(" + p.ParameterName + ")"
 		}
-
 	} else {
 		// Default
 		rvalue = p.ParameterName
@@ -459,7 +446,6 @@ func (gfs *goFileState) emitParameterGo2CABIForwarding(p CppParameter) (preamble
 }
 
 func (gfs *goFileState) emitCabiToGo(assignExpr string, rt CppParameter, rvalue string) string {
-
 	shouldReturn := assignExpr // "return "
 	afterword := ""
 	namePrefix := makeNamePrefix(rt.ParameterName)
@@ -640,11 +626,9 @@ func (gfs *goFileState) emitCabiToGo(assignExpr string, rt CppParameter, rvalue 
 	} else {
 		panic(fmt.Sprintf("emitgo::emitCabiToGo missing type handler for parameter %+v", rt))
 	}
-
 }
 
 func emitGo(src *CppParsedHeader, headerName string, packageName string) (string, error) {
-
 	ret := strings.Builder{}
 	ret.WriteString(`package ` + path.Base(packageName) + `
 
@@ -742,10 +726,8 @@ import "C"
 		// Only include the direct inherits; the recursive inherits will exist
 		// on these types already
 		for _, base := range c.DirectInherits {
-
 			if strings.HasPrefix(base, `QList<`) {
 				ret.WriteString("/* Also inherits unprojectable " + base + " */\n")
-
 			} else if pkg, ok := KnownClassnames[base]; ok && pkg.PackageName != gfs.currentPackageName {
 				// Cross-package parent class
 				ret.WriteString("*" + path.Base(pkg.PackageName) + "." + cabiClassName(base) + "\n")
@@ -754,7 +736,6 @@ import "C"
 				// Same-package parent class
 				ret.WriteString("*" + cabiClassName(base) + "\n")
 			}
-
 		}
 
 		ret.WriteString(`

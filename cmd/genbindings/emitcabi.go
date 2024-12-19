@@ -15,25 +15,18 @@ func cppComment(s string) string {
 }
 
 func (p CppParameter) RenderTypeCabi() string {
-
 	if p.ParameterType == "QString" {
 		return "struct miqt_string"
-
 	} else if p.ParameterType == "QByteArray" {
 		return "struct miqt_string"
-
 	} else if inner, ok := p.QListOf(); ok {
 		return "struct miqt_array " + cppComment("of "+inner.RenderTypeCabi())
-
 	} else if inner, ok := p.QSetOf(); ok {
 		return "struct miqt_array " + cppComment("set of "+inner.RenderTypeCabi())
-
 	} else if inner1, inner2, ok := p.QMapOf(); ok {
 		return "struct miqt_map " + cppComment("of "+inner1.RenderTypeCabi()+" to "+inner2.RenderTypeCabi())
-
 	} else if inner1, inner2, ok := p.QPairOf(); ok {
 		return "struct miqt_map " + cppComment("tuple of "+inner1.RenderTypeCabi()+" and "+inner2.RenderTypeCabi())
-
 	} else if (p.Pointer || p.ByRef) && p.QtClassType() {
 		if p.PointerCount > 1 {
 			return cabiClassName(p.ParameterType) + strings.Repeat("*", p.PointerCount)
@@ -94,10 +87,8 @@ func (p CppParameter) RenderTypeCabi() string {
 		} else {
 			ret = "int"
 		}
-
 	} else if e, ok := KnownEnums[p.ParameterType]; ok {
 		ret = e.Enum.UnderlyingType.RenderTypeCabi()
-
 	}
 
 	if p.Pointer {
@@ -198,7 +189,6 @@ func makeNamePrefix(in string) string {
 }
 
 func emitCABI2CppForwarding(p CppParameter, indent string) (preamble string, forwarding string) {
-
 	nameprefix := makeNamePrefix(p.ParameterName)
 
 	if p.ParameterType == "QString" {
@@ -316,7 +306,6 @@ func emitCABI2CppForwarding(p CppParameter, indent string) (preamble string, for
 
 	} else if _, ok := p.QSetOf(); ok {
 		panic("QSet<> arguments are not yet implemented") // n.b. doesn't seem to exist in QtCore/QtGui/QtWidgets at all
-
 	} else if p.ByRef {
 		if p.Pointer {
 			// By ref and by pointer
@@ -327,10 +316,9 @@ func emitCABI2CppForwarding(p CppParameter, indent string) (preamble string, for
 			// By ref and not by pointer
 			// We changed RenderTypeCabi() to render this as a pointer
 			// Need to dereference so we can pass as reference to the actual Qt C++ function
-			//tmp = append(tmp, "*"+p.ParameterName)
+			// tmp = append(tmp, "*"+p.ParameterName)
 			return preamble, "*" + p.ParameterName
 		}
-
 	} else if p.QtClassType() && !p.Pointer {
 		// CABI takes all Qt types by pointer, even if C++ wants them by value
 		// Dereference the passed-in pointer
@@ -342,7 +330,6 @@ func emitCABI2CppForwarding(p CppParameter, indent string) (preamble string, for
 	} else {
 		return preamble, p.ParameterName
 	}
-
 }
 
 // emitAssignCppToCabi transforms and assigns rvalue to the assignExpression.
@@ -350,7 +337,6 @@ func emitCABI2CppForwarding(p CppParameter, indent string) (preamble string, for
 // Sample rvalue: `foo`, `foo(xyz)`
 // The return is a complete statement including trailing newline.
 func emitAssignCppToCabi(assignExpression string, p CppParameter, rvalue string) string {
-
 	shouldReturn := assignExpression // n.b. already has indent
 	afterCall := ""
 	assignExpression = strings.TrimLeft(assignExpression, " \t")
@@ -505,10 +491,8 @@ func emitAssignCppToCabi(assignExpression string, p CppParameter, rvalue string)
 		return indent + shouldReturn + rvalue + ";\n" + afterCall
 
 	} else if p.QtClassType() && !p.Pointer {
-
 		// Elide temporary and emit directly from the rvalue
 		return indent + assignExpression + "new " + p.ParameterType + "(" + rvalue + ");\n"
-
 	} else if p.IsFlagType() || p.IsKnownEnum() || p.QtCppOriginalType != nil {
 		// Needs an explicit cast
 		shouldReturn = p.RenderTypeQtCpp() + " " + namePrefix + "_ret = "
@@ -536,7 +520,6 @@ func emitAssignCppToCabi(assignExpression string, p CppParameter, rvalue string)
 
 		return indent + shouldReturn + rvalue + ";\n" + afterCall
 	}
-
 }
 
 func getCppZeroValue(p CppParameter) string {
@@ -555,7 +538,6 @@ func getCppZeroValue(p CppParameter) string {
 
 // getReferencedTypes finds all referenced Qt types in this file.
 func getReferencedTypes(src *CppParsedHeader) []string {
-
 	foundTypes := map[string]struct{}{}
 
 	var maybeAddType func(p CppParameter)
@@ -633,7 +615,6 @@ func getReferencedTypes(src *CppParsedHeader) []string {
 // cabiClassName returns the Go / CABI class name for a Qt C++ class.
 // Normally this is the same, except for class types that are nested inside another class definition.
 func cabiClassName(className string) string {
-
 	// Many types are defined in qnamespace.h under Qt::
 	// The Go implementation is always called qt.Foo, and these names don't
 	// collide with anything, so strip the redundant prefix
@@ -774,7 +755,6 @@ func fullyQualifiedConstructor(className string) string {
 }
 
 func emitParametersCabiConstructor(c *CppClass, ctor *CppMethod) string {
-
 	slist := make([]string, 0, len(ctor.Parameters))
 	for _, p := range ctor.Parameters {
 		slist = append(slist, p.RenderTypeCabi()+" "+p.ParameterName)
@@ -1079,7 +1059,6 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 					emitAssignCppToCabi("\treturn ", m.ReturnType, callTarget),
 					m.ReturnType.RenderTypeCabi(),
 				))
-
 			} else if m.BecomesNonConstInVersion != nil {
 
 				nonConstCallTarget := "const_cast<" + methodPrefixName + "*>(self)->" + m.CppCallTarget() + "(" + forwarding + ")"
@@ -1098,7 +1077,6 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 				)
 
 			} else {
-
 				ret.WriteString(fmt.Sprintf(
 					"%s %s_%s(%s) {\n"+
 						"%s"+
@@ -1109,7 +1087,6 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 					preamble,
 					emitAssignCppToCabi("\treturn ", m.ReturnType, callTarget),
 				))
-
 			}
 
 			if m.IsSignal {

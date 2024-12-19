@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaAvailabilityControl struct {
@@ -43,8 +44,10 @@ func newQMediaAvailabilityControl(h *C.QMediaAvailabilityControl) *QMediaAvailab
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaAvailabilityControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaAvailabilityControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaAvailabilityControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaAvailabilityControl constructs the type using only unsafe pointers.
@@ -87,6 +90,7 @@ func (this *QMediaAvailabilityControl) Availability() QMultimedia__AvailabilityS
 func (this *QMediaAvailabilityControl) AvailabilityChanged(availability QMultimedia__AvailabilityStatus) {
 	C.QMediaAvailabilityControl_AvailabilityChanged(this.h, (C.int)(availability))
 }
+
 func (this *QMediaAvailabilityControl) OnAvailabilityChanged(slot func(availability QMultimedia__AvailabilityStatus)) {
 	C.QMediaAvailabilityControl_connect_AvailabilityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

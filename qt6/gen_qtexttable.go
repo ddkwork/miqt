@@ -48,7 +48,6 @@ func UnsafeNewQTextTableCell(h unsafe.Pointer) *QTextTableCell {
 
 // NewQTextTableCell constructs a new QTextTableCell object.
 func NewQTextTableCell() *QTextTableCell {
-
 	ret := newQTextTableCell(C.QTextTableCell_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQTextTableCell() *QTextTableCell {
 
 // NewQTextTableCell2 constructs a new QTextTableCell object.
 func NewQTextTableCell2(o *QTextTableCell) *QTextTableCell {
-
 	ret := newQTextTableCell(C.QTextTableCell_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -182,8 +180,10 @@ func newQTextTable(h *C.QTextTable) *QTextTable {
 	var outptr_QTextFrame *C.QTextFrame = nil
 	C.QTextTable_virtbase(h, &outptr_QTextFrame)
 
-	return &QTextTable{h: h,
-		QTextFrame: newQTextFrame(outptr_QTextFrame)}
+	return &QTextTable{
+		h:          h,
+		QTextFrame: newQTextFrame(outptr_QTextFrame),
+	}
 }
 
 // UnsafeNewQTextTable constructs the type using only unsafe pointers.
@@ -193,7 +193,6 @@ func UnsafeNewQTextTable(h unsafe.Pointer) *QTextTable {
 
 // NewQTextTable constructs a new QTextTable object.
 func NewQTextTable(doc *QTextDocument) *QTextTable {
-
 	ret := newQTextTable(C.QTextTable_new(doc.cPointer()))
 	ret.isSubclass = true
 	return ret

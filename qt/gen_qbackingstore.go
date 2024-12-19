@@ -48,7 +48,6 @@ func UnsafeNewQBackingStore(h unsafe.Pointer) *QBackingStore {
 
 // NewQBackingStore constructs a new QBackingStore object.
 func NewQBackingStore(window *QWindow) *QBackingStore {
-
 	ret := newQBackingStore(C.QBackingStore_new(window.cPointer()))
 	ret.isSubclass = true
 	return ret

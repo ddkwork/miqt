@@ -55,7 +55,6 @@ func UnsafeNewQStaticText(h unsafe.Pointer) *QStaticText {
 
 // NewQStaticText constructs a new QStaticText object.
 func NewQStaticText() *QStaticText {
-
 	ret := newQStaticText(C.QStaticText_new())
 	ret.isSubclass = true
 	return ret
@@ -75,7 +74,6 @@ func NewQStaticText2(text string) *QStaticText {
 
 // NewQStaticText3 constructs a new QStaticText object.
 func NewQStaticText3(other *QStaticText) *QStaticText {
-
 	ret := newQStaticText(C.QStaticText_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

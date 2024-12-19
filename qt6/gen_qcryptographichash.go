@@ -80,7 +80,6 @@ func UnsafeNewQCryptographicHash(h unsafe.Pointer) *QCryptographicHash {
 
 // NewQCryptographicHash constructs a new QCryptographicHash object.
 func NewQCryptographicHash(method QCryptographicHash__Algorithm) *QCryptographicHash {
-
 	ret := newQCryptographicHash(C.QCryptographicHash_new((C.int)(method)))
 	ret.isSubclass = true
 	return ret

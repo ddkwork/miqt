@@ -48,7 +48,6 @@ func UnsafeNewQMargins(h unsafe.Pointer) *QMargins {
 
 // NewQMargins constructs a new QMargins object.
 func NewQMargins() *QMargins {
-
 	ret := newQMargins(C.QMargins_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQMargins() *QMargins {
 
 // NewQMargins2 constructs a new QMargins object.
 func NewQMargins2(left int, top int, right int, bottom int) *QMargins {
-
 	ret := newQMargins(C.QMargins_new2((C.int)(left), (C.int)(top), (C.int)(right), (C.int)(bottom)))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQMargins2(left int, top int, right int, bottom int) *QMargins {
 
 // NewQMargins3 constructs a new QMargins object.
 func NewQMargins3(param1 *QMargins) *QMargins {
-
 	ret := newQMargins(C.QMargins_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -193,7 +190,6 @@ func UnsafeNewQMarginsF(h unsafe.Pointer) *QMarginsF {
 
 // NewQMarginsF constructs a new QMarginsF object.
 func NewQMarginsF() *QMarginsF {
-
 	ret := newQMarginsF(C.QMarginsF_new())
 	ret.isSubclass = true
 	return ret
@@ -201,7 +197,6 @@ func NewQMarginsF() *QMarginsF {
 
 // NewQMarginsF2 constructs a new QMarginsF object.
 func NewQMarginsF2(left float64, top float64, right float64, bottom float64) *QMarginsF {
-
 	ret := newQMarginsF(C.QMarginsF_new2((C.double)(left), (C.double)(top), (C.double)(right), (C.double)(bottom)))
 	ret.isSubclass = true
 	return ret
@@ -209,7 +204,6 @@ func NewQMarginsF2(left float64, top float64, right float64, bottom float64) *QM
 
 // NewQMarginsF3 constructs a new QMarginsF object.
 func NewQMarginsF3(margins *QMargins) *QMarginsF {
-
 	ret := newQMarginsF(C.QMarginsF_new3(margins.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -217,7 +211,6 @@ func NewQMarginsF3(margins *QMargins) *QMarginsF {
 
 // NewQMarginsF4 constructs a new QMarginsF object.
 func NewQMarginsF4(param1 *QMarginsF) *QMarginsF {
-
 	ret := newQMarginsF(C.QMarginsF_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

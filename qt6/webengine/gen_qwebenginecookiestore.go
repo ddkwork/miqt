@@ -9,11 +9,12 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
-	"github.com/mappu/miqt/qt6/network"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
+	"github.com/mappu/miqt/qt6/network"
 )
 
 type QWebEngineCookieStore struct {
@@ -44,8 +45,10 @@ func newQWebEngineCookieStore(h *C.QWebEngineCookieStore) *QWebEngineCookieStore
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineCookieStore_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineCookieStore{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineCookieStore{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineCookieStore constructs the type using only unsafe pointers.
@@ -95,6 +98,7 @@ func (this *QWebEngineCookieStore) LoadAllCookies() {
 func (this *QWebEngineCookieStore) CookieAdded(cookie *network.QNetworkCookie) {
 	C.QWebEngineCookieStore_CookieAdded(this.h, (*C.QNetworkCookie)(cookie.UnsafePointer()))
 }
+
 func (this *QWebEngineCookieStore) OnCookieAdded(slot func(cookie *network.QNetworkCookie)) {
 	C.QWebEngineCookieStore_connect_CookieAdded(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -115,6 +119,7 @@ func miqt_exec_callback_QWebEngineCookieStore_CookieAdded(cb C.intptr_t, cookie 
 func (this *QWebEngineCookieStore) CookieRemoved(cookie *network.QNetworkCookie) {
 	C.QWebEngineCookieStore_CookieRemoved(this.h, (*C.QNetworkCookie)(cookie.UnsafePointer()))
 }
+
 func (this *QWebEngineCookieStore) OnCookieRemoved(slot func(cookie *network.QNetworkCookie)) {
 	C.QWebEngineCookieStore_connect_CookieRemoved(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -211,7 +216,6 @@ func UnsafeNewQWebEngineCookieStore__FilterRequest(h unsafe.Pointer) *QWebEngine
 
 // NewQWebEngineCookieStore__FilterRequest constructs a new QWebEngineCookieStore::FilterRequest object.
 func NewQWebEngineCookieStore__FilterRequest(param1 *QWebEngineCookieStore__FilterRequest) *QWebEngineCookieStore__FilterRequest {
-
 	ret := newQWebEngineCookieStore__FilterRequest(C.QWebEngineCookieStore__FilterRequest_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

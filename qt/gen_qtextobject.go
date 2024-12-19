@@ -41,8 +41,10 @@ func newQTextObject(h *C.QTextObject) *QTextObject {
 	var outptr_QObject *C.QObject = nil
 	C.QTextObject_virtbase(h, &outptr_QObject)
 
-	return &QTextObject{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QTextObject{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQTextObject constructs the type using only unsafe pointers.
@@ -168,8 +170,10 @@ func newQTextBlockGroup(h *C.QTextBlockGroup) *QTextBlockGroup {
 	var outptr_QTextObject *C.QTextObject = nil
 	C.QTextBlockGroup_virtbase(h, &outptr_QTextObject)
 
-	return &QTextBlockGroup{h: h,
-		QTextObject: newQTextObject(outptr_QTextObject)}
+	return &QTextBlockGroup{
+		h:           h,
+		QTextObject: newQTextObject(outptr_QTextObject),
+	}
 }
 
 // UnsafeNewQTextBlockGroup constructs the type using only unsafe pointers.
@@ -328,8 +332,10 @@ func newQTextFrame(h *C.QTextFrame) *QTextFrame {
 	var outptr_QTextObject *C.QTextObject = nil
 	C.QTextFrame_virtbase(h, &outptr_QTextObject)
 
-	return &QTextFrame{h: h,
-		QTextObject: newQTextObject(outptr_QTextObject)}
+	return &QTextFrame{
+		h:           h,
+		QTextObject: newQTextObject(outptr_QTextObject),
+	}
 }
 
 // UnsafeNewQTextFrame constructs the type using only unsafe pointers.
@@ -339,7 +345,6 @@ func UnsafeNewQTextFrame(h unsafe.Pointer) *QTextFrame {
 
 // NewQTextFrame constructs a new QTextFrame object.
 func NewQTextFrame(doc *QTextDocument) *QTextFrame {
-
 	ret := newQTextFrame(C.QTextFrame_new(doc.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -581,7 +586,6 @@ func UnsafeNewQTextBlock(h unsafe.Pointer) *QTextBlock {
 
 // NewQTextBlock constructs a new QTextBlock object.
 func NewQTextBlock() *QTextBlock {
-
 	ret := newQTextBlock(C.QTextBlock_new())
 	ret.isSubclass = true
 	return ret
@@ -589,7 +593,6 @@ func NewQTextBlock() *QTextBlock {
 
 // NewQTextBlock2 constructs a new QTextBlock object.
 func NewQTextBlock2(o *QTextBlock) *QTextBlock {
-
 	ret := newQTextBlock(C.QTextBlock_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -811,7 +814,6 @@ func UnsafeNewQTextFragment(h unsafe.Pointer) *QTextFragment {
 
 // NewQTextFragment constructs a new QTextFragment object.
 func NewQTextFragment() *QTextFragment {
-
 	ret := newQTextFragment(C.QTextFragment_new())
 	ret.isSubclass = true
 	return ret
@@ -819,7 +821,6 @@ func NewQTextFragment() *QTextFragment {
 
 // NewQTextFragment2 constructs a new QTextFragment object.
 func NewQTextFragment2(o *QTextFragment) *QTextFragment {
-
 	ret := newQTextFragment(C.QTextFragment_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -959,7 +960,6 @@ func UnsafeNewQTextFrame__iterator(h unsafe.Pointer) *QTextFrame__iterator {
 
 // NewQTextFrame__iterator constructs a new QTextFrame::iterator object.
 func NewQTextFrame__iterator() *QTextFrame__iterator {
-
 	ret := newQTextFrame__iterator(C.QTextFrame__iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -967,7 +967,6 @@ func NewQTextFrame__iterator() *QTextFrame__iterator {
 
 // NewQTextFrame__iterator2 constructs a new QTextFrame::iterator object.
 func NewQTextFrame__iterator2(o *QTextFrame__iterator) *QTextFrame__iterator {
-
 	ret := newQTextFrame__iterator(C.QTextFrame__iterator_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1072,7 +1071,6 @@ func UnsafeNewQTextBlock__iterator(h unsafe.Pointer) *QTextBlock__iterator {
 
 // NewQTextBlock__iterator constructs a new QTextBlock::iterator object.
 func NewQTextBlock__iterator() *QTextBlock__iterator {
-
 	ret := newQTextBlock__iterator(C.QTextBlock__iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -1080,7 +1078,6 @@ func NewQTextBlock__iterator() *QTextBlock__iterator {
 
 // NewQTextBlock__iterator2 constructs a new QTextBlock::iterator object.
 func NewQTextBlock__iterator2(o *QTextBlock__iterator) *QTextBlock__iterator {
-
 	ret := newQTextBlock__iterator(C.QTextBlock__iterator_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret

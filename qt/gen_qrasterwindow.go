@@ -42,8 +42,10 @@ func newQRasterWindow(h *C.QRasterWindow) *QRasterWindow {
 	var outptr_QPaintDeviceWindow *C.QPaintDeviceWindow = nil
 	C.QRasterWindow_virtbase(h, &outptr_QPaintDeviceWindow)
 
-	return &QRasterWindow{h: h,
-		QPaintDeviceWindow: newQPaintDeviceWindow(outptr_QPaintDeviceWindow)}
+	return &QRasterWindow{
+		h:                  h,
+		QPaintDeviceWindow: newQPaintDeviceWindow(outptr_QPaintDeviceWindow),
+	}
 }
 
 // UnsafeNewQRasterWindow constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQRasterWindow(h unsafe.Pointer) *QRasterWindow {
 
 // NewQRasterWindow constructs a new QRasterWindow object.
 func NewQRasterWindow() *QRasterWindow {
-
 	ret := newQRasterWindow(C.QRasterWindow_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQRasterWindow() *QRasterWindow {
 
 // NewQRasterWindow2 constructs a new QRasterWindow object.
 func NewQRasterWindow2(parent *QWindow) *QRasterWindow {
-
 	ret := newQRasterWindow(C.QRasterWindow_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -140,10 +140,9 @@ func QRasterWindow_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QRasterWindow) callVirtualBase_Metric(metric QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QRasterWindow_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(metric)))
-
 }
+
 func (this *QRasterWindow) OnMetric(slot func(super func(metric QPaintDevice__PaintDeviceMetric) int, metric QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -164,14 +163,12 @@ func miqt_exec_callback_QRasterWindow_Metric(self *C.QRasterWindow, cb C.intptr_
 	virtualReturn := gofunc((&QRasterWindow{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QRasterWindow) callVirtualBase_Redirected(param1 *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QRasterWindow_virtualbase_Redirected(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QRasterWindow) OnRedirected(slot func(super func(param1 *QPoint) *QPaintDevice, param1 *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -192,14 +189,12 @@ func miqt_exec_callback_QRasterWindow_Redirected(self *C.QRasterWindow, cb C.int
 	virtualReturn := gofunc((&QRasterWindow{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QRasterWindow) callVirtualBase_PaintEvent(event *QPaintEvent) {
-
 	C.QRasterWindow_virtualbase_PaintEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QRasterWindow) OnPaintEvent(slot func(super func(event *QPaintEvent), event *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -218,14 +213,12 @@ func miqt_exec_callback_QRasterWindow_PaintEvent(self *C.QRasterWindow, cb C.int
 	slotval1 := newQPaintEvent(event)
 
 	gofunc((&QRasterWindow{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QRasterWindow) callVirtualBase_ExposeEvent(param1 *QExposeEvent) {
-
 	C.QRasterWindow_virtualbase_ExposeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QRasterWindow) OnExposeEvent(slot func(super func(param1 *QExposeEvent), param1 *QExposeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -244,14 +237,12 @@ func miqt_exec_callback_QRasterWindow_ExposeEvent(self *C.QRasterWindow, cb C.in
 	slotval1 := newQExposeEvent(param1)
 
 	gofunc((&QRasterWindow{h: self}).callVirtualBase_ExposeEvent, slotval1)
-
 }
 
 func (this *QRasterWindow) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QRasterWindow_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QRasterWindow) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -272,7 +263,6 @@ func miqt_exec_callback_QRasterWindow_Event(self *C.QRasterWindow, cb C.intptr_t
 	virtualReturn := gofunc((&QRasterWindow{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

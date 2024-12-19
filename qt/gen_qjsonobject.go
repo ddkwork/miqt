@@ -48,7 +48,6 @@ func UnsafeNewQJsonObject(h unsafe.Pointer) *QJsonObject {
 
 // NewQJsonObject constructs a new QJsonObject object.
 func NewQJsonObject() *QJsonObject {
-
 	ret := newQJsonObject(C.QJsonObject_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQJsonObject() *QJsonObject {
 
 // NewQJsonObject2 constructs a new QJsonObject object.
 func NewQJsonObject2(other *QJsonObject) *QJsonObject {
-
 	ret := newQJsonObject(C.QJsonObject_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -386,7 +384,6 @@ func UnsafeNewQJsonObject__iterator(h unsafe.Pointer) *QJsonObject__iterator {
 
 // NewQJsonObject__iterator constructs a new QJsonObject::iterator object.
 func NewQJsonObject__iterator() *QJsonObject__iterator {
-
 	ret := newQJsonObject__iterator(C.QJsonObject__iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -394,7 +391,6 @@ func NewQJsonObject__iterator() *QJsonObject__iterator {
 
 // NewQJsonObject__iterator2 constructs a new QJsonObject::iterator object.
 func NewQJsonObject__iterator2(obj *QJsonObject, index int) *QJsonObject__iterator {
-
 	ret := newQJsonObject__iterator(C.QJsonObject__iterator_new2(obj.cPointer(), (C.int)(index)))
 	ret.isSubclass = true
 	return ret
@@ -402,7 +398,6 @@ func NewQJsonObject__iterator2(obj *QJsonObject, index int) *QJsonObject__iterat
 
 // NewQJsonObject__iterator3 constructs a new QJsonObject::iterator object.
 func NewQJsonObject__iterator3(param1 *QJsonObject__iterator) *QJsonObject__iterator {
-
 	ret := newQJsonObject__iterator(C.QJsonObject__iterator_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -580,7 +575,6 @@ func UnsafeNewQJsonObject__const_iterator(h unsafe.Pointer) *QJsonObject__const_
 
 // NewQJsonObject__const_iterator constructs a new QJsonObject::const_iterator object.
 func NewQJsonObject__const_iterator() *QJsonObject__const_iterator {
-
 	ret := newQJsonObject__const_iterator(C.QJsonObject__const_iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -588,7 +582,6 @@ func NewQJsonObject__const_iterator() *QJsonObject__const_iterator {
 
 // NewQJsonObject__const_iterator2 constructs a new QJsonObject::const_iterator object.
 func NewQJsonObject__const_iterator2(obj *QJsonObject, index int) *QJsonObject__const_iterator {
-
 	ret := newQJsonObject__const_iterator(C.QJsonObject__const_iterator_new2(obj.cPointer(), (C.int)(index)))
 	ret.isSubclass = true
 	return ret
@@ -596,7 +589,6 @@ func NewQJsonObject__const_iterator2(obj *QJsonObject, index int) *QJsonObject__
 
 // NewQJsonObject__const_iterator3 constructs a new QJsonObject::const_iterator object.
 func NewQJsonObject__const_iterator3(other *QJsonObject__iterator) *QJsonObject__const_iterator {
-
 	ret := newQJsonObject__const_iterator(C.QJsonObject__const_iterator_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -604,7 +596,6 @@ func NewQJsonObject__const_iterator3(other *QJsonObject__iterator) *QJsonObject_
 
 // NewQJsonObject__const_iterator4 constructs a new QJsonObject::const_iterator object.
 func NewQJsonObject__const_iterator4(param1 *QJsonObject__const_iterator) *QJsonObject__const_iterator {
-
 	ret := newQJsonObject__const_iterator(C.QJsonObject__const_iterator_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -58,7 +58,6 @@ func UnsafeNewQEventPoint(h unsafe.Pointer) *QEventPoint {
 
 // NewQEventPoint constructs a new QEventPoint object.
 func NewQEventPoint() *QEventPoint {
-
 	ret := newQEventPoint(C.QEventPoint_new())
 	ret.isSubclass = true
 	return ret
@@ -66,7 +65,6 @@ func NewQEventPoint() *QEventPoint {
 
 // NewQEventPoint2 constructs a new QEventPoint object.
 func NewQEventPoint2(pointId int, state QEventPoint__State, scenePosition *QPointF, globalPosition *QPointF) *QEventPoint {
-
 	ret := newQEventPoint(C.QEventPoint_new2((C.int)(pointId), (C.uint8_t)(state), scenePosition.cPointer(), globalPosition.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -74,7 +72,6 @@ func NewQEventPoint2(pointId int, state QEventPoint__State, scenePosition *QPoin
 
 // NewQEventPoint3 constructs a new QEventPoint object.
 func NewQEventPoint3(other *QEventPoint) *QEventPoint {
-
 	ret := newQEventPoint(C.QEventPoint_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -82,7 +79,6 @@ func NewQEventPoint3(other *QEventPoint) *QEventPoint {
 
 // NewQEventPoint4 constructs a new QEventPoint object.
 func NewQEventPoint4(id int) *QEventPoint {
-
 	ret := newQEventPoint(C.QEventPoint_new4((C.int)(id)))
 	ret.isSubclass = true
 	return ret
@@ -90,7 +86,6 @@ func NewQEventPoint4(id int) *QEventPoint {
 
 // NewQEventPoint5 constructs a new QEventPoint object.
 func NewQEventPoint5(id int, device *QPointingDevice) *QEventPoint {
-
 	ret := newQEventPoint(C.QEventPoint_new5((C.int)(id), device.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioSystemFactoryInterface struct {
@@ -130,9 +131,11 @@ func newQAudioSystemPlugin(h *C.QAudioSystemPlugin) *QAudioSystemPlugin {
 	var outptr_QAudioSystemFactoryInterface *C.QAudioSystemFactoryInterface = nil
 	C.QAudioSystemPlugin_virtbase(h, &outptr_QObject, &outptr_QAudioSystemFactoryInterface)
 
-	return &QAudioSystemPlugin{h: h,
+	return &QAudioSystemPlugin{
+		h:                            h,
 		QObject:                      qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
-		QAudioSystemFactoryInterface: newQAudioSystemFactoryInterface(outptr_QAudioSystemFactoryInterface)}
+		QAudioSystemFactoryInterface: newQAudioSystemFactoryInterface(outptr_QAudioSystemFactoryInterface),
+	}
 }
 
 // UnsafeNewQAudioSystemPlugin constructs the type using only unsafe pointers.
@@ -142,7 +145,6 @@ func UnsafeNewQAudioSystemPlugin(h unsafe.Pointer) *QAudioSystemPlugin {
 
 // NewQAudioSystemPlugin constructs a new QAudioSystemPlugin object.
 func NewQAudioSystemPlugin() *QAudioSystemPlugin {
-
 	ret := newQAudioSystemPlugin(C.QAudioSystemPlugin_new())
 	ret.isSubclass = true
 	return ret
@@ -150,7 +152,6 @@ func NewQAudioSystemPlugin() *QAudioSystemPlugin {
 
 // NewQAudioSystemPlugin2 constructs a new QAudioSystemPlugin object.
 func NewQAudioSystemPlugin2(parent *qt.QObject) *QAudioSystemPlugin {
-
 	ret := newQAudioSystemPlugin(C.QAudioSystemPlugin_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -261,6 +262,7 @@ func QAudioSystemPlugin_TrUtf83(s string, c string, n int) string {
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QAudioSystemPlugin) OnAvailableDevices(slot func(param1 QAudio__Mode) [][]byte) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -290,8 +292,8 @@ func miqt_exec_callback_QAudioSystemPlugin_AvailableDevices(self *C.QAudioSystem
 	virtualReturn_ma := C.struct_miqt_array{len: C.size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
 
 	return virtualReturn_ma
-
 }
+
 func (this *QAudioSystemPlugin) OnCreateInput(slot func(device []byte) *QAbstractAudioInput) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -315,8 +317,8 @@ func miqt_exec_callback_QAudioSystemPlugin_CreateInput(self *C.QAudioSystemPlugi
 	virtualReturn := gofunc(slotval1)
 
 	return virtualReturn.cPointer()
-
 }
+
 func (this *QAudioSystemPlugin) OnCreateOutput(slot func(device []byte) *QAbstractAudioOutput) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -340,8 +342,8 @@ func miqt_exec_callback_QAudioSystemPlugin_CreateOutput(self *C.QAudioSystemPlug
 	virtualReturn := gofunc(slotval1)
 
 	return virtualReturn.cPointer()
-
 }
+
 func (this *QAudioSystemPlugin) OnCreateDeviceInfo(slot func(device []byte, mode QAudio__Mode) *QAbstractAudioDeviceInfo) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -366,14 +368,12 @@ func miqt_exec_callback_QAudioSystemPlugin_CreateDeviceInfo(self *C.QAudioSystem
 	virtualReturn := gofunc(slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QAudioSystemPlugin_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QAudioSystemPlugin) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -394,14 +394,12 @@ func miqt_exec_callback_QAudioSystemPlugin_Event(self *C.QAudioSystemPlugin, cb 
 	virtualReturn := gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QAudioSystemPlugin_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QAudioSystemPlugin) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -424,14 +422,12 @@ func miqt_exec_callback_QAudioSystemPlugin_EventFilter(self *C.QAudioSystemPlugi
 	virtualReturn := gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QAudioSystemPlugin_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioSystemPlugin) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -450,14 +446,12 @@ func miqt_exec_callback_QAudioSystemPlugin_TimerEvent(self *C.QAudioSystemPlugin
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QAudioSystemPlugin_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioSystemPlugin) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -476,14 +470,12 @@ func miqt_exec_callback_QAudioSystemPlugin_ChildEvent(self *C.QAudioSystemPlugin
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QAudioSystemPlugin_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QAudioSystemPlugin) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -502,14 +494,12 @@ func miqt_exec_callback_QAudioSystemPlugin_CustomEvent(self *C.QAudioSystemPlugi
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QAudioSystemPlugin_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QAudioSystemPlugin) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -528,14 +518,12 @@ func miqt_exec_callback_QAudioSystemPlugin_ConnectNotify(self *C.QAudioSystemPlu
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QAudioSystemPlugin) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QAudioSystemPlugin_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QAudioSystemPlugin) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -554,7 +542,6 @@ func miqt_exec_callback_QAudioSystemPlugin_DisconnectNotify(self *C.QAudioSystem
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QAudioSystemPlugin{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

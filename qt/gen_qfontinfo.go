@@ -48,7 +48,6 @@ func UnsafeNewQFontInfo(h unsafe.Pointer) *QFontInfo {
 
 // NewQFontInfo constructs a new QFontInfo object.
 func NewQFontInfo(param1 *QFont) *QFontInfo {
-
 	ret := newQFontInfo(C.QFontInfo_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQFontInfo(param1 *QFont) *QFontInfo {
 
 // NewQFontInfo2 constructs a new QFontInfo object.
 func NewQFontInfo2(param1 *QFontInfo) *QFontInfo {
-
 	ret := newQFontInfo(C.QFontInfo_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

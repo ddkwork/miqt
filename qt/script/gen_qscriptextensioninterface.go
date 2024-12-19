@@ -9,10 +9,11 @@ package script
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QScriptExtensionInterface struct {
@@ -43,8 +44,10 @@ func newQScriptExtensionInterface(h *C.QScriptExtensionInterface) *QScriptExtens
 	var outptr_QFactoryInterface *C.QFactoryInterface = nil
 	C.QScriptExtensionInterface_virtbase(h, &outptr_QFactoryInterface)
 
-	return &QScriptExtensionInterface{h: h,
-		QFactoryInterface: qt.UnsafeNewQFactoryInterface(unsafe.Pointer(outptr_QFactoryInterface))}
+	return &QScriptExtensionInterface{
+		h:                 h,
+		QFactoryInterface: qt.UnsafeNewQFactoryInterface(unsafe.Pointer(outptr_QFactoryInterface)),
+	}
 }
 
 // UnsafeNewQScriptExtensionInterface constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQScriptExtensionInterface(h unsafe.Pointer) *QScriptExtensionInter
 
 // NewQScriptExtensionInterface constructs a new QScriptExtensionInterface object.
 func NewQScriptExtensionInterface(param1 *QScriptExtensionInterface) *QScriptExtensionInterface {
-
 	ret := newQScriptExtensionInterface(C.QScriptExtensionInterface_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -71,6 +73,7 @@ func (this *QScriptExtensionInterface) Initialize(key string, engine *QScriptEng
 func (this *QScriptExtensionInterface) OperatorAssign(param1 *QScriptExtensionInterface) {
 	C.QScriptExtensionInterface_OperatorAssign(this.h, param1.cPointer())
 }
+
 func (this *QScriptExtensionInterface) OnInitialize(slot func(key string, engine *QScriptEngine)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -93,8 +96,8 @@ func miqt_exec_callback_QScriptExtensionInterface_Initialize(self *C.QScriptExte
 	slotval2 := newQScriptEngine(engine)
 
 	gofunc(slotval1, slotval2)
-
 }
+
 func (this *QScriptExtensionInterface) OnKeys(slot func() []string) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -122,7 +125,6 @@ func miqt_exec_callback_QScriptExtensionInterface_Keys(self *C.QScriptExtensionI
 	virtualReturn_ma := C.struct_miqt_array{len: C.size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
 
 	return virtualReturn_ma
-
 }
 
 // Delete this object from C++ memory.

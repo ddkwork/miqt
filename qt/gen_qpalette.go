@@ -89,7 +89,6 @@ func UnsafeNewQPalette(h unsafe.Pointer) *QPalette {
 
 // NewQPalette constructs a new QPalette object.
 func NewQPalette() *QPalette {
-
 	ret := newQPalette(C.QPalette_new())
 	ret.isSubclass = true
 	return ret
@@ -97,7 +96,6 @@ func NewQPalette() *QPalette {
 
 // NewQPalette2 constructs a new QPalette object.
 func NewQPalette2(button *QColor) *QPalette {
-
 	ret := newQPalette(C.QPalette_new2(button.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -105,7 +103,6 @@ func NewQPalette2(button *QColor) *QPalette {
 
 // NewQPalette3 constructs a new QPalette object.
 func NewQPalette3(button GlobalColor) *QPalette {
-
 	ret := newQPalette(C.QPalette_new3((C.int)(button)))
 	ret.isSubclass = true
 	return ret
@@ -113,7 +110,6 @@ func NewQPalette3(button GlobalColor) *QPalette {
 
 // NewQPalette4 constructs a new QPalette object.
 func NewQPalette4(button *QColor, window *QColor) *QPalette {
-
 	ret := newQPalette(C.QPalette_new4(button.cPointer(), window.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -121,7 +117,6 @@ func NewQPalette4(button *QColor, window *QColor) *QPalette {
 
 // NewQPalette5 constructs a new QPalette object.
 func NewQPalette5(windowText *QBrush, button *QBrush, light *QBrush, dark *QBrush, mid *QBrush, text *QBrush, bright_text *QBrush, base *QBrush, window *QBrush) *QPalette {
-
 	ret := newQPalette(C.QPalette_new5(windowText.cPointer(), button.cPointer(), light.cPointer(), dark.cPointer(), mid.cPointer(), text.cPointer(), bright_text.cPointer(), base.cPointer(), window.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -129,7 +124,6 @@ func NewQPalette5(windowText *QBrush, button *QBrush, light *QBrush, dark *QBrus
 
 // NewQPalette6 constructs a new QPalette object.
 func NewQPalette6(windowText *QColor, window *QColor, light *QColor, dark *QColor, mid *QColor, text *QColor, base *QColor) *QPalette {
-
 	ret := newQPalette(C.QPalette_new6(windowText.cPointer(), window.cPointer(), light.cPointer(), dark.cPointer(), mid.cPointer(), text.cPointer(), base.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -137,7 +131,6 @@ func NewQPalette6(windowText *QColor, window *QColor, light *QColor, dark *QColo
 
 // NewQPalette7 constructs a new QPalette object.
 func NewQPalette7(palette *QPalette) *QPalette {
-
 	ret := newQPalette(C.QPalette_new7(palette.cPointer()))
 	ret.isSubclass = true
 	return ret

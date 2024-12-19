@@ -42,8 +42,10 @@ func newQUndoGroup(h *C.QUndoGroup) *QUndoGroup {
 	var outptr_QObject *C.QObject = nil
 	C.QUndoGroup_virtbase(h, &outptr_QObject)
 
-	return &QUndoGroup{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QUndoGroup{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQUndoGroup constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQUndoGroup(h unsafe.Pointer) *QUndoGroup {
 
 // NewQUndoGroup constructs a new QUndoGroup object.
 func NewQUndoGroup() *QUndoGroup {
-
 	ret := newQUndoGroup(C.QUndoGroup_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQUndoGroup() *QUndoGroup {
 
 // NewQUndoGroup2 constructs a new QUndoGroup object.
 func NewQUndoGroup2(parent *QObject) *QUndoGroup {
-
 	ret := newQUndoGroup(C.QUndoGroup_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -157,6 +157,7 @@ func (this *QUndoGroup) SetActiveStack(stack *QUndoStack) {
 func (this *QUndoGroup) ActiveStackChanged(stack *QUndoStack) {
 	C.QUndoGroup_ActiveStackChanged(this.h, stack.cPointer())
 }
+
 func (this *QUndoGroup) OnActiveStackChanged(slot func(stack *QUndoStack)) {
 	C.QUndoGroup_connect_ActiveStackChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -177,6 +178,7 @@ func miqt_exec_callback_QUndoGroup_ActiveStackChanged(cb C.intptr_t, stack *C.QU
 func (this *QUndoGroup) IndexChanged(idx int) {
 	C.QUndoGroup_IndexChanged(this.h, (C.int)(idx))
 }
+
 func (this *QUndoGroup) OnIndexChanged(slot func(idx int)) {
 	C.QUndoGroup_connect_IndexChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -197,6 +199,7 @@ func miqt_exec_callback_QUndoGroup_IndexChanged(cb C.intptr_t, idx C.int) {
 func (this *QUndoGroup) CleanChanged(clean bool) {
 	C.QUndoGroup_CleanChanged(this.h, (C.bool)(clean))
 }
+
 func (this *QUndoGroup) OnCleanChanged(slot func(clean bool)) {
 	C.QUndoGroup_connect_CleanChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -217,6 +220,7 @@ func miqt_exec_callback_QUndoGroup_CleanChanged(cb C.intptr_t, clean C.bool) {
 func (this *QUndoGroup) CanUndoChanged(canUndo bool) {
 	C.QUndoGroup_CanUndoChanged(this.h, (C.bool)(canUndo))
 }
+
 func (this *QUndoGroup) OnCanUndoChanged(slot func(canUndo bool)) {
 	C.QUndoGroup_connect_CanUndoChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -237,6 +241,7 @@ func miqt_exec_callback_QUndoGroup_CanUndoChanged(cb C.intptr_t, canUndo C.bool)
 func (this *QUndoGroup) CanRedoChanged(canRedo bool) {
 	C.QUndoGroup_CanRedoChanged(this.h, (C.bool)(canRedo))
 }
+
 func (this *QUndoGroup) OnCanRedoChanged(slot func(canRedo bool)) {
 	C.QUndoGroup_connect_CanRedoChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -261,6 +266,7 @@ func (this *QUndoGroup) UndoTextChanged(undoText string) {
 	defer C.free(unsafe.Pointer(undoText_ms.data))
 	C.QUndoGroup_UndoTextChanged(this.h, undoText_ms)
 }
+
 func (this *QUndoGroup) OnUndoTextChanged(slot func(undoText string)) {
 	C.QUndoGroup_connect_UndoTextChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -288,6 +294,7 @@ func (this *QUndoGroup) RedoTextChanged(redoText string) {
 	defer C.free(unsafe.Pointer(redoText_ms.data))
 	C.QUndoGroup_RedoTextChanged(this.h, redoText_ms)
 }
+
 func (this *QUndoGroup) OnRedoTextChanged(slot func(redoText string)) {
 	C.QUndoGroup_connect_RedoTextChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -347,10 +354,9 @@ func (this *QUndoGroup) CreateRedoAction2(parent *QObject, prefix string) *QActi
 }
 
 func (this *QUndoGroup) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QUndoGroup_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QUndoGroup) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -371,14 +377,12 @@ func miqt_exec_callback_QUndoGroup_Event(self *C.QUndoGroup, cb C.intptr_t, even
 	virtualReturn := gofunc((&QUndoGroup{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QUndoGroup) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QUndoGroup_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QUndoGroup) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -401,14 +405,12 @@ func miqt_exec_callback_QUndoGroup_EventFilter(self *C.QUndoGroup, cb C.intptr_t
 	virtualReturn := gofunc((&QUndoGroup{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QUndoGroup) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QUndoGroup_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QUndoGroup) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -427,14 +429,12 @@ func miqt_exec_callback_QUndoGroup_TimerEvent(self *C.QUndoGroup, cb C.intptr_t,
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QUndoGroup{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QUndoGroup) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QUndoGroup_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QUndoGroup) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -453,14 +453,12 @@ func miqt_exec_callback_QUndoGroup_ChildEvent(self *C.QUndoGroup, cb C.intptr_t,
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QUndoGroup{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QUndoGroup) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QUndoGroup_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QUndoGroup) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -479,14 +477,12 @@ func miqt_exec_callback_QUndoGroup_CustomEvent(self *C.QUndoGroup, cb C.intptr_t
 	slotval1 := newQEvent(event)
 
 	gofunc((&QUndoGroup{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QUndoGroup) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QUndoGroup_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QUndoGroup) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -505,14 +501,12 @@ func miqt_exec_callback_QUndoGroup_ConnectNotify(self *C.QUndoGroup, cb C.intptr
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QUndoGroup{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QUndoGroup) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QUndoGroup_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QUndoGroup) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -531,7 +525,6 @@ func miqt_exec_callback_QUndoGroup_DisconnectNotify(self *C.QUndoGroup, cb C.int
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QUndoGroup{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

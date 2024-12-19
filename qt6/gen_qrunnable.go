@@ -49,7 +49,6 @@ func UnsafeNewQRunnable(h unsafe.Pointer) *QRunnable {
 
 // NewQRunnable constructs a new QRunnable object.
 func NewQRunnable() *QRunnable {
-
 	ret := newQRunnable(C.QRunnable_new())
 	ret.isSubclass = true
 	return ret
@@ -66,6 +65,7 @@ func (this *QRunnable) AutoDelete() bool {
 func (this *QRunnable) SetAutoDelete(autoDelete bool) {
 	C.QRunnable_SetAutoDelete(this.h, (C.bool)(autoDelete))
 }
+
 func (this *QRunnable) OnRun(slot func()) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -81,7 +81,6 @@ func miqt_exec_callback_QRunnable_Run(self *C.QRunnable, cb C.intptr_t) {
 	}
 
 	gofunc()
-
 }
 
 // Delete this object from C++ memory.

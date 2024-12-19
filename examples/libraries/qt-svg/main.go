@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	w := svg.NewQSvgWidget3("../../../doc/logo.svg")

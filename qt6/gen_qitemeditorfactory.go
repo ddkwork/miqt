@@ -111,7 +111,6 @@ func UnsafeNewQItemEditorFactory(h unsafe.Pointer) *QItemEditorFactory {
 
 // NewQItemEditorFactory constructs a new QItemEditorFactory object.
 func NewQItemEditorFactory() *QItemEditorFactory {
-
 	ret := newQItemEditorFactory(C.QItemEditorFactory_new())
 	ret.isSubclass = true
 	return ret
@@ -119,7 +118,6 @@ func NewQItemEditorFactory() *QItemEditorFactory {
 
 // NewQItemEditorFactory2 constructs a new QItemEditorFactory object.
 func NewQItemEditorFactory2(param1 *QItemEditorFactory) *QItemEditorFactory {
-
 	ret := newQItemEditorFactory(C.QItemEditorFactory_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -149,10 +147,9 @@ func QItemEditorFactory_SetDefaultFactory(factory *QItemEditorFactory) {
 }
 
 func (this *QItemEditorFactory) callVirtualBase_CreateEditor(userType int, parent *QWidget) *QWidget {
-
 	return newQWidget(C.QItemEditorFactory_virtualbase_CreateEditor(unsafe.Pointer(this.h), (C.int)(userType), parent.cPointer()))
-
 }
+
 func (this *QItemEditorFactory) OnCreateEditor(slot func(super func(userType int, parent *QWidget) *QWidget, userType int, parent *QWidget) *QWidget) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -175,16 +172,15 @@ func miqt_exec_callback_QItemEditorFactory_CreateEditor(self *C.QItemEditorFacto
 	virtualReturn := gofunc((&QItemEditorFactory{h: self}).callVirtualBase_CreateEditor, slotval1, slotval2)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QItemEditorFactory) callVirtualBase_ValuePropertyName(userType int) []byte {
-
 	var _bytearray C.struct_miqt_string = C.QItemEditorFactory_virtualbase_ValuePropertyName(unsafe.Pointer(this.h), (C.int)(userType))
 	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
 	C.free(unsafe.Pointer(_bytearray.data))
 	return _ret
 }
+
 func (this *QItemEditorFactory) OnValuePropertyName(slot func(super func(userType int) []byte, userType int) []byte) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -208,7 +204,6 @@ func miqt_exec_callback_QItemEditorFactory_ValuePropertyName(self *C.QItemEditor
 	virtualReturn_alias.len = C.size_t(len(virtualReturn))
 
 	return virtualReturn_alias
-
 }
 
 // Delete this object from C++ memory.

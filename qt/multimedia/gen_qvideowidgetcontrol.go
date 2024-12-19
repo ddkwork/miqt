@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QVideoWidgetControl struct {
@@ -43,8 +44,10 @@ func newQVideoWidgetControl(h *C.QVideoWidgetControl) *QVideoWidgetControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QVideoWidgetControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QVideoWidgetControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QVideoWidgetControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQVideoWidgetControl constructs the type using only unsafe pointers.
@@ -135,6 +138,7 @@ func (this *QVideoWidgetControl) SetSaturation(saturation int) {
 func (this *QVideoWidgetControl) FullScreenChanged(fullScreen bool) {
 	C.QVideoWidgetControl_FullScreenChanged(this.h, (C.bool)(fullScreen))
 }
+
 func (this *QVideoWidgetControl) OnFullScreenChanged(slot func(fullScreen bool)) {
 	C.QVideoWidgetControl_connect_FullScreenChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -155,6 +159,7 @@ func miqt_exec_callback_QVideoWidgetControl_FullScreenChanged(cb C.intptr_t, ful
 func (this *QVideoWidgetControl) BrightnessChanged(brightness int) {
 	C.QVideoWidgetControl_BrightnessChanged(this.h, (C.int)(brightness))
 }
+
 func (this *QVideoWidgetControl) OnBrightnessChanged(slot func(brightness int)) {
 	C.QVideoWidgetControl_connect_BrightnessChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -175,6 +180,7 @@ func miqt_exec_callback_QVideoWidgetControl_BrightnessChanged(cb C.intptr_t, bri
 func (this *QVideoWidgetControl) ContrastChanged(contrast int) {
 	C.QVideoWidgetControl_ContrastChanged(this.h, (C.int)(contrast))
 }
+
 func (this *QVideoWidgetControl) OnContrastChanged(slot func(contrast int)) {
 	C.QVideoWidgetControl_connect_ContrastChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -195,6 +201,7 @@ func miqt_exec_callback_QVideoWidgetControl_ContrastChanged(cb C.intptr_t, contr
 func (this *QVideoWidgetControl) HueChanged(hue int) {
 	C.QVideoWidgetControl_HueChanged(this.h, (C.int)(hue))
 }
+
 func (this *QVideoWidgetControl) OnHueChanged(slot func(hue int)) {
 	C.QVideoWidgetControl_connect_HueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -215,6 +222,7 @@ func miqt_exec_callback_QVideoWidgetControl_HueChanged(cb C.intptr_t, hue C.int)
 func (this *QVideoWidgetControl) SaturationChanged(saturation int) {
 	C.QVideoWidgetControl_SaturationChanged(this.h, (C.int)(saturation))
 }
+
 func (this *QVideoWidgetControl) OnSaturationChanged(slot func(saturation int)) {
 	C.QVideoWidgetControl_connect_SaturationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

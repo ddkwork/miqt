@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineContextMenuData__MediaType int
@@ -90,7 +91,6 @@ func UnsafeNewQWebEngineContextMenuData(h unsafe.Pointer) *QWebEngineContextMenu
 
 // NewQWebEngineContextMenuData constructs a new QWebEngineContextMenuData object.
 func NewQWebEngineContextMenuData() *QWebEngineContextMenuData {
-
 	ret := newQWebEngineContextMenuData(C.QWebEngineContextMenuData_new())
 	ret.isSubclass = true
 	return ret
@@ -98,7 +98,6 @@ func NewQWebEngineContextMenuData() *QWebEngineContextMenuData {
 
 // NewQWebEngineContextMenuData2 constructs a new QWebEngineContextMenuData object.
 func NewQWebEngineContextMenuData2(other *QWebEngineContextMenuData) *QWebEngineContextMenuData {
-
 	ret := newQWebEngineContextMenuData(C.QWebEngineContextMenuData_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

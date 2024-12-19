@@ -48,7 +48,6 @@ func UnsafeNewQAnyStringView(h unsafe.Pointer) *QAnyStringView {
 
 // NewQAnyStringView constructs a new QAnyStringView object.
 func NewQAnyStringView() *QAnyStringView {
-
 	ret := newQAnyStringView(C.QAnyStringView_new())
 	ret.isSubclass = true
 	return ret
@@ -79,7 +78,6 @@ func NewQAnyStringView3(str string) *QAnyStringView {
 
 // NewQAnyStringView4 constructs a new QAnyStringView object.
 func NewQAnyStringView4(c *QChar) *QAnyStringView {
-
 	ret := newQAnyStringView(C.QAnyStringView_new4(c.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -87,7 +85,6 @@ func NewQAnyStringView4(c *QChar) *QAnyStringView {
 
 // NewQAnyStringView5 constructs a new QAnyStringView object.
 func NewQAnyStringView5(param1 *QAnyStringView) *QAnyStringView {
-
 	ret := newQAnyStringView(C.QAnyStringView_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

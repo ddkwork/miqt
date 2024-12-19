@@ -41,8 +41,10 @@ func newQStringEncoder(h *C.QStringEncoder) *QStringEncoder {
 	var outptr_QStringConverter *C.QStringConverter = nil
 	C.QStringEncoder_virtbase(h, &outptr_QStringConverter)
 
-	return &QStringEncoder{h: h,
-		QStringConverter: newQStringConverter(outptr_QStringConverter)}
+	return &QStringEncoder{
+		h:                h,
+		QStringConverter: newQStringConverter(outptr_QStringConverter),
+	}
 }
 
 // UnsafeNewQStringEncoder constructs the type using only unsafe pointers.
@@ -52,7 +54,6 @@ func UnsafeNewQStringEncoder(h unsafe.Pointer) *QStringEncoder {
 
 // NewQStringEncoder constructs a new QStringEncoder object.
 func NewQStringEncoder() *QStringEncoder {
-
 	ret := newQStringEncoder(C.QStringEncoder_new())
 	ret.isSubclass = true
 	return ret
@@ -60,7 +61,6 @@ func NewQStringEncoder() *QStringEncoder {
 
 // NewQStringEncoder2 constructs a new QStringEncoder object.
 func NewQStringEncoder2(encoding QStringConverter__Encoding) *QStringEncoder {
-
 	ret := newQStringEncoder(C.QStringEncoder_new2((C.int)(encoding)))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +78,6 @@ func NewQStringEncoder3(name string) *QStringEncoder {
 
 // NewQStringEncoder4 constructs a new QStringEncoder object.
 func NewQStringEncoder4(encoding QStringConverter__Encoding, flags QStringConverterBase__Flag) *QStringEncoder {
-
 	ret := newQStringEncoder(C.QStringEncoder_new4((C.int)(encoding), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret
@@ -140,8 +139,10 @@ func newQStringDecoder(h *C.QStringDecoder) *QStringDecoder {
 	var outptr_QStringConverter *C.QStringConverter = nil
 	C.QStringDecoder_virtbase(h, &outptr_QStringConverter)
 
-	return &QStringDecoder{h: h,
-		QStringConverter: newQStringConverter(outptr_QStringConverter)}
+	return &QStringDecoder{
+		h:                h,
+		QStringConverter: newQStringConverter(outptr_QStringConverter),
+	}
 }
 
 // UnsafeNewQStringDecoder constructs the type using only unsafe pointers.
@@ -151,7 +152,6 @@ func UnsafeNewQStringDecoder(h unsafe.Pointer) *QStringDecoder {
 
 // NewQStringDecoder constructs a new QStringDecoder object.
 func NewQStringDecoder(encoding QStringConverter__Encoding) *QStringDecoder {
-
 	ret := newQStringDecoder(C.QStringDecoder_new((C.int)(encoding)))
 	ret.isSubclass = true
 	return ret
@@ -159,7 +159,6 @@ func NewQStringDecoder(encoding QStringConverter__Encoding) *QStringDecoder {
 
 // NewQStringDecoder2 constructs a new QStringDecoder object.
 func NewQStringDecoder2() *QStringDecoder {
-
 	ret := newQStringDecoder(C.QStringDecoder_new2())
 	ret.isSubclass = true
 	return ret
@@ -177,7 +176,6 @@ func NewQStringDecoder3(name string) *QStringDecoder {
 
 // NewQStringDecoder4 constructs a new QStringDecoder object.
 func NewQStringDecoder4(encoding QStringConverter__Encoding, flags QStringConverterBase__Flag) *QStringDecoder {
-
 	ret := newQStringDecoder(C.QStringDecoder_new4((C.int)(encoding), (C.int)(flags)))
 	ret.isSubclass = true
 	return ret

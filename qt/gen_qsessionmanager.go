@@ -49,8 +49,10 @@ func newQSessionManager(h *C.QSessionManager) *QSessionManager {
 	var outptr_QObject *C.QObject = nil
 	C.QSessionManager_virtbase(h, &outptr_QObject)
 
-	return &QSessionManager{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QSessionManager{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQSessionManager constructs the type using only unsafe pointers.

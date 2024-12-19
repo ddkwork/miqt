@@ -8,7 +8,6 @@ import (
 )
 
 func myRealMainFunc() {
-
 	qt.NewQApplication(os.Args)
 
 	btn := qt.NewQPushButton3("Hello world!")

@@ -89,7 +89,6 @@ func UnsafeNewQSizePolicy(h unsafe.Pointer) *QSizePolicy {
 
 // NewQSizePolicy constructs a new QSizePolicy object.
 func NewQSizePolicy() *QSizePolicy {
-
 	ret := newQSizePolicy(C.QSizePolicy_new())
 	ret.isSubclass = true
 	return ret
@@ -97,7 +96,6 @@ func NewQSizePolicy() *QSizePolicy {
 
 // NewQSizePolicy2 constructs a new QSizePolicy object.
 func NewQSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy) *QSizePolicy {
-
 	ret := newQSizePolicy(C.QSizePolicy_new2((C.int)(horizontal), (C.int)(vertical)))
 	ret.isSubclass = true
 	return ret
@@ -105,7 +103,6 @@ func NewQSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Polic
 
 // NewQSizePolicy3 constructs a new QSizePolicy object.
 func NewQSizePolicy3(param1 *QSizePolicy) *QSizePolicy {
-
 	ret := newQSizePolicy(C.QSizePolicy_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -113,7 +110,6 @@ func NewQSizePolicy3(param1 *QSizePolicy) *QSizePolicy {
 
 // NewQSizePolicy4 constructs a new QSizePolicy object.
 func NewQSizePolicy4(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy, typeVal QSizePolicy__ControlType) *QSizePolicy {
-
 	ret := newQSizePolicy(C.QSizePolicy_new4((C.int)(horizontal), (C.int)(vertical), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret

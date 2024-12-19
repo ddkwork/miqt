@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineFileSystemAccessRequest__HandleType int
@@ -63,7 +64,6 @@ func UnsafeNewQWebEngineFileSystemAccessRequest(h unsafe.Pointer) *QWebEngineFil
 
 // NewQWebEngineFileSystemAccessRequest constructs a new QWebEngineFileSystemAccessRequest object.
 func NewQWebEngineFileSystemAccessRequest(other *QWebEngineFileSystemAccessRequest) *QWebEngineFileSystemAccessRequest {
-
 	ret := newQWebEngineFileSystemAccessRequest(C.QWebEngineFileSystemAccessRequest_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret

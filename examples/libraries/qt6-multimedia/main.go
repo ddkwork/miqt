@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	srcFile, err := filepath.Abs("pixabay-public-domain-strong-hit-36455.mp3")
@@ -25,7 +24,6 @@ func main() {
 	player.SetSource(qt.QUrl_FromLocalFile(srcFile))
 	output.SetVolume(50)
 	player.OnPlaybackStateChanged(func(s multimedia.QMediaPlayer__PlaybackState) {
-
 		log.Printf("- Playback state: %v", s)
 
 		if s == multimedia.QMediaPlayer__StoppedState {

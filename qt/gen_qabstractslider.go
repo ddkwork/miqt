@@ -64,8 +64,10 @@ func newQAbstractSlider(h *C.QAbstractSlider) *QAbstractSlider {
 	var outptr_QWidget *C.QWidget = nil
 	C.QAbstractSlider_virtbase(h, &outptr_QWidget)
 
-	return &QAbstractSlider{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
+	return &QAbstractSlider{
+		h:       h,
+		QWidget: newQWidget(outptr_QWidget),
+	}
 }
 
 // UnsafeNewQAbstractSlider constructs the type using only unsafe pointers.
@@ -75,7 +77,6 @@ func UnsafeNewQAbstractSlider(h unsafe.Pointer) *QAbstractSlider {
 
 // NewQAbstractSlider constructs a new QAbstractSlider object.
 func NewQAbstractSlider(parent *QWidget) *QAbstractSlider {
-
 	ret := newQAbstractSlider(C.QAbstractSlider_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -83,7 +84,6 @@ func NewQAbstractSlider(parent *QWidget) *QAbstractSlider {
 
 // NewQAbstractSlider2 constructs a new QAbstractSlider object.
 func NewQAbstractSlider2() *QAbstractSlider {
-
 	ret := newQAbstractSlider(C.QAbstractSlider_new2())
 	ret.isSubclass = true
 	return ret
@@ -216,6 +216,7 @@ func (this *QAbstractSlider) SetRange(min int, max int) {
 func (this *QAbstractSlider) ValueChanged(value int) {
 	C.QAbstractSlider_ValueChanged(this.h, (C.int)(value))
 }
+
 func (this *QAbstractSlider) OnValueChanged(slot func(value int)) {
 	C.QAbstractSlider_connect_ValueChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -236,6 +237,7 @@ func miqt_exec_callback_QAbstractSlider_ValueChanged(cb C.intptr_t, value C.int)
 func (this *QAbstractSlider) SliderPressed() {
 	C.QAbstractSlider_SliderPressed(this.h)
 }
+
 func (this *QAbstractSlider) OnSliderPressed(slot func()) {
 	C.QAbstractSlider_connect_SliderPressed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -253,6 +255,7 @@ func miqt_exec_callback_QAbstractSlider_SliderPressed(cb C.intptr_t) {
 func (this *QAbstractSlider) SliderMoved(position int) {
 	C.QAbstractSlider_SliderMoved(this.h, (C.int)(position))
 }
+
 func (this *QAbstractSlider) OnSliderMoved(slot func(position int)) {
 	C.QAbstractSlider_connect_SliderMoved(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -273,6 +276,7 @@ func miqt_exec_callback_QAbstractSlider_SliderMoved(cb C.intptr_t, position C.in
 func (this *QAbstractSlider) SliderReleased() {
 	C.QAbstractSlider_SliderReleased(this.h)
 }
+
 func (this *QAbstractSlider) OnSliderReleased(slot func()) {
 	C.QAbstractSlider_connect_SliderReleased(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -290,6 +294,7 @@ func miqt_exec_callback_QAbstractSlider_SliderReleased(cb C.intptr_t) {
 func (this *QAbstractSlider) RangeChanged(min int, max int) {
 	C.QAbstractSlider_RangeChanged(this.h, (C.int)(min), (C.int)(max))
 }
+
 func (this *QAbstractSlider) OnRangeChanged(slot func(min int, max int)) {
 	C.QAbstractSlider_connect_RangeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -312,6 +317,7 @@ func miqt_exec_callback_QAbstractSlider_RangeChanged(cb C.intptr_t, min C.int, m
 func (this *QAbstractSlider) ActionTriggered(action int) {
 	C.QAbstractSlider_ActionTriggered(this.h, (C.int)(action))
 }
+
 func (this *QAbstractSlider) OnActionTriggered(slot func(action int)) {
 	C.QAbstractSlider_connect_ActionTriggered(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -374,10 +380,9 @@ func QAbstractSlider_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QAbstractSlider) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QAbstractSlider_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QAbstractSlider) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -398,14 +403,12 @@ func miqt_exec_callback_QAbstractSlider_Event(self *C.QAbstractSlider, cb C.intp
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_SliderChange(change QAbstractSlider__SliderChange) {
-
 	C.QAbstractSlider_virtualbase_SliderChange(unsafe.Pointer(this.h), (C.int)(change))
-
 }
+
 func (this *QAbstractSlider) OnSliderChange(slot func(super func(change QAbstractSlider__SliderChange), change QAbstractSlider__SliderChange)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -424,14 +427,12 @@ func miqt_exec_callback_QAbstractSlider_SliderChange(self *C.QAbstractSlider, cb
 	slotval1 := (QAbstractSlider__SliderChange)(change)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_SliderChange, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_KeyPressEvent(ev *QKeyEvent) {
-
 	C.QAbstractSlider_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), ev.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnKeyPressEvent(slot func(super func(ev *QKeyEvent), ev *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -450,14 +451,12 @@ func miqt_exec_callback_QAbstractSlider_KeyPressEvent(self *C.QAbstractSlider, c
 	slotval1 := newQKeyEvent(ev)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_TimerEvent(param1 *QTimerEvent) {
-
 	C.QAbstractSlider_virtualbase_TimerEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnTimerEvent(slot func(super func(param1 *QTimerEvent), param1 *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -476,14 +475,12 @@ func miqt_exec_callback_QAbstractSlider_TimerEvent(self *C.QAbstractSlider, cb C
 	slotval1 := newQTimerEvent(param1)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_WheelEvent(e *QWheelEvent) {
-
 	C.QAbstractSlider_virtualbase_WheelEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnWheelEvent(slot func(super func(e *QWheelEvent), e *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -502,14 +499,12 @@ func miqt_exec_callback_QAbstractSlider_WheelEvent(self *C.QAbstractSlider, cb C
 	slotval1 := newQWheelEvent(e)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_ChangeEvent(e *QEvent) {
-
 	C.QAbstractSlider_virtualbase_ChangeEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnChangeEvent(slot func(super func(e *QEvent), e *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -528,14 +523,12 @@ func miqt_exec_callback_QAbstractSlider_ChangeEvent(self *C.QAbstractSlider, cb 
 	slotval1 := newQEvent(e)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_DevType() int {
-
 	return (int)(C.QAbstractSlider_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAbstractSlider) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -553,14 +546,12 @@ func miqt_exec_callback_QAbstractSlider_DevType(self *C.QAbstractSlider, cb C.in
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_SetVisible(visible bool) {
-
 	C.QAbstractSlider_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QAbstractSlider) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -579,16 +570,14 @@ func miqt_exec_callback_QAbstractSlider_SetVisible(self *C.QAbstractSlider, cb C
 	slotval1 := (bool)(visible)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QAbstractSlider_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QAbstractSlider) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -606,16 +595,14 @@ func miqt_exec_callback_QAbstractSlider_SizeHint(self *C.QAbstractSlider, cb C.i
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QAbstractSlider_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QAbstractSlider) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -633,14 +620,12 @@ func miqt_exec_callback_QAbstractSlider_MinimumSizeHint(self *C.QAbstractSlider,
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_HeightForWidth(param1 int) int {
-
 	return (int)(C.QAbstractSlider_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QAbstractSlider) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -661,14 +646,12 @@ func miqt_exec_callback_QAbstractSlider_HeightForWidth(self *C.QAbstractSlider, 
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_HasHeightForWidth() bool {
-
 	return (bool)(C.QAbstractSlider_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAbstractSlider) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -686,14 +669,12 @@ func miqt_exec_callback_QAbstractSlider_HasHeightForWidth(self *C.QAbstractSlide
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_HasHeightForWidth)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QAbstractSlider_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAbstractSlider) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -711,14 +692,12 @@ func miqt_exec_callback_QAbstractSlider_PaintEngine(self *C.QAbstractSlider, cb 
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_MousePressEvent(event *QMouseEvent) {
-
 	C.QAbstractSlider_virtualbase_MousePressEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnMousePressEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -737,14 +716,12 @@ func miqt_exec_callback_QAbstractSlider_MousePressEvent(self *C.QAbstractSlider,
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_MouseReleaseEvent(event *QMouseEvent) {
-
 	C.QAbstractSlider_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnMouseReleaseEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -763,14 +740,12 @@ func miqt_exec_callback_QAbstractSlider_MouseReleaseEvent(self *C.QAbstractSlide
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_MouseDoubleClickEvent(event *QMouseEvent) {
-
 	C.QAbstractSlider_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnMouseDoubleClickEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -789,14 +764,12 @@ func miqt_exec_callback_QAbstractSlider_MouseDoubleClickEvent(self *C.QAbstractS
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_MouseDoubleClickEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_MouseMoveEvent(event *QMouseEvent) {
-
 	C.QAbstractSlider_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnMouseMoveEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -815,14 +788,12 @@ func miqt_exec_callback_QAbstractSlider_MouseMoveEvent(self *C.QAbstractSlider, 
 	slotval1 := newQMouseEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
-
 	C.QAbstractSlider_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -841,14 +812,12 @@ func miqt_exec_callback_QAbstractSlider_KeyReleaseEvent(self *C.QAbstractSlider,
 	slotval1 := newQKeyEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_FocusInEvent(event *QFocusEvent) {
-
 	C.QAbstractSlider_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -867,14 +836,12 @@ func miqt_exec_callback_QAbstractSlider_FocusInEvent(self *C.QAbstractSlider, cb
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
-
 	C.QAbstractSlider_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -893,14 +860,12 @@ func miqt_exec_callback_QAbstractSlider_FocusOutEvent(self *C.QAbstractSlider, c
 	slotval1 := newQFocusEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_EnterEvent(event *QEvent) {
-
 	C.QAbstractSlider_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnEnterEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -919,14 +884,12 @@ func miqt_exec_callback_QAbstractSlider_EnterEvent(self *C.QAbstractSlider, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_EnterEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_LeaveEvent(event *QEvent) {
-
 	C.QAbstractSlider_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -945,14 +908,12 @@ func miqt_exec_callback_QAbstractSlider_LeaveEvent(self *C.QAbstractSlider, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_LeaveEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_PaintEvent(event *QPaintEvent) {
-
 	C.QAbstractSlider_virtualbase_PaintEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnPaintEvent(slot func(super func(event *QPaintEvent), event *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -971,14 +932,12 @@ func miqt_exec_callback_QAbstractSlider_PaintEvent(self *C.QAbstractSlider, cb C
 	slotval1 := newQPaintEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_MoveEvent(event *QMoveEvent) {
-
 	C.QAbstractSlider_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -997,14 +956,12 @@ func miqt_exec_callback_QAbstractSlider_MoveEvent(self *C.QAbstractSlider, cb C.
 	slotval1 := newQMoveEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_MoveEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_ResizeEvent(event *QResizeEvent) {
-
 	C.QAbstractSlider_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1023,14 +980,12 @@ func miqt_exec_callback_QAbstractSlider_ResizeEvent(self *C.QAbstractSlider, cb 
 	slotval1 := newQResizeEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
 	C.QAbstractSlider_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1049,14 +1004,12 @@ func miqt_exec_callback_QAbstractSlider_CloseEvent(self *C.QAbstractSlider, cb C
 	slotval1 := newQCloseEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_ContextMenuEvent(event *QContextMenuEvent) {
-
 	C.QAbstractSlider_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnContextMenuEvent(slot func(super func(event *QContextMenuEvent), event *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1075,14 +1028,12 @@ func miqt_exec_callback_QAbstractSlider_ContextMenuEvent(self *C.QAbstractSlider
 	slotval1 := newQContextMenuEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_TabletEvent(event *QTabletEvent) {
-
 	C.QAbstractSlider_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1101,14 +1052,12 @@ func miqt_exec_callback_QAbstractSlider_TabletEvent(self *C.QAbstractSlider, cb 
 	slotval1 := newQTabletEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_TabletEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_ActionEvent(event *QActionEvent) {
-
 	C.QAbstractSlider_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1127,14 +1076,12 @@ func miqt_exec_callback_QAbstractSlider_ActionEvent(self *C.QAbstractSlider, cb 
 	slotval1 := newQActionEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_ActionEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_DragEnterEvent(event *QDragEnterEvent) {
-
 	C.QAbstractSlider_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnDragEnterEvent(slot func(super func(event *QDragEnterEvent), event *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1153,14 +1100,12 @@ func miqt_exec_callback_QAbstractSlider_DragEnterEvent(self *C.QAbstractSlider, 
 	slotval1 := newQDragEnterEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_DragEnterEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_DragMoveEvent(event *QDragMoveEvent) {
-
 	C.QAbstractSlider_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnDragMoveEvent(slot func(super func(event *QDragMoveEvent), event *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1179,14 +1124,12 @@ func miqt_exec_callback_QAbstractSlider_DragMoveEvent(self *C.QAbstractSlider, c
 	slotval1 := newQDragMoveEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_DragMoveEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_DragLeaveEvent(event *QDragLeaveEvent) {
-
 	C.QAbstractSlider_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnDragLeaveEvent(slot func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1205,14 +1148,12 @@ func miqt_exec_callback_QAbstractSlider_DragLeaveEvent(self *C.QAbstractSlider, 
 	slotval1 := newQDragLeaveEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_DragLeaveEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_DropEvent(event *QDropEvent) {
-
 	C.QAbstractSlider_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnDropEvent(slot func(super func(event *QDropEvent), event *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1231,14 +1172,12 @@ func miqt_exec_callback_QAbstractSlider_DropEvent(self *C.QAbstractSlider, cb C.
 	slotval1 := newQDropEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_DropEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_ShowEvent(event *QShowEvent) {
-
 	C.QAbstractSlider_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1257,14 +1196,12 @@ func miqt_exec_callback_QAbstractSlider_ShowEvent(self *C.QAbstractSlider, cb C.
 	slotval1 := newQShowEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_HideEvent(event *QHideEvent) {
-
 	C.QAbstractSlider_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1283,7 +1220,6 @@ func miqt_exec_callback_QAbstractSlider_HideEvent(self *C.QAbstractSlider, cb C.
 	slotval1 := newQHideEvent(event)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
@@ -1292,8 +1228,8 @@ func (this *QAbstractSlider) callVirtualBase_NativeEvent(eventType []byte, messa
 	eventType_alias.len = C.size_t(len(eventType))
 
 	return (bool)(C.QAbstractSlider_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
-
 }
+
 func (this *QAbstractSlider) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1320,14 +1256,12 @@ func miqt_exec_callback_QAbstractSlider_NativeEvent(self *C.QAbstractSlider, cb 
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QAbstractSlider_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QAbstractSlider) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1348,14 +1282,12 @@ func miqt_exec_callback_QAbstractSlider_Metric(self *C.QAbstractSlider, cb C.int
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QAbstractSlider_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1374,14 +1306,12 @@ func miqt_exec_callback_QAbstractSlider_InitPainter(self *C.QAbstractSlider, cb 
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QAbstractSlider_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QAbstractSlider) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1402,14 +1332,12 @@ func miqt_exec_callback_QAbstractSlider_Redirected(self *C.QAbstractSlider, cb C
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QAbstractSlider_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QAbstractSlider) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1427,14 +1355,12 @@ func miqt_exec_callback_QAbstractSlider_SharedPainter(self *C.QAbstractSlider, c
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
-
 	C.QAbstractSlider_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QAbstractSlider) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1453,16 +1379,14 @@ func miqt_exec_callback_QAbstractSlider_InputMethodEvent(self *C.QAbstractSlider
 	slotval1 := newQInputMethodEvent(param1)
 
 	gofunc((&QAbstractSlider{h: self}).callVirtualBase_InputMethodEvent, slotval1)
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
-
 	_goptr := newQVariant(C.QAbstractSlider_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QAbstractSlider) OnInputMethodQuery(slot func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1483,14 +1407,12 @@ func miqt_exec_callback_QAbstractSlider_InputMethodQuery(self *C.QAbstractSlider
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_InputMethodQuery, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QAbstractSlider) callVirtualBase_FocusNextPrevChild(next bool) bool {
-
 	return (bool)(C.QAbstractSlider_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
-
 }
+
 func (this *QAbstractSlider) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1511,7 +1433,6 @@ func miqt_exec_callback_QAbstractSlider_FocusNextPrevChild(self *C.QAbstractSlid
 	virtualReturn := gofunc((&QAbstractSlider{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

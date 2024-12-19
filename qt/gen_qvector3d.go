@@ -48,7 +48,6 @@ func UnsafeNewQVector3D(h unsafe.Pointer) *QVector3D {
 
 // NewQVector3D constructs a new QVector3D object.
 func NewQVector3D() *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQVector3D() *QVector3D {
 
 // NewQVector3D2 constructs a new QVector3D object.
 func NewQVector3D2(param1 Initialization) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new2((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -64,7 +62,6 @@ func NewQVector3D2(param1 Initialization) *QVector3D {
 
 // NewQVector3D3 constructs a new QVector3D object.
 func NewQVector3D3(xpos float32, ypos float32, zpos float32) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new3((C.float)(xpos), (C.float)(ypos), (C.float)(zpos)))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +69,6 @@ func NewQVector3D3(xpos float32, ypos float32, zpos float32) *QVector3D {
 
 // NewQVector3D4 constructs a new QVector3D object.
 func NewQVector3D4(point *QPoint) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new4(point.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -80,7 +76,6 @@ func NewQVector3D4(point *QPoint) *QVector3D {
 
 // NewQVector3D5 constructs a new QVector3D object.
 func NewQVector3D5(point *QPointF) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new5(point.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -88,7 +83,6 @@ func NewQVector3D5(point *QPointF) *QVector3D {
 
 // NewQVector3D6 constructs a new QVector3D object.
 func NewQVector3D6(vector *QVector2D) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new6(vector.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,7 +90,6 @@ func NewQVector3D6(vector *QVector2D) *QVector3D {
 
 // NewQVector3D7 constructs a new QVector3D object.
 func NewQVector3D7(vector *QVector2D, zpos float32) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new7(vector.cPointer(), (C.float)(zpos)))
 	ret.isSubclass = true
 	return ret
@@ -104,7 +97,6 @@ func NewQVector3D7(vector *QVector2D, zpos float32) *QVector3D {
 
 // NewQVector3D8 constructs a new QVector3D object.
 func NewQVector3D8(vector *QVector4D) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new8(vector.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -112,7 +104,6 @@ func NewQVector3D8(vector *QVector4D) *QVector3D {
 
 // NewQVector3D9 constructs a new QVector3D object.
 func NewQVector3D9(param1 *QVector3D) *QVector3D {
-
 	ret := newQVector3D(C.QVector3D_new9(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -57,7 +57,6 @@ func UnsafeNewQPainterPath(h unsafe.Pointer) *QPainterPath {
 
 // NewQPainterPath constructs a new QPainterPath object.
 func NewQPainterPath() *QPainterPath {
-
 	ret := newQPainterPath(C.QPainterPath_new())
 	ret.isSubclass = true
 	return ret
@@ -65,7 +64,6 @@ func NewQPainterPath() *QPainterPath {
 
 // NewQPainterPath2 constructs a new QPainterPath object.
 func NewQPainterPath2(startPoint *QPointF) *QPainterPath {
-
 	ret := newQPainterPath(C.QPainterPath_new2(startPoint.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -73,7 +71,6 @@ func NewQPainterPath2(startPoint *QPointF) *QPainterPath {
 
 // NewQPainterPath3 constructs a new QPainterPath object.
 func NewQPainterPath3(other *QPainterPath) *QPainterPath {
-
 	ret := newQPainterPath(C.QPainterPath_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -470,7 +467,6 @@ func UnsafeNewQPainterPathStroker(h unsafe.Pointer) *QPainterPathStroker {
 
 // NewQPainterPathStroker constructs a new QPainterPathStroker object.
 func NewQPainterPathStroker() *QPainterPathStroker {
-
 	ret := newQPainterPathStroker(C.QPainterPathStroker_new())
 	ret.isSubclass = true
 	return ret
@@ -478,7 +474,6 @@ func NewQPainterPathStroker() *QPainterPathStroker {
 
 // NewQPainterPathStroker2 constructs a new QPainterPathStroker object.
 func NewQPainterPathStroker2(pen *QPen) *QPainterPathStroker {
-
 	ret := newQPainterPathStroker(C.QPainterPathStroker_new2(pen.cPointer()))
 	ret.isSubclass = true
 	return ret

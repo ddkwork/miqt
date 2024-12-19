@@ -107,8 +107,10 @@ func newQDataStream(h *C.QDataStream) *QDataStream {
 	var outptr_QIODeviceBase *C.QIODeviceBase = nil
 	C.QDataStream_virtbase(h, &outptr_QIODeviceBase)
 
-	return &QDataStream{h: h,
-		QIODeviceBase: newQIODeviceBase(outptr_QIODeviceBase)}
+	return &QDataStream{
+		h:             h,
+		QIODeviceBase: newQIODeviceBase(outptr_QIODeviceBase),
+	}
 }
 
 // UnsafeNewQDataStream constructs the type using only unsafe pointers.
@@ -118,7 +120,6 @@ func UnsafeNewQDataStream(h unsafe.Pointer) *QDataStream {
 
 // NewQDataStream constructs a new QDataStream object.
 func NewQDataStream() *QDataStream {
-
 	ret := newQDataStream(C.QDataStream_new())
 	ret.isSubclass = true
 	return ret
@@ -126,7 +127,6 @@ func NewQDataStream() *QDataStream {
 
 // NewQDataStream2 constructs a new QDataStream object.
 func NewQDataStream2(param1 *QIODevice) *QDataStream {
-
 	ret := newQDataStream(C.QDataStream_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

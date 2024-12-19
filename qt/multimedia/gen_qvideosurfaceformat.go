@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QVideoSurfaceFormat__Direction int
@@ -68,7 +69,6 @@ func UnsafeNewQVideoSurfaceFormat(h unsafe.Pointer) *QVideoSurfaceFormat {
 
 // NewQVideoSurfaceFormat constructs a new QVideoSurfaceFormat object.
 func NewQVideoSurfaceFormat() *QVideoSurfaceFormat {
-
 	ret := newQVideoSurfaceFormat(C.QVideoSurfaceFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -76,7 +76,6 @@ func NewQVideoSurfaceFormat() *QVideoSurfaceFormat {
 
 // NewQVideoSurfaceFormat2 constructs a new QVideoSurfaceFormat object.
 func NewQVideoSurfaceFormat2(size *qt.QSize, pixelFormat QVideoFrame__PixelFormat) *QVideoSurfaceFormat {
-
 	ret := newQVideoSurfaceFormat(C.QVideoSurfaceFormat_new2((*C.QSize)(size.UnsafePointer()), (C.int)(pixelFormat)))
 	ret.isSubclass = true
 	return ret
@@ -84,7 +83,6 @@ func NewQVideoSurfaceFormat2(size *qt.QSize, pixelFormat QVideoFrame__PixelForma
 
 // NewQVideoSurfaceFormat3 constructs a new QVideoSurfaceFormat object.
 func NewQVideoSurfaceFormat3(format *QVideoSurfaceFormat) *QVideoSurfaceFormat {
-
 	ret := newQVideoSurfaceFormat(C.QVideoSurfaceFormat_new3(format.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -92,7 +90,6 @@ func NewQVideoSurfaceFormat3(format *QVideoSurfaceFormat) *QVideoSurfaceFormat {
 
 // NewQVideoSurfaceFormat4 constructs a new QVideoSurfaceFormat object.
 func NewQVideoSurfaceFormat4(size *qt.QSize, pixelFormat QVideoFrame__PixelFormat, handleType QAbstractVideoBuffer__HandleType) *QVideoSurfaceFormat {
-
 	ret := newQVideoSurfaceFormat(C.QVideoSurfaceFormat_new4((*C.QSize)(size.UnsafePointer()), (C.int)(pixelFormat), (C.int)(handleType)))
 	ret.isSubclass = true
 	return ret

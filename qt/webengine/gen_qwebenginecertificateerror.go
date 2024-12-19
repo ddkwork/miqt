@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
-	"github.com/mappu/miqt/qt/network"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
+	"github.com/mappu/miqt/qt/network"
 )
 
 type QWebEngineCertificateError__Error int
@@ -83,7 +84,6 @@ func NewQWebEngineCertificateError(error int, url qt.QUrl, overridable bool, err
 
 // NewQWebEngineCertificateError2 constructs a new QWebEngineCertificateError object.
 func NewQWebEngineCertificateError2(other *QWebEngineCertificateError) *QWebEngineCertificateError {
-
 	ret := newQWebEngineCertificateError(C.QWebEngineCertificateError_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

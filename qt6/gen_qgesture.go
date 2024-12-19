@@ -67,8 +67,10 @@ func newQGesture(h *C.QGesture) *QGesture {
 	var outptr_QObject *C.QObject = nil
 	C.QGesture_virtbase(h, &outptr_QObject)
 
-	return &QGesture{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QGesture{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQGesture constructs the type using only unsafe pointers.
@@ -78,7 +80,6 @@ func UnsafeNewQGesture(h unsafe.Pointer) *QGesture {
 
 // NewQGesture constructs a new QGesture object.
 func NewQGesture() *QGesture {
-
 	ret := newQGesture(C.QGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -86,7 +87,6 @@ func NewQGesture() *QGesture {
 
 // NewQGesture2 constructs a new QGesture object.
 func NewQGesture2(parent *QObject) *QGesture {
-
 	ret := newQGesture(C.QGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -168,10 +168,9 @@ func QGesture_Tr3(s string, c string, n int) string {
 }
 
 func (this *QGesture) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QGesture_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QGesture) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -192,14 +191,12 @@ func miqt_exec_callback_QGesture_Event(self *C.QGesture, cb C.intptr_t, event *C
 	virtualReturn := gofunc((&QGesture{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGesture) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QGesture_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QGesture) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -222,14 +219,12 @@ func miqt_exec_callback_QGesture_EventFilter(self *C.QGesture, cb C.intptr_t, wa
 	virtualReturn := gofunc((&QGesture{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGesture) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QGesture_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGesture) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -248,14 +243,12 @@ func miqt_exec_callback_QGesture_TimerEvent(self *C.QGesture, cb C.intptr_t, eve
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QGesture{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QGesture) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QGesture_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGesture) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -274,14 +267,12 @@ func miqt_exec_callback_QGesture_ChildEvent(self *C.QGesture, cb C.intptr_t, eve
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QGesture{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QGesture) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QGesture_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QGesture) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -300,14 +291,12 @@ func miqt_exec_callback_QGesture_CustomEvent(self *C.QGesture, cb C.intptr_t, ev
 	slotval1 := newQEvent(event)
 
 	gofunc((&QGesture{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QGesture) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QGesture_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QGesture) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -326,14 +315,12 @@ func miqt_exec_callback_QGesture_ConnectNotify(self *C.QGesture, cb C.intptr_t, 
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QGesture{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QGesture) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QGesture_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QGesture) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -352,7 +339,6 @@ func miqt_exec_callback_QGesture_DisconnectNotify(self *C.QGesture, cb C.intptr_
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QGesture{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.
@@ -397,8 +383,10 @@ func newQPanGesture(h *C.QPanGesture) *QPanGesture {
 	var outptr_QGesture *C.QGesture = nil
 	C.QPanGesture_virtbase(h, &outptr_QGesture)
 
-	return &QPanGesture{h: h,
-		QGesture: newQGesture(outptr_QGesture)}
+	return &QPanGesture{
+		h:        h,
+		QGesture: newQGesture(outptr_QGesture),
+	}
 }
 
 // UnsafeNewQPanGesture constructs the type using only unsafe pointers.
@@ -408,7 +396,6 @@ func UnsafeNewQPanGesture(h unsafe.Pointer) *QPanGesture {
 
 // NewQPanGesture constructs a new QPanGesture object.
 func NewQPanGesture() *QPanGesture {
-
 	ret := newQPanGesture(C.QPanGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -416,7 +403,6 @@ func NewQPanGesture() *QPanGesture {
 
 // NewQPanGesture2 constructs a new QPanGesture object.
 func NewQPanGesture2(parent *QObject) *QPanGesture {
-
 	ret := newQPanGesture(C.QPanGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -539,8 +525,10 @@ func newQPinchGesture(h *C.QPinchGesture) *QPinchGesture {
 	var outptr_QGesture *C.QGesture = nil
 	C.QPinchGesture_virtbase(h, &outptr_QGesture)
 
-	return &QPinchGesture{h: h,
-		QGesture: newQGesture(outptr_QGesture)}
+	return &QPinchGesture{
+		h:        h,
+		QGesture: newQGesture(outptr_QGesture),
+	}
 }
 
 // UnsafeNewQPinchGesture constructs the type using only unsafe pointers.
@@ -550,7 +538,6 @@ func UnsafeNewQPinchGesture(h unsafe.Pointer) *QPinchGesture {
 
 // NewQPinchGesture constructs a new QPinchGesture object.
 func NewQPinchGesture() *QPinchGesture {
-
 	ret := newQPinchGesture(C.QPinchGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -558,7 +545,6 @@ func NewQPinchGesture() *QPinchGesture {
 
 // NewQPinchGesture2 constructs a new QPinchGesture object.
 func NewQPinchGesture2(parent *QObject) *QPinchGesture {
-
 	ret := newQPinchGesture(C.QPinchGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -741,8 +727,10 @@ func newQSwipeGesture(h *C.QSwipeGesture) *QSwipeGesture {
 	var outptr_QGesture *C.QGesture = nil
 	C.QSwipeGesture_virtbase(h, &outptr_QGesture)
 
-	return &QSwipeGesture{h: h,
-		QGesture: newQGesture(outptr_QGesture)}
+	return &QSwipeGesture{
+		h:        h,
+		QGesture: newQGesture(outptr_QGesture),
+	}
 }
 
 // UnsafeNewQSwipeGesture constructs the type using only unsafe pointers.
@@ -752,7 +740,6 @@ func UnsafeNewQSwipeGesture(h unsafe.Pointer) *QSwipeGesture {
 
 // NewQSwipeGesture constructs a new QSwipeGesture object.
 func NewQSwipeGesture() *QSwipeGesture {
-
 	ret := newQSwipeGesture(C.QSwipeGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -760,7 +747,6 @@ func NewQSwipeGesture() *QSwipeGesture {
 
 // NewQSwipeGesture2 constructs a new QSwipeGesture object.
 func NewQSwipeGesture2(parent *QObject) *QSwipeGesture {
-
 	ret := newQSwipeGesture(C.QSwipeGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -865,8 +851,10 @@ func newQTapGesture(h *C.QTapGesture) *QTapGesture {
 	var outptr_QGesture *C.QGesture = nil
 	C.QTapGesture_virtbase(h, &outptr_QGesture)
 
-	return &QTapGesture{h: h,
-		QGesture: newQGesture(outptr_QGesture)}
+	return &QTapGesture{
+		h:        h,
+		QGesture: newQGesture(outptr_QGesture),
+	}
 }
 
 // UnsafeNewQTapGesture constructs the type using only unsafe pointers.
@@ -876,7 +864,6 @@ func UnsafeNewQTapGesture(h unsafe.Pointer) *QTapGesture {
 
 // NewQTapGesture constructs a new QTapGesture object.
 func NewQTapGesture() *QTapGesture {
-
 	ret := newQTapGesture(C.QTapGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -884,7 +871,6 @@ func NewQTapGesture() *QTapGesture {
 
 // NewQTapGesture2 constructs a new QTapGesture object.
 func NewQTapGesture2(parent *QObject) *QTapGesture {
-
 	ret := newQTapGesture(C.QTapGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -983,8 +969,10 @@ func newQTapAndHoldGesture(h *C.QTapAndHoldGesture) *QTapAndHoldGesture {
 	var outptr_QGesture *C.QGesture = nil
 	C.QTapAndHoldGesture_virtbase(h, &outptr_QGesture)
 
-	return &QTapAndHoldGesture{h: h,
-		QGesture: newQGesture(outptr_QGesture)}
+	return &QTapAndHoldGesture{
+		h:        h,
+		QGesture: newQGesture(outptr_QGesture),
+	}
 }
 
 // UnsafeNewQTapAndHoldGesture constructs the type using only unsafe pointers.
@@ -994,7 +982,6 @@ func UnsafeNewQTapAndHoldGesture(h unsafe.Pointer) *QTapAndHoldGesture {
 
 // NewQTapAndHoldGesture constructs a new QTapAndHoldGesture object.
 func NewQTapAndHoldGesture() *QTapAndHoldGesture {
-
 	ret := newQTapAndHoldGesture(C.QTapAndHoldGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -1002,7 +989,6 @@ func NewQTapAndHoldGesture() *QTapAndHoldGesture {
 
 // NewQTapAndHoldGesture2 constructs a new QTapAndHoldGesture object.
 func NewQTapAndHoldGesture2(parent *QObject) *QTapAndHoldGesture {
-
 	ret := newQTapAndHoldGesture(C.QTapAndHoldGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1109,8 +1095,10 @@ func newQGestureEvent(h *C.QGestureEvent) *QGestureEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QGestureEvent_virtbase(h, &outptr_QEvent)
 
-	return &QGestureEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QGestureEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQGestureEvent constructs the type using only unsafe pointers.
@@ -1134,7 +1122,6 @@ func NewQGestureEvent(gestures []*QGesture) *QGestureEvent {
 
 // NewQGestureEvent2 constructs a new QGestureEvent object.
 func NewQGestureEvent2(param1 *QGestureEvent) *QGestureEvent {
-
 	ret := newQGestureEvent(C.QGestureEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1221,10 +1208,9 @@ func (this *QGestureEvent) MapToGraphicsScene(gesturePoint *QPointF) *QPointF {
 }
 
 func (this *QGestureEvent) callVirtualBase_SetAccepted(accepted bool) {
-
 	C.QGestureEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (C.bool)(accepted))
-
 }
+
 func (this *QGestureEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1243,14 +1229,12 @@ func miqt_exec_callback_QGestureEvent_SetAccepted(self *C.QGestureEvent, cb C.in
 	slotval1 := (bool)(accepted)
 
 	gofunc((&QGestureEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
 }
 
 func (this *QGestureEvent) callVirtualBase_Clone() *QEvent {
-
 	return newQEvent(C.QGestureEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QGestureEvent) OnClone(slot func(super func() *QEvent) *QEvent) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -1268,7 +1252,6 @@ func miqt_exec_callback_QGestureEvent_Clone(self *C.QGestureEvent, cb C.intptr_t
 	virtualReturn := gofunc((&QGestureEvent{h: self}).callVirtualBase_Clone)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

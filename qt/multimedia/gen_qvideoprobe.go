@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QVideoProbe struct {
@@ -43,8 +44,10 @@ func newQVideoProbe(h *C.QVideoProbe) *QVideoProbe {
 	var outptr_QObject *C.QObject = nil
 	C.QVideoProbe_virtbase(h, &outptr_QObject)
 
-	return &QVideoProbe{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QVideoProbe{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQVideoProbe constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQVideoProbe(h unsafe.Pointer) *QVideoProbe {
 
 // NewQVideoProbe constructs a new QVideoProbe object.
 func NewQVideoProbe() *QVideoProbe {
-
 	ret := newQVideoProbe(C.QVideoProbe_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQVideoProbe() *QVideoProbe {
 
 // NewQVideoProbe2 constructs a new QVideoProbe object.
 func NewQVideoProbe2(parent *qt.QObject) *QVideoProbe {
-
 	ret := newQVideoProbe(C.QVideoProbe_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -111,6 +112,7 @@ func (this *QVideoProbe) IsActive() bool {
 func (this *QVideoProbe) VideoFrameProbed(frame *QVideoFrame) {
 	C.QVideoProbe_VideoFrameProbed(this.h, frame.cPointer())
 }
+
 func (this *QVideoProbe) OnVideoFrameProbed(slot func(frame *QVideoFrame)) {
 	C.QVideoProbe_connect_VideoFrameProbed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -131,6 +133,7 @@ func miqt_exec_callback_QVideoProbe_VideoFrameProbed(cb C.intptr_t, frame *C.QVi
 func (this *QVideoProbe) Flush() {
 	C.QVideoProbe_Flush(this.h)
 }
+
 func (this *QVideoProbe) OnFlush(slot func()) {
 	C.QVideoProbe_connect_Flush(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -190,10 +193,9 @@ func QVideoProbe_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QVideoProbe) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QVideoProbe_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QVideoProbe) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -214,14 +216,12 @@ func miqt_exec_callback_QVideoProbe_Event(self *C.QVideoProbe, cb C.intptr_t, ev
 	virtualReturn := gofunc((&QVideoProbe{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QVideoProbe) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QVideoProbe_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QVideoProbe) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -244,14 +244,12 @@ func miqt_exec_callback_QVideoProbe_EventFilter(self *C.QVideoProbe, cb C.intptr
 	virtualReturn := gofunc((&QVideoProbe{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QVideoProbe) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QVideoProbe_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QVideoProbe) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -270,14 +268,12 @@ func miqt_exec_callback_QVideoProbe_TimerEvent(self *C.QVideoProbe, cb C.intptr_
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QVideoProbe{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QVideoProbe) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QVideoProbe_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QVideoProbe) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -296,14 +292,12 @@ func miqt_exec_callback_QVideoProbe_ChildEvent(self *C.QVideoProbe, cb C.intptr_
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QVideoProbe{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QVideoProbe) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QVideoProbe_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QVideoProbe) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -322,14 +316,12 @@ func miqt_exec_callback_QVideoProbe_CustomEvent(self *C.QVideoProbe, cb C.intptr
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QVideoProbe{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QVideoProbe) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QVideoProbe_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QVideoProbe) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -348,14 +340,12 @@ func miqt_exec_callback_QVideoProbe_ConnectNotify(self *C.QVideoProbe, cb C.intp
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QVideoProbe{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QVideoProbe) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QVideoProbe_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QVideoProbe) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -374,7 +364,6 @@ func miqt_exec_callback_QVideoProbe_DisconnectNotify(self *C.QVideoProbe, cb C.i
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QVideoProbe{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

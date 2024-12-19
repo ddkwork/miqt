@@ -58,7 +58,6 @@ func UnsafeNewQGlyphRun(h unsafe.Pointer) *QGlyphRun {
 
 // NewQGlyphRun constructs a new QGlyphRun object.
 func NewQGlyphRun() *QGlyphRun {
-
 	ret := newQGlyphRun(C.QGlyphRun_new())
 	ret.isSubclass = true
 	return ret
@@ -66,7 +65,6 @@ func NewQGlyphRun() *QGlyphRun {
 
 // NewQGlyphRun2 constructs a new QGlyphRun object.
 func NewQGlyphRun2(other *QGlyphRun) *QGlyphRun {
-
 	ret := newQGlyphRun(C.QGlyphRun_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

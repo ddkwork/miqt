@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaStreamsControl__StreamType int
@@ -53,8 +54,10 @@ func newQMediaStreamsControl(h *C.QMediaStreamsControl) *QMediaStreamsControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaStreamsControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaStreamsControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaStreamsControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaStreamsControl constructs the type using only unsafe pointers.
@@ -119,6 +122,7 @@ func (this *QMediaStreamsControl) SetActive(streamNumber int, state bool) {
 func (this *QMediaStreamsControl) StreamsChanged() {
 	C.QMediaStreamsControl_StreamsChanged(this.h)
 }
+
 func (this *QMediaStreamsControl) OnStreamsChanged(slot func()) {
 	C.QMediaStreamsControl_connect_StreamsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -136,6 +140,7 @@ func miqt_exec_callback_QMediaStreamsControl_StreamsChanged(cb C.intptr_t) {
 func (this *QMediaStreamsControl) ActiveStreamsChanged() {
 	C.QMediaStreamsControl_ActiveStreamsChanged(this.h)
 }
+
 func (this *QMediaStreamsControl) OnActiveStreamsChanged(slot func()) {
 	C.QMediaStreamsControl_connect_ActiveStreamsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

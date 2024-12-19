@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineQuotaRequest struct {
@@ -49,7 +50,6 @@ func UnsafeNewQWebEngineQuotaRequest(h unsafe.Pointer) *QWebEngineQuotaRequest {
 
 // NewQWebEngineQuotaRequest constructs a new QWebEngineQuotaRequest object.
 func NewQWebEngineQuotaRequest() *QWebEngineQuotaRequest {
-
 	ret := newQWebEngineQuotaRequest(C.QWebEngineQuotaRequest_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +57,6 @@ func NewQWebEngineQuotaRequest() *QWebEngineQuotaRequest {
 
 // NewQWebEngineQuotaRequest2 constructs a new QWebEngineQuotaRequest object.
 func NewQWebEngineQuotaRequest2(param1 *QWebEngineQuotaRequest) *QWebEngineQuotaRequest {
-
 	ret := newQWebEngineQuotaRequest(C.QWebEngineQuotaRequest_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -38,10 +38,9 @@ func main() {
 
 	if *outFile == "-" {
 		fmt.Println(string(gosrc))
-
 	} else {
 
-		err = ioutil.WriteFile(*outFile, gosrc, 0644)
+		err = ioutil.WriteFile(*outFile, gosrc, 0o644)
 		if err != nil {
 			panic(err)
 		}

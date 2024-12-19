@@ -48,7 +48,6 @@ func UnsafeNewQCollatorSortKey(h unsafe.Pointer) *QCollatorSortKey {
 
 // NewQCollatorSortKey constructs a new QCollatorSortKey object.
 func NewQCollatorSortKey(other *QCollatorSortKey) *QCollatorSortKey {
-
 	ret := newQCollatorSortKey(C.QCollatorSortKey_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -115,7 +114,6 @@ func UnsafeNewQCollator(h unsafe.Pointer) *QCollator {
 
 // NewQCollator constructs a new QCollator object.
 func NewQCollator() *QCollator {
-
 	ret := newQCollator(C.QCollator_new())
 	ret.isSubclass = true
 	return ret
@@ -123,7 +121,6 @@ func NewQCollator() *QCollator {
 
 // NewQCollator2 constructs a new QCollator object.
 func NewQCollator2(locale *QLocale) *QCollator {
-
 	ret := newQCollator(C.QCollator_new2(locale.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -131,7 +128,6 @@ func NewQCollator2(locale *QLocale) *QCollator {
 
 // NewQCollator3 constructs a new QCollator object.
 func NewQCollator3(param1 *QCollator) *QCollator {
-
 	ret := newQCollator(C.QCollator_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

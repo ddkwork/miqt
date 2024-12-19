@@ -9,10 +9,11 @@ package webkit
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebHistoryInterface struct {
@@ -43,8 +44,10 @@ func newQWebHistoryInterface(h *C.QWebHistoryInterface) *QWebHistoryInterface {
 	var outptr_QObject *C.QObject = nil
 	C.QWebHistoryInterface_virtbase(h, &outptr_QObject)
 
-	return &QWebHistoryInterface{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebHistoryInterface{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebHistoryInterface constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQWebHistoryInterface(h unsafe.Pointer) *QWebHistoryInterface {
 
 // NewQWebHistoryInterface constructs a new QWebHistoryInterface object.
 func NewQWebHistoryInterface() *QWebHistoryInterface {
-
 	ret := newQWebHistoryInterface(C.QWebHistoryInterface_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQWebHistoryInterface() *QWebHistoryInterface {
 
 // NewQWebHistoryInterface2 constructs a new QWebHistoryInterface object.
 func NewQWebHistoryInterface2(parent *qt.QObject) *QWebHistoryInterface {
-
 	ret := newQWebHistoryInterface(C.QWebHistoryInterface_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -163,6 +164,7 @@ func QWebHistoryInterface_TrUtf83(s string, c string, n int) string {
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QWebHistoryInterface) OnHistoryContains(slot func(url string) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -186,8 +188,8 @@ func miqt_exec_callback_QWebHistoryInterface_HistoryContains(self *C.QWebHistory
 	virtualReturn := gofunc(slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
+
 func (this *QWebHistoryInterface) OnAddHistoryEntry(slot func(url string)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -209,14 +211,12 @@ func miqt_exec_callback_QWebHistoryInterface_AddHistoryEntry(self *C.QWebHistory
 	slotval1 := url_ret
 
 	gofunc(slotval1)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QWebHistoryInterface_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QWebHistoryInterface) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -237,14 +237,12 @@ func miqt_exec_callback_QWebHistoryInterface_Event(self *C.QWebHistoryInterface,
 	virtualReturn := gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QWebHistoryInterface_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QWebHistoryInterface) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -267,14 +265,12 @@ func miqt_exec_callback_QWebHistoryInterface_EventFilter(self *C.QWebHistoryInte
 	virtualReturn := gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QWebHistoryInterface_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebHistoryInterface) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -293,14 +289,12 @@ func miqt_exec_callback_QWebHistoryInterface_TimerEvent(self *C.QWebHistoryInter
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QWebHistoryInterface_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebHistoryInterface) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -319,14 +313,12 @@ func miqt_exec_callback_QWebHistoryInterface_ChildEvent(self *C.QWebHistoryInter
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QWebHistoryInterface_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebHistoryInterface) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -345,14 +337,12 @@ func miqt_exec_callback_QWebHistoryInterface_CustomEvent(self *C.QWebHistoryInte
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QWebHistoryInterface_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QWebHistoryInterface) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -371,14 +361,12 @@ func miqt_exec_callback_QWebHistoryInterface_ConnectNotify(self *C.QWebHistoryIn
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QWebHistoryInterface) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QWebHistoryInterface_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QWebHistoryInterface) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -397,7 +385,6 @@ func miqt_exec_callback_QWebHistoryInterface_DisconnectNotify(self *C.QWebHistor
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QWebHistoryInterface{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

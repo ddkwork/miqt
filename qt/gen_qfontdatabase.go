@@ -98,7 +98,6 @@ func UnsafeNewQFontDatabase(h unsafe.Pointer) *QFontDatabase {
 
 // NewQFontDatabase constructs a new QFontDatabase object.
 func NewQFontDatabase() *QFontDatabase {
-
 	ret := newQFontDatabase(C.QFontDatabase_new())
 	ret.isSubclass = true
 	return ret

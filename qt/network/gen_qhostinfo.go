@@ -56,7 +56,6 @@ func UnsafeNewQHostInfo(h unsafe.Pointer) *QHostInfo {
 
 // NewQHostInfo constructs a new QHostInfo object.
 func NewQHostInfo() *QHostInfo {
-
 	ret := newQHostInfo(C.QHostInfo_new())
 	ret.isSubclass = true
 	return ret
@@ -64,7 +63,6 @@ func NewQHostInfo() *QHostInfo {
 
 // NewQHostInfo2 constructs a new QHostInfo object.
 func NewQHostInfo2(d *QHostInfo) *QHostInfo {
-
 	ret := newQHostInfo(C.QHostInfo_new2(d.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +70,6 @@ func NewQHostInfo2(d *QHostInfo) *QHostInfo {
 
 // NewQHostInfo3 constructs a new QHostInfo object.
 func NewQHostInfo3(lookupId int) *QHostInfo {
-
 	ret := newQHostInfo(C.QHostInfo_new3((C.int)(lookupId)))
 	ret.isSubclass = true
 	return ret

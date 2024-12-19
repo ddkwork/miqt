@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QMediaDevices struct {
@@ -43,8 +44,10 @@ func newQMediaDevices(h *C.QMediaDevices) *QMediaDevices {
 	var outptr_QObject *C.QObject = nil
 	C.QMediaDevices_virtbase(h, &outptr_QObject)
 
-	return &QMediaDevices{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QMediaDevices{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQMediaDevices constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQMediaDevices(h unsafe.Pointer) *QMediaDevices {
 
 // NewQMediaDevices constructs a new QMediaDevices object.
 func NewQMediaDevices() *QMediaDevices {
-
 	ret := newQMediaDevices(C.QMediaDevices_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQMediaDevices() *QMediaDevices {
 
 // NewQMediaDevices2 constructs a new QMediaDevices object.
 func NewQMediaDevices2(parent *qt6.QObject) *QMediaDevices {
-
 	ret := newQMediaDevices(C.QMediaDevices_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -144,6 +145,7 @@ func QMediaDevices_DefaultVideoInput() *QCameraDevice {
 func (this *QMediaDevices) AudioInputsChanged() {
 	C.QMediaDevices_AudioInputsChanged(this.h)
 }
+
 func (this *QMediaDevices) OnAudioInputsChanged(slot func()) {
 	C.QMediaDevices_connect_AudioInputsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -161,6 +163,7 @@ func miqt_exec_callback_QMediaDevices_AudioInputsChanged(cb C.intptr_t) {
 func (this *QMediaDevices) AudioOutputsChanged() {
 	C.QMediaDevices_AudioOutputsChanged(this.h)
 }
+
 func (this *QMediaDevices) OnAudioOutputsChanged(slot func()) {
 	C.QMediaDevices_connect_AudioOutputsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -178,6 +181,7 @@ func miqt_exec_callback_QMediaDevices_AudioOutputsChanged(cb C.intptr_t) {
 func (this *QMediaDevices) VideoInputsChanged() {
 	C.QMediaDevices_VideoInputsChanged(this.h)
 }
+
 func (this *QMediaDevices) OnVideoInputsChanged(slot func()) {
 	C.QMediaDevices_connect_VideoInputsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -215,10 +219,9 @@ func QMediaDevices_Tr3(s string, c string, n int) string {
 }
 
 func (this *QMediaDevices) callVirtualBase_Event(event *qt6.QEvent) bool {
-
 	return (bool)(C.QMediaDevices_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QMediaDevices) OnEvent(slot func(super func(event *qt6.QEvent) bool, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -239,14 +242,12 @@ func miqt_exec_callback_QMediaDevices_Event(self *C.QMediaDevices, cb C.intptr_t
 	virtualReturn := gofunc((&QMediaDevices{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QMediaDevices) callVirtualBase_EventFilter(watched *qt6.QObject, event *qt6.QEvent) bool {
-
 	return (bool)(C.QMediaDevices_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QMediaDevices) OnEventFilter(slot func(super func(watched *qt6.QObject, event *qt6.QEvent) bool, watched *qt6.QObject, event *qt6.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -269,14 +270,12 @@ func miqt_exec_callback_QMediaDevices_EventFilter(self *C.QMediaDevices, cb C.in
 	virtualReturn := gofunc((&QMediaDevices{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QMediaDevices) callVirtualBase_TimerEvent(event *qt6.QTimerEvent) {
-
 	C.QMediaDevices_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QMediaDevices) OnTimerEvent(slot func(super func(event *qt6.QTimerEvent), event *qt6.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -295,14 +294,12 @@ func miqt_exec_callback_QMediaDevices_TimerEvent(self *C.QMediaDevices, cb C.int
 	slotval1 := qt6.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QMediaDevices{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QMediaDevices) callVirtualBase_ChildEvent(event *qt6.QChildEvent) {
-
 	C.QMediaDevices_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QMediaDevices) OnChildEvent(slot func(super func(event *qt6.QChildEvent), event *qt6.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -321,14 +318,12 @@ func miqt_exec_callback_QMediaDevices_ChildEvent(self *C.QMediaDevices, cb C.int
 	slotval1 := qt6.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QMediaDevices{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QMediaDevices) callVirtualBase_CustomEvent(event *qt6.QEvent) {
-
 	C.QMediaDevices_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QMediaDevices) OnCustomEvent(slot func(super func(event *qt6.QEvent), event *qt6.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -347,14 +342,12 @@ func miqt_exec_callback_QMediaDevices_CustomEvent(self *C.QMediaDevices, cb C.in
 	slotval1 := qt6.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QMediaDevices{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QMediaDevices) callVirtualBase_ConnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QMediaDevices_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QMediaDevices) OnConnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -373,14 +366,12 @@ func miqt_exec_callback_QMediaDevices_ConnectNotify(self *C.QMediaDevices, cb C.
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QMediaDevices{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QMediaDevices) callVirtualBase_DisconnectNotify(signal *qt6.QMetaMethod) {
-
 	C.QMediaDevices_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QMediaDevices) OnDisconnectNotify(slot func(super func(signal *qt6.QMetaMethod), signal *qt6.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -399,7 +390,6 @@ func miqt_exec_callback_QMediaDevices_DisconnectNotify(self *C.QMediaDevices, cb
 	slotval1 := qt6.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QMediaDevices{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

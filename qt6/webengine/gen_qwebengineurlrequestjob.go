@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineUrlRequestJob__Error int
@@ -53,8 +54,10 @@ func newQWebEngineUrlRequestJob(h *C.QWebEngineUrlRequestJob) *QWebEngineUrlRequ
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineUrlRequestJob_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineUrlRequestJob{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineUrlRequestJob{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineUrlRequestJob constructs the type using only unsafe pointers.

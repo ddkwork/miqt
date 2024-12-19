@@ -9,9 +9,10 @@ package script
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QScriptValue__ResolveFlag int
@@ -78,7 +79,6 @@ func UnsafeNewQScriptValue(h unsafe.Pointer) *QScriptValue {
 
 // NewQScriptValue constructs a new QScriptValue object.
 func NewQScriptValue() *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new())
 	ret.isSubclass = true
 	return ret
@@ -86,7 +86,6 @@ func NewQScriptValue() *QScriptValue {
 
 // NewQScriptValue2 constructs a new QScriptValue object.
 func NewQScriptValue2(other *QScriptValue) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -94,7 +93,6 @@ func NewQScriptValue2(other *QScriptValue) *QScriptValue {
 
 // NewQScriptValue3 constructs a new QScriptValue object.
 func NewQScriptValue3(engine *QScriptEngine, val QScriptValue__SpecialValue) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new3(engine.cPointer(), (C.int)(val)))
 	ret.isSubclass = true
 	return ret
@@ -102,7 +100,6 @@ func NewQScriptValue3(engine *QScriptEngine, val QScriptValue__SpecialValue) *QS
 
 // NewQScriptValue4 constructs a new QScriptValue object.
 func NewQScriptValue4(engine *QScriptEngine, val bool) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new4(engine.cPointer(), (C.bool)(val)))
 	ret.isSubclass = true
 	return ret
@@ -110,7 +107,6 @@ func NewQScriptValue4(engine *QScriptEngine, val bool) *QScriptValue {
 
 // NewQScriptValue5 constructs a new QScriptValue object.
 func NewQScriptValue5(engine *QScriptEngine, val int) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new5(engine.cPointer(), (C.int)(val)))
 	ret.isSubclass = true
 	return ret
@@ -118,7 +114,6 @@ func NewQScriptValue5(engine *QScriptEngine, val int) *QScriptValue {
 
 // NewQScriptValue6 constructs a new QScriptValue object.
 func NewQScriptValue6(engine *QScriptEngine, val uint) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new6(engine.cPointer(), (C.uint)(val)))
 	ret.isSubclass = true
 	return ret
@@ -126,7 +121,6 @@ func NewQScriptValue6(engine *QScriptEngine, val uint) *QScriptValue {
 
 // NewQScriptValue7 constructs a new QScriptValue object.
 func NewQScriptValue7(engine *QScriptEngine, val float64) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new7(engine.cPointer(), (C.double)(val)))
 	ret.isSubclass = true
 	return ret
@@ -156,7 +150,6 @@ func NewQScriptValue9(engine *QScriptEngine, val string) *QScriptValue {
 
 // NewQScriptValue10 constructs a new QScriptValue object.
 func NewQScriptValue10(value QScriptValue__SpecialValue) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new10((C.int)(value)))
 	ret.isSubclass = true
 	return ret
@@ -164,7 +157,6 @@ func NewQScriptValue10(value QScriptValue__SpecialValue) *QScriptValue {
 
 // NewQScriptValue11 constructs a new QScriptValue object.
 func NewQScriptValue11(value bool) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new11((C.bool)(value)))
 	ret.isSubclass = true
 	return ret
@@ -172,7 +164,6 @@ func NewQScriptValue11(value bool) *QScriptValue {
 
 // NewQScriptValue12 constructs a new QScriptValue object.
 func NewQScriptValue12(value int) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new12((C.int)(value)))
 	ret.isSubclass = true
 	return ret
@@ -180,7 +171,6 @@ func NewQScriptValue12(value int) *QScriptValue {
 
 // NewQScriptValue13 constructs a new QScriptValue object.
 func NewQScriptValue13(value uint) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new13((C.uint)(value)))
 	ret.isSubclass = true
 	return ret
@@ -188,7 +178,6 @@ func NewQScriptValue13(value uint) *QScriptValue {
 
 // NewQScriptValue14 constructs a new QScriptValue object.
 func NewQScriptValue14(value float64) *QScriptValue {
-
 	ret := newQScriptValue(C.QScriptValue_new14((C.double)(value)))
 	ret.isSubclass = true
 	return ret

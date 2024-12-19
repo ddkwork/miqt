@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraLocksControl struct {
@@ -43,8 +44,10 @@ func newQCameraLocksControl(h *C.QCameraLocksControl) *QCameraLocksControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraLocksControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraLocksControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraLocksControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraLocksControl constructs the type using only unsafe pointers.
@@ -99,6 +102,7 @@ func (this *QCameraLocksControl) Unlock(locks QCamera__LockType) {
 func (this *QCameraLocksControl) LockStatusChanged(typeVal QCamera__LockType, status QCamera__LockStatus, reason QCamera__LockChangeReason) {
 	C.QCameraLocksControl_LockStatusChanged(this.h, (C.int)(typeVal), (C.int)(status), (C.int)(reason))
 }
+
 func (this *QCameraLocksControl) OnLockStatusChanged(slot func(typeVal QCamera__LockType, status QCamera__LockStatus, reason QCamera__LockChangeReason)) {
 	C.QCameraLocksControl_connect_LockStatusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

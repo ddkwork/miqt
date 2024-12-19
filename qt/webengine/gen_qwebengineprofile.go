@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineProfile__HttpCacheType int
@@ -59,8 +60,10 @@ func newQWebEngineProfile(h *C.QWebEngineProfile) *QWebEngineProfile {
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineProfile_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineProfile{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineProfile{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineProfile constructs the type using only unsafe pointers.
@@ -70,7 +73,6 @@ func UnsafeNewQWebEngineProfile(h unsafe.Pointer) *QWebEngineProfile {
 
 // NewQWebEngineProfile constructs a new QWebEngineProfile object.
 func NewQWebEngineProfile() *QWebEngineProfile {
-
 	ret := newQWebEngineProfile(C.QWebEngineProfile_new())
 	ret.isSubclass = true
 	return ret
@@ -90,7 +92,6 @@ func NewQWebEngineProfile2(name string) *QWebEngineProfile {
 
 // NewQWebEngineProfile3 constructs a new QWebEngineProfile object.
 func NewQWebEngineProfile3(parent *qt.QObject) *QWebEngineProfile {
-
 	ret := newQWebEngineProfile(C.QWebEngineProfile_new3((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -371,6 +372,7 @@ func QWebEngineProfile_DefaultProfile() *QWebEngineProfile {
 func (this *QWebEngineProfile) DownloadRequested(download *QWebEngineDownloadItem) {
 	C.QWebEngineProfile_DownloadRequested(this.h, download.cPointer())
 }
+
 func (this *QWebEngineProfile) OnDownloadRequested(slot func(download *QWebEngineDownloadItem)) {
 	C.QWebEngineProfile_connect_DownloadRequested(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -437,10 +439,9 @@ func (this *QWebEngineProfile) SetUseForGlobalCertificateVerification1(enabled b
 }
 
 func (this *QWebEngineProfile) callVirtualBase_Event(event *qt.QEvent) bool {
-
 	return (bool)(C.QWebEngineProfile_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QWebEngineProfile) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -461,14 +462,12 @@ func miqt_exec_callback_QWebEngineProfile_Event(self *C.QWebEngineProfile, cb C.
 	virtualReturn := gofunc((&QWebEngineProfile{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QWebEngineProfile) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
 	return (bool)(C.QWebEngineProfile_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
-
 }
+
 func (this *QWebEngineProfile) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -491,14 +490,12 @@ func miqt_exec_callback_QWebEngineProfile_EventFilter(self *C.QWebEngineProfile,
 	virtualReturn := gofunc((&QWebEngineProfile{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QWebEngineProfile) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
 	C.QWebEngineProfile_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebEngineProfile) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -517,14 +514,12 @@ func miqt_exec_callback_QWebEngineProfile_TimerEvent(self *C.QWebEngineProfile, 
 	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebEngineProfile{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QWebEngineProfile) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
 	C.QWebEngineProfile_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebEngineProfile) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -543,14 +538,12 @@ func miqt_exec_callback_QWebEngineProfile_ChildEvent(self *C.QWebEngineProfile, 
 	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebEngineProfile{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QWebEngineProfile) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
 	C.QWebEngineProfile_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
-
 }
+
 func (this *QWebEngineProfile) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -569,14 +562,12 @@ func miqt_exec_callback_QWebEngineProfile_CustomEvent(self *C.QWebEngineProfile,
 	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
 
 	gofunc((&QWebEngineProfile{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QWebEngineProfile) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
 	C.QWebEngineProfile_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QWebEngineProfile) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -595,14 +586,12 @@ func miqt_exec_callback_QWebEngineProfile_ConnectNotify(self *C.QWebEngineProfil
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QWebEngineProfile{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QWebEngineProfile) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
 	C.QWebEngineProfile_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
-
 }
+
 func (this *QWebEngineProfile) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -621,7 +610,6 @@ func miqt_exec_callback_QWebEngineProfile_DisconnectNotify(self *C.QWebEnginePro
 	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
 
 	gofunc((&QWebEngineProfile{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

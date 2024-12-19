@@ -9,9 +9,10 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkAddressEntry__DnsEligibilityStatus int8
@@ -88,7 +89,6 @@ func UnsafeNewQNetworkAddressEntry(h unsafe.Pointer) *QNetworkAddressEntry {
 
 // NewQNetworkAddressEntry constructs a new QNetworkAddressEntry object.
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
-
 	ret := newQNetworkAddressEntry(C.QNetworkAddressEntry_new())
 	ret.isSubclass = true
 	return ret
@@ -96,7 +96,6 @@ func NewQNetworkAddressEntry() *QNetworkAddressEntry {
 
 // NewQNetworkAddressEntry2 constructs a new QNetworkAddressEntry object.
 func NewQNetworkAddressEntry2(other *QNetworkAddressEntry) *QNetworkAddressEntry {
-
 	ret := newQNetworkAddressEntry(C.QNetworkAddressEntry_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -245,7 +244,6 @@ func UnsafeNewQNetworkInterface(h unsafe.Pointer) *QNetworkInterface {
 
 // NewQNetworkInterface constructs a new QNetworkInterface object.
 func NewQNetworkInterface() *QNetworkInterface {
-
 	ret := newQNetworkInterface(C.QNetworkInterface_new())
 	ret.isSubclass = true
 	return ret
@@ -253,7 +251,6 @@ func NewQNetworkInterface() *QNetworkInterface {
 
 // NewQNetworkInterface2 constructs a new QNetworkInterface object.
 func NewQNetworkInterface2(other *QNetworkInterface) *QNetworkInterface {
-
 	ret := newQNetworkInterface(C.QNetworkInterface_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

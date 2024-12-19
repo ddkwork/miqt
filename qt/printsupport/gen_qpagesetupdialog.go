@@ -9,10 +9,11 @@ package printsupport
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QPageSetupDialog struct {
@@ -43,8 +44,10 @@ func newQPageSetupDialog(h *C.QPageSetupDialog) *QPageSetupDialog {
 	var outptr_QDialog *C.QDialog = nil
 	C.QPageSetupDialog_virtbase(h, &outptr_QDialog)
 
-	return &QPageSetupDialog{h: h,
-		QDialog: qt.UnsafeNewQDialog(unsafe.Pointer(outptr_QDialog))}
+	return &QPageSetupDialog{
+		h:       h,
+		QDialog: qt.UnsafeNewQDialog(unsafe.Pointer(outptr_QDialog)),
+	}
 }
 
 // UnsafeNewQPageSetupDialog constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQPageSetupDialog(h unsafe.Pointer) *QPageSetupDialog {
 
 // NewQPageSetupDialog constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog(parent *qt.QWidget) *QPageSetupDialog {
-
 	ret := newQPageSetupDialog(C.QPageSetupDialog_new((*C.QWidget)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQPageSetupDialog(parent *qt.QWidget) *QPageSetupDialog {
 
 // NewQPageSetupDialog2 constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog2(printer *QPrinter) *QPageSetupDialog {
-
 	ret := newQPageSetupDialog(C.QPageSetupDialog_new2(printer.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -70,7 +71,6 @@ func NewQPageSetupDialog2(printer *QPrinter) *QPageSetupDialog {
 
 // NewQPageSetupDialog3 constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog3() *QPageSetupDialog {
-
 	ret := newQPageSetupDialog(C.QPageSetupDialog_new3())
 	ret.isSubclass = true
 	return ret
@@ -78,7 +78,6 @@ func NewQPageSetupDialog3() *QPageSetupDialog {
 
 // NewQPageSetupDialog4 constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog4(printer *QPrinter, parent *qt.QWidget) *QPageSetupDialog {
-
 	ret := newQPageSetupDialog(C.QPageSetupDialog_new4(printer.cPointer(), (*C.QWidget)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -169,10 +168,9 @@ func QPageSetupDialog_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QPageSetupDialog) callVirtualBase_Exec() int {
-
 	return (int)(C.QPageSetupDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QPageSetupDialog) OnExec(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -190,14 +188,12 @@ func miqt_exec_callback_QPageSetupDialog_Exec(self *C.QPageSetupDialog, cb C.int
 	virtualReturn := gofunc((&QPageSetupDialog{h: self}).callVirtualBase_Exec)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_Done(result int) {
-
 	C.QPageSetupDialog_virtualbase_Done(unsafe.Pointer(this.h), (C.int)(result))
-
 }
+
 func (this *QPageSetupDialog) OnDone(slot func(super func(result int), result int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -216,14 +212,12 @@ func miqt_exec_callback_QPageSetupDialog_Done(self *C.QPageSetupDialog, cb C.int
 	slotval1 := (int)(result)
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_Done, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_SetVisible(visible bool) {
-
 	C.QPageSetupDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QPageSetupDialog) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -242,16 +236,14 @@ func miqt_exec_callback_QPageSetupDialog_SetVisible(self *C.QPageSetupDialog, cb
 	slotval1 := (bool)(visible)
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_SizeHint() *qt.QSize {
-
 	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(C.QPageSetupDialog_virtualbase_SizeHint(unsafe.Pointer(this.h))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QPageSetupDialog) OnSizeHint(slot func(super func() *qt.QSize) *qt.QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -269,16 +261,14 @@ func miqt_exec_callback_QPageSetupDialog_SizeHint(self *C.QPageSetupDialog, cb C
 	virtualReturn := gofunc((&QPageSetupDialog{h: self}).callVirtualBase_SizeHint)
 
 	return (*C.QSize)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_MinimumSizeHint() *qt.QSize {
-
 	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(C.QPageSetupDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QPageSetupDialog) OnMinimumSizeHint(slot func(super func() *qt.QSize) *qt.QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -296,14 +286,12 @@ func miqt_exec_callback_QPageSetupDialog_MinimumSizeHint(self *C.QPageSetupDialo
 	virtualReturn := gofunc((&QPageSetupDialog{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return (*C.QSize)(virtualReturn.UnsafePointer())
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_Open() {
-
 	C.QPageSetupDialog_virtualbase_Open(unsafe.Pointer(this.h))
-
 }
+
 func (this *QPageSetupDialog) OnOpen(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -319,14 +307,12 @@ func miqt_exec_callback_QPageSetupDialog_Open(self *C.QPageSetupDialog, cb C.int
 	}
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_Open)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_Accept() {
-
 	C.QPageSetupDialog_virtualbase_Accept(unsafe.Pointer(this.h))
-
 }
+
 func (this *QPageSetupDialog) OnAccept(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -342,14 +328,12 @@ func miqt_exec_callback_QPageSetupDialog_Accept(self *C.QPageSetupDialog, cb C.i
 	}
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_Accept)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_Reject() {
-
 	C.QPageSetupDialog_virtualbase_Reject(unsafe.Pointer(this.h))
-
 }
+
 func (this *QPageSetupDialog) OnReject(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -365,14 +349,12 @@ func miqt_exec_callback_QPageSetupDialog_Reject(self *C.QPageSetupDialog, cb C.i
 	}
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_Reject)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_KeyPressEvent(param1 *qt.QKeyEvent) {
-
 	C.QPageSetupDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), (*C.QKeyEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPageSetupDialog) OnKeyPressEvent(slot func(super func(param1 *qt.QKeyEvent), param1 *qt.QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -391,14 +373,12 @@ func miqt_exec_callback_QPageSetupDialog_KeyPressEvent(self *C.QPageSetupDialog,
 	slotval1 := qt.UnsafeNewQKeyEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_CloseEvent(param1 *qt.QCloseEvent) {
-
 	C.QPageSetupDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), (*C.QCloseEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPageSetupDialog) OnCloseEvent(slot func(super func(param1 *qt.QCloseEvent), param1 *qt.QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -417,14 +397,12 @@ func miqt_exec_callback_QPageSetupDialog_CloseEvent(self *C.QPageSetupDialog, cb
 	slotval1 := qt.UnsafeNewQCloseEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_ShowEvent(param1 *qt.QShowEvent) {
-
 	C.QPageSetupDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), (*C.QShowEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPageSetupDialog) OnShowEvent(slot func(super func(param1 *qt.QShowEvent), param1 *qt.QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -443,14 +421,12 @@ func miqt_exec_callback_QPageSetupDialog_ShowEvent(self *C.QPageSetupDialog, cb 
 	slotval1 := qt.UnsafeNewQShowEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_ResizeEvent(param1 *qt.QResizeEvent) {
-
 	C.QPageSetupDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), (*C.QResizeEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPageSetupDialog) OnResizeEvent(slot func(super func(param1 *qt.QResizeEvent), param1 *qt.QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -469,14 +445,12 @@ func miqt_exec_callback_QPageSetupDialog_ResizeEvent(self *C.QPageSetupDialog, c
 	slotval1 := qt.UnsafeNewQResizeEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_ContextMenuEvent(param1 *qt.QContextMenuEvent) {
-
 	C.QPageSetupDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), (*C.QContextMenuEvent)(param1.UnsafePointer()))
-
 }
+
 func (this *QPageSetupDialog) OnContextMenuEvent(slot func(super func(param1 *qt.QContextMenuEvent), param1 *qt.QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -495,14 +469,12 @@ func miqt_exec_callback_QPageSetupDialog_ContextMenuEvent(self *C.QPageSetupDial
 	slotval1 := qt.UnsafeNewQContextMenuEvent(unsafe.Pointer(param1))
 
 	gofunc((&QPageSetupDialog{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QPageSetupDialog) callVirtualBase_EventFilter(param1 *qt.QObject, param2 *qt.QEvent) bool {
-
 	return (bool)(C.QPageSetupDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(param1.UnsafePointer()), (*C.QEvent)(param2.UnsafePointer())))
-
 }
+
 func (this *QPageSetupDialog) OnEventFilter(slot func(super func(param1 *qt.QObject, param2 *qt.QEvent) bool, param1 *qt.QObject, param2 *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -525,7 +497,6 @@ func miqt_exec_callback_QPageSetupDialog_EventFilter(self *C.QPageSetupDialog, c
 	virtualReturn := gofunc((&QPageSetupDialog{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

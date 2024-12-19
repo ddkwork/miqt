@@ -67,7 +67,6 @@ func UnsafeNewQRegExp(h unsafe.Pointer) *QRegExp {
 
 // NewQRegExp constructs a new QRegExp object.
 func NewQRegExp() *QRegExp {
-
 	ret := newQRegExp(C.QRegExp_new())
 	ret.isSubclass = true
 	return ret
@@ -87,7 +86,6 @@ func NewQRegExp2(pattern string) *QRegExp {
 
 // NewQRegExp3 constructs a new QRegExp object.
 func NewQRegExp3(rx *QRegExp) *QRegExp {
-
 	ret := newQRegExp(C.QRegExp_new3(rx.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMetaDataReaderControl struct {
@@ -43,8 +44,10 @@ func newQMetaDataReaderControl(h *C.QMetaDataReaderControl) *QMetaDataReaderCont
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMetaDataReaderControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMetaDataReaderControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMetaDataReaderControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMetaDataReaderControl constructs the type using only unsafe pointers.
@@ -110,6 +113,7 @@ func (this *QMetaDataReaderControl) AvailableMetaData() []string {
 func (this *QMetaDataReaderControl) MetaDataChanged() {
 	C.QMetaDataReaderControl_MetaDataChanged(this.h)
 }
+
 func (this *QMetaDataReaderControl) OnMetaDataChanged(slot func()) {
 	C.QMetaDataReaderControl_connect_MetaDataChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -131,6 +135,7 @@ func (this *QMetaDataReaderControl) MetaDataChanged2(key string, value *qt.QVari
 	defer C.free(unsafe.Pointer(key_ms.data))
 	C.QMetaDataReaderControl_MetaDataChanged2(this.h, key_ms, (*C.QVariant)(value.UnsafePointer()))
 }
+
 func (this *QMetaDataReaderControl) OnMetaDataChanged2(slot func(key string, value *qt.QVariant)) {
 	C.QMetaDataReaderControl_connect_MetaDataChanged2(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -155,6 +160,7 @@ func miqt_exec_callback_QMetaDataReaderControl_MetaDataChanged2(cb C.intptr_t, k
 func (this *QMetaDataReaderControl) MetaDataAvailableChanged(available bool) {
 	C.QMetaDataReaderControl_MetaDataAvailableChanged(this.h, (C.bool)(available))
 }
+
 func (this *QMetaDataReaderControl) OnMetaDataAvailableChanged(slot func(available bool)) {
 	C.QMetaDataReaderControl_connect_MetaDataAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

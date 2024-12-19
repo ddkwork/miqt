@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraCaptureBufferFormatControl struct {
@@ -43,8 +44,10 @@ func newQCameraCaptureBufferFormatControl(h *C.QCameraCaptureBufferFormatControl
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraCaptureBufferFormatControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraCaptureBufferFormatControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraCaptureBufferFormatControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraCaptureBufferFormatControl constructs the type using only unsafe pointers.
@@ -101,6 +104,7 @@ func (this *QCameraCaptureBufferFormatControl) SetBufferFormat(format QVideoFram
 func (this *QCameraCaptureBufferFormatControl) BufferFormatChanged(format QVideoFrame__PixelFormat) {
 	C.QCameraCaptureBufferFormatControl_BufferFormatChanged(this.h, (C.int)(format))
 }
+
 func (this *QCameraCaptureBufferFormatControl) OnBufferFormatChanged(slot func(format QVideoFrame__PixelFormat)) {
 	C.QCameraCaptureBufferFormatControl_connect_BufferFormatChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

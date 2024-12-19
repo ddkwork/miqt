@@ -9,9 +9,10 @@ package webkit
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebHistoryItem struct {
@@ -49,7 +50,6 @@ func UnsafeNewQWebHistoryItem(h unsafe.Pointer) *QWebHistoryItem {
 
 // NewQWebHistoryItem constructs a new QWebHistoryItem object.
 func NewQWebHistoryItem(other *QWebHistoryItem) *QWebHistoryItem {
-
 	ret := newQWebHistoryItem(C.QWebHistoryItem_new(other.cPointer()))
 	ret.isSubclass = true
 	return ret

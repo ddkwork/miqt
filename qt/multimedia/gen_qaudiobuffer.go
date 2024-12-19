@@ -48,7 +48,6 @@ func UnsafeNewQAudioBuffer(h unsafe.Pointer) *QAudioBuffer {
 
 // NewQAudioBuffer constructs a new QAudioBuffer object.
 func NewQAudioBuffer() *QAudioBuffer {
-
 	ret := newQAudioBuffer(C.QAudioBuffer_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQAudioBuffer() *QAudioBuffer {
 
 // NewQAudioBuffer2 constructs a new QAudioBuffer object.
 func NewQAudioBuffer2(other *QAudioBuffer) *QAudioBuffer {
-
 	ret := newQAudioBuffer(C.QAudioBuffer_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -75,7 +73,6 @@ func NewQAudioBuffer3(data []byte, format *QAudioFormat) *QAudioBuffer {
 
 // NewQAudioBuffer4 constructs a new QAudioBuffer object.
 func NewQAudioBuffer4(numFrames int, format *QAudioFormat) *QAudioBuffer {
-
 	ret := newQAudioBuffer(C.QAudioBuffer_new4((C.int)(numFrames), format.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -94,7 +91,6 @@ func NewQAudioBuffer5(data []byte, format *QAudioFormat, startTime int64) *QAudi
 
 // NewQAudioBuffer6 constructs a new QAudioBuffer object.
 func NewQAudioBuffer6(numFrames int, format *QAudioFormat, startTime int64) *QAudioBuffer {
-
 	ret := newQAudioBuffer(C.QAudioBuffer_new6((C.int)(numFrames), format.cPointer(), (C.longlong)(startTime)))
 	ret.isSubclass = true
 	return ret

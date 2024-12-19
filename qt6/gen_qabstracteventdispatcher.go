@@ -42,8 +42,10 @@ func newQAbstractEventDispatcher(h *C.QAbstractEventDispatcher) *QAbstractEventD
 	var outptr_QObject *C.QObject = nil
 	C.QAbstractEventDispatcher_virtbase(h, &outptr_QObject)
 
-	return &QAbstractEventDispatcher{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QAbstractEventDispatcher{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQAbstractEventDispatcher constructs the type using only unsafe pointers.
@@ -152,6 +154,7 @@ func (this *QAbstractEventDispatcher) FilterNativeEvent(eventType []byte, messag
 func (this *QAbstractEventDispatcher) AboutToBlock() {
 	C.QAbstractEventDispatcher_AboutToBlock(this.h)
 }
+
 func (this *QAbstractEventDispatcher) OnAboutToBlock(slot func()) {
 	C.QAbstractEventDispatcher_connect_AboutToBlock(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -169,6 +172,7 @@ func miqt_exec_callback_QAbstractEventDispatcher_AboutToBlock(cb C.intptr_t) {
 func (this *QAbstractEventDispatcher) Awake() {
 	C.QAbstractEventDispatcher_Awake(this.h)
 }
+
 func (this *QAbstractEventDispatcher) OnAwake(slot func()) {
 	C.QAbstractEventDispatcher_connect_Awake(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -258,7 +262,6 @@ func UnsafeNewQAbstractEventDispatcher__TimerInfo(h unsafe.Pointer) *QAbstractEv
 
 // NewQAbstractEventDispatcher__TimerInfo constructs a new QAbstractEventDispatcher::TimerInfo object.
 func NewQAbstractEventDispatcher__TimerInfo(id int, i int, t TimerType) *QAbstractEventDispatcher__TimerInfo {
-
 	ret := newQAbstractEventDispatcher__TimerInfo(C.QAbstractEventDispatcher__TimerInfo_new((C.int)(id), (C.int)(i), (C.int)(t)))
 	ret.isSubclass = true
 	return ret

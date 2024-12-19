@@ -56,7 +56,6 @@ func UnsafeNewQColormap(h unsafe.Pointer) *QColormap {
 
 // NewQColormap constructs a new QColormap object.
 func NewQColormap(colormap *QColormap) *QColormap {
-
 	ret := newQColormap(C.QColormap_new(colormap.cPointer()))
 	ret.isSubclass = true
 	return ret

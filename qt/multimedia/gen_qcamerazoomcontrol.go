@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraZoomControl struct {
@@ -43,8 +44,10 @@ func newQCameraZoomControl(h *C.QCameraZoomControl) *QCameraZoomControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraZoomControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraZoomControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraZoomControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraZoomControl constructs the type using only unsafe pointers.
@@ -111,6 +114,7 @@ func (this *QCameraZoomControl) ZoomTo(optical float64, digital float64) {
 func (this *QCameraZoomControl) MaximumOpticalZoomChanged(param1 float64) {
 	C.QCameraZoomControl_MaximumOpticalZoomChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraZoomControl) OnMaximumOpticalZoomChanged(slot func(param1 float64)) {
 	C.QCameraZoomControl_connect_MaximumOpticalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -131,6 +135,7 @@ func miqt_exec_callback_QCameraZoomControl_MaximumOpticalZoomChanged(cb C.intptr
 func (this *QCameraZoomControl) MaximumDigitalZoomChanged(param1 float64) {
 	C.QCameraZoomControl_MaximumDigitalZoomChanged(this.h, (C.double)(param1))
 }
+
 func (this *QCameraZoomControl) OnMaximumDigitalZoomChanged(slot func(param1 float64)) {
 	C.QCameraZoomControl_connect_MaximumDigitalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -151,6 +156,7 @@ func miqt_exec_callback_QCameraZoomControl_MaximumDigitalZoomChanged(cb C.intptr
 func (this *QCameraZoomControl) RequestedOpticalZoomChanged(opticalZoom float64) {
 	C.QCameraZoomControl_RequestedOpticalZoomChanged(this.h, (C.double)(opticalZoom))
 }
+
 func (this *QCameraZoomControl) OnRequestedOpticalZoomChanged(slot func(opticalZoom float64)) {
 	C.QCameraZoomControl_connect_RequestedOpticalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -171,6 +177,7 @@ func miqt_exec_callback_QCameraZoomControl_RequestedOpticalZoomChanged(cb C.intp
 func (this *QCameraZoomControl) RequestedDigitalZoomChanged(digitalZoom float64) {
 	C.QCameraZoomControl_RequestedDigitalZoomChanged(this.h, (C.double)(digitalZoom))
 }
+
 func (this *QCameraZoomControl) OnRequestedDigitalZoomChanged(slot func(digitalZoom float64)) {
 	C.QCameraZoomControl_connect_RequestedDigitalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -191,6 +198,7 @@ func miqt_exec_callback_QCameraZoomControl_RequestedDigitalZoomChanged(cb C.intp
 func (this *QCameraZoomControl) CurrentOpticalZoomChanged(opticalZoom float64) {
 	C.QCameraZoomControl_CurrentOpticalZoomChanged(this.h, (C.double)(opticalZoom))
 }
+
 func (this *QCameraZoomControl) OnCurrentOpticalZoomChanged(slot func(opticalZoom float64)) {
 	C.QCameraZoomControl_connect_CurrentOpticalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -211,6 +219,7 @@ func miqt_exec_callback_QCameraZoomControl_CurrentOpticalZoomChanged(cb C.intptr
 func (this *QCameraZoomControl) CurrentDigitalZoomChanged(digitalZoom float64) {
 	C.QCameraZoomControl_CurrentDigitalZoomChanged(this.h, (C.double)(digitalZoom))
 }
+
 func (this *QCameraZoomControl) OnCurrentDigitalZoomChanged(slot func(digitalZoom float64)) {
 	C.QCameraZoomControl_connect_CurrentDigitalZoomChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

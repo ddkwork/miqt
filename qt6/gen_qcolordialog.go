@@ -50,8 +50,10 @@ func newQColorDialog(h *C.QColorDialog) *QColorDialog {
 	var outptr_QDialog *C.QDialog = nil
 	C.QColorDialog_virtbase(h, &outptr_QDialog)
 
-	return &QColorDialog{h: h,
-		QDialog: newQDialog(outptr_QDialog)}
+	return &QColorDialog{
+		h:       h,
+		QDialog: newQDialog(outptr_QDialog),
+	}
 }
 
 // UnsafeNewQColorDialog constructs the type using only unsafe pointers.
@@ -61,7 +63,6 @@ func UnsafeNewQColorDialog(h unsafe.Pointer) *QColorDialog {
 
 // NewQColorDialog constructs a new QColorDialog object.
 func NewQColorDialog(parent *QWidget) *QColorDialog {
-
 	ret := newQColorDialog(C.QColorDialog_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -69,7 +70,6 @@ func NewQColorDialog(parent *QWidget) *QColorDialog {
 
 // NewQColorDialog2 constructs a new QColorDialog object.
 func NewQColorDialog2() *QColorDialog {
-
 	ret := newQColorDialog(C.QColorDialog_new2())
 	ret.isSubclass = true
 	return ret
@@ -77,7 +77,6 @@ func NewQColorDialog2() *QColorDialog {
 
 // NewQColorDialog3 constructs a new QColorDialog object.
 func NewQColorDialog3(initial *QColor) *QColorDialog {
-
 	ret := newQColorDialog(C.QColorDialog_new3(initial.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -85,7 +84,6 @@ func NewQColorDialog3(initial *QColor) *QColorDialog {
 
 // NewQColorDialog4 constructs a new QColorDialog object.
 func NewQColorDialog4(initial *QColor, parent *QWidget) *QColorDialog {
-
 	ret := newQColorDialog(C.QColorDialog_new4(initial.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -179,6 +177,7 @@ func QColorDialog_SetStandardColor(index int, color QColor) {
 func (this *QColorDialog) CurrentColorChanged(color *QColor) {
 	C.QColorDialog_CurrentColorChanged(this.h, color.cPointer())
 }
+
 func (this *QColorDialog) OnCurrentColorChanged(slot func(color *QColor)) {
 	C.QColorDialog_connect_CurrentColorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -199,6 +198,7 @@ func miqt_exec_callback_QColorDialog_CurrentColorChanged(cb C.intptr_t, color *C
 func (this *QColorDialog) ColorSelected(color *QColor) {
 	C.QColorDialog_ColorSelected(this.h, color.cPointer())
 }
+
 func (this *QColorDialog) OnColorSelected(slot func(color *QColor)) {
 	C.QColorDialog_connect_ColorSelected(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -275,10 +275,9 @@ func QColorDialog_GetColor4(initial *QColor, parent *QWidget, title string, opti
 }
 
 func (this *QColorDialog) callVirtualBase_SetVisible(visible bool) {
-
 	C.QColorDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
-
 }
+
 func (this *QColorDialog) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -297,14 +296,12 @@ func miqt_exec_callback_QColorDialog_SetVisible(self *C.QColorDialog, cb C.intpt
 	slotval1 := (bool)(visible)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_SetVisible, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_ChangeEvent(event *QEvent) {
-
 	C.QColorDialog_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QColorDialog) OnChangeEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -323,14 +320,12 @@ func miqt_exec_callback_QColorDialog_ChangeEvent(self *C.QColorDialog, cb C.intp
 	slotval1 := newQEvent(event)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_Done(result int) {
-
 	C.QColorDialog_virtualbase_Done(unsafe.Pointer(this.h), (C.int)(result))
-
 }
+
 func (this *QColorDialog) OnDone(slot func(super func(result int), result int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -349,16 +344,14 @@ func miqt_exec_callback_QColorDialog_Done(self *C.QColorDialog, cb C.intptr_t, r
 	slotval1 := (int)(result)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_Done, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QColorDialog_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QColorDialog) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -376,16 +369,14 @@ func miqt_exec_callback_QColorDialog_SizeHint(self *C.QColorDialog, cb C.intptr_
 	virtualReturn := gofunc((&QColorDialog{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QColorDialog) callVirtualBase_MinimumSizeHint() *QSize {
-
 	_goptr := newQSize(C.QColorDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QColorDialog) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -403,14 +394,12 @@ func miqt_exec_callback_QColorDialog_MinimumSizeHint(self *C.QColorDialog, cb C.
 	virtualReturn := gofunc((&QColorDialog{h: self}).callVirtualBase_MinimumSizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QColorDialog) callVirtualBase_Open() {
-
 	C.QColorDialog_virtualbase_Open(unsafe.Pointer(this.h))
-
 }
+
 func (this *QColorDialog) OnOpen(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -426,14 +415,12 @@ func miqt_exec_callback_QColorDialog_Open(self *C.QColorDialog, cb C.intptr_t) {
 	}
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_Open)
-
 }
 
 func (this *QColorDialog) callVirtualBase_Exec() int {
-
 	return (int)(C.QColorDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QColorDialog) OnExec(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -451,14 +438,12 @@ func miqt_exec_callback_QColorDialog_Exec(self *C.QColorDialog, cb C.intptr_t) C
 	virtualReturn := gofunc((&QColorDialog{h: self}).callVirtualBase_Exec)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QColorDialog) callVirtualBase_Accept() {
-
 	C.QColorDialog_virtualbase_Accept(unsafe.Pointer(this.h))
-
 }
+
 func (this *QColorDialog) OnAccept(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -474,14 +459,12 @@ func miqt_exec_callback_QColorDialog_Accept(self *C.QColorDialog, cb C.intptr_t)
 	}
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_Accept)
-
 }
 
 func (this *QColorDialog) callVirtualBase_Reject() {
-
 	C.QColorDialog_virtualbase_Reject(unsafe.Pointer(this.h))
-
 }
+
 func (this *QColorDialog) OnReject(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -497,14 +480,12 @@ func miqt_exec_callback_QColorDialog_Reject(self *C.QColorDialog, cb C.intptr_t)
 	}
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_Reject)
-
 }
 
 func (this *QColorDialog) callVirtualBase_KeyPressEvent(param1 *QKeyEvent) {
-
 	C.QColorDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QColorDialog) OnKeyPressEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -523,14 +504,12 @@ func miqt_exec_callback_QColorDialog_KeyPressEvent(self *C.QColorDialog, cb C.in
 	slotval1 := newQKeyEvent(param1)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_CloseEvent(param1 *QCloseEvent) {
-
 	C.QColorDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QColorDialog) OnCloseEvent(slot func(super func(param1 *QCloseEvent), param1 *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -549,14 +528,12 @@ func miqt_exec_callback_QColorDialog_CloseEvent(self *C.QColorDialog, cb C.intpt
 	slotval1 := newQCloseEvent(param1)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_CloseEvent, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_ShowEvent(param1 *QShowEvent) {
-
 	C.QColorDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QColorDialog) OnShowEvent(slot func(super func(param1 *QShowEvent), param1 *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -575,14 +552,12 @@ func miqt_exec_callback_QColorDialog_ShowEvent(self *C.QColorDialog, cb C.intptr
 	slotval1 := newQShowEvent(param1)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_ResizeEvent(param1 *QResizeEvent) {
-
 	C.QColorDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QColorDialog) OnResizeEvent(slot func(super func(param1 *QResizeEvent), param1 *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -601,14 +576,12 @@ func miqt_exec_callback_QColorDialog_ResizeEvent(self *C.QColorDialog, cb C.intp
 	slotval1 := newQResizeEvent(param1)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
-
 	C.QColorDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QColorDialog) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -627,14 +600,12 @@ func miqt_exec_callback_QColorDialog_ContextMenuEvent(self *C.QColorDialog, cb C
 	slotval1 := newQContextMenuEvent(param1)
 
 	gofunc((&QColorDialog{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QColorDialog) callVirtualBase_EventFilter(param1 *QObject, param2 *QEvent) bool {
-
 	return (bool)(C.QColorDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
 }
+
 func (this *QColorDialog) OnEventFilter(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -657,7 +628,6 @@ func miqt_exec_callback_QColorDialog_EventFilter(self *C.QColorDialog, cb C.intp
 	virtualReturn := gofunc((&QColorDialog{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

@@ -48,7 +48,6 @@ func UnsafeNewQSslEllipticCurve(h unsafe.Pointer) *QSslEllipticCurve {
 
 // NewQSslEllipticCurve constructs a new QSslEllipticCurve object.
 func NewQSslEllipticCurve() *QSslEllipticCurve {
-
 	ret := newQSslEllipticCurve(C.QSslEllipticCurve_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQSslEllipticCurve() *QSslEllipticCurve {
 
 // NewQSslEllipticCurve2 constructs a new QSslEllipticCurve object.
 func NewQSslEllipticCurve2(param1 *QSslEllipticCurve) *QSslEllipticCurve {
-
 	ret := newQSslEllipticCurve(C.QSslEllipticCurve_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

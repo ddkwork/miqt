@@ -18,7 +18,6 @@ func blocklist_MethodAllowed(m *CppMethod) bool {
 // astTransformBlocklist filters out methods using too-complex parameter types,
 // and entire classes that may be disallowed.
 func astTransformBlocklist(parsed *CppParsedHeader) {
-
 	// Whole-classes
 
 	j := 0

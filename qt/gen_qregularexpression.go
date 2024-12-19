@@ -80,7 +80,6 @@ func UnsafeNewQRegularExpression(h unsafe.Pointer) *QRegularExpression {
 
 // NewQRegularExpression constructs a new QRegularExpression object.
 func NewQRegularExpression() *QRegularExpression {
-
 	ret := newQRegularExpression(C.QRegularExpression_new())
 	ret.isSubclass = true
 	return ret
@@ -100,7 +99,6 @@ func NewQRegularExpression2(pattern string) *QRegularExpression {
 
 // NewQRegularExpression3 constructs a new QRegularExpression object.
 func NewQRegularExpression3(re *QRegularExpression) *QRegularExpression {
-
 	ret := newQRegularExpression(C.QRegularExpression_new3(re.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -355,7 +353,6 @@ func UnsafeNewQRegularExpressionMatch(h unsafe.Pointer) *QRegularExpressionMatch
 
 // NewQRegularExpressionMatch constructs a new QRegularExpressionMatch object.
 func NewQRegularExpressionMatch() *QRegularExpressionMatch {
-
 	ret := newQRegularExpressionMatch(C.QRegularExpressionMatch_new())
 	ret.isSubclass = true
 	return ret
@@ -363,7 +360,6 @@ func NewQRegularExpressionMatch() *QRegularExpressionMatch {
 
 // NewQRegularExpressionMatch2 constructs a new QRegularExpressionMatch object.
 func NewQRegularExpressionMatch2(match *QRegularExpressionMatch) *QRegularExpressionMatch {
-
 	ret := newQRegularExpressionMatch(C.QRegularExpressionMatch_new2(match.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -542,7 +538,6 @@ func UnsafeNewQRegularExpressionMatchIterator(h unsafe.Pointer) *QRegularExpress
 
 // NewQRegularExpressionMatchIterator constructs a new QRegularExpressionMatchIterator object.
 func NewQRegularExpressionMatchIterator() *QRegularExpressionMatchIterator {
-
 	ret := newQRegularExpressionMatchIterator(C.QRegularExpressionMatchIterator_new())
 	ret.isSubclass = true
 	return ret
@@ -550,7 +545,6 @@ func NewQRegularExpressionMatchIterator() *QRegularExpressionMatchIterator {
 
 // NewQRegularExpressionMatchIterator2 constructs a new QRegularExpressionMatchIterator object.
 func NewQRegularExpressionMatchIterator2(iterator *QRegularExpressionMatchIterator) *QRegularExpressionMatchIterator {
-
 	ret := newQRegularExpressionMatchIterator(C.QRegularExpressionMatchIterator_new2(iterator.cPointer()))
 	ret.isSubclass = true
 	return ret

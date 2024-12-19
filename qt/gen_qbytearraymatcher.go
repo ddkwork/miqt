@@ -48,7 +48,6 @@ func UnsafeNewQByteArrayMatcher(h unsafe.Pointer) *QByteArrayMatcher {
 
 // NewQByteArrayMatcher constructs a new QByteArrayMatcher object.
 func NewQByteArrayMatcher() *QByteArrayMatcher {
-
 	ret := newQByteArrayMatcher(C.QByteArrayMatcher_new())
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQByteArrayMatcher3(pattern string, length int) *QByteArrayMatcher {
 
 // NewQByteArrayMatcher4 constructs a new QByteArrayMatcher object.
 func NewQByteArrayMatcher4(other *QByteArrayMatcher) *QByteArrayMatcher {
-
 	ret := newQByteArrayMatcher(C.QByteArrayMatcher_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QMediaMetaData__Key int
@@ -82,7 +83,6 @@ func UnsafeNewQMediaMetaData(h unsafe.Pointer) *QMediaMetaData {
 
 // NewQMediaMetaData constructs a new QMediaMetaData object.
 func NewQMediaMetaData(param1 *QMediaMetaData) *QMediaMetaData {
-
 	ret := newQMediaMetaData(C.QMediaMetaData_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -90,7 +90,6 @@ func NewQMediaMetaData(param1 *QMediaMetaData) *QMediaMetaData {
 
 // NewQMediaMetaData2 constructs a new QMediaMetaData object.
 func NewQMediaMetaData2() *QMediaMetaData {
-
 	ret := newQMediaMetaData(C.QMediaMetaData_new2())
 	ret.isSubclass = true
 	return ret

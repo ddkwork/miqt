@@ -64,7 +64,6 @@ func UnsafeNewQWebEngineScript(h unsafe.Pointer) *QWebEngineScript {
 
 // NewQWebEngineScript constructs a new QWebEngineScript object.
 func NewQWebEngineScript() *QWebEngineScript {
-
 	ret := newQWebEngineScript(C.QWebEngineScript_new())
 	ret.isSubclass = true
 	return ret
@@ -72,7 +71,6 @@ func NewQWebEngineScript() *QWebEngineScript {
 
 // NewQWebEngineScript2 constructs a new QWebEngineScript object.
 func NewQWebEngineScript2(other *QWebEngineScript) *QWebEngineScript {
-
 	ret := newQWebEngineScript(C.QWebEngineScript_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -926,7 +926,6 @@ func UnsafeNewQLocale(h unsafe.Pointer) *QLocale {
 
 // NewQLocale constructs a new QLocale object.
 func NewQLocale() *QLocale {
-
 	ret := newQLocale(C.QLocale_new())
 	ret.isSubclass = true
 	return ret
@@ -946,7 +945,6 @@ func NewQLocale2(name string) *QLocale {
 
 // NewQLocale3 constructs a new QLocale object.
 func NewQLocale3(language QLocale__Language) *QLocale {
-
 	ret := newQLocale(C.QLocale_new3((C.int)(language)))
 	ret.isSubclass = true
 	return ret
@@ -954,7 +952,6 @@ func NewQLocale3(language QLocale__Language) *QLocale {
 
 // NewQLocale4 constructs a new QLocale object.
 func NewQLocale4(language QLocale__Language, script QLocale__Script, country QLocale__Country) *QLocale {
-
 	ret := newQLocale(C.QLocale_new4((C.int)(language), (C.int)(script), (C.int)(country)))
 	ret.isSubclass = true
 	return ret
@@ -962,7 +959,6 @@ func NewQLocale4(language QLocale__Language, script QLocale__Script, country QLo
 
 // NewQLocale5 constructs a new QLocale object.
 func NewQLocale5(other *QLocale) *QLocale {
-
 	ret := newQLocale(C.QLocale_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -970,7 +966,6 @@ func NewQLocale5(other *QLocale) *QLocale {
 
 // NewQLocale6 constructs a new QLocale object.
 func NewQLocale6(language QLocale__Language, country QLocale__Country) *QLocale {
-
 	ret := newQLocale(C.QLocale_new6((C.int)(language), (C.int)(country)))
 	ret.isSubclass = true
 	return ret

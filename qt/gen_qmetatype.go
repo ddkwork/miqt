@@ -182,7 +182,6 @@ func UnsafeNewQMetaType(h unsafe.Pointer) *QMetaType {
 
 // NewQMetaType constructs a new QMetaType object.
 func NewQMetaType() *QMetaType {
-
 	ret := newQMetaType(C.QMetaType_new())
 	ret.isSubclass = true
 	return ret
@@ -190,7 +189,6 @@ func NewQMetaType() *QMetaType {
 
 // NewQMetaType2 constructs a new QMetaType object.
 func NewQMetaType2(typeVal int) *QMetaType {
-
 	ret := newQMetaType(C.QMetaType_new2((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret

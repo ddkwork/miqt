@@ -595,7 +595,6 @@ func UnsafeNewQStyleOption(h unsafe.Pointer) *QStyleOption {
 
 // NewQStyleOption constructs a new QStyleOption object.
 func NewQStyleOption() *QStyleOption {
-
 	ret := newQStyleOption(C.QStyleOption_new())
 	ret.isSubclass = true
 	return ret
@@ -603,7 +602,6 @@ func NewQStyleOption() *QStyleOption {
 
 // NewQStyleOption2 constructs a new QStyleOption object.
 func NewQStyleOption2(other *QStyleOption) *QStyleOption {
-
 	ret := newQStyleOption(C.QStyleOption_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -611,7 +609,6 @@ func NewQStyleOption2(other *QStyleOption) *QStyleOption {
 
 // NewQStyleOption3 constructs a new QStyleOption object.
 func NewQStyleOption3(version int) *QStyleOption {
-
 	ret := newQStyleOption(C.QStyleOption_new3((C.int)(version)))
 	ret.isSubclass = true
 	return ret
@@ -619,7 +616,6 @@ func NewQStyleOption3(version int) *QStyleOption {
 
 // NewQStyleOption4 constructs a new QStyleOption object.
 func NewQStyleOption4(version int, typeVal int) *QStyleOption {
-
 	ret := newQStyleOption(C.QStyleOption_new4((C.int)(version), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -675,8 +671,10 @@ func newQStyleOptionFocusRect(h *C.QStyleOptionFocusRect) *QStyleOptionFocusRect
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionFocusRect_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionFocusRect{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionFocusRect{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionFocusRect constructs the type using only unsafe pointers.
@@ -686,7 +684,6 @@ func UnsafeNewQStyleOptionFocusRect(h unsafe.Pointer) *QStyleOptionFocusRect {
 
 // NewQStyleOptionFocusRect constructs a new QStyleOptionFocusRect object.
 func NewQStyleOptionFocusRect() *QStyleOptionFocusRect {
-
 	ret := newQStyleOptionFocusRect(C.QStyleOptionFocusRect_new())
 	ret.isSubclass = true
 	return ret
@@ -694,7 +691,6 @@ func NewQStyleOptionFocusRect() *QStyleOptionFocusRect {
 
 // NewQStyleOptionFocusRect2 constructs a new QStyleOptionFocusRect object.
 func NewQStyleOptionFocusRect2(other *QStyleOptionFocusRect) *QStyleOptionFocusRect {
-
 	ret := newQStyleOptionFocusRect(C.QStyleOptionFocusRect_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -742,8 +738,10 @@ func newQStyleOptionFrame(h *C.QStyleOptionFrame) *QStyleOptionFrame {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionFrame_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionFrame{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionFrame{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionFrame constructs the type using only unsafe pointers.
@@ -753,7 +751,6 @@ func UnsafeNewQStyleOptionFrame(h unsafe.Pointer) *QStyleOptionFrame {
 
 // NewQStyleOptionFrame constructs a new QStyleOptionFrame object.
 func NewQStyleOptionFrame() *QStyleOptionFrame {
-
 	ret := newQStyleOptionFrame(C.QStyleOptionFrame_new())
 	ret.isSubclass = true
 	return ret
@@ -761,7 +758,6 @@ func NewQStyleOptionFrame() *QStyleOptionFrame {
 
 // NewQStyleOptionFrame2 constructs a new QStyleOptionFrame object.
 func NewQStyleOptionFrame2(other *QStyleOptionFrame) *QStyleOptionFrame {
-
 	ret := newQStyleOptionFrame(C.QStyleOptionFrame_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -809,8 +805,10 @@ func newQStyleOptionTabWidgetFrame(h *C.QStyleOptionTabWidgetFrame) *QStyleOptio
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionTabWidgetFrame_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionTabWidgetFrame{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionTabWidgetFrame{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionTabWidgetFrame constructs the type using only unsafe pointers.
@@ -820,7 +818,6 @@ func UnsafeNewQStyleOptionTabWidgetFrame(h unsafe.Pointer) *QStyleOptionTabWidge
 
 // NewQStyleOptionTabWidgetFrame constructs a new QStyleOptionTabWidgetFrame object.
 func NewQStyleOptionTabWidgetFrame() *QStyleOptionTabWidgetFrame {
-
 	ret := newQStyleOptionTabWidgetFrame(C.QStyleOptionTabWidgetFrame_new())
 	ret.isSubclass = true
 	return ret
@@ -828,7 +825,6 @@ func NewQStyleOptionTabWidgetFrame() *QStyleOptionTabWidgetFrame {
 
 // NewQStyleOptionTabWidgetFrame2 constructs a new QStyleOptionTabWidgetFrame object.
 func NewQStyleOptionTabWidgetFrame2(other *QStyleOptionTabWidgetFrame) *QStyleOptionTabWidgetFrame {
-
 	ret := newQStyleOptionTabWidgetFrame(C.QStyleOptionTabWidgetFrame_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -876,8 +872,10 @@ func newQStyleOptionTabBarBase(h *C.QStyleOptionTabBarBase) *QStyleOptionTabBarB
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionTabBarBase_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionTabBarBase{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionTabBarBase{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionTabBarBase constructs the type using only unsafe pointers.
@@ -887,7 +885,6 @@ func UnsafeNewQStyleOptionTabBarBase(h unsafe.Pointer) *QStyleOptionTabBarBase {
 
 // NewQStyleOptionTabBarBase constructs a new QStyleOptionTabBarBase object.
 func NewQStyleOptionTabBarBase() *QStyleOptionTabBarBase {
-
 	ret := newQStyleOptionTabBarBase(C.QStyleOptionTabBarBase_new())
 	ret.isSubclass = true
 	return ret
@@ -895,7 +892,6 @@ func NewQStyleOptionTabBarBase() *QStyleOptionTabBarBase {
 
 // NewQStyleOptionTabBarBase2 constructs a new QStyleOptionTabBarBase object.
 func NewQStyleOptionTabBarBase2(other *QStyleOptionTabBarBase) *QStyleOptionTabBarBase {
-
 	ret := newQStyleOptionTabBarBase(C.QStyleOptionTabBarBase_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -943,8 +939,10 @@ func newQStyleOptionHeader(h *C.QStyleOptionHeader) *QStyleOptionHeader {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionHeader_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionHeader{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionHeader{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionHeader constructs the type using only unsafe pointers.
@@ -954,7 +952,6 @@ func UnsafeNewQStyleOptionHeader(h unsafe.Pointer) *QStyleOptionHeader {
 
 // NewQStyleOptionHeader constructs a new QStyleOptionHeader object.
 func NewQStyleOptionHeader() *QStyleOptionHeader {
-
 	ret := newQStyleOptionHeader(C.QStyleOptionHeader_new())
 	ret.isSubclass = true
 	return ret
@@ -962,7 +959,6 @@ func NewQStyleOptionHeader() *QStyleOptionHeader {
 
 // NewQStyleOptionHeader2 constructs a new QStyleOptionHeader object.
 func NewQStyleOptionHeader2(other *QStyleOptionHeader) *QStyleOptionHeader {
-
 	ret := newQStyleOptionHeader(C.QStyleOptionHeader_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1010,8 +1006,10 @@ func newQStyleOptionHeaderV2(h *C.QStyleOptionHeaderV2) *QStyleOptionHeaderV2 {
 	var outptr_QStyleOptionHeader *C.QStyleOptionHeader = nil
 	C.QStyleOptionHeaderV2_virtbase(h, &outptr_QStyleOptionHeader)
 
-	return &QStyleOptionHeaderV2{h: h,
-		QStyleOptionHeader: newQStyleOptionHeader(outptr_QStyleOptionHeader)}
+	return &QStyleOptionHeaderV2{
+		h:                  h,
+		QStyleOptionHeader: newQStyleOptionHeader(outptr_QStyleOptionHeader),
+	}
 }
 
 // UnsafeNewQStyleOptionHeaderV2 constructs the type using only unsafe pointers.
@@ -1021,7 +1019,6 @@ func UnsafeNewQStyleOptionHeaderV2(h unsafe.Pointer) *QStyleOptionHeaderV2 {
 
 // NewQStyleOptionHeaderV2 constructs a new QStyleOptionHeaderV2 object.
 func NewQStyleOptionHeaderV2() *QStyleOptionHeaderV2 {
-
 	ret := newQStyleOptionHeaderV2(C.QStyleOptionHeaderV2_new())
 	ret.isSubclass = true
 	return ret
@@ -1029,7 +1026,6 @@ func NewQStyleOptionHeaderV2() *QStyleOptionHeaderV2 {
 
 // NewQStyleOptionHeaderV22 constructs a new QStyleOptionHeaderV2 object.
 func NewQStyleOptionHeaderV22(other *QStyleOptionHeaderV2) *QStyleOptionHeaderV2 {
-
 	ret := newQStyleOptionHeaderV2(C.QStyleOptionHeaderV2_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1077,8 +1073,10 @@ func newQStyleOptionButton(h *C.QStyleOptionButton) *QStyleOptionButton {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionButton_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionButton{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionButton{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionButton constructs the type using only unsafe pointers.
@@ -1088,7 +1086,6 @@ func UnsafeNewQStyleOptionButton(h unsafe.Pointer) *QStyleOptionButton {
 
 // NewQStyleOptionButton constructs a new QStyleOptionButton object.
 func NewQStyleOptionButton() *QStyleOptionButton {
-
 	ret := newQStyleOptionButton(C.QStyleOptionButton_new())
 	ret.isSubclass = true
 	return ret
@@ -1096,7 +1093,6 @@ func NewQStyleOptionButton() *QStyleOptionButton {
 
 // NewQStyleOptionButton2 constructs a new QStyleOptionButton object.
 func NewQStyleOptionButton2(other *QStyleOptionButton) *QStyleOptionButton {
-
 	ret := newQStyleOptionButton(C.QStyleOptionButton_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1144,8 +1140,10 @@ func newQStyleOptionTab(h *C.QStyleOptionTab) *QStyleOptionTab {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionTab_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionTab{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionTab{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionTab constructs the type using only unsafe pointers.
@@ -1155,7 +1153,6 @@ func UnsafeNewQStyleOptionTab(h unsafe.Pointer) *QStyleOptionTab {
 
 // NewQStyleOptionTab constructs a new QStyleOptionTab object.
 func NewQStyleOptionTab() *QStyleOptionTab {
-
 	ret := newQStyleOptionTab(C.QStyleOptionTab_new())
 	ret.isSubclass = true
 	return ret
@@ -1163,7 +1160,6 @@ func NewQStyleOptionTab() *QStyleOptionTab {
 
 // NewQStyleOptionTab2 constructs a new QStyleOptionTab object.
 func NewQStyleOptionTab2(other *QStyleOptionTab) *QStyleOptionTab {
-
 	ret := newQStyleOptionTab(C.QStyleOptionTab_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1211,8 +1207,10 @@ func newQStyleOptionToolBar(h *C.QStyleOptionToolBar) *QStyleOptionToolBar {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionToolBar_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionToolBar{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionToolBar{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionToolBar constructs the type using only unsafe pointers.
@@ -1222,7 +1220,6 @@ func UnsafeNewQStyleOptionToolBar(h unsafe.Pointer) *QStyleOptionToolBar {
 
 // NewQStyleOptionToolBar constructs a new QStyleOptionToolBar object.
 func NewQStyleOptionToolBar() *QStyleOptionToolBar {
-
 	ret := newQStyleOptionToolBar(C.QStyleOptionToolBar_new())
 	ret.isSubclass = true
 	return ret
@@ -1230,7 +1227,6 @@ func NewQStyleOptionToolBar() *QStyleOptionToolBar {
 
 // NewQStyleOptionToolBar2 constructs a new QStyleOptionToolBar object.
 func NewQStyleOptionToolBar2(other *QStyleOptionToolBar) *QStyleOptionToolBar {
-
 	ret := newQStyleOptionToolBar(C.QStyleOptionToolBar_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1278,8 +1274,10 @@ func newQStyleOptionProgressBar(h *C.QStyleOptionProgressBar) *QStyleOptionProgr
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionProgressBar_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionProgressBar{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionProgressBar{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionProgressBar constructs the type using only unsafe pointers.
@@ -1289,7 +1287,6 @@ func UnsafeNewQStyleOptionProgressBar(h unsafe.Pointer) *QStyleOptionProgressBar
 
 // NewQStyleOptionProgressBar constructs a new QStyleOptionProgressBar object.
 func NewQStyleOptionProgressBar() *QStyleOptionProgressBar {
-
 	ret := newQStyleOptionProgressBar(C.QStyleOptionProgressBar_new())
 	ret.isSubclass = true
 	return ret
@@ -1297,7 +1294,6 @@ func NewQStyleOptionProgressBar() *QStyleOptionProgressBar {
 
 // NewQStyleOptionProgressBar2 constructs a new QStyleOptionProgressBar object.
 func NewQStyleOptionProgressBar2(other *QStyleOptionProgressBar) *QStyleOptionProgressBar {
-
 	ret := newQStyleOptionProgressBar(C.QStyleOptionProgressBar_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1345,8 +1341,10 @@ func newQStyleOptionMenuItem(h *C.QStyleOptionMenuItem) *QStyleOptionMenuItem {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionMenuItem_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionMenuItem{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionMenuItem{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionMenuItem constructs the type using only unsafe pointers.
@@ -1356,7 +1354,6 @@ func UnsafeNewQStyleOptionMenuItem(h unsafe.Pointer) *QStyleOptionMenuItem {
 
 // NewQStyleOptionMenuItem constructs a new QStyleOptionMenuItem object.
 func NewQStyleOptionMenuItem() *QStyleOptionMenuItem {
-
 	ret := newQStyleOptionMenuItem(C.QStyleOptionMenuItem_new())
 	ret.isSubclass = true
 	return ret
@@ -1364,7 +1361,6 @@ func NewQStyleOptionMenuItem() *QStyleOptionMenuItem {
 
 // NewQStyleOptionMenuItem2 constructs a new QStyleOptionMenuItem object.
 func NewQStyleOptionMenuItem2(other *QStyleOptionMenuItem) *QStyleOptionMenuItem {
-
 	ret := newQStyleOptionMenuItem(C.QStyleOptionMenuItem_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1412,8 +1408,10 @@ func newQStyleOptionDockWidget(h *C.QStyleOptionDockWidget) *QStyleOptionDockWid
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionDockWidget_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionDockWidget{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionDockWidget{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionDockWidget constructs the type using only unsafe pointers.
@@ -1423,7 +1421,6 @@ func UnsafeNewQStyleOptionDockWidget(h unsafe.Pointer) *QStyleOptionDockWidget {
 
 // NewQStyleOptionDockWidget constructs a new QStyleOptionDockWidget object.
 func NewQStyleOptionDockWidget() *QStyleOptionDockWidget {
-
 	ret := newQStyleOptionDockWidget(C.QStyleOptionDockWidget_new())
 	ret.isSubclass = true
 	return ret
@@ -1431,7 +1428,6 @@ func NewQStyleOptionDockWidget() *QStyleOptionDockWidget {
 
 // NewQStyleOptionDockWidget2 constructs a new QStyleOptionDockWidget object.
 func NewQStyleOptionDockWidget2(other *QStyleOptionDockWidget) *QStyleOptionDockWidget {
-
 	ret := newQStyleOptionDockWidget(C.QStyleOptionDockWidget_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1479,8 +1475,10 @@ func newQStyleOptionViewItem(h *C.QStyleOptionViewItem) *QStyleOptionViewItem {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionViewItem_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionViewItem{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionViewItem{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionViewItem constructs the type using only unsafe pointers.
@@ -1490,7 +1488,6 @@ func UnsafeNewQStyleOptionViewItem(h unsafe.Pointer) *QStyleOptionViewItem {
 
 // NewQStyleOptionViewItem constructs a new QStyleOptionViewItem object.
 func NewQStyleOptionViewItem() *QStyleOptionViewItem {
-
 	ret := newQStyleOptionViewItem(C.QStyleOptionViewItem_new())
 	ret.isSubclass = true
 	return ret
@@ -1498,7 +1495,6 @@ func NewQStyleOptionViewItem() *QStyleOptionViewItem {
 
 // NewQStyleOptionViewItem2 constructs a new QStyleOptionViewItem object.
 func NewQStyleOptionViewItem2(other *QStyleOptionViewItem) *QStyleOptionViewItem {
-
 	ret := newQStyleOptionViewItem(C.QStyleOptionViewItem_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1546,8 +1542,10 @@ func newQStyleOptionToolBox(h *C.QStyleOptionToolBox) *QStyleOptionToolBox {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionToolBox_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionToolBox{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionToolBox{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionToolBox constructs the type using only unsafe pointers.
@@ -1557,7 +1555,6 @@ func UnsafeNewQStyleOptionToolBox(h unsafe.Pointer) *QStyleOptionToolBox {
 
 // NewQStyleOptionToolBox constructs a new QStyleOptionToolBox object.
 func NewQStyleOptionToolBox() *QStyleOptionToolBox {
-
 	ret := newQStyleOptionToolBox(C.QStyleOptionToolBox_new())
 	ret.isSubclass = true
 	return ret
@@ -1565,7 +1562,6 @@ func NewQStyleOptionToolBox() *QStyleOptionToolBox {
 
 // NewQStyleOptionToolBox2 constructs a new QStyleOptionToolBox object.
 func NewQStyleOptionToolBox2(other *QStyleOptionToolBox) *QStyleOptionToolBox {
-
 	ret := newQStyleOptionToolBox(C.QStyleOptionToolBox_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1613,8 +1609,10 @@ func newQStyleOptionRubberBand(h *C.QStyleOptionRubberBand) *QStyleOptionRubberB
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionRubberBand_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionRubberBand{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionRubberBand{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionRubberBand constructs the type using only unsafe pointers.
@@ -1624,7 +1622,6 @@ func UnsafeNewQStyleOptionRubberBand(h unsafe.Pointer) *QStyleOptionRubberBand {
 
 // NewQStyleOptionRubberBand constructs a new QStyleOptionRubberBand object.
 func NewQStyleOptionRubberBand() *QStyleOptionRubberBand {
-
 	ret := newQStyleOptionRubberBand(C.QStyleOptionRubberBand_new())
 	ret.isSubclass = true
 	return ret
@@ -1632,7 +1629,6 @@ func NewQStyleOptionRubberBand() *QStyleOptionRubberBand {
 
 // NewQStyleOptionRubberBand2 constructs a new QStyleOptionRubberBand object.
 func NewQStyleOptionRubberBand2(other *QStyleOptionRubberBand) *QStyleOptionRubberBand {
-
 	ret := newQStyleOptionRubberBand(C.QStyleOptionRubberBand_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1680,8 +1676,10 @@ func newQStyleOptionComplex(h *C.QStyleOptionComplex) *QStyleOptionComplex {
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionComplex_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionComplex{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionComplex{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionComplex constructs the type using only unsafe pointers.
@@ -1691,7 +1689,6 @@ func UnsafeNewQStyleOptionComplex(h unsafe.Pointer) *QStyleOptionComplex {
 
 // NewQStyleOptionComplex constructs a new QStyleOptionComplex object.
 func NewQStyleOptionComplex() *QStyleOptionComplex {
-
 	ret := newQStyleOptionComplex(C.QStyleOptionComplex_new())
 	ret.isSubclass = true
 	return ret
@@ -1699,7 +1696,6 @@ func NewQStyleOptionComplex() *QStyleOptionComplex {
 
 // NewQStyleOptionComplex2 constructs a new QStyleOptionComplex object.
 func NewQStyleOptionComplex2(other *QStyleOptionComplex) *QStyleOptionComplex {
-
 	ret := newQStyleOptionComplex(C.QStyleOptionComplex_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1707,7 +1703,6 @@ func NewQStyleOptionComplex2(other *QStyleOptionComplex) *QStyleOptionComplex {
 
 // NewQStyleOptionComplex3 constructs a new QStyleOptionComplex object.
 func NewQStyleOptionComplex3(version int) *QStyleOptionComplex {
-
 	ret := newQStyleOptionComplex(C.QStyleOptionComplex_new3((C.int)(version)))
 	ret.isSubclass = true
 	return ret
@@ -1715,7 +1710,6 @@ func NewQStyleOptionComplex3(version int) *QStyleOptionComplex {
 
 // NewQStyleOptionComplex4 constructs a new QStyleOptionComplex object.
 func NewQStyleOptionComplex4(version int, typeVal int) *QStyleOptionComplex {
-
 	ret := newQStyleOptionComplex(C.QStyleOptionComplex_new4((C.int)(version), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -1763,8 +1757,10 @@ func newQStyleOptionSlider(h *C.QStyleOptionSlider) *QStyleOptionSlider {
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionSlider_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionSlider{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionSlider{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionSlider constructs the type using only unsafe pointers.
@@ -1774,7 +1770,6 @@ func UnsafeNewQStyleOptionSlider(h unsafe.Pointer) *QStyleOptionSlider {
 
 // NewQStyleOptionSlider constructs a new QStyleOptionSlider object.
 func NewQStyleOptionSlider() *QStyleOptionSlider {
-
 	ret := newQStyleOptionSlider(C.QStyleOptionSlider_new())
 	ret.isSubclass = true
 	return ret
@@ -1782,7 +1777,6 @@ func NewQStyleOptionSlider() *QStyleOptionSlider {
 
 // NewQStyleOptionSlider2 constructs a new QStyleOptionSlider object.
 func NewQStyleOptionSlider2(other *QStyleOptionSlider) *QStyleOptionSlider {
-
 	ret := newQStyleOptionSlider(C.QStyleOptionSlider_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1830,8 +1824,10 @@ func newQStyleOptionSpinBox(h *C.QStyleOptionSpinBox) *QStyleOptionSpinBox {
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionSpinBox_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionSpinBox{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionSpinBox{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionSpinBox constructs the type using only unsafe pointers.
@@ -1841,7 +1837,6 @@ func UnsafeNewQStyleOptionSpinBox(h unsafe.Pointer) *QStyleOptionSpinBox {
 
 // NewQStyleOptionSpinBox constructs a new QStyleOptionSpinBox object.
 func NewQStyleOptionSpinBox() *QStyleOptionSpinBox {
-
 	ret := newQStyleOptionSpinBox(C.QStyleOptionSpinBox_new())
 	ret.isSubclass = true
 	return ret
@@ -1849,7 +1844,6 @@ func NewQStyleOptionSpinBox() *QStyleOptionSpinBox {
 
 // NewQStyleOptionSpinBox2 constructs a new QStyleOptionSpinBox object.
 func NewQStyleOptionSpinBox2(other *QStyleOptionSpinBox) *QStyleOptionSpinBox {
-
 	ret := newQStyleOptionSpinBox(C.QStyleOptionSpinBox_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1897,8 +1891,10 @@ func newQStyleOptionToolButton(h *C.QStyleOptionToolButton) *QStyleOptionToolBut
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionToolButton_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionToolButton{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionToolButton{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionToolButton constructs the type using only unsafe pointers.
@@ -1908,7 +1904,6 @@ func UnsafeNewQStyleOptionToolButton(h unsafe.Pointer) *QStyleOptionToolButton {
 
 // NewQStyleOptionToolButton constructs a new QStyleOptionToolButton object.
 func NewQStyleOptionToolButton() *QStyleOptionToolButton {
-
 	ret := newQStyleOptionToolButton(C.QStyleOptionToolButton_new())
 	ret.isSubclass = true
 	return ret
@@ -1916,7 +1911,6 @@ func NewQStyleOptionToolButton() *QStyleOptionToolButton {
 
 // NewQStyleOptionToolButton2 constructs a new QStyleOptionToolButton object.
 func NewQStyleOptionToolButton2(other *QStyleOptionToolButton) *QStyleOptionToolButton {
-
 	ret := newQStyleOptionToolButton(C.QStyleOptionToolButton_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1964,8 +1958,10 @@ func newQStyleOptionComboBox(h *C.QStyleOptionComboBox) *QStyleOptionComboBox {
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionComboBox_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionComboBox{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionComboBox{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionComboBox constructs the type using only unsafe pointers.
@@ -1975,7 +1971,6 @@ func UnsafeNewQStyleOptionComboBox(h unsafe.Pointer) *QStyleOptionComboBox {
 
 // NewQStyleOptionComboBox constructs a new QStyleOptionComboBox object.
 func NewQStyleOptionComboBox() *QStyleOptionComboBox {
-
 	ret := newQStyleOptionComboBox(C.QStyleOptionComboBox_new())
 	ret.isSubclass = true
 	return ret
@@ -1983,7 +1978,6 @@ func NewQStyleOptionComboBox() *QStyleOptionComboBox {
 
 // NewQStyleOptionComboBox2 constructs a new QStyleOptionComboBox object.
 func NewQStyleOptionComboBox2(other *QStyleOptionComboBox) *QStyleOptionComboBox {
-
 	ret := newQStyleOptionComboBox(C.QStyleOptionComboBox_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2031,8 +2025,10 @@ func newQStyleOptionTitleBar(h *C.QStyleOptionTitleBar) *QStyleOptionTitleBar {
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionTitleBar_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionTitleBar{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionTitleBar{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionTitleBar constructs the type using only unsafe pointers.
@@ -2042,7 +2038,6 @@ func UnsafeNewQStyleOptionTitleBar(h unsafe.Pointer) *QStyleOptionTitleBar {
 
 // NewQStyleOptionTitleBar constructs a new QStyleOptionTitleBar object.
 func NewQStyleOptionTitleBar() *QStyleOptionTitleBar {
-
 	ret := newQStyleOptionTitleBar(C.QStyleOptionTitleBar_new())
 	ret.isSubclass = true
 	return ret
@@ -2050,7 +2045,6 @@ func NewQStyleOptionTitleBar() *QStyleOptionTitleBar {
 
 // NewQStyleOptionTitleBar2 constructs a new QStyleOptionTitleBar object.
 func NewQStyleOptionTitleBar2(other *QStyleOptionTitleBar) *QStyleOptionTitleBar {
-
 	ret := newQStyleOptionTitleBar(C.QStyleOptionTitleBar_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2098,8 +2092,10 @@ func newQStyleOptionGroupBox(h *C.QStyleOptionGroupBox) *QStyleOptionGroupBox {
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionGroupBox_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionGroupBox{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionGroupBox{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionGroupBox constructs the type using only unsafe pointers.
@@ -2109,7 +2105,6 @@ func UnsafeNewQStyleOptionGroupBox(h unsafe.Pointer) *QStyleOptionGroupBox {
 
 // NewQStyleOptionGroupBox constructs a new QStyleOptionGroupBox object.
 func NewQStyleOptionGroupBox() *QStyleOptionGroupBox {
-
 	ret := newQStyleOptionGroupBox(C.QStyleOptionGroupBox_new())
 	ret.isSubclass = true
 	return ret
@@ -2117,7 +2112,6 @@ func NewQStyleOptionGroupBox() *QStyleOptionGroupBox {
 
 // NewQStyleOptionGroupBox2 constructs a new QStyleOptionGroupBox object.
 func NewQStyleOptionGroupBox2(other *QStyleOptionGroupBox) *QStyleOptionGroupBox {
-
 	ret := newQStyleOptionGroupBox(C.QStyleOptionGroupBox_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2165,8 +2159,10 @@ func newQStyleOptionSizeGrip(h *C.QStyleOptionSizeGrip) *QStyleOptionSizeGrip {
 	var outptr_QStyleOptionComplex *C.QStyleOptionComplex = nil
 	C.QStyleOptionSizeGrip_virtbase(h, &outptr_QStyleOptionComplex)
 
-	return &QStyleOptionSizeGrip{h: h,
-		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex)}
+	return &QStyleOptionSizeGrip{
+		h:                   h,
+		QStyleOptionComplex: newQStyleOptionComplex(outptr_QStyleOptionComplex),
+	}
 }
 
 // UnsafeNewQStyleOptionSizeGrip constructs the type using only unsafe pointers.
@@ -2176,7 +2172,6 @@ func UnsafeNewQStyleOptionSizeGrip(h unsafe.Pointer) *QStyleOptionSizeGrip {
 
 // NewQStyleOptionSizeGrip constructs a new QStyleOptionSizeGrip object.
 func NewQStyleOptionSizeGrip() *QStyleOptionSizeGrip {
-
 	ret := newQStyleOptionSizeGrip(C.QStyleOptionSizeGrip_new())
 	ret.isSubclass = true
 	return ret
@@ -2184,7 +2179,6 @@ func NewQStyleOptionSizeGrip() *QStyleOptionSizeGrip {
 
 // NewQStyleOptionSizeGrip2 constructs a new QStyleOptionSizeGrip object.
 func NewQStyleOptionSizeGrip2(other *QStyleOptionSizeGrip) *QStyleOptionSizeGrip {
-
 	ret := newQStyleOptionSizeGrip(C.QStyleOptionSizeGrip_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2232,8 +2226,10 @@ func newQStyleOptionGraphicsItem(h *C.QStyleOptionGraphicsItem) *QStyleOptionGra
 	var outptr_QStyleOption *C.QStyleOption = nil
 	C.QStyleOptionGraphicsItem_virtbase(h, &outptr_QStyleOption)
 
-	return &QStyleOptionGraphicsItem{h: h,
-		QStyleOption: newQStyleOption(outptr_QStyleOption)}
+	return &QStyleOptionGraphicsItem{
+		h:            h,
+		QStyleOption: newQStyleOption(outptr_QStyleOption),
+	}
 }
 
 // UnsafeNewQStyleOptionGraphicsItem constructs the type using only unsafe pointers.
@@ -2243,7 +2239,6 @@ func UnsafeNewQStyleOptionGraphicsItem(h unsafe.Pointer) *QStyleOptionGraphicsIt
 
 // NewQStyleOptionGraphicsItem constructs a new QStyleOptionGraphicsItem object.
 func NewQStyleOptionGraphicsItem() *QStyleOptionGraphicsItem {
-
 	ret := newQStyleOptionGraphicsItem(C.QStyleOptionGraphicsItem_new())
 	ret.isSubclass = true
 	return ret
@@ -2251,7 +2246,6 @@ func NewQStyleOptionGraphicsItem() *QStyleOptionGraphicsItem {
 
 // NewQStyleOptionGraphicsItem2 constructs a new QStyleOptionGraphicsItem object.
 func NewQStyleOptionGraphicsItem2(other *QStyleOptionGraphicsItem) *QStyleOptionGraphicsItem {
-
 	ret := newQStyleOptionGraphicsItem(C.QStyleOptionGraphicsItem_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2310,7 +2304,6 @@ func UnsafeNewQStyleHintReturn(h unsafe.Pointer) *QStyleHintReturn {
 
 // NewQStyleHintReturn constructs a new QStyleHintReturn object.
 func NewQStyleHintReturn() *QStyleHintReturn {
-
 	ret := newQStyleHintReturn(C.QStyleHintReturn_new())
 	ret.isSubclass = true
 	return ret
@@ -2318,7 +2311,6 @@ func NewQStyleHintReturn() *QStyleHintReturn {
 
 // NewQStyleHintReturn2 constructs a new QStyleHintReturn object.
 func NewQStyleHintReturn2(param1 *QStyleHintReturn) *QStyleHintReturn {
-
 	ret := newQStyleHintReturn(C.QStyleHintReturn_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2326,7 +2318,6 @@ func NewQStyleHintReturn2(param1 *QStyleHintReturn) *QStyleHintReturn {
 
 // NewQStyleHintReturn3 constructs a new QStyleHintReturn object.
 func NewQStyleHintReturn3(version int) *QStyleHintReturn {
-
 	ret := newQStyleHintReturn(C.QStyleHintReturn_new3((C.int)(version)))
 	ret.isSubclass = true
 	return ret
@@ -2334,7 +2325,6 @@ func NewQStyleHintReturn3(version int) *QStyleHintReturn {
 
 // NewQStyleHintReturn4 constructs a new QStyleHintReturn object.
 func NewQStyleHintReturn4(version int, typeVal int) *QStyleHintReturn {
-
 	ret := newQStyleHintReturn(C.QStyleHintReturn_new4((C.int)(version), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -2386,8 +2376,10 @@ func newQStyleHintReturnMask(h *C.QStyleHintReturnMask) *QStyleHintReturnMask {
 	var outptr_QStyleHintReturn *C.QStyleHintReturn = nil
 	C.QStyleHintReturnMask_virtbase(h, &outptr_QStyleHintReturn)
 
-	return &QStyleHintReturnMask{h: h,
-		QStyleHintReturn: newQStyleHintReturn(outptr_QStyleHintReturn)}
+	return &QStyleHintReturnMask{
+		h:                h,
+		QStyleHintReturn: newQStyleHintReturn(outptr_QStyleHintReturn),
+	}
 }
 
 // UnsafeNewQStyleHintReturnMask constructs the type using only unsafe pointers.
@@ -2397,7 +2389,6 @@ func UnsafeNewQStyleHintReturnMask(h unsafe.Pointer) *QStyleHintReturnMask {
 
 // NewQStyleHintReturnMask constructs a new QStyleHintReturnMask object.
 func NewQStyleHintReturnMask() *QStyleHintReturnMask {
-
 	ret := newQStyleHintReturnMask(C.QStyleHintReturnMask_new())
 	ret.isSubclass = true
 	return ret
@@ -2405,7 +2396,6 @@ func NewQStyleHintReturnMask() *QStyleHintReturnMask {
 
 // NewQStyleHintReturnMask2 constructs a new QStyleHintReturnMask object.
 func NewQStyleHintReturnMask2(param1 *QStyleHintReturnMask) *QStyleHintReturnMask {
-
 	ret := newQStyleHintReturnMask(C.QStyleHintReturnMask_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2457,8 +2447,10 @@ func newQStyleHintReturnVariant(h *C.QStyleHintReturnVariant) *QStyleHintReturnV
 	var outptr_QStyleHintReturn *C.QStyleHintReturn = nil
 	C.QStyleHintReturnVariant_virtbase(h, &outptr_QStyleHintReturn)
 
-	return &QStyleHintReturnVariant{h: h,
-		QStyleHintReturn: newQStyleHintReturn(outptr_QStyleHintReturn)}
+	return &QStyleHintReturnVariant{
+		h:                h,
+		QStyleHintReturn: newQStyleHintReturn(outptr_QStyleHintReturn),
+	}
 }
 
 // UnsafeNewQStyleHintReturnVariant constructs the type using only unsafe pointers.
@@ -2468,7 +2460,6 @@ func UnsafeNewQStyleHintReturnVariant(h unsafe.Pointer) *QStyleHintReturnVariant
 
 // NewQStyleHintReturnVariant constructs a new QStyleHintReturnVariant object.
 func NewQStyleHintReturnVariant() *QStyleHintReturnVariant {
-
 	ret := newQStyleHintReturnVariant(C.QStyleHintReturnVariant_new())
 	ret.isSubclass = true
 	return ret
@@ -2476,7 +2467,6 @@ func NewQStyleHintReturnVariant() *QStyleHintReturnVariant {
 
 // NewQStyleHintReturnVariant2 constructs a new QStyleHintReturnVariant object.
 func NewQStyleHintReturnVariant2(param1 *QStyleHintReturnVariant) *QStyleHintReturnVariant {
-
 	ret := newQStyleHintReturnVariant(C.QStyleHintReturnVariant_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

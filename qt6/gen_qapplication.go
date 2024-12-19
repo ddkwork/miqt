@@ -42,8 +42,10 @@ func newQApplication(h *C.QApplication) *QApplication {
 	var outptr_QGuiApplication *C.QGuiApplication = nil
 	C.QApplication_virtbase(h, &outptr_QGuiApplication)
 
-	return &QApplication{h: h,
-		QGuiApplication: newQGuiApplication(outptr_QGuiApplication)}
+	return &QApplication{
+		h:               h,
+		QGuiApplication: newQGuiApplication(outptr_QGuiApplication),
+	}
 }
 
 // UnsafeNewQApplication constructs the type using only unsafe pointers.
@@ -299,6 +301,7 @@ func (this *QApplication) Notify(param1 *QObject, param2 *QEvent) bool {
 func (this *QApplication) FocusChanged(old *QWidget, now *QWidget) {
 	C.QApplication_FocusChanged(this.h, old.cPointer(), now.cPointer())
 }
+
 func (this *QApplication) OnFocusChanged(slot func(old *QWidget, now *QWidget)) {
 	C.QApplication_connect_FocusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -392,10 +395,9 @@ func QApplication_SetEffectEnabled2(param1 UIEffect, enable bool) {
 }
 
 func (this *QApplication) callVirtualBase_Notify(param1 *QObject, param2 *QEvent) bool {
-
 	return (bool)(C.QApplication_virtualbase_Notify(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
 }
+
 func (this *QApplication) OnNotify(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -418,14 +420,12 @@ func miqt_exec_callback_QApplication_Notify(self *C.QApplication, cb C.intptr_t,
 	virtualReturn := gofunc((&QApplication{h: self}).callVirtualBase_Notify, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QApplication) callVirtualBase_Event(param1 *QEvent) bool {
-
 	return (bool)(C.QApplication_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QApplication) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -446,7 +446,6 @@ func miqt_exec_callback_QApplication_Event(self *C.QApplication, cb C.intptr_t, 
 	virtualReturn := gofunc((&QApplication{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

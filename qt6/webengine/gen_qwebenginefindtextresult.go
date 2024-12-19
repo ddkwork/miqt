@@ -48,7 +48,6 @@ func UnsafeNewQWebEngineFindTextResult(h unsafe.Pointer) *QWebEngineFindTextResu
 
 // NewQWebEngineFindTextResult constructs a new QWebEngineFindTextResult object.
 func NewQWebEngineFindTextResult() *QWebEngineFindTextResult {
-
 	ret := newQWebEngineFindTextResult(C.QWebEngineFindTextResult_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQWebEngineFindTextResult() *QWebEngineFindTextResult {
 
 // NewQWebEngineFindTextResult2 constructs a new QWebEngineFindTextResult object.
 func NewQWebEngineFindTextResult2(other *QWebEngineFindTextResult) *QWebEngineFindTextResult {
-
 	ret := newQWebEngineFindTextResult(C.QWebEngineFindTextResult_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

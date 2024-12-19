@@ -165,7 +165,6 @@ func UnsafeNewQPixmapCache__Key(h unsafe.Pointer) *QPixmapCache__Key {
 
 // NewQPixmapCache__Key constructs a new QPixmapCache::Key object.
 func NewQPixmapCache__Key() *QPixmapCache__Key {
-
 	ret := newQPixmapCache__Key(C.QPixmapCache__Key_new())
 	ret.isSubclass = true
 	return ret
@@ -173,7 +172,6 @@ func NewQPixmapCache__Key() *QPixmapCache__Key {
 
 // NewQPixmapCache__Key2 constructs a new QPixmapCache::Key object.
 func NewQPixmapCache__Key2(other *QPixmapCache__Key) *QPixmapCache__Key {
-
 	ret := newQPixmapCache__Key(C.QPixmapCache__Key_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

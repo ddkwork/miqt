@@ -55,7 +55,6 @@ func UnsafeNewQReadWriteLock(h unsafe.Pointer) *QReadWriteLock {
 
 // NewQReadWriteLock constructs a new QReadWriteLock object.
 func NewQReadWriteLock() *QReadWriteLock {
-
 	ret := newQReadWriteLock(C.QReadWriteLock_new())
 	ret.isSubclass = true
 	return ret
@@ -63,7 +62,6 @@ func NewQReadWriteLock() *QReadWriteLock {
 
 // NewQReadWriteLock2 constructs a new QReadWriteLock object.
 func NewQReadWriteLock2(recursionMode QReadWriteLock__RecursionMode) *QReadWriteLock {
-
 	ret := newQReadWriteLock(C.QReadWriteLock_new2((C.int)(recursionMode)))
 	ret.isSubclass = true
 	return ret
@@ -146,7 +144,6 @@ func UnsafeNewQReadLocker(h unsafe.Pointer) *QReadLocker {
 
 // NewQReadLocker constructs a new QReadLocker object.
 func NewQReadLocker(readWriteLock *QReadWriteLock) *QReadLocker {
-
 	ret := newQReadLocker(C.QReadLocker_new(readWriteLock.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -213,7 +210,6 @@ func UnsafeNewQWriteLocker(h unsafe.Pointer) *QWriteLocker {
 
 // NewQWriteLocker constructs a new QWriteLocker object.
 func NewQWriteLocker(readWriteLock *QReadWriteLock) *QWriteLocker {
-
 	ret := newQWriteLocker(C.QWriteLocker_new(readWriteLock.cPointer()))
 	ret.isSubclass = true
 	return ret

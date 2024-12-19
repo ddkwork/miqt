@@ -62,7 +62,6 @@ func UnsafeNewQGestureRecognizer(h unsafe.Pointer) *QGestureRecognizer {
 
 // NewQGestureRecognizer constructs a new QGestureRecognizer object.
 func NewQGestureRecognizer() *QGestureRecognizer {
-
 	ret := newQGestureRecognizer(C.QGestureRecognizer_new())
 	ret.isSubclass = true
 	return ret
@@ -93,10 +92,9 @@ func (this *QGestureRecognizer) OperatorAssign(param1 *QGestureRecognizer) {
 }
 
 func (this *QGestureRecognizer) callVirtualBase_Create(target *QObject) *QGesture {
-
 	return newQGesture(C.QGestureRecognizer_virtualbase_Create(unsafe.Pointer(this.h), target.cPointer()))
-
 }
+
 func (this *QGestureRecognizer) OnCreate(slot func(super func(target *QObject) *QGesture, target *QObject) *QGesture) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -117,8 +115,8 @@ func miqt_exec_callback_QGestureRecognizer_Create(self *C.QGestureRecognizer, cb
 	virtualReturn := gofunc((&QGestureRecognizer{h: self}).callVirtualBase_Create, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
+
 func (this *QGestureRecognizer) OnRecognize(slot func(state *QGesture, watched *QObject, event *QEvent) QGestureRecognizer__ResultFlag) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -143,14 +141,12 @@ func miqt_exec_callback_QGestureRecognizer_Recognize(self *C.QGestureRecognizer,
 	virtualReturn := gofunc(slotval1, slotval2, slotval3)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QGestureRecognizer) callVirtualBase_Reset(state *QGesture) {
-
 	C.QGestureRecognizer_virtualbase_Reset(unsafe.Pointer(this.h), state.cPointer())
-
 }
+
 func (this *QGestureRecognizer) OnReset(slot func(super func(state *QGesture), state *QGesture)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -169,7 +165,6 @@ func miqt_exec_callback_QGestureRecognizer_Reset(self *C.QGestureRecognizer, cb 
 	slotval1 := newQGesture(state)
 
 	gofunc((&QGestureRecognizer{h: self}).callVirtualBase_Reset, slotval1)
-
 }
 
 // Delete this object from C++ memory.

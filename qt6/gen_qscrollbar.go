@@ -42,8 +42,10 @@ func newQScrollBar(h *C.QScrollBar) *QScrollBar {
 	var outptr_QAbstractSlider *C.QAbstractSlider = nil
 	C.QScrollBar_virtbase(h, &outptr_QAbstractSlider)
 
-	return &QScrollBar{h: h,
-		QAbstractSlider: newQAbstractSlider(outptr_QAbstractSlider)}
+	return &QScrollBar{
+		h:               h,
+		QAbstractSlider: newQAbstractSlider(outptr_QAbstractSlider),
+	}
 }
 
 // UnsafeNewQScrollBar constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQScrollBar(h unsafe.Pointer) *QScrollBar {
 
 // NewQScrollBar constructs a new QScrollBar object.
 func NewQScrollBar(parent *QWidget) *QScrollBar {
-
 	ret := newQScrollBar(C.QScrollBar_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQScrollBar(parent *QWidget) *QScrollBar {
 
 // NewQScrollBar2 constructs a new QScrollBar object.
 func NewQScrollBar2() *QScrollBar {
-
 	ret := newQScrollBar(C.QScrollBar_new2())
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQScrollBar2() *QScrollBar {
 
 // NewQScrollBar3 constructs a new QScrollBar object.
 func NewQScrollBar3(param1 Orientation) *QScrollBar {
-
 	ret := newQScrollBar(C.QScrollBar_new3((C.int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQScrollBar3(param1 Orientation) *QScrollBar {
 
 // NewQScrollBar4 constructs a new QScrollBar object.
 func NewQScrollBar4(param1 Orientation, parent *QWidget) *QScrollBar {
-
 	ret := newQScrollBar(C.QScrollBar_new4((C.int)(param1), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -135,12 +133,11 @@ func QScrollBar_Tr3(s string, c string, n int) string {
 }
 
 func (this *QScrollBar) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QScrollBar_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QScrollBar) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -158,14 +155,12 @@ func miqt_exec_callback_QScrollBar_SizeHint(self *C.QScrollBar, cb C.intptr_t) *
 	virtualReturn := gofunc((&QScrollBar{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QScrollBar) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QScrollBar_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QScrollBar) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -186,14 +181,12 @@ func miqt_exec_callback_QScrollBar_Event(self *C.QScrollBar, cb C.intptr_t, even
 	virtualReturn := gofunc((&QScrollBar{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QScrollBar) callVirtualBase_WheelEvent(param1 *QWheelEvent) {
-
 	C.QScrollBar_virtualbase_WheelEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnWheelEvent(slot func(super func(param1 *QWheelEvent), param1 *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -212,14 +205,12 @@ func miqt_exec_callback_QScrollBar_WheelEvent(self *C.QScrollBar, cb C.intptr_t,
 	slotval1 := newQWheelEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_WheelEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QScrollBar_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -238,14 +229,12 @@ func miqt_exec_callback_QScrollBar_PaintEvent(self *C.QScrollBar, cb C.intptr_t,
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_MousePressEvent(param1 *QMouseEvent) {
-
 	C.QScrollBar_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnMousePressEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -264,14 +253,12 @@ func miqt_exec_callback_QScrollBar_MousePressEvent(self *C.QScrollBar, cb C.intp
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_MouseReleaseEvent(param1 *QMouseEvent) {
-
 	C.QScrollBar_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnMouseReleaseEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -290,14 +277,12 @@ func miqt_exec_callback_QScrollBar_MouseReleaseEvent(self *C.QScrollBar, cb C.in
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_MouseMoveEvent(param1 *QMouseEvent) {
-
 	C.QScrollBar_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnMouseMoveEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -316,14 +301,12 @@ func miqt_exec_callback_QScrollBar_MouseMoveEvent(self *C.QScrollBar, cb C.intpt
 	slotval1 := newQMouseEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_HideEvent(param1 *QHideEvent) {
-
 	C.QScrollBar_virtualbase_HideEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnHideEvent(slot func(super func(param1 *QHideEvent), param1 *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -342,14 +325,12 @@ func miqt_exec_callback_QScrollBar_HideEvent(self *C.QScrollBar, cb C.intptr_t, 
 	slotval1 := newQHideEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_HideEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_SliderChange(change QAbstractSlider__SliderChange) {
-
 	C.QScrollBar_virtualbase_SliderChange(unsafe.Pointer(this.h), (C.int)(change))
-
 }
+
 func (this *QScrollBar) OnSliderChange(slot func(super func(change QAbstractSlider__SliderChange), change QAbstractSlider__SliderChange)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -368,14 +349,12 @@ func miqt_exec_callback_QScrollBar_SliderChange(self *C.QScrollBar, cb C.intptr_
 	slotval1 := (QAbstractSlider__SliderChange)(change)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_SliderChange, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
-
 	C.QScrollBar_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -394,14 +373,12 @@ func miqt_exec_callback_QScrollBar_ContextMenuEvent(self *C.QScrollBar, cb C.int
 	slotval1 := newQContextMenuEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_InitStyleOption(option *QStyleOptionSlider) {
-
 	C.QScrollBar_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
 }
+
 func (this *QScrollBar) OnInitStyleOption(slot func(super func(option *QStyleOptionSlider), option *QStyleOptionSlider)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -420,14 +397,12 @@ func miqt_exec_callback_QScrollBar_InitStyleOption(self *C.QScrollBar, cb C.intp
 	slotval1 := newQStyleOptionSlider(option)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_KeyPressEvent(ev *QKeyEvent) {
-
 	C.QScrollBar_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), ev.cPointer())
-
 }
+
 func (this *QScrollBar) OnKeyPressEvent(slot func(super func(ev *QKeyEvent), ev *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -446,14 +421,12 @@ func miqt_exec_callback_QScrollBar_KeyPressEvent(self *C.QScrollBar, cb C.intptr
 	slotval1 := newQKeyEvent(ev)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_TimerEvent(param1 *QTimerEvent) {
-
 	C.QScrollBar_virtualbase_TimerEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QScrollBar) OnTimerEvent(slot func(super func(param1 *QTimerEvent), param1 *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -472,14 +445,12 @@ func miqt_exec_callback_QScrollBar_TimerEvent(self *C.QScrollBar, cb C.intptr_t,
 	slotval1 := newQTimerEvent(param1)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QScrollBar) callVirtualBase_ChangeEvent(e *QEvent) {
-
 	C.QScrollBar_virtualbase_ChangeEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QScrollBar) OnChangeEvent(slot func(super func(e *QEvent), e *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -498,7 +469,6 @@ func miqt_exec_callback_QScrollBar_ChangeEvent(self *C.QScrollBar, cb C.intptr_t
 	slotval1 := newQEvent(e)
 
 	gofunc((&QScrollBar{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 // Delete this object from C++ memory.

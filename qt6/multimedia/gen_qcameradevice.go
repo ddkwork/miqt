@@ -9,9 +9,10 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QCameraDevice__Position int
@@ -57,7 +58,6 @@ func UnsafeNewQCameraFormat(h unsafe.Pointer) *QCameraFormat {
 
 // NewQCameraFormat constructs a new QCameraFormat object.
 func NewQCameraFormat() *QCameraFormat {
-
 	ret := newQCameraFormat(C.QCameraFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -65,7 +65,6 @@ func NewQCameraFormat() *QCameraFormat {
 
 // NewQCameraFormat2 constructs a new QCameraFormat object.
 func NewQCameraFormat2(other *QCameraFormat) *QCameraFormat {
-
 	ret := newQCameraFormat(C.QCameraFormat_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -154,7 +153,6 @@ func UnsafeNewQCameraDevice(h unsafe.Pointer) *QCameraDevice {
 
 // NewQCameraDevice constructs a new QCameraDevice object.
 func NewQCameraDevice() *QCameraDevice {
-
 	ret := newQCameraDevice(C.QCameraDevice_new())
 	ret.isSubclass = true
 	return ret
@@ -162,7 +160,6 @@ func NewQCameraDevice() *QCameraDevice {
 
 // NewQCameraDevice2 constructs a new QCameraDevice object.
 func NewQCameraDevice2(other *QCameraDevice) *QCameraDevice {
-
 	ret := newQCameraDevice(C.QCameraDevice_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

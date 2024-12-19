@@ -90,7 +90,6 @@ func UnsafeNewQSurfaceFormat(h unsafe.Pointer) *QSurfaceFormat {
 
 // NewQSurfaceFormat constructs a new QSurfaceFormat object.
 func NewQSurfaceFormat() *QSurfaceFormat {
-
 	ret := newQSurfaceFormat(C.QSurfaceFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -98,7 +97,6 @@ func NewQSurfaceFormat() *QSurfaceFormat {
 
 // NewQSurfaceFormat2 constructs a new QSurfaceFormat object.
 func NewQSurfaceFormat2(options QSurfaceFormat__FormatOption) *QSurfaceFormat {
-
 	ret := newQSurfaceFormat(C.QSurfaceFormat_new2((C.int)(options)))
 	ret.isSubclass = true
 	return ret
@@ -106,7 +104,6 @@ func NewQSurfaceFormat2(options QSurfaceFormat__FormatOption) *QSurfaceFormat {
 
 // NewQSurfaceFormat3 constructs a new QSurfaceFormat object.
 func NewQSurfaceFormat3(other *QSurfaceFormat) *QSurfaceFormat {
-
 	ret := newQSurfaceFormat(C.QSurfaceFormat_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

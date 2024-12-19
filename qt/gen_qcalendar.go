@@ -66,7 +66,6 @@ func UnsafeNewQCalendar(h unsafe.Pointer) *QCalendar {
 
 // NewQCalendar constructs a new QCalendar object.
 func NewQCalendar() *QCalendar {
-
 	ret := newQCalendar(C.QCalendar_new())
 	ret.isSubclass = true
 	return ret
@@ -74,7 +73,6 @@ func NewQCalendar() *QCalendar {
 
 // NewQCalendar2 constructs a new QCalendar object.
 func NewQCalendar2(system QCalendar__System) *QCalendar {
-
 	ret := newQCalendar(C.QCalendar_new2((C.int)(system)))
 	ret.isSubclass = true
 	return ret
@@ -305,7 +303,6 @@ func UnsafeNewQCalendar__YearMonthDay(h unsafe.Pointer) *QCalendar__YearMonthDay
 
 // NewQCalendar__YearMonthDay constructs a new QCalendar::YearMonthDay object.
 func NewQCalendar__YearMonthDay() *QCalendar__YearMonthDay {
-
 	ret := newQCalendar__YearMonthDay(C.QCalendar__YearMonthDay_new())
 	ret.isSubclass = true
 	return ret
@@ -313,7 +310,6 @@ func NewQCalendar__YearMonthDay() *QCalendar__YearMonthDay {
 
 // NewQCalendar__YearMonthDay2 constructs a new QCalendar::YearMonthDay object.
 func NewQCalendar__YearMonthDay2(y int) *QCalendar__YearMonthDay {
-
 	ret := newQCalendar__YearMonthDay(C.QCalendar__YearMonthDay_new2((C.int)(y)))
 	ret.isSubclass = true
 	return ret
@@ -321,7 +317,6 @@ func NewQCalendar__YearMonthDay2(y int) *QCalendar__YearMonthDay {
 
 // NewQCalendar__YearMonthDay3 constructs a new QCalendar::YearMonthDay object.
 func NewQCalendar__YearMonthDay3(y int, m int) *QCalendar__YearMonthDay {
-
 	ret := newQCalendar__YearMonthDay(C.QCalendar__YearMonthDay_new3((C.int)(y), (C.int)(m)))
 	ret.isSubclass = true
 	return ret
@@ -329,7 +324,6 @@ func NewQCalendar__YearMonthDay3(y int, m int) *QCalendar__YearMonthDay {
 
 // NewQCalendar__YearMonthDay4 constructs a new QCalendar::YearMonthDay object.
 func NewQCalendar__YearMonthDay4(y int, m int, d int) *QCalendar__YearMonthDay {
-
 	ret := newQCalendar__YearMonthDay(C.QCalendar__YearMonthDay_new4((C.int)(y), (C.int)(m), (C.int)(d)))
 	ret.isSubclass = true
 	return ret

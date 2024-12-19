@@ -9,9 +9,10 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineNewWindowRequest__DestinationType int
@@ -51,8 +52,10 @@ func newQWebEngineNewWindowRequest(h *C.QWebEngineNewWindowRequest) *QWebEngineN
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineNewWindowRequest_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineNewWindowRequest{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineNewWindowRequest{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineNewWindowRequest constructs the type using only unsafe pointers.

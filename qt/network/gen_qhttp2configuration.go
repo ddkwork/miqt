@@ -48,7 +48,6 @@ func UnsafeNewQHttp2Configuration(h unsafe.Pointer) *QHttp2Configuration {
 
 // NewQHttp2Configuration constructs a new QHttp2Configuration object.
 func NewQHttp2Configuration() *QHttp2Configuration {
-
 	ret := newQHttp2Configuration(C.QHttp2Configuration_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQHttp2Configuration() *QHttp2Configuration {
 
 // NewQHttp2Configuration2 constructs a new QHttp2Configuration object.
 func NewQHttp2Configuration2(other *QHttp2Configuration) *QHttp2Configuration {
-
 	ret := newQHttp2Configuration(C.QHttp2Configuration_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

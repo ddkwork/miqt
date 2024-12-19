@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QWebEngineDownloadRequest__DownloadState int
@@ -91,8 +92,10 @@ func newQWebEngineDownloadRequest(h *C.QWebEngineDownloadRequest) *QWebEngineDow
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineDownloadRequest_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineDownloadRequest{h: h,
-		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineDownloadRequest{
+		h:       h,
+		QObject: qt6.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineDownloadRequest constructs the type using only unsafe pointers.
@@ -239,6 +242,7 @@ func (this *QWebEngineDownloadRequest) Resume() {
 func (this *QWebEngineDownloadRequest) StateChanged(state QWebEngineDownloadRequest__DownloadState) {
 	C.QWebEngineDownloadRequest_StateChanged(this.h, (C.int)(state))
 }
+
 func (this *QWebEngineDownloadRequest) OnStateChanged(slot func(state QWebEngineDownloadRequest__DownloadState)) {
 	C.QWebEngineDownloadRequest_connect_StateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -259,6 +263,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_StateChanged(cb C.intptr_t, st
 func (this *QWebEngineDownloadRequest) SavePageFormatChanged() {
 	C.QWebEngineDownloadRequest_SavePageFormatChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnSavePageFormatChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_SavePageFormatChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -276,6 +281,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_SavePageFormatChanged(cb C.int
 func (this *QWebEngineDownloadRequest) ReceivedBytesChanged() {
 	C.QWebEngineDownloadRequest_ReceivedBytesChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnReceivedBytesChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_ReceivedBytesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -293,6 +299,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_ReceivedBytesChanged(cb C.intp
 func (this *QWebEngineDownloadRequest) TotalBytesChanged() {
 	C.QWebEngineDownloadRequest_TotalBytesChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnTotalBytesChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_TotalBytesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -310,6 +317,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_TotalBytesChanged(cb C.intptr_
 func (this *QWebEngineDownloadRequest) InterruptReasonChanged() {
 	C.QWebEngineDownloadRequest_InterruptReasonChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnInterruptReasonChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_InterruptReasonChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -327,6 +335,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_InterruptReasonChanged(cb C.in
 func (this *QWebEngineDownloadRequest) IsFinishedChanged() {
 	C.QWebEngineDownloadRequest_IsFinishedChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnIsFinishedChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_IsFinishedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -344,6 +353,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_IsFinishedChanged(cb C.intptr_
 func (this *QWebEngineDownloadRequest) IsPausedChanged() {
 	C.QWebEngineDownloadRequest_IsPausedChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnIsPausedChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_IsPausedChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -361,6 +371,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_IsPausedChanged(cb C.intptr_t)
 func (this *QWebEngineDownloadRequest) DownloadDirectoryChanged() {
 	C.QWebEngineDownloadRequest_DownloadDirectoryChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnDownloadDirectoryChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_DownloadDirectoryChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -378,6 +389,7 @@ func miqt_exec_callback_QWebEngineDownloadRequest_DownloadDirectoryChanged(cb C.
 func (this *QWebEngineDownloadRequest) DownloadFileNameChanged() {
 	C.QWebEngineDownloadRequest_DownloadFileNameChanged(this.h)
 }
+
 func (this *QWebEngineDownloadRequest) OnDownloadFileNameChanged(slot func()) {
 	C.QWebEngineDownloadRequest_connect_DownloadFileNameChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraFlashControl struct {
@@ -43,8 +44,10 @@ func newQCameraFlashControl(h *C.QCameraFlashControl) *QCameraFlashControl {
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraFlashControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraFlashControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraFlashControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraFlashControl constructs the type using only unsafe pointers.
@@ -99,6 +102,7 @@ func (this *QCameraFlashControl) IsFlashReady() bool {
 func (this *QCameraFlashControl) FlashReady(param1 bool) {
 	C.QCameraFlashControl_FlashReady(this.h, (C.bool)(param1))
 }
+
 func (this *QCameraFlashControl) OnFlashReady(slot func(param1 bool)) {
 	C.QCameraFlashControl_connect_FlashReady(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

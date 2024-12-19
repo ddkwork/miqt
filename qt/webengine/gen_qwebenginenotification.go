@@ -9,10 +9,11 @@ package webengine
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebEngineNotification struct {
@@ -43,8 +44,10 @@ func newQWebEngineNotification(h *C.QWebEngineNotification) *QWebEngineNotificat
 	var outptr_QObject *C.QObject = nil
 	C.QWebEngineNotification_virtbase(h, &outptr_QObject)
 
-	return &QWebEngineNotification{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QWebEngineNotification{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQWebEngineNotification constructs the type using only unsafe pointers.
@@ -143,6 +146,7 @@ func (this *QWebEngineNotification) Close() {
 func (this *QWebEngineNotification) Closed() {
 	C.QWebEngineNotification_Closed(this.h)
 }
+
 func (this *QWebEngineNotification) OnClosed(slot func()) {
 	C.QWebEngineNotification_connect_Closed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

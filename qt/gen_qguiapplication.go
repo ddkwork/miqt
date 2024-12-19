@@ -42,8 +42,10 @@ func newQGuiApplication(h *C.QGuiApplication) *QGuiApplication {
 	var outptr_QCoreApplication *C.QCoreApplication = nil
 	C.QGuiApplication_virtbase(h, &outptr_QCoreApplication)
 
-	return &QGuiApplication{h: h,
-		QCoreApplication: newQCoreApplication(outptr_QCoreApplication)}
+	return &QGuiApplication{
+		h:                h,
+		QCoreApplication: newQCoreApplication(outptr_QCoreApplication),
+	}
 }
 
 // UnsafeNewQGuiApplication constructs the type using only unsafe pointers.
@@ -367,6 +369,7 @@ func QGuiApplication_Sync() {
 func (this *QGuiApplication) FontDatabaseChanged() {
 	C.QGuiApplication_FontDatabaseChanged(this.h)
 }
+
 func (this *QGuiApplication) OnFontDatabaseChanged(slot func()) {
 	C.QGuiApplication_connect_FontDatabaseChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -384,6 +387,7 @@ func miqt_exec_callback_QGuiApplication_FontDatabaseChanged(cb C.intptr_t) {
 func (this *QGuiApplication) ScreenAdded(screen *QScreen) {
 	C.QGuiApplication_ScreenAdded(this.h, screen.cPointer())
 }
+
 func (this *QGuiApplication) OnScreenAdded(slot func(screen *QScreen)) {
 	C.QGuiApplication_connect_ScreenAdded(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -404,6 +408,7 @@ func miqt_exec_callback_QGuiApplication_ScreenAdded(cb C.intptr_t, screen *C.QSc
 func (this *QGuiApplication) ScreenRemoved(screen *QScreen) {
 	C.QGuiApplication_ScreenRemoved(this.h, screen.cPointer())
 }
+
 func (this *QGuiApplication) OnScreenRemoved(slot func(screen *QScreen)) {
 	C.QGuiApplication_connect_ScreenRemoved(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -424,6 +429,7 @@ func miqt_exec_callback_QGuiApplication_ScreenRemoved(cb C.intptr_t, screen *C.Q
 func (this *QGuiApplication) PrimaryScreenChanged(screen *QScreen) {
 	C.QGuiApplication_PrimaryScreenChanged(this.h, screen.cPointer())
 }
+
 func (this *QGuiApplication) OnPrimaryScreenChanged(slot func(screen *QScreen)) {
 	C.QGuiApplication_connect_PrimaryScreenChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -444,6 +450,7 @@ func miqt_exec_callback_QGuiApplication_PrimaryScreenChanged(cb C.intptr_t, scre
 func (this *QGuiApplication) LastWindowClosed() {
 	C.QGuiApplication_LastWindowClosed(this.h)
 }
+
 func (this *QGuiApplication) OnLastWindowClosed(slot func()) {
 	C.QGuiApplication_connect_LastWindowClosed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -461,6 +468,7 @@ func miqt_exec_callback_QGuiApplication_LastWindowClosed(cb C.intptr_t) {
 func (this *QGuiApplication) FocusObjectChanged(focusObject *QObject) {
 	C.QGuiApplication_FocusObjectChanged(this.h, focusObject.cPointer())
 }
+
 func (this *QGuiApplication) OnFocusObjectChanged(slot func(focusObject *QObject)) {
 	C.QGuiApplication_connect_FocusObjectChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -481,6 +489,7 @@ func miqt_exec_callback_QGuiApplication_FocusObjectChanged(cb C.intptr_t, focusO
 func (this *QGuiApplication) FocusWindowChanged(focusWindow *QWindow) {
 	C.QGuiApplication_FocusWindowChanged(this.h, focusWindow.cPointer())
 }
+
 func (this *QGuiApplication) OnFocusWindowChanged(slot func(focusWindow *QWindow)) {
 	C.QGuiApplication_connect_FocusWindowChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -501,6 +510,7 @@ func miqt_exec_callback_QGuiApplication_FocusWindowChanged(cb C.intptr_t, focusW
 func (this *QGuiApplication) ApplicationStateChanged(state ApplicationState) {
 	C.QGuiApplication_ApplicationStateChanged(this.h, (C.int)(state))
 }
+
 func (this *QGuiApplication) OnApplicationStateChanged(slot func(state ApplicationState)) {
 	C.QGuiApplication_connect_ApplicationStateChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -521,6 +531,7 @@ func miqt_exec_callback_QGuiApplication_ApplicationStateChanged(cb C.intptr_t, s
 func (this *QGuiApplication) LayoutDirectionChanged(direction LayoutDirection) {
 	C.QGuiApplication_LayoutDirectionChanged(this.h, (C.int)(direction))
 }
+
 func (this *QGuiApplication) OnLayoutDirectionChanged(slot func(direction LayoutDirection)) {
 	C.QGuiApplication_connect_LayoutDirectionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -541,6 +552,7 @@ func miqt_exec_callback_QGuiApplication_LayoutDirectionChanged(cb C.intptr_t, di
 func (this *QGuiApplication) CommitDataRequest(sessionManager *QSessionManager) {
 	C.QGuiApplication_CommitDataRequest(this.h, sessionManager.cPointer())
 }
+
 func (this *QGuiApplication) OnCommitDataRequest(slot func(sessionManager *QSessionManager)) {
 	C.QGuiApplication_connect_CommitDataRequest(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -561,6 +573,7 @@ func miqt_exec_callback_QGuiApplication_CommitDataRequest(cb C.intptr_t, session
 func (this *QGuiApplication) SaveStateRequest(sessionManager *QSessionManager) {
 	C.QGuiApplication_SaveStateRequest(this.h, sessionManager.cPointer())
 }
+
 func (this *QGuiApplication) OnSaveStateRequest(slot func(sessionManager *QSessionManager)) {
 	C.QGuiApplication_connect_SaveStateRequest(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -581,6 +594,7 @@ func miqt_exec_callback_QGuiApplication_SaveStateRequest(cb C.intptr_t, sessionM
 func (this *QGuiApplication) PaletteChanged(pal *QPalette) {
 	C.QGuiApplication_PaletteChanged(this.h, pal.cPointer())
 }
+
 func (this *QGuiApplication) OnPaletteChanged(slot func(pal *QPalette)) {
 	C.QGuiApplication_connect_PaletteChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -601,6 +615,7 @@ func miqt_exec_callback_QGuiApplication_PaletteChanged(cb C.intptr_t, pal *C.QPa
 func (this *QGuiApplication) ApplicationDisplayNameChanged() {
 	C.QGuiApplication_ApplicationDisplayNameChanged(this.h)
 }
+
 func (this *QGuiApplication) OnApplicationDisplayNameChanged(slot func()) {
 	C.QGuiApplication_connect_ApplicationDisplayNameChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -618,6 +633,7 @@ func miqt_exec_callback_QGuiApplication_ApplicationDisplayNameChanged(cb C.intpt
 func (this *QGuiApplication) FontChanged(font *QFont) {
 	C.QGuiApplication_FontChanged(this.h, font.cPointer())
 }
+
 func (this *QGuiApplication) OnFontChanged(slot func(font *QFont)) {
 	C.QGuiApplication_connect_FontChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -680,10 +696,9 @@ func QGuiApplication_TrUtf83(s string, c string, n int) string {
 }
 
 func (this *QGuiApplication) callVirtualBase_Notify(param1 *QObject, param2 *QEvent) bool {
-
 	return (bool)(C.QGuiApplication_virtualbase_Notify(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
 }
+
 func (this *QGuiApplication) OnNotify(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -706,14 +721,12 @@ func miqt_exec_callback_QGuiApplication_Notify(self *C.QGuiApplication, cb C.int
 	virtualReturn := gofunc((&QGuiApplication{h: self}).callVirtualBase_Notify, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QGuiApplication) callVirtualBase_Event(param1 *QEvent) bool {
-
 	return (bool)(C.QGuiApplication_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
 }
+
 func (this *QGuiApplication) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -734,7 +747,6 @@ func miqt_exec_callback_QGuiApplication_Event(self *C.QGuiApplication, cb C.intp
 	virtualReturn := gofunc((&QGuiApplication{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.

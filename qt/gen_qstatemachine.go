@@ -59,8 +59,10 @@ func newQStateMachine(h *C.QStateMachine) *QStateMachine {
 	var outptr_QState *C.QState = nil
 	C.QStateMachine_virtbase(h, &outptr_QState)
 
-	return &QStateMachine{h: h,
-		QState: newQState(outptr_QState)}
+	return &QStateMachine{
+		h:      h,
+		QState: newQState(outptr_QState),
+	}
 }
 
 // UnsafeNewQStateMachine constructs the type using only unsafe pointers.
@@ -70,7 +72,6 @@ func UnsafeNewQStateMachine(h unsafe.Pointer) *QStateMachine {
 
 // NewQStateMachine constructs a new QStateMachine object.
 func NewQStateMachine() *QStateMachine {
-
 	ret := newQStateMachine(C.QStateMachine_new())
 	ret.isSubclass = true
 	return ret
@@ -78,7 +79,6 @@ func NewQStateMachine() *QStateMachine {
 
 // NewQStateMachine2 constructs a new QStateMachine object.
 func NewQStateMachine2(childMode QState__ChildMode) *QStateMachine {
-
 	ret := newQStateMachine(C.QStateMachine_new2((C.int)(childMode)))
 	ret.isSubclass = true
 	return ret
@@ -86,7 +86,6 @@ func NewQStateMachine2(childMode QState__ChildMode) *QStateMachine {
 
 // NewQStateMachine3 constructs a new QStateMachine object.
 func NewQStateMachine3(parent *QObject) *QStateMachine {
-
 	ret := newQStateMachine(C.QStateMachine_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -94,7 +93,6 @@ func NewQStateMachine3(parent *QObject) *QStateMachine {
 
 // NewQStateMachine4 constructs a new QStateMachine object.
 func NewQStateMachine4(childMode QState__ChildMode, parent *QObject) *QStateMachine {
-
 	ret := newQStateMachine(C.QStateMachine_new4((C.int)(childMode), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -232,6 +230,7 @@ func (this *QStateMachine) SetRunning(running bool) {
 func (this *QStateMachine) RunningChanged(running bool) {
 	C.QStateMachine_RunningChanged(this.h, (C.bool)(running))
 }
+
 func (this *QStateMachine) OnRunningChanged(slot func(running bool)) {
 	C.QStateMachine_connect_RunningChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -298,10 +297,9 @@ func (this *QStateMachine) PostEvent2(event *QEvent, priority QStateMachine__Eve
 }
 
 func (this *QStateMachine) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QStateMachine_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QStateMachine) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -324,14 +322,12 @@ func miqt_exec_callback_QStateMachine_EventFilter(self *C.QStateMachine, cb C.in
 	virtualReturn := gofunc((&QStateMachine{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QStateMachine) callVirtualBase_OnEntry(event *QEvent) {
-
 	C.QStateMachine_virtualbase_OnEntry(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStateMachine) OnOnEntry(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -350,14 +346,12 @@ func miqt_exec_callback_QStateMachine_OnEntry(self *C.QStateMachine, cb C.intptr
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStateMachine{h: self}).callVirtualBase_OnEntry, slotval1)
-
 }
 
 func (this *QStateMachine) callVirtualBase_OnExit(event *QEvent) {
-
 	C.QStateMachine_virtualbase_OnExit(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStateMachine) OnOnExit(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -376,14 +370,12 @@ func miqt_exec_callback_QStateMachine_OnExit(self *C.QStateMachine, cb C.intptr_
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStateMachine{h: self}).callVirtualBase_OnExit, slotval1)
-
 }
 
 func (this *QStateMachine) callVirtualBase_BeginSelectTransitions(event *QEvent) {
-
 	C.QStateMachine_virtualbase_BeginSelectTransitions(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStateMachine) OnBeginSelectTransitions(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -402,14 +394,12 @@ func miqt_exec_callback_QStateMachine_BeginSelectTransitions(self *C.QStateMachi
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStateMachine{h: self}).callVirtualBase_BeginSelectTransitions, slotval1)
-
 }
 
 func (this *QStateMachine) callVirtualBase_EndSelectTransitions(event *QEvent) {
-
 	C.QStateMachine_virtualbase_EndSelectTransitions(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStateMachine) OnEndSelectTransitions(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -428,14 +418,12 @@ func miqt_exec_callback_QStateMachine_EndSelectTransitions(self *C.QStateMachine
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStateMachine{h: self}).callVirtualBase_EndSelectTransitions, slotval1)
-
 }
 
 func (this *QStateMachine) callVirtualBase_BeginMicrostep(event *QEvent) {
-
 	C.QStateMachine_virtualbase_BeginMicrostep(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStateMachine) OnBeginMicrostep(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -454,14 +442,12 @@ func miqt_exec_callback_QStateMachine_BeginMicrostep(self *C.QStateMachine, cb C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStateMachine{h: self}).callVirtualBase_BeginMicrostep, slotval1)
-
 }
 
 func (this *QStateMachine) callVirtualBase_EndMicrostep(event *QEvent) {
-
 	C.QStateMachine_virtualbase_EndMicrostep(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStateMachine) OnEndMicrostep(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -480,14 +466,12 @@ func miqt_exec_callback_QStateMachine_EndMicrostep(self *C.QStateMachine, cb C.i
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStateMachine{h: self}).callVirtualBase_EndMicrostep, slotval1)
-
 }
 
 func (this *QStateMachine) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QStateMachine_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QStateMachine) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -508,7 +492,6 @@ func miqt_exec_callback_QStateMachine_Event(self *C.QStateMachine, cb C.intptr_t
 	virtualReturn := gofunc((&QStateMachine{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 // Delete this object from C++ memory.
@@ -553,8 +536,10 @@ func newQStateMachine__SignalEvent(h *C.QStateMachine__SignalEvent) *QStateMachi
 	var outptr_QEvent *C.QEvent = nil
 	C.QStateMachine__SignalEvent_virtbase(h, &outptr_QEvent)
 
-	return &QStateMachine__SignalEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QStateMachine__SignalEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQStateMachine__SignalEvent constructs the type using only unsafe pointers.
@@ -564,7 +549,6 @@ func UnsafeNewQStateMachine__SignalEvent(h unsafe.Pointer) *QStateMachine__Signa
 
 // NewQStateMachine__SignalEvent constructs a new QStateMachine::SignalEvent object.
 func NewQStateMachine__SignalEvent(param1 *QStateMachine__SignalEvent) *QStateMachine__SignalEvent {
-
 	ret := newQStateMachine__SignalEvent(C.QStateMachine__SignalEvent_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -620,8 +604,10 @@ func newQStateMachine__WrappedEvent(h *C.QStateMachine__WrappedEvent) *QStateMac
 	var outptr_QEvent *C.QEvent = nil
 	C.QStateMachine__WrappedEvent_virtbase(h, &outptr_QEvent)
 
-	return &QStateMachine__WrappedEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QStateMachine__WrappedEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQStateMachine__WrappedEvent constructs the type using only unsafe pointers.
@@ -631,7 +617,6 @@ func UnsafeNewQStateMachine__WrappedEvent(h unsafe.Pointer) *QStateMachine__Wrap
 
 // NewQStateMachine__WrappedEvent constructs a new QStateMachine::WrappedEvent object.
 func NewQStateMachine__WrappedEvent(object *QObject, event *QEvent) *QStateMachine__WrappedEvent {
-
 	ret := newQStateMachine__WrappedEvent(C.QStateMachine__WrappedEvent_new(object.cPointer(), event.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -639,7 +624,6 @@ func NewQStateMachine__WrappedEvent(object *QObject, event *QEvent) *QStateMachi
 
 // NewQStateMachine__WrappedEvent2 constructs a new QStateMachine::WrappedEvent object.
 func NewQStateMachine__WrappedEvent2(param1 *QStateMachine__WrappedEvent) *QStateMachine__WrappedEvent {
-
 	ret := newQStateMachine__WrappedEvent(C.QStateMachine__WrappedEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

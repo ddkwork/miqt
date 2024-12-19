@@ -42,8 +42,10 @@ func newQPixmap(h *C.QPixmap) *QPixmap {
 	var outptr_QPaintDevice *C.QPaintDevice = nil
 	C.QPixmap_virtbase(h, &outptr_QPaintDevice)
 
-	return &QPixmap{h: h,
-		QPaintDevice: newQPaintDevice(outptr_QPaintDevice)}
+	return &QPixmap{
+		h:            h,
+		QPaintDevice: newQPaintDevice(outptr_QPaintDevice),
+	}
 }
 
 // UnsafeNewQPixmap constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQPixmap(h unsafe.Pointer) *QPixmap {
 
 // NewQPixmap constructs a new QPixmap object.
 func NewQPixmap() *QPixmap {
-
 	ret := newQPixmap(C.QPixmap_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQPixmap() *QPixmap {
 
 // NewQPixmap2 constructs a new QPixmap object.
 func NewQPixmap2(w int, h int) *QPixmap {
-
 	ret := newQPixmap(C.QPixmap_new2((C.int)(w), (C.int)(h)))
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQPixmap2(w int, h int) *QPixmap {
 
 // NewQPixmap3 constructs a new QPixmap object.
 func NewQPixmap3(param1 *QSize) *QPixmap {
-
 	ret := newQPixmap(C.QPixmap_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -89,7 +88,6 @@ func NewQPixmap4(fileName string) *QPixmap {
 
 // NewQPixmap5 constructs a new QPixmap object.
 func NewQPixmap5(param1 *QPixmap) *QPixmap {
-
 	ret := newQPixmap(C.QPixmap_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -605,10 +603,9 @@ func (this *QPixmap) Scroll4(dx int, dy int, rect *QRect, exposed *QRegion) {
 }
 
 func (this *QPixmap) callVirtualBase_DevType() int {
-
 	return (int)(C.QPixmap_virtualbase_DevType(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QPixmap) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -626,14 +623,12 @@ func miqt_exec_callback_QPixmap_DevType(self *C.QPixmap, cb C.intptr_t) C.int {
 	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_DevType)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QPixmap) callVirtualBase_PaintEngine() *QPaintEngine {
-
 	return newQPaintEngine(C.QPixmap_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QPixmap) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -651,14 +646,12 @@ func miqt_exec_callback_QPixmap_PaintEngine(self *C.QPixmap, cb C.intptr_t) *C.Q
 	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_PaintEngine)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QPixmap) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
-
 	return (int)(C.QPixmap_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
 }
+
 func (this *QPixmap) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -679,14 +672,12 @@ func miqt_exec_callback_QPixmap_Metric(self *C.QPixmap, cb C.intptr_t, param1 C.
 	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_Metric, slotval1)
 
 	return (C.int)(virtualReturn)
-
 }
 
 func (this *QPixmap) callVirtualBase_InitPainter(painter *QPainter) {
-
 	C.QPixmap_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
 }
+
 func (this *QPixmap) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -705,14 +696,12 @@ func miqt_exec_callback_QPixmap_InitPainter(self *C.QPixmap, cb C.intptr_t, pain
 	slotval1 := newQPainter(painter)
 
 	gofunc((&QPixmap{h: self}).callVirtualBase_InitPainter, slotval1)
-
 }
 
 func (this *QPixmap) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
 	return newQPaintDevice(C.QPixmap_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
 }
+
 func (this *QPixmap) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -733,14 +722,12 @@ func miqt_exec_callback_QPixmap_Redirected(self *C.QPixmap, cb C.intptr_t, offse
 	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_Redirected, slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QPixmap) callVirtualBase_SharedPainter() *QPainter {
-
 	return newQPainter(C.QPixmap_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
 }
+
 func (this *QPixmap) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -758,7 +745,6 @@ func miqt_exec_callback_QPixmap_SharedPainter(self *C.QPixmap, cb C.intptr_t) *C
 	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_SharedPainter)
 
 	return virtualReturn.cPointer()
-
 }
 
 // Delete this object from C++ memory.

@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	area := qscintilla.NewQsciScintilla2()

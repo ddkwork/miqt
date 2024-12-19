@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QMediaObject struct {
@@ -43,8 +44,10 @@ func newQMediaObject(h *C.QMediaObject) *QMediaObject {
 	var outptr_QObject *C.QObject = nil
 	C.QMediaObject_virtbase(h, &outptr_QObject)
 
-	return &QMediaObject{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
+	return &QMediaObject{
+		h:       h,
+		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject)),
+	}
 }
 
 // UnsafeNewQMediaObject constructs the type using only unsafe pointers.
@@ -138,6 +141,7 @@ func (this *QMediaObject) AvailableMetaData() []string {
 func (this *QMediaObject) NotifyIntervalChanged(milliSeconds int) {
 	C.QMediaObject_NotifyIntervalChanged(this.h, (C.int)(milliSeconds))
 }
+
 func (this *QMediaObject) OnNotifyIntervalChanged(slot func(milliSeconds int)) {
 	C.QMediaObject_connect_NotifyIntervalChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -158,6 +162,7 @@ func miqt_exec_callback_QMediaObject_NotifyIntervalChanged(cb C.intptr_t, milliS
 func (this *QMediaObject) MetaDataAvailableChanged(available bool) {
 	C.QMediaObject_MetaDataAvailableChanged(this.h, (C.bool)(available))
 }
+
 func (this *QMediaObject) OnMetaDataAvailableChanged(slot func(available bool)) {
 	C.QMediaObject_connect_MetaDataAvailableChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -178,6 +183,7 @@ func miqt_exec_callback_QMediaObject_MetaDataAvailableChanged(cb C.intptr_t, ava
 func (this *QMediaObject) MetaDataChanged() {
 	C.QMediaObject_MetaDataChanged(this.h)
 }
+
 func (this *QMediaObject) OnMetaDataChanged(slot func()) {
 	C.QMediaObject_connect_MetaDataChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -199,6 +205,7 @@ func (this *QMediaObject) MetaDataChanged2(key string, value *qt.QVariant) {
 	defer C.free(unsafe.Pointer(key_ms.data))
 	C.QMediaObject_MetaDataChanged2(this.h, key_ms, (*C.QVariant)(value.UnsafePointer()))
 }
+
 func (this *QMediaObject) OnMetaDataChanged2(slot func(key string, value *qt.QVariant)) {
 	C.QMediaObject_connect_MetaDataChanged2(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -223,6 +230,7 @@ func miqt_exec_callback_QMediaObject_MetaDataChanged2(cb C.intptr_t, key C.struc
 func (this *QMediaObject) AvailabilityChanged(available bool) {
 	C.QMediaObject_AvailabilityChanged(this.h, (C.bool)(available))
 }
+
 func (this *QMediaObject) OnAvailabilityChanged(slot func(available bool)) {
 	C.QMediaObject_connect_AvailabilityChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -243,6 +251,7 @@ func miqt_exec_callback_QMediaObject_AvailabilityChanged(cb C.intptr_t, availabl
 func (this *QMediaObject) AvailabilityChangedWithAvailability(availability QMultimedia__AvailabilityStatus) {
 	C.QMediaObject_AvailabilityChangedWithAvailability(this.h, (C.int)(availability))
 }
+
 func (this *QMediaObject) OnAvailabilityChangedWithAvailability(slot func(availability QMultimedia__AvailabilityStatus)) {
 	C.QMediaObject_connect_AvailabilityChangedWithAvailability(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

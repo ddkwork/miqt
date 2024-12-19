@@ -51,7 +51,6 @@ func astTransformOverloads(parsed *CppParsedHeader) {
 						}
 
 					}
-
 				} else {
 					proposedName = fmt.Sprintf("%s%d", originalProposal, ctr)
 					if _, ok := existing[proposedName]; !ok {

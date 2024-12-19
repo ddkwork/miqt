@@ -56,7 +56,6 @@ func UnsafeNewQMimeDatabase(h unsafe.Pointer) *QMimeDatabase {
 
 // NewQMimeDatabase constructs a new QMimeDatabase object.
 func NewQMimeDatabase() *QMimeDatabase {
-
 	ret := newQMimeDatabase(C.QMimeDatabase_new())
 	ret.isSubclass = true
 	return ret

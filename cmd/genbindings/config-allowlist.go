@@ -6,7 +6,6 @@ import (
 )
 
 func InsertTypedefs(qt6 bool) {
-
 	// Seed well-known typedefs
 	pp := "qt"
 	if qt6 {
@@ -63,7 +62,6 @@ func InsertTypedefs(qt6 bool) {
 			},
 		}}
 	}
-
 }
 
 func Widgets_AllowHeader(fullpath string) bool {
@@ -138,7 +136,6 @@ func ImportHeaderForClass(className string) bool {
 }
 
 func AllowClass(className string) bool {
-
 	if strings.HasSuffix(className, "Private") || strings.HasSuffix(className, "PrivateShared") ||
 		strings.Contains(className, "Private::") || strings.HasSuffix(className, "PrivateShared::") {
 		return false
@@ -196,7 +193,6 @@ func AllowSignal(mm CppMethod) bool {
 }
 
 func AllowVirtual(mm CppMethod) bool {
-
 	if mm.MethodName == "metaObject" || mm.MethodName == "qt_metacast" {
 		return false
 	}
@@ -205,7 +201,6 @@ func AllowVirtual(mm CppMethod) bool {
 }
 
 func AllowVirtualForClass(className string) bool {
-
 	// Allowing the subclassing of QAccessibleWidget compiles fine,
 	// but, always gives a linker error:
 	//
@@ -251,7 +246,6 @@ func AllowVirtualForClass(className string) bool {
 }
 
 func AllowMethod(className string, mm CppMethod) error {
-
 	for _, p := range mm.Parameters {
 		if strings.HasSuffix(p.ParameterType, "Private") {
 			return ErrTooComplex // Skip private type
@@ -300,7 +294,6 @@ func AllowMethod(className string, mm CppMethod) error {
 // this type in its parameter list or return type.
 // Any type not permitted by AllowClass is also not permitted by this method.
 func AllowType(p CppParameter, isReturnType bool) error {
-
 	if t, ok := p.QSetOf(); ok {
 		if err := AllowType(t, isReturnType); err != nil {
 			return err

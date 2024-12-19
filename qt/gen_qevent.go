@@ -108,8 +108,10 @@ func newQInputEvent(h *C.QInputEvent) *QInputEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QInputEvent_virtbase(h, &outptr_QEvent)
 
-	return &QInputEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QInputEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQInputEvent constructs the type using only unsafe pointers.
@@ -119,7 +121,6 @@ func UnsafeNewQInputEvent(h unsafe.Pointer) *QInputEvent {
 
 // NewQInputEvent constructs a new QInputEvent object.
 func NewQInputEvent(typeVal QEvent__Type) *QInputEvent {
-
 	ret := newQInputEvent(C.QInputEvent_new((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -127,7 +128,6 @@ func NewQInputEvent(typeVal QEvent__Type) *QInputEvent {
 
 // NewQInputEvent2 constructs a new QInputEvent object.
 func NewQInputEvent2(param1 *QInputEvent) *QInputEvent {
-
 	ret := newQInputEvent(C.QInputEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -135,7 +135,6 @@ func NewQInputEvent2(param1 *QInputEvent) *QInputEvent {
 
 // NewQInputEvent3 constructs a new QInputEvent object.
 func NewQInputEvent3(typeVal QEvent__Type, modifiers KeyboardModifier) *QInputEvent {
-
 	ret := newQInputEvent(C.QInputEvent_new3((C.int)(typeVal), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -199,8 +198,10 @@ func newQEnterEvent(h *C.QEnterEvent) *QEnterEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QEnterEvent_virtbase(h, &outptr_QEvent)
 
-	return &QEnterEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QEnterEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQEnterEvent constructs the type using only unsafe pointers.
@@ -210,7 +211,6 @@ func UnsafeNewQEnterEvent(h unsafe.Pointer) *QEnterEvent {
 
 // NewQEnterEvent constructs a new QEnterEvent object.
 func NewQEnterEvent(localPos *QPointF, windowPos *QPointF, screenPos *QPointF) *QEnterEvent {
-
 	ret := newQEnterEvent(C.QEnterEvent_new(localPos.cPointer(), windowPos.cPointer(), screenPos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -218,7 +218,6 @@ func NewQEnterEvent(localPos *QPointF, windowPos *QPointF, screenPos *QPointF) *
 
 // NewQEnterEvent2 constructs a new QEnterEvent object.
 func NewQEnterEvent2(param1 *QEnterEvent) *QEnterEvent {
-
 	ret := newQEnterEvent(C.QEnterEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -306,8 +305,10 @@ func newQMouseEvent(h *C.QMouseEvent) *QMouseEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QMouseEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QMouseEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QMouseEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQMouseEvent constructs the type using only unsafe pointers.
@@ -317,7 +318,6 @@ func UnsafeNewQMouseEvent(h unsafe.Pointer) *QMouseEvent {
 
 // NewQMouseEvent constructs a new QMouseEvent object.
 func NewQMouseEvent(typeVal QEvent__Type, localPos *QPointF, button MouseButton, buttons MouseButton, modifiers KeyboardModifier) *QMouseEvent {
-
 	ret := newQMouseEvent(C.QMouseEvent_new((C.int)(typeVal), localPos.cPointer(), (C.int)(button), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -325,7 +325,6 @@ func NewQMouseEvent(typeVal QEvent__Type, localPos *QPointF, button MouseButton,
 
 // NewQMouseEvent2 constructs a new QMouseEvent object.
 func NewQMouseEvent2(typeVal QEvent__Type, localPos *QPointF, screenPos *QPointF, button MouseButton, buttons MouseButton, modifiers KeyboardModifier) *QMouseEvent {
-
 	ret := newQMouseEvent(C.QMouseEvent_new2((C.int)(typeVal), localPos.cPointer(), screenPos.cPointer(), (C.int)(button), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -333,7 +332,6 @@ func NewQMouseEvent2(typeVal QEvent__Type, localPos *QPointF, screenPos *QPointF
 
 // NewQMouseEvent3 constructs a new QMouseEvent object.
 func NewQMouseEvent3(typeVal QEvent__Type, localPos *QPointF, windowPos *QPointF, screenPos *QPointF, button MouseButton, buttons MouseButton, modifiers KeyboardModifier) *QMouseEvent {
-
 	ret := newQMouseEvent(C.QMouseEvent_new3((C.int)(typeVal), localPos.cPointer(), windowPos.cPointer(), screenPos.cPointer(), (C.int)(button), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -341,7 +339,6 @@ func NewQMouseEvent3(typeVal QEvent__Type, localPos *QPointF, windowPos *QPointF
 
 // NewQMouseEvent4 constructs a new QMouseEvent object.
 func NewQMouseEvent4(typeVal QEvent__Type, localPos *QPointF, windowPos *QPointF, screenPos *QPointF, button MouseButton, buttons MouseButton, modifiers KeyboardModifier, source MouseEventSource) *QMouseEvent {
-
 	ret := newQMouseEvent(C.QMouseEvent_new4((C.int)(typeVal), localPos.cPointer(), windowPos.cPointer(), screenPos.cPointer(), (C.int)(button), (C.int)(buttons), (C.int)(modifiers), (C.int)(source)))
 	ret.isSubclass = true
 	return ret
@@ -349,7 +346,6 @@ func NewQMouseEvent4(typeVal QEvent__Type, localPos *QPointF, windowPos *QPointF
 
 // NewQMouseEvent5 constructs a new QMouseEvent object.
 func NewQMouseEvent5(param1 *QMouseEvent) *QMouseEvent {
-
 	ret := newQMouseEvent(C.QMouseEvent_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -457,8 +453,10 @@ func newQHoverEvent(h *C.QHoverEvent) *QHoverEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QHoverEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QHoverEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QHoverEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQHoverEvent constructs the type using only unsafe pointers.
@@ -468,7 +466,6 @@ func UnsafeNewQHoverEvent(h unsafe.Pointer) *QHoverEvent {
 
 // NewQHoverEvent constructs a new QHoverEvent object.
 func NewQHoverEvent(typeVal QEvent__Type, pos *QPointF, oldPos *QPointF) *QHoverEvent {
-
 	ret := newQHoverEvent(C.QHoverEvent_new((C.int)(typeVal), pos.cPointer(), oldPos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -476,7 +473,6 @@ func NewQHoverEvent(typeVal QEvent__Type, pos *QPointF, oldPos *QPointF) *QHover
 
 // NewQHoverEvent2 constructs a new QHoverEvent object.
 func NewQHoverEvent2(param1 *QHoverEvent) *QHoverEvent {
-
 	ret := newQHoverEvent(C.QHoverEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -484,7 +480,6 @@ func NewQHoverEvent2(param1 *QHoverEvent) *QHoverEvent {
 
 // NewQHoverEvent3 constructs a new QHoverEvent object.
 func NewQHoverEvent3(typeVal QEvent__Type, pos *QPointF, oldPos *QPointF, modifiers KeyboardModifier) *QHoverEvent {
-
 	ret := newQHoverEvent(C.QHoverEvent_new3((C.int)(typeVal), pos.cPointer(), oldPos.cPointer(), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -552,8 +547,10 @@ func newQWheelEvent(h *C.QWheelEvent) *QWheelEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QWheelEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QWheelEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QWheelEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQWheelEvent constructs the type using only unsafe pointers.
@@ -563,7 +560,6 @@ func UnsafeNewQWheelEvent(h unsafe.Pointer) *QWheelEvent {
 
 // NewQWheelEvent constructs a new QWheelEvent object.
 func NewQWheelEvent(pos *QPointF, delta int, buttons MouseButton, modifiers KeyboardModifier) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new(pos.cPointer(), (C.int)(delta), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -571,7 +567,6 @@ func NewQWheelEvent(pos *QPointF, delta int, buttons MouseButton, modifiers Keyb
 
 // NewQWheelEvent2 constructs a new QWheelEvent object.
 func NewQWheelEvent2(pos *QPointF, globalPos *QPointF, delta int, buttons MouseButton, modifiers KeyboardModifier) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new2(pos.cPointer(), globalPos.cPointer(), (C.int)(delta), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -579,7 +574,6 @@ func NewQWheelEvent2(pos *QPointF, globalPos *QPointF, delta int, buttons MouseB
 
 // NewQWheelEvent3 constructs a new QWheelEvent object.
 func NewQWheelEvent3(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleDelta QPoint, qt4Delta int, qt4Orientation Orientation, buttons MouseButton, modifiers KeyboardModifier) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new3(pos.cPointer(), globalPos.cPointer(), pixelDelta.cPointer(), angleDelta.cPointer(), (C.int)(qt4Delta), (C.int)(qt4Orientation), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -587,7 +581,6 @@ func NewQWheelEvent3(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleD
 
 // NewQWheelEvent4 constructs a new QWheelEvent object.
 func NewQWheelEvent4(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleDelta QPoint, qt4Delta int, qt4Orientation Orientation, buttons MouseButton, modifiers KeyboardModifier, phase ScrollPhase) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new4(pos.cPointer(), globalPos.cPointer(), pixelDelta.cPointer(), angleDelta.cPointer(), (C.int)(qt4Delta), (C.int)(qt4Orientation), (C.int)(buttons), (C.int)(modifiers), (C.int)(phase)))
 	ret.isSubclass = true
 	return ret
@@ -595,7 +588,6 @@ func NewQWheelEvent4(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleD
 
 // NewQWheelEvent5 constructs a new QWheelEvent object.
 func NewQWheelEvent5(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleDelta QPoint, qt4Delta int, qt4Orientation Orientation, buttons MouseButton, modifiers KeyboardModifier, phase ScrollPhase, source MouseEventSource) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new5(pos.cPointer(), globalPos.cPointer(), pixelDelta.cPointer(), angleDelta.cPointer(), (C.int)(qt4Delta), (C.int)(qt4Orientation), (C.int)(buttons), (C.int)(modifiers), (C.int)(phase), (C.int)(source)))
 	ret.isSubclass = true
 	return ret
@@ -603,7 +595,6 @@ func NewQWheelEvent5(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleD
 
 // NewQWheelEvent6 constructs a new QWheelEvent object.
 func NewQWheelEvent6(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleDelta QPoint, qt4Delta int, qt4Orientation Orientation, buttons MouseButton, modifiers KeyboardModifier, phase ScrollPhase, source MouseEventSource, inverted bool) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new6(pos.cPointer(), globalPos.cPointer(), pixelDelta.cPointer(), angleDelta.cPointer(), (C.int)(qt4Delta), (C.int)(qt4Orientation), (C.int)(buttons), (C.int)(modifiers), (C.int)(phase), (C.int)(source), (C.bool)(inverted)))
 	ret.isSubclass = true
 	return ret
@@ -611,7 +602,6 @@ func NewQWheelEvent6(pos *QPointF, globalPos *QPointF, pixelDelta QPoint, angleD
 
 // NewQWheelEvent7 constructs a new QWheelEvent object.
 func NewQWheelEvent7(pos QPointF, globalPos QPointF, pixelDelta QPoint, angleDelta QPoint, buttons MouseButton, modifiers KeyboardModifier, phase ScrollPhase, inverted bool) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new7(pos.cPointer(), globalPos.cPointer(), pixelDelta.cPointer(), angleDelta.cPointer(), (C.int)(buttons), (C.int)(modifiers), (C.int)(phase), (C.bool)(inverted)))
 	ret.isSubclass = true
 	return ret
@@ -619,7 +609,6 @@ func NewQWheelEvent7(pos QPointF, globalPos QPointF, pixelDelta QPoint, angleDel
 
 // NewQWheelEvent8 constructs a new QWheelEvent object.
 func NewQWheelEvent8(param1 *QWheelEvent) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new8(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -627,7 +616,6 @@ func NewQWheelEvent8(param1 *QWheelEvent) *QWheelEvent {
 
 // NewQWheelEvent9 constructs a new QWheelEvent object.
 func NewQWheelEvent9(pos *QPointF, delta int, buttons MouseButton, modifiers KeyboardModifier, orient Orientation) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new9(pos.cPointer(), (C.int)(delta), (C.int)(buttons), (C.int)(modifiers), (C.int)(orient)))
 	ret.isSubclass = true
 	return ret
@@ -635,7 +623,6 @@ func NewQWheelEvent9(pos *QPointF, delta int, buttons MouseButton, modifiers Key
 
 // NewQWheelEvent10 constructs a new QWheelEvent object.
 func NewQWheelEvent10(pos *QPointF, globalPos *QPointF, delta int, buttons MouseButton, modifiers KeyboardModifier, orient Orientation) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new10(pos.cPointer(), globalPos.cPointer(), (C.int)(delta), (C.int)(buttons), (C.int)(modifiers), (C.int)(orient)))
 	ret.isSubclass = true
 	return ret
@@ -643,7 +630,6 @@ func NewQWheelEvent10(pos *QPointF, globalPos *QPointF, delta int, buttons Mouse
 
 // NewQWheelEvent11 constructs a new QWheelEvent object.
 func NewQWheelEvent11(pos QPointF, globalPos QPointF, pixelDelta QPoint, angleDelta QPoint, buttons MouseButton, modifiers KeyboardModifier, phase ScrollPhase, inverted bool, source MouseEventSource) *QWheelEvent {
-
 	ret := newQWheelEvent(C.QWheelEvent_new11(pos.cPointer(), globalPos.cPointer(), pixelDelta.cPointer(), angleDelta.cPointer(), (C.int)(buttons), (C.int)(modifiers), (C.int)(phase), (C.bool)(inverted), (C.int)(source)))
 	ret.isSubclass = true
 	return ret
@@ -775,8 +761,10 @@ func newQTabletEvent(h *C.QTabletEvent) *QTabletEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QTabletEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QTabletEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QTabletEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQTabletEvent constructs the type using only unsafe pointers.
@@ -786,7 +774,6 @@ func UnsafeNewQTabletEvent(h unsafe.Pointer) *QTabletEvent {
 
 // NewQTabletEvent constructs a new QTabletEvent object.
 func NewQTabletEvent(t QEvent__Type, pos *QPointF, globalPos *QPointF, device int, pointerType int, pressure float64, xTilt int, yTilt int, tangentialPressure float64, rotation float64, z int, keyState KeyboardModifier, uniqueID int64) *QTabletEvent {
-
 	ret := newQTabletEvent(C.QTabletEvent_new((C.int)(t), pos.cPointer(), globalPos.cPointer(), (C.int)(device), (C.int)(pointerType), (C.double)(pressure), (C.int)(xTilt), (C.int)(yTilt), (C.double)(tangentialPressure), (C.double)(rotation), (C.int)(z), (C.int)(keyState), (C.longlong)(uniqueID)))
 	ret.isSubclass = true
 	return ret
@@ -794,7 +781,6 @@ func NewQTabletEvent(t QEvent__Type, pos *QPointF, globalPos *QPointF, device in
 
 // NewQTabletEvent2 constructs a new QTabletEvent object.
 func NewQTabletEvent2(t QEvent__Type, pos *QPointF, globalPos *QPointF, device int, pointerType int, pressure float64, xTilt int, yTilt int, tangentialPressure float64, rotation float64, z int, keyState KeyboardModifier, uniqueID int64, button MouseButton, buttons MouseButton) *QTabletEvent {
-
 	ret := newQTabletEvent(C.QTabletEvent_new2((C.int)(t), pos.cPointer(), globalPos.cPointer(), (C.int)(device), (C.int)(pointerType), (C.double)(pressure), (C.int)(xTilt), (C.int)(yTilt), (C.double)(tangentialPressure), (C.double)(rotation), (C.int)(z), (C.int)(keyState), (C.longlong)(uniqueID), (C.int)(button), (C.int)(buttons)))
 	ret.isSubclass = true
 	return ret
@@ -802,7 +788,6 @@ func NewQTabletEvent2(t QEvent__Type, pos *QPointF, globalPos *QPointF, device i
 
 // NewQTabletEvent3 constructs a new QTabletEvent object.
 func NewQTabletEvent3(param1 *QTabletEvent) *QTabletEvent {
-
 	ret := newQTabletEvent(C.QTabletEvent_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -942,8 +927,10 @@ func newQNativeGestureEvent(h *C.QNativeGestureEvent) *QNativeGestureEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QNativeGestureEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QNativeGestureEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QNativeGestureEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQNativeGestureEvent constructs the type using only unsafe pointers.
@@ -953,7 +940,6 @@ func UnsafeNewQNativeGestureEvent(h unsafe.Pointer) *QNativeGestureEvent {
 
 // NewQNativeGestureEvent constructs a new QNativeGestureEvent object.
 func NewQNativeGestureEvent(typeVal NativeGestureType, localPos *QPointF, windowPos *QPointF, screenPos *QPointF, value float64, sequenceId uint64, intArgument uint64) *QNativeGestureEvent {
-
 	ret := newQNativeGestureEvent(C.QNativeGestureEvent_new((C.int)(typeVal), localPos.cPointer(), windowPos.cPointer(), screenPos.cPointer(), (C.double)(value), (C.ulong)(sequenceId), (C.ulonglong)(intArgument)))
 	ret.isSubclass = true
 	return ret
@@ -961,7 +947,6 @@ func NewQNativeGestureEvent(typeVal NativeGestureType, localPos *QPointF, window
 
 // NewQNativeGestureEvent2 constructs a new QNativeGestureEvent object.
 func NewQNativeGestureEvent2(typeVal NativeGestureType, dev *QTouchDevice, localPos *QPointF, windowPos *QPointF, screenPos *QPointF, value float64, sequenceId uint64, intArgument uint64) *QNativeGestureEvent {
-
 	ret := newQNativeGestureEvent(C.QNativeGestureEvent_new2((C.int)(typeVal), dev.cPointer(), localPos.cPointer(), windowPos.cPointer(), screenPos.cPointer(), (C.double)(value), (C.ulong)(sequenceId), (C.ulonglong)(intArgument)))
 	ret.isSubclass = true
 	return ret
@@ -969,7 +954,6 @@ func NewQNativeGestureEvent2(typeVal NativeGestureType, dev *QTouchDevice, local
 
 // NewQNativeGestureEvent3 constructs a new QNativeGestureEvent object.
 func NewQNativeGestureEvent3(param1 *QNativeGestureEvent) *QNativeGestureEvent {
-
 	ret := newQNativeGestureEvent(C.QNativeGestureEvent_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1053,8 +1037,10 @@ func newQKeyEvent(h *C.QKeyEvent) *QKeyEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QKeyEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QKeyEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QKeyEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQKeyEvent constructs the type using only unsafe pointers.
@@ -1064,7 +1050,6 @@ func UnsafeNewQKeyEvent(h unsafe.Pointer) *QKeyEvent {
 
 // NewQKeyEvent constructs a new QKeyEvent object.
 func NewQKeyEvent(typeVal QEvent__Type, key int, modifiers KeyboardModifier) *QKeyEvent {
-
 	ret := newQKeyEvent(C.QKeyEvent_new((C.int)(typeVal), (C.int)(key), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -1072,7 +1057,6 @@ func NewQKeyEvent(typeVal QEvent__Type, key int, modifiers KeyboardModifier) *QK
 
 // NewQKeyEvent2 constructs a new QKeyEvent object.
 func NewQKeyEvent2(typeVal QEvent__Type, key int, modifiers KeyboardModifier, nativeScanCode uint, nativeVirtualKey uint, nativeModifiers uint) *QKeyEvent {
-
 	ret := newQKeyEvent(C.QKeyEvent_new2((C.int)(typeVal), (C.int)(key), (C.int)(modifiers), (C.uint)(nativeScanCode), (C.uint)(nativeVirtualKey), (C.uint)(nativeModifiers)))
 	ret.isSubclass = true
 	return ret
@@ -1080,7 +1064,6 @@ func NewQKeyEvent2(typeVal QEvent__Type, key int, modifiers KeyboardModifier, na
 
 // NewQKeyEvent3 constructs a new QKeyEvent object.
 func NewQKeyEvent3(param1 *QKeyEvent) *QKeyEvent {
-
 	ret := newQKeyEvent(C.QKeyEvent_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1239,8 +1222,10 @@ func newQFocusEvent(h *C.QFocusEvent) *QFocusEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QFocusEvent_virtbase(h, &outptr_QEvent)
 
-	return &QFocusEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QFocusEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQFocusEvent constructs the type using only unsafe pointers.
@@ -1250,7 +1235,6 @@ func UnsafeNewQFocusEvent(h unsafe.Pointer) *QFocusEvent {
 
 // NewQFocusEvent constructs a new QFocusEvent object.
 func NewQFocusEvent(typeVal QEvent__Type) *QFocusEvent {
-
 	ret := newQFocusEvent(C.QFocusEvent_new((C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -1258,7 +1242,6 @@ func NewQFocusEvent(typeVal QEvent__Type) *QFocusEvent {
 
 // NewQFocusEvent2 constructs a new QFocusEvent object.
 func NewQFocusEvent2(param1 *QFocusEvent) *QFocusEvent {
-
 	ret := newQFocusEvent(C.QFocusEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1266,7 +1249,6 @@ func NewQFocusEvent2(param1 *QFocusEvent) *QFocusEvent {
 
 // NewQFocusEvent3 constructs a new QFocusEvent object.
 func NewQFocusEvent3(typeVal QEvent__Type, reason FocusReason) *QFocusEvent {
-
 	ret := newQFocusEvent(C.QFocusEvent_new3((C.int)(typeVal), (C.int)(reason)))
 	ret.isSubclass = true
 	return ret
@@ -1326,8 +1308,10 @@ func newQPaintEvent(h *C.QPaintEvent) *QPaintEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QPaintEvent_virtbase(h, &outptr_QEvent)
 
-	return &QPaintEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QPaintEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQPaintEvent constructs the type using only unsafe pointers.
@@ -1337,7 +1321,6 @@ func UnsafeNewQPaintEvent(h unsafe.Pointer) *QPaintEvent {
 
 // NewQPaintEvent constructs a new QPaintEvent object.
 func NewQPaintEvent(paintRegion *QRegion) *QPaintEvent {
-
 	ret := newQPaintEvent(C.QPaintEvent_new(paintRegion.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1345,7 +1328,6 @@ func NewQPaintEvent(paintRegion *QRegion) *QPaintEvent {
 
 // NewQPaintEvent2 constructs a new QPaintEvent object.
 func NewQPaintEvent2(paintRect *QRect) *QPaintEvent {
-
 	ret := newQPaintEvent(C.QPaintEvent_new2(paintRect.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1353,7 +1335,6 @@ func NewQPaintEvent2(paintRect *QRect) *QPaintEvent {
 
 // NewQPaintEvent3 constructs a new QPaintEvent object.
 func NewQPaintEvent3(param1 *QPaintEvent) *QPaintEvent {
-
 	ret := newQPaintEvent(C.QPaintEvent_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1409,8 +1390,10 @@ func newQMoveEvent(h *C.QMoveEvent) *QMoveEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QMoveEvent_virtbase(h, &outptr_QEvent)
 
-	return &QMoveEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QMoveEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQMoveEvent constructs the type using only unsafe pointers.
@@ -1420,7 +1403,6 @@ func UnsafeNewQMoveEvent(h unsafe.Pointer) *QMoveEvent {
 
 // NewQMoveEvent constructs a new QMoveEvent object.
 func NewQMoveEvent(pos *QPoint, oldPos *QPoint) *QMoveEvent {
-
 	ret := newQMoveEvent(C.QMoveEvent_new(pos.cPointer(), oldPos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1428,7 +1410,6 @@ func NewQMoveEvent(pos *QPoint, oldPos *QPoint) *QMoveEvent {
 
 // NewQMoveEvent2 constructs a new QMoveEvent object.
 func NewQMoveEvent2(param1 *QMoveEvent) *QMoveEvent {
-
 	ret := newQMoveEvent(C.QMoveEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1484,8 +1465,10 @@ func newQExposeEvent(h *C.QExposeEvent) *QExposeEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QExposeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QExposeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QExposeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQExposeEvent constructs the type using only unsafe pointers.
@@ -1495,7 +1478,6 @@ func UnsafeNewQExposeEvent(h unsafe.Pointer) *QExposeEvent {
 
 // NewQExposeEvent constructs a new QExposeEvent object.
 func NewQExposeEvent(rgn *QRegion) *QExposeEvent {
-
 	ret := newQExposeEvent(C.QExposeEvent_new(rgn.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1503,7 +1485,6 @@ func NewQExposeEvent(rgn *QRegion) *QExposeEvent {
 
 // NewQExposeEvent2 constructs a new QExposeEvent object.
 func NewQExposeEvent2(param1 *QExposeEvent) *QExposeEvent {
-
 	ret := newQExposeEvent(C.QExposeEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1555,8 +1536,10 @@ func newQPlatformSurfaceEvent(h *C.QPlatformSurfaceEvent) *QPlatformSurfaceEvent
 	var outptr_QEvent *C.QEvent = nil
 	C.QPlatformSurfaceEvent_virtbase(h, &outptr_QEvent)
 
-	return &QPlatformSurfaceEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QPlatformSurfaceEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQPlatformSurfaceEvent constructs the type using only unsafe pointers.
@@ -1566,7 +1549,6 @@ func UnsafeNewQPlatformSurfaceEvent(h unsafe.Pointer) *QPlatformSurfaceEvent {
 
 // NewQPlatformSurfaceEvent constructs a new QPlatformSurfaceEvent object.
 func NewQPlatformSurfaceEvent(surfaceEventType QPlatformSurfaceEvent__SurfaceEventType) *QPlatformSurfaceEvent {
-
 	ret := newQPlatformSurfaceEvent(C.QPlatformSurfaceEvent_new((C.int)(surfaceEventType)))
 	ret.isSubclass = true
 	return ret
@@ -1574,7 +1556,6 @@ func NewQPlatformSurfaceEvent(surfaceEventType QPlatformSurfaceEvent__SurfaceEve
 
 // NewQPlatformSurfaceEvent2 constructs a new QPlatformSurfaceEvent object.
 func NewQPlatformSurfaceEvent2(param1 *QPlatformSurfaceEvent) *QPlatformSurfaceEvent {
-
 	ret := newQPlatformSurfaceEvent(C.QPlatformSurfaceEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1626,8 +1607,10 @@ func newQResizeEvent(h *C.QResizeEvent) *QResizeEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QResizeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QResizeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QResizeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQResizeEvent constructs the type using only unsafe pointers.
@@ -1637,7 +1620,6 @@ func UnsafeNewQResizeEvent(h unsafe.Pointer) *QResizeEvent {
 
 // NewQResizeEvent constructs a new QResizeEvent object.
 func NewQResizeEvent(size *QSize, oldSize *QSize) *QResizeEvent {
-
 	ret := newQResizeEvent(C.QResizeEvent_new(size.cPointer(), oldSize.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1645,7 +1627,6 @@ func NewQResizeEvent(size *QSize, oldSize *QSize) *QResizeEvent {
 
 // NewQResizeEvent2 constructs a new QResizeEvent object.
 func NewQResizeEvent2(param1 *QResizeEvent) *QResizeEvent {
-
 	ret := newQResizeEvent(C.QResizeEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1701,8 +1682,10 @@ func newQCloseEvent(h *C.QCloseEvent) *QCloseEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QCloseEvent_virtbase(h, &outptr_QEvent)
 
-	return &QCloseEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QCloseEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQCloseEvent constructs the type using only unsafe pointers.
@@ -1712,7 +1695,6 @@ func UnsafeNewQCloseEvent(h unsafe.Pointer) *QCloseEvent {
 
 // NewQCloseEvent constructs a new QCloseEvent object.
 func NewQCloseEvent() *QCloseEvent {
-
 	ret := newQCloseEvent(C.QCloseEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -1720,7 +1702,6 @@ func NewQCloseEvent() *QCloseEvent {
 
 // NewQCloseEvent2 constructs a new QCloseEvent object.
 func NewQCloseEvent2(param1 *QCloseEvent) *QCloseEvent {
-
 	ret := newQCloseEvent(C.QCloseEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1772,8 +1753,10 @@ func newQIconDragEvent(h *C.QIconDragEvent) *QIconDragEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QIconDragEvent_virtbase(h, &outptr_QEvent)
 
-	return &QIconDragEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QIconDragEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQIconDragEvent constructs the type using only unsafe pointers.
@@ -1783,7 +1766,6 @@ func UnsafeNewQIconDragEvent(h unsafe.Pointer) *QIconDragEvent {
 
 // NewQIconDragEvent constructs a new QIconDragEvent object.
 func NewQIconDragEvent() *QIconDragEvent {
-
 	ret := newQIconDragEvent(C.QIconDragEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -1791,7 +1773,6 @@ func NewQIconDragEvent() *QIconDragEvent {
 
 // NewQIconDragEvent2 constructs a new QIconDragEvent object.
 func NewQIconDragEvent2(param1 *QIconDragEvent) *QIconDragEvent {
-
 	ret := newQIconDragEvent(C.QIconDragEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1843,8 +1824,10 @@ func newQShowEvent(h *C.QShowEvent) *QShowEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QShowEvent_virtbase(h, &outptr_QEvent)
 
-	return &QShowEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QShowEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQShowEvent constructs the type using only unsafe pointers.
@@ -1854,7 +1837,6 @@ func UnsafeNewQShowEvent(h unsafe.Pointer) *QShowEvent {
 
 // NewQShowEvent constructs a new QShowEvent object.
 func NewQShowEvent() *QShowEvent {
-
 	ret := newQShowEvent(C.QShowEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -1862,7 +1844,6 @@ func NewQShowEvent() *QShowEvent {
 
 // NewQShowEvent2 constructs a new QShowEvent object.
 func NewQShowEvent2(param1 *QShowEvent) *QShowEvent {
-
 	ret := newQShowEvent(C.QShowEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1914,8 +1895,10 @@ func newQHideEvent(h *C.QHideEvent) *QHideEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QHideEvent_virtbase(h, &outptr_QEvent)
 
-	return &QHideEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QHideEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQHideEvent constructs the type using only unsafe pointers.
@@ -1925,7 +1908,6 @@ func UnsafeNewQHideEvent(h unsafe.Pointer) *QHideEvent {
 
 // NewQHideEvent constructs a new QHideEvent object.
 func NewQHideEvent() *QHideEvent {
-
 	ret := newQHideEvent(C.QHideEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -1933,7 +1915,6 @@ func NewQHideEvent() *QHideEvent {
 
 // NewQHideEvent2 constructs a new QHideEvent object.
 func NewQHideEvent2(param1 *QHideEvent) *QHideEvent {
-
 	ret := newQHideEvent(C.QHideEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1985,8 +1966,10 @@ func newQContextMenuEvent(h *C.QContextMenuEvent) *QContextMenuEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QContextMenuEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QContextMenuEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QContextMenuEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQContextMenuEvent constructs the type using only unsafe pointers.
@@ -1996,7 +1979,6 @@ func UnsafeNewQContextMenuEvent(h unsafe.Pointer) *QContextMenuEvent {
 
 // NewQContextMenuEvent constructs a new QContextMenuEvent object.
 func NewQContextMenuEvent(reason QContextMenuEvent__Reason, pos *QPoint, globalPos *QPoint, modifiers KeyboardModifier) *QContextMenuEvent {
-
 	ret := newQContextMenuEvent(C.QContextMenuEvent_new((C.int)(reason), pos.cPointer(), globalPos.cPointer(), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -2004,7 +1986,6 @@ func NewQContextMenuEvent(reason QContextMenuEvent__Reason, pos *QPoint, globalP
 
 // NewQContextMenuEvent2 constructs a new QContextMenuEvent object.
 func NewQContextMenuEvent2(reason QContextMenuEvent__Reason, pos *QPoint, globalPos *QPoint) *QContextMenuEvent {
-
 	ret := newQContextMenuEvent(C.QContextMenuEvent_new2((C.int)(reason), pos.cPointer(), globalPos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2012,7 +1993,6 @@ func NewQContextMenuEvent2(reason QContextMenuEvent__Reason, pos *QPoint, global
 
 // NewQContextMenuEvent3 constructs a new QContextMenuEvent object.
 func NewQContextMenuEvent3(reason QContextMenuEvent__Reason, pos *QPoint) *QContextMenuEvent {
-
 	ret := newQContextMenuEvent(C.QContextMenuEvent_new3((C.int)(reason), pos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2020,7 +2000,6 @@ func NewQContextMenuEvent3(reason QContextMenuEvent__Reason, pos *QPoint) *QCont
 
 // NewQContextMenuEvent4 constructs a new QContextMenuEvent object.
 func NewQContextMenuEvent4(param1 *QContextMenuEvent) *QContextMenuEvent {
-
 	ret := newQContextMenuEvent(C.QContextMenuEvent_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2096,8 +2075,10 @@ func newQInputMethodEvent(h *C.QInputMethodEvent) *QInputMethodEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QInputMethodEvent_virtbase(h, &outptr_QEvent)
 
-	return &QInputMethodEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QInputMethodEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQInputMethodEvent constructs the type using only unsafe pointers.
@@ -2107,7 +2088,6 @@ func UnsafeNewQInputMethodEvent(h unsafe.Pointer) *QInputMethodEvent {
 
 // NewQInputMethodEvent constructs a new QInputMethodEvent object.
 func NewQInputMethodEvent() *QInputMethodEvent {
-
 	ret := newQInputMethodEvent(C.QInputMethodEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -2133,7 +2113,6 @@ func NewQInputMethodEvent2(preeditText string, attributes []QInputMethodEvent__A
 
 // NewQInputMethodEvent3 constructs a new QInputMethodEvent object.
 func NewQInputMethodEvent3(other *QInputMethodEvent) *QInputMethodEvent {
-
 	ret := newQInputMethodEvent(C.QInputMethodEvent_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2239,8 +2218,10 @@ func newQInputMethodQueryEvent(h *C.QInputMethodQueryEvent) *QInputMethodQueryEv
 	var outptr_QEvent *C.QEvent = nil
 	C.QInputMethodQueryEvent_virtbase(h, &outptr_QEvent)
 
-	return &QInputMethodQueryEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QInputMethodQueryEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQInputMethodQueryEvent constructs the type using only unsafe pointers.
@@ -2250,7 +2231,6 @@ func UnsafeNewQInputMethodQueryEvent(h unsafe.Pointer) *QInputMethodQueryEvent {
 
 // NewQInputMethodQueryEvent constructs a new QInputMethodQueryEvent object.
 func NewQInputMethodQueryEvent(queries InputMethodQuery) *QInputMethodQueryEvent {
-
 	ret := newQInputMethodQueryEvent(C.QInputMethodQueryEvent_new((C.int)(queries)))
 	ret.isSubclass = true
 	return ret
@@ -2258,7 +2238,6 @@ func NewQInputMethodQueryEvent(queries InputMethodQuery) *QInputMethodQueryEvent
 
 // NewQInputMethodQueryEvent2 constructs a new QInputMethodQueryEvent object.
 func NewQInputMethodQueryEvent2(param1 *QInputMethodQueryEvent) *QInputMethodQueryEvent {
-
 	ret := newQInputMethodQueryEvent(C.QInputMethodQueryEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2320,8 +2299,10 @@ func newQDropEvent(h *C.QDropEvent) *QDropEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QDropEvent_virtbase(h, &outptr_QEvent)
 
-	return &QDropEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QDropEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQDropEvent constructs the type using only unsafe pointers.
@@ -2331,7 +2312,6 @@ func UnsafeNewQDropEvent(h unsafe.Pointer) *QDropEvent {
 
 // NewQDropEvent constructs a new QDropEvent object.
 func NewQDropEvent(pos *QPointF, actions DropAction, data *QMimeData, buttons MouseButton, modifiers KeyboardModifier) *QDropEvent {
-
 	ret := newQDropEvent(C.QDropEvent_new(pos.cPointer(), (C.int)(actions), data.cPointer(), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -2339,7 +2319,6 @@ func NewQDropEvent(pos *QPointF, actions DropAction, data *QMimeData, buttons Mo
 
 // NewQDropEvent2 constructs a new QDropEvent object.
 func NewQDropEvent2(param1 *QDropEvent) *QDropEvent {
-
 	ret := newQDropEvent(C.QDropEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2347,7 +2326,6 @@ func NewQDropEvent2(param1 *QDropEvent) *QDropEvent {
 
 // NewQDropEvent3 constructs a new QDropEvent object.
 func NewQDropEvent3(pos *QPointF, actions DropAction, data *QMimeData, buttons MouseButton, modifiers KeyboardModifier, typeVal QEvent__Type) *QDropEvent {
-
 	ret := newQDropEvent(C.QDropEvent_new3(pos.cPointer(), (C.int)(actions), data.cPointer(), (C.int)(buttons), (C.int)(modifiers), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -2441,8 +2419,10 @@ func newQDragMoveEvent(h *C.QDragMoveEvent) *QDragMoveEvent {
 	var outptr_QDropEvent *C.QDropEvent = nil
 	C.QDragMoveEvent_virtbase(h, &outptr_QDropEvent)
 
-	return &QDragMoveEvent{h: h,
-		QDropEvent: newQDropEvent(outptr_QDropEvent)}
+	return &QDragMoveEvent{
+		h:          h,
+		QDropEvent: newQDropEvent(outptr_QDropEvent),
+	}
 }
 
 // UnsafeNewQDragMoveEvent constructs the type using only unsafe pointers.
@@ -2452,7 +2432,6 @@ func UnsafeNewQDragMoveEvent(h unsafe.Pointer) *QDragMoveEvent {
 
 // NewQDragMoveEvent constructs a new QDragMoveEvent object.
 func NewQDragMoveEvent(pos *QPoint, actions DropAction, data *QMimeData, buttons MouseButton, modifiers KeyboardModifier) *QDragMoveEvent {
-
 	ret := newQDragMoveEvent(C.QDragMoveEvent_new(pos.cPointer(), (C.int)(actions), data.cPointer(), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -2460,7 +2439,6 @@ func NewQDragMoveEvent(pos *QPoint, actions DropAction, data *QMimeData, buttons
 
 // NewQDragMoveEvent2 constructs a new QDragMoveEvent object.
 func NewQDragMoveEvent2(param1 *QDragMoveEvent) *QDragMoveEvent {
-
 	ret := newQDragMoveEvent(C.QDragMoveEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2468,7 +2446,6 @@ func NewQDragMoveEvent2(param1 *QDragMoveEvent) *QDragMoveEvent {
 
 // NewQDragMoveEvent3 constructs a new QDragMoveEvent object.
 func NewQDragMoveEvent3(pos *QPoint, actions DropAction, data *QMimeData, buttons MouseButton, modifiers KeyboardModifier, typeVal QEvent__Type) *QDragMoveEvent {
-
 	ret := newQDragMoveEvent(C.QDragMoveEvent_new3(pos.cPointer(), (C.int)(actions), data.cPointer(), (C.int)(buttons), (C.int)(modifiers), (C.int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -2538,8 +2515,10 @@ func newQDragEnterEvent(h *C.QDragEnterEvent) *QDragEnterEvent {
 	var outptr_QDragMoveEvent *C.QDragMoveEvent = nil
 	C.QDragEnterEvent_virtbase(h, &outptr_QDragMoveEvent)
 
-	return &QDragEnterEvent{h: h,
-		QDragMoveEvent: newQDragMoveEvent(outptr_QDragMoveEvent)}
+	return &QDragEnterEvent{
+		h:              h,
+		QDragMoveEvent: newQDragMoveEvent(outptr_QDragMoveEvent),
+	}
 }
 
 // UnsafeNewQDragEnterEvent constructs the type using only unsafe pointers.
@@ -2549,7 +2528,6 @@ func UnsafeNewQDragEnterEvent(h unsafe.Pointer) *QDragEnterEvent {
 
 // NewQDragEnterEvent constructs a new QDragEnterEvent object.
 func NewQDragEnterEvent(pos *QPoint, actions DropAction, data *QMimeData, buttons MouseButton, modifiers KeyboardModifier) *QDragEnterEvent {
-
 	ret := newQDragEnterEvent(C.QDragEnterEvent_new(pos.cPointer(), (C.int)(actions), data.cPointer(), (C.int)(buttons), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -2557,7 +2535,6 @@ func NewQDragEnterEvent(pos *QPoint, actions DropAction, data *QMimeData, button
 
 // NewQDragEnterEvent2 constructs a new QDragEnterEvent object.
 func NewQDragEnterEvent2(param1 *QDragEnterEvent) *QDragEnterEvent {
-
 	ret := newQDragEnterEvent(C.QDragEnterEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2609,8 +2586,10 @@ func newQDragLeaveEvent(h *C.QDragLeaveEvent) *QDragLeaveEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QDragLeaveEvent_virtbase(h, &outptr_QEvent)
 
-	return &QDragLeaveEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QDragLeaveEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQDragLeaveEvent constructs the type using only unsafe pointers.
@@ -2620,7 +2599,6 @@ func UnsafeNewQDragLeaveEvent(h unsafe.Pointer) *QDragLeaveEvent {
 
 // NewQDragLeaveEvent constructs a new QDragLeaveEvent object.
 func NewQDragLeaveEvent() *QDragLeaveEvent {
-
 	ret := newQDragLeaveEvent(C.QDragLeaveEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -2628,7 +2606,6 @@ func NewQDragLeaveEvent() *QDragLeaveEvent {
 
 // NewQDragLeaveEvent2 constructs a new QDragLeaveEvent object.
 func NewQDragLeaveEvent2(param1 *QDragLeaveEvent) *QDragLeaveEvent {
-
 	ret := newQDragLeaveEvent(C.QDragLeaveEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2680,8 +2657,10 @@ func newQHelpEvent(h *C.QHelpEvent) *QHelpEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QHelpEvent_virtbase(h, &outptr_QEvent)
 
-	return &QHelpEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QHelpEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQHelpEvent constructs the type using only unsafe pointers.
@@ -2691,7 +2670,6 @@ func UnsafeNewQHelpEvent(h unsafe.Pointer) *QHelpEvent {
 
 // NewQHelpEvent constructs a new QHelpEvent object.
 func NewQHelpEvent(typeVal QEvent__Type, pos *QPoint, globalPos *QPoint) *QHelpEvent {
-
 	ret := newQHelpEvent(C.QHelpEvent_new((C.int)(typeVal), pos.cPointer(), globalPos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2699,7 +2677,6 @@ func NewQHelpEvent(typeVal QEvent__Type, pos *QPoint, globalPos *QPoint) *QHelpE
 
 // NewQHelpEvent2 constructs a new QHelpEvent object.
 func NewQHelpEvent2(param1 *QHelpEvent) *QHelpEvent {
-
 	ret := newQHelpEvent(C.QHelpEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2771,8 +2748,10 @@ func newQStatusTipEvent(h *C.QStatusTipEvent) *QStatusTipEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QStatusTipEvent_virtbase(h, &outptr_QEvent)
 
-	return &QStatusTipEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QStatusTipEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQStatusTipEvent constructs the type using only unsafe pointers.
@@ -2794,7 +2773,6 @@ func NewQStatusTipEvent(tip string) *QStatusTipEvent {
 
 // NewQStatusTipEvent2 constructs a new QStatusTipEvent object.
 func NewQStatusTipEvent2(param1 *QStatusTipEvent) *QStatusTipEvent {
-
 	ret := newQStatusTipEvent(C.QStatusTipEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2849,8 +2827,10 @@ func newQWhatsThisClickedEvent(h *C.QWhatsThisClickedEvent) *QWhatsThisClickedEv
 	var outptr_QEvent *C.QEvent = nil
 	C.QWhatsThisClickedEvent_virtbase(h, &outptr_QEvent)
 
-	return &QWhatsThisClickedEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QWhatsThisClickedEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQWhatsThisClickedEvent constructs the type using only unsafe pointers.
@@ -2872,7 +2852,6 @@ func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
 
 // NewQWhatsThisClickedEvent2 constructs a new QWhatsThisClickedEvent object.
 func NewQWhatsThisClickedEvent2(param1 *QWhatsThisClickedEvent) *QWhatsThisClickedEvent {
-
 	ret := newQWhatsThisClickedEvent(C.QWhatsThisClickedEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2927,8 +2906,10 @@ func newQActionEvent(h *C.QActionEvent) *QActionEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QActionEvent_virtbase(h, &outptr_QEvent)
 
-	return &QActionEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QActionEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQActionEvent constructs the type using only unsafe pointers.
@@ -2938,7 +2919,6 @@ func UnsafeNewQActionEvent(h unsafe.Pointer) *QActionEvent {
 
 // NewQActionEvent constructs a new QActionEvent object.
 func NewQActionEvent(typeVal int, action *QAction) *QActionEvent {
-
 	ret := newQActionEvent(C.QActionEvent_new((C.int)(typeVal), action.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2946,7 +2926,6 @@ func NewQActionEvent(typeVal int, action *QAction) *QActionEvent {
 
 // NewQActionEvent2 constructs a new QActionEvent object.
 func NewQActionEvent2(param1 *QActionEvent) *QActionEvent {
-
 	ret := newQActionEvent(C.QActionEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -2954,7 +2933,6 @@ func NewQActionEvent2(param1 *QActionEvent) *QActionEvent {
 
 // NewQActionEvent3 constructs a new QActionEvent object.
 func NewQActionEvent3(typeVal int, action *QAction, before *QAction) *QActionEvent {
-
 	ret := newQActionEvent(C.QActionEvent_new3((C.int)(typeVal), action.cPointer(), before.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3014,8 +2992,10 @@ func newQFileOpenEvent(h *C.QFileOpenEvent) *QFileOpenEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QFileOpenEvent_virtbase(h, &outptr_QEvent)
 
-	return &QFileOpenEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QFileOpenEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQFileOpenEvent constructs the type using only unsafe pointers.
@@ -3037,7 +3017,6 @@ func NewQFileOpenEvent(file string) *QFileOpenEvent {
 
 // NewQFileOpenEvent2 constructs a new QFileOpenEvent object.
 func NewQFileOpenEvent2(url *QUrl) *QFileOpenEvent {
-
 	ret := newQFileOpenEvent(C.QFileOpenEvent_new2(url.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3045,7 +3024,6 @@ func NewQFileOpenEvent2(url *QUrl) *QFileOpenEvent {
 
 // NewQFileOpenEvent3 constructs a new QFileOpenEvent object.
 func NewQFileOpenEvent3(param1 *QFileOpenEvent) *QFileOpenEvent {
-
 	ret := newQFileOpenEvent(C.QFileOpenEvent_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3110,8 +3088,10 @@ func newQToolBarChangeEvent(h *C.QToolBarChangeEvent) *QToolBarChangeEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QToolBarChangeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QToolBarChangeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QToolBarChangeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQToolBarChangeEvent constructs the type using only unsafe pointers.
@@ -3121,7 +3101,6 @@ func UnsafeNewQToolBarChangeEvent(h unsafe.Pointer) *QToolBarChangeEvent {
 
 // NewQToolBarChangeEvent constructs a new QToolBarChangeEvent object.
 func NewQToolBarChangeEvent(t bool) *QToolBarChangeEvent {
-
 	ret := newQToolBarChangeEvent(C.QToolBarChangeEvent_new((C.bool)(t)))
 	ret.isSubclass = true
 	return ret
@@ -3129,7 +3108,6 @@ func NewQToolBarChangeEvent(t bool) *QToolBarChangeEvent {
 
 // NewQToolBarChangeEvent2 constructs a new QToolBarChangeEvent object.
 func NewQToolBarChangeEvent2(param1 *QToolBarChangeEvent) *QToolBarChangeEvent {
-
 	ret := newQToolBarChangeEvent(C.QToolBarChangeEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3181,8 +3159,10 @@ func newQShortcutEvent(h *C.QShortcutEvent) *QShortcutEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QShortcutEvent_virtbase(h, &outptr_QEvent)
 
-	return &QShortcutEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QShortcutEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQShortcutEvent constructs the type using only unsafe pointers.
@@ -3192,7 +3172,6 @@ func UnsafeNewQShortcutEvent(h unsafe.Pointer) *QShortcutEvent {
 
 // NewQShortcutEvent constructs a new QShortcutEvent object.
 func NewQShortcutEvent(key *QKeySequence, id int) *QShortcutEvent {
-
 	ret := newQShortcutEvent(C.QShortcutEvent_new(key.cPointer(), (C.int)(id)))
 	ret.isSubclass = true
 	return ret
@@ -3200,7 +3179,6 @@ func NewQShortcutEvent(key *QKeySequence, id int) *QShortcutEvent {
 
 // NewQShortcutEvent2 constructs a new QShortcutEvent object.
 func NewQShortcutEvent2(param1 *QShortcutEvent) *QShortcutEvent {
-
 	ret := newQShortcutEvent(C.QShortcutEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3208,7 +3186,6 @@ func NewQShortcutEvent2(param1 *QShortcutEvent) *QShortcutEvent {
 
 // NewQShortcutEvent3 constructs a new QShortcutEvent object.
 func NewQShortcutEvent3(key *QKeySequence, id int, ambiguous bool) *QShortcutEvent {
-
 	ret := newQShortcutEvent(C.QShortcutEvent_new3(key.cPointer(), (C.int)(id), (C.bool)(ambiguous)))
 	ret.isSubclass = true
 	return ret
@@ -3268,8 +3245,10 @@ func newQWindowStateChangeEvent(h *C.QWindowStateChangeEvent) *QWindowStateChang
 	var outptr_QEvent *C.QEvent = nil
 	C.QWindowStateChangeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QWindowStateChangeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QWindowStateChangeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQWindowStateChangeEvent constructs the type using only unsafe pointers.
@@ -3279,7 +3258,6 @@ func UnsafeNewQWindowStateChangeEvent(h unsafe.Pointer) *QWindowStateChangeEvent
 
 // NewQWindowStateChangeEvent constructs a new QWindowStateChangeEvent object.
 func NewQWindowStateChangeEvent(aOldState WindowState) *QWindowStateChangeEvent {
-
 	ret := newQWindowStateChangeEvent(C.QWindowStateChangeEvent_new((C.int)(aOldState)))
 	ret.isSubclass = true
 	return ret
@@ -3287,7 +3265,6 @@ func NewQWindowStateChangeEvent(aOldState WindowState) *QWindowStateChangeEvent 
 
 // NewQWindowStateChangeEvent2 constructs a new QWindowStateChangeEvent object.
 func NewQWindowStateChangeEvent2(param1 *QWindowStateChangeEvent) *QWindowStateChangeEvent {
-
 	ret := newQWindowStateChangeEvent(C.QWindowStateChangeEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3295,7 +3272,6 @@ func NewQWindowStateChangeEvent2(param1 *QWindowStateChangeEvent) *QWindowStateC
 
 // NewQWindowStateChangeEvent3 constructs a new QWindowStateChangeEvent object.
 func NewQWindowStateChangeEvent3(aOldState WindowState, isOverride bool) *QWindowStateChangeEvent {
-
 	ret := newQWindowStateChangeEvent(C.QWindowStateChangeEvent_new3((C.int)(aOldState), (C.bool)(isOverride)))
 	ret.isSubclass = true
 	return ret
@@ -3358,7 +3334,6 @@ func UnsafeNewQPointingDeviceUniqueId(h unsafe.Pointer) *QPointingDeviceUniqueId
 
 // NewQPointingDeviceUniqueId constructs a new QPointingDeviceUniqueId object.
 func NewQPointingDeviceUniqueId() *QPointingDeviceUniqueId {
-
 	ret := newQPointingDeviceUniqueId(C.QPointingDeviceUniqueId_new())
 	ret.isSubclass = true
 	return ret
@@ -3366,7 +3341,6 @@ func NewQPointingDeviceUniqueId() *QPointingDeviceUniqueId {
 
 // NewQPointingDeviceUniqueId2 constructs a new QPointingDeviceUniqueId object.
 func NewQPointingDeviceUniqueId2(param1 *QPointingDeviceUniqueId) *QPointingDeviceUniqueId {
-
 	ret := newQPointingDeviceUniqueId(C.QPointingDeviceUniqueId_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3428,8 +3402,10 @@ func newQTouchEvent(h *C.QTouchEvent) *QTouchEvent {
 	var outptr_QInputEvent *C.QInputEvent = nil
 	C.QTouchEvent_virtbase(h, &outptr_QInputEvent)
 
-	return &QTouchEvent{h: h,
-		QInputEvent: newQInputEvent(outptr_QInputEvent)}
+	return &QTouchEvent{
+		h:           h,
+		QInputEvent: newQInputEvent(outptr_QInputEvent),
+	}
 }
 
 // UnsafeNewQTouchEvent constructs the type using only unsafe pointers.
@@ -3439,7 +3415,6 @@ func UnsafeNewQTouchEvent(h unsafe.Pointer) *QTouchEvent {
 
 // NewQTouchEvent constructs a new QTouchEvent object.
 func NewQTouchEvent(eventType QEvent__Type) *QTouchEvent {
-
 	ret := newQTouchEvent(C.QTouchEvent_new((C.int)(eventType)))
 	ret.isSubclass = true
 	return ret
@@ -3447,7 +3422,6 @@ func NewQTouchEvent(eventType QEvent__Type) *QTouchEvent {
 
 // NewQTouchEvent2 constructs a new QTouchEvent object.
 func NewQTouchEvent2(param1 *QTouchEvent) *QTouchEvent {
-
 	ret := newQTouchEvent(C.QTouchEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3455,7 +3429,6 @@ func NewQTouchEvent2(param1 *QTouchEvent) *QTouchEvent {
 
 // NewQTouchEvent3 constructs a new QTouchEvent object.
 func NewQTouchEvent3(eventType QEvent__Type, device *QTouchDevice) *QTouchEvent {
-
 	ret := newQTouchEvent(C.QTouchEvent_new3((C.int)(eventType), device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3463,7 +3436,6 @@ func NewQTouchEvent3(eventType QEvent__Type, device *QTouchDevice) *QTouchEvent 
 
 // NewQTouchEvent4 constructs a new QTouchEvent object.
 func NewQTouchEvent4(eventType QEvent__Type, device *QTouchDevice, modifiers KeyboardModifier) *QTouchEvent {
-
 	ret := newQTouchEvent(C.QTouchEvent_new4((C.int)(eventType), device.cPointer(), (C.int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -3471,7 +3443,6 @@ func NewQTouchEvent4(eventType QEvent__Type, device *QTouchDevice, modifiers Key
 
 // NewQTouchEvent5 constructs a new QTouchEvent object.
 func NewQTouchEvent5(eventType QEvent__Type, device *QTouchDevice, modifiers KeyboardModifier, touchPointStates TouchPointState) *QTouchEvent {
-
 	ret := newQTouchEvent(C.QTouchEvent_new5((C.int)(eventType), device.cPointer(), (C.int)(modifiers), (C.int)(touchPointStates)))
 	ret.isSubclass = true
 	return ret
@@ -3587,8 +3558,10 @@ func newQScrollPrepareEvent(h *C.QScrollPrepareEvent) *QScrollPrepareEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QScrollPrepareEvent_virtbase(h, &outptr_QEvent)
 
-	return &QScrollPrepareEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QScrollPrepareEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQScrollPrepareEvent constructs the type using only unsafe pointers.
@@ -3598,7 +3571,6 @@ func UnsafeNewQScrollPrepareEvent(h unsafe.Pointer) *QScrollPrepareEvent {
 
 // NewQScrollPrepareEvent constructs a new QScrollPrepareEvent object.
 func NewQScrollPrepareEvent(startPos *QPointF) *QScrollPrepareEvent {
-
 	ret := newQScrollPrepareEvent(C.QScrollPrepareEvent_new(startPos.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3606,7 +3578,6 @@ func NewQScrollPrepareEvent(startPos *QPointF) *QScrollPrepareEvent {
 
 // NewQScrollPrepareEvent2 constructs a new QScrollPrepareEvent object.
 func NewQScrollPrepareEvent2(param1 *QScrollPrepareEvent) *QScrollPrepareEvent {
-
 	ret := newQScrollPrepareEvent(C.QScrollPrepareEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3690,8 +3661,10 @@ func newQScrollEvent(h *C.QScrollEvent) *QScrollEvent {
 	var outptr_QEvent *C.QEvent = nil
 	C.QScrollEvent_virtbase(h, &outptr_QEvent)
 
-	return &QScrollEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QScrollEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQScrollEvent constructs the type using only unsafe pointers.
@@ -3701,7 +3674,6 @@ func UnsafeNewQScrollEvent(h unsafe.Pointer) *QScrollEvent {
 
 // NewQScrollEvent constructs a new QScrollEvent object.
 func NewQScrollEvent(contentPos *QPointF, overshoot *QPointF, scrollState QScrollEvent__ScrollState) *QScrollEvent {
-
 	ret := newQScrollEvent(C.QScrollEvent_new(contentPos.cPointer(), overshoot.cPointer(), (C.int)(scrollState)))
 	ret.isSubclass = true
 	return ret
@@ -3709,7 +3681,6 @@ func NewQScrollEvent(contentPos *QPointF, overshoot *QPointF, scrollState QScrol
 
 // NewQScrollEvent2 constructs a new QScrollEvent object.
 func NewQScrollEvent2(param1 *QScrollEvent) *QScrollEvent {
-
 	ret := newQScrollEvent(C.QScrollEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3773,8 +3744,10 @@ func newQScreenOrientationChangeEvent(h *C.QScreenOrientationChangeEvent) *QScre
 	var outptr_QEvent *C.QEvent = nil
 	C.QScreenOrientationChangeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QScreenOrientationChangeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QScreenOrientationChangeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQScreenOrientationChangeEvent constructs the type using only unsafe pointers.
@@ -3784,7 +3757,6 @@ func UnsafeNewQScreenOrientationChangeEvent(h unsafe.Pointer) *QScreenOrientatio
 
 // NewQScreenOrientationChangeEvent constructs a new QScreenOrientationChangeEvent object.
 func NewQScreenOrientationChangeEvent(screen *QScreen, orientation ScreenOrientation) *QScreenOrientationChangeEvent {
-
 	ret := newQScreenOrientationChangeEvent(C.QScreenOrientationChangeEvent_new(screen.cPointer(), (C.int)(orientation)))
 	ret.isSubclass = true
 	return ret
@@ -3792,7 +3764,6 @@ func NewQScreenOrientationChangeEvent(screen *QScreen, orientation ScreenOrienta
 
 // NewQScreenOrientationChangeEvent2 constructs a new QScreenOrientationChangeEvent object.
 func NewQScreenOrientationChangeEvent2(param1 *QScreenOrientationChangeEvent) *QScreenOrientationChangeEvent {
-
 	ret := newQScreenOrientationChangeEvent(C.QScreenOrientationChangeEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3848,8 +3819,10 @@ func newQApplicationStateChangeEvent(h *C.QApplicationStateChangeEvent) *QApplic
 	var outptr_QEvent *C.QEvent = nil
 	C.QApplicationStateChangeEvent_virtbase(h, &outptr_QEvent)
 
-	return &QApplicationStateChangeEvent{h: h,
-		QEvent: newQEvent(outptr_QEvent)}
+	return &QApplicationStateChangeEvent{
+		h:      h,
+		QEvent: newQEvent(outptr_QEvent),
+	}
 }
 
 // UnsafeNewQApplicationStateChangeEvent constructs the type using only unsafe pointers.
@@ -3859,7 +3832,6 @@ func UnsafeNewQApplicationStateChangeEvent(h unsafe.Pointer) *QApplicationStateC
 
 // NewQApplicationStateChangeEvent constructs a new QApplicationStateChangeEvent object.
 func NewQApplicationStateChangeEvent(state ApplicationState) *QApplicationStateChangeEvent {
-
 	ret := newQApplicationStateChangeEvent(C.QApplicationStateChangeEvent_new((C.int)(state)))
 	ret.isSubclass = true
 	return ret
@@ -3867,7 +3839,6 @@ func NewQApplicationStateChangeEvent(state ApplicationState) *QApplicationStateC
 
 // NewQApplicationStateChangeEvent2 constructs a new QApplicationStateChangeEvent object.
 func NewQApplicationStateChangeEvent2(param1 *QApplicationStateChangeEvent) *QApplicationStateChangeEvent {
-
 	ret := newQApplicationStateChangeEvent(C.QApplicationStateChangeEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3926,7 +3897,6 @@ func UnsafeNewQInputMethodEvent__Attribute(h unsafe.Pointer) *QInputMethodEvent_
 
 // NewQInputMethodEvent__Attribute constructs a new QInputMethodEvent::Attribute object.
 func NewQInputMethodEvent__Attribute(typ QInputMethodEvent__AttributeType, s int, l int, val QVariant) *QInputMethodEvent__Attribute {
-
 	ret := newQInputMethodEvent__Attribute(C.QInputMethodEvent__Attribute_new((C.int)(typ), (C.int)(s), (C.int)(l), val.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -3934,7 +3904,6 @@ func NewQInputMethodEvent__Attribute(typ QInputMethodEvent__AttributeType, s int
 
 // NewQInputMethodEvent__Attribute2 constructs a new QInputMethodEvent::Attribute object.
 func NewQInputMethodEvent__Attribute2(typ QInputMethodEvent__AttributeType, s int, l int) *QInputMethodEvent__Attribute {
-
 	ret := newQInputMethodEvent__Attribute(C.QInputMethodEvent__Attribute_new2((C.int)(typ), (C.int)(s), (C.int)(l)))
 	ret.isSubclass = true
 	return ret
@@ -3942,7 +3911,6 @@ func NewQInputMethodEvent__Attribute2(typ QInputMethodEvent__AttributeType, s in
 
 // NewQInputMethodEvent__Attribute3 constructs a new QInputMethodEvent::Attribute object.
 func NewQInputMethodEvent__Attribute3(param1 *QInputMethodEvent__Attribute) *QInputMethodEvent__Attribute {
-
 	ret := newQInputMethodEvent__Attribute(C.QInputMethodEvent__Attribute_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -4001,7 +3969,6 @@ func UnsafeNewQTouchEvent__TouchPoint(h unsafe.Pointer) *QTouchEvent__TouchPoint
 
 // NewQTouchEvent__TouchPoint constructs a new QTouchEvent::TouchPoint object.
 func NewQTouchEvent__TouchPoint() *QTouchEvent__TouchPoint {
-
 	ret := newQTouchEvent__TouchPoint(C.QTouchEvent__TouchPoint_new())
 	ret.isSubclass = true
 	return ret
@@ -4009,7 +3976,6 @@ func NewQTouchEvent__TouchPoint() *QTouchEvent__TouchPoint {
 
 // NewQTouchEvent__TouchPoint2 constructs a new QTouchEvent::TouchPoint object.
 func NewQTouchEvent__TouchPoint2(other *QTouchEvent__TouchPoint) *QTouchEvent__TouchPoint {
-
 	ret := newQTouchEvent__TouchPoint(C.QTouchEvent__TouchPoint_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -4017,7 +3983,6 @@ func NewQTouchEvent__TouchPoint2(other *QTouchEvent__TouchPoint) *QTouchEvent__T
 
 // NewQTouchEvent__TouchPoint3 constructs a new QTouchEvent::TouchPoint object.
 func NewQTouchEvent__TouchPoint3(id int) *QTouchEvent__TouchPoint {
-
 	ret := newQTouchEvent__TouchPoint(C.QTouchEvent__TouchPoint_new3((C.int)(id)))
 	ret.isSubclass = true
 	return ret

@@ -11,12 +11,10 @@ func TestTransformTypedefs(t *testing.T) {
 	makeTest := func(typeName string) CppParsedHeader {
 		return CppParsedHeader{
 			Classes: []CppClass{
-
-				CppClass{
+				{
 					ClassName: "QTestClass",
 					Ctors: []CppMethod{
-
-						CppMethod{
+						{
 							Parameters: []CppParameter{
 								parseSingleTypeString(typeName),
 							},
@@ -26,7 +24,6 @@ func TestTransformTypedefs(t *testing.T) {
 				},
 			},
 		}
-
 	}
 
 	runTest := func(check string, expect string) {
@@ -73,5 +70,4 @@ func TestTransformTypedefs(t *testing.T) {
 	// Typedefs changing pointer values
 	KnownTypedefs["_test_iterator"] = CppTypedef{"_test_iterator", parseSingleTypeString("char*")}
 	runTest("_test_iterator", "char*")
-
 }

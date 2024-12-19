@@ -9,11 +9,12 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
-	"github.com/mappu/miqt/qt/network"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
+	"github.com/mappu/miqt/qt/network"
 )
 
 type QMediaNetworkAccessControl struct {
@@ -44,8 +45,10 @@ func newQMediaNetworkAccessControl(h *C.QMediaNetworkAccessControl) *QMediaNetwo
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QMediaNetworkAccessControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QMediaNetworkAccessControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QMediaNetworkAccessControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQMediaNetworkAccessControl constructs the type using only unsafe pointers.
@@ -100,6 +103,7 @@ func (this *QMediaNetworkAccessControl) CurrentConfiguration() *network.QNetwork
 func (this *QMediaNetworkAccessControl) ConfigurationChanged(configuration *network.QNetworkConfiguration) {
 	C.QMediaNetworkAccessControl_ConfigurationChanged(this.h, (*C.QNetworkConfiguration)(configuration.UnsafePointer()))
 }
+
 func (this *QMediaNetworkAccessControl) OnConfigurationChanged(slot func(configuration *network.QNetworkConfiguration)) {
 	C.QMediaNetworkAccessControl_connect_ConfigurationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

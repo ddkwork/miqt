@@ -78,7 +78,6 @@ func UnsafeNewQUuid(h unsafe.Pointer) *QUuid {
 
 // NewQUuid constructs a new QUuid object.
 func NewQUuid() *QUuid {
-
 	ret := newQUuid(C.QUuid_new())
 	ret.isSubclass = true
 	return ret
@@ -86,7 +85,6 @@ func NewQUuid() *QUuid {
 
 // NewQUuid2 constructs a new QUuid object.
 func NewQUuid2(l uint, w1 uint16, w2 uint16, b1 byte, b2 byte, b3 byte, b4 byte, b5 byte, b6 byte, b7 byte, b8 byte) *QUuid {
-
 	ret := newQUuid(C.QUuid_new2((C.uint)(l), (C.uint16_t)(w1), (C.uint16_t)(w2), (C.uchar)(b1), (C.uchar)(b2), (C.uchar)(b3), (C.uchar)(b4), (C.uchar)(b5), (C.uchar)(b6), (C.uchar)(b7), (C.uchar)(b8)))
 	ret.isSubclass = true
 	return ret
@@ -127,7 +125,6 @@ func NewQUuid5(param1 []byte) *QUuid {
 
 // NewQUuid6 constructs a new QUuid object.
 func NewQUuid6(param1 *QUuid) *QUuid {
-
 	ret := newQUuid(C.QUuid_new6(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

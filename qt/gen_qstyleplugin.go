@@ -42,8 +42,10 @@ func newQStylePlugin(h *C.QStylePlugin) *QStylePlugin {
 	var outptr_QObject *C.QObject = nil
 	C.QStylePlugin_virtbase(h, &outptr_QObject)
 
-	return &QStylePlugin{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QStylePlugin{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQStylePlugin constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQStylePlugin(h unsafe.Pointer) *QStylePlugin {
 
 // NewQStylePlugin constructs a new QStylePlugin object.
 func NewQStylePlugin() *QStylePlugin {
-
 	ret := newQStylePlugin(C.QStylePlugin_new())
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQStylePlugin() *QStylePlugin {
 
 // NewQStylePlugin2 constructs a new QStylePlugin object.
 func NewQStylePlugin2(parent *QObject) *QStylePlugin {
-
 	ret := newQStylePlugin(C.QStylePlugin_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -146,6 +146,7 @@ func QStylePlugin_TrUtf83(s string, c string, n int) string {
 	C.free(unsafe.Pointer(_ms.data))
 	return _ret
 }
+
 func (this *QStylePlugin) OnCreate(slot func(key string) *QStyle) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -169,14 +170,12 @@ func miqt_exec_callback_QStylePlugin_Create(self *C.QStylePlugin, cb C.intptr_t,
 	virtualReturn := gofunc(slotval1)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QStylePlugin) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QStylePlugin_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QStylePlugin) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -197,14 +196,12 @@ func miqt_exec_callback_QStylePlugin_Event(self *C.QStylePlugin, cb C.intptr_t, 
 	virtualReturn := gofunc((&QStylePlugin{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QStylePlugin) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QStylePlugin_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QStylePlugin) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -227,14 +224,12 @@ func miqt_exec_callback_QStylePlugin_EventFilter(self *C.QStylePlugin, cb C.intp
 	virtualReturn := gofunc((&QStylePlugin{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QStylePlugin) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QStylePlugin_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStylePlugin) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -253,14 +248,12 @@ func miqt_exec_callback_QStylePlugin_TimerEvent(self *C.QStylePlugin, cb C.intpt
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QStylePlugin{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QStylePlugin) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QStylePlugin_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStylePlugin) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -279,14 +272,12 @@ func miqt_exec_callback_QStylePlugin_ChildEvent(self *C.QStylePlugin, cb C.intpt
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QStylePlugin{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QStylePlugin) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QStylePlugin_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QStylePlugin) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -305,14 +296,12 @@ func miqt_exec_callback_QStylePlugin_CustomEvent(self *C.QStylePlugin, cb C.intp
 	slotval1 := newQEvent(event)
 
 	gofunc((&QStylePlugin{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QStylePlugin) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QStylePlugin_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QStylePlugin) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -331,14 +320,12 @@ func miqt_exec_callback_QStylePlugin_ConnectNotify(self *C.QStylePlugin, cb C.in
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QStylePlugin{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QStylePlugin) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QStylePlugin_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QStylePlugin) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -357,7 +344,6 @@ func miqt_exec_callback_QStylePlugin_DisconnectNotify(self *C.QStylePlugin, cb C
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QStylePlugin{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.

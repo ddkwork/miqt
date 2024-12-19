@@ -55,7 +55,6 @@ func UnsafeNewQRegion(h unsafe.Pointer) *QRegion {
 
 // NewQRegion constructs a new QRegion object.
 func NewQRegion() *QRegion {
-
 	ret := newQRegion(C.QRegion_new())
 	ret.isSubclass = true
 	return ret
@@ -63,7 +62,6 @@ func NewQRegion() *QRegion {
 
 // NewQRegion2 constructs a new QRegion object.
 func NewQRegion2(x int, y int, w int, h int) *QRegion {
-
 	ret := newQRegion(C.QRegion_new2((C.int)(x), (C.int)(y), (C.int)(w), (C.int)(h)))
 	ret.isSubclass = true
 	return ret
@@ -71,7 +69,6 @@ func NewQRegion2(x int, y int, w int, h int) *QRegion {
 
 // NewQRegion3 constructs a new QRegion object.
 func NewQRegion3(r *QRect) *QRegion {
-
 	ret := newQRegion(C.QRegion_new3(r.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -79,7 +76,6 @@ func NewQRegion3(r *QRect) *QRegion {
 
 // NewQRegion4 constructs a new QRegion object.
 func NewQRegion4(region *QRegion) *QRegion {
-
 	ret := newQRegion(C.QRegion_new4(region.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -87,7 +83,6 @@ func NewQRegion4(region *QRegion) *QRegion {
 
 // NewQRegion5 constructs a new QRegion object.
 func NewQRegion5(bitmap *QBitmap) *QRegion {
-
 	ret := newQRegion(C.QRegion_new5(bitmap.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -95,7 +90,6 @@ func NewQRegion5(bitmap *QBitmap) *QRegion {
 
 // NewQRegion6 constructs a new QRegion object.
 func NewQRegion6(x int, y int, w int, h int, t QRegion__RegionType) *QRegion {
-
 	ret := newQRegion(C.QRegion_new6((C.int)(x), (C.int)(y), (C.int)(w), (C.int)(h), (C.int)(t)))
 	ret.isSubclass = true
 	return ret
@@ -103,7 +97,6 @@ func NewQRegion6(x int, y int, w int, h int, t QRegion__RegionType) *QRegion {
 
 // NewQRegion7 constructs a new QRegion object.
 func NewQRegion7(r *QRect, t QRegion__RegionType) *QRegion {
-
 	ret := newQRegion(C.QRegion_new7(r.cPointer(), (C.int)(t)))
 	ret.isSubclass = true
 	return ret

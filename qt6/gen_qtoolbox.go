@@ -42,8 +42,10 @@ func newQToolBox(h *C.QToolBox) *QToolBox {
 	var outptr_QFrame *C.QFrame = nil
 	C.QToolBox_virtbase(h, &outptr_QFrame)
 
-	return &QToolBox{h: h,
-		QFrame: newQFrame(outptr_QFrame)}
+	return &QToolBox{
+		h:      h,
+		QFrame: newQFrame(outptr_QFrame),
+	}
 }
 
 // UnsafeNewQToolBox constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQToolBox(h unsafe.Pointer) *QToolBox {
 
 // NewQToolBox constructs a new QToolBox object.
 func NewQToolBox(parent *QWidget) *QToolBox {
-
 	ret := newQToolBox(C.QToolBox_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +62,6 @@ func NewQToolBox(parent *QWidget) *QToolBox {
 
 // NewQToolBox2 constructs a new QToolBox object.
 func NewQToolBox2() *QToolBox {
-
 	ret := newQToolBox(C.QToolBox_new2())
 	ret.isSubclass = true
 	return ret
@@ -69,7 +69,6 @@ func NewQToolBox2() *QToolBox {
 
 // NewQToolBox3 constructs a new QToolBox object.
 func NewQToolBox3(parent *QWidget, f WindowType) *QToolBox {
-
 	ret := newQToolBox(C.QToolBox_new3(parent.cPointer(), (C.int)(f)))
 	ret.isSubclass = true
 	return ret
@@ -209,6 +208,7 @@ func (this *QToolBox) SetCurrentWidget(widget *QWidget) {
 func (this *QToolBox) CurrentChanged(index int) {
 	C.QToolBox_CurrentChanged(this.h, (C.int)(index))
 }
+
 func (this *QToolBox) OnCurrentChanged(slot func(index int)) {
 	C.QToolBox_connect_CurrentChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -249,10 +249,9 @@ func QToolBox_Tr3(s string, c string, n int) string {
 }
 
 func (this *QToolBox) callVirtualBase_Event(e *QEvent) bool {
-
 	return (bool)(C.QToolBox_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
 }
+
 func (this *QToolBox) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -273,14 +272,12 @@ func miqt_exec_callback_QToolBox_Event(self *C.QToolBox, cb C.intptr_t, e *C.QEv
 	virtualReturn := gofunc((&QToolBox{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QToolBox) callVirtualBase_ItemInserted(index int) {
-
 	C.QToolBox_virtualbase_ItemInserted(unsafe.Pointer(this.h), (C.int)(index))
-
 }
+
 func (this *QToolBox) OnItemInserted(slot func(super func(index int), index int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -299,14 +296,12 @@ func miqt_exec_callback_QToolBox_ItemInserted(self *C.QToolBox, cb C.intptr_t, i
 	slotval1 := (int)(index)
 
 	gofunc((&QToolBox{h: self}).callVirtualBase_ItemInserted, slotval1)
-
 }
 
 func (this *QToolBox) callVirtualBase_ItemRemoved(index int) {
-
 	C.QToolBox_virtualbase_ItemRemoved(unsafe.Pointer(this.h), (C.int)(index))
-
 }
+
 func (this *QToolBox) OnItemRemoved(slot func(super func(index int), index int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -325,14 +320,12 @@ func miqt_exec_callback_QToolBox_ItemRemoved(self *C.QToolBox, cb C.intptr_t, in
 	slotval1 := (int)(index)
 
 	gofunc((&QToolBox{h: self}).callVirtualBase_ItemRemoved, slotval1)
-
 }
 
 func (this *QToolBox) callVirtualBase_ShowEvent(e *QShowEvent) {
-
 	C.QToolBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), e.cPointer())
-
 }
+
 func (this *QToolBox) OnShowEvent(slot func(super func(e *QShowEvent), e *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -351,14 +344,12 @@ func miqt_exec_callback_QToolBox_ShowEvent(self *C.QToolBox, cb C.intptr_t, e *C
 	slotval1 := newQShowEvent(e)
 
 	gofunc((&QToolBox{h: self}).callVirtualBase_ShowEvent, slotval1)
-
 }
 
 func (this *QToolBox) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
 	C.QToolBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QToolBox) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -377,16 +368,14 @@ func miqt_exec_callback_QToolBox_ChangeEvent(self *C.QToolBox, cb C.intptr_t, pa
 	slotval1 := newQEvent(param1)
 
 	gofunc((&QToolBox{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
 }
 
 func (this *QToolBox) callVirtualBase_SizeHint() *QSize {
-
 	_goptr := newQSize(C.QToolBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-
 }
+
 func (this *QToolBox) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -404,14 +393,12 @@ func miqt_exec_callback_QToolBox_SizeHint(self *C.QToolBox, cb C.intptr_t) *C.QS
 	virtualReturn := gofunc((&QToolBox{h: self}).callVirtualBase_SizeHint)
 
 	return virtualReturn.cPointer()
-
 }
 
 func (this *QToolBox) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
 	C.QToolBox_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
 }
+
 func (this *QToolBox) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -430,14 +417,12 @@ func miqt_exec_callback_QToolBox_PaintEvent(self *C.QToolBox, cb C.intptr_t, par
 	slotval1 := newQPaintEvent(param1)
 
 	gofunc((&QToolBox{h: self}).callVirtualBase_PaintEvent, slotval1)
-
 }
 
 func (this *QToolBox) callVirtualBase_InitStyleOption(option *QStyleOptionFrame) {
-
 	C.QToolBox_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
 }
+
 func (this *QToolBox) OnInitStyleOption(slot func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -456,7 +441,6 @@ func miqt_exec_callback_QToolBox_InitStyleOption(self *C.QToolBox, cb C.intptr_t
 	slotval1 := newQStyleOptionFrame(option)
 
 	gofunc((&QToolBox{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
 }
 
 // Delete this object from C++ memory.

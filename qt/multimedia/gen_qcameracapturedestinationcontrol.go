@@ -9,10 +9,11 @@ package multimedia
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCameraCaptureDestinationControl struct {
@@ -43,8 +44,10 @@ func newQCameraCaptureDestinationControl(h *C.QCameraCaptureDestinationControl) 
 	var outptr_QMediaControl *C.QMediaControl = nil
 	C.QCameraCaptureDestinationControl_virtbase(h, &outptr_QMediaControl)
 
-	return &QCameraCaptureDestinationControl{h: h,
-		QMediaControl: newQMediaControl(outptr_QMediaControl)}
+	return &QCameraCaptureDestinationControl{
+		h:             h,
+		QMediaControl: newQMediaControl(outptr_QMediaControl),
+	}
 }
 
 // UnsafeNewQCameraCaptureDestinationControl constructs the type using only unsafe pointers.
@@ -95,6 +98,7 @@ func (this *QCameraCaptureDestinationControl) SetCaptureDestination(destination 
 func (this *QCameraCaptureDestinationControl) CaptureDestinationChanged(destination QCameraImageCapture__CaptureDestination) {
 	C.QCameraCaptureDestinationControl_CaptureDestinationChanged(this.h, (C.int)(destination))
 }
+
 func (this *QCameraCaptureDestinationControl) OnCaptureDestinationChanged(slot func(destination QCameraImageCapture__CaptureDestination)) {
 	C.QCameraCaptureDestinationControl_connect_CaptureDestinationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

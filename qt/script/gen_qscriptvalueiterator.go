@@ -48,7 +48,6 @@ func UnsafeNewQScriptValueIterator(h unsafe.Pointer) *QScriptValueIterator {
 
 // NewQScriptValueIterator constructs a new QScriptValueIterator object.
 func NewQScriptValueIterator(value *QScriptValue) *QScriptValueIterator {
-
 	ret := newQScriptValueIterator(C.QScriptValueIterator_new(value.cPointer()))
 	ret.isSubclass = true
 	return ret

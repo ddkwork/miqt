@@ -9,10 +9,11 @@ package network
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt6"
 )
 
 type QNetworkReply__NetworkError int
@@ -82,8 +83,10 @@ func newQNetworkReply(h *C.QNetworkReply) *QNetworkReply {
 	var outptr_QIODevice *C.QIODevice = nil
 	C.QNetworkReply_virtbase(h, &outptr_QIODevice)
 
-	return &QNetworkReply{h: h,
-		QIODevice: qt6.UnsafeNewQIODevice(unsafe.Pointer(outptr_QIODevice))}
+	return &QNetworkReply{
+		h:         h,
+		QIODevice: qt6.UnsafeNewQIODevice(unsafe.Pointer(outptr_QIODevice)),
+	}
 }
 
 // UnsafeNewQNetworkReply constructs the type using only unsafe pointers.
@@ -261,6 +264,7 @@ func (this *QNetworkReply) IgnoreSslErrors2() {
 func (this *QNetworkReply) SocketStartedConnecting() {
 	C.QNetworkReply_SocketStartedConnecting(this.h)
 }
+
 func (this *QNetworkReply) OnSocketStartedConnecting(slot func()) {
 	C.QNetworkReply_connect_SocketStartedConnecting(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -278,6 +282,7 @@ func miqt_exec_callback_QNetworkReply_SocketStartedConnecting(cb C.intptr_t) {
 func (this *QNetworkReply) RequestSent() {
 	C.QNetworkReply_RequestSent(this.h)
 }
+
 func (this *QNetworkReply) OnRequestSent(slot func()) {
 	C.QNetworkReply_connect_RequestSent(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -295,6 +300,7 @@ func miqt_exec_callback_QNetworkReply_RequestSent(cb C.intptr_t) {
 func (this *QNetworkReply) MetaDataChanged() {
 	C.QNetworkReply_MetaDataChanged(this.h)
 }
+
 func (this *QNetworkReply) OnMetaDataChanged(slot func()) {
 	C.QNetworkReply_connect_MetaDataChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -312,6 +318,7 @@ func miqt_exec_callback_QNetworkReply_MetaDataChanged(cb C.intptr_t) {
 func (this *QNetworkReply) Finished() {
 	C.QNetworkReply_Finished(this.h)
 }
+
 func (this *QNetworkReply) OnFinished(slot func()) {
 	C.QNetworkReply_connect_Finished(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -329,6 +336,7 @@ func miqt_exec_callback_QNetworkReply_Finished(cb C.intptr_t) {
 func (this *QNetworkReply) ErrorOccurred(param1 QNetworkReply__NetworkError) {
 	C.QNetworkReply_ErrorOccurred(this.h, (C.int)(param1))
 }
+
 func (this *QNetworkReply) OnErrorOccurred(slot func(param1 QNetworkReply__NetworkError)) {
 	C.QNetworkReply_connect_ErrorOccurred(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -349,6 +357,7 @@ func miqt_exec_callback_QNetworkReply_ErrorOccurred(cb C.intptr_t, param1 C.int)
 func (this *QNetworkReply) Encrypted() {
 	C.QNetworkReply_Encrypted(this.h)
 }
+
 func (this *QNetworkReply) OnEncrypted(slot func()) {
 	C.QNetworkReply_connect_Encrypted(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -372,6 +381,7 @@ func (this *QNetworkReply) SslErrors(errors []QSslError) {
 	errors_ma := C.struct_miqt_array{len: C.size_t(len(errors)), data: unsafe.Pointer(errors_CArray)}
 	C.QNetworkReply_SslErrors(this.h, errors_ma)
 }
+
 func (this *QNetworkReply) OnSslErrors(slot func(errors []QSslError)) {
 	C.QNetworkReply_connect_SslErrors(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -400,6 +410,7 @@ func miqt_exec_callback_QNetworkReply_SslErrors(cb C.intptr_t, errors C.struct_m
 func (this *QNetworkReply) PreSharedKeyAuthenticationRequired(authenticator *QSslPreSharedKeyAuthenticator) {
 	C.QNetworkReply_PreSharedKeyAuthenticationRequired(this.h, authenticator.cPointer())
 }
+
 func (this *QNetworkReply) OnPreSharedKeyAuthenticationRequired(slot func(authenticator *QSslPreSharedKeyAuthenticator)) {
 	C.QNetworkReply_connect_PreSharedKeyAuthenticationRequired(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -420,6 +431,7 @@ func miqt_exec_callback_QNetworkReply_PreSharedKeyAuthenticationRequired(cb C.in
 func (this *QNetworkReply) Redirected(url *qt6.QUrl) {
 	C.QNetworkReply_Redirected(this.h, (*C.QUrl)(url.UnsafePointer()))
 }
+
 func (this *QNetworkReply) OnRedirected(slot func(url *qt6.QUrl)) {
 	C.QNetworkReply_connect_Redirected(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -440,6 +452,7 @@ func miqt_exec_callback_QNetworkReply_Redirected(cb C.intptr_t, url *C.QUrl) {
 func (this *QNetworkReply) RedirectAllowed() {
 	C.QNetworkReply_RedirectAllowed(this.h)
 }
+
 func (this *QNetworkReply) OnRedirectAllowed(slot func()) {
 	C.QNetworkReply_connect_RedirectAllowed(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -457,6 +470,7 @@ func miqt_exec_callback_QNetworkReply_RedirectAllowed(cb C.intptr_t) {
 func (this *QNetworkReply) UploadProgress(bytesSent int64, bytesTotal int64) {
 	C.QNetworkReply_UploadProgress(this.h, (C.longlong)(bytesSent), (C.longlong)(bytesTotal))
 }
+
 func (this *QNetworkReply) OnUploadProgress(slot func(bytesSent int64, bytesTotal int64)) {
 	C.QNetworkReply_connect_UploadProgress(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -479,6 +493,7 @@ func miqt_exec_callback_QNetworkReply_UploadProgress(cb C.intptr_t, bytesSent C.
 func (this *QNetworkReply) DownloadProgress(bytesReceived int64, bytesTotal int64) {
 	C.QNetworkReply_DownloadProgress(this.h, (C.longlong)(bytesReceived), (C.longlong)(bytesTotal))
 }
+
 func (this *QNetworkReply) OnDownloadProgress(slot func(bytesReceived int64, bytesTotal int64)) {
 	C.QNetworkReply_connect_DownloadProgress(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }

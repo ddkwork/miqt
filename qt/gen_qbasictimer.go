@@ -48,7 +48,6 @@ func UnsafeNewQBasicTimer(h unsafe.Pointer) *QBasicTimer {
 
 // NewQBasicTimer constructs a new QBasicTimer object.
 func NewQBasicTimer(param1 *QBasicTimer) *QBasicTimer {
-
 	ret := newQBasicTimer(C.QBasicTimer_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQBasicTimer(param1 *QBasicTimer) *QBasicTimer {
 
 // NewQBasicTimer2 constructs a new QBasicTimer object.
 func NewQBasicTimer2() *QBasicTimer {
-
 	ret := newQBasicTimer(C.QBasicTimer_new2())
 	ret.isSubclass = true
 	return ret

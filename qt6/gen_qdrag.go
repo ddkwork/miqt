@@ -42,8 +42,10 @@ func newQDrag(h *C.QDrag) *QDrag {
 	var outptr_QObject *C.QObject = nil
 	C.QDrag_virtbase(h, &outptr_QObject)
 
-	return &QDrag{h: h,
-		QObject: newQObject(outptr_QObject)}
+	return &QDrag{
+		h:       h,
+		QObject: newQObject(outptr_QObject),
+	}
 }
 
 // UnsafeNewQDrag constructs the type using only unsafe pointers.
@@ -53,7 +55,6 @@ func UnsafeNewQDrag(h unsafe.Pointer) *QDrag {
 
 // NewQDrag constructs a new QDrag object.
 func NewQDrag(dragSource *QObject) *QDrag {
-
 	ret := newQDrag(C.QDrag_new(dragSource.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -147,6 +148,7 @@ func QDrag_Cancel() {
 func (this *QDrag) ActionChanged(action DropAction) {
 	C.QDrag_ActionChanged(this.h, (C.int)(action))
 }
+
 func (this *QDrag) OnActionChanged(slot func(action DropAction)) {
 	C.QDrag_connect_ActionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -167,6 +169,7 @@ func miqt_exec_callback_QDrag_ActionChanged(cb C.intptr_t, action C.int) {
 func (this *QDrag) TargetChanged(newTarget *QObject) {
 	C.QDrag_TargetChanged(this.h, newTarget.cPointer())
 }
+
 func (this *QDrag) OnTargetChanged(slot func(newTarget *QObject)) {
 	C.QDrag_connect_TargetChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
 }
@@ -211,10 +214,9 @@ func (this *QDrag) Exec1(supportedActions DropAction) DropAction {
 }
 
 func (this *QDrag) callVirtualBase_Event(event *QEvent) bool {
-
 	return (bool)(C.QDrag_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
 }
+
 func (this *QDrag) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -235,14 +237,12 @@ func miqt_exec_callback_QDrag_Event(self *C.QDrag, cb C.intptr_t, event *C.QEven
 	virtualReturn := gofunc((&QDrag{h: self}).callVirtualBase_Event, slotval1)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDrag) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
 	return (bool)(C.QDrag_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
 }
+
 func (this *QDrag) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -265,14 +265,12 @@ func miqt_exec_callback_QDrag_EventFilter(self *C.QDrag, cb C.intptr_t, watched 
 	virtualReturn := gofunc((&QDrag{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
 	return (C.bool)(virtualReturn)
-
 }
 
 func (this *QDrag) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
 	C.QDrag_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QDrag) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -291,14 +289,12 @@ func miqt_exec_callback_QDrag_TimerEvent(self *C.QDrag, cb C.intptr_t, event *C.
 	slotval1 := newQTimerEvent(event)
 
 	gofunc((&QDrag{h: self}).callVirtualBase_TimerEvent, slotval1)
-
 }
 
 func (this *QDrag) callVirtualBase_ChildEvent(event *QChildEvent) {
-
 	C.QDrag_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QDrag) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -317,14 +313,12 @@ func miqt_exec_callback_QDrag_ChildEvent(self *C.QDrag, cb C.intptr_t, event *C.
 	slotval1 := newQChildEvent(event)
 
 	gofunc((&QDrag{h: self}).callVirtualBase_ChildEvent, slotval1)
-
 }
 
 func (this *QDrag) callVirtualBase_CustomEvent(event *QEvent) {
-
 	C.QDrag_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
 }
+
 func (this *QDrag) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -343,14 +337,12 @@ func miqt_exec_callback_QDrag_CustomEvent(self *C.QDrag, cb C.intptr_t, event *C
 	slotval1 := newQEvent(event)
 
 	gofunc((&QDrag{h: self}).callVirtualBase_CustomEvent, slotval1)
-
 }
 
 func (this *QDrag) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
 	C.QDrag_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QDrag) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -369,14 +361,12 @@ func miqt_exec_callback_QDrag_ConnectNotify(self *C.QDrag, cb C.intptr_t, signal
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QDrag{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
 }
 
 func (this *QDrag) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
 	C.QDrag_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
 }
+
 func (this *QDrag) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -395,7 +385,6 @@ func miqt_exec_callback_QDrag_DisconnectNotify(self *C.QDrag, cb C.intptr_t, sig
 	slotval1 := newQMetaMethod(signal)
 
 	gofunc((&QDrag{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 // Delete this object from C++ memory.
