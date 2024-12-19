@@ -88,7 +88,26 @@ func pkgConfigCflags(packageName string) string {
 	if err != nil {
 		panic(err)
 	}
+	//Qt6Widgets.pc  todo add uint test
+	//-DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -D_WIN64 -D_WIN32_WINNT=0x0A00 -DWINVER=0x0A00 -ID:/qt6/qt_static/include/qt6/QtWidgets -ID:/qt6/qt_static/include/qt6 -ID:/qt6/qt_static/include/qt6/QtGui -ID:/qt6/qt_static/include/qt6 -ID:/qt6/qt_static/include/qt6/QtCore -ID:/qt6/qt_static/include/qt6 -ID:/qt6/qt_static/share/qt6/mkspecs/win32-clang-g++ -ID:/qt6/qt_static/include/qt6
 
+	//-DQT_WIDGETS_LIB
+	//-DQT_GUI_LIB
+	//-DQT_CORE_LIB
+	//-DWIN32
+	//-D_ENABLE_EXTENDED_ALIGNED_STORAGE
+	//-DWIN64
+	//-D_WIN64
+	//-D_WIN32_WINNT=0x0A00
+	//-DWINVER=0x0A00
+	//-ID:/qt6/qt_static/include/qt6/QtWidgets
+	//-ID:/qt6/qt_static/include/qt6
+	//-ID:/qt6/qt_static/include/qt6/QtGui
+	//-ID:/qt6/qt_static/include/qt6
+	//-ID:/qt6/qt_static/include/qt6/QtCore
+	//-ID:/qt6/qt_static/include/qt6
+	//-ID:/qt6/qt_static/share/qt6/mkspecs/win32-clang-g++
+	//-ID:/qt6/qt_static/include/qt6
 	return string(stdout)
 }
 
