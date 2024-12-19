@@ -10,7 +10,7 @@ if(MSVC)
         set(CMAKE_BUILD_TYPE Release)
         set(CMAKE_MSVC_RUNTIME_LIBRARY MultiThreaded)
 endif()
-set(CMAKE_PREFIX_PATH "D:/111111111111111111111111/!!!!!!!!!!!!!!!!!!/qt6/sdk/qt_static/lib/cmake")
+set(CMAKE_PREFIX_PATH "D:/qt6/qt_static/lib/cmake")
 
 
 
