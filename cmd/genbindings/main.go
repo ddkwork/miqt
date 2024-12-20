@@ -20,6 +20,11 @@ const (
 )
 
 func cacheFilePath(inputHeader string) string {
+	//rel, err := filepath.Rel(inputHeader, "D:\\qt6\\qt_static")
+	//if err != nil {
+	//	panic(err)
+	//}
+	inputHeader = strings.TrimPrefix(inputHeader, "D:\\qt6\\qt_static\\include")
 	return filepath.Join("cachedir", strings.Replace(inputHeader, `/`, `__`, -1)+".json")
 }
 
@@ -142,7 +147,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 	// PASS 0 (Fill clang cache)
 	//
 
-	generateClangCaches(includeFiles, clangBin, cflags, matcher)
+	generateClangCaches(includeFiles, clangBin, cflags, matcher) //todo 缓存ast json失败应该panic
 
 	// The cache should now be fully populated.
 
@@ -151,9 +156,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 	//
 
 	for _, inputHeader := range includeFiles {
-
 		cacheFile := cacheFilePath(inputHeader)
-
 		astJson, err := os.ReadFile(cacheFile)
 		if err != nil {
 			panic("Expected cache to be created for " + inputHeader + ", but got error " + err.Error())
