@@ -84,11 +84,15 @@ func cleanGeneratedFilesInDir(dirpath string) {
 }
 
 func pkgConfigCflags(packageName string) string {
-	stdout, err := exec.Command(`pkg-config`, `--cflags`, packageName).Output()
+	cmd := exec.Command(`pkg-config`, `--cflags`, packageName)
+	b := new(strings.Builder)
+	cmd.Stderr = b
+	stdout, err := cmd.Output()
 	if err != nil {
+		panic(b.String())
 		panic(err)
 	}
-	//Qt6Widgets.pc  todo add uint test
+	//Qt6Widgets.pc  todo add uint test,seems need fix libexecdir=${prefix}/share/qt6/bin in pkg-config file
 	//-DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DWIN32 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -DWIN64 -D_WIN64 -D_WIN32_WINNT=0x0A00 -DWINVER=0x0A00 -ID:/qt6/qt_static/include/qt6/QtWidgets -ID:/qt6/qt_static/include/qt6 -ID:/qt6/qt_static/include/qt6/QtGui -ID:/qt6/qt_static/include/qt6 -ID:/qt6/qt_static/include/qt6/QtCore -ID:/qt6/qt_static/include/qt6 -ID:/qt6/qt_static/share/qt6/mkspecs/win32-clang-g++ -ID:/qt6/qt_static/include/qt6
 
 	//-DQT_WIDGETS_LIB

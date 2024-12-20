@@ -20,5 +20,6 @@ find_package(Qt6 COMPONENTS
 add_executable(demo main.cpp)
 target_link_libraries(demo
         Qt::Core
-        Qt::Gui        Qt::Widgets
+        Qt::Gui        
+        Qt::Widgets
 )
