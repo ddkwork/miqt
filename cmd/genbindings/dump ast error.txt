@@ -1,0 +1,441 @@
+GOROOT=C:\Program Files\Go #gosetup
+GOPATH=C:\Users\Admin\go #gosetup
+"C:\Program Files\Go\bin\go.exe" test -c -o C:\Users\Admin\AppData\Local\JetBrains\GoLand2024.3\tmp\GoLand\___TestName_in_github_com_mappu_miqt_cmd_genbindings__1_.test.exe github.com/mappu/miqt/cmd/genbindings #gosetup
+"C:\Program Files\Go\bin\go.exe" tool test2json -t C:\Users\Admin\AppData\Local\JetBrains\GoLand2024.3\tmp\GoLand\___TestName_in_github_com_mappu_miqt_cmd_genbindings__1_.test.exe -test.v=test2json -test.paniconexit0 -test.run ^\QTestName\E$ #gosetup
+=== RUN   TestName
+2024/12/20 23:54:34 Found 474 header files to process.
+2024/12/20 23:54:34 Cleaning up output directory "..\\..\\qt6"...
+2024/12/20 23:54:34 Removed 0 file(s).
+2024/12/20 23:54:34 Clang worker: starting
+2024/12/20 23:54:34 Clang worker: starting
+2024/12/20 23:54:34 No AST cache for file "q17memory.h", running clang...
+2024/12/20 23:54:34 No AST cache for file "q20chrono.h", running clang...
+2024/12/20 23:54:34 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q17memory.h"
+2024/12/20 23:54:34 No AST cache for file "q20map.h", running clang...
+2024/12/20 23:54:34 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q20chrono.h"
+2024/12/20 23:54:40 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q20map.h"
+2024/12/20 23:54:40 No AST cache for file "q20memory.h", running clang...
+2024/12/20 23:54:44 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q20memory.h"
+2024/12/20 23:54:44 No AST cache for file "q20type_traits.h", running clang...
+2024/12/20 23:54:50 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q20type_traits.h"
+2024/12/20 23:54:50 No AST cache for file "q20utility.h", running clang...
+2024/12/20 23:54:51 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q20utility.h"
+2024/12/20 23:54:51 No AST cache for file "q20vector.h", running clang...
+2024/12/20 23:54:53 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q20vector.h"
+2024/12/20 23:54:53 No AST cache for file "q23type_traits.h", running clang...
+2024/12/20 23:55:07 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q23type_traits.h"
+2024/12/20 23:55:07 No AST cache for file "q23utility.h", running clang...
+2024/12/20 23:55:07 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q23utility.h"
+2024/12/20 23:55:07 No AST cache for file "q26numeric.h", running clang...
+2024/12/20 23:55:08 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\q26numeric.h"
+2024/12/20 23:55:08 No AST cache for file "qabstractanimation.h", running clang...
+2024/12/20 23:55:22 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qabstractanimation.h"
+2024/12/20 23:55:22 No AST cache for file "qabstracteventdispatcher.h", running clang...
+2024/12/20 23:55:25 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qabstracteventdispatcher.h"
+2024/12/20 23:55:25 No AST cache for file "qabstractitemmodel.h", running clang...
+2024/12/20 23:56:18 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qabstractitemmodel.h"
+2024/12/20 23:56:18 No AST cache for file "qabstractnativeeventfilter.h", running clang...
+2024/12/20 23:56:23 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qabstractnativeeventfilter.h"
+2024/12/20 23:56:23 No AST cache for file "qabstractproxymodel.h", running clang...
+2024/12/20 23:56:47 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qabstractproxymodel.h"
+2024/12/20 23:56:47 No AST cache for file "qalgorithms.h", running clang...
+2024/12/20 23:57:24 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qalgorithms.h"
+2024/12/20 23:57:24 No AST cache for file "qanimationgroup.h", running clang...
+2024/12/20 23:57:41 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qanimationgroup.h"
+2024/12/20 23:57:41 No AST cache for file "qanystringview.h", running clang...
+2024/12/20 23:57:52 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qanystringview.h"
+2024/12/20 23:57:52 No AST cache for file "qapplicationstatic.h", running clang...
+2024/12/20 23:58:41 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qapplicationstatic.h"
+2024/12/20 23:58:41 No AST cache for file "qarraydata.h", running clang...
+2024/12/20 23:58:44 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qarraydata.h"
+2024/12/20 23:58:44 No AST cache for file "qarraydataops.h", running clang...
+2024/12/20 23:59:10 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qarraydataops.h"
+2024/12/20 23:59:10 No AST cache for file "qarraydatapointer.h", running clang...
+2024/12/20 23:59:47 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qarraydatapointer.h"
+2024/12/20 23:59:47 No AST cache for file "qassert.h", running clang...
+2024/12/21 00:00:09 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qassert.h"
+2024/12/21 00:00:09 No AST cache for file "qassociativeiterable.h", running clang...
+2024/12/21 00:00:10 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qassociativeiterable.h"
+2024/12/21 00:00:10 No AST cache for file "qatomic.h", running clang...
+2024/12/21 00:00:13 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qatomic.h"
+2024/12/21 00:00:13 No AST cache for file "qatomicscopedvaluerollback.h", running clang...
+2024/12/21 00:00:17 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qatomicscopedvaluerollback.h"
+2024/12/21 00:00:17 No AST cache for file "qbasicatomic.h", running clang...
+2024/12/21 00:00:20 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbasicatomic.h"
+2024/12/21 00:00:20 No AST cache for file "qbasictimer.h", running clang...
+2024/12/21 00:00:23 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbasictimer.h"
+2024/12/21 00:00:23 No AST cache for file "qbindingstorage.h", running clang...
+2024/12/21 00:01:14 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbindingstorage.h"
+2024/12/21 00:01:14 No AST cache for file "qbitarray.h", running clang...
+2024/12/21 00:01:21 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbitarray.h"
+2024/12/21 00:01:21 No AST cache for file "qbuffer.h", running clang...
+2024/12/21 00:01:37 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbuffer.h"
+2024/12/21 00:01:37 No AST cache for file "qbytearrayalgorithms.h", running clang...
+2024/12/21 00:01:57 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbytearrayalgorithms.h"
+2024/12/21 00:01:57 No AST cache for file "qbytearraylist.h", running clang...
+2024/12/21 00:02:20 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbytearraylist.h"
+2024/12/21 00:02:20 No AST cache for file "qbytearraymatcher.h", running clang...
+2024/12/21 00:02:31 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbytearraymatcher.h"
+2024/12/21 00:02:31 No AST cache for file "qbytearrayview.h", running clang...
+2024/12/21 00:03:04 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qbytearrayview.h"
+2024/12/21 00:03:04 No AST cache for file "qcache.h", running clang...
+2024/12/21 00:03:06 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcache.h"
+2024/12/21 00:03:06 No AST cache for file "qcalendar.h", running clang...
+2024/12/21 00:03:36 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcalendar.h"
+2024/12/21 00:03:36 No AST cache for file "qchar.h", running clang...
+2024/12/21 00:03:51 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qchar.h"
+2024/12/21 00:03:51 No AST cache for file "qchronotimer.h", running clang...
+2024/12/21 00:04:29 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qchronotimer.h"
+2024/12/21 00:04:29 No AST cache for file "qcollator.h", running clang...
+2024/12/21 00:04:39 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcollator.h"
+2024/12/21 00:04:39 No AST cache for file "qcommandlineoption.h", running clang...
+2024/12/21 00:05:27 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcommandlineoption.h"
+2024/12/21 00:05:27 No AST cache for file "qcommandlineparser.h", running clang...
+2024/12/21 00:05:41 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcommandlineparser.h"
+2024/12/21 00:05:41 No AST cache for file "qcompare.h", running clang...
+2024/12/21 00:06:10 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcompare.h"
+2024/12/21 00:06:10 No AST cache for file "qcomparehelpers.h", running clang...
+2024/12/21 00:06:29 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcomparehelpers.h"
+2024/12/21 00:06:29 No AST cache for file "qcompilerdetection.h", running clang...
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:5:2: error: "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+    5 | #error "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+      |  ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:72:41: error: use of undeclared identifier 'Qt'
+   72 | template <> struct is_qt_ordering_type< Qt::partial_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:73:41: error: use of undeclared identifier 'Qt'
+   73 | template <> struct is_qt_ordering_type< Qt::weak_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:74:41: error: use of undeclared identifier 'Qt'
+   74 | template <> struct is_qt_ordering_type< Qt::strong_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:94:5: error: use of undeclared identifier 'Qt'
+   94 |     Qt::partial_ordering convertedOrder(t);
+      |     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:95:37: error: use of undeclared identifier 'Qt'
+   95 |     if constexpr (std::is_same_v<T, Qt::strong_ordering>)
+      |                                     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:97:42: error: use of undeclared identifier 'Qt'
+   97 |     else if constexpr (std::is_same_v<T, Qt::partial_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:99:42: error: use of undeclared identifier 'Qt'
+   99 |     else if constexpr (std::is_same_v<T, Qt::weak_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:901:11: error: use of undeclared identifier 'Qt'
+  901 | constexpr Qt::strong_ordering
+      |           ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:908:16: error: use of undeclared identifier 'Qt'
+  908 |         return Qt::strong_ordering::equivalent;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:910:16: error: use of undeclared identifier 'Qt'
+  910 |         return Qt::strong_ordering::less;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:912:16: error: use of undeclared identifier 'Qt'
+  912 |         return Qt::strong_ordering::greater;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:939:15: error: no type named 'strong_ordering' in namespace 'Qt'
+  939 | constexpr Qt::strong_ordering compareThreeWay(LeftInt lhs, RightInt rhs) noexcept
+      |           ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:948:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  948 |         return Qt::strong_ordering::equivalent;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:950:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  950 |         return Qt::strong_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:952:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  952 |         return Qt::strong_ordering::greater;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:959:11: error: no type named 'partial_ordering' in namespace 'Qt'; did you mean 'QPartialOrdering'?
+  959 | constexpr Qt::partial_ordering compareThreeWay(LeftFloat lhs, RightFloat rhs) noexcept
+      |           ^~~~~~~~~~~~~~~~~~~~
+      |           QPartialOrdering
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:32:7: note: 'QPartialOrdering' declared here
+   32 | class QPartialOrdering;
+      |       ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:967:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  967 |         return Qt::partial_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:969:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  969 |         return Qt::partial_ordering::greater;
+      |                ~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+2024/12/21 00:06:40 WARNING: Clang execution failed: command: exit status 1
+2024/12/21 00:06:43 Retrying...
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:5:2: error: "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+    5 | #error "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+      |  ^
+2024/12/21 00:06:44 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qcompilerdetection.h"
+2024/12/21 00:06:44 No AST cache for file "qconcatenatetablesproxymodel.h", running clang...
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:72:41: error: use of undeclared identifier 'Qt'
+   72 | template <> struct is_qt_ordering_type< Qt::partial_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:73:41: error: use of undeclared identifier 'Qt'
+   73 | template <> struct is_qt_ordering_type< Qt::weak_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:74:41: error: use of undeclared identifier 'Qt'
+   74 | template <> struct is_qt_ordering_type< Qt::strong_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:94:5: error: use of undeclared identifier 'Qt'
+   94 |     Qt::partial_ordering convertedOrder(t);
+      |     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:95:37: error: use of undeclared identifier 'Qt'
+   95 |     if constexpr (std::is_same_v<T, Qt::strong_ordering>)
+      |                                     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:97:42: error: use of undeclared identifier 'Qt'
+   97 |     else if constexpr (std::is_same_v<T, Qt::partial_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:99:42: error: use of undeclared identifier 'Qt'
+   99 |     else if constexpr (std::is_same_v<T, Qt::weak_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:901:11: error: use of undeclared identifier 'Qt'
+  901 | constexpr Qt::strong_ordering
+      |           ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:908:16: error: use of undeclared identifier 'Qt'
+  908 |         return Qt::strong_ordering::equivalent;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:910:16: error: use of undeclared identifier 'Qt'
+  910 |         return Qt::strong_ordering::less;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:912:16: error: use of undeclared identifier 'Qt'
+  912 |         return Qt::strong_ordering::greater;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:939:15: error: no type named 'strong_ordering' in namespace 'Qt'
+  939 | constexpr Qt::strong_ordering compareThreeWay(LeftInt lhs, RightInt rhs) noexcept
+      |           ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:948:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  948 |         return Qt::strong_ordering::equivalent;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:950:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  950 |         return Qt::strong_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:952:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  952 |         return Qt::strong_ordering::greater;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:959:11: error: no type named 'partial_ordering' in namespace 'Qt'; did you mean 'QPartialOrdering'?
+  959 | constexpr Qt::partial_ordering compareThreeWay(LeftFloat lhs, RightFloat rhs) noexcept
+      |           ^~~~~~~~~~~~~~~~~~~~
+      |           QPartialOrdering
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:32:7: note: 'QPartialOrdering' declared here
+   32 | class QPartialOrdering;
+      |       ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:967:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  967 |         return Qt::partial_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:969:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  969 |         return Qt::partial_ordering::greater;
+      |                ~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+2024/12/21 00:06:45 Clang worker got message for file "D:\\qt6\\qt_static\\include\\QtCore\\qconcatenatetablesproxymodel.h"
+2024/12/21 00:06:45 No AST cache for file "qconfig.h", running clang...
+20 errors generated.
+2024/12/21 00:06:55 WARNING: Clang execution failed: command: exit status 1
+2024/12/21 00:06:58 Retrying...
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:5:2: error: "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+    5 | #error "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+      |  ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:72:41: error: use of undeclared identifier 'Qt'
+   72 | template <> struct is_qt_ordering_type< Qt::partial_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:73:41: error: use of undeclared identifier 'Qt'
+   73 | template <> struct is_qt_ordering_type< Qt::weak_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:74:41: error: use of undeclared identifier 'Qt'
+   74 | template <> struct is_qt_ordering_type< Qt::strong_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:94:5: error: use of undeclared identifier 'Qt'
+   94 |     Qt::partial_ordering convertedOrder(t);
+      |     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:95:37: error: use of undeclared identifier 'Qt'
+   95 |     if constexpr (std::is_same_v<T, Qt::strong_ordering>)
+      |                                     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:97:42: error: use of undeclared identifier 'Qt'
+   97 |     else if constexpr (std::is_same_v<T, Qt::partial_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:99:42: error: use of undeclared identifier 'Qt'
+   99 |     else if constexpr (std::is_same_v<T, Qt::weak_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:901:11: error: use of undeclared identifier 'Qt'
+  901 | constexpr Qt::strong_ordering
+      |           ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:908:16: error: use of undeclared identifier 'Qt'
+  908 |         return Qt::strong_ordering::equivalent;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:910:16: error: use of undeclared identifier 'Qt'
+  910 |         return Qt::strong_ordering::less;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:912:16: error: use of undeclared identifier 'Qt'
+  912 |         return Qt::strong_ordering::greater;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:939:15: error: no type named 'strong_ordering' in namespace 'Qt'
+  939 | constexpr Qt::strong_ordering compareThreeWay(LeftInt lhs, RightInt rhs) noexcept
+      |           ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:948:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  948 |         return Qt::strong_ordering::equivalent;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:950:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  950 |         return Qt::strong_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:952:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  952 |         return Qt::strong_ordering::greater;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:959:11: error: no type named 'partial_ordering' in namespace 'Qt'; did you mean 'QPartialOrdering'?
+  959 | constexpr Qt::partial_ordering compareThreeWay(LeftFloat lhs, RightFloat rhs) noexcept
+      |           ^~~~~~~~~~~~~~~~~~~~
+      |           QPartialOrdering
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:32:7: note: 'QPartialOrdering' declared here
+   32 | class QPartialOrdering;
+      |       ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:967:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  967 |         return Qt::partial_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:969:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  969 |         return Qt::partial_ordering::greater;
+      |                ~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+2024/12/21 00:07:10 WARNING: Clang execution failed: command: exit status 1
+2024/12/21 00:07:13 Retrying...
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:5:2: error: "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+    5 | #error "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+      |  ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:72:41: error: use of undeclared identifier 'Qt'
+   72 | template <> struct is_qt_ordering_type< Qt::partial_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:73:41: error: use of undeclared identifier 'Qt'
+   73 | template <> struct is_qt_ordering_type< Qt::weak_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:74:41: error: use of undeclared identifier 'Qt'
+   74 | template <> struct is_qt_ordering_type< Qt::strong_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:94:5: error: use of undeclared identifier 'Qt'
+   94 |     Qt::partial_ordering convertedOrder(t);
+      |     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:95:37: error: use of undeclared identifier 'Qt'
+   95 |     if constexpr (std::is_same_v<T, Qt::strong_ordering>)
+      |                                     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:97:42: error: use of undeclared identifier 'Qt'
+   97 |     else if constexpr (std::is_same_v<T, Qt::partial_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:99:42: error: use of undeclared identifier 'Qt'
+   99 |     else if constexpr (std::is_same_v<T, Qt::weak_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:901:11: error: use of undeclared identifier 'Qt'
+  901 | constexpr Qt::strong_ordering
+      |           ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:908:16: error: use of undeclared identifier 'Qt'
+  908 |         return Qt::strong_ordering::equivalent;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:910:16: error: use of undeclared identifier 'Qt'
+  910 |         return Qt::strong_ordering::less;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:912:16: error: use of undeclared identifier 'Qt'
+  912 |         return Qt::strong_ordering::greater;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:939:15: error: no type named 'strong_ordering' in namespace 'Qt'
+  939 | constexpr Qt::strong_ordering compareThreeWay(LeftInt lhs, RightInt rhs) noexcept
+      |           ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:948:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  948 |         return Qt::strong_ordering::equivalent;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:950:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  950 |         return Qt::strong_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:952:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  952 |         return Qt::strong_ordering::greater;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:959:11: error: no type named 'partial_ordering' in namespace 'Qt'; did you mean 'QPartialOrdering'?
+  959 | constexpr Qt::partial_ordering compareThreeWay(LeftFloat lhs, RightFloat rhs) noexcept
+      |           ^~~~~~~~~~~~~~~~~~~~
+      |           QPartialOrdering
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:32:7: note: 'QPartialOrdering' declared here
+   32 | class QPartialOrdering;
+      |       ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:967:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  967 |         return Qt::partial_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:969:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  969 |         return Qt::partial_ordering::greater;
+      |                ~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+2024/12/21 00:07:26 WARNING: Clang execution failed: command: exit status 1
+2024/12/21 00:07:29 Retrying...
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:5:2: error: "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+    5 | #error "Do not include qcomparehelpers.h directly. Use qcompare.h instead."
+      |  ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:72:41: error: use of undeclared identifier 'Qt'
+   72 | template <> struct is_qt_ordering_type< Qt::partial_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:73:41: error: use of undeclared identifier 'Qt'
+   73 | template <> struct is_qt_ordering_type< Qt::weak_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:74:41: error: use of undeclared identifier 'Qt'
+   74 | template <> struct is_qt_ordering_type< Qt::strong_ordering> : std::true_type {};
+      |                                         ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:94:5: error: use of undeclared identifier 'Qt'
+   94 |     Qt::partial_ordering convertedOrder(t);
+      |     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:95:37: error: use of undeclared identifier 'Qt'
+   95 |     if constexpr (std::is_same_v<T, Qt::strong_ordering>)
+      |                                     ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:97:42: error: use of undeclared identifier 'Qt'
+   97 |     else if constexpr (std::is_same_v<T, Qt::partial_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:99:42: error: use of undeclared identifier 'Qt'
+   99 |     else if constexpr (std::is_same_v<T, Qt::weak_ordering>)
+      |                                          ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:901:11: error: use of undeclared identifier 'Qt'
+  901 | constexpr Qt::strong_ordering
+      |           ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:908:16: error: use of undeclared identifier 'Qt'
+  908 |         return Qt::strong_ordering::equivalent;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:910:16: error: use of undeclared identifier 'Qt'
+  910 |         return Qt::strong_ordering::less;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:912:16: error: use of undeclared identifier 'Qt'
+  912 |         return Qt::strong_ordering::greater;
+      |                ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:939:15: error: no type named 'strong_ordering' in namespace 'Qt'
+  939 | constexpr Qt::strong_ordering compareThreeWay(LeftInt lhs, RightInt rhs) noexcept
+      |           ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:948:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  948 |         return Qt::strong_ordering::equivalent;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:950:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  950 |         return Qt::strong_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:952:20: error: no member named 'strong_ordering' in namespace 'Qt'
+  952 |         return Qt::strong_ordering::greater;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:959:11: error: no type named 'partial_ordering' in namespace 'Qt'; did you mean 'QPartialOrdering'?
+  959 | constexpr Qt::partial_ordering compareThreeWay(LeftFloat lhs, RightFloat rhs) noexcept
+      |           ^~~~~~~~~~~~~~~~~~~~
+      |           QPartialOrdering
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:32:7: note: 'QPartialOrdering' declared here
+   32 | class QPartialOrdering;
+      |       ^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:967:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  967 |         return Qt::partial_ordering::less;
+      |                ~~~~^
+D:\qt6\qt_static\include\QtCore\qcomparehelpers.h:969:20: error: no member named 'partial_ordering' in namespace 'Qt'
+  969 |         return Qt::partial_ordering::greater;
+      |                ~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+2024/12/21 00:07:41 WARNING: Clang execution failed: command: exit status 1
+2024/12/21 00:07:44 Retrying...
+panic: Clang failed 5x parsing file D:\qt6\qt_static\include\QtCore\qcomparehelpers.h
+
+goroutine 18 [running]:
+github.com/mappu/miqt/cmd/genbindings.mustClangExec({0x7ff751669b00, 0x7ff7517e3ca0}, {0x7ff75160dfa4, 0x5}, {0xc0000a6e80, 0x31}, {0xc000222000, 0x12, 0x12}, 0x7ff751622408)
+	D:/qt6/miqt/cmd/genbindings/clangexec.go:96 +0x205
+github.com/mappu/miqt/cmd/genbindings.generateClangCaches.func1()
+	D:/qt6/miqt/cmd/genbindings/main.go:310 +0x26c
+created by github.com/mappu/miqt/cmd/genbindings.generateClangCaches in goroutine 6
+	D:/qt6/miqt/cmd/genbindings/main.go:296 +0xae
+
+
+Process finished with the exit code 1
+
