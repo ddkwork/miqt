@@ -25,7 +25,9 @@ func cacheFilePath(inputHeader string) string {
 	//	panic(err)
 	//}
 	inputHeader = strings.TrimPrefix(inputHeader, "D:\\qt6\\qt_static\\include")
-	return filepath.Join("cachedir", strings.Replace(inputHeader, `/`, `__`, -1)+".json")
+	s := filepath.Join("cachedir", strings.Replace(inputHeader, `/`, `__`, -1)+".json")
+	os.MkdirAll(filepath.Dir(s), 0777)
+	return s
 }
 
 func importPathForQtPackage(packageName string) string {
