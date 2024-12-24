@@ -1,0 +1,10 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: upower-glib
+Description: UPower is a system daemon for managing power devices
+Version: 1.90.6
+Requires: glib-2.0 >= 2.66, gobject-2.0 >= 2.66, polkit-gobject-1 >=  0.103
+Libs: -L${libdir} -lupower-glib
+Cflags: -I${includedir}/libupower-glib

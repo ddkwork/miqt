@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: absl_exception_safety_testing
+Description: Abseil exception_safety_testing library
+URL: https://abseil.io/
+Version: 20240722
+Requires: absl_config = 20240722, absl_pretty_function = 20240722, absl_memory = 20240722, absl_meta = 20240722, absl_strings = 20240722, absl_utility = 20240722
+Libs: -L${libdir}  -labsl_exception_safety_testing 
+Cflags: -I${includedir} -Wnon-virtual-dtor -DNOMINMAX -Wno-deprecated-declarations -Wno-missing-declarations -Wno-self-move -Wno-sign-compare -Wno-unused-function -Wno-unused-parameter -Wno-unused-private-field

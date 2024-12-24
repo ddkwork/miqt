@@ -1,0 +1,15 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+lzma=true
+zstd=true
+
+Name: libxmlb
+Description: libxmlb is a library to create or query compressed XML files
+Version: 0.3.21
+Requires: gio-2.0 >=  2.45.8
+Requires.private: liblzma, libzstd
+Libs: -L${libdir} -lxmlb
+Libs.private: -lstemmer
+Cflags: -I${includedir}/libxmlb-2

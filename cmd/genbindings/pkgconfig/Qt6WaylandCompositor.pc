@@ -1,0 +1,13 @@
+prefix=/usr
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 WaylandCompositor
+Description: Qt WaylandCompositor module
+Version: 6.8.1
+Libs: -L${libdir} -lQt6WaylandCompositor
+Cflags: -I${includedir}/QtWaylandCompositor -I${includedir} -DQT_WAYLANDCOMPOSITOR_LIB
+Requires: Qt6Core Qt6Gui Qt6OpenGL Qt6Qml Qt6Quick

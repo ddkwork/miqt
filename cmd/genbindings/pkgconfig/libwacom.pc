@@ -1,0 +1,10 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: libwacom
+Description: Wacom model feature query library
+Version: 2.14.0
+Requires.private: gudev-1.0, glib-2.0, libevdev
+Libs: -L${libdir} -lwacom
+Cflags: -I${includedir}/libwacom-1.0

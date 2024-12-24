@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=/usr
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: libzmq
+Description: 0MQ c++ library
+Version: 4.3.5
+Libs: -L${libdir} -lzmq
+Libs.private: -lstdc++  -lrt
+Requires.private:  gnutls libsodium openpgm-5.3
+Cflags: -I${includedir} -DZMQ_BUILD_DRAFT_API=1

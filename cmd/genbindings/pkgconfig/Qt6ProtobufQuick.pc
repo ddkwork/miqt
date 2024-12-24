@@ -1,0 +1,13 @@
+prefix=/usr
+exec_prefix=${prefix}
+bindir=${prefix}/bin
+libexecdir=${prefix}/bin
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: Qt6 ProtobufQuick
+Description: Qt ProtobufQuick module
+Version: 6.8.1
+Libs: -L${libdir} -lQt6ProtobufQuick
+Cflags: -I${includedir}/QtProtobufQuick -I${includedir} -DQT_PROTOBUFQUICK_LIB
+Requires: Qt6Quick

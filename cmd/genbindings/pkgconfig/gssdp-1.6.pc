@@ -1,0 +1,11 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: gssdp-1.6
+Description: GObject-based SSDP library
+Version: 1.6.3
+Requires: gio-2.0 >=  2.70, glib-2.0 >=  2.70, gobject-2.0 >=  2.70
+Requires.private: libsoup-3.0 >=  2.99.0
+Libs: -L${libdir} -lgssdp-1.6
+Cflags: -I${includedir}/gssdp-1.6

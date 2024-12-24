@@ -1,0 +1,9 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: libcloudproviders
+Description: Cloud providers DBus API library.
+Version: 0.3.6
+Libs: -L${libdir} -lcloudproviders
+Cflags: -I${includedir}/cloudproviders

@@ -1,0 +1,14 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 61.19.100
+Requires: 
+Requires.private: libswresample >= 5.3.100, libavutil >= 59.39.100
+Conflicts:
+Libs: -L${libdir}  -lavcodec 
+Libs.private: -lvpx -lm -lvpx -lm -lvpx -lm -lvpx -lm -lwebpmux -pthread -lm -latomic -llzma -ldav1d -lopencore-amrwb -L/usr/lib/pkgconfig/../../lib -lrsvg-2 -lcairo-gobject -lpng16 -ldav1d -lgdk_pixbuf-2.0 -lgio-2.0 -lxml2 -lpangocairo-1.0 -lgobject-2.0 -lharfbuzz -lcairo -lpangoft2-1.0 -lpango-1.0 -lfontconfig -lfreetype -Wl,--export-dynamic -lgmodule-2.0 -pthread -lglib-2.0 -lsnappy -lstdc++ -laom -lgsm -ljxl -ljxl_threads -lmp3lame -lm -lopencore-amrnb -lopenjp2 -lopus -lrav1e -lspeex -lSvtAv1Enc -ltheoraenc -ltheoradec -logg -lvorbis -lvorbisenc -lwebp -lx264 -lx265 -lxvidcore -lz -lva -L/usr/lib/pkgconfig/../ -lvpl -ldl -lstdc++
+Cflags: -I${includedir}

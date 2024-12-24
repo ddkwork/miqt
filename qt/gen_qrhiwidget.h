@@ -1,0 +1,226 @@
+#pragma once
+#ifndef MIQT_QT_GEN_QRHIWIDGET_H
+#define MIQT_QT_GEN_QRHIWIDGET_H
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+#include "../libmiqt/libmiqt.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+class QActionEvent;
+class QCloseEvent;
+class QContextMenuEvent;
+class QDragEnterEvent;
+class QDragLeaveEvent;
+class QDragMoveEvent;
+class QDropEvent;
+class QEnterEvent;
+class QEvent;
+class QFocusEvent;
+class QHideEvent;
+class QImage;
+class QInputMethodEvent;
+class QKeyEvent;
+class QMetaObject;
+class QMouseEvent;
+class QMoveEvent;
+class QObject;
+class QPaintDevice;
+class QPaintEngine;
+class QPaintEvent;
+class QPainter;
+class QPoint;
+class QResizeEvent;
+class QRhiWidget;
+class QShowEvent;
+class QSize;
+class QTabletEvent;
+class QVariant;
+class QWheelEvent;
+class QWidget;
+class _GUID;
+class type_info;
+#else
+typedef struct QActionEvent QActionEvent;
+typedef struct QCloseEvent QCloseEvent;
+typedef struct QContextMenuEvent QContextMenuEvent;
+typedef struct QDragEnterEvent QDragEnterEvent;
+typedef struct QDragLeaveEvent QDragLeaveEvent;
+typedef struct QDragMoveEvent QDragMoveEvent;
+typedef struct QDropEvent QDropEvent;
+typedef struct QEnterEvent QEnterEvent;
+typedef struct QEvent QEvent;
+typedef struct QFocusEvent QFocusEvent;
+typedef struct QHideEvent QHideEvent;
+typedef struct QImage QImage;
+typedef struct QInputMethodEvent QInputMethodEvent;
+typedef struct QKeyEvent QKeyEvent;
+typedef struct QMetaObject QMetaObject;
+typedef struct QMouseEvent QMouseEvent;
+typedef struct QMoveEvent QMoveEvent;
+typedef struct QObject QObject;
+typedef struct QPaintDevice QPaintDevice;
+typedef struct QPaintEngine QPaintEngine;
+typedef struct QPaintEvent QPaintEvent;
+typedef struct QPainter QPainter;
+typedef struct QPoint QPoint;
+typedef struct QResizeEvent QResizeEvent;
+typedef struct QRhiWidget QRhiWidget;
+typedef struct QShowEvent QShowEvent;
+typedef struct QSize QSize;
+typedef struct QTabletEvent QTabletEvent;
+typedef struct QVariant QVariant;
+typedef struct QWheelEvent QWheelEvent;
+typedef struct QWidget QWidget;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
+#endif
+
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QRhiWidget* QRhiWidget_new(QWidget* parent);
+extern __declspec(dllexport) QRhiWidget* QRhiWidget_new2();
+extern __declspec(dllexport) QRhiWidget* QRhiWidget_new3(QWidget* parent, int f);
+extern __declspec(dllexport) void QRhiWidget_virtbase(QRhiWidget* src, QWidget** outptr_QWidget);
+extern __declspec(dllexport) QMetaObject* QRhiWidget_MetaObject(const QRhiWidget* self);
+extern __declspec(dllexport) void* QRhiWidget_Metacast(QRhiWidget* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QRhiWidget_Tr(const char* s);
+extern __declspec(dllexport) Api QRhiWidget_Api(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_SetApi(QRhiWidget* self, Api api);
+extern __declspec(dllexport) bool QRhiWidget_IsDebugLayerEnabled(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_SetDebugLayerEnabled(QRhiWidget* self, bool enable);
+extern __declspec(dllexport) int QRhiWidget_SampleCount(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_SetSampleCount(QRhiWidget* self, int samples);
+extern __declspec(dllexport) TextureFormat QRhiWidget_ColorBufferFormat(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_SetColorBufferFormat(QRhiWidget* self, TextureFormat format);
+extern __declspec(dllexport) QSize* QRhiWidget_FixedColorBufferSize(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_SetFixedColorBufferSize(QRhiWidget* self, QSize* pixelSize);
+extern __declspec(dllexport) void QRhiWidget_SetFixedColorBufferSize2(QRhiWidget* self, int w, int h);
+extern __declspec(dllexport) bool QRhiWidget_IsMirrorVerticallyEnabled(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_SetMirrorVertically(QRhiWidget* self, bool enabled);
+extern __declspec(dllexport) QImage* QRhiWidget_GrabFramebuffer(const QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_Initialize(QRhiWidget* self, QRhiCommandBuffer* cb);
+extern __declspec(dllexport) void QRhiWidget_Render(QRhiWidget* self, QRhiCommandBuffer* cb);
+extern __declspec(dllexport) void QRhiWidget_ReleaseResources(QRhiWidget* self);
+extern __declspec(dllexport) void QRhiWidget_ResizeEvent(QRhiWidget* self, QResizeEvent* e);
+extern __declspec(dllexport) void QRhiWidget_PaintEvent(QRhiWidget* self, QPaintEvent* e);
+extern __declspec(dllexport) bool QRhiWidget_Event(QRhiWidget* self, QEvent* e);
+extern __declspec(dllexport) void QRhiWidget_FrameSubmitted(QRhiWidget* self);
+void QRhiWidget_connect_FrameSubmitted(QRhiWidget* self, intptr_t slot);
+extern __declspec(dllexport) void QRhiWidget_RenderFailed(QRhiWidget* self);
+void QRhiWidget_connect_RenderFailed(QRhiWidget* self, intptr_t slot);
+extern __declspec(dllexport) void QRhiWidget_SampleCountChanged(QRhiWidget* self, int samples);
+void QRhiWidget_connect_SampleCountChanged(QRhiWidget* self, intptr_t slot);
+extern __declspec(dllexport) void QRhiWidget_ColorBufferFormatChanged(QRhiWidget* self, TextureFormat format);
+void QRhiWidget_connect_ColorBufferFormatChanged(QRhiWidget* self, intptr_t slot);
+extern __declspec(dllexport) void QRhiWidget_FixedColorBufferSizeChanged(QRhiWidget* self, QSize* pixelSize);
+void QRhiWidget_connect_FixedColorBufferSizeChanged(QRhiWidget* self, intptr_t slot);
+extern __declspec(dllexport) void QRhiWidget_MirrorVerticallyChanged(QRhiWidget* self, bool enabled);
+void QRhiWidget_connect_MirrorVerticallyChanged(QRhiWidget* self, intptr_t slot);
+extern __declspec(dllexport) struct miqt_string QRhiWidget_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QRhiWidget_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_Initialize(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_Initialize(void* self, QRhiCommandBuffer* cb);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_Render(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_Render(void* self, QRhiCommandBuffer* cb);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_ReleaseResources(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_ReleaseResources(void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_ResizeEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_ResizeEvent(void* self, QResizeEvent* e);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_PaintEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_PaintEvent(void* self, QPaintEvent* e);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_Event(void* self, intptr_t slot);
+bool QRhiWidget_virtualbase_Event(void* self, QEvent* e);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_DevType(void* self, intptr_t slot);
+int QRhiWidget_virtualbase_DevType(const void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_SetVisible(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_SetVisible(void* self, bool visible);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_SizeHint(void* self, intptr_t slot);
+QSize* QRhiWidget_virtualbase_SizeHint(const void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
+QSize* QRhiWidget_virtualbase_MinimumSizeHint(const void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_HeightForWidth(void* self, intptr_t slot);
+int QRhiWidget_virtualbase_HeightForWidth(const void* self, int param1);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
+bool QRhiWidget_virtualbase_HasHeightForWidth(const void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_PaintEngine(void* self, intptr_t slot);
+QPaintEngine* QRhiWidget_virtualbase_PaintEngine(const void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_MousePressEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_WheelEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_WheelEvent(void* self, QWheelEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_KeyPressEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_FocusInEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_FocusOutEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_EnterEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_EnterEvent(void* self, QEnterEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_LeaveEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_LeaveEvent(void* self, QEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_MoveEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_MoveEvent(void* self, QMoveEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_CloseEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_CloseEvent(void* self, QCloseEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_TabletEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_TabletEvent(void* self, QTabletEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_ActionEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_ActionEvent(void* self, QActionEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_DragEnterEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_DragMoveEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_DropEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_DropEvent(void* self, QDropEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_ShowEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_ShowEvent(void* self, QShowEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_HideEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_HideEvent(void* self, QHideEvent* event);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_NativeEvent(void* self, intptr_t slot);
+bool QRhiWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_ChangeEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_ChangeEvent(void* self, QEvent* param1);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_Metric(void* self, intptr_t slot);
+int QRhiWidget_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_InitPainter(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_InitPainter(const void* self, QPainter* painter);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_Redirected(void* self, intptr_t slot);
+QPaintDevice* QRhiWidget_virtualbase_Redirected(const void* self, QPoint* offset);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_SharedPainter(void* self, intptr_t slot);
+QPainter* QRhiWidget_virtualbase_SharedPainter(const void* self);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_InputMethodEvent(void* self, intptr_t slot);
+void QRhiWidget_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_InputMethodQuery(void* self, intptr_t slot);
+QVariant* QRhiWidget_virtualbase_InputMethodQuery(const void* self, int param1);
+extern __declspec(dllexport) void QRhiWidget_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
+bool QRhiWidget_virtualbase_FocusNextPrevChild(void* self, bool next);
+extern __declspec(dllexport) void QRhiWidget_Delete(QRhiWidget* self, bool isSubclass);
+
+#ifdef __cplusplus
+} /* extern C */
+#endif 
+
+#endif

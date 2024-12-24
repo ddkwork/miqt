@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: absl_btree_test_common
+Description: Abseil btree_test_common library
+URL: https://abseil.io/
+Version: 20240722
+Requires: absl_btree = 20240722, absl_cord = 20240722, absl_flat_hash_set = 20240722, absl_strings = 20240722, absl_time = 20240722
+Libs: -L${libdir}  
+Cflags: -I${includedir} -Wnon-virtual-dtor -DNOMINMAX -Wno-deprecated-declarations -Wno-missing-declarations -Wno-self-move -Wno-sign-compare -Wno-unused-function -Wno-unused-parameter -Wno-unused-private-field

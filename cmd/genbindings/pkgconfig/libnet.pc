@@ -1,0 +1,14 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libnet
+Version: 1.3
+Description: Portable Packet Construction and Injection API
+URL: https://github.com/libnet/libnet
+
+Requires: 
+Libs: -L${libdir} -lnet 
+Cflags: -I${includedir} -D_BSD_SOURCE -D_DEFAULT_SOURCE -DHAVE_NET_ETHERNET_H 
+

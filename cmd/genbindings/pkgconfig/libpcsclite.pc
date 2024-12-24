@@ -1,0 +1,13 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+usbdropdir=/usr/lib/pcsc/drivers
+serialconfdir=/etc/reader.conf.d
+
+Name: PCSC Lite
+Description: PC/SC smart card interface
+Version: 2.3.0
+Libs: -L${libdir} -lpcsclite
+Libs.private: -pthread
+Cflags: -I${includedir}/PCSC

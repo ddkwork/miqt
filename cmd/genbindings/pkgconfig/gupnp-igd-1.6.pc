@@ -1,0 +1,10 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: gupnp-igd-1.6
+Description: GUPnP Simple IGD library
+Version: 1.6.0
+Requires.private: glib-2.0 >=  2.70, gobject-2.0 >=  2.70, gupnp-1.6 >=  1.6.0, gssdp-1.6 >=  1.6.0, gthread-2.0
+Libs: -L${libdir} -lgupnp-igd-1.6
+Cflags: -I${includedir}/gupnp-igd-1.6

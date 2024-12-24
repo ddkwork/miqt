@@ -1,0 +1,14 @@
+prefix=/usr
+datadir=${prefix}/share
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+exec_prefix=${prefix}
+tracker_datadir=${datadir}/tinysparql3
+
+Name: tracker-sparql-3.0
+Description: TinySPARQL : A SPARQL triple store library
+Version: 3.8.0
+Requires: tinysparql-3.0, glib-2.0 > 2.52.0, gio-2.0 > 2.52.0, gobject-2.0 > 2.52.0
+Libs: -lm -ldl
+Cflags: -I${includedir}/tinysparql-3.0 -I${includedir}/tinysparql-3.0/libtracker-sparql

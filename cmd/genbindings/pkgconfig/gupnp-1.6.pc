@@ -1,0 +1,11 @@
+prefix=/usr
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: gupnp-1.6
+Description: GObject-based UPnP library
+Version: 1.6.7
+Requires: glib-2.0 >=  2.70, gio-2.0 >=  2.70, gobject-2.0 >=  2.70, gssdp-1.6 >=  1.6.2, libsoup-3.0 >=  2.99.0, libxml-2.0
+Requires.private: gmodule-2.0 >=  2.70
+Libs: -L${libdir} -lgupnp-1.6
+Cflags: -I${includedir}/gupnp-1.6

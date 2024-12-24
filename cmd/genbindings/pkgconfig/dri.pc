@@ -1,0 +1,10 @@
+prefix=/usr
+includedir=${prefix}/include
+
+dridriverdir=/usr/lib/dri
+
+Name: dri
+Description: Direct Rendering Infrastructure
+Version: 24.2.8-arch1.1
+Requires.private: libdrm >=  2.4.121
+Cflags: -I${includedir}

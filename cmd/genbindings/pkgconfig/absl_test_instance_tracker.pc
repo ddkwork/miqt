@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: absl_test_instance_tracker
+Description: Abseil test_instance_tracker library
+URL: https://abseil.io/
+Version: 20240722
+Requires: absl_compare = 20240722
+Libs: -L${libdir}  -labsl_test_instance_tracker 
+Cflags: -I${includedir} -Wnon-virtual-dtor -DNOMINMAX

@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: absl_per_thread_sem_test_common
+Description: Abseil per_thread_sem_test_common library
+URL: https://abseil.io/
+Version: 20240722
+Requires: absl_synchronization = 20240722, absl_base = 20240722, absl_config = 20240722, absl_strings = 20240722, absl_time = 20240722
+Libs: -L${libdir}  -labsl_per_thread_sem_test_common 
+Cflags: -I${includedir} -Wnon-virtual-dtor -DNOMINMAX -Wno-deprecated-declarations -Wno-missing-declarations -Wno-self-move -Wno-sign-compare -Wno-unused-function -Wno-unused-parameter -Wno-unused-private-field

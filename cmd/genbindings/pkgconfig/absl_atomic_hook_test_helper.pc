@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: absl_atomic_hook_test_helper
+Description: Abseil atomic_hook_test_helper library
+URL: https://abseil.io/
+Version: 20240722
+Requires: absl_atomic_hook = 20240722, absl_core_headers = 20240722
+Libs: -L${libdir}  -labsl_atomic_hook_test_helper 
+Cflags: -I${includedir} -Wnon-virtual-dtor -DNOMINMAX -Wno-deprecated-declarations -Wno-missing-declarations -Wno-self-move -Wno-sign-compare -Wno-unused-function -Wno-unused-parameter -Wno-unused-private-field

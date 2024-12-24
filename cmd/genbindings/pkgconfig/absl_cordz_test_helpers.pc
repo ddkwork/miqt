@@ -1,0 +1,12 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=/usr/lib
+includedir=/usr/include
+
+Name: absl_cordz_test_helpers
+Description: Abseil cordz_test_helpers library
+URL: https://abseil.io/
+Version: 20240722
+Requires: absl_config = 20240722, absl_cord = 20240722, absl_cord_internal = 20240722, absl_cordz_info = 20240722, absl_cordz_sample_token = 20240722, absl_cordz_statistics = 20240722, absl_cordz_update_tracker = 20240722, absl_core_headers = 20240722, absl_nullability = 20240722, absl_strings = 20240722
+Libs: -L${libdir}  
+Cflags: -I${includedir} -Wnon-virtual-dtor -DNOMINMAX -Wno-deprecated-declarations -Wno-missing-declarations -Wno-self-move -Wno-sign-compare -Wno-unused-function -Wno-unused-parameter -Wno-unused-private-field
