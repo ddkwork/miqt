@@ -2,6 +2,12 @@ cmake-build-release
 cmake-build-debug
 .idea
 cmd/purego/Qt-6.8.1
+go.work
+go.work.sum
+golibrary
+update go workspace.cmd
+
+
 
 # cache files for genbindings
 cmd/genbindings/cachedir/
