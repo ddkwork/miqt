@@ -118,6 +118,7 @@ func (this *QClipboard) SetPixmap(param1 *QPixmap) {
 func (this *QClipboard) Changed(mode QClipboard__Mode) {
 	QClipboard_Changed(this.h, (int)(mode))
 }
+
 func (this *QClipboard) OnChanged(slot func(mode QClipboard__Mode)) {
 	QClipboard_connect_Changed(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -138,6 +139,7 @@ func miqt_exec_callback_QClipboard_Changed(cb intptr_t, mode int) {
 func (this *QClipboard) SelectionChanged() {
 	QClipboard_SelectionChanged(this.h)
 }
+
 func (this *QClipboard) OnSelectionChanged(slot func()) {
 	QClipboard_connect_SelectionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -155,6 +157,7 @@ func miqt_exec_callback_QClipboard_SelectionChanged(cb intptr_t) {
 func (this *QClipboard) FindBufferChanged() {
 	QClipboard_FindBufferChanged(this.h)
 }
+
 func (this *QClipboard) OnFindBufferChanged(slot func()) {
 	QClipboard_connect_FindBufferChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -172,6 +175,7 @@ func miqt_exec_callback_QClipboard_FindBufferChanged(cb intptr_t) {
 func (this *QClipboard) DataChanged() {
 	QClipboard_DataChanged(this.h)
 }
+
 func (this *QClipboard) OnDataChanged(slot func()) {
 	QClipboard_connect_DataChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }

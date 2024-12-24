@@ -24,160 +24,235 @@ typedef struct QSslSocket QSslSocket;
 typedef struct QTcpSocket QTcpSocket;
 typedef struct QVariant QVariant;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QSslSocket* QSslSocket_new();
-extern __declspec(dllexport) QSslSocket* QSslSocket_new2(QObject* parent);
-extern __declspec(dllexport) void QSslSocket_virtbase(QSslSocket* src, QTcpSocket** outptr_QTcpSocket);
-extern __declspec(dllexport) QMetaObject* QSslSocket_MetaObject(const QSslSocket* self);
-extern __declspec(dllexport) void* QSslSocket_Metacast(QSslSocket* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QSslSocket_Tr(const char* s);
-extern __declspec(dllexport) void QSslSocket_Resume(QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_ConnectToHostEncrypted(QSslSocket* self, struct miqt_string hostName, uint16_t port);
-extern __declspec(dllexport) void QSslSocket_ConnectToHostEncrypted2(QSslSocket* self, struct miqt_string hostName, uint16_t port, struct miqt_string sslPeerName);
-extern __declspec(dllexport) bool QSslSocket_SetSocketDescriptor(QSslSocket* self, intptr_t socketDescriptor, SocketState state, OpenMode openMode);
-extern __declspec(dllexport) void QSslSocket_ConnectToHost(QSslSocket* self, struct miqt_string hostName, uint16_t port, OpenMode openMode, NetworkLayerProtocol protocol);
-extern __declspec(dllexport) void QSslSocket_DisconnectFromHost(QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetSocketOption(QSslSocket* self, int option, QVariant* value);
-extern __declspec(dllexport) QVariant* QSslSocket_SocketOption(QSslSocket* self, int option);
-extern __declspec(dllexport) SslMode QSslSocket_Mode(const QSslSocket* self);
-extern __declspec(dllexport) bool QSslSocket_IsEncrypted(const QSslSocket* self);
-extern __declspec(dllexport) int QSslSocket_Protocol(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetProtocol(QSslSocket* self, int protocol);
-extern __declspec(dllexport) int QSslSocket_PeerVerifyMode(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetPeerVerifyMode(QSslSocket* self, int mode);
-extern __declspec(dllexport) int QSslSocket_PeerVerifyDepth(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetPeerVerifyDepth(QSslSocket* self, int depth);
-extern __declspec(dllexport) struct miqt_string QSslSocket_PeerVerifyName(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetPeerVerifyName(QSslSocket* self, struct miqt_string hostName);
-extern __declspec(dllexport) long long QSslSocket_BytesAvailable(const QSslSocket* self);
-extern __declspec(dllexport) long long QSslSocket_BytesToWrite(const QSslSocket* self);
-extern __declspec(dllexport) bool QSslSocket_CanReadLine(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_Close(QSslSocket* self);
-extern __declspec(dllexport) bool QSslSocket_AtEnd(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetReadBufferSize(QSslSocket* self, long long size);
-extern __declspec(dllexport) long long QSslSocket_EncryptedBytesAvailable(const QSslSocket* self);
-extern __declspec(dllexport) long long QSslSocket_EncryptedBytesToWrite(const QSslSocket* self);
-extern __declspec(dllexport) QSslConfiguration* QSslSocket_SslConfiguration(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetSslConfiguration(QSslSocket* self, QSslConfiguration* config);
-extern __declspec(dllexport) void QSslSocket_SetLocalCertificateChain(QSslSocket* self, struct miqt_array /* of QSslCertificate* */  localChain);
-extern __declspec(dllexport) struct miqt_array /* of QSslCertificate* */  QSslSocket_LocalCertificateChain(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetLocalCertificate(QSslSocket* self, QSslCertificate* certificate);
-extern __declspec(dllexport) void QSslSocket_SetLocalCertificateWithFileName(QSslSocket* self, struct miqt_string fileName);
-extern __declspec(dllexport) QSslCertificate* QSslSocket_LocalCertificate(const QSslSocket* self);
-extern __declspec(dllexport) QSslCertificate* QSslSocket_PeerCertificate(const QSslSocket* self);
-extern __declspec(dllexport) struct miqt_array /* of QSslCertificate* */  QSslSocket_PeerCertificateChain(const QSslSocket* self);
-extern __declspec(dllexport) QSslCipher* QSslSocket_SessionCipher(const QSslSocket* self);
-extern __declspec(dllexport) int QSslSocket_SessionProtocol(const QSslSocket* self);
-extern __declspec(dllexport) struct miqt_array /* of QOcspResponse* */  QSslSocket_OcspResponses(const QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_SetPrivateKey(QSslSocket* self, QSslKey* key);
-extern __declspec(dllexport) void QSslSocket_SetPrivateKeyWithFileName(QSslSocket* self, struct miqt_string fileName);
-extern __declspec(dllexport) QSslKey* QSslSocket_PrivateKey(const QSslSocket* self);
-extern __declspec(dllexport) bool QSslSocket_WaitForConnected(QSslSocket* self, int msecs);
-extern __declspec(dllexport) bool QSslSocket_WaitForEncrypted(QSslSocket* self);
-extern __declspec(dllexport) bool QSslSocket_WaitForReadyRead(QSslSocket* self, int msecs);
-extern __declspec(dllexport) bool QSslSocket_WaitForBytesWritten(QSslSocket* self, int msecs);
-extern __declspec(dllexport) bool QSslSocket_WaitForDisconnected(QSslSocket* self, int msecs);
-extern __declspec(dllexport) struct miqt_array /* of QSslError* */  QSslSocket_SslHandshakeErrors(const QSslSocket* self);
-extern __declspec(dllexport) bool QSslSocket_SupportsSsl();
-extern __declspec(dllexport) long QSslSocket_SslLibraryVersionNumber();
-extern __declspec(dllexport) struct miqt_string QSslSocket_SslLibraryVersionString();
-extern __declspec(dllexport) long QSslSocket_SslLibraryBuildVersionNumber();
-extern __declspec(dllexport) struct miqt_string QSslSocket_SslLibraryBuildVersionString();
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QSslSocket_AvailableBackends();
-extern __declspec(dllexport) struct miqt_string QSslSocket_ActiveBackend();
-extern __declspec(dllexport) bool QSslSocket_SetActiveBackend(struct miqt_string backendName);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSslSocket_SupportedProtocols();
-extern __declspec(dllexport) bool QSslSocket_IsProtocolSupported(int protocol);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSslSocket_ImplementedClasses();
-extern __declspec(dllexport) bool QSslSocket_IsClassImplemented(int cl);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSslSocket_SupportedFeatures();
-extern __declspec(dllexport) bool QSslSocket_IsFeatureSupported(int feat);
-extern __declspec(dllexport) void QSslSocket_IgnoreSslErrors(QSslSocket* self, struct miqt_array /* of QSslError* */  errors);
-extern __declspec(dllexport) void QSslSocket_ContinueInterruptedHandshake(QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_StartClientEncryption(QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_StartServerEncryption(QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_IgnoreSslErrors2(QSslSocket* self);
-extern __declspec(dllexport) void QSslSocket_Encrypted(QSslSocket* self);
+extern __declspec(dllexport) 
+QSslSocket* QSslSocket_new();
+extern __declspec(dllexport) 
+QSslSocket* QSslSocket_new2(QObject* parent);
+extern __declspec(dllexport) 
+void QSslSocket_virtbase(QSslSocket* src
+, QTcpSocket** outptr_QTcpSocket
+);
+extern __declspec(dllexport) 
+QMetaObject* QSslSocket_MetaObject(const QSslSocket* self);
+extern __declspec(dllexport) 
+void* QSslSocket_Metacast(QSslSocket* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_Tr(const char* s);
+extern __declspec(dllexport) 
+void QSslSocket_Resume(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHostEncrypted(QSslSocket* self, struct miqt_string hostName, uint16_t port);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHostEncrypted2(QSslSocket* self, struct miqt_string hostName, uint16_t port, struct miqt_string sslPeerName);
+extern __declspec(dllexport) 
+bool QSslSocket_SetSocketDescriptor(QSslSocket* self, intptr_t socketDescriptor, SocketState state, OpenMode openMode);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHost(QSslSocket* self, struct miqt_string hostName, uint16_t port, OpenMode openMode, NetworkLayerProtocol protocol);
+extern __declspec(dllexport) 
+void QSslSocket_DisconnectFromHost(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetSocketOption(QSslSocket* self, int option, QVariant* value);
+extern __declspec(dllexport) 
+QVariant* QSslSocket_SocketOption(QSslSocket* self, int option);
+extern __declspec(dllexport) 
+SslMode QSslSocket_Mode(const QSslSocket* self);
+extern __declspec(dllexport) 
+bool QSslSocket_IsEncrypted(const QSslSocket* self);
+extern __declspec(dllexport) 
+int QSslSocket_Protocol(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetProtocol(QSslSocket* self, int protocol);
+extern __declspec(dllexport) 
+int QSslSocket_PeerVerifyMode(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetPeerVerifyMode(QSslSocket* self, int mode);
+extern __declspec(dllexport) 
+int QSslSocket_PeerVerifyDepth(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetPeerVerifyDepth(QSslSocket* self, int depth);
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_PeerVerifyName(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetPeerVerifyName(QSslSocket* self, struct miqt_string hostName);
+extern __declspec(dllexport) 
+long long QSslSocket_BytesAvailable(const QSslSocket* self);
+extern __declspec(dllexport) 
+long long QSslSocket_BytesToWrite(const QSslSocket* self);
+extern __declspec(dllexport) 
+bool QSslSocket_CanReadLine(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_Close(QSslSocket* self);
+extern __declspec(dllexport) 
+bool QSslSocket_AtEnd(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetReadBufferSize(QSslSocket* self, long long size);
+extern __declspec(dllexport) 
+long long QSslSocket_EncryptedBytesAvailable(const QSslSocket* self);
+extern __declspec(dllexport) 
+long long QSslSocket_EncryptedBytesToWrite(const QSslSocket* self);
+extern __declspec(dllexport) 
+QSslConfiguration* QSslSocket_SslConfiguration(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetSslConfiguration(QSslSocket* self, QSslConfiguration* config);
+extern __declspec(dllexport) 
+void QSslSocket_SetLocalCertificateChain(QSslSocket* self, struct miqt_array /* of QSslCertificate* */  localChain);
+extern __declspec(dllexport) 
+struct miqt_array /* of QSslCertificate* */  QSslSocket_LocalCertificateChain(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetLocalCertificate(QSslSocket* self, QSslCertificate* certificate);
+extern __declspec(dllexport) 
+void QSslSocket_SetLocalCertificateWithFileName(QSslSocket* self, struct miqt_string fileName);
+extern __declspec(dllexport) 
+QSslCertificate* QSslSocket_LocalCertificate(const QSslSocket* self);
+extern __declspec(dllexport) 
+QSslCertificate* QSslSocket_PeerCertificate(const QSslSocket* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of QSslCertificate* */  QSslSocket_PeerCertificateChain(const QSslSocket* self);
+extern __declspec(dllexport) 
+QSslCipher* QSslSocket_SessionCipher(const QSslSocket* self);
+extern __declspec(dllexport) 
+int QSslSocket_SessionProtocol(const QSslSocket* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of QOcspResponse* */  QSslSocket_OcspResponses(const QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_SetPrivateKey(QSslSocket* self, QSslKey* key);
+extern __declspec(dllexport) 
+void QSslSocket_SetPrivateKeyWithFileName(QSslSocket* self, struct miqt_string fileName);
+extern __declspec(dllexport) 
+QSslKey* QSslSocket_PrivateKey(const QSslSocket* self);
+extern __declspec(dllexport) 
+bool QSslSocket_WaitForConnected(QSslSocket* self, int msecs);
+extern __declspec(dllexport) 
+bool QSslSocket_WaitForEncrypted(QSslSocket* self);
+extern __declspec(dllexport) 
+bool QSslSocket_WaitForReadyRead(QSslSocket* self, int msecs);
+extern __declspec(dllexport) 
+bool QSslSocket_WaitForBytesWritten(QSslSocket* self, int msecs);
+extern __declspec(dllexport) 
+bool QSslSocket_WaitForDisconnected(QSslSocket* self, int msecs);
+extern __declspec(dllexport) 
+struct miqt_array /* of QSslError* */  QSslSocket_SslHandshakeErrors(const QSslSocket* self);
+extern __declspec(dllexport) 
+bool QSslSocket_SupportsSsl();
+extern __declspec(dllexport) 
+long QSslSocket_SslLibraryVersionNumber();
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_SslLibraryVersionString();
+extern __declspec(dllexport) 
+long QSslSocket_SslLibraryBuildVersionNumber();
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_SslLibraryBuildVersionString();
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QSslSocket_AvailableBackends();
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_ActiveBackend();
+extern __declspec(dllexport) 
+bool QSslSocket_SetActiveBackend(struct miqt_string backendName);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSslSocket_SupportedProtocols();
+extern __declspec(dllexport) 
+bool QSslSocket_IsProtocolSupported(int protocol);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSslSocket_ImplementedClasses();
+extern __declspec(dllexport) 
+bool QSslSocket_IsClassImplemented(int cl);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSslSocket_SupportedFeatures();
+extern __declspec(dllexport) 
+bool QSslSocket_IsFeatureSupported(int feat);
+extern __declspec(dllexport) 
+void QSslSocket_IgnoreSslErrors(QSslSocket* self, struct miqt_array /* of QSslError* */  errors);
+extern __declspec(dllexport) 
+void QSslSocket_ContinueInterruptedHandshake(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_StartClientEncryption(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_StartServerEncryption(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_IgnoreSslErrors2(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_Encrypted(QSslSocket* self);
 void QSslSocket_connect_Encrypted(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_PeerVerifyError(QSslSocket* self, QSslError* error);
+extern __declspec(dllexport) 
+void QSslSocket_PeerVerifyError(QSslSocket* self, QSslError* error);
 void QSslSocket_connect_PeerVerifyError(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_SslErrors(QSslSocket* self, struct miqt_array /* of QSslError* */  errors);
+extern __declspec(dllexport) 
+void QSslSocket_SslErrors(QSslSocket* self, struct miqt_array /* of QSslError* */  errors);
 void QSslSocket_connect_SslErrors(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_ModeChanged(QSslSocket* self, int newMode);
+extern __declspec(dllexport) 
+void QSslSocket_ModeChanged(QSslSocket* self, int newMode);
 void QSslSocket_connect_ModeChanged(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_EncryptedBytesWritten(QSslSocket* self, long long totalBytes);
+extern __declspec(dllexport) 
+void QSslSocket_EncryptedBytesWritten(QSslSocket* self, long long totalBytes);
 void QSslSocket_connect_EncryptedBytesWritten(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_PreSharedKeyAuthenticationRequired(QSslSocket* self, QSslPreSharedKeyAuthenticator* authenticator);
+extern __declspec(dllexport) 
+void QSslSocket_PreSharedKeyAuthenticationRequired(QSslSocket* self, QSslPreSharedKeyAuthenticator* authenticator);
 void QSslSocket_connect_PreSharedKeyAuthenticationRequired(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_NewSessionTicketReceived(QSslSocket* self);
+extern __declspec(dllexport) 
+void QSslSocket_NewSessionTicketReceived(QSslSocket* self);
 void QSslSocket_connect_NewSessionTicketReceived(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_AlertSent(QSslSocket* self, int level, int typeVal, struct miqt_string description);
+extern __declspec(dllexport) 
+void QSslSocket_AlertSent(QSslSocket* self, int level, int typeVal, struct miqt_string description);
 void QSslSocket_connect_AlertSent(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_AlertReceived(QSslSocket* self, int level, int typeVal, struct miqt_string description);
+extern __declspec(dllexport) 
+void QSslSocket_AlertReceived(QSslSocket* self, int level, int typeVal, struct miqt_string description);
 void QSslSocket_connect_AlertReceived(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) void QSslSocket_HandshakeInterruptedOnError(QSslSocket* self, QSslError* error);
+extern __declspec(dllexport) 
+void QSslSocket_HandshakeInterruptedOnError(QSslSocket* self, QSslError* error);
 void QSslSocket_connect_HandshakeInterruptedOnError(QSslSocket* self, intptr_t slot);
-extern __declspec(dllexport) long long QSslSocket_ReadData(QSslSocket* self, char* data, long long maxlen);
-extern __declspec(dllexport) long long QSslSocket_SkipData(QSslSocket* self, long long maxSize);
-extern __declspec(dllexport) long long QSslSocket_WriteData(QSslSocket* self, const char* data, long long lenVal);
-extern __declspec(dllexport) struct miqt_string QSslSocket_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QSslSocket_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QSslSocket_ConnectToHostEncrypted3(QSslSocket* self, struct miqt_string hostName, uint16_t port, OpenMode mode);
-extern __declspec(dllexport) void QSslSocket_ConnectToHostEncrypted4(QSslSocket* self, struct miqt_string hostName, uint16_t port, OpenMode mode, NetworkLayerProtocol protocol);
-extern __declspec(dllexport) void QSslSocket_ConnectToHostEncrypted42(QSslSocket* self, struct miqt_string hostName, uint16_t port, struct miqt_string sslPeerName, OpenMode mode);
-extern __declspec(dllexport) void QSslSocket_ConnectToHostEncrypted5(QSslSocket* self, struct miqt_string hostName, uint16_t port, struct miqt_string sslPeerName, OpenMode mode, NetworkLayerProtocol protocol);
-extern __declspec(dllexport) void QSslSocket_SetLocalCertificate2(QSslSocket* self, struct miqt_string fileName, int format);
-extern __declspec(dllexport) void QSslSocket_SetPrivateKey2(QSslSocket* self, struct miqt_string fileName, int algorithm);
-extern __declspec(dllexport) void QSslSocket_SetPrivateKey3(QSslSocket* self, struct miqt_string fileName, int algorithm, int format);
-extern __declspec(dllexport) void QSslSocket_SetPrivateKey4(QSslSocket* self, struct miqt_string fileName, int algorithm, int format, struct miqt_string passPhrase);
-extern __declspec(dllexport) bool QSslSocket_WaitForEncrypted1(QSslSocket* self, int msecs);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSslSocket_SupportedProtocols1(struct miqt_string backendName);
-extern __declspec(dllexport) bool QSslSocket_IsProtocolSupported2(int protocol, struct miqt_string backendName);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSslSocket_ImplementedClasses1(struct miqt_string backendName);
-extern __declspec(dllexport) bool QSslSocket_IsClassImplemented2(int cl, struct miqt_string backendName);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSslSocket_SupportedFeatures1(struct miqt_string backendName);
-extern __declspec(dllexport) bool QSslSocket_IsFeatureSupported2(int feat, struct miqt_string backendName);
-extern __declspec(dllexport) void QSslSocket_override_virtual_Resume(void* self, intptr_t slot);
-void QSslSocket_virtualbase_Resume(void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_SetSocketDescriptor(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_SetSocketDescriptor(void* self, intptr_t socketDescriptor, SocketState state, OpenMode openMode);
-extern __declspec(dllexport) void QSslSocket_override_virtual_ConnectToHost(void* self, intptr_t slot);
-void QSslSocket_virtualbase_ConnectToHost(void* self, struct miqt_string hostName, uint16_t port, OpenMode openMode, NetworkLayerProtocol protocol);
-extern __declspec(dllexport) void QSslSocket_override_virtual_DisconnectFromHost(void* self, intptr_t slot);
-void QSslSocket_virtualbase_DisconnectFromHost(void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_SetSocketOption(void* self, intptr_t slot);
-void QSslSocket_virtualbase_SetSocketOption(void* self, int option, QVariant* value);
-extern __declspec(dllexport) void QSslSocket_override_virtual_SocketOption(void* self, intptr_t slot);
-QVariant* QSslSocket_virtualbase_SocketOption(void* self, int option);
-extern __declspec(dllexport) void QSslSocket_override_virtual_BytesAvailable(void* self, intptr_t slot);
-long long QSslSocket_virtualbase_BytesAvailable(const void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_BytesToWrite(void* self, intptr_t slot);
-long long QSslSocket_virtualbase_BytesToWrite(const void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_CanReadLine(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_CanReadLine(const void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_Close(void* self, intptr_t slot);
-void QSslSocket_virtualbase_Close(void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_AtEnd(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_AtEnd(const void* self);
-extern __declspec(dllexport) void QSslSocket_override_virtual_SetReadBufferSize(void* self, intptr_t slot);
-void QSslSocket_virtualbase_SetReadBufferSize(void* self, long long size);
-extern __declspec(dllexport) void QSslSocket_override_virtual_WaitForConnected(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_WaitForConnected(void* self, int msecs);
-extern __declspec(dllexport) void QSslSocket_override_virtual_WaitForReadyRead(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_WaitForReadyRead(void* self, int msecs);
-extern __declspec(dllexport) void QSslSocket_override_virtual_WaitForBytesWritten(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_WaitForBytesWritten(void* self, int msecs);
-extern __declspec(dllexport) void QSslSocket_override_virtual_WaitForDisconnected(void* self, intptr_t slot);
-bool QSslSocket_virtualbase_WaitForDisconnected(void* self, int msecs);
-extern __declspec(dllexport) void QSslSocket_override_virtual_ReadData(void* self, intptr_t slot);
-long long QSslSocket_virtualbase_ReadData(void* self, char* data, long long maxlen);
-extern __declspec(dllexport) void QSslSocket_override_virtual_SkipData(void* self, intptr_t slot);
-long long QSslSocket_virtualbase_SkipData(void* self, long long maxSize);
-extern __declspec(dllexport) void QSslSocket_override_virtual_WriteData(void* self, intptr_t slot);
-long long QSslSocket_virtualbase_WriteData(void* self, const char* data, long long lenVal);
-extern __declspec(dllexport) void QSslSocket_Delete(QSslSocket* self, bool isSubclass);
+extern __declspec(dllexport) 
+long long QSslSocket_ReadData(QSslSocket* self, char* data, long long maxlen);
+extern __declspec(dllexport) 
+long long QSslSocket_SkipData(QSslSocket* self, long long maxSize);
+extern __declspec(dllexport) 
+long long QSslSocket_WriteData(QSslSocket* self, const char* data, long long lenVal);
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QSslSocket_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHostEncrypted3(QSslSocket* self, struct miqt_string hostName, uint16_t port, OpenMode mode);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHostEncrypted4(QSslSocket* self, struct miqt_string hostName, uint16_t port, OpenMode mode, NetworkLayerProtocol protocol);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHostEncrypted42(QSslSocket* self, struct miqt_string hostName, uint16_t port, struct miqt_string sslPeerName, OpenMode mode);
+extern __declspec(dllexport) 
+void QSslSocket_ConnectToHostEncrypted5(QSslSocket* self, struct miqt_string hostName, uint16_t port, struct miqt_string sslPeerName, OpenMode mode, NetworkLayerProtocol protocol);
+extern __declspec(dllexport) 
+void QSslSocket_SetLocalCertificate2(QSslSocket* self, struct miqt_string fileName, int format);
+extern __declspec(dllexport) 
+void QSslSocket_SetPrivateKey2(QSslSocket* self, struct miqt_string fileName, int algorithm);
+extern __declspec(dllexport) 
+void QSslSocket_SetPrivateKey3(QSslSocket* self, struct miqt_string fileName, int algorithm, int format);
+extern __declspec(dllexport) 
+void QSslSocket_SetPrivateKey4(QSslSocket* self, struct miqt_string fileName, int algorithm, int format, struct miqt_string passPhrase);
+extern __declspec(dllexport) 
+bool QSslSocket_WaitForEncrypted1(QSslSocket* self, int msecs);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSslSocket_SupportedProtocols1(struct miqt_string backendName);
+extern __declspec(dllexport) 
+bool QSslSocket_IsProtocolSupported2(int protocol, struct miqt_string backendName);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSslSocket_ImplementedClasses1(struct miqt_string backendName);
+extern __declspec(dllexport) 
+bool QSslSocket_IsClassImplemented2(int cl, struct miqt_string backendName);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSslSocket_SupportedFeatures1(struct miqt_string backendName);
+extern __declspec(dllexport) 
+bool QSslSocket_IsFeatureSupported2(int feat, struct miqt_string backendName);
+extern __declspec(dllexport) 
+void QSslSocket_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QSslSocket_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QSslSocket_override_virtual_Metacast(void* self, intptr_t slot);
+void* QSslSocket_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QSslSocket_Delete(QSslSocket* self, bool isSubclass);
 
-} 
+}

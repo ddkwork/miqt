@@ -34,7 +34,6 @@ type QIPv6Address struct {
 
 // NewQIPv6Address constructs a new QIPv6Address object.
 func NewQIPv6Address() *QIPv6Address {
-
 	ret := newQIPv6Address(QIPv6Address_new())
 	ret.isSubclass = true
 	return ret
@@ -42,7 +41,6 @@ func NewQIPv6Address() *QIPv6Address {
 
 // NewQIPv6Address2 constructs a new QIPv6Address object.
 func NewQIPv6Address2(param1 *QIPv6Address) *QIPv6Address {
-
 	ret := newQIPv6Address(QIPv6Address_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -59,7 +57,6 @@ type QHostAddress struct {
 
 // NewQHostAddress constructs a new QHostAddress object.
 func NewQHostAddress() *QHostAddress {
-
 	ret := newQHostAddress(QHostAddress_new())
 	ret.isSubclass = true
 	return ret
@@ -67,7 +64,6 @@ func NewQHostAddress() *QHostAddress {
 
 // NewQHostAddress2 constructs a new QHostAddress object.
 func NewQHostAddress2(ip4Addr uint) *QHostAddress {
-
 	ret := newQHostAddress(QHostAddress_new2((uint)(ip4Addr)))
 	ret.isSubclass = true
 	return ret
@@ -75,7 +71,6 @@ func NewQHostAddress2(ip4Addr uint) *QHostAddress {
 
 // NewQHostAddress3 constructs a new QHostAddress object.
 func NewQHostAddress3(ip6Addr *byte) *QHostAddress {
-
 	ret := newQHostAddress(QHostAddress_new3((*uchar)(unsafe.Pointer(ip6Addr))))
 	ret.isSubclass = true
 	return ret
@@ -83,7 +78,6 @@ func NewQHostAddress3(ip6Addr *byte) *QHostAddress {
 
 // NewQHostAddress4 constructs a new QHostAddress object.
 func NewQHostAddress4(ip6Addr *QIPv6Address) *QHostAddress {
-
 	ret := newQHostAddress(QHostAddress_new4(ip6Addr.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -103,7 +97,6 @@ func NewQHostAddress5(address string) *QHostAddress {
 
 // NewQHostAddress6 constructs a new QHostAddress object.
 func NewQHostAddress6(copyVal *QHostAddress) *QHostAddress {
-
 	ret := newQHostAddress(QHostAddress_new6(copyVal.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -111,7 +104,6 @@ func NewQHostAddress6(copyVal *QHostAddress) *QHostAddress {
 
 // NewQHostAddress7 constructs a new QHostAddress object.
 func NewQHostAddress7(address SpecialAddress) *QHostAddress {
-
 	ret := newQHostAddress(QHostAddress_new7(address))
 	ret.isSubclass = true
 	return ret

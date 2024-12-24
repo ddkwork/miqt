@@ -8,142 +8,58 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QActionEvent QActionEvent;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
 typedef struct QFocusFrame QFocusFrame;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
 typedef struct QStyleOption QStyleOption;
-typedef struct QTabletEvent QTabletEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QFocusFrame* QFocusFrame_new(QWidget* parent);
-extern __declspec(dllexport) QFocusFrame* QFocusFrame_new2();
-extern __declspec(dllexport) void QFocusFrame_virtbase(QFocusFrame* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QFocusFrame_MetaObject(const QFocusFrame* self);
-extern __declspec(dllexport) void* QFocusFrame_Metacast(QFocusFrame* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QFocusFrame_Tr(const char* s);
-extern __declspec(dllexport) void QFocusFrame_SetWidget(QFocusFrame* self, QWidget* widget);
-extern __declspec(dllexport) QWidget* QFocusFrame_Widget(const QFocusFrame* self);
-extern __declspec(dllexport) bool QFocusFrame_Event(QFocusFrame* self, QEvent* e);
-extern __declspec(dllexport) bool QFocusFrame_EventFilter(QFocusFrame* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) void QFocusFrame_PaintEvent(QFocusFrame* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QFocusFrame_InitStyleOption(const QFocusFrame* self, QStyleOption* option);
-extern __declspec(dllexport) struct miqt_string QFocusFrame_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QFocusFrame_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_Event(void* self, intptr_t slot);
-bool QFocusFrame_virtualbase_Event(void* self, QEvent* e);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QFocusFrame_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_PaintEvent(void* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_InitStyleOption(const void* self, QStyleOption* option);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_DevType(void* self, intptr_t slot);
-int QFocusFrame_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_SetVisible(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QFocusFrame_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QFocusFrame_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QFocusFrame_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QFocusFrame_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QFocusFrame_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_DropEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_HideEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QFocusFrame_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_Metric(void* self, intptr_t slot);
-int QFocusFrame_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_InitPainter(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QFocusFrame_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QFocusFrame_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QFocusFrame_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QFocusFrame_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QFocusFrame_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QFocusFrame_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QFocusFrame_Delete(QFocusFrame* self, bool isSubclass);
+extern __declspec(dllexport) 
+QFocusFrame* QFocusFrame_new(QWidget* parent);
+extern __declspec(dllexport) 
+QFocusFrame* QFocusFrame_new2();
+extern __declspec(dllexport) 
+void QFocusFrame_virtbase(QFocusFrame* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QFocusFrame_MetaObject(const QFocusFrame* self);
+extern __declspec(dllexport) 
+void* QFocusFrame_Metacast(QFocusFrame* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QFocusFrame_Tr(const char* s);
+extern __declspec(dllexport) 
+void QFocusFrame_SetWidget(QFocusFrame* self, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QFocusFrame_Widget(const QFocusFrame* self);
+extern __declspec(dllexport) 
+bool QFocusFrame_Event(QFocusFrame* self, QEvent* e);
+extern __declspec(dllexport) 
+bool QFocusFrame_EventFilter(QFocusFrame* self, QObject* param1, QEvent* param2);
+extern __declspec(dllexport) 
+void QFocusFrame_PaintEvent(QFocusFrame* self, QPaintEvent* param1);
+extern __declspec(dllexport) 
+void QFocusFrame_InitStyleOption(const QFocusFrame* self, QStyleOption* option);
+extern __declspec(dllexport) 
+struct miqt_string QFocusFrame_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QFocusFrame_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QFocusFrame_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QFocusFrame_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QFocusFrame_override_virtual_Metacast(void* self, intptr_t slot);
+void* QFocusFrame_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QFocusFrame_Delete(QFocusFrame* self, bool isSubclass);
 
-} 
+}

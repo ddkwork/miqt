@@ -35,7 +35,6 @@ type QPointingDeviceUniqueId struct {
 
 // NewQPointingDeviceUniqueId constructs a new QPointingDeviceUniqueId object.
 func NewQPointingDeviceUniqueId() *QPointingDeviceUniqueId {
-
 	ret := newQPointingDeviceUniqueId(QPointingDeviceUniqueId_new())
 	ret.isSubclass = true
 	return ret
@@ -43,7 +42,6 @@ func NewQPointingDeviceUniqueId() *QPointingDeviceUniqueId {
 
 // NewQPointingDeviceUniqueId2 constructs a new QPointingDeviceUniqueId object.
 func NewQPointingDeviceUniqueId2(param1 *QPointingDeviceUniqueId) *QPointingDeviceUniqueId {
-
 	ret := newQPointingDeviceUniqueId(QPointingDeviceUniqueId_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -70,7 +68,6 @@ type QPointingDevice struct {
 
 // NewQPointingDevice constructs a new QPointingDevice object.
 func NewQPointingDevice() *QPointingDevice {
-
 	ret := newQPointingDevice(QPointingDevice_new())
 	ret.isSubclass = true
 	return ret
@@ -90,7 +87,6 @@ func NewQPointingDevice2(name string, systemId int64, devType QInputDevice__Devi
 
 // NewQPointingDevice3 constructs a new QPointingDevice object.
 func NewQPointingDevice3(parent *QObject) *QPointingDevice {
-
 	ret := newQPointingDevice(QPointingDevice_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -204,6 +200,7 @@ func (this *QPointingDevice) OperatorEqual(other *QPointingDevice) bool {
 func (this *QPointingDevice) GrabChanged(grabber *QObject, transition GrabTransition, event *QPointerEvent, point *QEventPoint) {
 	QPointingDevice_GrabChanged(this.h, grabber.cPointer(), transition, event.cPointer(), point.cPointer())
 }
+
 func (this *QPointingDevice) OnGrabChanged(slot func(grabber *QObject, transition GrabTransition, event *QPointerEvent, point *QEventPoint)) {
 	QPointingDevice_connect_GrabChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -254,4 +251,57 @@ func QPointingDevice_PrimaryPointingDevice1(seatName string) *QPointingDevice {
 	seatName_ms.len = size_t(len(seatName))
 	defer free(unsafe.Pointer(seatName_ms.data))
 	return newQPointingDevice(QPointingDevice_PrimaryPointingDevice1(seatName_ms))
+}
+
+func (this *QPointingDevice) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QPointingDevice_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QPointingDevice) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPointingDevice_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPointingDevice_MetaObject
+func miqt_exec_callback_QPointingDevice_MetaObject(self QPointingDevice, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QPointingDevice{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QPointingDevice) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QPointingDevice_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QPointingDevice) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPointingDevice_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPointingDevice_Metacast
+func miqt_exec_callback_QPointingDevice_Metacast(self QPointingDevice, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QPointingDevice{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
 }

@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QHstsPolicy__PolicyFlag int
@@ -18,7 +19,6 @@ type QHstsPolicy struct {
 
 // NewQHstsPolicy constructs a new QHstsPolicy object.
 func NewQHstsPolicy() *QHstsPolicy {
-
 	ret := newQHstsPolicy(QHstsPolicy_new())
 	ret.isSubclass = true
 	return ret
@@ -38,7 +38,6 @@ func NewQHstsPolicy2(expiry *qt.QDateTime, flags PolicyFlags, host string) *QHst
 
 // NewQHstsPolicy3 constructs a new QHstsPolicy object.
 func NewQHstsPolicy3(rhs *QHstsPolicy) *QHstsPolicy {
-
 	ret := newQHstsPolicy(QHstsPolicy_new3(rhs.cPointer()))
 	ret.isSubclass = true
 	return ret

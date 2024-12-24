@@ -22,123 +22,47 @@ public:
 	virtual ~MiqtVirtualQPauseAnimation() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Duration = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int duration() const override {
-		if (handle__Duration == 0) {
-			return QPauseAnimation::duration();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QPauseAnimation::metaObject();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QPauseAnimation_Duration(const_cast<MiqtVirtualQPauseAnimation*>(this), handle__Duration);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Duration() const {
-
-		return QPauseAnimation::duration();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* e) override {
-		if (handle__Event == 0) {
-			return QPauseAnimation::event(e);
-		}
-		
-		QEvent* sigval1 = e;
-
-		bool callback_return_value = miqt_exec_callback_QPauseAnimation_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QPauseAnimation_MetaObject(const_cast<MiqtVirtualQPauseAnimation*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* e) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QPauseAnimation::event(e);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateCurrentTime = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateCurrentTime(int param1) override {
-		if (handle__UpdateCurrentTime == 0) {
-			QPauseAnimation::updateCurrentTime(param1);
-			return;
-		}
-		
-		int sigval1 = param1;
-
-		miqt_exec_callback_QPauseAnimation_UpdateCurrentTime(this, handle__UpdateCurrentTime, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateCurrentTime(int param1) {
-
-		QPauseAnimation::updateCurrentTime(static_cast<int>(param1));
+		return (QMetaObject*) QPauseAnimation::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateState = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) override {
-		if (handle__UpdateState == 0) {
-			QPauseAnimation::updateState(newState, oldState);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QPauseAnimation::qt_metacast(param1);
 		}
 		
-		QAbstractAnimation::State newState_ret = newState;
-		int sigval1 = static_cast<int>(newState_ret);
-		QAbstractAnimation::State oldState_ret = oldState;
-		int sigval2 = static_cast<int>(oldState_ret);
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QPauseAnimation_UpdateState(this, handle__UpdateState, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QPauseAnimation_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_UpdateState(int newState, int oldState) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QPauseAnimation::updateState(static_cast<QAbstractAnimation::State>(newState), static_cast<QAbstractAnimation::State>(oldState));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateDirection = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateDirection(QAbstractAnimation::Direction direction) override {
-		if (handle__UpdateDirection == 0) {
-			QPauseAnimation::updateDirection(direction);
-			return;
-		}
-		
-		QAbstractAnimation::Direction direction_ret = direction;
-		int sigval1 = static_cast<int>(direction_ret);
-
-		miqt_exec_callback_QPauseAnimation_UpdateDirection(this, handle__UpdateDirection, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateDirection(int direction) {
-
-		QPauseAnimation::updateDirection(static_cast<QAbstractAnimation::Direction>(direction));
+		return QPauseAnimation::qt_metacast(param1);
 
 	}
 
@@ -213,44 +137,20 @@ struct miqt_string QPauseAnimation_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QPauseAnimation_override_virtual_Duration(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__Duration = slot;
+void QPauseAnimation_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__MetaObject = slot;
 }
 
-int QPauseAnimation_virtualbase_Duration(const void* self) {
-	return ( (const MiqtVirtualQPauseAnimation*)(self) )->virtualbase_Duration();
+QMetaObject* QPauseAnimation_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQPauseAnimation*)(self) )->virtualbase_MetaObject();
 }
 
-void QPauseAnimation_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__Event = slot;
+void QPauseAnimation_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__Metacast = slot;
 }
 
-bool QPauseAnimation_virtualbase_Event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQPauseAnimation*)(self) )->virtualbase_Event(e);
-}
-
-void QPauseAnimation_override_virtual_UpdateCurrentTime(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__UpdateCurrentTime = slot;
-}
-
-void QPauseAnimation_virtualbase_UpdateCurrentTime(void* self, int param1) {
-	( (MiqtVirtualQPauseAnimation*)(self) )->virtualbase_UpdateCurrentTime(param1);
-}
-
-void QPauseAnimation_override_virtual_UpdateState(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__UpdateState = slot;
-}
-
-void QPauseAnimation_virtualbase_UpdateState(void* self, int newState, int oldState) {
-	( (MiqtVirtualQPauseAnimation*)(self) )->virtualbase_UpdateState(newState, oldState);
-}
-
-void QPauseAnimation_override_virtual_UpdateDirection(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPauseAnimation*>( (QPauseAnimation*)(self) )->handle__UpdateDirection = slot;
-}
-
-void QPauseAnimation_virtualbase_UpdateDirection(void* self, int direction) {
-	( (MiqtVirtualQPauseAnimation*)(self) )->virtualbase_UpdateDirection(direction);
+void* QPauseAnimation_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQPauseAnimation*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QPauseAnimation_Delete(QPauseAnimation* self, bool isSubclass) {

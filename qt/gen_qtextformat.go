@@ -255,7 +255,6 @@ type QTextLength struct {
 
 // NewQTextLength constructs a new QTextLength object.
 func NewQTextLength() *QTextLength {
-
 	ret := newQTextLength(QTextLength_new())
 	ret.isSubclass = true
 	return ret
@@ -263,7 +262,6 @@ func NewQTextLength() *QTextLength {
 
 // NewQTextLength2 constructs a new QTextLength object.
 func NewQTextLength2(typeVal Type, value float64) *QTextLength {
-
 	ret := newQTextLength(QTextLength_new2(typeVal, (double)(value)))
 	ret.isSubclass = true
 	return ret
@@ -271,7 +269,6 @@ func NewQTextLength2(typeVal Type, value float64) *QTextLength {
 
 // NewQTextLength3 constructs a new QTextLength object.
 func NewQTextLength3(param1 *QTextLength) *QTextLength {
-
 	ret := newQTextLength(QTextLength_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -304,7 +301,6 @@ type QTextFormat struct {
 
 // NewQTextFormat constructs a new QTextFormat object.
 func NewQTextFormat() *QTextFormat {
-
 	ret := newQTextFormat(QTextFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -312,7 +308,6 @@ func NewQTextFormat() *QTextFormat {
 
 // NewQTextFormat2 constructs a new QTextFormat object.
 func NewQTextFormat2(typeVal int) *QTextFormat {
-
 	ret := newQTextFormat(QTextFormat_new2((int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -320,7 +315,6 @@ func NewQTextFormat2(typeVal int) *QTextFormat {
 
 // NewQTextFormat3 constructs a new QTextFormat object.
 func NewQTextFormat3(rhs *QTextFormat) *QTextFormat {
-
 	ret := newQTextFormat(QTextFormat_new3(rhs.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -591,7 +585,6 @@ type QTextCharFormat struct {
 
 // NewQTextCharFormat constructs a new QTextCharFormat object.
 func NewQTextCharFormat() *QTextCharFormat {
-
 	ret := newQTextCharFormat(QTextCharFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -944,7 +937,6 @@ type QTextBlockFormat struct {
 
 // NewQTextBlockFormat constructs a new QTextBlockFormat object.
 func NewQTextBlockFormat() *QTextBlockFormat {
-
 	ret := newQTextBlockFormat(QTextBlockFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -1087,7 +1079,6 @@ type QTextListFormat struct {
 
 // NewQTextListFormat constructs a new QTextListFormat object.
 func NewQTextListFormat() *QTextListFormat {
-
 	ret := newQTextListFormat(QTextListFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -1158,7 +1149,6 @@ type QTextImageFormat struct {
 
 // NewQTextImageFormat constructs a new QTextImageFormat object.
 func NewQTextImageFormat() *QTextImageFormat {
-
 	ret := newQTextImageFormat(QTextImageFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -1228,7 +1218,6 @@ type QTextFrameFormat struct {
 
 // NewQTextFrameFormat constructs a new QTextFrameFormat object.
 func NewQTextFrameFormat() *QTextFrameFormat {
-
 	ret := newQTextFrameFormat(QTextFrameFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -1363,7 +1352,6 @@ type QTextTableFormat struct {
 
 // NewQTextTableFormat constructs a new QTextTableFormat object.
 func NewQTextTableFormat() *QTextTableFormat {
-
 	ret := newQTextTableFormat(QTextTableFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -1454,7 +1442,6 @@ type QTextTableCellFormat struct {
 
 // NewQTextTableCellFormat constructs a new QTextTableCellFormat object.
 func NewQTextTableCellFormat() *QTextTableCellFormat {
-
 	ret := newQTextTableCellFormat(QTextTableCellFormat_new())
 	ret.isSubclass = true
 	return ret

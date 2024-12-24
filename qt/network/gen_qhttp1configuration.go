@@ -11,7 +11,6 @@ type QHttp1Configuration struct {
 
 // NewQHttp1Configuration constructs a new QHttp1Configuration object.
 func NewQHttp1Configuration() *QHttp1Configuration {
-
 	ret := newQHttp1Configuration(QHttp1Configuration_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQHttp1Configuration() *QHttp1Configuration {
 
 // NewQHttp1Configuration2 constructs a new QHttp1Configuration object.
 func NewQHttp1Configuration2(other *QHttp1Configuration) *QHttp1Configuration {
-
 	ret := newQHttp1Configuration(QHttp1Configuration_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

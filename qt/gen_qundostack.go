@@ -11,7 +11,6 @@ type QUndoCommand struct {
 
 // NewQUndoCommand constructs a new QUndoCommand object.
 func NewQUndoCommand() *QUndoCommand {
-
 	ret := newQUndoCommand(QUndoCommand_new())
 	ret.isSubclass = true
 	return ret
@@ -31,7 +30,6 @@ func NewQUndoCommand2(text string) *QUndoCommand {
 
 // NewQUndoCommand3 constructs a new QUndoCommand object.
 func NewQUndoCommand3(parent *QUndoCommand) *QUndoCommand {
-
 	ret := newQUndoCommand(QUndoCommand_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -103,105 +101,6 @@ func (this *QUndoCommand) Child(index int) *QUndoCommand {
 	return newQUndoCommand(QUndoCommand_Child(this.h, (int)(index)))
 }
 
-func (this *QUndoCommand) callVirtualBase_Undo() {
-
-	QUndoCommand_virtualbase_Undo(unsafe.Pointer(this.h))
-
-}
-func (this *QUndoCommand) OnUndo(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoCommand_override_virtual_Undo(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoCommand_Undo
-func miqt_exec_callback_QUndoCommand_Undo(self QUndoCommand, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QUndoCommand{h: self}).callVirtualBase_Undo)
-
-}
-
-func (this *QUndoCommand) callVirtualBase_Redo() {
-
-	QUndoCommand_virtualbase_Redo(unsafe.Pointer(this.h))
-
-}
-func (this *QUndoCommand) OnRedo(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoCommand_override_virtual_Redo(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoCommand_Redo
-func miqt_exec_callback_QUndoCommand_Redo(self QUndoCommand, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QUndoCommand{h: self}).callVirtualBase_Redo)
-
-}
-
-func (this *QUndoCommand) callVirtualBase_Id() int {
-
-	return (int)(QUndoCommand_virtualbase_Id(unsafe.Pointer(this.h)))
-
-}
-func (this *QUndoCommand) OnId(slot func(super func() int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoCommand_override_virtual_Id(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoCommand_Id
-func miqt_exec_callback_QUndoCommand_Id(self QUndoCommand, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QUndoCommand{h: self}).callVirtualBase_Id)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QUndoCommand) callVirtualBase_MergeWith(other *QUndoCommand) bool {
-
-	return (bool)(QUndoCommand_virtualbase_MergeWith(unsafe.Pointer(this.h), other.cPointer()))
-
-}
-func (this *QUndoCommand) OnMergeWith(slot func(super func(other *QUndoCommand) bool, other *QUndoCommand) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoCommand_override_virtual_MergeWith(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoCommand_MergeWith
-func miqt_exec_callback_QUndoCommand_MergeWith(self QUndoCommand, cb intptr_t, other *QUndoCommand) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(other *QUndoCommand) bool, other *QUndoCommand) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQUndoCommand(other)
-
-	virtualReturn := gofunc((&QUndoCommand{h: self}).callVirtualBase_MergeWith, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
 type QUndoStack struct {
 	h          uintptr
 	isSubclass bool
@@ -209,7 +108,6 @@ type QUndoStack struct {
 
 // NewQUndoStack constructs a new QUndoStack object.
 func NewQUndoStack() *QUndoStack {
-
 	ret := newQUndoStack(QUndoStack_new())
 	ret.isSubclass = true
 	return ret
@@ -217,7 +115,6 @@ func NewQUndoStack() *QUndoStack {
 
 // NewQUndoStack2 constructs a new QUndoStack object.
 func NewQUndoStack2(parent *QObject) *QUndoStack {
-
 	ret := newQUndoStack(QUndoStack_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -358,6 +255,7 @@ func (this *QUndoStack) SetActive() {
 func (this *QUndoStack) IndexChanged(idx int) {
 	QUndoStack_IndexChanged(this.h, (int)(idx))
 }
+
 func (this *QUndoStack) OnIndexChanged(slot func(idx int)) {
 	QUndoStack_connect_IndexChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -378,6 +276,7 @@ func miqt_exec_callback_QUndoStack_IndexChanged(cb intptr_t, idx int) {
 func (this *QUndoStack) CleanChanged(clean bool) {
 	QUndoStack_CleanChanged(this.h, (bool)(clean))
 }
+
 func (this *QUndoStack) OnCleanChanged(slot func(clean bool)) {
 	QUndoStack_connect_CleanChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -398,6 +297,7 @@ func miqt_exec_callback_QUndoStack_CleanChanged(cb intptr_t, clean bool) {
 func (this *QUndoStack) CanUndoChanged(canUndo bool) {
 	QUndoStack_CanUndoChanged(this.h, (bool)(canUndo))
 }
+
 func (this *QUndoStack) OnCanUndoChanged(slot func(canUndo bool)) {
 	QUndoStack_connect_CanUndoChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -418,6 +318,7 @@ func miqt_exec_callback_QUndoStack_CanUndoChanged(cb intptr_t, canUndo bool) {
 func (this *QUndoStack) CanRedoChanged(canRedo bool) {
 	QUndoStack_CanRedoChanged(this.h, (bool)(canRedo))
 }
+
 func (this *QUndoStack) OnCanRedoChanged(slot func(canRedo bool)) {
 	QUndoStack_connect_CanRedoChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -442,6 +343,7 @@ func (this *QUndoStack) UndoTextChanged(undoText string) {
 	defer free(unsafe.Pointer(undoText_ms.data))
 	QUndoStack_UndoTextChanged(this.h, undoText_ms)
 }
+
 func (this *QUndoStack) OnUndoTextChanged(slot func(undoText string)) {
 	QUndoStack_connect_UndoTextChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -469,6 +371,7 @@ func (this *QUndoStack) RedoTextChanged(redoText string) {
 	defer free(unsafe.Pointer(redoText_ms.data))
 	QUndoStack_RedoTextChanged(this.h, redoText_ms)
 }
+
 func (this *QUndoStack) OnRedoTextChanged(slot func(redoText string)) {
 	QUndoStack_connect_RedoTextChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -531,190 +434,55 @@ func (this *QUndoStack) SetActive1(active bool) {
 	QUndoStack_SetActive1(this.h, (bool)(active))
 }
 
-func (this *QUndoStack) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QUndoStack_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
+func (this *QUndoStack) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QUndoStack_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QUndoStack) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
+
+func (this *QUndoStack) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QUndoStack_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QUndoStack_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QUndoStack_Event
-func miqt_exec_callback_QUndoStack_Event(self QUndoStack, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
+//export miqt_exec_callback_QUndoStack_MetaObject
+func miqt_exec_callback_QUndoStack_MetaObject(self QUndoStack, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QUndoStack{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QUndoStack) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QUndoStack_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QUndoStack) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QUndoStack_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QUndoStack_Metacast
+func miqt_exec_callback_QUndoStack_Metacast(self QUndoStack, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QUndoStack{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QUndoStack{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QUndoStack) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QUndoStack_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QUndoStack) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoStack_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoStack_EventFilter
-func miqt_exec_callback_QUndoStack_EventFilter(self QUndoStack, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QUndoStack{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QUndoStack) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QUndoStack_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QUndoStack) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoStack_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoStack_TimerEvent
-func miqt_exec_callback_QUndoStack_TimerEvent(self QUndoStack, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QUndoStack{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QUndoStack) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QUndoStack_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QUndoStack) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoStack_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoStack_ChildEvent
-func miqt_exec_callback_QUndoStack_ChildEvent(self QUndoStack, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QUndoStack{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QUndoStack) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QUndoStack_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QUndoStack) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoStack_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoStack_CustomEvent
-func miqt_exec_callback_QUndoStack_CustomEvent(self QUndoStack, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QUndoStack{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QUndoStack) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QUndoStack_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QUndoStack) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoStack_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoStack_ConnectNotify
-func miqt_exec_callback_QUndoStack_ConnectNotify(self QUndoStack, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QUndoStack{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QUndoStack) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QUndoStack_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QUndoStack) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QUndoStack_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QUndoStack_DisconnectNotify
-func miqt_exec_callback_QUndoStack_DisconnectNotify(self QUndoStack, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QUndoStack{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

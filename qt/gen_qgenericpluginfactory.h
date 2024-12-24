@@ -11,12 +11,17 @@ extern "C" {
 typedef struct QGenericPluginFactory QGenericPluginFactory;
 typedef struct QObject QObject;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QGenericPluginFactory_Keys();
-extern __declspec(dllexport) QObject* QGenericPluginFactory_Create(struct miqt_string param1, struct miqt_string param2);
-extern __declspec(dllexport) void QGenericPluginFactory_Delete(QGenericPluginFactory* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QGenericPluginFactory_Keys();
+extern __declspec(dllexport) 
+QObject* QGenericPluginFactory_Create(struct miqt_string param1, struct miqt_string param2);
+extern __declspec(dllexport) 
+void QGenericPluginFactory_Delete(QGenericPluginFactory* self, bool isSubclass);
 
-} 
+}

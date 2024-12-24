@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkCacheMetaData struct {
@@ -12,7 +13,6 @@ type QNetworkCacheMetaData struct {
 
 // NewQNetworkCacheMetaData constructs a new QNetworkCacheMetaData object.
 func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
-
 	ret := newQNetworkCacheMetaData(QNetworkCacheMetaData_new())
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
 
 // NewQNetworkCacheMetaData2 constructs a new QNetworkCacheMetaData object.
 func NewQNetworkCacheMetaData2(other *QNetworkCacheMetaData) *QNetworkCacheMetaData {
-
 	ret := newQNetworkCacheMetaData(QNetworkCacheMetaData_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -8,7 +8,6 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QCloseEvent QCloseEvent;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
 typedef struct QGraphicsItem QGraphicsItem;
@@ -19,7 +18,6 @@ typedef struct QGraphicsSceneContextMenuEvent QGraphicsSceneContextMenuEvent;
 typedef struct QGraphicsSceneDragDropEvent QGraphicsSceneDragDropEvent;
 typedef struct QGraphicsSceneHoverEvent QGraphicsSceneHoverEvent;
 typedef struct QGraphicsSceneMouseEvent QGraphicsSceneMouseEvent;
-typedef struct QGraphicsSceneMoveEvent QGraphicsSceneMoveEvent;
 typedef struct QGraphicsSceneResizeEvent QGraphicsSceneResizeEvent;
 typedef struct QGraphicsSceneWheelEvent QGraphicsSceneWheelEvent;
 typedef struct QGraphicsWidget QGraphicsWidget;
@@ -29,161 +27,118 @@ typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QPainter QPainter;
-typedef struct QPainterPath QPainterPath;
-typedef struct QPointF QPointF;
 typedef struct QRectF QRectF;
 typedef struct QShowEvent QShowEvent;
 typedef struct QSizeF QSizeF;
-typedef struct QStyleOption QStyleOption;
 typedef struct QStyleOptionGraphicsItem QStyleOptionGraphicsItem;
 typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsProxyWidget* QGraphicsProxyWidget_new();
-extern __declspec(dllexport) QGraphicsProxyWidget* QGraphicsProxyWidget_new2(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsProxyWidget* QGraphicsProxyWidget_new3(QGraphicsItem* parent, int wFlags);
-extern __declspec(dllexport) void QGraphicsProxyWidget_virtbase(QGraphicsProxyWidget* src, QGraphicsWidget** outptr_QGraphicsWidget);
-extern __declspec(dllexport) QMetaObject* QGraphicsProxyWidget_MetaObject(const QGraphicsProxyWidget* self);
-extern __declspec(dllexport) void* QGraphicsProxyWidget_Metacast(QGraphicsProxyWidget* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QGraphicsProxyWidget_Tr(const char* s);
-extern __declspec(dllexport) void QGraphicsProxyWidget_SetWidget(QGraphicsProxyWidget* self, QWidget* widget);
-extern __declspec(dllexport) QWidget* QGraphicsProxyWidget_Widget(const QGraphicsProxyWidget* self);
-extern __declspec(dllexport) QRectF* QGraphicsProxyWidget_SubWidgetRect(const QGraphicsProxyWidget* self, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsProxyWidget_SetGeometry(QGraphicsProxyWidget* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsProxyWidget_Paint(QGraphicsProxyWidget* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) int QGraphicsProxyWidget_Type(const QGraphicsProxyWidget* self);
-extern __declspec(dllexport) QGraphicsProxyWidget* QGraphicsProxyWidget_CreateProxyForChildWidget(QGraphicsProxyWidget* self, QWidget* child);
-extern __declspec(dllexport) QVariant* QGraphicsProxyWidget_ItemChange(QGraphicsProxyWidget* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) bool QGraphicsProxyWidget_Event(QGraphicsProxyWidget* self, QEvent* event);
-extern __declspec(dllexport) bool QGraphicsProxyWidget_EventFilter(QGraphicsProxyWidget* self, QObject* object, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_ShowEvent(QGraphicsProxyWidget* self, QShowEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_HideEvent(QGraphicsProxyWidget* self, QHideEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_ContextMenuEvent(QGraphicsProxyWidget* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_DragEnterEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_DragLeaveEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_DragMoveEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_DropEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_HoverEnterEvent(QGraphicsProxyWidget* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_HoverLeaveEvent(QGraphicsProxyWidget* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_HoverMoveEvent(QGraphicsProxyWidget* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_GrabMouseEvent(QGraphicsProxyWidget* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_UngrabMouseEvent(QGraphicsProxyWidget* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_MouseMoveEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_MousePressEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_MouseReleaseEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_MouseDoubleClickEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_WheelEvent(QGraphicsProxyWidget* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_KeyPressEvent(QGraphicsProxyWidget* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_KeyReleaseEvent(QGraphicsProxyWidget* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_FocusInEvent(QGraphicsProxyWidget* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_FocusOutEvent(QGraphicsProxyWidget* self, QFocusEvent* event);
-extern __declspec(dllexport) bool QGraphicsProxyWidget_FocusNextPrevChild(QGraphicsProxyWidget* self, bool next);
-extern __declspec(dllexport) QVariant* QGraphicsProxyWidget_InputMethodQuery(const QGraphicsProxyWidget* self, int query);
-extern __declspec(dllexport) void QGraphicsProxyWidget_InputMethodEvent(QGraphicsProxyWidget* self, QInputMethodEvent* event);
-extern __declspec(dllexport) QSizeF* QGraphicsProxyWidget_SizeHint(const QGraphicsProxyWidget* self, int which, QSizeF* constraint);
-extern __declspec(dllexport) void QGraphicsProxyWidget_ResizeEvent(QGraphicsProxyWidget* self, QGraphicsSceneResizeEvent* event);
-extern __declspec(dllexport) struct miqt_string QGraphicsProxyWidget_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QGraphicsProxyWidget_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_SetGeometry(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_SetGeometry(void* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsProxyWidget_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QGraphicsProxyWidget_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_Event(void* self, intptr_t slot);
-bool QGraphicsProxyWidget_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QGraphicsProxyWidget_virtualbase_EventFilter(void* self, QObject* object, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_HideEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_GrabMouseEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_GrabMouseEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_UngrabMouseEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_UngrabMouseEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QGraphicsProxyWidget_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsProxyWidget_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_SizeHint(void* self, intptr_t slot);
-QSizeF* QGraphicsProxyWidget_virtualbase_SizeHint(const void* self, int which, QSizeF* constraint);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_ResizeEvent(void* self, QGraphicsSceneResizeEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_GetContentsMargins(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_GetContentsMargins(const void* self, double* left, double* top, double* right, double* bottom);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_PaintWindowFrame(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_PaintWindowFrame(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsProxyWidget_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsProxyWidget_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_InitStyleOption(const void* self, QStyleOption* option);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_UpdateGeometry(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_UpdateGeometry(void* self);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_PropertyChange(void* self, intptr_t slot);
-QVariant* QGraphicsProxyWidget_virtualbase_PropertyChange(void* self, struct miqt_string propertyName, QVariant* value);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsProxyWidget_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_WindowFrameEvent(void* self, intptr_t slot);
-bool QGraphicsProxyWidget_virtualbase_WindowFrameEvent(void* self, QEvent* e);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_WindowFrameSectionAt(void* self, intptr_t slot);
-int QGraphicsProxyWidget_virtualbase_WindowFrameSectionAt(const void* self, QPointF* pos);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_ChangeEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_MoveEvent(void* self, QGraphicsSceneMoveEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_PolishEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_PolishEvent(void* self);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_GrabKeyboardEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_GrabKeyboardEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_UngrabKeyboardEvent(void* self, intptr_t slot);
-void QGraphicsProxyWidget_virtualbase_UngrabKeyboardEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsProxyWidget_Delete(QGraphicsProxyWidget* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsProxyWidget* QGraphicsProxyWidget_new();
+extern __declspec(dllexport) 
+QGraphicsProxyWidget* QGraphicsProxyWidget_new2(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsProxyWidget* QGraphicsProxyWidget_new3(QGraphicsItem* parent, int wFlags);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_virtbase(QGraphicsProxyWidget* src
+, QGraphicsWidget** outptr_QGraphicsWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QGraphicsProxyWidget_MetaObject(const QGraphicsProxyWidget* self);
+extern __declspec(dllexport) 
+void* QGraphicsProxyWidget_Metacast(QGraphicsProxyWidget* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsProxyWidget_Tr(const char* s);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_SetWidget(QGraphicsProxyWidget* self, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QGraphicsProxyWidget_Widget(const QGraphicsProxyWidget* self);
+extern __declspec(dllexport) 
+QRectF* QGraphicsProxyWidget_SubWidgetRect(const QGraphicsProxyWidget* self, QWidget* widget);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_SetGeometry(QGraphicsProxyWidget* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_Paint(QGraphicsProxyWidget* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+int QGraphicsProxyWidget_Type(const QGraphicsProxyWidget* self);
+extern __declspec(dllexport) 
+QGraphicsProxyWidget* QGraphicsProxyWidget_CreateProxyForChildWidget(QGraphicsProxyWidget* self, QWidget* child);
+extern __declspec(dllexport) 
+QVariant* QGraphicsProxyWidget_ItemChange(QGraphicsProxyWidget* self, GraphicsItemChange change, QVariant* value);
+extern __declspec(dllexport) 
+bool QGraphicsProxyWidget_Event(QGraphicsProxyWidget* self, QEvent* event);
+extern __declspec(dllexport) 
+bool QGraphicsProxyWidget_EventFilter(QGraphicsProxyWidget* self, QObject* object, QEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_ShowEvent(QGraphicsProxyWidget* self, QShowEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_HideEvent(QGraphicsProxyWidget* self, QHideEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_ContextMenuEvent(QGraphicsProxyWidget* self, QGraphicsSceneContextMenuEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_DragEnterEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_DragLeaveEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_DragMoveEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_DropEvent(QGraphicsProxyWidget* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_HoverEnterEvent(QGraphicsProxyWidget* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_HoverLeaveEvent(QGraphicsProxyWidget* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_HoverMoveEvent(QGraphicsProxyWidget* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_GrabMouseEvent(QGraphicsProxyWidget* self, QEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_UngrabMouseEvent(QGraphicsProxyWidget* self, QEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_MouseMoveEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_MousePressEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_MouseReleaseEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_MouseDoubleClickEvent(QGraphicsProxyWidget* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_WheelEvent(QGraphicsProxyWidget* self, QGraphicsSceneWheelEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_KeyPressEvent(QGraphicsProxyWidget* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_KeyReleaseEvent(QGraphicsProxyWidget* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_FocusInEvent(QGraphicsProxyWidget* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_FocusOutEvent(QGraphicsProxyWidget* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+bool QGraphicsProxyWidget_FocusNextPrevChild(QGraphicsProxyWidget* self, bool next);
+extern __declspec(dllexport) 
+QVariant* QGraphicsProxyWidget_InputMethodQuery(const QGraphicsProxyWidget* self, int query);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_InputMethodEvent(QGraphicsProxyWidget* self, QInputMethodEvent* event);
+extern __declspec(dllexport) 
+QSizeF* QGraphicsProxyWidget_SizeHint(const QGraphicsProxyWidget* self, int which, QSizeF* constraint);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_ResizeEvent(QGraphicsProxyWidget* self, QGraphicsSceneResizeEvent* event);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsProxyWidget_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsProxyWidget_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QGraphicsProxyWidget_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_override_virtual_Metacast(void* self, intptr_t slot);
+void* QGraphicsProxyWidget_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QGraphicsProxyWidget_Delete(QGraphicsProxyWidget* self, bool isSubclass);
 
-} 
+}

@@ -1,17 +1,14 @@
 // +build ignore
 
 #include <QAnyStringView>
-#include <QChildEvent>
 #include <QEvent>
 #include <QList>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QSettings>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <QVariant>
 #include <qsettings.h>
 #include "gen_qsettings.h"
@@ -38,173 +35,47 @@ public:
 	virtual ~MiqtVirtualQSettings() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QSettings::event(event);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QSettings::metaObject();
 		}
 		
-		QEvent* sigval1 = event;
 
-		bool callback_return_value = miqt_exec_callback_QSettings_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QSettings_MetaObject(const_cast<MiqtVirtualQSettings*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QSettings::event(event);
+		return (QMetaObject*) QSettings::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QSettings::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QSettings::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QSettings_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QSettings_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QSettings::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QSettings::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QSettings_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QSettings::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QSettings::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QSettings_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QSettings::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QSettings::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QSettings_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QSettings::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QSettings::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QSettings_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QSettings::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QSettings::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QSettings_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QSettings::disconnectNotify(*signal);
+		return QSettings::qt_metacast(param1);
 
 	}
 
@@ -547,60 +418,20 @@ Format QSettings_RegisterFormat4(struct miqt_string extension, ReadFunc readFunc
 	return QSettings::registerFormat(extension_QString, readFunc, writeFunc, static_cast<Qt::CaseSensitivity>(caseSensitivity));
 }
 
-void QSettings_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__Event = slot;
+void QSettings_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__MetaObject = slot;
 }
 
-bool QSettings_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQSettings*)(self) )->virtualbase_Event(event);
+QMetaObject* QSettings_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQSettings*)(self) )->virtualbase_MetaObject();
 }
 
-void QSettings_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__EventFilter = slot;
+void QSettings_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__Metacast = slot;
 }
 
-bool QSettings_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQSettings*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QSettings_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__TimerEvent = slot;
-}
-
-void QSettings_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQSettings*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QSettings_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__ChildEvent = slot;
-}
-
-void QSettings_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQSettings*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QSettings_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__CustomEvent = slot;
-}
-
-void QSettings_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQSettings*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QSettings_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QSettings_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSettings*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QSettings_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQSettings*>( (QSettings*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QSettings_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSettings*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QSettings_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQSettings*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QSettings_Delete(QSettings* self, bool isSubclass) {

@@ -21,7 +21,6 @@ type QGlyphRun struct {
 
 // NewQGlyphRun constructs a new QGlyphRun object.
 func NewQGlyphRun() *QGlyphRun {
-
 	ret := newQGlyphRun(QGlyphRun_new())
 	ret.isSubclass = true
 	return ret
@@ -29,7 +28,6 @@ func NewQGlyphRun() *QGlyphRun {
 
 // NewQGlyphRun2 constructs a new QGlyphRun object.
 func NewQGlyphRun2(other *QGlyphRun) *QGlyphRun {
-
 	ret := newQGlyphRun(QGlyphRun_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

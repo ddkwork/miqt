@@ -11,7 +11,6 @@ type QTextDocumentWriter struct {
 
 // NewQTextDocumentWriter constructs a new QTextDocumentWriter object.
 func NewQTextDocumentWriter() *QTextDocumentWriter {
-
 	ret := newQTextDocumentWriter(QTextDocumentWriter_new())
 	ret.isSubclass = true
 	return ret

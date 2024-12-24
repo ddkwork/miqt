@@ -11,7 +11,6 @@ type QRadioButton struct {
 
 // NewQRadioButton constructs a new QRadioButton object.
 func NewQRadioButton(parent *QWidget) *QRadioButton {
-
 	ret := newQRadioButton(QRadioButton_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQRadioButton(parent *QWidget) *QRadioButton {
 
 // NewQRadioButton2 constructs a new QRadioButton object.
 func NewQRadioButton2() *QRadioButton {
-
 	ret := newQRadioButton(QRadioButton_new2())
 	ret.isSubclass = true
 	return ret
@@ -102,444 +100,55 @@ func QRadioButton_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QRadioButton) callVirtualBase_SizeHint() *QSize {
-
-	_goptr := newQSize(QRadioButton_virtualbase_SizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QRadioButton) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QRadioButton_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QRadioButton) OnSizeHint(slot func(super func() *QSize) *QSize) {
+
+func (this *QRadioButton) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QRadioButton_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QRadioButton_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QRadioButton_SizeHint
-func miqt_exec_callback_QRadioButton_SizeHint(self QRadioButton, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
+//export miqt_exec_callback_QRadioButton_MetaObject
+func miqt_exec_callback_QRadioButton_MetaObject(self QRadioButton, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	virtualReturn := gofunc((&QRadioButton{h: self}).callVirtualBase_SizeHint)
+	virtualReturn := gofunc((&QRadioButton{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QRadioButton) callVirtualBase_MinimumSizeHint() *QSize {
+func (this *QRadioButton) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	_goptr := newQSize(QRadioButton_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+	return (unsafe.Pointer)(QRadioButton_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QRadioButton) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
+
+func (this *QRadioButton) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QRadioButton_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QRadioButton_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QRadioButton_MinimumSizeHint
-func miqt_exec_callback_QRadioButton_MinimumSizeHint(self QRadioButton, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QRadioButton{h: self}).callVirtualBase_MinimumSizeHint)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QRadioButton) callVirtualBase_Event(e *QEvent) bool {
-
-	return (bool)(QRadioButton_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
-}
-func (this *QRadioButton) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_Event
-func miqt_exec_callback_QRadioButton_Event(self QRadioButton, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QRadioButton_Metacast
+func miqt_exec_callback_QRadioButton_Metacast(self QRadioButton, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QRadioButton{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QRadioButton{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QRadioButton) callVirtualBase_HitButton(param1 *QPoint) bool {
-
-	return (bool)(QRadioButton_virtualbase_HitButton(unsafe.Pointer(this.h), param1.cPointer()))
-
-}
-func (this *QRadioButton) OnHitButton(slot func(super func(param1 *QPoint) bool, param1 *QPoint) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_HitButton(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_HitButton
-func miqt_exec_callback_QRadioButton_HitButton(self QRadioButton, cb intptr_t, param1 *QPoint) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QPoint) bool, param1 *QPoint) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPoint(param1)
-
-	virtualReturn := gofunc((&QRadioButton{h: self}).callVirtualBase_HitButton, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QRadioButton) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
-	QRadioButton_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QRadioButton) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_PaintEvent
-func miqt_exec_callback_QRadioButton_PaintEvent(self QRadioButton, cb intptr_t, param1 *QPaintEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QPaintEvent), param1 *QPaintEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPaintEvent(param1)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_PaintEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_MouseMoveEvent(param1 *QMouseEvent) {
-
-	QRadioButton_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QRadioButton) OnMouseMoveEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_MouseMoveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_MouseMoveEvent
-func miqt_exec_callback_QRadioButton_MouseMoveEvent(self QRadioButton, cb intptr_t, param1 *QMouseEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QMouseEvent), param1 *QMouseEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMouseEvent(param1)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_MouseMoveEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_InitStyleOption(button *QStyleOptionButton) {
-
-	QRadioButton_virtualbase_InitStyleOption(unsafe.Pointer(this.h), button.cPointer())
-
-}
-func (this *QRadioButton) OnInitStyleOption(slot func(super func(button *QStyleOptionButton), button *QStyleOptionButton)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_InitStyleOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_InitStyleOption
-func miqt_exec_callback_QRadioButton_InitStyleOption(self QRadioButton, cb intptr_t, button *QStyleOptionButton) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(button *QStyleOptionButton), button *QStyleOptionButton))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQStyleOptionButton(button)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_CheckStateSet() {
-
-	QRadioButton_virtualbase_CheckStateSet(unsafe.Pointer(this.h))
-
-}
-func (this *QRadioButton) OnCheckStateSet(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_CheckStateSet(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_CheckStateSet
-func miqt_exec_callback_QRadioButton_CheckStateSet(self QRadioButton, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_CheckStateSet)
-
-}
-
-func (this *QRadioButton) callVirtualBase_NextCheckState() {
-
-	QRadioButton_virtualbase_NextCheckState(unsafe.Pointer(this.h))
-
-}
-func (this *QRadioButton) OnNextCheckState(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_NextCheckState(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_NextCheckState
-func miqt_exec_callback_QRadioButton_NextCheckState(self QRadioButton, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_NextCheckState)
-
-}
-
-func (this *QRadioButton) callVirtualBase_KeyPressEvent(e *QKeyEvent) {
-
-	QRadioButton_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnKeyPressEvent(slot func(super func(e *QKeyEvent), e *QKeyEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_KeyPressEvent
-func miqt_exec_callback_QRadioButton_KeyPressEvent(self QRadioButton, cb intptr_t, e *QKeyEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QKeyEvent), e *QKeyEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQKeyEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_KeyReleaseEvent(e *QKeyEvent) {
-
-	QRadioButton_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnKeyReleaseEvent(slot func(super func(e *QKeyEvent), e *QKeyEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_KeyReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_KeyReleaseEvent
-func miqt_exec_callback_QRadioButton_KeyReleaseEvent(self QRadioButton, cb intptr_t, e *QKeyEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QKeyEvent), e *QKeyEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQKeyEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_KeyReleaseEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_MousePressEvent(e *QMouseEvent) {
-
-	QRadioButton_virtualbase_MousePressEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnMousePressEvent(slot func(super func(e *QMouseEvent), e *QMouseEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_MousePressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_MousePressEvent
-func miqt_exec_callback_QRadioButton_MousePressEvent(self QRadioButton, cb intptr_t, e *QMouseEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QMouseEvent), e *QMouseEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMouseEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_MousePressEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_MouseReleaseEvent(e *QMouseEvent) {
-
-	QRadioButton_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnMouseReleaseEvent(slot func(super func(e *QMouseEvent), e *QMouseEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_MouseReleaseEvent
-func miqt_exec_callback_QRadioButton_MouseReleaseEvent(self QRadioButton, cb intptr_t, e *QMouseEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QMouseEvent), e *QMouseEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMouseEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_MouseReleaseEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_FocusInEvent(e *QFocusEvent) {
-
-	QRadioButton_virtualbase_FocusInEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnFocusInEvent(slot func(super func(e *QFocusEvent), e *QFocusEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_FocusInEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_FocusInEvent
-func miqt_exec_callback_QRadioButton_FocusInEvent(self QRadioButton, cb intptr_t, e *QFocusEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QFocusEvent), e *QFocusEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQFocusEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_FocusInEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_FocusOutEvent(e *QFocusEvent) {
-
-	QRadioButton_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnFocusOutEvent(slot func(super func(e *QFocusEvent), e *QFocusEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_FocusOutEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_FocusOutEvent
-func miqt_exec_callback_QRadioButton_FocusOutEvent(self QRadioButton, cb intptr_t, e *QFocusEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QFocusEvent), e *QFocusEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQFocusEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_FocusOutEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_ChangeEvent(e *QEvent) {
-
-	QRadioButton_virtualbase_ChangeEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnChangeEvent(slot func(super func(e *QEvent), e *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_ChangeEvent
-func miqt_exec_callback_QRadioButton_ChangeEvent(self QRadioButton, cb intptr_t, e *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent), e *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
-}
-
-func (this *QRadioButton) callVirtualBase_TimerEvent(e *QTimerEvent) {
-
-	QRadioButton_virtualbase_TimerEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QRadioButton) OnTimerEvent(slot func(super func(e *QTimerEvent), e *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRadioButton_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRadioButton_TimerEvent
-func miqt_exec_callback_QRadioButton_TimerEvent(self QRadioButton, cb intptr_t, e *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QTimerEvent), e *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(e)
-
-	gofunc((&QRadioButton{h: self}).callVirtualBase_TimerEvent, slotval1)
-
+	return virtualReturn
 }

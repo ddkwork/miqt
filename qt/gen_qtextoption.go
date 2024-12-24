@@ -43,7 +43,6 @@ type QTextOption struct {
 
 // NewQTextOption constructs a new QTextOption object.
 func NewQTextOption() *QTextOption {
-
 	ret := newQTextOption(QTextOption_new())
 	ret.isSubclass = true
 	return ret
@@ -51,7 +50,6 @@ func NewQTextOption() *QTextOption {
 
 // NewQTextOption2 constructs a new QTextOption object.
 func NewQTextOption2(alignment AlignmentFlag) *QTextOption {
-
 	ret := newQTextOption(QTextOption_new2((int)(alignment)))
 	ret.isSubclass = true
 	return ret
@@ -59,7 +57,6 @@ func NewQTextOption2(alignment AlignmentFlag) *QTextOption {
 
 // NewQTextOption3 constructs a new QTextOption object.
 func NewQTextOption3(o *QTextOption) *QTextOption {
-
 	ret := newQTextOption(QTextOption_new3(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -164,7 +161,6 @@ type QTextOption__Tab struct {
 
 // NewQTextOption__Tab constructs a new QTextOption::Tab object.
 func NewQTextOption__Tab() *QTextOption__Tab {
-
 	ret := newQTextOption__Tab(QTextOption__Tab_new())
 	ret.isSubclass = true
 	return ret
@@ -172,7 +168,6 @@ func NewQTextOption__Tab() *QTextOption__Tab {
 
 // NewQTextOption__Tab2 constructs a new QTextOption::Tab object.
 func NewQTextOption__Tab2(pos float64, tabType TabType) *QTextOption__Tab {
-
 	ret := newQTextOption__Tab(QTextOption__Tab_new2((double)(pos), tabType))
 	ret.isSubclass = true
 	return ret
@@ -180,7 +175,6 @@ func NewQTextOption__Tab2(pos float64, tabType TabType) *QTextOption__Tab {
 
 // NewQTextOption__Tab3 constructs a new QTextOption::Tab object.
 func NewQTextOption__Tab3(pos float64, tabType TabType, delim QChar) *QTextOption__Tab {
-
 	ret := newQTextOption__Tab(QTextOption__Tab_new3((double)(pos), tabType, delim.cPointer()))
 	ret.isSubclass = true
 	return ret

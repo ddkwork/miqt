@@ -1,19 +1,12 @@
 // +build ignore
 
 #include <QAbstractPrintDialog>
-#include <QCloseEvent>
-#include <QContextMenuEvent>
 #include <QDialog>
-#include <QEvent>
-#include <QKeyEvent>
 #include <QList>
 #include <QMetaObject>
 #include <QObject>
 #include <QPaintDevice>
 #include <QPrinter>
-#include <QResizeEvent>
-#include <QShowEvent>
-#include <QSize>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -30,329 +23,47 @@ public:
 	virtual ~MiqtVirtualQAbstractPrintDialog() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetVisible = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setVisible(bool visible) override {
-		if (handle__SetVisible == 0) {
-			QAbstractPrintDialog::setVisible(visible);
-			return;
-		}
-		
-		bool sigval1 = visible;
-
-		miqt_exec_callback_QAbstractPrintDialog_SetVisible(this, handle__SetVisible, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetVisible(bool visible) {
-
-		QAbstractPrintDialog::setVisible(visible);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SizeHint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSize sizeHint() const override {
-		if (handle__SizeHint == 0) {
-			return QAbstractPrintDialog::sizeHint();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QAbstractPrintDialog::metaObject();
 		}
 		
 
-		QSize* callback_return_value = miqt_exec_callback_QAbstractPrintDialog_SizeHint(const_cast<MiqtVirtualQAbstractPrintDialog*>(this), handle__SizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_SizeHint() const {
-
-		return new QSize(QAbstractPrintDialog::sizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__MinimumSizeHint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSize minimumSizeHint() const override {
-		if (handle__MinimumSizeHint == 0) {
-			return QAbstractPrintDialog::minimumSizeHint();
-		}
-		
-
-		QSize* callback_return_value = miqt_exec_callback_QAbstractPrintDialog_MinimumSizeHint(const_cast<MiqtVirtualQAbstractPrintDialog*>(this), handle__MinimumSizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_MinimumSizeHint() const {
-
-		return new QSize(QAbstractPrintDialog::minimumSizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Open = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void open() override {
-		if (handle__Open == 0) {
-			QAbstractPrintDialog::open();
-			return;
-		}
-		
-
-		miqt_exec_callback_QAbstractPrintDialog_Open(this, handle__Open);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Open() {
-
-		QAbstractPrintDialog::open();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Exec = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual int exec() override {
-		if (handle__Exec == 0) {
-			return QAbstractPrintDialog::exec();
-		}
-		
-
-		int callback_return_value = miqt_exec_callback_QAbstractPrintDialog_Exec(this, handle__Exec);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Exec() {
-
-		return QAbstractPrintDialog::exec();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Done = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void done(int param1) override {
-		if (handle__Done == 0) {
-			QAbstractPrintDialog::done(param1);
-			return;
-		}
-		
-		int sigval1 = param1;
-
-		miqt_exec_callback_QAbstractPrintDialog_Done(this, handle__Done, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Done(int param1) {
-
-		QAbstractPrintDialog::done(static_cast<int>(param1));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Accept = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void accept() override {
-		if (handle__Accept == 0) {
-			QAbstractPrintDialog::accept();
-			return;
-		}
-		
-
-		miqt_exec_callback_QAbstractPrintDialog_Accept(this, handle__Accept);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Accept() {
-
-		QAbstractPrintDialog::accept();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Reject = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void reject() override {
-		if (handle__Reject == 0) {
-			QAbstractPrintDialog::reject();
-			return;
-		}
-		
-
-		miqt_exec_callback_QAbstractPrintDialog_Reject(this, handle__Reject);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Reject() {
-
-		QAbstractPrintDialog::reject();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__KeyPressEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void keyPressEvent(QKeyEvent* param1) override {
-		if (handle__KeyPressEvent == 0) {
-			QAbstractPrintDialog::keyPressEvent(param1);
-			return;
-		}
-		
-		QKeyEvent* sigval1 = param1;
-
-		miqt_exec_callback_QAbstractPrintDialog_KeyPressEvent(this, handle__KeyPressEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_KeyPressEvent(QKeyEvent* param1) {
-
-		QAbstractPrintDialog::keyPressEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CloseEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void closeEvent(QCloseEvent* param1) override {
-		if (handle__CloseEvent == 0) {
-			QAbstractPrintDialog::closeEvent(param1);
-			return;
-		}
-		
-		QCloseEvent* sigval1 = param1;
-
-		miqt_exec_callback_QAbstractPrintDialog_CloseEvent(this, handle__CloseEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CloseEvent(QCloseEvent* param1) {
-
-		QAbstractPrintDialog::closeEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ShowEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void showEvent(QShowEvent* param1) override {
-		if (handle__ShowEvent == 0) {
-			QAbstractPrintDialog::showEvent(param1);
-			return;
-		}
-		
-		QShowEvent* sigval1 = param1;
-
-		miqt_exec_callback_QAbstractPrintDialog_ShowEvent(this, handle__ShowEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ShowEvent(QShowEvent* param1) {
-
-		QAbstractPrintDialog::showEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ResizeEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void resizeEvent(QResizeEvent* param1) override {
-		if (handle__ResizeEvent == 0) {
-			QAbstractPrintDialog::resizeEvent(param1);
-			return;
-		}
-		
-		QResizeEvent* sigval1 = param1;
-
-		miqt_exec_callback_QAbstractPrintDialog_ResizeEvent(this, handle__ResizeEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ResizeEvent(QResizeEvent* param1) {
-
-		QAbstractPrintDialog::resizeEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ContextMenuEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void contextMenuEvent(QContextMenuEvent* param1) override {
-		if (handle__ContextMenuEvent == 0) {
-			QAbstractPrintDialog::contextMenuEvent(param1);
-			return;
-		}
-		
-		QContextMenuEvent* sigval1 = param1;
-
-		miqt_exec_callback_QAbstractPrintDialog_ContextMenuEvent(this, handle__ContextMenuEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ContextMenuEvent(QContextMenuEvent* param1) {
-
-		QAbstractPrintDialog::contextMenuEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* param1, QEvent* param2) override {
-		if (handle__EventFilter == 0) {
-			return QAbstractPrintDialog::eventFilter(param1, param2);
-		}
-		
-		QObject* sigval1 = param1;
-		QEvent* sigval2 = param2;
-
-		bool callback_return_value = miqt_exec_callback_QAbstractPrintDialog_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		QMetaObject* callback_return_value = miqt_exec_callback_QAbstractPrintDialog_MetaObject(const_cast<MiqtVirtualQAbstractPrintDialog*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* param1, QEvent* param2) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QAbstractPrintDialog::eventFilter(param1, param2);
+		return (QMetaObject*) QAbstractPrintDialog::metaObject();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QAbstractPrintDialog::qt_metacast(param1);
+		}
+		
+		const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QAbstractPrintDialog_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QAbstractPrintDialog::qt_metacast(param1);
 
 	}
 
@@ -457,116 +168,20 @@ struct miqt_string QAbstractPrintDialog_Tr3(const char* s, const char* c, int n)
 	return _ms;
 }
 
-void QAbstractPrintDialog_override_virtual_SetVisible(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__SetVisible = slot;
+void QAbstractPrintDialog_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__MetaObject = slot;
 }
 
-void QAbstractPrintDialog_virtualbase_SetVisible(void* self, bool visible) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_SetVisible(visible);
+QMetaObject* QAbstractPrintDialog_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_MetaObject();
 }
 
-void QAbstractPrintDialog_override_virtual_SizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__SizeHint = slot;
+void QAbstractPrintDialog_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__Metacast = slot;
 }
 
-QSize* QAbstractPrintDialog_virtualbase_SizeHint(const void* self) {
-	return ( (const MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_SizeHint();
-}
-
-void QAbstractPrintDialog_override_virtual_MinimumSizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__MinimumSizeHint = slot;
-}
-
-QSize* QAbstractPrintDialog_virtualbase_MinimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_MinimumSizeHint();
-}
-
-void QAbstractPrintDialog_override_virtual_Open(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__Open = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_Open(void* self) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_Open();
-}
-
-void QAbstractPrintDialog_override_virtual_Exec(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__Exec = slot;
-}
-
-int QAbstractPrintDialog_virtualbase_Exec(void* self) {
-	return ( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_Exec();
-}
-
-void QAbstractPrintDialog_override_virtual_Done(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__Done = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_Done(void* self, int param1) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_Done(param1);
-}
-
-void QAbstractPrintDialog_override_virtual_Accept(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__Accept = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_Accept(void* self) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_Accept();
-}
-
-void QAbstractPrintDialog_override_virtual_Reject(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__Reject = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_Reject(void* self) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_Reject();
-}
-
-void QAbstractPrintDialog_override_virtual_KeyPressEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__KeyPressEvent = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_KeyPressEvent(void* self, QKeyEvent* param1) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_KeyPressEvent(param1);
-}
-
-void QAbstractPrintDialog_override_virtual_CloseEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__CloseEvent = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_CloseEvent(void* self, QCloseEvent* param1) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_CloseEvent(param1);
-}
-
-void QAbstractPrintDialog_override_virtual_ShowEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__ShowEvent = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_ShowEvent(void* self, QShowEvent* param1) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_ShowEvent(param1);
-}
-
-void QAbstractPrintDialog_override_virtual_ResizeEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__ResizeEvent = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_ResizeEvent(void* self, QResizeEvent* param1) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_ResizeEvent(param1);
-}
-
-void QAbstractPrintDialog_override_virtual_ContextMenuEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__ContextMenuEvent = slot;
-}
-
-void QAbstractPrintDialog_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* param1) {
-	( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_ContextMenuEvent(param1);
-}
-
-void QAbstractPrintDialog_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractPrintDialog*>( (QAbstractPrintDialog*)(self) )->handle__EventFilter = slot;
-}
-
-bool QAbstractPrintDialog_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2) {
-	return ( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_EventFilter(param1, param2);
+void* QAbstractPrintDialog_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQAbstractPrintDialog*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QAbstractPrintDialog_Delete(QAbstractPrintDialog* self, bool isSubclass) {

@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QRestAccessManager struct {
@@ -12,7 +13,6 @@ type QRestAccessManager struct {
 
 // NewQRestAccessManager constructs a new QRestAccessManager object.
 func NewQRestAccessManager(manager *QNetworkAccessManager) *QRestAccessManager {
-
 	ret := newQRestAccessManager(QRestAccessManager_new(manager.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQRestAccessManager(manager *QNetworkAccessManager) *QRestAccessManager {
 
 // NewQRestAccessManager2 constructs a new QRestAccessManager object.
 func NewQRestAccessManager2(manager *QNetworkAccessManager, parent *qt.QObject) *QRestAccessManager {
-
 	ret := newQRestAccessManager(QRestAccessManager_new2(manager.cPointer(), (*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -244,190 +243,55 @@ func QRestAccessManager_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QRestAccessManager) callVirtualBase_Event(event *qt.QEvent) bool {
-
-	return (bool)(QRestAccessManager_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
-
+func (this *QRestAccessManager) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QRestAccessManager_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QRestAccessManager) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
+
+func (this *QRestAccessManager) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QRestAccessManager_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QRestAccessManager_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QRestAccessManager_Event
-func miqt_exec_callback_QRestAccessManager_Event(self QRestAccessManager, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
+//export miqt_exec_callback_QRestAccessManager_MetaObject
+func miqt_exec_callback_QRestAccessManager_MetaObject(self QRestAccessManager, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QRestAccessManager{h: self}).callVirtualBase_MetaObject)
+
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
+}
+
+func (this *QRestAccessManager) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QRestAccessManager_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QRestAccessManager) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QRestAccessManager_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QRestAccessManager_Metacast
+func miqt_exec_callback_QRestAccessManager_Metacast(self QRestAccessManager, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QRestAccessManager{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QRestAccessManager{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QRestAccessManager) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
-	return (bool)(QRestAccessManager_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
-
-}
-func (this *QRestAccessManager) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRestAccessManager_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRestAccessManager_EventFilter
-func miqt_exec_callback_QRestAccessManager_EventFilter(self QRestAccessManager, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(watched))
-
-	slotval2 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	virtualReturn := gofunc((&QRestAccessManager{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QRestAccessManager) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
-	QRestAccessManager_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
-
-}
-func (this *QRestAccessManager) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRestAccessManager_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRestAccessManager_TimerEvent
-func miqt_exec_callback_QRestAccessManager_TimerEvent(self QRestAccessManager, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
-
-	gofunc((&QRestAccessManager{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QRestAccessManager) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
-	QRestAccessManager_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
-
-}
-func (this *QRestAccessManager) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRestAccessManager_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRestAccessManager_ChildEvent
-func miqt_exec_callback_QRestAccessManager_ChildEvent(self QRestAccessManager, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
-
-	gofunc((&QRestAccessManager{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QRestAccessManager) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
-	QRestAccessManager_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
-
-}
-func (this *QRestAccessManager) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRestAccessManager_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRestAccessManager_CustomEvent
-func miqt_exec_callback_QRestAccessManager_CustomEvent(self QRestAccessManager, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	gofunc((&QRestAccessManager{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QRestAccessManager) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
-	QRestAccessManager_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QRestAccessManager) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRestAccessManager_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRestAccessManager_ConnectNotify
-func miqt_exec_callback_QRestAccessManager_ConnectNotify(self QRestAccessManager, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QRestAccessManager{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QRestAccessManager) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
-	QRestAccessManager_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QRestAccessManager) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRestAccessManager_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRestAccessManager_DisconnectNotify
-func miqt_exec_callback_QRestAccessManager_DisconnectNotify(self QRestAccessManager, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QRestAccessManager{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

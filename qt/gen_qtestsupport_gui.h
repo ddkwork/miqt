@@ -14,18 +14,29 @@ typedef struct QPoint QPoint;
 typedef struct QTest__QTouchEventSequence QTest__QTouchEventSequence;
 typedef struct QWindow QWindow;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Press(QTest__QTouchEventSequence* self, int touchId, QPoint* pt);
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Move(QTest__QTouchEventSequence* self, int touchId, QPoint* pt);
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Release(QTest__QTouchEventSequence* self, int touchId, QPoint* pt);
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Stationary(QTest__QTouchEventSequence* self, int touchId);
-extern __declspec(dllexport) bool QTest__QTouchEventSequence_Commit(QTest__QTouchEventSequence* self, bool processEvents);
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Press3(QTest__QTouchEventSequence* self, int touchId, QPoint* pt, QWindow* window);
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Move3(QTest__QTouchEventSequence* self, int touchId, QPoint* pt, QWindow* window);
-extern __declspec(dllexport) QTouchEventSequence* QTest__QTouchEventSequence_Release3(QTest__QTouchEventSequence* self, int touchId, QPoint* pt, QWindow* window);
-extern __declspec(dllexport) void QTest__QTouchEventSequence_Delete(QTest__QTouchEventSequence* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Press(QTest__QTouchEventSequence* self, int touchId, QPoint* pt);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Move(QTest__QTouchEventSequence* self, int touchId, QPoint* pt);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Release(QTest__QTouchEventSequence* self, int touchId, QPoint* pt);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Stationary(QTest__QTouchEventSequence* self, int touchId);
+extern __declspec(dllexport) 
+bool QTest__QTouchEventSequence_Commit(QTest__QTouchEventSequence* self, bool processEvents);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Press3(QTest__QTouchEventSequence* self, int touchId, QPoint* pt, QWindow* window);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Move3(QTest__QTouchEventSequence* self, int touchId, QPoint* pt, QWindow* window);
+extern __declspec(dllexport) 
+QTouchEventSequence* QTest__QTouchEventSequence_Release3(QTest__QTouchEventSequence* self, int touchId, QPoint* pt, QWindow* window);
+extern __declspec(dllexport) 
+void QTest__QTouchEventSequence_Delete(QTest__QTouchEventSequence* self, bool isSubclass);
 
-} 
+}

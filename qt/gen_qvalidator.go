@@ -26,7 +26,6 @@ type QValidator struct {
 
 // NewQValidator constructs a new QValidator object.
 func NewQValidator() *QValidator {
-
 	ret := newQValidator(QValidator_new())
 	ret.isSubclass = true
 	return ret
@@ -34,7 +33,6 @@ func NewQValidator() *QValidator {
 
 // NewQValidator2 constructs a new QValidator object.
 func NewQValidator2(parent *QObject) *QValidator {
-
 	ret := newQValidator(QValidator_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -88,6 +86,7 @@ func (this *QValidator) Fixup(param1 string) {
 func (this *QValidator) Changed() {
 	QValidator_Changed(this.h)
 }
+
 func (this *QValidator) OnChanged(slot func()) {
 	QValidator_connect_Changed(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -123,252 +122,58 @@ func QValidator_Tr3(s string, c string, n int) string {
 	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
-func (this *QValidator) OnValidate(slot func(param1 string, param2 *int) State) {
+
+func (this *QValidator) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QValidator_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QValidator) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QValidator_override_virtual_Validate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QValidator_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QValidator_Validate
-func miqt_exec_callback_QValidator_Validate(self QValidator, cb intptr_t, param1 struct_miqt_string, param2 *int) State {
-	gofunc, ok := cgo.Handle(cb).Value().(func(param1 string, param2 *int) State)
+//export miqt_exec_callback_QValidator_MetaObject
+func miqt_exec_callback_QValidator_MetaObject(self QValidator, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QValidator{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QValidator) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QValidator_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QValidator) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QValidator_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QValidator_Metacast
+func miqt_exec_callback_QValidator_Metacast(self QValidator, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var param1_ms struct_miqt_string = param1
-	param1_ret := GoStringN(param1_ms.data, int(int64(param1_ms.len)))
-	free(unsafe.Pointer(param1_ms.data))
-	slotval1 := param1_ret
-	slotval2 := (*int)(unsafe.Pointer(param2))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc(slotval1, slotval2)
+	virtualReturn := gofunc((&QValidator{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn
-
-}
-
-func (this *QValidator) callVirtualBase_Fixup(param1 string) {
-	param1_ms := struct_miqt_string{}
-	param1_ms.data = CString(param1)
-	param1_ms.len = size_t(len(param1))
-	defer free(unsafe.Pointer(param1_ms.data))
-
-	QValidator_virtualbase_Fixup(unsafe.Pointer(this.h), param1_ms)
-
-}
-func (this *QValidator) OnFixup(slot func(super func(param1 string), param1 string)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_Fixup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_Fixup
-func miqt_exec_callback_QValidator_Fixup(self QValidator, cb intptr_t, param1 struct_miqt_string) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string), param1 string))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	var param1_ms struct_miqt_string = param1
-	param1_ret := GoStringN(param1_ms.data, int(int64(param1_ms.len)))
-	free(unsafe.Pointer(param1_ms.data))
-	slotval1 := param1_ret
-
-	gofunc((&QValidator{h: self}).callVirtualBase_Fixup, slotval1)
-
-}
-
-func (this *QValidator) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QValidator_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
-}
-func (this *QValidator) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_Event
-func miqt_exec_callback_QValidator_Event(self QValidator, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	virtualReturn := gofunc((&QValidator{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QValidator) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QValidator_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QValidator) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_EventFilter
-func miqt_exec_callback_QValidator_EventFilter(self QValidator, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QValidator{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QValidator) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QValidator_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QValidator) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_TimerEvent
-func miqt_exec_callback_QValidator_TimerEvent(self QValidator, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QValidator{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QValidator) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QValidator_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QValidator) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_ChildEvent
-func miqt_exec_callback_QValidator_ChildEvent(self QValidator, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QValidator{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QValidator) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QValidator_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QValidator) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_CustomEvent
-func miqt_exec_callback_QValidator_CustomEvent(self QValidator, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QValidator{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QValidator) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QValidator_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QValidator) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_ConnectNotify
-func miqt_exec_callback_QValidator_ConnectNotify(self QValidator, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QValidator{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QValidator) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QValidator_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QValidator) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QValidator_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QValidator_DisconnectNotify
-func miqt_exec_callback_QValidator_DisconnectNotify(self QValidator, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QValidator{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
 }
 
 type QIntValidator struct {
@@ -378,7 +183,6 @@ type QIntValidator struct {
 
 // NewQIntValidator constructs a new QIntValidator object.
 func NewQIntValidator() *QIntValidator {
-
 	ret := newQIntValidator(QIntValidator_new())
 	ret.isSubclass = true
 	return ret
@@ -386,7 +190,6 @@ func NewQIntValidator() *QIntValidator {
 
 // NewQIntValidator2 constructs a new QIntValidator object.
 func NewQIntValidator2(bottom int, top int) *QIntValidator {
-
 	ret := newQIntValidator(QIntValidator_new2((int)(bottom), (int)(top)))
 	ret.isSubclass = true
 	return ret
@@ -394,7 +197,6 @@ func NewQIntValidator2(bottom int, top int) *QIntValidator {
 
 // NewQIntValidator3 constructs a new QIntValidator object.
 func NewQIntValidator3(parent *QObject) *QIntValidator {
-
 	ret := newQIntValidator(QIntValidator_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -402,7 +204,6 @@ func NewQIntValidator3(parent *QObject) *QIntValidator {
 
 // NewQIntValidator4 constructs a new QIntValidator object.
 func NewQIntValidator4(bottom int, top int, parent *QObject) *QIntValidator {
-
 	ret := newQIntValidator(QIntValidator_new4((int)(bottom), (int)(top), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -466,6 +267,7 @@ func (this *QIntValidator) Top() int {
 func (this *QIntValidator) BottomChanged(bottom int) {
 	QIntValidator_BottomChanged(this.h, (int)(bottom))
 }
+
 func (this *QIntValidator) OnBottomChanged(slot func(bottom int)) {
 	QIntValidator_connect_BottomChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -486,6 +288,7 @@ func miqt_exec_callback_QIntValidator_BottomChanged(cb intptr_t, bottom int) {
 func (this *QIntValidator) TopChanged(top int) {
 	QIntValidator_TopChanged(this.h, (int)(top))
 }
+
 func (this *QIntValidator) OnTopChanged(slot func(top int)) {
 	QIntValidator_connect_TopChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -525,73 +328,57 @@ func QIntValidator_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QIntValidator) callVirtualBase_Validate(param1 string, param2 *int) QValidator__State {
-	param1_ms := struct_miqt_string{}
-	param1_ms.data = CString(param1)
-	param1_ms.len = size_t(len(param1))
-	defer free(unsafe.Pointer(param1_ms.data))
-
-	return (QValidator__State)(QIntValidator_virtualbase_Validate(unsafe.Pointer(this.h), param1_ms, (*int)(unsafe.Pointer(param2))))
-
+func (this *QIntValidator) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QIntValidator_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QIntValidator) OnValidate(slot func(super func(param1 string, param2 *int) QValidator__State, param1 string, param2 *int) QValidator__State) {
+
+func (this *QIntValidator) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QIntValidator_override_virtual_Validate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QIntValidator_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QIntValidator_Validate
-func miqt_exec_callback_QIntValidator_Validate(self QIntValidator, cb intptr_t, param1 struct_miqt_string, param2 *int) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string, param2 *int) QValidator__State, param1 string, param2 *int) QValidator__State)
+//export miqt_exec_callback_QIntValidator_MetaObject
+func miqt_exec_callback_QIntValidator_MetaObject(self QIntValidator, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QIntValidator{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QIntValidator) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QIntValidator_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QIntValidator) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QIntValidator_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QIntValidator_Metacast
+func miqt_exec_callback_QIntValidator_Metacast(self QIntValidator, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var param1_ms struct_miqt_string = param1
-	param1_ret := GoStringN(param1_ms.data, int(int64(param1_ms.len)))
-	free(unsafe.Pointer(param1_ms.data))
-	slotval1 := param1_ret
-	slotval2 := (*int)(unsafe.Pointer(param2))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QIntValidator{h: self}).callVirtualBase_Validate, slotval1, slotval2)
+	virtualReturn := gofunc((&QIntValidator{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (int)(virtualReturn)
-
-}
-
-func (this *QIntValidator) callVirtualBase_Fixup(input string) {
-	input_ms := struct_miqt_string{}
-	input_ms.data = CString(input)
-	input_ms.len = size_t(len(input))
-	defer free(unsafe.Pointer(input_ms.data))
-
-	QIntValidator_virtualbase_Fixup(unsafe.Pointer(this.h), input_ms)
-
-}
-func (this *QIntValidator) OnFixup(slot func(super func(input string), input string)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QIntValidator_override_virtual_Fixup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QIntValidator_Fixup
-func miqt_exec_callback_QIntValidator_Fixup(self QIntValidator, cb intptr_t, input struct_miqt_string) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(input string), input string))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	var input_ms struct_miqt_string = input
-	input_ret := GoStringN(input_ms.data, int(int64(input_ms.len)))
-	free(unsafe.Pointer(input_ms.data))
-	slotval1 := input_ret
-
-	gofunc((&QIntValidator{h: self}).callVirtualBase_Fixup, slotval1)
-
+	return virtualReturn
 }
 
 type QDoubleValidator struct {
@@ -601,7 +388,6 @@ type QDoubleValidator struct {
 
 // NewQDoubleValidator constructs a new QDoubleValidator object.
 func NewQDoubleValidator() *QDoubleValidator {
-
 	ret := newQDoubleValidator(QDoubleValidator_new())
 	ret.isSubclass = true
 	return ret
@@ -609,7 +395,6 @@ func NewQDoubleValidator() *QDoubleValidator {
 
 // NewQDoubleValidator2 constructs a new QDoubleValidator object.
 func NewQDoubleValidator2(bottom float64, top float64, decimals int) *QDoubleValidator {
-
 	ret := newQDoubleValidator(QDoubleValidator_new2((double)(bottom), (double)(top), (int)(decimals)))
 	ret.isSubclass = true
 	return ret
@@ -617,7 +402,6 @@ func NewQDoubleValidator2(bottom float64, top float64, decimals int) *QDoubleVal
 
 // NewQDoubleValidator3 constructs a new QDoubleValidator object.
 func NewQDoubleValidator3(parent *QObject) *QDoubleValidator {
-
 	ret := newQDoubleValidator(QDoubleValidator_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -625,7 +409,6 @@ func NewQDoubleValidator3(parent *QObject) *QDoubleValidator {
 
 // NewQDoubleValidator4 constructs a new QDoubleValidator object.
 func NewQDoubleValidator4(bottom float64, top float64, decimals int, parent *QObject) *QDoubleValidator {
-
 	ret := newQDoubleValidator(QDoubleValidator_new4((double)(bottom), (double)(top), (int)(decimals), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -709,6 +492,7 @@ func (this *QDoubleValidator) Notation() Notation {
 func (this *QDoubleValidator) BottomChanged(bottom float64) {
 	QDoubleValidator_BottomChanged(this.h, (double)(bottom))
 }
+
 func (this *QDoubleValidator) OnBottomChanged(slot func(bottom float64)) {
 	QDoubleValidator_connect_BottomChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -729,6 +513,7 @@ func miqt_exec_callback_QDoubleValidator_BottomChanged(cb intptr_t, bottom doubl
 func (this *QDoubleValidator) TopChanged(top float64) {
 	QDoubleValidator_TopChanged(this.h, (double)(top))
 }
+
 func (this *QDoubleValidator) OnTopChanged(slot func(top float64)) {
 	QDoubleValidator_connect_TopChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -749,6 +534,7 @@ func miqt_exec_callback_QDoubleValidator_TopChanged(cb intptr_t, top double) {
 func (this *QDoubleValidator) DecimalsChanged(decimals int) {
 	QDoubleValidator_DecimalsChanged(this.h, (int)(decimals))
 }
+
 func (this *QDoubleValidator) OnDecimalsChanged(slot func(decimals int)) {
 	QDoubleValidator_connect_DecimalsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -769,6 +555,7 @@ func miqt_exec_callback_QDoubleValidator_DecimalsChanged(cb intptr_t, decimals i
 func (this *QDoubleValidator) NotationChanged(notation QDoubleValidator__Notation) {
 	QDoubleValidator_NotationChanged(this.h, (int)(notation))
 }
+
 func (this *QDoubleValidator) OnNotationChanged(slot func(notation QDoubleValidator__Notation)) {
 	QDoubleValidator_connect_NotationChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -808,73 +595,57 @@ func QDoubleValidator_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QDoubleValidator) callVirtualBase_Validate(param1 string, param2 *int) QValidator__State {
-	param1_ms := struct_miqt_string{}
-	param1_ms.data = CString(param1)
-	param1_ms.len = size_t(len(param1))
-	defer free(unsafe.Pointer(param1_ms.data))
-
-	return (QValidator__State)(QDoubleValidator_virtualbase_Validate(unsafe.Pointer(this.h), param1_ms, (*int)(unsafe.Pointer(param2))))
-
+func (this *QDoubleValidator) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QDoubleValidator_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QDoubleValidator) OnValidate(slot func(super func(param1 string, param2 *int) QValidator__State, param1 string, param2 *int) QValidator__State) {
+
+func (this *QDoubleValidator) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QDoubleValidator_override_virtual_Validate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QDoubleValidator_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QDoubleValidator_Validate
-func miqt_exec_callback_QDoubleValidator_Validate(self QDoubleValidator, cb intptr_t, param1 struct_miqt_string, param2 *int) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string, param2 *int) QValidator__State, param1 string, param2 *int) QValidator__State)
+//export miqt_exec_callback_QDoubleValidator_MetaObject
+func miqt_exec_callback_QDoubleValidator_MetaObject(self QDoubleValidator, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QDoubleValidator{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QDoubleValidator) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QDoubleValidator_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QDoubleValidator) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QDoubleValidator_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QDoubleValidator_Metacast
+func miqt_exec_callback_QDoubleValidator_Metacast(self QDoubleValidator, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var param1_ms struct_miqt_string = param1
-	param1_ret := GoStringN(param1_ms.data, int(int64(param1_ms.len)))
-	free(unsafe.Pointer(param1_ms.data))
-	slotval1 := param1_ret
-	slotval2 := (*int)(unsafe.Pointer(param2))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QDoubleValidator{h: self}).callVirtualBase_Validate, slotval1, slotval2)
+	virtualReturn := gofunc((&QDoubleValidator{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (int)(virtualReturn)
-
-}
-
-func (this *QDoubleValidator) callVirtualBase_Fixup(input string) {
-	input_ms := struct_miqt_string{}
-	input_ms.data = CString(input)
-	input_ms.len = size_t(len(input))
-	defer free(unsafe.Pointer(input_ms.data))
-
-	QDoubleValidator_virtualbase_Fixup(unsafe.Pointer(this.h), input_ms)
-
-}
-func (this *QDoubleValidator) OnFixup(slot func(super func(input string), input string)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDoubleValidator_override_virtual_Fixup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDoubleValidator_Fixup
-func miqt_exec_callback_QDoubleValidator_Fixup(self QDoubleValidator, cb intptr_t, input struct_miqt_string) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(input string), input string))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	var input_ms struct_miqt_string = input
-	input_ret := GoStringN(input_ms.data, int(int64(input_ms.len)))
-	free(unsafe.Pointer(input_ms.data))
-	slotval1 := input_ret
-
-	gofunc((&QDoubleValidator{h: self}).callVirtualBase_Fixup, slotval1)
-
+	return virtualReturn
 }
 
 type QRegularExpressionValidator struct {
@@ -884,7 +655,6 @@ type QRegularExpressionValidator struct {
 
 // NewQRegularExpressionValidator constructs a new QRegularExpressionValidator object.
 func NewQRegularExpressionValidator() *QRegularExpressionValidator {
-
 	ret := newQRegularExpressionValidator(QRegularExpressionValidator_new())
 	ret.isSubclass = true
 	return ret
@@ -892,7 +662,6 @@ func NewQRegularExpressionValidator() *QRegularExpressionValidator {
 
 // NewQRegularExpressionValidator2 constructs a new QRegularExpressionValidator object.
 func NewQRegularExpressionValidator2(re *QRegularExpression) *QRegularExpressionValidator {
-
 	ret := newQRegularExpressionValidator(QRegularExpressionValidator_new2(re.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -900,7 +669,6 @@ func NewQRegularExpressionValidator2(re *QRegularExpression) *QRegularExpression
 
 // NewQRegularExpressionValidator3 constructs a new QRegularExpressionValidator object.
 func NewQRegularExpressionValidator3(parent *QObject) *QRegularExpressionValidator {
-
 	ret := newQRegularExpressionValidator(QRegularExpressionValidator_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -908,7 +676,6 @@ func NewQRegularExpressionValidator3(parent *QObject) *QRegularExpressionValidat
 
 // NewQRegularExpressionValidator4 constructs a new QRegularExpressionValidator object.
 func NewQRegularExpressionValidator4(re *QRegularExpression, parent *QObject) *QRegularExpressionValidator {
-
 	ret := newQRegularExpressionValidator(QRegularExpressionValidator_new4(re.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -954,6 +721,7 @@ func (this *QRegularExpressionValidator) SetRegularExpression(re *QRegularExpres
 func (this *QRegularExpressionValidator) RegularExpressionChanged(re *QRegularExpression) {
 	QRegularExpressionValidator_RegularExpressionChanged(this.h, re.cPointer())
 }
+
 func (this *QRegularExpressionValidator) OnRegularExpressionChanged(slot func(re *QRegularExpression)) {
 	QRegularExpressionValidator_connect_RegularExpressionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -993,71 +761,55 @@ func QRegularExpressionValidator_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QRegularExpressionValidator) callVirtualBase_Validate(input string, pos *int) QValidator__State {
-	input_ms := struct_miqt_string{}
-	input_ms.data = CString(input)
-	input_ms.len = size_t(len(input))
-	defer free(unsafe.Pointer(input_ms.data))
-
-	return (QValidator__State)(QRegularExpressionValidator_virtualbase_Validate(unsafe.Pointer(this.h), input_ms, (*int)(unsafe.Pointer(pos))))
-
+func (this *QRegularExpressionValidator) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QRegularExpressionValidator_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QRegularExpressionValidator) OnValidate(slot func(super func(input string, pos *int) QValidator__State, input string, pos *int) QValidator__State) {
+
+func (this *QRegularExpressionValidator) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QRegularExpressionValidator_override_virtual_Validate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QRegularExpressionValidator_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QRegularExpressionValidator_Validate
-func miqt_exec_callback_QRegularExpressionValidator_Validate(self QRegularExpressionValidator, cb intptr_t, input struct_miqt_string, pos *int) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(input string, pos *int) QValidator__State, input string, pos *int) QValidator__State)
+//export miqt_exec_callback_QRegularExpressionValidator_MetaObject
+func miqt_exec_callback_QRegularExpressionValidator_MetaObject(self QRegularExpressionValidator, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QRegularExpressionValidator{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QRegularExpressionValidator) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QRegularExpressionValidator_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QRegularExpressionValidator) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QRegularExpressionValidator_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QRegularExpressionValidator_Metacast
+func miqt_exec_callback_QRegularExpressionValidator_Metacast(self QRegularExpressionValidator, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var input_ms struct_miqt_string = input
-	input_ret := GoStringN(input_ms.data, int(int64(input_ms.len)))
-	free(unsafe.Pointer(input_ms.data))
-	slotval1 := input_ret
-	slotval2 := (*int)(unsafe.Pointer(pos))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QRegularExpressionValidator{h: self}).callVirtualBase_Validate, slotval1, slotval2)
+	virtualReturn := gofunc((&QRegularExpressionValidator{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (int)(virtualReturn)
-
-}
-
-func (this *QRegularExpressionValidator) callVirtualBase_Fixup(param1 string) {
-	param1_ms := struct_miqt_string{}
-	param1_ms.data = CString(param1)
-	param1_ms.len = size_t(len(param1))
-	defer free(unsafe.Pointer(param1_ms.data))
-
-	QRegularExpressionValidator_virtualbase_Fixup(unsafe.Pointer(this.h), param1_ms)
-
-}
-func (this *QRegularExpressionValidator) OnFixup(slot func(super func(param1 string), param1 string)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QRegularExpressionValidator_override_virtual_Fixup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QRegularExpressionValidator_Fixup
-func miqt_exec_callback_QRegularExpressionValidator_Fixup(self QRegularExpressionValidator, cb intptr_t, param1 struct_miqt_string) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string), param1 string))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	var param1_ms struct_miqt_string = param1
-	param1_ret := GoStringN(param1_ms.data, int(int64(param1_ms.len)))
-	free(unsafe.Pointer(param1_ms.data))
-	slotval1 := param1_ret
-
-	gofunc((&QRegularExpressionValidator{h: self}).callVirtualBase_Fixup, slotval1)
-
+	return virtualReturn
 }

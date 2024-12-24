@@ -11,7 +11,6 @@ type QSize struct {
 
 // NewQSize constructs a new QSize object.
 func NewQSize() *QSize {
-
 	ret := newQSize(QSize_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQSize() *QSize {
 
 // NewQSize2 constructs a new QSize object.
 func NewQSize2(w int, h int) *QSize {
-
 	ret := newQSize(QSize_new2((int)(w), (int)(h)))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQSize2(w int, h int) *QSize {
 
 // NewQSize3 constructs a new QSize object.
 func NewQSize3(param1 *QSize) *QSize {
-
 	ret := newQSize(QSize_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -144,7 +141,6 @@ type QSizeF struct {
 
 // NewQSizeF constructs a new QSizeF object.
 func NewQSizeF() *QSizeF {
-
 	ret := newQSizeF(QSizeF_new())
 	ret.isSubclass = true
 	return ret
@@ -152,7 +148,6 @@ func NewQSizeF() *QSizeF {
 
 // NewQSizeF2 constructs a new QSizeF object.
 func NewQSizeF2(sz *QSize) *QSizeF {
-
 	ret := newQSizeF(QSizeF_new2(sz.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -160,7 +155,6 @@ func NewQSizeF2(sz *QSize) *QSizeF {
 
 // NewQSizeF3 constructs a new QSizeF object.
 func NewQSizeF3(w float64, h float64) *QSizeF {
-
 	ret := newQSizeF(QSizeF_new3((double)(w), (double)(h)))
 	ret.isSubclass = true
 	return ret
@@ -168,7 +162,6 @@ func NewQSizeF3(w float64, h float64) *QSizeF {
 
 // NewQSizeF4 constructs a new QSizeF object.
 func NewQSizeF4(param1 *QSizeF) *QSizeF {
-
 	ret := newQSizeF(QSizeF_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

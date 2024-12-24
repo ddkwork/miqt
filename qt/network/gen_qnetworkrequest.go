@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkRequest__KnownHeaders int
@@ -107,7 +108,6 @@ type QNetworkRequest struct {
 
 // NewQNetworkRequest constructs a new QNetworkRequest object.
 func NewQNetworkRequest() *QNetworkRequest {
-
 	ret := newQNetworkRequest(QNetworkRequest_new())
 	ret.isSubclass = true
 	return ret
@@ -115,7 +115,6 @@ func NewQNetworkRequest() *QNetworkRequest {
 
 // NewQNetworkRequest2 constructs a new QNetworkRequest object.
 func NewQNetworkRequest2(url *qt.QUrl) *QNetworkRequest {
-
 	ret := newQNetworkRequest(QNetworkRequest_new2((*QUrl)(url.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -123,7 +122,6 @@ func NewQNetworkRequest2(url *qt.QUrl) *QNetworkRequest {
 
 // NewQNetworkRequest3 constructs a new QNetworkRequest object.
 func NewQNetworkRequest3(other *QNetworkRequest) *QNetworkRequest {
-
 	ret := newQNetworkRequest(QNetworkRequest_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

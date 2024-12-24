@@ -87,7 +87,6 @@ func NewQCommandLineOption4(names []string, description string) *QCommandLineOpt
 
 // NewQCommandLineOption5 constructs a new QCommandLineOption object.
 func NewQCommandLineOption5(other *QCommandLineOption) *QCommandLineOption {
-
 	ret := newQCommandLineOption(QCommandLineOption_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret

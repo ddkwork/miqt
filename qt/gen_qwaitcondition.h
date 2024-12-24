@@ -13,21 +13,35 @@ typedef struct QMutex QMutex;
 typedef struct QReadWriteLock QReadWriteLock;
 typedef struct QWaitCondition QWaitCondition;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QWaitCondition* QWaitCondition_new();
-extern __declspec(dllexport) bool QWaitCondition_Wait(QWaitCondition* self, QMutex* lockedMutex);
-extern __declspec(dllexport) bool QWaitCondition_Wait2(QWaitCondition* self, QMutex* lockedMutex, unsigned long time);
-extern __declspec(dllexport) bool QWaitCondition_WaitWithLockedReadWriteLock(QWaitCondition* self, QReadWriteLock* lockedReadWriteLock);
-extern __declspec(dllexport) bool QWaitCondition_Wait3(QWaitCondition* self, QReadWriteLock* lockedReadWriteLock, unsigned long time);
-extern __declspec(dllexport) void QWaitCondition_WakeOne(QWaitCondition* self);
-extern __declspec(dllexport) void QWaitCondition_WakeAll(QWaitCondition* self);
-extern __declspec(dllexport) void QWaitCondition_NotifyOne(QWaitCondition* self);
-extern __declspec(dllexport) void QWaitCondition_NotifyAll(QWaitCondition* self);
-extern __declspec(dllexport) bool QWaitCondition_Wait22(QWaitCondition* self, QMutex* lockedMutex, QDeadlineTimer* deadline);
-extern __declspec(dllexport) bool QWaitCondition_Wait23(QWaitCondition* self, QReadWriteLock* lockedReadWriteLock, QDeadlineTimer* deadline);
-extern __declspec(dllexport) void QWaitCondition_Delete(QWaitCondition* self, bool isSubclass);
+extern __declspec(dllexport) 
+QWaitCondition* QWaitCondition_new();
+extern __declspec(dllexport) 
+bool QWaitCondition_Wait(QWaitCondition* self, QMutex* lockedMutex);
+extern __declspec(dllexport) 
+bool QWaitCondition_Wait2(QWaitCondition* self, QMutex* lockedMutex, unsigned long time);
+extern __declspec(dllexport) 
+bool QWaitCondition_WaitWithLockedReadWriteLock(QWaitCondition* self, QReadWriteLock* lockedReadWriteLock);
+extern __declspec(dllexport) 
+bool QWaitCondition_Wait3(QWaitCondition* self, QReadWriteLock* lockedReadWriteLock, unsigned long time);
+extern __declspec(dllexport) 
+void QWaitCondition_WakeOne(QWaitCondition* self);
+extern __declspec(dllexport) 
+void QWaitCondition_WakeAll(QWaitCondition* self);
+extern __declspec(dllexport) 
+void QWaitCondition_NotifyOne(QWaitCondition* self);
+extern __declspec(dllexport) 
+void QWaitCondition_NotifyAll(QWaitCondition* self);
+extern __declspec(dllexport) 
+bool QWaitCondition_Wait22(QWaitCondition* self, QMutex* lockedMutex, QDeadlineTimer* deadline);
+extern __declspec(dllexport) 
+bool QWaitCondition_Wait23(QWaitCondition* self, QReadWriteLock* lockedReadWriteLock, QDeadlineTimer* deadline);
+extern __declspec(dllexport) 
+void QWaitCondition_Delete(QWaitCondition* self, bool isSubclass);
 
-} 
+}

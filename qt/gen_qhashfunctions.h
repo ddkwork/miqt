@@ -10,15 +10,23 @@
 extern "C" {
 typedef struct QHashSeed QHashSeed;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QHashSeed* QHashSeed_new();
-extern __declspec(dllexport) QHashSeed* QHashSeed_new2(unsigned long long d);
-extern __declspec(dllexport) QHashSeed* QHashSeed_GlobalSeed();
-extern __declspec(dllexport) void QHashSeed_SetDeterministicGlobalSeed();
-extern __declspec(dllexport) void QHashSeed_ResetRandomGlobalSeed();
-extern __declspec(dllexport) void QHashSeed_Delete(QHashSeed* self, bool isSubclass);
+extern __declspec(dllexport) 
+QHashSeed* QHashSeed_new();
+extern __declspec(dllexport) 
+QHashSeed* QHashSeed_new2(unsigned long long d);
+extern __declspec(dllexport) 
+QHashSeed* QHashSeed_GlobalSeed();
+extern __declspec(dllexport) 
+void QHashSeed_SetDeterministicGlobalSeed();
+extern __declspec(dllexport) 
+void QHashSeed_ResetRandomGlobalSeed();
+extern __declspec(dllexport) 
+void QHashSeed_Delete(QHashSeed* self, bool isSubclass);
 
-} 
+}

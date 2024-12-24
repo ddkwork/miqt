@@ -75,7 +75,6 @@ type QMessageBox struct {
 
 // NewQMessageBox constructs a new QMessageBox object.
 func NewQMessageBox(parent *QWidget) *QMessageBox {
-
 	ret := newQMessageBox(QMessageBox_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -83,7 +82,6 @@ func NewQMessageBox(parent *QWidget) *QMessageBox {
 
 // NewQMessageBox2 constructs a new QMessageBox object.
 func NewQMessageBox2() *QMessageBox {
-
 	ret := newQMessageBox(QMessageBox_new2())
 	ret.isSubclass = true
 	return ret
@@ -661,6 +659,7 @@ func QMessageBox_StandardIcon(icon Icon) *QPixmap {
 func (this *QMessageBox) ButtonClicked(button *QAbstractButton) {
 	QMessageBox_ButtonClicked(this.h, button.cPointer())
 }
+
 func (this *QMessageBox) OnButtonClicked(slot func(button *QAbstractButton)) {
 	QMessageBox_connect_ButtonClicked(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -1260,416 +1259,55 @@ func QMessageBox_Critical8(parent *QWidget, title string, text string, button0Te
 	return (int)(QMessageBox_Critical8(parent.cPointer(), title_ms, text_ms, button0Text_ms, button1Text_ms, button2Text_ms, (int)(defaultButtonNumber), (int)(escapeButtonNumber)))
 }
 
-func (this *QMessageBox) callVirtualBase_Event(e *QEvent) bool {
-
-	return (bool)(QMessageBox_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
+func (this *QMessageBox) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QMessageBox_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QMessageBox) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
+
+func (this *QMessageBox) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QMessageBox_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QMessageBox_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QMessageBox_Event
-func miqt_exec_callback_QMessageBox_Event(self QMessageBox, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QMessageBox_MetaObject
+func miqt_exec_callback_QMessageBox_MetaObject(self QMessageBox, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
-
-	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QMessageBox) callVirtualBase_ResizeEvent(event *QResizeEvent) {
-
-	QMessageBox_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMessageBox) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_ResizeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_ResizeEvent
-func miqt_exec_callback_QMessageBox_ResizeEvent(self QMessageBox, cb intptr_t, event *QResizeEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QResizeEvent), event *QResizeEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQResizeEvent(event)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_ResizeEvent, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_ShowEvent(event *QShowEvent) {
-
-	QMessageBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMessageBox) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_ShowEvent
-func miqt_exec_callback_QMessageBox_ShowEvent(self QMessageBox, cb intptr_t, event *QShowEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QShowEvent), event *QShowEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQShowEvent(event)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_ShowEvent, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_CloseEvent(event *QCloseEvent) {
-
-	QMessageBox_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMessageBox) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_CloseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_CloseEvent
-func miqt_exec_callback_QMessageBox_CloseEvent(self QMessageBox, cb intptr_t, event *QCloseEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QCloseEvent), event *QCloseEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQCloseEvent(event)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_CloseEvent, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
-
-	QMessageBox_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMessageBox) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_KeyPressEvent
-func miqt_exec_callback_QMessageBox_KeyPressEvent(self QMessageBox, cb intptr_t, event *QKeyEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QKeyEvent), event *QKeyEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQKeyEvent(event)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_KeyPressEvent, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_ChangeEvent(event *QEvent) {
-
-	QMessageBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMessageBox) OnChangeEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_ChangeEvent
-func miqt_exec_callback_QMessageBox_ChangeEvent(self QMessageBox, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_SetVisible(visible bool) {
-
-	QMessageBox_virtualbase_SetVisible(unsafe.Pointer(this.h), (bool)(visible))
-
-}
-func (this *QMessageBox) OnSetVisible(slot func(super func(visible bool), visible bool)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_SetVisible(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_SetVisible
-func miqt_exec_callback_QMessageBox_SetVisible(self QMessageBox, cb intptr_t, visible bool) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(visible bool), visible bool))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (bool)(visible)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_SetVisible, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_SizeHint() *QSize {
-
-	_goptr := newQSize(QMessageBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QMessageBox) OnSizeHint(slot func(super func() *QSize) *QSize) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_SizeHint
-func miqt_exec_callback_QMessageBox_SizeHint(self QMessageBox, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_SizeHint)
+	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QMessageBox) callVirtualBase_MinimumSizeHint() *QSize {
+func (this *QMessageBox) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	_goptr := newQSize(QMessageBox_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+	return (unsafe.Pointer)(QMessageBox_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QMessageBox) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
+
+func (this *QMessageBox) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QMessageBox_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QMessageBox_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QMessageBox_MinimumSizeHint
-func miqt_exec_callback_QMessageBox_MinimumSizeHint(self QMessageBox, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_MinimumSizeHint)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QMessageBox) callVirtualBase_Open() {
-
-	QMessageBox_virtualbase_Open(unsafe.Pointer(this.h))
-
-}
-func (this *QMessageBox) OnOpen(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_Open(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_Open
-func miqt_exec_callback_QMessageBox_Open(self QMessageBox, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_Open)
-
-}
-
-func (this *QMessageBox) callVirtualBase_Exec() int {
-
-	return (int)(QMessageBox_virtualbase_Exec(unsafe.Pointer(this.h)))
-
-}
-func (this *QMessageBox) OnExec(slot func(super func() int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_Exec(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_Exec
-func miqt_exec_callback_QMessageBox_Exec(self QMessageBox, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_Exec)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QMessageBox) callVirtualBase_Done(param1 int) {
-
-	QMessageBox_virtualbase_Done(unsafe.Pointer(this.h), (int)(param1))
-
-}
-func (this *QMessageBox) OnDone(slot func(super func(param1 int), param1 int)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_Done(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_Done
-func miqt_exec_callback_QMessageBox_Done(self QMessageBox, cb intptr_t, param1 int) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 int), param1 int))
+//export miqt_exec_callback_QMessageBox_Metacast
+func miqt_exec_callback_QMessageBox_Metacast(self QMessageBox, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(param1)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QMessageBox{h: self}).callVirtualBase_Done, slotval1)
+	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QMessageBox) callVirtualBase_Accept() {
-
-	QMessageBox_virtualbase_Accept(unsafe.Pointer(this.h))
-
-}
-func (this *QMessageBox) OnAccept(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_Accept(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_Accept
-func miqt_exec_callback_QMessageBox_Accept(self QMessageBox, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_Accept)
-
-}
-
-func (this *QMessageBox) callVirtualBase_Reject() {
-
-	QMessageBox_virtualbase_Reject(unsafe.Pointer(this.h))
-
-}
-func (this *QMessageBox) OnReject(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_Reject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_Reject
-func miqt_exec_callback_QMessageBox_Reject(self QMessageBox, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_Reject)
-
-}
-
-func (this *QMessageBox) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
-
-	QMessageBox_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QMessageBox) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_ContextMenuEvent
-func miqt_exec_callback_QMessageBox_ContextMenuEvent(self QMessageBox, cb intptr_t, param1 *QContextMenuEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQContextMenuEvent(param1)
-
-	gofunc((&QMessageBox{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
-
-}
-
-func (this *QMessageBox) callVirtualBase_EventFilter(param1 *QObject, param2 *QEvent) bool {
-
-	return (bool)(QMessageBox_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
-}
-func (this *QMessageBox) OnEventFilter(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMessageBox_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMessageBox_EventFilter
-func miqt_exec_callback_QMessageBox_EventFilter(self QMessageBox, cb intptr_t, param1 *QObject, param2 *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(param1)
-
-	slotval2 := newQEvent(param2)
-
-	virtualReturn := gofunc((&QMessageBox{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
+	return virtualReturn
 }

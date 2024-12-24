@@ -1,13 +1,10 @@
 // +build ignore
 
 #include <QByteArray>
-#include <QChildEvent>
 #include <QColor>
-#include <QEvent>
 #include <QIODevice>
 #include <QImage>
 #include <QList>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QMovie>
 #include <QObject>
@@ -17,7 +14,6 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <qmovie.h>
 #include "gen_qmovie.h"
 
@@ -36,173 +32,47 @@ public:
 	virtual ~MiqtVirtualQMovie() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QMovie::event(event);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QMovie::metaObject();
 		}
 		
-		QEvent* sigval1 = event;
 
-		bool callback_return_value = miqt_exec_callback_QMovie_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QMovie_MetaObject(const_cast<MiqtVirtualQMovie*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QMovie::event(event);
+		return (QMetaObject*) QMovie::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QMovie::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QMovie::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QMovie_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QMovie_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QMovie::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QMovie::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QMovie_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QMovie::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QMovie::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QMovie_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QMovie::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QMovie::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QMovie_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QMovie::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QMovie::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QMovie_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QMovie::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QMovie::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QMovie_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QMovie::disconnectNotify(*signal);
+		return QMovie::qt_metacast(param1);
 
 	}
 
@@ -533,60 +403,20 @@ struct miqt_string QMovie_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QMovie_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__Event = slot;
+void QMovie_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__MetaObject = slot;
 }
 
-bool QMovie_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQMovie*)(self) )->virtualbase_Event(event);
+QMetaObject* QMovie_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQMovie*)(self) )->virtualbase_MetaObject();
 }
 
-void QMovie_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__EventFilter = slot;
+void QMovie_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__Metacast = slot;
 }
 
-bool QMovie_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQMovie*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QMovie_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__TimerEvent = slot;
-}
-
-void QMovie_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQMovie*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QMovie_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__ChildEvent = slot;
-}
-
-void QMovie_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQMovie*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QMovie_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__CustomEvent = slot;
-}
-
-void QMovie_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQMovie*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QMovie_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QMovie_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQMovie*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QMovie_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMovie*>( (QMovie*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QMovie_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQMovie*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QMovie_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQMovie*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QMovie_Delete(QMovie* self, bool isSubclass) {

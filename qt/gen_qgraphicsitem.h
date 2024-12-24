@@ -10,7 +10,6 @@
 extern "C" {
 typedef struct QAbstractGraphicsShapeItem QAbstractGraphicsShapeItem;
 typedef struct QBrush QBrush;
-typedef struct QChildEvent QChildEvent;
 typedef struct QColor QColor;
 typedef struct QCursor QCursor;
 typedef struct QEvent QEvent;
@@ -39,7 +38,6 @@ typedef struct QGraphicsWidget QGraphicsWidget;
 typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QLineF QLineF;
-typedef struct QMetaMethod QMetaMethod;
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QPainter QPainter;
@@ -53,1093 +51,995 @@ typedef struct QSize QSize;
 typedef struct QStyleOptionGraphicsItem QStyleOptionGraphicsItem;
 typedef struct QTextCursor QTextCursor;
 typedef struct QTextDocument QTextDocument;
-typedef struct QTimerEvent QTimerEvent;
 typedef struct QTransform QTransform;
 typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_new();
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_new2(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsScene* QGraphicsItem_Scene(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_ParentItem(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_TopLevelItem(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsObject* QGraphicsItem_ParentObject(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsWidget* QGraphicsItem_ParentWidget(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsWidget* QGraphicsItem_TopLevelWidget(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsWidget* QGraphicsItem_Window(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_Panel(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetParentItem(QGraphicsItem* self, QGraphicsItem* parent);
-extern __declspec(dllexport) struct miqt_array /* of QGraphicsItem* */  QGraphicsItem_ChildItems(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsWidget(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsWindow(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsPanel(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsObject* QGraphicsItem_ToGraphicsObject(QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsObject* QGraphicsItem_ToGraphicsObject2(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsItemGroup* QGraphicsItem_Group(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetGroup(QGraphicsItem* self, QGraphicsItemGroup* group);
-extern __declspec(dllexport) GraphicsItemFlags QGraphicsItem_Flags(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetFlag(QGraphicsItem* self, GraphicsItemFlag flag);
-extern __declspec(dllexport) void QGraphicsItem_SetFlags(QGraphicsItem* self, GraphicsItemFlags flags);
-extern __declspec(dllexport) CacheMode QGraphicsItem_CacheMode(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetCacheMode(QGraphicsItem* self, CacheMode mode);
-extern __declspec(dllexport) PanelModality QGraphicsItem_PanelModality(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetPanelModality(QGraphicsItem* self, PanelModality panelModality);
-extern __declspec(dllexport) bool QGraphicsItem_IsBlockedByModalPanel(const QGraphicsItem* self);
-extern __declspec(dllexport) struct miqt_string QGraphicsItem_ToolTip(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetToolTip(QGraphicsItem* self, struct miqt_string toolTip);
-extern __declspec(dllexport) QCursor* QGraphicsItem_Cursor(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetCursor(QGraphicsItem* self, QCursor* cursor);
-extern __declspec(dllexport) bool QGraphicsItem_HasCursor(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_UnsetCursor(QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsVisible(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsVisibleTo(const QGraphicsItem* self, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsItem_SetVisible(QGraphicsItem* self, bool visible);
-extern __declspec(dllexport) void QGraphicsItem_Hide(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_Show(QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsEnabled(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetEnabled(QGraphicsItem* self, bool enabled);
-extern __declspec(dllexport) bool QGraphicsItem_IsSelected(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetSelected(QGraphicsItem* self, bool selected);
-extern __declspec(dllexport) bool QGraphicsItem_AcceptDrops(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetAcceptDrops(QGraphicsItem* self, bool on);
-extern __declspec(dllexport) double QGraphicsItem_Opacity(const QGraphicsItem* self);
-extern __declspec(dllexport) double QGraphicsItem_EffectiveOpacity(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetOpacity(QGraphicsItem* self, double opacity);
-extern __declspec(dllexport) QGraphicsEffect* QGraphicsItem_GraphicsEffect(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetGraphicsEffect(QGraphicsItem* self, QGraphicsEffect* effect);
-extern __declspec(dllexport) int QGraphicsItem_AcceptedMouseButtons(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetAcceptedMouseButtons(QGraphicsItem* self, int buttons);
-extern __declspec(dllexport) bool QGraphicsItem_AcceptHoverEvents(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetAcceptHoverEvents(QGraphicsItem* self, bool enabled);
-extern __declspec(dllexport) bool QGraphicsItem_AcceptTouchEvents(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetAcceptTouchEvents(QGraphicsItem* self, bool enabled);
-extern __declspec(dllexport) bool QGraphicsItem_FiltersChildEvents(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetFiltersChildEvents(QGraphicsItem* self, bool enabled);
-extern __declspec(dllexport) bool QGraphicsItem_HandlesChildEvents(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetHandlesChildEvents(QGraphicsItem* self, bool enabled);
-extern __declspec(dllexport) bool QGraphicsItem_IsActive(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetActive(QGraphicsItem* self, bool active);
-extern __declspec(dllexport) bool QGraphicsItem_HasFocus(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetFocus(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_ClearFocus(QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_FocusProxy(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetFocusProxy(QGraphicsItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_FocusItem(const QGraphicsItem* self);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_FocusScopeItem(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_GrabMouse(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_UngrabMouse(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_GrabKeyboard(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_UngrabKeyboard(QGraphicsItem* self);
-extern __declspec(dllexport) QPointF* QGraphicsItem_Pos(const QGraphicsItem* self);
-extern __declspec(dllexport) double QGraphicsItem_X(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetX(QGraphicsItem* self, double x);
-extern __declspec(dllexport) double QGraphicsItem_Y(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetY(QGraphicsItem* self, double y);
-extern __declspec(dllexport) QPointF* QGraphicsItem_ScenePos(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetPos(QGraphicsItem* self, QPointF* pos);
-extern __declspec(dllexport) void QGraphicsItem_SetPos2(QGraphicsItem* self, double x, double y);
-extern __declspec(dllexport) void QGraphicsItem_MoveBy(QGraphicsItem* self, double dx, double dy);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible2(QGraphicsItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) QTransform* QGraphicsItem_Transform(const QGraphicsItem* self);
-extern __declspec(dllexport) QTransform* QGraphicsItem_SceneTransform(const QGraphicsItem* self);
-extern __declspec(dllexport) QTransform* QGraphicsItem_DeviceTransform(const QGraphicsItem* self, QTransform* viewportTransform);
-extern __declspec(dllexport) QTransform* QGraphicsItem_ItemTransform(const QGraphicsItem* self, QGraphicsItem* other);
-extern __declspec(dllexport) void QGraphicsItem_SetTransform(QGraphicsItem* self, QTransform* matrix);
-extern __declspec(dllexport) void QGraphicsItem_ResetTransform(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetRotation(QGraphicsItem* self, double angle);
-extern __declspec(dllexport) double QGraphicsItem_Rotation(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetScale(QGraphicsItem* self, double scale);
-extern __declspec(dllexport) double QGraphicsItem_Scale(const QGraphicsItem* self);
-extern __declspec(dllexport) struct miqt_array /* of QGraphicsTransform* */  QGraphicsItem_Transformations(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetTransformations(QGraphicsItem* self, struct miqt_array /* of QGraphicsTransform* */  transformations);
-extern __declspec(dllexport) QPointF* QGraphicsItem_TransformOriginPoint(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetTransformOriginPoint(QGraphicsItem* self, QPointF* origin);
-extern __declspec(dllexport) void QGraphicsItem_SetTransformOriginPoint2(QGraphicsItem* self, double ax, double ay);
-extern __declspec(dllexport) void QGraphicsItem_Advance(QGraphicsItem* self, int phase);
-extern __declspec(dllexport) double QGraphicsItem_ZValue(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetZValue(QGraphicsItem* self, double z);
-extern __declspec(dllexport) void QGraphicsItem_StackBefore(QGraphicsItem* self, QGraphicsItem* sibling);
-extern __declspec(dllexport) QRectF* QGraphicsItem_BoundingRect(const QGraphicsItem* self);
-extern __declspec(dllexport) QRectF* QGraphicsItem_ChildrenBoundingRect(const QGraphicsItem* self);
-extern __declspec(dllexport) QRectF* QGraphicsItem_SceneBoundingRect(const QGraphicsItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_Shape(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsClipped(const QGraphicsItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_ClipPath(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_Contains(const QGraphicsItem* self, QPointF* point);
-extern __declspec(dllexport) bool QGraphicsItem_CollidesWithItem(const QGraphicsItem* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) bool QGraphicsItem_CollidesWithPath(const QGraphicsItem* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) struct miqt_array /* of QGraphicsItem* */  QGraphicsItem_CollidingItems(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsObscured(const QGraphicsItem* self);
-extern __declspec(dllexport) bool QGraphicsItem_IsObscured2(const QGraphicsItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) bool QGraphicsItem_IsObscuredBy(const QGraphicsItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_OpaqueArea(const QGraphicsItem* self);
-extern __declspec(dllexport) QRegion* QGraphicsItem_BoundingRegion(const QGraphicsItem* self, QTransform* itemToDeviceTransform);
-extern __declspec(dllexport) double QGraphicsItem_BoundingRegionGranularity(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetBoundingRegionGranularity(QGraphicsItem* self, double granularity);
-extern __declspec(dllexport) void QGraphicsItem_Paint(QGraphicsItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsItem_Update(QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_Update2(QGraphicsItem* self, double x, double y, double width, double height);
-extern __declspec(dllexport) void QGraphicsItem_Scroll(QGraphicsItem* self, double dx, double dy);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapToItem(const QGraphicsItem* self, QGraphicsItem* item, QPointF* point);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapToParent(const QGraphicsItem* self, QPointF* point);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapToScene(const QGraphicsItem* self, QPointF* point);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectToItem(const QGraphicsItem* self, QGraphicsItem* item, QRectF* rect);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectToParent(const QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectToScene(const QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_MapToItem4(const QGraphicsItem* self, QGraphicsItem* item, QPainterPath* path);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_MapToParentWithPath(const QGraphicsItem* self, QPainterPath* path);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_MapToSceneWithPath(const QGraphicsItem* self, QPainterPath* path);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapFromItem(const QGraphicsItem* self, QGraphicsItem* item, QPointF* point);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapFromParent(const QGraphicsItem* self, QPointF* point);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapFromScene(const QGraphicsItem* self, QPointF* point);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectFromItem(const QGraphicsItem* self, QGraphicsItem* item, QRectF* rect);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectFromParent(const QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectFromScene(const QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_MapFromItem4(const QGraphicsItem* self, QGraphicsItem* item, QPainterPath* path);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_MapFromParentWithPath(const QGraphicsItem* self, QPainterPath* path);
-extern __declspec(dllexport) QPainterPath* QGraphicsItem_MapFromSceneWithPath(const QGraphicsItem* self, QPainterPath* path);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapToItem5(const QGraphicsItem* self, QGraphicsItem* item, double x, double y);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapToParent2(const QGraphicsItem* self, double x, double y);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapToScene2(const QGraphicsItem* self, double x, double y);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectToItem2(const QGraphicsItem* self, QGraphicsItem* item, double x, double y, double w, double h);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectToParent2(const QGraphicsItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectToScene2(const QGraphicsItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapFromItem5(const QGraphicsItem* self, QGraphicsItem* item, double x, double y);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapFromParent2(const QGraphicsItem* self, double x, double y);
-extern __declspec(dllexport) QPointF* QGraphicsItem_MapFromScene2(const QGraphicsItem* self, double x, double y);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectFromItem2(const QGraphicsItem* self, QGraphicsItem* item, double x, double y, double w, double h);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectFromParent2(const QGraphicsItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) QRectF* QGraphicsItem_MapRectFromScene2(const QGraphicsItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) bool QGraphicsItem_IsAncestorOf(const QGraphicsItem* self, QGraphicsItem* child);
-extern __declspec(dllexport) QGraphicsItem* QGraphicsItem_CommonAncestorItem(const QGraphicsItem* self, QGraphicsItem* other);
-extern __declspec(dllexport) bool QGraphicsItem_IsUnderMouse(const QGraphicsItem* self);
-extern __declspec(dllexport) QVariant* QGraphicsItem_Data(const QGraphicsItem* self, int key);
-extern __declspec(dllexport) void QGraphicsItem_SetData(QGraphicsItem* self, int key, QVariant* value);
-extern __declspec(dllexport) int QGraphicsItem_InputMethodHints(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_SetInputMethodHints(QGraphicsItem* self, int hints);
-extern __declspec(dllexport) int QGraphicsItem_Type(const QGraphicsItem* self);
-extern __declspec(dllexport) void QGraphicsItem_InstallSceneEventFilter(QGraphicsItem* self, QGraphicsItem* filterItem);
-extern __declspec(dllexport) void QGraphicsItem_RemoveSceneEventFilter(QGraphicsItem* self, QGraphicsItem* filterItem);
-extern __declspec(dllexport) bool QGraphicsItem_SceneEventFilter(QGraphicsItem* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) bool QGraphicsItem_SceneEvent(QGraphicsItem* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_ContextMenuEvent(QGraphicsItem* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_DragEnterEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_DragLeaveEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_DragMoveEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_DropEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_FocusInEvent(QGraphicsItem* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_FocusOutEvent(QGraphicsItem* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_HoverEnterEvent(QGraphicsItem* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_HoverMoveEvent(QGraphicsItem* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_HoverLeaveEvent(QGraphicsItem* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_KeyPressEvent(QGraphicsItem* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_KeyReleaseEvent(QGraphicsItem* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_MousePressEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_MouseMoveEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_MouseReleaseEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_MouseDoubleClickEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_WheelEvent(QGraphicsItem* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_InputMethodEvent(QGraphicsItem* self, QInputMethodEvent* event);
-extern __declspec(dllexport) QVariant* QGraphicsItem_InputMethodQuery(const QGraphicsItem* self, int query);
-extern __declspec(dllexport) QVariant* QGraphicsItem_ItemChange(QGraphicsItem* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) bool QGraphicsItem_SupportsExtension(const QGraphicsItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsItem_SetExtension(QGraphicsItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsItem_Extension(const QGraphicsItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsItem_SetFlag2(QGraphicsItem* self, GraphicsItemFlag flag, bool enabled);
-extern __declspec(dllexport) void QGraphicsItem_SetCacheMode2(QGraphicsItem* self, CacheMode mode, QSize* cacheSize);
-extern __declspec(dllexport) void QGraphicsItem_SetFocus1(QGraphicsItem* self, int focusReason);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible1(QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible22(QGraphicsItem* self, QRectF* rect, int xmargin);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible3(QGraphicsItem* self, QRectF* rect, int xmargin, int ymargin);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible5(QGraphicsItem* self, double x, double y, double w, double h, int xmargin);
-extern __declspec(dllexport) void QGraphicsItem_EnsureVisible6(QGraphicsItem* self, double x, double y, double w, double h, int xmargin, int ymargin);
-extern __declspec(dllexport) QTransform* QGraphicsItem_ItemTransform2(const QGraphicsItem* self, QGraphicsItem* other, bool* ok);
-extern __declspec(dllexport) void QGraphicsItem_SetTransform2(QGraphicsItem* self, QTransform* matrix, bool combine);
-extern __declspec(dllexport) struct miqt_array /* of QGraphicsItem* */  QGraphicsItem_CollidingItems1(const QGraphicsItem* self, int mode);
-extern __declspec(dllexport) bool QGraphicsItem_IsObscured1(const QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsItem_Update1(QGraphicsItem* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsItem_Scroll3(QGraphicsItem* self, double dx, double dy, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_Advance(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_Advance(void* self, int phase);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_CollidesWithItem(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_CollidesWithItem(const void* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_CollidesWithPath(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_CollidesWithPath(const void* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_SceneEventFilter(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_SceneEventFilter(void* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsItem_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QGraphicsItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsItem_Delete(QGraphicsItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_new();
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_new2(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsScene* QGraphicsItem_Scene(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_ParentItem(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_TopLevelItem(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsObject* QGraphicsItem_ParentObject(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsWidget* QGraphicsItem_ParentWidget(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsWidget* QGraphicsItem_TopLevelWidget(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsWidget* QGraphicsItem_Window(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_Panel(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetParentItem(QGraphicsItem* self, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+struct miqt_array /* of QGraphicsItem* */  QGraphicsItem_ChildItems(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsWidget(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsWindow(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsPanel(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsObject* QGraphicsItem_ToGraphicsObject(QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsObject* QGraphicsItem_ToGraphicsObject2(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsItemGroup* QGraphicsItem_Group(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetGroup(QGraphicsItem* self, QGraphicsItemGroup* group);
+extern __declspec(dllexport) 
+GraphicsItemFlags QGraphicsItem_Flags(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFlag(QGraphicsItem* self, GraphicsItemFlag flag);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFlags(QGraphicsItem* self, GraphicsItemFlags flags);
+extern __declspec(dllexport) 
+CacheMode QGraphicsItem_CacheMode(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetCacheMode(QGraphicsItem* self, CacheMode mode);
+extern __declspec(dllexport) 
+PanelModality QGraphicsItem_PanelModality(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetPanelModality(QGraphicsItem* self, PanelModality panelModality);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsBlockedByModalPanel(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsItem_ToolTip(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetToolTip(QGraphicsItem* self, struct miqt_string toolTip);
+extern __declspec(dllexport) 
+QCursor* QGraphicsItem_Cursor(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetCursor(QGraphicsItem* self, QCursor* cursor);
+extern __declspec(dllexport) 
+bool QGraphicsItem_HasCursor(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_UnsetCursor(QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsVisible(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsVisibleTo(const QGraphicsItem* self, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetVisible(QGraphicsItem* self, bool visible);
+extern __declspec(dllexport) 
+void QGraphicsItem_Hide(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_Show(QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsEnabled(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetEnabled(QGraphicsItem* self, bool enabled);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsSelected(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetSelected(QGraphicsItem* self, bool selected);
+extern __declspec(dllexport) 
+bool QGraphicsItem_AcceptDrops(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetAcceptDrops(QGraphicsItem* self, bool on);
+extern __declspec(dllexport) 
+double QGraphicsItem_Opacity(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+double QGraphicsItem_EffectiveOpacity(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetOpacity(QGraphicsItem* self, double opacity);
+extern __declspec(dllexport) 
+QGraphicsEffect* QGraphicsItem_GraphicsEffect(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetGraphicsEffect(QGraphicsItem* self, QGraphicsEffect* effect);
+extern __declspec(dllexport) 
+int QGraphicsItem_AcceptedMouseButtons(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetAcceptedMouseButtons(QGraphicsItem* self, int buttons);
+extern __declspec(dllexport) 
+bool QGraphicsItem_AcceptHoverEvents(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetAcceptHoverEvents(QGraphicsItem* self, bool enabled);
+extern __declspec(dllexport) 
+bool QGraphicsItem_AcceptTouchEvents(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetAcceptTouchEvents(QGraphicsItem* self, bool enabled);
+extern __declspec(dllexport) 
+bool QGraphicsItem_FiltersChildEvents(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFiltersChildEvents(QGraphicsItem* self, bool enabled);
+extern __declspec(dllexport) 
+bool QGraphicsItem_HandlesChildEvents(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetHandlesChildEvents(QGraphicsItem* self, bool enabled);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsActive(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetActive(QGraphicsItem* self, bool active);
+extern __declspec(dllexport) 
+bool QGraphicsItem_HasFocus(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFocus(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_ClearFocus(QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_FocusProxy(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFocusProxy(QGraphicsItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_FocusItem(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_FocusScopeItem(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_GrabMouse(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_UngrabMouse(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_GrabKeyboard(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_UngrabKeyboard(QGraphicsItem* self);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_Pos(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+double QGraphicsItem_X(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetX(QGraphicsItem* self, double x);
+extern __declspec(dllexport) 
+double QGraphicsItem_Y(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetY(QGraphicsItem* self, double y);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_ScenePos(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetPos(QGraphicsItem* self, QPointF* pos);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetPos2(QGraphicsItem* self, double x, double y);
+extern __declspec(dllexport) 
+void QGraphicsItem_MoveBy(QGraphicsItem* self, double dx, double dy);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible2(QGraphicsItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QTransform* QGraphicsItem_Transform(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QTransform* QGraphicsItem_SceneTransform(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QTransform* QGraphicsItem_DeviceTransform(const QGraphicsItem* self, QTransform* viewportTransform);
+extern __declspec(dllexport) 
+QTransform* QGraphicsItem_ItemTransform(const QGraphicsItem* self, QGraphicsItem* other);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetTransform(QGraphicsItem* self, QTransform* matrix);
+extern __declspec(dllexport) 
+void QGraphicsItem_ResetTransform(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetRotation(QGraphicsItem* self, double angle);
+extern __declspec(dllexport) 
+double QGraphicsItem_Rotation(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetScale(QGraphicsItem* self, double scale);
+extern __declspec(dllexport) 
+double QGraphicsItem_Scale(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of QGraphicsTransform* */  QGraphicsItem_Transformations(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetTransformations(QGraphicsItem* self, struct miqt_array /* of QGraphicsTransform* */  transformations);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_TransformOriginPoint(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetTransformOriginPoint(QGraphicsItem* self, QPointF* origin);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetTransformOriginPoint2(QGraphicsItem* self, double ax, double ay);
+extern __declspec(dllexport) 
+void QGraphicsItem_Advance(QGraphicsItem* self, int phase);
+extern __declspec(dllexport) 
+double QGraphicsItem_ZValue(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetZValue(QGraphicsItem* self, double z);
+extern __declspec(dllexport) 
+void QGraphicsItem_StackBefore(QGraphicsItem* self, QGraphicsItem* sibling);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_BoundingRect(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_ChildrenBoundingRect(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_SceneBoundingRect(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_Shape(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsClipped(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_ClipPath(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_Contains(const QGraphicsItem* self, QPointF* point);
+extern __declspec(dllexport) 
+bool QGraphicsItem_CollidesWithItem(const QGraphicsItem* self, QGraphicsItem* other, int mode);
+extern __declspec(dllexport) 
+bool QGraphicsItem_CollidesWithPath(const QGraphicsItem* self, QPainterPath* path, int mode);
+extern __declspec(dllexport) 
+struct miqt_array /* of QGraphicsItem* */  QGraphicsItem_CollidingItems(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsObscured(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsObscured2(const QGraphicsItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsObscuredBy(const QGraphicsItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_OpaqueArea(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QRegion* QGraphicsItem_BoundingRegion(const QGraphicsItem* self, QTransform* itemToDeviceTransform);
+extern __declspec(dllexport) 
+double QGraphicsItem_BoundingRegionGranularity(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetBoundingRegionGranularity(QGraphicsItem* self, double granularity);
+extern __declspec(dllexport) 
+void QGraphicsItem_Paint(QGraphicsItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+void QGraphicsItem_Update(QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_Update2(QGraphicsItem* self, double x, double y, double width, double height);
+extern __declspec(dllexport) 
+void QGraphicsItem_Scroll(QGraphicsItem* self, double dx, double dy);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapToItem(const QGraphicsItem* self, QGraphicsItem* item, QPointF* point);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapToParent(const QGraphicsItem* self, QPointF* point);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapToScene(const QGraphicsItem* self, QPointF* point);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectToItem(const QGraphicsItem* self, QGraphicsItem* item, QRectF* rect);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectToParent(const QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectToScene(const QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_MapToItem4(const QGraphicsItem* self, QGraphicsItem* item, QPainterPath* path);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_MapToParentWithPath(const QGraphicsItem* self, QPainterPath* path);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_MapToSceneWithPath(const QGraphicsItem* self, QPainterPath* path);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapFromItem(const QGraphicsItem* self, QGraphicsItem* item, QPointF* point);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapFromParent(const QGraphicsItem* self, QPointF* point);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapFromScene(const QGraphicsItem* self, QPointF* point);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectFromItem(const QGraphicsItem* self, QGraphicsItem* item, QRectF* rect);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectFromParent(const QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectFromScene(const QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_MapFromItem4(const QGraphicsItem* self, QGraphicsItem* item, QPainterPath* path);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_MapFromParentWithPath(const QGraphicsItem* self, QPainterPath* path);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItem_MapFromSceneWithPath(const QGraphicsItem* self, QPainterPath* path);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapToItem5(const QGraphicsItem* self, QGraphicsItem* item, double x, double y);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapToParent2(const QGraphicsItem* self, double x, double y);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapToScene2(const QGraphicsItem* self, double x, double y);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectToItem2(const QGraphicsItem* self, QGraphicsItem* item, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectToParent2(const QGraphicsItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectToScene2(const QGraphicsItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapFromItem5(const QGraphicsItem* self, QGraphicsItem* item, double x, double y);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapFromParent2(const QGraphicsItem* self, double x, double y);
+extern __declspec(dllexport) 
+QPointF* QGraphicsItem_MapFromScene2(const QGraphicsItem* self, double x, double y);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectFromItem2(const QGraphicsItem* self, QGraphicsItem* item, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectFromParent2(const QGraphicsItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItem_MapRectFromScene2(const QGraphicsItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsAncestorOf(const QGraphicsItem* self, QGraphicsItem* child);
+extern __declspec(dllexport) 
+QGraphicsItem* QGraphicsItem_CommonAncestorItem(const QGraphicsItem* self, QGraphicsItem* other);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsUnderMouse(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+QVariant* QGraphicsItem_Data(const QGraphicsItem* self, int key);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetData(QGraphicsItem* self, int key, QVariant* value);
+extern __declspec(dllexport) 
+int QGraphicsItem_InputMethodHints(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetInputMethodHints(QGraphicsItem* self, int hints);
+extern __declspec(dllexport) 
+int QGraphicsItem_Type(const QGraphicsItem* self);
+extern __declspec(dllexport) 
+void QGraphicsItem_InstallSceneEventFilter(QGraphicsItem* self, QGraphicsItem* filterItem);
+extern __declspec(dllexport) 
+void QGraphicsItem_RemoveSceneEventFilter(QGraphicsItem* self, QGraphicsItem* filterItem);
+extern __declspec(dllexport) 
+bool QGraphicsItem_SceneEventFilter(QGraphicsItem* self, QGraphicsItem* watched, QEvent* event);
+extern __declspec(dllexport) 
+bool QGraphicsItem_SceneEvent(QGraphicsItem* self, QEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_ContextMenuEvent(QGraphicsItem* self, QGraphicsSceneContextMenuEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_DragEnterEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_DragLeaveEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_DragMoveEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_DropEvent(QGraphicsItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_FocusInEvent(QGraphicsItem* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_FocusOutEvent(QGraphicsItem* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_HoverEnterEvent(QGraphicsItem* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_HoverMoveEvent(QGraphicsItem* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_HoverLeaveEvent(QGraphicsItem* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_KeyPressEvent(QGraphicsItem* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_KeyReleaseEvent(QGraphicsItem* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_MousePressEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_MouseMoveEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_MouseReleaseEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_MouseDoubleClickEvent(QGraphicsItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_WheelEvent(QGraphicsItem* self, QGraphicsSceneWheelEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsItem_InputMethodEvent(QGraphicsItem* self, QInputMethodEvent* event);
+extern __declspec(dllexport) 
+QVariant* QGraphicsItem_InputMethodQuery(const QGraphicsItem* self, int query);
+extern __declspec(dllexport) 
+QVariant* QGraphicsItem_ItemChange(QGraphicsItem* self, GraphicsItemChange change, QVariant* value);
+extern __declspec(dllexport) 
+bool QGraphicsItem_SupportsExtension(const QGraphicsItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetExtension(QGraphicsItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsItem_Extension(const QGraphicsItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFlag2(QGraphicsItem* self, GraphicsItemFlag flag, bool enabled);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetCacheMode2(QGraphicsItem* self, CacheMode mode, QSize* cacheSize);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetFocus1(QGraphicsItem* self, int focusReason);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible1(QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible22(QGraphicsItem* self, QRectF* rect, int xmargin);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible3(QGraphicsItem* self, QRectF* rect, int xmargin, int ymargin);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible5(QGraphicsItem* self, double x, double y, double w, double h, int xmargin);
+extern __declspec(dllexport) 
+void QGraphicsItem_EnsureVisible6(QGraphicsItem* self, double x, double y, double w, double h, int xmargin, int ymargin);
+extern __declspec(dllexport) 
+QTransform* QGraphicsItem_ItemTransform2(const QGraphicsItem* self, QGraphicsItem* other, bool* ok);
+extern __declspec(dllexport) 
+void QGraphicsItem_SetTransform2(QGraphicsItem* self, QTransform* matrix, bool combine);
+extern __declspec(dllexport) 
+struct miqt_array /* of QGraphicsItem* */  QGraphicsItem_CollidingItems1(const QGraphicsItem* self, int mode);
+extern __declspec(dllexport) 
+bool QGraphicsItem_IsObscured1(const QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsItem_Update1(QGraphicsItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsItem_Scroll3(QGraphicsItem* self, double dx, double dy, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsItem_Delete(QGraphicsItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsObject* QGraphicsObject_new();
-extern __declspec(dllexport) QGraphicsObject* QGraphicsObject_new2(QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsObject_virtbase(QGraphicsObject* src, QObject** outptr_QObject, QGraphicsItem** outptr_QGraphicsItem);
-extern __declspec(dllexport) QMetaObject* QGraphicsObject_MetaObject(const QGraphicsObject* self);
-extern __declspec(dllexport) void* QGraphicsObject_Metacast(QGraphicsObject* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QGraphicsObject_Tr(const char* s);
-extern __declspec(dllexport) void QGraphicsObject_GrabGesture(QGraphicsObject* self, int typeVal);
-extern __declspec(dllexport) void QGraphicsObject_UngrabGesture(QGraphicsObject* self, int typeVal);
-extern __declspec(dllexport) void QGraphicsObject_ParentChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+QGraphicsObject* QGraphicsObject_new();
+extern __declspec(dllexport) 
+QGraphicsObject* QGraphicsObject_new2(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsObject_virtbase(QGraphicsObject* src
+, QObject** outptr_QObject
+, QGraphicsItem** outptr_QGraphicsItem
+);
+extern __declspec(dllexport) 
+QMetaObject* QGraphicsObject_MetaObject(const QGraphicsObject* self);
+extern __declspec(dllexport) 
+void* QGraphicsObject_Metacast(QGraphicsObject* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsObject_Tr(const char* s);
+extern __declspec(dllexport) 
+void QGraphicsObject_GrabGesture(QGraphicsObject* self, int typeVal);
+extern __declspec(dllexport) 
+void QGraphicsObject_UngrabGesture(QGraphicsObject* self, int typeVal);
+extern __declspec(dllexport) 
+void QGraphicsObject_ParentChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_ParentChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_OpacityChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_OpacityChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_OpacityChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_VisibleChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_VisibleChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_VisibleChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_EnabledChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_EnabledChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_EnabledChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_XChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_XChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_XChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_YChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_YChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_YChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_ZChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_ZChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_ZChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_RotationChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_RotationChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_RotationChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_ScaleChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_ScaleChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_ScaleChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_ChildrenChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_ChildrenChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_ChildrenChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_WidthChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_WidthChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_WidthChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsObject_HeightChanged(QGraphicsObject* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_HeightChanged(QGraphicsObject* self);
 void QGraphicsObject_connect_HeightChanged(QGraphicsObject* self, intptr_t slot);
-extern __declspec(dllexport) bool QGraphicsObject_Event(QGraphicsObject* self, QEvent* ev);
-extern __declspec(dllexport) struct miqt_string QGraphicsObject_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QGraphicsObject_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QGraphicsObject_GrabGesture2(QGraphicsObject* self, int typeVal, int flags);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Event(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_Event(void* self, QEvent* ev);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_ChildEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_ChildEvent(void* self, QChildEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_CustomEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_CustomEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_ConnectNotify(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_DisconnectNotify(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Advance(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_Advance(void* self, int phase);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsObject_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsObject_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_CollidesWithItem(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_CollidesWithItem(const void* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_CollidesWithPath(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_CollidesWithPath(const void* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsObject_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsObject_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_SceneEventFilter(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_SceneEventFilter(void* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsObject_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QGraphicsObject_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsObject_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsObject_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsObject_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsObject_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsObject_Delete(QGraphicsObject* self, bool isSubclass);
+extern __declspec(dllexport) 
+bool QGraphicsObject_Event(QGraphicsObject* self, QEvent* ev);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsObject_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsObject_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QGraphicsObject_GrabGesture2(QGraphicsObject* self, int typeVal, int flags);
+extern __declspec(dllexport) 
+void QGraphicsObject_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QGraphicsObject_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QGraphicsObject_override_virtual_Metacast(void* self, intptr_t slot);
+void* QGraphicsObject_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QGraphicsObject_Delete(QGraphicsObject* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractGraphicsShapeItem* QAbstractGraphicsShapeItem_new();
-extern __declspec(dllexport) QAbstractGraphicsShapeItem* QAbstractGraphicsShapeItem_new2(QGraphicsItem* parent);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_virtbase(QAbstractGraphicsShapeItem* src, QGraphicsItem** outptr_QGraphicsItem);
-extern __declspec(dllexport) QPen* QAbstractGraphicsShapeItem_Pen(const QAbstractGraphicsShapeItem* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_SetPen(QAbstractGraphicsShapeItem* self, QPen* pen);
-extern __declspec(dllexport) QBrush* QAbstractGraphicsShapeItem_Brush(const QAbstractGraphicsShapeItem* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_SetBrush(QAbstractGraphicsShapeItem* self, QBrush* brush);
-extern __declspec(dllexport) bool QAbstractGraphicsShapeItem_IsObscuredBy(const QAbstractGraphicsShapeItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QAbstractGraphicsShapeItem_OpaqueArea(const QAbstractGraphicsShapeItem* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QAbstractGraphicsShapeItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_Advance(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_Advance(void* self, int phase);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QAbstractGraphicsShapeItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QAbstractGraphicsShapeItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_CollidesWithItem(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_CollidesWithItem(const void* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_CollidesWithPath(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_CollidesWithPath(const void* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_Paint(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_Type(void* self, intptr_t slot);
-int QAbstractGraphicsShapeItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_SceneEventFilter(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_SceneEventFilter(void* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_DropEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QAbstractGraphicsShapeItem_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QAbstractGraphicsShapeItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QAbstractGraphicsShapeItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QAbstractGraphicsShapeItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QAbstractGraphicsShapeItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QAbstractGraphicsShapeItem_Delete(QAbstractGraphicsShapeItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QAbstractGraphicsShapeItem* QAbstractGraphicsShapeItem_new();
+extern __declspec(dllexport) 
+QAbstractGraphicsShapeItem* QAbstractGraphicsShapeItem_new2(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QAbstractGraphicsShapeItem_virtbase(QAbstractGraphicsShapeItem* src
+, QGraphicsItem** outptr_QGraphicsItem
+);
+extern __declspec(dllexport) 
+QPen* QAbstractGraphicsShapeItem_Pen(const QAbstractGraphicsShapeItem* self);
+extern __declspec(dllexport) 
+void QAbstractGraphicsShapeItem_SetPen(QAbstractGraphicsShapeItem* self, QPen* pen);
+extern __declspec(dllexport) 
+QBrush* QAbstractGraphicsShapeItem_Brush(const QAbstractGraphicsShapeItem* self);
+extern __declspec(dllexport) 
+void QAbstractGraphicsShapeItem_SetBrush(QAbstractGraphicsShapeItem* self, QBrush* brush);
+extern __declspec(dllexport) 
+bool QAbstractGraphicsShapeItem_IsObscuredBy(const QAbstractGraphicsShapeItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QAbstractGraphicsShapeItem_OpaqueArea(const QAbstractGraphicsShapeItem* self);
+extern __declspec(dllexport) 
+void QAbstractGraphicsShapeItem_Delete(QAbstractGraphicsShapeItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsPathItem* QGraphicsPathItem_new();
-extern __declspec(dllexport) QGraphicsPathItem* QGraphicsPathItem_new2(QPainterPath* path);
-extern __declspec(dllexport) QGraphicsPathItem* QGraphicsPathItem_new3(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsPathItem* QGraphicsPathItem_new4(QPainterPath* path, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsPathItem_virtbase(QGraphicsPathItem* src, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem);
-extern __declspec(dllexport) QPainterPath* QGraphicsPathItem_Path(const QGraphicsPathItem* self);
-extern __declspec(dllexport) void QGraphicsPathItem_SetPath(QGraphicsPathItem* self, QPainterPath* path);
-extern __declspec(dllexport) QRectF* QGraphicsPathItem_BoundingRect(const QGraphicsPathItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsPathItem_Shape(const QGraphicsPathItem* self);
-extern __declspec(dllexport) bool QGraphicsPathItem_Contains(const QGraphicsPathItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsPathItem_Paint(QGraphicsPathItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsPathItem_IsObscuredBy(const QGraphicsPathItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsPathItem_OpaqueArea(const QGraphicsPathItem* self);
-extern __declspec(dllexport) int QGraphicsPathItem_Type(const QGraphicsPathItem* self);
-extern __declspec(dllexport) bool QGraphicsPathItem_SupportsExtension(const QGraphicsPathItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsPathItem_SetExtension(QGraphicsPathItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsPathItem_Extension(const QGraphicsPathItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsPathItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsPathItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsPathItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsPathItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsPathItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsPathItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsPathItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsPathItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsPathItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPathItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsPathItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPathItem_Delete(QGraphicsPathItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsPathItem* QGraphicsPathItem_new();
+extern __declspec(dllexport) 
+QGraphicsPathItem* QGraphicsPathItem_new2(QPainterPath* path);
+extern __declspec(dllexport) 
+QGraphicsPathItem* QGraphicsPathItem_new3(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsPathItem* QGraphicsPathItem_new4(QPainterPath* path, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsPathItem_virtbase(QGraphicsPathItem* src
+, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem
+);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPathItem_Path(const QGraphicsPathItem* self);
+extern __declspec(dllexport) 
+void QGraphicsPathItem_SetPath(QGraphicsPathItem* self, QPainterPath* path);
+extern __declspec(dllexport) 
+QRectF* QGraphicsPathItem_BoundingRect(const QGraphicsPathItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPathItem_Shape(const QGraphicsPathItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsPathItem_Contains(const QGraphicsPathItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsPathItem_Paint(QGraphicsPathItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsPathItem_IsObscuredBy(const QGraphicsPathItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPathItem_OpaqueArea(const QGraphicsPathItem* self);
+extern __declspec(dllexport) 
+int QGraphicsPathItem_Type(const QGraphicsPathItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsPathItem_SupportsExtension(const QGraphicsPathItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsPathItem_SetExtension(QGraphicsPathItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsPathItem_Extension(const QGraphicsPathItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsPathItem_Delete(QGraphicsPathItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsRectItem* QGraphicsRectItem_new();
-extern __declspec(dllexport) QGraphicsRectItem* QGraphicsRectItem_new2(QRectF* rect);
-extern __declspec(dllexport) QGraphicsRectItem* QGraphicsRectItem_new3(double x, double y, double w, double h);
-extern __declspec(dllexport) QGraphicsRectItem* QGraphicsRectItem_new4(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsRectItem* QGraphicsRectItem_new5(QRectF* rect, QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsRectItem* QGraphicsRectItem_new6(double x, double y, double w, double h, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsRectItem_virtbase(QGraphicsRectItem* src, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem);
-extern __declspec(dllexport) QRectF* QGraphicsRectItem_Rect(const QGraphicsRectItem* self);
-extern __declspec(dllexport) void QGraphicsRectItem_SetRect(QGraphicsRectItem* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsRectItem_SetRect2(QGraphicsRectItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) QRectF* QGraphicsRectItem_BoundingRect(const QGraphicsRectItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsRectItem_Shape(const QGraphicsRectItem* self);
-extern __declspec(dllexport) bool QGraphicsRectItem_Contains(const QGraphicsRectItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsRectItem_Paint(QGraphicsRectItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsRectItem_IsObscuredBy(const QGraphicsRectItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsRectItem_OpaqueArea(const QGraphicsRectItem* self);
-extern __declspec(dllexport) int QGraphicsRectItem_Type(const QGraphicsRectItem* self);
-extern __declspec(dllexport) bool QGraphicsRectItem_SupportsExtension(const QGraphicsRectItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsRectItem_SetExtension(QGraphicsRectItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsRectItem_Extension(const QGraphicsRectItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsRectItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsRectItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsRectItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsRectItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsRectItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsRectItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsRectItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsRectItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsRectItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsRectItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsRectItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsRectItem_Delete(QGraphicsRectItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsRectItem* QGraphicsRectItem_new();
+extern __declspec(dllexport) 
+QGraphicsRectItem* QGraphicsRectItem_new2(QRectF* rect);
+extern __declspec(dllexport) 
+QGraphicsRectItem* QGraphicsRectItem_new3(double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QGraphicsRectItem* QGraphicsRectItem_new4(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsRectItem* QGraphicsRectItem_new5(QRectF* rect, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsRectItem* QGraphicsRectItem_new6(double x, double y, double w, double h, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsRectItem_virtbase(QGraphicsRectItem* src
+, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem
+);
+extern __declspec(dllexport) 
+QRectF* QGraphicsRectItem_Rect(const QGraphicsRectItem* self);
+extern __declspec(dllexport) 
+void QGraphicsRectItem_SetRect(QGraphicsRectItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsRectItem_SetRect2(QGraphicsRectItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QRectF* QGraphicsRectItem_BoundingRect(const QGraphicsRectItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsRectItem_Shape(const QGraphicsRectItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsRectItem_Contains(const QGraphicsRectItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsRectItem_Paint(QGraphicsRectItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsRectItem_IsObscuredBy(const QGraphicsRectItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsRectItem_OpaqueArea(const QGraphicsRectItem* self);
+extern __declspec(dllexport) 
+int QGraphicsRectItem_Type(const QGraphicsRectItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsRectItem_SupportsExtension(const QGraphicsRectItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsRectItem_SetExtension(QGraphicsRectItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsRectItem_Extension(const QGraphicsRectItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsRectItem_Delete(QGraphicsRectItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsEllipseItem* QGraphicsEllipseItem_new();
-extern __declspec(dllexport) QGraphicsEllipseItem* QGraphicsEllipseItem_new2(QRectF* rect);
-extern __declspec(dllexport) QGraphicsEllipseItem* QGraphicsEllipseItem_new3(double x, double y, double w, double h);
-extern __declspec(dllexport) QGraphicsEllipseItem* QGraphicsEllipseItem_new4(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsEllipseItem* QGraphicsEllipseItem_new5(QRectF* rect, QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsEllipseItem* QGraphicsEllipseItem_new6(double x, double y, double w, double h, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsEllipseItem_virtbase(QGraphicsEllipseItem* src, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem);
-extern __declspec(dllexport) QRectF* QGraphicsEllipseItem_Rect(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_SetRect(QGraphicsEllipseItem* self, QRectF* rect);
-extern __declspec(dllexport) void QGraphicsEllipseItem_SetRect2(QGraphicsEllipseItem* self, double x, double y, double w, double h);
-extern __declspec(dllexport) int QGraphicsEllipseItem_StartAngle(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_SetStartAngle(QGraphicsEllipseItem* self, int angle);
-extern __declspec(dllexport) int QGraphicsEllipseItem_SpanAngle(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_SetSpanAngle(QGraphicsEllipseItem* self, int angle);
-extern __declspec(dllexport) QRectF* QGraphicsEllipseItem_BoundingRect(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsEllipseItem_Shape(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) bool QGraphicsEllipseItem_Contains(const QGraphicsEllipseItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsEllipseItem_Paint(QGraphicsEllipseItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsEllipseItem_IsObscuredBy(const QGraphicsEllipseItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsEllipseItem_OpaqueArea(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) int QGraphicsEllipseItem_Type(const QGraphicsEllipseItem* self);
-extern __declspec(dllexport) bool QGraphicsEllipseItem_SupportsExtension(const QGraphicsEllipseItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsEllipseItem_SetExtension(QGraphicsEllipseItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsEllipseItem_Extension(const QGraphicsEllipseItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsEllipseItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsEllipseItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsEllipseItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsEllipseItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsEllipseItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsEllipseItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsEllipseItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsEllipseItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsEllipseItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsEllipseItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsEllipseItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsEllipseItem_Delete(QGraphicsEllipseItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsEllipseItem* QGraphicsEllipseItem_new();
+extern __declspec(dllexport) 
+QGraphicsEllipseItem* QGraphicsEllipseItem_new2(QRectF* rect);
+extern __declspec(dllexport) 
+QGraphicsEllipseItem* QGraphicsEllipseItem_new3(double x, double y, double w, double h);
+extern __declspec(dllexport) 
+QGraphicsEllipseItem* QGraphicsEllipseItem_new4(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsEllipseItem* QGraphicsEllipseItem_new5(QRectF* rect, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsEllipseItem* QGraphicsEllipseItem_new6(double x, double y, double w, double h, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_virtbase(QGraphicsEllipseItem* src
+, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem
+);
+extern __declspec(dllexport) 
+QRectF* QGraphicsEllipseItem_Rect(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_SetRect(QGraphicsEllipseItem* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_SetRect2(QGraphicsEllipseItem* self, double x, double y, double w, double h);
+extern __declspec(dllexport) 
+int QGraphicsEllipseItem_StartAngle(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_SetStartAngle(QGraphicsEllipseItem* self, int angle);
+extern __declspec(dllexport) 
+int QGraphicsEllipseItem_SpanAngle(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_SetSpanAngle(QGraphicsEllipseItem* self, int angle);
+extern __declspec(dllexport) 
+QRectF* QGraphicsEllipseItem_BoundingRect(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsEllipseItem_Shape(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsEllipseItem_Contains(const QGraphicsEllipseItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_Paint(QGraphicsEllipseItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsEllipseItem_IsObscuredBy(const QGraphicsEllipseItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsEllipseItem_OpaqueArea(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+int QGraphicsEllipseItem_Type(const QGraphicsEllipseItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsEllipseItem_SupportsExtension(const QGraphicsEllipseItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_SetExtension(QGraphicsEllipseItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsEllipseItem_Extension(const QGraphicsEllipseItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsEllipseItem_Delete(QGraphicsEllipseItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsPolygonItem* QGraphicsPolygonItem_new();
-extern __declspec(dllexport) QGraphicsPolygonItem* QGraphicsPolygonItem_new2(QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsPolygonItem_virtbase(QGraphicsPolygonItem* src, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem);
-extern __declspec(dllexport) int QGraphicsPolygonItem_FillRule(const QGraphicsPolygonItem* self);
-extern __declspec(dllexport) void QGraphicsPolygonItem_SetFillRule(QGraphicsPolygonItem* self, int rule);
-extern __declspec(dllexport) QRectF* QGraphicsPolygonItem_BoundingRect(const QGraphicsPolygonItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsPolygonItem_Shape(const QGraphicsPolygonItem* self);
-extern __declspec(dllexport) bool QGraphicsPolygonItem_Contains(const QGraphicsPolygonItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsPolygonItem_Paint(QGraphicsPolygonItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsPolygonItem_IsObscuredBy(const QGraphicsPolygonItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsPolygonItem_OpaqueArea(const QGraphicsPolygonItem* self);
-extern __declspec(dllexport) int QGraphicsPolygonItem_Type(const QGraphicsPolygonItem* self);
-extern __declspec(dllexport) bool QGraphicsPolygonItem_SupportsExtension(const QGraphicsPolygonItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsPolygonItem_SetExtension(QGraphicsPolygonItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsPolygonItem_Extension(const QGraphicsPolygonItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsPolygonItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsPolygonItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsPolygonItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsPolygonItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsPolygonItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsPolygonItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsPolygonItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsPolygonItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsPolygonItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPolygonItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsPolygonItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPolygonItem_Delete(QGraphicsPolygonItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsPolygonItem* QGraphicsPolygonItem_new();
+extern __declspec(dllexport) 
+QGraphicsPolygonItem* QGraphicsPolygonItem_new2(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsPolygonItem_virtbase(QGraphicsPolygonItem* src
+, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem
+);
+extern __declspec(dllexport) 
+int QGraphicsPolygonItem_FillRule(const QGraphicsPolygonItem* self);
+extern __declspec(dllexport) 
+void QGraphicsPolygonItem_SetFillRule(QGraphicsPolygonItem* self, int rule);
+extern __declspec(dllexport) 
+QRectF* QGraphicsPolygonItem_BoundingRect(const QGraphicsPolygonItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPolygonItem_Shape(const QGraphicsPolygonItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsPolygonItem_Contains(const QGraphicsPolygonItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsPolygonItem_Paint(QGraphicsPolygonItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsPolygonItem_IsObscuredBy(const QGraphicsPolygonItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPolygonItem_OpaqueArea(const QGraphicsPolygonItem* self);
+extern __declspec(dllexport) 
+int QGraphicsPolygonItem_Type(const QGraphicsPolygonItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsPolygonItem_SupportsExtension(const QGraphicsPolygonItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsPolygonItem_SetExtension(QGraphicsPolygonItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsPolygonItem_Extension(const QGraphicsPolygonItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsPolygonItem_Delete(QGraphicsPolygonItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsLineItem* QGraphicsLineItem_new();
-extern __declspec(dllexport) QGraphicsLineItem* QGraphicsLineItem_new2(QLineF* line);
-extern __declspec(dllexport) QGraphicsLineItem* QGraphicsLineItem_new3(double x1, double y1, double x2, double y2);
-extern __declspec(dllexport) QGraphicsLineItem* QGraphicsLineItem_new4(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsLineItem* QGraphicsLineItem_new5(QLineF* line, QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsLineItem* QGraphicsLineItem_new6(double x1, double y1, double x2, double y2, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsLineItem_virtbase(QGraphicsLineItem* src, QGraphicsItem** outptr_QGraphicsItem);
-extern __declspec(dllexport) QPen* QGraphicsLineItem_Pen(const QGraphicsLineItem* self);
-extern __declspec(dllexport) void QGraphicsLineItem_SetPen(QGraphicsLineItem* self, QPen* pen);
-extern __declspec(dllexport) QLineF* QGraphicsLineItem_Line(const QGraphicsLineItem* self);
-extern __declspec(dllexport) void QGraphicsLineItem_SetLine(QGraphicsLineItem* self, QLineF* line);
-extern __declspec(dllexport) void QGraphicsLineItem_SetLine2(QGraphicsLineItem* self, double x1, double y1, double x2, double y2);
-extern __declspec(dllexport) QRectF* QGraphicsLineItem_BoundingRect(const QGraphicsLineItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsLineItem_Shape(const QGraphicsLineItem* self);
-extern __declspec(dllexport) bool QGraphicsLineItem_Contains(const QGraphicsLineItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsLineItem_Paint(QGraphicsLineItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsLineItem_IsObscuredBy(const QGraphicsLineItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsLineItem_OpaqueArea(const QGraphicsLineItem* self);
-extern __declspec(dllexport) int QGraphicsLineItem_Type(const QGraphicsLineItem* self);
-extern __declspec(dllexport) bool QGraphicsLineItem_SupportsExtension(const QGraphicsLineItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsLineItem_SetExtension(QGraphicsLineItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsLineItem_Extension(const QGraphicsLineItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsLineItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsLineItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsLineItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsLineItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsLineItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_Advance(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_Advance(void* self, int phase);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_CollidesWithItem(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_CollidesWithItem(const void* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_CollidesWithPath(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_CollidesWithPath(const void* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_SceneEventFilter(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_SceneEventFilter(void* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsLineItem_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsLineItem_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsLineItem_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsLineItem_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QGraphicsLineItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QGraphicsLineItem_Delete(QGraphicsLineItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsLineItem* QGraphicsLineItem_new();
+extern __declspec(dllexport) 
+QGraphicsLineItem* QGraphicsLineItem_new2(QLineF* line);
+extern __declspec(dllexport) 
+QGraphicsLineItem* QGraphicsLineItem_new3(double x1, double y1, double x2, double y2);
+extern __declspec(dllexport) 
+QGraphicsLineItem* QGraphicsLineItem_new4(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsLineItem* QGraphicsLineItem_new5(QLineF* line, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsLineItem* QGraphicsLineItem_new6(double x1, double y1, double x2, double y2, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_virtbase(QGraphicsLineItem* src
+, QGraphicsItem** outptr_QGraphicsItem
+);
+extern __declspec(dllexport) 
+QPen* QGraphicsLineItem_Pen(const QGraphicsLineItem* self);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_SetPen(QGraphicsLineItem* self, QPen* pen);
+extern __declspec(dllexport) 
+QLineF* QGraphicsLineItem_Line(const QGraphicsLineItem* self);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_SetLine(QGraphicsLineItem* self, QLineF* line);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_SetLine2(QGraphicsLineItem* self, double x1, double y1, double x2, double y2);
+extern __declspec(dllexport) 
+QRectF* QGraphicsLineItem_BoundingRect(const QGraphicsLineItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsLineItem_Shape(const QGraphicsLineItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsLineItem_Contains(const QGraphicsLineItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_Paint(QGraphicsLineItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsLineItem_IsObscuredBy(const QGraphicsLineItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsLineItem_OpaqueArea(const QGraphicsLineItem* self);
+extern __declspec(dllexport) 
+int QGraphicsLineItem_Type(const QGraphicsLineItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsLineItem_SupportsExtension(const QGraphicsLineItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_SetExtension(QGraphicsLineItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsLineItem_Extension(const QGraphicsLineItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsLineItem_Delete(QGraphicsLineItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsPixmapItem* QGraphicsPixmapItem_new();
-extern __declspec(dllexport) QGraphicsPixmapItem* QGraphicsPixmapItem_new2(QPixmap* pixmap);
-extern __declspec(dllexport) QGraphicsPixmapItem* QGraphicsPixmapItem_new3(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsPixmapItem* QGraphicsPixmapItem_new4(QPixmap* pixmap, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsPixmapItem_virtbase(QGraphicsPixmapItem* src, QGraphicsItem** outptr_QGraphicsItem);
-extern __declspec(dllexport) QPixmap* QGraphicsPixmapItem_Pixmap(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_SetPixmap(QGraphicsPixmapItem* self, QPixmap* pixmap);
-extern __declspec(dllexport) int QGraphicsPixmapItem_TransformationMode(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_SetTransformationMode(QGraphicsPixmapItem* self, int mode);
-extern __declspec(dllexport) QPointF* QGraphicsPixmapItem_Offset(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_SetOffset(QGraphicsPixmapItem* self, QPointF* offset);
-extern __declspec(dllexport) void QGraphicsPixmapItem_SetOffset2(QGraphicsPixmapItem* self, double x, double y);
-extern __declspec(dllexport) QRectF* QGraphicsPixmapItem_BoundingRect(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsPixmapItem_Shape(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) bool QGraphicsPixmapItem_Contains(const QGraphicsPixmapItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsPixmapItem_Paint(QGraphicsPixmapItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsPixmapItem_IsObscuredBy(const QGraphicsPixmapItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsPixmapItem_OpaqueArea(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) int QGraphicsPixmapItem_Type(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) ShapeMode QGraphicsPixmapItem_ShapeMode(const QGraphicsPixmapItem* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_SetShapeMode(QGraphicsPixmapItem* self, ShapeMode mode);
-extern __declspec(dllexport) bool QGraphicsPixmapItem_SupportsExtension(const QGraphicsPixmapItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsPixmapItem_SetExtension(QGraphicsPixmapItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsPixmapItem_Extension(const QGraphicsPixmapItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsPixmapItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsPixmapItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsPixmapItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsPixmapItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsPixmapItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_Advance(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_Advance(void* self, int phase);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_CollidesWithItem(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_CollidesWithItem(const void* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_CollidesWithPath(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_CollidesWithPath(const void* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_SceneEventFilter(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_SceneEventFilter(void* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsPixmapItem_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsPixmapItem_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsPixmapItem_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsPixmapItem_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QGraphicsPixmapItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QGraphicsPixmapItem_Delete(QGraphicsPixmapItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsPixmapItem* QGraphicsPixmapItem_new();
+extern __declspec(dllexport) 
+QGraphicsPixmapItem* QGraphicsPixmapItem_new2(QPixmap* pixmap);
+extern __declspec(dllexport) 
+QGraphicsPixmapItem* QGraphicsPixmapItem_new3(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsPixmapItem* QGraphicsPixmapItem_new4(QPixmap* pixmap, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_virtbase(QGraphicsPixmapItem* src
+, QGraphicsItem** outptr_QGraphicsItem
+);
+extern __declspec(dllexport) 
+QPixmap* QGraphicsPixmapItem_Pixmap(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_SetPixmap(QGraphicsPixmapItem* self, QPixmap* pixmap);
+extern __declspec(dllexport) 
+int QGraphicsPixmapItem_TransformationMode(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_SetTransformationMode(QGraphicsPixmapItem* self, int mode);
+extern __declspec(dllexport) 
+QPointF* QGraphicsPixmapItem_Offset(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_SetOffset(QGraphicsPixmapItem* self, QPointF* offset);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_SetOffset2(QGraphicsPixmapItem* self, double x, double y);
+extern __declspec(dllexport) 
+QRectF* QGraphicsPixmapItem_BoundingRect(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPixmapItem_Shape(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsPixmapItem_Contains(const QGraphicsPixmapItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_Paint(QGraphicsPixmapItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsPixmapItem_IsObscuredBy(const QGraphicsPixmapItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsPixmapItem_OpaqueArea(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+int QGraphicsPixmapItem_Type(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+ShapeMode QGraphicsPixmapItem_ShapeMode(const QGraphicsPixmapItem* self);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_SetShapeMode(QGraphicsPixmapItem* self, ShapeMode mode);
+extern __declspec(dllexport) 
+bool QGraphicsPixmapItem_SupportsExtension(const QGraphicsPixmapItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_SetExtension(QGraphicsPixmapItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsPixmapItem_Extension(const QGraphicsPixmapItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsPixmapItem_Delete(QGraphicsPixmapItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsTextItem* QGraphicsTextItem_new();
-extern __declspec(dllexport) QGraphicsTextItem* QGraphicsTextItem_new2(struct miqt_string text);
-extern __declspec(dllexport) QGraphicsTextItem* QGraphicsTextItem_new3(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsTextItem* QGraphicsTextItem_new4(struct miqt_string text, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsTextItem_virtbase(QGraphicsTextItem* src, QGraphicsObject** outptr_QGraphicsObject);
-extern __declspec(dllexport) QMetaObject* QGraphicsTextItem_MetaObject(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void* QGraphicsTextItem_Metacast(QGraphicsTextItem* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QGraphicsTextItem_Tr(const char* s);
-extern __declspec(dllexport) struct miqt_string QGraphicsTextItem_ToHtml(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetHtml(QGraphicsTextItem* self, struct miqt_string html);
-extern __declspec(dllexport) struct miqt_string QGraphicsTextItem_ToPlainText(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetPlainText(QGraphicsTextItem* self, struct miqt_string text);
-extern __declspec(dllexport) QFont* QGraphicsTextItem_Font(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetFont(QGraphicsTextItem* self, QFont* font);
-extern __declspec(dllexport) void QGraphicsTextItem_SetDefaultTextColor(QGraphicsTextItem* self, QColor* c);
-extern __declspec(dllexport) QColor* QGraphicsTextItem_DefaultTextColor(const QGraphicsTextItem* self);
-extern __declspec(dllexport) QRectF* QGraphicsTextItem_BoundingRect(const QGraphicsTextItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsTextItem_Shape(const QGraphicsTextItem* self);
-extern __declspec(dllexport) bool QGraphicsTextItem_Contains(const QGraphicsTextItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsTextItem_Paint(QGraphicsTextItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsTextItem_IsObscuredBy(const QGraphicsTextItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsTextItem_OpaqueArea(const QGraphicsTextItem* self);
-extern __declspec(dllexport) int QGraphicsTextItem_Type(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetTextWidth(QGraphicsTextItem* self, double width);
-extern __declspec(dllexport) double QGraphicsTextItem_TextWidth(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_AdjustSize(QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetDocument(QGraphicsTextItem* self, QTextDocument* document);
-extern __declspec(dllexport) QTextDocument* QGraphicsTextItem_Document(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetTextInteractionFlags(QGraphicsTextItem* self, int flags);
-extern __declspec(dllexport) int QGraphicsTextItem_TextInteractionFlags(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetTabChangesFocus(QGraphicsTextItem* self, bool b);
-extern __declspec(dllexport) bool QGraphicsTextItem_TabChangesFocus(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetOpenExternalLinks(QGraphicsTextItem* self, bool open);
-extern __declspec(dllexport) bool QGraphicsTextItem_OpenExternalLinks(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_SetTextCursor(QGraphicsTextItem* self, QTextCursor* cursor);
-extern __declspec(dllexport) QTextCursor* QGraphicsTextItem_TextCursor(const QGraphicsTextItem* self);
-extern __declspec(dllexport) void QGraphicsTextItem_LinkActivated(QGraphicsTextItem* self, struct miqt_string param1);
+extern __declspec(dllexport) 
+QGraphicsTextItem* QGraphicsTextItem_new();
+extern __declspec(dllexport) 
+QGraphicsTextItem* QGraphicsTextItem_new2(struct miqt_string text);
+extern __declspec(dllexport) 
+QGraphicsTextItem* QGraphicsTextItem_new3(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsTextItem* QGraphicsTextItem_new4(struct miqt_string text, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_virtbase(QGraphicsTextItem* src
+, QGraphicsObject** outptr_QGraphicsObject
+);
+extern __declspec(dllexport) 
+QMetaObject* QGraphicsTextItem_MetaObject(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void* QGraphicsTextItem_Metacast(QGraphicsTextItem* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsTextItem_Tr(const char* s);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsTextItem_ToHtml(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetHtml(QGraphicsTextItem* self, struct miqt_string html);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsTextItem_ToPlainText(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetPlainText(QGraphicsTextItem* self, struct miqt_string text);
+extern __declspec(dllexport) 
+QFont* QGraphicsTextItem_Font(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetFont(QGraphicsTextItem* self, QFont* font);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetDefaultTextColor(QGraphicsTextItem* self, QColor* c);
+extern __declspec(dllexport) 
+QColor* QGraphicsTextItem_DefaultTextColor(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+QRectF* QGraphicsTextItem_BoundingRect(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsTextItem_Shape(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsTextItem_Contains(const QGraphicsTextItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_Paint(QGraphicsTextItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsTextItem_IsObscuredBy(const QGraphicsTextItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsTextItem_OpaqueArea(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+int QGraphicsTextItem_Type(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetTextWidth(QGraphicsTextItem* self, double width);
+extern __declspec(dllexport) 
+double QGraphicsTextItem_TextWidth(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_AdjustSize(QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetDocument(QGraphicsTextItem* self, QTextDocument* document);
+extern __declspec(dllexport) 
+QTextDocument* QGraphicsTextItem_Document(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetTextInteractionFlags(QGraphicsTextItem* self, int flags);
+extern __declspec(dllexport) 
+int QGraphicsTextItem_TextInteractionFlags(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetTabChangesFocus(QGraphicsTextItem* self, bool b);
+extern __declspec(dllexport) 
+bool QGraphicsTextItem_TabChangesFocus(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetOpenExternalLinks(QGraphicsTextItem* self, bool open);
+extern __declspec(dllexport) 
+bool QGraphicsTextItem_OpenExternalLinks(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetTextCursor(QGraphicsTextItem* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+QTextCursor* QGraphicsTextItem_TextCursor(const QGraphicsTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_LinkActivated(QGraphicsTextItem* self, struct miqt_string param1);
 void QGraphicsTextItem_connect_LinkActivated(QGraphicsTextItem* self, intptr_t slot);
-extern __declspec(dllexport) void QGraphicsTextItem_LinkHovered(QGraphicsTextItem* self, struct miqt_string param1);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_LinkHovered(QGraphicsTextItem* self, struct miqt_string param1);
 void QGraphicsTextItem_connect_LinkHovered(QGraphicsTextItem* self, intptr_t slot);
-extern __declspec(dllexport) bool QGraphicsTextItem_SceneEvent(QGraphicsTextItem* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_MousePressEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_MouseMoveEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_MouseReleaseEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_MouseDoubleClickEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_ContextMenuEvent(QGraphicsTextItem* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_KeyPressEvent(QGraphicsTextItem* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_KeyReleaseEvent(QGraphicsTextItem* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_FocusInEvent(QGraphicsTextItem* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_FocusOutEvent(QGraphicsTextItem* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_DragEnterEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_DragLeaveEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_DragMoveEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_DropEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_InputMethodEvent(QGraphicsTextItem* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_HoverEnterEvent(QGraphicsTextItem* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_HoverMoveEvent(QGraphicsTextItem* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_HoverLeaveEvent(QGraphicsTextItem* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) QVariant* QGraphicsTextItem_InputMethodQuery(const QGraphicsTextItem* self, int query);
-extern __declspec(dllexport) bool QGraphicsTextItem_SupportsExtension(const QGraphicsTextItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsTextItem_SetExtension(QGraphicsTextItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsTextItem_Extension(const QGraphicsTextItem* self, QVariant* variant);
-extern __declspec(dllexport) struct miqt_string QGraphicsTextItem_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QGraphicsTextItem_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsTextItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsTextItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsTextItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsTextItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsTextItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsTextItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsTextItem_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsTextItem_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsTextItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsTextItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsTextItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsTextItem_override_virtual_Event(void* self, intptr_t slot);
-bool QGraphicsTextItem_virtualbase_Event(void* self, QEvent* ev);
-extern __declspec(dllexport) void QGraphicsTextItem_Delete(QGraphicsTextItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+bool QGraphicsTextItem_SceneEvent(QGraphicsTextItem* self, QEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_MousePressEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_MouseMoveEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_MouseReleaseEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_MouseDoubleClickEvent(QGraphicsTextItem* self, QGraphicsSceneMouseEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_ContextMenuEvent(QGraphicsTextItem* self, QGraphicsSceneContextMenuEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_KeyPressEvent(QGraphicsTextItem* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_KeyReleaseEvent(QGraphicsTextItem* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_FocusInEvent(QGraphicsTextItem* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_FocusOutEvent(QGraphicsTextItem* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_DragEnterEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_DragLeaveEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_DragMoveEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_DropEvent(QGraphicsTextItem* self, QGraphicsSceneDragDropEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_InputMethodEvent(QGraphicsTextItem* self, QInputMethodEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_HoverEnterEvent(QGraphicsTextItem* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_HoverMoveEvent(QGraphicsTextItem* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_HoverLeaveEvent(QGraphicsTextItem* self, QGraphicsSceneHoverEvent* event);
+extern __declspec(dllexport) 
+QVariant* QGraphicsTextItem_InputMethodQuery(const QGraphicsTextItem* self, int query);
+extern __declspec(dllexport) 
+bool QGraphicsTextItem_SupportsExtension(const QGraphicsTextItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_SetExtension(QGraphicsTextItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsTextItem_Extension(const QGraphicsTextItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsTextItem_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsTextItem_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QGraphicsTextItem_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_override_virtual_Metacast(void* self, intptr_t slot);
+void* QGraphicsTextItem_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QGraphicsTextItem_Delete(QGraphicsTextItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new();
-extern __declspec(dllexport) QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new2(struct miqt_string text);
-extern __declspec(dllexport) QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new3(QGraphicsItem* parent);
-extern __declspec(dllexport) QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new4(struct miqt_string text, QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_virtbase(QGraphicsSimpleTextItem* src, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_SetText(QGraphicsSimpleTextItem* self, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QGraphicsSimpleTextItem_Text(const QGraphicsSimpleTextItem* self);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_SetFont(QGraphicsSimpleTextItem* self, QFont* font);
-extern __declspec(dllexport) QFont* QGraphicsSimpleTextItem_Font(const QGraphicsSimpleTextItem* self);
-extern __declspec(dllexport) QRectF* QGraphicsSimpleTextItem_BoundingRect(const QGraphicsSimpleTextItem* self);
-extern __declspec(dllexport) QPainterPath* QGraphicsSimpleTextItem_Shape(const QGraphicsSimpleTextItem* self);
-extern __declspec(dllexport) bool QGraphicsSimpleTextItem_Contains(const QGraphicsSimpleTextItem* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_Paint(QGraphicsSimpleTextItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsSimpleTextItem_IsObscuredBy(const QGraphicsSimpleTextItem* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsSimpleTextItem_OpaqueArea(const QGraphicsSimpleTextItem* self);
-extern __declspec(dllexport) int QGraphicsSimpleTextItem_Type(const QGraphicsSimpleTextItem* self);
-extern __declspec(dllexport) bool QGraphicsSimpleTextItem_SupportsExtension(const QGraphicsSimpleTextItem* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_SetExtension(QGraphicsSimpleTextItem* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) QVariant* QGraphicsSimpleTextItem_Extension(const QGraphicsSimpleTextItem* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsSimpleTextItem_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsSimpleTextItem_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsSimpleTextItem_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsSimpleTextItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsSimpleTextItem_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsSimpleTextItem_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsSimpleTextItem_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsSimpleTextItem_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsSimpleTextItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsSimpleTextItem_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsSimpleTextItem_Delete(QGraphicsSimpleTextItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new();
+extern __declspec(dllexport) 
+QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new2(struct miqt_string text);
+extern __declspec(dllexport) 
+QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new3(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+QGraphicsSimpleTextItem* QGraphicsSimpleTextItem_new4(struct miqt_string text, QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsSimpleTextItem_virtbase(QGraphicsSimpleTextItem* src
+, QAbstractGraphicsShapeItem** outptr_QAbstractGraphicsShapeItem
+);
+extern __declspec(dllexport) 
+void QGraphicsSimpleTextItem_SetText(QGraphicsSimpleTextItem* self, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QGraphicsSimpleTextItem_Text(const QGraphicsSimpleTextItem* self);
+extern __declspec(dllexport) 
+void QGraphicsSimpleTextItem_SetFont(QGraphicsSimpleTextItem* self, QFont* font);
+extern __declspec(dllexport) 
+QFont* QGraphicsSimpleTextItem_Font(const QGraphicsSimpleTextItem* self);
+extern __declspec(dllexport) 
+QRectF* QGraphicsSimpleTextItem_BoundingRect(const QGraphicsSimpleTextItem* self);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsSimpleTextItem_Shape(const QGraphicsSimpleTextItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsSimpleTextItem_Contains(const QGraphicsSimpleTextItem* self, QPointF* point);
+extern __declspec(dllexport) 
+void QGraphicsSimpleTextItem_Paint(QGraphicsSimpleTextItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsSimpleTextItem_IsObscuredBy(const QGraphicsSimpleTextItem* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsSimpleTextItem_OpaqueArea(const QGraphicsSimpleTextItem* self);
+extern __declspec(dllexport) 
+int QGraphicsSimpleTextItem_Type(const QGraphicsSimpleTextItem* self);
+extern __declspec(dllexport) 
+bool QGraphicsSimpleTextItem_SupportsExtension(const QGraphicsSimpleTextItem* self, Extension extension);
+extern __declspec(dllexport) 
+void QGraphicsSimpleTextItem_SetExtension(QGraphicsSimpleTextItem* self, Extension extension, QVariant* variant);
+extern __declspec(dllexport) 
+QVariant* QGraphicsSimpleTextItem_Extension(const QGraphicsSimpleTextItem* self, QVariant* variant);
+extern __declspec(dllexport) 
+void QGraphicsSimpleTextItem_Delete(QGraphicsSimpleTextItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QGraphicsItemGroup* QGraphicsItemGroup_new();
-extern __declspec(dllexport) QGraphicsItemGroup* QGraphicsItemGroup_new2(QGraphicsItem* parent);
-extern __declspec(dllexport) void QGraphicsItemGroup_virtbase(QGraphicsItemGroup* src, QGraphicsItem** outptr_QGraphicsItem);
-extern __declspec(dllexport) void QGraphicsItemGroup_AddToGroup(QGraphicsItemGroup* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsItemGroup_RemoveFromGroup(QGraphicsItemGroup* self, QGraphicsItem* item);
-extern __declspec(dllexport) QRectF* QGraphicsItemGroup_BoundingRect(const QGraphicsItemGroup* self);
-extern __declspec(dllexport) void QGraphicsItemGroup_Paint(QGraphicsItemGroup* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) bool QGraphicsItemGroup_IsObscuredBy(const QGraphicsItemGroup* self, QGraphicsItem* item);
-extern __declspec(dllexport) QPainterPath* QGraphicsItemGroup_OpaqueArea(const QGraphicsItemGroup* self);
-extern __declspec(dllexport) int QGraphicsItemGroup_Type(const QGraphicsItemGroup* self);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_BoundingRect(void* self, intptr_t slot);
-QRectF* QGraphicsItemGroup_virtualbase_BoundingRect(const void* self);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Paint(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_IsObscuredBy(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_IsObscuredBy(const void* self, QGraphicsItem* item);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_OpaqueArea(void* self, intptr_t slot);
-QPainterPath* QGraphicsItemGroup_virtualbase_OpaqueArea(const void* self);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Type(void* self, intptr_t slot);
-int QGraphicsItemGroup_virtualbase_Type(const void* self);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Advance(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_Advance(void* self, int phase);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Shape(void* self, intptr_t slot);
-QPainterPath* QGraphicsItemGroup_virtualbase_Shape(const void* self);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Contains(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_Contains(const void* self, QPointF* point);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_CollidesWithItem(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_CollidesWithItem(const void* self, QGraphicsItem* other, int mode);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_CollidesWithPath(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_CollidesWithPath(const void* self, QPainterPath* path, int mode);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_SceneEventFilter(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_SceneEventFilter(void* self, QGraphicsItem* watched, QEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_SceneEvent(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_SceneEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_ContextMenuEvent(void* self, QGraphicsSceneContextMenuEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_DragEnterEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_DragLeaveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_DragMoveEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_DropEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_DropEvent(void* self, QGraphicsSceneDragDropEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_HoverEnterEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_HoverEnterEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_HoverMoveEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_HoverMoveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_HoverLeaveEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_HoverLeaveEvent(void* self, QGraphicsSceneHoverEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_MousePressEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_MouseMoveEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_MouseReleaseEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_MouseDoubleClickEvent(void* self, QGraphicsSceneMouseEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_WheelEvent(void* self, QGraphicsSceneWheelEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QGraphicsItemGroup_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_ItemChange(void* self, intptr_t slot);
-QVariant* QGraphicsItemGroup_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_SupportsExtension(void* self, intptr_t slot);
-bool QGraphicsItemGroup_virtualbase_SupportsExtension(const void* self, Extension extension);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_SetExtension(void* self, intptr_t slot);
-void QGraphicsItemGroup_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Extension(void* self, intptr_t slot);
-QVariant* QGraphicsItemGroup_virtualbase_Extension(const void* self, QVariant* variant);
-extern __declspec(dllexport) void QGraphicsItemGroup_Delete(QGraphicsItemGroup* self, bool isSubclass);
+extern __declspec(dllexport) 
+QGraphicsItemGroup* QGraphicsItemGroup_new();
+extern __declspec(dllexport) 
+QGraphicsItemGroup* QGraphicsItemGroup_new2(QGraphicsItem* parent);
+extern __declspec(dllexport) 
+void QGraphicsItemGroup_virtbase(QGraphicsItemGroup* src
+, QGraphicsItem** outptr_QGraphicsItem
+);
+extern __declspec(dllexport) 
+void QGraphicsItemGroup_AddToGroup(QGraphicsItemGroup* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+void QGraphicsItemGroup_RemoveFromGroup(QGraphicsItemGroup* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QRectF* QGraphicsItemGroup_BoundingRect(const QGraphicsItemGroup* self);
+extern __declspec(dllexport) 
+void QGraphicsItemGroup_Paint(QGraphicsItemGroup* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) 
+bool QGraphicsItemGroup_IsObscuredBy(const QGraphicsItemGroup* self, QGraphicsItem* item);
+extern __declspec(dllexport) 
+QPainterPath* QGraphicsItemGroup_OpaqueArea(const QGraphicsItemGroup* self);
+extern __declspec(dllexport) 
+int QGraphicsItemGroup_Type(const QGraphicsItemGroup* self);
+extern __declspec(dllexport) 
+void QGraphicsItemGroup_Delete(QGraphicsItemGroup* self, bool isSubclass);
 
-} 
+}

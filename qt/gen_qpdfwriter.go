@@ -32,7 +32,6 @@ func NewQPdfWriter(filename string) *QPdfWriter {
 
 // NewQPdfWriter2 constructs a new QPdfWriter object.
 func NewQPdfWriter2(device *QIODevice) *QPdfWriter {
-
 	ret := newQPdfWriter(QPdfWriter_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -212,408 +211,55 @@ func (this *QPdfWriter) AddFileAttachment3(fileName string, data []byte, mimeTyp
 	QPdfWriter_AddFileAttachment3(this.h, fileName_ms, data_alias, mimeType_ms)
 }
 
-func (this *QPdfWriter) callVirtualBase_NewPage() bool {
-
-	return (bool)(QPdfWriter_virtualbase_NewPage(unsafe.Pointer(this.h)))
-
+func (this *QPdfWriter) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QPdfWriter_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QPdfWriter) OnNewPage(slot func(super func() bool) bool) {
+
+func (this *QPdfWriter) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QPdfWriter_override_virtual_NewPage(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QPdfWriter_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QPdfWriter_NewPage
-func miqt_exec_callback_QPdfWriter_NewPage(self QPdfWriter, cb intptr_t) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
+//export miqt_exec_callback_QPdfWriter_MetaObject
+func miqt_exec_callback_QPdfWriter_MetaObject(self QPdfWriter, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_NewPage)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_PaintEngine() *QPaintEngine {
-
-	return newQPaintEngine(QPdfWriter_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
-}
-func (this *QPdfWriter) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_PaintEngine(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_PaintEngine
-func miqt_exec_callback_QPdfWriter_PaintEngine(self QPdfWriter, cb intptr_t) *QPaintEngine {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QPaintEngine) *QPaintEngine)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_PaintEngine)
+	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QPdfWriter) callVirtualBase_Metric(id PaintDeviceMetric) int {
+func (this *QPdfWriter) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	return (int)(QPdfWriter_virtualbase_Metric(unsafe.Pointer(this.h), id))
-
+	return (unsafe.Pointer)(QPdfWriter_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QPdfWriter) OnMetric(slot func(super func(id PaintDeviceMetric) int, id PaintDeviceMetric) int) {
+
+func (this *QPdfWriter) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QPdfWriter_override_virtual_Metric(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QPdfWriter_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QPdfWriter_Metric
-func miqt_exec_callback_QPdfWriter_Metric(self QPdfWriter, cb intptr_t, id PaintDeviceMetric) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(id PaintDeviceMetric) int, id PaintDeviceMetric) int)
+//export miqt_exec_callback_QPdfWriter_Metacast
+func miqt_exec_callback_QPdfWriter_Metacast(self QPdfWriter, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_Metric, slotval1)
+	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (int)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QPdfWriter_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
-}
-func (this *QPdfWriter) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_Event
-func miqt_exec_callback_QPdfWriter_Event(self QPdfWriter, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QPdfWriter_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QPdfWriter) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_EventFilter
-func miqt_exec_callback_QPdfWriter_EventFilter(self QPdfWriter, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QPdfWriter_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QPdfWriter) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_TimerEvent
-func miqt_exec_callback_QPdfWriter_TimerEvent(self QPdfWriter, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QPdfWriter{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QPdfWriter_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QPdfWriter) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_ChildEvent
-func miqt_exec_callback_QPdfWriter_ChildEvent(self QPdfWriter, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QPdfWriter{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QPdfWriter_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QPdfWriter) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_CustomEvent
-func miqt_exec_callback_QPdfWriter_CustomEvent(self QPdfWriter, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QPdfWriter{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QPdfWriter_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QPdfWriter) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_ConnectNotify
-func miqt_exec_callback_QPdfWriter_ConnectNotify(self QPdfWriter, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QPdfWriter{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QPdfWriter_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QPdfWriter) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_DisconnectNotify
-func miqt_exec_callback_QPdfWriter_DisconnectNotify(self QPdfWriter, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QPdfWriter{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_SetPageLayout(pageLayout *QPageLayout) bool {
-
-	return (bool)(QPdfWriter_virtualbase_SetPageLayout(unsafe.Pointer(this.h), pageLayout.cPointer()))
-
-}
-func (this *QPdfWriter) OnSetPageLayout(slot func(super func(pageLayout *QPageLayout) bool, pageLayout *QPageLayout) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_SetPageLayout(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_SetPageLayout
-func miqt_exec_callback_QPdfWriter_SetPageLayout(self QPdfWriter, cb intptr_t, pageLayout *QPageLayout) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(pageLayout *QPageLayout) bool, pageLayout *QPageLayout) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPageLayout(pageLayout)
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_SetPageLayout, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_SetPageSize(pageSize *QPageSize) bool {
-
-	return (bool)(QPdfWriter_virtualbase_SetPageSize(unsafe.Pointer(this.h), pageSize.cPointer()))
-
-}
-func (this *QPdfWriter) OnSetPageSize(slot func(super func(pageSize *QPageSize) bool, pageSize *QPageSize) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_SetPageSize(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_SetPageSize
-func miqt_exec_callback_QPdfWriter_SetPageSize(self QPdfWriter, cb intptr_t, pageSize *QPageSize) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(pageSize *QPageSize) bool, pageSize *QPageSize) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPageSize(pageSize)
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_SetPageSize, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_SetPageOrientation(orientation QPageLayout__Orientation) bool {
-
-	return (bool)(QPdfWriter_virtualbase_SetPageOrientation(unsafe.Pointer(this.h), (int)(orientation)))
-
-}
-func (this *QPdfWriter) OnSetPageOrientation(slot func(super func(orientation QPageLayout__Orientation) bool, orientation QPageLayout__Orientation) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_SetPageOrientation(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_SetPageOrientation
-func miqt_exec_callback_QPdfWriter_SetPageOrientation(self QPdfWriter, cb intptr_t, orientation int) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(orientation QPageLayout__Orientation) bool, orientation QPageLayout__Orientation) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (QPageLayout__Orientation)(orientation)
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_SetPageOrientation, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_SetPageMargins(margins *QMarginsF, units QPageLayout__Unit) bool {
-
-	return (bool)(QPdfWriter_virtualbase_SetPageMargins(unsafe.Pointer(this.h), margins.cPointer(), (int)(units)))
-
-}
-func (this *QPdfWriter) OnSetPageMargins(slot func(super func(margins *QMarginsF, units QPageLayout__Unit) bool, margins *QMarginsF, units QPageLayout__Unit) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_SetPageMargins(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_SetPageMargins
-func miqt_exec_callback_QPdfWriter_SetPageMargins(self QPdfWriter, cb intptr_t, margins *QMarginsF, units int) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(margins *QMarginsF, units QPageLayout__Unit) bool, margins *QMarginsF, units QPageLayout__Unit) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMarginsF(margins)
-
-	slotval2 := (QPageLayout__Unit)(units)
-
-	virtualReturn := gofunc((&QPdfWriter{h: self}).callVirtualBase_SetPageMargins, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QPdfWriter) callVirtualBase_SetPageRanges(ranges *QPageRanges) {
-
-	QPdfWriter_virtualbase_SetPageRanges(unsafe.Pointer(this.h), ranges.cPointer())
-
-}
-func (this *QPdfWriter) OnSetPageRanges(slot func(super func(ranges *QPageRanges), ranges *QPageRanges)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPdfWriter_override_virtual_SetPageRanges(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPdfWriter_SetPageRanges
-func miqt_exec_callback_QPdfWriter_SetPageRanges(self QPdfWriter, cb intptr_t, ranges *QPageRanges) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(ranges *QPageRanges), ranges *QPageRanges))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPageRanges(ranges)
-
-	gofunc((&QPdfWriter{h: self}).callVirtualBase_SetPageRanges, slotval1)
-
+	return virtualReturn
 }

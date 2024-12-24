@@ -11,7 +11,6 @@ type QStringMatcher struct {
 
 // NewQStringMatcher constructs a new QStringMatcher object.
 func NewQStringMatcher() *QStringMatcher {
-
 	ret := newQStringMatcher(QStringMatcher_new())
 	ret.isSubclass = true
 	return ret
@@ -31,7 +30,6 @@ func NewQStringMatcher2(pattern string) *QStringMatcher {
 
 // NewQStringMatcher3 constructs a new QStringMatcher object.
 func NewQStringMatcher3(uc *QChar, lenVal int64) *QStringMatcher {
-
 	ret := newQStringMatcher(QStringMatcher_new3(uc.cPointer(), (ptrdiff_t)(lenVal)))
 	ret.isSubclass = true
 	return ret
@@ -39,7 +37,6 @@ func NewQStringMatcher3(uc *QChar, lenVal int64) *QStringMatcher {
 
 // NewQStringMatcher4 constructs a new QStringMatcher object.
 func NewQStringMatcher4(other *QStringMatcher) *QStringMatcher {
-
 	ret := newQStringMatcher(QStringMatcher_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -59,7 +56,6 @@ func NewQStringMatcher5(pattern string, cs CaseSensitivity) *QStringMatcher {
 
 // NewQStringMatcher6 constructs a new QStringMatcher object.
 func NewQStringMatcher6(uc *QChar, lenVal int64, cs CaseSensitivity) *QStringMatcher {
-
 	ret := newQStringMatcher(QStringMatcher_new6(uc.cPointer(), (ptrdiff_t)(lenVal), (int)(cs)))
 	ret.isSubclass = true
 	return ret

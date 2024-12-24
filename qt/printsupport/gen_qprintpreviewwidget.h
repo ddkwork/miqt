@@ -8,165 +8,108 @@
 
 #include "../../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QActionEvent QActionEvent;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
-typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
-typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
 typedef struct QPrintPreviewWidget QPrintPreviewWidget;
 typedef struct QPrinter QPrinter;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
-typedef struct QTabletEvent QTabletEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QPrintPreviewWidget* QPrintPreviewWidget_new(QWidget* parent);
-extern __declspec(dllexport) QPrintPreviewWidget* QPrintPreviewWidget_new2(QPrinter* printer);
-extern __declspec(dllexport) QPrintPreviewWidget* QPrintPreviewWidget_new3();
-extern __declspec(dllexport) QPrintPreviewWidget* QPrintPreviewWidget_new4(QPrinter* printer, QWidget* parent);
-extern __declspec(dllexport) QPrintPreviewWidget* QPrintPreviewWidget_new5(QPrinter* printer, QWidget* parent, int flags);
-extern __declspec(dllexport) QPrintPreviewWidget* QPrintPreviewWidget_new6(QWidget* parent, int flags);
-extern __declspec(dllexport) void QPrintPreviewWidget_virtbase(QPrintPreviewWidget* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QPrintPreviewWidget_MetaObject(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) void* QPrintPreviewWidget_Metacast(QPrintPreviewWidget* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QPrintPreviewWidget_Tr(const char* s);
-extern __declspec(dllexport) double QPrintPreviewWidget_ZoomFactor(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) int QPrintPreviewWidget_Orientation(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) ViewMode QPrintPreviewWidget_ViewMode(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) ZoomMode QPrintPreviewWidget_ZoomMode(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) int QPrintPreviewWidget_CurrentPage(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) int QPrintPreviewWidget_PageCount(const QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetVisible(QPrintPreviewWidget* self, bool visible);
-extern __declspec(dllexport) void QPrintPreviewWidget_Print(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_ZoomIn(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_ZoomOut(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetZoomFactor(QPrintPreviewWidget* self, double zoomFactor);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetOrientation(QPrintPreviewWidget* self, int orientation);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetViewMode(QPrintPreviewWidget* self, ViewMode viewMode);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetZoomMode(QPrintPreviewWidget* self, ZoomMode zoomMode);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetCurrentPage(QPrintPreviewWidget* self, int pageNumber);
-extern __declspec(dllexport) void QPrintPreviewWidget_FitToWidth(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_FitInView(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetLandscapeOrientation(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetPortraitOrientation(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetSinglePageViewMode(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetFacingPagesViewMode(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_SetAllPagesViewMode(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_UpdatePreview(QPrintPreviewWidget* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_PaintRequested(QPrintPreviewWidget* self, QPrinter* printer);
+extern __declspec(dllexport) 
+QPrintPreviewWidget* QPrintPreviewWidget_new(QWidget* parent);
+extern __declspec(dllexport) 
+QPrintPreviewWidget* QPrintPreviewWidget_new2(QPrinter* printer);
+extern __declspec(dllexport) 
+QPrintPreviewWidget* QPrintPreviewWidget_new3();
+extern __declspec(dllexport) 
+QPrintPreviewWidget* QPrintPreviewWidget_new4(QPrinter* printer, QWidget* parent);
+extern __declspec(dllexport) 
+QPrintPreviewWidget* QPrintPreviewWidget_new5(QPrinter* printer, QWidget* parent, int flags);
+extern __declspec(dllexport) 
+QPrintPreviewWidget* QPrintPreviewWidget_new6(QWidget* parent, int flags);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_virtbase(QPrintPreviewWidget* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QPrintPreviewWidget_MetaObject(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void* QPrintPreviewWidget_Metacast(QPrintPreviewWidget* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QPrintPreviewWidget_Tr(const char* s);
+extern __declspec(dllexport) 
+double QPrintPreviewWidget_ZoomFactor(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+int QPrintPreviewWidget_Orientation(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+ViewMode QPrintPreviewWidget_ViewMode(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+ZoomMode QPrintPreviewWidget_ZoomMode(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+int QPrintPreviewWidget_CurrentPage(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+int QPrintPreviewWidget_PageCount(const QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetVisible(QPrintPreviewWidget* self, bool visible);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_Print(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_ZoomIn(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_ZoomOut(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetZoomFactor(QPrintPreviewWidget* self, double zoomFactor);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetOrientation(QPrintPreviewWidget* self, int orientation);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetViewMode(QPrintPreviewWidget* self, ViewMode viewMode);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetZoomMode(QPrintPreviewWidget* self, ZoomMode zoomMode);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetCurrentPage(QPrintPreviewWidget* self, int pageNumber);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_FitToWidth(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_FitInView(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetLandscapeOrientation(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetPortraitOrientation(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetSinglePageViewMode(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetFacingPagesViewMode(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_SetAllPagesViewMode(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_UpdatePreview(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_PaintRequested(QPrintPreviewWidget* self, QPrinter* printer);
 void QPrintPreviewWidget_connect_PaintRequested(QPrintPreviewWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QPrintPreviewWidget_PreviewChanged(QPrintPreviewWidget* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_PreviewChanged(QPrintPreviewWidget* self);
 void QPrintPreviewWidget_connect_PreviewChanged(QPrintPreviewWidget* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QPrintPreviewWidget_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QPrintPreviewWidget_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QPrintPreviewWidget_ZoomIn1(QPrintPreviewWidget* self, double zoom);
-extern __declspec(dllexport) void QPrintPreviewWidget_ZoomOut1(QPrintPreviewWidget* self, double zoom);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_SetVisible(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_DevType(void* self, intptr_t slot);
-int QPrintPreviewWidget_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QPrintPreviewWidget_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QPrintPreviewWidget_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QPrintPreviewWidget_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QPrintPreviewWidget_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QPrintPreviewWidget_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_Event(void* self, intptr_t slot);
-bool QPrintPreviewWidget_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_DropEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_HideEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QPrintPreviewWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_Metric(void* self, intptr_t slot);
-int QPrintPreviewWidget_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_InitPainter(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QPrintPreviewWidget_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QPrintPreviewWidget_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QPrintPreviewWidget_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QPrintPreviewWidget_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QPrintPreviewWidget_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QPrintPreviewWidget_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QPrintPreviewWidget_Delete(QPrintPreviewWidget* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QPrintPreviewWidget_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QPrintPreviewWidget_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_ZoomIn1(QPrintPreviewWidget* self, double zoom);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_ZoomOut1(QPrintPreviewWidget* self, double zoom);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QPrintPreviewWidget_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_override_virtual_Metacast(void* self, intptr_t slot);
+void* QPrintPreviewWidget_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QPrintPreviewWidget_Delete(QPrintPreviewWidget* self, bool isSubclass);
 
-} 
+}

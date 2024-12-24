@@ -1,8 +1,9 @@
 package spatialaudio
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAudioRoom__Material int
@@ -52,7 +53,6 @@ type QAudioRoom struct {
 
 // NewQAudioRoom constructs a new QAudioRoom object.
 func NewQAudioRoom(engine *QAudioEngine) *QAudioRoom {
-
 	ret := newQAudioRoom(QAudioRoom_new(engine.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -150,6 +150,7 @@ func (this *QAudioRoom) ReverbBrightness() float32 {
 func (this *QAudioRoom) PositionChanged() {
 	QAudioRoom_PositionChanged(this.h)
 }
+
 func (this *QAudioRoom) OnPositionChanged(slot func()) {
 	QAudioRoom_connect_PositionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -167,6 +168,7 @@ func miqt_exec_callback_QAudioRoom_PositionChanged(cb intptr_t) {
 func (this *QAudioRoom) DimensionsChanged() {
 	QAudioRoom_DimensionsChanged(this.h)
 }
+
 func (this *QAudioRoom) OnDimensionsChanged(slot func()) {
 	QAudioRoom_connect_DimensionsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -184,6 +186,7 @@ func miqt_exec_callback_QAudioRoom_DimensionsChanged(cb intptr_t) {
 func (this *QAudioRoom) RotationChanged() {
 	QAudioRoom_RotationChanged(this.h)
 }
+
 func (this *QAudioRoom) OnRotationChanged(slot func()) {
 	QAudioRoom_connect_RotationChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -201,6 +204,7 @@ func miqt_exec_callback_QAudioRoom_RotationChanged(cb intptr_t) {
 func (this *QAudioRoom) WallsChanged() {
 	QAudioRoom_WallsChanged(this.h)
 }
+
 func (this *QAudioRoom) OnWallsChanged(slot func()) {
 	QAudioRoom_connect_WallsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -218,6 +222,7 @@ func miqt_exec_callback_QAudioRoom_WallsChanged(cb intptr_t) {
 func (this *QAudioRoom) ReflectionGainChanged() {
 	QAudioRoom_ReflectionGainChanged(this.h)
 }
+
 func (this *QAudioRoom) OnReflectionGainChanged(slot func()) {
 	QAudioRoom_connect_ReflectionGainChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -235,6 +240,7 @@ func miqt_exec_callback_QAudioRoom_ReflectionGainChanged(cb intptr_t) {
 func (this *QAudioRoom) ReverbGainChanged() {
 	QAudioRoom_ReverbGainChanged(this.h)
 }
+
 func (this *QAudioRoom) OnReverbGainChanged(slot func()) {
 	QAudioRoom_connect_ReverbGainChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -252,6 +258,7 @@ func miqt_exec_callback_QAudioRoom_ReverbGainChanged(cb intptr_t) {
 func (this *QAudioRoom) ReverbTimeChanged() {
 	QAudioRoom_ReverbTimeChanged(this.h)
 }
+
 func (this *QAudioRoom) OnReverbTimeChanged(slot func()) {
 	QAudioRoom_connect_ReverbTimeChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -269,6 +276,7 @@ func miqt_exec_callback_QAudioRoom_ReverbTimeChanged(cb intptr_t) {
 func (this *QAudioRoom) ReverbBrightnessChanged() {
 	QAudioRoom_ReverbBrightnessChanged(this.h)
 }
+
 func (this *QAudioRoom) OnReverbBrightnessChanged(slot func()) {
 	QAudioRoom_connect_ReverbBrightnessChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -305,190 +313,55 @@ func QAudioRoom_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QAudioRoom) callVirtualBase_Event(event *qt.QEvent) bool {
-
-	return (bool)(QAudioRoom_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
-
+func (this *QAudioRoom) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QAudioRoom_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QAudioRoom) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
+
+func (this *QAudioRoom) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QAudioRoom_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QAudioRoom_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QAudioRoom_Event
-func miqt_exec_callback_QAudioRoom_Event(self QAudioRoom, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
+//export miqt_exec_callback_QAudioRoom_MetaObject
+func miqt_exec_callback_QAudioRoom_MetaObject(self QAudioRoom, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QAudioRoom{h: self}).callVirtualBase_MetaObject)
+
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
+}
+
+func (this *QAudioRoom) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QAudioRoom_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QAudioRoom) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QAudioRoom_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QAudioRoom_Metacast
+func miqt_exec_callback_QAudioRoom_Metacast(self QAudioRoom, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QAudioRoom{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QAudioRoom{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QAudioRoom) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
-	return (bool)(QAudioRoom_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
-
-}
-func (this *QAudioRoom) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QAudioRoom_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QAudioRoom_EventFilter
-func miqt_exec_callback_QAudioRoom_EventFilter(self QAudioRoom, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(watched))
-
-	slotval2 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	virtualReturn := gofunc((&QAudioRoom{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QAudioRoom) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
-	QAudioRoom_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
-
-}
-func (this *QAudioRoom) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QAudioRoom_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QAudioRoom_TimerEvent
-func miqt_exec_callback_QAudioRoom_TimerEvent(self QAudioRoom, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
-
-	gofunc((&QAudioRoom{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QAudioRoom) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
-	QAudioRoom_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
-
-}
-func (this *QAudioRoom) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QAudioRoom_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QAudioRoom_ChildEvent
-func miqt_exec_callback_QAudioRoom_ChildEvent(self QAudioRoom, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
-
-	gofunc((&QAudioRoom{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QAudioRoom) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
-	QAudioRoom_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
-
-}
-func (this *QAudioRoom) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QAudioRoom_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QAudioRoom_CustomEvent
-func miqt_exec_callback_QAudioRoom_CustomEvent(self QAudioRoom, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	gofunc((&QAudioRoom{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QAudioRoom) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
-	QAudioRoom_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QAudioRoom) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QAudioRoom_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QAudioRoom_ConnectNotify
-func miqt_exec_callback_QAudioRoom_ConnectNotify(self QAudioRoom, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QAudioRoom{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QAudioRoom) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
-	QAudioRoom_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QAudioRoom) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QAudioRoom_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QAudioRoom_DisconnectNotify
-func miqt_exec_callback_QAudioRoom_DisconnectNotify(self QAudioRoom, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QAudioRoom{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

@@ -11,7 +11,6 @@ type QStringEncoder struct {
 
 // NewQStringEncoder constructs a new QStringEncoder object.
 func NewQStringEncoder() *QStringEncoder {
-
 	ret := newQStringEncoder(QStringEncoder_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQStringEncoder() *QStringEncoder {
 
 // NewQStringEncoder2 constructs a new QStringEncoder object.
 func NewQStringEncoder2(encoding Encoding) *QStringEncoder {
-
 	ret := newQStringEncoder(QStringEncoder_new2(encoding))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQStringEncoder2(encoding Encoding) *QStringEncoder {
 
 // NewQStringEncoder3 constructs a new QStringEncoder object.
 func NewQStringEncoder3(name QAnyStringView) *QStringEncoder {
-
 	ret := newQStringEncoder(QStringEncoder_new3(name.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -35,7 +32,6 @@ func NewQStringEncoder3(name QAnyStringView) *QStringEncoder {
 
 // NewQStringEncoder4 constructs a new QStringEncoder object.
 func NewQStringEncoder4(encoding Encoding, flags Flags) *QStringEncoder {
-
 	ret := newQStringEncoder(QStringEncoder_new4(encoding, flags))
 	ret.isSubclass = true
 	return ret
@@ -43,7 +39,6 @@ func NewQStringEncoder4(encoding Encoding, flags Flags) *QStringEncoder {
 
 // NewQStringEncoder5 constructs a new QStringEncoder object.
 func NewQStringEncoder5(name QAnyStringView, flags Flags) *QStringEncoder {
-
 	ret := newQStringEncoder(QStringEncoder_new5(name.cPointer(), flags))
 	ret.isSubclass = true
 	return ret
@@ -60,7 +55,6 @@ type QStringDecoder struct {
 
 // NewQStringDecoder constructs a new QStringDecoder object.
 func NewQStringDecoder(encoding Encoding) *QStringDecoder {
-
 	ret := newQStringDecoder(QStringDecoder_new(encoding))
 	ret.isSubclass = true
 	return ret
@@ -68,7 +62,6 @@ func NewQStringDecoder(encoding Encoding) *QStringDecoder {
 
 // NewQStringDecoder2 constructs a new QStringDecoder object.
 func NewQStringDecoder2() *QStringDecoder {
-
 	ret := newQStringDecoder(QStringDecoder_new2())
 	ret.isSubclass = true
 	return ret
@@ -76,7 +69,6 @@ func NewQStringDecoder2() *QStringDecoder {
 
 // NewQStringDecoder3 constructs a new QStringDecoder object.
 func NewQStringDecoder3(name QAnyStringView) *QStringDecoder {
-
 	ret := newQStringDecoder(QStringDecoder_new3(name.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -84,7 +76,6 @@ func NewQStringDecoder3(name QAnyStringView) *QStringDecoder {
 
 // NewQStringDecoder4 constructs a new QStringDecoder object.
 func NewQStringDecoder4(encoding Encoding, flags Flags) *QStringDecoder {
-
 	ret := newQStringDecoder(QStringDecoder_new4(encoding, flags))
 	ret.isSubclass = true
 	return ret
@@ -92,7 +83,6 @@ func NewQStringDecoder4(encoding Encoding, flags Flags) *QStringDecoder {
 
 // NewQStringDecoder5 constructs a new QStringDecoder object.
 func NewQStringDecoder5(name QAnyStringView, f Flags) *QStringDecoder {
-
 	ret := newQStringDecoder(QStringDecoder_new5(name.cPointer(), f))
 	ret.isSubclass = true
 	return ret

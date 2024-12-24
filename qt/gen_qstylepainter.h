@@ -19,23 +19,41 @@ typedef struct QStyleOptionComplex QStyleOptionComplex;
 typedef struct QStylePainter QStylePainter;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QStylePainter* QStylePainter_new(QWidget* w);
-extern __declspec(dllexport) QStylePainter* QStylePainter_new2();
-extern __declspec(dllexport) QStylePainter* QStylePainter_new3(QPaintDevice* pd, QWidget* w);
-extern __declspec(dllexport) void QStylePainter_virtbase(QStylePainter* src, QPainter** outptr_QPainter);
-extern __declspec(dllexport) bool QStylePainter_Begin(QStylePainter* self, QWidget* w);
-extern __declspec(dllexport) bool QStylePainter_Begin2(QStylePainter* self, QPaintDevice* pd, QWidget* w);
-extern __declspec(dllexport) void QStylePainter_DrawPrimitive(QStylePainter* self, int pe, QStyleOption* opt);
-extern __declspec(dllexport) void QStylePainter_DrawControl(QStylePainter* self, int ce, QStyleOption* opt);
-extern __declspec(dllexport) void QStylePainter_DrawComplexControl(QStylePainter* self, int cc, QStyleOptionComplex* opt);
-extern __declspec(dllexport) void QStylePainter_DrawItemText(QStylePainter* self, QRect* r, int flags, QPalette* pal, bool enabled, struct miqt_string text);
-extern __declspec(dllexport) void QStylePainter_DrawItemPixmap(QStylePainter* self, QRect* r, int flags, QPixmap* pixmap);
-extern __declspec(dllexport) QStyle* QStylePainter_Style(const QStylePainter* self);
-extern __declspec(dllexport) void QStylePainter_DrawItemText6(QStylePainter* self, QRect* r, int flags, QPalette* pal, bool enabled, struct miqt_string text, int textRole);
-extern __declspec(dllexport) void QStylePainter_Delete(QStylePainter* self, bool isSubclass);
+extern __declspec(dllexport) 
+QStylePainter* QStylePainter_new(QWidget* w);
+extern __declspec(dllexport) 
+QStylePainter* QStylePainter_new2();
+extern __declspec(dllexport) 
+QStylePainter* QStylePainter_new3(QPaintDevice* pd, QWidget* w);
+extern __declspec(dllexport) 
+void QStylePainter_virtbase(QStylePainter* src
+, QPainter** outptr_QPainter
+);
+extern __declspec(dllexport) 
+bool QStylePainter_Begin(QStylePainter* self, QWidget* w);
+extern __declspec(dllexport) 
+bool QStylePainter_Begin2(QStylePainter* self, QPaintDevice* pd, QWidget* w);
+extern __declspec(dllexport) 
+void QStylePainter_DrawPrimitive(QStylePainter* self, int pe, QStyleOption* opt);
+extern __declspec(dllexport) 
+void QStylePainter_DrawControl(QStylePainter* self, int ce, QStyleOption* opt);
+extern __declspec(dllexport) 
+void QStylePainter_DrawComplexControl(QStylePainter* self, int cc, QStyleOptionComplex* opt);
+extern __declspec(dllexport) 
+void QStylePainter_DrawItemText(QStylePainter* self, QRect* r, int flags, QPalette* pal, bool enabled, struct miqt_string text);
+extern __declspec(dllexport) 
+void QStylePainter_DrawItemPixmap(QStylePainter* self, QRect* r, int flags, QPixmap* pixmap);
+extern __declspec(dllexport) 
+QStyle* QStylePainter_Style(const QStylePainter* self);
+extern __declspec(dllexport) 
+void QStylePainter_DrawItemText6(QStylePainter* self, QRect* r, int flags, QPalette* pal, bool enabled, struct miqt_string text, int textRole);
+extern __declspec(dllexport) 
+void QStylePainter_Delete(QStylePainter* self, bool isSubclass);
 
-} 
+}

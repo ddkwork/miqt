@@ -40,264 +40,328 @@ typedef struct QRectF QRectF;
 typedef struct QRegularExpression QRegularExpression;
 typedef struct QResizeEvent QResizeEvent;
 typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
 typedef struct QSizeF QSizeF;
 typedef struct QTextBlock QTextBlock;
 typedef struct QTextCharFormat QTextCharFormat;
 typedef struct QTextCursor QTextCursor;
 typedef struct QTextDocument QTextDocument;
 typedef struct QTextEdit__ExtraSelection QTextEdit__ExtraSelection;
-typedef struct QTextFormat QTextFormat;
 typedef struct QTextFrame QTextFrame;
-typedef struct QTextInlineObject QTextInlineObject;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct QUrl QUrl;
 typedef struct QVariant QVariant;
 typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QPlainTextEdit* QPlainTextEdit_new(QWidget* parent);
-extern __declspec(dllexport) QPlainTextEdit* QPlainTextEdit_new2();
-extern __declspec(dllexport) QPlainTextEdit* QPlainTextEdit_new3(struct miqt_string text);
-extern __declspec(dllexport) QPlainTextEdit* QPlainTextEdit_new4(struct miqt_string text, QWidget* parent);
-extern __declspec(dllexport) void QPlainTextEdit_virtbase(QPlainTextEdit* src, QAbstractScrollArea** outptr_QAbstractScrollArea);
-extern __declspec(dllexport) QMetaObject* QPlainTextEdit_MetaObject(const QPlainTextEdit* self);
-extern __declspec(dllexport) void* QPlainTextEdit_Metacast(QPlainTextEdit* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_Tr(const char* s);
-extern __declspec(dllexport) void QPlainTextEdit_SetDocument(QPlainTextEdit* self, QTextDocument* document);
-extern __declspec(dllexport) QTextDocument* QPlainTextEdit_Document(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetPlaceholderText(QPlainTextEdit* self, struct miqt_string placeholderText);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_PlaceholderText(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetTextCursor(QPlainTextEdit* self, QTextCursor* cursor);
-extern __declspec(dllexport) QTextCursor* QPlainTextEdit_TextCursor(const QPlainTextEdit* self);
-extern __declspec(dllexport) bool QPlainTextEdit_IsReadOnly(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetReadOnly(QPlainTextEdit* self, bool ro);
-extern __declspec(dllexport) void QPlainTextEdit_SetTextInteractionFlags(QPlainTextEdit* self, int flags);
-extern __declspec(dllexport) int QPlainTextEdit_TextInteractionFlags(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_MergeCurrentCharFormat(QPlainTextEdit* self, QTextCharFormat* modifier);
-extern __declspec(dllexport) void QPlainTextEdit_SetCurrentCharFormat(QPlainTextEdit* self, QTextCharFormat* format);
-extern __declspec(dllexport) QTextCharFormat* QPlainTextEdit_CurrentCharFormat(const QPlainTextEdit* self);
-extern __declspec(dllexport) bool QPlainTextEdit_TabChangesFocus(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetTabChangesFocus(QPlainTextEdit* self, bool b);
-extern __declspec(dllexport) void QPlainTextEdit_SetDocumentTitle(QPlainTextEdit* self, struct miqt_string title);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_DocumentTitle(const QPlainTextEdit* self);
-extern __declspec(dllexport) bool QPlainTextEdit_IsUndoRedoEnabled(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetUndoRedoEnabled(QPlainTextEdit* self, bool enable);
-extern __declspec(dllexport) void QPlainTextEdit_SetMaximumBlockCount(QPlainTextEdit* self, int maximum);
-extern __declspec(dllexport) int QPlainTextEdit_MaximumBlockCount(const QPlainTextEdit* self);
-extern __declspec(dllexport) LineWrapMode QPlainTextEdit_LineWrapMode(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetLineWrapMode(QPlainTextEdit* self, LineWrapMode mode);
-extern __declspec(dllexport) int QPlainTextEdit_WordWrapMode(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetWordWrapMode(QPlainTextEdit* self, int policy);
-extern __declspec(dllexport) void QPlainTextEdit_SetBackgroundVisible(QPlainTextEdit* self, bool visible);
-extern __declspec(dllexport) bool QPlainTextEdit_BackgroundVisible(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetCenterOnScroll(QPlainTextEdit* self, bool enabled);
-extern __declspec(dllexport) bool QPlainTextEdit_CenterOnScroll(const QPlainTextEdit* self);
-extern __declspec(dllexport) bool QPlainTextEdit_Find(QPlainTextEdit* self, struct miqt_string exp);
-extern __declspec(dllexport) bool QPlainTextEdit_FindWithExp(QPlainTextEdit* self, QRegularExpression* exp);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_ToPlainText(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_EnsureCursorVisible(QPlainTextEdit* self);
-extern __declspec(dllexport) QVariant* QPlainTextEdit_LoadResource(QPlainTextEdit* self, int typeVal, QUrl* name);
-extern __declspec(dllexport) QMenu* QPlainTextEdit_CreateStandardContextMenu(QPlainTextEdit* self);
-extern __declspec(dllexport) QMenu* QPlainTextEdit_CreateStandardContextMenuWithPosition(QPlainTextEdit* self, QPoint* position);
-extern __declspec(dllexport) QTextCursor* QPlainTextEdit_CursorForPosition(const QPlainTextEdit* self, QPoint* pos);
-extern __declspec(dllexport) QRect* QPlainTextEdit_CursorRect(const QPlainTextEdit* self, QTextCursor* cursor);
-extern __declspec(dllexport) QRect* QPlainTextEdit_CursorRect2(const QPlainTextEdit* self);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_AnchorAt(const QPlainTextEdit* self, QPoint* pos);
-extern __declspec(dllexport) bool QPlainTextEdit_OverwriteMode(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetOverwriteMode(QPlainTextEdit* self, bool overwrite);
-extern __declspec(dllexport) double QPlainTextEdit_TabStopDistance(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetTabStopDistance(QPlainTextEdit* self, double distance);
-extern __declspec(dllexport) int QPlainTextEdit_CursorWidth(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SetCursorWidth(QPlainTextEdit* self, int width);
-extern __declspec(dllexport) void QPlainTextEdit_SetExtraSelections(QPlainTextEdit* self, struct miqt_array /* of QTextEdit__ExtraSelection* */  selections);
-extern __declspec(dllexport) struct miqt_array /* of QTextEdit__ExtraSelection* */  QPlainTextEdit_ExtraSelections(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_MoveCursor(QPlainTextEdit* self, int operation);
-extern __declspec(dllexport) bool QPlainTextEdit_CanPaste(const QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_Print(const QPlainTextEdit* self, QPagedPaintDevice* printer);
-extern __declspec(dllexport) int QPlainTextEdit_BlockCount(const QPlainTextEdit* self);
-extern __declspec(dllexport) QVariant* QPlainTextEdit_InputMethodQuery(const QPlainTextEdit* self, int property);
-extern __declspec(dllexport) QVariant* QPlainTextEdit_InputMethodQuery2(const QPlainTextEdit* self, int query, QVariant* argument);
-extern __declspec(dllexport) void QPlainTextEdit_SetPlainText(QPlainTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QPlainTextEdit_Cut(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_Copy(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_Paste(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_Undo(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_Redo(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_Clear(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_SelectAll(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_InsertPlainText(QPlainTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QPlainTextEdit_AppendPlainText(QPlainTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QPlainTextEdit_AppendHtml(QPlainTextEdit* self, struct miqt_string html);
-extern __declspec(dllexport) void QPlainTextEdit_CenterCursor(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_ZoomIn(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_ZoomOut(QPlainTextEdit* self);
-extern __declspec(dllexport) void QPlainTextEdit_TextChanged(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+QPlainTextEdit* QPlainTextEdit_new(QWidget* parent);
+extern __declspec(dllexport) 
+QPlainTextEdit* QPlainTextEdit_new2();
+extern __declspec(dllexport) 
+QPlainTextEdit* QPlainTextEdit_new3(struct miqt_string text);
+extern __declspec(dllexport) 
+QPlainTextEdit* QPlainTextEdit_new4(struct miqt_string text, QWidget* parent);
+extern __declspec(dllexport) 
+void QPlainTextEdit_virtbase(QPlainTextEdit* src
+, QAbstractScrollArea** outptr_QAbstractScrollArea
+);
+extern __declspec(dllexport) 
+QMetaObject* QPlainTextEdit_MetaObject(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void* QPlainTextEdit_Metacast(QPlainTextEdit* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_Tr(const char* s);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetDocument(QPlainTextEdit* self, QTextDocument* document);
+extern __declspec(dllexport) 
+QTextDocument* QPlainTextEdit_Document(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetPlaceholderText(QPlainTextEdit* self, struct miqt_string placeholderText);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_PlaceholderText(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetTextCursor(QPlainTextEdit* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+QTextCursor* QPlainTextEdit_TextCursor(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_IsReadOnly(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetReadOnly(QPlainTextEdit* self, bool ro);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetTextInteractionFlags(QPlainTextEdit* self, int flags);
+extern __declspec(dllexport) 
+int QPlainTextEdit_TextInteractionFlags(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MergeCurrentCharFormat(QPlainTextEdit* self, QTextCharFormat* modifier);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetCurrentCharFormat(QPlainTextEdit* self, QTextCharFormat* format);
+extern __declspec(dllexport) 
+QTextCharFormat* QPlainTextEdit_CurrentCharFormat(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_TabChangesFocus(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetTabChangesFocus(QPlainTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetDocumentTitle(QPlainTextEdit* self, struct miqt_string title);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_DocumentTitle(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_IsUndoRedoEnabled(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetUndoRedoEnabled(QPlainTextEdit* self, bool enable);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetMaximumBlockCount(QPlainTextEdit* self, int maximum);
+extern __declspec(dllexport) 
+int QPlainTextEdit_MaximumBlockCount(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+LineWrapMode QPlainTextEdit_LineWrapMode(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetLineWrapMode(QPlainTextEdit* self, LineWrapMode mode);
+extern __declspec(dllexport) 
+int QPlainTextEdit_WordWrapMode(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetWordWrapMode(QPlainTextEdit* self, int policy);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetBackgroundVisible(QPlainTextEdit* self, bool visible);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_BackgroundVisible(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetCenterOnScroll(QPlainTextEdit* self, bool enabled);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_CenterOnScroll(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_Find(QPlainTextEdit* self, struct miqt_string exp);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_FindWithExp(QPlainTextEdit* self, QRegularExpression* exp);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_ToPlainText(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_EnsureCursorVisible(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+QVariant* QPlainTextEdit_LoadResource(QPlainTextEdit* self, int typeVal, QUrl* name);
+extern __declspec(dllexport) 
+QMenu* QPlainTextEdit_CreateStandardContextMenu(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+QMenu* QPlainTextEdit_CreateStandardContextMenuWithPosition(QPlainTextEdit* self, QPoint* position);
+extern __declspec(dllexport) 
+QTextCursor* QPlainTextEdit_CursorForPosition(const QPlainTextEdit* self, QPoint* pos);
+extern __declspec(dllexport) 
+QRect* QPlainTextEdit_CursorRect(const QPlainTextEdit* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+QRect* QPlainTextEdit_CursorRect2(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_AnchorAt(const QPlainTextEdit* self, QPoint* pos);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_OverwriteMode(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetOverwriteMode(QPlainTextEdit* self, bool overwrite);
+extern __declspec(dllexport) 
+double QPlainTextEdit_TabStopDistance(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetTabStopDistance(QPlainTextEdit* self, double distance);
+extern __declspec(dllexport) 
+int QPlainTextEdit_CursorWidth(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetCursorWidth(QPlainTextEdit* self, int width);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetExtraSelections(QPlainTextEdit* self, struct miqt_array /* of QTextEdit__ExtraSelection* */  selections);
+extern __declspec(dllexport) 
+struct miqt_array /* of QTextEdit__ExtraSelection* */  QPlainTextEdit_ExtraSelections(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MoveCursor(QPlainTextEdit* self, int operation);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_CanPaste(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Print(const QPlainTextEdit* self, QPagedPaintDevice* printer);
+extern __declspec(dllexport) 
+int QPlainTextEdit_BlockCount(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+QVariant* QPlainTextEdit_InputMethodQuery(const QPlainTextEdit* self, int property);
+extern __declspec(dllexport) 
+QVariant* QPlainTextEdit_InputMethodQuery2(const QPlainTextEdit* self, int query, QVariant* argument);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SetPlainText(QPlainTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Cut(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Copy(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Paste(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Undo(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Redo(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Clear(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SelectAll(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_InsertPlainText(QPlainTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QPlainTextEdit_AppendPlainText(QPlainTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QPlainTextEdit_AppendHtml(QPlainTextEdit* self, struct miqt_string html);
+extern __declspec(dllexport) 
+void QPlainTextEdit_CenterCursor(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ZoomIn(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ZoomOut(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_TextChanged(QPlainTextEdit* self);
 void QPlainTextEdit_connect_TextChanged(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_UndoAvailable(QPlainTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QPlainTextEdit_UndoAvailable(QPlainTextEdit* self, bool b);
 void QPlainTextEdit_connect_UndoAvailable(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_RedoAvailable(QPlainTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QPlainTextEdit_RedoAvailable(QPlainTextEdit* self, bool b);
 void QPlainTextEdit_connect_RedoAvailable(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_CopyAvailable(QPlainTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QPlainTextEdit_CopyAvailable(QPlainTextEdit* self, bool b);
 void QPlainTextEdit_connect_CopyAvailable(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_SelectionChanged(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_SelectionChanged(QPlainTextEdit* self);
 void QPlainTextEdit_connect_SelectionChanged(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_CursorPositionChanged(QPlainTextEdit* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_CursorPositionChanged(QPlainTextEdit* self);
 void QPlainTextEdit_connect_CursorPositionChanged(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_UpdateRequest(QPlainTextEdit* self, QRect* rect, int dy);
+extern __declspec(dllexport) 
+void QPlainTextEdit_UpdateRequest(QPlainTextEdit* self, QRect* rect, int dy);
 void QPlainTextEdit_connect_UpdateRequest(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_BlockCountChanged(QPlainTextEdit* self, int newBlockCount);
+extern __declspec(dllexport) 
+void QPlainTextEdit_BlockCountChanged(QPlainTextEdit* self, int newBlockCount);
 void QPlainTextEdit_connect_BlockCountChanged(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QPlainTextEdit_ModificationChanged(QPlainTextEdit* self, bool param1);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ModificationChanged(QPlainTextEdit* self, bool param1);
 void QPlainTextEdit_connect_ModificationChanged(QPlainTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) bool QPlainTextEdit_Event(QPlainTextEdit* self, QEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_TimerEvent(QPlainTextEdit* self, QTimerEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_KeyPressEvent(QPlainTextEdit* self, QKeyEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_KeyReleaseEvent(QPlainTextEdit* self, QKeyEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_ResizeEvent(QPlainTextEdit* self, QResizeEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_PaintEvent(QPlainTextEdit* self, QPaintEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_MousePressEvent(QPlainTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_MouseMoveEvent(QPlainTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_MouseReleaseEvent(QPlainTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_MouseDoubleClickEvent(QPlainTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) bool QPlainTextEdit_FocusNextPrevChild(QPlainTextEdit* self, bool next);
-extern __declspec(dllexport) void QPlainTextEdit_ContextMenuEvent(QPlainTextEdit* self, QContextMenuEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_DragEnterEvent(QPlainTextEdit* self, QDragEnterEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_DragLeaveEvent(QPlainTextEdit* self, QDragLeaveEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_DragMoveEvent(QPlainTextEdit* self, QDragMoveEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_DropEvent(QPlainTextEdit* self, QDropEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_FocusInEvent(QPlainTextEdit* self, QFocusEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_FocusOutEvent(QPlainTextEdit* self, QFocusEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_ShowEvent(QPlainTextEdit* self, QShowEvent* param1);
-extern __declspec(dllexport) void QPlainTextEdit_ChangeEvent(QPlainTextEdit* self, QEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_WheelEvent(QPlainTextEdit* self, QWheelEvent* e);
-extern __declspec(dllexport) QMimeData* QPlainTextEdit_CreateMimeDataFromSelection(const QPlainTextEdit* self);
-extern __declspec(dllexport) bool QPlainTextEdit_CanInsertFromMimeData(const QPlainTextEdit* self, QMimeData* source);
-extern __declspec(dllexport) void QPlainTextEdit_InsertFromMimeData(QPlainTextEdit* self, QMimeData* source);
-extern __declspec(dllexport) void QPlainTextEdit_InputMethodEvent(QPlainTextEdit* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QPlainTextEdit_ScrollContentsBy(QPlainTextEdit* self, int dx, int dy);
-extern __declspec(dllexport) void QPlainTextEdit_DoSetTextCursor(QPlainTextEdit* self, QTextCursor* cursor);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QPlainTextEdit_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) bool QPlainTextEdit_Find2(QPlainTextEdit* self, struct miqt_string exp, int options);
-extern __declspec(dllexport) bool QPlainTextEdit_Find22(QPlainTextEdit* self, QRegularExpression* exp, int options);
-extern __declspec(dllexport) void QPlainTextEdit_MoveCursor2(QPlainTextEdit* self, int operation, int mode);
-extern __declspec(dllexport) void QPlainTextEdit_ZoomIn1(QPlainTextEdit* self, int rangeVal);
-extern __declspec(dllexport) void QPlainTextEdit_ZoomOut1(QPlainTextEdit* self, int rangeVal);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_LoadResource(void* self, intptr_t slot);
-QVariant* QPlainTextEdit_virtualbase_LoadResource(void* self, int typeVal, QUrl* name);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QPlainTextEdit_virtualbase_InputMethodQuery(const void* self, int property);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_Event(void* self, intptr_t slot);
-bool QPlainTextEdit_virtualbase_Event(void* self, QEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_TimerEvent(void* self, QTimerEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_KeyPressEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_ResizeEvent(void* self, QResizeEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_PaintEvent(void* self, QPaintEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_MousePressEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_MouseMoveEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QPlainTextEdit_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_DropEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_DropEvent(void* self, QDropEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_FocusInEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_FocusOutEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_ShowEvent(void* self, QShowEvent* param1);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_ChangeEvent(void* self, QEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_WheelEvent(void* self, QWheelEvent* e);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_CreateMimeDataFromSelection(void* self, intptr_t slot);
-QMimeData* QPlainTextEdit_virtualbase_CreateMimeDataFromSelection(const void* self);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_CanInsertFromMimeData(void* self, intptr_t slot);
-bool QPlainTextEdit_virtualbase_CanInsertFromMimeData(const void* self, QMimeData* source);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_InsertFromMimeData(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_InsertFromMimeData(void* self, QMimeData* source);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ScrollContentsBy(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_ScrollContentsBy(void* self, int dx, int dy);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_DoSetTextCursor(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_DoSetTextCursor(void* self, QTextCursor* cursor);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QPlainTextEdit_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QPlainTextEdit_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_SetupViewport(void* self, intptr_t slot);
-void QPlainTextEdit_virtualbase_SetupViewport(void* self, QWidget* viewport);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QPlainTextEdit_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ViewportEvent(void* self, intptr_t slot);
-bool QPlainTextEdit_virtualbase_ViewportEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QPlainTextEdit_override_virtual_ViewportSizeHint(void* self, intptr_t slot);
-QSize* QPlainTextEdit_virtualbase_ViewportSizeHint(const void* self);
-extern __declspec(dllexport) void QPlainTextEdit_Delete(QPlainTextEdit* self, bool isSubclass);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_Event(QPlainTextEdit* self, QEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_TimerEvent(QPlainTextEdit* self, QTimerEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_KeyPressEvent(QPlainTextEdit* self, QKeyEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_KeyReleaseEvent(QPlainTextEdit* self, QKeyEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ResizeEvent(QPlainTextEdit* self, QResizeEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_PaintEvent(QPlainTextEdit* self, QPaintEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MousePressEvent(QPlainTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MouseMoveEvent(QPlainTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MouseReleaseEvent(QPlainTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MouseDoubleClickEvent(QPlainTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_FocusNextPrevChild(QPlainTextEdit* self, bool next);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ContextMenuEvent(QPlainTextEdit* self, QContextMenuEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_DragEnterEvent(QPlainTextEdit* self, QDragEnterEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_DragLeaveEvent(QPlainTextEdit* self, QDragLeaveEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_DragMoveEvent(QPlainTextEdit* self, QDragMoveEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_DropEvent(QPlainTextEdit* self, QDropEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_FocusInEvent(QPlainTextEdit* self, QFocusEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_FocusOutEvent(QPlainTextEdit* self, QFocusEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ShowEvent(QPlainTextEdit* self, QShowEvent* param1);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ChangeEvent(QPlainTextEdit* self, QEvent* e);
+extern __declspec(dllexport) 
+void QPlainTextEdit_WheelEvent(QPlainTextEdit* self, QWheelEvent* e);
+extern __declspec(dllexport) 
+QMimeData* QPlainTextEdit_CreateMimeDataFromSelection(const QPlainTextEdit* self);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_CanInsertFromMimeData(const QPlainTextEdit* self, QMimeData* source);
+extern __declspec(dllexport) 
+void QPlainTextEdit_InsertFromMimeData(QPlainTextEdit* self, QMimeData* source);
+extern __declspec(dllexport) 
+void QPlainTextEdit_InputMethodEvent(QPlainTextEdit* self, QInputMethodEvent* param1);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ScrollContentsBy(QPlainTextEdit* self, int dx, int dy);
+extern __declspec(dllexport) 
+void QPlainTextEdit_DoSetTextCursor(QPlainTextEdit* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextEdit_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_Find2(QPlainTextEdit* self, struct miqt_string exp, int options);
+extern __declspec(dllexport) 
+bool QPlainTextEdit_Find22(QPlainTextEdit* self, QRegularExpression* exp, int options);
+extern __declspec(dllexport) 
+void QPlainTextEdit_MoveCursor2(QPlainTextEdit* self, int operation, int mode);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ZoomIn1(QPlainTextEdit* self, int rangeVal);
+extern __declspec(dllexport) 
+void QPlainTextEdit_ZoomOut1(QPlainTextEdit* self, int rangeVal);
+extern __declspec(dllexport) 
+void QPlainTextEdit_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QPlainTextEdit_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QPlainTextEdit_override_virtual_Metacast(void* self, intptr_t slot);
+void* QPlainTextEdit_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QPlainTextEdit_Delete(QPlainTextEdit* self, bool isSubclass);
 
-extern __declspec(dllexport) QPlainTextDocumentLayout* QPlainTextDocumentLayout_new(QTextDocument* document);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_virtbase(QPlainTextDocumentLayout* src, QAbstractTextDocumentLayout** outptr_QAbstractTextDocumentLayout);
-extern __declspec(dllexport) QMetaObject* QPlainTextDocumentLayout_MetaObject(const QPlainTextDocumentLayout* self);
-extern __declspec(dllexport) void* QPlainTextDocumentLayout_Metacast(QPlainTextDocumentLayout* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QPlainTextDocumentLayout_Tr(const char* s);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_Draw(QPlainTextDocumentLayout* self, QPainter* param1, const PaintContext* param2);
-extern __declspec(dllexport) int QPlainTextDocumentLayout_HitTest(const QPlainTextDocumentLayout* self, QPointF* param1, int param2);
-extern __declspec(dllexport) int QPlainTextDocumentLayout_PageCount(const QPlainTextDocumentLayout* self);
-extern __declspec(dllexport) QSizeF* QPlainTextDocumentLayout_DocumentSize(const QPlainTextDocumentLayout* self);
-extern __declspec(dllexport) QRectF* QPlainTextDocumentLayout_FrameBoundingRect(const QPlainTextDocumentLayout* self, QTextFrame* param1);
-extern __declspec(dllexport) QRectF* QPlainTextDocumentLayout_BlockBoundingRect(const QPlainTextDocumentLayout* self, QTextBlock* block);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_EnsureBlockLayout(const QPlainTextDocumentLayout* self, QTextBlock* block);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_SetCursorWidth(QPlainTextDocumentLayout* self, int width);
-extern __declspec(dllexport) int QPlainTextDocumentLayout_CursorWidth(const QPlainTextDocumentLayout* self);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_RequestUpdate(QPlainTextDocumentLayout* self);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_DocumentChanged(QPlainTextDocumentLayout* self, int from, int param2, int charsAdded);
-extern __declspec(dllexport) struct miqt_string QPlainTextDocumentLayout_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QPlainTextDocumentLayout_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_Draw(void* self, intptr_t slot);
-void QPlainTextDocumentLayout_virtualbase_Draw(void* self, QPainter* param1, const PaintContext* param2);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_HitTest(void* self, intptr_t slot);
-int QPlainTextDocumentLayout_virtualbase_HitTest(const void* self, QPointF* param1, int param2);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_PageCount(void* self, intptr_t slot);
-int QPlainTextDocumentLayout_virtualbase_PageCount(const void* self);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_DocumentSize(void* self, intptr_t slot);
-QSizeF* QPlainTextDocumentLayout_virtualbase_DocumentSize(const void* self);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_FrameBoundingRect(void* self, intptr_t slot);
-QRectF* QPlainTextDocumentLayout_virtualbase_FrameBoundingRect(const void* self, QTextFrame* param1);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_BlockBoundingRect(void* self, intptr_t slot);
-QRectF* QPlainTextDocumentLayout_virtualbase_BlockBoundingRect(const void* self, QTextBlock* block);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_DocumentChanged(void* self, intptr_t slot);
-void QPlainTextDocumentLayout_virtualbase_DocumentChanged(void* self, int from, int param2, int charsAdded);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_ResizeInlineObject(void* self, intptr_t slot);
-void QPlainTextDocumentLayout_virtualbase_ResizeInlineObject(void* self, QTextInlineObject* item, int posInDocument, QTextFormat* format);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_PositionInlineObject(void* self, intptr_t slot);
-void QPlainTextDocumentLayout_virtualbase_PositionInlineObject(void* self, QTextInlineObject* item, int posInDocument, QTextFormat* format);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_DrawInlineObject(void* self, intptr_t slot);
-void QPlainTextDocumentLayout_virtualbase_DrawInlineObject(void* self, QPainter* painter, QRectF* rect, QTextInlineObject* object, int posInDocument, QTextFormat* format);
-extern __declspec(dllexport) void QPlainTextDocumentLayout_Delete(QPlainTextDocumentLayout* self, bool isSubclass);
+extern __declspec(dllexport) 
+QPlainTextDocumentLayout* QPlainTextDocumentLayout_new(QTextDocument* document);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_virtbase(QPlainTextDocumentLayout* src
+, QAbstractTextDocumentLayout** outptr_QAbstractTextDocumentLayout
+);
+extern __declspec(dllexport) 
+QMetaObject* QPlainTextDocumentLayout_MetaObject(const QPlainTextDocumentLayout* self);
+extern __declspec(dllexport) 
+void* QPlainTextDocumentLayout_Metacast(QPlainTextDocumentLayout* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextDocumentLayout_Tr(const char* s);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_Draw(QPlainTextDocumentLayout* self, QPainter* param1, const PaintContext* param2);
+extern __declspec(dllexport) 
+int QPlainTextDocumentLayout_HitTest(const QPlainTextDocumentLayout* self, QPointF* param1, int param2);
+extern __declspec(dllexport) 
+int QPlainTextDocumentLayout_PageCount(const QPlainTextDocumentLayout* self);
+extern __declspec(dllexport) 
+QSizeF* QPlainTextDocumentLayout_DocumentSize(const QPlainTextDocumentLayout* self);
+extern __declspec(dllexport) 
+QRectF* QPlainTextDocumentLayout_FrameBoundingRect(const QPlainTextDocumentLayout* self, QTextFrame* param1);
+extern __declspec(dllexport) 
+QRectF* QPlainTextDocumentLayout_BlockBoundingRect(const QPlainTextDocumentLayout* self, QTextBlock* block);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_EnsureBlockLayout(const QPlainTextDocumentLayout* self, QTextBlock* block);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_SetCursorWidth(QPlainTextDocumentLayout* self, int width);
+extern __declspec(dllexport) 
+int QPlainTextDocumentLayout_CursorWidth(const QPlainTextDocumentLayout* self);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_RequestUpdate(QPlainTextDocumentLayout* self);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_DocumentChanged(QPlainTextDocumentLayout* self, int from, int param2, int charsAdded);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextDocumentLayout_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QPlainTextDocumentLayout_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QPlainTextDocumentLayout_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_override_virtual_Metacast(void* self, intptr_t slot);
+void* QPlainTextDocumentLayout_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QPlainTextDocumentLayout_Delete(QPlainTextDocumentLayout* self, bool isSubclass);
 
-} 
+}

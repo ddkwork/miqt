@@ -19,7 +19,6 @@ type QColormap struct {
 
 // NewQColormap constructs a new QColormap object.
 func NewQColormap(colormap *QColormap) *QColormap {
-
 	ret := newQColormap(QColormap_new(colormap.cPointer()))
 	ret.isSubclass = true
 	return ret

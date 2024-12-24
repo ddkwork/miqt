@@ -1,8 +1,9 @@
 package webchannel
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QWebChannel struct {
@@ -12,7 +13,6 @@ type QWebChannel struct {
 
 // NewQWebChannel constructs a new QWebChannel object.
 func NewQWebChannel() *QWebChannel {
-
 	ret := newQWebChannel(QWebChannel_new())
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQWebChannel() *QWebChannel {
 
 // NewQWebChannel2 constructs a new QWebChannel object.
 func NewQWebChannel2(parent *qt.QObject) *QWebChannel {
-
 	ret := newQWebChannel(QWebChannel_new2((*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -116,6 +115,7 @@ func (this *QWebChannel) SetPropertyUpdateInterval(ms int) {
 func (this *QWebChannel) BlockUpdatesChanged(block bool) {
 	QWebChannel_BlockUpdatesChanged(this.h, (bool)(block))
 }
+
 func (this *QWebChannel) OnBlockUpdatesChanged(slot func(block bool)) {
 	QWebChannel_connect_BlockUpdatesChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -163,190 +163,55 @@ func QWebChannel_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QWebChannel) callVirtualBase_Event(event *qt.QEvent) bool {
-
-	return (bool)(QWebChannel_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
-
+func (this *QWebChannel) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QWebChannel_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QWebChannel) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
+
+func (this *QWebChannel) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QWebChannel_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QWebChannel_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QWebChannel_Event
-func miqt_exec_callback_QWebChannel_Event(self QWebChannel, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
+//export miqt_exec_callback_QWebChannel_MetaObject
+func miqt_exec_callback_QWebChannel_MetaObject(self QWebChannel, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_MetaObject)
+
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
+}
+
+func (this *QWebChannel) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QWebChannel_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QWebChannel) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QWebChannel_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QWebChannel_Metacast
+func miqt_exec_callback_QWebChannel_Metacast(self QWebChannel, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QWebChannel) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
-	return (bool)(QWebChannel_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
-
-}
-func (this *QWebChannel) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWebChannel_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWebChannel_EventFilter
-func miqt_exec_callback_QWebChannel_EventFilter(self QWebChannel, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(watched))
-
-	slotval2 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QWebChannel) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
-	QWebChannel_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
-
-}
-func (this *QWebChannel) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWebChannel_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWebChannel_TimerEvent
-func miqt_exec_callback_QWebChannel_TimerEvent(self QWebChannel, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
-
-	gofunc((&QWebChannel{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QWebChannel) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
-	QWebChannel_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
-
-}
-func (this *QWebChannel) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWebChannel_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWebChannel_ChildEvent
-func miqt_exec_callback_QWebChannel_ChildEvent(self QWebChannel, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
-
-	gofunc((&QWebChannel{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QWebChannel) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
-	QWebChannel_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
-
-}
-func (this *QWebChannel) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWebChannel_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWebChannel_CustomEvent
-func miqt_exec_callback_QWebChannel_CustomEvent(self QWebChannel, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	gofunc((&QWebChannel{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QWebChannel) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
-	QWebChannel_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QWebChannel) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWebChannel_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWebChannel_ConnectNotify
-func miqt_exec_callback_QWebChannel_ConnectNotify(self QWebChannel, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QWebChannel{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QWebChannel) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
-	QWebChannel_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QWebChannel) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWebChannel_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWebChannel_DisconnectNotify
-func miqt_exec_callback_QWebChannel_DisconnectNotify(self QWebChannel, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QWebChannel{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

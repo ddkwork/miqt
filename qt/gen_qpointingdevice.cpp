@@ -42,35 +42,94 @@ void QPointingDeviceUniqueId_Delete(QPointingDeviceUniqueId* self, bool isSubcla
 	}
 }
 
+class MiqtVirtualQPointingDevice : public virtual QPointingDevice {
+public:
+
+	MiqtVirtualQPointingDevice(): QPointingDevice() {};
+	MiqtVirtualQPointingDevice(const QString& name, qint64 systemId, QInputDevice::DeviceType devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount): QPointingDevice(name, systemId, devType, pType, caps, maxPoints, buttonCount) {};
+	MiqtVirtualQPointingDevice(QObject* parent): QPointingDevice(parent) {};
+	MiqtVirtualQPointingDevice(const QString& name, qint64 systemId, QInputDevice::DeviceType devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount, const QString& seatName): QPointingDevice(name, systemId, devType, pType, caps, maxPoints, buttonCount, seatName) {};
+	MiqtVirtualQPointingDevice(const QString& name, qint64 systemId, QInputDevice::DeviceType devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount, const QString& seatName, QPointingDeviceUniqueId uniqueId): QPointingDevice(name, systemId, devType, pType, caps, maxPoints, buttonCount, seatName, uniqueId) {};
+	MiqtVirtualQPointingDevice(const QString& name, qint64 systemId, QInputDevice::DeviceType devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount, const QString& seatName, QPointingDeviceUniqueId uniqueId, QObject* parent): QPointingDevice(name, systemId, devType, pType, caps, maxPoints, buttonCount, seatName, uniqueId, parent) {};
+
+	virtual ~MiqtVirtualQPointingDevice() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MetaObject = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QPointingDevice::metaObject();
+		}
+		
+
+		QMetaObject* callback_return_value = miqt_exec_callback_QPointingDevice_MetaObject(const_cast<MiqtVirtualQPointingDevice*>(this), handle__MetaObject);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QMetaObject* virtualbase_MetaObject() const {
+
+		return (QMetaObject*) QPointingDevice::metaObject();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QPointingDevice::qt_metacast(param1);
+		}
+		
+		const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QPointingDevice_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QPointingDevice::qt_metacast(param1);
+
+	}
+
+};
+
 QPointingDevice* QPointingDevice_new() {
-	return new QPointingDevice();
+	return new MiqtVirtualQPointingDevice();
 }
 
 QPointingDevice* QPointingDevice_new2(struct miqt_string name, long long systemId, int devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
-	return new QPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount));
+	return new MiqtVirtualQPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount));
 }
 
 QPointingDevice* QPointingDevice_new3(QObject* parent) {
-	return new QPointingDevice(parent);
+	return new MiqtVirtualQPointingDevice(parent);
 }
 
 QPointingDevice* QPointingDevice_new4(struct miqt_string name, long long systemId, int devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount, struct miqt_string seatName) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	QString seatName_QString = QString::fromUtf8(seatName.data, seatName.len);
-	return new QPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount), seatName_QString);
+	return new MiqtVirtualQPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount), seatName_QString);
 }
 
 QPointingDevice* QPointingDevice_new5(struct miqt_string name, long long systemId, int devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount, struct miqt_string seatName, QPointingDeviceUniqueId* uniqueId) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	QString seatName_QString = QString::fromUtf8(seatName.data, seatName.len);
-	return new QPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount), seatName_QString, *uniqueId);
+	return new MiqtVirtualQPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount), seatName_QString, *uniqueId);
 }
 
 QPointingDevice* QPointingDevice_new6(struct miqt_string name, long long systemId, int devType, PointerType pType, Capabilities caps, int maxPoints, int buttonCount, struct miqt_string seatName, QPointingDeviceUniqueId* uniqueId, QObject* parent) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	QString seatName_QString = QString::fromUtf8(seatName.data, seatName.len);
-	return new QPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount), seatName_QString, *uniqueId, parent);
+	return new MiqtVirtualQPointingDevice(name_QString, static_cast<qint64>(systemId), static_cast<QInputDevice::DeviceType>(devType), pType, caps, static_cast<int>(maxPoints), static_cast<int>(buttonCount), seatName_QString, *uniqueId, parent);
 }
 
 void QPointingDevice_virtbase(QPointingDevice* src, QInputDevice** outptr_QInputDevice) {
@@ -137,7 +196,7 @@ void QPointingDevice_GrabChanged(const QPointingDevice* self, QObject* grabber, 
 }
 
 void QPointingDevice_connect_GrabChanged(QPointingDevice* self, intptr_t slot) {
-	QPointingDevice::connect(self, static_cast<void (QPointingDevice::*)(QObject*, GrabTransition, const QPointerEvent*, const QEventPoint&) const>(&QPointingDevice::grabChanged), self, [=](QObject* grabber, GrabTransition transition, const QPointerEvent* event, const QEventPoint& point) {
+	MiqtVirtualQPointingDevice::connect(self, static_cast<void (QPointingDevice::*)(QObject*, GrabTransition, const QPointerEvent*, const QEventPoint&) const>(&QPointingDevice::grabChanged), self, [=](QObject* grabber, GrabTransition transition, const QPointerEvent* event, const QEventPoint& point) {
 		QObject* sigval1 = grabber;
 		GrabTransition sigval2 = transition;
 		QPointerEvent* sigval3 = (QPointerEvent*) event;
@@ -175,9 +234,25 @@ QPointingDevice* QPointingDevice_PrimaryPointingDevice1(struct miqt_string seatN
 	return (QPointingDevice*) QPointingDevice::primaryPointingDevice(seatName_QString);
 }
 
+void QPointingDevice_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPointingDevice*>( (QPointingDevice*)(self) )->handle__MetaObject = slot;
+}
+
+QMetaObject* QPointingDevice_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQPointingDevice*)(self) )->virtualbase_MetaObject();
+}
+
+void QPointingDevice_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPointingDevice*>( (QPointingDevice*)(self) )->handle__Metacast = slot;
+}
+
+void* QPointingDevice_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQPointingDevice*)(self) )->virtualbase_Metacast(param1);
+}
+
 void QPointingDevice_Delete(QPointingDevice* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QPointingDevice*>( self );
+		delete dynamic_cast<MiqtVirtualQPointingDevice*>( self );
 	} else {
 		delete self;
 	}

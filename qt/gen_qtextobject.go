@@ -130,7 +130,6 @@ type QTextFrame struct {
 
 // NewQTextFrame constructs a new QTextFrame object.
 func NewQTextFrame(doc *QTextDocument) *QTextFrame {
-
 	ret := newQTextFrame(QTextFrame_new(doc.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -237,6 +236,59 @@ func QTextFrame_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
+func (this *QTextFrame) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QTextFrame_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QTextFrame) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTextFrame_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTextFrame_MetaObject
+func miqt_exec_callback_QTextFrame_MetaObject(self QTextFrame, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QTextFrame{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QTextFrame) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QTextFrame_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QTextFrame) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTextFrame_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTextFrame_Metacast
+func miqt_exec_callback_QTextFrame_Metacast(self QTextFrame, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QTextFrame{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}
+
 type QTextBlockUserData struct {
 	h          uintptr
 	isSubclass bool
@@ -253,7 +305,6 @@ type QTextBlock struct {
 
 // NewQTextBlock constructs a new QTextBlock object.
 func NewQTextBlock() *QTextBlock {
-
 	ret := newQTextBlock(QTextBlock_new())
 	ret.isSubclass = true
 	return ret
@@ -261,7 +312,6 @@ func NewQTextBlock() *QTextBlock {
 
 // NewQTextBlock2 constructs a new QTextBlock object.
 func NewQTextBlock2(o *QTextBlock) *QTextBlock {
-
 	ret := newQTextBlock(QTextBlock_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -437,7 +487,6 @@ type QTextFragment struct {
 
 // NewQTextFragment constructs a new QTextFragment object.
 func NewQTextFragment() *QTextFragment {
-
 	ret := newQTextFragment(QTextFragment_new())
 	ret.isSubclass = true
 	return ret
@@ -445,7 +494,6 @@ func NewQTextFragment() *QTextFragment {
 
 // NewQTextFragment2 constructs a new QTextFragment object.
 func NewQTextFragment2(o *QTextFragment) *QTextFragment {
-
 	ret := newQTextFragment(QTextFragment_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -543,7 +591,6 @@ type QTextFrame__iterator struct {
 
 // NewQTextFrame__iterator constructs a new QTextFrame::iterator object.
 func NewQTextFrame__iterator() *QTextFrame__iterator {
-
 	ret := newQTextFrame__iterator(QTextFrame__iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -551,7 +598,6 @@ func NewQTextFrame__iterator() *QTextFrame__iterator {
 
 // NewQTextFrame__iterator2 constructs a new QTextFrame::iterator object.
 func NewQTextFrame__iterator2(param1 *iterator) *QTextFrame__iterator {
-
 	ret := newQTextFrame__iterator(QTextFrame__iterator_new2(param1))
 	ret.isSubclass = true
 	return ret
@@ -606,7 +652,6 @@ type QTextBlock__iterator struct {
 
 // NewQTextBlock__iterator constructs a new QTextBlock::iterator object.
 func NewQTextBlock__iterator() *QTextBlock__iterator {
-
 	ret := newQTextBlock__iterator(QTextBlock__iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -614,7 +659,6 @@ func NewQTextBlock__iterator() *QTextBlock__iterator {
 
 // NewQTextBlock__iterator2 constructs a new QTextBlock::iterator object.
 func NewQTextBlock__iterator2(param1 *iterator) *QTextBlock__iterator {
-
 	ret := newQTextBlock__iterator(QTextBlock__iterator_new2(param1))
 	ret.isSubclass = true
 	return ret

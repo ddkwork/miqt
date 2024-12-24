@@ -28,49 +28,47 @@ public:
 	virtual ~MiqtVirtualQApplication() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Notify = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool notify(QObject* param1, QEvent* param2) override {
-		if (handle__Notify == 0) {
-			return QApplication::notify(param1, param2);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QApplication::metaObject();
 		}
 		
-		QObject* sigval1 = param1;
-		QEvent* sigval2 = param2;
 
-		bool callback_return_value = miqt_exec_callback_QApplication_Notify(this, handle__Notify, sigval1, sigval2);
+		QMetaObject* callback_return_value = miqt_exec_callback_QApplication_MetaObject(const_cast<MiqtVirtualQApplication*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Notify(QObject* param1, QEvent* param2) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QApplication::notify(param1, param2);
+		return (QMetaObject*) QApplication::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* param1) override {
-		if (handle__Event == 0) {
-			return QApplication::event(param1);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QApplication::qt_metacast(param1);
 		}
 		
-		QEvent* sigval1 = param1;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QApplication_Event(this, handle__Event, sigval1);
+		void* callback_return_value = miqt_exec_callback_QApplication_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* param1) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QApplication::event(param1);
+		return QApplication::qt_metacast(param1);
 
 	}
 
@@ -368,20 +366,20 @@ void QApplication_SetEffectEnabled2(int param1, bool enable) {
 	QApplication::setEffectEnabled(static_cast<Qt::UIEffect>(param1), enable);
 }
 
-void QApplication_override_virtual_Notify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQApplication*>( (QApplication*)(self) )->handle__Notify = slot;
+void QApplication_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQApplication*>( (QApplication*)(self) )->handle__MetaObject = slot;
 }
 
-bool QApplication_virtualbase_Notify(void* self, QObject* param1, QEvent* param2) {
-	return ( (MiqtVirtualQApplication*)(self) )->virtualbase_Notify(param1, param2);
+QMetaObject* QApplication_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQApplication*)(self) )->virtualbase_MetaObject();
 }
 
-void QApplication_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQApplication*>( (QApplication*)(self) )->handle__Event = slot;
+void QApplication_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQApplication*>( (QApplication*)(self) )->handle__Metacast = slot;
 }
 
-bool QApplication_virtualbase_Event(void* self, QEvent* param1) {
-	return ( (MiqtVirtualQApplication*)(self) )->virtualbase_Event(param1);
+void* QApplication_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQApplication*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QApplication_Delete(QApplication* self, bool isSubclass) {

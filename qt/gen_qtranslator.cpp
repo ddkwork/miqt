@@ -1,15 +1,11 @@
 // +build ignore
 
-#include <QChildEvent>
-#include <QEvent>
 #include <QLocale>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <QTranslator>
 #include <qtranslator.h>
 #include "gen_qtranslator.h"
@@ -23,229 +19,47 @@ public:
 	virtual ~MiqtVirtualQTranslator() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Translate = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QString translate(const char* context, const char* sourceText, const char* disambiguation, int n) const override {
-		if (handle__Translate == 0) {
-			return QTranslator::translate(context, sourceText, disambiguation, n);
-		}
-		
-		const char* sigval1 = (const char*) context;
-		const char* sigval2 = (const char*) sourceText;
-		const char* sigval3 = (const char*) disambiguation;
-		int sigval4 = n;
-
-		struct miqt_string callback_return_value = miqt_exec_callback_QTranslator_Translate(const_cast<MiqtVirtualQTranslator*>(this), handle__Translate, sigval1, sigval2, sigval3, sigval4);
-		QString callback_return_value_QString = QString::fromUtf8(callback_return_value.data, callback_return_value.len);
-
-		return callback_return_value_QString;
-	}
-
-	// Wrapper to allow calling protected method
-	struct miqt_string virtualbase_Translate(const char* context, const char* sourceText, const char* disambiguation, int n) const {
-
-		QString _ret = QTranslator::translate(context, sourceText, disambiguation, static_cast<int>(n));
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray _b = _ret.toUtf8();
-		struct miqt_string _ms;
-		_ms.len = _b.length();
-		_ms.data = static_cast<char*>(malloc(_ms.len));
-		memcpy(_ms.data, _b.data(), _ms.len);
-		return _ms;
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__IsEmpty = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool isEmpty() const override {
-		if (handle__IsEmpty == 0) {
-			return QTranslator::isEmpty();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QTranslator::metaObject();
 		}
 		
 
-		bool callback_return_value = miqt_exec_callback_QTranslator_IsEmpty(const_cast<MiqtVirtualQTranslator*>(this), handle__IsEmpty);
+		QMetaObject* callback_return_value = miqt_exec_callback_QTranslator_MetaObject(const_cast<MiqtVirtualQTranslator*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_IsEmpty() const {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QTranslator::isEmpty();
+		return (QMetaObject*) QTranslator::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QTranslator::event(event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QTranslator::qt_metacast(param1);
 		}
 		
-		QEvent* sigval1 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QTranslator_Event(this, handle__Event, sigval1);
+		void* callback_return_value = miqt_exec_callback_QTranslator_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QTranslator::event(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QTranslator::eventFilter(watched, event);
-		}
-		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
-
-		bool callback_return_value = miqt_exec_callback_QTranslator_EventFilter(this, handle__EventFilter, sigval1, sigval2);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
-
-		return QTranslator::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QTranslator::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QTranslator_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QTranslator::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QTranslator::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QTranslator_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QTranslator::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QTranslator::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QTranslator_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QTranslator::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QTranslator::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QTranslator_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QTranslator::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QTranslator::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QTranslator_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QTranslator::disconnectNotify(*signal);
+		return QTranslator::qt_metacast(param1);
 
 	}
 
@@ -402,76 +216,20 @@ bool QTranslator_Load34(QTranslator* self, const unsigned char* data, int lenVal
 	return self->load(static_cast<const uchar*>(data), static_cast<int>(lenVal), directory_QString);
 }
 
-void QTranslator_override_virtual_Translate(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__Translate = slot;
+void QTranslator_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__MetaObject = slot;
 }
 
-struct miqt_string QTranslator_virtualbase_Translate(const void* self, const char* context, const char* sourceText, const char* disambiguation, int n) {
-	return ( (const MiqtVirtualQTranslator*)(self) )->virtualbase_Translate(context, sourceText, disambiguation, n);
+QMetaObject* QTranslator_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQTranslator*)(self) )->virtualbase_MetaObject();
 }
 
-void QTranslator_override_virtual_IsEmpty(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__IsEmpty = slot;
+void QTranslator_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__Metacast = slot;
 }
 
-bool QTranslator_virtualbase_IsEmpty(const void* self) {
-	return ( (const MiqtVirtualQTranslator*)(self) )->virtualbase_IsEmpty();
-}
-
-void QTranslator_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__Event = slot;
-}
-
-bool QTranslator_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQTranslator*)(self) )->virtualbase_Event(event);
-}
-
-void QTranslator_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__EventFilter = slot;
-}
-
-bool QTranslator_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQTranslator*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QTranslator_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__TimerEvent = slot;
-}
-
-void QTranslator_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQTranslator*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QTranslator_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__ChildEvent = slot;
-}
-
-void QTranslator_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQTranslator*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QTranslator_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__CustomEvent = slot;
-}
-
-void QTranslator_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQTranslator*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QTranslator_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QTranslator_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTranslator*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QTranslator_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTranslator*>( (QTranslator*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QTranslator_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTranslator*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QTranslator_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQTranslator*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QTranslator_Delete(QTranslator* self, bool isSubclass) {

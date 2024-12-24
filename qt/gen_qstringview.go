@@ -11,7 +11,6 @@ type QStringView struct {
 
 // NewQStringView constructs a new QStringView object.
 func NewQStringView() *QStringView {
-
 	ret := newQStringView(QStringView_new())
 	ret.isSubclass = true
 	return ret

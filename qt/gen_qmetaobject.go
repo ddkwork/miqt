@@ -36,7 +36,6 @@ type QMetaMethod struct {
 
 // NewQMetaMethod constructs a new QMetaMethod object.
 func NewQMetaMethod() *QMetaMethod {
-
 	ret := newQMetaMethod(QMetaMethod_new())
 	ret.isSubclass = true
 	return ret
@@ -44,7 +43,6 @@ func NewQMetaMethod() *QMetaMethod {
 
 // NewQMetaMethod2 constructs a new QMetaMethod object.
 func NewQMetaMethod2(param1 *QMetaMethod) *QMetaMethod {
-
 	ret := newQMetaMethod(QMetaMethod_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -436,7 +434,6 @@ type QMetaEnum struct {
 
 // NewQMetaEnum constructs a new QMetaEnum object.
 func NewQMetaEnum() *QMetaEnum {
-
 	ret := newQMetaEnum(QMetaEnum_new())
 	ret.isSubclass = true
 	return ret
@@ -444,7 +441,6 @@ func NewQMetaEnum() *QMetaEnum {
 
 // NewQMetaEnum2 constructs a new QMetaEnum object.
 func NewQMetaEnum2(param1 *QMetaEnum) *QMetaEnum {
-
 	ret := newQMetaEnum(QMetaEnum_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -547,7 +543,6 @@ type QMetaProperty struct {
 
 // NewQMetaProperty constructs a new QMetaProperty object.
 func NewQMetaProperty() *QMetaProperty {
-
 	ret := newQMetaProperty(QMetaProperty_new())
 	ret.isSubclass = true
 	return ret
@@ -722,7 +717,6 @@ type QMetaClassInfo struct {
 
 // NewQMetaClassInfo constructs a new QMetaClassInfo object.
 func NewQMetaClassInfo() *QMetaClassInfo {
-
 	ret := newQMetaClassInfo(QMetaClassInfo_new())
 	ret.isSubclass = true
 	return ret
@@ -730,7 +724,6 @@ func NewQMetaClassInfo() *QMetaClassInfo {
 
 // NewQMetaClassInfo2 constructs a new QMetaClassInfo object.
 func NewQMetaClassInfo2(param1 *QMetaClassInfo) *QMetaClassInfo {
-
 	ret := newQMetaClassInfo(QMetaClassInfo_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

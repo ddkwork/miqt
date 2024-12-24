@@ -11,7 +11,6 @@ type QSemaphore struct {
 
 // NewQSemaphore constructs a new QSemaphore object.
 func NewQSemaphore() *QSemaphore {
-
 	ret := newQSemaphore(QSemaphore_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQSemaphore() *QSemaphore {
 
 // NewQSemaphore2 constructs a new QSemaphore object.
 func NewQSemaphore2(n int) *QSemaphore {
-
 	ret := newQSemaphore(QSemaphore_new2((int)(n)))
 	ret.isSubclass = true
 	return ret
@@ -72,7 +70,6 @@ type QSemaphoreReleaser struct {
 
 // NewQSemaphoreReleaser constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser() *QSemaphoreReleaser {
-
 	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new())
 	ret.isSubclass = true
 	return ret
@@ -80,7 +77,6 @@ func NewQSemaphoreReleaser() *QSemaphoreReleaser {
 
 // NewQSemaphoreReleaser2 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser2(sem *QSemaphore) *QSemaphoreReleaser {
-
 	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new2(sem.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -88,7 +84,6 @@ func NewQSemaphoreReleaser2(sem *QSemaphore) *QSemaphoreReleaser {
 
 // NewQSemaphoreReleaser3 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser3(sem *QSemaphore) *QSemaphoreReleaser {
-
 	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new3(sem.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,7 +91,6 @@ func NewQSemaphoreReleaser3(sem *QSemaphore) *QSemaphoreReleaser {
 
 // NewQSemaphoreReleaser4 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser4(sem *QSemaphore, n int) *QSemaphoreReleaser {
-
 	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new4(sem.cPointer(), (int)(n)))
 	ret.isSubclass = true
 	return ret
@@ -104,7 +98,6 @@ func NewQSemaphoreReleaser4(sem *QSemaphore, n int) *QSemaphoreReleaser {
 
 // NewQSemaphoreReleaser5 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser5(sem *QSemaphore, n int) *QSemaphoreReleaser {
-
 	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new5(sem.cPointer(), (int)(n)))
 	ret.isSubclass = true
 	return ret

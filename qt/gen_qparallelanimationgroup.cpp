@@ -21,123 +21,47 @@ public:
 	virtual ~MiqtVirtualQParallelAnimationGroup() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Duration = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int duration() const override {
-		if (handle__Duration == 0) {
-			return QParallelAnimationGroup::duration();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QParallelAnimationGroup::metaObject();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QParallelAnimationGroup_Duration(const_cast<MiqtVirtualQParallelAnimationGroup*>(this), handle__Duration);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Duration() const {
-
-		return QParallelAnimationGroup::duration();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QParallelAnimationGroup::event(event);
-		}
-		
-		QEvent* sigval1 = event;
-
-		bool callback_return_value = miqt_exec_callback_QParallelAnimationGroup_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QParallelAnimationGroup_MetaObject(const_cast<MiqtVirtualQParallelAnimationGroup*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QParallelAnimationGroup::event(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateCurrentTime = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateCurrentTime(int currentTime) override {
-		if (handle__UpdateCurrentTime == 0) {
-			QParallelAnimationGroup::updateCurrentTime(currentTime);
-			return;
-		}
-		
-		int sigval1 = currentTime;
-
-		miqt_exec_callback_QParallelAnimationGroup_UpdateCurrentTime(this, handle__UpdateCurrentTime, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateCurrentTime(int currentTime) {
-
-		QParallelAnimationGroup::updateCurrentTime(static_cast<int>(currentTime));
+		return (QMetaObject*) QParallelAnimationGroup::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateState = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) override {
-		if (handle__UpdateState == 0) {
-			QParallelAnimationGroup::updateState(newState, oldState);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QParallelAnimationGroup::qt_metacast(param1);
 		}
 		
-		QAbstractAnimation::State newState_ret = newState;
-		int sigval1 = static_cast<int>(newState_ret);
-		QAbstractAnimation::State oldState_ret = oldState;
-		int sigval2 = static_cast<int>(oldState_ret);
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QParallelAnimationGroup_UpdateState(this, handle__UpdateState, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QParallelAnimationGroup_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_UpdateState(int newState, int oldState) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QParallelAnimationGroup::updateState(static_cast<QAbstractAnimation::State>(newState), static_cast<QAbstractAnimation::State>(oldState));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateDirection = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateDirection(QAbstractAnimation::Direction direction) override {
-		if (handle__UpdateDirection == 0) {
-			QParallelAnimationGroup::updateDirection(direction);
-			return;
-		}
-		
-		QAbstractAnimation::Direction direction_ret = direction;
-		int sigval1 = static_cast<int>(direction_ret);
-
-		miqt_exec_callback_QParallelAnimationGroup_UpdateDirection(this, handle__UpdateDirection, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateDirection(int direction) {
-
-		QParallelAnimationGroup::updateDirection(static_cast<QAbstractAnimation::Direction>(direction));
+		return QParallelAnimationGroup::qt_metacast(param1);
 
 	}
 
@@ -200,44 +124,20 @@ struct miqt_string QParallelAnimationGroup_Tr3(const char* s, const char* c, int
 	return _ms;
 }
 
-void QParallelAnimationGroup_override_virtual_Duration(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__Duration = slot;
+void QParallelAnimationGroup_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__MetaObject = slot;
 }
 
-int QParallelAnimationGroup_virtualbase_Duration(const void* self) {
-	return ( (const MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_Duration();
+QMetaObject* QParallelAnimationGroup_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_MetaObject();
 }
 
-void QParallelAnimationGroup_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__Event = slot;
+void QParallelAnimationGroup_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__Metacast = slot;
 }
 
-bool QParallelAnimationGroup_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_Event(event);
-}
-
-void QParallelAnimationGroup_override_virtual_UpdateCurrentTime(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__UpdateCurrentTime = slot;
-}
-
-void QParallelAnimationGroup_virtualbase_UpdateCurrentTime(void* self, int currentTime) {
-	( (MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_UpdateCurrentTime(currentTime);
-}
-
-void QParallelAnimationGroup_override_virtual_UpdateState(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__UpdateState = slot;
-}
-
-void QParallelAnimationGroup_virtualbase_UpdateState(void* self, int newState, int oldState) {
-	( (MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_UpdateState(newState, oldState);
-}
-
-void QParallelAnimationGroup_override_virtual_UpdateDirection(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQParallelAnimationGroup*>( (QParallelAnimationGroup*)(self) )->handle__UpdateDirection = slot;
-}
-
-void QParallelAnimationGroup_virtualbase_UpdateDirection(void* self, int direction) {
-	( (MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_UpdateDirection(direction);
+void* QParallelAnimationGroup_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQParallelAnimationGroup*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QParallelAnimationGroup_Delete(QParallelAnimationGroup* self, bool isSubclass) {

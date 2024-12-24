@@ -6,6 +6,8 @@ import (
 	"log"
 	"strconv"
 	"strings"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 var (
@@ -16,38 +18,33 @@ var (
 // parseHeader parses a whole C++ header into our CppParsedHeader intermediate format.
 func parseHeader(topLevel []any, addNamePrefix string) (*CppParsedHeader, error) {
 	var ret CppParsedHeader
-
 nextTopLevel:
 	for _, node := range topLevel {
-
 		node, ok := node.(map[string]any)
 		if !ok {
 			return nil, errors.New("inner[] element not an object")
 		}
-
 		kind, ok := node["kind"].(string)
 		if !ok {
 			return nil, errors.New("node has no kind")
 		}
-
 		switch kind {
-
 		case "CXXRecordDecl":
-
+			//// Process the inner class definition
+			//obj := mylog.Check2(processClassType(node, addNamePrefix))
+			//// A real error (shouldn't happen)
+			//ret.Classes = append(ret.Classes, obj)
 			// Process the inner class definition
-			obj, err := processClassType(node, addNamePrefix)
-			if err != nil {
-				if errors.Is(err, ErrNoContent) {
-					log.Printf("-> Skipping (%v)\n", err)
+			obj, e := processClassType(node, addNamePrefix)
+			if e != nil {
+				if errors.Is(e, ErrNoContent) {
+					log.Printf("-> Skipping (%v)\n", e)
 					continue
 				}
-
 				// A real error (shouldn't happen)
-				panic(err)
+				panic(e)
 			}
-
 			ret.Classes = append(ret.Classes, obj)
-
 		case "StaticAssertDecl":
 			// ignore
 
@@ -67,7 +64,6 @@ nextTopLevel:
 
 		case "FileScopeAsmDecl":
 			// ignore
-
 		case "NamespaceDecl":
 			// Parse everything inside the namespace with prefix, as if it is
 			// a whole separate file
@@ -79,7 +75,6 @@ nextTopLevel:
 				// Treat it as not having existed
 				continue nextTopLevel
 			}
-
 			namespaceInner, ok := node["inner"].([]any)
 			if !ok {
 				// A namespace declaration with no inner content means that, for
@@ -87,79 +82,56 @@ nextTopLevel:
 				// Update our own `addNamePrefix` accordingly
 				addNamePrefix += namespace + "::"
 			} else {
-
-				contents, err := parseHeader(namespaceInner, addNamePrefix+namespace+"::")
-				if err != nil {
-					panic(err)
-				}
-
+				contents := mylog.Check2(parseHeader(namespaceInner, addNamePrefix+namespace+"::"))
 				ret.AddContentFrom(contents)
 			}
-
 		case "FunctionDecl":
 			// TODO
-
 		case "EnumDecl":
 			// Child class enum
-			en, err := processEnum(node, addNamePrefix)
-			if err != nil {
-				panic(fmt.Errorf("processEnum: %w", err)) // A real problem
-			}
-
+			en := mylog.Check2(processEnum(node, addNamePrefix))
+			// A real problem
 			// n.b. In some cases we may produce multiple "copies" of an enum
 			// (e.g. qcborcommon and qmetatype both define QCborSimpleType)
 			// Allow, but use a transform pass to avoid multiple definitions of
 			// it
 			ret.Enums = append(ret.Enums, en)
-
 		case "VarDecl":
 			// TODO e.g. qmath.h
 			// We could probably generate setter/getter for this in the CABI
-
 		case "CXXConstructorDecl":
 			// TODO (why is this at the top level? e.g qobject.h)
-
 		case "CXXDestructorDecl":
 			// ignore
-
 		case "CXXConversionDecl":
 			// TODO (e.g. qbytearray.h)
-
 		case "LinkageSpecDecl":
 			// TODO e.g. qfuturewatcher.h
 			// Probably can't be supported in the Go binding
-
 		case "AbiTagAttr":
 			// e.g. scintilla.org ScintillaEditBase
 		case "VisibilityAttr":
 			// e.g. scintilla.org ScintillaEditBase
 			// Don't understand why this appears at top level??
-
 		case "UsingDirectiveDecl", // qtextstream.h
 			"UsingDecl",       // qglobal.h
 			"UsingShadowDecl": // global.h
 			// TODO e.g.
 			// Should be treated like a typedef
-
 		case "TypeAliasDecl", "TypedefDecl":
-			td, err := processTypedef(node, addNamePrefix)
-			if err != nil {
-				return nil, fmt.Errorf("processTypedef: %w", err)
-			}
+			td := mylog.Check2(processTypedef(node, addNamePrefix))
 			ret.Typedefs = append(ret.Typedefs, td)
-
 		case "CXXMethodDecl":
 			// A C++ class method implementation directly in the header
 			// Skip over these
-
 		case "FullComment":
-			// Safe to skip
-
+		// Safe to skip
+		case "NamespaceAliasDecl":
+			// todo
 		default:
 			return nil, fmt.Errorf("missing handling for clang ast node type %q", kind)
 		}
 	}
-
 	return &ret, nil // done
 }
 
@@ -320,112 +292,85 @@ nextMethod:
 			// These seem to have no useful content
 
 		case "CXXRecordDecl":
-			// Child class type definition e.g. QAbstractEventDispatcher::TimerInfo
-			// Parse as a whole child class
-
 			if visibility != VsPublic {
 				continue // Skip private/protected
 			}
-
-			child, err := processClassType(node, nodename+"::")
-			if err != nil {
-				if errors.Is(err, ErrNoContent) {
-					log.Printf("-> Skipping inner class because: %v", err)
+			child, e := processClassType(node, nodename+"::")
+			if e != nil {
+				if errors.Is(e, ErrNoContent) {
+					log.Printf("-> Skipping inner class because: %v", e)
 					continue
 				}
-				panic(err) // A real problem
+				panic(e) // A real problem
 			}
-
 			ret.ChildClassdefs = append(ret.ChildClassdefs, child)
-
 		case "TypeAliasDecl", "TypedefDecl":
 			// Child class typedef
-			td, err := processTypedef(node, nodename+"::")
-			if err != nil {
-				panic(fmt.Errorf("processTypedef: %w", err)) // A real problem
-			}
+			td := mylog.Check2(processTypedef(node, nodename+"::"))
+			// A real problem
 			ret.ChildTypedefs = append(ret.ChildTypedefs, td)
-
 		case "EnumDecl":
 			// Child class enum
-
 			if visibility == VsPrivate {
 				continue // Skip private, ALLOW protected
 			}
-
-			en, err := processEnum(node, nodename+"::")
-			if err != nil {
-				panic(fmt.Errorf("processEnum: %w", err)) // A real problem
-			}
+			en := mylog.Check2(processEnum(node, nodename+"::"))
+			// A real problem
 			if len(en.Entries) > 0 { // e.g. qmetatype's version of QCborSimpleType (the real one is in qcborcommon)
 				ret.ChildEnums = append(ret.ChildEnums, en)
 			}
-
 		case "CXXConstructorDecl":
-
 			if isImplicit, ok := node["isImplicit"].(bool); ok && isImplicit {
 				// This is an implicit ctor. Therefore the class is constructable
 				// even if we're currently in a `private:` block.
 			} else if visibility != VsPublic {
 				continue // Skip private/protected
 			}
-
 			// Check if this is `= delete`
 			if isExplicitlyDeleted(node) {
 				continue
 			}
-
 			var mm CppMethod
-			err := parseMethod(node, &mm)
-			if err != nil {
-				if errors.Is(err, ErrTooComplex) {
+			e := parseMethod(node, &mm)
+			if e != nil {
+				if errors.Is(e, ErrTooComplex) {
 					log.Printf("Skipping ctor with complex type")
 					continue nextMethod
 				}
-
 				// Real error
-				return CppClass{}, err
+				return CppClass{}, e
 			}
-
 			// Always set IsStatic for constructors, since they can be called without
 			// an existing class instance
 			mm.IsStatic = true
-
 			ret.Ctors = append(ret.Ctors, mm)
-
 		case "CXXDestructorDecl":
 			// We don't need to expose destructors in the binding beyond offering
 			// a regular delete function
 			// However if this destructor is private or deleted, we should
 			// not bind it
-
 			if isImplicit, ok := node["isImplicit"].(bool); ok && isImplicit {
 				// This is an implicit dtor. Therefore the class is deleteable
 				// even if we're currently in a `private:` block.
 				ret.CanDelete = true
 				continue
 			}
-
 			if visibility != VsPublic {
 				// TODO Is there any use case for allowing MIQT to overload a virtual destructor?
 				ret.CanDelete = false
 				continue
 			}
-
 			// Check if this is `= delete`
 			if isExplicitlyDeleted(node) {
 				ret.CanDelete = false
 				continue
 			}
-
 		case "CXXMethodDecl":
-
 			// Method
 			methodName, ok := node["name"].(string)
 			if !ok {
 				return CppClass{}, errors.New("method has no name")
 			}
-
 			// If this is a virtual method, we want to allow overriding it even
 			// if it is protected
 			// But we can only call it if it is public
@@ -433,57 +378,44 @@ nextMethod:
 				ret.PrivateMethods = append(ret.PrivateMethods, methodName)
 				continue // Skip private, ALLOW protected
 			}
-
 			// Check if this is `= delete`
 			if isExplicitlyDeleted(node) {
 				continue
 			}
-
 			var mm CppMethod
 			mm.MethodName = methodName
-
-			err := parseMethod(node, &mm)
-			if err != nil {
-				if errors.Is(err, ErrTooComplex) {
+			e := parseMethod(node, &mm)
+			if e != nil {
+				if errors.Is(e, ErrTooComplex) {
 					log.Printf("Skipping method %q with complex type", mm.MethodName)
 					continue nextMethod
 				}
-
 				// Real error
-				return CppClass{}, err
+				return CppClass{}, e
 			}
-
 			mm.IsSignal = isSignal && !mm.IsStatic && AllowSignal(mm)
-			mm.IsProtected = (visibility == VsProtected)
-
+			mm.IsProtected = visibility == VsProtected
 			if mm.IsProtected && !mm.IsVirtual {
 				// Protected method, so we can't call it
 				// Non-virtual, so we can't override it
 				// There is nothing we can do with this function
 				continue nextMethod
 			}
-
 			// Once all processing is complete, pass to exceptions for final decision
-
-			if err := AllowMethod(ret.ClassName, mm); err != nil {
-				if errors.Is(err, ErrTooComplex) {
+			if e := AllowMethod(ret.ClassName, mm); e != nil {
+				if errors.Is(e, ErrTooComplex) {
 					log.Printf("Skipping method %q with complex type", mm.MethodName)
 					continue nextMethod
 				}
-
 				// Real error
-				return CppClass{}, err
+				return CppClass{}, e
 			}
-
 			ApplyQuirks(ret.ClassName, &mm)
-
 			ret.Methods = append(ret.Methods, mm)
-
 		default:
 			log.Printf("==> NOT IMPLEMENTED %q\n", kind)
 		}
 	}
-
 	return ret, nil // done
 }
 
@@ -492,18 +424,15 @@ func isExplicitlyDeleted(node map[string]any) bool {
 	if explicitlyDeleted, ok := node["explicitlyDeleted"].(bool); ok && explicitlyDeleted {
 		return true
 	}
-
 	if explicitlyDefaulted, ok := node["explicitlyDefaulted"].(string); ok && explicitlyDefaulted == "deleted" {
 		return true
 	}
-
 	return false
 }
 
 // processEnum parses a Clang enum into our CppEnum intermediate format.
 func processEnum(node map[string]any, addNamePrefix string) (CppEnum, error) {
 	var ret CppEnum
-
 	// Underlying type
 	ret.UnderlyingType = parseSingleTypeString("int")
 	if nodefut, ok := node["fixedUnderlyingType"].(map[string]any); ok {
@@ -511,7 +440,6 @@ func processEnum(node map[string]any, addNamePrefix string) (CppEnum, error) {
 			ret.UnderlyingType = parseSingleTypeString(nodequal)
 		}
 	}
-
 	// Name
 	nodename, ok := node["name"].(string)
 	if !ok {
@@ -521,14 +449,12 @@ func processEnum(node map[string]any, addNamePrefix string) (CppEnum, error) {
 	} else {
 		ret.EnumName = addNamePrefix + nodename
 	}
-
 	// Entries
 	inner, ok := node["inner"].([]any)
 	if !ok {
 		// An enum with no entries? We're done
 		return ret, nil
 	}
-
 	var lastImplicitValue int64 = -1
 
 nextEnumEntry:
@@ -537,7 +463,6 @@ nextEnumEntry:
 		if !ok {
 			return ret, errors.New("bad inner type")
 		}
-
 		kind, ok := entry["kind"].(string)
 		if kind == "DeprecatedAttr" || kind == "FullComment" {
 			continue nextEnumEntry // skip
@@ -547,41 +472,33 @@ nextEnumEntry:
 			// unknown kind, or maybe !ok
 			return ret, fmt.Errorf("unexpected kind %q", kind)
 		}
-
 		var cee CppEnumEntry
-
 		entryname, ok := entry["name"].(string)
 		if !ok {
 			return ret, errors.New("entry without name")
 		}
-
 		cee.EntryName = entryname
-
 		// Try to find the enum value
 		ei1, ok := entry["inner"].([]any)
 		if !ok {
 			// No inner value on the enum = autoincrement
 			// Fall through as if a blank ei1, this will be handled
 		}
-
 		// There may be more than one RHS `inner` expression if one of them
 		// is a comment
 		// Iterate through each of the ei1 entries and see if any of them
 		// work for the purposes of enum constant value parsing
 		foundValidInner := false
 		for _, ei1_0 := range ei1 {
-
 			ei1_0 := ei1_0.(map[string]any)
 			ei1Kind, ok := ei1_0["kind"].(string)
 			if !ok {
 				panic("inner with no kind (1)")
 			}
-
 			if ei1Kind == "FullComment" {
 				continue
 			}
 			foundValidInner = true
-
 			// Best case: .inner -> kind=ConstantExpr value=xx
 			// e.g. qabstractitemmodel
 			if ei1Kind == "ConstantExpr" {
@@ -591,7 +508,6 @@ nextEnumEntry:
 					goto afterParse
 				}
 			}
-
 			// Best case: .inner -> kind=ImplicitCastExpr .inner -> kind=ConstantExpr value=xx
 			// e.g. QCalendar (when there is a int typecast)
 			if ei1Kind == "ImplicitCastExpr" {
@@ -605,70 +521,54 @@ nextEnumEntry:
 					}
 				}
 			}
-
 			if ei1Kind == "DeprecatedAttr" {
 				log.Printf("Enum entry %q is deprecated, skipping", ret.EnumName+"::"+entryname)
 				continue nextEnumEntry
 			}
-
 		}
-
 		// If we made it here, we did not hit any of the `goto afterParse` cases
 		if !foundValidInner {
 			// Enum case without definition e.g. QCalendar::Gregorian
 			// This means one more than the last value
 			cee.EntryValue = strconv.FormatInt(lastImplicitValue+1, 10)
 		}
-
 	afterParse:
 		if cee.EntryValue == "" {
 			return ret, fmt.Errorf("complex enum %q entry %q", ret.EnumName, entryname)
 		}
 
-		var err error
 		if cee.EntryValue == "true" || cee.EntryValue == "false" {
 			ret.UnderlyingType = parseSingleTypeString("bool")
 		} else {
-			lastImplicitValue, err = strconv.ParseInt(cee.EntryValue, 10, 64)
-			if err != nil {
-				return ret, fmt.Errorf("enum %q entry %q has non-parseable value %q: %w", ret.EnumName, entryname, cee.EntryValue, err)
-			}
+			lastImplicitValue = mylog.Check2(strconv.ParseInt(cee.EntryValue, 10, 64))
 		}
-
 		ret.Entries = append(ret.Entries, cee)
 	}
-
 	return ret, nil
 }
 
 // parseMethod parses a Clang method into our CppMethod intermediate format.
 func parseMethod(node map[string]any, mm *CppMethod) error {
-	if typobj, ok := node["type"].(map[string]any); ok {
+	if typobj, ok := node["type"].(map[string]interface{}); ok {
 		if qualType, ok := typobj["qualType"].(string); ok {
 			// The qualType is the whole type of the method, including its parameter types
 			// If anything here is too complicated, skip the whole method
-
-			var err error = nil
-			mm.ReturnType, mm.Parameters, mm.IsConst, err = parseTypeString(qualType)
-			if err != nil {
-				return err
+			var e error
+			mm.ReturnType, mm.Parameters, mm.IsConst, e = parseTypeString(qualType)
+			if e != nil {
+				return e
 			}
-
 		}
 	}
-
 	if storageClass, ok := node["storageClass"].(string); ok && storageClass == "static" {
 		mm.IsStatic = true
 	}
-
 	if virtual, ok := node["virtual"].(bool); ok && virtual {
 		mm.IsVirtual = true
 	}
-
 	if pure, ok := node["pure"].(bool); ok && pure {
 		mm.IsPureVirtual = true
 	}
-
 	if methodInner, ok := node["inner"].([]any); ok {
 		paramCounter := 0
 		for _, methodObj := range methodInner {
@@ -676,7 +576,6 @@ func parseMethod(node map[string]any, mm *CppMethod) error {
 			if !ok {
 				return errors.New("inner[] element not an object")
 			}
-
 			switch methodObj["kind"] {
 			case "ParmVarDecl":
 				// Parameter variable
@@ -691,37 +590,30 @@ func parseMethod(node map[string]any, mm *CppMethod) error {
 						parmName = fmt.Sprintf("param%d", paramCounter+1)
 					}
 				}
-
 				// Block reserved Go words, replace with generic parameters
 				if goReservedWord(parmName) {
 					parmName += "Val"
 				}
-
 				// Update the name for the existing nth parameter
 				mm.Parameters[paramCounter].ParameterName = parmName
-
 				// If this parameter has any internal AST nodes of its
 				// own, assume it means it's an optional parameter
 				if _, ok := methodObj["inner"]; ok {
 					mm.Parameters[paramCounter].Optional = true
 				}
-
 				// Next
 				paramCounter++
-
 			case "OverrideAttr":
 				// void keyPressEvent(QKeyEvent *e) override;
 				// This is a virtual method being overridden and is a replacement
 				// for actually using the 'virtual' keyword
 				mm.IsVirtual = true
-
 			default:
 				// Something else inside a declaration??
 				log.Printf("==> NOT IMPLEMENTED CXXMethodDecl->%q\n", methodObj["kind"])
 			}
 		}
 	}
-
 	// Fixups
 	// QDataStream.operator<< return a reference to QDataStream, but have a private
 	// copy constructor
@@ -731,7 +623,6 @@ func parseMethod(node map[string]any, mm *CppMethod) error {
 	if (mm.MethodName == "operator<<" || mm.MethodName == "operator>>" || mm.MethodName == "writeBytes") && mm.ReturnType.ParameterType == "QDataStream" && mm.ReturnType.ByRef {
 		mm.ReturnType = CppParameter{ParameterType: "void"}
 	}
-
 	// Change operator= (assign) to always return void. By default it returns *self which
 	// is a trick for more ergnonomic C++ that has no real effect
 	if mm.MethodName == "operator=" ||
@@ -740,7 +631,6 @@ func parseMethod(node map[string]any, mm *CppMethod) error {
 		mm.MethodName == "operator^=" { // qbitarray.h
 		mm.ReturnType = CppParameter{ParameterType: "void"}
 	}
-
 	return nil
 }
 
@@ -754,48 +644,36 @@ func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, err
 	if strings.Contains(typeString, `&&`) { // TODO Rvalue references
 		return CppParameter{}, nil, false, ErrTooComplex
 	}
-
 	// Cut to exterior-most (, ) pair
 	opos := strings.Index(typeString, `(`)
 	epos := strings.LastIndex(typeString, `)`)
-
 	if opos == -1 || epos == -1 {
 		return CppParameter{}, nil, false, fmt.Errorf("type string %q missing brackets", typeString)
 	}
-
 	isConst := false
 	if strings.Contains(typeString[epos:], `const`) {
 		isConst = true
 	}
-
 	returnType := parseSingleTypeString(strings.TrimSpace(typeString[0:opos]))
-
 	// Skip functions that return ints-by-reference since the ergonomics don't
 	// go through the binding
 	if returnType.IntType() && returnType.ByRef {
 		return CppParameter{}, nil, false, ErrTooComplex // e.g. QSize::rheight()
 	}
-
 	inner := typeString[opos+1 : epos]
-
 	// Should be no more brackets
 	if strings.ContainsAny(inner, `()`) {
 		return CppParameter{}, nil, false, ErrTooComplex
 	}
-
 	// Parameters are separated by commas and nesting can not be possible
 	params := tokenizeMultipleParameters(inner) // strings.Split(inner, `,`)
-
 	ret := make([]CppParameter, 0, len(params))
 	for _, p := range params {
-
 		insert := parseSingleTypeString(p)
-
 		if insert.ParameterType != "" {
 			ret = append(ret, insert)
 		}
 	}
-
 	return returnType, ret, isConst, nil
 }
 
@@ -823,7 +701,6 @@ func tokenizeMultipleParameters(p string) []string {
 			wip += string(c)
 		}
 	}
-
 	tokens = append(tokens, wip)
 	return tokens
 }
@@ -858,11 +735,9 @@ func tokenizeSingleParameter(p string) []string {
 			wip += string(c)
 		}
 	}
-
 	if len(wip) > 0 {
 		tokens = append(tokens, wip)
 	}
-
 	return tokens
 }
 
@@ -870,7 +745,6 @@ func tokenizeSingleParameter(p string) []string {
 // CppParameter intermediate format.
 func parseSingleTypeString(p string) CppParameter {
 	isSigned := false
-
 	tokens := tokenizeSingleParameter(p)
 	insert := CppParameter{}
 	for _, tok := range tokens {
@@ -889,7 +763,6 @@ func parseSingleTypeString(p string) CppParameter {
 		} else if tok == "*" {
 			insert.Pointer = true
 			insert.PointerCount++
-
 		} else {
 			// Valid part of the type name
 			if tok == "char" && isSigned {
@@ -901,6 +774,5 @@ func parseSingleTypeString(p string) CppParameter {
 	}
 	insert.ParameterType = strings.TrimSpace(insert.ParameterType)
 	insert.ParameterType = strings.TrimPrefix(insert.ParameterType, "::")
-
 	return insert
 }

@@ -1,8 +1,9 @@
 package svg
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSvgRenderer struct {
@@ -12,7 +13,6 @@ type QSvgRenderer struct {
 
 // NewQSvgRenderer constructs a new QSvgRenderer object.
 func NewQSvgRenderer() *QSvgRenderer {
-
 	ret := newQSvgRenderer(QSvgRenderer_new())
 	ret.isSubclass = true
 	return ret
@@ -43,7 +43,6 @@ func NewQSvgRenderer3(contents []byte) *QSvgRenderer {
 
 // NewQSvgRenderer4 constructs a new QSvgRenderer object.
 func NewQSvgRenderer4(contents *qt.QXmlStreamReader) *QSvgRenderer {
-
 	ret := newQSvgRenderer(QSvgRenderer_new4((*QXmlStreamReader)(contents.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -51,7 +50,6 @@ func NewQSvgRenderer4(contents *qt.QXmlStreamReader) *QSvgRenderer {
 
 // NewQSvgRenderer5 constructs a new QSvgRenderer object.
 func NewQSvgRenderer5(parent *qt.QObject) *QSvgRenderer {
-
 	ret := newQSvgRenderer(QSvgRenderer_new5((*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -82,7 +80,6 @@ func NewQSvgRenderer7(contents []byte, parent *qt.QObject) *QSvgRenderer {
 
 // NewQSvgRenderer8 constructs a new QSvgRenderer object.
 func NewQSvgRenderer8(contents *qt.QXmlStreamReader, parent *qt.QObject) *QSvgRenderer {
-
 	ret := newQSvgRenderer(QSvgRenderer_new8((*QXmlStreamReader)(contents.UnsafePointer()), (*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -255,6 +252,7 @@ func (this *QSvgRenderer) Render3(p *qt.QPainter, elementId string) {
 func (this *QSvgRenderer) RepaintNeeded() {
 	QSvgRenderer_RepaintNeeded(this.h)
 }
+
 func (this *QSvgRenderer) OnRepaintNeeded(slot func()) {
 	QSvgRenderer_connect_RepaintNeeded(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -299,190 +297,55 @@ func (this *QSvgRenderer) Render32(p *qt.QPainter, elementId string, bounds *qt.
 	QSvgRenderer_Render32(this.h, (*QPainter)(p.UnsafePointer()), elementId_ms, (*QRectF)(bounds.UnsafePointer()))
 }
 
-func (this *QSvgRenderer) callVirtualBase_Event(event *qt.QEvent) bool {
-
-	return (bool)(QSvgRenderer_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
-
+func (this *QSvgRenderer) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QSvgRenderer_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QSvgRenderer) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
+
+func (this *QSvgRenderer) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QSvgRenderer_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QSvgRenderer_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QSvgRenderer_Event
-func miqt_exec_callback_QSvgRenderer_Event(self QSvgRenderer, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
+//export miqt_exec_callback_QSvgRenderer_MetaObject
+func miqt_exec_callback_QSvgRenderer_MetaObject(self QSvgRenderer, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QSvgRenderer{h: self}).callVirtualBase_MetaObject)
+
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
+}
+
+func (this *QSvgRenderer) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QSvgRenderer_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QSvgRenderer) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QSvgRenderer_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QSvgRenderer_Metacast
+func miqt_exec_callback_QSvgRenderer_Metacast(self QSvgRenderer, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QSvgRenderer{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QSvgRenderer{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSvgRenderer) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
-	return (bool)(QSvgRenderer_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
-
-}
-func (this *QSvgRenderer) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSvgRenderer_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSvgRenderer_EventFilter
-func miqt_exec_callback_QSvgRenderer_EventFilter(self QSvgRenderer, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(watched))
-
-	slotval2 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	virtualReturn := gofunc((&QSvgRenderer{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSvgRenderer) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
-	QSvgRenderer_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
-
-}
-func (this *QSvgRenderer) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSvgRenderer_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSvgRenderer_TimerEvent
-func miqt_exec_callback_QSvgRenderer_TimerEvent(self QSvgRenderer, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
-
-	gofunc((&QSvgRenderer{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QSvgRenderer) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
-	QSvgRenderer_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
-
-}
-func (this *QSvgRenderer) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSvgRenderer_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSvgRenderer_ChildEvent
-func miqt_exec_callback_QSvgRenderer_ChildEvent(self QSvgRenderer, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
-
-	gofunc((&QSvgRenderer{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QSvgRenderer) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
-	QSvgRenderer_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
-
-}
-func (this *QSvgRenderer) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSvgRenderer_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSvgRenderer_CustomEvent
-func miqt_exec_callback_QSvgRenderer_CustomEvent(self QSvgRenderer, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	gofunc((&QSvgRenderer{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QSvgRenderer) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
-	QSvgRenderer_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QSvgRenderer) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSvgRenderer_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSvgRenderer_ConnectNotify
-func miqt_exec_callback_QSvgRenderer_ConnectNotify(self QSvgRenderer, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QSvgRenderer{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QSvgRenderer) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
-	QSvgRenderer_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QSvgRenderer) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSvgRenderer_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSvgRenderer_DisconnectNotify
-func miqt_exec_callback_QSvgRenderer_DisconnectNotify(self QSvgRenderer, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QSvgRenderer{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

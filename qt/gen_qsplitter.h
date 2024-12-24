@@ -8,212 +8,173 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QActionEvent QActionEvent;
 typedef struct QChildEvent QChildEvent;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
 typedef struct QFrame QFrame;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
 typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
 typedef struct QSplitter QSplitter;
 typedef struct QSplitterHandle QSplitterHandle;
-typedef struct QStyleOptionFrame QStyleOptionFrame;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QTextStream QTextStream;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) void QTextStream_Delete(QTextStream* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QTextStream_Delete(QTextStream* self, bool isSubclass);
 
-extern __declspec(dllexport) QSplitter* QSplitter_new(QWidget* parent);
-extern __declspec(dllexport) QSplitter* QSplitter_new2();
-extern __declspec(dllexport) QSplitter* QSplitter_new3(int param1);
-extern __declspec(dllexport) QSplitter* QSplitter_new4(int param1, QWidget* parent);
-extern __declspec(dllexport) void QSplitter_virtbase(QSplitter* src, QFrame** outptr_QFrame);
-extern __declspec(dllexport) QMetaObject* QSplitter_MetaObject(const QSplitter* self);
-extern __declspec(dllexport) void* QSplitter_Metacast(QSplitter* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QSplitter_Tr(const char* s);
-extern __declspec(dllexport) void QSplitter_AddWidget(QSplitter* self, QWidget* widget);
-extern __declspec(dllexport) void QSplitter_InsertWidget(QSplitter* self, int index, QWidget* widget);
-extern __declspec(dllexport) QWidget* QSplitter_ReplaceWidget(QSplitter* self, int index, QWidget* widget);
-extern __declspec(dllexport) void QSplitter_SetOrientation(QSplitter* self, int orientation);
-extern __declspec(dllexport) int QSplitter_Orientation(const QSplitter* self);
-extern __declspec(dllexport) void QSplitter_SetChildrenCollapsible(QSplitter* self, bool childrenCollapsible);
-extern __declspec(dllexport) bool QSplitter_ChildrenCollapsible(const QSplitter* self);
-extern __declspec(dllexport) void QSplitter_SetCollapsible(QSplitter* self, int index, bool param2);
-extern __declspec(dllexport) bool QSplitter_IsCollapsible(const QSplitter* self, int index);
-extern __declspec(dllexport) void QSplitter_SetOpaqueResize(QSplitter* self);
-extern __declspec(dllexport) bool QSplitter_OpaqueResize(const QSplitter* self);
-extern __declspec(dllexport) void QSplitter_Refresh(QSplitter* self);
-extern __declspec(dllexport) QSize* QSplitter_SizeHint(const QSplitter* self);
-extern __declspec(dllexport) QSize* QSplitter_MinimumSizeHint(const QSplitter* self);
-extern __declspec(dllexport) struct miqt_array /* of int */  QSplitter_Sizes(const QSplitter* self);
-extern __declspec(dllexport) void QSplitter_SetSizes(QSplitter* self, struct miqt_array /* of int */  list);
-extern __declspec(dllexport) struct miqt_string QSplitter_SaveState(const QSplitter* self);
-extern __declspec(dllexport) bool QSplitter_RestoreState(QSplitter* self, struct miqt_string state);
-extern __declspec(dllexport) int QSplitter_HandleWidth(const QSplitter* self);
-extern __declspec(dllexport) void QSplitter_SetHandleWidth(QSplitter* self, int handleWidth);
-extern __declspec(dllexport) int QSplitter_IndexOf(const QSplitter* self, QWidget* w);
-extern __declspec(dllexport) QWidget* QSplitter_Widget(const QSplitter* self, int index);
-extern __declspec(dllexport) int QSplitter_Count(const QSplitter* self);
-extern __declspec(dllexport) void QSplitter_GetRange(const QSplitter* self, int index, int* param2, int* param3);
-extern __declspec(dllexport) QSplitterHandle* QSplitter_Handle(const QSplitter* self, int index);
-extern __declspec(dllexport) void QSplitter_SetStretchFactor(QSplitter* self, int index, int stretch);
-extern __declspec(dllexport) void QSplitter_SplitterMoved(QSplitter* self, int pos, int index);
+extern __declspec(dllexport) 
+QSplitter* QSplitter_new(QWidget* parent);
+extern __declspec(dllexport) 
+QSplitter* QSplitter_new2();
+extern __declspec(dllexport) 
+QSplitter* QSplitter_new3(int param1);
+extern __declspec(dllexport) 
+QSplitter* QSplitter_new4(int param1, QWidget* parent);
+extern __declspec(dllexport) 
+void QSplitter_virtbase(QSplitter* src
+, QFrame** outptr_QFrame
+);
+extern __declspec(dllexport) 
+QMetaObject* QSplitter_MetaObject(const QSplitter* self);
+extern __declspec(dllexport) 
+void* QSplitter_Metacast(QSplitter* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QSplitter_Tr(const char* s);
+extern __declspec(dllexport) 
+void QSplitter_AddWidget(QSplitter* self, QWidget* widget);
+extern __declspec(dllexport) 
+void QSplitter_InsertWidget(QSplitter* self, int index, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QSplitter_ReplaceWidget(QSplitter* self, int index, QWidget* widget);
+extern __declspec(dllexport) 
+void QSplitter_SetOrientation(QSplitter* self, int orientation);
+extern __declspec(dllexport) 
+int QSplitter_Orientation(const QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_SetChildrenCollapsible(QSplitter* self, bool childrenCollapsible);
+extern __declspec(dllexport) 
+bool QSplitter_ChildrenCollapsible(const QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_SetCollapsible(QSplitter* self, int index, bool param2);
+extern __declspec(dllexport) 
+bool QSplitter_IsCollapsible(const QSplitter* self, int index);
+extern __declspec(dllexport) 
+void QSplitter_SetOpaqueResize(QSplitter* self);
+extern __declspec(dllexport) 
+bool QSplitter_OpaqueResize(const QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_Refresh(QSplitter* self);
+extern __declspec(dllexport) 
+QSize* QSplitter_SizeHint(const QSplitter* self);
+extern __declspec(dllexport) 
+QSize* QSplitter_MinimumSizeHint(const QSplitter* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QSplitter_Sizes(const QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_SetSizes(QSplitter* self, struct miqt_array /* of int */  list);
+extern __declspec(dllexport) 
+struct miqt_string QSplitter_SaveState(const QSplitter* self);
+extern __declspec(dllexport) 
+bool QSplitter_RestoreState(QSplitter* self, struct miqt_string state);
+extern __declspec(dllexport) 
+int QSplitter_HandleWidth(const QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_SetHandleWidth(QSplitter* self, int handleWidth);
+extern __declspec(dllexport) 
+int QSplitter_IndexOf(const QSplitter* self, QWidget* w);
+extern __declspec(dllexport) 
+QWidget* QSplitter_Widget(const QSplitter* self, int index);
+extern __declspec(dllexport) 
+int QSplitter_Count(const QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_GetRange(const QSplitter* self, int index, int* param2, int* param3);
+extern __declspec(dllexport) 
+QSplitterHandle* QSplitter_Handle(const QSplitter* self, int index);
+extern __declspec(dllexport) 
+void QSplitter_SetStretchFactor(QSplitter* self, int index, int stretch);
+extern __declspec(dllexport) 
+void QSplitter_SplitterMoved(QSplitter* self, int pos, int index);
 void QSplitter_connect_SplitterMoved(QSplitter* self, intptr_t slot);
-extern __declspec(dllexport) QSplitterHandle* QSplitter_CreateHandle(QSplitter* self);
-extern __declspec(dllexport) void QSplitter_ChildEvent(QSplitter* self, QChildEvent* param1);
-extern __declspec(dllexport) bool QSplitter_Event(QSplitter* self, QEvent* param1);
-extern __declspec(dllexport) void QSplitter_ResizeEvent(QSplitter* self, QResizeEvent* param1);
-extern __declspec(dllexport) void QSplitter_ChangeEvent(QSplitter* self, QEvent* param1);
-extern __declspec(dllexport) struct miqt_string QSplitter_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QSplitter_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QSplitter_SetOpaqueResize1(QSplitter* self, bool opaque);
-extern __declspec(dllexport) void QSplitter_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QSplitter_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QSplitter_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QSplitter_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QSplitter_override_virtual_CreateHandle(void* self, intptr_t slot);
-QSplitterHandle* QSplitter_virtualbase_CreateHandle(void* self);
-extern __declspec(dllexport) void QSplitter_override_virtual_ChildEvent(void* self, intptr_t slot);
-void QSplitter_virtualbase_ChildEvent(void* self, QChildEvent* param1);
-extern __declspec(dllexport) void QSplitter_override_virtual_Event(void* self, intptr_t slot);
-bool QSplitter_virtualbase_Event(void* self, QEvent* param1);
-extern __declspec(dllexport) void QSplitter_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QSplitter_virtualbase_ResizeEvent(void* self, QResizeEvent* param1);
-extern __declspec(dllexport) void QSplitter_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QSplitter_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QSplitter_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QSplitter_virtualbase_PaintEvent(void* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QSplitter_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QSplitter_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option);
-extern __declspec(dllexport) void QSplitter_Delete(QSplitter* self, bool isSubclass);
+extern __declspec(dllexport) 
+QSplitterHandle* QSplitter_CreateHandle(QSplitter* self);
+extern __declspec(dllexport) 
+void QSplitter_ChildEvent(QSplitter* self, QChildEvent* param1);
+extern __declspec(dllexport) 
+bool QSplitter_Event(QSplitter* self, QEvent* param1);
+extern __declspec(dllexport) 
+void QSplitter_ResizeEvent(QSplitter* self, QResizeEvent* param1);
+extern __declspec(dllexport) 
+void QSplitter_ChangeEvent(QSplitter* self, QEvent* param1);
+extern __declspec(dllexport) 
+struct miqt_string QSplitter_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QSplitter_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QSplitter_SetOpaqueResize1(QSplitter* self, bool opaque);
+extern __declspec(dllexport) 
+void QSplitter_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QSplitter_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QSplitter_override_virtual_Metacast(void* self, intptr_t slot);
+void* QSplitter_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QSplitter_Delete(QSplitter* self, bool isSubclass);
 
-extern __declspec(dllexport) QSplitterHandle* QSplitterHandle_new(int o, QSplitter* parent);
-extern __declspec(dllexport) void QSplitterHandle_virtbase(QSplitterHandle* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QSplitterHandle_MetaObject(const QSplitterHandle* self);
-extern __declspec(dllexport) void* QSplitterHandle_Metacast(QSplitterHandle* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QSplitterHandle_Tr(const char* s);
-extern __declspec(dllexport) void QSplitterHandle_SetOrientation(QSplitterHandle* self, int o);
-extern __declspec(dllexport) int QSplitterHandle_Orientation(const QSplitterHandle* self);
-extern __declspec(dllexport) bool QSplitterHandle_OpaqueResize(const QSplitterHandle* self);
-extern __declspec(dllexport) QSplitter* QSplitterHandle_Splitter(const QSplitterHandle* self);
-extern __declspec(dllexport) QSize* QSplitterHandle_SizeHint(const QSplitterHandle* self);
-extern __declspec(dllexport) void QSplitterHandle_PaintEvent(QSplitterHandle* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_MouseMoveEvent(QSplitterHandle* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_MousePressEvent(QSplitterHandle* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_MouseReleaseEvent(QSplitterHandle* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_ResizeEvent(QSplitterHandle* self, QResizeEvent* param1);
-extern __declspec(dllexport) bool QSplitterHandle_Event(QSplitterHandle* self, QEvent* param1);
-extern __declspec(dllexport) struct miqt_string QSplitterHandle_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QSplitterHandle_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QSplitterHandle_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_PaintEvent(void* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_MousePressEvent(void* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_ResizeEvent(void* self, QResizeEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_Event(void* self, intptr_t slot);
-bool QSplitterHandle_virtualbase_Event(void* self, QEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_DevType(void* self, intptr_t slot);
-int QSplitterHandle_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_SetVisible(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QSplitterHandle_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QSplitterHandle_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QSplitterHandle_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QSplitterHandle_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_DropEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_HideEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QSplitterHandle_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_Metric(void* self, intptr_t slot);
-int QSplitterHandle_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_InitPainter(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QSplitterHandle_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QSplitterHandle_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QSplitterHandle_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QSplitterHandle_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QSplitterHandle_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QSplitterHandle_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QSplitterHandle_Delete(QSplitterHandle* self, bool isSubclass);
+extern __declspec(dllexport) 
+QSplitterHandle* QSplitterHandle_new(int o, QSplitter* parent);
+extern __declspec(dllexport) 
+void QSplitterHandle_virtbase(QSplitterHandle* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QSplitterHandle_MetaObject(const QSplitterHandle* self);
+extern __declspec(dllexport) 
+void* QSplitterHandle_Metacast(QSplitterHandle* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QSplitterHandle_Tr(const char* s);
+extern __declspec(dllexport) 
+void QSplitterHandle_SetOrientation(QSplitterHandle* self, int o);
+extern __declspec(dllexport) 
+int QSplitterHandle_Orientation(const QSplitterHandle* self);
+extern __declspec(dllexport) 
+bool QSplitterHandle_OpaqueResize(const QSplitterHandle* self);
+extern __declspec(dllexport) 
+QSplitter* QSplitterHandle_Splitter(const QSplitterHandle* self);
+extern __declspec(dllexport) 
+QSize* QSplitterHandle_SizeHint(const QSplitterHandle* self);
+extern __declspec(dllexport) 
+void QSplitterHandle_PaintEvent(QSplitterHandle* self, QPaintEvent* param1);
+extern __declspec(dllexport) 
+void QSplitterHandle_MouseMoveEvent(QSplitterHandle* self, QMouseEvent* param1);
+extern __declspec(dllexport) 
+void QSplitterHandle_MousePressEvent(QSplitterHandle* self, QMouseEvent* param1);
+extern __declspec(dllexport) 
+void QSplitterHandle_MouseReleaseEvent(QSplitterHandle* self, QMouseEvent* param1);
+extern __declspec(dllexport) 
+void QSplitterHandle_ResizeEvent(QSplitterHandle* self, QResizeEvent* param1);
+extern __declspec(dllexport) 
+bool QSplitterHandle_Event(QSplitterHandle* self, QEvent* param1);
+extern __declspec(dllexport) 
+struct miqt_string QSplitterHandle_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QSplitterHandle_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QSplitterHandle_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QSplitterHandle_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QSplitterHandle_override_virtual_Metacast(void* self, intptr_t slot);
+void* QSplitterHandle_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QSplitterHandle_Delete(QSplitterHandle* self, bool isSubclass);
 
-} 
+}

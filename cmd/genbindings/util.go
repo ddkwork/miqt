@@ -5,6 +5,8 @@ import (
 	"log"
 	"strconv"
 	"strings"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 func maybeSuffix(counter int) string {
@@ -20,10 +22,7 @@ func titleCase(s string) string {
 }
 
 func prettyPrint(obj any) {
-	jb, err := json.MarshalIndent(obj, "", "  ")
-	if err != nil {
-		panic(err)
-	}
+	jb := mylog.Check2(json.MarshalIndent(obj, "", "  "))
 
 	log.Println(string(jb))
 }

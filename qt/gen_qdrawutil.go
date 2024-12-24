@@ -29,7 +29,6 @@ type QTileRules struct {
 
 // NewQTileRules constructs a new QTileRules object.
 func NewQTileRules(horizontalRule TileRule, verticalRule TileRule) *QTileRules {
-
 	ret := newQTileRules(QTileRules_new((int)(horizontalRule), (int)(verticalRule)))
 	ret.isSubclass = true
 	return ret
@@ -37,7 +36,6 @@ func NewQTileRules(horizontalRule TileRule, verticalRule TileRule) *QTileRules {
 
 // NewQTileRules2 constructs a new QTileRules object.
 func NewQTileRules2() *QTileRules {
-
 	ret := newQTileRules(QTileRules_new2())
 	ret.isSubclass = true
 	return ret
@@ -45,7 +43,6 @@ func NewQTileRules2() *QTileRules {
 
 // NewQTileRules3 constructs a new QTileRules object.
 func NewQTileRules3(param1 *QTileRules) *QTileRules {
-
 	ret := newQTileRules(QTileRules_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -53,7 +50,6 @@ func NewQTileRules3(param1 *QTileRules) *QTileRules {
 
 // NewQTileRules4 constructs a new QTileRules object.
 func NewQTileRules4(rule TileRule) *QTileRules {
-
 	ret := newQTileRules(QTileRules_new4((int)(rule)))
 	ret.isSubclass = true
 	return ret

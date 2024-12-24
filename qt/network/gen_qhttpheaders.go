@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QHttpHeaders__WellKnownHeader int
@@ -194,7 +195,6 @@ type QHttpHeaders struct {
 
 // NewQHttpHeaders constructs a new QHttpHeaders object.
 func NewQHttpHeaders() *QHttpHeaders {
-
 	ret := newQHttpHeaders(QHttpHeaders_new())
 	ret.isSubclass = true
 	return ret
@@ -202,7 +202,6 @@ func NewQHttpHeaders() *QHttpHeaders {
 
 // NewQHttpHeaders2 constructs a new QHttpHeaders object.
 func NewQHttpHeaders2(other *QHttpHeaders) *QHttpHeaders {
-
 	ret := newQHttpHeaders(QHttpHeaders_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

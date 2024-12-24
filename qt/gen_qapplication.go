@@ -251,6 +251,7 @@ func (this *QApplication) Notify(param1 *QObject, param2 *QEvent) bool {
 func (this *QApplication) FocusChanged(old *QWidget, now *QWidget) {
 	QApplication_FocusChanged(this.h, old.cPointer(), now.cPointer())
 }
+
 func (this *QApplication) OnFocusChanged(slot func(old *QWidget, now *QWidget)) {
 	QApplication_connect_FocusChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -343,60 +344,55 @@ func QApplication_SetEffectEnabled2(param1 UIEffect, enable bool) {
 	QApplication_SetEffectEnabled2((int)(param1), (bool)(enable))
 }
 
-func (this *QApplication) callVirtualBase_Notify(param1 *QObject, param2 *QEvent) bool {
-
-	return (bool)(QApplication_virtualbase_Notify(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
+func (this *QApplication) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QApplication_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QApplication) OnNotify(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
+
+func (this *QApplication) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QApplication_override_virtual_Notify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QApplication_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QApplication_Notify
-func miqt_exec_callback_QApplication_Notify(self QApplication, cb intptr_t, param1 *QObject, param2 *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool)
+//export miqt_exec_callback_QApplication_MetaObject
+func miqt_exec_callback_QApplication_MetaObject(self QApplication, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QApplication{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QApplication) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QApplication_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QApplication) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QApplication_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QApplication_Metacast
+func miqt_exec_callback_QApplication_Metacast(self QApplication, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(param1)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	slotval2 := newQEvent(param2)
+	virtualReturn := gofunc((&QApplication{h: self}).callVirtualBase_Metacast, slotval1)
 
-	virtualReturn := gofunc((&QApplication{h: self}).callVirtualBase_Notify, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QApplication) callVirtualBase_Event(param1 *QEvent) bool {
-
-	return (bool)(QApplication_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
-}
-func (this *QApplication) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QApplication_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QApplication_Event
-func miqt_exec_callback_QApplication_Event(self QApplication, cb intptr_t, param1 *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent) bool, param1 *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(param1)
-
-	virtualReturn := gofunc((&QApplication{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
+	return virtualReturn
 }

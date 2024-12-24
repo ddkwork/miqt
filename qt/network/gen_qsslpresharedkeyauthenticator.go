@@ -11,7 +11,6 @@ type QSslPreSharedKeyAuthenticator struct {
 
 // NewQSslPreSharedKeyAuthenticator constructs a new QSslPreSharedKeyAuthenticator object.
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
-
 	ret := newQSslPreSharedKeyAuthenticator(QSslPreSharedKeyAuthenticator_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
 
 // NewQSslPreSharedKeyAuthenticator2 constructs a new QSslPreSharedKeyAuthenticator object.
 func NewQSslPreSharedKeyAuthenticator2(authenticator *QSslPreSharedKeyAuthenticator) *QSslPreSharedKeyAuthenticator {
-
 	ret := newQSslPreSharedKeyAuthenticator(QSslPreSharedKeyAuthenticator_new2(authenticator.cPointer()))
 	ret.isSubclass = true
 	return ret

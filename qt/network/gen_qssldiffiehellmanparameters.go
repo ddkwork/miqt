@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslDiffieHellmanParameters__Error int
@@ -20,7 +21,6 @@ type QSslDiffieHellmanParameters struct {
 
 // NewQSslDiffieHellmanParameters constructs a new QSslDiffieHellmanParameters object.
 func NewQSslDiffieHellmanParameters() *QSslDiffieHellmanParameters {
-
 	ret := newQSslDiffieHellmanParameters(QSslDiffieHellmanParameters_new())
 	ret.isSubclass = true
 	return ret
@@ -28,7 +28,6 @@ func NewQSslDiffieHellmanParameters() *QSslDiffieHellmanParameters {
 
 // NewQSslDiffieHellmanParameters2 constructs a new QSslDiffieHellmanParameters object.
 func NewQSslDiffieHellmanParameters2(other *QSslDiffieHellmanParameters) *QSslDiffieHellmanParameters {
-
 	ret := newQSslDiffieHellmanParameters(QSslDiffieHellmanParameters_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

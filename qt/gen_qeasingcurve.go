@@ -65,7 +65,6 @@ type QEasingCurve struct {
 
 // NewQEasingCurve constructs a new QEasingCurve object.
 func NewQEasingCurve() *QEasingCurve {
-
 	ret := newQEasingCurve(QEasingCurve_new())
 	ret.isSubclass = true
 	return ret
@@ -73,7 +72,6 @@ func NewQEasingCurve() *QEasingCurve {
 
 // NewQEasingCurve2 constructs a new QEasingCurve object.
 func NewQEasingCurve2(other *QEasingCurve) *QEasingCurve {
-
 	ret := newQEasingCurve(QEasingCurve_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -81,7 +79,6 @@ func NewQEasingCurve2(other *QEasingCurve) *QEasingCurve {
 
 // NewQEasingCurve3 constructs a new QEasingCurve object.
 func NewQEasingCurve3(typeVal Type) *QEasingCurve {
-
 	ret := newQEasingCurve(QEasingCurve_new3(typeVal))
 	ret.isSubclass = true
 	return ret

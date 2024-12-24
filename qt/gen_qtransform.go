@@ -22,7 +22,6 @@ type QTransform struct {
 
 // NewQTransform constructs a new QTransform object.
 func NewQTransform(param1 Initialization) *QTransform {
-
 	ret := newQTransform(QTransform_new((int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -30,7 +29,6 @@ func NewQTransform(param1 Initialization) *QTransform {
 
 // NewQTransform2 constructs a new QTransform object.
 func NewQTransform2() *QTransform {
-
 	ret := newQTransform(QTransform_new2())
 	ret.isSubclass = true
 	return ret
@@ -38,7 +36,6 @@ func NewQTransform2() *QTransform {
 
 // NewQTransform3 constructs a new QTransform object.
 func NewQTransform3(h11 float64, h12 float64, h13 float64, h21 float64, h22 float64, h23 float64, h31 float64, h32 float64, h33 float64) *QTransform {
-
 	ret := newQTransform(QTransform_new3((double)(h11), (double)(h12), (double)(h13), (double)(h21), (double)(h22), (double)(h23), (double)(h31), (double)(h32), (double)(h33)))
 	ret.isSubclass = true
 	return ret
@@ -46,7 +43,6 @@ func NewQTransform3(h11 float64, h12 float64, h13 float64, h21 float64, h22 floa
 
 // NewQTransform4 constructs a new QTransform object.
 func NewQTransform4(h11 float64, h12 float64, h21 float64, h22 float64, dx float64, dy float64) *QTransform {
-
 	ret := newQTransform(QTransform_new4((double)(h11), (double)(h12), (double)(h21), (double)(h22), (double)(dx), (double)(dy)))
 	ret.isSubclass = true
 	return ret
@@ -54,7 +50,6 @@ func NewQTransform4(h11 float64, h12 float64, h21 float64, h22 float64, dx float
 
 // NewQTransform5 constructs a new QTransform object.
 func NewQTransform5(other *QTransform) *QTransform {
-
 	ret := newQTransform(QTransform_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret

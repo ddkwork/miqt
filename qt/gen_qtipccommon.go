@@ -19,7 +19,6 @@ type QNativeIpcKey struct {
 
 // NewQNativeIpcKey constructs a new QNativeIpcKey object.
 func NewQNativeIpcKey() *QNativeIpcKey {
-
 	ret := newQNativeIpcKey(QNativeIpcKey_new())
 	ret.isSubclass = true
 	return ret
@@ -27,7 +26,6 @@ func NewQNativeIpcKey() *QNativeIpcKey {
 
 // NewQNativeIpcKey2 constructs a new QNativeIpcKey object.
 func NewQNativeIpcKey2(typeVal Type) *QNativeIpcKey {
-
 	ret := newQNativeIpcKey(QNativeIpcKey_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -47,7 +45,6 @@ func NewQNativeIpcKey3(k string) *QNativeIpcKey {
 
 // NewQNativeIpcKey4 constructs a new QNativeIpcKey object.
 func NewQNativeIpcKey4(other *QNativeIpcKey) *QNativeIpcKey {
-
 	ret := newQNativeIpcKey(QNativeIpcKey_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

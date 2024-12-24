@@ -21,7 +21,6 @@ type QEventPoint struct {
 
 // NewQEventPoint constructs a new QEventPoint object.
 func NewQEventPoint() *QEventPoint {
-
 	ret := newQEventPoint(QEventPoint_new())
 	ret.isSubclass = true
 	return ret
@@ -29,7 +28,6 @@ func NewQEventPoint() *QEventPoint {
 
 // NewQEventPoint2 constructs a new QEventPoint object.
 func NewQEventPoint2(pointId int, state State, scenePosition *QPointF, globalPosition *QPointF) *QEventPoint {
-
 	ret := newQEventPoint(QEventPoint_new2((int)(pointId), state, scenePosition.cPointer(), globalPosition.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -37,7 +35,6 @@ func NewQEventPoint2(pointId int, state State, scenePosition *QPointF, globalPos
 
 // NewQEventPoint3 constructs a new QEventPoint object.
 func NewQEventPoint3(other *QEventPoint) *QEventPoint {
-
 	ret := newQEventPoint(QEventPoint_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -45,7 +42,6 @@ func NewQEventPoint3(other *QEventPoint) *QEventPoint {
 
 // NewQEventPoint4 constructs a new QEventPoint object.
 func NewQEventPoint4(id int) *QEventPoint {
-
 	ret := newQEventPoint(QEventPoint_new4((int)(id)))
 	ret.isSubclass = true
 	return ret
@@ -53,7 +49,6 @@ func NewQEventPoint4(id int) *QEventPoint {
 
 // NewQEventPoint5 constructs a new QEventPoint object.
 func NewQEventPoint5(id int, device *QPointingDevice) *QEventPoint {
-
 	ret := newQEventPoint(QEventPoint_new5((int)(id), device.cPointer()))
 	ret.isSubclass = true
 	return ret

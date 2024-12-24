@@ -20,7 +20,6 @@ type QImageWriter struct {
 
 // NewQImageWriter constructs a new QImageWriter object.
 func NewQImageWriter() *QImageWriter {
-
 	ret := newQImageWriter(QImageWriter_new())
 	ret.isSubclass = true
 	return ret

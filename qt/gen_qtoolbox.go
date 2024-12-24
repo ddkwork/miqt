@@ -11,7 +11,6 @@ type QToolBox struct {
 
 // NewQToolBox constructs a new QToolBox object.
 func NewQToolBox(parent *QWidget) *QToolBox {
-
 	ret := newQToolBox(QToolBox_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQToolBox(parent *QWidget) *QToolBox {
 
 // NewQToolBox2 constructs a new QToolBox object.
 func NewQToolBox2() *QToolBox {
-
 	ret := newQToolBox(QToolBox_new2())
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQToolBox2() *QToolBox {
 
 // NewQToolBox3 constructs a new QToolBox object.
 func NewQToolBox3(parent *QWidget, f WindowType) *QToolBox {
-
 	ret := newQToolBox(QToolBox_new3(parent.cPointer(), (int)(f)))
 	ret.isSubclass = true
 	return ret
@@ -167,6 +164,7 @@ func (this *QToolBox) SetCurrentWidget(widget *QWidget) {
 func (this *QToolBox) CurrentChanged(index int) {
 	QToolBox_CurrentChanged(this.h, (int)(index))
 }
+
 func (this *QToolBox) OnCurrentChanged(slot func(index int)) {
 	QToolBox_connect_CurrentChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -206,213 +204,55 @@ func QToolBox_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QToolBox) callVirtualBase_Event(e *QEvent) bool {
-
-	return (bool)(QToolBox_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
+func (this *QToolBox) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QToolBox_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QToolBox) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
+
+func (this *QToolBox) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QToolBox_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QToolBox_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QToolBox_Event
-func miqt_exec_callback_QToolBox_Event(self QToolBox, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QToolBox_MetaObject
+func miqt_exec_callback_QToolBox_MetaObject(self QToolBox, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
-
-	virtualReturn := gofunc((&QToolBox{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QToolBox) callVirtualBase_ItemInserted(index int) {
-
-	QToolBox_virtualbase_ItemInserted(unsafe.Pointer(this.h), (int)(index))
-
-}
-func (this *QToolBox) OnItemInserted(slot func(super func(index int), index int)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QToolBox_override_virtual_ItemInserted(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QToolBox_ItemInserted
-func miqt_exec_callback_QToolBox_ItemInserted(self QToolBox, cb intptr_t, index int) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(index int), index int))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(index)
-
-	gofunc((&QToolBox{h: self}).callVirtualBase_ItemInserted, slotval1)
-
-}
-
-func (this *QToolBox) callVirtualBase_ItemRemoved(index int) {
-
-	QToolBox_virtualbase_ItemRemoved(unsafe.Pointer(this.h), (int)(index))
-
-}
-func (this *QToolBox) OnItemRemoved(slot func(super func(index int), index int)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QToolBox_override_virtual_ItemRemoved(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QToolBox_ItemRemoved
-func miqt_exec_callback_QToolBox_ItemRemoved(self QToolBox, cb intptr_t, index int) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(index int), index int))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(index)
-
-	gofunc((&QToolBox{h: self}).callVirtualBase_ItemRemoved, slotval1)
-
-}
-
-func (this *QToolBox) callVirtualBase_ShowEvent(e *QShowEvent) {
-
-	QToolBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QToolBox) OnShowEvent(slot func(super func(e *QShowEvent), e *QShowEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QToolBox_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QToolBox_ShowEvent
-func miqt_exec_callback_QToolBox_ShowEvent(self QToolBox, cb intptr_t, e *QShowEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QShowEvent), e *QShowEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQShowEvent(e)
-
-	gofunc((&QToolBox{h: self}).callVirtualBase_ShowEvent, slotval1)
-
-}
-
-func (this *QToolBox) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
-	QToolBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QToolBox) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QToolBox_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QToolBox_ChangeEvent
-func miqt_exec_callback_QToolBox_ChangeEvent(self QToolBox, cb intptr_t, param1 *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent), param1 *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(param1)
-
-	gofunc((&QToolBox{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
-}
-
-func (this *QToolBox) callVirtualBase_SizeHint() *QSize {
-
-	_goptr := newQSize(QToolBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QToolBox) OnSizeHint(slot func(super func() *QSize) *QSize) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QToolBox_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QToolBox_SizeHint
-func miqt_exec_callback_QToolBox_SizeHint(self QToolBox, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QToolBox{h: self}).callVirtualBase_SizeHint)
+	virtualReturn := gofunc((&QToolBox{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QToolBox) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
+func (this *QToolBox) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QToolBox_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
+	return (unsafe.Pointer)(QToolBox_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QToolBox) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
+
+func (this *QToolBox) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QToolBox_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QToolBox_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QToolBox_PaintEvent
-func miqt_exec_callback_QToolBox_PaintEvent(self QToolBox, cb intptr_t, param1 *QPaintEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QPaintEvent), param1 *QPaintEvent))
+//export miqt_exec_callback_QToolBox_Metacast
+func miqt_exec_callback_QToolBox_Metacast(self QToolBox, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPaintEvent(param1)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QToolBox{h: self}).callVirtualBase_PaintEvent, slotval1)
+	virtualReturn := gofunc((&QToolBox{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QToolBox) callVirtualBase_InitStyleOption(option *QStyleOptionFrame) {
-
-	QToolBox_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
-}
-func (this *QToolBox) OnInitStyleOption(slot func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QToolBox_override_virtual_InitStyleOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QToolBox_InitStyleOption
-func miqt_exec_callback_QToolBox_InitStyleOption(self QToolBox, cb intptr_t, option *QStyleOptionFrame) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQStyleOptionFrame(option)
-
-	gofunc((&QToolBox{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
+	return virtualReturn
 }

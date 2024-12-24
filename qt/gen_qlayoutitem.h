@@ -18,187 +18,142 @@ typedef struct QWidget QWidget;
 typedef struct QWidgetItem QWidgetItem;
 typedef struct QWidgetItemV2 QWidgetItemV2;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QLayoutItem* QLayoutItem_new();
-extern __declspec(dllexport) QLayoutItem* QLayoutItem_new2(QLayoutItem* param1);
-extern __declspec(dllexport) QLayoutItem* QLayoutItem_new3(int alignment);
-extern __declspec(dllexport) QSize* QLayoutItem_SizeHint(const QLayoutItem* self);
-extern __declspec(dllexport) QSize* QLayoutItem_MinimumSize(const QLayoutItem* self);
-extern __declspec(dllexport) QSize* QLayoutItem_MaximumSize(const QLayoutItem* self);
-extern __declspec(dllexport) int QLayoutItem_ExpandingDirections(const QLayoutItem* self);
-extern __declspec(dllexport) void QLayoutItem_SetGeometry(QLayoutItem* self, QRect* geometry);
-extern __declspec(dllexport) QRect* QLayoutItem_Geometry(const QLayoutItem* self);
-extern __declspec(dllexport) bool QLayoutItem_IsEmpty(const QLayoutItem* self);
-extern __declspec(dllexport) bool QLayoutItem_HasHeightForWidth(const QLayoutItem* self);
-extern __declspec(dllexport) int QLayoutItem_HeightForWidth(const QLayoutItem* self, int param1);
-extern __declspec(dllexport) int QLayoutItem_MinimumHeightForWidth(const QLayoutItem* self, int param1);
-extern __declspec(dllexport) void QLayoutItem_Invalidate(QLayoutItem* self);
-extern __declspec(dllexport) QWidget* QLayoutItem_Widget(const QLayoutItem* self);
-extern __declspec(dllexport) QLayout* QLayoutItem_Layout(QLayoutItem* self);
-extern __declspec(dllexport) QSpacerItem* QLayoutItem_SpacerItem(QLayoutItem* self);
-extern __declspec(dllexport) int QLayoutItem_Alignment(const QLayoutItem* self);
-extern __declspec(dllexport) void QLayoutItem_SetAlignment(QLayoutItem* self, int a);
-extern __declspec(dllexport) int QLayoutItem_ControlTypes(const QLayoutItem* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QLayoutItem_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_MinimumSize(void* self, intptr_t slot);
-QSize* QLayoutItem_virtualbase_MinimumSize(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_MaximumSize(void* self, intptr_t slot);
-QSize* QLayoutItem_virtualbase_MaximumSize(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_ExpandingDirections(void* self, intptr_t slot);
-int QLayoutItem_virtualbase_ExpandingDirections(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_SetGeometry(void* self, intptr_t slot);
-void QLayoutItem_virtualbase_SetGeometry(void* self, QRect* geometry);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_Geometry(void* self, intptr_t slot);
-QRect* QLayoutItem_virtualbase_Geometry(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_IsEmpty(void* self, intptr_t slot);
-bool QLayoutItem_virtualbase_IsEmpty(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QLayoutItem_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QLayoutItem_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_MinimumHeightForWidth(void* self, intptr_t slot);
-int QLayoutItem_virtualbase_MinimumHeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_Invalidate(void* self, intptr_t slot);
-void QLayoutItem_virtualbase_Invalidate(void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_Widget(void* self, intptr_t slot);
-QWidget* QLayoutItem_virtualbase_Widget(const void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_Layout(void* self, intptr_t slot);
-QLayout* QLayoutItem_virtualbase_Layout(void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_SpacerItem(void* self, intptr_t slot);
-QSpacerItem* QLayoutItem_virtualbase_SpacerItem(void* self);
-extern __declspec(dllexport) void QLayoutItem_override_virtual_ControlTypes(void* self, intptr_t slot);
-int QLayoutItem_virtualbase_ControlTypes(const void* self);
-extern __declspec(dllexport) void QLayoutItem_Delete(QLayoutItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QLayoutItem* QLayoutItem_new();
+extern __declspec(dllexport) 
+QLayoutItem* QLayoutItem_new2(QLayoutItem* param1);
+extern __declspec(dllexport) 
+QLayoutItem* QLayoutItem_new3(int alignment);
+extern __declspec(dllexport) 
+QSize* QLayoutItem_SizeHint(const QLayoutItem* self);
+extern __declspec(dllexport) 
+QSize* QLayoutItem_MinimumSize(const QLayoutItem* self);
+extern __declspec(dllexport) 
+QSize* QLayoutItem_MaximumSize(const QLayoutItem* self);
+extern __declspec(dllexport) 
+int QLayoutItem_ExpandingDirections(const QLayoutItem* self);
+extern __declspec(dllexport) 
+void QLayoutItem_SetGeometry(QLayoutItem* self, QRect* geometry);
+extern __declspec(dllexport) 
+QRect* QLayoutItem_Geometry(const QLayoutItem* self);
+extern __declspec(dllexport) 
+bool QLayoutItem_IsEmpty(const QLayoutItem* self);
+extern __declspec(dllexport) 
+bool QLayoutItem_HasHeightForWidth(const QLayoutItem* self);
+extern __declspec(dllexport) 
+int QLayoutItem_HeightForWidth(const QLayoutItem* self, int param1);
+extern __declspec(dllexport) 
+int QLayoutItem_MinimumHeightForWidth(const QLayoutItem* self, int param1);
+extern __declspec(dllexport) 
+void QLayoutItem_Invalidate(QLayoutItem* self);
+extern __declspec(dllexport) 
+QWidget* QLayoutItem_Widget(const QLayoutItem* self);
+extern __declspec(dllexport) 
+QLayout* QLayoutItem_Layout(QLayoutItem* self);
+extern __declspec(dllexport) 
+QSpacerItem* QLayoutItem_SpacerItem(QLayoutItem* self);
+extern __declspec(dllexport) 
+int QLayoutItem_Alignment(const QLayoutItem* self);
+extern __declspec(dllexport) 
+void QLayoutItem_SetAlignment(QLayoutItem* self, int a);
+extern __declspec(dllexport) 
+int QLayoutItem_ControlTypes(const QLayoutItem* self);
+extern __declspec(dllexport) 
+void QLayoutItem_Delete(QLayoutItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QSpacerItem* QSpacerItem_new(int w, int h);
-extern __declspec(dllexport) QSpacerItem* QSpacerItem_new2(QSpacerItem* param1);
-extern __declspec(dllexport) QSpacerItem* QSpacerItem_new3(int w, int h, int hData);
-extern __declspec(dllexport) QSpacerItem* QSpacerItem_new4(int w, int h, int hData, int vData);
-extern __declspec(dllexport) void QSpacerItem_virtbase(QSpacerItem* src, QLayoutItem** outptr_QLayoutItem);
-extern __declspec(dllexport) void QSpacerItem_ChangeSize(QSpacerItem* self, int w, int h);
-extern __declspec(dllexport) QSize* QSpacerItem_SizeHint(const QSpacerItem* self);
-extern __declspec(dllexport) QSize* QSpacerItem_MinimumSize(const QSpacerItem* self);
-extern __declspec(dllexport) QSize* QSpacerItem_MaximumSize(const QSpacerItem* self);
-extern __declspec(dllexport) int QSpacerItem_ExpandingDirections(const QSpacerItem* self);
-extern __declspec(dllexport) bool QSpacerItem_IsEmpty(const QSpacerItem* self);
-extern __declspec(dllexport) void QSpacerItem_SetGeometry(QSpacerItem* self, QRect* geometry);
-extern __declspec(dllexport) QRect* QSpacerItem_Geometry(const QSpacerItem* self);
-extern __declspec(dllexport) QSpacerItem* QSpacerItem_SpacerItem(QSpacerItem* self);
-extern __declspec(dllexport) QSizePolicy* QSpacerItem_SizePolicy(const QSpacerItem* self);
-extern __declspec(dllexport) void QSpacerItem_ChangeSize3(QSpacerItem* self, int w, int h, int hData);
-extern __declspec(dllexport) void QSpacerItem_ChangeSize4(QSpacerItem* self, int w, int h, int hData, int vData);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QSpacerItem_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_MinimumSize(void* self, intptr_t slot);
-QSize* QSpacerItem_virtualbase_MinimumSize(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_MaximumSize(void* self, intptr_t slot);
-QSize* QSpacerItem_virtualbase_MaximumSize(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_ExpandingDirections(void* self, intptr_t slot);
-int QSpacerItem_virtualbase_ExpandingDirections(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_IsEmpty(void* self, intptr_t slot);
-bool QSpacerItem_virtualbase_IsEmpty(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_SetGeometry(void* self, intptr_t slot);
-void QSpacerItem_virtualbase_SetGeometry(void* self, QRect* geometry);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_Geometry(void* self, intptr_t slot);
-QRect* QSpacerItem_virtualbase_Geometry(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_SpacerItem(void* self, intptr_t slot);
-QSpacerItem* QSpacerItem_virtualbase_SpacerItem(void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QSpacerItem_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QSpacerItem_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_MinimumHeightForWidth(void* self, intptr_t slot);
-int QSpacerItem_virtualbase_MinimumHeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_Invalidate(void* self, intptr_t slot);
-void QSpacerItem_virtualbase_Invalidate(void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_Widget(void* self, intptr_t slot);
-QWidget* QSpacerItem_virtualbase_Widget(const void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_Layout(void* self, intptr_t slot);
-QLayout* QSpacerItem_virtualbase_Layout(void* self);
-extern __declspec(dllexport) void QSpacerItem_override_virtual_ControlTypes(void* self, intptr_t slot);
-int QSpacerItem_virtualbase_ControlTypes(const void* self);
-extern __declspec(dllexport) void QSpacerItem_Delete(QSpacerItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QSpacerItem* QSpacerItem_new(int w, int h);
+extern __declspec(dllexport) 
+QSpacerItem* QSpacerItem_new2(QSpacerItem* param1);
+extern __declspec(dllexport) 
+QSpacerItem* QSpacerItem_new3(int w, int h, int hData);
+extern __declspec(dllexport) 
+QSpacerItem* QSpacerItem_new4(int w, int h, int hData, int vData);
+extern __declspec(dllexport) 
+void QSpacerItem_virtbase(QSpacerItem* src
+, QLayoutItem** outptr_QLayoutItem
+);
+extern __declspec(dllexport) 
+void QSpacerItem_ChangeSize(QSpacerItem* self, int w, int h);
+extern __declspec(dllexport) 
+QSize* QSpacerItem_SizeHint(const QSpacerItem* self);
+extern __declspec(dllexport) 
+QSize* QSpacerItem_MinimumSize(const QSpacerItem* self);
+extern __declspec(dllexport) 
+QSize* QSpacerItem_MaximumSize(const QSpacerItem* self);
+extern __declspec(dllexport) 
+int QSpacerItem_ExpandingDirections(const QSpacerItem* self);
+extern __declspec(dllexport) 
+bool QSpacerItem_IsEmpty(const QSpacerItem* self);
+extern __declspec(dllexport) 
+void QSpacerItem_SetGeometry(QSpacerItem* self, QRect* geometry);
+extern __declspec(dllexport) 
+QRect* QSpacerItem_Geometry(const QSpacerItem* self);
+extern __declspec(dllexport) 
+QSpacerItem* QSpacerItem_SpacerItem(QSpacerItem* self);
+extern __declspec(dllexport) 
+QSizePolicy* QSpacerItem_SizePolicy(const QSpacerItem* self);
+extern __declspec(dllexport) 
+void QSpacerItem_ChangeSize3(QSpacerItem* self, int w, int h, int hData);
+extern __declspec(dllexport) 
+void QSpacerItem_ChangeSize4(QSpacerItem* self, int w, int h, int hData, int vData);
+extern __declspec(dllexport) 
+void QSpacerItem_Delete(QSpacerItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QWidgetItem* QWidgetItem_new(QWidget* w);
-extern __declspec(dllexport) void QWidgetItem_virtbase(QWidgetItem* src, QLayoutItem** outptr_QLayoutItem);
-extern __declspec(dllexport) QSize* QWidgetItem_SizeHint(const QWidgetItem* self);
-extern __declspec(dllexport) QSize* QWidgetItem_MinimumSize(const QWidgetItem* self);
-extern __declspec(dllexport) QSize* QWidgetItem_MaximumSize(const QWidgetItem* self);
-extern __declspec(dllexport) int QWidgetItem_ExpandingDirections(const QWidgetItem* self);
-extern __declspec(dllexport) bool QWidgetItem_IsEmpty(const QWidgetItem* self);
-extern __declspec(dllexport) void QWidgetItem_SetGeometry(QWidgetItem* self, QRect* geometry);
-extern __declspec(dllexport) QRect* QWidgetItem_Geometry(const QWidgetItem* self);
-extern __declspec(dllexport) QWidget* QWidgetItem_Widget(const QWidgetItem* self);
-extern __declspec(dllexport) bool QWidgetItem_HasHeightForWidth(const QWidgetItem* self);
-extern __declspec(dllexport) int QWidgetItem_HeightForWidth(const QWidgetItem* self, int param1);
-extern __declspec(dllexport) int QWidgetItem_MinimumHeightForWidth(const QWidgetItem* self, int param1);
-extern __declspec(dllexport) int QWidgetItem_ControlTypes(const QWidgetItem* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QWidgetItem_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_MinimumSize(void* self, intptr_t slot);
-QSize* QWidgetItem_virtualbase_MinimumSize(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_MaximumSize(void* self, intptr_t slot);
-QSize* QWidgetItem_virtualbase_MaximumSize(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_ExpandingDirections(void* self, intptr_t slot);
-int QWidgetItem_virtualbase_ExpandingDirections(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_IsEmpty(void* self, intptr_t slot);
-bool QWidgetItem_virtualbase_IsEmpty(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_SetGeometry(void* self, intptr_t slot);
-void QWidgetItem_virtualbase_SetGeometry(void* self, QRect* geometry);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_Geometry(void* self, intptr_t slot);
-QRect* QWidgetItem_virtualbase_Geometry(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_Widget(void* self, intptr_t slot);
-QWidget* QWidgetItem_virtualbase_Widget(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QWidgetItem_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QWidgetItem_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_MinimumHeightForWidth(void* self, intptr_t slot);
-int QWidgetItem_virtualbase_MinimumHeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_ControlTypes(void* self, intptr_t slot);
-int QWidgetItem_virtualbase_ControlTypes(const void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_Invalidate(void* self, intptr_t slot);
-void QWidgetItem_virtualbase_Invalidate(void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_Layout(void* self, intptr_t slot);
-QLayout* QWidgetItem_virtualbase_Layout(void* self);
-extern __declspec(dllexport) void QWidgetItem_override_virtual_SpacerItem(void* self, intptr_t slot);
-QSpacerItem* QWidgetItem_virtualbase_SpacerItem(void* self);
-extern __declspec(dllexport) void QWidgetItem_Delete(QWidgetItem* self, bool isSubclass);
+extern __declspec(dllexport) 
+QWidgetItem* QWidgetItem_new(QWidget* w);
+extern __declspec(dllexport) 
+void QWidgetItem_virtbase(QWidgetItem* src
+, QLayoutItem** outptr_QLayoutItem
+);
+extern __declspec(dllexport) 
+QSize* QWidgetItem_SizeHint(const QWidgetItem* self);
+extern __declspec(dllexport) 
+QSize* QWidgetItem_MinimumSize(const QWidgetItem* self);
+extern __declspec(dllexport) 
+QSize* QWidgetItem_MaximumSize(const QWidgetItem* self);
+extern __declspec(dllexport) 
+int QWidgetItem_ExpandingDirections(const QWidgetItem* self);
+extern __declspec(dllexport) 
+bool QWidgetItem_IsEmpty(const QWidgetItem* self);
+extern __declspec(dllexport) 
+void QWidgetItem_SetGeometry(QWidgetItem* self, QRect* geometry);
+extern __declspec(dllexport) 
+QRect* QWidgetItem_Geometry(const QWidgetItem* self);
+extern __declspec(dllexport) 
+QWidget* QWidgetItem_Widget(const QWidgetItem* self);
+extern __declspec(dllexport) 
+bool QWidgetItem_HasHeightForWidth(const QWidgetItem* self);
+extern __declspec(dllexport) 
+int QWidgetItem_HeightForWidth(const QWidgetItem* self, int param1);
+extern __declspec(dllexport) 
+int QWidgetItem_MinimumHeightForWidth(const QWidgetItem* self, int param1);
+extern __declspec(dllexport) 
+int QWidgetItem_ControlTypes(const QWidgetItem* self);
+extern __declspec(dllexport) 
+void QWidgetItem_Delete(QWidgetItem* self, bool isSubclass);
 
-extern __declspec(dllexport) QWidgetItemV2* QWidgetItemV2_new(QWidget* widget);
-extern __declspec(dllexport) void QWidgetItemV2_virtbase(QWidgetItemV2* src, QWidgetItem** outptr_QWidgetItem);
-extern __declspec(dllexport) QSize* QWidgetItemV2_SizeHint(const QWidgetItemV2* self);
-extern __declspec(dllexport) QSize* QWidgetItemV2_MinimumSize(const QWidgetItemV2* self);
-extern __declspec(dllexport) QSize* QWidgetItemV2_MaximumSize(const QWidgetItemV2* self);
-extern __declspec(dllexport) int QWidgetItemV2_HeightForWidth(const QWidgetItemV2* self, int width);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QWidgetItemV2_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_MinimumSize(void* self, intptr_t slot);
-QSize* QWidgetItemV2_virtualbase_MinimumSize(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_MaximumSize(void* self, intptr_t slot);
-QSize* QWidgetItemV2_virtualbase_MaximumSize(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QWidgetItemV2_virtualbase_HeightForWidth(const void* self, int width);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_ExpandingDirections(void* self, intptr_t slot);
-int QWidgetItemV2_virtualbase_ExpandingDirections(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_IsEmpty(void* self, intptr_t slot);
-bool QWidgetItemV2_virtualbase_IsEmpty(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_SetGeometry(void* self, intptr_t slot);
-void QWidgetItemV2_virtualbase_SetGeometry(void* self, QRect* geometry);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_Geometry(void* self, intptr_t slot);
-QRect* QWidgetItemV2_virtualbase_Geometry(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_Widget(void* self, intptr_t slot);
-QWidget* QWidgetItemV2_virtualbase_Widget(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QWidgetItemV2_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_MinimumHeightForWidth(void* self, intptr_t slot);
-int QWidgetItemV2_virtualbase_MinimumHeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QWidgetItemV2_override_virtual_ControlTypes(void* self, intptr_t slot);
-int QWidgetItemV2_virtualbase_ControlTypes(const void* self);
-extern __declspec(dllexport) void QWidgetItemV2_Delete(QWidgetItemV2* self, bool isSubclass);
+extern __declspec(dllexport) 
+QWidgetItemV2* QWidgetItemV2_new(QWidget* widget);
+extern __declspec(dllexport) 
+void QWidgetItemV2_virtbase(QWidgetItemV2* src
+, QWidgetItem** outptr_QWidgetItem
+);
+extern __declspec(dllexport) 
+QSize* QWidgetItemV2_SizeHint(const QWidgetItemV2* self);
+extern __declspec(dllexport) 
+QSize* QWidgetItemV2_MinimumSize(const QWidgetItemV2* self);
+extern __declspec(dllexport) 
+QSize* QWidgetItemV2_MaximumSize(const QWidgetItemV2* self);
+extern __declspec(dllexport) 
+int QWidgetItemV2_HeightForWidth(const QWidgetItemV2* self, int width);
+extern __declspec(dllexport) 
+void QWidgetItemV2_Delete(QWidgetItemV2* self, bool isSubclass);
 
-} 
+}

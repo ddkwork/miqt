@@ -52,7 +52,6 @@ type QSizePolicy struct {
 
 // NewQSizePolicy constructs a new QSizePolicy object.
 func NewQSizePolicy() *QSizePolicy {
-
 	ret := newQSizePolicy(QSizePolicy_new())
 	ret.isSubclass = true
 	return ret
@@ -60,7 +59,6 @@ func NewQSizePolicy() *QSizePolicy {
 
 // NewQSizePolicy2 constructs a new QSizePolicy object.
 func NewQSizePolicy2(horizontal Policy, vertical Policy) *QSizePolicy {
-
 	ret := newQSizePolicy(QSizePolicy_new2(horizontal, vertical))
 	ret.isSubclass = true
 	return ret
@@ -68,7 +66,6 @@ func NewQSizePolicy2(horizontal Policy, vertical Policy) *QSizePolicy {
 
 // NewQSizePolicy3 constructs a new QSizePolicy object.
 func NewQSizePolicy3(param1 *QSizePolicy) *QSizePolicy {
-
 	ret := newQSizePolicy(QSizePolicy_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -76,7 +73,6 @@ func NewQSizePolicy3(param1 *QSizePolicy) *QSizePolicy {
 
 // NewQSizePolicy4 constructs a new QSizePolicy object.
 func NewQSizePolicy4(horizontal Policy, vertical Policy, typeVal ControlType) *QSizePolicy {
-
 	ret := newQSizePolicy(QSizePolicy_new4(horizontal, vertical, typeVal))
 	ret.isSubclass = true
 	return ret

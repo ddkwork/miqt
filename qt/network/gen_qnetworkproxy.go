@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkProxyQuery__QueryType int
@@ -46,7 +47,6 @@ type QNetworkProxyQuery struct {
 
 // NewQNetworkProxyQuery constructs a new QNetworkProxyQuery object.
 func NewQNetworkProxyQuery() *QNetworkProxyQuery {
-
 	ret := newQNetworkProxyQuery(QNetworkProxyQuery_new())
 	ret.isSubclass = true
 	return ret
@@ -54,7 +54,6 @@ func NewQNetworkProxyQuery() *QNetworkProxyQuery {
 
 // NewQNetworkProxyQuery2 constructs a new QNetworkProxyQuery object.
 func NewQNetworkProxyQuery2(requestUrl *qt.QUrl) *QNetworkProxyQuery {
-
 	ret := newQNetworkProxyQuery(QNetworkProxyQuery_new2((*QUrl)(requestUrl.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -74,7 +73,6 @@ func NewQNetworkProxyQuery3(hostname string, port int) *QNetworkProxyQuery {
 
 // NewQNetworkProxyQuery4 constructs a new QNetworkProxyQuery object.
 func NewQNetworkProxyQuery4(bindPort uint16) *QNetworkProxyQuery {
-
 	ret := newQNetworkProxyQuery(QNetworkProxyQuery_new4((uint16_t)(bindPort)))
 	ret.isSubclass = true
 	return ret
@@ -82,7 +80,6 @@ func NewQNetworkProxyQuery4(bindPort uint16) *QNetworkProxyQuery {
 
 // NewQNetworkProxyQuery5 constructs a new QNetworkProxyQuery object.
 func NewQNetworkProxyQuery5(other *QNetworkProxyQuery) *QNetworkProxyQuery {
-
 	ret := newQNetworkProxyQuery(QNetworkProxyQuery_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -90,7 +87,6 @@ func NewQNetworkProxyQuery5(other *QNetworkProxyQuery) *QNetworkProxyQuery {
 
 // NewQNetworkProxyQuery6 constructs a new QNetworkProxyQuery object.
 func NewQNetworkProxyQuery6(requestUrl *qt.QUrl, queryType QueryType) *QNetworkProxyQuery {
-
 	ret := newQNetworkProxyQuery(QNetworkProxyQuery_new6((*QUrl)(requestUrl.UnsafePointer()), queryType))
 	ret.isSubclass = true
 	return ret
@@ -239,7 +235,6 @@ type QNetworkProxy struct {
 
 // NewQNetworkProxy constructs a new QNetworkProxy object.
 func NewQNetworkProxy() *QNetworkProxy {
-
 	ret := newQNetworkProxy(QNetworkProxy_new())
 	ret.isSubclass = true
 	return ret
@@ -247,7 +242,6 @@ func NewQNetworkProxy() *QNetworkProxy {
 
 // NewQNetworkProxy2 constructs a new QNetworkProxy object.
 func NewQNetworkProxy2(typeVal ProxyType) *QNetworkProxy {
-
 	ret := newQNetworkProxy(QNetworkProxy_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -255,7 +249,6 @@ func NewQNetworkProxy2(typeVal ProxyType) *QNetworkProxy {
 
 // NewQNetworkProxy3 constructs a new QNetworkProxy object.
 func NewQNetworkProxy3(other *QNetworkProxy) *QNetworkProxy {
-
 	ret := newQNetworkProxy(QNetworkProxy_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -491,7 +484,6 @@ type QNetworkProxyFactory struct {
 
 // NewQNetworkProxyFactory constructs a new QNetworkProxyFactory object.
 func NewQNetworkProxyFactory() *QNetworkProxyFactory {
-
 	ret := newQNetworkProxyFactory(QNetworkProxyFactory_new())
 	ret.isSubclass = true
 	return ret
@@ -559,32 +551,4 @@ func QNetworkProxyFactory_SystemProxyForQuery1(query *QNetworkProxyQuery) []QNet
 		_ret[i] = *_lv_goptr
 	}
 	return _ret
-}
-func (this *QNetworkProxyFactory) OnQueryProxy(slot func(query *QNetworkProxyQuery) []QNetworkProxy) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkProxyFactory_override_virtual_QueryProxy(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkProxyFactory_QueryProxy
-func miqt_exec_callback_QNetworkProxyFactory_QueryProxy(self QNetworkProxyFactory, cb intptr_t, query *QNetworkProxyQuery) struct_miqt_array {
-	gofunc, ok := cgo.Handle(cb).Value().(func(query *QNetworkProxyQuery) []QNetworkProxy)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQNetworkProxyQuery(query)
-
-	virtualReturn := gofunc(slotval1)
-	virtualReturn_CArray := (*[0xffff]*QNetworkProxy)(malloc(size_t(8 * len(virtualReturn))))
-	defer free(unsafe.Pointer(virtualReturn_CArray))
-	for i := range virtualReturn {
-		virtualReturn_CArray[i] = virtualReturn[i].cPointer()
-	}
-	virtualReturn_ma := struct_miqt_array{len: size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
-
-	return virtualReturn_ma
-
 }

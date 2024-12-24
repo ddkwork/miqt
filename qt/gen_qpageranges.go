@@ -11,7 +11,6 @@ type QPageRanges struct {
 
 // NewQPageRanges constructs a new QPageRanges object.
 func NewQPageRanges() *QPageRanges {
-
 	ret := newQPageRanges(QPageRanges_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQPageRanges() *QPageRanges {
 
 // NewQPageRanges2 constructs a new QPageRanges object.
 func NewQPageRanges2(other *QPageRanges) *QPageRanges {
-
 	ret := newQPageRanges(QPageRanges_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -99,7 +97,6 @@ type QPageRanges__Range struct {
 
 // NewQPageRanges__Range constructs a new QPageRanges::Range object.
 func NewQPageRanges__Range() *QPageRanges__Range {
-
 	ret := newQPageRanges__Range(QPageRanges__Range_new())
 	ret.isSubclass = true
 	return ret
@@ -107,7 +104,6 @@ func NewQPageRanges__Range() *QPageRanges__Range {
 
 // NewQPageRanges__Range2 constructs a new QPageRanges::Range object.
 func NewQPageRanges__Range2(param1 *Range) *QPageRanges__Range {
-
 	ret := newQPageRanges__Range(QPageRanges__Range_new2(param1))
 	ret.isSubclass = true
 	return ret

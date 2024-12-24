@@ -11,7 +11,6 @@ type QShortcut struct {
 
 // NewQShortcut constructs a new QShortcut object.
 func NewQShortcut(parent *QObject) *QShortcut {
-
 	ret := newQShortcut(QShortcut_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQShortcut(parent *QObject) *QShortcut {
 
 // NewQShortcut2 constructs a new QShortcut object.
 func NewQShortcut2(key *QKeySequence, parent *QObject) *QShortcut {
-
 	ret := newQShortcut(QShortcut_new2(key.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQShortcut2(key *QKeySequence, parent *QObject) *QShortcut {
 
 // NewQShortcut3 constructs a new QShortcut object.
 func NewQShortcut3(key QKeySequence__StandardKey, parent *QObject) *QShortcut {
-
 	ret := newQShortcut(QShortcut_new3((int)(key), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -202,6 +199,7 @@ func (this *QShortcut) WhatsThis() string {
 func (this *QShortcut) Activated() {
 	QShortcut_Activated(this.h)
 }
+
 func (this *QShortcut) OnActivated(slot func()) {
 	QShortcut_connect_Activated(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -219,6 +217,7 @@ func miqt_exec_callback_QShortcut_Activated(cb intptr_t) {
 func (this *QShortcut) ActivatedAmbiguously() {
 	QShortcut_ActivatedAmbiguously(this.h)
 }
+
 func (this *QShortcut) OnActivatedAmbiguously(slot func()) {
 	QShortcut_connect_ActivatedAmbiguously(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -255,190 +254,55 @@ func QShortcut_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QShortcut) callVirtualBase_Event(e *QEvent) bool {
-
-	return (bool)(QShortcut_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
+func (this *QShortcut) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QShortcut_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QShortcut) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
+
+func (this *QShortcut) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QShortcut_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QShortcut_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QShortcut_Event
-func miqt_exec_callback_QShortcut_Event(self QShortcut, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QShortcut_MetaObject
+func miqt_exec_callback_QShortcut_MetaObject(self QShortcut, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QShortcut{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QShortcut) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QShortcut_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QShortcut) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QShortcut_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QShortcut_Metacast
+func miqt_exec_callback_QShortcut_Metacast(self QShortcut, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QShortcut{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QShortcut{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QShortcut) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QShortcut_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QShortcut) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QShortcut_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QShortcut_EventFilter
-func miqt_exec_callback_QShortcut_EventFilter(self QShortcut, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QShortcut{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QShortcut) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QShortcut_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QShortcut) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QShortcut_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QShortcut_TimerEvent
-func miqt_exec_callback_QShortcut_TimerEvent(self QShortcut, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QShortcut{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QShortcut) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QShortcut_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QShortcut) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QShortcut_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QShortcut_ChildEvent
-func miqt_exec_callback_QShortcut_ChildEvent(self QShortcut, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QShortcut{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QShortcut) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QShortcut_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QShortcut) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QShortcut_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QShortcut_CustomEvent
-func miqt_exec_callback_QShortcut_CustomEvent(self QShortcut, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QShortcut{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QShortcut) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QShortcut_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QShortcut) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QShortcut_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QShortcut_ConnectNotify
-func miqt_exec_callback_QShortcut_ConnectNotify(self QShortcut, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QShortcut{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QShortcut) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QShortcut_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QShortcut) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QShortcut_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QShortcut_DisconnectNotify
-func miqt_exec_callback_QShortcut_DisconnectNotify(self QShortcut, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QShortcut{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

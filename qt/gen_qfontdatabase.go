@@ -61,7 +61,6 @@ type QFontDatabase struct {
 
 // NewQFontDatabase constructs a new QFontDatabase object.
 func NewQFontDatabase() *QFontDatabase {
-
 	ret := newQFontDatabase(QFontDatabase_new())
 	ret.isSubclass = true
 	return ret

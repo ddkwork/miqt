@@ -11,7 +11,6 @@ type QTextList struct {
 
 // NewQTextList constructs a new QTextList object.
 func NewQTextList(doc *QTextDocument) *QTextList {
-
 	ret := newQTextList(QTextList_new(doc.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -101,80 +100,55 @@ func QTextList_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QTextList) callVirtualBase_BlockInserted(block *QTextBlock) {
-
-	QTextList_virtualbase_BlockInserted(unsafe.Pointer(this.h), block.cPointer())
-
+func (this *QTextList) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QTextList_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QTextList) OnBlockInserted(slot func(super func(block *QTextBlock), block *QTextBlock)) {
+
+func (this *QTextList) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QTextList_override_virtual_BlockInserted(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QTextList_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QTextList_BlockInserted
-func miqt_exec_callback_QTextList_BlockInserted(self QTextList, cb intptr_t, block *QTextBlock) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(block *QTextBlock), block *QTextBlock))
+//export miqt_exec_callback_QTextList_MetaObject
+func miqt_exec_callback_QTextList_MetaObject(self QTextList, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QTextList{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QTextList) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QTextList_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QTextList) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTextList_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTextList_Metacast
+func miqt_exec_callback_QTextList_Metacast(self QTextList, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTextBlock(block)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QTextList{h: self}).callVirtualBase_BlockInserted, slotval1)
+	virtualReturn := gofunc((&QTextList{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QTextList) callVirtualBase_BlockRemoved(block *QTextBlock) {
-
-	QTextList_virtualbase_BlockRemoved(unsafe.Pointer(this.h), block.cPointer())
-
-}
-func (this *QTextList) OnBlockRemoved(slot func(super func(block *QTextBlock), block *QTextBlock)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextList_override_virtual_BlockRemoved(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextList_BlockRemoved
-func miqt_exec_callback_QTextList_BlockRemoved(self QTextList, cb intptr_t, block *QTextBlock) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(block *QTextBlock), block *QTextBlock))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTextBlock(block)
-
-	gofunc((&QTextList{h: self}).callVirtualBase_BlockRemoved, slotval1)
-
-}
-
-func (this *QTextList) callVirtualBase_BlockFormatChanged(block *QTextBlock) {
-
-	QTextList_virtualbase_BlockFormatChanged(unsafe.Pointer(this.h), block.cPointer())
-
-}
-func (this *QTextList) OnBlockFormatChanged(slot func(super func(block *QTextBlock), block *QTextBlock)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextList_override_virtual_BlockFormatChanged(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextList_BlockFormatChanged
-func miqt_exec_callback_QTextList_BlockFormatChanged(self QTextList, cb intptr_t, block *QTextBlock) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(block *QTextBlock), block *QTextBlock))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTextBlock(block)
-
-	gofunc((&QTextList{h: self}).callVirtualBase_BlockFormatChanged, slotval1)
-
+	return virtualReturn
 }

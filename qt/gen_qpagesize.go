@@ -160,7 +160,6 @@ type QPageSize struct {
 
 // NewQPageSize constructs a new QPageSize object.
 func NewQPageSize() *QPageSize {
-
 	ret := newQPageSize(QPageSize_new())
 	ret.isSubclass = true
 	return ret
@@ -168,7 +167,6 @@ func NewQPageSize() *QPageSize {
 
 // NewQPageSize2 constructs a new QPageSize object.
 func NewQPageSize2(pageSizeId PageSizeId) *QPageSize {
-
 	ret := newQPageSize(QPageSize_new2(pageSizeId))
 	ret.isSubclass = true
 	return ret
@@ -176,7 +174,6 @@ func NewQPageSize2(pageSizeId PageSizeId) *QPageSize {
 
 // NewQPageSize3 constructs a new QPageSize object.
 func NewQPageSize3(pointSize *QSize) *QPageSize {
-
 	ret := newQPageSize(QPageSize_new3(pointSize.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -184,7 +181,6 @@ func NewQPageSize3(pointSize *QSize) *QPageSize {
 
 // NewQPageSize4 constructs a new QPageSize object.
 func NewQPageSize4(size *QSizeF, units Unit) *QPageSize {
-
 	ret := newQPageSize(QPageSize_new4(size.cPointer(), units))
 	ret.isSubclass = true
 	return ret
@@ -192,7 +188,6 @@ func NewQPageSize4(size *QSizeF, units Unit) *QPageSize {
 
 // NewQPageSize5 constructs a new QPageSize object.
 func NewQPageSize5(other *QPageSize) *QPageSize {
-
 	ret := newQPageSize(QPageSize_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret

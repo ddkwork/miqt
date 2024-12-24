@@ -35,7 +35,6 @@ type QTimeZone struct {
 
 // NewQTimeZone constructs a new QTimeZone object.
 func NewQTimeZone() *QTimeZone {
-
 	ret := newQTimeZone(QTimeZone_new())
 	ret.isSubclass = true
 	return ret
@@ -43,7 +42,6 @@ func NewQTimeZone() *QTimeZone {
 
 // NewQTimeZone2 constructs a new QTimeZone object.
 func NewQTimeZone2(spec Initialization) *QTimeZone {
-
 	ret := newQTimeZone(QTimeZone_new2(spec))
 	ret.isSubclass = true
 	return ret
@@ -51,7 +49,6 @@ func NewQTimeZone2(spec Initialization) *QTimeZone {
 
 // NewQTimeZone3 constructs a new QTimeZone object.
 func NewQTimeZone3(offsetSeconds int) *QTimeZone {
-
 	ret := newQTimeZone(QTimeZone_new3((int)(offsetSeconds)))
 	ret.isSubclass = true
 	return ret
@@ -89,7 +86,6 @@ func NewQTimeZone5(zoneId []byte, offsetSeconds int, name string, abbreviation s
 
 // NewQTimeZone6 constructs a new QTimeZone object.
 func NewQTimeZone6(other *QTimeZone) *QTimeZone {
-
 	ret := newQTimeZone(QTimeZone_new6(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -426,7 +422,6 @@ type QTimeZone__OffsetData struct {
 
 // NewQTimeZone__OffsetData constructs a new QTimeZone::OffsetData object.
 func NewQTimeZone__OffsetData(param1 *OffsetData) *QTimeZone__OffsetData {
-
 	ret := newQTimeZone__OffsetData(QTimeZone__OffsetData_new(param1))
 	ret.isSubclass = true
 	return ret
@@ -434,7 +429,6 @@ func NewQTimeZone__OffsetData(param1 *OffsetData) *QTimeZone__OffsetData {
 
 // NewQTimeZone__OffsetData2 constructs a new QTimeZone::OffsetData object.
 func NewQTimeZone__OffsetData2() *QTimeZone__OffsetData {
-
 	ret := newQTimeZone__OffsetData(QTimeZone__OffsetData_new2())
 	ret.isSubclass = true
 	return ret

@@ -20,96 +20,47 @@ public:
 	virtual ~MiqtVirtualQWidgetAction() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* param1) override {
-		if (handle__Event == 0) {
-			return QWidgetAction::event(param1);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QWidgetAction::metaObject();
 		}
 		
-		QEvent* sigval1 = param1;
 
-		bool callback_return_value = miqt_exec_callback_QWidgetAction_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QWidgetAction_MetaObject(const_cast<MiqtVirtualQWidgetAction*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* param1) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QWidgetAction::event(param1);
+		return (QMetaObject*) QWidgetAction::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* param1, QEvent* param2) override {
-		if (handle__EventFilter == 0) {
-			return QWidgetAction::eventFilter(param1, param2);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QWidgetAction::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = param1;
-		QEvent* sigval2 = param2;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QWidgetAction_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QWidgetAction_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* param1, QEvent* param2) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QWidgetAction::eventFilter(param1, param2);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CreateWidget = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QWidget* createWidget(QWidget* parent) override {
-		if (handle__CreateWidget == 0) {
-			return QWidgetAction::createWidget(parent);
-		}
-		
-		QWidget* sigval1 = parent;
-
-		QWidget* callback_return_value = miqt_exec_callback_QWidgetAction_CreateWidget(this, handle__CreateWidget, sigval1);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QWidget* virtualbase_CreateWidget(QWidget* parent) {
-
-		return QWidgetAction::createWidget(parent);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DeleteWidget = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void deleteWidget(QWidget* widget) override {
-		if (handle__DeleteWidget == 0) {
-			QWidgetAction::deleteWidget(widget);
-			return;
-		}
-		
-		QWidget* sigval1 = widget;
-
-		miqt_exec_callback_QWidgetAction_DeleteWidget(this, handle__DeleteWidget, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DeleteWidget(QWidget* widget) {
-
-		QWidgetAction::deleteWidget(widget);
+		return QWidgetAction::qt_metacast(param1);
 
 	}
 
@@ -180,36 +131,20 @@ struct miqt_string QWidgetAction_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QWidgetAction_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQWidgetAction*>( (QWidgetAction*)(self) )->handle__Event = slot;
+void QWidgetAction_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQWidgetAction*>( (QWidgetAction*)(self) )->handle__MetaObject = slot;
 }
 
-bool QWidgetAction_virtualbase_Event(void* self, QEvent* param1) {
-	return ( (MiqtVirtualQWidgetAction*)(self) )->virtualbase_Event(param1);
+QMetaObject* QWidgetAction_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQWidgetAction*)(self) )->virtualbase_MetaObject();
 }
 
-void QWidgetAction_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQWidgetAction*>( (QWidgetAction*)(self) )->handle__EventFilter = slot;
+void QWidgetAction_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQWidgetAction*>( (QWidgetAction*)(self) )->handle__Metacast = slot;
 }
 
-bool QWidgetAction_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2) {
-	return ( (MiqtVirtualQWidgetAction*)(self) )->virtualbase_EventFilter(param1, param2);
-}
-
-void QWidgetAction_override_virtual_CreateWidget(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQWidgetAction*>( (QWidgetAction*)(self) )->handle__CreateWidget = slot;
-}
-
-QWidget* QWidgetAction_virtualbase_CreateWidget(void* self, QWidget* parent) {
-	return ( (MiqtVirtualQWidgetAction*)(self) )->virtualbase_CreateWidget(parent);
-}
-
-void QWidgetAction_override_virtual_DeleteWidget(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQWidgetAction*>( (QWidgetAction*)(self) )->handle__DeleteWidget = slot;
-}
-
-void QWidgetAction_virtualbase_DeleteWidget(void* self, QWidget* widget) {
-	( (MiqtVirtualQWidgetAction*)(self) )->virtualbase_DeleteWidget(widget);
+void* QWidgetAction_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQWidgetAction*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QWidgetAction_Delete(QWidgetAction* self, bool isSubclass) {

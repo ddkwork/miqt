@@ -355,7 +355,6 @@ type QLatin1Char struct {
 
 // NewQLatin1Char constructs a new QLatin1Char object.
 func NewQLatin1Char(c int8) *QLatin1Char {
-
 	ret := newQLatin1Char(QLatin1Char_new((char)(c)))
 	ret.isSubclass = true
 	return ret
@@ -363,7 +362,6 @@ func NewQLatin1Char(c int8) *QLatin1Char {
 
 // NewQLatin1Char2 constructs a new QLatin1Char object.
 func NewQLatin1Char2(param1 *QLatin1Char) *QLatin1Char {
-
 	ret := newQLatin1Char(QLatin1Char_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -380,7 +378,6 @@ type QChar struct {
 
 // NewQChar constructs a new QChar object.
 func NewQChar() *QChar {
-
 	ret := newQChar(QChar_new())
 	ret.isSubclass = true
 	return ret
@@ -388,7 +385,6 @@ func NewQChar() *QChar {
 
 // NewQChar2 constructs a new QChar object.
 func NewQChar2(c byte, r byte) *QChar {
-
 	ret := newQChar(QChar_new2((uchar)(c), (uchar)(r)))
 	ret.isSubclass = true
 	return ret
@@ -396,7 +392,6 @@ func NewQChar2(c byte, r byte) *QChar {
 
 // NewQChar3 constructs a new QChar object.
 func NewQChar3(param1 *QChar) *QChar {
-
 	ret := newQChar(QChar_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

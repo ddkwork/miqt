@@ -28,7 +28,6 @@ type QLCDNumber struct {
 
 // NewQLCDNumber constructs a new QLCDNumber object.
 func NewQLCDNumber(parent *QWidget) *QLCDNumber {
-
 	ret := newQLCDNumber(QLCDNumber_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -36,7 +35,6 @@ func NewQLCDNumber(parent *QWidget) *QLCDNumber {
 
 // NewQLCDNumber2 constructs a new QLCDNumber object.
 func NewQLCDNumber2() *QLCDNumber {
-
 	ret := newQLCDNumber(QLCDNumber_new2())
 	ret.isSubclass = true
 	return ret
@@ -44,7 +42,6 @@ func NewQLCDNumber2() *QLCDNumber {
 
 // NewQLCDNumber3 constructs a new QLCDNumber object.
 func NewQLCDNumber3(numDigits uint) *QLCDNumber {
-
 	ret := newQLCDNumber(QLCDNumber_new3((uint)(numDigits)))
 	ret.isSubclass = true
 	return ret
@@ -52,7 +49,6 @@ func NewQLCDNumber3(numDigits uint) *QLCDNumber {
 
 // NewQLCDNumber4 constructs a new QLCDNumber object.
 func NewQLCDNumber4(numDigits uint, parent *QWidget) *QLCDNumber {
-
 	ret := newQLCDNumber(QLCDNumber_new4((uint)(numDigits), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -166,6 +162,7 @@ func (this *QLCDNumber) SetSmallDecimalPoint(smallDecimalPoint bool) {
 func (this *QLCDNumber) Overflow() {
 	QLCDNumber_Overflow(this.h)
 }
+
 func (this *QLCDNumber) OnOverflow(slot func()) {
 	QLCDNumber_connect_Overflow(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -202,135 +199,55 @@ func QLCDNumber_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QLCDNumber) callVirtualBase_SizeHint() *QSize {
-
-	_goptr := newQSize(QLCDNumber_virtualbase_SizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QLCDNumber) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QLCDNumber_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QLCDNumber) OnSizeHint(slot func(super func() *QSize) *QSize) {
+
+func (this *QLCDNumber) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QLCDNumber_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QLCDNumber_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QLCDNumber_SizeHint
-func miqt_exec_callback_QLCDNumber_SizeHint(self QLCDNumber, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
+//export miqt_exec_callback_QLCDNumber_MetaObject
+func miqt_exec_callback_QLCDNumber_MetaObject(self QLCDNumber, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	virtualReturn := gofunc((&QLCDNumber{h: self}).callVirtualBase_SizeHint)
+	virtualReturn := gofunc((&QLCDNumber{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QLCDNumber) callVirtualBase_Event(e *QEvent) bool {
+func (this *QLCDNumber) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	return (bool)(QLCDNumber_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
+	return (unsafe.Pointer)(QLCDNumber_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QLCDNumber) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
+
+func (this *QLCDNumber) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QLCDNumber_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QLCDNumber_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QLCDNumber_Event
-func miqt_exec_callback_QLCDNumber_Event(self QLCDNumber, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QLCDNumber_Metacast
+func miqt_exec_callback_QLCDNumber_Metacast(self QLCDNumber, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QLCDNumber{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QLCDNumber{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QLCDNumber) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
-
-	QLCDNumber_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QLCDNumber) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QLCDNumber_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QLCDNumber_PaintEvent
-func miqt_exec_callback_QLCDNumber_PaintEvent(self QLCDNumber, cb intptr_t, param1 *QPaintEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QPaintEvent), param1 *QPaintEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPaintEvent(param1)
-
-	gofunc((&QLCDNumber{h: self}).callVirtualBase_PaintEvent, slotval1)
-
-}
-
-func (this *QLCDNumber) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
-	QLCDNumber_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QLCDNumber) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QLCDNumber_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QLCDNumber_ChangeEvent
-func miqt_exec_callback_QLCDNumber_ChangeEvent(self QLCDNumber, cb intptr_t, param1 *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent), param1 *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(param1)
-
-	gofunc((&QLCDNumber{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
-}
-
-func (this *QLCDNumber) callVirtualBase_InitStyleOption(option *QStyleOptionFrame) {
-
-	QLCDNumber_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
-}
-func (this *QLCDNumber) OnInitStyleOption(slot func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QLCDNumber_override_virtual_InitStyleOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QLCDNumber_InitStyleOption
-func miqt_exec_callback_QLCDNumber_InitStyleOption(self QLCDNumber, cb intptr_t, option *QStyleOptionFrame) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQStyleOptionFrame(option)
-
-	gofunc((&QLCDNumber{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
+	return virtualReturn
 }

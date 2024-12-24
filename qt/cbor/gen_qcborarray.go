@@ -1,8 +1,9 @@
 package cbor
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCborArray struct {
@@ -12,7 +13,6 @@ type QCborArray struct {
 
 // NewQCborArray constructs a new QCborArray object.
 func NewQCborArray() *QCborArray {
-
 	ret := newQCborArray(QCborArray_new())
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQCborArray() *QCborArray {
 
 // NewQCborArray2 constructs a new QCborArray object.
 func NewQCborArray2(other *QCborArray) *QCborArray {
-
 	ret := newQCborArray(QCborArray_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -273,7 +272,6 @@ type QCborArray__Iterator struct {
 
 // NewQCborArray__Iterator constructs a new QCborArray::Iterator object.
 func NewQCborArray__Iterator() *QCborArray__Iterator {
-
 	ret := newQCborArray__Iterator(QCborArray__Iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -281,7 +279,6 @@ func NewQCborArray__Iterator() *QCborArray__Iterator {
 
 // NewQCborArray__Iterator2 constructs a new QCborArray::Iterator object.
 func NewQCborArray__Iterator2(param1 *Iterator) *QCborArray__Iterator {
-
 	ret := newQCborArray__Iterator(QCborArray__Iterator_new2(param1))
 	ret.isSubclass = true
 	return ret
@@ -354,7 +351,6 @@ type QCborArray__ConstIterator struct {
 
 // NewQCborArray__ConstIterator constructs a new QCborArray::ConstIterator object.
 func NewQCborArray__ConstIterator() *QCborArray__ConstIterator {
-
 	ret := newQCborArray__ConstIterator(QCborArray__ConstIterator_new())
 	ret.isSubclass = true
 	return ret
@@ -362,7 +358,6 @@ func NewQCborArray__ConstIterator() *QCborArray__ConstIterator {
 
 // NewQCborArray__ConstIterator2 constructs a new QCborArray::ConstIterator object.
 func NewQCborArray__ConstIterator2(param1 *ConstIterator) *QCborArray__ConstIterator {
-
 	ret := newQCborArray__ConstIterator(QCborArray__ConstIterator_new2(param1))
 	ret.isSubclass = true
 	return ret

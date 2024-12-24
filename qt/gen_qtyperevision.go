@@ -11,7 +11,6 @@ type QTypeRevision struct {
 
 // NewQTypeRevision constructs a new QTypeRevision object.
 func NewQTypeRevision() *QTypeRevision {
-
 	ret := newQTypeRevision(QTypeRevision_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQTypeRevision() *QTypeRevision {
 
 // NewQTypeRevision2 constructs a new QTypeRevision object.
 func NewQTypeRevision2(param1 *QTypeRevision) *QTypeRevision {
-
 	ret := newQTypeRevision(QTypeRevision_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

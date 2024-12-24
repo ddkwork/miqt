@@ -19,7 +19,6 @@ type QGraphicsSceneEvent struct {
 
 // NewQGraphicsSceneEvent constructs a new QGraphicsSceneEvent object.
 func NewQGraphicsSceneEvent(typeVal Type) *QGraphicsSceneEvent {
-
 	ret := newQGraphicsSceneEvent(QGraphicsSceneEvent_new(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -41,57 +40,6 @@ func (this *QGraphicsSceneEvent) SetTimestamp(ts uint64) {
 	QGraphicsSceneEvent_SetTimestamp(this.h, (ulonglong)(ts))
 }
 
-func (this *QGraphicsSceneEvent) callVirtualBase_SetAccepted(accepted bool) {
-
-	QGraphicsSceneEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (bool)(accepted))
-
-}
-func (this *QGraphicsSceneEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsSceneEvent_override_virtual_SetAccepted(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsSceneEvent_SetAccepted
-func miqt_exec_callback_QGraphicsSceneEvent_SetAccepted(self QGraphicsSceneEvent, cb intptr_t, accepted bool) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(accepted bool), accepted bool))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (bool)(accepted)
-
-	gofunc((&QGraphicsSceneEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
-}
-
-func (this *QGraphicsSceneEvent) callVirtualBase_Clone() *QEvent {
-
-	return newQEvent(QGraphicsSceneEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
-}
-func (this *QGraphicsSceneEvent) OnClone(slot func(super func() *QEvent) *QEvent) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsSceneEvent_override_virtual_Clone(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsSceneEvent_Clone
-func miqt_exec_callback_QGraphicsSceneEvent_Clone(self QGraphicsSceneEvent, cb intptr_t) *QEvent {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QEvent) *QEvent)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGraphicsSceneEvent{h: self}).callVirtualBase_Clone)
-
-	return virtualReturn.cPointer()
-
-}
-
 type QGraphicsSceneMouseEvent struct {
 	h          uintptr
 	isSubclass bool
@@ -99,7 +47,6 @@ type QGraphicsSceneMouseEvent struct {
 
 // NewQGraphicsSceneMouseEvent constructs a new QGraphicsSceneMouseEvent object.
 func NewQGraphicsSceneMouseEvent() *QGraphicsSceneMouseEvent {
-
 	ret := newQGraphicsSceneMouseEvent(QGraphicsSceneMouseEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -107,7 +54,6 @@ func NewQGraphicsSceneMouseEvent() *QGraphicsSceneMouseEvent {
 
 // NewQGraphicsSceneMouseEvent2 constructs a new QGraphicsSceneMouseEvent object.
 func NewQGraphicsSceneMouseEvent2(typeVal Type) *QGraphicsSceneMouseEvent {
-
 	ret := newQGraphicsSceneMouseEvent(QGraphicsSceneMouseEvent_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -250,7 +196,6 @@ type QGraphicsSceneWheelEvent struct {
 
 // NewQGraphicsSceneWheelEvent constructs a new QGraphicsSceneWheelEvent object.
 func NewQGraphicsSceneWheelEvent() *QGraphicsSceneWheelEvent {
-
 	ret := newQGraphicsSceneWheelEvent(QGraphicsSceneWheelEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -258,7 +203,6 @@ func NewQGraphicsSceneWheelEvent() *QGraphicsSceneWheelEvent {
 
 // NewQGraphicsSceneWheelEvent2 constructs a new QGraphicsSceneWheelEvent object.
 func NewQGraphicsSceneWheelEvent2(typeVal Type) *QGraphicsSceneWheelEvent {
-
 	ret := newQGraphicsSceneWheelEvent(QGraphicsSceneWheelEvent_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -359,7 +303,6 @@ type QGraphicsSceneContextMenuEvent struct {
 
 // NewQGraphicsSceneContextMenuEvent constructs a new QGraphicsSceneContextMenuEvent object.
 func NewQGraphicsSceneContextMenuEvent() *QGraphicsSceneContextMenuEvent {
-
 	ret := newQGraphicsSceneContextMenuEvent(QGraphicsSceneContextMenuEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -367,7 +310,6 @@ func NewQGraphicsSceneContextMenuEvent() *QGraphicsSceneContextMenuEvent {
 
 // NewQGraphicsSceneContextMenuEvent2 constructs a new QGraphicsSceneContextMenuEvent object.
 func NewQGraphicsSceneContextMenuEvent2(typeVal Type) *QGraphicsSceneContextMenuEvent {
-
 	ret := newQGraphicsSceneContextMenuEvent(QGraphicsSceneContextMenuEvent_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -426,7 +368,6 @@ type QGraphicsSceneHoverEvent struct {
 
 // NewQGraphicsSceneHoverEvent constructs a new QGraphicsSceneHoverEvent object.
 func NewQGraphicsSceneHoverEvent() *QGraphicsSceneHoverEvent {
-
 	ret := newQGraphicsSceneHoverEvent(QGraphicsSceneHoverEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -434,7 +375,6 @@ func NewQGraphicsSceneHoverEvent() *QGraphicsSceneHoverEvent {
 
 // NewQGraphicsSceneHoverEvent2 constructs a new QGraphicsSceneHoverEvent object.
 func NewQGraphicsSceneHoverEvent2(typeVal Type) *QGraphicsSceneHoverEvent {
-
 	ret := newQGraphicsSceneHoverEvent(QGraphicsSceneHoverEvent_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -515,7 +455,6 @@ type QGraphicsSceneHelpEvent struct {
 
 // NewQGraphicsSceneHelpEvent constructs a new QGraphicsSceneHelpEvent object.
 func NewQGraphicsSceneHelpEvent() *QGraphicsSceneHelpEvent {
-
 	ret := newQGraphicsSceneHelpEvent(QGraphicsSceneHelpEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -523,7 +462,6 @@ func NewQGraphicsSceneHelpEvent() *QGraphicsSceneHelpEvent {
 
 // NewQGraphicsSceneHelpEvent2 constructs a new QGraphicsSceneHelpEvent object.
 func NewQGraphicsSceneHelpEvent2(typeVal Type) *QGraphicsSceneHelpEvent {
-
 	ret := newQGraphicsSceneHelpEvent(QGraphicsSceneHelpEvent_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -556,7 +494,6 @@ type QGraphicsSceneDragDropEvent struct {
 
 // NewQGraphicsSceneDragDropEvent constructs a new QGraphicsSceneDragDropEvent object.
 func NewQGraphicsSceneDragDropEvent() *QGraphicsSceneDragDropEvent {
-
 	ret := newQGraphicsSceneDragDropEvent(QGraphicsSceneDragDropEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -564,7 +501,6 @@ func NewQGraphicsSceneDragDropEvent() *QGraphicsSceneDragDropEvent {
 
 // NewQGraphicsSceneDragDropEvent2 constructs a new QGraphicsSceneDragDropEvent object.
 func NewQGraphicsSceneDragDropEvent2(typeVal Type) *QGraphicsSceneDragDropEvent {
-
 	ret := newQGraphicsSceneDragDropEvent(QGraphicsSceneDragDropEvent_new2(typeVal))
 	ret.isSubclass = true
 	return ret
@@ -667,7 +603,6 @@ type QGraphicsSceneResizeEvent struct {
 
 // NewQGraphicsSceneResizeEvent constructs a new QGraphicsSceneResizeEvent object.
 func NewQGraphicsSceneResizeEvent() *QGraphicsSceneResizeEvent {
-
 	ret := newQGraphicsSceneResizeEvent(QGraphicsSceneResizeEvent_new())
 	ret.isSubclass = true
 	return ret
@@ -700,7 +635,6 @@ type QGraphicsSceneMoveEvent struct {
 
 // NewQGraphicsSceneMoveEvent constructs a new QGraphicsSceneMoveEvent object.
 func NewQGraphicsSceneMoveEvent() *QGraphicsSceneMoveEvent {
-
 	ret := newQGraphicsSceneMoveEvent(QGraphicsSceneMoveEvent_new())
 	ret.isSubclass = true
 	return ret

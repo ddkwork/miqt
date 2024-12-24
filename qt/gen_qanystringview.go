@@ -11,7 +11,6 @@ type QAnyStringView struct {
 
 // NewQAnyStringView constructs a new QAnyStringView object.
 func NewQAnyStringView() *QAnyStringView {
-
 	ret := newQAnyStringView(QAnyStringView_new())
 	ret.isSubclass = true
 	return ret
@@ -42,7 +41,6 @@ func NewQAnyStringView3(str string) *QAnyStringView {
 
 // NewQAnyStringView4 constructs a new QAnyStringView object.
 func NewQAnyStringView4(param1 *QAnyStringView) *QAnyStringView {
-
 	ret := newQAnyStringView(QAnyStringView_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

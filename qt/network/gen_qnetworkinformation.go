@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkInformation__Reachability int
@@ -121,6 +122,7 @@ func QNetworkInformation_Instance() *QNetworkInformation {
 func (this *QNetworkInformation) ReachabilityChanged(newReachability QNetworkInformation__Reachability) {
 	QNetworkInformation_ReachabilityChanged(this.h, (int)(newReachability))
 }
+
 func (this *QNetworkInformation) OnReachabilityChanged(slot func(newReachability QNetworkInformation__Reachability)) {
 	QNetworkInformation_connect_ReachabilityChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -141,6 +143,7 @@ func miqt_exec_callback_QNetworkInformation_ReachabilityChanged(cb intptr_t, new
 func (this *QNetworkInformation) IsBehindCaptivePortalChanged(state bool) {
 	QNetworkInformation_IsBehindCaptivePortalChanged(this.h, (bool)(state))
 }
+
 func (this *QNetworkInformation) OnIsBehindCaptivePortalChanged(slot func(state bool)) {
 	QNetworkInformation_connect_IsBehindCaptivePortalChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -161,6 +164,7 @@ func miqt_exec_callback_QNetworkInformation_IsBehindCaptivePortalChanged(cb intp
 func (this *QNetworkInformation) TransportMediumChanged(current QNetworkInformation__TransportMedium) {
 	QNetworkInformation_TransportMediumChanged(this.h, (int)(current))
 }
+
 func (this *QNetworkInformation) OnTransportMediumChanged(slot func(current QNetworkInformation__TransportMedium)) {
 	QNetworkInformation_connect_TransportMediumChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -181,6 +185,7 @@ func miqt_exec_callback_QNetworkInformation_TransportMediumChanged(cb intptr_t, 
 func (this *QNetworkInformation) IsMeteredChanged(isMetered bool) {
 	QNetworkInformation_IsMeteredChanged(this.h, (bool)(isMetered))
 }
+
 func (this *QNetworkInformation) OnIsMeteredChanged(slot func(isMetered bool)) {
 	QNetworkInformation_connect_IsMeteredChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }

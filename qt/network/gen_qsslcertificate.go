@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslCertificate__SubjectInfo int
@@ -34,7 +35,6 @@ type QSslCertificate struct {
 
 // NewQSslCertificate constructs a new QSslCertificate object.
 func NewQSslCertificate(device *qt.QIODevice) *QSslCertificate {
-
 	ret := newQSslCertificate(QSslCertificate_new((*QIODevice)(device.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -42,7 +42,6 @@ func NewQSslCertificate(device *qt.QIODevice) *QSslCertificate {
 
 // NewQSslCertificate2 constructs a new QSslCertificate object.
 func NewQSslCertificate2() *QSslCertificate {
-
 	ret := newQSslCertificate(QSslCertificate_new2())
 	ret.isSubclass = true
 	return ret
@@ -50,7 +49,6 @@ func NewQSslCertificate2() *QSslCertificate {
 
 // NewQSslCertificate3 constructs a new QSslCertificate object.
 func NewQSslCertificate3(other *QSslCertificate) *QSslCertificate {
-
 	ret := newQSslCertificate(QSslCertificate_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -58,7 +56,6 @@ func NewQSslCertificate3(other *QSslCertificate) *QSslCertificate {
 
 // NewQSslCertificate4 constructs a new QSslCertificate object.
 func NewQSslCertificate4(device *qt.QIODevice, format QSsl__EncodingFormat) *QSslCertificate {
-
 	ret := newQSslCertificate(QSslCertificate_new4((*QIODevice)(device.UnsafePointer()), (int)(format)))
 	ret.isSubclass = true
 	return ret

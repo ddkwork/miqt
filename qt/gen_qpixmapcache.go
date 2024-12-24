@@ -68,7 +68,6 @@ type QPixmapCache__Key struct {
 
 // NewQPixmapCache__Key constructs a new QPixmapCache::Key object.
 func NewQPixmapCache__Key() *QPixmapCache__Key {
-
 	ret := newQPixmapCache__Key(QPixmapCache__Key_new())
 	ret.isSubclass = true
 	return ret
@@ -76,7 +75,6 @@ func NewQPixmapCache__Key() *QPixmapCache__Key {
 
 // NewQPixmapCache__Key2 constructs a new QPixmapCache::Key object.
 func NewQPixmapCache__Key2(other *Key) *QPixmapCache__Key {
-
 	ret := newQPixmapCache__Key(QPixmapCache__Key_new2(other))
 	ret.isSubclass = true
 	return ret

@@ -29,7 +29,6 @@ type QColor struct {
 
 // NewQColor constructs a new QColor object.
 func NewQColor() *QColor {
-
 	ret := newQColor(QColor_new())
 	ret.isSubclass = true
 	return ret
@@ -37,7 +36,6 @@ func NewQColor() *QColor {
 
 // NewQColor2 constructs a new QColor object.
 func NewQColor2(color GlobalColor) *QColor {
-
 	ret := newQColor(QColor_new2((int)(color)))
 	ret.isSubclass = true
 	return ret
@@ -45,7 +43,6 @@ func NewQColor2(color GlobalColor) *QColor {
 
 // NewQColor3 constructs a new QColor object.
 func NewQColor3(r int, g int, b int) *QColor {
-
 	ret := newQColor(QColor_new3((int)(r), (int)(g), (int)(b)))
 	ret.isSubclass = true
 	return ret
@@ -53,7 +50,6 @@ func NewQColor3(r int, g int, b int) *QColor {
 
 // NewQColor4 constructs a new QColor object.
 func NewQColor4(rgb uint) *QColor {
-
 	ret := newQColor(QColor_new4((uint)(rgb)))
 	ret.isSubclass = true
 	return ret
@@ -61,7 +57,6 @@ func NewQColor4(rgb uint) *QColor {
 
 // NewQColor5 constructs a new QColor object.
 func NewQColor5(rgba64 QRgba64) *QColor {
-
 	ret := newQColor(QColor_new5(rgba64.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -91,7 +86,6 @@ func NewQColor7(aname string) *QColor {
 
 // NewQColor8 constructs a new QColor object.
 func NewQColor8(spec Spec) *QColor {
-
 	ret := newQColor(QColor_new8(spec))
 	ret.isSubclass = true
 	return ret
@@ -99,7 +93,6 @@ func NewQColor8(spec Spec) *QColor {
 
 // NewQColor9 constructs a new QColor object.
 func NewQColor9(spec Spec, a1 uint16, a2 uint16, a3 uint16, a4 uint16) *QColor {
-
 	ret := newQColor(QColor_new9(spec, (uint16_t)(a1), (uint16_t)(a2), (uint16_t)(a3), (uint16_t)(a4)))
 	ret.isSubclass = true
 	return ret
@@ -107,7 +100,6 @@ func NewQColor9(spec Spec, a1 uint16, a2 uint16, a3 uint16, a4 uint16) *QColor {
 
 // NewQColor10 constructs a new QColor object.
 func NewQColor10(param1 *QColor) *QColor {
-
 	ret := newQColor(QColor_new10(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -115,7 +107,6 @@ func NewQColor10(param1 *QColor) *QColor {
 
 // NewQColor11 constructs a new QColor object.
 func NewQColor11(r int, g int, b int, a int) *QColor {
-
 	ret := newQColor(QColor_new11((int)(r), (int)(g), (int)(b), (int)(a)))
 	ret.isSubclass = true
 	return ret
@@ -123,7 +114,6 @@ func NewQColor11(r int, g int, b int, a int) *QColor {
 
 // NewQColor12 constructs a new QColor object.
 func NewQColor12(spec Spec, a1 uint16, a2 uint16, a3 uint16, a4 uint16, a5 uint16) *QColor {
-
 	ret := newQColor(QColor_new12(spec, (uint16_t)(a1), (uint16_t)(a2), (uint16_t)(a3), (uint16_t)(a4), (uint16_t)(a5)))
 	ret.isSubclass = true
 	return ret

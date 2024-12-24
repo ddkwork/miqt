@@ -8,198 +8,167 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QActionEvent QActionEvent;
 typedef struct QCalendar QCalendar;
 typedef struct QCalendarWidget QCalendarWidget;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDate QDate;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
-typedef struct QPaintEvent QPaintEvent;
 typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
 typedef struct QRect QRect;
 typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QTextCharFormat QTextCharFormat;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QCalendarWidget* QCalendarWidget_new(QWidget* parent);
-extern __declspec(dllexport) QCalendarWidget* QCalendarWidget_new2();
-extern __declspec(dllexport) void QCalendarWidget_virtbase(QCalendarWidget* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QCalendarWidget_MetaObject(const QCalendarWidget* self);
-extern __declspec(dllexport) void* QCalendarWidget_Metacast(QCalendarWidget* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QCalendarWidget_Tr(const char* s);
-extern __declspec(dllexport) QSize* QCalendarWidget_SizeHint(const QCalendarWidget* self);
-extern __declspec(dllexport) QSize* QCalendarWidget_MinimumSizeHint(const QCalendarWidget* self);
-extern __declspec(dllexport) QDate* QCalendarWidget_SelectedDate(const QCalendarWidget* self);
-extern __declspec(dllexport) int QCalendarWidget_YearShown(const QCalendarWidget* self);
-extern __declspec(dllexport) int QCalendarWidget_MonthShown(const QCalendarWidget* self);
-extern __declspec(dllexport) QDate* QCalendarWidget_MinimumDate(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetMinimumDate(QCalendarWidget* self, QDate* date);
-extern __declspec(dllexport) void QCalendarWidget_ClearMinimumDate(QCalendarWidget* self);
-extern __declspec(dllexport) QDate* QCalendarWidget_MaximumDate(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetMaximumDate(QCalendarWidget* self, QDate* date);
-extern __declspec(dllexport) void QCalendarWidget_ClearMaximumDate(QCalendarWidget* self);
-extern __declspec(dllexport) int QCalendarWidget_FirstDayOfWeek(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetFirstDayOfWeek(QCalendarWidget* self, int dayOfWeek);
-extern __declspec(dllexport) bool QCalendarWidget_IsNavigationBarVisible(const QCalendarWidget* self);
-extern __declspec(dllexport) bool QCalendarWidget_IsGridVisible(const QCalendarWidget* self);
-extern __declspec(dllexport) QCalendar* QCalendarWidget_Calendar(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetCalendar(QCalendarWidget* self, QCalendar* calendar);
-extern __declspec(dllexport) SelectionMode QCalendarWidget_SelectionMode(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetSelectionMode(QCalendarWidget* self, SelectionMode mode);
-extern __declspec(dllexport) HorizontalHeaderFormat QCalendarWidget_HorizontalHeaderFormat(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetHorizontalHeaderFormat(QCalendarWidget* self, HorizontalHeaderFormat format);
-extern __declspec(dllexport) VerticalHeaderFormat QCalendarWidget_VerticalHeaderFormat(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetVerticalHeaderFormat(QCalendarWidget* self, VerticalHeaderFormat format);
-extern __declspec(dllexport) QTextCharFormat* QCalendarWidget_HeaderTextFormat(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetHeaderTextFormat(QCalendarWidget* self, QTextCharFormat* format);
-extern __declspec(dllexport) QTextCharFormat* QCalendarWidget_WeekdayTextFormat(const QCalendarWidget* self, int dayOfWeek);
-extern __declspec(dllexport) void QCalendarWidget_SetWeekdayTextFormat(QCalendarWidget* self, int dayOfWeek, QTextCharFormat* format);
-extern __declspec(dllexport) struct miqt_map /* of QDate* to QTextCharFormat* */  QCalendarWidget_DateTextFormat(const QCalendarWidget* self);
-extern __declspec(dllexport) QTextCharFormat* QCalendarWidget_DateTextFormatWithDate(const QCalendarWidget* self, QDate* date);
-extern __declspec(dllexport) void QCalendarWidget_SetDateTextFormat(QCalendarWidget* self, QDate* date, QTextCharFormat* format);
-extern __declspec(dllexport) bool QCalendarWidget_IsDateEditEnabled(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetDateEditEnabled(QCalendarWidget* self, bool enable);
-extern __declspec(dllexport) int QCalendarWidget_DateEditAcceptDelay(const QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SetDateEditAcceptDelay(QCalendarWidget* self, int delay);
-extern __declspec(dllexport) bool QCalendarWidget_Event(QCalendarWidget* self, QEvent* event);
-extern __declspec(dllexport) bool QCalendarWidget_EventFilter(QCalendarWidget* self, QObject* watched, QEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_MousePressEvent(QCalendarWidget* self, QMouseEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_ResizeEvent(QCalendarWidget* self, QResizeEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_KeyPressEvent(QCalendarWidget* self, QKeyEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_PaintCell(const QCalendarWidget* self, QPainter* painter, QRect* rect, QDate* date);
-extern __declspec(dllexport) void QCalendarWidget_SetSelectedDate(QCalendarWidget* self, QDate* date);
-extern __declspec(dllexport) void QCalendarWidget_SetDateRange(QCalendarWidget* self, QDate* min, QDate* max);
-extern __declspec(dllexport) void QCalendarWidget_SetCurrentPage(QCalendarWidget* self, int year, int month);
-extern __declspec(dllexport) void QCalendarWidget_SetGridVisible(QCalendarWidget* self, bool show);
-extern __declspec(dllexport) void QCalendarWidget_SetNavigationBarVisible(QCalendarWidget* self, bool visible);
-extern __declspec(dllexport) void QCalendarWidget_ShowNextMonth(QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_ShowPreviousMonth(QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_ShowNextYear(QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_ShowPreviousYear(QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_ShowSelectedDate(QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_ShowToday(QCalendarWidget* self);
-extern __declspec(dllexport) void QCalendarWidget_SelectionChanged(QCalendarWidget* self);
+extern __declspec(dllexport) 
+QCalendarWidget* QCalendarWidget_new(QWidget* parent);
+extern __declspec(dllexport) 
+QCalendarWidget* QCalendarWidget_new2();
+extern __declspec(dllexport) 
+void QCalendarWidget_virtbase(QCalendarWidget* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QCalendarWidget_MetaObject(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void* QCalendarWidget_Metacast(QCalendarWidget* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QCalendarWidget_Tr(const char* s);
+extern __declspec(dllexport) 
+QSize* QCalendarWidget_SizeHint(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+QSize* QCalendarWidget_MinimumSizeHint(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+QDate* QCalendarWidget_SelectedDate(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+int QCalendarWidget_YearShown(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+int QCalendarWidget_MonthShown(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+QDate* QCalendarWidget_MinimumDate(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetMinimumDate(QCalendarWidget* self, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_ClearMinimumDate(QCalendarWidget* self);
+extern __declspec(dllexport) 
+QDate* QCalendarWidget_MaximumDate(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetMaximumDate(QCalendarWidget* self, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_ClearMaximumDate(QCalendarWidget* self);
+extern __declspec(dllexport) 
+int QCalendarWidget_FirstDayOfWeek(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetFirstDayOfWeek(QCalendarWidget* self, int dayOfWeek);
+extern __declspec(dllexport) 
+bool QCalendarWidget_IsNavigationBarVisible(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+bool QCalendarWidget_IsGridVisible(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+QCalendar* QCalendarWidget_Calendar(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetCalendar(QCalendarWidget* self, QCalendar* calendar);
+extern __declspec(dllexport) 
+SelectionMode QCalendarWidget_SelectionMode(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetSelectionMode(QCalendarWidget* self, SelectionMode mode);
+extern __declspec(dllexport) 
+HorizontalHeaderFormat QCalendarWidget_HorizontalHeaderFormat(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetHorizontalHeaderFormat(QCalendarWidget* self, HorizontalHeaderFormat format);
+extern __declspec(dllexport) 
+VerticalHeaderFormat QCalendarWidget_VerticalHeaderFormat(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetVerticalHeaderFormat(QCalendarWidget* self, VerticalHeaderFormat format);
+extern __declspec(dllexport) 
+QTextCharFormat* QCalendarWidget_HeaderTextFormat(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetHeaderTextFormat(QCalendarWidget* self, QTextCharFormat* format);
+extern __declspec(dllexport) 
+QTextCharFormat* QCalendarWidget_WeekdayTextFormat(const QCalendarWidget* self, int dayOfWeek);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetWeekdayTextFormat(QCalendarWidget* self, int dayOfWeek, QTextCharFormat* format);
+extern __declspec(dllexport) 
+struct miqt_map /* of QDate* to QTextCharFormat* */  QCalendarWidget_DateTextFormat(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+QTextCharFormat* QCalendarWidget_DateTextFormatWithDate(const QCalendarWidget* self, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetDateTextFormat(QCalendarWidget* self, QDate* date, QTextCharFormat* format);
+extern __declspec(dllexport) 
+bool QCalendarWidget_IsDateEditEnabled(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetDateEditEnabled(QCalendarWidget* self, bool enable);
+extern __declspec(dllexport) 
+int QCalendarWidget_DateEditAcceptDelay(const QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetDateEditAcceptDelay(QCalendarWidget* self, int delay);
+extern __declspec(dllexport) 
+bool QCalendarWidget_Event(QCalendarWidget* self, QEvent* event);
+extern __declspec(dllexport) 
+bool QCalendarWidget_EventFilter(QCalendarWidget* self, QObject* watched, QEvent* event);
+extern __declspec(dllexport) 
+void QCalendarWidget_MousePressEvent(QCalendarWidget* self, QMouseEvent* event);
+extern __declspec(dllexport) 
+void QCalendarWidget_ResizeEvent(QCalendarWidget* self, QResizeEvent* event);
+extern __declspec(dllexport) 
+void QCalendarWidget_KeyPressEvent(QCalendarWidget* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QCalendarWidget_PaintCell(const QCalendarWidget* self, QPainter* painter, QRect* rect, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetSelectedDate(QCalendarWidget* self, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetDateRange(QCalendarWidget* self, QDate* min, QDate* max);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetCurrentPage(QCalendarWidget* self, int year, int month);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetGridVisible(QCalendarWidget* self, bool show);
+extern __declspec(dllexport) 
+void QCalendarWidget_SetNavigationBarVisible(QCalendarWidget* self, bool visible);
+extern __declspec(dllexport) 
+void QCalendarWidget_ShowNextMonth(QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_ShowPreviousMonth(QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_ShowNextYear(QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_ShowPreviousYear(QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_ShowSelectedDate(QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_ShowToday(QCalendarWidget* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_SelectionChanged(QCalendarWidget* self);
 void QCalendarWidget_connect_SelectionChanged(QCalendarWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QCalendarWidget_Clicked(QCalendarWidget* self, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_Clicked(QCalendarWidget* self, QDate* date);
 void QCalendarWidget_connect_Clicked(QCalendarWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QCalendarWidget_Activated(QCalendarWidget* self, QDate* date);
+extern __declspec(dllexport) 
+void QCalendarWidget_Activated(QCalendarWidget* self, QDate* date);
 void QCalendarWidget_connect_Activated(QCalendarWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QCalendarWidget_CurrentPageChanged(QCalendarWidget* self, int year, int month);
+extern __declspec(dllexport) 
+void QCalendarWidget_CurrentPageChanged(QCalendarWidget* self, int year, int month);
 void QCalendarWidget_connect_CurrentPageChanged(QCalendarWidget* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QCalendarWidget_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QCalendarWidget_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QCalendarWidget_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QCalendarWidget_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_Event(void* self, intptr_t slot);
-bool QCalendarWidget_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QCalendarWidget_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_PaintCell(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_PaintCell(const void* self, QPainter* painter, QRect* rect, QDate* date);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_DevType(void* self, intptr_t slot);
-int QCalendarWidget_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_SetVisible(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QCalendarWidget_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QCalendarWidget_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QCalendarWidget_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_DropEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_HideEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QCalendarWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_Metric(void* self, intptr_t slot);
-int QCalendarWidget_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_InitPainter(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QCalendarWidget_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QCalendarWidget_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QCalendarWidget_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QCalendarWidget_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QCalendarWidget_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QCalendarWidget_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QCalendarWidget_Delete(QCalendarWidget* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QCalendarWidget_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QCalendarWidget_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QCalendarWidget_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QCalendarWidget_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QCalendarWidget_override_virtual_Metacast(void* self, intptr_t slot);
+void* QCalendarWidget_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QCalendarWidget_Delete(QCalendarWidget* self, bool isSubclass);
 
-} 
+}

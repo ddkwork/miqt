@@ -72,7 +72,6 @@ type QTextDocument struct {
 
 // NewQTextDocument constructs a new QTextDocument object.
 func NewQTextDocument() *QTextDocument {
-
 	ret := newQTextDocument(QTextDocument_new())
 	ret.isSubclass = true
 	return ret
@@ -92,7 +91,6 @@ func NewQTextDocument2(text string) *QTextDocument {
 
 // NewQTextDocument3 constructs a new QTextDocument object.
 func NewQTextDocument3(parent *QObject) *QTextDocument {
-
 	ret := newQTextDocument(QTextDocument_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -566,6 +564,7 @@ func (this *QTextDocument) SetDefaultCursorMoveStyle(style CursorMoveStyle) {
 func (this *QTextDocument) ContentsChange(from int, charsRemoved int, charsAdded int) {
 	QTextDocument_ContentsChange(this.h, (int)(from), (int)(charsRemoved), (int)(charsAdded))
 }
+
 func (this *QTextDocument) OnContentsChange(slot func(from int, charsRemoved int, charsAdded int)) {
 	QTextDocument_connect_ContentsChange(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -590,6 +589,7 @@ func miqt_exec_callback_QTextDocument_ContentsChange(cb intptr_t, from int, char
 func (this *QTextDocument) ContentsChanged() {
 	QTextDocument_ContentsChanged(this.h)
 }
+
 func (this *QTextDocument) OnContentsChanged(slot func()) {
 	QTextDocument_connect_ContentsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -607,6 +607,7 @@ func miqt_exec_callback_QTextDocument_ContentsChanged(cb intptr_t) {
 func (this *QTextDocument) UndoAvailable(param1 bool) {
 	QTextDocument_UndoAvailable(this.h, (bool)(param1))
 }
+
 func (this *QTextDocument) OnUndoAvailable(slot func(param1 bool)) {
 	QTextDocument_connect_UndoAvailable(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -627,6 +628,7 @@ func miqt_exec_callback_QTextDocument_UndoAvailable(cb intptr_t, param1 bool) {
 func (this *QTextDocument) RedoAvailable(param1 bool) {
 	QTextDocument_RedoAvailable(this.h, (bool)(param1))
 }
+
 func (this *QTextDocument) OnRedoAvailable(slot func(param1 bool)) {
 	QTextDocument_connect_RedoAvailable(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -647,6 +649,7 @@ func miqt_exec_callback_QTextDocument_RedoAvailable(cb intptr_t, param1 bool) {
 func (this *QTextDocument) UndoCommandAdded() {
 	QTextDocument_UndoCommandAdded(this.h)
 }
+
 func (this *QTextDocument) OnUndoCommandAdded(slot func()) {
 	QTextDocument_connect_UndoCommandAdded(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -664,6 +667,7 @@ func miqt_exec_callback_QTextDocument_UndoCommandAdded(cb intptr_t) {
 func (this *QTextDocument) ModificationChanged(m bool) {
 	QTextDocument_ModificationChanged(this.h, (bool)(m))
 }
+
 func (this *QTextDocument) OnModificationChanged(slot func(m bool)) {
 	QTextDocument_connect_ModificationChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -684,6 +688,7 @@ func miqt_exec_callback_QTextDocument_ModificationChanged(cb intptr_t, m bool) {
 func (this *QTextDocument) CursorPositionChanged(cursor *QTextCursor) {
 	QTextDocument_CursorPositionChanged(this.h, cursor.cPointer())
 }
+
 func (this *QTextDocument) OnCursorPositionChanged(slot func(cursor *QTextCursor)) {
 	QTextDocument_connect_CursorPositionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -704,6 +709,7 @@ func miqt_exec_callback_QTextDocument_CursorPositionChanged(cb intptr_t, cursor 
 func (this *QTextDocument) BlockCountChanged(newBlockCount int) {
 	QTextDocument_BlockCountChanged(this.h, (int)(newBlockCount))
 }
+
 func (this *QTextDocument) OnBlockCountChanged(slot func(newBlockCount int)) {
 	QTextDocument_connect_BlockCountChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -724,6 +730,7 @@ func miqt_exec_callback_QTextDocument_BlockCountChanged(cb intptr_t, newBlockCou
 func (this *QTextDocument) BaseUrlChanged(url *QUrl) {
 	QTextDocument_BaseUrlChanged(this.h, url.cPointer())
 }
+
 func (this *QTextDocument) OnBaseUrlChanged(slot func(url *QUrl)) {
 	QTextDocument_connect_BaseUrlChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -744,6 +751,7 @@ func miqt_exec_callback_QTextDocument_BaseUrlChanged(cb intptr_t, url *QUrl) {
 func (this *QTextDocument) DocumentLayoutChanged() {
 	QTextDocument_DocumentLayoutChanged(this.h)
 }
+
 func (this *QTextDocument) OnDocumentLayoutChanged(slot func()) {
 	QTextDocument_connect_DocumentLayoutChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -875,273 +883,55 @@ func (this *QTextDocument) SetModified1(m bool) {
 	QTextDocument_SetModified1(this.h, (bool)(m))
 }
 
-func (this *QTextDocument) callVirtualBase_Clear() {
-
-	QTextDocument_virtualbase_Clear(unsafe.Pointer(this.h))
-
+func (this *QTextDocument) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QTextDocument_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QTextDocument) OnClear(slot func(super func())) {
+
+func (this *QTextDocument) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QTextDocument_override_virtual_Clear(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QTextDocument_Clear
-func miqt_exec_callback_QTextDocument_Clear(self QTextDocument, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
+//export miqt_exec_callback_QTextDocument_MetaObject
+func miqt_exec_callback_QTextDocument_MetaObject(self QTextDocument, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	gofunc((&QTextDocument{h: self}).callVirtualBase_Clear)
-
-}
-
-func (this *QTextDocument) callVirtualBase_CreateObject(f *QTextFormat) *QTextObject {
-
-	return newQTextObject(QTextDocument_virtualbase_CreateObject(unsafe.Pointer(this.h), f.cPointer()))
-
-}
-func (this *QTextDocument) OnCreateObject(slot func(super func(f *QTextFormat) *QTextObject, f *QTextFormat) *QTextObject) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_CreateObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_CreateObject
-func miqt_exec_callback_QTextDocument_CreateObject(self QTextDocument, cb intptr_t, f *QTextFormat) *QTextObject {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(f *QTextFormat) *QTextObject, f *QTextFormat) *QTextObject)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTextFormat(f)
-
-	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_CreateObject, slotval1)
+	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QTextDocument) callVirtualBase_LoadResource(typeVal int, name *QUrl) *QVariant {
+func (this *QTextDocument) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	_goptr := newQVariant(QTextDocument_virtualbase_LoadResource(unsafe.Pointer(this.h), (int)(typeVal), name.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+	return (unsafe.Pointer)(QTextDocument_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QTextDocument) OnLoadResource(slot func(super func(typeVal int, name *QUrl) *QVariant, typeVal int, name *QUrl) *QVariant) {
+
+func (this *QTextDocument) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QTextDocument_override_virtual_LoadResource(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QTextDocument_LoadResource
-func miqt_exec_callback_QTextDocument_LoadResource(self QTextDocument, cb intptr_t, typeVal int, name *QUrl) *QVariant {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(typeVal int, name *QUrl) *QVariant, typeVal int, name *QUrl) *QVariant)
+//export miqt_exec_callback_QTextDocument_Metacast
+func miqt_exec_callback_QTextDocument_Metacast(self QTextDocument, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(typeVal)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	slotval2 := newQUrl(name)
+	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_Metacast, slotval1)
 
-	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_LoadResource, slotval1, slotval2)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QTextDocument) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QTextDocument_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
-}
-func (this *QTextDocument) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_Event
-func miqt_exec_callback_QTextDocument_Event(self QTextDocument, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QTextDocument) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QTextDocument_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QTextDocument) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_EventFilter
-func miqt_exec_callback_QTextDocument_EventFilter(self QTextDocument, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QTextDocument) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QTextDocument_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QTextDocument) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_TimerEvent
-func miqt_exec_callback_QTextDocument_TimerEvent(self QTextDocument, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QTextDocument{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QTextDocument) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QTextDocument_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QTextDocument) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_ChildEvent
-func miqt_exec_callback_QTextDocument_ChildEvent(self QTextDocument, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QTextDocument{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QTextDocument) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QTextDocument_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QTextDocument) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_CustomEvent
-func miqt_exec_callback_QTextDocument_CustomEvent(self QTextDocument, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QTextDocument{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QTextDocument) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QTextDocument_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QTextDocument) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_ConnectNotify
-func miqt_exec_callback_QTextDocument_ConnectNotify(self QTextDocument, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QTextDocument{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QTextDocument) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QTextDocument_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QTextDocument) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTextDocument_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTextDocument_DisconnectNotify
-func miqt_exec_callback_QTextDocument_DisconnectNotify(self QTextDocument, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QTextDocument{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

@@ -915,7 +915,6 @@ type QLocale struct {
 
 // NewQLocale constructs a new QLocale object.
 func NewQLocale() *QLocale {
-
 	ret := newQLocale(QLocale_new())
 	ret.isSubclass = true
 	return ret
@@ -935,7 +934,6 @@ func NewQLocale2(name string) *QLocale {
 
 // NewQLocale3 constructs a new QLocale object.
 func NewQLocale3(language Language, territory Territory) *QLocale {
-
 	ret := newQLocale(QLocale_new3(language, territory))
 	ret.isSubclass = true
 	return ret
@@ -943,7 +941,6 @@ func NewQLocale3(language Language, territory Territory) *QLocale {
 
 // NewQLocale4 constructs a new QLocale object.
 func NewQLocale4(language Language) *QLocale {
-
 	ret := newQLocale(QLocale_new4(language))
 	ret.isSubclass = true
 	return ret
@@ -951,7 +948,6 @@ func NewQLocale4(language Language) *QLocale {
 
 // NewQLocale5 constructs a new QLocale object.
 func NewQLocale5(other *QLocale) *QLocale {
-
 	ret := newQLocale(QLocale_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -959,7 +955,6 @@ func NewQLocale5(other *QLocale) *QLocale {
 
 // NewQLocale6 constructs a new QLocale object.
 func NewQLocale6(language Language, script Script) *QLocale {
-
 	ret := newQLocale(QLocale_new6(language, script))
 	ret.isSubclass = true
 	return ret
@@ -967,7 +962,6 @@ func NewQLocale6(language Language, script Script) *QLocale {
 
 // NewQLocale7 constructs a new QLocale object.
 func NewQLocale7(language Language, script Script, territory Territory) *QLocale {
-
 	ret := newQLocale(QLocale_new7(language, script, territory))
 	ret.isSubclass = true
 	return ret

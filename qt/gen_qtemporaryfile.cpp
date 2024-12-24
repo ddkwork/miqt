@@ -24,147 +24,47 @@ public:
 	virtual ~MiqtVirtualQTemporaryFile() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__FileName = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QString fileName() const override {
-		if (handle__FileName == 0) {
-			return QTemporaryFile::fileName();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QTemporaryFile::metaObject();
 		}
 		
 
-		struct miqt_string callback_return_value = miqt_exec_callback_QTemporaryFile_FileName(const_cast<MiqtVirtualQTemporaryFile*>(this), handle__FileName);
-		QString callback_return_value_QString = QString::fromUtf8(callback_return_value.data, callback_return_value.len);
-
-		return callback_return_value_QString;
-	}
-
-	// Wrapper to allow calling protected method
-	struct miqt_string virtualbase_FileName() const {
-
-		QString _ret = QTemporaryFile::fileName();
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray _b = _ret.toUtf8();
-		struct miqt_string _ms;
-		_ms.len = _b.length();
-		_ms.data = static_cast<char*>(malloc(_ms.len));
-		memcpy(_ms.data, _b.data(), _ms.len);
-		return _ms;
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__OpenWithFlags = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool open(OpenMode flags) override {
-		if (handle__OpenWithFlags == 0) {
-			return QTemporaryFile::open(flags);
-		}
-		
-		OpenMode sigval1 = flags;
-
-		bool callback_return_value = miqt_exec_callback_QTemporaryFile_OpenWithFlags(this, handle__OpenWithFlags, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QTemporaryFile_MetaObject(const_cast<MiqtVirtualQTemporaryFile*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_OpenWithFlags(OpenMode flags) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QTemporaryFile::open(flags);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Size = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 size() const override {
-		if (handle__Size == 0) {
-			return QTemporaryFile::size();
-		}
-		
-
-		long long callback_return_value = miqt_exec_callback_QTemporaryFile_Size(const_cast<MiqtVirtualQTemporaryFile*>(this), handle__Size);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_Size() const {
-
-		qint64 _ret = QTemporaryFile::size();
-		return static_cast<long long>(_ret);
+		return (QMetaObject*) QTemporaryFile::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Resize = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool resize(qint64 sz) override {
-		if (handle__Resize == 0) {
-			return QTemporaryFile::resize(sz);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QTemporaryFile::qt_metacast(param1);
 		}
 		
-		qint64 sz_ret = sz;
-		long long sigval1 = static_cast<long long>(sz_ret);
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QTemporaryFile_Resize(this, handle__Resize, sigval1);
+		void* callback_return_value = miqt_exec_callback_QTemporaryFile_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Resize(long long sz) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QTemporaryFile::resize(static_cast<qint64>(sz));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Permissions = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual Permissions permissions() const override {
-		if (handle__Permissions == 0) {
-			return QTemporaryFile::permissions();
-		}
-		
-
-		Permissions callback_return_value = miqt_exec_callback_QTemporaryFile_Permissions(const_cast<MiqtVirtualQTemporaryFile*>(this), handle__Permissions);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	Permissions virtualbase_Permissions() const {
-
-		return QTemporaryFile::permissions();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetPermissions = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool setPermissions(Permissions permissionSpec) override {
-		if (handle__SetPermissions == 0) {
-			return QTemporaryFile::setPermissions(permissionSpec);
-		}
-		
-		Permissions sigval1 = permissionSpec;
-
-		bool callback_return_value = miqt_exec_callback_QTemporaryFile_SetPermissions(this, handle__SetPermissions, sigval1);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_SetPermissions(Permissions permissionSpec) {
-
-		return QTemporaryFile::setPermissions(permissionSpec);
+		return QTemporaryFile::qt_metacast(param1);
 
 	}
 
@@ -286,52 +186,20 @@ struct miqt_string QTemporaryFile_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QTemporaryFile_override_virtual_FileName(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__FileName = slot;
+void QTemporaryFile_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__MetaObject = slot;
 }
 
-struct miqt_string QTemporaryFile_virtualbase_FileName(const void* self) {
-	return ( (const MiqtVirtualQTemporaryFile*)(self) )->virtualbase_FileName();
+QMetaObject* QTemporaryFile_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQTemporaryFile*)(self) )->virtualbase_MetaObject();
 }
 
-void QTemporaryFile_override_virtual_OpenWithFlags(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__OpenWithFlags = slot;
+void QTemporaryFile_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__Metacast = slot;
 }
 
-bool QTemporaryFile_virtualbase_OpenWithFlags(void* self, OpenMode flags) {
-	return ( (MiqtVirtualQTemporaryFile*)(self) )->virtualbase_OpenWithFlags(flags);
-}
-
-void QTemporaryFile_override_virtual_Size(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__Size = slot;
-}
-
-long long QTemporaryFile_virtualbase_Size(const void* self) {
-	return ( (const MiqtVirtualQTemporaryFile*)(self) )->virtualbase_Size();
-}
-
-void QTemporaryFile_override_virtual_Resize(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__Resize = slot;
-}
-
-bool QTemporaryFile_virtualbase_Resize(void* self, long long sz) {
-	return ( (MiqtVirtualQTemporaryFile*)(self) )->virtualbase_Resize(sz);
-}
-
-void QTemporaryFile_override_virtual_Permissions(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__Permissions = slot;
-}
-
-Permissions QTemporaryFile_virtualbase_Permissions(const void* self) {
-	return ( (const MiqtVirtualQTemporaryFile*)(self) )->virtualbase_Permissions();
-}
-
-void QTemporaryFile_override_virtual_SetPermissions(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__SetPermissions = slot;
-}
-
-bool QTemporaryFile_virtualbase_SetPermissions(void* self, Permissions permissionSpec) {
-	return ( (MiqtVirtualQTemporaryFile*)(self) )->virtualbase_SetPermissions(permissionSpec);
+void* QTemporaryFile_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQTemporaryFile*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QTemporaryFile_Delete(QTemporaryFile* self, bool isSubclass) {

@@ -8,202 +8,177 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QActionEvent QActionEvent;
-typedef struct QCloseEvent QCloseEvent;
 typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDockWidget QDockWidget;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMainWindow QMainWindow;
 typedef struct QMenu QMenu;
 typedef struct QMenuBar QMenuBar;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
-typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
 typedef struct QPoint QPoint;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
 typedef struct QStatusBar QStatusBar;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QToolBar QToolBar;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QMainWindow* QMainWindow_new(QWidget* parent);
-extern __declspec(dllexport) QMainWindow* QMainWindow_new2();
-extern __declspec(dllexport) QMainWindow* QMainWindow_new3(QWidget* parent, int flags);
-extern __declspec(dllexport) void QMainWindow_virtbase(QMainWindow* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QMainWindow_MetaObject(const QMainWindow* self);
-extern __declspec(dllexport) void* QMainWindow_Metacast(QMainWindow* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QMainWindow_Tr(const char* s);
-extern __declspec(dllexport) QSize* QMainWindow_IconSize(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetIconSize(QMainWindow* self, QSize* iconSize);
-extern __declspec(dllexport) int QMainWindow_ToolButtonStyle(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetToolButtonStyle(QMainWindow* self, int toolButtonStyle);
-extern __declspec(dllexport) bool QMainWindow_IsAnimated(const QMainWindow* self);
-extern __declspec(dllexport) bool QMainWindow_IsDockNestingEnabled(const QMainWindow* self);
-extern __declspec(dllexport) bool QMainWindow_DocumentMode(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetDocumentMode(QMainWindow* self, bool enabled);
-extern __declspec(dllexport) int QMainWindow_TabShape(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetTabShape(QMainWindow* self, int tabShape);
-extern __declspec(dllexport) int QMainWindow_TabPosition(const QMainWindow* self, int area);
-extern __declspec(dllexport) void QMainWindow_SetTabPosition(QMainWindow* self, int areas, int tabPosition);
-extern __declspec(dllexport) void QMainWindow_SetDockOptions(QMainWindow* self, DockOptions options);
-extern __declspec(dllexport) DockOptions QMainWindow_DockOptions(const QMainWindow* self);
-extern __declspec(dllexport) bool QMainWindow_IsSeparator(const QMainWindow* self, QPoint* pos);
-extern __declspec(dllexport) QMenuBar* QMainWindow_MenuBar(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetMenuBar(QMainWindow* self, QMenuBar* menubar);
-extern __declspec(dllexport) QWidget* QMainWindow_MenuWidget(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetMenuWidget(QMainWindow* self, QWidget* menubar);
-extern __declspec(dllexport) QStatusBar* QMainWindow_StatusBar(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetStatusBar(QMainWindow* self, QStatusBar* statusbar);
-extern __declspec(dllexport) QWidget* QMainWindow_CentralWidget(const QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetCentralWidget(QMainWindow* self, QWidget* widget);
-extern __declspec(dllexport) QWidget* QMainWindow_TakeCentralWidget(QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetCorner(QMainWindow* self, int corner, int area);
-extern __declspec(dllexport) int QMainWindow_Corner(const QMainWindow* self, int corner);
-extern __declspec(dllexport) void QMainWindow_AddToolBarBreak(QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_InsertToolBarBreak(QMainWindow* self, QToolBar* before);
-extern __declspec(dllexport) void QMainWindow_AddToolBar(QMainWindow* self, int area, QToolBar* toolbar);
-extern __declspec(dllexport) void QMainWindow_AddToolBarWithToolbar(QMainWindow* self, QToolBar* toolbar);
-extern __declspec(dllexport) QToolBar* QMainWindow_AddToolBarWithTitle(QMainWindow* self, struct miqt_string title);
-extern __declspec(dllexport) void QMainWindow_InsertToolBar(QMainWindow* self, QToolBar* before, QToolBar* toolbar);
-extern __declspec(dllexport) void QMainWindow_RemoveToolBar(QMainWindow* self, QToolBar* toolbar);
-extern __declspec(dllexport) void QMainWindow_RemoveToolBarBreak(QMainWindow* self, QToolBar* before);
-extern __declspec(dllexport) bool QMainWindow_UnifiedTitleAndToolBarOnMac(const QMainWindow* self);
-extern __declspec(dllexport) int QMainWindow_ToolBarArea(const QMainWindow* self, QToolBar* toolbar);
-extern __declspec(dllexport) bool QMainWindow_ToolBarBreak(const QMainWindow* self, QToolBar* toolbar);
-extern __declspec(dllexport) void QMainWindow_AddDockWidget(QMainWindow* self, int area, QDockWidget* dockwidget);
-extern __declspec(dllexport) void QMainWindow_AddDockWidget2(QMainWindow* self, int area, QDockWidget* dockwidget, int orientation);
-extern __declspec(dllexport) void QMainWindow_SplitDockWidget(QMainWindow* self, QDockWidget* after, QDockWidget* dockwidget, int orientation);
-extern __declspec(dllexport) void QMainWindow_TabifyDockWidget(QMainWindow* self, QDockWidget* first, QDockWidget* second);
-extern __declspec(dllexport) struct miqt_array /* of QDockWidget* */  QMainWindow_TabifiedDockWidgets(const QMainWindow* self, QDockWidget* dockwidget);
-extern __declspec(dllexport) void QMainWindow_RemoveDockWidget(QMainWindow* self, QDockWidget* dockwidget);
-extern __declspec(dllexport) bool QMainWindow_RestoreDockWidget(QMainWindow* self, QDockWidget* dockwidget);
-extern __declspec(dllexport) int QMainWindow_DockWidgetArea(const QMainWindow* self, QDockWidget* dockwidget);
-extern __declspec(dllexport) void QMainWindow_ResizeDocks(QMainWindow* self, struct miqt_array /* of QDockWidget* */  docks, struct miqt_array /* of int */  sizes, int orientation);
-extern __declspec(dllexport) struct miqt_string QMainWindow_SaveState(const QMainWindow* self);
-extern __declspec(dllexport) bool QMainWindow_RestoreState(QMainWindow* self, struct miqt_string state);
-extern __declspec(dllexport) QMenu* QMainWindow_CreatePopupMenu(QMainWindow* self);
-extern __declspec(dllexport) void QMainWindow_SetAnimated(QMainWindow* self, bool enabled);
-extern __declspec(dllexport) void QMainWindow_SetDockNestingEnabled(QMainWindow* self, bool enabled);
-extern __declspec(dllexport) void QMainWindow_SetUnifiedTitleAndToolBarOnMac(QMainWindow* self, bool set);
-extern __declspec(dllexport) void QMainWindow_IconSizeChanged(QMainWindow* self, QSize* iconSize);
+extern __declspec(dllexport) 
+QMainWindow* QMainWindow_new(QWidget* parent);
+extern __declspec(dllexport) 
+QMainWindow* QMainWindow_new2();
+extern __declspec(dllexport) 
+QMainWindow* QMainWindow_new3(QWidget* parent, int flags);
+extern __declspec(dllexport) 
+void QMainWindow_virtbase(QMainWindow* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QMainWindow_MetaObject(const QMainWindow* self);
+extern __declspec(dllexport) 
+void* QMainWindow_Metacast(QMainWindow* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QMainWindow_Tr(const char* s);
+extern __declspec(dllexport) 
+QSize* QMainWindow_IconSize(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetIconSize(QMainWindow* self, QSize* iconSize);
+extern __declspec(dllexport) 
+int QMainWindow_ToolButtonStyle(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetToolButtonStyle(QMainWindow* self, int toolButtonStyle);
+extern __declspec(dllexport) 
+bool QMainWindow_IsAnimated(const QMainWindow* self);
+extern __declspec(dllexport) 
+bool QMainWindow_IsDockNestingEnabled(const QMainWindow* self);
+extern __declspec(dllexport) 
+bool QMainWindow_DocumentMode(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetDocumentMode(QMainWindow* self, bool enabled);
+extern __declspec(dllexport) 
+int QMainWindow_TabShape(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetTabShape(QMainWindow* self, int tabShape);
+extern __declspec(dllexport) 
+int QMainWindow_TabPosition(const QMainWindow* self, int area);
+extern __declspec(dllexport) 
+void QMainWindow_SetTabPosition(QMainWindow* self, int areas, int tabPosition);
+extern __declspec(dllexport) 
+void QMainWindow_SetDockOptions(QMainWindow* self, DockOptions options);
+extern __declspec(dllexport) 
+DockOptions QMainWindow_DockOptions(const QMainWindow* self);
+extern __declspec(dllexport) 
+bool QMainWindow_IsSeparator(const QMainWindow* self, QPoint* pos);
+extern __declspec(dllexport) 
+QMenuBar* QMainWindow_MenuBar(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetMenuBar(QMainWindow* self, QMenuBar* menubar);
+extern __declspec(dllexport) 
+QWidget* QMainWindow_MenuWidget(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetMenuWidget(QMainWindow* self, QWidget* menubar);
+extern __declspec(dllexport) 
+QStatusBar* QMainWindow_StatusBar(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetStatusBar(QMainWindow* self, QStatusBar* statusbar);
+extern __declspec(dllexport) 
+QWidget* QMainWindow_CentralWidget(const QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetCentralWidget(QMainWindow* self, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QMainWindow_TakeCentralWidget(QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetCorner(QMainWindow* self, int corner, int area);
+extern __declspec(dllexport) 
+int QMainWindow_Corner(const QMainWindow* self, int corner);
+extern __declspec(dllexport) 
+void QMainWindow_AddToolBarBreak(QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_InsertToolBarBreak(QMainWindow* self, QToolBar* before);
+extern __declspec(dllexport) 
+void QMainWindow_AddToolBar(QMainWindow* self, int area, QToolBar* toolbar);
+extern __declspec(dllexport) 
+void QMainWindow_AddToolBarWithToolbar(QMainWindow* self, QToolBar* toolbar);
+extern __declspec(dllexport) 
+QToolBar* QMainWindow_AddToolBarWithTitle(QMainWindow* self, struct miqt_string title);
+extern __declspec(dllexport) 
+void QMainWindow_InsertToolBar(QMainWindow* self, QToolBar* before, QToolBar* toolbar);
+extern __declspec(dllexport) 
+void QMainWindow_RemoveToolBar(QMainWindow* self, QToolBar* toolbar);
+extern __declspec(dllexport) 
+void QMainWindow_RemoveToolBarBreak(QMainWindow* self, QToolBar* before);
+extern __declspec(dllexport) 
+bool QMainWindow_UnifiedTitleAndToolBarOnMac(const QMainWindow* self);
+extern __declspec(dllexport) 
+int QMainWindow_ToolBarArea(const QMainWindow* self, QToolBar* toolbar);
+extern __declspec(dllexport) 
+bool QMainWindow_ToolBarBreak(const QMainWindow* self, QToolBar* toolbar);
+extern __declspec(dllexport) 
+void QMainWindow_AddDockWidget(QMainWindow* self, int area, QDockWidget* dockwidget);
+extern __declspec(dllexport) 
+void QMainWindow_AddDockWidget2(QMainWindow* self, int area, QDockWidget* dockwidget, int orientation);
+extern __declspec(dllexport) 
+void QMainWindow_SplitDockWidget(QMainWindow* self, QDockWidget* after, QDockWidget* dockwidget, int orientation);
+extern __declspec(dllexport) 
+void QMainWindow_TabifyDockWidget(QMainWindow* self, QDockWidget* first, QDockWidget* second);
+extern __declspec(dllexport) 
+struct miqt_array /* of QDockWidget* */  QMainWindow_TabifiedDockWidgets(const QMainWindow* self, QDockWidget* dockwidget);
+extern __declspec(dllexport) 
+void QMainWindow_RemoveDockWidget(QMainWindow* self, QDockWidget* dockwidget);
+extern __declspec(dllexport) 
+bool QMainWindow_RestoreDockWidget(QMainWindow* self, QDockWidget* dockwidget);
+extern __declspec(dllexport) 
+int QMainWindow_DockWidgetArea(const QMainWindow* self, QDockWidget* dockwidget);
+extern __declspec(dllexport) 
+void QMainWindow_ResizeDocks(QMainWindow* self, struct miqt_array /* of QDockWidget* */  docks, struct miqt_array /* of int */  sizes, int orientation);
+extern __declspec(dllexport) 
+struct miqt_string QMainWindow_SaveState(const QMainWindow* self);
+extern __declspec(dllexport) 
+bool QMainWindow_RestoreState(QMainWindow* self, struct miqt_string state);
+extern __declspec(dllexport) 
+QMenu* QMainWindow_CreatePopupMenu(QMainWindow* self);
+extern __declspec(dllexport) 
+void QMainWindow_SetAnimated(QMainWindow* self, bool enabled);
+extern __declspec(dllexport) 
+void QMainWindow_SetDockNestingEnabled(QMainWindow* self, bool enabled);
+extern __declspec(dllexport) 
+void QMainWindow_SetUnifiedTitleAndToolBarOnMac(QMainWindow* self, bool set);
+extern __declspec(dllexport) 
+void QMainWindow_IconSizeChanged(QMainWindow* self, QSize* iconSize);
 void QMainWindow_connect_IconSizeChanged(QMainWindow* self, intptr_t slot);
-extern __declspec(dllexport) void QMainWindow_ToolButtonStyleChanged(QMainWindow* self, int toolButtonStyle);
+extern __declspec(dllexport) 
+void QMainWindow_ToolButtonStyleChanged(QMainWindow* self, int toolButtonStyle);
 void QMainWindow_connect_ToolButtonStyleChanged(QMainWindow* self, intptr_t slot);
-extern __declspec(dllexport) void QMainWindow_TabifiedDockWidgetActivated(QMainWindow* self, QDockWidget* dockWidget);
+extern __declspec(dllexport) 
+void QMainWindow_TabifiedDockWidgetActivated(QMainWindow* self, QDockWidget* dockWidget);
 void QMainWindow_connect_TabifiedDockWidgetActivated(QMainWindow* self, intptr_t slot);
-extern __declspec(dllexport) void QMainWindow_ContextMenuEvent(QMainWindow* self, QContextMenuEvent* event);
-extern __declspec(dllexport) bool QMainWindow_Event(QMainWindow* self, QEvent* event);
-extern __declspec(dllexport) struct miqt_string QMainWindow_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QMainWindow_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QMainWindow_AddToolBarBreak1(QMainWindow* self, int area);
-extern __declspec(dllexport) struct miqt_string QMainWindow_SaveState1(const QMainWindow* self, int version);
-extern __declspec(dllexport) bool QMainWindow_RestoreState2(QMainWindow* self, struct miqt_string state, int version);
-extern __declspec(dllexport) void QMainWindow_override_virtual_CreatePopupMenu(void* self, intptr_t slot);
-QMenu* QMainWindow_virtualbase_CreatePopupMenu(void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_Event(void* self, intptr_t slot);
-bool QMainWindow_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_DevType(void* self, intptr_t slot);
-int QMainWindow_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_SetVisible(void* self, intptr_t slot);
-void QMainWindow_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QMainWindow_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QMainWindow_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QMainWindow_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QMainWindow_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QMainWindow_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QMainWindow_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QMainWindow_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_DropEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_HideEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QMainWindow_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QMainWindow_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QMainWindow_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QMainWindow_override_virtual_Metric(void* self, intptr_t slot);
-int QMainWindow_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QMainWindow_override_virtual_InitPainter(void* self, intptr_t slot);
-void QMainWindow_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QMainWindow_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QMainWindow_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QMainWindow_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QMainWindow_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QMainWindow_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QMainWindow_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QMainWindow_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QMainWindow_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QMainWindow_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QMainWindow_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QMainWindow_Delete(QMainWindow* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QMainWindow_ContextMenuEvent(QMainWindow* self, QContextMenuEvent* event);
+extern __declspec(dllexport) 
+bool QMainWindow_Event(QMainWindow* self, QEvent* event);
+extern __declspec(dllexport) 
+struct miqt_string QMainWindow_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QMainWindow_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QMainWindow_AddToolBarBreak1(QMainWindow* self, int area);
+extern __declspec(dllexport) 
+struct miqt_string QMainWindow_SaveState1(const QMainWindow* self, int version);
+extern __declspec(dllexport) 
+bool QMainWindow_RestoreState2(QMainWindow* self, struct miqt_string state, int version);
+extern __declspec(dllexport) 
+void QMainWindow_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QMainWindow_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QMainWindow_override_virtual_Metacast(void* self, intptr_t slot);
+void* QMainWindow_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QMainWindow_Delete(QMainWindow* self, bool isSubclass);
 
-} 
+}

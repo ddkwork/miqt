@@ -30,7 +30,6 @@ type QSystemSemaphore struct {
 
 // NewQSystemSemaphore constructs a new QSystemSemaphore object.
 func NewQSystemSemaphore(key *QNativeIpcKey) *QSystemSemaphore {
-
 	ret := newQSystemSemaphore(QSystemSemaphore_new(key.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -50,7 +49,6 @@ func NewQSystemSemaphore2(key string) *QSystemSemaphore {
 
 // NewQSystemSemaphore3 constructs a new QSystemSemaphore object.
 func NewQSystemSemaphore3(key *QNativeIpcKey, initialValue int) *QSystemSemaphore {
-
 	ret := newQSystemSemaphore(QSystemSemaphore_new3(key.cPointer(), (int)(initialValue)))
 	ret.isSubclass = true
 	return ret
@@ -58,7 +56,6 @@ func NewQSystemSemaphore3(key *QNativeIpcKey, initialValue int) *QSystemSemaphor
 
 // NewQSystemSemaphore4 constructs a new QSystemSemaphore object.
 func NewQSystemSemaphore4(key *QNativeIpcKey, initialValue int, param3 AccessMode) *QSystemSemaphore {
-
 	ret := newQSystemSemaphore(QSystemSemaphore_new4(key.cPointer(), (int)(initialValue), param3))
 	ret.isSubclass = true
 	return ret

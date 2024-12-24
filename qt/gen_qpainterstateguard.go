@@ -18,7 +18,6 @@ type QPainterStateGuard struct {
 
 // NewQPainterStateGuard constructs a new QPainterStateGuard object.
 func NewQPainterStateGuard(painter *QPainter) *QPainterStateGuard {
-
 	ret := newQPainterStateGuard(QPainterStateGuard_new(painter.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -26,7 +25,6 @@ func NewQPainterStateGuard(painter *QPainter) *QPainterStateGuard {
 
 // NewQPainterStateGuard2 constructs a new QPainterStateGuard object.
 func NewQPainterStateGuard2(painter *QPainter, state InitialState) *QPainterStateGuard {
-
 	ret := newQPainterStateGuard(QPainterStateGuard_new2(painter.cPointer(), state))
 	ret.isSubclass = true
 	return ret

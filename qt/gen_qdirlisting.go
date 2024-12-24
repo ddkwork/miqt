@@ -153,7 +153,6 @@ type QDirListing__DirEntry struct {
 
 // NewQDirListing__DirEntry constructs a new QDirListing::DirEntry object.
 func NewQDirListing__DirEntry(param1 *DirEntry) *QDirListing__DirEntry {
-
 	ret := newQDirListing__DirEntry(QDirListing__DirEntry_new(param1))
 	ret.isSubclass = true
 	return ret
@@ -161,7 +160,6 @@ func NewQDirListing__DirEntry(param1 *DirEntry) *QDirListing__DirEntry {
 
 // NewQDirListing__DirEntry2 constructs a new QDirListing::DirEntry object.
 func NewQDirListing__DirEntry2() *QDirListing__DirEntry {
-
 	ret := newQDirListing__DirEntry(QDirListing__DirEntry_new2())
 	ret.isSubclass = true
 	return ret
@@ -320,7 +318,6 @@ type QDirListing__sentinel struct {
 
 // NewQDirListing__sentinel constructs a new QDirListing::sentinel object.
 func NewQDirListing__sentinel() *QDirListing__sentinel {
-
 	ret := newQDirListing__sentinel(QDirListing__sentinel_new())
 	ret.isSubclass = true
 	return ret
@@ -328,7 +325,6 @@ func NewQDirListing__sentinel() *QDirListing__sentinel {
 
 // NewQDirListing__sentinel2 constructs a new QDirListing::sentinel object.
 func NewQDirListing__sentinel2(param1 *sentinel) *QDirListing__sentinel {
-
 	ret := newQDirListing__sentinel(QDirListing__sentinel_new2(param1))
 	ret.isSubclass = true
 	return ret
@@ -341,7 +337,6 @@ type QDirListing__const_iterator struct {
 
 // NewQDirListing__const_iterator constructs a new QDirListing::const_iterator object.
 func NewQDirListing__const_iterator() *QDirListing__const_iterator {
-
 	ret := newQDirListing__const_iterator(QDirListing__const_iterator_new())
 	ret.isSubclass = true
 	return ret

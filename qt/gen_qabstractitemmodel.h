@@ -11,9 +11,6 @@ extern "C" {
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractListModel QAbstractListModel;
 typedef struct QAbstractTableModel QAbstractTableModel;
-typedef struct QChildEvent QChildEvent;
-typedef struct QEvent QEvent;
-typedef struct QMetaMethod QMetaMethod;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMimeData QMimeData;
 typedef struct QModelIndex QModelIndex;
@@ -22,405 +19,356 @@ typedef struct QModelRoleDataSpan QModelRoleDataSpan;
 typedef struct QObject QObject;
 typedef struct QPersistentModelIndex QPersistentModelIndex;
 typedef struct QSize QSize;
-typedef struct QTimerEvent QTimerEvent;
 typedef struct QVariant QVariant;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QModelRoleData* QModelRoleData_new(int role);
-extern __declspec(dllexport) int QModelRoleData_Role(const QModelRoleData* self);
-extern __declspec(dllexport) QVariant* QModelRoleData_Data(QModelRoleData* self);
-extern __declspec(dllexport) QVariant* QModelRoleData_Data2(const QModelRoleData* self);
-extern __declspec(dllexport) void QModelRoleData_ClearData(QModelRoleData* self);
-extern __declspec(dllexport) void QModelRoleData_OperatorAssign(QModelRoleData* self, QModelRoleData* param1);
-extern __declspec(dllexport) void QModelRoleData_Delete(QModelRoleData* self, bool isSubclass);
+extern __declspec(dllexport) 
+QModelRoleData* QModelRoleData_new(int role);
+extern __declspec(dllexport) 
+int QModelRoleData_Role(const QModelRoleData* self);
+extern __declspec(dllexport) 
+QVariant* QModelRoleData_Data(QModelRoleData* self);
+extern __declspec(dllexport) 
+QVariant* QModelRoleData_Data2(const QModelRoleData* self);
+extern __declspec(dllexport) 
+void QModelRoleData_ClearData(QModelRoleData* self);
+extern __declspec(dllexport) 
+void QModelRoleData_OperatorAssign(QModelRoleData* self, QModelRoleData* param1);
+extern __declspec(dllexport) 
+void QModelRoleData_Delete(QModelRoleData* self, bool isSubclass);
 
-extern __declspec(dllexport) QModelRoleDataSpan* QModelRoleDataSpan_new();
-extern __declspec(dllexport) QModelRoleDataSpan* QModelRoleDataSpan_new2(QModelRoleData* modelRoleData);
-extern __declspec(dllexport) QModelRoleDataSpan* QModelRoleDataSpan_new3(QModelRoleData* modelRoleData, ptrdiff_t lenVal);
-extern __declspec(dllexport) QModelRoleDataSpan* QModelRoleDataSpan_new4(QModelRoleDataSpan* param1);
-extern __declspec(dllexport) ptrdiff_t QModelRoleDataSpan_Size(const QModelRoleDataSpan* self);
-extern __declspec(dllexport) ptrdiff_t QModelRoleDataSpan_Length(const QModelRoleDataSpan* self);
-extern __declspec(dllexport) QModelRoleData* QModelRoleDataSpan_Data(const QModelRoleDataSpan* self);
-extern __declspec(dllexport) QModelRoleData* QModelRoleDataSpan_Begin(const QModelRoleDataSpan* self);
-extern __declspec(dllexport) QModelRoleData* QModelRoleDataSpan_End(const QModelRoleDataSpan* self);
-extern __declspec(dllexport) QModelRoleData* QModelRoleDataSpan_OperatorSubscript(const QModelRoleDataSpan* self, ptrdiff_t index);
-extern __declspec(dllexport) QVariant* QModelRoleDataSpan_DataForRole(const QModelRoleDataSpan* self, int role);
-extern __declspec(dllexport) void QModelRoleDataSpan_Delete(QModelRoleDataSpan* self, bool isSubclass);
+extern __declspec(dllexport) 
+QModelRoleDataSpan* QModelRoleDataSpan_new();
+extern __declspec(dllexport) 
+QModelRoleDataSpan* QModelRoleDataSpan_new2(QModelRoleData* modelRoleData);
+extern __declspec(dllexport) 
+QModelRoleDataSpan* QModelRoleDataSpan_new3(QModelRoleData* modelRoleData, ptrdiff_t lenVal);
+extern __declspec(dllexport) 
+QModelRoleDataSpan* QModelRoleDataSpan_new4(QModelRoleDataSpan* param1);
+extern __declspec(dllexport) 
+ptrdiff_t QModelRoleDataSpan_Size(const QModelRoleDataSpan* self);
+extern __declspec(dllexport) 
+ptrdiff_t QModelRoleDataSpan_Length(const QModelRoleDataSpan* self);
+extern __declspec(dllexport) 
+QModelRoleData* QModelRoleDataSpan_Data(const QModelRoleDataSpan* self);
+extern __declspec(dllexport) 
+QModelRoleData* QModelRoleDataSpan_Begin(const QModelRoleDataSpan* self);
+extern __declspec(dllexport) 
+QModelRoleData* QModelRoleDataSpan_End(const QModelRoleDataSpan* self);
+extern __declspec(dllexport) 
+QModelRoleData* QModelRoleDataSpan_OperatorSubscript(const QModelRoleDataSpan* self, ptrdiff_t index);
+extern __declspec(dllexport) 
+QVariant* QModelRoleDataSpan_DataForRole(const QModelRoleDataSpan* self, int role);
+extern __declspec(dllexport) 
+void QModelRoleDataSpan_Delete(QModelRoleDataSpan* self, bool isSubclass);
 
-extern __declspec(dllexport) QModelIndex* QModelIndex_new();
-extern __declspec(dllexport) QModelIndex* QModelIndex_new2(QModelIndex* param1);
-extern __declspec(dllexport) int QModelIndex_Row(const QModelIndex* self);
-extern __declspec(dllexport) int QModelIndex_Column(const QModelIndex* self);
-extern __declspec(dllexport) uintptr_t QModelIndex_InternalId(const QModelIndex* self);
-extern __declspec(dllexport) void* QModelIndex_InternalPointer(const QModelIndex* self);
-extern __declspec(dllexport) const void* QModelIndex_ConstInternalPointer(const QModelIndex* self);
-extern __declspec(dllexport) QModelIndex* QModelIndex_Parent(const QModelIndex* self);
-extern __declspec(dllexport) QModelIndex* QModelIndex_Sibling(const QModelIndex* self, int row, int column);
-extern __declspec(dllexport) QModelIndex* QModelIndex_SiblingAtColumn(const QModelIndex* self, int column);
-extern __declspec(dllexport) QModelIndex* QModelIndex_SiblingAtRow(const QModelIndex* self, int row);
-extern __declspec(dllexport) QVariant* QModelIndex_Data(const QModelIndex* self);
-extern __declspec(dllexport) void QModelIndex_MultiData(const QModelIndex* self, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) int QModelIndex_Flags(const QModelIndex* self);
-extern __declspec(dllexport) QAbstractItemModel* QModelIndex_Model(const QModelIndex* self);
-extern __declspec(dllexport) bool QModelIndex_IsValid(const QModelIndex* self);
-extern __declspec(dllexport) QVariant* QModelIndex_Data1(const QModelIndex* self, int role);
-extern __declspec(dllexport) void QModelIndex_Delete(QModelIndex* self, bool isSubclass);
+extern __declspec(dllexport) 
+QModelIndex* QModelIndex_new();
+extern __declspec(dllexport) 
+QModelIndex* QModelIndex_new2(QModelIndex* param1);
+extern __declspec(dllexport) 
+int QModelIndex_Row(const QModelIndex* self);
+extern __declspec(dllexport) 
+int QModelIndex_Column(const QModelIndex* self);
+extern __declspec(dllexport) 
+uintptr_t QModelIndex_InternalId(const QModelIndex* self);
+extern __declspec(dllexport) 
+void* QModelIndex_InternalPointer(const QModelIndex* self);
+extern __declspec(dllexport) 
+const void* QModelIndex_ConstInternalPointer(const QModelIndex* self);
+extern __declspec(dllexport) 
+QModelIndex* QModelIndex_Parent(const QModelIndex* self);
+extern __declspec(dllexport) 
+QModelIndex* QModelIndex_Sibling(const QModelIndex* self, int row, int column);
+extern __declspec(dllexport) 
+QModelIndex* QModelIndex_SiblingAtColumn(const QModelIndex* self, int column);
+extern __declspec(dllexport) 
+QModelIndex* QModelIndex_SiblingAtRow(const QModelIndex* self, int row);
+extern __declspec(dllexport) 
+QVariant* QModelIndex_Data(const QModelIndex* self);
+extern __declspec(dllexport) 
+void QModelIndex_MultiData(const QModelIndex* self, QModelRoleDataSpan* roleDataSpan);
+extern __declspec(dllexport) 
+int QModelIndex_Flags(const QModelIndex* self);
+extern __declspec(dllexport) 
+QAbstractItemModel* QModelIndex_Model(const QModelIndex* self);
+extern __declspec(dllexport) 
+bool QModelIndex_IsValid(const QModelIndex* self);
+extern __declspec(dllexport) 
+QVariant* QModelIndex_Data1(const QModelIndex* self, int role);
+extern __declspec(dllexport) 
+void QModelIndex_Delete(QModelIndex* self, bool isSubclass);
 
-extern __declspec(dllexport) QPersistentModelIndex* QPersistentModelIndex_new();
-extern __declspec(dllexport) QPersistentModelIndex* QPersistentModelIndex_new2(QModelIndex* index);
-extern __declspec(dllexport) QPersistentModelIndex* QPersistentModelIndex_new3(QPersistentModelIndex* other);
-extern __declspec(dllexport) void QPersistentModelIndex_OperatorAssign(QPersistentModelIndex* self, QPersistentModelIndex* other);
-extern __declspec(dllexport) void QPersistentModelIndex_Swap(QPersistentModelIndex* self, QPersistentModelIndex* other);
-extern __declspec(dllexport) void QPersistentModelIndex_OperatorAssignWithOther(QPersistentModelIndex* self, QModelIndex* other);
-extern __declspec(dllexport) int QPersistentModelIndex_Row(const QPersistentModelIndex* self);
-extern __declspec(dllexport) int QPersistentModelIndex_Column(const QPersistentModelIndex* self);
-extern __declspec(dllexport) void* QPersistentModelIndex_InternalPointer(const QPersistentModelIndex* self);
-extern __declspec(dllexport) const void* QPersistentModelIndex_ConstInternalPointer(const QPersistentModelIndex* self);
-extern __declspec(dllexport) uintptr_t QPersistentModelIndex_InternalId(const QPersistentModelIndex* self);
-extern __declspec(dllexport) QModelIndex* QPersistentModelIndex_Parent(const QPersistentModelIndex* self);
-extern __declspec(dllexport) QModelIndex* QPersistentModelIndex_Sibling(const QPersistentModelIndex* self, int row, int column);
-extern __declspec(dllexport) QVariant* QPersistentModelIndex_Data(const QPersistentModelIndex* self);
-extern __declspec(dllexport) void QPersistentModelIndex_MultiData(const QPersistentModelIndex* self, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) int QPersistentModelIndex_Flags(const QPersistentModelIndex* self);
-extern __declspec(dllexport) QAbstractItemModel* QPersistentModelIndex_Model(const QPersistentModelIndex* self);
-extern __declspec(dllexport) bool QPersistentModelIndex_IsValid(const QPersistentModelIndex* self);
-extern __declspec(dllexport) QVariant* QPersistentModelIndex_Data1(const QPersistentModelIndex* self, int role);
-extern __declspec(dllexport) void QPersistentModelIndex_Delete(QPersistentModelIndex* self, bool isSubclass);
+extern __declspec(dllexport) 
+QPersistentModelIndex* QPersistentModelIndex_new();
+extern __declspec(dllexport) 
+QPersistentModelIndex* QPersistentModelIndex_new2(QModelIndex* index);
+extern __declspec(dllexport) 
+QPersistentModelIndex* QPersistentModelIndex_new3(QPersistentModelIndex* other);
+extern __declspec(dllexport) 
+void QPersistentModelIndex_OperatorAssign(QPersistentModelIndex* self, QPersistentModelIndex* other);
+extern __declspec(dllexport) 
+void QPersistentModelIndex_Swap(QPersistentModelIndex* self, QPersistentModelIndex* other);
+extern __declspec(dllexport) 
+void QPersistentModelIndex_OperatorAssignWithOther(QPersistentModelIndex* self, QModelIndex* other);
+extern __declspec(dllexport) 
+int QPersistentModelIndex_Row(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+int QPersistentModelIndex_Column(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+void* QPersistentModelIndex_InternalPointer(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+const void* QPersistentModelIndex_ConstInternalPointer(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+uintptr_t QPersistentModelIndex_InternalId(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+QModelIndex* QPersistentModelIndex_Parent(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+QModelIndex* QPersistentModelIndex_Sibling(const QPersistentModelIndex* self, int row, int column);
+extern __declspec(dllexport) 
+QVariant* QPersistentModelIndex_Data(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+void QPersistentModelIndex_MultiData(const QPersistentModelIndex* self, QModelRoleDataSpan* roleDataSpan);
+extern __declspec(dllexport) 
+int QPersistentModelIndex_Flags(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+QAbstractItemModel* QPersistentModelIndex_Model(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+bool QPersistentModelIndex_IsValid(const QPersistentModelIndex* self);
+extern __declspec(dllexport) 
+QVariant* QPersistentModelIndex_Data1(const QPersistentModelIndex* self, int role);
+extern __declspec(dllexport) 
+void QPersistentModelIndex_Delete(QPersistentModelIndex* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractItemModel* QAbstractItemModel_new();
-extern __declspec(dllexport) QAbstractItemModel* QAbstractItemModel_new2(QObject* parent);
-extern __declspec(dllexport) void QAbstractItemModel_virtbase(QAbstractItemModel* src, QObject** outptr_QObject);
-extern __declspec(dllexport) QMetaObject* QAbstractItemModel_MetaObject(const QAbstractItemModel* self);
-extern __declspec(dllexport) void* QAbstractItemModel_Metacast(QAbstractItemModel* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QAbstractItemModel_Tr(const char* s);
-extern __declspec(dllexport) bool QAbstractItemModel_HasIndex(const QAbstractItemModel* self, int row, int column);
-extern __declspec(dllexport) QModelIndex* QAbstractItemModel_Index(const QAbstractItemModel* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) QModelIndex* QAbstractItemModel_Parent(const QAbstractItemModel* self, QModelIndex* child);
-extern __declspec(dllexport) QModelIndex* QAbstractItemModel_Sibling(const QAbstractItemModel* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) int QAbstractItemModel_RowCount(const QAbstractItemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) int QAbstractItemModel_ColumnCount(const QAbstractItemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_HasChildren(const QAbstractItemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) QVariant* QAbstractItemModel_Data(const QAbstractItemModel* self, QModelIndex* index, int role);
-extern __declspec(dllexport) bool QAbstractItemModel_SetData(QAbstractItemModel* self, QModelIndex* index, QVariant* value, int role);
-extern __declspec(dllexport) QVariant* QAbstractItemModel_HeaderData(const QAbstractItemModel* self, int section, int orientation, int role);
-extern __declspec(dllexport) bool QAbstractItemModel_SetHeaderData(QAbstractItemModel* self, int section, int orientation, QVariant* value, int role);
-extern __declspec(dllexport) struct miqt_map /* of int to QVariant* */  QAbstractItemModel_ItemData(const QAbstractItemModel* self, QModelIndex* index);
-extern __declspec(dllexport) bool QAbstractItemModel_SetItemData(QAbstractItemModel* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles);
-extern __declspec(dllexport) bool QAbstractItemModel_ClearItemData(QAbstractItemModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QAbstractItemModel_MimeTypes(const QAbstractItemModel* self);
-extern __declspec(dllexport) QMimeData* QAbstractItemModel_MimeData(const QAbstractItemModel* self, struct miqt_array /* of QModelIndex* */  indexes);
-extern __declspec(dllexport) bool QAbstractItemModel_CanDropMimeData(const QAbstractItemModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_DropMimeData(QAbstractItemModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) int QAbstractItemModel_SupportedDropActions(const QAbstractItemModel* self);
-extern __declspec(dllexport) int QAbstractItemModel_SupportedDragActions(const QAbstractItemModel* self);
-extern __declspec(dllexport) bool QAbstractItemModel_InsertRows(QAbstractItemModel* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_InsertColumns(QAbstractItemModel* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_RemoveRows(QAbstractItemModel* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_RemoveColumns(QAbstractItemModel* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_MoveRows(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceRow, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) bool QAbstractItemModel_MoveColumns(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceColumn, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) bool QAbstractItemModel_InsertRow(QAbstractItemModel* self, int row);
-extern __declspec(dllexport) bool QAbstractItemModel_InsertColumn(QAbstractItemModel* self, int column);
-extern __declspec(dllexport) bool QAbstractItemModel_RemoveRow(QAbstractItemModel* self, int row);
-extern __declspec(dllexport) bool QAbstractItemModel_RemoveColumn(QAbstractItemModel* self, int column);
-extern __declspec(dllexport) bool QAbstractItemModel_MoveRow(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceRow, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) bool QAbstractItemModel_MoveColumn(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceColumn, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractItemModel_FetchMore(QAbstractItemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_CanFetchMore(const QAbstractItemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) int QAbstractItemModel_Flags(const QAbstractItemModel* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_Sort(QAbstractItemModel* self, int column, int order);
-extern __declspec(dllexport) QModelIndex* QAbstractItemModel_Buddy(const QAbstractItemModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_array /* of QModelIndex* */  QAbstractItemModel_Match(const QAbstractItemModel* self, QModelIndex* start, int role, QVariant* value, int hits, int flags);
-extern __declspec(dllexport) QSize* QAbstractItemModel_Span(const QAbstractItemModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_map /* of int to struct miqt_string */  QAbstractItemModel_RoleNames(const QAbstractItemModel* self);
-extern __declspec(dllexport) bool QAbstractItemModel_CheckIndex(const QAbstractItemModel* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_MultiData(const QAbstractItemModel* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) void QAbstractItemModel_DataChanged(QAbstractItemModel* self, QModelIndex* topLeft, QModelIndex* bottomRight);
+extern __declspec(dllexport) 
+QAbstractItemModel* QAbstractItemModel_new();
+extern __declspec(dllexport) 
+QAbstractItemModel* QAbstractItemModel_new2(QObject* parent);
+extern __declspec(dllexport) 
+void QAbstractItemModel_virtbase(QAbstractItemModel* src
+, QObject** outptr_QObject
+);
+extern __declspec(dllexport) 
+QMetaObject* QAbstractItemModel_MetaObject(const QAbstractItemModel* self);
+extern __declspec(dllexport) 
+void* QAbstractItemModel_Metacast(QAbstractItemModel* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractItemModel_Tr(const char* s);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_HasIndex(const QAbstractItemModel* self, int row, int column);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractItemModel_Index(const QAbstractItemModel* self, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractItemModel_Parent(const QAbstractItemModel* self, QModelIndex* child);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractItemModel_Sibling(const QAbstractItemModel* self, int row, int column, QModelIndex* idx);
+extern __declspec(dllexport) 
+int QAbstractItemModel_RowCount(const QAbstractItemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QAbstractItemModel_ColumnCount(const QAbstractItemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_HasChildren(const QAbstractItemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+QVariant* QAbstractItemModel_Data(const QAbstractItemModel* self, QModelIndex* index, int role);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_SetData(QAbstractItemModel* self, QModelIndex* index, QVariant* value, int role);
+extern __declspec(dllexport) 
+QVariant* QAbstractItemModel_HeaderData(const QAbstractItemModel* self, int section, int orientation, int role);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_SetHeaderData(QAbstractItemModel* self, int section, int orientation, QVariant* value, int role);
+extern __declspec(dllexport) 
+struct miqt_map /* of int to QVariant* */  QAbstractItemModel_ItemData(const QAbstractItemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_SetItemData(QAbstractItemModel* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_ClearItemData(QAbstractItemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QAbstractItemModel_MimeTypes(const QAbstractItemModel* self);
+extern __declspec(dllexport) 
+QMimeData* QAbstractItemModel_MimeData(const QAbstractItemModel* self, struct miqt_array /* of QModelIndex* */  indexes);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_CanDropMimeData(const QAbstractItemModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_DropMimeData(QAbstractItemModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QAbstractItemModel_SupportedDropActions(const QAbstractItemModel* self);
+extern __declspec(dllexport) 
+int QAbstractItemModel_SupportedDragActions(const QAbstractItemModel* self);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_InsertRows(QAbstractItemModel* self, int row, int count, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_InsertColumns(QAbstractItemModel* self, int column, int count, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_RemoveRows(QAbstractItemModel* self, int row, int count, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_RemoveColumns(QAbstractItemModel* self, int column, int count, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_MoveRows(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceRow, int count, QModelIndex* destinationParent, int destinationChild);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_MoveColumns(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceColumn, int count, QModelIndex* destinationParent, int destinationChild);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_InsertRow(QAbstractItemModel* self, int row);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_InsertColumn(QAbstractItemModel* self, int column);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_RemoveRow(QAbstractItemModel* self, int row);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_RemoveColumn(QAbstractItemModel* self, int column);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_MoveRow(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceRow, QModelIndex* destinationParent, int destinationChild);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_MoveColumn(QAbstractItemModel* self, QModelIndex* sourceParent, int sourceColumn, QModelIndex* destinationParent, int destinationChild);
+extern __declspec(dllexport) 
+void QAbstractItemModel_FetchMore(QAbstractItemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_CanFetchMore(const QAbstractItemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QAbstractItemModel_Flags(const QAbstractItemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QAbstractItemModel_Sort(QAbstractItemModel* self, int column, int order);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractItemModel_Buddy(const QAbstractItemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_array /* of QModelIndex* */  QAbstractItemModel_Match(const QAbstractItemModel* self, QModelIndex* start, int role, QVariant* value, int hits, int flags);
+extern __declspec(dllexport) 
+QSize* QAbstractItemModel_Span(const QAbstractItemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_map /* of int to struct miqt_string */  QAbstractItemModel_RoleNames(const QAbstractItemModel* self);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_CheckIndex(const QAbstractItemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QAbstractItemModel_MultiData(const QAbstractItemModel* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan);
+extern __declspec(dllexport) 
+void QAbstractItemModel_DataChanged(QAbstractItemModel* self, QModelIndex* topLeft, QModelIndex* bottomRight);
 void QAbstractItemModel_connect_DataChanged(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_HeaderDataChanged(QAbstractItemModel* self, int orientation, int first, int last);
+extern __declspec(dllexport) 
+void QAbstractItemModel_HeaderDataChanged(QAbstractItemModel* self, int orientation, int first, int last);
 void QAbstractItemModel_connect_HeaderDataChanged(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_LayoutChanged(QAbstractItemModel* self);
+extern __declspec(dllexport) 
+void QAbstractItemModel_LayoutChanged(QAbstractItemModel* self);
 void QAbstractItemModel_connect_LayoutChanged(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_LayoutAboutToBeChanged(QAbstractItemModel* self);
+extern __declspec(dllexport) 
+void QAbstractItemModel_LayoutAboutToBeChanged(QAbstractItemModel* self);
 void QAbstractItemModel_connect_LayoutAboutToBeChanged(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) bool QAbstractItemModel_Submit(QAbstractItemModel* self);
-extern __declspec(dllexport) void QAbstractItemModel_Revert(QAbstractItemModel* self);
-extern __declspec(dllexport) void QAbstractItemModel_ResetInternalData(QAbstractItemModel* self);
-extern __declspec(dllexport) struct miqt_string QAbstractItemModel_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QAbstractItemModel_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) bool QAbstractItemModel_HasIndex3(const QAbstractItemModel* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_InsertRow2(QAbstractItemModel* self, int row, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_InsertColumn2(QAbstractItemModel* self, int column, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_RemoveRow2(QAbstractItemModel* self, int row, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_RemoveColumn2(QAbstractItemModel* self, int column, QModelIndex* parent);
-extern __declspec(dllexport) bool QAbstractItemModel_CheckIndex2(const QAbstractItemModel* self, QModelIndex* index, CheckIndexOptions options);
-extern __declspec(dllexport) void QAbstractItemModel_DataChanged3(QAbstractItemModel* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_Submit(QAbstractItemModel* self);
+extern __declspec(dllexport) 
+void QAbstractItemModel_Revert(QAbstractItemModel* self);
+extern __declspec(dllexport) 
+void QAbstractItemModel_ResetInternalData(QAbstractItemModel* self);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractItemModel_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractItemModel_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_HasIndex3(const QAbstractItemModel* self, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_InsertRow2(QAbstractItemModel* self, int row, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_InsertColumn2(QAbstractItemModel* self, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_RemoveRow2(QAbstractItemModel* self, int row, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_RemoveColumn2(QAbstractItemModel* self, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QAbstractItemModel_CheckIndex2(const QAbstractItemModel* self, QModelIndex* index, CheckIndexOptions options);
+extern __declspec(dllexport) 
+void QAbstractItemModel_DataChanged3(QAbstractItemModel* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
 void QAbstractItemModel_connect_DataChanged3(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_LayoutChanged1(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents);
+extern __declspec(dllexport) 
+void QAbstractItemModel_LayoutChanged1(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents);
 void QAbstractItemModel_connect_LayoutChanged1(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_LayoutChanged2(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents, int hint);
+extern __declspec(dllexport) 
+void QAbstractItemModel_LayoutChanged2(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents, int hint);
 void QAbstractItemModel_connect_LayoutChanged2(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_LayoutAboutToBeChanged1(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents);
+extern __declspec(dllexport) 
+void QAbstractItemModel_LayoutAboutToBeChanged1(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents);
 void QAbstractItemModel_connect_LayoutAboutToBeChanged1(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_LayoutAboutToBeChanged2(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents, int hint);
+extern __declspec(dllexport) 
+void QAbstractItemModel_LayoutAboutToBeChanged2(QAbstractItemModel* self, struct miqt_array /* of QPersistentModelIndex* */  parents, int hint);
 void QAbstractItemModel_connect_LayoutAboutToBeChanged2(QAbstractItemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Index(void* self, intptr_t slot);
-QModelIndex* QAbstractItemModel_virtualbase_Index(const void* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Parent(void* self, intptr_t slot);
-QModelIndex* QAbstractItemModel_virtualbase_Parent(const void* self, QModelIndex* child);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Sibling(void* self, intptr_t slot);
-QModelIndex* QAbstractItemModel_virtualbase_Sibling(const void* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_RowCount(void* self, intptr_t slot);
-int QAbstractItemModel_virtualbase_RowCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_ColumnCount(void* self, intptr_t slot);
-int QAbstractItemModel_virtualbase_ColumnCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_HasChildren(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_HasChildren(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Data(void* self, intptr_t slot);
-QVariant* QAbstractItemModel_virtualbase_Data(const void* self, QModelIndex* index, int role);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_SetData(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_SetData(void* self, QModelIndex* index, QVariant* value, int role);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_HeaderData(void* self, intptr_t slot);
-QVariant* QAbstractItemModel_virtualbase_HeaderData(const void* self, int section, int orientation, int role);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_SetHeaderData(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_SetHeaderData(void* self, int section, int orientation, QVariant* value, int role);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_ItemData(void* self, intptr_t slot);
-struct miqt_map /* of int to QVariant* */  QAbstractItemModel_virtualbase_ItemData(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_SetItemData(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_SetItemData(void* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_ClearItemData(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_ClearItemData(void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_MimeTypes(void* self, intptr_t slot);
-struct miqt_array /* of struct miqt_string */  QAbstractItemModel_virtualbase_MimeTypes(const void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_MimeData(void* self, intptr_t slot);
-QMimeData* QAbstractItemModel_virtualbase_MimeData(const void* self, struct miqt_array /* of QModelIndex* */  indexes);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_CanDropMimeData(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_CanDropMimeData(const void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_DropMimeData(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_DropMimeData(void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_SupportedDropActions(void* self, intptr_t slot);
-int QAbstractItemModel_virtualbase_SupportedDropActions(const void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_SupportedDragActions(void* self, intptr_t slot);
-int QAbstractItemModel_virtualbase_SupportedDragActions(const void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_InsertRows(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_InsertRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_InsertColumns(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_InsertColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_RemoveRows(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_RemoveRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_RemoveColumns(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_RemoveColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_MoveRows(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_MoveRows(void* self, QModelIndex* sourceParent, int sourceRow, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_MoveColumns(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_MoveColumns(void* self, QModelIndex* sourceParent, int sourceColumn, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_FetchMore(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_FetchMore(void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_CanFetchMore(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_CanFetchMore(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Flags(void* self, intptr_t slot);
-int QAbstractItemModel_virtualbase_Flags(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Sort(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_Sort(void* self, int column, int order);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Buddy(void* self, intptr_t slot);
-QModelIndex* QAbstractItemModel_virtualbase_Buddy(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Match(void* self, intptr_t slot);
-struct miqt_array /* of QModelIndex* */  QAbstractItemModel_virtualbase_Match(const void* self, QModelIndex* start, int role, QVariant* value, int hits, int flags);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Span(void* self, intptr_t slot);
-QSize* QAbstractItemModel_virtualbase_Span(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_RoleNames(void* self, intptr_t slot);
-struct miqt_map /* of int to struct miqt_string */  QAbstractItemModel_virtualbase_RoleNames(const void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_MultiData(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Submit(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_Submit(void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Revert(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_Revert(void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_ResetInternalData(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_ResetInternalData(void* self);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_Event(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QAbstractItemModel_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_ChildEvent(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_ChildEvent(void* self, QChildEvent* event);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_CustomEvent(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_CustomEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_ConnectNotify(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-extern __declspec(dllexport) void QAbstractItemModel_override_virtual_DisconnectNotify(void* self, intptr_t slot);
-void QAbstractItemModel_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-extern __declspec(dllexport) void QAbstractItemModel_Delete(QAbstractItemModel* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QAbstractItemModel_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QAbstractItemModel_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QAbstractItemModel_override_virtual_Metacast(void* self, intptr_t slot);
+void* QAbstractItemModel_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QAbstractItemModel_Delete(QAbstractItemModel* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractTableModel* QAbstractTableModel_new();
-extern __declspec(dllexport) QAbstractTableModel* QAbstractTableModel_new2(QObject* parent);
-extern __declspec(dllexport) void QAbstractTableModel_virtbase(QAbstractTableModel* src, QAbstractItemModel** outptr_QAbstractItemModel);
-extern __declspec(dllexport) QMetaObject* QAbstractTableModel_MetaObject(const QAbstractTableModel* self);
-extern __declspec(dllexport) void* QAbstractTableModel_Metacast(QAbstractTableModel* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QAbstractTableModel_Tr(const char* s);
-extern __declspec(dllexport) QModelIndex* QAbstractTableModel_Index(const QAbstractTableModel* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) QModelIndex* QAbstractTableModel_Sibling(const QAbstractTableModel* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) bool QAbstractTableModel_DropMimeData(QAbstractTableModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) int QAbstractTableModel_Flags(const QAbstractTableModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_string QAbstractTableModel_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QAbstractTableModel_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Index(void* self, intptr_t slot);
-QModelIndex* QAbstractTableModel_virtualbase_Index(const void* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Sibling(void* self, intptr_t slot);
-QModelIndex* QAbstractTableModel_virtualbase_Sibling(const void* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_DropMimeData(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_DropMimeData(void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Flags(void* self, intptr_t slot);
-int QAbstractTableModel_virtualbase_Flags(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_RowCount(void* self, intptr_t slot);
-int QAbstractTableModel_virtualbase_RowCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_ColumnCount(void* self, intptr_t slot);
-int QAbstractTableModel_virtualbase_ColumnCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Data(void* self, intptr_t slot);
-QVariant* QAbstractTableModel_virtualbase_Data(const void* self, QModelIndex* index, int role);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_SetData(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_SetData(void* self, QModelIndex* index, QVariant* value, int role);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_HeaderData(void* self, intptr_t slot);
-QVariant* QAbstractTableModel_virtualbase_HeaderData(const void* self, int section, int orientation, int role);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_SetHeaderData(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_SetHeaderData(void* self, int section, int orientation, QVariant* value, int role);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_ItemData(void* self, intptr_t slot);
-struct miqt_map /* of int to QVariant* */  QAbstractTableModel_virtualbase_ItemData(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_SetItemData(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_SetItemData(void* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_ClearItemData(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_ClearItemData(void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_MimeTypes(void* self, intptr_t slot);
-struct miqt_array /* of struct miqt_string */  QAbstractTableModel_virtualbase_MimeTypes(const void* self);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_MimeData(void* self, intptr_t slot);
-QMimeData* QAbstractTableModel_virtualbase_MimeData(const void* self, struct miqt_array /* of QModelIndex* */  indexes);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_CanDropMimeData(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_CanDropMimeData(const void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_SupportedDropActions(void* self, intptr_t slot);
-int QAbstractTableModel_virtualbase_SupportedDropActions(const void* self);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_SupportedDragActions(void* self, intptr_t slot);
-int QAbstractTableModel_virtualbase_SupportedDragActions(const void* self);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_InsertRows(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_InsertRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_InsertColumns(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_InsertColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_RemoveRows(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_RemoveRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_RemoveColumns(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_RemoveColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_MoveRows(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_MoveRows(void* self, QModelIndex* sourceParent, int sourceRow, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_MoveColumns(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_MoveColumns(void* self, QModelIndex* sourceParent, int sourceColumn, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_FetchMore(void* self, intptr_t slot);
-void QAbstractTableModel_virtualbase_FetchMore(void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_CanFetchMore(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_CanFetchMore(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Sort(void* self, intptr_t slot);
-void QAbstractTableModel_virtualbase_Sort(void* self, int column, int order);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Buddy(void* self, intptr_t slot);
-QModelIndex* QAbstractTableModel_virtualbase_Buddy(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Match(void* self, intptr_t slot);
-struct miqt_array /* of QModelIndex* */  QAbstractTableModel_virtualbase_Match(const void* self, QModelIndex* start, int role, QVariant* value, int hits, int flags);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Span(void* self, intptr_t slot);
-QSize* QAbstractTableModel_virtualbase_Span(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_RoleNames(void* self, intptr_t slot);
-struct miqt_map /* of int to struct miqt_string */  QAbstractTableModel_virtualbase_RoleNames(const void* self);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_MultiData(void* self, intptr_t slot);
-void QAbstractTableModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Submit(void* self, intptr_t slot);
-bool QAbstractTableModel_virtualbase_Submit(void* self);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_Revert(void* self, intptr_t slot);
-void QAbstractTableModel_virtualbase_Revert(void* self);
-extern __declspec(dllexport) void QAbstractTableModel_override_virtual_ResetInternalData(void* self, intptr_t slot);
-void QAbstractTableModel_virtualbase_ResetInternalData(void* self);
-extern __declspec(dllexport) void QAbstractTableModel_Delete(QAbstractTableModel* self, bool isSubclass);
+extern __declspec(dllexport) 
+QAbstractTableModel* QAbstractTableModel_new();
+extern __declspec(dllexport) 
+QAbstractTableModel* QAbstractTableModel_new2(QObject* parent);
+extern __declspec(dllexport) 
+void QAbstractTableModel_virtbase(QAbstractTableModel* src
+, QAbstractItemModel** outptr_QAbstractItemModel
+);
+extern __declspec(dllexport) 
+QMetaObject* QAbstractTableModel_MetaObject(const QAbstractTableModel* self);
+extern __declspec(dllexport) 
+void* QAbstractTableModel_Metacast(QAbstractTableModel* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractTableModel_Tr(const char* s);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractTableModel_Index(const QAbstractTableModel* self, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractTableModel_Sibling(const QAbstractTableModel* self, int row, int column, QModelIndex* idx);
+extern __declspec(dllexport) 
+bool QAbstractTableModel_DropMimeData(QAbstractTableModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QAbstractTableModel_Flags(const QAbstractTableModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractTableModel_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractTableModel_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QAbstractTableModel_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QAbstractTableModel_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QAbstractTableModel_override_virtual_Metacast(void* self, intptr_t slot);
+void* QAbstractTableModel_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QAbstractTableModel_Delete(QAbstractTableModel* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractListModel* QAbstractListModel_new();
-extern __declspec(dllexport) QAbstractListModel* QAbstractListModel_new2(QObject* parent);
-extern __declspec(dllexport) void QAbstractListModel_virtbase(QAbstractListModel* src, QAbstractItemModel** outptr_QAbstractItemModel);
-extern __declspec(dllexport) QMetaObject* QAbstractListModel_MetaObject(const QAbstractListModel* self);
-extern __declspec(dllexport) void* QAbstractListModel_Metacast(QAbstractListModel* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QAbstractListModel_Tr(const char* s);
-extern __declspec(dllexport) QModelIndex* QAbstractListModel_Index(const QAbstractListModel* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) QModelIndex* QAbstractListModel_Sibling(const QAbstractListModel* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) bool QAbstractListModel_DropMimeData(QAbstractListModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) int QAbstractListModel_Flags(const QAbstractListModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_string QAbstractListModel_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QAbstractListModel_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Index(void* self, intptr_t slot);
-QModelIndex* QAbstractListModel_virtualbase_Index(const void* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Sibling(void* self, intptr_t slot);
-QModelIndex* QAbstractListModel_virtualbase_Sibling(const void* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_DropMimeData(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_DropMimeData(void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Flags(void* self, intptr_t slot);
-int QAbstractListModel_virtualbase_Flags(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_RowCount(void* self, intptr_t slot);
-int QAbstractListModel_virtualbase_RowCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Data(void* self, intptr_t slot);
-QVariant* QAbstractListModel_virtualbase_Data(const void* self, QModelIndex* index, int role);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_SetData(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_SetData(void* self, QModelIndex* index, QVariant* value, int role);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_HeaderData(void* self, intptr_t slot);
-QVariant* QAbstractListModel_virtualbase_HeaderData(const void* self, int section, int orientation, int role);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_SetHeaderData(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_SetHeaderData(void* self, int section, int orientation, QVariant* value, int role);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_ItemData(void* self, intptr_t slot);
-struct miqt_map /* of int to QVariant* */  QAbstractListModel_virtualbase_ItemData(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_SetItemData(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_SetItemData(void* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_ClearItemData(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_ClearItemData(void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_MimeTypes(void* self, intptr_t slot);
-struct miqt_array /* of struct miqt_string */  QAbstractListModel_virtualbase_MimeTypes(const void* self);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_MimeData(void* self, intptr_t slot);
-QMimeData* QAbstractListModel_virtualbase_MimeData(const void* self, struct miqt_array /* of QModelIndex* */  indexes);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_CanDropMimeData(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_CanDropMimeData(const void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_SupportedDropActions(void* self, intptr_t slot);
-int QAbstractListModel_virtualbase_SupportedDropActions(const void* self);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_SupportedDragActions(void* self, intptr_t slot);
-int QAbstractListModel_virtualbase_SupportedDragActions(const void* self);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_InsertRows(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_InsertRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_InsertColumns(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_InsertColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_RemoveRows(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_RemoveRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_RemoveColumns(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_RemoveColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_MoveRows(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_MoveRows(void* self, QModelIndex* sourceParent, int sourceRow, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_MoveColumns(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_MoveColumns(void* self, QModelIndex* sourceParent, int sourceColumn, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_FetchMore(void* self, intptr_t slot);
-void QAbstractListModel_virtualbase_FetchMore(void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_CanFetchMore(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_CanFetchMore(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Sort(void* self, intptr_t slot);
-void QAbstractListModel_virtualbase_Sort(void* self, int column, int order);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Buddy(void* self, intptr_t slot);
-QModelIndex* QAbstractListModel_virtualbase_Buddy(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Match(void* self, intptr_t slot);
-struct miqt_array /* of QModelIndex* */  QAbstractListModel_virtualbase_Match(const void* self, QModelIndex* start, int role, QVariant* value, int hits, int flags);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Span(void* self, intptr_t slot);
-QSize* QAbstractListModel_virtualbase_Span(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_RoleNames(void* self, intptr_t slot);
-struct miqt_map /* of int to struct miqt_string */  QAbstractListModel_virtualbase_RoleNames(const void* self);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_MultiData(void* self, intptr_t slot);
-void QAbstractListModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Submit(void* self, intptr_t slot);
-bool QAbstractListModel_virtualbase_Submit(void* self);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_Revert(void* self, intptr_t slot);
-void QAbstractListModel_virtualbase_Revert(void* self);
-extern __declspec(dllexport) void QAbstractListModel_override_virtual_ResetInternalData(void* self, intptr_t slot);
-void QAbstractListModel_virtualbase_ResetInternalData(void* self);
-extern __declspec(dllexport) void QAbstractListModel_Delete(QAbstractListModel* self, bool isSubclass);
+extern __declspec(dllexport) 
+QAbstractListModel* QAbstractListModel_new();
+extern __declspec(dllexport) 
+QAbstractListModel* QAbstractListModel_new2(QObject* parent);
+extern __declspec(dllexport) 
+void QAbstractListModel_virtbase(QAbstractListModel* src
+, QAbstractItemModel** outptr_QAbstractItemModel
+);
+extern __declspec(dllexport) 
+QMetaObject* QAbstractListModel_MetaObject(const QAbstractListModel* self);
+extern __declspec(dllexport) 
+void* QAbstractListModel_Metacast(QAbstractListModel* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractListModel_Tr(const char* s);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractListModel_Index(const QAbstractListModel* self, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+QModelIndex* QAbstractListModel_Sibling(const QAbstractListModel* self, int row, int column, QModelIndex* idx);
+extern __declspec(dllexport) 
+bool QAbstractListModel_DropMimeData(QAbstractListModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QAbstractListModel_Flags(const QAbstractListModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractListModel_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractListModel_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QAbstractListModel_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QAbstractListModel_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QAbstractListModel_override_virtual_Metacast(void* self, intptr_t slot);
+void* QAbstractListModel_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QAbstractListModel_Delete(QAbstractListModel* self, bool isSubclass);
 
-} 
+}

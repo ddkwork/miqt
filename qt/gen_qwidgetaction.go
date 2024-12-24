@@ -11,7 +11,6 @@ type QWidgetAction struct {
 
 // NewQWidgetAction constructs a new QWidgetAction object.
 func NewQWidgetAction(parent *QObject) *QWidgetAction {
-
 	ret := newQWidgetAction(QWidgetAction_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -74,114 +73,55 @@ func QWidgetAction_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QWidgetAction) callVirtualBase_Event(param1 *QEvent) bool {
-
-	return (bool)(QWidgetAction_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
+func (this *QWidgetAction) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QWidgetAction_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QWidgetAction) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
+
+func (this *QWidgetAction) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QWidgetAction_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QWidgetAction_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QWidgetAction_Event
-func miqt_exec_callback_QWidgetAction_Event(self QWidgetAction, cb intptr_t, param1 *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent) bool, param1 *QEvent) bool)
+//export miqt_exec_callback_QWidgetAction_MetaObject
+func miqt_exec_callback_QWidgetAction_MetaObject(self QWidgetAction, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(param1)
-
-	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QWidgetAction) callVirtualBase_EventFilter(param1 *QObject, param2 *QEvent) bool {
-
-	return (bool)(QWidgetAction_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
-
-}
-func (this *QWidgetAction) OnEventFilter(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWidgetAction_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWidgetAction_EventFilter
-func miqt_exec_callback_QWidgetAction_EventFilter(self QWidgetAction, cb intptr_t, param1 *QObject, param2 *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(param1)
-
-	slotval2 := newQEvent(param2)
-
-	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QWidgetAction) callVirtualBase_CreateWidget(parent *QWidget) *QWidget {
-
-	return newQWidget(QWidgetAction_virtualbase_CreateWidget(unsafe.Pointer(this.h), parent.cPointer()))
-
-}
-func (this *QWidgetAction) OnCreateWidget(slot func(super func(parent *QWidget) *QWidget, parent *QWidget) *QWidget) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWidgetAction_override_virtual_CreateWidget(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWidgetAction_CreateWidget
-func miqt_exec_callback_QWidgetAction_CreateWidget(self QWidgetAction, cb intptr_t, parent *QWidget) *QWidget {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(parent *QWidget) *QWidget, parent *QWidget) *QWidget)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQWidget(parent)
-
-	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_CreateWidget, slotval1)
+	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QWidgetAction) callVirtualBase_DeleteWidget(widget *QWidget) {
+func (this *QWidgetAction) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QWidgetAction_virtualbase_DeleteWidget(unsafe.Pointer(this.h), widget.cPointer())
-
+	return (unsafe.Pointer)(QWidgetAction_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QWidgetAction) OnDeleteWidget(slot func(super func(widget *QWidget), widget *QWidget)) {
+
+func (this *QWidgetAction) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QWidgetAction_override_virtual_DeleteWidget(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QWidgetAction_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QWidgetAction_DeleteWidget
-func miqt_exec_callback_QWidgetAction_DeleteWidget(self QWidgetAction, cb intptr_t, widget *QWidget) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(widget *QWidget), widget *QWidget))
+//export miqt_exec_callback_QWidgetAction_Metacast
+func miqt_exec_callback_QWidgetAction_Metacast(self QWidgetAction, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQWidget(widget)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QWidgetAction{h: self}).callVirtualBase_DeleteWidget, slotval1)
+	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_Metacast, slotval1)
 
+	return virtualReturn
 }

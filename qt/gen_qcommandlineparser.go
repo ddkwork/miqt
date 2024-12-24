@@ -32,7 +32,6 @@ type QCommandLineParser struct {
 
 // NewQCommandLineParser constructs a new QCommandLineParser object.
 func NewQCommandLineParser() *QCommandLineParser {
-
 	ret := newQCommandLineParser(QCommandLineParser_new())
 	ret.isSubclass = true
 	return ret

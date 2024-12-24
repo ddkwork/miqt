@@ -19,7 +19,6 @@ type QResource struct {
 
 // NewQResource constructs a new QResource object.
 func NewQResource() *QResource {
-
 	ret := newQResource(QResource_new())
 	ret.isSubclass = true
 	return ret

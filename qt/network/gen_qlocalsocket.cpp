@@ -20,401 +20,47 @@ public:
 	virtual ~MiqtVirtualQLocalSocket() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__IsSequential = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool isSequential() const override {
-		if (handle__IsSequential == 0) {
-			return QLocalSocket::isSequential();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QLocalSocket::metaObject();
 		}
 		
 
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_IsSequential(const_cast<MiqtVirtualQLocalSocket*>(this), handle__IsSequential);
+		QMetaObject* callback_return_value = miqt_exec_callback_QLocalSocket_MetaObject(const_cast<MiqtVirtualQLocalSocket*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_IsSequential() const {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QLocalSocket::isSequential();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BytesAvailable = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 bytesAvailable() const override {
-		if (handle__BytesAvailable == 0) {
-			return QLocalSocket::bytesAvailable();
-		}
-		
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_BytesAvailable(const_cast<MiqtVirtualQLocalSocket*>(this), handle__BytesAvailable);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_BytesAvailable() const {
-
-		qint64 _ret = QLocalSocket::bytesAvailable();
-		return static_cast<long long>(_ret);
+		return (QMetaObject*) QLocalSocket::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BytesToWrite = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual qint64 bytesToWrite() const override {
-		if (handle__BytesToWrite == 0) {
-			return QLocalSocket::bytesToWrite();
-		}
-		
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_BytesToWrite(const_cast<MiqtVirtualQLocalSocket*>(this), handle__BytesToWrite);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_BytesToWrite() const {
-
-		qint64 _ret = QLocalSocket::bytesToWrite();
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CanReadLine = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool canReadLine() const override {
-		if (handle__CanReadLine == 0) {
-			return QLocalSocket::canReadLine();
-		}
-		
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_CanReadLine(const_cast<MiqtVirtualQLocalSocket*>(this), handle__CanReadLine);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_CanReadLine() const {
-
-		return QLocalSocket::canReadLine();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Open = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool open(OpenMode openMode) override {
-		if (handle__Open == 0) {
-			return QLocalSocket::open(openMode);
-		}
-		
-		OpenMode sigval1 = openMode;
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_Open(this, handle__Open, sigval1);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_Open(OpenMode openMode) {
-
-		return QLocalSocket::open(openMode);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Close = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void close() override {
-		if (handle__Close == 0) {
-			QLocalSocket::close();
-			return;
-		}
-		
-
-		miqt_exec_callback_QLocalSocket_Close(this, handle__Close);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Close() {
-
-		QLocalSocket::close();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__WaitForBytesWritten = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool waitForBytesWritten(int msecs) override {
-		if (handle__WaitForBytesWritten == 0) {
-			return QLocalSocket::waitForBytesWritten(msecs);
-		}
-		
-		int sigval1 = msecs;
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_WaitForBytesWritten(this, handle__WaitForBytesWritten, sigval1);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_WaitForBytesWritten(int msecs) {
-
-		return QLocalSocket::waitForBytesWritten(static_cast<int>(msecs));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__WaitForReadyRead = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool waitForReadyRead(int msecs) override {
-		if (handle__WaitForReadyRead == 0) {
-			return QLocalSocket::waitForReadyRead(msecs);
-		}
-		
-		int sigval1 = msecs;
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_WaitForReadyRead(this, handle__WaitForReadyRead, sigval1);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_WaitForReadyRead(int msecs) {
-
-		return QLocalSocket::waitForReadyRead(static_cast<int>(msecs));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ReadData = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 readData(char* param1, qint64 param2) override {
-		if (handle__ReadData == 0) {
-			return QLocalSocket::readData(param1, param2);
-		}
-		
-		char* sigval1 = param1;
-		qint64 param2_ret = param2;
-		long long sigval2 = static_cast<long long>(param2_ret);
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_ReadData(this, handle__ReadData, sigval1, sigval2);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_ReadData(char* param1, long long param2) {
-
-		qint64 _ret = QLocalSocket::readData(param1, static_cast<qint64>(param2));
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ReadLineData = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 readLineData(char* data, qint64 maxSize) override {
-		if (handle__ReadLineData == 0) {
-			return QLocalSocket::readLineData(data, maxSize);
-		}
-		
-		char* sigval1 = data;
-		qint64 maxSize_ret = maxSize;
-		long long sigval2 = static_cast<long long>(maxSize_ret);
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_ReadLineData(this, handle__ReadLineData, sigval1, sigval2);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_ReadLineData(char* data, long long maxSize) {
-
-		qint64 _ret = QLocalSocket::readLineData(data, static_cast<qint64>(maxSize));
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SkipData = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 skipData(qint64 maxSize) override {
-		if (handle__SkipData == 0) {
-			return QLocalSocket::skipData(maxSize);
-		}
-		
-		qint64 maxSize_ret = maxSize;
-		long long sigval1 = static_cast<long long>(maxSize_ret);
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_SkipData(this, handle__SkipData, sigval1);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_SkipData(long long maxSize) {
-
-		qint64 _ret = QLocalSocket::skipData(static_cast<qint64>(maxSize));
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__WriteData = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 writeData(const char* param1, qint64 param2) override {
-		if (handle__WriteData == 0) {
-			return QLocalSocket::writeData(param1, param2);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QLocalSocket::qt_metacast(param1);
 		}
 		
 		const char* sigval1 = (const char*) param1;
-		qint64 param2_ret = param2;
-		long long sigval2 = static_cast<long long>(param2_ret);
 
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_WriteData(this, handle__WriteData, sigval1, sigval2);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_WriteData(const char* param1, long long param2) {
-
-		qint64 _ret = QLocalSocket::writeData(param1, static_cast<qint64>(param2));
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Pos = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 pos() const override {
-		if (handle__Pos == 0) {
-			return QLocalSocket::pos();
-		}
-		
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_Pos(const_cast<MiqtVirtualQLocalSocket*>(this), handle__Pos);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_Pos() const {
-
-		qint64 _ret = QLocalSocket::pos();
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Size = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual qint64 size() const override {
-		if (handle__Size == 0) {
-			return QLocalSocket::size();
-		}
-		
-
-		long long callback_return_value = miqt_exec_callback_QLocalSocket_Size(const_cast<MiqtVirtualQLocalSocket*>(this), handle__Size);
-
-		return static_cast<qint64>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	long long virtualbase_Size() const {
-
-		qint64 _ret = QLocalSocket::size();
-		return static_cast<long long>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Seek = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool seek(qint64 pos) override {
-		if (handle__Seek == 0) {
-			return QLocalSocket::seek(pos);
-		}
-		
-		qint64 pos_ret = pos;
-		long long sigval1 = static_cast<long long>(pos_ret);
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_Seek(this, handle__Seek, sigval1);
+		void* callback_return_value = miqt_exec_callback_QLocalSocket_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Seek(long long pos) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QLocalSocket::seek(static_cast<qint64>(pos));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__AtEnd = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool atEnd() const override {
-		if (handle__AtEnd == 0) {
-			return QLocalSocket::atEnd();
-		}
-		
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_AtEnd(const_cast<MiqtVirtualQLocalSocket*>(this), handle__AtEnd);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_AtEnd() const {
-
-		return QLocalSocket::atEnd();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Reset = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool reset() override {
-		if (handle__Reset == 0) {
-			return QLocalSocket::reset();
-		}
-		
-
-		bool callback_return_value = miqt_exec_callback_QLocalSocket_Reset(this, handle__Reset);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_Reset() {
-
-		return QLocalSocket::reset();
+		return QLocalSocket::qt_metacast(param1);
 
 	}
 
@@ -670,140 +316,20 @@ bool QLocalSocket_WaitForDisconnected1(QLocalSocket* self, int msecs) {
 	return self->waitForDisconnected(static_cast<int>(msecs));
 }
 
-void QLocalSocket_override_virtual_IsSequential(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__IsSequential = slot;
+void QLocalSocket_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__MetaObject = slot;
 }
 
-bool QLocalSocket_virtualbase_IsSequential(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_IsSequential();
+QMetaObject* QLocalSocket_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_MetaObject();
 }
 
-void QLocalSocket_override_virtual_BytesAvailable(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__BytesAvailable = slot;
+void QLocalSocket_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Metacast = slot;
 }
 
-long long QLocalSocket_virtualbase_BytesAvailable(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_BytesAvailable();
-}
-
-void QLocalSocket_override_virtual_BytesToWrite(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__BytesToWrite = slot;
-}
-
-long long QLocalSocket_virtualbase_BytesToWrite(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_BytesToWrite();
-}
-
-void QLocalSocket_override_virtual_CanReadLine(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__CanReadLine = slot;
-}
-
-bool QLocalSocket_virtualbase_CanReadLine(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_CanReadLine();
-}
-
-void QLocalSocket_override_virtual_Open(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Open = slot;
-}
-
-bool QLocalSocket_virtualbase_Open(void* self, OpenMode openMode) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_Open(openMode);
-}
-
-void QLocalSocket_override_virtual_Close(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Close = slot;
-}
-
-void QLocalSocket_virtualbase_Close(void* self) {
-	( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_Close();
-}
-
-void QLocalSocket_override_virtual_WaitForBytesWritten(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__WaitForBytesWritten = slot;
-}
-
-bool QLocalSocket_virtualbase_WaitForBytesWritten(void* self, int msecs) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_WaitForBytesWritten(msecs);
-}
-
-void QLocalSocket_override_virtual_WaitForReadyRead(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__WaitForReadyRead = slot;
-}
-
-bool QLocalSocket_virtualbase_WaitForReadyRead(void* self, int msecs) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_WaitForReadyRead(msecs);
-}
-
-void QLocalSocket_override_virtual_ReadData(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__ReadData = slot;
-}
-
-long long QLocalSocket_virtualbase_ReadData(void* self, char* param1, long long param2) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_ReadData(param1, param2);
-}
-
-void QLocalSocket_override_virtual_ReadLineData(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__ReadLineData = slot;
-}
-
-long long QLocalSocket_virtualbase_ReadLineData(void* self, char* data, long long maxSize) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_ReadLineData(data, maxSize);
-}
-
-void QLocalSocket_override_virtual_SkipData(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__SkipData = slot;
-}
-
-long long QLocalSocket_virtualbase_SkipData(void* self, long long maxSize) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_SkipData(maxSize);
-}
-
-void QLocalSocket_override_virtual_WriteData(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__WriteData = slot;
-}
-
-long long QLocalSocket_virtualbase_WriteData(void* self, const char* param1, long long param2) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_WriteData(param1, param2);
-}
-
-void QLocalSocket_override_virtual_Pos(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Pos = slot;
-}
-
-long long QLocalSocket_virtualbase_Pos(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_Pos();
-}
-
-void QLocalSocket_override_virtual_Size(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Size = slot;
-}
-
-long long QLocalSocket_virtualbase_Size(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_Size();
-}
-
-void QLocalSocket_override_virtual_Seek(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Seek = slot;
-}
-
-bool QLocalSocket_virtualbase_Seek(void* self, long long pos) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_Seek(pos);
-}
-
-void QLocalSocket_override_virtual_AtEnd(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__AtEnd = slot;
-}
-
-bool QLocalSocket_virtualbase_AtEnd(const void* self) {
-	return ( (const MiqtVirtualQLocalSocket*)(self) )->virtualbase_AtEnd();
-}
-
-void QLocalSocket_override_virtual_Reset(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLocalSocket*>( (QLocalSocket*)(self) )->handle__Reset = slot;
-}
-
-bool QLocalSocket_virtualbase_Reset(void* self) {
-	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_Reset();
+void* QLocalSocket_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQLocalSocket*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QLocalSocket_Delete(QLocalSocket* self, bool isSubclass) {

@@ -11,7 +11,6 @@ type QAtomicInt struct {
 
 // NewQAtomicInt constructs a new QAtomicInt object.
 func NewQAtomicInt() *QAtomicInt {
-
 	ret := newQAtomicInt(QAtomicInt_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQAtomicInt() *QAtomicInt {
 
 // NewQAtomicInt2 constructs a new QAtomicInt object.
 func NewQAtomicInt2(param1 *QAtomicInt) *QAtomicInt {
-
 	ret := newQAtomicInt(QAtomicInt_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQAtomicInt2(param1 *QAtomicInt) *QAtomicInt {
 
 // NewQAtomicInt3 constructs a new QAtomicInt object.
 func NewQAtomicInt3(value int) *QAtomicInt {
-
 	ret := newQAtomicInt(QAtomicInt_new3((int)(value)))
 	ret.isSubclass = true
 	return ret

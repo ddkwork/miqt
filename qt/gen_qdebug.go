@@ -19,7 +19,6 @@ type QDebug struct {
 
 // NewQDebug constructs a new QDebug object.
 func NewQDebug(device *QIODevice) *QDebug {
-
 	ret := newQDebug(QDebug_new(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +26,6 @@ func NewQDebug(device *QIODevice) *QDebug {
 
 // NewQDebug2 constructs a new QDebug object.
 func NewQDebug2(o *QDebug) *QDebug {
-
 	ret := newQDebug(QDebug_new2(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -189,7 +187,6 @@ type QDebugStateSaver struct {
 
 // NewQDebugStateSaver constructs a new QDebugStateSaver object.
 func NewQDebugStateSaver(dbg *QDebug) *QDebugStateSaver {
-
 	ret := newQDebugStateSaver(QDebugStateSaver_new(dbg.cPointer()))
 	ret.isSubclass = true
 	return ret

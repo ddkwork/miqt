@@ -26,7 +26,6 @@ type QMovie struct {
 
 // NewQMovie constructs a new QMovie object.
 func NewQMovie() *QMovie {
-
 	ret := newQMovie(QMovie_new())
 	ret.isSubclass = true
 	return ret
@@ -34,7 +33,6 @@ func NewQMovie() *QMovie {
 
 // NewQMovie2 constructs a new QMovie object.
 func NewQMovie2(device *QIODevice) *QMovie {
-
 	ret := newQMovie(QMovie_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -54,7 +52,6 @@ func NewQMovie3(fileName string) *QMovie {
 
 // NewQMovie4 constructs a new QMovie object.
 func NewQMovie4(parent *QObject) *QMovie {
-
 	ret := newQMovie(QMovie_new4(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -273,6 +270,7 @@ func (this *QMovie) SetCacheMode(mode CacheMode) {
 func (this *QMovie) Started() {
 	QMovie_Started(this.h)
 }
+
 func (this *QMovie) OnStarted(slot func()) {
 	QMovie_connect_Started(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -290,6 +288,7 @@ func miqt_exec_callback_QMovie_Started(cb intptr_t) {
 func (this *QMovie) Resized(size *QSize) {
 	QMovie_Resized(this.h, size.cPointer())
 }
+
 func (this *QMovie) OnResized(slot func(size *QSize)) {
 	QMovie_connect_Resized(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -310,6 +309,7 @@ func miqt_exec_callback_QMovie_Resized(cb intptr_t, size *QSize) {
 func (this *QMovie) Updated(rect *QRect) {
 	QMovie_Updated(this.h, rect.cPointer())
 }
+
 func (this *QMovie) OnUpdated(slot func(rect *QRect)) {
 	QMovie_connect_Updated(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -330,6 +330,7 @@ func miqt_exec_callback_QMovie_Updated(cb intptr_t, rect *QRect) {
 func (this *QMovie) StateChanged(state QMovie__MovieState) {
 	QMovie_StateChanged(this.h, (int)(state))
 }
+
 func (this *QMovie) OnStateChanged(slot func(state QMovie__MovieState)) {
 	QMovie_connect_StateChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -350,6 +351,7 @@ func miqt_exec_callback_QMovie_StateChanged(cb intptr_t, state int) {
 func (this *QMovie) Error(error QImageReader__ImageReaderError) {
 	QMovie_Error(this.h, (int)(error))
 }
+
 func (this *QMovie) OnError(slot func(error QImageReader__ImageReaderError)) {
 	QMovie_connect_Error(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -370,6 +372,7 @@ func miqt_exec_callback_QMovie_Error(cb intptr_t, error int) {
 func (this *QMovie) Finished() {
 	QMovie_Finished(this.h)
 }
+
 func (this *QMovie) OnFinished(slot func()) {
 	QMovie_connect_Finished(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -387,6 +390,7 @@ func miqt_exec_callback_QMovie_Finished(cb intptr_t) {
 func (this *QMovie) FrameChanged(frameNumber int) {
 	QMovie_FrameChanged(this.h, (int)(frameNumber))
 }
+
 func (this *QMovie) OnFrameChanged(slot func(frameNumber int)) {
 	QMovie_connect_FrameChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -446,190 +450,55 @@ func QMovie_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QMovie) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QMovie_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
+func (this *QMovie) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QMovie_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QMovie) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
+
+func (this *QMovie) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QMovie_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QMovie_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QMovie_Event
-func miqt_exec_callback_QMovie_Event(self QMovie, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
+//export miqt_exec_callback_QMovie_MetaObject
+func miqt_exec_callback_QMovie_MetaObject(self QMovie, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QMovie{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QMovie) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QMovie_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QMovie) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QMovie_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QMovie_Metacast
+func miqt_exec_callback_QMovie_Metacast(self QMovie, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QMovie{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QMovie{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QMovie) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QMovie_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QMovie) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMovie_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMovie_EventFilter
-func miqt_exec_callback_QMovie_EventFilter(self QMovie, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QMovie{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QMovie) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QMovie_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMovie) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMovie_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMovie_TimerEvent
-func miqt_exec_callback_QMovie_TimerEvent(self QMovie, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QMovie{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QMovie) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QMovie_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMovie) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMovie_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMovie_ChildEvent
-func miqt_exec_callback_QMovie_ChildEvent(self QMovie, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QMovie{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QMovie) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QMovie_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QMovie) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMovie_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMovie_CustomEvent
-func miqt_exec_callback_QMovie_CustomEvent(self QMovie, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QMovie{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QMovie) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QMovie_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QMovie) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMovie_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMovie_ConnectNotify
-func miqt_exec_callback_QMovie_ConnectNotify(self QMovie, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QMovie{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QMovie) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QMovie_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QMovie) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QMovie_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QMovie_DisconnectNotify
-func miqt_exec_callback_QMovie_DisconnectNotify(self QMovie, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QMovie{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

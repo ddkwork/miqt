@@ -1,13 +1,10 @@
 // +build ignore
 
 #include <QByteArray>
-#include <QChildEvent>
-#include <QEvent>
 #include <QHttpMultiPart>
 #include <QIODevice>
 #include <QJsonDocument>
 #include <QMap>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -17,7 +14,6 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <QVariant>
 #include <qrestaccessmanager.h>
 #include "gen_qrestaccessmanager.h"
@@ -31,173 +27,47 @@ public:
 	virtual ~MiqtVirtualQRestAccessManager() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QRestAccessManager::event(event);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QRestAccessManager::metaObject();
 		}
 		
-		QEvent* sigval1 = event;
 
-		bool callback_return_value = miqt_exec_callback_QRestAccessManager_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QRestAccessManager_MetaObject(const_cast<MiqtVirtualQRestAccessManager*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QRestAccessManager::event(event);
+		return (QMetaObject*) QRestAccessManager::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QRestAccessManager::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QRestAccessManager::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QRestAccessManager_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QRestAccessManager_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QRestAccessManager::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QRestAccessManager::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QRestAccessManager_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QRestAccessManager::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QRestAccessManager::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QRestAccessManager_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QRestAccessManager::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QRestAccessManager::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QRestAccessManager_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QRestAccessManager::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QRestAccessManager::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QRestAccessManager_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QRestAccessManager::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QRestAccessManager::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QRestAccessManager_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QRestAccessManager::disconnectNotify(*signal);
+		return QRestAccessManager::qt_metacast(param1);
 
 	}
 
@@ -381,60 +251,20 @@ struct miqt_string QRestAccessManager_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QRestAccessManager_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__Event = slot;
+void QRestAccessManager_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__MetaObject = slot;
 }
 
-bool QRestAccessManager_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_Event(event);
+QMetaObject* QRestAccessManager_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQRestAccessManager*)(self) )->virtualbase_MetaObject();
 }
 
-void QRestAccessManager_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__EventFilter = slot;
+void QRestAccessManager_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__Metacast = slot;
 }
 
-bool QRestAccessManager_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QRestAccessManager_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__TimerEvent = slot;
-}
-
-void QRestAccessManager_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QRestAccessManager_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__ChildEvent = slot;
-}
-
-void QRestAccessManager_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QRestAccessManager_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__CustomEvent = slot;
-}
-
-void QRestAccessManager_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QRestAccessManager_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QRestAccessManager_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QRestAccessManager_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRestAccessManager*>( (QRestAccessManager*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QRestAccessManager_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QRestAccessManager_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQRestAccessManager*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QRestAccessManager_Delete(QRestAccessManager* self, bool isSubclass) {

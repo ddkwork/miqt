@@ -11,7 +11,6 @@ type QColorTransform struct {
 
 // NewQColorTransform constructs a new QColorTransform object.
 func NewQColorTransform() *QColorTransform {
-
 	ret := newQColorTransform(QColorTransform_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQColorTransform() *QColorTransform {
 
 // NewQColorTransform2 constructs a new QColorTransform object.
 func NewQColorTransform2(colorTransform *QColorTransform) *QColorTransform {
-
 	ret := newQColorTransform(QColorTransform_new2(colorTransform.cPointer()))
 	ret.isSubclass = true
 	return ret

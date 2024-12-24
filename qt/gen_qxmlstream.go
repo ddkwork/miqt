@@ -45,7 +45,6 @@ type QXmlStreamAttribute struct {
 
 // NewQXmlStreamAttribute constructs a new QXmlStreamAttribute object.
 func NewQXmlStreamAttribute() *QXmlStreamAttribute {
-
 	ret := newQXmlStreamAttribute(QXmlStreamAttribute_new())
 	ret.isSubclass = true
 	return ret
@@ -89,7 +88,6 @@ func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QX
 
 // NewQXmlStreamAttribute4 constructs a new QXmlStreamAttribute object.
 func NewQXmlStreamAttribute4(param1 *QXmlStreamAttribute) *QXmlStreamAttribute {
-
 	ret := newQXmlStreamAttribute(QXmlStreamAttribute_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -106,7 +104,6 @@ type QXmlStreamNamespaceDeclaration struct {
 
 // NewQXmlStreamNamespaceDeclaration constructs a new QXmlStreamNamespaceDeclaration object.
 func NewQXmlStreamNamespaceDeclaration() *QXmlStreamNamespaceDeclaration {
-
 	ret := newQXmlStreamNamespaceDeclaration(QXmlStreamNamespaceDeclaration_new())
 	ret.isSubclass = true
 	return ret
@@ -130,7 +127,6 @@ func NewQXmlStreamNamespaceDeclaration2(prefix string, namespaceUri string) *QXm
 
 // NewQXmlStreamNamespaceDeclaration3 constructs a new QXmlStreamNamespaceDeclaration object.
 func NewQXmlStreamNamespaceDeclaration3(param1 *QXmlStreamNamespaceDeclaration) *QXmlStreamNamespaceDeclaration {
-
 	ret := newQXmlStreamNamespaceDeclaration(QXmlStreamNamespaceDeclaration_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -143,7 +139,6 @@ type QXmlStreamNotationDeclaration struct {
 
 // NewQXmlStreamNotationDeclaration constructs a new QXmlStreamNotationDeclaration object.
 func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
-
 	ret := newQXmlStreamNotationDeclaration(QXmlStreamNotationDeclaration_new())
 	ret.isSubclass = true
 	return ret
@@ -151,7 +146,6 @@ func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
 
 // NewQXmlStreamNotationDeclaration2 constructs a new QXmlStreamNotationDeclaration object.
 func NewQXmlStreamNotationDeclaration2(param1 *QXmlStreamNotationDeclaration) *QXmlStreamNotationDeclaration {
-
 	ret := newQXmlStreamNotationDeclaration(QXmlStreamNotationDeclaration_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -164,7 +158,6 @@ type QXmlStreamEntityDeclaration struct {
 
 // NewQXmlStreamEntityDeclaration constructs a new QXmlStreamEntityDeclaration object.
 func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
-
 	ret := newQXmlStreamEntityDeclaration(QXmlStreamEntityDeclaration_new())
 	ret.isSubclass = true
 	return ret
@@ -172,7 +165,6 @@ func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
 
 // NewQXmlStreamEntityDeclaration2 constructs a new QXmlStreamEntityDeclaration object.
 func NewQXmlStreamEntityDeclaration2(param1 *QXmlStreamEntityDeclaration) *QXmlStreamEntityDeclaration {
-
 	ret := newQXmlStreamEntityDeclaration(QXmlStreamEntityDeclaration_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -185,7 +177,6 @@ type QXmlStreamEntityResolver struct {
 
 // NewQXmlStreamEntityResolver constructs a new QXmlStreamEntityResolver object.
 func NewQXmlStreamEntityResolver() *QXmlStreamEntityResolver {
-
 	ret := newQXmlStreamEntityResolver(QXmlStreamEntityResolver_new())
 	ret.isSubclass = true
 	return ret
@@ -217,96 +208,6 @@ func (this *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) strin
 	return _ret
 }
 
-func (this *QXmlStreamEntityResolver) callVirtualBase_ResolveEntity(publicId string, systemId string) string {
-	publicId_ms := struct_miqt_string{}
-	publicId_ms.data = CString(publicId)
-	publicId_ms.len = size_t(len(publicId))
-	defer free(unsafe.Pointer(publicId_ms.data))
-	systemId_ms := struct_miqt_string{}
-	systemId_ms.data = CString(systemId)
-	systemId_ms.len = size_t(len(systemId))
-	defer free(unsafe.Pointer(systemId_ms.data))
-
-	var _ms struct_miqt_string = QXmlStreamEntityResolver_virtualbase_ResolveEntity(unsafe.Pointer(this.h), publicId_ms, systemId_ms)
-	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
-	free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-func (this *QXmlStreamEntityResolver) OnResolveEntity(slot func(super func(publicId string, systemId string) string, publicId string, systemId string) string) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QXmlStreamEntityResolver_override_virtual_ResolveEntity(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QXmlStreamEntityResolver_ResolveEntity
-func miqt_exec_callback_QXmlStreamEntityResolver_ResolveEntity(self QXmlStreamEntityResolver, cb intptr_t, publicId struct_miqt_string, systemId struct_miqt_string) struct_miqt_string {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(publicId string, systemId string) string, publicId string, systemId string) string)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	var publicId_ms struct_miqt_string = publicId
-	publicId_ret := GoStringN(publicId_ms.data, int(int64(publicId_ms.len)))
-	free(unsafe.Pointer(publicId_ms.data))
-	slotval1 := publicId_ret
-	var systemId_ms struct_miqt_string = systemId
-	systemId_ret := GoStringN(systemId_ms.data, int(int64(systemId_ms.len)))
-	free(unsafe.Pointer(systemId_ms.data))
-	slotval2 := systemId_ret
-
-	virtualReturn := gofunc((&QXmlStreamEntityResolver{h: self}).callVirtualBase_ResolveEntity, slotval1, slotval2)
-	virtualReturn_ms := struct_miqt_string{}
-	virtualReturn_ms.data = CString(virtualReturn)
-	virtualReturn_ms.len = size_t(len(virtualReturn))
-	defer free(unsafe.Pointer(virtualReturn_ms.data))
-
-	return virtualReturn_ms
-
-}
-
-func (this *QXmlStreamEntityResolver) callVirtualBase_ResolveUndeclaredEntity(name string) string {
-	name_ms := struct_miqt_string{}
-	name_ms.data = CString(name)
-	name_ms.len = size_t(len(name))
-	defer free(unsafe.Pointer(name_ms.data))
-
-	var _ms struct_miqt_string = QXmlStreamEntityResolver_virtualbase_ResolveUndeclaredEntity(unsafe.Pointer(this.h), name_ms)
-	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
-	free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-func (this *QXmlStreamEntityResolver) OnResolveUndeclaredEntity(slot func(super func(name string) string, name string) string) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QXmlStreamEntityResolver_override_virtual_ResolveUndeclaredEntity(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QXmlStreamEntityResolver_ResolveUndeclaredEntity
-func miqt_exec_callback_QXmlStreamEntityResolver_ResolveUndeclaredEntity(self QXmlStreamEntityResolver, cb intptr_t, name struct_miqt_string) struct_miqt_string {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(name string) string, name string) string)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	var name_ms struct_miqt_string = name
-	name_ret := GoStringN(name_ms.data, int(int64(name_ms.len)))
-	free(unsafe.Pointer(name_ms.data))
-	slotval1 := name_ret
-
-	virtualReturn := gofunc((&QXmlStreamEntityResolver{h: self}).callVirtualBase_ResolveUndeclaredEntity, slotval1)
-	virtualReturn_ms := struct_miqt_string{}
-	virtualReturn_ms.data = CString(virtualReturn)
-	virtualReturn_ms.len = size_t(len(virtualReturn))
-	defer free(unsafe.Pointer(virtualReturn_ms.data))
-
-	return virtualReturn_ms
-
-}
-
 type QXmlStreamReader struct {
 	h          uintptr
 	isSubclass bool
@@ -314,7 +215,6 @@ type QXmlStreamReader struct {
 
 // NewQXmlStreamReader constructs a new QXmlStreamReader object.
 func NewQXmlStreamReader() *QXmlStreamReader {
-
 	ret := newQXmlStreamReader(QXmlStreamReader_new())
 	ret.isSubclass = true
 	return ret
@@ -322,7 +222,6 @@ func NewQXmlStreamReader() *QXmlStreamReader {
 
 // NewQXmlStreamReader2 constructs a new QXmlStreamReader object.
 func NewQXmlStreamReader2(device *QIODevice) *QXmlStreamReader {
-
 	ret := newQXmlStreamReader(QXmlStreamReader_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -330,7 +229,6 @@ func NewQXmlStreamReader2(device *QIODevice) *QXmlStreamReader {
 
 // NewQXmlStreamReader3 constructs a new QXmlStreamReader object.
 func NewQXmlStreamReader3(data QAnyStringView) *QXmlStreamReader {
-
 	ret := newQXmlStreamReader(QXmlStreamReader_new3(data.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -565,7 +463,6 @@ type QXmlStreamWriter struct {
 
 // NewQXmlStreamWriter constructs a new QXmlStreamWriter object.
 func NewQXmlStreamWriter() *QXmlStreamWriter {
-
 	ret := newQXmlStreamWriter(QXmlStreamWriter_new())
 	ret.isSubclass = true
 	return ret
@@ -573,7 +470,6 @@ func NewQXmlStreamWriter() *QXmlStreamWriter {
 
 // NewQXmlStreamWriter2 constructs a new QXmlStreamWriter object.
 func NewQXmlStreamWriter2(device *QIODevice) *QXmlStreamWriter {
-
 	ret := newQXmlStreamWriter(QXmlStreamWriter_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -16,7 +16,6 @@ typedef struct QIODevice QIODevice;
 typedef struct QImage QImage;
 typedef struct QPaintDevice QPaintDevice;
 typedef struct QPaintEngine QPaintEngine;
-typedef struct QPainter QPainter;
 typedef struct QPixelFormat QPixelFormat;
 typedef struct QPoint QPoint;
 typedef struct QRect QRect;
@@ -24,186 +23,343 @@ typedef struct QSize QSize;
 typedef struct QSizeF QSizeF;
 typedef struct QTransform QTransform;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QImage* QImage_new();
-extern __declspec(dllexport) QImage* QImage_new2(QSize* size, Format format);
-extern __declspec(dllexport) QImage* QImage_new3(int width, int height, Format format);
-extern __declspec(dllexport) QImage* QImage_new4(unsigned char* data, int width, int height, Format format);
-extern __declspec(dllexport) QImage* QImage_new5(const unsigned char* data, int width, int height, Format format);
-extern __declspec(dllexport) QImage* QImage_new6(unsigned char* data, int width, int height, ptrdiff_t bytesPerLine, Format format);
-extern __declspec(dllexport) QImage* QImage_new7(const unsigned char* data, int width, int height, ptrdiff_t bytesPerLine, Format format);
-extern __declspec(dllexport) QImage* QImage_new8(struct miqt_string fileName);
-extern __declspec(dllexport) QImage* QImage_new9(QImage* param1);
-extern __declspec(dllexport) QImage* QImage_new10(struct miqt_string fileName, const char* format);
-extern __declspec(dllexport) void QImage_virtbase(QImage* src, QPaintDevice** outptr_QPaintDevice);
-extern __declspec(dllexport) void QImage_OperatorAssign(QImage* self, QImage* param1);
-extern __declspec(dllexport) void QImage_Swap(QImage* self, QImage* other);
-extern __declspec(dllexport) bool QImage_IsNull(const QImage* self);
-extern __declspec(dllexport) int QImage_DevType(const QImage* self);
-extern __declspec(dllexport) bool QImage_OperatorEqual(const QImage* self, QImage* param1);
-extern __declspec(dllexport) bool QImage_OperatorNotEqual(const QImage* self, QImage* param1);
-extern __declspec(dllexport) void QImage_Detach(QImage* self);
-extern __declspec(dllexport) bool QImage_IsDetached(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_Copy(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_Copy2(const QImage* self, int x, int y, int w, int h);
-extern __declspec(dllexport) Format QImage_Format(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_ConvertToFormat(const QImage* self, Format f);
-extern __declspec(dllexport) QImage* QImage_ConvertToFormat2(const QImage* self, Format f, struct miqt_array /* of unsigned int */  colorTable);
-extern __declspec(dllexport) bool QImage_ReinterpretAsFormat(QImage* self, Format f);
-extern __declspec(dllexport) QImage* QImage_ConvertedTo(const QImage* self, Format f);
-extern __declspec(dllexport) void QImage_ConvertTo(QImage* self, Format f);
-extern __declspec(dllexport) int QImage_Width(const QImage* self);
-extern __declspec(dllexport) int QImage_Height(const QImage* self);
-extern __declspec(dllexport) QSize* QImage_Size(const QImage* self);
-extern __declspec(dllexport) QRect* QImage_Rect(const QImage* self);
-extern __declspec(dllexport) int QImage_Depth(const QImage* self);
-extern __declspec(dllexport) int QImage_ColorCount(const QImage* self);
-extern __declspec(dllexport) int QImage_BitPlaneCount(const QImage* self);
-extern __declspec(dllexport) unsigned int QImage_Color(const QImage* self, int i);
-extern __declspec(dllexport) void QImage_SetColor(QImage* self, int i, unsigned int c);
-extern __declspec(dllexport) void QImage_SetColorCount(QImage* self, int colorCount);
-extern __declspec(dllexport) bool QImage_AllGray(const QImage* self);
-extern __declspec(dllexport) bool QImage_IsGrayscale(const QImage* self);
-extern __declspec(dllexport) unsigned char* QImage_Bits(QImage* self);
-extern __declspec(dllexport) const unsigned char* QImage_Bits2(const QImage* self);
-extern __declspec(dllexport) const unsigned char* QImage_ConstBits(const QImage* self);
-extern __declspec(dllexport) ptrdiff_t QImage_SizeInBytes(const QImage* self);
-extern __declspec(dllexport) unsigned char* QImage_ScanLine(QImage* self, int param1);
-extern __declspec(dllexport) const unsigned char* QImage_ScanLineWithInt(const QImage* self, int param1);
-extern __declspec(dllexport) const unsigned char* QImage_ConstScanLine(const QImage* self, int param1);
-extern __declspec(dllexport) ptrdiff_t QImage_BytesPerLine(const QImage* self);
-extern __declspec(dllexport) bool QImage_Valid(const QImage* self, int x, int y);
-extern __declspec(dllexport) bool QImage_ValidWithPt(const QImage* self, QPoint* pt);
-extern __declspec(dllexport) int QImage_PixelIndex(const QImage* self, int x, int y);
-extern __declspec(dllexport) int QImage_PixelIndexWithPt(const QImage* self, QPoint* pt);
-extern __declspec(dllexport) unsigned int QImage_Pixel(const QImage* self, int x, int y);
-extern __declspec(dllexport) unsigned int QImage_PixelWithPt(const QImage* self, QPoint* pt);
-extern __declspec(dllexport) void QImage_SetPixel(QImage* self, int x, int y, unsigned int index_or_rgb);
-extern __declspec(dllexport) void QImage_SetPixel2(QImage* self, QPoint* pt, unsigned int index_or_rgb);
-extern __declspec(dllexport) QColor* QImage_PixelColor(const QImage* self, int x, int y);
-extern __declspec(dllexport) QColor* QImage_PixelColorWithPt(const QImage* self, QPoint* pt);
-extern __declspec(dllexport) void QImage_SetPixelColor(QImage* self, int x, int y, QColor* c);
-extern __declspec(dllexport) void QImage_SetPixelColor2(QImage* self, QPoint* pt, QColor* c);
-extern __declspec(dllexport) struct miqt_array /* of unsigned int */  QImage_ColorTable(const QImage* self);
-extern __declspec(dllexport) void QImage_SetColorTable(QImage* self, struct miqt_array /* of unsigned int */  colors);
-extern __declspec(dllexport) double QImage_DevicePixelRatio(const QImage* self);
-extern __declspec(dllexport) void QImage_SetDevicePixelRatio(QImage* self, double scaleFactor);
-extern __declspec(dllexport) QSizeF* QImage_DeviceIndependentSize(const QImage* self);
-extern __declspec(dllexport) void QImage_Fill(QImage* self, unsigned int pixel);
-extern __declspec(dllexport) void QImage_FillWithColor(QImage* self, QColor* color);
-extern __declspec(dllexport) void QImage_Fill2(QImage* self, int color);
-extern __declspec(dllexport) bool QImage_HasAlphaChannel(const QImage* self);
-extern __declspec(dllexport) void QImage_SetAlphaChannel(QImage* self, QImage* alphaChannel);
-extern __declspec(dllexport) QImage* QImage_CreateAlphaMask(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_CreateHeuristicMask(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_CreateMaskFromColor(const QImage* self, unsigned int color);
-extern __declspec(dllexport) QImage* QImage_Scaled(const QImage* self, int w, int h);
-extern __declspec(dllexport) QImage* QImage_ScaledWithQSize(const QImage* self, QSize* s);
-extern __declspec(dllexport) QImage* QImage_ScaledToWidth(const QImage* self, int w);
-extern __declspec(dllexport) QImage* QImage_ScaledToHeight(const QImage* self, int h);
-extern __declspec(dllexport) QImage* QImage_Transformed(const QImage* self, QTransform* matrix);
-extern __declspec(dllexport) QTransform* QImage_TrueMatrix(QTransform* param1, int w, int h);
-extern __declspec(dllexport) QImage* QImage_Mirrored(const QImage* self);
-extern __declspec(dllexport) void QImage_Mirror(QImage* self);
-extern __declspec(dllexport) QImage* QImage_RgbSwapped(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_Flipped(const QImage* self);
-extern __declspec(dllexport) void QImage_Flip(QImage* self);
-extern __declspec(dllexport) void QImage_RgbSwap(QImage* self);
-extern __declspec(dllexport) void QImage_InvertPixels(QImage* self);
-extern __declspec(dllexport) QColorSpace* QImage_ColorSpace(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_ConvertedToColorSpace(const QImage* self, QColorSpace* colorSpace);
-extern __declspec(dllexport) QImage* QImage_ConvertedToColorSpace2(const QImage* self, QColorSpace* colorSpace, int format);
-extern __declspec(dllexport) void QImage_ConvertToColorSpace(QImage* self, QColorSpace* colorSpace);
-extern __declspec(dllexport) void QImage_ConvertToColorSpace2(QImage* self, QColorSpace* colorSpace, int format);
-extern __declspec(dllexport) void QImage_SetColorSpace(QImage* self, QColorSpace* colorSpace);
-extern __declspec(dllexport) QImage* QImage_ColorTransformed(const QImage* self, QColorTransform* transform);
-extern __declspec(dllexport) QImage* QImage_ColorTransformed2(const QImage* self, QColorTransform* transform, int format);
-extern __declspec(dllexport) void QImage_ApplyColorTransform(QImage* self, QColorTransform* transform);
-extern __declspec(dllexport) void QImage_ApplyColorTransform2(QImage* self, QColorTransform* transform, int format);
-extern __declspec(dllexport) bool QImage_Load(QImage* self, QIODevice* device, const char* format);
-extern __declspec(dllexport) bool QImage_LoadWithFileName(QImage* self, struct miqt_string fileName);
-extern __declspec(dllexport) bool QImage_LoadFromData(QImage* self, QByteArrayView* data);
-extern __declspec(dllexport) bool QImage_LoadFromData2(QImage* self, const unsigned char* buf, int lenVal);
-extern __declspec(dllexport) bool QImage_LoadFromDataWithData(QImage* self, struct miqt_string data);
-extern __declspec(dllexport) bool QImage_Save(const QImage* self, struct miqt_string fileName);
-extern __declspec(dllexport) bool QImage_SaveWithDevice(const QImage* self, QIODevice* device);
-extern __declspec(dllexport) QImage* QImage_FromData(QByteArrayView* data);
-extern __declspec(dllexport) QImage* QImage_FromData2(const unsigned char* data, int size);
-extern __declspec(dllexport) QImage* QImage_FromDataWithData(struct miqt_string data);
-extern __declspec(dllexport) long long QImage_CacheKey(const QImage* self);
-extern __declspec(dllexport) QPaintEngine* QImage_PaintEngine(const QImage* self);
-extern __declspec(dllexport) int QImage_DotsPerMeterX(const QImage* self);
-extern __declspec(dllexport) int QImage_DotsPerMeterY(const QImage* self);
-extern __declspec(dllexport) void QImage_SetDotsPerMeterX(QImage* self, int dotsPerMeterX);
-extern __declspec(dllexport) void QImage_SetDotsPerMeterY(QImage* self, int dotsPerMeterY);
-extern __declspec(dllexport) QPoint* QImage_Offset(const QImage* self);
-extern __declspec(dllexport) void QImage_SetOffset(QImage* self, QPoint* offset);
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QImage_TextKeys(const QImage* self);
-extern __declspec(dllexport) struct miqt_string QImage_Text(const QImage* self);
-extern __declspec(dllexport) void QImage_SetText(QImage* self, struct miqt_string key, struct miqt_string value);
-extern __declspec(dllexport) QPixelFormat* QImage_PixelFormat(const QImage* self);
-extern __declspec(dllexport) QPixelFormat* QImage_ToPixelFormat(int format);
-extern __declspec(dllexport) int QImage_ToImageFormat(QPixelFormat* format);
-extern __declspec(dllexport) struct HBITMAP__* QImage_ToHBITMAP(const QImage* self);
-extern __declspec(dllexport) struct HICON__* QImage_ToHICON(const QImage* self);
-extern __declspec(dllexport) QImage* QImage_FromHBITMAP(struct HBITMAP__* hbitmap);
-extern __declspec(dllexport) QImage* QImage_FromHICON(struct HICON__* icon);
-extern __declspec(dllexport) int QImage_Metric(const QImage* self, PaintDeviceMetric metric);
-extern __declspec(dllexport) DataPtr* QImage_DataPtr(QImage* self);
-extern __declspec(dllexport) QImage* QImage_Copy1(const QImage* self, QRect* rect);
-extern __declspec(dllexport) QImage* QImage_ConvertToFormat22(const QImage* self, Format f, int flags);
-extern __declspec(dllexport) QImage* QImage_ConvertToFormat3(const QImage* self, Format f, struct miqt_array /* of unsigned int */  colorTable, int flags);
-extern __declspec(dllexport) QImage* QImage_ConvertedTo2(const QImage* self, Format f, int flags);
-extern __declspec(dllexport) void QImage_ConvertTo2(QImage* self, Format f, int flags);
-extern __declspec(dllexport) QImage* QImage_CreateAlphaMask1(const QImage* self, int flags);
-extern __declspec(dllexport) QImage* QImage_CreateHeuristicMask1(const QImage* self, bool clipTight);
-extern __declspec(dllexport) QImage* QImage_CreateMaskFromColor2(const QImage* self, unsigned int color, int mode);
-extern __declspec(dllexport) QImage* QImage_Scaled3(const QImage* self, int w, int h, int aspectMode);
-extern __declspec(dllexport) QImage* QImage_Scaled4(const QImage* self, int w, int h, int aspectMode, int mode);
-extern __declspec(dllexport) QImage* QImage_Scaled2(const QImage* self, QSize* s, int aspectMode);
-extern __declspec(dllexport) QImage* QImage_Scaled32(const QImage* self, QSize* s, int aspectMode, int mode);
-extern __declspec(dllexport) QImage* QImage_ScaledToWidth2(const QImage* self, int w, int mode);
-extern __declspec(dllexport) QImage* QImage_ScaledToHeight2(const QImage* self, int h, int mode);
-extern __declspec(dllexport) QImage* QImage_Transformed2(const QImage* self, QTransform* matrix, int mode);
-extern __declspec(dllexport) QImage* QImage_Mirrored1(const QImage* self, bool horizontally);
-extern __declspec(dllexport) QImage* QImage_Mirrored2(const QImage* self, bool horizontally, bool vertically);
-extern __declspec(dllexport) void QImage_Mirror1(QImage* self, bool horizontally);
-extern __declspec(dllexport) void QImage_Mirror2(QImage* self, bool horizontally, bool vertically);
-extern __declspec(dllexport) QImage* QImage_Flipped1(const QImage* self, int orient);
-extern __declspec(dllexport) void QImage_Flip1(QImage* self, int orient);
-extern __declspec(dllexport) void QImage_InvertPixels1(QImage* self, InvertMode param1);
-extern __declspec(dllexport) QImage* QImage_ConvertedToColorSpace3(const QImage* self, QColorSpace* colorSpace, int format, int flags);
-extern __declspec(dllexport) void QImage_ConvertToColorSpace3(QImage* self, QColorSpace* colorSpace, int format, int flags);
-extern __declspec(dllexport) QImage* QImage_ColorTransformed3(const QImage* self, QColorTransform* transform, int format, int flags);
-extern __declspec(dllexport) void QImage_ApplyColorTransform3(QImage* self, QColorTransform* transform, int format, int flags);
-extern __declspec(dllexport) bool QImage_Load2(QImage* self, struct miqt_string fileName, const char* format);
-extern __declspec(dllexport) bool QImage_LoadFromData22(QImage* self, QByteArrayView* data, const char* format);
-extern __declspec(dllexport) bool QImage_LoadFromData3(QImage* self, const unsigned char* buf, int lenVal, const char* format);
-extern __declspec(dllexport) bool QImage_LoadFromData23(QImage* self, struct miqt_string data, const char* format);
-extern __declspec(dllexport) bool QImage_Save2(const QImage* self, struct miqt_string fileName, const char* format);
-extern __declspec(dllexport) bool QImage_Save3(const QImage* self, struct miqt_string fileName, const char* format, int quality);
-extern __declspec(dllexport) bool QImage_Save22(const QImage* self, QIODevice* device, const char* format);
-extern __declspec(dllexport) bool QImage_Save32(const QImage* self, QIODevice* device, const char* format, int quality);
-extern __declspec(dllexport) QImage* QImage_FromData22(QByteArrayView* data, const char* format);
-extern __declspec(dllexport) QImage* QImage_FromData3(const unsigned char* data, int size, const char* format);
-extern __declspec(dllexport) QImage* QImage_FromData23(struct miqt_string data, const char* format);
-extern __declspec(dllexport) struct miqt_string QImage_Text1(const QImage* self, struct miqt_string key);
-extern __declspec(dllexport) struct HICON__* QImage_ToHICON1(const QImage* self, QImage* mask);
-extern __declspec(dllexport) void QImage_override_virtual_DevType(void* self, intptr_t slot);
-int QImage_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QImage_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QImage_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QImage_override_virtual_Metric(void* self, intptr_t slot);
-int QImage_virtualbase_Metric(const void* self, PaintDeviceMetric metric);
-extern __declspec(dllexport) void QImage_override_virtual_InitPainter(void* self, intptr_t slot);
-void QImage_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QImage_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QImage_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QImage_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QImage_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QImage_Delete(QImage* self, bool isSubclass);
+extern __declspec(dllexport) 
+QImage* QImage_new();
+extern __declspec(dllexport) 
+QImage* QImage_new2(QSize* size, Format format);
+extern __declspec(dllexport) 
+QImage* QImage_new3(int width, int height, Format format);
+extern __declspec(dllexport) 
+QImage* QImage_new4(unsigned char* data, int width, int height, Format format);
+extern __declspec(dllexport) 
+QImage* QImage_new5(const unsigned char* data, int width, int height, Format format);
+extern __declspec(dllexport) 
+QImage* QImage_new6(unsigned char* data, int width, int height, ptrdiff_t bytesPerLine, Format format);
+extern __declspec(dllexport) 
+QImage* QImage_new7(const unsigned char* data, int width, int height, ptrdiff_t bytesPerLine, Format format);
+extern __declspec(dllexport) 
+QImage* QImage_new8(struct miqt_string fileName);
+extern __declspec(dllexport) 
+QImage* QImage_new9(QImage* param1);
+extern __declspec(dllexport) 
+QImage* QImage_new10(struct miqt_string fileName, const char* format);
+extern __declspec(dllexport) 
+void QImage_virtbase(QImage* src
+, QPaintDevice** outptr_QPaintDevice
+);
+extern __declspec(dllexport) 
+void QImage_OperatorAssign(QImage* self, QImage* param1);
+extern __declspec(dllexport) 
+void QImage_Swap(QImage* self, QImage* other);
+extern __declspec(dllexport) 
+bool QImage_IsNull(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_DevType(const QImage* self);
+extern __declspec(dllexport) 
+bool QImage_OperatorEqual(const QImage* self, QImage* param1);
+extern __declspec(dllexport) 
+bool QImage_OperatorNotEqual(const QImage* self, QImage* param1);
+extern __declspec(dllexport) 
+void QImage_Detach(QImage* self);
+extern __declspec(dllexport) 
+bool QImage_IsDetached(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_Copy(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_Copy2(const QImage* self, int x, int y, int w, int h);
+extern __declspec(dllexport) 
+Format QImage_Format(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertToFormat(const QImage* self, Format f);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertToFormat2(const QImage* self, Format f, struct miqt_array /* of unsigned int */  colorTable);
+extern __declspec(dllexport) 
+bool QImage_ReinterpretAsFormat(QImage* self, Format f);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertedTo(const QImage* self, Format f);
+extern __declspec(dllexport) 
+void QImage_ConvertTo(QImage* self, Format f);
+extern __declspec(dllexport) 
+int QImage_Width(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_Height(const QImage* self);
+extern __declspec(dllexport) 
+QSize* QImage_Size(const QImage* self);
+extern __declspec(dllexport) 
+QRect* QImage_Rect(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_Depth(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_ColorCount(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_BitPlaneCount(const QImage* self);
+extern __declspec(dllexport) 
+unsigned int QImage_Color(const QImage* self, int i);
+extern __declspec(dllexport) 
+void QImage_SetColor(QImage* self, int i, unsigned int c);
+extern __declspec(dllexport) 
+void QImage_SetColorCount(QImage* self, int colorCount);
+extern __declspec(dllexport) 
+bool QImage_AllGray(const QImage* self);
+extern __declspec(dllexport) 
+bool QImage_IsGrayscale(const QImage* self);
+extern __declspec(dllexport) 
+unsigned char* QImage_Bits(QImage* self);
+extern __declspec(dllexport) 
+const unsigned char* QImage_Bits2(const QImage* self);
+extern __declspec(dllexport) 
+const unsigned char* QImage_ConstBits(const QImage* self);
+extern __declspec(dllexport) 
+ptrdiff_t QImage_SizeInBytes(const QImage* self);
+extern __declspec(dllexport) 
+unsigned char* QImage_ScanLine(QImage* self, int param1);
+extern __declspec(dllexport) 
+const unsigned char* QImage_ScanLineWithInt(const QImage* self, int param1);
+extern __declspec(dllexport) 
+const unsigned char* QImage_ConstScanLine(const QImage* self, int param1);
+extern __declspec(dllexport) 
+ptrdiff_t QImage_BytesPerLine(const QImage* self);
+extern __declspec(dllexport) 
+bool QImage_Valid(const QImage* self, int x, int y);
+extern __declspec(dllexport) 
+bool QImage_ValidWithPt(const QImage* self, QPoint* pt);
+extern __declspec(dllexport) 
+int QImage_PixelIndex(const QImage* self, int x, int y);
+extern __declspec(dllexport) 
+int QImage_PixelIndexWithPt(const QImage* self, QPoint* pt);
+extern __declspec(dllexport) 
+unsigned int QImage_Pixel(const QImage* self, int x, int y);
+extern __declspec(dllexport) 
+unsigned int QImage_PixelWithPt(const QImage* self, QPoint* pt);
+extern __declspec(dllexport) 
+void QImage_SetPixel(QImage* self, int x, int y, unsigned int index_or_rgb);
+extern __declspec(dllexport) 
+void QImage_SetPixel2(QImage* self, QPoint* pt, unsigned int index_or_rgb);
+extern __declspec(dllexport) 
+QColor* QImage_PixelColor(const QImage* self, int x, int y);
+extern __declspec(dllexport) 
+QColor* QImage_PixelColorWithPt(const QImage* self, QPoint* pt);
+extern __declspec(dllexport) 
+void QImage_SetPixelColor(QImage* self, int x, int y, QColor* c);
+extern __declspec(dllexport) 
+void QImage_SetPixelColor2(QImage* self, QPoint* pt, QColor* c);
+extern __declspec(dllexport) 
+struct miqt_array /* of unsigned int */  QImage_ColorTable(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_SetColorTable(QImage* self, struct miqt_array /* of unsigned int */  colors);
+extern __declspec(dllexport) 
+double QImage_DevicePixelRatio(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_SetDevicePixelRatio(QImage* self, double scaleFactor);
+extern __declspec(dllexport) 
+QSizeF* QImage_DeviceIndependentSize(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_Fill(QImage* self, unsigned int pixel);
+extern __declspec(dllexport) 
+void QImage_FillWithColor(QImage* self, QColor* color);
+extern __declspec(dllexport) 
+void QImage_Fill2(QImage* self, int color);
+extern __declspec(dllexport) 
+bool QImage_HasAlphaChannel(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_SetAlphaChannel(QImage* self, QImage* alphaChannel);
+extern __declspec(dllexport) 
+QImage* QImage_CreateAlphaMask(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_CreateHeuristicMask(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_CreateMaskFromColor(const QImage* self, unsigned int color);
+extern __declspec(dllexport) 
+QImage* QImage_Scaled(const QImage* self, int w, int h);
+extern __declspec(dllexport) 
+QImage* QImage_ScaledWithQSize(const QImage* self, QSize* s);
+extern __declspec(dllexport) 
+QImage* QImage_ScaledToWidth(const QImage* self, int w);
+extern __declspec(dllexport) 
+QImage* QImage_ScaledToHeight(const QImage* self, int h);
+extern __declspec(dllexport) 
+QImage* QImage_Transformed(const QImage* self, QTransform* matrix);
+extern __declspec(dllexport) 
+QTransform* QImage_TrueMatrix(QTransform* param1, int w, int h);
+extern __declspec(dllexport) 
+QImage* QImage_Mirrored(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_Mirror(QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_RgbSwapped(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_Flipped(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_Flip(QImage* self);
+extern __declspec(dllexport) 
+void QImage_RgbSwap(QImage* self);
+extern __declspec(dllexport) 
+void QImage_InvertPixels(QImage* self);
+extern __declspec(dllexport) 
+QColorSpace* QImage_ColorSpace(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertedToColorSpace(const QImage* self, QColorSpace* colorSpace);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertedToColorSpace2(const QImage* self, QColorSpace* colorSpace, int format);
+extern __declspec(dllexport) 
+void QImage_ConvertToColorSpace(QImage* self, QColorSpace* colorSpace);
+extern __declspec(dllexport) 
+void QImage_ConvertToColorSpace2(QImage* self, QColorSpace* colorSpace, int format);
+extern __declspec(dllexport) 
+void QImage_SetColorSpace(QImage* self, QColorSpace* colorSpace);
+extern __declspec(dllexport) 
+QImage* QImage_ColorTransformed(const QImage* self, QColorTransform* transform);
+extern __declspec(dllexport) 
+QImage* QImage_ColorTransformed2(const QImage* self, QColorTransform* transform, int format);
+extern __declspec(dllexport) 
+void QImage_ApplyColorTransform(QImage* self, QColorTransform* transform);
+extern __declspec(dllexport) 
+void QImage_ApplyColorTransform2(QImage* self, QColorTransform* transform, int format);
+extern __declspec(dllexport) 
+bool QImage_Load(QImage* self, QIODevice* device, const char* format);
+extern __declspec(dllexport) 
+bool QImage_LoadWithFileName(QImage* self, struct miqt_string fileName);
+extern __declspec(dllexport) 
+bool QImage_LoadFromData(QImage* self, QByteArrayView* data);
+extern __declspec(dllexport) 
+bool QImage_LoadFromData2(QImage* self, const unsigned char* buf, int lenVal);
+extern __declspec(dllexport) 
+bool QImage_LoadFromDataWithData(QImage* self, struct miqt_string data);
+extern __declspec(dllexport) 
+bool QImage_Save(const QImage* self, struct miqt_string fileName);
+extern __declspec(dllexport) 
+bool QImage_SaveWithDevice(const QImage* self, QIODevice* device);
+extern __declspec(dllexport) 
+QImage* QImage_FromData(QByteArrayView* data);
+extern __declspec(dllexport) 
+QImage* QImage_FromData2(const unsigned char* data, int size);
+extern __declspec(dllexport) 
+QImage* QImage_FromDataWithData(struct miqt_string data);
+extern __declspec(dllexport) 
+long long QImage_CacheKey(const QImage* self);
+extern __declspec(dllexport) 
+QPaintEngine* QImage_PaintEngine(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_DotsPerMeterX(const QImage* self);
+extern __declspec(dllexport) 
+int QImage_DotsPerMeterY(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_SetDotsPerMeterX(QImage* self, int dotsPerMeterX);
+extern __declspec(dllexport) 
+void QImage_SetDotsPerMeterY(QImage* self, int dotsPerMeterY);
+extern __declspec(dllexport) 
+QPoint* QImage_Offset(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_SetOffset(QImage* self, QPoint* offset);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QImage_TextKeys(const QImage* self);
+extern __declspec(dllexport) 
+struct miqt_string QImage_Text(const QImage* self);
+extern __declspec(dllexport) 
+void QImage_SetText(QImage* self, struct miqt_string key, struct miqt_string value);
+extern __declspec(dllexport) 
+QPixelFormat* QImage_PixelFormat(const QImage* self);
+extern __declspec(dllexport) 
+QPixelFormat* QImage_ToPixelFormat(int format);
+extern __declspec(dllexport) 
+int QImage_ToImageFormat(QPixelFormat* format);
+extern __declspec(dllexport) 
+struct HBITMAP__* QImage_ToHBITMAP(const QImage* self);
+extern __declspec(dllexport) 
+struct HICON__* QImage_ToHICON(const QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_FromHBITMAP(struct HBITMAP__* hbitmap);
+extern __declspec(dllexport) 
+QImage* QImage_FromHICON(struct HICON__* icon);
+extern __declspec(dllexport) 
+int QImage_Metric(const QImage* self, PaintDeviceMetric metric);
+extern __declspec(dllexport) 
+DataPtr* QImage_DataPtr(QImage* self);
+extern __declspec(dllexport) 
+QImage* QImage_Copy1(const QImage* self, QRect* rect);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertToFormat22(const QImage* self, Format f, int flags);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertToFormat3(const QImage* self, Format f, struct miqt_array /* of unsigned int */  colorTable, int flags);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertedTo2(const QImage* self, Format f, int flags);
+extern __declspec(dllexport) 
+void QImage_ConvertTo2(QImage* self, Format f, int flags);
+extern __declspec(dllexport) 
+QImage* QImage_CreateAlphaMask1(const QImage* self, int flags);
+extern __declspec(dllexport) 
+QImage* QImage_CreateHeuristicMask1(const QImage* self, bool clipTight);
+extern __declspec(dllexport) 
+QImage* QImage_CreateMaskFromColor2(const QImage* self, unsigned int color, int mode);
+extern __declspec(dllexport) 
+QImage* QImage_Scaled3(const QImage* self, int w, int h, int aspectMode);
+extern __declspec(dllexport) 
+QImage* QImage_Scaled4(const QImage* self, int w, int h, int aspectMode, int mode);
+extern __declspec(dllexport) 
+QImage* QImage_Scaled2(const QImage* self, QSize* s, int aspectMode);
+extern __declspec(dllexport) 
+QImage* QImage_Scaled32(const QImage* self, QSize* s, int aspectMode, int mode);
+extern __declspec(dllexport) 
+QImage* QImage_ScaledToWidth2(const QImage* self, int w, int mode);
+extern __declspec(dllexport) 
+QImage* QImage_ScaledToHeight2(const QImage* self, int h, int mode);
+extern __declspec(dllexport) 
+QImage* QImage_Transformed2(const QImage* self, QTransform* matrix, int mode);
+extern __declspec(dllexport) 
+QImage* QImage_Mirrored1(const QImage* self, bool horizontally);
+extern __declspec(dllexport) 
+QImage* QImage_Mirrored2(const QImage* self, bool horizontally, bool vertically);
+extern __declspec(dllexport) 
+void QImage_Mirror1(QImage* self, bool horizontally);
+extern __declspec(dllexport) 
+void QImage_Mirror2(QImage* self, bool horizontally, bool vertically);
+extern __declspec(dllexport) 
+QImage* QImage_Flipped1(const QImage* self, int orient);
+extern __declspec(dllexport) 
+void QImage_Flip1(QImage* self, int orient);
+extern __declspec(dllexport) 
+void QImage_InvertPixels1(QImage* self, InvertMode param1);
+extern __declspec(dllexport) 
+QImage* QImage_ConvertedToColorSpace3(const QImage* self, QColorSpace* colorSpace, int format, int flags);
+extern __declspec(dllexport) 
+void QImage_ConvertToColorSpace3(QImage* self, QColorSpace* colorSpace, int format, int flags);
+extern __declspec(dllexport) 
+QImage* QImage_ColorTransformed3(const QImage* self, QColorTransform* transform, int format, int flags);
+extern __declspec(dllexport) 
+void QImage_ApplyColorTransform3(QImage* self, QColorTransform* transform, int format, int flags);
+extern __declspec(dllexport) 
+bool QImage_Load2(QImage* self, struct miqt_string fileName, const char* format);
+extern __declspec(dllexport) 
+bool QImage_LoadFromData22(QImage* self, QByteArrayView* data, const char* format);
+extern __declspec(dllexport) 
+bool QImage_LoadFromData3(QImage* self, const unsigned char* buf, int lenVal, const char* format);
+extern __declspec(dllexport) 
+bool QImage_LoadFromData23(QImage* self, struct miqt_string data, const char* format);
+extern __declspec(dllexport) 
+bool QImage_Save2(const QImage* self, struct miqt_string fileName, const char* format);
+extern __declspec(dllexport) 
+bool QImage_Save3(const QImage* self, struct miqt_string fileName, const char* format, int quality);
+extern __declspec(dllexport) 
+bool QImage_Save22(const QImage* self, QIODevice* device, const char* format);
+extern __declspec(dllexport) 
+bool QImage_Save32(const QImage* self, QIODevice* device, const char* format, int quality);
+extern __declspec(dllexport) 
+QImage* QImage_FromData22(QByteArrayView* data, const char* format);
+extern __declspec(dllexport) 
+QImage* QImage_FromData3(const unsigned char* data, int size, const char* format);
+extern __declspec(dllexport) 
+QImage* QImage_FromData23(struct miqt_string data, const char* format);
+extern __declspec(dllexport) 
+struct miqt_string QImage_Text1(const QImage* self, struct miqt_string key);
+extern __declspec(dllexport) 
+struct HICON__* QImage_ToHICON1(const QImage* self, QImage* mask);
+extern __declspec(dllexport) 
+void QImage_Delete(QImage* self, bool isSubclass);
 
-} 
+}

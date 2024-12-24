@@ -11,7 +11,6 @@ type QStorageInfo struct {
 
 // NewQStorageInfo constructs a new QStorageInfo object.
 func NewQStorageInfo() *QStorageInfo {
-
 	ret := newQStorageInfo(QStorageInfo_new())
 	ret.isSubclass = true
 	return ret
@@ -31,7 +30,6 @@ func NewQStorageInfo2(path string) *QStorageInfo {
 
 // NewQStorageInfo3 constructs a new QStorageInfo object.
 func NewQStorageInfo3(dir *QDir) *QStorageInfo {
-
 	ret := newQStorageInfo(QStorageInfo_new3(dir.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -39,7 +37,6 @@ func NewQStorageInfo3(dir *QDir) *QStorageInfo {
 
 // NewQStorageInfo4 constructs a new QStorageInfo object.
 func NewQStorageInfo4(other *QStorageInfo) *QStorageInfo {
-
 	ret := newQStorageInfo(QStorageInfo_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

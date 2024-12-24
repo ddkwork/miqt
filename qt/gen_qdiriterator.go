@@ -19,7 +19,6 @@ type QDirIterator struct {
 
 // NewQDirIterator constructs a new QDirIterator object.
 func NewQDirIterator(dir *QDir) *QDirIterator {
-
 	ret := newQDirIterator(QDirIterator_new(dir.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -73,7 +72,6 @@ func NewQDirIterator4(path string, nameFilters []string) *QDirIterator {
 
 // NewQDirIterator5 constructs a new QDirIterator object.
 func NewQDirIterator5(dir *QDir, flags IteratorFlags) *QDirIterator {
-
 	ret := newQDirIterator(QDirIterator_new5(dir.cPointer(), flags))
 	ret.isSubclass = true
 	return ret

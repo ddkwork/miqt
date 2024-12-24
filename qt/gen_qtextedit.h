@@ -36,7 +36,6 @@ typedef struct QRect QRect;
 typedef struct QRegularExpression QRegularExpression;
 typedef struct QResizeEvent QResizeEvent;
 typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
 typedef struct QTextCharFormat QTextCharFormat;
 typedef struct QTextCursor QTextCursor;
 typedef struct QTextDocument QTextDocument;
@@ -48,231 +47,315 @@ typedef struct QVariant QVariant;
 typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextEdit* QTextEdit_new(QWidget* parent);
-extern __declspec(dllexport) QTextEdit* QTextEdit_new2();
-extern __declspec(dllexport) QTextEdit* QTextEdit_new3(struct miqt_string text);
-extern __declspec(dllexport) QTextEdit* QTextEdit_new4(struct miqt_string text, QWidget* parent);
-extern __declspec(dllexport) void QTextEdit_virtbase(QTextEdit* src, QAbstractScrollArea** outptr_QAbstractScrollArea);
-extern __declspec(dllexport) QMetaObject* QTextEdit_MetaObject(const QTextEdit* self);
-extern __declspec(dllexport) void* QTextEdit_Metacast(QTextEdit* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QTextEdit_Tr(const char* s);
-extern __declspec(dllexport) void QTextEdit_SetDocument(QTextEdit* self, QTextDocument* document);
-extern __declspec(dllexport) QTextDocument* QTextEdit_Document(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetPlaceholderText(QTextEdit* self, struct miqt_string placeholderText);
-extern __declspec(dllexport) struct miqt_string QTextEdit_PlaceholderText(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetTextCursor(QTextEdit* self, QTextCursor* cursor);
-extern __declspec(dllexport) QTextCursor* QTextEdit_TextCursor(const QTextEdit* self);
-extern __declspec(dllexport) bool QTextEdit_IsReadOnly(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetReadOnly(QTextEdit* self, bool ro);
-extern __declspec(dllexport) void QTextEdit_SetTextInteractionFlags(QTextEdit* self, int flags);
-extern __declspec(dllexport) int QTextEdit_TextInteractionFlags(const QTextEdit* self);
-extern __declspec(dllexport) double QTextEdit_FontPointSize(const QTextEdit* self);
-extern __declspec(dllexport) struct miqt_string QTextEdit_FontFamily(const QTextEdit* self);
-extern __declspec(dllexport) int QTextEdit_FontWeight(const QTextEdit* self);
-extern __declspec(dllexport) bool QTextEdit_FontUnderline(const QTextEdit* self);
-extern __declspec(dllexport) bool QTextEdit_FontItalic(const QTextEdit* self);
-extern __declspec(dllexport) QColor* QTextEdit_TextColor(const QTextEdit* self);
-extern __declspec(dllexport) QColor* QTextEdit_TextBackgroundColor(const QTextEdit* self);
-extern __declspec(dllexport) QFont* QTextEdit_CurrentFont(const QTextEdit* self);
-extern __declspec(dllexport) int QTextEdit_Alignment(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_MergeCurrentCharFormat(QTextEdit* self, QTextCharFormat* modifier);
-extern __declspec(dllexport) void QTextEdit_SetCurrentCharFormat(QTextEdit* self, QTextCharFormat* format);
-extern __declspec(dllexport) QTextCharFormat* QTextEdit_CurrentCharFormat(const QTextEdit* self);
-extern __declspec(dllexport) AutoFormatting QTextEdit_AutoFormatting(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetAutoFormatting(QTextEdit* self, AutoFormatting features);
-extern __declspec(dllexport) bool QTextEdit_TabChangesFocus(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetTabChangesFocus(QTextEdit* self, bool b);
-extern __declspec(dllexport) void QTextEdit_SetDocumentTitle(QTextEdit* self, struct miqt_string title);
-extern __declspec(dllexport) struct miqt_string QTextEdit_DocumentTitle(const QTextEdit* self);
-extern __declspec(dllexport) bool QTextEdit_IsUndoRedoEnabled(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetUndoRedoEnabled(QTextEdit* self, bool enable);
-extern __declspec(dllexport) LineWrapMode QTextEdit_LineWrapMode(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetLineWrapMode(QTextEdit* self, LineWrapMode mode);
-extern __declspec(dllexport) int QTextEdit_LineWrapColumnOrWidth(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetLineWrapColumnOrWidth(QTextEdit* self, int w);
-extern __declspec(dllexport) int QTextEdit_WordWrapMode(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetWordWrapMode(QTextEdit* self, int policy);
-extern __declspec(dllexport) bool QTextEdit_Find(QTextEdit* self, struct miqt_string exp);
-extern __declspec(dllexport) bool QTextEdit_FindWithExp(QTextEdit* self, QRegularExpression* exp);
-extern __declspec(dllexport) struct miqt_string QTextEdit_ToPlainText(const QTextEdit* self);
-extern __declspec(dllexport) struct miqt_string QTextEdit_ToHtml(const QTextEdit* self);
-extern __declspec(dllexport) struct miqt_string QTextEdit_ToMarkdown(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_EnsureCursorVisible(QTextEdit* self);
-extern __declspec(dllexport) QVariant* QTextEdit_LoadResource(QTextEdit* self, int typeVal, QUrl* name);
-extern __declspec(dllexport) QMenu* QTextEdit_CreateStandardContextMenu(QTextEdit* self);
-extern __declspec(dllexport) QMenu* QTextEdit_CreateStandardContextMenuWithPosition(QTextEdit* self, QPoint* position);
-extern __declspec(dllexport) QTextCursor* QTextEdit_CursorForPosition(const QTextEdit* self, QPoint* pos);
-extern __declspec(dllexport) QRect* QTextEdit_CursorRect(const QTextEdit* self, QTextCursor* cursor);
-extern __declspec(dllexport) QRect* QTextEdit_CursorRect2(const QTextEdit* self);
-extern __declspec(dllexport) struct miqt_string QTextEdit_AnchorAt(const QTextEdit* self, QPoint* pos);
-extern __declspec(dllexport) bool QTextEdit_OverwriteMode(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetOverwriteMode(QTextEdit* self, bool overwrite);
-extern __declspec(dllexport) double QTextEdit_TabStopDistance(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetTabStopDistance(QTextEdit* self, double distance);
-extern __declspec(dllexport) int QTextEdit_CursorWidth(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetCursorWidth(QTextEdit* self, int width);
-extern __declspec(dllexport) bool QTextEdit_AcceptRichText(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SetAcceptRichText(QTextEdit* self, bool accept);
-extern __declspec(dllexport) void QTextEdit_SetExtraSelections(QTextEdit* self, struct miqt_array /* of ExtraSelection */  selections);
-extern __declspec(dllexport) struct miqt_array /* of ExtraSelection */  QTextEdit_ExtraSelections(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_MoveCursor(QTextEdit* self, int operation);
-extern __declspec(dllexport) bool QTextEdit_CanPaste(const QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_Print(const QTextEdit* self, QPagedPaintDevice* printer);
-extern __declspec(dllexport) QVariant* QTextEdit_InputMethodQuery(const QTextEdit* self, int property);
-extern __declspec(dllexport) QVariant* QTextEdit_InputMethodQuery2(const QTextEdit* self, int query, QVariant* argument);
-extern __declspec(dllexport) void QTextEdit_SetFontPointSize(QTextEdit* self, double s);
-extern __declspec(dllexport) void QTextEdit_SetFontFamily(QTextEdit* self, struct miqt_string fontFamily);
-extern __declspec(dllexport) void QTextEdit_SetFontWeight(QTextEdit* self, int w);
-extern __declspec(dllexport) void QTextEdit_SetFontUnderline(QTextEdit* self, bool b);
-extern __declspec(dllexport) void QTextEdit_SetFontItalic(QTextEdit* self, bool b);
-extern __declspec(dllexport) void QTextEdit_SetTextColor(QTextEdit* self, QColor* c);
-extern __declspec(dllexport) void QTextEdit_SetTextBackgroundColor(QTextEdit* self, QColor* c);
-extern __declspec(dllexport) void QTextEdit_SetCurrentFont(QTextEdit* self, QFont* f);
-extern __declspec(dllexport) void QTextEdit_SetAlignment(QTextEdit* self, int a);
-extern __declspec(dllexport) void QTextEdit_SetPlainText(QTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QTextEdit_SetHtml(QTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QTextEdit_SetMarkdown(QTextEdit* self, struct miqt_string markdown);
-extern __declspec(dllexport) void QTextEdit_SetText(QTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QTextEdit_Cut(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_Copy(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_Paste(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_Undo(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_Redo(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_Clear(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_SelectAll(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_InsertPlainText(QTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QTextEdit_InsertHtml(QTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QTextEdit_Append(QTextEdit* self, struct miqt_string text);
-extern __declspec(dllexport) void QTextEdit_ScrollToAnchor(QTextEdit* self, struct miqt_string name);
-extern __declspec(dllexport) void QTextEdit_ZoomIn(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_ZoomOut(QTextEdit* self);
-extern __declspec(dllexport) void QTextEdit_TextChanged(QTextEdit* self);
+extern __declspec(dllexport) 
+QTextEdit* QTextEdit_new(QWidget* parent);
+extern __declspec(dllexport) 
+QTextEdit* QTextEdit_new2();
+extern __declspec(dllexport) 
+QTextEdit* QTextEdit_new3(struct miqt_string text);
+extern __declspec(dllexport) 
+QTextEdit* QTextEdit_new4(struct miqt_string text, QWidget* parent);
+extern __declspec(dllexport) 
+void QTextEdit_virtbase(QTextEdit* src
+, QAbstractScrollArea** outptr_QAbstractScrollArea
+);
+extern __declspec(dllexport) 
+QMetaObject* QTextEdit_MetaObject(const QTextEdit* self);
+extern __declspec(dllexport) 
+void* QTextEdit_Metacast(QTextEdit* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_Tr(const char* s);
+extern __declspec(dllexport) 
+void QTextEdit_SetDocument(QTextEdit* self, QTextDocument* document);
+extern __declspec(dllexport) 
+QTextDocument* QTextEdit_Document(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetPlaceholderText(QTextEdit* self, struct miqt_string placeholderText);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_PlaceholderText(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetTextCursor(QTextEdit* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+QTextCursor* QTextEdit_TextCursor(const QTextEdit* self);
+extern __declspec(dllexport) 
+bool QTextEdit_IsReadOnly(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetReadOnly(QTextEdit* self, bool ro);
+extern __declspec(dllexport) 
+void QTextEdit_SetTextInteractionFlags(QTextEdit* self, int flags);
+extern __declspec(dllexport) 
+int QTextEdit_TextInteractionFlags(const QTextEdit* self);
+extern __declspec(dllexport) 
+double QTextEdit_FontPointSize(const QTextEdit* self);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_FontFamily(const QTextEdit* self);
+extern __declspec(dllexport) 
+int QTextEdit_FontWeight(const QTextEdit* self);
+extern __declspec(dllexport) 
+bool QTextEdit_FontUnderline(const QTextEdit* self);
+extern __declspec(dllexport) 
+bool QTextEdit_FontItalic(const QTextEdit* self);
+extern __declspec(dllexport) 
+QColor* QTextEdit_TextColor(const QTextEdit* self);
+extern __declspec(dllexport) 
+QColor* QTextEdit_TextBackgroundColor(const QTextEdit* self);
+extern __declspec(dllexport) 
+QFont* QTextEdit_CurrentFont(const QTextEdit* self);
+extern __declspec(dllexport) 
+int QTextEdit_Alignment(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_MergeCurrentCharFormat(QTextEdit* self, QTextCharFormat* modifier);
+extern __declspec(dllexport) 
+void QTextEdit_SetCurrentCharFormat(QTextEdit* self, QTextCharFormat* format);
+extern __declspec(dllexport) 
+QTextCharFormat* QTextEdit_CurrentCharFormat(const QTextEdit* self);
+extern __declspec(dllexport) 
+AutoFormatting QTextEdit_AutoFormatting(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetAutoFormatting(QTextEdit* self, AutoFormatting features);
+extern __declspec(dllexport) 
+bool QTextEdit_TabChangesFocus(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetTabChangesFocus(QTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QTextEdit_SetDocumentTitle(QTextEdit* self, struct miqt_string title);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_DocumentTitle(const QTextEdit* self);
+extern __declspec(dllexport) 
+bool QTextEdit_IsUndoRedoEnabled(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetUndoRedoEnabled(QTextEdit* self, bool enable);
+extern __declspec(dllexport) 
+LineWrapMode QTextEdit_LineWrapMode(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetLineWrapMode(QTextEdit* self, LineWrapMode mode);
+extern __declspec(dllexport) 
+int QTextEdit_LineWrapColumnOrWidth(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetLineWrapColumnOrWidth(QTextEdit* self, int w);
+extern __declspec(dllexport) 
+int QTextEdit_WordWrapMode(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetWordWrapMode(QTextEdit* self, int policy);
+extern __declspec(dllexport) 
+bool QTextEdit_Find(QTextEdit* self, struct miqt_string exp);
+extern __declspec(dllexport) 
+bool QTextEdit_FindWithExp(QTextEdit* self, QRegularExpression* exp);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_ToPlainText(const QTextEdit* self);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_ToHtml(const QTextEdit* self);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_ToMarkdown(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_EnsureCursorVisible(QTextEdit* self);
+extern __declspec(dllexport) 
+QVariant* QTextEdit_LoadResource(QTextEdit* self, int typeVal, QUrl* name);
+extern __declspec(dllexport) 
+QMenu* QTextEdit_CreateStandardContextMenu(QTextEdit* self);
+extern __declspec(dllexport) 
+QMenu* QTextEdit_CreateStandardContextMenuWithPosition(QTextEdit* self, QPoint* position);
+extern __declspec(dllexport) 
+QTextCursor* QTextEdit_CursorForPosition(const QTextEdit* self, QPoint* pos);
+extern __declspec(dllexport) 
+QRect* QTextEdit_CursorRect(const QTextEdit* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+QRect* QTextEdit_CursorRect2(const QTextEdit* self);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_AnchorAt(const QTextEdit* self, QPoint* pos);
+extern __declspec(dllexport) 
+bool QTextEdit_OverwriteMode(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetOverwriteMode(QTextEdit* self, bool overwrite);
+extern __declspec(dllexport) 
+double QTextEdit_TabStopDistance(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetTabStopDistance(QTextEdit* self, double distance);
+extern __declspec(dllexport) 
+int QTextEdit_CursorWidth(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetCursorWidth(QTextEdit* self, int width);
+extern __declspec(dllexport) 
+bool QTextEdit_AcceptRichText(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SetAcceptRichText(QTextEdit* self, bool accept);
+extern __declspec(dllexport) 
+void QTextEdit_SetExtraSelections(QTextEdit* self, struct miqt_array /* of ExtraSelection */  selections);
+extern __declspec(dllexport) 
+struct miqt_array /* of ExtraSelection */  QTextEdit_ExtraSelections(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_MoveCursor(QTextEdit* self, int operation);
+extern __declspec(dllexport) 
+bool QTextEdit_CanPaste(const QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_Print(const QTextEdit* self, QPagedPaintDevice* printer);
+extern __declspec(dllexport) 
+QVariant* QTextEdit_InputMethodQuery(const QTextEdit* self, int property);
+extern __declspec(dllexport) 
+QVariant* QTextEdit_InputMethodQuery2(const QTextEdit* self, int query, QVariant* argument);
+extern __declspec(dllexport) 
+void QTextEdit_SetFontPointSize(QTextEdit* self, double s);
+extern __declspec(dllexport) 
+void QTextEdit_SetFontFamily(QTextEdit* self, struct miqt_string fontFamily);
+extern __declspec(dllexport) 
+void QTextEdit_SetFontWeight(QTextEdit* self, int w);
+extern __declspec(dllexport) 
+void QTextEdit_SetFontUnderline(QTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QTextEdit_SetFontItalic(QTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QTextEdit_SetTextColor(QTextEdit* self, QColor* c);
+extern __declspec(dllexport) 
+void QTextEdit_SetTextBackgroundColor(QTextEdit* self, QColor* c);
+extern __declspec(dllexport) 
+void QTextEdit_SetCurrentFont(QTextEdit* self, QFont* f);
+extern __declspec(dllexport) 
+void QTextEdit_SetAlignment(QTextEdit* self, int a);
+extern __declspec(dllexport) 
+void QTextEdit_SetPlainText(QTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QTextEdit_SetHtml(QTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QTextEdit_SetMarkdown(QTextEdit* self, struct miqt_string markdown);
+extern __declspec(dllexport) 
+void QTextEdit_SetText(QTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QTextEdit_Cut(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_Copy(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_Paste(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_Undo(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_Redo(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_Clear(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SelectAll(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_InsertPlainText(QTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QTextEdit_InsertHtml(QTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QTextEdit_Append(QTextEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+void QTextEdit_ScrollToAnchor(QTextEdit* self, struct miqt_string name);
+extern __declspec(dllexport) 
+void QTextEdit_ZoomIn(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_ZoomOut(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_TextChanged(QTextEdit* self);
 void QTextEdit_connect_TextChanged(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QTextEdit_UndoAvailable(QTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QTextEdit_UndoAvailable(QTextEdit* self, bool b);
 void QTextEdit_connect_UndoAvailable(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QTextEdit_RedoAvailable(QTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QTextEdit_RedoAvailable(QTextEdit* self, bool b);
 void QTextEdit_connect_RedoAvailable(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QTextEdit_CurrentCharFormatChanged(QTextEdit* self, QTextCharFormat* format);
+extern __declspec(dllexport) 
+void QTextEdit_CurrentCharFormatChanged(QTextEdit* self, QTextCharFormat* format);
 void QTextEdit_connect_CurrentCharFormatChanged(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QTextEdit_CopyAvailable(QTextEdit* self, bool b);
+extern __declspec(dllexport) 
+void QTextEdit_CopyAvailable(QTextEdit* self, bool b);
 void QTextEdit_connect_CopyAvailable(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QTextEdit_SelectionChanged(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_SelectionChanged(QTextEdit* self);
 void QTextEdit_connect_SelectionChanged(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QTextEdit_CursorPositionChanged(QTextEdit* self);
+extern __declspec(dllexport) 
+void QTextEdit_CursorPositionChanged(QTextEdit* self);
 void QTextEdit_connect_CursorPositionChanged(QTextEdit* self, intptr_t slot);
-extern __declspec(dllexport) bool QTextEdit_Event(QTextEdit* self, QEvent* e);
-extern __declspec(dllexport) void QTextEdit_TimerEvent(QTextEdit* self, QTimerEvent* e);
-extern __declspec(dllexport) void QTextEdit_KeyPressEvent(QTextEdit* self, QKeyEvent* e);
-extern __declspec(dllexport) void QTextEdit_KeyReleaseEvent(QTextEdit* self, QKeyEvent* e);
-extern __declspec(dllexport) void QTextEdit_ResizeEvent(QTextEdit* self, QResizeEvent* e);
-extern __declspec(dllexport) void QTextEdit_PaintEvent(QTextEdit* self, QPaintEvent* e);
-extern __declspec(dllexport) void QTextEdit_MousePressEvent(QTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_MouseMoveEvent(QTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_MouseReleaseEvent(QTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_MouseDoubleClickEvent(QTextEdit* self, QMouseEvent* e);
-extern __declspec(dllexport) bool QTextEdit_FocusNextPrevChild(QTextEdit* self, bool next);
-extern __declspec(dllexport) void QTextEdit_ContextMenuEvent(QTextEdit* self, QContextMenuEvent* e);
-extern __declspec(dllexport) void QTextEdit_DragEnterEvent(QTextEdit* self, QDragEnterEvent* e);
-extern __declspec(dllexport) void QTextEdit_DragLeaveEvent(QTextEdit* self, QDragLeaveEvent* e);
-extern __declspec(dllexport) void QTextEdit_DragMoveEvent(QTextEdit* self, QDragMoveEvent* e);
-extern __declspec(dllexport) void QTextEdit_DropEvent(QTextEdit* self, QDropEvent* e);
-extern __declspec(dllexport) void QTextEdit_FocusInEvent(QTextEdit* self, QFocusEvent* e);
-extern __declspec(dllexport) void QTextEdit_FocusOutEvent(QTextEdit* self, QFocusEvent* e);
-extern __declspec(dllexport) void QTextEdit_ShowEvent(QTextEdit* self, QShowEvent* param1);
-extern __declspec(dllexport) void QTextEdit_ChangeEvent(QTextEdit* self, QEvent* e);
-extern __declspec(dllexport) void QTextEdit_WheelEvent(QTextEdit* self, QWheelEvent* e);
-extern __declspec(dllexport) QMimeData* QTextEdit_CreateMimeDataFromSelection(const QTextEdit* self);
-extern __declspec(dllexport) bool QTextEdit_CanInsertFromMimeData(const QTextEdit* self, QMimeData* source);
-extern __declspec(dllexport) void QTextEdit_InsertFromMimeData(QTextEdit* self, QMimeData* source);
-extern __declspec(dllexport) void QTextEdit_InputMethodEvent(QTextEdit* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QTextEdit_ScrollContentsBy(QTextEdit* self, int dx, int dy);
-extern __declspec(dllexport) void QTextEdit_DoSetTextCursor(QTextEdit* self, QTextCursor* cursor);
-extern __declspec(dllexport) struct miqt_string QTextEdit_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QTextEdit_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) bool QTextEdit_Find2(QTextEdit* self, struct miqt_string exp, int options);
-extern __declspec(dllexport) bool QTextEdit_Find22(QTextEdit* self, QRegularExpression* exp, int options);
-extern __declspec(dllexport) struct miqt_string QTextEdit_ToMarkdown1(const QTextEdit* self, int features);
-extern __declspec(dllexport) void QTextEdit_MoveCursor2(QTextEdit* self, int operation, int mode);
-extern __declspec(dllexport) void QTextEdit_ZoomIn1(QTextEdit* self, int rangeVal);
-extern __declspec(dllexport) void QTextEdit_ZoomOut1(QTextEdit* self, int rangeVal);
-extern __declspec(dllexport) void QTextEdit_override_virtual_LoadResource(void* self, intptr_t slot);
-QVariant* QTextEdit_virtualbase_LoadResource(void* self, int typeVal, QUrl* name);
-extern __declspec(dllexport) void QTextEdit_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QTextEdit_virtualbase_InputMethodQuery(const void* self, int property);
-extern __declspec(dllexport) void QTextEdit_override_virtual_Event(void* self, intptr_t slot);
-bool QTextEdit_virtualbase_Event(void* self, QEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_TimerEvent(void* self, QTimerEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_KeyPressEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_ResizeEvent(void* self, QResizeEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_PaintEvent(void* self, QPaintEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_MousePressEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_MouseMoveEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QTextEdit_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_DropEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_DropEvent(void* self, QDropEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_FocusInEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_FocusOutEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_ShowEvent(void* self, QShowEvent* param1);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_ChangeEvent(void* self, QEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_WheelEvent(void* self, QWheelEvent* e);
-extern __declspec(dllexport) void QTextEdit_override_virtual_CreateMimeDataFromSelection(void* self, intptr_t slot);
-QMimeData* QTextEdit_virtualbase_CreateMimeDataFromSelection(const void* self);
-extern __declspec(dllexport) void QTextEdit_override_virtual_CanInsertFromMimeData(void* self, intptr_t slot);
-bool QTextEdit_virtualbase_CanInsertFromMimeData(const void* self, QMimeData* source);
-extern __declspec(dllexport) void QTextEdit_override_virtual_InsertFromMimeData(void* self, intptr_t slot);
-void QTextEdit_virtualbase_InsertFromMimeData(void* self, QMimeData* source);
-extern __declspec(dllexport) void QTextEdit_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QTextEdit_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ScrollContentsBy(void* self, intptr_t slot);
-void QTextEdit_virtualbase_ScrollContentsBy(void* self, int dx, int dy);
-extern __declspec(dllexport) void QTextEdit_override_virtual_DoSetTextCursor(void* self, intptr_t slot);
-void QTextEdit_virtualbase_DoSetTextCursor(void* self, QTextCursor* cursor);
-extern __declspec(dllexport) void QTextEdit_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QTextEdit_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QTextEdit_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QTextEdit_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QTextEdit_override_virtual_SetupViewport(void* self, intptr_t slot);
-void QTextEdit_virtualbase_SetupViewport(void* self, QWidget* viewport);
-extern __declspec(dllexport) void QTextEdit_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QTextEdit_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ViewportEvent(void* self, intptr_t slot);
-bool QTextEdit_virtualbase_ViewportEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QTextEdit_override_virtual_ViewportSizeHint(void* self, intptr_t slot);
-QSize* QTextEdit_virtualbase_ViewportSizeHint(const void* self);
-extern __declspec(dllexport) void QTextEdit_Delete(QTextEdit* self, bool isSubclass);
+extern __declspec(dllexport) 
+bool QTextEdit_Event(QTextEdit* self, QEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_TimerEvent(QTextEdit* self, QTimerEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_KeyPressEvent(QTextEdit* self, QKeyEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_KeyReleaseEvent(QTextEdit* self, QKeyEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_ResizeEvent(QTextEdit* self, QResizeEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_PaintEvent(QTextEdit* self, QPaintEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_MousePressEvent(QTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_MouseMoveEvent(QTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_MouseReleaseEvent(QTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_MouseDoubleClickEvent(QTextEdit* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+bool QTextEdit_FocusNextPrevChild(QTextEdit* self, bool next);
+extern __declspec(dllexport) 
+void QTextEdit_ContextMenuEvent(QTextEdit* self, QContextMenuEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_DragEnterEvent(QTextEdit* self, QDragEnterEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_DragLeaveEvent(QTextEdit* self, QDragLeaveEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_DragMoveEvent(QTextEdit* self, QDragMoveEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_DropEvent(QTextEdit* self, QDropEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_FocusInEvent(QTextEdit* self, QFocusEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_FocusOutEvent(QTextEdit* self, QFocusEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_ShowEvent(QTextEdit* self, QShowEvent* param1);
+extern __declspec(dllexport) 
+void QTextEdit_ChangeEvent(QTextEdit* self, QEvent* e);
+extern __declspec(dllexport) 
+void QTextEdit_WheelEvent(QTextEdit* self, QWheelEvent* e);
+extern __declspec(dllexport) 
+QMimeData* QTextEdit_CreateMimeDataFromSelection(const QTextEdit* self);
+extern __declspec(dllexport) 
+bool QTextEdit_CanInsertFromMimeData(const QTextEdit* self, QMimeData* source);
+extern __declspec(dllexport) 
+void QTextEdit_InsertFromMimeData(QTextEdit* self, QMimeData* source);
+extern __declspec(dllexport) 
+void QTextEdit_InputMethodEvent(QTextEdit* self, QInputMethodEvent* param1);
+extern __declspec(dllexport) 
+void QTextEdit_ScrollContentsBy(QTextEdit* self, int dx, int dy);
+extern __declspec(dllexport) 
+void QTextEdit_DoSetTextCursor(QTextEdit* self, QTextCursor* cursor);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+bool QTextEdit_Find2(QTextEdit* self, struct miqt_string exp, int options);
+extern __declspec(dllexport) 
+bool QTextEdit_Find22(QTextEdit* self, QRegularExpression* exp, int options);
+extern __declspec(dllexport) 
+struct miqt_string QTextEdit_ToMarkdown1(const QTextEdit* self, int features);
+extern __declspec(dllexport) 
+void QTextEdit_MoveCursor2(QTextEdit* self, int operation, int mode);
+extern __declspec(dllexport) 
+void QTextEdit_ZoomIn1(QTextEdit* self, int rangeVal);
+extern __declspec(dllexport) 
+void QTextEdit_ZoomOut1(QTextEdit* self, int rangeVal);
+extern __declspec(dllexport) 
+void QTextEdit_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QTextEdit_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QTextEdit_override_virtual_Metacast(void* self, intptr_t slot);
+void* QTextEdit_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QTextEdit_Delete(QTextEdit* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextEdit__ExtraSelection* QTextEdit__ExtraSelection_new(const ExtraSelection* param1);
-extern __declspec(dllexport) void QTextEdit__ExtraSelection_OperatorAssign(QTextEdit__ExtraSelection* self, const ExtraSelection* param1);
-extern __declspec(dllexport) void QTextEdit__ExtraSelection_Delete(QTextEdit__ExtraSelection* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextEdit__ExtraSelection* QTextEdit__ExtraSelection_new(const ExtraSelection* param1);
+extern __declspec(dllexport) 
+void QTextEdit__ExtraSelection_OperatorAssign(QTextEdit__ExtraSelection* self, const ExtraSelection* param1);
+extern __declspec(dllexport) 
+void QTextEdit__ExtraSelection_Delete(QTextEdit__ExtraSelection* self, bool isSubclass);
 
-} 
+}

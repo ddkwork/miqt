@@ -9,167 +9,108 @@
 #include "../libmiqt/libmiqt.h"
 extern "C" {
 typedef struct QAction QAction;
-typedef struct QActionEvent QActionEvent;
 typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDockWidget QDockWidget;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
 typedef struct QStyleOptionDockWidget QStyleOptionDockWidget;
-typedef struct QTabletEvent QTabletEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QDockWidget* QDockWidget_new(QWidget* parent);
-extern __declspec(dllexport) QDockWidget* QDockWidget_new2(struct miqt_string title);
-extern __declspec(dllexport) QDockWidget* QDockWidget_new3();
-extern __declspec(dllexport) QDockWidget* QDockWidget_new4(struct miqt_string title, QWidget* parent);
-extern __declspec(dllexport) QDockWidget* QDockWidget_new5(struct miqt_string title, QWidget* parent, int flags);
-extern __declspec(dllexport) QDockWidget* QDockWidget_new6(QWidget* parent, int flags);
-extern __declspec(dllexport) void QDockWidget_virtbase(QDockWidget* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QDockWidget_MetaObject(const QDockWidget* self);
-extern __declspec(dllexport) void* QDockWidget_Metacast(QDockWidget* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QDockWidget_Tr(const char* s);
-extern __declspec(dllexport) QWidget* QDockWidget_Widget(const QDockWidget* self);
-extern __declspec(dllexport) void QDockWidget_SetWidget(QDockWidget* self, QWidget* widget);
-extern __declspec(dllexport) void QDockWidget_SetFeatures(QDockWidget* self, DockWidgetFeatures features);
-extern __declspec(dllexport) DockWidgetFeatures QDockWidget_Features(const QDockWidget* self);
-extern __declspec(dllexport) void QDockWidget_SetFloating(QDockWidget* self, bool floating);
-extern __declspec(dllexport) bool QDockWidget_IsFloating(const QDockWidget* self);
-extern __declspec(dllexport) void QDockWidget_SetAllowedAreas(QDockWidget* self, int areas);
-extern __declspec(dllexport) int QDockWidget_AllowedAreas(const QDockWidget* self);
-extern __declspec(dllexport) void QDockWidget_SetTitleBarWidget(QDockWidget* self, QWidget* widget);
-extern __declspec(dllexport) QWidget* QDockWidget_TitleBarWidget(const QDockWidget* self);
-extern __declspec(dllexport) void QDockWidget_SetDockLocation(QDockWidget* self, int area);
-extern __declspec(dllexport) int QDockWidget_DockLocation(const QDockWidget* self);
-extern __declspec(dllexport) bool QDockWidget_IsAreaAllowed(const QDockWidget* self, int area);
-extern __declspec(dllexport) QAction* QDockWidget_ToggleViewAction(const QDockWidget* self);
-extern __declspec(dllexport) void QDockWidget_FeaturesChanged(QDockWidget* self, int features);
+extern __declspec(dllexport) 
+QDockWidget* QDockWidget_new(QWidget* parent);
+extern __declspec(dllexport) 
+QDockWidget* QDockWidget_new2(struct miqt_string title);
+extern __declspec(dllexport) 
+QDockWidget* QDockWidget_new3();
+extern __declspec(dllexport) 
+QDockWidget* QDockWidget_new4(struct miqt_string title, QWidget* parent);
+extern __declspec(dllexport) 
+QDockWidget* QDockWidget_new5(struct miqt_string title, QWidget* parent, int flags);
+extern __declspec(dllexport) 
+QDockWidget* QDockWidget_new6(QWidget* parent, int flags);
+extern __declspec(dllexport) 
+void QDockWidget_virtbase(QDockWidget* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QDockWidget_MetaObject(const QDockWidget* self);
+extern __declspec(dllexport) 
+void* QDockWidget_Metacast(QDockWidget* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QDockWidget_Tr(const char* s);
+extern __declspec(dllexport) 
+QWidget* QDockWidget_Widget(const QDockWidget* self);
+extern __declspec(dllexport) 
+void QDockWidget_SetWidget(QDockWidget* self, QWidget* widget);
+extern __declspec(dllexport) 
+void QDockWidget_SetFeatures(QDockWidget* self, DockWidgetFeatures features);
+extern __declspec(dllexport) 
+DockWidgetFeatures QDockWidget_Features(const QDockWidget* self);
+extern __declspec(dllexport) 
+void QDockWidget_SetFloating(QDockWidget* self, bool floating);
+extern __declspec(dllexport) 
+bool QDockWidget_IsFloating(const QDockWidget* self);
+extern __declspec(dllexport) 
+void QDockWidget_SetAllowedAreas(QDockWidget* self, int areas);
+extern __declspec(dllexport) 
+int QDockWidget_AllowedAreas(const QDockWidget* self);
+extern __declspec(dllexport) 
+void QDockWidget_SetTitleBarWidget(QDockWidget* self, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QDockWidget_TitleBarWidget(const QDockWidget* self);
+extern __declspec(dllexport) 
+void QDockWidget_SetDockLocation(QDockWidget* self, int area);
+extern __declspec(dllexport) 
+int QDockWidget_DockLocation(const QDockWidget* self);
+extern __declspec(dllexport) 
+bool QDockWidget_IsAreaAllowed(const QDockWidget* self, int area);
+extern __declspec(dllexport) 
+QAction* QDockWidget_ToggleViewAction(const QDockWidget* self);
+extern __declspec(dllexport) 
+void QDockWidget_FeaturesChanged(QDockWidget* self, int features);
 void QDockWidget_connect_FeaturesChanged(QDockWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QDockWidget_TopLevelChanged(QDockWidget* self, bool topLevel);
+extern __declspec(dllexport) 
+void QDockWidget_TopLevelChanged(QDockWidget* self, bool topLevel);
 void QDockWidget_connect_TopLevelChanged(QDockWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QDockWidget_AllowedAreasChanged(QDockWidget* self, int allowedAreas);
+extern __declspec(dllexport) 
+void QDockWidget_AllowedAreasChanged(QDockWidget* self, int allowedAreas);
 void QDockWidget_connect_AllowedAreasChanged(QDockWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QDockWidget_VisibilityChanged(QDockWidget* self, bool visible);
+extern __declspec(dllexport) 
+void QDockWidget_VisibilityChanged(QDockWidget* self, bool visible);
 void QDockWidget_connect_VisibilityChanged(QDockWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QDockWidget_DockLocationChanged(QDockWidget* self, int area);
+extern __declspec(dllexport) 
+void QDockWidget_DockLocationChanged(QDockWidget* self, int area);
 void QDockWidget_connect_DockLocationChanged(QDockWidget* self, intptr_t slot);
-extern __declspec(dllexport) void QDockWidget_ChangeEvent(QDockWidget* self, QEvent* event);
-extern __declspec(dllexport) void QDockWidget_CloseEvent(QDockWidget* self, QCloseEvent* event);
-extern __declspec(dllexport) void QDockWidget_PaintEvent(QDockWidget* self, QPaintEvent* event);
-extern __declspec(dllexport) bool QDockWidget_Event(QDockWidget* self, QEvent* event);
-extern __declspec(dllexport) void QDockWidget_InitStyleOption(const QDockWidget* self, QStyleOptionDockWidget* option);
-extern __declspec(dllexport) struct miqt_string QDockWidget_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QDockWidget_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QDockWidget_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_ChangeEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_Event(void* self, intptr_t slot);
-bool QDockWidget_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QDockWidget_virtualbase_InitStyleOption(const void* self, QStyleOptionDockWidget* option);
-extern __declspec(dllexport) void QDockWidget_override_virtual_DevType(void* self, intptr_t slot);
-int QDockWidget_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QDockWidget_override_virtual_SetVisible(void* self, intptr_t slot);
-void QDockWidget_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QDockWidget_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QDockWidget_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QDockWidget_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QDockWidget_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QDockWidget_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QDockWidget_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QDockWidget_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QDockWidget_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QDockWidget_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QDockWidget_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QDockWidget_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_DropEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_HideEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QDockWidget_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QDockWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QDockWidget_override_virtual_Metric(void* self, intptr_t slot);
-int QDockWidget_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QDockWidget_override_virtual_InitPainter(void* self, intptr_t slot);
-void QDockWidget_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QDockWidget_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QDockWidget_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QDockWidget_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QDockWidget_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QDockWidget_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QDockWidget_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QDockWidget_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QDockWidget_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QDockWidget_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QDockWidget_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QDockWidget_Delete(QDockWidget* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QDockWidget_ChangeEvent(QDockWidget* self, QEvent* event);
+extern __declspec(dllexport) 
+void QDockWidget_CloseEvent(QDockWidget* self, QCloseEvent* event);
+extern __declspec(dllexport) 
+void QDockWidget_PaintEvent(QDockWidget* self, QPaintEvent* event);
+extern __declspec(dllexport) 
+bool QDockWidget_Event(QDockWidget* self, QEvent* event);
+extern __declspec(dllexport) 
+void QDockWidget_InitStyleOption(const QDockWidget* self, QStyleOptionDockWidget* option);
+extern __declspec(dllexport) 
+struct miqt_string QDockWidget_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QDockWidget_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QDockWidget_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QDockWidget_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QDockWidget_override_virtual_Metacast(void* self, intptr_t slot);
+void* QDockWidget_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QDockWidget_Delete(QDockWidget* self, bool isSubclass);
 
-} 
+}

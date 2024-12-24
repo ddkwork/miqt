@@ -37,7 +37,6 @@ type QStringConverterBase struct {
 
 // NewQStringConverterBase constructs a new QStringConverterBase object.
 func NewQStringConverterBase(param1 *QStringConverterBase) *QStringConverterBase {
-
 	ret := newQStringConverterBase(QStringConverterBase_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -45,7 +44,6 @@ func NewQStringConverterBase(param1 *QStringConverterBase) *QStringConverterBase
 
 // NewQStringConverterBase2 constructs a new QStringConverterBase object.
 func NewQStringConverterBase2() *QStringConverterBase {
-
 	ret := newQStringConverterBase(QStringConverterBase_new2())
 	ret.isSubclass = true
 	return ret
@@ -98,7 +96,6 @@ type QStringConverterBase__State struct {
 
 // NewQStringConverterBase__State constructs a new QStringConverterBase::State object.
 func NewQStringConverterBase__State() *QStringConverterBase__State {
-
 	ret := newQStringConverterBase__State(QStringConverterBase__State_new())
 	ret.isSubclass = true
 	return ret
@@ -106,7 +103,6 @@ func NewQStringConverterBase__State() *QStringConverterBase__State {
 
 // NewQStringConverterBase__State2 constructs a new QStringConverterBase::State object.
 func NewQStringConverterBase__State2(f Flags) *QStringConverterBase__State {
-
 	ret := newQStringConverterBase__State(QStringConverterBase__State_new2(f))
 	ret.isSubclass = true
 	return ret

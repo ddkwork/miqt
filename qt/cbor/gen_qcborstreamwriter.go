@@ -1,8 +1,9 @@
 package cbor
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCborStreamWriter struct {
@@ -12,7 +13,6 @@ type QCborStreamWriter struct {
 
 // NewQCborStreamWriter constructs a new QCborStreamWriter object.
 func NewQCborStreamWriter(device *qt.QIODevice) *QCborStreamWriter {
-
 	ret := newQCborStreamWriter(QCborStreamWriter_new((*QIODevice)(device.UnsafePointer())))
 	ret.isSubclass = true
 	return ret

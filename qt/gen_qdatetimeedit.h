@@ -11,271 +11,274 @@ extern "C" {
 typedef struct QAbstractSpinBox QAbstractSpinBox;
 typedef struct QCalendar QCalendar;
 typedef struct QCalendarWidget QCalendarWidget;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDate QDate;
 typedef struct QDateEdit QDateEdit;
 typedef struct QDateTime QDateTime;
 typedef struct QDateTimeEdit QDateTimeEdit;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMouseEvent QMouseEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
 typedef struct QStyleOptionSpinBox QStyleOptionSpinBox;
 typedef struct QTime QTime;
 typedef struct QTimeEdit QTimeEdit;
 typedef struct QTimeZone QTimeZone;
-typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
 typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new(QWidget* parent);
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new2();
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new3(QDateTime* dt);
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new4(QDate* d);
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new5(QTime* t);
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new6(QDateTime* dt, QWidget* parent);
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new7(QDate* d, QWidget* parent);
-extern __declspec(dllexport) QDateTimeEdit* QDateTimeEdit_new8(QTime* t, QWidget* parent);
-extern __declspec(dllexport) void QDateTimeEdit_virtbase(QDateTimeEdit* src, QAbstractSpinBox** outptr_QAbstractSpinBox);
-extern __declspec(dllexport) QMetaObject* QDateTimeEdit_MetaObject(const QDateTimeEdit* self);
-extern __declspec(dllexport) void* QDateTimeEdit_Metacast(QDateTimeEdit* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QDateTimeEdit_Tr(const char* s);
-extern __declspec(dllexport) QDateTime* QDateTimeEdit_DateTime(const QDateTimeEdit* self);
-extern __declspec(dllexport) QDate* QDateTimeEdit_Date(const QDateTimeEdit* self);
-extern __declspec(dllexport) QTime* QDateTimeEdit_Time(const QDateTimeEdit* self);
-extern __declspec(dllexport) QCalendar* QDateTimeEdit_Calendar(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetCalendar(QDateTimeEdit* self, QCalendar* calendar);
-extern __declspec(dllexport) QDateTime* QDateTimeEdit_MinimumDateTime(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_ClearMinimumDateTime(QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetMinimumDateTime(QDateTimeEdit* self, QDateTime* dt);
-extern __declspec(dllexport) QDateTime* QDateTimeEdit_MaximumDateTime(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_ClearMaximumDateTime(QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetMaximumDateTime(QDateTimeEdit* self, QDateTime* dt);
-extern __declspec(dllexport) void QDateTimeEdit_SetDateTimeRange(QDateTimeEdit* self, QDateTime* min, QDateTime* max);
-extern __declspec(dllexport) QDate* QDateTimeEdit_MinimumDate(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetMinimumDate(QDateTimeEdit* self, QDate* min);
-extern __declspec(dllexport) void QDateTimeEdit_ClearMinimumDate(QDateTimeEdit* self);
-extern __declspec(dllexport) QDate* QDateTimeEdit_MaximumDate(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetMaximumDate(QDateTimeEdit* self, QDate* max);
-extern __declspec(dllexport) void QDateTimeEdit_ClearMaximumDate(QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetDateRange(QDateTimeEdit* self, QDate* min, QDate* max);
-extern __declspec(dllexport) QTime* QDateTimeEdit_MinimumTime(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetMinimumTime(QDateTimeEdit* self, QTime* min);
-extern __declspec(dllexport) void QDateTimeEdit_ClearMinimumTime(QDateTimeEdit* self);
-extern __declspec(dllexport) QTime* QDateTimeEdit_MaximumTime(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetMaximumTime(QDateTimeEdit* self, QTime* max);
-extern __declspec(dllexport) void QDateTimeEdit_ClearMaximumTime(QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetTimeRange(QDateTimeEdit* self, QTime* min, QTime* max);
-extern __declspec(dllexport) Sections QDateTimeEdit_DisplayedSections(const QDateTimeEdit* self);
-extern __declspec(dllexport) Section QDateTimeEdit_CurrentSection(const QDateTimeEdit* self);
-extern __declspec(dllexport) Section QDateTimeEdit_SectionAt(const QDateTimeEdit* self, int index);
-extern __declspec(dllexport) void QDateTimeEdit_SetCurrentSection(QDateTimeEdit* self, Section section);
-extern __declspec(dllexport) int QDateTimeEdit_CurrentSectionIndex(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetCurrentSectionIndex(QDateTimeEdit* self, int index);
-extern __declspec(dllexport) QCalendarWidget* QDateTimeEdit_CalendarWidget(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetCalendarWidget(QDateTimeEdit* self, QCalendarWidget* calendarWidget);
-extern __declspec(dllexport) int QDateTimeEdit_SectionCount(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetSelectedSection(QDateTimeEdit* self, Section section);
-extern __declspec(dllexport) struct miqt_string QDateTimeEdit_SectionText(const QDateTimeEdit* self, Section section);
-extern __declspec(dllexport) struct miqt_string QDateTimeEdit_DisplayFormat(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetDisplayFormat(QDateTimeEdit* self, struct miqt_string format);
-extern __declspec(dllexport) bool QDateTimeEdit_CalendarPopup(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetCalendarPopup(QDateTimeEdit* self, bool enable);
-extern __declspec(dllexport) int QDateTimeEdit_TimeSpec(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetTimeSpec(QDateTimeEdit* self, int spec);
-extern __declspec(dllexport) QTimeZone* QDateTimeEdit_TimeZone(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_SetTimeZone(QDateTimeEdit* self, QTimeZone* zone);
-extern __declspec(dllexport) QSize* QDateTimeEdit_SizeHint(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_Clear(QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_StepBy(QDateTimeEdit* self, int steps);
-extern __declspec(dllexport) bool QDateTimeEdit_Event(QDateTimeEdit* self, QEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_DateTimeChanged(QDateTimeEdit* self, QDateTime* dateTime);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new(QWidget* parent);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new2();
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new3(QDateTime* dt);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new4(QDate* d);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new5(QTime* t);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new6(QDateTime* dt, QWidget* parent);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new7(QDate* d, QWidget* parent);
+extern __declspec(dllexport) 
+QDateTimeEdit* QDateTimeEdit_new8(QTime* t, QWidget* parent);
+extern __declspec(dllexport) 
+void QDateTimeEdit_virtbase(QDateTimeEdit* src
+, QAbstractSpinBox** outptr_QAbstractSpinBox
+);
+extern __declspec(dllexport) 
+QMetaObject* QDateTimeEdit_MetaObject(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void* QDateTimeEdit_Metacast(QDateTimeEdit* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QDateTimeEdit_Tr(const char* s);
+extern __declspec(dllexport) 
+QDateTime* QDateTimeEdit_DateTime(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+QDate* QDateTimeEdit_Date(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+QTime* QDateTimeEdit_Time(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+QCalendar* QDateTimeEdit_Calendar(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetCalendar(QDateTimeEdit* self, QCalendar* calendar);
+extern __declspec(dllexport) 
+QDateTime* QDateTimeEdit_MinimumDateTime(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_ClearMinimumDateTime(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetMinimumDateTime(QDateTimeEdit* self, QDateTime* dt);
+extern __declspec(dllexport) 
+QDateTime* QDateTimeEdit_MaximumDateTime(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_ClearMaximumDateTime(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetMaximumDateTime(QDateTimeEdit* self, QDateTime* dt);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetDateTimeRange(QDateTimeEdit* self, QDateTime* min, QDateTime* max);
+extern __declspec(dllexport) 
+QDate* QDateTimeEdit_MinimumDate(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetMinimumDate(QDateTimeEdit* self, QDate* min);
+extern __declspec(dllexport) 
+void QDateTimeEdit_ClearMinimumDate(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+QDate* QDateTimeEdit_MaximumDate(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetMaximumDate(QDateTimeEdit* self, QDate* max);
+extern __declspec(dllexport) 
+void QDateTimeEdit_ClearMaximumDate(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetDateRange(QDateTimeEdit* self, QDate* min, QDate* max);
+extern __declspec(dllexport) 
+QTime* QDateTimeEdit_MinimumTime(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetMinimumTime(QDateTimeEdit* self, QTime* min);
+extern __declspec(dllexport) 
+void QDateTimeEdit_ClearMinimumTime(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+QTime* QDateTimeEdit_MaximumTime(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetMaximumTime(QDateTimeEdit* self, QTime* max);
+extern __declspec(dllexport) 
+void QDateTimeEdit_ClearMaximumTime(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetTimeRange(QDateTimeEdit* self, QTime* min, QTime* max);
+extern __declspec(dllexport) 
+Sections QDateTimeEdit_DisplayedSections(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+Section QDateTimeEdit_CurrentSection(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+Section QDateTimeEdit_SectionAt(const QDateTimeEdit* self, int index);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetCurrentSection(QDateTimeEdit* self, Section section);
+extern __declspec(dllexport) 
+int QDateTimeEdit_CurrentSectionIndex(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetCurrentSectionIndex(QDateTimeEdit* self, int index);
+extern __declspec(dllexport) 
+QCalendarWidget* QDateTimeEdit_CalendarWidget(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetCalendarWidget(QDateTimeEdit* self, QCalendarWidget* calendarWidget);
+extern __declspec(dllexport) 
+int QDateTimeEdit_SectionCount(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetSelectedSection(QDateTimeEdit* self, Section section);
+extern __declspec(dllexport) 
+struct miqt_string QDateTimeEdit_SectionText(const QDateTimeEdit* self, Section section);
+extern __declspec(dllexport) 
+struct miqt_string QDateTimeEdit_DisplayFormat(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetDisplayFormat(QDateTimeEdit* self, struct miqt_string format);
+extern __declspec(dllexport) 
+bool QDateTimeEdit_CalendarPopup(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetCalendarPopup(QDateTimeEdit* self, bool enable);
+extern __declspec(dllexport) 
+int QDateTimeEdit_TimeSpec(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetTimeSpec(QDateTimeEdit* self, int spec);
+extern __declspec(dllexport) 
+QTimeZone* QDateTimeEdit_TimeZone(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetTimeZone(QDateTimeEdit* self, QTimeZone* zone);
+extern __declspec(dllexport) 
+QSize* QDateTimeEdit_SizeHint(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_Clear(QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_StepBy(QDateTimeEdit* self, int steps);
+extern __declspec(dllexport) 
+bool QDateTimeEdit_Event(QDateTimeEdit* self, QEvent* event);
+extern __declspec(dllexport) 
+void QDateTimeEdit_DateTimeChanged(QDateTimeEdit* self, QDateTime* dateTime);
 void QDateTimeEdit_connect_DateTimeChanged(QDateTimeEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QDateTimeEdit_TimeChanged(QDateTimeEdit* self, QTime* time);
+extern __declspec(dllexport) 
+void QDateTimeEdit_TimeChanged(QDateTimeEdit* self, QTime* time);
 void QDateTimeEdit_connect_TimeChanged(QDateTimeEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QDateTimeEdit_DateChanged(QDateTimeEdit* self, QDate* date);
+extern __declspec(dllexport) 
+void QDateTimeEdit_DateChanged(QDateTimeEdit* self, QDate* date);
 void QDateTimeEdit_connect_DateChanged(QDateTimeEdit* self, intptr_t slot);
-extern __declspec(dllexport) void QDateTimeEdit_SetDateTime(QDateTimeEdit* self, QDateTime* dateTime);
-extern __declspec(dllexport) void QDateTimeEdit_SetDate(QDateTimeEdit* self, QDate* date);
-extern __declspec(dllexport) void QDateTimeEdit_SetTime(QDateTimeEdit* self, QTime* time);
-extern __declspec(dllexport) void QDateTimeEdit_KeyPressEvent(QDateTimeEdit* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_WheelEvent(QDateTimeEdit* self, QWheelEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_FocusInEvent(QDateTimeEdit* self, QFocusEvent* event);
-extern __declspec(dllexport) bool QDateTimeEdit_FocusNextPrevChild(QDateTimeEdit* self, bool next);
-extern __declspec(dllexport) int QDateTimeEdit_Validate(const QDateTimeEdit* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) void QDateTimeEdit_Fixup(const QDateTimeEdit* self, struct miqt_string input);
-extern __declspec(dllexport) QDateTime* QDateTimeEdit_DateTimeFromText(const QDateTimeEdit* self, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QDateTimeEdit_TextFromDateTime(const QDateTimeEdit* self, QDateTime* dt);
-extern __declspec(dllexport) StepEnabled QDateTimeEdit_StepEnabled(const QDateTimeEdit* self);
-extern __declspec(dllexport) void QDateTimeEdit_MousePressEvent(QDateTimeEdit* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_PaintEvent(QDateTimeEdit* self, QPaintEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_InitStyleOption(const QDateTimeEdit* self, QStyleOptionSpinBox* option);
-extern __declspec(dllexport) struct miqt_string QDateTimeEdit_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QDateTimeEdit_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QDateTimeEdit_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_Clear(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_Clear(void* self);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_StepBy(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_StepBy(void* self, int steps);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_Event(void* self, intptr_t slot);
-bool QDateTimeEdit_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QDateTimeEdit_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_Validate(void* self, intptr_t slot);
-int QDateTimeEdit_virtualbase_Validate(const void* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_Fixup(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_Fixup(const void* self, struct miqt_string input);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_DateTimeFromText(void* self, intptr_t slot);
-QDateTime* QDateTimeEdit_virtualbase_DateTimeFromText(const void* self, struct miqt_string text);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_TextFromDateTime(void* self, intptr_t slot);
-struct miqt_string QDateTimeEdit_virtualbase_TextFromDateTime(const void* self, QDateTime* dt);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_StepEnabled(void* self, intptr_t slot);
-StepEnabled QDateTimeEdit_virtualbase_StepEnabled(const void* self);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QDateTimeEdit_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QDateTimeEdit_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_ChangeEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_HideEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QDateTimeEdit_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QDateTimeEdit_Delete(QDateTimeEdit* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetDateTime(QDateTimeEdit* self, QDateTime* dateTime);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetDate(QDateTimeEdit* self, QDate* date);
+extern __declspec(dllexport) 
+void QDateTimeEdit_SetTime(QDateTimeEdit* self, QTime* time);
+extern __declspec(dllexport) 
+void QDateTimeEdit_KeyPressEvent(QDateTimeEdit* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QDateTimeEdit_WheelEvent(QDateTimeEdit* self, QWheelEvent* event);
+extern __declspec(dllexport) 
+void QDateTimeEdit_FocusInEvent(QDateTimeEdit* self, QFocusEvent* event);
+extern __declspec(dllexport) 
+bool QDateTimeEdit_FocusNextPrevChild(QDateTimeEdit* self, bool next);
+extern __declspec(dllexport) 
+int QDateTimeEdit_Validate(const QDateTimeEdit* self, struct miqt_string input, int* pos);
+extern __declspec(dllexport) 
+void QDateTimeEdit_Fixup(const QDateTimeEdit* self, struct miqt_string input);
+extern __declspec(dllexport) 
+QDateTime* QDateTimeEdit_DateTimeFromText(const QDateTimeEdit* self, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QDateTimeEdit_TextFromDateTime(const QDateTimeEdit* self, QDateTime* dt);
+extern __declspec(dllexport) 
+StepEnabled QDateTimeEdit_StepEnabled(const QDateTimeEdit* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_MousePressEvent(QDateTimeEdit* self, QMouseEvent* event);
+extern __declspec(dllexport) 
+void QDateTimeEdit_PaintEvent(QDateTimeEdit* self, QPaintEvent* event);
+extern __declspec(dllexport) 
+void QDateTimeEdit_InitStyleOption(const QDateTimeEdit* self, QStyleOptionSpinBox* option);
+extern __declspec(dllexport) 
+struct miqt_string QDateTimeEdit_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QDateTimeEdit_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QDateTimeEdit_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QDateTimeEdit_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QDateTimeEdit_override_virtual_Metacast(void* self, intptr_t slot);
+void* QDateTimeEdit_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QDateTimeEdit_Delete(QDateTimeEdit* self, bool isSubclass);
 
-extern __declspec(dllexport) QTimeEdit* QTimeEdit_new(QWidget* parent);
-extern __declspec(dllexport) QTimeEdit* QTimeEdit_new2();
-extern __declspec(dllexport) QTimeEdit* QTimeEdit_new3(QTime* time);
-extern __declspec(dllexport) QTimeEdit* QTimeEdit_new4(QTime* time, QWidget* parent);
-extern __declspec(dllexport) void QTimeEdit_virtbase(QTimeEdit* src, QDateTimeEdit** outptr_QDateTimeEdit);
-extern __declspec(dllexport) QMetaObject* QTimeEdit_MetaObject(const QTimeEdit* self);
-extern __declspec(dllexport) void* QTimeEdit_Metacast(QTimeEdit* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QTimeEdit_Tr(const char* s);
-extern __declspec(dllexport) void QTimeEdit_UserTimeChanged(QTimeEdit* self, QTime* time);
+extern __declspec(dllexport) 
+QTimeEdit* QTimeEdit_new(QWidget* parent);
+extern __declspec(dllexport) 
+QTimeEdit* QTimeEdit_new2();
+extern __declspec(dllexport) 
+QTimeEdit* QTimeEdit_new3(QTime* time);
+extern __declspec(dllexport) 
+QTimeEdit* QTimeEdit_new4(QTime* time, QWidget* parent);
+extern __declspec(dllexport) 
+void QTimeEdit_virtbase(QTimeEdit* src
+, QDateTimeEdit** outptr_QDateTimeEdit
+);
+extern __declspec(dllexport) 
+QMetaObject* QTimeEdit_MetaObject(const QTimeEdit* self);
+extern __declspec(dllexport) 
+void* QTimeEdit_Metacast(QTimeEdit* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QTimeEdit_Tr(const char* s);
+extern __declspec(dllexport) 
+void QTimeEdit_UserTimeChanged(QTimeEdit* self, QTime* time);
 void QTimeEdit_connect_UserTimeChanged(QTimeEdit* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QTimeEdit_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QTimeEdit_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QTimeEdit_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_Clear(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_Clear(void* self);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_StepBy(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_StepBy(void* self, int steps);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_Event(void* self, intptr_t slot);
-bool QTimeEdit_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QTimeEdit_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_Validate(void* self, intptr_t slot);
-int QTimeEdit_virtualbase_Validate(const void* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_Fixup(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_Fixup(const void* self, struct miqt_string input);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_DateTimeFromText(void* self, intptr_t slot);
-QDateTime* QTimeEdit_virtualbase_DateTimeFromText(const void* self, struct miqt_string text);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_TextFromDateTime(void* self, intptr_t slot);
-struct miqt_string QTimeEdit_virtualbase_TextFromDateTime(const void* self, QDateTime* dt);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_StepEnabled(void* self, intptr_t slot);
-StepEnabled QTimeEdit_virtualbase_StepEnabled(const void* self);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QTimeEdit_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QTimeEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option);
-extern __declspec(dllexport) void QTimeEdit_Delete(QTimeEdit* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QTimeEdit_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QTimeEdit_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QTimeEdit_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QTimeEdit_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QTimeEdit_override_virtual_Metacast(void* self, intptr_t slot);
+void* QTimeEdit_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QTimeEdit_Delete(QTimeEdit* self, bool isSubclass);
 
-extern __declspec(dllexport) QDateEdit* QDateEdit_new(QWidget* parent);
-extern __declspec(dllexport) QDateEdit* QDateEdit_new2();
-extern __declspec(dllexport) QDateEdit* QDateEdit_new3(QDate* date);
-extern __declspec(dllexport) QDateEdit* QDateEdit_new4(QDate* date, QWidget* parent);
-extern __declspec(dllexport) void QDateEdit_virtbase(QDateEdit* src, QDateTimeEdit** outptr_QDateTimeEdit);
-extern __declspec(dllexport) QMetaObject* QDateEdit_MetaObject(const QDateEdit* self);
-extern __declspec(dllexport) void* QDateEdit_Metacast(QDateEdit* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QDateEdit_Tr(const char* s);
-extern __declspec(dllexport) void QDateEdit_UserDateChanged(QDateEdit* self, QDate* date);
+extern __declspec(dllexport) 
+QDateEdit* QDateEdit_new(QWidget* parent);
+extern __declspec(dllexport) 
+QDateEdit* QDateEdit_new2();
+extern __declspec(dllexport) 
+QDateEdit* QDateEdit_new3(QDate* date);
+extern __declspec(dllexport) 
+QDateEdit* QDateEdit_new4(QDate* date, QWidget* parent);
+extern __declspec(dllexport) 
+void QDateEdit_virtbase(QDateEdit* src
+, QDateTimeEdit** outptr_QDateTimeEdit
+);
+extern __declspec(dllexport) 
+QMetaObject* QDateEdit_MetaObject(const QDateEdit* self);
+extern __declspec(dllexport) 
+void* QDateEdit_Metacast(QDateEdit* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QDateEdit_Tr(const char* s);
+extern __declspec(dllexport) 
+void QDateEdit_UserDateChanged(QDateEdit* self, QDate* date);
 void QDateEdit_connect_UserDateChanged(QDateEdit* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QDateEdit_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QDateEdit_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QDateEdit_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QDateEdit_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QDateEdit_override_virtual_Clear(void* self, intptr_t slot);
-void QDateEdit_virtualbase_Clear(void* self);
-extern __declspec(dllexport) void QDateEdit_override_virtual_StepBy(void* self, intptr_t slot);
-void QDateEdit_virtualbase_StepBy(void* self, int steps);
-extern __declspec(dllexport) void QDateEdit_override_virtual_Event(void* self, intptr_t slot);
-bool QDateEdit_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QDateEdit_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QDateEdit_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDateEdit_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QDateEdit_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QDateEdit_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QDateEdit_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDateEdit_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QDateEdit_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QDateEdit_override_virtual_Validate(void* self, intptr_t slot);
-int QDateEdit_virtualbase_Validate(const void* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) void QDateEdit_override_virtual_Fixup(void* self, intptr_t slot);
-void QDateEdit_virtualbase_Fixup(const void* self, struct miqt_string input);
-extern __declspec(dllexport) void QDateEdit_override_virtual_DateTimeFromText(void* self, intptr_t slot);
-QDateTime* QDateEdit_virtualbase_DateTimeFromText(const void* self, struct miqt_string text);
-extern __declspec(dllexport) void QDateEdit_override_virtual_TextFromDateTime(void* self, intptr_t slot);
-struct miqt_string QDateEdit_virtualbase_TextFromDateTime(const void* self, QDateTime* dt);
-extern __declspec(dllexport) void QDateEdit_override_virtual_StepEnabled(void* self, intptr_t slot);
-StepEnabled QDateEdit_virtualbase_StepEnabled(const void* self);
-extern __declspec(dllexport) void QDateEdit_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QDateEdit_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDateEdit_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QDateEdit_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QDateEdit_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QDateEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option);
-extern __declspec(dllexport) void QDateEdit_Delete(QDateEdit* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QDateEdit_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QDateEdit_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QDateEdit_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QDateEdit_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QDateEdit_override_virtual_Metacast(void* self, intptr_t slot);
+void* QDateEdit_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QDateEdit_Delete(QDateEdit* self, bool isSubclass);
 
-} 
+}

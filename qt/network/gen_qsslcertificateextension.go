@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslCertificateExtension struct {
@@ -12,7 +13,6 @@ type QSslCertificateExtension struct {
 
 // NewQSslCertificateExtension constructs a new QSslCertificateExtension object.
 func NewQSslCertificateExtension() *QSslCertificateExtension {
-
 	ret := newQSslCertificateExtension(QSslCertificateExtension_new())
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQSslCertificateExtension() *QSslCertificateExtension {
 
 // NewQSslCertificateExtension2 constructs a new QSslCertificateExtension object.
 func NewQSslCertificateExtension2(other *QSslCertificateExtension) *QSslCertificateExtension {
-
 	ret := newQSslCertificateExtension(QSslCertificateExtension_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslKey struct {
@@ -12,7 +13,6 @@ type QSslKey struct {
 
 // NewQSslKey constructs a new QSslKey object.
 func NewQSslKey() *QSslKey {
-
 	ret := newQSslKey(QSslKey_new())
 	ret.isSubclass = true
 	return ret
@@ -31,7 +31,6 @@ func NewQSslKey2(encoded []byte, algorithm QSsl__KeyAlgorithm) *QSslKey {
 
 // NewQSslKey3 constructs a new QSslKey object.
 func NewQSslKey3(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm) *QSslKey {
-
 	ret := newQSslKey(QSslKey_new3((*QIODevice)(device.UnsafePointer()), (int)(algorithm)))
 	ret.isSubclass = true
 	return ret
@@ -39,7 +38,6 @@ func NewQSslKey3(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm) *QSslKey {
 
 // NewQSslKey4 constructs a new QSslKey object.
 func NewQSslKey4(handle unsafe.Pointer) *QSslKey {
-
 	ret := newQSslKey(QSslKey_new4(handle))
 	ret.isSubclass = true
 	return ret
@@ -47,7 +45,6 @@ func NewQSslKey4(handle unsafe.Pointer) *QSslKey {
 
 // NewQSslKey5 constructs a new QSslKey object.
 func NewQSslKey5(other *QSslKey) *QSslKey {
-
 	ret := newQSslKey(QSslKey_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -91,7 +88,6 @@ func NewQSslKey8(encoded []byte, algorithm QSsl__KeyAlgorithm, format QSsl__Enco
 
 // NewQSslKey9 constructs a new QSslKey object.
 func NewQSslKey9(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSsl__EncodingFormat) *QSslKey {
-
 	ret := newQSslKey(QSslKey_new9((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format)))
 	ret.isSubclass = true
 	return ret
@@ -99,7 +95,6 @@ func NewQSslKey9(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSsl
 
 // NewQSslKey10 constructs a new QSslKey object.
 func NewQSslKey10(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSsl__EncodingFormat, typeVal QSsl__KeyType) *QSslKey {
-
 	ret := newQSslKey(QSslKey_new10((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format), (int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -118,7 +113,6 @@ func NewQSslKey11(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSs
 
 // NewQSslKey12 constructs a new QSslKey object.
 func NewQSslKey12(handle unsafe.Pointer, typeVal QSsl__KeyType) *QSslKey {
-
 	ret := newQSslKey(QSslKey_new12(handle, (int)(typeVal)))
 	ret.isSubclass = true
 	return ret

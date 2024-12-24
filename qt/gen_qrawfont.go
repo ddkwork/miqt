@@ -26,7 +26,6 @@ type QRawFont struct {
 
 // NewQRawFont constructs a new QRawFont object.
 func NewQRawFont() *QRawFont {
-
 	ret := newQRawFont(QRawFont_new())
 	ret.isSubclass = true
 	return ret
@@ -57,7 +56,6 @@ func NewQRawFont3(fontData []byte, pixelSize float64) *QRawFont {
 
 // NewQRawFont4 constructs a new QRawFont object.
 func NewQRawFont4(other *QRawFont) *QRawFont {
-
 	ret := newQRawFont(QRawFont_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

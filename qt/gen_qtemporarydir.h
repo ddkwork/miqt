@@ -10,20 +10,33 @@
 extern "C" {
 typedef struct QTemporaryDir QTemporaryDir;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTemporaryDir* QTemporaryDir_new();
-extern __declspec(dllexport) QTemporaryDir* QTemporaryDir_new2(struct miqt_string templateName);
-extern __declspec(dllexport) void QTemporaryDir_Swap(QTemporaryDir* self, QTemporaryDir* other);
-extern __declspec(dllexport) bool QTemporaryDir_IsValid(const QTemporaryDir* self);
-extern __declspec(dllexport) struct miqt_string QTemporaryDir_ErrorString(const QTemporaryDir* self);
-extern __declspec(dllexport) bool QTemporaryDir_AutoRemove(const QTemporaryDir* self);
-extern __declspec(dllexport) void QTemporaryDir_SetAutoRemove(QTemporaryDir* self, bool b);
-extern __declspec(dllexport) bool QTemporaryDir_Remove(QTemporaryDir* self);
-extern __declspec(dllexport) struct miqt_string QTemporaryDir_Path(const QTemporaryDir* self);
-extern __declspec(dllexport) struct miqt_string QTemporaryDir_FilePath(const QTemporaryDir* self, struct miqt_string fileName);
-extern __declspec(dllexport) void QTemporaryDir_Delete(QTemporaryDir* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTemporaryDir* QTemporaryDir_new();
+extern __declspec(dllexport) 
+QTemporaryDir* QTemporaryDir_new2(struct miqt_string templateName);
+extern __declspec(dllexport) 
+void QTemporaryDir_Swap(QTemporaryDir* self, QTemporaryDir* other);
+extern __declspec(dllexport) 
+bool QTemporaryDir_IsValid(const QTemporaryDir* self);
+extern __declspec(dllexport) 
+struct miqt_string QTemporaryDir_ErrorString(const QTemporaryDir* self);
+extern __declspec(dllexport) 
+bool QTemporaryDir_AutoRemove(const QTemporaryDir* self);
+extern __declspec(dllexport) 
+void QTemporaryDir_SetAutoRemove(QTemporaryDir* self, bool b);
+extern __declspec(dllexport) 
+bool QTemporaryDir_Remove(QTemporaryDir* self);
+extern __declspec(dllexport) 
+struct miqt_string QTemporaryDir_Path(const QTemporaryDir* self);
+extern __declspec(dllexport) 
+struct miqt_string QTemporaryDir_FilePath(const QTemporaryDir* self, struct miqt_string fileName);
+extern __declspec(dllexport) 
+void QTemporaryDir_Delete(QTemporaryDir* self, bool isSubclass);
 
-} 
+}

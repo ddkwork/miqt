@@ -11,7 +11,6 @@ type QFontInfo struct {
 
 // NewQFontInfo constructs a new QFontInfo object.
 func NewQFontInfo(param1 *QFont) *QFontInfo {
-
 	ret := newQFontInfo(QFontInfo_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQFontInfo(param1 *QFont) *QFontInfo {
 
 // NewQFontInfo2 constructs a new QFontInfo object.
 func NewQFontInfo2(param1 *QFontInfo) *QFontInfo {
-
 	ret := newQFontInfo(QFontInfo_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

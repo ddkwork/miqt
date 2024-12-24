@@ -9,177 +9,124 @@
 #include "../libmiqt/libmiqt.h"
 extern "C" {
 typedef struct QAbstractSlider QAbstractSlider;
-typedef struct QActionEvent QActionEvent;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
-typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
 typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractSlider* QAbstractSlider_new(QWidget* parent);
-extern __declspec(dllexport) QAbstractSlider* QAbstractSlider_new2();
-extern __declspec(dllexport) void QAbstractSlider_virtbase(QAbstractSlider* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QAbstractSlider_MetaObject(const QAbstractSlider* self);
-extern __declspec(dllexport) void* QAbstractSlider_Metacast(QAbstractSlider* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QAbstractSlider_Tr(const char* s);
-extern __declspec(dllexport) int QAbstractSlider_Orientation(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetMinimum(QAbstractSlider* self, int minimum);
-extern __declspec(dllexport) int QAbstractSlider_Minimum(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetMaximum(QAbstractSlider* self, int maximum);
-extern __declspec(dllexport) int QAbstractSlider_Maximum(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetSingleStep(QAbstractSlider* self, int singleStep);
-extern __declspec(dllexport) int QAbstractSlider_SingleStep(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetPageStep(QAbstractSlider* self, int pageStep);
-extern __declspec(dllexport) int QAbstractSlider_PageStep(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetTracking(QAbstractSlider* self, bool enable);
-extern __declspec(dllexport) bool QAbstractSlider_HasTracking(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetSliderDown(QAbstractSlider* self, bool sliderDown);
-extern __declspec(dllexport) bool QAbstractSlider_IsSliderDown(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetSliderPosition(QAbstractSlider* self, int sliderPosition);
-extern __declspec(dllexport) int QAbstractSlider_SliderPosition(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetInvertedAppearance(QAbstractSlider* self, bool invertedAppearance);
-extern __declspec(dllexport) bool QAbstractSlider_InvertedAppearance(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_SetInvertedControls(QAbstractSlider* self, bool invertedControls);
-extern __declspec(dllexport) bool QAbstractSlider_InvertedControls(const QAbstractSlider* self);
-extern __declspec(dllexport) int QAbstractSlider_Value(const QAbstractSlider* self);
-extern __declspec(dllexport) void QAbstractSlider_TriggerAction(QAbstractSlider* self, SliderAction action);
-extern __declspec(dllexport) void QAbstractSlider_SetValue(QAbstractSlider* self, int value);
-extern __declspec(dllexport) void QAbstractSlider_SetOrientation(QAbstractSlider* self, int orientation);
-extern __declspec(dllexport) void QAbstractSlider_SetRange(QAbstractSlider* self, int min, int max);
-extern __declspec(dllexport) void QAbstractSlider_ValueChanged(QAbstractSlider* self, int value);
+extern __declspec(dllexport) 
+QAbstractSlider* QAbstractSlider_new(QWidget* parent);
+extern __declspec(dllexport) 
+QAbstractSlider* QAbstractSlider_new2();
+extern __declspec(dllexport) 
+void QAbstractSlider_virtbase(QAbstractSlider* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QAbstractSlider_MetaObject(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void* QAbstractSlider_Metacast(QAbstractSlider* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractSlider_Tr(const char* s);
+extern __declspec(dllexport) 
+int QAbstractSlider_Orientation(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetMinimum(QAbstractSlider* self, int minimum);
+extern __declspec(dllexport) 
+int QAbstractSlider_Minimum(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetMaximum(QAbstractSlider* self, int maximum);
+extern __declspec(dllexport) 
+int QAbstractSlider_Maximum(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetSingleStep(QAbstractSlider* self, int singleStep);
+extern __declspec(dllexport) 
+int QAbstractSlider_SingleStep(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetPageStep(QAbstractSlider* self, int pageStep);
+extern __declspec(dllexport) 
+int QAbstractSlider_PageStep(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetTracking(QAbstractSlider* self, bool enable);
+extern __declspec(dllexport) 
+bool QAbstractSlider_HasTracking(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetSliderDown(QAbstractSlider* self, bool sliderDown);
+extern __declspec(dllexport) 
+bool QAbstractSlider_IsSliderDown(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetSliderPosition(QAbstractSlider* self, int sliderPosition);
+extern __declspec(dllexport) 
+int QAbstractSlider_SliderPosition(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetInvertedAppearance(QAbstractSlider* self, bool invertedAppearance);
+extern __declspec(dllexport) 
+bool QAbstractSlider_InvertedAppearance(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetInvertedControls(QAbstractSlider* self, bool invertedControls);
+extern __declspec(dllexport) 
+bool QAbstractSlider_InvertedControls(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+int QAbstractSlider_Value(const QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_TriggerAction(QAbstractSlider* self, SliderAction action);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetValue(QAbstractSlider* self, int value);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetOrientation(QAbstractSlider* self, int orientation);
+extern __declspec(dllexport) 
+void QAbstractSlider_SetRange(QAbstractSlider* self, int min, int max);
+extern __declspec(dllexport) 
+void QAbstractSlider_ValueChanged(QAbstractSlider* self, int value);
 void QAbstractSlider_connect_ValueChanged(QAbstractSlider* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractSlider_SliderPressed(QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SliderPressed(QAbstractSlider* self);
 void QAbstractSlider_connect_SliderPressed(QAbstractSlider* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractSlider_SliderMoved(QAbstractSlider* self, int position);
+extern __declspec(dllexport) 
+void QAbstractSlider_SliderMoved(QAbstractSlider* self, int position);
 void QAbstractSlider_connect_SliderMoved(QAbstractSlider* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractSlider_SliderReleased(QAbstractSlider* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_SliderReleased(QAbstractSlider* self);
 void QAbstractSlider_connect_SliderReleased(QAbstractSlider* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractSlider_RangeChanged(QAbstractSlider* self, int min, int max);
+extern __declspec(dllexport) 
+void QAbstractSlider_RangeChanged(QAbstractSlider* self, int min, int max);
 void QAbstractSlider_connect_RangeChanged(QAbstractSlider* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractSlider_ActionTriggered(QAbstractSlider* self, int action);
+extern __declspec(dllexport) 
+void QAbstractSlider_ActionTriggered(QAbstractSlider* self, int action);
 void QAbstractSlider_connect_ActionTriggered(QAbstractSlider* self, intptr_t slot);
-extern __declspec(dllexport) bool QAbstractSlider_Event(QAbstractSlider* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractSlider_SliderChange(QAbstractSlider* self, SliderChange change);
-extern __declspec(dllexport) void QAbstractSlider_KeyPressEvent(QAbstractSlider* self, QKeyEvent* ev);
-extern __declspec(dllexport) void QAbstractSlider_TimerEvent(QAbstractSlider* self, QTimerEvent* param1);
-extern __declspec(dllexport) void QAbstractSlider_WheelEvent(QAbstractSlider* self, QWheelEvent* e);
-extern __declspec(dllexport) void QAbstractSlider_ChangeEvent(QAbstractSlider* self, QEvent* e);
-extern __declspec(dllexport) struct miqt_string QAbstractSlider_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QAbstractSlider_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_Event(void* self, intptr_t slot);
-bool QAbstractSlider_virtualbase_Event(void* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_SliderChange(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_SliderChange(void* self, SliderChange change);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_KeyPressEvent(void* self, QKeyEvent* ev);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_TimerEvent(void* self, QTimerEvent* param1);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_WheelEvent(void* self, QWheelEvent* e);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_ChangeEvent(void* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_DevType(void* self, intptr_t slot);
-int QAbstractSlider_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_SetVisible(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QAbstractSlider_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QAbstractSlider_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QAbstractSlider_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QAbstractSlider_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QAbstractSlider_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_DropEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_HideEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QAbstractSlider_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_Metric(void* self, intptr_t slot);
-int QAbstractSlider_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_InitPainter(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QAbstractSlider_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QAbstractSlider_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QAbstractSlider_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QAbstractSlider_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QAbstractSlider_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QAbstractSlider_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QAbstractSlider_Delete(QAbstractSlider* self, bool isSubclass);
+extern __declspec(dllexport) 
+bool QAbstractSlider_Event(QAbstractSlider* self, QEvent* e);
+extern __declspec(dllexport) 
+void QAbstractSlider_SliderChange(QAbstractSlider* self, SliderChange change);
+extern __declspec(dllexport) 
+void QAbstractSlider_KeyPressEvent(QAbstractSlider* self, QKeyEvent* ev);
+extern __declspec(dllexport) 
+void QAbstractSlider_TimerEvent(QAbstractSlider* self, QTimerEvent* param1);
+extern __declspec(dllexport) 
+void QAbstractSlider_WheelEvent(QAbstractSlider* self, QWheelEvent* e);
+extern __declspec(dllexport) 
+void QAbstractSlider_ChangeEvent(QAbstractSlider* self, QEvent* e);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractSlider_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractSlider_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QAbstractSlider_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QAbstractSlider_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QAbstractSlider_override_virtual_Metacast(void* self, intptr_t slot);
+void* QAbstractSlider_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QAbstractSlider_Delete(QAbstractSlider* self, bool isSubclass);
 
-} 
+}

@@ -20,7 +20,6 @@ type QPainterPath struct {
 
 // NewQPainterPath constructs a new QPainterPath object.
 func NewQPainterPath() *QPainterPath {
-
 	ret := newQPainterPath(QPainterPath_new())
 	ret.isSubclass = true
 	return ret
@@ -28,7 +27,6 @@ func NewQPainterPath() *QPainterPath {
 
 // NewQPainterPath2 constructs a new QPainterPath object.
 func NewQPainterPath2(startPoint *QPointF) *QPainterPath {
-
 	ret := newQPainterPath(QPainterPath_new2(startPoint.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -36,7 +34,6 @@ func NewQPainterPath2(startPoint *QPointF) *QPainterPath {
 
 // NewQPainterPath3 constructs a new QPainterPath object.
 func NewQPainterPath3(other *QPainterPath) *QPainterPath {
-
 	ret := newQPainterPath(QPainterPath_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -369,7 +366,6 @@ type QPainterPathStroker struct {
 
 // NewQPainterPathStroker constructs a new QPainterPathStroker object.
 func NewQPainterPathStroker() *QPainterPathStroker {
-
 	ret := newQPainterPathStroker(QPainterPathStroker_new())
 	ret.isSubclass = true
 	return ret
@@ -377,7 +373,6 @@ func NewQPainterPathStroker() *QPainterPathStroker {
 
 // NewQPainterPathStroker2 constructs a new QPainterPathStroker object.
 func NewQPainterPathStroker2(pen *QPen) *QPainterPathStroker {
-
 	ret := newQPainterPathStroker(QPainterPathStroker_new2(pen.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -468,7 +463,6 @@ type QPainterPath__Element struct {
 
 // NewQPainterPath__Element constructs a new QPainterPath::Element object.
 func NewQPainterPath__Element() *QPainterPath__Element {
-
 	ret := newQPainterPath__Element(QPainterPath__Element_new())
 	ret.isSubclass = true
 	return ret
@@ -476,7 +470,6 @@ func NewQPainterPath__Element() *QPainterPath__Element {
 
 // NewQPainterPath__Element2 constructs a new QPainterPath::Element object.
 func NewQPainterPath__Element2(param1 *Element) *QPainterPath__Element {
-
 	ret := newQPainterPath__Element(QPainterPath__Element_new2(param1))
 	ret.isSubclass = true
 	return ret

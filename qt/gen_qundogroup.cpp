@@ -1,16 +1,12 @@
 // +build ignore
 
 #include <QAction>
-#include <QChildEvent>
-#include <QEvent>
 #include <QList>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <QUndoGroup>
 #include <QUndoStack>
 #include <qundogroup.h>
@@ -25,173 +21,47 @@ public:
 	virtual ~MiqtVirtualQUndoGroup() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QUndoGroup::event(event);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QUndoGroup::metaObject();
 		}
 		
-		QEvent* sigval1 = event;
 
-		bool callback_return_value = miqt_exec_callback_QUndoGroup_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QUndoGroup_MetaObject(const_cast<MiqtVirtualQUndoGroup*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QUndoGroup::event(event);
+		return (QMetaObject*) QUndoGroup::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QUndoGroup::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QUndoGroup::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QUndoGroup_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QUndoGroup_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QUndoGroup::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QUndoGroup::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QUndoGroup_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QUndoGroup::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QUndoGroup::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QUndoGroup_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QUndoGroup::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QUndoGroup::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QUndoGroup_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QUndoGroup::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QUndoGroup::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QUndoGroup_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QUndoGroup::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QUndoGroup::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QUndoGroup_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QUndoGroup::disconnectNotify(*signal);
+		return QUndoGroup::qt_metacast(param1);
 
 	}
 
@@ -432,60 +302,20 @@ QAction* QUndoGroup_CreateRedoAction2(const QUndoGroup* self, QObject* parent, s
 	return self->createRedoAction(parent, prefix_QString);
 }
 
-void QUndoGroup_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__Event = slot;
+void QUndoGroup_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__MetaObject = slot;
 }
 
-bool QUndoGroup_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_Event(event);
+QMetaObject* QUndoGroup_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQUndoGroup*)(self) )->virtualbase_MetaObject();
 }
 
-void QUndoGroup_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__EventFilter = slot;
+void QUndoGroup_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__Metacast = slot;
 }
 
-bool QUndoGroup_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QUndoGroup_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__TimerEvent = slot;
-}
-
-void QUndoGroup_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QUndoGroup_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__ChildEvent = slot;
-}
-
-void QUndoGroup_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QUndoGroup_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__CustomEvent = slot;
-}
-
-void QUndoGroup_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QUndoGroup_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QUndoGroup_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QUndoGroup_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoGroup*>( (QUndoGroup*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QUndoGroup_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QUndoGroup_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQUndoGroup*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QUndoGroup_Delete(QUndoGroup* self, bool isSubclass) {

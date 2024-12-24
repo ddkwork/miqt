@@ -32,7 +32,6 @@ type QSharedMemory struct {
 
 // NewQSharedMemory constructs a new QSharedMemory object.
 func NewQSharedMemory() *QSharedMemory {
-
 	ret := newQSharedMemory(QSharedMemory_new())
 	ret.isSubclass = true
 	return ret
@@ -40,7 +39,6 @@ func NewQSharedMemory() *QSharedMemory {
 
 // NewQSharedMemory2 constructs a new QSharedMemory object.
 func NewQSharedMemory2(key *QNativeIpcKey) *QSharedMemory {
-
 	ret := newQSharedMemory(QSharedMemory_new2(key.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -60,7 +58,6 @@ func NewQSharedMemory3(key string) *QSharedMemory {
 
 // NewQSharedMemory4 constructs a new QSharedMemory object.
 func NewQSharedMemory4(parent *QObject) *QSharedMemory {
-
 	ret := newQSharedMemory(QSharedMemory_new4(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -68,7 +65,6 @@ func NewQSharedMemory4(parent *QObject) *QSharedMemory {
 
 // NewQSharedMemory5 constructs a new QSharedMemory object.
 func NewQSharedMemory5(key *QNativeIpcKey, parent *QObject) *QSharedMemory {
-
 	ret := newQSharedMemory(QSharedMemory_new5(key.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -278,190 +274,55 @@ func QSharedMemory_LegacyNativeKey2(key string, typeVal QNativeIpcKey__Type) *QN
 	return _goptr
 }
 
-func (this *QSharedMemory) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QSharedMemory_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
+func (this *QSharedMemory) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QSharedMemory_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QSharedMemory) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
+
+func (this *QSharedMemory) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QSharedMemory_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QSharedMemory_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QSharedMemory_Event
-func miqt_exec_callback_QSharedMemory_Event(self QSharedMemory, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
+//export miqt_exec_callback_QSharedMemory_MetaObject
+func miqt_exec_callback_QSharedMemory_MetaObject(self QSharedMemory, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QSharedMemory{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QSharedMemory) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QSharedMemory_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QSharedMemory) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QSharedMemory_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QSharedMemory_Metacast
+func miqt_exec_callback_QSharedMemory_Metacast(self QSharedMemory, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QSharedMemory{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QSharedMemory{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSharedMemory) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QSharedMemory_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QSharedMemory) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSharedMemory_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSharedMemory_EventFilter
-func miqt_exec_callback_QSharedMemory_EventFilter(self QSharedMemory, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QSharedMemory{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSharedMemory) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QSharedMemory_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSharedMemory) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSharedMemory_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSharedMemory_TimerEvent
-func miqt_exec_callback_QSharedMemory_TimerEvent(self QSharedMemory, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QSharedMemory{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QSharedMemory) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QSharedMemory_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSharedMemory) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSharedMemory_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSharedMemory_ChildEvent
-func miqt_exec_callback_QSharedMemory_ChildEvent(self QSharedMemory, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QSharedMemory{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QSharedMemory) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QSharedMemory_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSharedMemory) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSharedMemory_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSharedMemory_CustomEvent
-func miqt_exec_callback_QSharedMemory_CustomEvent(self QSharedMemory, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QSharedMemory{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QSharedMemory) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QSharedMemory_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QSharedMemory) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSharedMemory_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSharedMemory_ConnectNotify
-func miqt_exec_callback_QSharedMemory_ConnectNotify(self QSharedMemory, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QSharedMemory{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QSharedMemory) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QSharedMemory_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QSharedMemory) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSharedMemory_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSharedMemory_DisconnectNotify
-func miqt_exec_callback_QSharedMemory_DisconnectNotify(self QSharedMemory, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QSharedMemory{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

@@ -3,7 +3,6 @@
 #include <QAbstractButton>
 #include <QCheckBox>
 #include <QCloseEvent>
-#include <QContextMenuEvent>
 #include <QDialog>
 #include <QEvent>
 #include <QKeyEvent>
@@ -16,7 +15,6 @@
 #include <QPushButton>
 #include <QResizeEvent>
 #include <QShowEvent>
-#include <QSize>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -40,376 +38,47 @@ public:
 	virtual ~MiqtVirtualQMessageBox() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* e) override {
-		if (handle__Event == 0) {
-			return QMessageBox::event(e);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QMessageBox::metaObject();
 		}
 		
-		QEvent* sigval1 = e;
 
-		bool callback_return_value = miqt_exec_callback_QMessageBox_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QMessageBox_MetaObject(const_cast<MiqtVirtualQMessageBox*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* e) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QMessageBox::event(e);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ResizeEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void resizeEvent(QResizeEvent* event) override {
-		if (handle__ResizeEvent == 0) {
-			QMessageBox::resizeEvent(event);
-			return;
-		}
-		
-		QResizeEvent* sigval1 = event;
-
-		miqt_exec_callback_QMessageBox_ResizeEvent(this, handle__ResizeEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ResizeEvent(QResizeEvent* event) {
-
-		QMessageBox::resizeEvent(event);
+		return (QMetaObject*) QMessageBox::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ShowEvent = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void showEvent(QShowEvent* event) override {
-		if (handle__ShowEvent == 0) {
-			QMessageBox::showEvent(event);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QMessageBox::qt_metacast(param1);
 		}
 		
-		QShowEvent* sigval1 = event;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QMessageBox_ShowEvent(this, handle__ShowEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ShowEvent(QShowEvent* event) {
-
-		QMessageBox::showEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CloseEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void closeEvent(QCloseEvent* event) override {
-		if (handle__CloseEvent == 0) {
-			QMessageBox::closeEvent(event);
-			return;
-		}
-		
-		QCloseEvent* sigval1 = event;
-
-		miqt_exec_callback_QMessageBox_CloseEvent(this, handle__CloseEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CloseEvent(QCloseEvent* event) {
-
-		QMessageBox::closeEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__KeyPressEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void keyPressEvent(QKeyEvent* event) override {
-		if (handle__KeyPressEvent == 0) {
-			QMessageBox::keyPressEvent(event);
-			return;
-		}
-		
-		QKeyEvent* sigval1 = event;
-
-		miqt_exec_callback_QMessageBox_KeyPressEvent(this, handle__KeyPressEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_KeyPressEvent(QKeyEvent* event) {
-
-		QMessageBox::keyPressEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChangeEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void changeEvent(QEvent* event) override {
-		if (handle__ChangeEvent == 0) {
-			QMessageBox::changeEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QMessageBox_ChangeEvent(this, handle__ChangeEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChangeEvent(QEvent* event) {
-
-		QMessageBox::changeEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetVisible = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setVisible(bool visible) override {
-		if (handle__SetVisible == 0) {
-			QMessageBox::setVisible(visible);
-			return;
-		}
-		
-		bool sigval1 = visible;
-
-		miqt_exec_callback_QMessageBox_SetVisible(this, handle__SetVisible, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetVisible(bool visible) {
-
-		QMessageBox::setVisible(visible);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SizeHint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSize sizeHint() const override {
-		if (handle__SizeHint == 0) {
-			return QMessageBox::sizeHint();
-		}
-		
-
-		QSize* callback_return_value = miqt_exec_callback_QMessageBox_SizeHint(const_cast<MiqtVirtualQMessageBox*>(this), handle__SizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_SizeHint() const {
-
-		return new QSize(QMessageBox::sizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__MinimumSizeHint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSize minimumSizeHint() const override {
-		if (handle__MinimumSizeHint == 0) {
-			return QMessageBox::minimumSizeHint();
-		}
-		
-
-		QSize* callback_return_value = miqt_exec_callback_QMessageBox_MinimumSizeHint(const_cast<MiqtVirtualQMessageBox*>(this), handle__MinimumSizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_MinimumSizeHint() const {
-
-		return new QSize(QMessageBox::minimumSizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Open = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void open() override {
-		if (handle__Open == 0) {
-			QMessageBox::open();
-			return;
-		}
-		
-
-		miqt_exec_callback_QMessageBox_Open(this, handle__Open);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Open() {
-
-		QMessageBox::open();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Exec = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual int exec() override {
-		if (handle__Exec == 0) {
-			return QMessageBox::exec();
-		}
-		
-
-		int callback_return_value = miqt_exec_callback_QMessageBox_Exec(this, handle__Exec);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Exec() {
-
-		return QMessageBox::exec();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Done = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void done(int param1) override {
-		if (handle__Done == 0) {
-			QMessageBox::done(param1);
-			return;
-		}
-		
-		int sigval1 = param1;
-
-		miqt_exec_callback_QMessageBox_Done(this, handle__Done, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Done(int param1) {
-
-		QMessageBox::done(static_cast<int>(param1));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Accept = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void accept() override {
-		if (handle__Accept == 0) {
-			QMessageBox::accept();
-			return;
-		}
-		
-
-		miqt_exec_callback_QMessageBox_Accept(this, handle__Accept);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Accept() {
-
-		QMessageBox::accept();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Reject = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void reject() override {
-		if (handle__Reject == 0) {
-			QMessageBox::reject();
-			return;
-		}
-		
-
-		miqt_exec_callback_QMessageBox_Reject(this, handle__Reject);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Reject() {
-
-		QMessageBox::reject();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ContextMenuEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void contextMenuEvent(QContextMenuEvent* param1) override {
-		if (handle__ContextMenuEvent == 0) {
-			QMessageBox::contextMenuEvent(param1);
-			return;
-		}
-		
-		QContextMenuEvent* sigval1 = param1;
-
-		miqt_exec_callback_QMessageBox_ContextMenuEvent(this, handle__ContextMenuEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ContextMenuEvent(QContextMenuEvent* param1) {
-
-		QMessageBox::contextMenuEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* param1, QEvent* param2) override {
-		if (handle__EventFilter == 0) {
-			return QMessageBox::eventFilter(param1, param2);
-		}
-		
-		QObject* sigval1 = param1;
-		QEvent* sigval2 = param2;
-
-		bool callback_return_value = miqt_exec_callback_QMessageBox_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QMessageBox_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* param1, QEvent* param2) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QMessageBox::eventFilter(param1, param2);
+		return QMessageBox::qt_metacast(param1);
 
 	}
 
@@ -1083,132 +752,20 @@ int QMessageBox_Critical8(QWidget* parent, struct miqt_string title, struct miqt
 	return QMessageBox::critical(parent, title_QString, text_QString, button0Text_QString, button1Text_QString, button2Text_QString, static_cast<int>(defaultButtonNumber), static_cast<int>(escapeButtonNumber));
 }
 
-void QMessageBox_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Event = slot;
+void QMessageBox_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__MetaObject = slot;
 }
 
-bool QMessageBox_virtualbase_Event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Event(e);
+QMetaObject* QMessageBox_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQMessageBox*)(self) )->virtualbase_MetaObject();
 }
 
-void QMessageBox_override_virtual_ResizeEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__ResizeEvent = slot;
+void QMessageBox_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Metacast = slot;
 }
 
-void QMessageBox_virtualbase_ResizeEvent(void* self, QResizeEvent* event) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_ResizeEvent(event);
-}
-
-void QMessageBox_override_virtual_ShowEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__ShowEvent = slot;
-}
-
-void QMessageBox_virtualbase_ShowEvent(void* self, QShowEvent* event) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_ShowEvent(event);
-}
-
-void QMessageBox_override_virtual_CloseEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__CloseEvent = slot;
-}
-
-void QMessageBox_virtualbase_CloseEvent(void* self, QCloseEvent* event) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_CloseEvent(event);
-}
-
-void QMessageBox_override_virtual_KeyPressEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__KeyPressEvent = slot;
-}
-
-void QMessageBox_virtualbase_KeyPressEvent(void* self, QKeyEvent* event) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_KeyPressEvent(event);
-}
-
-void QMessageBox_override_virtual_ChangeEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__ChangeEvent = slot;
-}
-
-void QMessageBox_virtualbase_ChangeEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_ChangeEvent(event);
-}
-
-void QMessageBox_override_virtual_SetVisible(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__SetVisible = slot;
-}
-
-void QMessageBox_virtualbase_SetVisible(void* self, bool visible) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_SetVisible(visible);
-}
-
-void QMessageBox_override_virtual_SizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__SizeHint = slot;
-}
-
-QSize* QMessageBox_virtualbase_SizeHint(const void* self) {
-	return ( (const MiqtVirtualQMessageBox*)(self) )->virtualbase_SizeHint();
-}
-
-void QMessageBox_override_virtual_MinimumSizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__MinimumSizeHint = slot;
-}
-
-QSize* QMessageBox_virtualbase_MinimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQMessageBox*)(self) )->virtualbase_MinimumSizeHint();
-}
-
-void QMessageBox_override_virtual_Open(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Open = slot;
-}
-
-void QMessageBox_virtualbase_Open(void* self) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Open();
-}
-
-void QMessageBox_override_virtual_Exec(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Exec = slot;
-}
-
-int QMessageBox_virtualbase_Exec(void* self) {
-	return ( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Exec();
-}
-
-void QMessageBox_override_virtual_Done(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Done = slot;
-}
-
-void QMessageBox_virtualbase_Done(void* self, int param1) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Done(param1);
-}
-
-void QMessageBox_override_virtual_Accept(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Accept = slot;
-}
-
-void QMessageBox_virtualbase_Accept(void* self) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Accept();
-}
-
-void QMessageBox_override_virtual_Reject(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__Reject = slot;
-}
-
-void QMessageBox_virtualbase_Reject(void* self) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Reject();
-}
-
-void QMessageBox_override_virtual_ContextMenuEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__ContextMenuEvent = slot;
-}
-
-void QMessageBox_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* param1) {
-	( (MiqtVirtualQMessageBox*)(self) )->virtualbase_ContextMenuEvent(param1);
-}
-
-void QMessageBox_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQMessageBox*>( (QMessageBox*)(self) )->handle__EventFilter = slot;
-}
-
-bool QMessageBox_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2) {
-	return ( (MiqtVirtualQMessageBox*)(self) )->virtualbase_EventFilter(param1, param2);
+void* QMessageBox_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQMessageBox*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QMessageBox_Delete(QMessageBox* self, bool isSubclass) {

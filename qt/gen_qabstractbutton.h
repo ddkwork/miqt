@@ -9,192 +9,148 @@
 #include "../libmiqt/libmiqt.h"
 extern "C" {
 typedef struct QAbstractButton QAbstractButton;
-typedef struct QActionEvent QActionEvent;
 typedef struct QButtonGroup QButtonGroup;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
 typedef struct QIcon QIcon;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QKeySequence QKeySequence;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
 typedef struct QPoint QPoint;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractButton* QAbstractButton_new(QWidget* parent);
-extern __declspec(dllexport) QAbstractButton* QAbstractButton_new2();
-extern __declspec(dllexport) void QAbstractButton_virtbase(QAbstractButton* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QAbstractButton_MetaObject(const QAbstractButton* self);
-extern __declspec(dllexport) void* QAbstractButton_Metacast(QAbstractButton* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QAbstractButton_Tr(const char* s);
-extern __declspec(dllexport) void QAbstractButton_SetText(QAbstractButton* self, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QAbstractButton_Text(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetIcon(QAbstractButton* self, QIcon* icon);
-extern __declspec(dllexport) QIcon* QAbstractButton_Icon(const QAbstractButton* self);
-extern __declspec(dllexport) QSize* QAbstractButton_IconSize(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetShortcut(QAbstractButton* self, QKeySequence* key);
-extern __declspec(dllexport) QKeySequence* QAbstractButton_Shortcut(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetCheckable(QAbstractButton* self, bool checkable);
-extern __declspec(dllexport) bool QAbstractButton_IsCheckable(const QAbstractButton* self);
-extern __declspec(dllexport) bool QAbstractButton_IsChecked(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetDown(QAbstractButton* self, bool down);
-extern __declspec(dllexport) bool QAbstractButton_IsDown(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetAutoRepeat(QAbstractButton* self, bool autoRepeat);
-extern __declspec(dllexport) bool QAbstractButton_AutoRepeat(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetAutoRepeatDelay(QAbstractButton* self, int autoRepeatDelay);
-extern __declspec(dllexport) int QAbstractButton_AutoRepeatDelay(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetAutoRepeatInterval(QAbstractButton* self, int autoRepeatInterval);
-extern __declspec(dllexport) int QAbstractButton_AutoRepeatInterval(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetAutoExclusive(QAbstractButton* self, bool autoExclusive);
-extern __declspec(dllexport) bool QAbstractButton_AutoExclusive(const QAbstractButton* self);
-extern __declspec(dllexport) QButtonGroup* QAbstractButton_Group(const QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetIconSize(QAbstractButton* self, QSize* size);
-extern __declspec(dllexport) void QAbstractButton_AnimateClick(QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_Click(QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_Toggle(QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_SetChecked(QAbstractButton* self, bool checked);
-extern __declspec(dllexport) void QAbstractButton_Pressed(QAbstractButton* self);
+extern __declspec(dllexport) 
+QAbstractButton* QAbstractButton_new(QWidget* parent);
+extern __declspec(dllexport) 
+QAbstractButton* QAbstractButton_new2();
+extern __declspec(dllexport) 
+void QAbstractButton_virtbase(QAbstractButton* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QAbstractButton_MetaObject(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void* QAbstractButton_Metacast(QAbstractButton* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractButton_Tr(const char* s);
+extern __declspec(dllexport) 
+void QAbstractButton_SetText(QAbstractButton* self, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractButton_Text(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetIcon(QAbstractButton* self, QIcon* icon);
+extern __declspec(dllexport) 
+QIcon* QAbstractButton_Icon(const QAbstractButton* self);
+extern __declspec(dllexport) 
+QSize* QAbstractButton_IconSize(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetShortcut(QAbstractButton* self, QKeySequence* key);
+extern __declspec(dllexport) 
+QKeySequence* QAbstractButton_Shortcut(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetCheckable(QAbstractButton* self, bool checkable);
+extern __declspec(dllexport) 
+bool QAbstractButton_IsCheckable(const QAbstractButton* self);
+extern __declspec(dllexport) 
+bool QAbstractButton_IsChecked(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetDown(QAbstractButton* self, bool down);
+extern __declspec(dllexport) 
+bool QAbstractButton_IsDown(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetAutoRepeat(QAbstractButton* self, bool autoRepeat);
+extern __declspec(dllexport) 
+bool QAbstractButton_AutoRepeat(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetAutoRepeatDelay(QAbstractButton* self, int autoRepeatDelay);
+extern __declspec(dllexport) 
+int QAbstractButton_AutoRepeatDelay(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetAutoRepeatInterval(QAbstractButton* self, int autoRepeatInterval);
+extern __declspec(dllexport) 
+int QAbstractButton_AutoRepeatInterval(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetAutoExclusive(QAbstractButton* self, bool autoExclusive);
+extern __declspec(dllexport) 
+bool QAbstractButton_AutoExclusive(const QAbstractButton* self);
+extern __declspec(dllexport) 
+QButtonGroup* QAbstractButton_Group(const QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetIconSize(QAbstractButton* self, QSize* size);
+extern __declspec(dllexport) 
+void QAbstractButton_AnimateClick(QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_Click(QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_Toggle(QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_SetChecked(QAbstractButton* self, bool checked);
+extern __declspec(dllexport) 
+void QAbstractButton_Pressed(QAbstractButton* self);
 void QAbstractButton_connect_Pressed(QAbstractButton* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractButton_Released(QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_Released(QAbstractButton* self);
 void QAbstractButton_connect_Released(QAbstractButton* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractButton_Clicked(QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_Clicked(QAbstractButton* self);
 void QAbstractButton_connect_Clicked(QAbstractButton* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractButton_Toggled(QAbstractButton* self, bool checked);
+extern __declspec(dllexport) 
+void QAbstractButton_Toggled(QAbstractButton* self, bool checked);
 void QAbstractButton_connect_Toggled(QAbstractButton* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractButton_PaintEvent(QAbstractButton* self, QPaintEvent* e);
-extern __declspec(dllexport) bool QAbstractButton_HitButton(const QAbstractButton* self, QPoint* pos);
-extern __declspec(dllexport) void QAbstractButton_CheckStateSet(QAbstractButton* self);
-extern __declspec(dllexport) void QAbstractButton_NextCheckState(QAbstractButton* self);
-extern __declspec(dllexport) bool QAbstractButton_Event(QAbstractButton* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractButton_KeyPressEvent(QAbstractButton* self, QKeyEvent* e);
-extern __declspec(dllexport) void QAbstractButton_KeyReleaseEvent(QAbstractButton* self, QKeyEvent* e);
-extern __declspec(dllexport) void QAbstractButton_MousePressEvent(QAbstractButton* self, QMouseEvent* e);
-extern __declspec(dllexport) void QAbstractButton_MouseReleaseEvent(QAbstractButton* self, QMouseEvent* e);
-extern __declspec(dllexport) void QAbstractButton_MouseMoveEvent(QAbstractButton* self, QMouseEvent* e);
-extern __declspec(dllexport) void QAbstractButton_FocusInEvent(QAbstractButton* self, QFocusEvent* e);
-extern __declspec(dllexport) void QAbstractButton_FocusOutEvent(QAbstractButton* self, QFocusEvent* e);
-extern __declspec(dllexport) void QAbstractButton_ChangeEvent(QAbstractButton* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractButton_TimerEvent(QAbstractButton* self, QTimerEvent* e);
-extern __declspec(dllexport) struct miqt_string QAbstractButton_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QAbstractButton_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QAbstractButton_Clicked1(QAbstractButton* self, bool checked);
+extern __declspec(dllexport) 
+void QAbstractButton_PaintEvent(QAbstractButton* self, QPaintEvent* e);
+extern __declspec(dllexport) 
+bool QAbstractButton_HitButton(const QAbstractButton* self, QPoint* pos);
+extern __declspec(dllexport) 
+void QAbstractButton_CheckStateSet(QAbstractButton* self);
+extern __declspec(dllexport) 
+void QAbstractButton_NextCheckState(QAbstractButton* self);
+extern __declspec(dllexport) 
+bool QAbstractButton_Event(QAbstractButton* self, QEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_KeyPressEvent(QAbstractButton* self, QKeyEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_KeyReleaseEvent(QAbstractButton* self, QKeyEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_MousePressEvent(QAbstractButton* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_MouseReleaseEvent(QAbstractButton* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_MouseMoveEvent(QAbstractButton* self, QMouseEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_FocusInEvent(QAbstractButton* self, QFocusEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_FocusOutEvent(QAbstractButton* self, QFocusEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_ChangeEvent(QAbstractButton* self, QEvent* e);
+extern __declspec(dllexport) 
+void QAbstractButton_TimerEvent(QAbstractButton* self, QTimerEvent* e);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractButton_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractButton_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QAbstractButton_Clicked1(QAbstractButton* self, bool checked);
 void QAbstractButton_connect_Clicked1(QAbstractButton* self, intptr_t slot);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_PaintEvent(void* self, QPaintEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_HitButton(void* self, intptr_t slot);
-bool QAbstractButton_virtualbase_HitButton(const void* self, QPoint* pos);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_CheckStateSet(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_CheckStateSet(void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_NextCheckState(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_NextCheckState(void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_Event(void* self, intptr_t slot);
-bool QAbstractButton_virtualbase_Event(void* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_KeyPressEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_MousePressEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_MouseMoveEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_FocusInEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_FocusOutEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_ChangeEvent(void* self, QEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_TimerEvent(void* self, QTimerEvent* e);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_DevType(void* self, intptr_t slot);
-int QAbstractButton_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_SetVisible(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QAbstractButton_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QAbstractButton_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QAbstractButton_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QAbstractButton_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QAbstractButton_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_DropEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_HideEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QAbstractButton_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_Metric(void* self, intptr_t slot);
-int QAbstractButton_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_InitPainter(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QAbstractButton_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QAbstractButton_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QAbstractButton_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QAbstractButton_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QAbstractButton_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QAbstractButton_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QAbstractButton_Delete(QAbstractButton* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QAbstractButton_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QAbstractButton_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QAbstractButton_override_virtual_Metacast(void* self, intptr_t slot);
+void* QAbstractButton_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QAbstractButton_Delete(QAbstractButton* self, bool isSubclass);
 
-} 
+}

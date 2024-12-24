@@ -5,13 +5,10 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QPaintDevice>
-#include <QPaintEvent>
-#include <QSize>
 #include <QStackedWidget>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QStyleOptionFrame>
 #include <QWidget>
 #include <qstackedwidget.h>
 #include "gen_qstackedwidget.h"
@@ -25,119 +22,47 @@ public:
 	virtual ~MiqtVirtualQStackedWidget() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* e) override {
-		if (handle__Event == 0) {
-			return QStackedWidget::event(e);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QStackedWidget::metaObject();
 		}
 		
-		QEvent* sigval1 = e;
 
-		bool callback_return_value = miqt_exec_callback_QStackedWidget_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QStackedWidget_MetaObject(const_cast<MiqtVirtualQStackedWidget*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* e) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QStackedWidget::event(e);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SizeHint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSize sizeHint() const override {
-		if (handle__SizeHint == 0) {
-			return QStackedWidget::sizeHint();
-		}
-		
-
-		QSize* callback_return_value = miqt_exec_callback_QStackedWidget_SizeHint(const_cast<MiqtVirtualQStackedWidget*>(this), handle__SizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_SizeHint() const {
-
-		return new QSize(QStackedWidget::sizeHint());
+		return (QMetaObject*) QStackedWidget::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__PaintEvent = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void paintEvent(QPaintEvent* param1) override {
-		if (handle__PaintEvent == 0) {
-			QStackedWidget::paintEvent(param1);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QStackedWidget::qt_metacast(param1);
 		}
 		
-		QPaintEvent* sigval1 = param1;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QStackedWidget_PaintEvent(this, handle__PaintEvent, sigval1);
+		void* callback_return_value = miqt_exec_callback_QStackedWidget_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_PaintEvent(QPaintEvent* param1) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QStackedWidget::paintEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChangeEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void changeEvent(QEvent* param1) override {
-		if (handle__ChangeEvent == 0) {
-			QStackedWidget::changeEvent(param1);
-			return;
-		}
-		
-		QEvent* sigval1 = param1;
-
-		miqt_exec_callback_QStackedWidget_ChangeEvent(this, handle__ChangeEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChangeEvent(QEvent* param1) {
-
-		QStackedWidget::changeEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__InitStyleOption = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void initStyleOption(QStyleOptionFrame* option) const override {
-		if (handle__InitStyleOption == 0) {
-			QStackedWidget::initStyleOption(option);
-			return;
-		}
-		
-		QStyleOptionFrame* sigval1 = option;
-
-		miqt_exec_callback_QStackedWidget_InitStyleOption(const_cast<MiqtVirtualQStackedWidget*>(this), handle__InitStyleOption, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
-
-		QStackedWidget::initStyleOption(option);
+		return QStackedWidget::qt_metacast(param1);
 
 	}
 
@@ -269,44 +194,20 @@ struct miqt_string QStackedWidget_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QStackedWidget_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__Event = slot;
+void QStackedWidget_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__MetaObject = slot;
 }
 
-bool QStackedWidget_virtualbase_Event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQStackedWidget*)(self) )->virtualbase_Event(e);
+QMetaObject* QStackedWidget_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQStackedWidget*)(self) )->virtualbase_MetaObject();
 }
 
-void QStackedWidget_override_virtual_SizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__SizeHint = slot;
+void QStackedWidget_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__Metacast = slot;
 }
 
-QSize* QStackedWidget_virtualbase_SizeHint(const void* self) {
-	return ( (const MiqtVirtualQStackedWidget*)(self) )->virtualbase_SizeHint();
-}
-
-void QStackedWidget_override_virtual_PaintEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__PaintEvent = slot;
-}
-
-void QStackedWidget_virtualbase_PaintEvent(void* self, QPaintEvent* param1) {
-	( (MiqtVirtualQStackedWidget*)(self) )->virtualbase_PaintEvent(param1);
-}
-
-void QStackedWidget_override_virtual_ChangeEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__ChangeEvent = slot;
-}
-
-void QStackedWidget_virtualbase_ChangeEvent(void* self, QEvent* param1) {
-	( (MiqtVirtualQStackedWidget*)(self) )->virtualbase_ChangeEvent(param1);
-}
-
-void QStackedWidget_override_virtual_InitStyleOption(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__InitStyleOption = slot;
-}
-
-void QStackedWidget_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
-	( (const MiqtVirtualQStackedWidget*)(self) )->virtualbase_InitStyleOption(option);
+void* QStackedWidget_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQStackedWidget*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QStackedWidget_Delete(QStackedWidget* self, bool isSubclass) {

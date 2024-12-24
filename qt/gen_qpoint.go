@@ -11,7 +11,6 @@ type QPoint struct {
 
 // NewQPoint constructs a new QPoint object.
 func NewQPoint() *QPoint {
-
 	ret := newQPoint(QPoint_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQPoint() *QPoint {
 
 // NewQPoint2 constructs a new QPoint object.
 func NewQPoint2(xpos int, ypos int) *QPoint {
-
 	ret := newQPoint(QPoint_new2((int)(xpos), (int)(ypos)))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQPoint2(xpos int, ypos int) *QPoint {
 
 // NewQPoint3 constructs a new QPoint object.
 func NewQPoint3(param1 *QPoint) *QPoint {
-
 	ret := newQPoint(QPoint_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -104,7 +101,6 @@ type QPointF struct {
 
 // NewQPointF constructs a new QPointF object.
 func NewQPointF() *QPointF {
-
 	ret := newQPointF(QPointF_new())
 	ret.isSubclass = true
 	return ret
@@ -112,7 +108,6 @@ func NewQPointF() *QPointF {
 
 // NewQPointF2 constructs a new QPointF object.
 func NewQPointF2(p *QPoint) *QPointF {
-
 	ret := newQPointF(QPointF_new2(p.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -120,7 +115,6 @@ func NewQPointF2(p *QPoint) *QPointF {
 
 // NewQPointF3 constructs a new QPointF object.
 func NewQPointF3(xpos float64, ypos float64) *QPointF {
-
 	ret := newQPointF(QPointF_new3((double)(xpos), (double)(ypos)))
 	ret.isSubclass = true
 	return ret
@@ -128,7 +122,6 @@ func NewQPointF3(xpos float64, ypos float64) *QPointF {
 
 // NewQPointF4 constructs a new QPointF object.
 func NewQPointF4(param1 *QPointF) *QPointF {
-
 	ret := newQPointF(QPointF_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

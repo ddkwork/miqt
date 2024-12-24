@@ -9,215 +9,174 @@
 #include "../libmiqt/libmiqt.h"
 extern "C" {
 typedef struct QAbstractSpinBox QAbstractSpinBox;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDoubleSpinBox QDoubleSpinBox;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEvent QPaintEvent;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
-typedef struct QSize QSize;
 typedef struct QSpinBox QSpinBox;
-typedef struct QStyleOptionSpinBox QStyleOptionSpinBox;
-typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QSpinBox* QSpinBox_new(QWidget* parent);
-extern __declspec(dllexport) QSpinBox* QSpinBox_new2();
-extern __declspec(dllexport) void QSpinBox_virtbase(QSpinBox* src, QAbstractSpinBox** outptr_QAbstractSpinBox);
-extern __declspec(dllexport) QMetaObject* QSpinBox_MetaObject(const QSpinBox* self);
-extern __declspec(dllexport) void* QSpinBox_Metacast(QSpinBox* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QSpinBox_Tr(const char* s);
-extern __declspec(dllexport) int QSpinBox_Value(const QSpinBox* self);
-extern __declspec(dllexport) struct miqt_string QSpinBox_Prefix(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetPrefix(QSpinBox* self, struct miqt_string prefix);
-extern __declspec(dllexport) struct miqt_string QSpinBox_Suffix(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetSuffix(QSpinBox* self, struct miqt_string suffix);
-extern __declspec(dllexport) struct miqt_string QSpinBox_CleanText(const QSpinBox* self);
-extern __declspec(dllexport) int QSpinBox_SingleStep(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetSingleStep(QSpinBox* self, int val);
-extern __declspec(dllexport) int QSpinBox_Minimum(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetMinimum(QSpinBox* self, int min);
-extern __declspec(dllexport) int QSpinBox_Maximum(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetMaximum(QSpinBox* self, int max);
-extern __declspec(dllexport) void QSpinBox_SetRange(QSpinBox* self, int min, int max);
-extern __declspec(dllexport) StepType QSpinBox_StepType(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetStepType(QSpinBox* self, StepType stepType);
-extern __declspec(dllexport) int QSpinBox_DisplayIntegerBase(const QSpinBox* self);
-extern __declspec(dllexport) void QSpinBox_SetDisplayIntegerBase(QSpinBox* self, int base);
-extern __declspec(dllexport) bool QSpinBox_Event(QSpinBox* self, QEvent* event);
-extern __declspec(dllexport) int QSpinBox_Validate(const QSpinBox* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) int QSpinBox_ValueFromText(const QSpinBox* self, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QSpinBox_TextFromValue(const QSpinBox* self, int val);
-extern __declspec(dllexport) void QSpinBox_Fixup(const QSpinBox* self, struct miqt_string str);
-extern __declspec(dllexport) void QSpinBox_SetValue(QSpinBox* self, int val);
-extern __declspec(dllexport) void QSpinBox_ValueChanged(QSpinBox* self, int param1);
+extern __declspec(dllexport) 
+QSpinBox* QSpinBox_new(QWidget* parent);
+extern __declspec(dllexport) 
+QSpinBox* QSpinBox_new2();
+extern __declspec(dllexport) 
+void QSpinBox_virtbase(QSpinBox* src
+, QAbstractSpinBox** outptr_QAbstractSpinBox
+);
+extern __declspec(dllexport) 
+QMetaObject* QSpinBox_MetaObject(const QSpinBox* self);
+extern __declspec(dllexport) 
+void* QSpinBox_Metacast(QSpinBox* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_Tr(const char* s);
+extern __declspec(dllexport) 
+int QSpinBox_Value(const QSpinBox* self);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_Prefix(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetPrefix(QSpinBox* self, struct miqt_string prefix);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_Suffix(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetSuffix(QSpinBox* self, struct miqt_string suffix);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_CleanText(const QSpinBox* self);
+extern __declspec(dllexport) 
+int QSpinBox_SingleStep(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetSingleStep(QSpinBox* self, int val);
+extern __declspec(dllexport) 
+int QSpinBox_Minimum(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetMinimum(QSpinBox* self, int min);
+extern __declspec(dllexport) 
+int QSpinBox_Maximum(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetMaximum(QSpinBox* self, int max);
+extern __declspec(dllexport) 
+void QSpinBox_SetRange(QSpinBox* self, int min, int max);
+extern __declspec(dllexport) 
+StepType QSpinBox_StepType(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetStepType(QSpinBox* self, StepType stepType);
+extern __declspec(dllexport) 
+int QSpinBox_DisplayIntegerBase(const QSpinBox* self);
+extern __declspec(dllexport) 
+void QSpinBox_SetDisplayIntegerBase(QSpinBox* self, int base);
+extern __declspec(dllexport) 
+bool QSpinBox_Event(QSpinBox* self, QEvent* event);
+extern __declspec(dllexport) 
+int QSpinBox_Validate(const QSpinBox* self, struct miqt_string input, int* pos);
+extern __declspec(dllexport) 
+int QSpinBox_ValueFromText(const QSpinBox* self, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_TextFromValue(const QSpinBox* self, int val);
+extern __declspec(dllexport) 
+void QSpinBox_Fixup(const QSpinBox* self, struct miqt_string str);
+extern __declspec(dllexport) 
+void QSpinBox_SetValue(QSpinBox* self, int val);
+extern __declspec(dllexport) 
+void QSpinBox_ValueChanged(QSpinBox* self, int param1);
 void QSpinBox_connect_ValueChanged(QSpinBox* self, intptr_t slot);
-extern __declspec(dllexport) void QSpinBox_TextChanged(QSpinBox* self, struct miqt_string param1);
+extern __declspec(dllexport) 
+void QSpinBox_TextChanged(QSpinBox* self, struct miqt_string param1);
 void QSpinBox_connect_TextChanged(QSpinBox* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QSpinBox_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QSpinBox_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QSpinBox_override_virtual_Event(void* self, intptr_t slot);
-bool QSpinBox_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_Validate(void* self, intptr_t slot);
-int QSpinBox_virtualbase_Validate(const void* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) void QSpinBox_override_virtual_ValueFromText(void* self, intptr_t slot);
-int QSpinBox_virtualbase_ValueFromText(const void* self, struct miqt_string text);
-extern __declspec(dllexport) void QSpinBox_override_virtual_TextFromValue(void* self, intptr_t slot);
-struct miqt_string QSpinBox_virtualbase_TextFromValue(const void* self, int val);
-extern __declspec(dllexport) void QSpinBox_override_virtual_Fixup(void* self, intptr_t slot);
-void QSpinBox_virtualbase_Fixup(const void* self, struct miqt_string str);
-extern __declspec(dllexport) void QSpinBox_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QSpinBox_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QSpinBox_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QSpinBox_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QSpinBox_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QSpinBox_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QSpinBox_override_virtual_StepBy(void* self, intptr_t slot);
-void QSpinBox_virtualbase_StepBy(void* self, int steps);
-extern __declspec(dllexport) void QSpinBox_override_virtual_Clear(void* self, intptr_t slot);
-void QSpinBox_virtualbase_Clear(void* self);
-extern __declspec(dllexport) void QSpinBox_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_ChangeEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_HideEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QSpinBox_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QSpinBox_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QSpinBox_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option);
-extern __declspec(dllexport) void QSpinBox_override_virtual_StepEnabled(void* self, intptr_t slot);
-StepEnabled QSpinBox_virtualbase_StepEnabled(const void* self);
-extern __declspec(dllexport) void QSpinBox_Delete(QSpinBox* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QSpinBox_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QSpinBox_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QSpinBox_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QSpinBox_override_virtual_Metacast(void* self, intptr_t slot);
+void* QSpinBox_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QSpinBox_Delete(QSpinBox* self, bool isSubclass);
 
-extern __declspec(dllexport) QDoubleSpinBox* QDoubleSpinBox_new(QWidget* parent);
-extern __declspec(dllexport) QDoubleSpinBox* QDoubleSpinBox_new2();
-extern __declspec(dllexport) void QDoubleSpinBox_virtbase(QDoubleSpinBox* src, QAbstractSpinBox** outptr_QAbstractSpinBox);
-extern __declspec(dllexport) QMetaObject* QDoubleSpinBox_MetaObject(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void* QDoubleSpinBox_Metacast(QDoubleSpinBox* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_Tr(const char* s);
-extern __declspec(dllexport) double QDoubleSpinBox_Value(const QDoubleSpinBox* self);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_Prefix(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetPrefix(QDoubleSpinBox* self, struct miqt_string prefix);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_Suffix(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetSuffix(QDoubleSpinBox* self, struct miqt_string suffix);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_CleanText(const QDoubleSpinBox* self);
-extern __declspec(dllexport) double QDoubleSpinBox_SingleStep(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetSingleStep(QDoubleSpinBox* self, double val);
-extern __declspec(dllexport) double QDoubleSpinBox_Minimum(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetMinimum(QDoubleSpinBox* self, double min);
-extern __declspec(dllexport) double QDoubleSpinBox_Maximum(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetMaximum(QDoubleSpinBox* self, double max);
-extern __declspec(dllexport) void QDoubleSpinBox_SetRange(QDoubleSpinBox* self, double min, double max);
-extern __declspec(dllexport) StepType QDoubleSpinBox_StepType(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetStepType(QDoubleSpinBox* self, StepType stepType);
-extern __declspec(dllexport) int QDoubleSpinBox_Decimals(const QDoubleSpinBox* self);
-extern __declspec(dllexport) void QDoubleSpinBox_SetDecimals(QDoubleSpinBox* self, int prec);
-extern __declspec(dllexport) int QDoubleSpinBox_Validate(const QDoubleSpinBox* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) double QDoubleSpinBox_ValueFromText(const QDoubleSpinBox* self, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_TextFromValue(const QDoubleSpinBox* self, double val);
-extern __declspec(dllexport) void QDoubleSpinBox_Fixup(const QDoubleSpinBox* self, struct miqt_string str);
-extern __declspec(dllexport) void QDoubleSpinBox_SetValue(QDoubleSpinBox* self, double val);
-extern __declspec(dllexport) void QDoubleSpinBox_ValueChanged(QDoubleSpinBox* self, double param1);
+extern __declspec(dllexport) 
+QDoubleSpinBox* QDoubleSpinBox_new(QWidget* parent);
+extern __declspec(dllexport) 
+QDoubleSpinBox* QDoubleSpinBox_new2();
+extern __declspec(dllexport) 
+void QDoubleSpinBox_virtbase(QDoubleSpinBox* src
+, QAbstractSpinBox** outptr_QAbstractSpinBox
+);
+extern __declspec(dllexport) 
+QMetaObject* QDoubleSpinBox_MetaObject(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void* QDoubleSpinBox_Metacast(QDoubleSpinBox* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_Tr(const char* s);
+extern __declspec(dllexport) 
+double QDoubleSpinBox_Value(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_Prefix(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetPrefix(QDoubleSpinBox* self, struct miqt_string prefix);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_Suffix(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetSuffix(QDoubleSpinBox* self, struct miqt_string suffix);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_CleanText(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+double QDoubleSpinBox_SingleStep(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetSingleStep(QDoubleSpinBox* self, double val);
+extern __declspec(dllexport) 
+double QDoubleSpinBox_Minimum(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetMinimum(QDoubleSpinBox* self, double min);
+extern __declspec(dllexport) 
+double QDoubleSpinBox_Maximum(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetMaximum(QDoubleSpinBox* self, double max);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetRange(QDoubleSpinBox* self, double min, double max);
+extern __declspec(dllexport) 
+StepType QDoubleSpinBox_StepType(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetStepType(QDoubleSpinBox* self, StepType stepType);
+extern __declspec(dllexport) 
+int QDoubleSpinBox_Decimals(const QDoubleSpinBox* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetDecimals(QDoubleSpinBox* self, int prec);
+extern __declspec(dllexport) 
+int QDoubleSpinBox_Validate(const QDoubleSpinBox* self, struct miqt_string input, int* pos);
+extern __declspec(dllexport) 
+double QDoubleSpinBox_ValueFromText(const QDoubleSpinBox* self, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_TextFromValue(const QDoubleSpinBox* self, double val);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_Fixup(const QDoubleSpinBox* self, struct miqt_string str);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_SetValue(QDoubleSpinBox* self, double val);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_ValueChanged(QDoubleSpinBox* self, double param1);
 void QDoubleSpinBox_connect_ValueChanged(QDoubleSpinBox* self, intptr_t slot);
-extern __declspec(dllexport) void QDoubleSpinBox_TextChanged(QDoubleSpinBox* self, struct miqt_string param1);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_TextChanged(QDoubleSpinBox* self, struct miqt_string param1);
 void QDoubleSpinBox_connect_TextChanged(QDoubleSpinBox* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QDoubleSpinBox_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_Validate(void* self, intptr_t slot);
-int QDoubleSpinBox_virtualbase_Validate(const void* self, struct miqt_string input, int* pos);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_ValueFromText(void* self, intptr_t slot);
-double QDoubleSpinBox_virtualbase_ValueFromText(const void* self, struct miqt_string text);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_TextFromValue(void* self, intptr_t slot);
-struct miqt_string QDoubleSpinBox_virtualbase_TextFromValue(const void* self, double val);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_Fixup(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_Fixup(const void* self, struct miqt_string str);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QDoubleSpinBox_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QDoubleSpinBox_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_Event(void* self, intptr_t slot);
-bool QDoubleSpinBox_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QDoubleSpinBox_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_StepBy(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_StepBy(void* self, int steps);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_Clear(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_Clear(void* self);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_ChangeEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_HideEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QDoubleSpinBox_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option);
-extern __declspec(dllexport) void QDoubleSpinBox_override_virtual_StepEnabled(void* self, intptr_t slot);
-StepEnabled QDoubleSpinBox_virtualbase_StepEnabled(const void* self);
-extern __declspec(dllexport) void QDoubleSpinBox_Delete(QDoubleSpinBox* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QDoubleSpinBox_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QDoubleSpinBox_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_override_virtual_Metacast(void* self, intptr_t slot);
+void* QDoubleSpinBox_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QDoubleSpinBox_Delete(QDoubleSpinBox* self, bool isSubclass);
 
-} 
+}

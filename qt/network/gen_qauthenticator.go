@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QAuthenticator struct {
@@ -12,7 +13,6 @@ type QAuthenticator struct {
 
 // NewQAuthenticator constructs a new QAuthenticator object.
 func NewQAuthenticator() *QAuthenticator {
-
 	ret := newQAuthenticator(QAuthenticator_new())
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQAuthenticator() *QAuthenticator {
 
 // NewQAuthenticator2 constructs a new QAuthenticator object.
 func NewQAuthenticator2(other *QAuthenticator) *QAuthenticator {
-
 	ret := newQAuthenticator(QAuthenticator_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

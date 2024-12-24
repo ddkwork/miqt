@@ -183,6 +183,7 @@ func (this *QScroller) ResendPrepareEvent() {
 func (this *QScroller) StateChanged(newstate QScroller__State) {
 	QScroller_StateChanged(this.h, (int)(newstate))
 }
+
 func (this *QScroller) OnStateChanged(slot func(newstate QScroller__State)) {
 	QScroller_connect_StateChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -203,6 +204,7 @@ func miqt_exec_callback_QScroller_StateChanged(cb intptr_t, newstate int) {
 func (this *QScroller) ScrollerPropertiesChanged(param1 *QScrollerProperties) {
 	QScroller_ScrollerPropertiesChanged(this.h, param1.cPointer())
 }
+
 func (this *QScroller) OnScrollerPropertiesChanged(slot func(param1 *QScrollerProperties)) {
 	QScroller_connect_ScrollerPropertiesChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }

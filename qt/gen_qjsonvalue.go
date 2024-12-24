@@ -30,7 +30,6 @@ type QJsonValue struct {
 
 // NewQJsonValue constructs a new QJsonValue object.
 func NewQJsonValue() *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new())
 	ret.isSubclass = true
 	return ret
@@ -38,7 +37,6 @@ func NewQJsonValue() *QJsonValue {
 
 // NewQJsonValue2 constructs a new QJsonValue object.
 func NewQJsonValue2(b bool) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new2((bool)(b)))
 	ret.isSubclass = true
 	return ret
@@ -46,7 +44,6 @@ func NewQJsonValue2(b bool) *QJsonValue {
 
 // NewQJsonValue3 constructs a new QJsonValue object.
 func NewQJsonValue3(n float64) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new3((double)(n)))
 	ret.isSubclass = true
 	return ret
@@ -54,7 +51,6 @@ func NewQJsonValue3(n float64) *QJsonValue {
 
 // NewQJsonValue4 constructs a new QJsonValue object.
 func NewQJsonValue4(n int) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new4((int)(n)))
 	ret.isSubclass = true
 	return ret
@@ -62,7 +58,6 @@ func NewQJsonValue4(n int) *QJsonValue {
 
 // NewQJsonValue5 constructs a new QJsonValue object.
 func NewQJsonValue5(v int64) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new5((longlong)(v)))
 	ret.isSubclass = true
 	return ret
@@ -92,7 +87,6 @@ func NewQJsonValue7(s string) *QJsonValue {
 
 // NewQJsonValue8 constructs a new QJsonValue object.
 func NewQJsonValue8(a *QJsonArray) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new8(a.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -100,7 +94,6 @@ func NewQJsonValue8(a *QJsonArray) *QJsonValue {
 
 // NewQJsonValue9 constructs a new QJsonValue object.
 func NewQJsonValue9(o *QJsonObject) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new9(o.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -108,7 +101,6 @@ func NewQJsonValue9(o *QJsonObject) *QJsonValue {
 
 // NewQJsonValue10 constructs a new QJsonValue object.
 func NewQJsonValue10(other *QJsonValue) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new10(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -116,7 +108,6 @@ func NewQJsonValue10(other *QJsonValue) *QJsonValue {
 
 // NewQJsonValue11 constructs a new QJsonValue object.
 func NewQJsonValue11(param1 Type) *QJsonValue {
-
 	ret := newQJsonValue(QJsonValue_new11(param1))
 	ret.isSubclass = true
 	return ret
@@ -297,7 +288,6 @@ type QJsonValueConstRef struct {
 
 // NewQJsonValueConstRef constructs a new QJsonValueConstRef object.
 func NewQJsonValueConstRef(param1 *QJsonValueConstRef) *QJsonValueConstRef {
-
 	ret := newQJsonValueConstRef(QJsonValueConstRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -416,7 +406,6 @@ type QJsonValueRef struct {
 
 // NewQJsonValueRef constructs a new QJsonValueRef object.
 func NewQJsonValueRef(param1 *QJsonValueRef) *QJsonValueRef {
-
 	ret := newQJsonValueRef(QJsonValueRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -424,7 +413,6 @@ func NewQJsonValueRef(param1 *QJsonValueRef) *QJsonValueRef {
 
 // NewQJsonValueRef2 constructs a new QJsonValueRef object.
 func NewQJsonValueRef2(array *QJsonArray, idx int64) *QJsonValueRef {
-
 	ret := newQJsonValueRef(QJsonValueRef_new2(array.cPointer(), (ptrdiff_t)(idx)))
 	ret.isSubclass = true
 	return ret
@@ -432,7 +420,6 @@ func NewQJsonValueRef2(array *QJsonArray, idx int64) *QJsonValueRef {
 
 // NewQJsonValueRef3 constructs a new QJsonValueRef object.
 func NewQJsonValueRef3(object *QJsonObject, idx int64) *QJsonValueRef {
-
 	ret := newQJsonValueRef(QJsonValueRef_new3(object.cPointer(), (ptrdiff_t)(idx)))
 	ret.isSubclass = true
 	return ret

@@ -11,7 +11,6 @@ type QJsonArray struct {
 
 // NewQJsonArray constructs a new QJsonArray object.
 func NewQJsonArray() *QJsonArray {
-
 	ret := newQJsonArray(QJsonArray_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQJsonArray() *QJsonArray {
 
 // NewQJsonArray2 constructs a new QJsonArray object.
 func NewQJsonArray2(other *QJsonArray) *QJsonArray {
-
 	ret := newQJsonArray(QJsonArray_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -210,7 +208,6 @@ type QJsonArray__iterator struct {
 
 // NewQJsonArray__iterator constructs a new QJsonArray::iterator object.
 func NewQJsonArray__iterator() *QJsonArray__iterator {
-
 	ret := newQJsonArray__iterator(QJsonArray__iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -218,7 +215,6 @@ func NewQJsonArray__iterator() *QJsonArray__iterator {
 
 // NewQJsonArray__iterator2 constructs a new QJsonArray::iterator object.
 func NewQJsonArray__iterator2(array *QJsonArray, index int64) *QJsonArray__iterator {
-
 	ret := newQJsonArray__iterator(QJsonArray__iterator_new2(array.cPointer(), (ptrdiff_t)(index)))
 	ret.isSubclass = true
 	return ret
@@ -226,7 +222,6 @@ func NewQJsonArray__iterator2(array *QJsonArray, index int64) *QJsonArray__itera
 
 // NewQJsonArray__iterator3 constructs a new QJsonArray::iterator object.
 func NewQJsonArray__iterator3(other *iterator) *QJsonArray__iterator {
-
 	ret := newQJsonArray__iterator(QJsonArray__iterator_new3(other))
 	ret.isSubclass = true
 	return ret
@@ -299,7 +294,6 @@ type QJsonArray__const_iterator struct {
 
 // NewQJsonArray__const_iterator constructs a new QJsonArray::const_iterator object.
 func NewQJsonArray__const_iterator() *QJsonArray__const_iterator {
-
 	ret := newQJsonArray__const_iterator(QJsonArray__const_iterator_new())
 	ret.isSubclass = true
 	return ret
@@ -307,7 +301,6 @@ func NewQJsonArray__const_iterator() *QJsonArray__const_iterator {
 
 // NewQJsonArray__const_iterator2 constructs a new QJsonArray::const_iterator object.
 func NewQJsonArray__const_iterator2(array *QJsonArray, index int64) *QJsonArray__const_iterator {
-
 	ret := newQJsonArray__const_iterator(QJsonArray__const_iterator_new2(array.cPointer(), (ptrdiff_t)(index)))
 	ret.isSubclass = true
 	return ret
@@ -315,7 +308,6 @@ func NewQJsonArray__const_iterator2(array *QJsonArray, index int64) *QJsonArray_
 
 // NewQJsonArray__const_iterator3 constructs a new QJsonArray::const_iterator object.
 func NewQJsonArray__const_iterator3(o *iterator) *QJsonArray__const_iterator {
-
 	ret := newQJsonArray__const_iterator(QJsonArray__const_iterator_new3(o))
 	ret.isSubclass = true
 	return ret
@@ -323,7 +315,6 @@ func NewQJsonArray__const_iterator3(o *iterator) *QJsonArray__const_iterator {
 
 // NewQJsonArray__const_iterator4 constructs a new QJsonArray::const_iterator object.
 func NewQJsonArray__const_iterator4(other *const_iterator) *QJsonArray__const_iterator {
-
 	ret := newQJsonArray__const_iterator(QJsonArray__const_iterator_new4(other))
 	ret.isSubclass = true
 	return ret

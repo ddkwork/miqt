@@ -11,7 +11,6 @@ type QPixmap struct {
 
 // NewQPixmap constructs a new QPixmap object.
 func NewQPixmap() *QPixmap {
-
 	ret := newQPixmap(QPixmap_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQPixmap() *QPixmap {
 
 // NewQPixmap2 constructs a new QPixmap object.
 func NewQPixmap2(w int, h int) *QPixmap {
-
 	ret := newQPixmap(QPixmap_new2((int)(w), (int)(h)))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQPixmap2(w int, h int) *QPixmap {
 
 // NewQPixmap3 constructs a new QPixmap object.
 func NewQPixmap3(param1 *QSize) *QPixmap {
-
 	ret := newQPixmap(QPixmap_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -47,7 +44,6 @@ func NewQPixmap4(fileName string) *QPixmap {
 
 // NewQPixmap5 constructs a new QPixmap object.
 func NewQPixmap5(param1 *QPixmap) *QPixmap {
-
 	ret := newQPixmap(QPixmap_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -478,161 +474,4 @@ func (this *QPixmap) Scroll7(dx int, dy int, x int, y int, width int, height int
 
 func (this *QPixmap) Scroll4(dx int, dy int, rect *QRect, exposed *QRegion) {
 	QPixmap_Scroll4(this.h, (int)(dx), (int)(dy), rect.cPointer(), exposed.cPointer())
-}
-
-func (this *QPixmap) callVirtualBase_DevType() int {
-
-	return (int)(QPixmap_virtualbase_DevType(unsafe.Pointer(this.h)))
-
-}
-func (this *QPixmap) OnDevType(slot func(super func() int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPixmap_override_virtual_DevType(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPixmap_DevType
-func miqt_exec_callback_QPixmap_DevType(self QPixmap, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_DevType)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QPixmap) callVirtualBase_PaintEngine() *QPaintEngine {
-
-	return newQPaintEngine(QPixmap_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
-
-}
-func (this *QPixmap) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPixmap_override_virtual_PaintEngine(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPixmap_PaintEngine
-func miqt_exec_callback_QPixmap_PaintEngine(self QPixmap, cb intptr_t) *QPaintEngine {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QPaintEngine) *QPaintEngine)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_PaintEngine)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QPixmap) callVirtualBase_Metric(param1 PaintDeviceMetric) int {
-
-	return (int)(QPixmap_virtualbase_Metric(unsafe.Pointer(this.h), param1))
-
-}
-func (this *QPixmap) OnMetric(slot func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPixmap_override_virtual_Metric(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPixmap_Metric
-func miqt_exec_callback_QPixmap_Metric(self QPixmap, cb intptr_t, param1 PaintDeviceMetric) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
-
-	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_Metric, slotval1)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QPixmap) callVirtualBase_InitPainter(painter *QPainter) {
-
-	QPixmap_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
-
-}
-func (this *QPixmap) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPixmap_override_virtual_InitPainter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPixmap_InitPainter
-func miqt_exec_callback_QPixmap_InitPainter(self QPixmap, cb intptr_t, painter *QPainter) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *QPainter), painter *QPainter))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPainter(painter)
-
-	gofunc((&QPixmap{h: self}).callVirtualBase_InitPainter, slotval1)
-
-}
-
-func (this *QPixmap) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
-
-	return newQPaintDevice(QPixmap_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
-
-}
-func (this *QPixmap) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPixmap_override_virtual_Redirected(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPixmap_Redirected
-func miqt_exec_callback_QPixmap_Redirected(self QPixmap, cb intptr_t, offset *QPoint) *QPaintDevice {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPoint(offset)
-
-	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_Redirected, slotval1)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QPixmap) callVirtualBase_SharedPainter() *QPainter {
-
-	return newQPainter(QPixmap_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
-
-}
-func (this *QPixmap) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QPixmap_override_virtual_SharedPainter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPixmap_SharedPainter
-func miqt_exec_callback_QPixmap_SharedPainter(self QPixmap, cb intptr_t) *QPainter {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QPainter) *QPainter)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QPixmap{h: self}).callVirtualBase_SharedPainter)
-
-	return virtualReturn.cPointer()
-
 }

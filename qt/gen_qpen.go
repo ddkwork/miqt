@@ -11,7 +11,6 @@ type QPen struct {
 
 // NewQPen constructs a new QPen object.
 func NewQPen() *QPen {
-
 	ret := newQPen(QPen_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQPen() *QPen {
 
 // NewQPen2 constructs a new QPen object.
 func NewQPen2(param1 PenStyle) *QPen {
-
 	ret := newQPen(QPen_new2((int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQPen2(param1 PenStyle) *QPen {
 
 // NewQPen3 constructs a new QPen object.
 func NewQPen3(color *QColor) *QPen {
-
 	ret := newQPen(QPen_new3(color.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -35,7 +32,6 @@ func NewQPen3(color *QColor) *QPen {
 
 // NewQPen4 constructs a new QPen object.
 func NewQPen4(brush *QBrush, width float64) *QPen {
-
 	ret := newQPen(QPen_new4(brush.cPointer(), (double)(width)))
 	ret.isSubclass = true
 	return ret
@@ -43,7 +39,6 @@ func NewQPen4(brush *QBrush, width float64) *QPen {
 
 // NewQPen5 constructs a new QPen object.
 func NewQPen5(pen *QPen) *QPen {
-
 	ret := newQPen(QPen_new5(pen.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -51,7 +46,6 @@ func NewQPen5(pen *QPen) *QPen {
 
 // NewQPen6 constructs a new QPen object.
 func NewQPen6(brush *QBrush, width float64, s PenStyle) *QPen {
-
 	ret := newQPen(QPen_new6(brush.cPointer(), (double)(width), (int)(s)))
 	ret.isSubclass = true
 	return ret
@@ -59,7 +53,6 @@ func NewQPen6(brush *QBrush, width float64, s PenStyle) *QPen {
 
 // NewQPen7 constructs a new QPen object.
 func NewQPen7(brush *QBrush, width float64, s PenStyle, c PenCapStyle) *QPen {
-
 	ret := newQPen(QPen_new7(brush.cPointer(), (double)(width), (int)(s), (int)(c)))
 	ret.isSubclass = true
 	return ret
@@ -67,7 +60,6 @@ func NewQPen7(brush *QBrush, width float64, s PenStyle, c PenCapStyle) *QPen {
 
 // NewQPen8 constructs a new QPen object.
 func NewQPen8(brush *QBrush, width float64, s PenStyle, c PenCapStyle, j PenJoinStyle) *QPen {
-
 	ret := newQPen(QPen_new8(brush.cPointer(), (double)(width), (int)(s), (int)(c), (int)(j)))
 	ret.isSubclass = true
 	return ret

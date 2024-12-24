@@ -16,7 +16,6 @@ type QBindingStorage struct {
 
 // NewQBindingStorage constructs a new QBindingStorage object.
 func NewQBindingStorage() *QBindingStorage {
-
 	ret := newQBindingStorage(QBindingStorage_new())
 	ret.isSubclass = true
 	return ret

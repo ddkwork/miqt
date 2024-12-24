@@ -47,7 +47,6 @@ type QPermission struct {
 
 // NewQPermission constructs a new QPermission object.
 func NewQPermission() *QPermission {
-
 	ret := newQPermission(QPermission_new())
 	ret.isSubclass = true
 	return ret
@@ -55,7 +54,6 @@ func NewQPermission() *QPermission {
 
 // NewQPermission2 constructs a new QPermission object.
 func NewQPermission2(param1 *QPermission) *QPermission {
-
 	ret := newQPermission(QPermission_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -78,7 +76,6 @@ type QLocationPermission struct {
 
 // NewQLocationPermission constructs a new QLocationPermission object.
 func NewQLocationPermission() *QLocationPermission {
-
 	ret := newQLocationPermission(QLocationPermission_new())
 	ret.isSubclass = true
 	return ret
@@ -86,7 +83,6 @@ func NewQLocationPermission() *QLocationPermission {
 
 // NewQLocationPermission2 constructs a new QLocationPermission object.
 func NewQLocationPermission2(other *QLocationPermission) *QLocationPermission {
-
 	ret := newQLocationPermission(QLocationPermission_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -111,6 +107,7 @@ func (this *QLocationPermission) Availability() Availability {
 func (this *QLocationPermission) OperatorAssign(other *QLocationPermission) {
 	QLocationPermission_OperatorAssign(this.h, other.cPointer())
 }
+
 func (this *QLocationPermission) OnOperatorAssign(slot func(other *QLocationPermission)) {
 	QLocationPermission_connect_OperatorAssign(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -131,6 +128,7 @@ func miqt_exec_callback_QLocationPermission_OperatorAssign(cb intptr_t, other *Q
 func (this *QLocationPermission) Swap(other *QLocationPermission) {
 	QLocationPermission_Swap(this.h, other.cPointer())
 }
+
 func (this *QLocationPermission) OnSwap(slot func(other *QLocationPermission)) {
 	QLocationPermission_connect_Swap(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -155,7 +153,6 @@ type QCalendarPermission struct {
 
 // NewQCalendarPermission constructs a new QCalendarPermission object.
 func NewQCalendarPermission() *QCalendarPermission {
-
 	ret := newQCalendarPermission(QCalendarPermission_new())
 	ret.isSubclass = true
 	return ret
@@ -163,7 +160,6 @@ func NewQCalendarPermission() *QCalendarPermission {
 
 // NewQCalendarPermission2 constructs a new QCalendarPermission object.
 func NewQCalendarPermission2(other *QCalendarPermission) *QCalendarPermission {
-
 	ret := newQCalendarPermission(QCalendarPermission_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -180,6 +176,7 @@ func (this *QCalendarPermission) AccessMode() AccessMode {
 func (this *QCalendarPermission) OperatorAssign(other *QCalendarPermission) {
 	QCalendarPermission_OperatorAssign(this.h, other.cPointer())
 }
+
 func (this *QCalendarPermission) OnOperatorAssign(slot func(other *QCalendarPermission)) {
 	QCalendarPermission_connect_OperatorAssign(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -200,6 +197,7 @@ func miqt_exec_callback_QCalendarPermission_OperatorAssign(cb intptr_t, other *Q
 func (this *QCalendarPermission) Swap(other *QCalendarPermission) {
 	QCalendarPermission_Swap(this.h, other.cPointer())
 }
+
 func (this *QCalendarPermission) OnSwap(slot func(other *QCalendarPermission)) {
 	QCalendarPermission_connect_Swap(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -224,7 +222,6 @@ type QContactsPermission struct {
 
 // NewQContactsPermission constructs a new QContactsPermission object.
 func NewQContactsPermission() *QContactsPermission {
-
 	ret := newQContactsPermission(QContactsPermission_new())
 	ret.isSubclass = true
 	return ret
@@ -232,7 +229,6 @@ func NewQContactsPermission() *QContactsPermission {
 
 // NewQContactsPermission2 constructs a new QContactsPermission object.
 func NewQContactsPermission2(other *QContactsPermission) *QContactsPermission {
-
 	ret := newQContactsPermission(QContactsPermission_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -249,6 +245,7 @@ func (this *QContactsPermission) AccessMode() AccessMode {
 func (this *QContactsPermission) OperatorAssign(other *QContactsPermission) {
 	QContactsPermission_OperatorAssign(this.h, other.cPointer())
 }
+
 func (this *QContactsPermission) OnOperatorAssign(slot func(other *QContactsPermission)) {
 	QContactsPermission_connect_OperatorAssign(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -269,6 +266,7 @@ func miqt_exec_callback_QContactsPermission_OperatorAssign(cb intptr_t, other *Q
 func (this *QContactsPermission) Swap(other *QContactsPermission) {
 	QContactsPermission_Swap(this.h, other.cPointer())
 }
+
 func (this *QContactsPermission) OnSwap(slot func(other *QContactsPermission)) {
 	QContactsPermission_connect_Swap(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -293,7 +291,6 @@ type QBluetoothPermission struct {
 
 // NewQBluetoothPermission constructs a new QBluetoothPermission object.
 func NewQBluetoothPermission() *QBluetoothPermission {
-
 	ret := newQBluetoothPermission(QBluetoothPermission_new())
 	ret.isSubclass = true
 	return ret
@@ -301,7 +298,6 @@ func NewQBluetoothPermission() *QBluetoothPermission {
 
 // NewQBluetoothPermission2 constructs a new QBluetoothPermission object.
 func NewQBluetoothPermission2(other *QBluetoothPermission) *QBluetoothPermission {
-
 	ret := newQBluetoothPermission(QBluetoothPermission_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -318,6 +314,7 @@ func (this *QBluetoothPermission) CommunicationModes() CommunicationModes {
 func (this *QBluetoothPermission) OperatorAssign(other *QBluetoothPermission) {
 	QBluetoothPermission_OperatorAssign(this.h, other.cPointer())
 }
+
 func (this *QBluetoothPermission) OnOperatorAssign(slot func(other *QBluetoothPermission)) {
 	QBluetoothPermission_connect_OperatorAssign(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -338,6 +335,7 @@ func miqt_exec_callback_QBluetoothPermission_OperatorAssign(cb intptr_t, other *
 func (this *QBluetoothPermission) Swap(other *QBluetoothPermission) {
 	QBluetoothPermission_Swap(this.h, other.cPointer())
 }
+
 func (this *QBluetoothPermission) OnSwap(slot func(other *QBluetoothPermission)) {
 	QBluetoothPermission_connect_Swap(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -362,7 +360,6 @@ type QCameraPermission struct {
 
 // NewQCameraPermission constructs a new QCameraPermission object.
 func NewQCameraPermission() *QCameraPermission {
-
 	ret := newQCameraPermission(QCameraPermission_new())
 	ret.isSubclass = true
 	return ret
@@ -370,7 +367,6 @@ func NewQCameraPermission() *QCameraPermission {
 
 // NewQCameraPermission2 constructs a new QCameraPermission object.
 func NewQCameraPermission2(other *QCameraPermission) *QCameraPermission {
-
 	ret := newQCameraPermission(QCameraPermission_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -379,6 +375,7 @@ func NewQCameraPermission2(other *QCameraPermission) *QCameraPermission {
 func (this *QCameraPermission) OperatorAssign(other *QCameraPermission) {
 	QCameraPermission_OperatorAssign(this.h, other.cPointer())
 }
+
 func (this *QCameraPermission) OnOperatorAssign(slot func(other *QCameraPermission)) {
 	QCameraPermission_connect_OperatorAssign(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -399,6 +396,7 @@ func miqt_exec_callback_QCameraPermission_OperatorAssign(cb intptr_t, other *QCa
 func (this *QCameraPermission) Swap(other *QCameraPermission) {
 	QCameraPermission_Swap(this.h, other.cPointer())
 }
+
 func (this *QCameraPermission) OnSwap(slot func(other *QCameraPermission)) {
 	QCameraPermission_connect_Swap(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -423,7 +421,6 @@ type QMicrophonePermission struct {
 
 // NewQMicrophonePermission constructs a new QMicrophonePermission object.
 func NewQMicrophonePermission() *QMicrophonePermission {
-
 	ret := newQMicrophonePermission(QMicrophonePermission_new())
 	ret.isSubclass = true
 	return ret
@@ -431,7 +428,6 @@ func NewQMicrophonePermission() *QMicrophonePermission {
 
 // NewQMicrophonePermission2 constructs a new QMicrophonePermission object.
 func NewQMicrophonePermission2(other *QMicrophonePermission) *QMicrophonePermission {
-
 	ret := newQMicrophonePermission(QMicrophonePermission_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -440,6 +436,7 @@ func NewQMicrophonePermission2(other *QMicrophonePermission) *QMicrophonePermiss
 func (this *QMicrophonePermission) OperatorAssign(other *QMicrophonePermission) {
 	QMicrophonePermission_OperatorAssign(this.h, other.cPointer())
 }
+
 func (this *QMicrophonePermission) OnOperatorAssign(slot func(other *QMicrophonePermission)) {
 	QMicrophonePermission_connect_OperatorAssign(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -460,6 +457,7 @@ func miqt_exec_callback_QMicrophonePermission_OperatorAssign(cb intptr_t, other 
 func (this *QMicrophonePermission) Swap(other *QMicrophonePermission) {
 	QMicrophonePermission_Swap(this.h, other.cPointer())
 }
+
 func (this *QMicrophonePermission) OnSwap(slot func(other *QMicrophonePermission)) {
 	QMicrophonePermission_connect_Swap(this.h, intptr_t(cgo.NewHandle(slot)))
 }

@@ -183,7 +183,6 @@ type QIcon struct {
 
 // NewQIcon constructs a new QIcon object.
 func NewQIcon() *QIcon {
-
 	ret := newQIcon(QIcon_new())
 	ret.isSubclass = true
 	return ret
@@ -191,7 +190,6 @@ func NewQIcon() *QIcon {
 
 // NewQIcon2 constructs a new QIcon object.
 func NewQIcon2(pixmap *QPixmap) *QIcon {
-
 	ret := newQIcon(QIcon_new2(pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -199,7 +197,6 @@ func NewQIcon2(pixmap *QPixmap) *QIcon {
 
 // NewQIcon3 constructs a new QIcon object.
 func NewQIcon3(other *QIcon) *QIcon {
-
 	ret := newQIcon(QIcon_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -219,7 +216,6 @@ func NewQIcon4(fileName string) *QIcon {
 
 // NewQIcon5 constructs a new QIcon object.
 func NewQIcon5(engine *QIconEngine) *QIcon {
-
 	ret := newQIcon(QIcon_new5(engine.cPointer()))
 	ret.isSubclass = true
 	return ret

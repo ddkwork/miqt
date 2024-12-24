@@ -25,72 +25,47 @@ public:
 	virtual ~MiqtVirtualQPrintDialog() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Exec = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int exec() override {
-		if (handle__Exec == 0) {
-			return QPrintDialog::exec();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QPrintDialog::metaObject();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QPrintDialog_Exec(this, handle__Exec);
+		QMetaObject* callback_return_value = miqt_exec_callback_QPrintDialog_MetaObject(const_cast<MiqtVirtualQPrintDialog*>(this), handle__MetaObject);
 
-		return static_cast<int>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Exec() {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QPrintDialog::exec();
+		return (QMetaObject*) QPrintDialog::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Done = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void done(int result) override {
-		if (handle__Done == 0) {
-			QPrintDialog::done(result);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QPrintDialog::qt_metacast(param1);
 		}
 		
-		int sigval1 = result;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QPrintDialog_Done(this, handle__Done, sigval1);
+		void* callback_return_value = miqt_exec_callback_QPrintDialog_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Done(int result) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QPrintDialog::done(static_cast<int>(result));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetVisible = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setVisible(bool visible) override {
-		if (handle__SetVisible == 0) {
-			QPrintDialog::setVisible(visible);
-			return;
-		}
-		
-		bool sigval1 = visible;
-
-		miqt_exec_callback_QPrintDialog_SetVisible(this, handle__SetVisible, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetVisible(bool visible) {
-
-		QPrintDialog::setVisible(visible);
+		return QPrintDialog::qt_metacast(param1);
 
 	}
 
@@ -200,28 +175,20 @@ void QPrintDialog_SetOption2(QPrintDialog* self, PrintDialogOption option, bool 
 	self->setOption(option, on);
 }
 
-void QPrintDialog_override_virtual_Exec(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPrintDialog*>( (QPrintDialog*)(self) )->handle__Exec = slot;
+void QPrintDialog_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPrintDialog*>( (QPrintDialog*)(self) )->handle__MetaObject = slot;
 }
 
-int QPrintDialog_virtualbase_Exec(void* self) {
-	return ( (MiqtVirtualQPrintDialog*)(self) )->virtualbase_Exec();
+QMetaObject* QPrintDialog_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQPrintDialog*)(self) )->virtualbase_MetaObject();
 }
 
-void QPrintDialog_override_virtual_Done(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPrintDialog*>( (QPrintDialog*)(self) )->handle__Done = slot;
+void QPrintDialog_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPrintDialog*>( (QPrintDialog*)(self) )->handle__Metacast = slot;
 }
 
-void QPrintDialog_virtualbase_Done(void* self, int result) {
-	( (MiqtVirtualQPrintDialog*)(self) )->virtualbase_Done(result);
-}
-
-void QPrintDialog_override_virtual_SetVisible(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPrintDialog*>( (QPrintDialog*)(self) )->handle__SetVisible = slot;
-}
-
-void QPrintDialog_virtualbase_SetVisible(void* self, bool visible) {
-	( (MiqtVirtualQPrintDialog*)(self) )->virtualbase_SetVisible(visible);
+void* QPrintDialog_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQPrintDialog*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QPrintDialog_Delete(QPrintDialog* self, bool isSubclass) {

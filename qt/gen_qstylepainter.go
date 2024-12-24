@@ -11,7 +11,6 @@ type QStylePainter struct {
 
 // NewQStylePainter constructs a new QStylePainter object.
 func NewQStylePainter(w *QWidget) *QStylePainter {
-
 	ret := newQStylePainter(QStylePainter_new(w.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQStylePainter(w *QWidget) *QStylePainter {
 
 // NewQStylePainter2 constructs a new QStylePainter object.
 func NewQStylePainter2() *QStylePainter {
-
 	ret := newQStylePainter(QStylePainter_new2())
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQStylePainter2() *QStylePainter {
 
 // NewQStylePainter3 constructs a new QStylePainter object.
 func NewQStylePainter3(pd *QPaintDevice, w *QWidget) *QStylePainter {
-
 	ret := newQStylePainter(QStylePainter_new3(pd.cPointer(), w.cPointer()))
 	ret.isSubclass = true
 	return ret

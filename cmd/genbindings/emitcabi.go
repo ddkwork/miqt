@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+
+	"github.com/ddkwork/golibrary/stream"
 )
 
 // cppComment renders a string safely in a C++ block comment.
@@ -634,16 +636,13 @@ func cabiPreventStructDeclaration(className string) bool {
 }
 
 func emitBindingHeader(src *CppParsedHeader, filename string, packageName string) (string, error) {
-	if filename == "qapplication.h" { // debug only
-		println()
-	}
-	ret := strings.Builder{}
+	g := stream.NewGeneratedFile()
 	includeGuard := "MIQT_" + strings.ToUpper(strings.Replace(strings.Replace(packageName, `/`, `_`, -1), `-`, `_`, -1)) + "_GEN_" + strings.ToUpper(strings.Replace(strings.Replace(filename, `.`, `_`, -1), `-`, `_`, -1))
 	bindingInclude := "../libmiqt/libmiqt.h"
 	if strings.Contains(packageName, `/`) {
 		bindingInclude = "../" + bindingInclude
 	}
-	ret.WriteString(`#pragma once
+	g.P(`#pragma once
 #ifndef ` + includeGuard + `
 #define ` + includeGuard + `
 
@@ -663,8 +662,8 @@ extern "C" {
 		if strings.Contains(ft, `::`) {
 			// Forward declarations of inner classes are not yet supported in C++
 			// @ref https://stackoverflow.com/q/1021793
-			ret.WriteString(`#if defined(WORKAROUND_INNER_CLASS_DEFINITION_` + cabiClassName(ft) + ")\n")
-			ret.WriteString(`typedef ` + ft + " " + cabiClassName(ft) + ";\n")
+			g.P(`#if defined(WORKAROUND_INNER_CLASS_DEFINITION_` + cabiClassName(ft) + ")\n")
+			g.P(`typedef ` + ft + " " + cabiClassName(ft) + ";\n")
 		}
 	}
 	for _, ft := range foundTypesList {
@@ -675,53 +674,53 @@ extern "C" {
 		case "type_info", "_GUID":
 			continue
 		}
-		ret.WriteString(`typedef struct ` + cabiClassName(ft) + " " + cabiClassName(ft) + ";\n")
+		g.P(`typedef struct ` + cabiClassName(ft) + " " + cabiClassName(ft) + ";\n")
 	}
-	ret.WriteString("\n")
+	g.P("\n")
 	for _, c := range src.Classes {
 		methodPrefixName := cabiClassName(c.ClassName)
 		for i, ctor := range c.Ctors {
-			ret.WriteString(exportPrefix())
-			ret.WriteString(fmt.Sprintf("%s* %s_new%s(%s);\n", methodPrefixName, methodPrefixName, maybeSuffix(i), emitParametersCabiConstructor(&c, &ctor)))
+			g.P(exportPrefix())
+			g.P(fmt.Sprintf("%s* %s_new%s(%s);\n", methodPrefixName, methodPrefixName, maybeSuffix(i), emitParametersCabiConstructor(&c, &ctor)))
 		}
 		if len(c.DirectInheritClassInfo()) > 0 {
-			ret.WriteString(exportPrefix())
-			ret.WriteString(
+			g.P(exportPrefix())
+			g.P(
 				"void " + methodPrefixName + "_virtbase(" + methodPrefixName + "* src",
 			)
 			for _, baseClass := range c.DirectInheritClassInfo() {
-				ret.WriteString(", " + cabiClassName(baseClass.Class.ClassName) + "** outptr_" + cabiClassName(baseClass.Class.ClassName))
+				g.P(", " + cabiClassName(baseClass.Class.ClassName) + "** outptr_" + cabiClassName(baseClass.Class.ClassName))
 			}
-			ret.WriteString(");\n")
+			g.P(");\n")
 		}
 
 		for _, m := range c.Methods {
-			ret.WriteString(exportPrefix())
-			ret.WriteString(fmt.Sprintf("%s %s_%s(%s);\n", m.ReturnType.RenderTypeCabi(), methodPrefixName, m.SafeMethodName(), emitParametersCabi(m, ifv(m.IsConst, "const ", "")+methodPrefixName+"*")))
+			g.P(exportPrefix())
+			g.P(fmt.Sprintf("%s %s_%s(%s);\n", m.ReturnType.RenderTypeCabi(), methodPrefixName, m.SafeMethodName(), emitParametersCabi(m, ifv(m.IsConst, "const ", "")+methodPrefixName+"*")))
 			if m.IsSignal {
-				ret.WriteString(fmt.Sprintf("%s %s_connect_%s(%s* self, intptr_t slot);\n", m.ReturnType.RenderTypeCabi(), methodPrefixName, m.SafeMethodName(), methodPrefixName))
+				g.P(fmt.Sprintf("%s %s_connect_%s(%s* self, intptr_t slot);\n", m.ReturnType.RenderTypeCabi(), methodPrefixName, m.SafeMethodName(), methodPrefixName))
 			}
 		}
 
 		for _, m := range c.VirtualMethods() {
-			ret.WriteString(exportPrefix())
-			ret.WriteString(fmt.Sprintf("void %s_override_virtual_%s(%s* self, intptr_t slot);\n", methodPrefixName, m.SafeMethodName(), "void" /*methodPrefixName*/))
-			ret.WriteString(fmt.Sprintf("%s %s_virtualbase_%s(%s);\n", m.ReturnType.RenderTypeCabi(), methodPrefixName, m.SafeMethodName(), emitParametersCabi(m, ifv(m.IsConst, "const ", "")+"void" /*methodPrefixName*/ +"*")))
+			g.P(exportPrefix())
+			g.P(fmt.Sprintf("void %s_override_virtual_%s(%s* self, intptr_t slot);\n", methodPrefixName, m.SafeMethodName(), "void" /*methodPrefixName*/))
+			g.P(fmt.Sprintf("%s %s_virtualbase_%s(%s);\n", m.ReturnType.RenderTypeCabi(), methodPrefixName, m.SafeMethodName(), emitParametersCabi(m, ifv(m.IsConst, "const ", "")+"void" /*methodPrefixName*/ +"*")))
 		}
 
 		// delete
 		if c.CanDelete {
-			ret.WriteString(exportPrefix())
-			ret.WriteString(fmt.Sprintf("void %s_Delete(%s* self, bool isSubclass);\n", methodPrefixName, methodPrefixName))
+			g.P(exportPrefix())
+			g.P(fmt.Sprintf("void %s_Delete(%s* self, bool isSubclass);\n", methodPrefixName, methodPrefixName))
 		}
 
-		ret.WriteString("\n")
+		g.P("\n")
 	}
 
-	ret.WriteString(
+	g.P(
 		`} 
 `)
-	return ret.String(), nil
+	return string(g.Bytes()), nil
 }
 
 func fullyQualifiedConstructor(className string) string {

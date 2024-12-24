@@ -11,7 +11,6 @@ type QBitArray struct {
 
 // NewQBitArray constructs a new QBitArray object.
 func NewQBitArray() *QBitArray {
-
 	ret := newQBitArray(QBitArray_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQBitArray() *QBitArray {
 
 // NewQBitArray2 constructs a new QBitArray object.
 func NewQBitArray2(size int64) *QBitArray {
-
 	ret := newQBitArray(QBitArray_new2((ptrdiff_t)(size)))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQBitArray2(size int64) *QBitArray {
 
 // NewQBitArray3 constructs a new QBitArray object.
 func NewQBitArray3(other *QBitArray) *QBitArray {
-
 	ret := newQBitArray(QBitArray_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -35,7 +32,6 @@ func NewQBitArray3(other *QBitArray) *QBitArray {
 
 // NewQBitArray4 constructs a new QBitArray object.
 func NewQBitArray4(size int64, val bool) *QBitArray {
-
 	ret := newQBitArray(QBitArray_new4((ptrdiff_t)(size), (bool)(val)))
 	ret.isSubclass = true
 	return ret
@@ -183,7 +179,6 @@ type QBitRef struct {
 
 // NewQBitRef constructs a new QBitRef object.
 func NewQBitRef(param1 *QBitRef) *QBitRef {
-
 	ret := newQBitRef(QBitRef_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

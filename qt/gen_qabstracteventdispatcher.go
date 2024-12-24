@@ -134,6 +134,7 @@ func (this *QAbstractEventDispatcher) FilterNativeEvent(eventType []byte, messag
 func (this *QAbstractEventDispatcher) AboutToBlock() {
 	QAbstractEventDispatcher_AboutToBlock(this.h)
 }
+
 func (this *QAbstractEventDispatcher) OnAboutToBlock(slot func()) {
 	QAbstractEventDispatcher_connect_AboutToBlock(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -151,6 +152,7 @@ func miqt_exec_callback_QAbstractEventDispatcher_AboutToBlock(cb intptr_t) {
 func (this *QAbstractEventDispatcher) Awake() {
 	QAbstractEventDispatcher_Awake(this.h)
 }
+
 func (this *QAbstractEventDispatcher) OnAwake(slot func()) {
 	QAbstractEventDispatcher_connect_Awake(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -198,7 +200,6 @@ type QAbstractEventDispatcherV2 struct {
 
 // NewQAbstractEventDispatcherV2 constructs a new QAbstractEventDispatcherV2 object.
 func NewQAbstractEventDispatcherV2() *QAbstractEventDispatcherV2 {
-
 	ret := newQAbstractEventDispatcherV2(QAbstractEventDispatcherV2_new())
 	ret.isSubclass = true
 	return ret
@@ -206,7 +207,6 @@ func NewQAbstractEventDispatcherV2() *QAbstractEventDispatcherV2 {
 
 // NewQAbstractEventDispatcherV22 constructs a new QAbstractEventDispatcherV2 object.
 func NewQAbstractEventDispatcherV22(parent *QObject) *QAbstractEventDispatcherV2 {
-
 	ret := newQAbstractEventDispatcherV2(QAbstractEventDispatcherV2_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -286,7 +286,6 @@ type QAbstractEventDispatcher__TimerInfo struct {
 
 // NewQAbstractEventDispatcher__TimerInfo constructs a new QAbstractEventDispatcher::TimerInfo object.
 func NewQAbstractEventDispatcher__TimerInfo(id int, i int, t TimerType) *QAbstractEventDispatcher__TimerInfo {
-
 	ret := newQAbstractEventDispatcher__TimerInfo(QAbstractEventDispatcher__TimerInfo_new((int)(id), (int)(i), (int)(t)))
 	ret.isSubclass = true
 	return ret
@@ -294,7 +293,6 @@ func NewQAbstractEventDispatcher__TimerInfo(id int, i int, t TimerType) *QAbstra
 
 // NewQAbstractEventDispatcher__TimerInfo2 constructs a new QAbstractEventDispatcher::TimerInfo object.
 func NewQAbstractEventDispatcher__TimerInfo2(param1 *TimerInfo) *QAbstractEventDispatcher__TimerInfo {
-
 	ret := newQAbstractEventDispatcher__TimerInfo(QAbstractEventDispatcher__TimerInfo_new2(param1))
 	ret.isSubclass = true
 	return ret
@@ -307,7 +305,6 @@ type QAbstractEventDispatcher__TimerInfoV2 struct {
 
 // NewQAbstractEventDispatcher__TimerInfoV2 constructs a new QAbstractEventDispatcher::TimerInfoV2 object.
 func NewQAbstractEventDispatcher__TimerInfoV2() *QAbstractEventDispatcher__TimerInfoV2 {
-
 	ret := newQAbstractEventDispatcher__TimerInfoV2(QAbstractEventDispatcher__TimerInfoV2_new())
 	ret.isSubclass = true
 	return ret
@@ -315,7 +312,6 @@ func NewQAbstractEventDispatcher__TimerInfoV2() *QAbstractEventDispatcher__Timer
 
 // NewQAbstractEventDispatcher__TimerInfoV22 constructs a new QAbstractEventDispatcher::TimerInfoV2 object.
 func NewQAbstractEventDispatcher__TimerInfoV22(param1 *TimerInfoV2) *QAbstractEventDispatcher__TimerInfoV2 {
-
 	ret := newQAbstractEventDispatcher__TimerInfoV2(QAbstractEventDispatcher__TimerInfoV2_new2(param1))
 	ret.isSubclass = true
 	return ret

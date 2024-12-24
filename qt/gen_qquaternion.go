@@ -11,7 +11,6 @@ type QQuaternion struct {
 
 // NewQQuaternion constructs a new QQuaternion object.
 func NewQQuaternion() *QQuaternion {
-
 	ret := newQQuaternion(QQuaternion_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQQuaternion() *QQuaternion {
 
 // NewQQuaternion2 constructs a new QQuaternion object.
 func NewQQuaternion2(param1 Initialization) *QQuaternion {
-
 	ret := newQQuaternion(QQuaternion_new2((int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQQuaternion2(param1 Initialization) *QQuaternion {
 
 // NewQQuaternion3 constructs a new QQuaternion object.
 func NewQQuaternion3(scalar float32, xpos float32, ypos float32, zpos float32) *QQuaternion {
-
 	ret := newQQuaternion(QQuaternion_new3((float)(scalar), (float)(xpos), (float)(ypos), (float)(zpos)))
 	ret.isSubclass = true
 	return ret
@@ -35,7 +32,6 @@ func NewQQuaternion3(scalar float32, xpos float32, ypos float32, zpos float32) *
 
 // NewQQuaternion4 constructs a new QQuaternion object.
 func NewQQuaternion4(scalar float32, vector *QVector3D) *QQuaternion {
-
 	ret := newQQuaternion(QQuaternion_new4((float)(scalar), vector.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -43,7 +39,6 @@ func NewQQuaternion4(scalar float32, vector *QVector3D) *QQuaternion {
 
 // NewQQuaternion5 constructs a new QQuaternion object.
 func NewQQuaternion5(vector *QVector4D) *QQuaternion {
-
 	ret := newQQuaternion(QQuaternion_new5(vector.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -51,7 +46,6 @@ func NewQQuaternion5(vector *QVector4D) *QQuaternion {
 
 // NewQQuaternion6 constructs a new QQuaternion object.
 func NewQQuaternion6(param1 *QQuaternion) *QQuaternion {
-
 	ret := newQQuaternion(QQuaternion_new6(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

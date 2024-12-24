@@ -19,7 +19,6 @@ type QMimeDatabase struct {
 
 // NewQMimeDatabase constructs a new QMimeDatabase object.
 func NewQMimeDatabase() *QMimeDatabase {
-
 	ret := newQMimeDatabase(QMimeDatabase_new())
 	ret.isSubclass = true
 	return ret

@@ -11,7 +11,6 @@ type QHashSeed struct {
 
 // NewQHashSeed constructs a new QHashSeed object.
 func NewQHashSeed() *QHashSeed {
-
 	ret := newQHashSeed(QHashSeed_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQHashSeed() *QHashSeed {
 
 // NewQHashSeed2 constructs a new QHashSeed object.
 func NewQHashSeed2(d uint64) *QHashSeed {
-
 	ret := newQHashSeed(QHashSeed_new2((ulonglong)(d)))
 	ret.isSubclass = true
 	return ret

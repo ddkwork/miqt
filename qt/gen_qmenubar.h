@@ -10,183 +10,138 @@
 extern "C" {
 typedef struct QAction QAction;
 typedef struct QActionEvent QActionEvent;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
 typedef struct QIcon QIcon;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QMenu QMenu;
 typedef struct QMenuBar QMenuBar;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
 typedef struct QPoint QPoint;
 typedef struct QRect QRect;
 typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
 typedef struct QStyleOptionMenuItem QStyleOptionMenuItem;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QMenuBar* QMenuBar_new(QWidget* parent);
-extern __declspec(dllexport) QMenuBar* QMenuBar_new2();
-extern __declspec(dllexport) void QMenuBar_virtbase(QMenuBar* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QMenuBar_MetaObject(const QMenuBar* self);
-extern __declspec(dllexport) void* QMenuBar_Metacast(QMenuBar* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QMenuBar_Tr(const char* s);
-extern __declspec(dllexport) QAction* QMenuBar_AddMenu(QMenuBar* self, QMenu* menu);
-extern __declspec(dllexport) QMenu* QMenuBar_AddMenuWithTitle(QMenuBar* self, struct miqt_string title);
-extern __declspec(dllexport) QMenu* QMenuBar_AddMenu2(QMenuBar* self, QIcon* icon, struct miqt_string title);
-extern __declspec(dllexport) QAction* QMenuBar_AddSeparator(QMenuBar* self);
-extern __declspec(dllexport) QAction* QMenuBar_InsertSeparator(QMenuBar* self, QAction* before);
-extern __declspec(dllexport) QAction* QMenuBar_InsertMenu(QMenuBar* self, QAction* before, QMenu* menu);
-extern __declspec(dllexport) void QMenuBar_Clear(QMenuBar* self);
-extern __declspec(dllexport) QAction* QMenuBar_ActiveAction(const QMenuBar* self);
-extern __declspec(dllexport) void QMenuBar_SetActiveAction(QMenuBar* self, QAction* action);
-extern __declspec(dllexport) void QMenuBar_SetDefaultUp(QMenuBar* self, bool defaultUp);
-extern __declspec(dllexport) bool QMenuBar_IsDefaultUp(const QMenuBar* self);
-extern __declspec(dllexport) QSize* QMenuBar_SizeHint(const QMenuBar* self);
-extern __declspec(dllexport) QSize* QMenuBar_MinimumSizeHint(const QMenuBar* self);
-extern __declspec(dllexport) int QMenuBar_HeightForWidth(const QMenuBar* self, int param1);
-extern __declspec(dllexport) QRect* QMenuBar_ActionGeometry(const QMenuBar* self, QAction* param1);
-extern __declspec(dllexport) QAction* QMenuBar_ActionAt(const QMenuBar* self, QPoint* param1);
-extern __declspec(dllexport) void QMenuBar_SetCornerWidget(QMenuBar* self, QWidget* w);
-extern __declspec(dllexport) QWidget* QMenuBar_CornerWidget(const QMenuBar* self);
-extern __declspec(dllexport) bool QMenuBar_IsNativeMenuBar(const QMenuBar* self);
-extern __declspec(dllexport) void QMenuBar_SetNativeMenuBar(QMenuBar* self, bool nativeMenuBar);
-extern __declspec(dllexport) void QMenuBar_SetVisible(QMenuBar* self, bool visible);
-extern __declspec(dllexport) void QMenuBar_Triggered(QMenuBar* self, QAction* action);
+extern __declspec(dllexport) 
+QMenuBar* QMenuBar_new(QWidget* parent);
+extern __declspec(dllexport) 
+QMenuBar* QMenuBar_new2();
+extern __declspec(dllexport) 
+void QMenuBar_virtbase(QMenuBar* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QMenuBar_MetaObject(const QMenuBar* self);
+extern __declspec(dllexport) 
+void* QMenuBar_Metacast(QMenuBar* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QMenuBar_Tr(const char* s);
+extern __declspec(dllexport) 
+QAction* QMenuBar_AddMenu(QMenuBar* self, QMenu* menu);
+extern __declspec(dllexport) 
+QMenu* QMenuBar_AddMenuWithTitle(QMenuBar* self, struct miqt_string title);
+extern __declspec(dllexport) 
+QMenu* QMenuBar_AddMenu2(QMenuBar* self, QIcon* icon, struct miqt_string title);
+extern __declspec(dllexport) 
+QAction* QMenuBar_AddSeparator(QMenuBar* self);
+extern __declspec(dllexport) 
+QAction* QMenuBar_InsertSeparator(QMenuBar* self, QAction* before);
+extern __declspec(dllexport) 
+QAction* QMenuBar_InsertMenu(QMenuBar* self, QAction* before, QMenu* menu);
+extern __declspec(dllexport) 
+void QMenuBar_Clear(QMenuBar* self);
+extern __declspec(dllexport) 
+QAction* QMenuBar_ActiveAction(const QMenuBar* self);
+extern __declspec(dllexport) 
+void QMenuBar_SetActiveAction(QMenuBar* self, QAction* action);
+extern __declspec(dllexport) 
+void QMenuBar_SetDefaultUp(QMenuBar* self, bool defaultUp);
+extern __declspec(dllexport) 
+bool QMenuBar_IsDefaultUp(const QMenuBar* self);
+extern __declspec(dllexport) 
+QSize* QMenuBar_SizeHint(const QMenuBar* self);
+extern __declspec(dllexport) 
+QSize* QMenuBar_MinimumSizeHint(const QMenuBar* self);
+extern __declspec(dllexport) 
+int QMenuBar_HeightForWidth(const QMenuBar* self, int param1);
+extern __declspec(dllexport) 
+QRect* QMenuBar_ActionGeometry(const QMenuBar* self, QAction* param1);
+extern __declspec(dllexport) 
+QAction* QMenuBar_ActionAt(const QMenuBar* self, QPoint* param1);
+extern __declspec(dllexport) 
+void QMenuBar_SetCornerWidget(QMenuBar* self, QWidget* w);
+extern __declspec(dllexport) 
+QWidget* QMenuBar_CornerWidget(const QMenuBar* self);
+extern __declspec(dllexport) 
+bool QMenuBar_IsNativeMenuBar(const QMenuBar* self);
+extern __declspec(dllexport) 
+void QMenuBar_SetNativeMenuBar(QMenuBar* self, bool nativeMenuBar);
+extern __declspec(dllexport) 
+void QMenuBar_SetVisible(QMenuBar* self, bool visible);
+extern __declspec(dllexport) 
+void QMenuBar_Triggered(QMenuBar* self, QAction* action);
 void QMenuBar_connect_Triggered(QMenuBar* self, intptr_t slot);
-extern __declspec(dllexport) void QMenuBar_Hovered(QMenuBar* self, QAction* action);
+extern __declspec(dllexport) 
+void QMenuBar_Hovered(QMenuBar* self, QAction* action);
 void QMenuBar_connect_Hovered(QMenuBar* self, intptr_t slot);
-extern __declspec(dllexport) void QMenuBar_ChangeEvent(QMenuBar* self, QEvent* param1);
-extern __declspec(dllexport) void QMenuBar_KeyPressEvent(QMenuBar* self, QKeyEvent* param1);
-extern __declspec(dllexport) void QMenuBar_MouseReleaseEvent(QMenuBar* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QMenuBar_MousePressEvent(QMenuBar* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QMenuBar_MouseMoveEvent(QMenuBar* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QMenuBar_LeaveEvent(QMenuBar* self, QEvent* param1);
-extern __declspec(dllexport) void QMenuBar_PaintEvent(QMenuBar* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QMenuBar_ResizeEvent(QMenuBar* self, QResizeEvent* param1);
-extern __declspec(dllexport) void QMenuBar_ActionEvent(QMenuBar* self, QActionEvent* param1);
-extern __declspec(dllexport) void QMenuBar_FocusOutEvent(QMenuBar* self, QFocusEvent* param1);
-extern __declspec(dllexport) void QMenuBar_FocusInEvent(QMenuBar* self, QFocusEvent* param1);
-extern __declspec(dllexport) void QMenuBar_TimerEvent(QMenuBar* self, QTimerEvent* param1);
-extern __declspec(dllexport) bool QMenuBar_EventFilter(QMenuBar* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) bool QMenuBar_Event(QMenuBar* self, QEvent* param1);
-extern __declspec(dllexport) void QMenuBar_InitStyleOption(const QMenuBar* self, QStyleOptionMenuItem* option, QAction* action);
-extern __declspec(dllexport) struct miqt_string QMenuBar_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QMenuBar_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QMenuBar_SetCornerWidget2(QMenuBar* self, QWidget* w, int corner);
-extern __declspec(dllexport) QWidget* QMenuBar_CornerWidget1(const QMenuBar* self, int corner);
-extern __declspec(dllexport) void QMenuBar_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QMenuBar_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QMenuBar_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QMenuBar_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QMenuBar_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QMenuBar_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_SetVisible(void* self, intptr_t slot);
-void QMenuBar_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QMenuBar_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_KeyPressEvent(void* self, QKeyEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_MousePressEvent(void* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_LeaveEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_PaintEvent(void* self, QPaintEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_ResizeEvent(void* self, QResizeEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_ActionEvent(void* self, QActionEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_FocusOutEvent(void* self, QFocusEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_FocusInEvent(void* self, QFocusEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_TimerEvent(void* self, QTimerEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QMenuBar_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) void QMenuBar_override_virtual_Event(void* self, intptr_t slot);
-bool QMenuBar_virtualbase_Event(void* self, QEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_InitStyleOption(void* self, intptr_t slot);
-void QMenuBar_virtualbase_InitStyleOption(const void* self, QStyleOptionMenuItem* option, QAction* action);
-extern __declspec(dllexport) void QMenuBar_override_virtual_DevType(void* self, intptr_t slot);
-int QMenuBar_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QMenuBar_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QMenuBar_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QMenuBar_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QMenuBar_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QMenuBar_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_DropEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_HideEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QMenuBar_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QMenuBar_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QMenuBar_override_virtual_Metric(void* self, intptr_t slot);
-int QMenuBar_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_InitPainter(void* self, intptr_t slot);
-void QMenuBar_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QMenuBar_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QMenuBar_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QMenuBar_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QMenuBar_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QMenuBar_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QMenuBar_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QMenuBar_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QMenuBar_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QMenuBar_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QMenuBar_Delete(QMenuBar* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QMenuBar_ChangeEvent(QMenuBar* self, QEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_KeyPressEvent(QMenuBar* self, QKeyEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_MouseReleaseEvent(QMenuBar* self, QMouseEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_MousePressEvent(QMenuBar* self, QMouseEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_MouseMoveEvent(QMenuBar* self, QMouseEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_LeaveEvent(QMenuBar* self, QEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_PaintEvent(QMenuBar* self, QPaintEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_ResizeEvent(QMenuBar* self, QResizeEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_ActionEvent(QMenuBar* self, QActionEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_FocusOutEvent(QMenuBar* self, QFocusEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_FocusInEvent(QMenuBar* self, QFocusEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_TimerEvent(QMenuBar* self, QTimerEvent* param1);
+extern __declspec(dllexport) 
+bool QMenuBar_EventFilter(QMenuBar* self, QObject* param1, QEvent* param2);
+extern __declspec(dllexport) 
+bool QMenuBar_Event(QMenuBar* self, QEvent* param1);
+extern __declspec(dllexport) 
+void QMenuBar_InitStyleOption(const QMenuBar* self, QStyleOptionMenuItem* option, QAction* action);
+extern __declspec(dllexport) 
+struct miqt_string QMenuBar_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QMenuBar_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QMenuBar_SetCornerWidget2(QMenuBar* self, QWidget* w, int corner);
+extern __declspec(dllexport) 
+QWidget* QMenuBar_CornerWidget1(const QMenuBar* self, int corner);
+extern __declspec(dllexport) 
+void QMenuBar_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QMenuBar_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QMenuBar_override_virtual_Metacast(void* self, intptr_t slot);
+void* QMenuBar_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QMenuBar_Delete(QMenuBar* self, bool isSubclass);
 
-} 
+}

@@ -146,8 +146,62 @@ void QTextFrameLayoutData_Delete(QTextFrameLayoutData* self, bool isSubclass) {
 	}
 }
 
+class MiqtVirtualQTextFrame : public virtual QTextFrame {
+public:
+
+	MiqtVirtualQTextFrame(QTextDocument* doc): QTextFrame(doc) {};
+
+	virtual ~MiqtVirtualQTextFrame() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MetaObject = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QTextFrame::metaObject();
+		}
+		
+
+		QMetaObject* callback_return_value = miqt_exec_callback_QTextFrame_MetaObject(const_cast<MiqtVirtualQTextFrame*>(this), handle__MetaObject);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QMetaObject* virtualbase_MetaObject() const {
+
+		return (QMetaObject*) QTextFrame::metaObject();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QTextFrame::qt_metacast(param1);
+		}
+		
+		const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QTextFrame_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QTextFrame::qt_metacast(param1);
+
+	}
+
+};
+
 QTextFrame* QTextFrame_new(QTextDocument* doc) {
-	return new QTextFrame(doc);
+	return new MiqtVirtualQTextFrame(doc);
 }
 
 void QTextFrame_virtbase(QTextFrame* src, QTextObject** outptr_QTextObject) {
@@ -252,9 +306,25 @@ struct miqt_string QTextFrame_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
+void QTextFrame_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextFrame*>( (QTextFrame*)(self) )->handle__MetaObject = slot;
+}
+
+QMetaObject* QTextFrame_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQTextFrame*)(self) )->virtualbase_MetaObject();
+}
+
+void QTextFrame_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextFrame*>( (QTextFrame*)(self) )->handle__Metacast = slot;
+}
+
+void* QTextFrame_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQTextFrame*)(self) )->virtualbase_Metacast(param1);
+}
+
 void QTextFrame_Delete(QTextFrame* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QTextFrame*>( self );
+		delete dynamic_cast<MiqtVirtualQTextFrame*>( self );
 	} else {
 		delete self;
 	}

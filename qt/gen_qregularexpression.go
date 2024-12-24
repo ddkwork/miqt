@@ -50,7 +50,6 @@ type QRegularExpression struct {
 
 // NewQRegularExpression constructs a new QRegularExpression object.
 func NewQRegularExpression() *QRegularExpression {
-
 	ret := newQRegularExpression(QRegularExpression_new())
 	ret.isSubclass = true
 	return ret
@@ -70,7 +69,6 @@ func NewQRegularExpression2(pattern string) *QRegularExpression {
 
 // NewQRegularExpression3 constructs a new QRegularExpression object.
 func NewQRegularExpression3(re *QRegularExpression) *QRegularExpression {
-
 	ret := newQRegularExpression(QRegularExpression_new3(re.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -286,7 +284,6 @@ type QRegularExpressionMatch struct {
 
 // NewQRegularExpressionMatch constructs a new QRegularExpressionMatch object.
 func NewQRegularExpressionMatch() *QRegularExpressionMatch {
-
 	ret := newQRegularExpressionMatch(QRegularExpressionMatch_new())
 	ret.isSubclass = true
 	return ret
@@ -294,7 +291,6 @@ func NewQRegularExpressionMatch() *QRegularExpressionMatch {
 
 // NewQRegularExpressionMatch2 constructs a new QRegularExpressionMatch object.
 func NewQRegularExpressionMatch2(match *QRegularExpressionMatch) *QRegularExpressionMatch {
-
 	ret := newQRegularExpressionMatch(QRegularExpressionMatch_new2(match.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -423,7 +419,6 @@ type QRegularExpressionMatchIterator struct {
 
 // NewQRegularExpressionMatchIterator constructs a new QRegularExpressionMatchIterator object.
 func NewQRegularExpressionMatchIterator() *QRegularExpressionMatchIterator {
-
 	ret := newQRegularExpressionMatchIterator(QRegularExpressionMatchIterator_new())
 	ret.isSubclass = true
 	return ret
@@ -431,7 +426,6 @@ func NewQRegularExpressionMatchIterator() *QRegularExpressionMatchIterator {
 
 // NewQRegularExpressionMatchIterator2 constructs a new QRegularExpressionMatchIterator object.
 func NewQRegularExpressionMatchIterator2(iterator *QRegularExpressionMatchIterator) *QRegularExpressionMatchIterator {
-
 	ret := newQRegularExpressionMatchIterator(QRegularExpressionMatchIterator_new2(iterator.cPointer()))
 	ret.isSubclass = true
 	return ret

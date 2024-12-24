@@ -8,19 +8,12 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QActionEvent QActionEvent;
 typedef struct QChildEvent QChildEvent;
 typedef struct QCloseEvent QCloseEvent;
 typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
 typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QMdiArea QMdiArea;
 typedef struct QMdiSubWindow QMdiSubWindow;
@@ -30,163 +23,130 @@ typedef struct QMouseEvent QMouseEvent;
 typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
-typedef struct QPoint QPoint;
 typedef struct QResizeEvent QResizeEvent;
 typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QMdiSubWindow* QMdiSubWindow_new(QWidget* parent);
-extern __declspec(dllexport) QMdiSubWindow* QMdiSubWindow_new2();
-extern __declspec(dllexport) QMdiSubWindow* QMdiSubWindow_new3(QWidget* parent, int flags);
-extern __declspec(dllexport) void QMdiSubWindow_virtbase(QMdiSubWindow* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QMdiSubWindow_MetaObject(const QMdiSubWindow* self);
-extern __declspec(dllexport) void* QMdiSubWindow_Metacast(QMdiSubWindow* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QMdiSubWindow_Tr(const char* s);
-extern __declspec(dllexport) QSize* QMdiSubWindow_SizeHint(const QMdiSubWindow* self);
-extern __declspec(dllexport) QSize* QMdiSubWindow_MinimumSizeHint(const QMdiSubWindow* self);
-extern __declspec(dllexport) void QMdiSubWindow_SetWidget(QMdiSubWindow* self, QWidget* widget);
-extern __declspec(dllexport) QWidget* QMdiSubWindow_Widget(const QMdiSubWindow* self);
-extern __declspec(dllexport) QWidget* QMdiSubWindow_MaximizedButtonsWidget(const QMdiSubWindow* self);
-extern __declspec(dllexport) QWidget* QMdiSubWindow_MaximizedSystemMenuIconWidget(const QMdiSubWindow* self);
-extern __declspec(dllexport) bool QMdiSubWindow_IsShaded(const QMdiSubWindow* self);
-extern __declspec(dllexport) void QMdiSubWindow_SetOption(QMdiSubWindow* self, SubWindowOption option);
-extern __declspec(dllexport) bool QMdiSubWindow_TestOption(const QMdiSubWindow* self, SubWindowOption param1);
-extern __declspec(dllexport) void QMdiSubWindow_SetKeyboardSingleStep(QMdiSubWindow* self, int step);
-extern __declspec(dllexport) int QMdiSubWindow_KeyboardSingleStep(const QMdiSubWindow* self);
-extern __declspec(dllexport) void QMdiSubWindow_SetKeyboardPageStep(QMdiSubWindow* self, int step);
-extern __declspec(dllexport) int QMdiSubWindow_KeyboardPageStep(const QMdiSubWindow* self);
-extern __declspec(dllexport) void QMdiSubWindow_SetSystemMenu(QMdiSubWindow* self, QMenu* systemMenu);
-extern __declspec(dllexport) QMenu* QMdiSubWindow_SystemMenu(const QMdiSubWindow* self);
-extern __declspec(dllexport) QMdiArea* QMdiSubWindow_MdiArea(const QMdiSubWindow* self);
-extern __declspec(dllexport) void QMdiSubWindow_WindowStateChanged(QMdiSubWindow* self, int oldState, int newState);
+extern __declspec(dllexport) 
+QMdiSubWindow* QMdiSubWindow_new(QWidget* parent);
+extern __declspec(dllexport) 
+QMdiSubWindow* QMdiSubWindow_new2();
+extern __declspec(dllexport) 
+QMdiSubWindow* QMdiSubWindow_new3(QWidget* parent, int flags);
+extern __declspec(dllexport) 
+void QMdiSubWindow_virtbase(QMdiSubWindow* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QMdiSubWindow_MetaObject(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void* QMdiSubWindow_Metacast(QMdiSubWindow* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QMdiSubWindow_Tr(const char* s);
+extern __declspec(dllexport) 
+QSize* QMdiSubWindow_SizeHint(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+QSize* QMdiSubWindow_MinimumSizeHint(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_SetWidget(QMdiSubWindow* self, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QMdiSubWindow_Widget(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+QWidget* QMdiSubWindow_MaximizedButtonsWidget(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+QWidget* QMdiSubWindow_MaximizedSystemMenuIconWidget(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+bool QMdiSubWindow_IsShaded(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_SetOption(QMdiSubWindow* self, SubWindowOption option);
+extern __declspec(dllexport) 
+bool QMdiSubWindow_TestOption(const QMdiSubWindow* self, SubWindowOption param1);
+extern __declspec(dllexport) 
+void QMdiSubWindow_SetKeyboardSingleStep(QMdiSubWindow* self, int step);
+extern __declspec(dllexport) 
+int QMdiSubWindow_KeyboardSingleStep(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_SetKeyboardPageStep(QMdiSubWindow* self, int step);
+extern __declspec(dllexport) 
+int QMdiSubWindow_KeyboardPageStep(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_SetSystemMenu(QMdiSubWindow* self, QMenu* systemMenu);
+extern __declspec(dllexport) 
+QMenu* QMdiSubWindow_SystemMenu(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+QMdiArea* QMdiSubWindow_MdiArea(const QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_WindowStateChanged(QMdiSubWindow* self, int oldState, int newState);
 void QMdiSubWindow_connect_WindowStateChanged(QMdiSubWindow* self, intptr_t slot);
-extern __declspec(dllexport) void QMdiSubWindow_AboutToActivate(QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_AboutToActivate(QMdiSubWindow* self);
 void QMdiSubWindow_connect_AboutToActivate(QMdiSubWindow* self, intptr_t slot);
-extern __declspec(dllexport) void QMdiSubWindow_ShowSystemMenu(QMdiSubWindow* self);
-extern __declspec(dllexport) void QMdiSubWindow_ShowShaded(QMdiSubWindow* self);
-extern __declspec(dllexport) bool QMdiSubWindow_EventFilter(QMdiSubWindow* self, QObject* object, QEvent* event);
-extern __declspec(dllexport) bool QMdiSubWindow_Event(QMdiSubWindow* self, QEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_ShowEvent(QMdiSubWindow* self, QShowEvent* showEvent);
-extern __declspec(dllexport) void QMdiSubWindow_HideEvent(QMdiSubWindow* self, QHideEvent* hideEvent);
-extern __declspec(dllexport) void QMdiSubWindow_ChangeEvent(QMdiSubWindow* self, QEvent* changeEvent);
-extern __declspec(dllexport) void QMdiSubWindow_CloseEvent(QMdiSubWindow* self, QCloseEvent* closeEvent);
-extern __declspec(dllexport) void QMdiSubWindow_LeaveEvent(QMdiSubWindow* self, QEvent* leaveEvent);
-extern __declspec(dllexport) void QMdiSubWindow_ResizeEvent(QMdiSubWindow* self, QResizeEvent* resizeEvent);
-extern __declspec(dllexport) void QMdiSubWindow_TimerEvent(QMdiSubWindow* self, QTimerEvent* timerEvent);
-extern __declspec(dllexport) void QMdiSubWindow_MoveEvent(QMdiSubWindow* self, QMoveEvent* moveEvent);
-extern __declspec(dllexport) void QMdiSubWindow_PaintEvent(QMdiSubWindow* self, QPaintEvent* paintEvent);
-extern __declspec(dllexport) void QMdiSubWindow_MousePressEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_MouseDoubleClickEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_MouseReleaseEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_MouseMoveEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_KeyPressEvent(QMdiSubWindow* self, QKeyEvent* keyEvent);
-extern __declspec(dllexport) void QMdiSubWindow_ContextMenuEvent(QMdiSubWindow* self, QContextMenuEvent* contextMenuEvent);
-extern __declspec(dllexport) void QMdiSubWindow_FocusInEvent(QMdiSubWindow* self, QFocusEvent* focusInEvent);
-extern __declspec(dllexport) void QMdiSubWindow_FocusOutEvent(QMdiSubWindow* self, QFocusEvent* focusOutEvent);
-extern __declspec(dllexport) void QMdiSubWindow_ChildEvent(QMdiSubWindow* self, QChildEvent* childEvent);
-extern __declspec(dllexport) struct miqt_string QMdiSubWindow_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QMdiSubWindow_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QMdiSubWindow_SetOption2(QMdiSubWindow* self, SubWindowOption option, bool on);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QMdiSubWindow_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QMdiSubWindow_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QMdiSubWindow_virtualbase_EventFilter(void* self, QObject* object, QEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_Event(void* self, intptr_t slot);
-bool QMdiSubWindow_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_ShowEvent(void* self, QShowEvent* showEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_HideEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_HideEvent(void* self, QHideEvent* hideEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_ChangeEvent(void* self, QEvent* changeEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_CloseEvent(void* self, QCloseEvent* closeEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_LeaveEvent(void* self, QEvent* leaveEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_ResizeEvent(void* self, QResizeEvent* resizeEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_TimerEvent(void* self, QTimerEvent* timerEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_MoveEvent(void* self, QMoveEvent* moveEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_PaintEvent(void* self, QPaintEvent* paintEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_MousePressEvent(void* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_MouseMoveEvent(void* self, QMouseEvent* mouseEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_KeyPressEvent(void* self, QKeyEvent* keyEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* contextMenuEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_FocusInEvent(void* self, QFocusEvent* focusInEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_FocusOutEvent(void* self, QFocusEvent* focusOutEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_ChildEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_ChildEvent(void* self, QChildEvent* childEvent);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_DevType(void* self, intptr_t slot);
-int QMdiSubWindow_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_SetVisible(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QMdiSubWindow_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QMdiSubWindow_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QMdiSubWindow_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_DropEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QMdiSubWindow_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_Metric(void* self, intptr_t slot);
-int QMdiSubWindow_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_InitPainter(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QMdiSubWindow_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QMdiSubWindow_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QMdiSubWindow_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QMdiSubWindow_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QMdiSubWindow_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QMdiSubWindow_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QMdiSubWindow_Delete(QMdiSubWindow* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ShowSystemMenu(QMdiSubWindow* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ShowShaded(QMdiSubWindow* self);
+extern __declspec(dllexport) 
+bool QMdiSubWindow_EventFilter(QMdiSubWindow* self, QObject* object, QEvent* event);
+extern __declspec(dllexport) 
+bool QMdiSubWindow_Event(QMdiSubWindow* self, QEvent* event);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ShowEvent(QMdiSubWindow* self, QShowEvent* showEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_HideEvent(QMdiSubWindow* self, QHideEvent* hideEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ChangeEvent(QMdiSubWindow* self, QEvent* changeEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_CloseEvent(QMdiSubWindow* self, QCloseEvent* closeEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_LeaveEvent(QMdiSubWindow* self, QEvent* leaveEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ResizeEvent(QMdiSubWindow* self, QResizeEvent* resizeEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_TimerEvent(QMdiSubWindow* self, QTimerEvent* timerEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_MoveEvent(QMdiSubWindow* self, QMoveEvent* moveEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_PaintEvent(QMdiSubWindow* self, QPaintEvent* paintEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_MousePressEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_MouseDoubleClickEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_MouseReleaseEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_MouseMoveEvent(QMdiSubWindow* self, QMouseEvent* mouseEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_KeyPressEvent(QMdiSubWindow* self, QKeyEvent* keyEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ContextMenuEvent(QMdiSubWindow* self, QContextMenuEvent* contextMenuEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_FocusInEvent(QMdiSubWindow* self, QFocusEvent* focusInEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_FocusOutEvent(QMdiSubWindow* self, QFocusEvent* focusOutEvent);
+extern __declspec(dllexport) 
+void QMdiSubWindow_ChildEvent(QMdiSubWindow* self, QChildEvent* childEvent);
+extern __declspec(dllexport) 
+struct miqt_string QMdiSubWindow_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QMdiSubWindow_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QMdiSubWindow_SetOption2(QMdiSubWindow* self, SubWindowOption option, bool on);
+extern __declspec(dllexport) 
+void QMdiSubWindow_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QMdiSubWindow_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QMdiSubWindow_override_virtual_Metacast(void* self, intptr_t slot);
+void* QMdiSubWindow_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QMdiSubWindow_Delete(QMdiSubWindow* self, bool isSubclass);
 
-} 
+}

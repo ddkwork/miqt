@@ -1,9 +1,6 @@
 // +build ignore
 
-#include <QChildEvent>
 #include <QChronoTimer>
-#include <QEvent>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
@@ -22,173 +19,47 @@ public:
 	virtual ~MiqtVirtualQChronoTimer() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* param1) override {
-		if (handle__TimerEvent == 0) {
-			QChronoTimer::timerEvent(param1);
-			return;
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QChronoTimer::metaObject();
 		}
 		
-		QTimerEvent* sigval1 = param1;
 
-		miqt_exec_callback_QChronoTimer_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* param1) {
-
-		QChronoTimer::timerEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QChronoTimer::event(event);
-		}
-		
-		QEvent* sigval1 = event;
-
-		bool callback_return_value = miqt_exec_callback_QChronoTimer_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QChronoTimer_MetaObject(const_cast<MiqtVirtualQChronoTimer*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QChronoTimer::event(event);
+		return (QMetaObject*) QChronoTimer::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QChronoTimer::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QChronoTimer::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QChronoTimer_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QChronoTimer_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QChronoTimer::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QChronoTimer::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QChronoTimer_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QChronoTimer::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QChronoTimer::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QChronoTimer_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QChronoTimer::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QChronoTimer::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QChronoTimer_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QChronoTimer::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QChronoTimer::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QChronoTimer_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QChronoTimer::disconnectNotify(*signal);
+		return QChronoTimer::qt_metacast(param1);
 
 	}
 
@@ -281,60 +152,20 @@ struct miqt_string QChronoTimer_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QChronoTimer_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__TimerEvent = slot;
+void QChronoTimer_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__MetaObject = slot;
 }
 
-void QChronoTimer_virtualbase_TimerEvent(void* self, QTimerEvent* param1) {
-	( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_TimerEvent(param1);
+QMetaObject* QChronoTimer_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQChronoTimer*)(self) )->virtualbase_MetaObject();
 }
 
-void QChronoTimer_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__Event = slot;
+void QChronoTimer_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__Metacast = slot;
 }
 
-bool QChronoTimer_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_Event(event);
-}
-
-void QChronoTimer_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__EventFilter = slot;
-}
-
-bool QChronoTimer_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QChronoTimer_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__ChildEvent = slot;
-}
-
-void QChronoTimer_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QChronoTimer_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__CustomEvent = slot;
-}
-
-void QChronoTimer_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QChronoTimer_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QChronoTimer_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QChronoTimer_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQChronoTimer*>( (QChronoTimer*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QChronoTimer_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QChronoTimer_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQChronoTimer*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QChronoTimer_Delete(QChronoTimer* self, bool isSubclass) {

@@ -23,7 +23,6 @@ type QMatrix4x4 struct {
 
 // NewQMatrix4x4 constructs a new QMatrix4x4 object.
 func NewQMatrix4x4() *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new())
 	ret.isSubclass = true
 	return ret
@@ -31,7 +30,6 @@ func NewQMatrix4x4() *QMatrix4x4 {
 
 // NewQMatrix4x42 constructs a new QMatrix4x4 object.
 func NewQMatrix4x42(param1 Initialization) *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new2((int)(param1)))
 	ret.isSubclass = true
 	return ret
@@ -39,7 +37,6 @@ func NewQMatrix4x42(param1 Initialization) *QMatrix4x4 {
 
 // NewQMatrix4x43 constructs a new QMatrix4x4 object.
 func NewQMatrix4x43(values *float32) *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new3((*float)(unsafe.Pointer(values))))
 	ret.isSubclass = true
 	return ret
@@ -47,7 +44,6 @@ func NewQMatrix4x43(values *float32) *QMatrix4x4 {
 
 // NewQMatrix4x44 constructs a new QMatrix4x4 object.
 func NewQMatrix4x44(m11 float32, m12 float32, m13 float32, m14 float32, m21 float32, m22 float32, m23 float32, m24 float32, m31 float32, m32 float32, m33 float32, m34 float32, m41 float32, m42 float32, m43 float32, m44 float32) *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new4((float)(m11), (float)(m12), (float)(m13), (float)(m14), (float)(m21), (float)(m22), (float)(m23), (float)(m24), (float)(m31), (float)(m32), (float)(m33), (float)(m34), (float)(m41), (float)(m42), (float)(m43), (float)(m44)))
 	ret.isSubclass = true
 	return ret
@@ -55,7 +51,6 @@ func NewQMatrix4x44(m11 float32, m12 float32, m13 float32, m14 float32, m21 floa
 
 // NewQMatrix4x45 constructs a new QMatrix4x4 object.
 func NewQMatrix4x45(values *float32, cols int, rows int) *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new5((*float)(unsafe.Pointer(values)), (int)(cols), (int)(rows)))
 	ret.isSubclass = true
 	return ret
@@ -63,7 +58,6 @@ func NewQMatrix4x45(values *float32, cols int, rows int) *QMatrix4x4 {
 
 // NewQMatrix4x46 constructs a new QMatrix4x4 object.
 func NewQMatrix4x46(transform *QTransform) *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new6(transform.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -71,7 +65,6 @@ func NewQMatrix4x46(transform *QTransform) *QMatrix4x4 {
 
 // NewQMatrix4x47 constructs a new QMatrix4x4 object.
 func NewQMatrix4x47(param1 *QMatrix4x4) *QMatrix4x4 {
-
 	ret := newQMatrix4x4(QMatrix4x4_new7(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

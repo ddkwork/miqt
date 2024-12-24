@@ -18,7 +18,6 @@ type QReadWriteLock struct {
 
 // NewQReadWriteLock constructs a new QReadWriteLock object.
 func NewQReadWriteLock() *QReadWriteLock {
-
 	ret := newQReadWriteLock(QReadWriteLock_new())
 	ret.isSubclass = true
 	return ret
@@ -26,7 +25,6 @@ func NewQReadWriteLock() *QReadWriteLock {
 
 // NewQReadWriteLock2 constructs a new QReadWriteLock object.
 func NewQReadWriteLock2(recursionMode RecursionMode) *QReadWriteLock {
-
 	ret := newQReadWriteLock(QReadWriteLock_new2(recursionMode))
 	ret.isSubclass = true
 	return ret
@@ -75,7 +73,6 @@ type QReadLocker struct {
 
 // NewQReadLocker constructs a new QReadLocker object.
 func NewQReadLocker(readWriteLock *QReadWriteLock) *QReadLocker {
-
 	ret := newQReadLocker(QReadLocker_new(readWriteLock.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -100,7 +97,6 @@ type QWriteLocker struct {
 
 // NewQWriteLocker constructs a new QWriteLocker object.
 func NewQWriteLocker(readWriteLock *QReadWriteLock) *QWriteLocker {
-
 	ret := newQWriteLocker(QWriteLocker_new(readWriteLock.cPointer()))
 	ret.isSubclass = true
 	return ret

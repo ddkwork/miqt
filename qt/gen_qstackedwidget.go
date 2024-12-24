@@ -11,7 +11,6 @@ type QStackedWidget struct {
 
 // NewQStackedWidget constructs a new QStackedWidget object.
 func NewQStackedWidget(parent *QWidget) *QStackedWidget {
-
 	ret := newQStackedWidget(QStackedWidget_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQStackedWidget(parent *QWidget) *QStackedWidget {
 
 // NewQStackedWidget2 constructs a new QStackedWidget object.
 func NewQStackedWidget2() *QStackedWidget {
-
 	ret := newQStackedWidget(QStackedWidget_new2())
 	ret.isSubclass = true
 	return ret
@@ -87,6 +85,7 @@ func (this *QStackedWidget) SetCurrentWidget(w *QWidget) {
 func (this *QStackedWidget) CurrentChanged(param1 int) {
 	QStackedWidget_CurrentChanged(this.h, (int)(param1))
 }
+
 func (this *QStackedWidget) OnCurrentChanged(slot func(param1 int)) {
 	QStackedWidget_connect_CurrentChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -107,6 +106,7 @@ func miqt_exec_callback_QStackedWidget_CurrentChanged(cb intptr_t, param1 int) {
 func (this *QStackedWidget) WidgetRemoved(index int) {
 	QStackedWidget_WidgetRemoved(this.h, (int)(index))
 }
+
 func (this *QStackedWidget) OnWidgetRemoved(slot func(index int)) {
 	QStackedWidget_connect_WidgetRemoved(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -127,6 +127,7 @@ func miqt_exec_callback_QStackedWidget_WidgetRemoved(cb intptr_t, index int) {
 func (this *QStackedWidget) WidgetAdded(index int) {
 	QStackedWidget_WidgetAdded(this.h, (int)(index))
 }
+
 func (this *QStackedWidget) OnWidgetAdded(slot func(index int)) {
 	QStackedWidget_connect_WidgetAdded(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -166,135 +167,55 @@ func QStackedWidget_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QStackedWidget) callVirtualBase_Event(e *QEvent) bool {
-
-	return (bool)(QStackedWidget_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
+func (this *QStackedWidget) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QStackedWidget_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QStackedWidget) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
+
+func (this *QStackedWidget) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QStackedWidget_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QStackedWidget_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QStackedWidget_Event
-func miqt_exec_callback_QStackedWidget_Event(self QStackedWidget, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QStackedWidget_MetaObject
+func miqt_exec_callback_QStackedWidget_MetaObject(self QStackedWidget, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
-
-	virtualReturn := gofunc((&QStackedWidget{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QStackedWidget) callVirtualBase_SizeHint() *QSize {
-
-	_goptr := newQSize(QStackedWidget_virtualbase_SizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QStackedWidget) OnSizeHint(slot func(super func() *QSize) *QSize) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QStackedWidget_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QStackedWidget_SizeHint
-func miqt_exec_callback_QStackedWidget_SizeHint(self QStackedWidget, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QStackedWidget{h: self}).callVirtualBase_SizeHint)
+	virtualReturn := gofunc((&QStackedWidget{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QStackedWidget) callVirtualBase_PaintEvent(param1 *QPaintEvent) {
+func (this *QStackedWidget) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QStackedWidget_virtualbase_PaintEvent(unsafe.Pointer(this.h), param1.cPointer())
-
+	return (unsafe.Pointer)(QStackedWidget_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QStackedWidget) OnPaintEvent(slot func(super func(param1 *QPaintEvent), param1 *QPaintEvent)) {
+
+func (this *QStackedWidget) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QStackedWidget_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QStackedWidget_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QStackedWidget_PaintEvent
-func miqt_exec_callback_QStackedWidget_PaintEvent(self QStackedWidget, cb intptr_t, param1 *QPaintEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QPaintEvent), param1 *QPaintEvent))
+//export miqt_exec_callback_QStackedWidget_Metacast
+func miqt_exec_callback_QStackedWidget_Metacast(self QStackedWidget, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPaintEvent(param1)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QStackedWidget{h: self}).callVirtualBase_PaintEvent, slotval1)
+	virtualReturn := gofunc((&QStackedWidget{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QStackedWidget) callVirtualBase_ChangeEvent(param1 *QEvent) {
-
-	QStackedWidget_virtualbase_ChangeEvent(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QStackedWidget) OnChangeEvent(slot func(super func(param1 *QEvent), param1 *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QStackedWidget_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QStackedWidget_ChangeEvent
-func miqt_exec_callback_QStackedWidget_ChangeEvent(self QStackedWidget, cb intptr_t, param1 *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent), param1 *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(param1)
-
-	gofunc((&QStackedWidget{h: self}).callVirtualBase_ChangeEvent, slotval1)
-
-}
-
-func (this *QStackedWidget) callVirtualBase_InitStyleOption(option *QStyleOptionFrame) {
-
-	QStackedWidget_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
-
-}
-func (this *QStackedWidget) OnInitStyleOption(slot func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QStackedWidget_override_virtual_InitStyleOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QStackedWidget_InitStyleOption
-func miqt_exec_callback_QStackedWidget_InitStyleOption(self QStackedWidget, cb intptr_t, option *QStyleOptionFrame) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option *QStyleOptionFrame), option *QStyleOptionFrame))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQStyleOptionFrame(option)
-
-	gofunc((&QStackedWidget{h: self}).callVirtualBase_InitStyleOption, slotval1)
-
+	return virtualReturn
 }

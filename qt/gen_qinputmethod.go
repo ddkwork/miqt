@@ -134,6 +134,7 @@ func (this *QInputMethod) InvokeAction(a Action, cursorPosition int) {
 func (this *QInputMethod) CursorRectangleChanged() {
 	QInputMethod_CursorRectangleChanged(this.h)
 }
+
 func (this *QInputMethod) OnCursorRectangleChanged(slot func()) {
 	QInputMethod_connect_CursorRectangleChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -151,6 +152,7 @@ func miqt_exec_callback_QInputMethod_CursorRectangleChanged(cb intptr_t) {
 func (this *QInputMethod) AnchorRectangleChanged() {
 	QInputMethod_AnchorRectangleChanged(this.h)
 }
+
 func (this *QInputMethod) OnAnchorRectangleChanged(slot func()) {
 	QInputMethod_connect_AnchorRectangleChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -168,6 +170,7 @@ func miqt_exec_callback_QInputMethod_AnchorRectangleChanged(cb intptr_t) {
 func (this *QInputMethod) KeyboardRectangleChanged() {
 	QInputMethod_KeyboardRectangleChanged(this.h)
 }
+
 func (this *QInputMethod) OnKeyboardRectangleChanged(slot func()) {
 	QInputMethod_connect_KeyboardRectangleChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -185,6 +188,7 @@ func miqt_exec_callback_QInputMethod_KeyboardRectangleChanged(cb intptr_t) {
 func (this *QInputMethod) InputItemClipRectangleChanged() {
 	QInputMethod_InputItemClipRectangleChanged(this.h)
 }
+
 func (this *QInputMethod) OnInputItemClipRectangleChanged(slot func()) {
 	QInputMethod_connect_InputItemClipRectangleChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -202,6 +206,7 @@ func miqt_exec_callback_QInputMethod_InputItemClipRectangleChanged(cb intptr_t) 
 func (this *QInputMethod) VisibleChanged() {
 	QInputMethod_VisibleChanged(this.h)
 }
+
 func (this *QInputMethod) OnVisibleChanged(slot func()) {
 	QInputMethod_connect_VisibleChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -219,6 +224,7 @@ func miqt_exec_callback_QInputMethod_VisibleChanged(cb intptr_t) {
 func (this *QInputMethod) AnimatingChanged() {
 	QInputMethod_AnimatingChanged(this.h)
 }
+
 func (this *QInputMethod) OnAnimatingChanged(slot func()) {
 	QInputMethod_connect_AnimatingChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -236,6 +242,7 @@ func miqt_exec_callback_QInputMethod_AnimatingChanged(cb intptr_t) {
 func (this *QInputMethod) LocaleChanged() {
 	QInputMethod_LocaleChanged(this.h)
 }
+
 func (this *QInputMethod) OnLocaleChanged(slot func()) {
 	QInputMethod_connect_LocaleChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -253,6 +260,7 @@ func miqt_exec_callback_QInputMethod_LocaleChanged(cb intptr_t) {
 func (this *QInputMethod) InputDirectionChanged(newDirection LayoutDirection) {
 	QInputMethod_InputDirectionChanged(this.h, (int)(newDirection))
 }
+
 func (this *QInputMethod) OnInputDirectionChanged(slot func(newDirection LayoutDirection)) {
 	QInputMethod_connect_InputDirectionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }

@@ -11,7 +11,6 @@ type QBasicMutex struct {
 
 // NewQBasicMutex constructs a new QBasicMutex object.
 func NewQBasicMutex() *QBasicMutex {
-
 	ret := newQBasicMutex(QBasicMutex_new())
 	ret.isSubclass = true
 	return ret
@@ -40,7 +39,6 @@ type QMutex struct {
 
 // NewQMutex constructs a new QMutex object.
 func NewQMutex() *QMutex {
-
 	ret := newQMutex(QMutex_new())
 	ret.isSubclass = true
 	return ret
@@ -65,7 +63,6 @@ type QRecursiveMutex struct {
 
 // NewQRecursiveMutex constructs a new QRecursiveMutex object.
 func NewQRecursiveMutex() *QRecursiveMutex {
-
 	ret := newQRecursiveMutex(QRecursiveMutex_new())
 	ret.isSubclass = true
 	return ret

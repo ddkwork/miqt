@@ -1,8 +1,9 @@
 package cbor
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QCborStreamReader__Type byte
@@ -40,7 +41,6 @@ type QCborStreamReader struct {
 
 // NewQCborStreamReader constructs a new QCborStreamReader object.
 func NewQCborStreamReader() *QCborStreamReader {
-
 	ret := newQCborStreamReader(QCborStreamReader_new())
 	ret.isSubclass = true
 	return ret
@@ -58,7 +58,6 @@ func NewQCborStreamReader2(data string, lenVal int64) *QCborStreamReader {
 
 // NewQCborStreamReader3 constructs a new QCborStreamReader object.
 func NewQCborStreamReader3(data *byte, lenVal int64) *QCborStreamReader {
-
 	ret := newQCborStreamReader(QCborStreamReader_new3((*uchar)(unsafe.Pointer(data)), (ptrdiff_t)(lenVal)))
 	ret.isSubclass = true
 	return ret
@@ -77,7 +76,6 @@ func NewQCborStreamReader4(data []byte) *QCborStreamReader {
 
 // NewQCborStreamReader5 constructs a new QCborStreamReader object.
 func NewQCborStreamReader5(device *qt.QIODevice) *QCborStreamReader {
-
 	ret := newQCborStreamReader(QCborStreamReader_new5((*QIODevice)(device.UnsafePointer())))
 	ret.isSubclass = true
 	return ret

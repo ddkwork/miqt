@@ -3,6 +3,8 @@ package main
 import (
 	"path/filepath"
 	"strings"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 func InsertTypedefs() {
@@ -43,7 +45,6 @@ func InsertTypedefs() {
 	KnownTypedefs["QLibraryInfo::LibraryLocation"] = lookupResultTypedef{pkgName, CppTypedef{"QLibraryInfo::LibraryLocation", parseSingleTypeString("QLibraryInfo::LibraryPath")}}
 
 	// Enums
-
 	// QSysInfo.h is being truncated and not finding any content
 	KnownEnums["QSysInfo::Endian"] = lookupResultEnum{pkgName, CppEnum{
 		EnumName: "QSysInfo::Endian",
@@ -55,16 +56,13 @@ func InsertTypedefs() {
 
 func Widgets_AllowHeader(fullpath string) bool {
 	fname := filepath.Base(fullpath)
-
 	if strings.HasSuffix(fname, `_impl.h`) {
 		return false // Not meant to be imported
 	}
-
 	fname_lc := strings.ToLower(fname)
 	if strings.Contains(fname_lc, `opengl`) || strings.Contains(fname_lc, `vulkan`) {
 		return false // Too hard
 	}
-
 	switch fname {
 	case "qatomic_bootstrap.h",
 		"qatomic_cxx11.h",
@@ -88,28 +86,22 @@ func Widgets_AllowHeader(fullpath string) bool {
 		"____last____":
 		return false
 	}
-
 	return true
 }
 
 func ImportHeaderForClass(className string) bool {
-	if className[0] != 'Q' {
+	switch {
+	case className[0] != 'Q':
 		return false
-	}
-
-	// TODO this could be implict by checking if files exist in known header paths
-
-	if strings.HasPrefix(className, "QPlatform") {
+	case strings.HasPrefix(className, "QPlatform"):
 		// e.g. QPlatformPixmap, QPlatformWindow, QPlatformScreen
 		// These classes don't have a <> version to include
 		return false
-	}
-
-	if strings.HasPrefix(className, "Qsci") {
+	case strings.HasPrefix(className, "Qsci"):
 		// QScintilla - does not produce imports
 		return false
 	}
-
+	// TODO this could be implict by checking if files exist in known header paths
 	switch className {
 	case "QGraphicsEffectSource", // e.g. qgraphicseffect.h
 		"QAbstractConcatenable", // qstringbuilder.h
@@ -120,24 +112,19 @@ func ImportHeaderForClass(className string) bool {
 		"____last____":
 		return false
 	}
-
 	return true
 }
 
 func AllowClass(className string) bool {
-	if strings.HasSuffix(className, "Private") || strings.HasSuffix(className, "PrivateShared") ||
-		strings.Contains(className, "Private::") || strings.HasSuffix(className, "PrivateShared::") {
+	switch {
+	case strings.HasSuffix(className, "Private") || strings.HasSuffix(className, "PrivateShared") ||
+		strings.Contains(className, "Private::") || strings.HasSuffix(className, "PrivateShared::"):
 		return false
-	}
-
-	if strings.Contains(className, "QPrivateSignal") {
+	case strings.Contains(className, "QPrivateSignal"):
 		return false
-	}
-
-	if strings.HasPrefix(className, `std::`) {
+	case strings.HasPrefix(className, `std::`):
 		return false // Scintilla bindings find some of these
 	}
-
 	switch className {
 	case
 		"QTextStreamManipulator", // Only seems to contain garbage methods
@@ -171,7 +158,6 @@ func AllowSignal(mm CppMethod) bool {
 		// It would be fixable, but, real signals always have void return types anyway
 		return false
 	}
-
 	switch mm.MethodName {
 	case `metaObject`, `qt_metacast`,
 		`clone`: // Qt 6 - qcoreevent.h
@@ -182,11 +168,7 @@ func AllowSignal(mm CppMethod) bool {
 }
 
 func AllowVirtual(mm CppMethod) bool {
-	if mm.MethodName == "metaObject" || mm.MethodName == "qt_metacast" {
-		return false
-	}
-
-	return true // AllowSignal(mm)
+	return mm.MethodName == "metaObject" || mm.MethodName == "qt_metacast" // AllowSignal(mm)
 }
 
 func AllowVirtualForClass(className string) bool {
@@ -199,38 +181,20 @@ func AllowVirtualForClass(className string) bool {
 	//
 	// An undefined vtable usually indicates that the virtual class is missing
 	// definitions for some virtual methods, but AFAICT we have complete coverage.
-	if className == "QAccessibleWidget" {
+	switch className {
+	case "QAccessibleWidget", "QAccessibleObject", "QWebHapticFeedbackPlayer":
+		return false
+	case "QFutureWatcherBase": // Pure virtual method futureInterface() returns an unprojectable template type
+		return false
+	case "QObjectData": // Pure virtual dtor (should be possible to support)
+		return false
+	case "QAbstractEventDispatcher":
+		// Pure virtual method registerEventNotifier takes a QWinEventNotifier* on Windows
+		// which is platform-specific
+		return false
+	case "QWebNotificationPresenter": // Qt 5 QWebkit: undefined reference to typeinfo
 		return false
 	}
-
-	// Pure virtual method futureInterface() returns an unprojectable template type
-	if className == "QFutureWatcherBase" {
-		return false
-	}
-
-	// Pure virtual dtor (should be possible to support)
-	if className == "QObjectData" {
-		return false
-	}
-
-	if className == "QAccessibleObject" {
-		return false // undefined reference to `vtable for MiqtVirtualQAccessibleObject'
-	}
-
-	// Pure virtual method registerEventNotifier takes a QWinEventNotifier* on Windows
-	// which is platform-specific
-	if className == "QAbstractEventDispatcher" {
-		return false
-	}
-
-	// Qt 5 QWebkit: undefined reference to typeinfo
-	if className == "QWebNotificationPresenter" {
-		return false
-	}
-	if className == "QWebHapticFeedbackPlayer" {
-		return false
-	}
-
 	return true
 }
 
@@ -243,39 +207,31 @@ func AllowMethod(className string, mm CppMethod) error {
 	if strings.HasSuffix(mm.ReturnType.ParameterType, "Private") {
 		return ErrTooComplex // Skip private type
 	}
-
 	if strings.Contains(mm.MethodName, `QGADGET`) {
 		return ErrTooComplex // Skipping method with weird QGADGET behaviour
 	}
-
 	if mm.IsReceiverMethod() {
 		// Non-projectable receiver pattern parameters
 		return ErrTooComplex
 	}
-
 	if className == "QBitArray" && mm.MethodName == "operator~" {
 		return ErrTooComplex // Present in Qt 5.15 and 6.4, missing in Qt 6.7
 	}
-
 	if className == "QTimeZone" && (mm.MethodName == "operator==" || mm.MethodName == "operator!=") {
 		return ErrTooComplex // Present in Qt 5.15 and 6.4, missing in Qt 6.7
 	}
-
 	if className == "QWaveDecoder" && mm.MethodName == "setIODevice" {
 		return ErrTooComplex // Qt 6: Present in header, but no-op method was not included in compiled library
 	}
-
 	if className == "QDeadlineTimer" && mm.MethodName == "_q_data" {
 		// Qt 6.4: Present in header with "not a public method" comment, not present in Qt 6.6
 		// @ref https://github.com/qt/qtbase/blob/v6.4.0/src/corelib/kernel/qdeadlinetimer.h#L156C29-L156C36
 		return ErrTooComplex
 	}
-
 	if className == "QXmlStreamEntityResolver" && mm.MethodName == "operator=" {
 		// Present in Qt 6.7, but marked as =delete by Q_DISABLE_COPY_MOVE in Qt 6.8
 		return ErrTooComplex
 	}
-
 	return nil // OK, allow
 }
 
@@ -284,15 +240,12 @@ func AllowMethod(className string, mm CppMethod) error {
 // Any type not permitted by AllowClass is also not permitted by this method.
 func AllowType(p CppParameter, isReturnType bool) error {
 	if t, ok := p.QSetOf(); ok {
-		if err := AllowType(t, isReturnType); err != nil {
-			return err
-		}
+		mylog.Check(AllowType(t, isReturnType))
 	}
 	if t, ok := p.QListOf(); ok {
-		if err := AllowType(t, isReturnType); err != nil { // e.g. QGradientStops is a QVector<> (OK) of QGradientStop (not OK)
-			return err
+		if e := AllowType(t, isReturnType); e != nil { // e.g. QGradientStops is a QVector<> (OK) of QGradientStop (not OK)
+			return e
 		}
-
 		// qsciscintilla.h QsciScintilla_Annotate4: no copy ctor for private type QsciStyledText
 		// Works fine normally, but not in a list
 		if t.ParameterType == "QsciStyledText" {
@@ -300,12 +253,8 @@ func AllowType(p CppParameter, isReturnType bool) error {
 		}
 	}
 	if kType, vType, ok := p.QMapOf(); ok {
-		if err := AllowType(kType, isReturnType); err != nil {
-			return err
-		}
-		if err := AllowType(vType, isReturnType); err != nil {
-			return err
-		}
+		mylog.Check(AllowType(kType, isReturnType))
+		mylog.Check(AllowType(vType, isReturnType))
 		// Additionally, Go maps do not support []byte keys
 		// This affects qnetwork qsslconfiguration BackendConfiguration
 		if kType.ParameterType == "QByteArray" {
@@ -313,68 +262,45 @@ func AllowType(p CppParameter, isReturnType bool) error {
 		}
 	}
 	if kType, vType, ok := p.QPairOf(); ok {
-		if err := AllowType(kType, isReturnType); err != nil {
-			return err
-		}
-		if err := AllowType(vType, isReturnType); err != nil {
-			return err
-		}
+		mylog.Check(AllowType(kType, isReturnType))
+		mylog.Check(AllowType(vType, isReturnType))
 	}
-	if p.QMultiMapOf() {
+	switch {
+	case p.QMultiMapOf():
 		return ErrTooComplex // e.g. Qt5 QNetwork qsslcertificate.h has a QMultiMap<QSsl::AlternativeNameEntryType, QString>
-	}
-
-	if !AllowClass(p.ParameterType) {
+	case !AllowClass(p.ParameterType):
 		return ErrTooComplex // This whole class type has been blocked, not only as a parameter/return type
-	}
-
-	if strings.Contains(p.ParameterType, "(*)") { // Function pointer.
+	case strings.Contains(p.ParameterType, "(*)"): // Function pointer.
 		return ErrTooComplex // e.g. QAccessible_InstallFactory
-	}
-	if strings.HasPrefix(p.ParameterType, "StringResult<") {
+	case strings.HasPrefix(p.ParameterType, "StringResult<"):
 		return ErrTooComplex // e.g. qcborstreamreader.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QScopedPointer<") {
+	case strings.HasPrefix(p.ParameterType, "QScopedPointer<"):
 		return ErrTooComplex // e.g. qbrush.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QExplicitlySharedDataPointer<") {
+	case strings.HasPrefix(p.ParameterType, "QExplicitlySharedDataPointer<"):
 		return ErrTooComplex // e.g. qpicture.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QSharedDataPointer<") {
+	case strings.HasPrefix(p.ParameterType, "QSharedDataPointer<"):
 		return ErrTooComplex // e.g. qurlquery.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QTypedArrayData<") {
+	case strings.HasPrefix(p.ParameterType, "QTypedArrayData<"):
 		return ErrTooComplex // e.g. qbitarray.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QGenericMatrix<") {
+	case strings.HasPrefix(p.ParameterType, "QGenericMatrix<"):
 		return ErrTooComplex // e.g. qmatrix4x4.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QUrlTwoFlags<") {
+	case strings.HasPrefix(p.ParameterType, "QUrlTwoFlags<"):
 		return ErrTooComplex // e.g. qurl.h
-	}
-	if strings.HasPrefix(p.ParameterType, "FillResult<") {
+	case strings.HasPrefix(p.ParameterType, "FillResult<"):
 		return ErrTooComplex // Scintilla
-	}
-	if strings.HasPrefix(p.ParameterType, "QBindable<") {
+	case strings.HasPrefix(p.ParameterType, "QBindable<"):
 		return ErrTooComplex // e.g. Qt 6 qabstractanimation.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QRgbaFloat<") {
+	case strings.HasPrefix(p.ParameterType, "QRgbaFloat<"):
 		return ErrTooComplex // e.g. Qt 6 qcolortransform.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QPointer<") {
+	case strings.HasPrefix(p.ParameterType, "QPointer<"):
 		return ErrTooComplex // e.g. Qt 6 qevent.h . It should be possible to support this
-	}
-	if strings.HasPrefix(p.ParameterType, "EncodedData<") {
+	case strings.HasPrefix(p.ParameterType, "EncodedData<"):
 		return ErrTooComplex // e.g. Qt 6 qstringconverter.h
-	}
-	if strings.HasPrefix(p.ParameterType, "QQmlListProperty<") {
+	case strings.HasPrefix(p.ParameterType, "QQmlListProperty<"):
 		return ErrTooComplex // e.g. Qt 5 QWebChannel qmlwebchannel.h . Supporting this will be required for QML in future
-	}
-	if strings.HasPrefix(p.ParameterType, "QWebEngineCallback<") {
+	case strings.HasPrefix(p.ParameterType, "QWebEngineCallback<"):
 		return ErrTooComplex // Function pointer types in QtWebEngine
-	}
-
-	if strings.HasPrefix(p.ParameterType, "std::") {
+	case strings.HasPrefix(p.ParameterType, "std::"):
 		// std::initializer           e.g. qcborarray.h
 		// std::string                QByteArray->toStdString(). There are QString overloads already
 		// std::nullptr_t             Qcborstreamwriter
@@ -382,62 +308,45 @@ func AllowType(p CppParameter, isReturnType bool) error {
 		// std::seed_seq              QRandom
 		// std::exception             Scintilla
 		return ErrTooComplex
-	}
-	if strings.Contains(p.ParameterType, `Iterator::value_type`) {
+	case strings.Contains(p.ParameterType, `Iterator::value_type`):
 		return ErrTooComplex // e.g. qcbormap
-	}
-	if strings.Contains(p.ParameterType, `>::iterator`) ||
-		strings.Contains(p.ParameterType, `>::const_iterator`) {
+	case strings.Contains(p.ParameterType, `>::iterator`) ||
+		strings.Contains(p.ParameterType, `>::const_iterator`):
 		// qresultstore.h tries to create a
 		// NewQtPrivate__ResultIteratorBase2(_mapIterator QMap<int, ResultItem>__const_iterator)
 		return ErrTooComplex
-	}
-	if strings.Contains(p.ParameterType, `::QPrivate`) {
+	case strings.Contains(p.ParameterType, `::QPrivate`):
 		return ErrTooComplex // e.g. QAbstractItemModel::QPrivateSignal
-	}
-	if strings.Contains(p.GetQtCppType().ParameterType, `::DataPtr`) {
+	case strings.Contains(p.GetQtCppType().ParameterType, `::DataPtr`):
 		return ErrTooComplex // e.g. QImage::data_ptr()
-	}
-	if strings.Contains(p.ParameterType, `::DataPointer`) {
+	case strings.Contains(p.ParameterType, `::DataPointer`):
 		return ErrTooComplex // Qt 6 qbytearray.h. This could probably be made to work
-	}
-	if strings.HasPrefix(p.ParameterType, `QArrayDataPointer<`) {
+	case strings.HasPrefix(p.ParameterType, `QArrayDataPointer<`):
 		return ErrTooComplex // Qt 6 qbytearray.h. This could probably be made to work
-	}
-
-	// Some QFoo constructors take a QFooPrivate
-	// QIcon also returns a QIconPrivate
-	if p.ParameterType[0] == 'Q' && strings.HasSuffix(p.ParameterType, "Private") {
+	case p.ParameterType[0] == 'Q' && strings.HasSuffix(p.ParameterType, "Private"):
+		// Some QFoo constructors take a QFooPrivate
+		// QIcon also returns a QIconPrivate
 		return ErrTooComplex
-	}
-	if strings.HasPrefix(p.ParameterType, "QtPrivate::") {
+	case strings.HasPrefix(p.ParameterType, "QtPrivate::"):
 		return ErrTooComplex // e.g. Qt 6 qbindingstorage.h
-	}
-
-	// If any parameters are QString*, skip the method
-	// QDebug constructor
-	// QXmlStreamWriter constructor
-	// QFile::moveToTrash
-	// QLockFile::getLockInfo
-	// QTextDecoder::toUnicode
-	// QTextStream::readLineInto
-	// QFileDialog::getOpenFileName selectedFilter* param
-	if p.ParameterType == "QString" && p.Pointer && !isReturnType { // Out-parameters
+	case p.ParameterType == "QString" && p.Pointer && !isReturnType: // Out-parameters
+		// If any parameters are QString*, skip the method
+		// QDebug constructor
+		// QXmlStreamWriter constructor
+		// QFile::moveToTrash
+		// QLockFile::getLockInfo
+		// QTextDecoder::toUnicode
+		// QTextStream::readLineInto
+		// QFileDialog::getOpenFileName selectedFilter* param
 		return ErrTooComplex
-	}
-
-	// QBuffer can accept a raw pointer to an internal QByteArray, but that
-	// doesn't work when QByteArray is deleted
-	// QDataStream
-	if p.ParameterType == "QByteArray" && p.Pointer && !isReturnType {
+	case p.ParameterType == "QByteArray" && p.Pointer && !isReturnType:
+		// QBuffer can accept a raw pointer to an internal QByteArray, but that
+		// doesn't work when QByteArray is deleted
+		// QDataStream
 		return ErrTooComplex
-	}
-
-	if p.ParameterType == "QFormLayout::ItemRole" && p.Pointer && !isReturnType { // Out-parameters in QFormLayout
-		return ErrTooComplex
-	}
-
-	if p.Pointer && p.PointerCount >= 2 { // Out-parameters
+	case p.ParameterType == "QFormLayout::ItemRole" && p.Pointer && !isReturnType:
+		return ErrTooComplex // Out-parameters in QFormLayout
+	case p.Pointer && p.PointerCount >= 2: // Out-parameters
 		if p.ParameterType != "char" {
 			return ErrTooComplex // e.g. QGraphicsItem_IsBlockedByModalPanel1
 		}
@@ -502,7 +411,6 @@ func AllowType(p CppParameter, isReturnType bool) error {
 		"____last____":
 		return ErrTooComplex
 	}
-
 	// Should be OK
 	return nil
 }
@@ -514,7 +422,6 @@ func LinuxWindowsCompatCheck(p CppParameter) bool {
 	if p.GetQtCppType().ParameterType == "Q_PID" {
 		return true // int64 on Linux, _PROCESS_INFORMATION* on Windows
 	}
-
 	if p.GetQtCppType().ParameterType == "QSocketDescriptor::DescriptorType" {
 		return true // uintptr_t-compatible on Linux, void* on Windows
 	}
@@ -525,7 +432,6 @@ func ApplyQuirks(className string, mm *CppMethod) {
 	if className == "QArrayData" && mm.MethodName == "needsDetach" && mm.IsConst {
 		mm.BecomesNonConstInVersion = addr("6.7")
 	}
-
 	if className == "QFileDialog" && mm.MethodName == "saveFileContent" && mm.IsStatic {
 		// The prototype was changed from
 		// [Qt 5 - 6.6] void QFileDialog::saveFileContent(const QByteArray &fileContent, const QString &fileNameHint = QString())

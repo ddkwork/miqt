@@ -205,6 +205,7 @@ func (this *QScreen) RefreshRate() float64 {
 func (this *QScreen) GeometryChanged(geometry *QRect) {
 	QScreen_GeometryChanged(this.h, geometry.cPointer())
 }
+
 func (this *QScreen) OnGeometryChanged(slot func(geometry *QRect)) {
 	QScreen_connect_GeometryChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -225,6 +226,7 @@ func miqt_exec_callback_QScreen_GeometryChanged(cb intptr_t, geometry *QRect) {
 func (this *QScreen) AvailableGeometryChanged(geometry *QRect) {
 	QScreen_AvailableGeometryChanged(this.h, geometry.cPointer())
 }
+
 func (this *QScreen) OnAvailableGeometryChanged(slot func(geometry *QRect)) {
 	QScreen_connect_AvailableGeometryChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -245,6 +247,7 @@ func miqt_exec_callback_QScreen_AvailableGeometryChanged(cb intptr_t, geometry *
 func (this *QScreen) PhysicalSizeChanged(size *QSizeF) {
 	QScreen_PhysicalSizeChanged(this.h, size.cPointer())
 }
+
 func (this *QScreen) OnPhysicalSizeChanged(slot func(size *QSizeF)) {
 	QScreen_connect_PhysicalSizeChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -265,6 +268,7 @@ func miqt_exec_callback_QScreen_PhysicalSizeChanged(cb intptr_t, size *QSizeF) {
 func (this *QScreen) PhysicalDotsPerInchChanged(dpi float64) {
 	QScreen_PhysicalDotsPerInchChanged(this.h, (double)(dpi))
 }
+
 func (this *QScreen) OnPhysicalDotsPerInchChanged(slot func(dpi float64)) {
 	QScreen_connect_PhysicalDotsPerInchChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -285,6 +289,7 @@ func miqt_exec_callback_QScreen_PhysicalDotsPerInchChanged(cb intptr_t, dpi doub
 func (this *QScreen) LogicalDotsPerInchChanged(dpi float64) {
 	QScreen_LogicalDotsPerInchChanged(this.h, (double)(dpi))
 }
+
 func (this *QScreen) OnLogicalDotsPerInchChanged(slot func(dpi float64)) {
 	QScreen_connect_LogicalDotsPerInchChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -305,6 +310,7 @@ func miqt_exec_callback_QScreen_LogicalDotsPerInchChanged(cb intptr_t, dpi doubl
 func (this *QScreen) VirtualGeometryChanged(rect *QRect) {
 	QScreen_VirtualGeometryChanged(this.h, rect.cPointer())
 }
+
 func (this *QScreen) OnVirtualGeometryChanged(slot func(rect *QRect)) {
 	QScreen_connect_VirtualGeometryChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -325,6 +331,7 @@ func miqt_exec_callback_QScreen_VirtualGeometryChanged(cb intptr_t, rect *QRect)
 func (this *QScreen) PrimaryOrientationChanged(orientation ScreenOrientation) {
 	QScreen_PrimaryOrientationChanged(this.h, (int)(orientation))
 }
+
 func (this *QScreen) OnPrimaryOrientationChanged(slot func(orientation ScreenOrientation)) {
 	QScreen_connect_PrimaryOrientationChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -345,6 +352,7 @@ func miqt_exec_callback_QScreen_PrimaryOrientationChanged(cb intptr_t, orientati
 func (this *QScreen) OrientationChanged(orientation ScreenOrientation) {
 	QScreen_OrientationChanged(this.h, (int)(orientation))
 }
+
 func (this *QScreen) OnOrientationChanged(slot func(orientation ScreenOrientation)) {
 	QScreen_connect_OrientationChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -365,6 +373,7 @@ func miqt_exec_callback_QScreen_OrientationChanged(cb intptr_t, orientation int)
 func (this *QScreen) RefreshRateChanged(refreshRate float64) {
 	QScreen_RefreshRateChanged(this.h, (double)(refreshRate))
 }
+
 func (this *QScreen) OnRefreshRateChanged(slot func(refreshRate float64)) {
 	QScreen_connect_RefreshRateChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }

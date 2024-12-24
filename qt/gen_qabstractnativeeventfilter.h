@@ -10,14 +10,17 @@
 extern "C" {
 typedef struct QAbstractNativeEventFilter QAbstractNativeEventFilter;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractNativeEventFilter* QAbstractNativeEventFilter_new();
-extern __declspec(dllexport) bool QAbstractNativeEventFilter_NativeEventFilter(QAbstractNativeEventFilter* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QAbstractNativeEventFilter_override_virtual_NativeEventFilter(void* self, intptr_t slot);
-bool QAbstractNativeEventFilter_virtualbase_NativeEventFilter(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QAbstractNativeEventFilter_Delete(QAbstractNativeEventFilter* self, bool isSubclass);
+extern __declspec(dllexport) 
+QAbstractNativeEventFilter* QAbstractNativeEventFilter_new();
+extern __declspec(dllexport) 
+bool QAbstractNativeEventFilter_NativeEventFilter(QAbstractNativeEventFilter* self, struct miqt_string eventType, void* message, intptr_t* result);
+extern __declspec(dllexport) 
+void QAbstractNativeEventFilter_Delete(QAbstractNativeEventFilter* self, bool isSubclass);
 
-} 
+}

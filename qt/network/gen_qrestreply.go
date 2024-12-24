@@ -11,7 +11,6 @@ type QRestReply struct {
 
 // NewQRestReply constructs a new QRestReply object.
 func NewQRestReply(reply *QNetworkReply) *QRestReply {
-
 	ret := newQRestReply(QRestReply_new(reply.cPointer()))
 	ret.isSubclass = true
 	return ret

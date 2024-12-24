@@ -11,7 +11,6 @@ type QLatin1StringMatcher struct {
 
 // NewQLatin1StringMatcher constructs a new QLatin1StringMatcher object.
 func NewQLatin1StringMatcher() *QLatin1StringMatcher {
-
 	ret := newQLatin1StringMatcher(QLatin1StringMatcher_new())
 	ret.isSubclass = true
 	return ret

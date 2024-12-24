@@ -43,7 +43,6 @@ type QTextInlineObject struct {
 
 // NewQTextInlineObject constructs a new QTextInlineObject object.
 func NewQTextInlineObject() *QTextInlineObject {
-
 	ret := newQTextInlineObject(QTextInlineObject_new())
 	ret.isSubclass = true
 	return ret
@@ -112,7 +111,6 @@ type QTextLayout struct {
 
 // NewQTextLayout constructs a new QTextLayout object.
 func NewQTextLayout() *QTextLayout {
-
 	ret := newQTextLayout(QTextLayout_new())
 	ret.isSubclass = true
 	return ret
@@ -144,7 +142,6 @@ func NewQTextLayout3(text string, font *QFont) *QTextLayout {
 
 // NewQTextLayout4 constructs a new QTextLayout object.
 func NewQTextLayout4(b *QTextBlock) *QTextLayout {
-
 	ret := newQTextLayout(QTextLayout_new4(b.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -435,7 +432,6 @@ type QTextLine struct {
 
 // NewQTextLine constructs a new QTextLine object.
 func NewQTextLine() *QTextLine {
-
 	ret := newQTextLine(QTextLine_new())
 	ret.isSubclass = true
 	return ret
@@ -618,7 +614,6 @@ type QTextLayout__FormatRange struct {
 
 // NewQTextLayout__FormatRange constructs a new QTextLayout::FormatRange object.
 func NewQTextLayout__FormatRange() *QTextLayout__FormatRange {
-
 	ret := newQTextLayout__FormatRange(QTextLayout__FormatRange_new())
 	ret.isSubclass = true
 	return ret

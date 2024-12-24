@@ -138,7 +138,6 @@ type QFont struct {
 
 // NewQFont constructs a new QFont object.
 func NewQFont() *QFont {
-
 	ret := newQFont(QFont_new())
 	ret.isSubclass = true
 	return ret
@@ -176,7 +175,6 @@ func NewQFont3(families []string) *QFont {
 
 // NewQFont4 constructs a new QFont object.
 func NewQFont4(font *QFont, pd *QPaintDevice) *QFont {
-
 	ret := newQFont(QFont_new4(font.cPointer(), pd.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -184,7 +182,6 @@ func NewQFont4(font *QFont, pd *QPaintDevice) *QFont {
 
 // NewQFont5 constructs a new QFont object.
 func NewQFont5(font *QFont) *QFont {
-
 	ret := newQFont(QFont_new5(font.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -734,7 +731,6 @@ type QFont__Tag struct {
 
 // NewQFont__Tag constructs a new QFont::Tag object.
 func NewQFont__Tag() *QFont__Tag {
-
 	ret := newQFont__Tag(QFont__Tag_new())
 	ret.isSubclass = true
 	return ret
@@ -742,7 +738,6 @@ func NewQFont__Tag() *QFont__Tag {
 
 // NewQFont__Tag2 constructs a new QFont::Tag object.
 func NewQFont__Tag2(param1 *Tag) *QFont__Tag {
-
 	ret := newQFont__Tag(QFont__Tag_new2(param1))
 	ret.isSubclass = true
 	return ret

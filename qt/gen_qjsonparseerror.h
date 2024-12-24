@@ -10,11 +10,15 @@
 extern "C" {
 typedef struct QJsonParseError QJsonParseError;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) struct miqt_string QJsonParseError_ErrorString(const QJsonParseError* self);
-extern __declspec(dllexport) void QJsonParseError_Delete(QJsonParseError* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QJsonParseError_ErrorString(const QJsonParseError* self);
+extern __declspec(dllexport) 
+void QJsonParseError_Delete(QJsonParseError* self, bool isSubclass);
 
-} 
+}

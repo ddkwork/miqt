@@ -3,14 +3,10 @@
 #include <QAbstractButton>
 #include <QCommandLinkButton>
 #include <QEvent>
-#include <QFocusEvent>
-#include <QKeyEvent>
 #include <QMetaObject>
-#include <QMouseEvent>
 #include <QObject>
 #include <QPaintDevice>
 #include <QPaintEvent>
-#include <QPoint>
 #include <QPushButton>
 #include <QSize>
 #include <QString>
@@ -34,261 +30,47 @@ public:
 	virtual ~MiqtVirtualQCommandLinkButton() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SizeHint = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QSize sizeHint() const override {
-		if (handle__SizeHint == 0) {
-			return QCommandLinkButton::sizeHint();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QCommandLinkButton::metaObject();
 		}
 		
 
-		QSize* callback_return_value = miqt_exec_callback_QCommandLinkButton_SizeHint(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__SizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_SizeHint() const {
-
-		return new QSize(QCommandLinkButton::sizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__HeightForWidth = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual int heightForWidth(int param1) const override {
-		if (handle__HeightForWidth == 0) {
-			return QCommandLinkButton::heightForWidth(param1);
-		}
-		
-		int sigval1 = param1;
-
-		int callback_return_value = miqt_exec_callback_QCommandLinkButton_HeightForWidth(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__HeightForWidth, sigval1);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_HeightForWidth(int param1) const {
-
-		return QCommandLinkButton::heightForWidth(static_cast<int>(param1));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__MinimumSizeHint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSize minimumSizeHint() const override {
-		if (handle__MinimumSizeHint == 0) {
-			return QCommandLinkButton::minimumSizeHint();
-		}
-		
-
-		QSize* callback_return_value = miqt_exec_callback_QCommandLinkButton_MinimumSizeHint(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__MinimumSizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_MinimumSizeHint() const {
-
-		return new QSize(QCommandLinkButton::minimumSizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__InitStyleOption = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void initStyleOption(QStyleOptionButton* option) const override {
-		if (handle__InitStyleOption == 0) {
-			QCommandLinkButton::initStyleOption(option);
-			return;
-		}
-		
-		QStyleOptionButton* sigval1 = option;
-
-		miqt_exec_callback_QCommandLinkButton_InitStyleOption(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__InitStyleOption, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_InitStyleOption(QStyleOptionButton* option) const {
-
-		QCommandLinkButton::initStyleOption(option);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* e) override {
-		if (handle__Event == 0) {
-			return QCommandLinkButton::event(e);
-		}
-		
-		QEvent* sigval1 = e;
-
-		bool callback_return_value = miqt_exec_callback_QCommandLinkButton_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QCommandLinkButton_MetaObject(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* e) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QCommandLinkButton::event(e);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__PaintEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void paintEvent(QPaintEvent* param1) override {
-		if (handle__PaintEvent == 0) {
-			QCommandLinkButton::paintEvent(param1);
-			return;
-		}
-		
-		QPaintEvent* sigval1 = param1;
-
-		miqt_exec_callback_QCommandLinkButton_PaintEvent(this, handle__PaintEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_PaintEvent(QPaintEvent* param1) {
-
-		QCommandLinkButton::paintEvent(param1);
+		return (QMetaObject*) QCommandLinkButton::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__KeyPressEvent = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void keyPressEvent(QKeyEvent* param1) override {
-		if (handle__KeyPressEvent == 0) {
-			QCommandLinkButton::keyPressEvent(param1);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QCommandLinkButton::qt_metacast(param1);
 		}
 		
-		QKeyEvent* sigval1 = param1;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QCommandLinkButton_KeyPressEvent(this, handle__KeyPressEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_KeyPressEvent(QKeyEvent* param1) {
-
-		QCommandLinkButton::keyPressEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__FocusInEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void focusInEvent(QFocusEvent* param1) override {
-		if (handle__FocusInEvent == 0) {
-			QCommandLinkButton::focusInEvent(param1);
-			return;
-		}
-		
-		QFocusEvent* sigval1 = param1;
-
-		miqt_exec_callback_QCommandLinkButton_FocusInEvent(this, handle__FocusInEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_FocusInEvent(QFocusEvent* param1) {
-
-		QCommandLinkButton::focusInEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__FocusOutEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void focusOutEvent(QFocusEvent* param1) override {
-		if (handle__FocusOutEvent == 0) {
-			QCommandLinkButton::focusOutEvent(param1);
-			return;
-		}
-		
-		QFocusEvent* sigval1 = param1;
-
-		miqt_exec_callback_QCommandLinkButton_FocusOutEvent(this, handle__FocusOutEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_FocusOutEvent(QFocusEvent* param1) {
-
-		QCommandLinkButton::focusOutEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__MouseMoveEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void mouseMoveEvent(QMouseEvent* param1) override {
-		if (handle__MouseMoveEvent == 0) {
-			QCommandLinkButton::mouseMoveEvent(param1);
-			return;
-		}
-		
-		QMouseEvent* sigval1 = param1;
-
-		miqt_exec_callback_QCommandLinkButton_MouseMoveEvent(this, handle__MouseMoveEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_MouseMoveEvent(QMouseEvent* param1) {
-
-		QCommandLinkButton::mouseMoveEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__HitButton = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool hitButton(const QPoint& pos) const override {
-		if (handle__HitButton == 0) {
-			return QCommandLinkButton::hitButton(pos);
-		}
-		
-		const QPoint& pos_ret = pos;
-		// Cast returned reference into pointer
-		QPoint* sigval1 = const_cast<QPoint*>(&pos_ret);
-
-		bool callback_return_value = miqt_exec_callback_QCommandLinkButton_HitButton(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__HitButton, sigval1);
+		void* callback_return_value = miqt_exec_callback_QCommandLinkButton_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_HitButton(QPoint* pos) const {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QCommandLinkButton::hitButton(*pos);
+		return QCommandLinkButton::qt_metacast(param1);
 
 	}
 
@@ -401,92 +183,20 @@ struct miqt_string QCommandLinkButton_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QCommandLinkButton_override_virtual_SizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__SizeHint = slot;
+void QCommandLinkButton_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__MetaObject = slot;
 }
 
-QSize* QCommandLinkButton_virtualbase_SizeHint(const void* self) {
-	return ( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_SizeHint();
+QMetaObject* QCommandLinkButton_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_MetaObject();
 }
 
-void QCommandLinkButton_override_virtual_HeightForWidth(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__HeightForWidth = slot;
+void QCommandLinkButton_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__Metacast = slot;
 }
 
-int QCommandLinkButton_virtualbase_HeightForWidth(const void* self, int param1) {
-	return ( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_HeightForWidth(param1);
-}
-
-void QCommandLinkButton_override_virtual_MinimumSizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__MinimumSizeHint = slot;
-}
-
-QSize* QCommandLinkButton_virtualbase_MinimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_MinimumSizeHint();
-}
-
-void QCommandLinkButton_override_virtual_InitStyleOption(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__InitStyleOption = slot;
-}
-
-void QCommandLinkButton_virtualbase_InitStyleOption(const void* self, QStyleOptionButton* option) {
-	( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_InitStyleOption(option);
-}
-
-void QCommandLinkButton_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__Event = slot;
-}
-
-bool QCommandLinkButton_virtualbase_Event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_Event(e);
-}
-
-void QCommandLinkButton_override_virtual_PaintEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__PaintEvent = slot;
-}
-
-void QCommandLinkButton_virtualbase_PaintEvent(void* self, QPaintEvent* param1) {
-	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_PaintEvent(param1);
-}
-
-void QCommandLinkButton_override_virtual_KeyPressEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__KeyPressEvent = slot;
-}
-
-void QCommandLinkButton_virtualbase_KeyPressEvent(void* self, QKeyEvent* param1) {
-	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_KeyPressEvent(param1);
-}
-
-void QCommandLinkButton_override_virtual_FocusInEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__FocusInEvent = slot;
-}
-
-void QCommandLinkButton_virtualbase_FocusInEvent(void* self, QFocusEvent* param1) {
-	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_FocusInEvent(param1);
-}
-
-void QCommandLinkButton_override_virtual_FocusOutEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__FocusOutEvent = slot;
-}
-
-void QCommandLinkButton_virtualbase_FocusOutEvent(void* self, QFocusEvent* param1) {
-	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_FocusOutEvent(param1);
-}
-
-void QCommandLinkButton_override_virtual_MouseMoveEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__MouseMoveEvent = slot;
-}
-
-void QCommandLinkButton_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1) {
-	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_MouseMoveEvent(param1);
-}
-
-void QCommandLinkButton_override_virtual_HitButton(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__HitButton = slot;
-}
-
-bool QCommandLinkButton_virtualbase_HitButton(const void* self, QPoint* pos) {
-	return ( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_HitButton(pos);
+void* QCommandLinkButton_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QCommandLinkButton_Delete(QCommandLinkButton* self, bool isSubclass) {

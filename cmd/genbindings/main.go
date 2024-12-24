@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"flag"
 	"fmt"
 	"log"
@@ -13,6 +12,8 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 const (
@@ -26,10 +27,8 @@ func main() {
 	os.Getenv("Qt6_DIR")
 	exec.Command("clang -v") // todo panic it if not found
 	os.RemoveAll(qt6Dir + "lib\\pkgconfig")
-	err := os.CopyFS(qt6Dir+"lib\\pkgconfig", os.DirFS("pkgconfig"))
-	if err != nil {
-		panic(err)
-	}
+	mylog.Check(os.CopyFS(qt6Dir+"lib\\pkgconfig", os.DirFS("pkgconfig")))
+
 	outDir := flag.String("outdir", "../../", "Output directory for generated gen_** files")
 	flag.Parse()
 	ProcessLibraries(*outDir)
@@ -64,10 +63,8 @@ func importPathForQtPackage(packageName string) string {
 }
 
 func findHeadersInDir(srcDir string, allowHeader func(string) bool) []string {
-	content, err := os.ReadDir(srcDir)
-	if err != nil {
-		panic(err)
-	}
+	content := mylog.Check2(os.ReadDir(srcDir))
+
 	var ret []string
 	for _, includeFile := range content {
 		if includeFile.IsDir() {
@@ -88,10 +85,8 @@ func findHeadersInDir(srcDir string, allowHeader func(string) bool) []string {
 func cleanGeneratedFilesInDir(dirpath string) {
 	log.Printf("Cleaning up output directory %q...", dirpath)
 	_ = os.MkdirAll(dirpath, 0o755)
-	existing, err := os.ReadDir(dirpath)
-	if err != nil {
-		panic(err)
-	}
+	existing := mylog.Check2(os.ReadDir(dirpath))
+
 	cleaned := 0
 	for _, e := range existing {
 		if e.IsDir() {
@@ -100,12 +95,10 @@ func cleanGeneratedFilesInDir(dirpath string) {
 		if !strings.HasPrefix(e.Name(), `gen_`) {
 			continue
 		}
-		// One of ours, clean up
-		err := os.Remove(filepath.Join(dirpath, e.Name()))
-		if err != nil {
-			log.Printf("WARNING: Failed to remove existing file %q", e.Name())
-			continue
-		}
+		mylog.
+			// One of ours, clean up
+			Check(os.Remove(filepath.Join(dirpath, e.Name())))
+
 		cleaned++
 	}
 	log.Printf("Removed %d file(s).", cleaned)
@@ -113,14 +106,8 @@ func cleanGeneratedFilesInDir(dirpath string) {
 
 func pkgConfigCflags(packageName string) string {
 	cmd := exec.Command(`pkg-config`, `--cflags`, packageName)
-	stdout, err := cmd.Output()
-	if err != nil {
-		var e *exec.ExitError
-		if errors.As(err, &e) {
-			panic(string(e.Stderr))
-		}
-		panic(err)
-	}
+	stdout := mylog.Check2(cmd.Output())
+
 	return string(stdout)
 }
 
@@ -145,29 +132,25 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 	generateClangCaches(includeFiles, cflags, matcher)
 	// The cache should now be fully populated.
 	// PASS 1 (clang2il)
-	//todo add test
+	// todo add test
 	for _, inputHeader := range includeFiles {
 		cacheFile := cacheFilePath(inputHeader)
-		astJson, err := os.ReadFile(cacheFile)
-		if err != nil {
-			panic("Expected cache to be created for " + inputHeader + ", but got error " + err.Error())
-		}
+		astJson := mylog.Check2(os.ReadFile(cacheFile))
+
 		// Json decode
 		var astInner []any = nil
-		err = json.Unmarshal(astJson, &astInner)
-		if err != nil {
-			panic(err)
-		}
+		mylog.Check(json.Unmarshal(astJson, &astInner))
+
 		if astInner == nil {
 			panic("Null in cache file for " + inputHeader)
 		}
 		// Convert it to our intermediate format
-		parsed, err := parseHeader(astInner, "")
-		if err != nil {
-			log.Println(err.Error()) // todo fix me
-			return
-			// panic(err)
-		}
+		parsed := mylog.Check2(parseHeader(astInner, ""))
+
+		// todo fix me
+
+		// panic(err)
+
 		parsed.Filename = inputHeader // Stash
 		// AST transforms on our IL
 		astTransformChildClasses(parsed) // must be first
@@ -180,9 +163,7 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 		processHeaders = append(processHeaders, parsed)
 	}
 
-	//
 	// PASS 2
-	//
 	for _, parsed := range processHeaders {
 		log.Printf("Processing %q...", parsed.Filename)
 		// More AST transforms on our IL
@@ -190,14 +171,9 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 		astTransformBlocklist(parsed) // Must happen after typedef transformation
 		{
 			// Save the IL file for debug inspection
-			jb, err := json.MarshalIndent(parsed, "", "\t")
-			if err != nil {
-				panic(err)
-			}
-			err = os.WriteFile(cacheFilePath(parsed.Filename)+".ours.json", jb, 0o644)
-			if err != nil {
-				panic(err)
-			}
+			jb := mylog.Check2(json.MarshalIndent(parsed, "", "\t"))
+			mylog.Check(os.WriteFile(cacheFilePath(parsed.Filename)+".ours.json", jb, 0o644))
+
 		}
 		// Breakout if there is nothing bindable
 		if parsed.Empty() {
@@ -217,38 +193,18 @@ func generate(packageName string, srcDirs []string, allowHeaderFn func(string) b
 			if counter > 0 {
 				testName += fmt.Sprintf(".%d", counter)
 			}
-			if _, err := os.Stat(testName + ".go"); err != nil && os.IsNotExist(err) {
+			if _, e := os.Stat(testName + ".go"); e != nil && os.IsNotExist(e) {
 				outputName = testName // Safe
 				break
 			}
 			counter++
 		}
-		goSrc, err := emitGo(parsed, filepath.Base(parsed.Filename), packageName)
-		if err != nil {
-			panic(err)
-		}
-		//todo gofumpt it
-		err = os.WriteFile(outputName+".go", []byte(goSrc), 0o644)
-		if err != nil {
-			panic(err)
-		}
-		bindingCppSrc, err := emitBindingCpp(parsed, filepath.Base(parsed.Filename))
-		if err != nil {
-			panic(err)
-		}
-		// todo move .h .cpp into another dir,because we only need build c abi dll once
-		err = os.WriteFile(outputName+".cpp", []byte(bindingCppSrc), 0o644)
-		if err != nil {
-			panic(err)
-		}
-		bindingHSrc, err := emitBindingHeader(parsed, filepath.Base(parsed.Filename), packageName)
-		if err != nil {
-			panic(err)
-		}
-		err = os.WriteFile(outputName+".h", []byte(bindingHSrc), 0o644)
-		if err != nil {
-			panic(err)
-		}
+		goSrc := mylog.Check2(emitGo(parsed, filepath.Base(parsed.Filename), packageName))
+		mylog.Check(os.WriteFile(outputName+".go", []byte(goSrc), 0o644))
+		bindingCppSrc := mylog.Check2(emitBindingCpp(parsed, filepath.Base(parsed.Filename)))
+		mylog.Check(os.WriteFile(outputName+".cpp", []byte(bindingCppSrc), 0o644))
+		bindingHSrc := mylog.Check2(emitBindingHeader(parsed, filepath.Base(parsed.Filename), packageName))
+		mylog.Check(os.WriteFile(outputName+".h", []byte(bindingHSrc), 0o644))
 		// Done
 	}
 	log.Printf("Processing %d file(s) completed", len(includeFiles))
@@ -273,14 +229,9 @@ func generateClangCaches(includeFiles []string, cflags []string, matcher ClangMa
 				// This seems to intermittently fail, so allow retrying
 				astInner := mustClangExec(ctx, inputHeader, cflags, matcher)
 				// Write to cache
-				jb, err := json.MarshalIndent(astInner, "", "\t")
-				if err != nil {
-					panic(err)
-				}
-				err = os.WriteFile(cacheFilePath(inputHeader), jb, 0o644)
-				if err != nil {
-					panic(err)
-				}
+				jb := mylog.Check2(json.MarshalIndent(astInner, "", "\t"))
+				mylog.Check(os.WriteFile(cacheFilePath(inputHeader), jb, 0o644))
+
 				astInner = nil
 				jb = nil
 				runtime.GC()
@@ -291,8 +242,7 @@ func generateClangCaches(includeFiles []string, cflags []string, matcher ClangMa
 	for _, inputHeader := range includeFiles {
 		// Check if there is a matching cache hit
 		cacheFile := cacheFilePath(inputHeader)
-		if _, err := os.Stat(cacheFile); err != nil && os.IsNotExist(err) {
-
+		if _, e := os.Stat(cacheFile); e != nil && os.IsNotExist(e) {
 			// Nonexistent cache file, regenerate from clang
 			log.Printf("No AST cache for file %q, running clang...", filepath.Base(inputHeader))
 			clangChan <- inputHeader

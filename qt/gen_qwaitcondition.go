@@ -11,7 +11,6 @@ type QWaitCondition struct {
 
 // NewQWaitCondition constructs a new QWaitCondition object.
 func NewQWaitCondition() *QWaitCondition {
-
 	ret := newQWaitCondition(QWaitCondition_new())
 	ret.isSubclass = true
 	return ret

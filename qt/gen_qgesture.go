@@ -36,7 +36,6 @@ type QGesture struct {
 
 // NewQGesture constructs a new QGesture object.
 func NewQGesture() *QGesture {
-
 	ret := newQGesture(QGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -44,7 +43,6 @@ func NewQGesture() *QGesture {
 
 // NewQGesture2 constructs a new QGesture object.
 func NewQGesture2(parent *QObject) *QGesture {
-
 	ret := newQGesture(QGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -125,192 +123,57 @@ func QGesture_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGesture) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QGesture_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
+func (this *QGesture) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGesture_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGesture) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
+
+func (this *QGesture) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGesture_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGesture_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGesture_Event
-func miqt_exec_callback_QGesture_Event(self QGesture, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
+//export miqt_exec_callback_QGesture_MetaObject
+func miqt_exec_callback_QGesture_MetaObject(self QGesture, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QGesture{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QGesture) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QGesture_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QGesture) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QGesture_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGesture_Metacast
+func miqt_exec_callback_QGesture_Metacast(self QGesture, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QGesture{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QGesture{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QGesture) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QGesture_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QGesture) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGesture_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGesture_EventFilter
-func miqt_exec_callback_QGesture_EventFilter(self QGesture, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QGesture{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QGesture) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QGesture_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QGesture) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGesture_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGesture_TimerEvent
-func miqt_exec_callback_QGesture_TimerEvent(self QGesture, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QGesture{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QGesture) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QGesture_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QGesture) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGesture_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGesture_ChildEvent
-func miqt_exec_callback_QGesture_ChildEvent(self QGesture, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QGesture{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QGesture) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QGesture_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QGesture) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGesture_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGesture_CustomEvent
-func miqt_exec_callback_QGesture_CustomEvent(self QGesture, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QGesture{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QGesture) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QGesture_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QGesture) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGesture_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGesture_ConnectNotify
-func miqt_exec_callback_QGesture_ConnectNotify(self QGesture, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QGesture{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QGesture) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QGesture_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QGesture) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGesture_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGesture_DisconnectNotify
-func miqt_exec_callback_QGesture_DisconnectNotify(self QGesture, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QGesture{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }
 
 type QPanGesture struct {
@@ -320,7 +183,6 @@ type QPanGesture struct {
 
 // NewQPanGesture constructs a new QPanGesture object.
 func NewQPanGesture() *QPanGesture {
-
 	ret := newQPanGesture(QPanGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -328,7 +190,6 @@ func NewQPanGesture() *QPanGesture {
 
 // NewQPanGesture2 constructs a new QPanGesture object.
 func NewQPanGesture2(parent *QObject) *QPanGesture {
-
 	ret := newQPanGesture(QPanGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -409,6 +270,59 @@ func QPanGesture_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
+func (this *QPanGesture) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QPanGesture_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QPanGesture) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPanGesture_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPanGesture_MetaObject
+func miqt_exec_callback_QPanGesture_MetaObject(self QPanGesture, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QPanGesture{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QPanGesture) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QPanGesture_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QPanGesture) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPanGesture_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPanGesture_Metacast
+func miqt_exec_callback_QPanGesture_Metacast(self QPanGesture, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QPanGesture{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}
+
 type QPinchGesture struct {
 	h          uintptr
 	isSubclass bool
@@ -416,7 +330,6 @@ type QPinchGesture struct {
 
 // NewQPinchGesture constructs a new QPinchGesture object.
 func NewQPinchGesture() *QPinchGesture {
-
 	ret := newQPinchGesture(QPinchGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -424,7 +337,6 @@ func NewQPinchGesture() *QPinchGesture {
 
 // NewQPinchGesture2 constructs a new QPinchGesture object.
 func NewQPinchGesture2(parent *QObject) *QPinchGesture {
-
 	ret := newQPinchGesture(QPinchGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -565,6 +477,59 @@ func QPinchGesture_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
+func (this *QPinchGesture) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QPinchGesture_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QPinchGesture) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPinchGesture_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPinchGesture_MetaObject
+func miqt_exec_callback_QPinchGesture_MetaObject(self QPinchGesture, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QPinchGesture{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QPinchGesture) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QPinchGesture_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QPinchGesture) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPinchGesture_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPinchGesture_Metacast
+func miqt_exec_callback_QPinchGesture_Metacast(self QPinchGesture, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QPinchGesture{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}
+
 type QSwipeGesture struct {
 	h          uintptr
 	isSubclass bool
@@ -572,7 +537,6 @@ type QSwipeGesture struct {
 
 // NewQSwipeGesture constructs a new QSwipeGesture object.
 func NewQSwipeGesture() *QSwipeGesture {
-
 	ret := newQSwipeGesture(QSwipeGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -580,7 +544,6 @@ func NewQSwipeGesture() *QSwipeGesture {
 
 // NewQSwipeGesture2 constructs a new QSwipeGesture object.
 func NewQSwipeGesture2(parent *QObject) *QSwipeGesture {
-
 	ret := newQSwipeGesture(QSwipeGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -643,6 +606,59 @@ func QSwipeGesture_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
+func (this *QSwipeGesture) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QSwipeGesture_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QSwipeGesture) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QSwipeGesture_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QSwipeGesture_MetaObject
+func miqt_exec_callback_QSwipeGesture_MetaObject(self QSwipeGesture, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QSwipeGesture{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QSwipeGesture) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QSwipeGesture_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QSwipeGesture) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QSwipeGesture_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QSwipeGesture_Metacast
+func miqt_exec_callback_QSwipeGesture_Metacast(self QSwipeGesture, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QSwipeGesture{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}
+
 type QTapGesture struct {
 	h          uintptr
 	isSubclass bool
@@ -650,7 +666,6 @@ type QTapGesture struct {
 
 // NewQTapGesture constructs a new QTapGesture object.
 func NewQTapGesture() *QTapGesture {
-
 	ret := newQTapGesture(QTapGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -658,7 +673,6 @@ func NewQTapGesture() *QTapGesture {
 
 // NewQTapGesture2 constructs a new QTapGesture object.
 func NewQTapGesture2(parent *QObject) *QTapGesture {
-
 	ret := newQTapGesture(QTapGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -715,6 +729,59 @@ func QTapGesture_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
+func (this *QTapGesture) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QTapGesture_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QTapGesture) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTapGesture_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTapGesture_MetaObject
+func miqt_exec_callback_QTapGesture_MetaObject(self QTapGesture, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QTapGesture{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QTapGesture) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QTapGesture_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QTapGesture) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTapGesture_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTapGesture_Metacast
+func miqt_exec_callback_QTapGesture_Metacast(self QTapGesture, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QTapGesture{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}
+
 type QTapAndHoldGesture struct {
 	h          uintptr
 	isSubclass bool
@@ -722,7 +789,6 @@ type QTapAndHoldGesture struct {
 
 // NewQTapAndHoldGesture constructs a new QTapAndHoldGesture object.
 func NewQTapAndHoldGesture() *QTapAndHoldGesture {
-
 	ret := newQTapAndHoldGesture(QTapAndHoldGesture_new())
 	ret.isSubclass = true
 	return ret
@@ -730,7 +796,6 @@ func NewQTapAndHoldGesture() *QTapAndHoldGesture {
 
 // NewQTapAndHoldGesture2 constructs a new QTapAndHoldGesture object.
 func NewQTapAndHoldGesture2(parent *QObject) *QTapAndHoldGesture {
-
 	ret := newQTapAndHoldGesture(QTapAndHoldGesture_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -795,6 +860,59 @@ func QTapAndHoldGesture_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
+func (this *QTapAndHoldGesture) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QTapAndHoldGesture_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QTapAndHoldGesture) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTapAndHoldGesture_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTapAndHoldGesture_MetaObject
+func miqt_exec_callback_QTapAndHoldGesture_MetaObject(self QTapAndHoldGesture, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QTapAndHoldGesture{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QTapAndHoldGesture) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QTapAndHoldGesture_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QTapAndHoldGesture) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTapAndHoldGesture_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTapAndHoldGesture_Metacast
+func miqt_exec_callback_QTapAndHoldGesture_Metacast(self QTapAndHoldGesture, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+
+	virtualReturn := gofunc((&QTapAndHoldGesture{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}
+
 type QGestureEvent struct {
 	h          uintptr
 	isSubclass bool
@@ -816,7 +934,6 @@ func NewQGestureEvent(gestures []*QGesture) *QGestureEvent {
 
 // NewQGestureEvent2 constructs a new QGestureEvent object.
 func NewQGestureEvent2(param1 *QGestureEvent) *QGestureEvent {
-
 	ret := newQGestureEvent(QGestureEvent_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -900,55 +1017,4 @@ func (this *QGestureEvent) MapToGraphicsScene(gesturePoint *QPointF) *QPointF {
 	_goptr := newQPointF(QGestureEvent_MapToGraphicsScene(this.h, gesturePoint.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-}
-
-func (this *QGestureEvent) callVirtualBase_SetAccepted(accepted bool) {
-
-	QGestureEvent_virtualbase_SetAccepted(unsafe.Pointer(this.h), (bool)(accepted))
-
-}
-func (this *QGestureEvent) OnSetAccepted(slot func(super func(accepted bool), accepted bool)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGestureEvent_override_virtual_SetAccepted(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGestureEvent_SetAccepted
-func miqt_exec_callback_QGestureEvent_SetAccepted(self QGestureEvent, cb intptr_t, accepted bool) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(accepted bool), accepted bool))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (bool)(accepted)
-
-	gofunc((&QGestureEvent{h: self}).callVirtualBase_SetAccepted, slotval1)
-
-}
-
-func (this *QGestureEvent) callVirtualBase_Clone() *QEvent {
-
-	return newQEvent(QGestureEvent_virtualbase_Clone(unsafe.Pointer(this.h)))
-
-}
-func (this *QGestureEvent) OnClone(slot func(super func() *QEvent) *QEvent) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGestureEvent_override_virtual_Clone(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGestureEvent_Clone
-func miqt_exec_callback_QGestureEvent_Clone(self QGestureEvent, cb intptr_t) *QEvent {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QEvent) *QEvent)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGestureEvent{h: self}).callVirtualBase_Clone)
-
-	return virtualReturn.cPointer()
-
 }

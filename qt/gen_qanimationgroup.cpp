@@ -20,108 +20,47 @@ public:
 	virtual ~MiqtVirtualQAnimationGroup() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QAnimationGroup::event(event);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QAnimationGroup::metaObject();
 		}
 		
-		QEvent* sigval1 = event;
 
-		bool callback_return_value = miqt_exec_callback_QAnimationGroup_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QAnimationGroup_MetaObject(const_cast<MiqtVirtualQAnimationGroup*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QAnimationGroup::event(event);
+		return (QMetaObject*) QAnimationGroup::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Duration = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int duration() const override {
-		if (handle__Duration == 0) {
-			return 0; // Pure virtual, there is no base we can call
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QAnimationGroup::qt_metacast(param1);
 		}
 		
+		const char* sigval1 = (const char*) param1;
 
-		int callback_return_value = miqt_exec_callback_QAnimationGroup_Duration(const_cast<MiqtVirtualQAnimationGroup*>(this), handle__Duration);
+		void* callback_return_value = miqt_exec_callback_QAnimationGroup_Metacast(this, handle__Metacast, sigval1);
 
-		return static_cast<int>(callback_return_value);
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateCurrentTime = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateCurrentTime(int currentTime) override {
-		if (handle__UpdateCurrentTime == 0) {
-			return; // Pure virtual, there is no base we can call
-		}
-		
-		int sigval1 = currentTime;
-
-		miqt_exec_callback_QAnimationGroup_UpdateCurrentTime(this, handle__UpdateCurrentTime, sigval1);
-
-		
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateState = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) override {
-		if (handle__UpdateState == 0) {
-			QAnimationGroup::updateState(newState, oldState);
-			return;
-		}
-		
-		QAbstractAnimation::State newState_ret = newState;
-		int sigval1 = static_cast<int>(newState_ret);
-		QAbstractAnimation::State oldState_ret = oldState;
-		int sigval2 = static_cast<int>(oldState_ret);
-
-		miqt_exec_callback_QAnimationGroup_UpdateState(this, handle__UpdateState, sigval1, sigval2);
-
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_UpdateState(int newState, int oldState) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QAnimationGroup::updateState(static_cast<QAbstractAnimation::State>(newState), static_cast<QAbstractAnimation::State>(oldState));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateDirection = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateDirection(QAbstractAnimation::Direction direction) override {
-		if (handle__UpdateDirection == 0) {
-			QAnimationGroup::updateDirection(direction);
-			return;
-		}
-		
-		QAbstractAnimation::Direction direction_ret = direction;
-		int sigval1 = static_cast<int>(direction_ret);
-
-		miqt_exec_callback_QAnimationGroup_UpdateDirection(this, handle__UpdateDirection, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateDirection(int direction) {
-
-		QAnimationGroup::updateDirection(static_cast<QAbstractAnimation::Direction>(direction));
+		return QAnimationGroup::qt_metacast(param1);
 
 	}
 
@@ -212,36 +151,20 @@ struct miqt_string QAnimationGroup_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QAnimationGroup_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__Event = slot;
+void QAnimationGroup_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__MetaObject = slot;
 }
 
-bool QAnimationGroup_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQAnimationGroup*)(self) )->virtualbase_Event(event);
+QMetaObject* QAnimationGroup_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQAnimationGroup*)(self) )->virtualbase_MetaObject();
 }
 
-void QAnimationGroup_override_virtual_Duration(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__Duration = slot;
+void QAnimationGroup_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__Metacast = slot;
 }
 
-void QAnimationGroup_override_virtual_UpdateCurrentTime(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__UpdateCurrentTime = slot;
-}
-
-void QAnimationGroup_override_virtual_UpdateState(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__UpdateState = slot;
-}
-
-void QAnimationGroup_virtualbase_UpdateState(void* self, int newState, int oldState) {
-	( (MiqtVirtualQAnimationGroup*)(self) )->virtualbase_UpdateState(newState, oldState);
-}
-
-void QAnimationGroup_override_virtual_UpdateDirection(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAnimationGroup*>( (QAnimationGroup*)(self) )->handle__UpdateDirection = slot;
-}
-
-void QAnimationGroup_virtualbase_UpdateDirection(void* self, int direction) {
-	( (MiqtVirtualQAnimationGroup*)(self) )->virtualbase_UpdateDirection(direction);
+void* QAnimationGroup_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQAnimationGroup*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QAnimationGroup_Delete(QAnimationGroup* self, bool isSubclass) {

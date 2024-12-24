@@ -17,7 +17,6 @@ type QDeadlineTimer struct {
 
 // NewQDeadlineTimer constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer() *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new())
 	ret.isSubclass = true
 	return ret
@@ -25,7 +24,6 @@ func NewQDeadlineTimer() *QDeadlineTimer {
 
 // NewQDeadlineTimer2 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer2(type_ TimerType) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new2((int)(type_)))
 	ret.isSubclass = true
 	return ret
@@ -33,7 +31,6 @@ func NewQDeadlineTimer2(type_ TimerType) *QDeadlineTimer {
 
 // NewQDeadlineTimer3 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer3(param1 ForeverConstant) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new3(param1))
 	ret.isSubclass = true
 	return ret
@@ -41,7 +38,6 @@ func NewQDeadlineTimer3(param1 ForeverConstant) *QDeadlineTimer {
 
 // NewQDeadlineTimer4 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer4(msecs int64) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new4((longlong)(msecs)))
 	ret.isSubclass = true
 	return ret
@@ -49,7 +45,6 @@ func NewQDeadlineTimer4(msecs int64) *QDeadlineTimer {
 
 // NewQDeadlineTimer5 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer5(param1 *QDeadlineTimer) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -57,7 +52,6 @@ func NewQDeadlineTimer5(param1 *QDeadlineTimer) *QDeadlineTimer {
 
 // NewQDeadlineTimer6 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer6(param1 ForeverConstant, type_ TimerType) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new6(param1, (int)(type_)))
 	ret.isSubclass = true
 	return ret
@@ -65,7 +59,6 @@ func NewQDeadlineTimer6(param1 ForeverConstant, type_ TimerType) *QDeadlineTimer
 
 // NewQDeadlineTimer7 constructs a new QDeadlineTimer object.
 func NewQDeadlineTimer7(msecs int64, typeVal TimerType) *QDeadlineTimer {
-
 	ret := newQDeadlineTimer(QDeadlineTimer_new7((longlong)(msecs), (int)(typeVal)))
 	ret.isSubclass = true
 	return ret

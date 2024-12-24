@@ -32,7 +32,6 @@ type QGenericArgument struct {
 
 // NewQGenericArgument constructs a new QGenericArgument object.
 func NewQGenericArgument() *QGenericArgument {
-
 	ret := newQGenericArgument(QGenericArgument_new())
 	ret.isSubclass = true
 	return ret
@@ -40,7 +39,6 @@ func NewQGenericArgument() *QGenericArgument {
 
 // NewQGenericArgument2 constructs a new QGenericArgument object.
 func NewQGenericArgument2(param1 *QGenericArgument) *QGenericArgument {
-
 	ret := newQGenericArgument(QGenericArgument_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -82,7 +80,6 @@ type QGenericReturnArgument struct {
 
 // NewQGenericReturnArgument constructs a new QGenericReturnArgument object.
 func NewQGenericReturnArgument() *QGenericReturnArgument {
-
 	ret := newQGenericReturnArgument(QGenericReturnArgument_new())
 	ret.isSubclass = true
 	return ret
@@ -90,7 +87,6 @@ func NewQGenericReturnArgument() *QGenericReturnArgument {
 
 // NewQGenericReturnArgument2 constructs a new QGenericReturnArgument object.
 func NewQGenericReturnArgument2(param1 *QGenericReturnArgument) *QGenericReturnArgument {
-
 	ret := newQGenericReturnArgument(QGenericReturnArgument_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -133,7 +129,6 @@ type QMetaObject struct {
 
 // NewQMetaObject constructs a new QMetaObject object.
 func NewQMetaObject() *QMetaObject {
-
 	ret := newQMetaObject(QMetaObject_new())
 	ret.isSubclass = true
 	return ret
@@ -141,7 +136,6 @@ func NewQMetaObject() *QMetaObject {
 
 // NewQMetaObject2 constructs a new QMetaObject object.
 func NewQMetaObject2(param1 *QMetaObject) *QMetaObject {
-
 	ret := newQMetaObject(QMetaObject_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -663,7 +657,6 @@ type QMetaObject__Connection struct {
 
 // NewQMetaObject__Connection constructs a new QMetaObject::Connection object.
 func NewQMetaObject__Connection() *QMetaObject__Connection {
-
 	ret := newQMetaObject__Connection(QMetaObject__Connection_new())
 	ret.isSubclass = true
 	return ret
@@ -671,7 +664,6 @@ func NewQMetaObject__Connection() *QMetaObject__Connection {
 
 // NewQMetaObject__Connection2 constructs a new QMetaObject::Connection object.
 func NewQMetaObject__Connection2(other *Connection) *QMetaObject__Connection {
-
 	ret := newQMetaObject__Connection(QMetaObject__Connection_new2(other))
 	ret.isSubclass = true
 	return ret
@@ -692,7 +684,6 @@ type QMetaObject__SuperData struct {
 
 // NewQMetaObject__SuperData constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData() *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(QMetaObject__SuperData_new())
 	ret.isSubclass = true
 	return ret
@@ -700,7 +691,6 @@ func NewQMetaObject__SuperData() *QMetaObject__SuperData {
 
 // NewQMetaObject__SuperData2 constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData2(mo *QMetaObject) *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(QMetaObject__SuperData_new2(mo.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -708,7 +698,6 @@ func NewQMetaObject__SuperData2(mo *QMetaObject) *QMetaObject__SuperData {
 
 // NewQMetaObject__SuperData3 constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData3(g Getter) *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(QMetaObject__SuperData_new3(g))
 	ret.isSubclass = true
 	return ret
@@ -716,7 +705,6 @@ func NewQMetaObject__SuperData3(g Getter) *QMetaObject__SuperData {
 
 // NewQMetaObject__SuperData4 constructs a new QMetaObject::SuperData object.
 func NewQMetaObject__SuperData4(param1 *SuperData) *QMetaObject__SuperData {
-
 	ret := newQMetaObject__SuperData(QMetaObject__SuperData_new4(param1))
 	ret.isSubclass = true
 	return ret
@@ -737,7 +725,6 @@ type QMetaObject__Data struct {
 
 // NewQMetaObject__Data constructs a new QMetaObject::Data object.
 func NewQMetaObject__Data() *QMetaObject__Data {
-
 	ret := newQMetaObject__Data(QMetaObject__Data_new())
 	ret.isSubclass = true
 	return ret
@@ -745,7 +732,6 @@ func NewQMetaObject__Data() *QMetaObject__Data {
 
 // NewQMetaObject__Data2 constructs a new QMetaObject::Data object.
 func NewQMetaObject__Data2(param1 *Data) *QMetaObject__Data {
-
 	ret := newQMetaObject__Data(QMetaObject__Data_new2(param1))
 	ret.isSubclass = true
 	return ret

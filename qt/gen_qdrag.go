@@ -11,7 +11,6 @@ type QDrag struct {
 
 // NewQDrag constructs a new QDrag object.
 func NewQDrag(dragSource *QObject) *QDrag {
-
 	ret := newQDrag(QDrag_new(dragSource.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -105,6 +104,7 @@ func QDrag_Cancel() {
 func (this *QDrag) ActionChanged(action DropAction) {
 	QDrag_ActionChanged(this.h, (int)(action))
 }
+
 func (this *QDrag) OnActionChanged(slot func(action DropAction)) {
 	QDrag_connect_ActionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -125,6 +125,7 @@ func miqt_exec_callback_QDrag_ActionChanged(cb intptr_t, action int) {
 func (this *QDrag) TargetChanged(newTarget *QObject) {
 	QDrag_TargetChanged(this.h, newTarget.cPointer())
 }
+
 func (this *QDrag) OnTargetChanged(slot func(newTarget *QObject)) {
 	QDrag_connect_TargetChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -168,190 +169,55 @@ func (this *QDrag) Exec1(supportedActions DropAction) DropAction {
 	return (DropAction)(QDrag_Exec1(this.h, (int)(supportedActions)))
 }
 
-func (this *QDrag) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QDrag_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
+func (this *QDrag) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QDrag_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QDrag) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
+
+func (this *QDrag) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QDrag_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QDrag_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QDrag_Event
-func miqt_exec_callback_QDrag_Event(self QDrag, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
+//export miqt_exec_callback_QDrag_MetaObject
+func miqt_exec_callback_QDrag_MetaObject(self QDrag, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QDrag{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QDrag) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QDrag_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QDrag) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QDrag_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QDrag_Metacast
+func miqt_exec_callback_QDrag_Metacast(self QDrag, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QDrag{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QDrag{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QDrag) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QDrag_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QDrag) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDrag_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDrag_EventFilter
-func miqt_exec_callback_QDrag_EventFilter(self QDrag, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QDrag{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QDrag) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QDrag_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QDrag) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDrag_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDrag_TimerEvent
-func miqt_exec_callback_QDrag_TimerEvent(self QDrag, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QDrag{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QDrag) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QDrag_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QDrag) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDrag_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDrag_ChildEvent
-func miqt_exec_callback_QDrag_ChildEvent(self QDrag, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QDrag{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QDrag) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QDrag_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QDrag) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDrag_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDrag_CustomEvent
-func miqt_exec_callback_QDrag_CustomEvent(self QDrag, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QDrag{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QDrag) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QDrag_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QDrag) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDrag_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDrag_ConnectNotify
-func miqt_exec_callback_QDrag_ConnectNotify(self QDrag, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QDrag{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QDrag) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QDrag_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QDrag) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QDrag_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QDrag_DisconnectNotify
-func miqt_exec_callback_QDrag_DisconnectNotify(self QDrag, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QDrag{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

@@ -54,7 +54,6 @@ type QSurfaceFormat struct {
 
 // NewQSurfaceFormat constructs a new QSurfaceFormat object.
 func NewQSurfaceFormat() *QSurfaceFormat {
-
 	ret := newQSurfaceFormat(QSurfaceFormat_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +61,6 @@ func NewQSurfaceFormat() *QSurfaceFormat {
 
 // NewQSurfaceFormat2 constructs a new QSurfaceFormat object.
 func NewQSurfaceFormat2(options FormatOptions) *QSurfaceFormat {
-
 	ret := newQSurfaceFormat(QSurfaceFormat_new2(options))
 	ret.isSubclass = true
 	return ret
@@ -70,7 +68,6 @@ func NewQSurfaceFormat2(options FormatOptions) *QSurfaceFormat {
 
 // NewQSurfaceFormat3 constructs a new QSurfaceFormat object.
 func NewQSurfaceFormat3(other *QSurfaceFormat) *QSurfaceFormat {
-
 	ret := newQSurfaceFormat(QSurfaceFormat_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

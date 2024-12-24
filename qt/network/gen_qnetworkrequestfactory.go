@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkRequestFactory struct {
@@ -12,7 +13,6 @@ type QNetworkRequestFactory struct {
 
 // NewQNetworkRequestFactory constructs a new QNetworkRequestFactory object.
 func NewQNetworkRequestFactory() *QNetworkRequestFactory {
-
 	ret := newQNetworkRequestFactory(QNetworkRequestFactory_new())
 	ret.isSubclass = true
 	return ret
@@ -20,7 +20,6 @@ func NewQNetworkRequestFactory() *QNetworkRequestFactory {
 
 // NewQNetworkRequestFactory2 constructs a new QNetworkRequestFactory object.
 func NewQNetworkRequestFactory2(baseUrl *qt.QUrl) *QNetworkRequestFactory {
-
 	ret := newQNetworkRequestFactory(QNetworkRequestFactory_new2((*QUrl)(baseUrl.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -28,7 +27,6 @@ func NewQNetworkRequestFactory2(baseUrl *qt.QUrl) *QNetworkRequestFactory {
 
 // NewQNetworkRequestFactory3 constructs a new QNetworkRequestFactory object.
 func NewQNetworkRequestFactory3(other *QNetworkRequestFactory) *QNetworkRequestFactory {
-
 	ret := newQNetworkRequestFactory(QNetworkRequestFactory_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret

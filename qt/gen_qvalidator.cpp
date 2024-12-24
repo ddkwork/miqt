@@ -1,11 +1,8 @@
 // +build ignore
 
-#include <QChildEvent>
 #include <QDoubleValidator>
-#include <QEvent>
 #include <QIntValidator>
 #include <QLocale>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QRegularExpression>
@@ -13,7 +10,6 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <QValidator>
 #include <qvalidator.h>
 #include "gen_qvalidator.h"
@@ -27,229 +23,47 @@ public:
 	virtual ~MiqtVirtualQValidator() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Validate = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual State validate(QString& param1, int& param2) const override {
-		if (handle__Validate == 0) {
-			return State(); // Pure virtual, there is no base we can call
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QValidator::metaObject();
 		}
 		
-		QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		int* sigval2 = &param2;
 
-		State callback_return_value = miqt_exec_callback_QValidator_Validate(const_cast<MiqtVirtualQValidator*>(this), handle__Validate, sigval1, sigval2);
-
-		return callback_return_value;
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Fixup = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void fixup(QString& param1) const override {
-		if (handle__Fixup == 0) {
-			QValidator::fixup(param1);
-			return;
-		}
-		
-		QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-
-		miqt_exec_callback_QValidator_Fixup(const_cast<MiqtVirtualQValidator*>(this), handle__Fixup, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QValidator::fixup(param1_QString);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QValidator::event(event);
-		}
-		
-		QEvent* sigval1 = event;
-
-		bool callback_return_value = miqt_exec_callback_QValidator_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QValidator_MetaObject(const_cast<MiqtVirtualQValidator*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QValidator::event(event);
+		return (QMetaObject*) QValidator::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QValidator::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QValidator::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QValidator_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QValidator_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QValidator::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QValidator::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QValidator_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QValidator::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QValidator::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QValidator_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QValidator::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QValidator::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QValidator_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QValidator::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QValidator::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QValidator_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QValidator::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QValidator::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QValidator_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QValidator::disconnectNotify(*signal);
+		return QValidator::qt_metacast(param1);
 
 	}
 
@@ -336,72 +150,20 @@ struct miqt_string QValidator_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QValidator_override_virtual_Validate(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__Validate = slot;
+void QValidator_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__MetaObject = slot;
 }
 
-void QValidator_override_virtual_Fixup(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__Fixup = slot;
+QMetaObject* QValidator_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQValidator*)(self) )->virtualbase_MetaObject();
 }
 
-void QValidator_virtualbase_Fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQValidator*)(self) )->virtualbase_Fixup(param1);
+void QValidator_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__Metacast = slot;
 }
 
-void QValidator_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__Event = slot;
-}
-
-bool QValidator_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQValidator*)(self) )->virtualbase_Event(event);
-}
-
-void QValidator_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__EventFilter = slot;
-}
-
-bool QValidator_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQValidator*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QValidator_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__TimerEvent = slot;
-}
-
-void QValidator_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QValidator_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__ChildEvent = slot;
-}
-
-void QValidator_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QValidator_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__CustomEvent = slot;
-}
-
-void QValidator_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QValidator_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QValidator_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QValidator_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QValidator_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QValidator_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQValidator*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QValidator_Delete(QValidator* self, bool isSubclass) {
@@ -423,67 +185,47 @@ public:
 	virtual ~MiqtVirtualQIntValidator() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Validate = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QValidator::State validate(QString& param1, int& param2) const override {
-		if (handle__Validate == 0) {
-			return QIntValidator::validate(param1, param2);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QIntValidator::metaObject();
 		}
 		
-		QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		int* sigval2 = &param2;
 
-		int callback_return_value = miqt_exec_callback_QIntValidator_Validate(const_cast<MiqtVirtualQIntValidator*>(this), handle__Validate, sigval1, sigval2);
+		QMetaObject* callback_return_value = miqt_exec_callback_QIntValidator_MetaObject(const_cast<MiqtVirtualQIntValidator*>(this), handle__MetaObject);
 
-		return static_cast<QValidator::State>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Validate(struct miqt_string param1, int* param2) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+	QMetaObject* virtualbase_MetaObject() const {
 
-		QValidator::State _ret = QIntValidator::validate(param1_QString, static_cast<int&>(*param2));
-		return static_cast<int>(_ret);
+		return (QMetaObject*) QIntValidator::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Fixup = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void fixup(QString& input) const override {
-		if (handle__Fixup == 0) {
-			QIntValidator::fixup(input);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QIntValidator::qt_metacast(param1);
 		}
 		
-		QString input_ret = input;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray input_b = input_ret.toUtf8();
-		struct miqt_string input_ms;
-		input_ms.len = input_b.length();
-		input_ms.data = static_cast<char*>(malloc(input_ms.len));
-		memcpy(input_ms.data, input_b.data(), input_ms.len);
-		struct miqt_string sigval1 = input_ms;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QIntValidator_Fixup(const_cast<MiqtVirtualQIntValidator*>(this), handle__Fixup, sigval1);
+		void* callback_return_value = miqt_exec_callback_QIntValidator_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Fixup(struct miqt_string input) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
+	void* virtualbase_Metacast(const char* param1) {
 
-		QIntValidator::fixup(input_QString);
+		return QIntValidator::qt_metacast(param1);
 
 	}
 
@@ -603,20 +345,20 @@ struct miqt_string QIntValidator_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QIntValidator_override_virtual_Validate(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) )->handle__Validate = slot;
+void QIntValidator_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) )->handle__MetaObject = slot;
 }
 
-int QIntValidator_virtualbase_Validate(const void* self, struct miqt_string param1, int* param2) {
-	return ( (const MiqtVirtualQIntValidator*)(self) )->virtualbase_Validate(param1, param2);
+QMetaObject* QIntValidator_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQIntValidator*)(self) )->virtualbase_MetaObject();
 }
 
-void QIntValidator_override_virtual_Fixup(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) )->handle__Fixup = slot;
+void QIntValidator_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) )->handle__Metacast = slot;
 }
 
-void QIntValidator_virtualbase_Fixup(const void* self, struct miqt_string input) {
-	( (const MiqtVirtualQIntValidator*)(self) )->virtualbase_Fixup(input);
+void* QIntValidator_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQIntValidator*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QIntValidator_Delete(QIntValidator* self, bool isSubclass) {
@@ -638,67 +380,47 @@ public:
 	virtual ~MiqtVirtualQDoubleValidator() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Validate = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QValidator::State validate(QString& param1, int& param2) const override {
-		if (handle__Validate == 0) {
-			return QDoubleValidator::validate(param1, param2);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QDoubleValidator::metaObject();
 		}
 		
-		QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		int* sigval2 = &param2;
 
-		int callback_return_value = miqt_exec_callback_QDoubleValidator_Validate(const_cast<MiqtVirtualQDoubleValidator*>(this), handle__Validate, sigval1, sigval2);
+		QMetaObject* callback_return_value = miqt_exec_callback_QDoubleValidator_MetaObject(const_cast<MiqtVirtualQDoubleValidator*>(this), handle__MetaObject);
 
-		return static_cast<QValidator::State>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Validate(struct miqt_string param1, int* param2) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+	QMetaObject* virtualbase_MetaObject() const {
 
-		QValidator::State _ret = QDoubleValidator::validate(param1_QString, static_cast<int&>(*param2));
-		return static_cast<int>(_ret);
+		return (QMetaObject*) QDoubleValidator::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Fixup = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void fixup(QString& input) const override {
-		if (handle__Fixup == 0) {
-			QDoubleValidator::fixup(input);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QDoubleValidator::qt_metacast(param1);
 		}
 		
-		QString input_ret = input;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray input_b = input_ret.toUtf8();
-		struct miqt_string input_ms;
-		input_ms.len = input_b.length();
-		input_ms.data = static_cast<char*>(malloc(input_ms.len));
-		memcpy(input_ms.data, input_b.data(), input_ms.len);
-		struct miqt_string sigval1 = input_ms;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QDoubleValidator_Fixup(const_cast<MiqtVirtualQDoubleValidator*>(this), handle__Fixup, sigval1);
+		void* callback_return_value = miqt_exec_callback_QDoubleValidator_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Fixup(struct miqt_string input) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
+	void* virtualbase_Metacast(const char* param1) {
 
-		QDoubleValidator::fixup(input_QString);
+		return QDoubleValidator::qt_metacast(param1);
 
 	}
 
@@ -861,20 +583,20 @@ struct miqt_string QDoubleValidator_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QDoubleValidator_override_virtual_Validate(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__Validate = slot;
+void QDoubleValidator_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__MetaObject = slot;
 }
 
-int QDoubleValidator_virtualbase_Validate(const void* self, struct miqt_string param1, int* param2) {
-	return ( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_Validate(param1, param2);
+QMetaObject* QDoubleValidator_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_MetaObject();
 }
 
-void QDoubleValidator_override_virtual_Fixup(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__Fixup = slot;
+void QDoubleValidator_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__Metacast = slot;
 }
 
-void QDoubleValidator_virtualbase_Fixup(const void* self, struct miqt_string input) {
-	( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_Fixup(input);
+void* QDoubleValidator_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QDoubleValidator_Delete(QDoubleValidator* self, bool isSubclass) {
@@ -896,67 +618,47 @@ public:
 	virtual ~MiqtVirtualQRegularExpressionValidator() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Validate = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QValidator::State validate(QString& input, int& pos) const override {
-		if (handle__Validate == 0) {
-			return QRegularExpressionValidator::validate(input, pos);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QRegularExpressionValidator::metaObject();
 		}
 		
-		QString input_ret = input;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray input_b = input_ret.toUtf8();
-		struct miqt_string input_ms;
-		input_ms.len = input_b.length();
-		input_ms.data = static_cast<char*>(malloc(input_ms.len));
-		memcpy(input_ms.data, input_b.data(), input_ms.len);
-		struct miqt_string sigval1 = input_ms;
-		int* sigval2 = &pos;
 
-		int callback_return_value = miqt_exec_callback_QRegularExpressionValidator_Validate(const_cast<MiqtVirtualQRegularExpressionValidator*>(this), handle__Validate, sigval1, sigval2);
+		QMetaObject* callback_return_value = miqt_exec_callback_QRegularExpressionValidator_MetaObject(const_cast<MiqtVirtualQRegularExpressionValidator*>(this), handle__MetaObject);
 
-		return static_cast<QValidator::State>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Validate(struct miqt_string input, int* pos) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
+	QMetaObject* virtualbase_MetaObject() const {
 
-		QValidator::State _ret = QRegularExpressionValidator::validate(input_QString, static_cast<int&>(*pos));
-		return static_cast<int>(_ret);
+		return (QMetaObject*) QRegularExpressionValidator::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Fixup = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void fixup(QString& param1) const override {
-		if (handle__Fixup == 0) {
-			QRegularExpressionValidator::fixup(param1);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QRegularExpressionValidator::qt_metacast(param1);
 		}
 		
-		QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QRegularExpressionValidator_Fixup(const_cast<MiqtVirtualQRegularExpressionValidator*>(this), handle__Fixup, sigval1);
+		void* callback_return_value = miqt_exec_callback_QRegularExpressionValidator_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+	void* virtualbase_Metacast(const char* param1) {
 
-		QRegularExpressionValidator::fixup(param1_QString);
+		return QRegularExpressionValidator::qt_metacast(param1);
 
 	}
 
@@ -1050,20 +752,20 @@ struct miqt_string QRegularExpressionValidator_Tr3(const char* s, const char* c,
 	return _ms;
 }
 
-void QRegularExpressionValidator_override_virtual_Validate(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) )->handle__Validate = slot;
+void QRegularExpressionValidator_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) )->handle__MetaObject = slot;
 }
 
-int QRegularExpressionValidator_virtualbase_Validate(const void* self, struct miqt_string input, int* pos) {
-	return ( (const MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_Validate(input, pos);
+QMetaObject* QRegularExpressionValidator_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_MetaObject();
 }
 
-void QRegularExpressionValidator_override_virtual_Fixup(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) )->handle__Fixup = slot;
+void QRegularExpressionValidator_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) )->handle__Metacast = slot;
 }
 
-void QRegularExpressionValidator_virtualbase_Fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_Fixup(param1);
+void* QRegularExpressionValidator_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QRegularExpressionValidator_Delete(QRegularExpressionValidator* self, bool isSubclass) {

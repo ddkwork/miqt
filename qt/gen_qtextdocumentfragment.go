@@ -16,7 +16,6 @@ type QTextDocumentFragment struct {
 
 // NewQTextDocumentFragment constructs a new QTextDocumentFragment object.
 func NewQTextDocumentFragment() *QTextDocumentFragment {
-
 	ret := newQTextDocumentFragment(QTextDocumentFragment_new())
 	ret.isSubclass = true
 	return ret
@@ -24,7 +23,6 @@ func NewQTextDocumentFragment() *QTextDocumentFragment {
 
 // NewQTextDocumentFragment2 constructs a new QTextDocumentFragment object.
 func NewQTextDocumentFragment2(document *QTextDocument) *QTextDocumentFragment {
-
 	ret := newQTextDocumentFragment(QTextDocumentFragment_new2(document.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -32,7 +30,6 @@ func NewQTextDocumentFragment2(document *QTextDocument) *QTextDocumentFragment {
 
 // NewQTextDocumentFragment3 constructs a new QTextDocumentFragment object.
 func NewQTextDocumentFragment3(rangeVal *QTextCursor) *QTextDocumentFragment {
-
 	ret := newQTextDocumentFragment(QTextDocumentFragment_new3(rangeVal.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -40,7 +37,6 @@ func NewQTextDocumentFragment3(rangeVal *QTextCursor) *QTextDocumentFragment {
 
 // NewQTextDocumentFragment4 constructs a new QTextDocumentFragment object.
 func NewQTextDocumentFragment4(rhs *QTextDocumentFragment) *QTextDocumentFragment {
-
 	ret := newQTextDocumentFragment(QTextDocumentFragment_new4(rhs.cPointer()))
 	ret.isSubclass = true
 	return ret

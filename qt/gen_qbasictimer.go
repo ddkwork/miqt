@@ -11,7 +11,6 @@ type QBasicTimer struct {
 
 // NewQBasicTimer constructs a new QBasicTimer object.
 func NewQBasicTimer() *QBasicTimer {
-
 	ret := newQBasicTimer(QBasicTimer_new())
 	ret.isSubclass = true
 	return ret

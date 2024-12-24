@@ -18,7 +18,6 @@ type QJsonDocument struct {
 
 // NewQJsonDocument constructs a new QJsonDocument object.
 func NewQJsonDocument() *QJsonDocument {
-
 	ret := newQJsonDocument(QJsonDocument_new())
 	ret.isSubclass = true
 	return ret
@@ -26,7 +25,6 @@ func NewQJsonDocument() *QJsonDocument {
 
 // NewQJsonDocument2 constructs a new QJsonDocument object.
 func NewQJsonDocument2(object *QJsonObject) *QJsonDocument {
-
 	ret := newQJsonDocument(QJsonDocument_new2(object.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -34,7 +32,6 @@ func NewQJsonDocument2(object *QJsonObject) *QJsonDocument {
 
 // NewQJsonDocument3 constructs a new QJsonDocument object.
 func NewQJsonDocument3(array *QJsonArray) *QJsonDocument {
-
 	ret := newQJsonDocument(QJsonDocument_new3(array.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -42,7 +39,6 @@ func NewQJsonDocument3(array *QJsonArray) *QJsonDocument {
 
 // NewQJsonDocument4 constructs a new QJsonDocument object.
 func NewQJsonDocument4(other *QJsonDocument) *QJsonDocument {
-
 	ret := newQJsonDocument(QJsonDocument_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

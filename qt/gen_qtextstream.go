@@ -47,7 +47,6 @@ type QTextStream struct {
 
 // NewQTextStream constructs a new QTextStream object.
 func NewQTextStream() *QTextStream {
-
 	ret := newQTextStream(QTextStream_new())
 	ret.isSubclass = true
 	return ret
@@ -55,7 +54,6 @@ func NewQTextStream() *QTextStream {
 
 // NewQTextStream2 constructs a new QTextStream object.
 func NewQTextStream2(device *QIODevice) *QTextStream {
-
 	ret := newQTextStream(QTextStream_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret

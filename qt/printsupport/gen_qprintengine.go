@@ -1,8 +1,9 @@
 package printsupport
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QPrintEngine__PrintEnginePropertyKey int

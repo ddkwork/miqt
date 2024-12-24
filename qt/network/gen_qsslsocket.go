@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslSocket__SslMode int
@@ -29,7 +30,6 @@ type QSslSocket struct {
 
 // NewQSslSocket constructs a new QSslSocket object.
 func NewQSslSocket() *QSslSocket {
-
 	ret := newQSslSocket(QSslSocket_new())
 	ret.isSubclass = true
 	return ret
@@ -37,7 +37,6 @@ func NewQSslSocket() *QSslSocket {
 
 // NewQSslSocket2 constructs a new QSslSocket object.
 func NewQSslSocket2(parent *qt.QObject) *QSslSocket {
-
 	ret := newQSslSocket(QSslSocket_new2((*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -456,6 +455,7 @@ func (this *QSslSocket) IgnoreSslErrors2() {
 func (this *QSslSocket) Encrypted() {
 	QSslSocket_Encrypted(this.h)
 }
+
 func (this *QSslSocket) OnEncrypted(slot func()) {
 	QSslSocket_connect_Encrypted(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -473,6 +473,7 @@ func miqt_exec_callback_QSslSocket_Encrypted(cb intptr_t) {
 func (this *QSslSocket) PeerVerifyError(error *QSslError) {
 	QSslSocket_PeerVerifyError(this.h, error.cPointer())
 }
+
 func (this *QSslSocket) OnPeerVerifyError(slot func(error *QSslError)) {
 	QSslSocket_connect_PeerVerifyError(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -499,6 +500,7 @@ func (this *QSslSocket) SslErrors(errors []QSslError) {
 	errors_ma := struct_miqt_array{len: size_t(len(errors)), data: unsafe.Pointer(errors_CArray)}
 	QSslSocket_SslErrors(this.h, errors_ma)
 }
+
 func (this *QSslSocket) OnSslErrors(slot func(errors []QSslError)) {
 	QSslSocket_connect_SslErrors(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -527,6 +529,7 @@ func miqt_exec_callback_QSslSocket_SslErrors(cb intptr_t, errors struct_miqt_arr
 func (this *QSslSocket) ModeChanged(newMode QSslSocket__SslMode) {
 	QSslSocket_ModeChanged(this.h, (int)(newMode))
 }
+
 func (this *QSslSocket) OnModeChanged(slot func(newMode QSslSocket__SslMode)) {
 	QSslSocket_connect_ModeChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -547,6 +550,7 @@ func miqt_exec_callback_QSslSocket_ModeChanged(cb intptr_t, newMode int) {
 func (this *QSslSocket) EncryptedBytesWritten(totalBytes int64) {
 	QSslSocket_EncryptedBytesWritten(this.h, (longlong)(totalBytes))
 }
+
 func (this *QSslSocket) OnEncryptedBytesWritten(slot func(totalBytes int64)) {
 	QSslSocket_connect_EncryptedBytesWritten(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -567,6 +571,7 @@ func miqt_exec_callback_QSslSocket_EncryptedBytesWritten(cb intptr_t, totalBytes
 func (this *QSslSocket) PreSharedKeyAuthenticationRequired(authenticator *QSslPreSharedKeyAuthenticator) {
 	QSslSocket_PreSharedKeyAuthenticationRequired(this.h, authenticator.cPointer())
 }
+
 func (this *QSslSocket) OnPreSharedKeyAuthenticationRequired(slot func(authenticator *QSslPreSharedKeyAuthenticator)) {
 	QSslSocket_connect_PreSharedKeyAuthenticationRequired(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -587,6 +592,7 @@ func miqt_exec_callback_QSslSocket_PreSharedKeyAuthenticationRequired(cb intptr_
 func (this *QSslSocket) NewSessionTicketReceived() {
 	QSslSocket_NewSessionTicketReceived(this.h)
 }
+
 func (this *QSslSocket) OnNewSessionTicketReceived(slot func()) {
 	QSslSocket_connect_NewSessionTicketReceived(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -608,6 +614,7 @@ func (this *QSslSocket) AlertSent(level QSsl__AlertLevel, typeVal QSsl__AlertTyp
 	defer free(unsafe.Pointer(description_ms.data))
 	QSslSocket_AlertSent(this.h, (int)(level), (int)(typeVal), description_ms)
 }
+
 func (this *QSslSocket) OnAlertSent(slot func(level QSsl__AlertLevel, typeVal QSsl__AlertType, description string)) {
 	QSslSocket_connect_AlertSent(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -639,6 +646,7 @@ func (this *QSslSocket) AlertReceived(level QSsl__AlertLevel, typeVal QSsl__Aler
 	defer free(unsafe.Pointer(description_ms.data))
 	QSslSocket_AlertReceived(this.h, (int)(level), (int)(typeVal), description_ms)
 }
+
 func (this *QSslSocket) OnAlertReceived(slot func(level QSsl__AlertLevel, typeVal QSsl__AlertType, description string)) {
 	QSslSocket_connect_AlertReceived(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -666,6 +674,7 @@ func miqt_exec_callback_QSslSocket_AlertReceived(cb intptr_t, level int, typeVal
 func (this *QSslSocket) HandshakeInterruptedOnError(error *QSslError) {
 	QSslSocket_HandshakeInterruptedOnError(this.h, error.cPointer())
 }
+
 func (this *QSslSocket) OnHandshakeInterruptedOnError(slot func(error *QSslError)) {
 	QSslSocket_connect_HandshakeInterruptedOnError(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -850,529 +859,55 @@ func QSslSocket_IsFeatureSupported2(feat QSsl__SupportedFeature, backendName str
 	return (bool)(QSslSocket_IsFeatureSupported2((int)(feat), backendName_ms))
 }
 
-func (this *QSslSocket) callVirtualBase_Resume() {
-
-	QSslSocket_virtualbase_Resume(unsafe.Pointer(this.h))
-
+func (this *QSslSocket) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QSslSocket_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QSslSocket) OnResume(slot func(super func())) {
+
+func (this *QSslSocket) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QSslSocket_override_virtual_Resume(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QSslSocket_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QSslSocket_Resume
-func miqt_exec_callback_QSslSocket_Resume(self QSslSocket, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
+//export miqt_exec_callback_QSslSocket_MetaObject
+func miqt_exec_callback_QSslSocket_MetaObject(self QSslSocket, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	gofunc((&QSslSocket{h: self}).callVirtualBase_Resume)
+	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_MetaObject)
 
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
 }
 
-func (this *QSslSocket) callVirtualBase_SetSocketDescriptor(socketDescriptor uintptr, state SocketState, openMode OpenMode) bool {
+func (this *QSslSocket) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	return (bool)(QSslSocket_virtualbase_SetSocketDescriptor(unsafe.Pointer(this.h), (intptr_t)(socketDescriptor), state, openMode))
-
+	return (unsafe.Pointer)(QSslSocket_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QSslSocket) OnSetSocketDescriptor(slot func(super func(socketDescriptor uintptr, state SocketState, openMode OpenMode) bool, socketDescriptor uintptr, state SocketState, openMode OpenMode) bool) {
+
+func (this *QSslSocket) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QSslSocket_override_virtual_SetSocketDescriptor(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QSslSocket_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QSslSocket_SetSocketDescriptor
-func miqt_exec_callback_QSslSocket_SetSocketDescriptor(self QSslSocket, cb intptr_t, socketDescriptor intptr_t, state SocketState, openMode OpenMode) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(socketDescriptor uintptr, state SocketState, openMode OpenMode) bool, socketDescriptor uintptr, state SocketState, openMode OpenMode) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (uintptr)(socketDescriptor)
-
-	xxxxxxxxx
-	xxxxxxxxx
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_SetSocketDescriptor, slotval1, slotval2, slotval3)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_ConnectToHost(hostName string, port uint16, openMode OpenMode, protocol NetworkLayerProtocol) {
-	hostName_ms := struct_miqt_string{}
-	hostName_ms.data = CString(hostName)
-	hostName_ms.len = size_t(len(hostName))
-	defer free(unsafe.Pointer(hostName_ms.data))
-
-	QSslSocket_virtualbase_ConnectToHost(unsafe.Pointer(this.h), hostName_ms, (uint16_t)(port), openMode, protocol)
-
-}
-func (this *QSslSocket) OnConnectToHost(slot func(super func(hostName string, port uint16, openMode OpenMode, protocol NetworkLayerProtocol), hostName string, port uint16, openMode OpenMode, protocol NetworkLayerProtocol)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_ConnectToHost(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_ConnectToHost
-func miqt_exec_callback_QSslSocket_ConnectToHost(self QSslSocket, cb intptr_t, hostName struct_miqt_string, port uint16_t, openMode OpenMode, protocol NetworkLayerProtocol) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(hostName string, port uint16, openMode OpenMode, protocol NetworkLayerProtocol), hostName string, port uint16, openMode OpenMode, protocol NetworkLayerProtocol))
+//export miqt_exec_callback_QSslSocket_Metacast
+func miqt_exec_callback_QSslSocket_Metacast(self QSslSocket, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var hostName_ms struct_miqt_string = hostName
-	hostName_ret := GoStringN(hostName_ms.data, int(int64(hostName_ms.len)))
-	free(unsafe.Pointer(hostName_ms.data))
-	slotval1 := hostName_ret
-	slotval2 := (uint16)(port)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	xxxxxxxxx
-	xxxxxxxxx
+	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_Metacast, slotval1)
 
-	gofunc((&QSslSocket{h: self}).callVirtualBase_ConnectToHost, slotval1, slotval2, slotval3, slotval4)
-
-}
-
-func (this *QSslSocket) callVirtualBase_DisconnectFromHost() {
-
-	QSslSocket_virtualbase_DisconnectFromHost(unsafe.Pointer(this.h))
-
-}
-func (this *QSslSocket) OnDisconnectFromHost(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_DisconnectFromHost(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_DisconnectFromHost
-func miqt_exec_callback_QSslSocket_DisconnectFromHost(self QSslSocket, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QSslSocket{h: self}).callVirtualBase_DisconnectFromHost)
-
-}
-
-func (this *QSslSocket) callVirtualBase_SetSocketOption(option QAbstractSocket__SocketOption, value *qt.QVariant) {
-
-	QSslSocket_virtualbase_SetSocketOption(unsafe.Pointer(this.h), (int)(option), (*QVariant)(value.UnsafePointer()))
-
-}
-func (this *QSslSocket) OnSetSocketOption(slot func(super func(option QAbstractSocket__SocketOption, value *qt.QVariant), option QAbstractSocket__SocketOption, value *qt.QVariant)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_SetSocketOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_SetSocketOption
-func miqt_exec_callback_QSslSocket_SetSocketOption(self QSslSocket, cb intptr_t, option int, value *QVariant) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option QAbstractSocket__SocketOption, value *qt.QVariant), option QAbstractSocket__SocketOption, value *qt.QVariant))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (QAbstractSocket__SocketOption)(option)
-
-	slotval2 := qt.UnsafeNewQVariant(unsafe.Pointer(value))
-
-	gofunc((&QSslSocket{h: self}).callVirtualBase_SetSocketOption, slotval1, slotval2)
-
-}
-
-func (this *QSslSocket) callVirtualBase_SocketOption(option QAbstractSocket__SocketOption) *qt.QVariant {
-
-	_goptr := qt.UnsafeNewQVariant(unsafe.Pointer(QSslSocket_virtualbase_SocketOption(unsafe.Pointer(this.h), (int)(option))))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QSslSocket) OnSocketOption(slot func(super func(option QAbstractSocket__SocketOption) *qt.QVariant, option QAbstractSocket__SocketOption) *qt.QVariant) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_SocketOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_SocketOption
-func miqt_exec_callback_QSslSocket_SocketOption(self QSslSocket, cb intptr_t, option int) *QVariant {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option QAbstractSocket__SocketOption) *qt.QVariant, option QAbstractSocket__SocketOption) *qt.QVariant)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (QAbstractSocket__SocketOption)(option)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_SocketOption, slotval1)
-
-	return (*QVariant)(virtualReturn.UnsafePointer())
-
-}
-
-func (this *QSslSocket) callVirtualBase_BytesAvailable() int64 {
-
-	return (int64)(QSslSocket_virtualbase_BytesAvailable(unsafe.Pointer(this.h)))
-
-}
-func (this *QSslSocket) OnBytesAvailable(slot func(super func() int64) int64) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_BytesAvailable(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_BytesAvailable
-func miqt_exec_callback_QSslSocket_BytesAvailable(self QSslSocket, cb intptr_t) longlong {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int64) int64)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_BytesAvailable)
-
-	return (longlong)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_BytesToWrite() int64 {
-
-	return (int64)(QSslSocket_virtualbase_BytesToWrite(unsafe.Pointer(this.h)))
-
-}
-func (this *QSslSocket) OnBytesToWrite(slot func(super func() int64) int64) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_BytesToWrite(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_BytesToWrite
-func miqt_exec_callback_QSslSocket_BytesToWrite(self QSslSocket, cb intptr_t) longlong {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int64) int64)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_BytesToWrite)
-
-	return (longlong)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_CanReadLine() bool {
-
-	return (bool)(QSslSocket_virtualbase_CanReadLine(unsafe.Pointer(this.h)))
-
-}
-func (this *QSslSocket) OnCanReadLine(slot func(super func() bool) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_CanReadLine(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_CanReadLine
-func miqt_exec_callback_QSslSocket_CanReadLine(self QSslSocket, cb intptr_t) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_CanReadLine)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_Close() {
-
-	QSslSocket_virtualbase_Close(unsafe.Pointer(this.h))
-
-}
-func (this *QSslSocket) OnClose(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_Close(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_Close
-func miqt_exec_callback_QSslSocket_Close(self QSslSocket, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QSslSocket{h: self}).callVirtualBase_Close)
-
-}
-
-func (this *QSslSocket) callVirtualBase_AtEnd() bool {
-
-	return (bool)(QSslSocket_virtualbase_AtEnd(unsafe.Pointer(this.h)))
-
-}
-func (this *QSslSocket) OnAtEnd(slot func(super func() bool) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_AtEnd(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_AtEnd
-func miqt_exec_callback_QSslSocket_AtEnd(self QSslSocket, cb intptr_t) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_AtEnd)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_SetReadBufferSize(size int64) {
-
-	QSslSocket_virtualbase_SetReadBufferSize(unsafe.Pointer(this.h), (longlong)(size))
-
-}
-func (this *QSslSocket) OnSetReadBufferSize(slot func(super func(size int64), size int64)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_SetReadBufferSize(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_SetReadBufferSize
-func miqt_exec_callback_QSslSocket_SetReadBufferSize(self QSslSocket, cb intptr_t, size longlong) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(size int64), size int64))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int64)(size)
-
-	gofunc((&QSslSocket{h: self}).callVirtualBase_SetReadBufferSize, slotval1)
-
-}
-
-func (this *QSslSocket) callVirtualBase_WaitForConnected(msecs int) bool {
-
-	return (bool)(QSslSocket_virtualbase_WaitForConnected(unsafe.Pointer(this.h), (int)(msecs)))
-
-}
-func (this *QSslSocket) OnWaitForConnected(slot func(super func(msecs int) bool, msecs int) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_WaitForConnected(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_WaitForConnected
-func miqt_exec_callback_QSslSocket_WaitForConnected(self QSslSocket, cb intptr_t, msecs int) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(msecs int) bool, msecs int) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(msecs)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_WaitForConnected, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_WaitForReadyRead(msecs int) bool {
-
-	return (bool)(QSslSocket_virtualbase_WaitForReadyRead(unsafe.Pointer(this.h), (int)(msecs)))
-
-}
-func (this *QSslSocket) OnWaitForReadyRead(slot func(super func(msecs int) bool, msecs int) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_WaitForReadyRead(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_WaitForReadyRead
-func miqt_exec_callback_QSslSocket_WaitForReadyRead(self QSslSocket, cb intptr_t, msecs int) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(msecs int) bool, msecs int) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(msecs)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_WaitForReadyRead, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_WaitForBytesWritten(msecs int) bool {
-
-	return (bool)(QSslSocket_virtualbase_WaitForBytesWritten(unsafe.Pointer(this.h), (int)(msecs)))
-
-}
-func (this *QSslSocket) OnWaitForBytesWritten(slot func(super func(msecs int) bool, msecs int) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_WaitForBytesWritten(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_WaitForBytesWritten
-func miqt_exec_callback_QSslSocket_WaitForBytesWritten(self QSslSocket, cb intptr_t, msecs int) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(msecs int) bool, msecs int) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(msecs)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_WaitForBytesWritten, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_WaitForDisconnected(msecs int) bool {
-
-	return (bool)(QSslSocket_virtualbase_WaitForDisconnected(unsafe.Pointer(this.h), (int)(msecs)))
-
-}
-func (this *QSslSocket) OnWaitForDisconnected(slot func(super func(msecs int) bool, msecs int) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_WaitForDisconnected(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_WaitForDisconnected
-func miqt_exec_callback_QSslSocket_WaitForDisconnected(self QSslSocket, cb intptr_t, msecs int) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(msecs int) bool, msecs int) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(msecs)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_WaitForDisconnected, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_ReadData(data string, maxlen int64) int64 {
-	data_Cstring := CString(data)
-	defer free(unsafe.Pointer(data_Cstring))
-
-	return (int64)(QSslSocket_virtualbase_ReadData(unsafe.Pointer(this.h), data_Cstring, (longlong)(maxlen)))
-
-}
-func (this *QSslSocket) OnReadData(slot func(super func(data string, maxlen int64) int64, data string, maxlen int64) int64) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_ReadData(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_ReadData
-func miqt_exec_callback_QSslSocket_ReadData(self QSslSocket, cb intptr_t, data *char, maxlen longlong) longlong {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(data string, maxlen int64) int64, data string, maxlen int64) int64)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	data_ret := data
-	slotval1 := GoString(data_ret)
-
-	slotval2 := (int64)(maxlen)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_ReadData, slotval1, slotval2)
-
-	return (longlong)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_SkipData(maxSize int64) int64 {
-
-	return (int64)(QSslSocket_virtualbase_SkipData(unsafe.Pointer(this.h), (longlong)(maxSize)))
-
-}
-func (this *QSslSocket) OnSkipData(slot func(super func(maxSize int64) int64, maxSize int64) int64) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_SkipData(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_SkipData
-func miqt_exec_callback_QSslSocket_SkipData(self QSslSocket, cb intptr_t, maxSize longlong) longlong {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(maxSize int64) int64, maxSize int64) int64)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int64)(maxSize)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_SkipData, slotval1)
-
-	return (longlong)(virtualReturn)
-
-}
-
-func (this *QSslSocket) callVirtualBase_WriteData(data string, lenVal int64) int64 {
-	data_Cstring := CString(data)
-	defer free(unsafe.Pointer(data_Cstring))
-
-	return (int64)(QSslSocket_virtualbase_WriteData(unsafe.Pointer(this.h), data_Cstring, (longlong)(lenVal)))
-
-}
-func (this *QSslSocket) OnWriteData(slot func(super func(data string, lenVal int64) int64, data string, lenVal int64) int64) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSslSocket_override_virtual_WriteData(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSslSocket_WriteData
-func miqt_exec_callback_QSslSocket_WriteData(self QSslSocket, cb intptr_t, data *const_char, lenVal longlong) longlong {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(data string, lenVal int64) int64, data string, lenVal int64) int64)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	data_ret := data
-	slotval1 := GoString(data_ret)
-
-	slotval2 := (int64)(lenVal)
-
-	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_WriteData, slotval1, slotval2)
-
-	return (longlong)(virtualReturn)
-
+	return virtualReturn
 }

@@ -1705,7 +1705,6 @@ type Disambiguated_t struct {
 
 // NewDisambiguated_t constructs a new Qt::Disambiguated_t object.
 func NewDisambiguated_t() *Disambiguated_t {
-
 	ret := newDisambiguated_t(Disambiguated_t_new())
 	ret.isSubclass = true
 	return ret
@@ -1713,7 +1712,6 @@ func NewDisambiguated_t() *Disambiguated_t {
 
 // NewDisambiguated_t2 constructs a new Qt::Disambiguated_t object.
 func NewDisambiguated_t2(param1 *Disambiguated_t) *Disambiguated_t {
-
 	ret := newDisambiguated_t(Disambiguated_t_new2(param1))
 	ret.isSubclass = true
 	return ret
@@ -1731,7 +1729,6 @@ type QKeyCombination struct {
 
 // NewQKeyCombination constructs a new QKeyCombination object.
 func NewQKeyCombination() *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new())
 	ret.isSubclass = true
 	return ret
@@ -1739,7 +1736,6 @@ func NewQKeyCombination() *QKeyCombination {
 
 // NewQKeyCombination2 constructs a new QKeyCombination object.
 func NewQKeyCombination2(modifiers Modifier) *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new2((int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -1747,7 +1743,6 @@ func NewQKeyCombination2(modifiers Modifier) *QKeyCombination {
 
 // NewQKeyCombination3 constructs a new QKeyCombination object.
 func NewQKeyCombination3(modifiers KeyboardModifier) *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new3((int)(modifiers)))
 	ret.isSubclass = true
 	return ret
@@ -1755,7 +1750,6 @@ func NewQKeyCombination3(modifiers KeyboardModifier) *QKeyCombination {
 
 // NewQKeyCombination4 constructs a new QKeyCombination object.
 func NewQKeyCombination4(param1 *QKeyCombination) *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1763,7 +1757,6 @@ func NewQKeyCombination4(param1 *QKeyCombination) *QKeyCombination {
 
 // NewQKeyCombination5 constructs a new QKeyCombination object.
 func NewQKeyCombination5(key Key) *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new5((int)(key)))
 	ret.isSubclass = true
 	return ret
@@ -1771,7 +1764,6 @@ func NewQKeyCombination5(key Key) *QKeyCombination {
 
 // NewQKeyCombination6 constructs a new QKeyCombination object.
 func NewQKeyCombination6(modifiers Modifier, key Key) *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new6((int)(modifiers), (int)(key)))
 	ret.isSubclass = true
 	return ret
@@ -1779,7 +1771,6 @@ func NewQKeyCombination6(modifiers Modifier, key Key) *QKeyCombination {
 
 // NewQKeyCombination7 constructs a new QKeyCombination object.
 func NewQKeyCombination7(modifiers KeyboardModifier, key Key) *QKeyCombination {
-
 	ret := newQKeyCombination(QKeyCombination_new7((int)(modifiers), (int)(key)))
 	ret.isSubclass = true
 	return ret

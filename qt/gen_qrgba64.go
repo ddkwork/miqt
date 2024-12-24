@@ -11,7 +11,6 @@ type QRgba64 struct {
 
 // NewQRgba64 constructs a new QRgba64 object.
 func NewQRgba64() *QRgba64 {
-
 	ret := newQRgba64(QRgba64_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQRgba64() *QRgba64 {
 
 // NewQRgba642 constructs a new QRgba64 object.
 func NewQRgba642(param1 *QRgba64) *QRgba64 {
-
 	ret := newQRgba64(QRgba64_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -19,166 +19,165 @@ typedef struct QIcon QIcon;
 typedef struct QMetaObject QMetaObject;
 typedef struct QMimeData QMimeData;
 typedef struct QModelIndex QModelIndex;
-typedef struct QModelRoleDataSpan QModelRoleDataSpan;
 typedef struct QObject QObject;
-typedef struct QSize QSize;
 typedef struct QTimeZone QTimeZone;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct QVariant QVariant;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QFileSystemModel* QFileSystemModel_new();
-extern __declspec(dllexport) QFileSystemModel* QFileSystemModel_new2(QObject* parent);
-extern __declspec(dllexport) void QFileSystemModel_virtbase(QFileSystemModel* src, QAbstractItemModel** outptr_QAbstractItemModel);
-extern __declspec(dllexport) QMetaObject* QFileSystemModel_MetaObject(const QFileSystemModel* self);
-extern __declspec(dllexport) void* QFileSystemModel_Metacast(QFileSystemModel* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_Tr(const char* s);
-extern __declspec(dllexport) void QFileSystemModel_RootPathChanged(QFileSystemModel* self, struct miqt_string newPath);
+extern __declspec(dllexport) 
+QFileSystemModel* QFileSystemModel_new();
+extern __declspec(dllexport) 
+QFileSystemModel* QFileSystemModel_new2(QObject* parent);
+extern __declspec(dllexport) 
+void QFileSystemModel_virtbase(QFileSystemModel* src
+, QAbstractItemModel** outptr_QAbstractItemModel
+);
+extern __declspec(dllexport) 
+QMetaObject* QFileSystemModel_MetaObject(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void* QFileSystemModel_Metacast(QFileSystemModel* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_Tr(const char* s);
+extern __declspec(dllexport) 
+void QFileSystemModel_RootPathChanged(QFileSystemModel* self, struct miqt_string newPath);
 void QFileSystemModel_connect_RootPathChanged(QFileSystemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QFileSystemModel_FileRenamed(QFileSystemModel* self, struct miqt_string path, struct miqt_string oldName, struct miqt_string newName);
+extern __declspec(dllexport) 
+void QFileSystemModel_FileRenamed(QFileSystemModel* self, struct miqt_string path, struct miqt_string oldName, struct miqt_string newName);
 void QFileSystemModel_connect_FileRenamed(QFileSystemModel* self, intptr_t slot);
-extern __declspec(dllexport) void QFileSystemModel_DirectoryLoaded(QFileSystemModel* self, struct miqt_string path);
+extern __declspec(dllexport) 
+void QFileSystemModel_DirectoryLoaded(QFileSystemModel* self, struct miqt_string path);
 void QFileSystemModel_connect_DirectoryLoaded(QFileSystemModel* self, intptr_t slot);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_Index(const QFileSystemModel* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_IndexWithPath(const QFileSystemModel* self, struct miqt_string path);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_Parent(const QFileSystemModel* self, QModelIndex* child);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_Sibling(const QFileSystemModel* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) bool QFileSystemModel_HasChildren(const QFileSystemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) bool QFileSystemModel_CanFetchMore(const QFileSystemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_FetchMore(QFileSystemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) int QFileSystemModel_RowCount(const QFileSystemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) int QFileSystemModel_ColumnCount(const QFileSystemModel* self, QModelIndex* parent);
-extern __declspec(dllexport) QVariant* QFileSystemModel_MyComputer(const QFileSystemModel* self);
-extern __declspec(dllexport) QVariant* QFileSystemModel_Data(const QFileSystemModel* self, QModelIndex* index, int role);
-extern __declspec(dllexport) bool QFileSystemModel_SetData(QFileSystemModel* self, QModelIndex* index, QVariant* value, int role);
-extern __declspec(dllexport) QVariant* QFileSystemModel_HeaderData(const QFileSystemModel* self, int section, int orientation, int role);
-extern __declspec(dllexport) int QFileSystemModel_Flags(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_Sort(QFileSystemModel* self, int column, int order);
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFileSystemModel_MimeTypes(const QFileSystemModel* self);
-extern __declspec(dllexport) QMimeData* QFileSystemModel_MimeData(const QFileSystemModel* self, struct miqt_array /* of QModelIndex* */  indexes);
-extern __declspec(dllexport) bool QFileSystemModel_DropMimeData(QFileSystemModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) int QFileSystemModel_SupportedDropActions(const QFileSystemModel* self);
-extern __declspec(dllexport) struct miqt_map /* of int to struct miqt_string */  QFileSystemModel_RoleNames(const QFileSystemModel* self);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_SetRootPath(QFileSystemModel* self, struct miqt_string path);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_RootPath(const QFileSystemModel* self);
-extern __declspec(dllexport) QDir* QFileSystemModel_RootDirectory(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetIconProvider(QFileSystemModel* self, QAbstractFileIconProvider* provider);
-extern __declspec(dllexport) QAbstractFileIconProvider* QFileSystemModel_IconProvider(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetFilter(QFileSystemModel* self, int filters);
-extern __declspec(dllexport) int QFileSystemModel_Filter(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetResolveSymlinks(QFileSystemModel* self, bool enable);
-extern __declspec(dllexport) bool QFileSystemModel_ResolveSymlinks(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetReadOnly(QFileSystemModel* self, bool enable);
-extern __declspec(dllexport) bool QFileSystemModel_IsReadOnly(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetNameFilterDisables(QFileSystemModel* self, bool enable);
-extern __declspec(dllexport) bool QFileSystemModel_NameFilterDisables(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetNameFilters(QFileSystemModel* self, struct miqt_array /* of struct miqt_string */  filters);
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFileSystemModel_NameFilters(const QFileSystemModel* self);
-extern __declspec(dllexport) void QFileSystemModel_SetOption(QFileSystemModel* self, Option option);
-extern __declspec(dllexport) bool QFileSystemModel_TestOption(const QFileSystemModel* self, Option option);
-extern __declspec(dllexport) void QFileSystemModel_SetOptions(QFileSystemModel* self, Options options);
-extern __declspec(dllexport) Options QFileSystemModel_Options(const QFileSystemModel* self);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_FilePath(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) bool QFileSystemModel_IsDir(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) long long QFileSystemModel_Size(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_Type(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) QDateTime* QFileSystemModel_LastModified(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) QDateTime* QFileSystemModel_LastModified2(const QFileSystemModel* self, QModelIndex* index, QTimeZone* tz);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_Mkdir(QFileSystemModel* self, QModelIndex* parent, struct miqt_string name);
-extern __declspec(dllexport) bool QFileSystemModel_Rmdir(QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_FileName(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) QIcon* QFileSystemModel_FileIcon(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) int QFileSystemModel_Permissions(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) QFileInfo* QFileSystemModel_FileInfo(const QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) bool QFileSystemModel_Remove(QFileSystemModel* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_TimerEvent(QFileSystemModel* self, QTimerEvent* event);
-extern __declspec(dllexport) bool QFileSystemModel_Event(QFileSystemModel* self, QEvent* event);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QFileSystemModel_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) QModelIndex* QFileSystemModel_Index2(const QFileSystemModel* self, struct miqt_string path, int column);
-extern __declspec(dllexport) QVariant* QFileSystemModel_MyComputer1(const QFileSystemModel* self, int role);
-extern __declspec(dllexport) void QFileSystemModel_SetOption2(QFileSystemModel* self, Option option, bool on);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Index(void* self, intptr_t slot);
-QModelIndex* QFileSystemModel_virtualbase_Index(const void* self, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Parent(void* self, intptr_t slot);
-QModelIndex* QFileSystemModel_virtualbase_Parent(const void* self, QModelIndex* child);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Sibling(void* self, intptr_t slot);
-QModelIndex* QFileSystemModel_virtualbase_Sibling(const void* self, int row, int column, QModelIndex* idx);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_HasChildren(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_HasChildren(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_CanFetchMore(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_CanFetchMore(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_FetchMore(void* self, intptr_t slot);
-void QFileSystemModel_virtualbase_FetchMore(void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_RowCount(void* self, intptr_t slot);
-int QFileSystemModel_virtualbase_RowCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_ColumnCount(void* self, intptr_t slot);
-int QFileSystemModel_virtualbase_ColumnCount(const void* self, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Data(void* self, intptr_t slot);
-QVariant* QFileSystemModel_virtualbase_Data(const void* self, QModelIndex* index, int role);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_SetData(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_SetData(void* self, QModelIndex* index, QVariant* value, int role);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_HeaderData(void* self, intptr_t slot);
-QVariant* QFileSystemModel_virtualbase_HeaderData(const void* self, int section, int orientation, int role);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Flags(void* self, intptr_t slot);
-int QFileSystemModel_virtualbase_Flags(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Sort(void* self, intptr_t slot);
-void QFileSystemModel_virtualbase_Sort(void* self, int column, int order);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_MimeTypes(void* self, intptr_t slot);
-struct miqt_array /* of struct miqt_string */  QFileSystemModel_virtualbase_MimeTypes(const void* self);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_MimeData(void* self, intptr_t slot);
-QMimeData* QFileSystemModel_virtualbase_MimeData(const void* self, struct miqt_array /* of QModelIndex* */  indexes);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_DropMimeData(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_DropMimeData(void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_SupportedDropActions(void* self, intptr_t slot);
-int QFileSystemModel_virtualbase_SupportedDropActions(const void* self);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_RoleNames(void* self, intptr_t slot);
-struct miqt_map /* of int to struct miqt_string */  QFileSystemModel_virtualbase_RoleNames(const void* self);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QFileSystemModel_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Event(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_SetHeaderData(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_SetHeaderData(void* self, int section, int orientation, QVariant* value, int role);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_ItemData(void* self, intptr_t slot);
-struct miqt_map /* of int to QVariant* */  QFileSystemModel_virtualbase_ItemData(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_SetItemData(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_SetItemData(void* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_ClearItemData(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_ClearItemData(void* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_CanDropMimeData(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_CanDropMimeData(const void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_SupportedDragActions(void* self, intptr_t slot);
-int QFileSystemModel_virtualbase_SupportedDragActions(const void* self);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_InsertRows(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_InsertRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_InsertColumns(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_InsertColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_RemoveRows(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_RemoveRows(void* self, int row, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_RemoveColumns(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_RemoveColumns(void* self, int column, int count, QModelIndex* parent);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_MoveRows(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_MoveRows(void* self, QModelIndex* sourceParent, int sourceRow, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_MoveColumns(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_MoveColumns(void* self, QModelIndex* sourceParent, int sourceColumn, int count, QModelIndex* destinationParent, int destinationChild);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Buddy(void* self, intptr_t slot);
-QModelIndex* QFileSystemModel_virtualbase_Buddy(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Match(void* self, intptr_t slot);
-struct miqt_array /* of QModelIndex* */  QFileSystemModel_virtualbase_Match(const void* self, QModelIndex* start, int role, QVariant* value, int hits, int flags);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Span(void* self, intptr_t slot);
-QSize* QFileSystemModel_virtualbase_Span(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_MultiData(void* self, intptr_t slot);
-void QFileSystemModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Submit(void* self, intptr_t slot);
-bool QFileSystemModel_virtualbase_Submit(void* self);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_Revert(void* self, intptr_t slot);
-void QFileSystemModel_virtualbase_Revert(void* self);
-extern __declspec(dllexport) void QFileSystemModel_override_virtual_ResetInternalData(void* self, intptr_t slot);
-void QFileSystemModel_virtualbase_ResetInternalData(void* self);
-extern __declspec(dllexport) void QFileSystemModel_Delete(QFileSystemModel* self, bool isSubclass);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_Index(const QFileSystemModel* self, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_IndexWithPath(const QFileSystemModel* self, struct miqt_string path);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_Parent(const QFileSystemModel* self, QModelIndex* child);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_Sibling(const QFileSystemModel* self, int row, int column, QModelIndex* idx);
+extern __declspec(dllexport) 
+bool QFileSystemModel_HasChildren(const QFileSystemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+bool QFileSystemModel_CanFetchMore(const QFileSystemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+void QFileSystemModel_FetchMore(QFileSystemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QFileSystemModel_RowCount(const QFileSystemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QFileSystemModel_ColumnCount(const QFileSystemModel* self, QModelIndex* parent);
+extern __declspec(dllexport) 
+QVariant* QFileSystemModel_MyComputer(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+QVariant* QFileSystemModel_Data(const QFileSystemModel* self, QModelIndex* index, int role);
+extern __declspec(dllexport) 
+bool QFileSystemModel_SetData(QFileSystemModel* self, QModelIndex* index, QVariant* value, int role);
+extern __declspec(dllexport) 
+QVariant* QFileSystemModel_HeaderData(const QFileSystemModel* self, int section, int orientation, int role);
+extern __declspec(dllexport) 
+int QFileSystemModel_Flags(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QFileSystemModel_Sort(QFileSystemModel* self, int column, int order);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QFileSystemModel_MimeTypes(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+QMimeData* QFileSystemModel_MimeData(const QFileSystemModel* self, struct miqt_array /* of QModelIndex* */  indexes);
+extern __declspec(dllexport) 
+bool QFileSystemModel_DropMimeData(QFileSystemModel* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
+extern __declspec(dllexport) 
+int QFileSystemModel_SupportedDropActions(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+struct miqt_map /* of int to struct miqt_string */  QFileSystemModel_RoleNames(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_SetRootPath(QFileSystemModel* self, struct miqt_string path);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_RootPath(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+QDir* QFileSystemModel_RootDirectory(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetIconProvider(QFileSystemModel* self, QAbstractFileIconProvider* provider);
+extern __declspec(dllexport) 
+QAbstractFileIconProvider* QFileSystemModel_IconProvider(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetFilter(QFileSystemModel* self, int filters);
+extern __declspec(dllexport) 
+int QFileSystemModel_Filter(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetResolveSymlinks(QFileSystemModel* self, bool enable);
+extern __declspec(dllexport) 
+bool QFileSystemModel_ResolveSymlinks(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetReadOnly(QFileSystemModel* self, bool enable);
+extern __declspec(dllexport) 
+bool QFileSystemModel_IsReadOnly(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetNameFilterDisables(QFileSystemModel* self, bool enable);
+extern __declspec(dllexport) 
+bool QFileSystemModel_NameFilterDisables(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetNameFilters(QFileSystemModel* self, struct miqt_array /* of struct miqt_string */  filters);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QFileSystemModel_NameFilters(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetOption(QFileSystemModel* self, Option option);
+extern __declspec(dllexport) 
+bool QFileSystemModel_TestOption(const QFileSystemModel* self, Option option);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetOptions(QFileSystemModel* self, Options options);
+extern __declspec(dllexport) 
+Options QFileSystemModel_Options(const QFileSystemModel* self);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_FilePath(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+bool QFileSystemModel_IsDir(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+long long QFileSystemModel_Size(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_Type(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+QDateTime* QFileSystemModel_LastModified(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+QDateTime* QFileSystemModel_LastModified2(const QFileSystemModel* self, QModelIndex* index, QTimeZone* tz);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_Mkdir(QFileSystemModel* self, QModelIndex* parent, struct miqt_string name);
+extern __declspec(dllexport) 
+bool QFileSystemModel_Rmdir(QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_FileName(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+QIcon* QFileSystemModel_FileIcon(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+int QFileSystemModel_Permissions(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+QFileInfo* QFileSystemModel_FileInfo(const QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+bool QFileSystemModel_Remove(QFileSystemModel* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QFileSystemModel_TimerEvent(QFileSystemModel* self, QTimerEvent* event);
+extern __declspec(dllexport) 
+bool QFileSystemModel_Event(QFileSystemModel* self, QEvent* event);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QFileSystemModel_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+QModelIndex* QFileSystemModel_Index2(const QFileSystemModel* self, struct miqt_string path, int column);
+extern __declspec(dllexport) 
+QVariant* QFileSystemModel_MyComputer1(const QFileSystemModel* self, int role);
+extern __declspec(dllexport) 
+void QFileSystemModel_SetOption2(QFileSystemModel* self, Option option, bool on);
+extern __declspec(dllexport) 
+void QFileSystemModel_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QFileSystemModel_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QFileSystemModel_override_virtual_Metacast(void* self, intptr_t slot);
+void* QFileSystemModel_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QFileSystemModel_Delete(QFileSystemModel* self, bool isSubclass);
 
-} 
+}

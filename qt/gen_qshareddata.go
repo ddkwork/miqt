@@ -11,7 +11,6 @@ type QSharedData struct {
 
 // NewQSharedData constructs a new QSharedData object.
 func NewQSharedData() *QSharedData {
-
 	ret := newQSharedData(QSharedData_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQSharedData() *QSharedData {
 
 // NewQSharedData2 constructs a new QSharedData object.
 func NewQSharedData2(param1 *QSharedData) *QSharedData {
-
 	ret := newQSharedData(QSharedData_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -32,7 +30,6 @@ type QAdoptSharedDataTag struct {
 
 // NewQAdoptSharedDataTag constructs a new QAdoptSharedDataTag object.
 func NewQAdoptSharedDataTag() *QAdoptSharedDataTag {
-
 	ret := newQAdoptSharedDataTag(QAdoptSharedDataTag_new())
 	ret.isSubclass = true
 	return ret

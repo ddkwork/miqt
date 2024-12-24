@@ -3,11 +3,12 @@ package main
 import (
 	"C"
 	"fmt"
-	"go/format"
 	"log"
 	"path"
 	"sort"
 	"strings"
+
+	"mvdan.cc/gofumpt/format"
 )
 
 func goReservedWord(s string) bool {
@@ -914,9 +915,9 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		goSrc = strings.Replace(goSrc, `%%_IMPORTLIBS_%%`, "", 1)
 	}
 	// Run gofmt over the result
-	formattedSrc, err := format.Source([]byte(goSrc))
-	if err != nil {
-		log.Printf("gofmt failure: %v", err)
+	formattedSrc, e := format.Source([]byte(goSrc), format.Options{})
+	if e != nil {
+		log.Printf("gofmt failure: %v", e)
 		formattedSrc = []byte(goSrc)
 	}
 	return string(formattedSrc), nil

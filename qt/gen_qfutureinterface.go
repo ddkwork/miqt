@@ -32,7 +32,6 @@ type QFutureInterfaceBase struct {
 
 // NewQFutureInterfaceBase constructs a new QFutureInterfaceBase object.
 func NewQFutureInterfaceBase() *QFutureInterfaceBase {
-
 	ret := newQFutureInterfaceBase(QFutureInterfaceBase_new())
 	ret.isSubclass = true
 	return ret
@@ -40,7 +39,6 @@ func NewQFutureInterfaceBase() *QFutureInterfaceBase {
 
 // NewQFutureInterfaceBase2 constructs a new QFutureInterfaceBase object.
 func NewQFutureInterfaceBase2(other *QFutureInterfaceBase) *QFutureInterfaceBase {
-
 	ret := newQFutureInterfaceBase(QFutureInterfaceBase_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -48,7 +46,6 @@ func NewQFutureInterfaceBase2(other *QFutureInterfaceBase) *QFutureInterfaceBase
 
 // NewQFutureInterfaceBase3 constructs a new QFutureInterfaceBase object.
 func NewQFutureInterfaceBase3(initialState State) *QFutureInterfaceBase {
-
 	ret := newQFutureInterfaceBase(QFutureInterfaceBase_new3(initialState))
 	ret.isSubclass = true
 	return ret

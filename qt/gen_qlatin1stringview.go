@@ -11,7 +11,6 @@ type QLatin1String struct {
 
 // NewQLatin1String constructs a new QLatin1String object.
 func NewQLatin1String() *QLatin1String {
-
 	ret := newQLatin1String(QLatin1String_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +61,6 @@ func NewQLatin1String5(s []byte) *QLatin1String {
 
 // NewQLatin1String6 constructs a new QLatin1String object.
 func NewQLatin1String6(s QByteArrayView) *QLatin1String {
-
 	ret := newQLatin1String(QLatin1String_new6(s.cPointer()))
 	ret.isSubclass = true
 	return ret

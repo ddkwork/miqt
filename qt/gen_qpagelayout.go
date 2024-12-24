@@ -43,7 +43,6 @@ type QPageLayout struct {
 
 // NewQPageLayout constructs a new QPageLayout object.
 func NewQPageLayout() *QPageLayout {
-
 	ret := newQPageLayout(QPageLayout_new())
 	ret.isSubclass = true
 	return ret
@@ -51,7 +50,6 @@ func NewQPageLayout() *QPageLayout {
 
 // NewQPageLayout2 constructs a new QPageLayout object.
 func NewQPageLayout2(pageSize *QPageSize, orientation Orientation, margins *QMarginsF) *QPageLayout {
-
 	ret := newQPageLayout(QPageLayout_new2(pageSize.cPointer(), orientation, margins.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -59,7 +57,6 @@ func NewQPageLayout2(pageSize *QPageSize, orientation Orientation, margins *QMar
 
 // NewQPageLayout3 constructs a new QPageLayout object.
 func NewQPageLayout3(other *QPageLayout) *QPageLayout {
-
 	ret := newQPageLayout(QPageLayout_new3(other.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -67,7 +64,6 @@ func NewQPageLayout3(other *QPageLayout) *QPageLayout {
 
 // NewQPageLayout4 constructs a new QPageLayout object.
 func NewQPageLayout4(pageSize *QPageSize, orientation Orientation, margins *QMarginsF, units Unit) *QPageLayout {
-
 	ret := newQPageLayout(QPageLayout_new4(pageSize.cPointer(), orientation, margins.cPointer(), units))
 	ret.isSubclass = true
 	return ret
@@ -75,7 +71,6 @@ func NewQPageLayout4(pageSize *QPageSize, orientation Orientation, margins *QMar
 
 // NewQPageLayout5 constructs a new QPageLayout object.
 func NewQPageLayout5(pageSize *QPageSize, orientation Orientation, margins *QMarginsF, units Unit, minMargins *QMarginsF) *QPageLayout {
-
 	ret := newQPageLayout(QPageLayout_new5(pageSize.cPointer(), orientation, margins.cPointer(), units, minMargins.cPointer()))
 	ret.isSubclass = true
 	return ret

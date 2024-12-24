@@ -1,6 +1,5 @@
 // +build ignore
 
-#include <QEvent>
 #include <QGraphicsItem>
 #include <QGraphicsObject>
 #include <QGraphicsSvgItem>
@@ -29,95 +28,47 @@ public:
 	virtual ~MiqtVirtualQGraphicsSvgItem() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BoundingRect = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QRectF boundingRect() const override {
-		if (handle__BoundingRect == 0) {
-			return QGraphicsSvgItem::boundingRect();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGraphicsSvgItem::metaObject();
 		}
 		
 
-		QRectF* callback_return_value = miqt_exec_callback_QGraphicsSvgItem_BoundingRect(const_cast<MiqtVirtualQGraphicsSvgItem*>(this), handle__BoundingRect);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QRectF* virtualbase_BoundingRect() const {
-
-		return new QRectF(QGraphicsSvgItem::boundingRect());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Paint = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget) override {
-		if (handle__Paint == 0) {
-			QGraphicsSvgItem::paint(painter, option, widget);
-			return;
-		}
-		
-		QPainter* sigval1 = painter;
-		QStyleOptionGraphicsItem* sigval2 = (QStyleOptionGraphicsItem*) option;
-		QWidget* sigval3 = widget;
-
-		miqt_exec_callback_QGraphicsSvgItem_Paint(this, handle__Paint, sigval1, sigval2, sigval3);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Paint(QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget) {
-
-		QGraphicsSvgItem::paint(painter, option, widget);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Type = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual int type() const override {
-		if (handle__Type == 0) {
-			return QGraphicsSvgItem::type();
-		}
-		
-
-		int callback_return_value = miqt_exec_callback_QGraphicsSvgItem_Type(const_cast<MiqtVirtualQGraphicsSvgItem*>(this), handle__Type);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Type() const {
-
-		return QGraphicsSvgItem::type();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* ev) override {
-		if (handle__Event == 0) {
-			return QGraphicsSvgItem::event(ev);
-		}
-		
-		QEvent* sigval1 = ev;
-
-		bool callback_return_value = miqt_exec_callback_QGraphicsSvgItem_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGraphicsSvgItem_MetaObject(const_cast<MiqtVirtualQGraphicsSvgItem*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* ev) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QGraphicsSvgItem::event(ev);
+		return (QMetaObject*) QGraphicsSvgItem::metaObject();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGraphicsSvgItem::qt_metacast(param1);
+		}
+		
+		const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QGraphicsSvgItem_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QGraphicsSvgItem::qt_metacast(param1);
 
 	}
 
@@ -238,36 +189,20 @@ struct miqt_string QGraphicsSvgItem_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QGraphicsSvgItem_override_virtual_BoundingRect(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsSvgItem*>( (QGraphicsSvgItem*)(self) )->handle__BoundingRect = slot;
+void QGraphicsSvgItem_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsSvgItem*>( (QGraphicsSvgItem*)(self) )->handle__MetaObject = slot;
 }
 
-QRectF* QGraphicsSvgItem_virtualbase_BoundingRect(const void* self) {
-	return ( (const MiqtVirtualQGraphicsSvgItem*)(self) )->virtualbase_BoundingRect();
+QMetaObject* QGraphicsSvgItem_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGraphicsSvgItem*)(self) )->virtualbase_MetaObject();
 }
 
-void QGraphicsSvgItem_override_virtual_Paint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsSvgItem*>( (QGraphicsSvgItem*)(self) )->handle__Paint = slot;
+void QGraphicsSvgItem_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsSvgItem*>( (QGraphicsSvgItem*)(self) )->handle__Metacast = slot;
 }
 
-void QGraphicsSvgItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget) {
-	( (MiqtVirtualQGraphicsSvgItem*)(self) )->virtualbase_Paint(painter, option, widget);
-}
-
-void QGraphicsSvgItem_override_virtual_Type(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsSvgItem*>( (QGraphicsSvgItem*)(self) )->handle__Type = slot;
-}
-
-int QGraphicsSvgItem_virtualbase_Type(const void* self) {
-	return ( (const MiqtVirtualQGraphicsSvgItem*)(self) )->virtualbase_Type();
-}
-
-void QGraphicsSvgItem_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsSvgItem*>( (QGraphicsSvgItem*)(self) )->handle__Event = slot;
-}
-
-bool QGraphicsSvgItem_virtualbase_Event(void* self, QEvent* ev) {
-	return ( (MiqtVirtualQGraphicsSvgItem*)(self) )->virtualbase_Event(ev);
+void* QGraphicsSvgItem_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGraphicsSvgItem*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGraphicsSvgItem_Delete(QGraphicsSvgItem* self, bool isSubclass) {

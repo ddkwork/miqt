@@ -26,304 +26,607 @@ typedef struct QTextTableCellFormat QTextTableCellFormat;
 typedef struct QTextTableFormat QTextTableFormat;
 typedef struct QVariant QVariant;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextLength* QTextLength_new();
-extern __declspec(dllexport) QTextLength* QTextLength_new2(Type typeVal, double value);
-extern __declspec(dllexport) QTextLength* QTextLength_new3(QTextLength* param1);
-extern __declspec(dllexport) Type QTextLength_Type(const QTextLength* self);
-extern __declspec(dllexport) double QTextLength_Value(const QTextLength* self, double maximumLength);
-extern __declspec(dllexport) double QTextLength_RawValue(const QTextLength* self);
-extern __declspec(dllexport) bool QTextLength_OperatorEqual(const QTextLength* self, QTextLength* other);
-extern __declspec(dllexport) bool QTextLength_OperatorNotEqual(const QTextLength* self, QTextLength* other);
-extern __declspec(dllexport) void QTextLength_Delete(QTextLength* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextLength* QTextLength_new();
+extern __declspec(dllexport) 
+QTextLength* QTextLength_new2(Type typeVal, double value);
+extern __declspec(dllexport) 
+QTextLength* QTextLength_new3(QTextLength* param1);
+extern __declspec(dllexport) 
+Type QTextLength_Type(const QTextLength* self);
+extern __declspec(dllexport) 
+double QTextLength_Value(const QTextLength* self, double maximumLength);
+extern __declspec(dllexport) 
+double QTextLength_RawValue(const QTextLength* self);
+extern __declspec(dllexport) 
+bool QTextLength_OperatorEqual(const QTextLength* self, QTextLength* other);
+extern __declspec(dllexport) 
+bool QTextLength_OperatorNotEqual(const QTextLength* self, QTextLength* other);
+extern __declspec(dllexport) 
+void QTextLength_Delete(QTextLength* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextFormat* QTextFormat_new();
-extern __declspec(dllexport) QTextFormat* QTextFormat_new2(int typeVal);
-extern __declspec(dllexport) QTextFormat* QTextFormat_new3(QTextFormat* rhs);
-extern __declspec(dllexport) void QTextFormat_OperatorAssign(QTextFormat* self, QTextFormat* rhs);
-extern __declspec(dllexport) void QTextFormat_Swap(QTextFormat* self, QTextFormat* other);
-extern __declspec(dllexport) void QTextFormat_Merge(QTextFormat* self, QTextFormat* other);
-extern __declspec(dllexport) bool QTextFormat_IsValid(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsEmpty(const QTextFormat* self);
-extern __declspec(dllexport) int QTextFormat_Type(const QTextFormat* self);
-extern __declspec(dllexport) int QTextFormat_ObjectIndex(const QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_SetObjectIndex(QTextFormat* self, int object);
-extern __declspec(dllexport) QVariant* QTextFormat_Property(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) void QTextFormat_SetProperty(QTextFormat* self, int propertyId, QVariant* value);
-extern __declspec(dllexport) void QTextFormat_ClearProperty(QTextFormat* self, int propertyId);
-extern __declspec(dllexport) bool QTextFormat_HasProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) bool QTextFormat_BoolProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) int QTextFormat_IntProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) double QTextFormat_DoubleProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) struct miqt_string QTextFormat_StringProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) QColor* QTextFormat_ColorProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) QPen* QTextFormat_PenProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) QBrush* QTextFormat_BrushProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) QTextLength* QTextFormat_LengthProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) struct miqt_array /* of QTextLength* */  QTextFormat_LengthVectorProperty(const QTextFormat* self, int propertyId);
-extern __declspec(dllexport) void QTextFormat_SetProperty2(QTextFormat* self, int propertyId, struct miqt_array /* of QTextLength* */  lengths);
-extern __declspec(dllexport) struct miqt_map /* of int to QVariant* */  QTextFormat_Properties(const QTextFormat* self);
-extern __declspec(dllexport) int QTextFormat_PropertyCount(const QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_SetObjectType(QTextFormat* self, int typeVal);
-extern __declspec(dllexport) int QTextFormat_ObjectType(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsCharFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsBlockFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsListFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsFrameFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsImageFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsTableFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_IsTableCellFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextBlockFormat* QTextFormat_ToBlockFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextCharFormat* QTextFormat_ToCharFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextListFormat* QTextFormat_ToListFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextTableFormat* QTextFormat_ToTableFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextFrameFormat* QTextFormat_ToFrameFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextImageFormat* QTextFormat_ToImageFormat(const QTextFormat* self);
-extern __declspec(dllexport) QTextTableCellFormat* QTextFormat_ToTableCellFormat(const QTextFormat* self);
-extern __declspec(dllexport) bool QTextFormat_OperatorEqual(const QTextFormat* self, QTextFormat* rhs);
-extern __declspec(dllexport) bool QTextFormat_OperatorNotEqual(const QTextFormat* self, QTextFormat* rhs);
-extern __declspec(dllexport) void QTextFormat_SetLayoutDirection(QTextFormat* self, int direction);
-extern __declspec(dllexport) int QTextFormat_LayoutDirection(const QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_SetBackground(QTextFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextFormat_Background(const QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_ClearBackground(QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_SetForeground(QTextFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextFormat_Foreground(const QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_ClearForeground(QTextFormat* self);
-extern __declspec(dllexport) void QTextFormat_Delete(QTextFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextFormat* QTextFormat_new();
+extern __declspec(dllexport) 
+QTextFormat* QTextFormat_new2(int typeVal);
+extern __declspec(dllexport) 
+QTextFormat* QTextFormat_new3(QTextFormat* rhs);
+extern __declspec(dllexport) 
+void QTextFormat_OperatorAssign(QTextFormat* self, QTextFormat* rhs);
+extern __declspec(dllexport) 
+void QTextFormat_Swap(QTextFormat* self, QTextFormat* other);
+extern __declspec(dllexport) 
+void QTextFormat_Merge(QTextFormat* self, QTextFormat* other);
+extern __declspec(dllexport) 
+bool QTextFormat_IsValid(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsEmpty(const QTextFormat* self);
+extern __declspec(dllexport) 
+int QTextFormat_Type(const QTextFormat* self);
+extern __declspec(dllexport) 
+int QTextFormat_ObjectIndex(const QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_SetObjectIndex(QTextFormat* self, int object);
+extern __declspec(dllexport) 
+QVariant* QTextFormat_Property(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+void QTextFormat_SetProperty(QTextFormat* self, int propertyId, QVariant* value);
+extern __declspec(dllexport) 
+void QTextFormat_ClearProperty(QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+bool QTextFormat_HasProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+bool QTextFormat_BoolProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+int QTextFormat_IntProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+double QTextFormat_DoubleProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+struct miqt_string QTextFormat_StringProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+QColor* QTextFormat_ColorProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+QPen* QTextFormat_PenProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+QBrush* QTextFormat_BrushProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+QTextLength* QTextFormat_LengthProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+struct miqt_array /* of QTextLength* */  QTextFormat_LengthVectorProperty(const QTextFormat* self, int propertyId);
+extern __declspec(dllexport) 
+void QTextFormat_SetProperty2(QTextFormat* self, int propertyId, struct miqt_array /* of QTextLength* */  lengths);
+extern __declspec(dllexport) 
+struct miqt_map /* of int to QVariant* */  QTextFormat_Properties(const QTextFormat* self);
+extern __declspec(dllexport) 
+int QTextFormat_PropertyCount(const QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_SetObjectType(QTextFormat* self, int typeVal);
+extern __declspec(dllexport) 
+int QTextFormat_ObjectType(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsCharFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsBlockFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsListFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsFrameFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsImageFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsTableFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_IsTableCellFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextBlockFormat* QTextFormat_ToBlockFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextCharFormat* QTextFormat_ToCharFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextListFormat* QTextFormat_ToListFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextTableFormat* QTextFormat_ToTableFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextFrameFormat* QTextFormat_ToFrameFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextImageFormat* QTextFormat_ToImageFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+QTextTableCellFormat* QTextFormat_ToTableCellFormat(const QTextFormat* self);
+extern __declspec(dllexport) 
+bool QTextFormat_OperatorEqual(const QTextFormat* self, QTextFormat* rhs);
+extern __declspec(dllexport) 
+bool QTextFormat_OperatorNotEqual(const QTextFormat* self, QTextFormat* rhs);
+extern __declspec(dllexport) 
+void QTextFormat_SetLayoutDirection(QTextFormat* self, int direction);
+extern __declspec(dllexport) 
+int QTextFormat_LayoutDirection(const QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_SetBackground(QTextFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextFormat_Background(const QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_ClearBackground(QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_SetForeground(QTextFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextFormat_Foreground(const QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_ClearForeground(QTextFormat* self);
+extern __declspec(dllexport) 
+void QTextFormat_Delete(QTextFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextCharFormat* QTextCharFormat_new();
-extern __declspec(dllexport) void QTextCharFormat_virtbase(QTextCharFormat* src, QTextFormat** outptr_QTextFormat);
-extern __declspec(dllexport) bool QTextCharFormat_IsValid(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFont(QTextCharFormat* self, QFont* font);
-extern __declspec(dllexport) QFont* QTextCharFormat_Font(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontFamily(QTextCharFormat* self, struct miqt_string family);
-extern __declspec(dllexport) struct miqt_string QTextCharFormat_FontFamily(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontFamilies(QTextCharFormat* self, struct miqt_array /* of struct miqt_string */  families);
-extern __declspec(dllexport) QVariant* QTextCharFormat_FontFamilies(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontStyleName(QTextCharFormat* self, struct miqt_string styleName);
-extern __declspec(dllexport) QVariant* QTextCharFormat_FontStyleName(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontPointSize(QTextCharFormat* self, double size);
-extern __declspec(dllexport) double QTextCharFormat_FontPointSize(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontWeight(QTextCharFormat* self, int weight);
-extern __declspec(dllexport) int QTextCharFormat_FontWeight(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontItalic(QTextCharFormat* self, bool italic);
-extern __declspec(dllexport) bool QTextCharFormat_FontItalic(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontCapitalization(QTextCharFormat* self, int capitalization);
-extern __declspec(dllexport) int QTextCharFormat_FontCapitalization(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontLetterSpacingType(QTextCharFormat* self, int letterSpacingType);
-extern __declspec(dllexport) int QTextCharFormat_FontLetterSpacingType(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontLetterSpacing(QTextCharFormat* self, double spacing);
-extern __declspec(dllexport) double QTextCharFormat_FontLetterSpacing(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontWordSpacing(QTextCharFormat* self, double spacing);
-extern __declspec(dllexport) double QTextCharFormat_FontWordSpacing(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontUnderline(QTextCharFormat* self, bool underline);
-extern __declspec(dllexport) bool QTextCharFormat_FontUnderline(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontOverline(QTextCharFormat* self, bool overline);
-extern __declspec(dllexport) bool QTextCharFormat_FontOverline(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontStrikeOut(QTextCharFormat* self, bool strikeOut);
-extern __declspec(dllexport) bool QTextCharFormat_FontStrikeOut(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetUnderlineColor(QTextCharFormat* self, QColor* color);
-extern __declspec(dllexport) QColor* QTextCharFormat_UnderlineColor(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontFixedPitch(QTextCharFormat* self, bool fixedPitch);
-extern __declspec(dllexport) bool QTextCharFormat_FontFixedPitch(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontStretch(QTextCharFormat* self, int factor);
-extern __declspec(dllexport) int QTextCharFormat_FontStretch(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontStyleHint(QTextCharFormat* self, int hint);
-extern __declspec(dllexport) void QTextCharFormat_SetFontStyleStrategy(QTextCharFormat* self, int strategy);
-extern __declspec(dllexport) int QTextCharFormat_FontStyleHint(const QTextCharFormat* self);
-extern __declspec(dllexport) int QTextCharFormat_FontStyleStrategy(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontHintingPreference(QTextCharFormat* self, int hintingPreference);
-extern __declspec(dllexport) int QTextCharFormat_FontHintingPreference(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFontKerning(QTextCharFormat* self, bool enable);
-extern __declspec(dllexport) bool QTextCharFormat_FontKerning(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetUnderlineStyle(QTextCharFormat* self, UnderlineStyle style);
-extern __declspec(dllexport) UnderlineStyle QTextCharFormat_UnderlineStyle(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetVerticalAlignment(QTextCharFormat* self, VerticalAlignment alignment);
-extern __declspec(dllexport) VerticalAlignment QTextCharFormat_VerticalAlignment(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetTextOutline(QTextCharFormat* self, QPen* pen);
-extern __declspec(dllexport) QPen* QTextCharFormat_TextOutline(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetToolTip(QTextCharFormat* self, struct miqt_string tip);
-extern __declspec(dllexport) struct miqt_string QTextCharFormat_ToolTip(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetSuperScriptBaseline(QTextCharFormat* self, double baseline);
-extern __declspec(dllexport) double QTextCharFormat_SuperScriptBaseline(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetSubScriptBaseline(QTextCharFormat* self, double baseline);
-extern __declspec(dllexport) double QTextCharFormat_SubScriptBaseline(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetBaselineOffset(QTextCharFormat* self, double baseline);
-extern __declspec(dllexport) double QTextCharFormat_BaselineOffset(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetAnchor(QTextCharFormat* self, bool anchor);
-extern __declspec(dllexport) bool QTextCharFormat_IsAnchor(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetAnchorHref(QTextCharFormat* self, struct miqt_string value);
-extern __declspec(dllexport) struct miqt_string QTextCharFormat_AnchorHref(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetAnchorNames(QTextCharFormat* self, struct miqt_array /* of struct miqt_string */  names);
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QTextCharFormat_AnchorNames(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetTableCellRowSpan(QTextCharFormat* self, int tableCellRowSpan);
-extern __declspec(dllexport) int QTextCharFormat_TableCellRowSpan(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetTableCellColumnSpan(QTextCharFormat* self, int tableCellColumnSpan);
-extern __declspec(dllexport) int QTextCharFormat_TableCellColumnSpan(const QTextCharFormat* self);
-extern __declspec(dllexport) void QTextCharFormat_SetFont2(QTextCharFormat* self, QFont* font, FontPropertiesInheritanceBehavior behavior);
-extern __declspec(dllexport) void QTextCharFormat_SetFontStyleHint2(QTextCharFormat* self, int hint, int strategy);
-extern __declspec(dllexport) void QTextCharFormat_Delete(QTextCharFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextCharFormat* QTextCharFormat_new();
+extern __declspec(dllexport) 
+void QTextCharFormat_virtbase(QTextCharFormat* src
+, QTextFormat** outptr_QTextFormat
+);
+extern __declspec(dllexport) 
+bool QTextCharFormat_IsValid(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFont(QTextCharFormat* self, QFont* font);
+extern __declspec(dllexport) 
+QFont* QTextCharFormat_Font(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontFamily(QTextCharFormat* self, struct miqt_string family);
+extern __declspec(dllexport) 
+struct miqt_string QTextCharFormat_FontFamily(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontFamilies(QTextCharFormat* self, struct miqt_array /* of struct miqt_string */  families);
+extern __declspec(dllexport) 
+QVariant* QTextCharFormat_FontFamilies(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontStyleName(QTextCharFormat* self, struct miqt_string styleName);
+extern __declspec(dllexport) 
+QVariant* QTextCharFormat_FontStyleName(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontPointSize(QTextCharFormat* self, double size);
+extern __declspec(dllexport) 
+double QTextCharFormat_FontPointSize(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontWeight(QTextCharFormat* self, int weight);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontWeight(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontItalic(QTextCharFormat* self, bool italic);
+extern __declspec(dllexport) 
+bool QTextCharFormat_FontItalic(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontCapitalization(QTextCharFormat* self, int capitalization);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontCapitalization(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontLetterSpacingType(QTextCharFormat* self, int letterSpacingType);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontLetterSpacingType(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontLetterSpacing(QTextCharFormat* self, double spacing);
+extern __declspec(dllexport) 
+double QTextCharFormat_FontLetterSpacing(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontWordSpacing(QTextCharFormat* self, double spacing);
+extern __declspec(dllexport) 
+double QTextCharFormat_FontWordSpacing(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontUnderline(QTextCharFormat* self, bool underline);
+extern __declspec(dllexport) 
+bool QTextCharFormat_FontUnderline(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontOverline(QTextCharFormat* self, bool overline);
+extern __declspec(dllexport) 
+bool QTextCharFormat_FontOverline(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontStrikeOut(QTextCharFormat* self, bool strikeOut);
+extern __declspec(dllexport) 
+bool QTextCharFormat_FontStrikeOut(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetUnderlineColor(QTextCharFormat* self, QColor* color);
+extern __declspec(dllexport) 
+QColor* QTextCharFormat_UnderlineColor(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontFixedPitch(QTextCharFormat* self, bool fixedPitch);
+extern __declspec(dllexport) 
+bool QTextCharFormat_FontFixedPitch(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontStretch(QTextCharFormat* self, int factor);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontStretch(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontStyleHint(QTextCharFormat* self, int hint);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontStyleStrategy(QTextCharFormat* self, int strategy);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontStyleHint(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontStyleStrategy(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontHintingPreference(QTextCharFormat* self, int hintingPreference);
+extern __declspec(dllexport) 
+int QTextCharFormat_FontHintingPreference(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontKerning(QTextCharFormat* self, bool enable);
+extern __declspec(dllexport) 
+bool QTextCharFormat_FontKerning(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetUnderlineStyle(QTextCharFormat* self, UnderlineStyle style);
+extern __declspec(dllexport) 
+UnderlineStyle QTextCharFormat_UnderlineStyle(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetVerticalAlignment(QTextCharFormat* self, VerticalAlignment alignment);
+extern __declspec(dllexport) 
+VerticalAlignment QTextCharFormat_VerticalAlignment(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetTextOutline(QTextCharFormat* self, QPen* pen);
+extern __declspec(dllexport) 
+QPen* QTextCharFormat_TextOutline(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetToolTip(QTextCharFormat* self, struct miqt_string tip);
+extern __declspec(dllexport) 
+struct miqt_string QTextCharFormat_ToolTip(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetSuperScriptBaseline(QTextCharFormat* self, double baseline);
+extern __declspec(dllexport) 
+double QTextCharFormat_SuperScriptBaseline(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetSubScriptBaseline(QTextCharFormat* self, double baseline);
+extern __declspec(dllexport) 
+double QTextCharFormat_SubScriptBaseline(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetBaselineOffset(QTextCharFormat* self, double baseline);
+extern __declspec(dllexport) 
+double QTextCharFormat_BaselineOffset(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetAnchor(QTextCharFormat* self, bool anchor);
+extern __declspec(dllexport) 
+bool QTextCharFormat_IsAnchor(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetAnchorHref(QTextCharFormat* self, struct miqt_string value);
+extern __declspec(dllexport) 
+struct miqt_string QTextCharFormat_AnchorHref(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetAnchorNames(QTextCharFormat* self, struct miqt_array /* of struct miqt_string */  names);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QTextCharFormat_AnchorNames(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetTableCellRowSpan(QTextCharFormat* self, int tableCellRowSpan);
+extern __declspec(dllexport) 
+int QTextCharFormat_TableCellRowSpan(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetTableCellColumnSpan(QTextCharFormat* self, int tableCellColumnSpan);
+extern __declspec(dllexport) 
+int QTextCharFormat_TableCellColumnSpan(const QTextCharFormat* self);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFont2(QTextCharFormat* self, QFont* font, FontPropertiesInheritanceBehavior behavior);
+extern __declspec(dllexport) 
+void QTextCharFormat_SetFontStyleHint2(QTextCharFormat* self, int hint, int strategy);
+extern __declspec(dllexport) 
+void QTextCharFormat_Delete(QTextCharFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextBlockFormat* QTextBlockFormat_new();
-extern __declspec(dllexport) void QTextBlockFormat_virtbase(QTextBlockFormat* src, QTextFormat** outptr_QTextFormat);
-extern __declspec(dllexport) bool QTextBlockFormat_IsValid(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetAlignment(QTextBlockFormat* self, int alignment);
-extern __declspec(dllexport) int QTextBlockFormat_Alignment(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetTopMargin(QTextBlockFormat* self, double margin);
-extern __declspec(dllexport) double QTextBlockFormat_TopMargin(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetBottomMargin(QTextBlockFormat* self, double margin);
-extern __declspec(dllexport) double QTextBlockFormat_BottomMargin(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetLeftMargin(QTextBlockFormat* self, double margin);
-extern __declspec(dllexport) double QTextBlockFormat_LeftMargin(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetRightMargin(QTextBlockFormat* self, double margin);
-extern __declspec(dllexport) double QTextBlockFormat_RightMargin(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetTextIndent(QTextBlockFormat* self, double aindent);
-extern __declspec(dllexport) double QTextBlockFormat_TextIndent(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetIndent(QTextBlockFormat* self, int indent);
-extern __declspec(dllexport) int QTextBlockFormat_Indent(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetHeadingLevel(QTextBlockFormat* self, int alevel);
-extern __declspec(dllexport) int QTextBlockFormat_HeadingLevel(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetLineHeight(QTextBlockFormat* self, double height, int heightType);
-extern __declspec(dllexport) double QTextBlockFormat_LineHeight(const QTextBlockFormat* self, double scriptLineHeight, double scaling);
-extern __declspec(dllexport) double QTextBlockFormat_LineHeight2(const QTextBlockFormat* self);
-extern __declspec(dllexport) int QTextBlockFormat_LineHeightType(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetNonBreakableLines(QTextBlockFormat* self, bool b);
-extern __declspec(dllexport) bool QTextBlockFormat_NonBreakableLines(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetPageBreakPolicy(QTextBlockFormat* self, PageBreakFlags flags);
-extern __declspec(dllexport) PageBreakFlags QTextBlockFormat_PageBreakPolicy(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetTabPositions(QTextBlockFormat* self, struct miqt_array /* of QTextOption__Tab* */  tabs);
-extern __declspec(dllexport) struct miqt_array /* of QTextOption__Tab* */  QTextBlockFormat_TabPositions(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_SetMarker(QTextBlockFormat* self, MarkerType marker);
-extern __declspec(dllexport) MarkerType QTextBlockFormat_Marker(const QTextBlockFormat* self);
-extern __declspec(dllexport) void QTextBlockFormat_Delete(QTextBlockFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextBlockFormat* QTextBlockFormat_new();
+extern __declspec(dllexport) 
+void QTextBlockFormat_virtbase(QTextBlockFormat* src
+, QTextFormat** outptr_QTextFormat
+);
+extern __declspec(dllexport) 
+bool QTextBlockFormat_IsValid(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetAlignment(QTextBlockFormat* self, int alignment);
+extern __declspec(dllexport) 
+int QTextBlockFormat_Alignment(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetTopMargin(QTextBlockFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextBlockFormat_TopMargin(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetBottomMargin(QTextBlockFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextBlockFormat_BottomMargin(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetLeftMargin(QTextBlockFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextBlockFormat_LeftMargin(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetRightMargin(QTextBlockFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextBlockFormat_RightMargin(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetTextIndent(QTextBlockFormat* self, double aindent);
+extern __declspec(dllexport) 
+double QTextBlockFormat_TextIndent(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetIndent(QTextBlockFormat* self, int indent);
+extern __declspec(dllexport) 
+int QTextBlockFormat_Indent(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetHeadingLevel(QTextBlockFormat* self, int alevel);
+extern __declspec(dllexport) 
+int QTextBlockFormat_HeadingLevel(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetLineHeight(QTextBlockFormat* self, double height, int heightType);
+extern __declspec(dllexport) 
+double QTextBlockFormat_LineHeight(const QTextBlockFormat* self, double scriptLineHeight, double scaling);
+extern __declspec(dllexport) 
+double QTextBlockFormat_LineHeight2(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+int QTextBlockFormat_LineHeightType(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetNonBreakableLines(QTextBlockFormat* self, bool b);
+extern __declspec(dllexport) 
+bool QTextBlockFormat_NonBreakableLines(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetPageBreakPolicy(QTextBlockFormat* self, PageBreakFlags flags);
+extern __declspec(dllexport) 
+PageBreakFlags QTextBlockFormat_PageBreakPolicy(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetTabPositions(QTextBlockFormat* self, struct miqt_array /* of QTextOption__Tab* */  tabs);
+extern __declspec(dllexport) 
+struct miqt_array /* of QTextOption__Tab* */  QTextBlockFormat_TabPositions(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_SetMarker(QTextBlockFormat* self, MarkerType marker);
+extern __declspec(dllexport) 
+MarkerType QTextBlockFormat_Marker(const QTextBlockFormat* self);
+extern __declspec(dllexport) 
+void QTextBlockFormat_Delete(QTextBlockFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextListFormat* QTextListFormat_new();
-extern __declspec(dllexport) void QTextListFormat_virtbase(QTextListFormat* src, QTextFormat** outptr_QTextFormat);
-extern __declspec(dllexport) bool QTextListFormat_IsValid(const QTextListFormat* self);
-extern __declspec(dllexport) void QTextListFormat_SetStyle(QTextListFormat* self, Style style);
-extern __declspec(dllexport) Style QTextListFormat_Style(const QTextListFormat* self);
-extern __declspec(dllexport) void QTextListFormat_SetIndent(QTextListFormat* self, int indent);
-extern __declspec(dllexport) int QTextListFormat_Indent(const QTextListFormat* self);
-extern __declspec(dllexport) void QTextListFormat_SetNumberPrefix(QTextListFormat* self, struct miqt_string numberPrefix);
-extern __declspec(dllexport) struct miqt_string QTextListFormat_NumberPrefix(const QTextListFormat* self);
-extern __declspec(dllexport) void QTextListFormat_SetNumberSuffix(QTextListFormat* self, struct miqt_string numberSuffix);
-extern __declspec(dllexport) struct miqt_string QTextListFormat_NumberSuffix(const QTextListFormat* self);
-extern __declspec(dllexport) void QTextListFormat_SetStart(QTextListFormat* self, int indent);
-extern __declspec(dllexport) int QTextListFormat_Start(const QTextListFormat* self);
-extern __declspec(dllexport) void QTextListFormat_Delete(QTextListFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextListFormat* QTextListFormat_new();
+extern __declspec(dllexport) 
+void QTextListFormat_virtbase(QTextListFormat* src
+, QTextFormat** outptr_QTextFormat
+);
+extern __declspec(dllexport) 
+bool QTextListFormat_IsValid(const QTextListFormat* self);
+extern __declspec(dllexport) 
+void QTextListFormat_SetStyle(QTextListFormat* self, Style style);
+extern __declspec(dllexport) 
+Style QTextListFormat_Style(const QTextListFormat* self);
+extern __declspec(dllexport) 
+void QTextListFormat_SetIndent(QTextListFormat* self, int indent);
+extern __declspec(dllexport) 
+int QTextListFormat_Indent(const QTextListFormat* self);
+extern __declspec(dllexport) 
+void QTextListFormat_SetNumberPrefix(QTextListFormat* self, struct miqt_string numberPrefix);
+extern __declspec(dllexport) 
+struct miqt_string QTextListFormat_NumberPrefix(const QTextListFormat* self);
+extern __declspec(dllexport) 
+void QTextListFormat_SetNumberSuffix(QTextListFormat* self, struct miqt_string numberSuffix);
+extern __declspec(dllexport) 
+struct miqt_string QTextListFormat_NumberSuffix(const QTextListFormat* self);
+extern __declspec(dllexport) 
+void QTextListFormat_SetStart(QTextListFormat* self, int indent);
+extern __declspec(dllexport) 
+int QTextListFormat_Start(const QTextListFormat* self);
+extern __declspec(dllexport) 
+void QTextListFormat_Delete(QTextListFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextImageFormat* QTextImageFormat_new();
-extern __declspec(dllexport) void QTextImageFormat_virtbase(QTextImageFormat* src, QTextCharFormat** outptr_QTextCharFormat);
-extern __declspec(dllexport) bool QTextImageFormat_IsValid(const QTextImageFormat* self);
-extern __declspec(dllexport) void QTextImageFormat_SetName(QTextImageFormat* self, struct miqt_string name);
-extern __declspec(dllexport) struct miqt_string QTextImageFormat_Name(const QTextImageFormat* self);
-extern __declspec(dllexport) void QTextImageFormat_SetWidth(QTextImageFormat* self, double width);
-extern __declspec(dllexport) double QTextImageFormat_Width(const QTextImageFormat* self);
-extern __declspec(dllexport) void QTextImageFormat_SetMaximumWidth(QTextImageFormat* self, QTextLength* maxWidth);
-extern __declspec(dllexport) QTextLength* QTextImageFormat_MaximumWidth(const QTextImageFormat* self);
-extern __declspec(dllexport) void QTextImageFormat_SetHeight(QTextImageFormat* self, double height);
-extern __declspec(dllexport) double QTextImageFormat_Height(const QTextImageFormat* self);
-extern __declspec(dllexport) void QTextImageFormat_SetQuality(QTextImageFormat* self, int quality);
-extern __declspec(dllexport) void QTextImageFormat_SetQuality2(QTextImageFormat* self);
-extern __declspec(dllexport) int QTextImageFormat_Quality(const QTextImageFormat* self);
-extern __declspec(dllexport) void QTextImageFormat_Delete(QTextImageFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextImageFormat* QTextImageFormat_new();
+extern __declspec(dllexport) 
+void QTextImageFormat_virtbase(QTextImageFormat* src
+, QTextCharFormat** outptr_QTextCharFormat
+);
+extern __declspec(dllexport) 
+bool QTextImageFormat_IsValid(const QTextImageFormat* self);
+extern __declspec(dllexport) 
+void QTextImageFormat_SetName(QTextImageFormat* self, struct miqt_string name);
+extern __declspec(dllexport) 
+struct miqt_string QTextImageFormat_Name(const QTextImageFormat* self);
+extern __declspec(dllexport) 
+void QTextImageFormat_SetWidth(QTextImageFormat* self, double width);
+extern __declspec(dllexport) 
+double QTextImageFormat_Width(const QTextImageFormat* self);
+extern __declspec(dllexport) 
+void QTextImageFormat_SetMaximumWidth(QTextImageFormat* self, QTextLength* maxWidth);
+extern __declspec(dllexport) 
+QTextLength* QTextImageFormat_MaximumWidth(const QTextImageFormat* self);
+extern __declspec(dllexport) 
+void QTextImageFormat_SetHeight(QTextImageFormat* self, double height);
+extern __declspec(dllexport) 
+double QTextImageFormat_Height(const QTextImageFormat* self);
+extern __declspec(dllexport) 
+void QTextImageFormat_SetQuality(QTextImageFormat* self, int quality);
+extern __declspec(dllexport) 
+void QTextImageFormat_SetQuality2(QTextImageFormat* self);
+extern __declspec(dllexport) 
+int QTextImageFormat_Quality(const QTextImageFormat* self);
+extern __declspec(dllexport) 
+void QTextImageFormat_Delete(QTextImageFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextFrameFormat* QTextFrameFormat_new();
-extern __declspec(dllexport) void QTextFrameFormat_virtbase(QTextFrameFormat* src, QTextFormat** outptr_QTextFormat);
-extern __declspec(dllexport) bool QTextFrameFormat_IsValid(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetPosition(QTextFrameFormat* self, Position f);
-extern __declspec(dllexport) Position QTextFrameFormat_Position(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetBorder(QTextFrameFormat* self, double border);
-extern __declspec(dllexport) double QTextFrameFormat_Border(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetBorderBrush(QTextFrameFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextFrameFormat_BorderBrush(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetBorderStyle(QTextFrameFormat* self, BorderStyle style);
-extern __declspec(dllexport) BorderStyle QTextFrameFormat_BorderStyle(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetMargin(QTextFrameFormat* self, double margin);
-extern __declspec(dllexport) double QTextFrameFormat_Margin(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetTopMargin(QTextFrameFormat* self, double margin);
-extern __declspec(dllexport) double QTextFrameFormat_TopMargin(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetBottomMargin(QTextFrameFormat* self, double margin);
-extern __declspec(dllexport) double QTextFrameFormat_BottomMargin(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetLeftMargin(QTextFrameFormat* self, double margin);
-extern __declspec(dllexport) double QTextFrameFormat_LeftMargin(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetRightMargin(QTextFrameFormat* self, double margin);
-extern __declspec(dllexport) double QTextFrameFormat_RightMargin(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetPadding(QTextFrameFormat* self, double padding);
-extern __declspec(dllexport) double QTextFrameFormat_Padding(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetWidth(QTextFrameFormat* self, double width);
-extern __declspec(dllexport) void QTextFrameFormat_SetWidthWithLength(QTextFrameFormat* self, QTextLength* length);
-extern __declspec(dllexport) QTextLength* QTextFrameFormat_Width(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetHeight(QTextFrameFormat* self, double height);
-extern __declspec(dllexport) void QTextFrameFormat_SetHeightWithHeight(QTextFrameFormat* self, QTextLength* height);
-extern __declspec(dllexport) QTextLength* QTextFrameFormat_Height(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_SetPageBreakPolicy(QTextFrameFormat* self, PageBreakFlags flags);
-extern __declspec(dllexport) PageBreakFlags QTextFrameFormat_PageBreakPolicy(const QTextFrameFormat* self);
-extern __declspec(dllexport) void QTextFrameFormat_Delete(QTextFrameFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextFrameFormat* QTextFrameFormat_new();
+extern __declspec(dllexport) 
+void QTextFrameFormat_virtbase(QTextFrameFormat* src
+, QTextFormat** outptr_QTextFormat
+);
+extern __declspec(dllexport) 
+bool QTextFrameFormat_IsValid(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetPosition(QTextFrameFormat* self, Position f);
+extern __declspec(dllexport) 
+Position QTextFrameFormat_Position(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetBorder(QTextFrameFormat* self, double border);
+extern __declspec(dllexport) 
+double QTextFrameFormat_Border(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetBorderBrush(QTextFrameFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextFrameFormat_BorderBrush(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetBorderStyle(QTextFrameFormat* self, BorderStyle style);
+extern __declspec(dllexport) 
+BorderStyle QTextFrameFormat_BorderStyle(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetMargin(QTextFrameFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextFrameFormat_Margin(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetTopMargin(QTextFrameFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextFrameFormat_TopMargin(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetBottomMargin(QTextFrameFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextFrameFormat_BottomMargin(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetLeftMargin(QTextFrameFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextFrameFormat_LeftMargin(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetRightMargin(QTextFrameFormat* self, double margin);
+extern __declspec(dllexport) 
+double QTextFrameFormat_RightMargin(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetPadding(QTextFrameFormat* self, double padding);
+extern __declspec(dllexport) 
+double QTextFrameFormat_Padding(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetWidth(QTextFrameFormat* self, double width);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetWidthWithLength(QTextFrameFormat* self, QTextLength* length);
+extern __declspec(dllexport) 
+QTextLength* QTextFrameFormat_Width(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetHeight(QTextFrameFormat* self, double height);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetHeightWithHeight(QTextFrameFormat* self, QTextLength* height);
+extern __declspec(dllexport) 
+QTextLength* QTextFrameFormat_Height(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_SetPageBreakPolicy(QTextFrameFormat* self, PageBreakFlags flags);
+extern __declspec(dllexport) 
+PageBreakFlags QTextFrameFormat_PageBreakPolicy(const QTextFrameFormat* self);
+extern __declspec(dllexport) 
+void QTextFrameFormat_Delete(QTextFrameFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextTableFormat* QTextTableFormat_new();
-extern __declspec(dllexport) void QTextTableFormat_virtbase(QTextTableFormat* src, QTextFrameFormat** outptr_QTextFrameFormat);
-extern __declspec(dllexport) bool QTextTableFormat_IsValid(const QTextTableFormat* self);
-extern __declspec(dllexport) int QTextTableFormat_Columns(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_SetColumns(QTextTableFormat* self, int columns);
-extern __declspec(dllexport) void QTextTableFormat_SetColumnWidthConstraints(QTextTableFormat* self, struct miqt_array /* of QTextLength* */  constraints);
-extern __declspec(dllexport) struct miqt_array /* of QTextLength* */  QTextTableFormat_ColumnWidthConstraints(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_ClearColumnWidthConstraints(QTextTableFormat* self);
-extern __declspec(dllexport) double QTextTableFormat_CellSpacing(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_SetCellSpacing(QTextTableFormat* self, double spacing);
-extern __declspec(dllexport) double QTextTableFormat_CellPadding(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_SetCellPadding(QTextTableFormat* self, double padding);
-extern __declspec(dllexport) void QTextTableFormat_SetAlignment(QTextTableFormat* self, int alignment);
-extern __declspec(dllexport) int QTextTableFormat_Alignment(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_SetHeaderRowCount(QTextTableFormat* self, int count);
-extern __declspec(dllexport) int QTextTableFormat_HeaderRowCount(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_SetBorderCollapse(QTextTableFormat* self, bool borderCollapse);
-extern __declspec(dllexport) bool QTextTableFormat_BorderCollapse(const QTextTableFormat* self);
-extern __declspec(dllexport) void QTextTableFormat_Delete(QTextTableFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextTableFormat* QTextTableFormat_new();
+extern __declspec(dllexport) 
+void QTextTableFormat_virtbase(QTextTableFormat* src
+, QTextFrameFormat** outptr_QTextFrameFormat
+);
+extern __declspec(dllexport) 
+bool QTextTableFormat_IsValid(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+int QTextTableFormat_Columns(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetColumns(QTextTableFormat* self, int columns);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetColumnWidthConstraints(QTextTableFormat* self, struct miqt_array /* of QTextLength* */  constraints);
+extern __declspec(dllexport) 
+struct miqt_array /* of QTextLength* */  QTextTableFormat_ColumnWidthConstraints(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_ClearColumnWidthConstraints(QTextTableFormat* self);
+extern __declspec(dllexport) 
+double QTextTableFormat_CellSpacing(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetCellSpacing(QTextTableFormat* self, double spacing);
+extern __declspec(dllexport) 
+double QTextTableFormat_CellPadding(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetCellPadding(QTextTableFormat* self, double padding);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetAlignment(QTextTableFormat* self, int alignment);
+extern __declspec(dllexport) 
+int QTextTableFormat_Alignment(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetHeaderRowCount(QTextTableFormat* self, int count);
+extern __declspec(dllexport) 
+int QTextTableFormat_HeaderRowCount(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_SetBorderCollapse(QTextTableFormat* self, bool borderCollapse);
+extern __declspec(dllexport) 
+bool QTextTableFormat_BorderCollapse(const QTextTableFormat* self);
+extern __declspec(dllexport) 
+void QTextTableFormat_Delete(QTextTableFormat* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextTableCellFormat* QTextTableCellFormat_new();
-extern __declspec(dllexport) void QTextTableCellFormat_virtbase(QTextTableCellFormat* src, QTextCharFormat** outptr_QTextCharFormat);
-extern __declspec(dllexport) bool QTextTableCellFormat_IsValid(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetTopPadding(QTextTableCellFormat* self, double padding);
-extern __declspec(dllexport) double QTextTableCellFormat_TopPadding(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBottomPadding(QTextTableCellFormat* self, double padding);
-extern __declspec(dllexport) double QTextTableCellFormat_BottomPadding(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetLeftPadding(QTextTableCellFormat* self, double padding);
-extern __declspec(dllexport) double QTextTableCellFormat_LeftPadding(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetRightPadding(QTextTableCellFormat* self, double padding);
-extern __declspec(dllexport) double QTextTableCellFormat_RightPadding(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetPadding(QTextTableCellFormat* self, double padding);
-extern __declspec(dllexport) void QTextTableCellFormat_SetTopBorder(QTextTableCellFormat* self, double width);
-extern __declspec(dllexport) double QTextTableCellFormat_TopBorder(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBottomBorder(QTextTableCellFormat* self, double width);
-extern __declspec(dllexport) double QTextTableCellFormat_BottomBorder(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetLeftBorder(QTextTableCellFormat* self, double width);
-extern __declspec(dllexport) double QTextTableCellFormat_LeftBorder(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetRightBorder(QTextTableCellFormat* self, double width);
-extern __declspec(dllexport) double QTextTableCellFormat_RightBorder(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBorder(QTextTableCellFormat* self, double width);
-extern __declspec(dllexport) void QTextTableCellFormat_SetTopBorderStyle(QTextTableCellFormat* self, int style);
-extern __declspec(dllexport) int QTextTableCellFormat_TopBorderStyle(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBottomBorderStyle(QTextTableCellFormat* self, int style);
-extern __declspec(dllexport) int QTextTableCellFormat_BottomBorderStyle(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetLeftBorderStyle(QTextTableCellFormat* self, int style);
-extern __declspec(dllexport) int QTextTableCellFormat_LeftBorderStyle(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetRightBorderStyle(QTextTableCellFormat* self, int style);
-extern __declspec(dllexport) int QTextTableCellFormat_RightBorderStyle(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBorderStyle(QTextTableCellFormat* self, int style);
-extern __declspec(dllexport) void QTextTableCellFormat_SetTopBorderBrush(QTextTableCellFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextTableCellFormat_TopBorderBrush(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBottomBorderBrush(QTextTableCellFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextTableCellFormat_BottomBorderBrush(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetLeftBorderBrush(QTextTableCellFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextTableCellFormat_LeftBorderBrush(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetRightBorderBrush(QTextTableCellFormat* self, QBrush* brush);
-extern __declspec(dllexport) QBrush* QTextTableCellFormat_RightBorderBrush(const QTextTableCellFormat* self);
-extern __declspec(dllexport) void QTextTableCellFormat_SetBorderBrush(QTextTableCellFormat* self, QBrush* brush);
-extern __declspec(dllexport) void QTextTableCellFormat_Delete(QTextTableCellFormat* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTextTableCellFormat* QTextTableCellFormat_new();
+extern __declspec(dllexport) 
+void QTextTableCellFormat_virtbase(QTextTableCellFormat* src
+, QTextCharFormat** outptr_QTextCharFormat
+);
+extern __declspec(dllexport) 
+bool QTextTableCellFormat_IsValid(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetTopPadding(QTextTableCellFormat* self, double padding);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_TopPadding(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBottomPadding(QTextTableCellFormat* self, double padding);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_BottomPadding(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetLeftPadding(QTextTableCellFormat* self, double padding);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_LeftPadding(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetRightPadding(QTextTableCellFormat* self, double padding);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_RightPadding(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetPadding(QTextTableCellFormat* self, double padding);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetTopBorder(QTextTableCellFormat* self, double width);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_TopBorder(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBottomBorder(QTextTableCellFormat* self, double width);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_BottomBorder(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetLeftBorder(QTextTableCellFormat* self, double width);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_LeftBorder(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetRightBorder(QTextTableCellFormat* self, double width);
+extern __declspec(dllexport) 
+double QTextTableCellFormat_RightBorder(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBorder(QTextTableCellFormat* self, double width);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetTopBorderStyle(QTextTableCellFormat* self, int style);
+extern __declspec(dllexport) 
+int QTextTableCellFormat_TopBorderStyle(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBottomBorderStyle(QTextTableCellFormat* self, int style);
+extern __declspec(dllexport) 
+int QTextTableCellFormat_BottomBorderStyle(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetLeftBorderStyle(QTextTableCellFormat* self, int style);
+extern __declspec(dllexport) 
+int QTextTableCellFormat_LeftBorderStyle(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetRightBorderStyle(QTextTableCellFormat* self, int style);
+extern __declspec(dllexport) 
+int QTextTableCellFormat_RightBorderStyle(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBorderStyle(QTextTableCellFormat* self, int style);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetTopBorderBrush(QTextTableCellFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextTableCellFormat_TopBorderBrush(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBottomBorderBrush(QTextTableCellFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextTableCellFormat_BottomBorderBrush(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetLeftBorderBrush(QTextTableCellFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextTableCellFormat_LeftBorderBrush(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetRightBorderBrush(QTextTableCellFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+QBrush* QTextTableCellFormat_RightBorderBrush(const QTextTableCellFormat* self);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_SetBorderBrush(QTextTableCellFormat* self, QBrush* brush);
+extern __declspec(dllexport) 
+void QTextTableCellFormat_Delete(QTextTableCellFormat* self, bool isSubclass);
 
-} 
+}

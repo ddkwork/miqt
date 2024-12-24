@@ -11,7 +11,6 @@ type QFontVariableAxis struct {
 
 // NewQFontVariableAxis constructs a new QFontVariableAxis object.
 func NewQFontVariableAxis() *QFontVariableAxis {
-
 	ret := newQFontVariableAxis(QFontVariableAxis_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQFontVariableAxis() *QFontVariableAxis {
 
 // NewQFontVariableAxis2 constructs a new QFontVariableAxis object.
 func NewQFontVariableAxis2(axis *QFontVariableAxis) *QFontVariableAxis {
-
 	ret := newQFontVariableAxis(QFontVariableAxis_new2(axis.cPointer()))
 	ret.isSubclass = true
 	return ret

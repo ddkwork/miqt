@@ -11,7 +11,6 @@ type QPdfOutputIntent struct {
 
 // NewQPdfOutputIntent constructs a new QPdfOutputIntent object.
 func NewQPdfOutputIntent() *QPdfOutputIntent {
-
 	ret := newQPdfOutputIntent(QPdfOutputIntent_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQPdfOutputIntent() *QPdfOutputIntent {
 
 // NewQPdfOutputIntent2 constructs a new QPdfOutputIntent object.
 func NewQPdfOutputIntent2(other *QPdfOutputIntent) *QPdfOutputIntent {
-
 	ret := newQPdfOutputIntent(QPdfOutputIntent_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

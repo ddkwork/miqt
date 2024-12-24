@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkCookie__RawForm int
@@ -28,7 +29,6 @@ type QNetworkCookie struct {
 
 // NewQNetworkCookie constructs a new QNetworkCookie object.
 func NewQNetworkCookie() *QNetworkCookie {
-
 	ret := newQNetworkCookie(QNetworkCookie_new())
 	ret.isSubclass = true
 	return ret
@@ -36,7 +36,6 @@ func NewQNetworkCookie() *QNetworkCookie {
 
 // NewQNetworkCookie2 constructs a new QNetworkCookie object.
 func NewQNetworkCookie2(other *QNetworkCookie) *QNetworkCookie {
-
 	ret := newQNetworkCookie(QNetworkCookie_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

@@ -32,49 +32,47 @@ public:
 	virtual ~MiqtVirtualQGuiApplication() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Notify = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool notify(QObject* param1, QEvent* param2) override {
-		if (handle__Notify == 0) {
-			return QGuiApplication::notify(param1, param2);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGuiApplication::metaObject();
 		}
 		
-		QObject* sigval1 = param1;
-		QEvent* sigval2 = param2;
 
-		bool callback_return_value = miqt_exec_callback_QGuiApplication_Notify(this, handle__Notify, sigval1, sigval2);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGuiApplication_MetaObject(const_cast<MiqtVirtualQGuiApplication*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Notify(QObject* param1, QEvent* param2) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QGuiApplication::notify(param1, param2);
+		return (QMetaObject*) QGuiApplication::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* param1) override {
-		if (handle__Event == 0) {
-			return QGuiApplication::event(param1);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGuiApplication::qt_metacast(param1);
 		}
 		
-		QEvent* sigval1 = param1;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QGuiApplication_Event(this, handle__Event, sigval1);
+		void* callback_return_value = miqt_exec_callback_QGuiApplication_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* param1) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QGuiApplication::event(param1);
+		return QGuiApplication::qt_metacast(param1);
 
 	}
 
@@ -565,20 +563,20 @@ struct miqt_string QGuiApplication_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QGuiApplication_override_virtual_Notify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGuiApplication*>( (QGuiApplication*)(self) )->handle__Notify = slot;
+void QGuiApplication_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGuiApplication*>( (QGuiApplication*)(self) )->handle__MetaObject = slot;
 }
 
-bool QGuiApplication_virtualbase_Notify(void* self, QObject* param1, QEvent* param2) {
-	return ( (MiqtVirtualQGuiApplication*)(self) )->virtualbase_Notify(param1, param2);
+QMetaObject* QGuiApplication_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGuiApplication*)(self) )->virtualbase_MetaObject();
 }
 
-void QGuiApplication_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGuiApplication*>( (QGuiApplication*)(self) )->handle__Event = slot;
+void QGuiApplication_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGuiApplication*>( (QGuiApplication*)(self) )->handle__Metacast = slot;
 }
 
-bool QGuiApplication_virtualbase_Event(void* self, QEvent* param1) {
-	return ( (MiqtVirtualQGuiApplication*)(self) )->virtualbase_Event(param1);
+void* QGuiApplication_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGuiApplication*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGuiApplication_Delete(QGuiApplication* self, bool isSubclass) {

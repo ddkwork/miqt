@@ -72,7 +72,6 @@ type QPainter struct {
 
 // NewQPainter constructs a new QPainter object.
 func NewQPainter() *QPainter {
-
 	ret := newQPainter(QPainter_new())
 	ret.isSubclass = true
 	return ret
@@ -80,7 +79,6 @@ func NewQPainter() *QPainter {
 
 // NewQPainter2 constructs a new QPainter object.
 func NewQPainter2(param1 *QPaintDevice) *QPainter {
-
 	ret := newQPainter(QPainter_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1109,7 +1107,6 @@ type QPainter__PixmapFragment struct {
 
 // NewQPainter__PixmapFragment constructs a new QPainter::PixmapFragment object.
 func NewQPainter__PixmapFragment() *QPainter__PixmapFragment {
-
 	ret := newQPainter__PixmapFragment(QPainter__PixmapFragment_new())
 	ret.isSubclass = true
 	return ret
@@ -1117,7 +1114,6 @@ func NewQPainter__PixmapFragment() *QPainter__PixmapFragment {
 
 // NewQPainter__PixmapFragment2 constructs a new QPainter::PixmapFragment object.
 func NewQPainter__PixmapFragment2(param1 *PixmapFragment) *QPainter__PixmapFragment {
-
 	ret := newQPainter__PixmapFragment(QPainter__PixmapFragment_new2(param1))
 	ret.isSubclass = true
 	return ret

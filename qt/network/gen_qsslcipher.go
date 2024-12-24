@@ -11,7 +11,6 @@ type QSslCipher struct {
 
 // NewQSslCipher constructs a new QSslCipher object.
 func NewQSslCipher() *QSslCipher {
-
 	ret := newQSslCipher(QSslCipher_new())
 	ret.isSubclass = true
 	return ret
@@ -43,7 +42,6 @@ func NewQSslCipher3(name string, protocol QSsl__SslProtocol) *QSslCipher {
 
 // NewQSslCipher4 constructs a new QSslCipher object.
 func NewQSslCipher4(other *QSslCipher) *QSslCipher {
-
 	ret := newQSslCipher(QSslCipher_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret

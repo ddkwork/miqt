@@ -19,7 +19,6 @@ type QSocketNotifier struct {
 
 // NewQSocketNotifier constructs a new QSocketNotifier object.
 func NewQSocketNotifier(param1 Type) *QSocketNotifier {
-
 	ret := newQSocketNotifier(QSocketNotifier_new(param1))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +26,6 @@ func NewQSocketNotifier(param1 Type) *QSocketNotifier {
 
 // NewQSocketNotifier2 constructs a new QSocketNotifier object.
 func NewQSocketNotifier2(socket uintptr, param2 Type) *QSocketNotifier {
-
 	ret := newQSocketNotifier(QSocketNotifier_new2((intptr_t)(socket), param2))
 	ret.isSubclass = true
 	return ret
@@ -35,7 +33,6 @@ func NewQSocketNotifier2(socket uintptr, param2 Type) *QSocketNotifier {
 
 // NewQSocketNotifier3 constructs a new QSocketNotifier object.
 func NewQSocketNotifier3(param1 Type, parent *QObject) *QSocketNotifier {
-
 	ret := newQSocketNotifier(QSocketNotifier_new3(param1, parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -43,7 +40,6 @@ func NewQSocketNotifier3(param1 Type, parent *QObject) *QSocketNotifier {
 
 // NewQSocketNotifier4 constructs a new QSocketNotifier object.
 func NewQSocketNotifier4(socket uintptr, param2 Type, parent *QObject) *QSocketNotifier {
-
 	ret := newQSocketNotifier(QSocketNotifier_new4((intptr_t)(socket), param2, parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -114,192 +110,57 @@ func QSocketNotifier_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QSocketNotifier) callVirtualBase_Event(param1 *QEvent) bool {
-
-	return (bool)(QSocketNotifier_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
-
+func (this *QSocketNotifier) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QSocketNotifier_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QSocketNotifier) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
+
+func (this *QSocketNotifier) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QSocketNotifier_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QSocketNotifier_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QSocketNotifier_Event
-func miqt_exec_callback_QSocketNotifier_Event(self QSocketNotifier, cb intptr_t, param1 *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent) bool, param1 *QEvent) bool)
+//export miqt_exec_callback_QSocketNotifier_MetaObject
+func miqt_exec_callback_QSocketNotifier_MetaObject(self QSocketNotifier, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QSocketNotifier{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QSocketNotifier) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QSocketNotifier_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QSocketNotifier) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QSocketNotifier_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QSocketNotifier_Metacast
+func miqt_exec_callback_QSocketNotifier_Metacast(self QSocketNotifier, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(param1)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QSocketNotifier{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QSocketNotifier{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSocketNotifier) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QSocketNotifier_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QSocketNotifier) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSocketNotifier_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSocketNotifier_EventFilter
-func miqt_exec_callback_QSocketNotifier_EventFilter(self QSocketNotifier, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QSocketNotifier{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSocketNotifier) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QSocketNotifier_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSocketNotifier) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSocketNotifier_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSocketNotifier_TimerEvent
-func miqt_exec_callback_QSocketNotifier_TimerEvent(self QSocketNotifier, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QSocketNotifier{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QSocketNotifier) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QSocketNotifier_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSocketNotifier) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSocketNotifier_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSocketNotifier_ChildEvent
-func miqt_exec_callback_QSocketNotifier_ChildEvent(self QSocketNotifier, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QSocketNotifier{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QSocketNotifier) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QSocketNotifier_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSocketNotifier) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSocketNotifier_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSocketNotifier_CustomEvent
-func miqt_exec_callback_QSocketNotifier_CustomEvent(self QSocketNotifier, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QSocketNotifier{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QSocketNotifier) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QSocketNotifier_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QSocketNotifier) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSocketNotifier_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSocketNotifier_ConnectNotify
-func miqt_exec_callback_QSocketNotifier_ConnectNotify(self QSocketNotifier, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QSocketNotifier{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QSocketNotifier) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QSocketNotifier_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QSocketNotifier) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSocketNotifier_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSocketNotifier_DisconnectNotify
-func miqt_exec_callback_QSocketNotifier_DisconnectNotify(self QSocketNotifier, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QSocketNotifier{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }
 
 type QSocketDescriptor struct {
@@ -309,7 +170,6 @@ type QSocketDescriptor struct {
 
 // NewQSocketDescriptor constructs a new QSocketDescriptor object.
 func NewQSocketDescriptor() *QSocketDescriptor {
-
 	ret := newQSocketDescriptor(QSocketDescriptor_new())
 	ret.isSubclass = true
 	return ret
@@ -317,7 +177,6 @@ func NewQSocketDescriptor() *QSocketDescriptor {
 
 // NewQSocketDescriptor2 constructs a new QSocketDescriptor object.
 func NewQSocketDescriptor2(desc uintptr) *QSocketDescriptor {
-
 	ret := newQSocketDescriptor(QSocketDescriptor_new2((intptr_t)(desc)))
 	ret.isSubclass = true
 	return ret
@@ -325,7 +184,6 @@ func NewQSocketDescriptor2(desc uintptr) *QSocketDescriptor {
 
 // NewQSocketDescriptor3 constructs a new QSocketDescriptor object.
 func NewQSocketDescriptor3(param1 *QSocketDescriptor) *QSocketDescriptor {
-
 	ret := newQSocketDescriptor(QSocketDescriptor_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -333,7 +191,6 @@ func NewQSocketDescriptor3(param1 *QSocketDescriptor) *QSocketDescriptor {
 
 // NewQSocketDescriptor4 constructs a new QSocketDescriptor object.
 func NewQSocketDescriptor4(descriptor DescriptorType) *QSocketDescriptor {
-
 	ret := newQSocketDescriptor(QSocketDescriptor_new4(descriptor))
 	ret.isSubclass = true
 	return ret

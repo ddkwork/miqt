@@ -12,10 +12,13 @@ extern "C" {
 typedef QtMocHelpers::NoType QtMocHelpers__NoType;
 typedef struct QtMocHelpers__NoType QtMocHelpers__NoType;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) void QtMocHelpers__NoType_Delete(QtMocHelpers__NoType* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QtMocHelpers__NoType_Delete(QtMocHelpers__NoType* self, bool isSubclass);
 
-} 
+}

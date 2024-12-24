@@ -9,275 +9,230 @@
 #include "../libmiqt/libmiqt.h"
 extern "C" {
 typedef struct QAbstractButton QAbstractButton;
-typedef struct QActionEvent QActionEvent;
-typedef struct QCloseEvent QCloseEvent;
-typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDialog QDialog;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
-typedef struct QEnterEvent QEnterEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
-typedef struct QHideEvent QHideEvent;
-typedef struct QInputMethodEvent QInputMethodEvent;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMouseEvent QMouseEvent;
-typedef struct QMoveEvent QMoveEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
-typedef struct QPaintEngine QPaintEngine;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QPainter QPainter;
 typedef struct QPixmap QPixmap;
-typedef struct QPoint QPoint;
 typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
-typedef struct QTabletEvent QTabletEvent;
 typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct QWizard QWizard;
 typedef struct QWizardPage QWizardPage;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QWizard* QWizard_new(QWidget* parent);
-extern __declspec(dllexport) QWizard* QWizard_new2();
-extern __declspec(dllexport) QWizard* QWizard_new3(QWidget* parent, int flags);
-extern __declspec(dllexport) void QWizard_virtbase(QWizard* src, QDialog** outptr_QDialog);
-extern __declspec(dllexport) QMetaObject* QWizard_MetaObject(const QWizard* self);
-extern __declspec(dllexport) void* QWizard_Metacast(QWizard* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QWizard_Tr(const char* s);
-extern __declspec(dllexport) int QWizard_AddPage(QWizard* self, QWizardPage* page);
-extern __declspec(dllexport) void QWizard_SetPage(QWizard* self, int id, QWizardPage* page);
-extern __declspec(dllexport) void QWizard_RemovePage(QWizard* self, int id);
-extern __declspec(dllexport) QWizardPage* QWizard_Page(const QWizard* self, int id);
-extern __declspec(dllexport) bool QWizard_HasVisitedPage(const QWizard* self, int id);
-extern __declspec(dllexport) struct miqt_array /* of int */  QWizard_VisitedIds(const QWizard* self);
-extern __declspec(dllexport) struct miqt_array /* of int */  QWizard_PageIds(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetStartId(QWizard* self, int id);
-extern __declspec(dllexport) int QWizard_StartId(const QWizard* self);
-extern __declspec(dllexport) QWizardPage* QWizard_CurrentPage(const QWizard* self);
-extern __declspec(dllexport) int QWizard_CurrentId(const QWizard* self);
-extern __declspec(dllexport) bool QWizard_ValidateCurrentPage(QWizard* self);
-extern __declspec(dllexport) int QWizard_NextId(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetField(QWizard* self, struct miqt_string name, QVariant* value);
-extern __declspec(dllexport) QVariant* QWizard_Field(const QWizard* self, struct miqt_string name);
-extern __declspec(dllexport) void QWizard_SetWizardStyle(QWizard* self, WizardStyle style);
-extern __declspec(dllexport) WizardStyle QWizard_WizardStyle(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetOption(QWizard* self, WizardOption option);
-extern __declspec(dllexport) bool QWizard_TestOption(const QWizard* self, WizardOption option);
-extern __declspec(dllexport) void QWizard_SetOptions(QWizard* self, WizardOptions options);
-extern __declspec(dllexport) WizardOptions QWizard_Options(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetButtonText(QWizard* self, WizardButton which, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QWizard_ButtonText(const QWizard* self, WizardButton which);
-extern __declspec(dllexport) void QWizard_SetButtonLayout(QWizard* self, struct miqt_array /* of WizardButton */  layout);
-extern __declspec(dllexport) void QWizard_SetButton(QWizard* self, WizardButton which, QAbstractButton* button);
-extern __declspec(dllexport) QAbstractButton* QWizard_Button(const QWizard* self, WizardButton which);
-extern __declspec(dllexport) void QWizard_SetTitleFormat(QWizard* self, int format);
-extern __declspec(dllexport) int QWizard_TitleFormat(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetSubTitleFormat(QWizard* self, int format);
-extern __declspec(dllexport) int QWizard_SubTitleFormat(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetPixmap(QWizard* self, WizardPixmap which, QPixmap* pixmap);
-extern __declspec(dllexport) QPixmap* QWizard_Pixmap(const QWizard* self, WizardPixmap which);
-extern __declspec(dllexport) void QWizard_SetSideWidget(QWizard* self, QWidget* widget);
-extern __declspec(dllexport) QWidget* QWizard_SideWidget(const QWizard* self);
-extern __declspec(dllexport) void QWizard_SetDefaultProperty(QWizard* self, const char* className, const char* property, const char* changedSignal);
-extern __declspec(dllexport) void QWizard_SetVisible(QWizard* self, bool visible);
-extern __declspec(dllexport) QSize* QWizard_SizeHint(const QWizard* self);
-extern __declspec(dllexport) void QWizard_CurrentIdChanged(QWizard* self, int id);
+extern __declspec(dllexport) 
+QWizard* QWizard_new(QWidget* parent);
+extern __declspec(dllexport) 
+QWizard* QWizard_new2();
+extern __declspec(dllexport) 
+QWizard* QWizard_new3(QWidget* parent, int flags);
+extern __declspec(dllexport) 
+void QWizard_virtbase(QWizard* src
+, QDialog** outptr_QDialog
+);
+extern __declspec(dllexport) 
+QMetaObject* QWizard_MetaObject(const QWizard* self);
+extern __declspec(dllexport) 
+void* QWizard_Metacast(QWizard* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QWizard_Tr(const char* s);
+extern __declspec(dllexport) 
+int QWizard_AddPage(QWizard* self, QWizardPage* page);
+extern __declspec(dllexport) 
+void QWizard_SetPage(QWizard* self, int id, QWizardPage* page);
+extern __declspec(dllexport) 
+void QWizard_RemovePage(QWizard* self, int id);
+extern __declspec(dllexport) 
+QWizardPage* QWizard_Page(const QWizard* self, int id);
+extern __declspec(dllexport) 
+bool QWizard_HasVisitedPage(const QWizard* self, int id);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QWizard_VisitedIds(const QWizard* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of int */  QWizard_PageIds(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetStartId(QWizard* self, int id);
+extern __declspec(dllexport) 
+int QWizard_StartId(const QWizard* self);
+extern __declspec(dllexport) 
+QWizardPage* QWizard_CurrentPage(const QWizard* self);
+extern __declspec(dllexport) 
+int QWizard_CurrentId(const QWizard* self);
+extern __declspec(dllexport) 
+bool QWizard_ValidateCurrentPage(QWizard* self);
+extern __declspec(dllexport) 
+int QWizard_NextId(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetField(QWizard* self, struct miqt_string name, QVariant* value);
+extern __declspec(dllexport) 
+QVariant* QWizard_Field(const QWizard* self, struct miqt_string name);
+extern __declspec(dllexport) 
+void QWizard_SetWizardStyle(QWizard* self, WizardStyle style);
+extern __declspec(dllexport) 
+WizardStyle QWizard_WizardStyle(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetOption(QWizard* self, WizardOption option);
+extern __declspec(dllexport) 
+bool QWizard_TestOption(const QWizard* self, WizardOption option);
+extern __declspec(dllexport) 
+void QWizard_SetOptions(QWizard* self, WizardOptions options);
+extern __declspec(dllexport) 
+WizardOptions QWizard_Options(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetButtonText(QWizard* self, WizardButton which, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QWizard_ButtonText(const QWizard* self, WizardButton which);
+extern __declspec(dllexport) 
+void QWizard_SetButtonLayout(QWizard* self, struct miqt_array /* of WizardButton */  layout);
+extern __declspec(dllexport) 
+void QWizard_SetButton(QWizard* self, WizardButton which, QAbstractButton* button);
+extern __declspec(dllexport) 
+QAbstractButton* QWizard_Button(const QWizard* self, WizardButton which);
+extern __declspec(dllexport) 
+void QWizard_SetTitleFormat(QWizard* self, int format);
+extern __declspec(dllexport) 
+int QWizard_TitleFormat(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetSubTitleFormat(QWizard* self, int format);
+extern __declspec(dllexport) 
+int QWizard_SubTitleFormat(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetPixmap(QWizard* self, WizardPixmap which, QPixmap* pixmap);
+extern __declspec(dllexport) 
+QPixmap* QWizard_Pixmap(const QWizard* self, WizardPixmap which);
+extern __declspec(dllexport) 
+void QWizard_SetSideWidget(QWizard* self, QWidget* widget);
+extern __declspec(dllexport) 
+QWidget* QWizard_SideWidget(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetDefaultProperty(QWizard* self, const char* className, const char* property, const char* changedSignal);
+extern __declspec(dllexport) 
+void QWizard_SetVisible(QWizard* self, bool visible);
+extern __declspec(dllexport) 
+QSize* QWizard_SizeHint(const QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_CurrentIdChanged(QWizard* self, int id);
 void QWizard_connect_CurrentIdChanged(QWizard* self, intptr_t slot);
-extern __declspec(dllexport) void QWizard_HelpRequested(QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_HelpRequested(QWizard* self);
 void QWizard_connect_HelpRequested(QWizard* self, intptr_t slot);
-extern __declspec(dllexport) void QWizard_CustomButtonClicked(QWizard* self, int which);
+extern __declspec(dllexport) 
+void QWizard_CustomButtonClicked(QWizard* self, int which);
 void QWizard_connect_CustomButtonClicked(QWizard* self, intptr_t slot);
-extern __declspec(dllexport) void QWizard_PageAdded(QWizard* self, int id);
+extern __declspec(dllexport) 
+void QWizard_PageAdded(QWizard* self, int id);
 void QWizard_connect_PageAdded(QWizard* self, intptr_t slot);
-extern __declspec(dllexport) void QWizard_PageRemoved(QWizard* self, int id);
+extern __declspec(dllexport) 
+void QWizard_PageRemoved(QWizard* self, int id);
 void QWizard_connect_PageRemoved(QWizard* self, intptr_t slot);
-extern __declspec(dllexport) void QWizard_Back(QWizard* self);
-extern __declspec(dllexport) void QWizard_Next(QWizard* self);
-extern __declspec(dllexport) void QWizard_SetCurrentId(QWizard* self, int id);
-extern __declspec(dllexport) void QWizard_Restart(QWizard* self);
-extern __declspec(dllexport) bool QWizard_Event(QWizard* self, QEvent* event);
-extern __declspec(dllexport) void QWizard_ResizeEvent(QWizard* self, QResizeEvent* event);
-extern __declspec(dllexport) void QWizard_PaintEvent(QWizard* self, QPaintEvent* event);
-extern __declspec(dllexport) bool QWizard_NativeEvent(QWizard* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QWizard_Done(QWizard* self, int result);
-extern __declspec(dllexport) void QWizard_InitializePage(QWizard* self, int id);
-extern __declspec(dllexport) void QWizard_CleanupPage(QWizard* self, int id);
-extern __declspec(dllexport) struct miqt_string QWizard_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QWizard_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QWizard_SetOption2(QWizard* self, WizardOption option, bool on);
-extern __declspec(dllexport) void QWizard_override_virtual_ValidateCurrentPage(void* self, intptr_t slot);
-bool QWizard_virtualbase_ValidateCurrentPage(void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_NextId(void* self, intptr_t slot);
-int QWizard_virtualbase_NextId(const void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_SetVisible(void* self, intptr_t slot);
-void QWizard_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QWizard_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QWizard_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_Event(void* self, intptr_t slot);
-bool QWizard_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QWizard_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QWizard_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QWizard_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QWizard_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QWizard_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QWizard_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QWizard_override_virtual_Done(void* self, intptr_t slot);
-void QWizard_virtualbase_Done(void* self, int result);
-extern __declspec(dllexport) void QWizard_override_virtual_InitializePage(void* self, intptr_t slot);
-void QWizard_virtualbase_InitializePage(void* self, int id);
-extern __declspec(dllexport) void QWizard_override_virtual_CleanupPage(void* self, intptr_t slot);
-void QWizard_virtualbase_CleanupPage(void* self, int id);
-extern __declspec(dllexport) void QWizard_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QWizard_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_Open(void* self, intptr_t slot);
-void QWizard_virtualbase_Open(void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_Exec(void* self, intptr_t slot);
-int QWizard_virtualbase_Exec(void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_Accept(void* self, intptr_t slot);
-void QWizard_virtualbase_Accept(void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_Reject(void* self, intptr_t slot);
-void QWizard_virtualbase_Reject(void* self);
-extern __declspec(dllexport) void QWizard_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QWizard_virtualbase_KeyPressEvent(void* self, QKeyEvent* param1);
-extern __declspec(dllexport) void QWizard_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QWizard_virtualbase_CloseEvent(void* self, QCloseEvent* param1);
-extern __declspec(dllexport) void QWizard_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QWizard_virtualbase_ShowEvent(void* self, QShowEvent* param1);
-extern __declspec(dllexport) void QWizard_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QWizard_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* param1);
-extern __declspec(dllexport) void QWizard_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QWizard_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2);
-extern __declspec(dllexport) void QWizard_Delete(QWizard* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QWizard_Back(QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_Next(QWizard* self);
+extern __declspec(dllexport) 
+void QWizard_SetCurrentId(QWizard* self, int id);
+extern __declspec(dllexport) 
+void QWizard_Restart(QWizard* self);
+extern __declspec(dllexport) 
+bool QWizard_Event(QWizard* self, QEvent* event);
+extern __declspec(dllexport) 
+void QWizard_ResizeEvent(QWizard* self, QResizeEvent* event);
+extern __declspec(dllexport) 
+void QWizard_PaintEvent(QWizard* self, QPaintEvent* event);
+extern __declspec(dllexport) 
+bool QWizard_NativeEvent(QWizard* self, struct miqt_string eventType, void* message, intptr_t* result);
+extern __declspec(dllexport) 
+void QWizard_Done(QWizard* self, int result);
+extern __declspec(dllexport) 
+void QWizard_InitializePage(QWizard* self, int id);
+extern __declspec(dllexport) 
+void QWizard_CleanupPage(QWizard* self, int id);
+extern __declspec(dllexport) 
+struct miqt_string QWizard_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QWizard_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QWizard_SetOption2(QWizard* self, WizardOption option, bool on);
+extern __declspec(dllexport) 
+void QWizard_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QWizard_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QWizard_override_virtual_Metacast(void* self, intptr_t slot);
+void* QWizard_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QWizard_Delete(QWizard* self, bool isSubclass);
 
-extern __declspec(dllexport) QWizardPage* QWizardPage_new(QWidget* parent);
-extern __declspec(dllexport) QWizardPage* QWizardPage_new2();
-extern __declspec(dllexport) void QWizardPage_virtbase(QWizardPage* src, QWidget** outptr_QWidget);
-extern __declspec(dllexport) QMetaObject* QWizardPage_MetaObject(const QWizardPage* self);
-extern __declspec(dllexport) void* QWizardPage_Metacast(QWizardPage* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QWizardPage_Tr(const char* s);
-extern __declspec(dllexport) void QWizardPage_SetTitle(QWizardPage* self, struct miqt_string title);
-extern __declspec(dllexport) struct miqt_string QWizardPage_Title(const QWizardPage* self);
-extern __declspec(dllexport) void QWizardPage_SetSubTitle(QWizardPage* self, struct miqt_string subTitle);
-extern __declspec(dllexport) struct miqt_string QWizardPage_SubTitle(const QWizardPage* self);
-extern __declspec(dllexport) void QWizardPage_SetPixmap(QWizardPage* self, int which, QPixmap* pixmap);
-extern __declspec(dllexport) QPixmap* QWizardPage_Pixmap(const QWizardPage* self, int which);
-extern __declspec(dllexport) void QWizardPage_SetFinalPage(QWizardPage* self, bool finalPage);
-extern __declspec(dllexport) bool QWizardPage_IsFinalPage(const QWizardPage* self);
-extern __declspec(dllexport) void QWizardPage_SetCommitPage(QWizardPage* self, bool commitPage);
-extern __declspec(dllexport) bool QWizardPage_IsCommitPage(const QWizardPage* self);
-extern __declspec(dllexport) void QWizardPage_SetButtonText(QWizardPage* self, int which, struct miqt_string text);
-extern __declspec(dllexport) struct miqt_string QWizardPage_ButtonText(const QWizardPage* self, int which);
-extern __declspec(dllexport) void QWizardPage_InitializePage(QWizardPage* self);
-extern __declspec(dllexport) void QWizardPage_CleanupPage(QWizardPage* self);
-extern __declspec(dllexport) bool QWizardPage_ValidatePage(QWizardPage* self);
-extern __declspec(dllexport) bool QWizardPage_IsComplete(const QWizardPage* self);
-extern __declspec(dllexport) int QWizardPage_NextId(const QWizardPage* self);
-extern __declspec(dllexport) void QWizardPage_CompleteChanged(QWizardPage* self);
+extern __declspec(dllexport) 
+QWizardPage* QWizardPage_new(QWidget* parent);
+extern __declspec(dllexport) 
+QWizardPage* QWizardPage_new2();
+extern __declspec(dllexport) 
+void QWizardPage_virtbase(QWizardPage* src
+, QWidget** outptr_QWidget
+);
+extern __declspec(dllexport) 
+QMetaObject* QWizardPage_MetaObject(const QWizardPage* self);
+extern __declspec(dllexport) 
+void* QWizardPage_Metacast(QWizardPage* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QWizardPage_Tr(const char* s);
+extern __declspec(dllexport) 
+void QWizardPage_SetTitle(QWizardPage* self, struct miqt_string title);
+extern __declspec(dllexport) 
+struct miqt_string QWizardPage_Title(const QWizardPage* self);
+extern __declspec(dllexport) 
+void QWizardPage_SetSubTitle(QWizardPage* self, struct miqt_string subTitle);
+extern __declspec(dllexport) 
+struct miqt_string QWizardPage_SubTitle(const QWizardPage* self);
+extern __declspec(dllexport) 
+void QWizardPage_SetPixmap(QWizardPage* self, int which, QPixmap* pixmap);
+extern __declspec(dllexport) 
+QPixmap* QWizardPage_Pixmap(const QWizardPage* self, int which);
+extern __declspec(dllexport) 
+void QWizardPage_SetFinalPage(QWizardPage* self, bool finalPage);
+extern __declspec(dllexport) 
+bool QWizardPage_IsFinalPage(const QWizardPage* self);
+extern __declspec(dllexport) 
+void QWizardPage_SetCommitPage(QWizardPage* self, bool commitPage);
+extern __declspec(dllexport) 
+bool QWizardPage_IsCommitPage(const QWizardPage* self);
+extern __declspec(dllexport) 
+void QWizardPage_SetButtonText(QWizardPage* self, int which, struct miqt_string text);
+extern __declspec(dllexport) 
+struct miqt_string QWizardPage_ButtonText(const QWizardPage* self, int which);
+extern __declspec(dllexport) 
+void QWizardPage_InitializePage(QWizardPage* self);
+extern __declspec(dllexport) 
+void QWizardPage_CleanupPage(QWizardPage* self);
+extern __declspec(dllexport) 
+bool QWizardPage_ValidatePage(QWizardPage* self);
+extern __declspec(dllexport) 
+bool QWizardPage_IsComplete(const QWizardPage* self);
+extern __declspec(dllexport) 
+int QWizardPage_NextId(const QWizardPage* self);
+extern __declspec(dllexport) 
+void QWizardPage_CompleteChanged(QWizardPage* self);
 void QWizardPage_connect_CompleteChanged(QWizardPage* self, intptr_t slot);
-extern __declspec(dllexport) struct miqt_string QWizardPage_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QWizardPage_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QWizardPage_override_virtual_InitializePage(void* self, intptr_t slot);
-void QWizardPage_virtualbase_InitializePage(void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_CleanupPage(void* self, intptr_t slot);
-void QWizardPage_virtualbase_CleanupPage(void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_ValidatePage(void* self, intptr_t slot);
-bool QWizardPage_virtualbase_ValidatePage(void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_IsComplete(void* self, intptr_t slot);
-bool QWizardPage_virtualbase_IsComplete(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_NextId(void* self, intptr_t slot);
-int QWizardPage_virtualbase_NextId(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_DevType(void* self, intptr_t slot);
-int QWizardPage_virtualbase_DevType(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_SetVisible(void* self, intptr_t slot);
-void QWizardPage_virtualbase_SetVisible(void* self, bool visible);
-extern __declspec(dllexport) void QWizardPage_override_virtual_SizeHint(void* self, intptr_t slot);
-QSize* QWizardPage_virtualbase_SizeHint(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_MinimumSizeHint(void* self, intptr_t slot);
-QSize* QWizardPage_virtualbase_MinimumSizeHint(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_HeightForWidth(void* self, intptr_t slot);
-int QWizardPage_virtualbase_HeightForWidth(const void* self, int param1);
-extern __declspec(dllexport) void QWizardPage_override_virtual_HasHeightForWidth(void* self, intptr_t slot);
-bool QWizardPage_virtualbase_HasHeightForWidth(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_PaintEngine(void* self, intptr_t slot);
-QPaintEngine* QWizardPage_virtualbase_PaintEngine(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_Event(void* self, intptr_t slot);
-bool QWizardPage_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_WheelEvent(void* self, QWheelEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_EnterEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_EnterEvent(void* self, QEnterEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_LeaveEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_LeaveEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_MoveEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_MoveEvent(void* self, QMoveEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_CloseEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_CloseEvent(void* self, QCloseEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_TabletEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_TabletEvent(void* self, QTabletEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_ActionEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_ActionEvent(void* self, QActionEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_DropEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_ShowEvent(void* self, QShowEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_HideEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_HideEvent(void* self, QHideEvent* event);
-extern __declspec(dllexport) void QWizardPage_override_virtual_NativeEvent(void* self, intptr_t slot);
-bool QWizardPage_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
-extern __declspec(dllexport) void QWizardPage_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_ChangeEvent(void* self, QEvent* param1);
-extern __declspec(dllexport) void QWizardPage_override_virtual_Metric(void* self, intptr_t slot);
-int QWizardPage_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
-extern __declspec(dllexport) void QWizardPage_override_virtual_InitPainter(void* self, intptr_t slot);
-void QWizardPage_virtualbase_InitPainter(const void* self, QPainter* painter);
-extern __declspec(dllexport) void QWizardPage_override_virtual_Redirected(void* self, intptr_t slot);
-QPaintDevice* QWizardPage_virtualbase_Redirected(const void* self, QPoint* offset);
-extern __declspec(dllexport) void QWizardPage_override_virtual_SharedPainter(void* self, intptr_t slot);
-QPainter* QWizardPage_virtualbase_SharedPainter(const void* self);
-extern __declspec(dllexport) void QWizardPage_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QWizardPage_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QWizardPage_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QWizardPage_virtualbase_InputMethodQuery(const void* self, int param1);
-extern __declspec(dllexport) void QWizardPage_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QWizardPage_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QWizardPage_Delete(QWizardPage* self, bool isSubclass);
+extern __declspec(dllexport) 
+struct miqt_string QWizardPage_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QWizardPage_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QWizardPage_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QWizardPage_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QWizardPage_override_virtual_Metacast(void* self, intptr_t slot);
+void* QWizardPage_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QWizardPage_Delete(QWizardPage* self, bool isSubclass);
 
-} 
+}

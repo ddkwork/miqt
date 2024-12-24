@@ -8,241 +8,195 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QAbstractItemDelegate QAbstractItemDelegate;
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractItemView QAbstractItemView;
 typedef struct QAbstractScrollArea QAbstractScrollArea;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
 typedef struct QDropEvent QDropEvent;
-typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
 typedef struct QFrame QFrame;
 typedef struct QHeaderView QHeaderView;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QItemSelection QItemSelection;
 typedef struct QItemSelectionModel QItemSelectionModel;
-typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
 typedef struct QModelIndex QModelIndex;
-typedef struct QMouseEvent QMouseEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
 typedef struct QPaintEvent QPaintEvent;
 typedef struct QPoint QPoint;
 typedef struct QRect QRect;
 typedef struct QRegion QRegion;
-typedef struct QResizeEvent QResizeEvent;
 typedef struct QSize QSize;
 typedef struct QStyleOptionViewItem QStyleOptionViewItem;
 typedef struct QTableView QTableView;
 typedef struct QTimerEvent QTimerEvent;
-typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTableView* QTableView_new(QWidget* parent);
-extern __declspec(dllexport) QTableView* QTableView_new2();
-extern __declspec(dllexport) void QTableView_virtbase(QTableView* src, QAbstractItemView** outptr_QAbstractItemView);
-extern __declspec(dllexport) QMetaObject* QTableView_MetaObject(const QTableView* self);
-extern __declspec(dllexport) void* QTableView_Metacast(QTableView* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QTableView_Tr(const char* s);
-extern __declspec(dllexport) void QTableView_SetModel(QTableView* self, QAbstractItemModel* model);
-extern __declspec(dllexport) void QTableView_SetRootIndex(QTableView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_SetSelectionModel(QTableView* self, QItemSelectionModel* selectionModel);
-extern __declspec(dllexport) void QTableView_DoItemsLayout(QTableView* self);
-extern __declspec(dllexport) QHeaderView* QTableView_HorizontalHeader(const QTableView* self);
-extern __declspec(dllexport) QHeaderView* QTableView_VerticalHeader(const QTableView* self);
-extern __declspec(dllexport) void QTableView_SetHorizontalHeader(QTableView* self, QHeaderView* header);
-extern __declspec(dllexport) void QTableView_SetVerticalHeader(QTableView* self, QHeaderView* header);
-extern __declspec(dllexport) int QTableView_RowViewportPosition(const QTableView* self, int row);
-extern __declspec(dllexport) int QTableView_RowAt(const QTableView* self, int y);
-extern __declspec(dllexport) void QTableView_SetRowHeight(QTableView* self, int row, int height);
-extern __declspec(dllexport) int QTableView_RowHeight(const QTableView* self, int row);
-extern __declspec(dllexport) int QTableView_ColumnViewportPosition(const QTableView* self, int column);
-extern __declspec(dllexport) int QTableView_ColumnAt(const QTableView* self, int x);
-extern __declspec(dllexport) void QTableView_SetColumnWidth(QTableView* self, int column, int width);
-extern __declspec(dllexport) int QTableView_ColumnWidth(const QTableView* self, int column);
-extern __declspec(dllexport) bool QTableView_IsRowHidden(const QTableView* self, int row);
-extern __declspec(dllexport) void QTableView_SetRowHidden(QTableView* self, int row, bool hide);
-extern __declspec(dllexport) bool QTableView_IsColumnHidden(const QTableView* self, int column);
-extern __declspec(dllexport) void QTableView_SetColumnHidden(QTableView* self, int column, bool hide);
-extern __declspec(dllexport) void QTableView_SetSortingEnabled(QTableView* self, bool enable);
-extern __declspec(dllexport) bool QTableView_IsSortingEnabled(const QTableView* self);
-extern __declspec(dllexport) bool QTableView_ShowGrid(const QTableView* self);
-extern __declspec(dllexport) int QTableView_GridStyle(const QTableView* self);
-extern __declspec(dllexport) void QTableView_SetGridStyle(QTableView* self, int style);
-extern __declspec(dllexport) void QTableView_SetWordWrap(QTableView* self, bool on);
-extern __declspec(dllexport) bool QTableView_WordWrap(const QTableView* self);
-extern __declspec(dllexport) void QTableView_SetCornerButtonEnabled(QTableView* self, bool enable);
-extern __declspec(dllexport) bool QTableView_IsCornerButtonEnabled(const QTableView* self);
-extern __declspec(dllexport) QRect* QTableView_VisualRect(const QTableView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_ScrollTo(QTableView* self, QModelIndex* index, ScrollHint hint);
-extern __declspec(dllexport) QModelIndex* QTableView_IndexAt(const QTableView* self, QPoint* p);
-extern __declspec(dllexport) void QTableView_SetSpan(QTableView* self, int row, int column, int rowSpan, int columnSpan);
-extern __declspec(dllexport) int QTableView_RowSpan(const QTableView* self, int row, int column);
-extern __declspec(dllexport) int QTableView_ColumnSpan(const QTableView* self, int row, int column);
-extern __declspec(dllexport) void QTableView_ClearSpans(QTableView* self);
-extern __declspec(dllexport) void QTableView_SelectRow(QTableView* self, int row);
-extern __declspec(dllexport) void QTableView_SelectColumn(QTableView* self, int column);
-extern __declspec(dllexport) void QTableView_HideRow(QTableView* self, int row);
-extern __declspec(dllexport) void QTableView_HideColumn(QTableView* self, int column);
-extern __declspec(dllexport) void QTableView_ShowRow(QTableView* self, int row);
-extern __declspec(dllexport) void QTableView_ShowColumn(QTableView* self, int column);
-extern __declspec(dllexport) void QTableView_ResizeRowToContents(QTableView* self, int row);
-extern __declspec(dllexport) void QTableView_ResizeRowsToContents(QTableView* self);
-extern __declspec(dllexport) void QTableView_ResizeColumnToContents(QTableView* self, int column);
-extern __declspec(dllexport) void QTableView_ResizeColumnsToContents(QTableView* self);
-extern __declspec(dllexport) void QTableView_SortByColumn(QTableView* self, int column, int order);
-extern __declspec(dllexport) void QTableView_SetShowGrid(QTableView* self, bool show);
-extern __declspec(dllexport) void QTableView_ScrollContentsBy(QTableView* self, int dx, int dy);
-extern __declspec(dllexport) void QTableView_InitViewItemOption(const QTableView* self, QStyleOptionViewItem* option);
-extern __declspec(dllexport) void QTableView_PaintEvent(QTableView* self, QPaintEvent* e);
-extern __declspec(dllexport) void QTableView_TimerEvent(QTableView* self, QTimerEvent* event);
-extern __declspec(dllexport) void QTableView_DropEvent(QTableView* self, QDropEvent* event);
-extern __declspec(dllexport) int QTableView_HorizontalOffset(const QTableView* self);
-extern __declspec(dllexport) int QTableView_VerticalOffset(const QTableView* self);
-extern __declspec(dllexport) QModelIndex* QTableView_MoveCursor(QTableView* self, CursorAction cursorAction, int modifiers);
-extern __declspec(dllexport) void QTableView_SetSelection(QTableView* self, QRect* rect, int command);
-extern __declspec(dllexport) QRegion* QTableView_VisualRegionForSelection(const QTableView* self, QItemSelection* selection);
-extern __declspec(dllexport) struct miqt_array /* of QModelIndex* */  QTableView_SelectedIndexes(const QTableView* self);
-extern __declspec(dllexport) void QTableView_UpdateGeometries(QTableView* self);
-extern __declspec(dllexport) QSize* QTableView_ViewportSizeHint(const QTableView* self);
-extern __declspec(dllexport) int QTableView_SizeHintForRow(const QTableView* self, int row);
-extern __declspec(dllexport) int QTableView_SizeHintForColumn(const QTableView* self, int column);
-extern __declspec(dllexport) void QTableView_VerticalScrollbarAction(QTableView* self, int action);
-extern __declspec(dllexport) void QTableView_HorizontalScrollbarAction(QTableView* self, int action);
-extern __declspec(dllexport) bool QTableView_IsIndexHidden(const QTableView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_SelectionChanged(QTableView* self, QItemSelection* selected, QItemSelection* deselected);
-extern __declspec(dllexport) void QTableView_CurrentChanged(QTableView* self, QModelIndex* current, QModelIndex* previous);
-extern __declspec(dllexport) struct miqt_string QTableView_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QTableView_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QTableView_override_virtual_SetModel(void* self, intptr_t slot);
-void QTableView_virtualbase_SetModel(void* self, QAbstractItemModel* model);
-extern __declspec(dllexport) void QTableView_override_virtual_SetRootIndex(void* self, intptr_t slot);
-void QTableView_virtualbase_SetRootIndex(void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_override_virtual_SetSelectionModel(void* self, intptr_t slot);
-void QTableView_virtualbase_SetSelectionModel(void* self, QItemSelectionModel* selectionModel);
-extern __declspec(dllexport) void QTableView_override_virtual_DoItemsLayout(void* self, intptr_t slot);
-void QTableView_virtualbase_DoItemsLayout(void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_VisualRect(void* self, intptr_t slot);
-QRect* QTableView_virtualbase_VisualRect(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_override_virtual_ScrollTo(void* self, intptr_t slot);
-void QTableView_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint);
-extern __declspec(dllexport) void QTableView_override_virtual_IndexAt(void* self, intptr_t slot);
-QModelIndex* QTableView_virtualbase_IndexAt(const void* self, QPoint* p);
-extern __declspec(dllexport) void QTableView_override_virtual_ScrollContentsBy(void* self, intptr_t slot);
-void QTableView_virtualbase_ScrollContentsBy(void* self, int dx, int dy);
-extern __declspec(dllexport) void QTableView_override_virtual_InitViewItemOption(void* self, intptr_t slot);
-void QTableView_virtualbase_InitViewItemOption(const void* self, QStyleOptionViewItem* option);
-extern __declspec(dllexport) void QTableView_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_PaintEvent(void* self, QPaintEvent* e);
-extern __declspec(dllexport) void QTableView_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_DropEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_HorizontalOffset(void* self, intptr_t slot);
-int QTableView_virtualbase_HorizontalOffset(const void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_VerticalOffset(void* self, intptr_t slot);
-int QTableView_virtualbase_VerticalOffset(const void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_MoveCursor(void* self, intptr_t slot);
-QModelIndex* QTableView_virtualbase_MoveCursor(void* self, CursorAction cursorAction, int modifiers);
-extern __declspec(dllexport) void QTableView_override_virtual_SetSelection(void* self, intptr_t slot);
-void QTableView_virtualbase_SetSelection(void* self, QRect* rect, int command);
-extern __declspec(dllexport) void QTableView_override_virtual_VisualRegionForSelection(void* self, intptr_t slot);
-QRegion* QTableView_virtualbase_VisualRegionForSelection(const void* self, QItemSelection* selection);
-extern __declspec(dllexport) void QTableView_override_virtual_SelectedIndexes(void* self, intptr_t slot);
-struct miqt_array /* of QModelIndex* */  QTableView_virtualbase_SelectedIndexes(const void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_UpdateGeometries(void* self, intptr_t slot);
-void QTableView_virtualbase_UpdateGeometries(void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_ViewportSizeHint(void* self, intptr_t slot);
-QSize* QTableView_virtualbase_ViewportSizeHint(const void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_SizeHintForRow(void* self, intptr_t slot);
-int QTableView_virtualbase_SizeHintForRow(const void* self, int row);
-extern __declspec(dllexport) void QTableView_override_virtual_SizeHintForColumn(void* self, intptr_t slot);
-int QTableView_virtualbase_SizeHintForColumn(const void* self, int column);
-extern __declspec(dllexport) void QTableView_override_virtual_VerticalScrollbarAction(void* self, intptr_t slot);
-void QTableView_virtualbase_VerticalScrollbarAction(void* self, int action);
-extern __declspec(dllexport) void QTableView_override_virtual_HorizontalScrollbarAction(void* self, intptr_t slot);
-void QTableView_virtualbase_HorizontalScrollbarAction(void* self, int action);
-extern __declspec(dllexport) void QTableView_override_virtual_IsIndexHidden(void* self, intptr_t slot);
-bool QTableView_virtualbase_IsIndexHidden(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_override_virtual_SelectionChanged(void* self, intptr_t slot);
-void QTableView_virtualbase_SelectionChanged(void* self, QItemSelection* selected, QItemSelection* deselected);
-extern __declspec(dllexport) void QTableView_override_virtual_CurrentChanged(void* self, intptr_t slot);
-void QTableView_virtualbase_CurrentChanged(void* self, QModelIndex* current, QModelIndex* previous);
-extern __declspec(dllexport) void QTableView_override_virtual_KeyboardSearch(void* self, intptr_t slot);
-void QTableView_virtualbase_KeyboardSearch(void* self, struct miqt_string search);
-extern __declspec(dllexport) void QTableView_override_virtual_ItemDelegateForIndex(void* self, intptr_t slot);
-QAbstractItemDelegate* QTableView_virtualbase_ItemDelegateForIndex(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTableView_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QTableView_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QTableView_override_virtual_Reset(void* self, intptr_t slot);
-void QTableView_virtualbase_Reset(void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_SelectAll(void* self, intptr_t slot);
-void QTableView_virtualbase_SelectAll(void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_DataChanged(void* self, intptr_t slot);
-void QTableView_virtualbase_DataChanged(void* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
-extern __declspec(dllexport) void QTableView_override_virtual_RowsInserted(void* self, intptr_t slot);
-void QTableView_virtualbase_RowsInserted(void* self, QModelIndex* parent, int start, int end);
-extern __declspec(dllexport) void QTableView_override_virtual_RowsAboutToBeRemoved(void* self, intptr_t slot);
-void QTableView_virtualbase_RowsAboutToBeRemoved(void* self, QModelIndex* parent, int start, int end);
-extern __declspec(dllexport) void QTableView_override_virtual_UpdateEditorData(void* self, intptr_t slot);
-void QTableView_virtualbase_UpdateEditorData(void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_UpdateEditorGeometries(void* self, intptr_t slot);
-void QTableView_virtualbase_UpdateEditorGeometries(void* self);
-extern __declspec(dllexport) void QTableView_override_virtual_VerticalScrollbarValueChanged(void* self, intptr_t slot);
-void QTableView_virtualbase_VerticalScrollbarValueChanged(void* self, int value);
-extern __declspec(dllexport) void QTableView_override_virtual_HorizontalScrollbarValueChanged(void* self, intptr_t slot);
-void QTableView_virtualbase_HorizontalScrollbarValueChanged(void* self, int value);
-extern __declspec(dllexport) void QTableView_override_virtual_CloseEditor(void* self, intptr_t slot);
-void QTableView_virtualbase_CloseEditor(void* self, QWidget* editor, int hint);
-extern __declspec(dllexport) void QTableView_override_virtual_CommitData(void* self, intptr_t slot);
-void QTableView_virtualbase_CommitData(void* self, QWidget* editor);
-extern __declspec(dllexport) void QTableView_override_virtual_EditorDestroyed(void* self, intptr_t slot);
-void QTableView_virtualbase_EditorDestroyed(void* self, QObject* editor);
-extern __declspec(dllexport) void QTableView_override_virtual_Edit2(void* self, intptr_t slot);
-bool QTableView_virtualbase_Edit2(void* self, QModelIndex* index, EditTrigger trigger, QEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_SelectionCommand(void* self, intptr_t slot);
-int QTableView_virtualbase_SelectionCommand(const void* self, QModelIndex* index, QEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_StartDrag(void* self, intptr_t slot);
-void QTableView_virtualbase_StartDrag(void* self, int supportedActions);
-extern __declspec(dllexport) void QTableView_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QTableView_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QTableView_override_virtual_Event(void* self, intptr_t slot);
-bool QTableView_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_ViewportEvent(void* self, intptr_t slot);
-bool QTableView_virtualbase_ViewportEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QTableView_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QTableView_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QTableView_virtualbase_EventFilter(void* self, QObject* object, QEvent* event);
-extern __declspec(dllexport) void QTableView_Delete(QTableView* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTableView* QTableView_new(QWidget* parent);
+extern __declspec(dllexport) 
+QTableView* QTableView_new2();
+extern __declspec(dllexport) 
+void QTableView_virtbase(QTableView* src
+, QAbstractItemView** outptr_QAbstractItemView
+);
+extern __declspec(dllexport) 
+QMetaObject* QTableView_MetaObject(const QTableView* self);
+extern __declspec(dllexport) 
+void* QTableView_Metacast(QTableView* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QTableView_Tr(const char* s);
+extern __declspec(dllexport) 
+void QTableView_SetModel(QTableView* self, QAbstractItemModel* model);
+extern __declspec(dllexport) 
+void QTableView_SetRootIndex(QTableView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTableView_SetSelectionModel(QTableView* self, QItemSelectionModel* selectionModel);
+extern __declspec(dllexport) 
+void QTableView_DoItemsLayout(QTableView* self);
+extern __declspec(dllexport) 
+QHeaderView* QTableView_HorizontalHeader(const QTableView* self);
+extern __declspec(dllexport) 
+QHeaderView* QTableView_VerticalHeader(const QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_SetHorizontalHeader(QTableView* self, QHeaderView* header);
+extern __declspec(dllexport) 
+void QTableView_SetVerticalHeader(QTableView* self, QHeaderView* header);
+extern __declspec(dllexport) 
+int QTableView_RowViewportPosition(const QTableView* self, int row);
+extern __declspec(dllexport) 
+int QTableView_RowAt(const QTableView* self, int y);
+extern __declspec(dllexport) 
+void QTableView_SetRowHeight(QTableView* self, int row, int height);
+extern __declspec(dllexport) 
+int QTableView_RowHeight(const QTableView* self, int row);
+extern __declspec(dllexport) 
+int QTableView_ColumnViewportPosition(const QTableView* self, int column);
+extern __declspec(dllexport) 
+int QTableView_ColumnAt(const QTableView* self, int x);
+extern __declspec(dllexport) 
+void QTableView_SetColumnWidth(QTableView* self, int column, int width);
+extern __declspec(dllexport) 
+int QTableView_ColumnWidth(const QTableView* self, int column);
+extern __declspec(dllexport) 
+bool QTableView_IsRowHidden(const QTableView* self, int row);
+extern __declspec(dllexport) 
+void QTableView_SetRowHidden(QTableView* self, int row, bool hide);
+extern __declspec(dllexport) 
+bool QTableView_IsColumnHidden(const QTableView* self, int column);
+extern __declspec(dllexport) 
+void QTableView_SetColumnHidden(QTableView* self, int column, bool hide);
+extern __declspec(dllexport) 
+void QTableView_SetSortingEnabled(QTableView* self, bool enable);
+extern __declspec(dllexport) 
+bool QTableView_IsSortingEnabled(const QTableView* self);
+extern __declspec(dllexport) 
+bool QTableView_ShowGrid(const QTableView* self);
+extern __declspec(dllexport) 
+int QTableView_GridStyle(const QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_SetGridStyle(QTableView* self, int style);
+extern __declspec(dllexport) 
+void QTableView_SetWordWrap(QTableView* self, bool on);
+extern __declspec(dllexport) 
+bool QTableView_WordWrap(const QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_SetCornerButtonEnabled(QTableView* self, bool enable);
+extern __declspec(dllexport) 
+bool QTableView_IsCornerButtonEnabled(const QTableView* self);
+extern __declspec(dllexport) 
+QRect* QTableView_VisualRect(const QTableView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTableView_ScrollTo(QTableView* self, QModelIndex* index, ScrollHint hint);
+extern __declspec(dllexport) 
+QModelIndex* QTableView_IndexAt(const QTableView* self, QPoint* p);
+extern __declspec(dllexport) 
+void QTableView_SetSpan(QTableView* self, int row, int column, int rowSpan, int columnSpan);
+extern __declspec(dllexport) 
+int QTableView_RowSpan(const QTableView* self, int row, int column);
+extern __declspec(dllexport) 
+int QTableView_ColumnSpan(const QTableView* self, int row, int column);
+extern __declspec(dllexport) 
+void QTableView_ClearSpans(QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_SelectRow(QTableView* self, int row);
+extern __declspec(dllexport) 
+void QTableView_SelectColumn(QTableView* self, int column);
+extern __declspec(dllexport) 
+void QTableView_HideRow(QTableView* self, int row);
+extern __declspec(dllexport) 
+void QTableView_HideColumn(QTableView* self, int column);
+extern __declspec(dllexport) 
+void QTableView_ShowRow(QTableView* self, int row);
+extern __declspec(dllexport) 
+void QTableView_ShowColumn(QTableView* self, int column);
+extern __declspec(dllexport) 
+void QTableView_ResizeRowToContents(QTableView* self, int row);
+extern __declspec(dllexport) 
+void QTableView_ResizeRowsToContents(QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_ResizeColumnToContents(QTableView* self, int column);
+extern __declspec(dllexport) 
+void QTableView_ResizeColumnsToContents(QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_SortByColumn(QTableView* self, int column, int order);
+extern __declspec(dllexport) 
+void QTableView_SetShowGrid(QTableView* self, bool show);
+extern __declspec(dllexport) 
+void QTableView_ScrollContentsBy(QTableView* self, int dx, int dy);
+extern __declspec(dllexport) 
+void QTableView_InitViewItemOption(const QTableView* self, QStyleOptionViewItem* option);
+extern __declspec(dllexport) 
+void QTableView_PaintEvent(QTableView* self, QPaintEvent* e);
+extern __declspec(dllexport) 
+void QTableView_TimerEvent(QTableView* self, QTimerEvent* event);
+extern __declspec(dllexport) 
+void QTableView_DropEvent(QTableView* self, QDropEvent* event);
+extern __declspec(dllexport) 
+int QTableView_HorizontalOffset(const QTableView* self);
+extern __declspec(dllexport) 
+int QTableView_VerticalOffset(const QTableView* self);
+extern __declspec(dllexport) 
+QModelIndex* QTableView_MoveCursor(QTableView* self, CursorAction cursorAction, int modifiers);
+extern __declspec(dllexport) 
+void QTableView_SetSelection(QTableView* self, QRect* rect, int command);
+extern __declspec(dllexport) 
+QRegion* QTableView_VisualRegionForSelection(const QTableView* self, QItemSelection* selection);
+extern __declspec(dllexport) 
+struct miqt_array /* of QModelIndex* */  QTableView_SelectedIndexes(const QTableView* self);
+extern __declspec(dllexport) 
+void QTableView_UpdateGeometries(QTableView* self);
+extern __declspec(dllexport) 
+QSize* QTableView_ViewportSizeHint(const QTableView* self);
+extern __declspec(dllexport) 
+int QTableView_SizeHintForRow(const QTableView* self, int row);
+extern __declspec(dllexport) 
+int QTableView_SizeHintForColumn(const QTableView* self, int column);
+extern __declspec(dllexport) 
+void QTableView_VerticalScrollbarAction(QTableView* self, int action);
+extern __declspec(dllexport) 
+void QTableView_HorizontalScrollbarAction(QTableView* self, int action);
+extern __declspec(dllexport) 
+bool QTableView_IsIndexHidden(const QTableView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTableView_SelectionChanged(QTableView* self, QItemSelection* selected, QItemSelection* deselected);
+extern __declspec(dllexport) 
+void QTableView_CurrentChanged(QTableView* self, QModelIndex* current, QModelIndex* previous);
+extern __declspec(dllexport) 
+struct miqt_string QTableView_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QTableView_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QTableView_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QTableView_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QTableView_override_virtual_Metacast(void* self, intptr_t slot);
+void* QTableView_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QTableView_Delete(QTableView* self, bool isSubclass);
 
-} 
+}

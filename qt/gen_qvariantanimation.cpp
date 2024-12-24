@@ -22,179 +22,47 @@ public:
 	virtual ~MiqtVirtualQVariantAnimation() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Duration = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int duration() const override {
-		if (handle__Duration == 0) {
-			return QVariantAnimation::duration();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QVariantAnimation::metaObject();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QVariantAnimation_Duration(const_cast<MiqtVirtualQVariantAnimation*>(this), handle__Duration);
-
-		return static_cast<int>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Duration() const {
-
-		return QVariantAnimation::duration();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QVariantAnimation::event(event);
-		}
-		
-		QEvent* sigval1 = event;
-
-		bool callback_return_value = miqt_exec_callback_QVariantAnimation_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QVariantAnimation_MetaObject(const_cast<MiqtVirtualQVariantAnimation*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QVariantAnimation::event(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateCurrentTime = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateCurrentTime(int param1) override {
-		if (handle__UpdateCurrentTime == 0) {
-			QVariantAnimation::updateCurrentTime(param1);
-			return;
-		}
-		
-		int sigval1 = param1;
-
-		miqt_exec_callback_QVariantAnimation_UpdateCurrentTime(this, handle__UpdateCurrentTime, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateCurrentTime(int param1) {
-
-		QVariantAnimation::updateCurrentTime(static_cast<int>(param1));
+		return (QMetaObject*) QVariantAnimation::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateState = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) override {
-		if (handle__UpdateState == 0) {
-			QVariantAnimation::updateState(newState, oldState);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QVariantAnimation::qt_metacast(param1);
 		}
 		
-		QAbstractAnimation::State newState_ret = newState;
-		int sigval1 = static_cast<int>(newState_ret);
-		QAbstractAnimation::State oldState_ret = oldState;
-		int sigval2 = static_cast<int>(oldState_ret);
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QVariantAnimation_UpdateState(this, handle__UpdateState, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QVariantAnimation_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_UpdateState(int newState, int oldState) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QVariantAnimation::updateState(static_cast<QAbstractAnimation::State>(newState), static_cast<QAbstractAnimation::State>(oldState));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateCurrentValue = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateCurrentValue(const QVariant& value) override {
-		if (handle__UpdateCurrentValue == 0) {
-			QVariantAnimation::updateCurrentValue(value);
-			return;
-		}
-		
-		const QVariant& value_ret = value;
-		// Cast returned reference into pointer
-		QVariant* sigval1 = const_cast<QVariant*>(&value_ret);
-
-		miqt_exec_callback_QVariantAnimation_UpdateCurrentValue(this, handle__UpdateCurrentValue, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateCurrentValue(QVariant* value) {
-
-		QVariantAnimation::updateCurrentValue(*value);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Interpolated = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QVariant interpolated(const QVariant& from, const QVariant& to, qreal progress) const override {
-		if (handle__Interpolated == 0) {
-			return QVariantAnimation::interpolated(from, to, progress);
-		}
-		
-		const QVariant& from_ret = from;
-		// Cast returned reference into pointer
-		QVariant* sigval1 = const_cast<QVariant*>(&from_ret);
-		const QVariant& to_ret = to;
-		// Cast returned reference into pointer
-		QVariant* sigval2 = const_cast<QVariant*>(&to_ret);
-		qreal progress_ret = progress;
-		double sigval3 = static_cast<double>(progress_ret);
-
-		QVariant* callback_return_value = miqt_exec_callback_QVariantAnimation_Interpolated(const_cast<MiqtVirtualQVariantAnimation*>(this), handle__Interpolated, sigval1, sigval2, sigval3);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_Interpolated(QVariant* from, QVariant* to, double progress) const {
-
-		return new QVariant(QVariantAnimation::interpolated(*from, *to, static_cast<qreal>(progress)));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__UpdateDirection = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void updateDirection(QAbstractAnimation::Direction direction) override {
-		if (handle__UpdateDirection == 0) {
-			QVariantAnimation::updateDirection(direction);
-			return;
-		}
-		
-		QAbstractAnimation::Direction direction_ret = direction;
-		int sigval1 = static_cast<int>(direction_ret);
-
-		miqt_exec_callback_QVariantAnimation_UpdateDirection(this, handle__UpdateDirection, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_UpdateDirection(int direction) {
-
-		QVariantAnimation::updateDirection(static_cast<QAbstractAnimation::Direction>(direction));
+		return QVariantAnimation::qt_metacast(param1);
 
 	}
 
@@ -318,60 +186,20 @@ struct miqt_string QVariantAnimation_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QVariantAnimation_override_virtual_Duration(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__Duration = slot;
+void QVariantAnimation_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__MetaObject = slot;
 }
 
-int QVariantAnimation_virtualbase_Duration(const void* self) {
-	return ( (const MiqtVirtualQVariantAnimation*)(self) )->virtualbase_Duration();
+QMetaObject* QVariantAnimation_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQVariantAnimation*)(self) )->virtualbase_MetaObject();
 }
 
-void QVariantAnimation_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__Event = slot;
+void QVariantAnimation_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__Metacast = slot;
 }
 
-bool QVariantAnimation_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQVariantAnimation*)(self) )->virtualbase_Event(event);
-}
-
-void QVariantAnimation_override_virtual_UpdateCurrentTime(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__UpdateCurrentTime = slot;
-}
-
-void QVariantAnimation_virtualbase_UpdateCurrentTime(void* self, int param1) {
-	( (MiqtVirtualQVariantAnimation*)(self) )->virtualbase_UpdateCurrentTime(param1);
-}
-
-void QVariantAnimation_override_virtual_UpdateState(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__UpdateState = slot;
-}
-
-void QVariantAnimation_virtualbase_UpdateState(void* self, int newState, int oldState) {
-	( (MiqtVirtualQVariantAnimation*)(self) )->virtualbase_UpdateState(newState, oldState);
-}
-
-void QVariantAnimation_override_virtual_UpdateCurrentValue(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__UpdateCurrentValue = slot;
-}
-
-void QVariantAnimation_virtualbase_UpdateCurrentValue(void* self, QVariant* value) {
-	( (MiqtVirtualQVariantAnimation*)(self) )->virtualbase_UpdateCurrentValue(value);
-}
-
-void QVariantAnimation_override_virtual_Interpolated(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__Interpolated = slot;
-}
-
-QVariant* QVariantAnimation_virtualbase_Interpolated(const void* self, QVariant* from, QVariant* to, double progress) {
-	return ( (const MiqtVirtualQVariantAnimation*)(self) )->virtualbase_Interpolated(from, to, progress);
-}
-
-void QVariantAnimation_override_virtual_UpdateDirection(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQVariantAnimation*>( (QVariantAnimation*)(self) )->handle__UpdateDirection = slot;
-}
-
-void QVariantAnimation_virtualbase_UpdateDirection(void* self, int direction) {
-	( (MiqtVirtualQVariantAnimation*)(self) )->virtualbase_UpdateDirection(direction);
+void* QVariantAnimation_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQVariantAnimation*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QVariantAnimation_Delete(QVariantAnimation* self, bool isSubclass) {

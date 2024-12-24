@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QSslConfiguration__NextProtocolNegotiationStatus int
@@ -20,7 +21,6 @@ type QSslConfiguration struct {
 
 // NewQSslConfiguration constructs a new QSslConfiguration object.
 func NewQSslConfiguration() *QSslConfiguration {
-
 	ret := newQSslConfiguration(QSslConfiguration_new())
 	ret.isSubclass = true
 	return ret
@@ -28,7 +28,6 @@ func NewQSslConfiguration() *QSslConfiguration {
 
 // NewQSslConfiguration2 constructs a new QSslConfiguration object.
 func NewQSslConfiguration2(other *QSslConfiguration) *QSslConfiguration {
-
 	ret := newQSslConfiguration(QSslConfiguration_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret

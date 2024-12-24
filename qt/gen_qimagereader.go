@@ -21,7 +21,6 @@ type QImageReader struct {
 
 // NewQImageReader constructs a new QImageReader object.
 func NewQImageReader() *QImageReader {
-
 	ret := newQImageReader(QImageReader_new())
 	ret.isSubclass = true
 	return ret
@@ -29,7 +28,6 @@ func NewQImageReader() *QImageReader {
 
 // NewQImageReader2 constructs a new QImageReader object.
 func NewQImageReader2(device *QIODevice) *QImageReader {
-
 	ret := newQImageReader(QImageReader_new2(device.cPointer()))
 	ret.isSubclass = true
 	return ret

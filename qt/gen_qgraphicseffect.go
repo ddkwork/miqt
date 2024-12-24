@@ -36,7 +36,6 @@ type QGraphicsEffect struct {
 
 // NewQGraphicsEffect constructs a new QGraphicsEffect object.
 func NewQGraphicsEffect() *QGraphicsEffect {
-
 	ret := newQGraphicsEffect(QGraphicsEffect_new())
 	ret.isSubclass = true
 	return ret
@@ -44,7 +43,6 @@ func NewQGraphicsEffect() *QGraphicsEffect {
 
 // NewQGraphicsEffect2 constructs a new QGraphicsEffect object.
 func NewQGraphicsEffect2(parent *QObject) *QGraphicsEffect {
-
 	ret := newQGraphicsEffect(QGraphicsEffect_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -96,6 +94,7 @@ func (this *QGraphicsEffect) Update() {
 func (this *QGraphicsEffect) EnabledChanged(enabled bool) {
 	QGraphicsEffect_EnabledChanged(this.h, (bool)(enabled))
 }
+
 func (this *QGraphicsEffect) OnEnabledChanged(slot func(enabled bool)) {
 	QGraphicsEffect_connect_EnabledChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -135,268 +134,57 @@ func QGraphicsEffect_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGraphicsEffect) callVirtualBase_BoundingRectFor(sourceRect *QRectF) *QRectF {
-
-	_goptr := newQRectF(QGraphicsEffect_virtualbase_BoundingRectFor(unsafe.Pointer(this.h), sourceRect.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QGraphicsEffect) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGraphicsEffect_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGraphicsEffect) OnBoundingRectFor(slot func(super func(sourceRect *QRectF) *QRectF, sourceRect *QRectF) *QRectF) {
+
+func (this *QGraphicsEffect) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsEffect_override_virtual_BoundingRectFor(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsEffect_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsEffect_BoundingRectFor
-func miqt_exec_callback_QGraphicsEffect_BoundingRectFor(self QGraphicsEffect, cb intptr_t, sourceRect *QRectF) *QRectF {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(sourceRect *QRectF) *QRectF, sourceRect *QRectF) *QRectF)
+//export miqt_exec_callback_QGraphicsEffect_MetaObject
+func miqt_exec_callback_QGraphicsEffect_MetaObject(self QGraphicsEffect, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQRectF(sourceRect)
-
-	virtualReturn := gofunc((&QGraphicsEffect{h: self}).callVirtualBase_BoundingRectFor, slotval1)
+	virtualReturn := gofunc((&QGraphicsEffect{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
-func (this *QGraphicsEffect) OnDraw(slot func(painter *QPainter)) {
+
+func (this *QGraphicsEffect) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QGraphicsEffect_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QGraphicsEffect) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsEffect_override_virtual_Draw(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsEffect_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsEffect_Draw
-func miqt_exec_callback_QGraphicsEffect_Draw(self QGraphicsEffect, cb intptr_t, painter *QPainter) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(painter *QPainter))
+//export miqt_exec_callback_QGraphicsEffect_Metacast
+func miqt_exec_callback_QGraphicsEffect_Metacast(self QGraphicsEffect, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPainter(painter)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc(slotval1)
+	virtualReturn := gofunc((&QGraphicsEffect{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QGraphicsEffect) callVirtualBase_SourceChanged(flags ChangeFlags) {
-
-	QGraphicsEffect_virtualbase_SourceChanged(unsafe.Pointer(this.h), flags)
-
-}
-func (this *QGraphicsEffect) OnSourceChanged(slot func(super func(flags ChangeFlags), flags ChangeFlags)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_SourceChanged(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_SourceChanged
-func miqt_exec_callback_QGraphicsEffect_SourceChanged(self QGraphicsEffect, cb intptr_t, flags ChangeFlags) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(flags ChangeFlags), flags ChangeFlags))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
-
-	gofunc((&QGraphicsEffect{h: self}).callVirtualBase_SourceChanged, slotval1)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QGraphicsEffect_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
-}
-func (this *QGraphicsEffect) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_Event
-func miqt_exec_callback_QGraphicsEffect_Event(self QGraphicsEffect, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	virtualReturn := gofunc((&QGraphicsEffect{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QGraphicsEffect_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QGraphicsEffect) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_EventFilter
-func miqt_exec_callback_QGraphicsEffect_EventFilter(self QGraphicsEffect, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QGraphicsEffect{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QGraphicsEffect_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QGraphicsEffect) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_TimerEvent
-func miqt_exec_callback_QGraphicsEffect_TimerEvent(self QGraphicsEffect, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QGraphicsEffect{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QGraphicsEffect_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QGraphicsEffect) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_ChildEvent
-func miqt_exec_callback_QGraphicsEffect_ChildEvent(self QGraphicsEffect, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QGraphicsEffect{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QGraphicsEffect_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QGraphicsEffect) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_CustomEvent
-func miqt_exec_callback_QGraphicsEffect_CustomEvent(self QGraphicsEffect, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QGraphicsEffect{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QGraphicsEffect_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QGraphicsEffect) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_ConnectNotify
-func miqt_exec_callback_QGraphicsEffect_ConnectNotify(self QGraphicsEffect, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QGraphicsEffect{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QGraphicsEffect) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QGraphicsEffect_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QGraphicsEffect) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsEffect_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsEffect_DisconnectNotify
-func miqt_exec_callback_QGraphicsEffect_DisconnectNotify(self QGraphicsEffect, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QGraphicsEffect{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }
 
 type QGraphicsColorizeEffect struct {
@@ -406,7 +194,6 @@ type QGraphicsColorizeEffect struct {
 
 // NewQGraphicsColorizeEffect constructs a new QGraphicsColorizeEffect object.
 func NewQGraphicsColorizeEffect() *QGraphicsColorizeEffect {
-
 	ret := newQGraphicsColorizeEffect(QGraphicsColorizeEffect_new())
 	ret.isSubclass = true
 	return ret
@@ -414,7 +201,6 @@ func NewQGraphicsColorizeEffect() *QGraphicsColorizeEffect {
 
 // NewQGraphicsColorizeEffect2 constructs a new QGraphicsColorizeEffect object.
 func NewQGraphicsColorizeEffect2(parent *QObject) *QGraphicsColorizeEffect {
-
 	ret := newQGraphicsColorizeEffect(QGraphicsColorizeEffect_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -460,6 +246,7 @@ func (this *QGraphicsColorizeEffect) SetStrength(strength float64) {
 func (this *QGraphicsColorizeEffect) ColorChanged(color *QColor) {
 	QGraphicsColorizeEffect_ColorChanged(this.h, color.cPointer())
 }
+
 func (this *QGraphicsColorizeEffect) OnColorChanged(slot func(color *QColor)) {
 	QGraphicsColorizeEffect_connect_ColorChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -480,6 +267,7 @@ func miqt_exec_callback_QGraphicsColorizeEffect_ColorChanged(cb intptr_t, color 
 func (this *QGraphicsColorizeEffect) StrengthChanged(strength float64) {
 	QGraphicsColorizeEffect_StrengthChanged(this.h, (double)(strength))
 }
+
 func (this *QGraphicsColorizeEffect) OnStrengthChanged(slot func(strength float64)) {
 	QGraphicsColorizeEffect_connect_StrengthChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -519,86 +307,57 @@ func QGraphicsColorizeEffect_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGraphicsColorizeEffect) callVirtualBase_Draw(painter *QPainter) {
-
-	QGraphicsColorizeEffect_virtualbase_Draw(unsafe.Pointer(this.h), painter.cPointer())
-
+func (this *QGraphicsColorizeEffect) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGraphicsColorizeEffect_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGraphicsColorizeEffect) OnDraw(slot func(super func(painter *QPainter), painter *QPainter)) {
+
+func (this *QGraphicsColorizeEffect) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsColorizeEffect_override_virtual_Draw(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsColorizeEffect_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsColorizeEffect_Draw
-func miqt_exec_callback_QGraphicsColorizeEffect_Draw(self QGraphicsColorizeEffect, cb intptr_t, painter *QPainter) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *QPainter), painter *QPainter))
+//export miqt_exec_callback_QGraphicsColorizeEffect_MetaObject
+func miqt_exec_callback_QGraphicsColorizeEffect_MetaObject(self QGraphicsColorizeEffect, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPainter(painter)
-
-	gofunc((&QGraphicsColorizeEffect{h: self}).callVirtualBase_Draw, slotval1)
-
-}
-
-func (this *QGraphicsColorizeEffect) callVirtualBase_BoundingRectFor(sourceRect *QRectF) *QRectF {
-
-	_goptr := newQRectF(QGraphicsColorizeEffect_virtualbase_BoundingRectFor(unsafe.Pointer(this.h), sourceRect.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QGraphicsColorizeEffect) OnBoundingRectFor(slot func(super func(sourceRect *QRectF) *QRectF, sourceRect *QRectF) *QRectF) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsColorizeEffect_override_virtual_BoundingRectFor(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsColorizeEffect_BoundingRectFor
-func miqt_exec_callback_QGraphicsColorizeEffect_BoundingRectFor(self QGraphicsColorizeEffect, cb intptr_t, sourceRect *QRectF) *QRectF {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(sourceRect *QRectF) *QRectF, sourceRect *QRectF) *QRectF)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQRectF(sourceRect)
-
-	virtualReturn := gofunc((&QGraphicsColorizeEffect{h: self}).callVirtualBase_BoundingRectFor, slotval1)
+	virtualReturn := gofunc((&QGraphicsColorizeEffect{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QGraphicsColorizeEffect) callVirtualBase_SourceChanged(flags ChangeFlags) {
+func (this *QGraphicsColorizeEffect) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QGraphicsColorizeEffect_virtualbase_SourceChanged(unsafe.Pointer(this.h), flags)
-
+	return (unsafe.Pointer)(QGraphicsColorizeEffect_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QGraphicsColorizeEffect) OnSourceChanged(slot func(super func(flags ChangeFlags), flags ChangeFlags)) {
+
+func (this *QGraphicsColorizeEffect) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsColorizeEffect_override_virtual_SourceChanged(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsColorizeEffect_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsColorizeEffect_SourceChanged
-func miqt_exec_callback_QGraphicsColorizeEffect_SourceChanged(self QGraphicsColorizeEffect, cb intptr_t, flags ChangeFlags) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(flags ChangeFlags), flags ChangeFlags))
+//export miqt_exec_callback_QGraphicsColorizeEffect_Metacast
+func miqt_exec_callback_QGraphicsColorizeEffect_Metacast(self QGraphicsColorizeEffect, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QGraphicsColorizeEffect{h: self}).callVirtualBase_SourceChanged, slotval1)
+	virtualReturn := gofunc((&QGraphicsColorizeEffect{h: self}).callVirtualBase_Metacast, slotval1)
 
+	return virtualReturn
 }
 
 type QGraphicsBlurEffect struct {
@@ -608,7 +367,6 @@ type QGraphicsBlurEffect struct {
 
 // NewQGraphicsBlurEffect constructs a new QGraphicsBlurEffect object.
 func NewQGraphicsBlurEffect() *QGraphicsBlurEffect {
-
 	ret := newQGraphicsBlurEffect(QGraphicsBlurEffect_new())
 	ret.isSubclass = true
 	return ret
@@ -616,7 +374,6 @@ func NewQGraphicsBlurEffect() *QGraphicsBlurEffect {
 
 // NewQGraphicsBlurEffect2 constructs a new QGraphicsBlurEffect object.
 func NewQGraphicsBlurEffect2(parent *QObject) *QGraphicsBlurEffect {
-
 	ret := newQGraphicsBlurEffect(QGraphicsBlurEffect_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -666,6 +423,7 @@ func (this *QGraphicsBlurEffect) SetBlurHints(hints BlurHints) {
 func (this *QGraphicsBlurEffect) BlurRadiusChanged(blurRadius float64) {
 	QGraphicsBlurEffect_BlurRadiusChanged(this.h, (double)(blurRadius))
 }
+
 func (this *QGraphicsBlurEffect) OnBlurRadiusChanged(slot func(blurRadius float64)) {
 	QGraphicsBlurEffect_connect_BlurRadiusChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -686,6 +444,7 @@ func miqt_exec_callback_QGraphicsBlurEffect_BlurRadiusChanged(cb intptr_t, blurR
 func (this *QGraphicsBlurEffect) BlurHintsChanged(hints BlurHints) {
 	QGraphicsBlurEffect_BlurHintsChanged(this.h, hints)
 }
+
 func (this *QGraphicsBlurEffect) OnBlurHintsChanged(slot func(hints BlurHints)) {
 	QGraphicsBlurEffect_connect_BlurHintsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -725,86 +484,57 @@ func QGraphicsBlurEffect_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGraphicsBlurEffect) callVirtualBase_BoundingRectFor(rect *QRectF) *QRectF {
-
-	_goptr := newQRectF(QGraphicsBlurEffect_virtualbase_BoundingRectFor(unsafe.Pointer(this.h), rect.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QGraphicsBlurEffect) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGraphicsBlurEffect_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGraphicsBlurEffect) OnBoundingRectFor(slot func(super func(rect *QRectF) *QRectF, rect *QRectF) *QRectF) {
+
+func (this *QGraphicsBlurEffect) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsBlurEffect_override_virtual_BoundingRectFor(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsBlurEffect_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsBlurEffect_BoundingRectFor
-func miqt_exec_callback_QGraphicsBlurEffect_BoundingRectFor(self QGraphicsBlurEffect, cb intptr_t, rect *QRectF) *QRectF {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(rect *QRectF) *QRectF, rect *QRectF) *QRectF)
+//export miqt_exec_callback_QGraphicsBlurEffect_MetaObject
+func miqt_exec_callback_QGraphicsBlurEffect_MetaObject(self QGraphicsBlurEffect, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQRectF(rect)
-
-	virtualReturn := gofunc((&QGraphicsBlurEffect{h: self}).callVirtualBase_BoundingRectFor, slotval1)
+	virtualReturn := gofunc((&QGraphicsBlurEffect{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QGraphicsBlurEffect) callVirtualBase_Draw(painter *QPainter) {
+func (this *QGraphicsBlurEffect) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QGraphicsBlurEffect_virtualbase_Draw(unsafe.Pointer(this.h), painter.cPointer())
-
+	return (unsafe.Pointer)(QGraphicsBlurEffect_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QGraphicsBlurEffect) OnDraw(slot func(super func(painter *QPainter), painter *QPainter)) {
+
+func (this *QGraphicsBlurEffect) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsBlurEffect_override_virtual_Draw(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsBlurEffect_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsBlurEffect_Draw
-func miqt_exec_callback_QGraphicsBlurEffect_Draw(self QGraphicsBlurEffect, cb intptr_t, painter *QPainter) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *QPainter), painter *QPainter))
+//export miqt_exec_callback_QGraphicsBlurEffect_Metacast
+func miqt_exec_callback_QGraphicsBlurEffect_Metacast(self QGraphicsBlurEffect, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPainter(painter)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QGraphicsBlurEffect{h: self}).callVirtualBase_Draw, slotval1)
+	virtualReturn := gofunc((&QGraphicsBlurEffect{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QGraphicsBlurEffect) callVirtualBase_SourceChanged(flags ChangeFlags) {
-
-	QGraphicsBlurEffect_virtualbase_SourceChanged(unsafe.Pointer(this.h), flags)
-
-}
-func (this *QGraphicsBlurEffect) OnSourceChanged(slot func(super func(flags ChangeFlags), flags ChangeFlags)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsBlurEffect_override_virtual_SourceChanged(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsBlurEffect_SourceChanged
-func miqt_exec_callback_QGraphicsBlurEffect_SourceChanged(self QGraphicsBlurEffect, cb intptr_t, flags ChangeFlags) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(flags ChangeFlags), flags ChangeFlags))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
-
-	gofunc((&QGraphicsBlurEffect{h: self}).callVirtualBase_SourceChanged, slotval1)
-
+	return virtualReturn
 }
 
 type QGraphicsDropShadowEffect struct {
@@ -814,7 +544,6 @@ type QGraphicsDropShadowEffect struct {
 
 // NewQGraphicsDropShadowEffect constructs a new QGraphicsDropShadowEffect object.
 func NewQGraphicsDropShadowEffect() *QGraphicsDropShadowEffect {
-
 	ret := newQGraphicsDropShadowEffect(QGraphicsDropShadowEffect_new())
 	ret.isSubclass = true
 	return ret
@@ -822,7 +551,6 @@ func NewQGraphicsDropShadowEffect() *QGraphicsDropShadowEffect {
 
 // NewQGraphicsDropShadowEffect2 constructs a new QGraphicsDropShadowEffect object.
 func NewQGraphicsDropShadowEffect2(parent *QObject) *QGraphicsDropShadowEffect {
-
 	ret := newQGraphicsDropShadowEffect(QGraphicsDropShadowEffect_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -908,6 +636,7 @@ func (this *QGraphicsDropShadowEffect) SetColor(color *QColor) {
 func (this *QGraphicsDropShadowEffect) OffsetChanged(offset *QPointF) {
 	QGraphicsDropShadowEffect_OffsetChanged(this.h, offset.cPointer())
 }
+
 func (this *QGraphicsDropShadowEffect) OnOffsetChanged(slot func(offset *QPointF)) {
 	QGraphicsDropShadowEffect_connect_OffsetChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -928,6 +657,7 @@ func miqt_exec_callback_QGraphicsDropShadowEffect_OffsetChanged(cb intptr_t, off
 func (this *QGraphicsDropShadowEffect) BlurRadiusChanged(blurRadius float64) {
 	QGraphicsDropShadowEffect_BlurRadiusChanged(this.h, (double)(blurRadius))
 }
+
 func (this *QGraphicsDropShadowEffect) OnBlurRadiusChanged(slot func(blurRadius float64)) {
 	QGraphicsDropShadowEffect_connect_BlurRadiusChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -948,6 +678,7 @@ func miqt_exec_callback_QGraphicsDropShadowEffect_BlurRadiusChanged(cb intptr_t,
 func (this *QGraphicsDropShadowEffect) ColorChanged(color *QColor) {
 	QGraphicsDropShadowEffect_ColorChanged(this.h, color.cPointer())
 }
+
 func (this *QGraphicsDropShadowEffect) OnColorChanged(slot func(color *QColor)) {
 	QGraphicsDropShadowEffect_connect_ColorChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -987,86 +718,57 @@ func QGraphicsDropShadowEffect_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGraphicsDropShadowEffect) callVirtualBase_BoundingRectFor(rect *QRectF) *QRectF {
-
-	_goptr := newQRectF(QGraphicsDropShadowEffect_virtualbase_BoundingRectFor(unsafe.Pointer(this.h), rect.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QGraphicsDropShadowEffect) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGraphicsDropShadowEffect_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGraphicsDropShadowEffect) OnBoundingRectFor(slot func(super func(rect *QRectF) *QRectF, rect *QRectF) *QRectF) {
+
+func (this *QGraphicsDropShadowEffect) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsDropShadowEffect_override_virtual_BoundingRectFor(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsDropShadowEffect_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsDropShadowEffect_BoundingRectFor
-func miqt_exec_callback_QGraphicsDropShadowEffect_BoundingRectFor(self QGraphicsDropShadowEffect, cb intptr_t, rect *QRectF) *QRectF {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(rect *QRectF) *QRectF, rect *QRectF) *QRectF)
+//export miqt_exec_callback_QGraphicsDropShadowEffect_MetaObject
+func miqt_exec_callback_QGraphicsDropShadowEffect_MetaObject(self QGraphicsDropShadowEffect, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQRectF(rect)
-
-	virtualReturn := gofunc((&QGraphicsDropShadowEffect{h: self}).callVirtualBase_BoundingRectFor, slotval1)
+	virtualReturn := gofunc((&QGraphicsDropShadowEffect{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QGraphicsDropShadowEffect) callVirtualBase_Draw(painter *QPainter) {
+func (this *QGraphicsDropShadowEffect) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QGraphicsDropShadowEffect_virtualbase_Draw(unsafe.Pointer(this.h), painter.cPointer())
-
+	return (unsafe.Pointer)(QGraphicsDropShadowEffect_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QGraphicsDropShadowEffect) OnDraw(slot func(super func(painter *QPainter), painter *QPainter)) {
+
+func (this *QGraphicsDropShadowEffect) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsDropShadowEffect_override_virtual_Draw(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsDropShadowEffect_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsDropShadowEffect_Draw
-func miqt_exec_callback_QGraphicsDropShadowEffect_Draw(self QGraphicsDropShadowEffect, cb intptr_t, painter *QPainter) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *QPainter), painter *QPainter))
+//export miqt_exec_callback_QGraphicsDropShadowEffect_Metacast
+func miqt_exec_callback_QGraphicsDropShadowEffect_Metacast(self QGraphicsDropShadowEffect, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPainter(painter)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QGraphicsDropShadowEffect{h: self}).callVirtualBase_Draw, slotval1)
+	virtualReturn := gofunc((&QGraphicsDropShadowEffect{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QGraphicsDropShadowEffect) callVirtualBase_SourceChanged(flags ChangeFlags) {
-
-	QGraphicsDropShadowEffect_virtualbase_SourceChanged(unsafe.Pointer(this.h), flags)
-
-}
-func (this *QGraphicsDropShadowEffect) OnSourceChanged(slot func(super func(flags ChangeFlags), flags ChangeFlags)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsDropShadowEffect_override_virtual_SourceChanged(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsDropShadowEffect_SourceChanged
-func miqt_exec_callback_QGraphicsDropShadowEffect_SourceChanged(self QGraphicsDropShadowEffect, cb intptr_t, flags ChangeFlags) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(flags ChangeFlags), flags ChangeFlags))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
-
-	gofunc((&QGraphicsDropShadowEffect{h: self}).callVirtualBase_SourceChanged, slotval1)
-
+	return virtualReturn
 }
 
 type QGraphicsOpacityEffect struct {
@@ -1076,7 +778,6 @@ type QGraphicsOpacityEffect struct {
 
 // NewQGraphicsOpacityEffect constructs a new QGraphicsOpacityEffect object.
 func NewQGraphicsOpacityEffect() *QGraphicsOpacityEffect {
-
 	ret := newQGraphicsOpacityEffect(QGraphicsOpacityEffect_new())
 	ret.isSubclass = true
 	return ret
@@ -1084,7 +785,6 @@ func NewQGraphicsOpacityEffect() *QGraphicsOpacityEffect {
 
 // NewQGraphicsOpacityEffect2 constructs a new QGraphicsOpacityEffect object.
 func NewQGraphicsOpacityEffect2(parent *QObject) *QGraphicsOpacityEffect {
-
 	ret := newQGraphicsOpacityEffect(QGraphicsOpacityEffect_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -1130,6 +830,7 @@ func (this *QGraphicsOpacityEffect) SetOpacityMask(mask *QBrush) {
 func (this *QGraphicsOpacityEffect) OpacityChanged(opacity float64) {
 	QGraphicsOpacityEffect_OpacityChanged(this.h, (double)(opacity))
 }
+
 func (this *QGraphicsOpacityEffect) OnOpacityChanged(slot func(opacity float64)) {
 	QGraphicsOpacityEffect_connect_OpacityChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -1150,6 +851,7 @@ func miqt_exec_callback_QGraphicsOpacityEffect_OpacityChanged(cb intptr_t, opaci
 func (this *QGraphicsOpacityEffect) OpacityMaskChanged(mask *QBrush) {
 	QGraphicsOpacityEffect_OpacityMaskChanged(this.h, mask.cPointer())
 }
+
 func (this *QGraphicsOpacityEffect) OnOpacityMaskChanged(slot func(mask *QBrush)) {
 	QGraphicsOpacityEffect_connect_OpacityMaskChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -1189,84 +891,55 @@ func QGraphicsOpacityEffect_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGraphicsOpacityEffect) callVirtualBase_Draw(painter *QPainter) {
-
-	QGraphicsOpacityEffect_virtualbase_Draw(unsafe.Pointer(this.h), painter.cPointer())
-
+func (this *QGraphicsOpacityEffect) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGraphicsOpacityEffect_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGraphicsOpacityEffect) OnDraw(slot func(super func(painter *QPainter), painter *QPainter)) {
+
+func (this *QGraphicsOpacityEffect) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsOpacityEffect_override_virtual_Draw(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsOpacityEffect_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsOpacityEffect_Draw
-func miqt_exec_callback_QGraphicsOpacityEffect_Draw(self QGraphicsOpacityEffect, cb intptr_t, painter *QPainter) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *QPainter), painter *QPainter))
+//export miqt_exec_callback_QGraphicsOpacityEffect_MetaObject
+func miqt_exec_callback_QGraphicsOpacityEffect_MetaObject(self QGraphicsOpacityEffect, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQPainter(painter)
-
-	gofunc((&QGraphicsOpacityEffect{h: self}).callVirtualBase_Draw, slotval1)
-
-}
-
-func (this *QGraphicsOpacityEffect) callVirtualBase_BoundingRectFor(sourceRect *QRectF) *QRectF {
-
-	_goptr := newQRectF(QGraphicsOpacityEffect_virtualbase_BoundingRectFor(unsafe.Pointer(this.h), sourceRect.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QGraphicsOpacityEffect) OnBoundingRectFor(slot func(super func(sourceRect *QRectF) *QRectF, sourceRect *QRectF) *QRectF) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsOpacityEffect_override_virtual_BoundingRectFor(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsOpacityEffect_BoundingRectFor
-func miqt_exec_callback_QGraphicsOpacityEffect_BoundingRectFor(self QGraphicsOpacityEffect, cb intptr_t, sourceRect *QRectF) *QRectF {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(sourceRect *QRectF) *QRectF, sourceRect *QRectF) *QRectF)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQRectF(sourceRect)
-
-	virtualReturn := gofunc((&QGraphicsOpacityEffect{h: self}).callVirtualBase_BoundingRectFor, slotval1)
+	virtualReturn := gofunc((&QGraphicsOpacityEffect{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QGraphicsOpacityEffect) callVirtualBase_SourceChanged(flags ChangeFlags) {
+func (this *QGraphicsOpacityEffect) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QGraphicsOpacityEffect_virtualbase_SourceChanged(unsafe.Pointer(this.h), flags)
-
+	return (unsafe.Pointer)(QGraphicsOpacityEffect_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QGraphicsOpacityEffect) OnSourceChanged(slot func(super func(flags ChangeFlags), flags ChangeFlags)) {
+
+func (this *QGraphicsOpacityEffect) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsOpacityEffect_override_virtual_SourceChanged(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsOpacityEffect_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsOpacityEffect_SourceChanged
-func miqt_exec_callback_QGraphicsOpacityEffect_SourceChanged(self QGraphicsOpacityEffect, cb intptr_t, flags ChangeFlags) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(flags ChangeFlags), flags ChangeFlags))
+//export miqt_exec_callback_QGraphicsOpacityEffect_Metacast
+func miqt_exec_callback_QGraphicsOpacityEffect_Metacast(self QGraphicsOpacityEffect, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QGraphicsOpacityEffect{h: self}).callVirtualBase_SourceChanged, slotval1)
+	virtualReturn := gofunc((&QGraphicsOpacityEffect{h: self}).callVirtualBase_Metacast, slotval1)
 
+	return virtualReturn
 }

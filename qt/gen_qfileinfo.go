@@ -11,7 +11,6 @@ type QFileInfo struct {
 
 // NewQFileInfo constructs a new QFileInfo object.
 func NewQFileInfo() *QFileInfo {
-
 	ret := newQFileInfo(QFileInfo_new())
 	ret.isSubclass = true
 	return ret
@@ -31,7 +30,6 @@ func NewQFileInfo2(file string) *QFileInfo {
 
 // NewQFileInfo3 constructs a new QFileInfo object.
 func NewQFileInfo3(file *QFileDevice) *QFileInfo {
-
 	ret := newQFileInfo(QFileInfo_new3(file.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -51,7 +49,6 @@ func NewQFileInfo4(dir *QDir, file string) *QFileInfo {
 
 // NewQFileInfo5 constructs a new QFileInfo object.
 func NewQFileInfo5(fileinfo *QFileInfo) *QFileInfo {
-
 	ret := newQFileInfo(QFileInfo_new5(fileinfo.cPointer()))
 	ret.isSubclass = true
 	return ret

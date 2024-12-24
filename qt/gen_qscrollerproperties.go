@@ -54,7 +54,6 @@ type QScrollerProperties struct {
 
 // NewQScrollerProperties constructs a new QScrollerProperties object.
 func NewQScrollerProperties() *QScrollerProperties {
-
 	ret := newQScrollerProperties(QScrollerProperties_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +61,6 @@ func NewQScrollerProperties() *QScrollerProperties {
 
 // NewQScrollerProperties2 constructs a new QScrollerProperties object.
 func NewQScrollerProperties2(sp *QScrollerProperties) *QScrollerProperties {
-
 	ret := newQScrollerProperties(QScrollerProperties_new2(sp.cPointer()))
 	ret.isSubclass = true
 	return ret

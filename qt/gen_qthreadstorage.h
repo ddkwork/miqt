@@ -10,10 +10,13 @@
 extern "C" {
 typedef struct QThreadStorageData QThreadStorageData;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) void QThreadStorageData_Delete(QThreadStorageData* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QThreadStorageData_Delete(QThreadStorageData* self, bool isSubclass);
 
-} 
+}

@@ -37,7 +37,6 @@ type QMetaContainer struct {
 
 // NewQMetaContainer constructs a new QMetaContainer object.
 func NewQMetaContainer() *QMetaContainer {
-
 	ret := newQMetaContainer(QMetaContainer_new())
 	ret.isSubclass = true
 	return ret
@@ -45,7 +44,6 @@ func NewQMetaContainer() *QMetaContainer {
 
 // NewQMetaContainer2 constructs a new QMetaContainer object.
 func NewQMetaContainer2(param1 *QMetaContainer) *QMetaContainer {
-
 	ret := newQMetaContainer(QMetaContainer_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -154,7 +152,6 @@ type QMetaSequence struct {
 
 // NewQMetaSequence constructs a new QMetaSequence object.
 func NewQMetaSequence() *QMetaSequence {
-
 	ret := newQMetaSequence(QMetaSequence_new())
 	ret.isSubclass = true
 	return ret
@@ -289,7 +286,6 @@ type QMetaAssociation struct {
 
 // NewQMetaAssociation constructs a new QMetaAssociation object.
 func NewQMetaAssociation() *QMetaAssociation {
-
 	ret := newQMetaAssociation(QMetaAssociation_new())
 	ret.isSubclass = true
 	return ret

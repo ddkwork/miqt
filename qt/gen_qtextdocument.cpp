@@ -3,11 +3,8 @@
 #include <QAbstractTextDocumentLayout>
 #include <QAbstractUndoItem>
 #include <QChar>
-#include <QChildEvent>
-#include <QEvent>
 #include <QFont>
 #include <QList>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QPagedPaintDevice>
@@ -25,7 +22,6 @@
 #include <QTextFrame>
 #include <QTextObject>
 #include <QTextOption>
-#include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
 #include <qtextdocument.h>
@@ -62,247 +58,47 @@ public:
 	virtual ~MiqtVirtualQTextDocument() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Clear = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void clear() override {
-		if (handle__Clear == 0) {
-			QTextDocument::clear();
-			return;
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QTextDocument::metaObject();
 		}
 		
 
-		miqt_exec_callback_QTextDocument_Clear(this, handle__Clear);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Clear() {
-
-		QTextDocument::clear();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CreateObject = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QTextObject* createObject(const QTextFormat& f) override {
-		if (handle__CreateObject == 0) {
-			return QTextDocument::createObject(f);
-		}
-		
-		const QTextFormat& f_ret = f;
-		// Cast returned reference into pointer
-		QTextFormat* sigval1 = const_cast<QTextFormat*>(&f_ret);
-
-		QTextObject* callback_return_value = miqt_exec_callback_QTextDocument_CreateObject(this, handle__CreateObject, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QTextDocument_MetaObject(const_cast<MiqtVirtualQTextDocument*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QTextObject* virtualbase_CreateObject(QTextFormat* f) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QTextDocument::createObject(*f);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__LoadResource = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QVariant loadResource(int typeVal, const QUrl& name) override {
-		if (handle__LoadResource == 0) {
-			return QTextDocument::loadResource(typeVal, name);
-		}
-		
-		int sigval1 = typeVal;
-		const QUrl& name_ret = name;
-		// Cast returned reference into pointer
-		QUrl* sigval2 = const_cast<QUrl*>(&name_ret);
-
-		QVariant* callback_return_value = miqt_exec_callback_QTextDocument_LoadResource(this, handle__LoadResource, sigval1, sigval2);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_LoadResource(int typeVal, QUrl* name) {
-
-		return new QVariant(QTextDocument::loadResource(static_cast<int>(typeVal), *name));
+		return (QMetaObject*) QTextDocument::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QTextDocument::event(event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QTextDocument::qt_metacast(param1);
 		}
 		
-		QEvent* sigval1 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QTextDocument_Event(this, handle__Event, sigval1);
+		void* callback_return_value = miqt_exec_callback_QTextDocument_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QTextDocument::event(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QTextDocument::eventFilter(watched, event);
-		}
-		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
-
-		bool callback_return_value = miqt_exec_callback_QTextDocument_EventFilter(this, handle__EventFilter, sigval1, sigval2);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
-
-		return QTextDocument::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QTextDocument::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QTextDocument_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QTextDocument::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QTextDocument::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QTextDocument_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QTextDocument::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QTextDocument::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QTextDocument_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QTextDocument::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QTextDocument::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QTextDocument_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QTextDocument::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QTextDocument::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QTextDocument_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QTextDocument::disconnectNotify(*signal);
+		return QTextDocument::qt_metacast(param1);
 
 	}
 
@@ -969,84 +765,20 @@ void QTextDocument_SetModified1(QTextDocument* self, bool m) {
 	self->setModified(m);
 }
 
-void QTextDocument_override_virtual_Clear(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__Clear = slot;
+void QTextDocument_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__MetaObject = slot;
 }
 
-void QTextDocument_virtualbase_Clear(void* self) {
-	( (MiqtVirtualQTextDocument*)(self) )->virtualbase_Clear();
+QMetaObject* QTextDocument_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQTextDocument*)(self) )->virtualbase_MetaObject();
 }
 
-void QTextDocument_override_virtual_CreateObject(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__CreateObject = slot;
+void QTextDocument_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__Metacast = slot;
 }
 
-QTextObject* QTextDocument_virtualbase_CreateObject(void* self, QTextFormat* f) {
-	return ( (MiqtVirtualQTextDocument*)(self) )->virtualbase_CreateObject(f);
-}
-
-void QTextDocument_override_virtual_LoadResource(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__LoadResource = slot;
-}
-
-QVariant* QTextDocument_virtualbase_LoadResource(void* self, int typeVal, QUrl* name) {
-	return ( (MiqtVirtualQTextDocument*)(self) )->virtualbase_LoadResource(typeVal, name);
-}
-
-void QTextDocument_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__Event = slot;
-}
-
-bool QTextDocument_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQTextDocument*)(self) )->virtualbase_Event(event);
-}
-
-void QTextDocument_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__EventFilter = slot;
-}
-
-bool QTextDocument_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQTextDocument*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QTextDocument_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__TimerEvent = slot;
-}
-
-void QTextDocument_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQTextDocument*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QTextDocument_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__ChildEvent = slot;
-}
-
-void QTextDocument_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQTextDocument*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QTextDocument_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__CustomEvent = slot;
-}
-
-void QTextDocument_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQTextDocument*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QTextDocument_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QTextDocument_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTextDocument*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QTextDocument_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextDocument*>( (QTextDocument*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QTextDocument_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTextDocument*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QTextDocument_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQTextDocument*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QTextDocument_Delete(QTextDocument* self, bool isSubclass) {

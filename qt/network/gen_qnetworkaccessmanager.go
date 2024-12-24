@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QNetworkAccessManager__Operation int
@@ -24,7 +25,6 @@ type QNetworkAccessManager struct {
 
 // NewQNetworkAccessManager constructs a new QNetworkAccessManager object.
 func NewQNetworkAccessManager() *QNetworkAccessManager {
-
 	ret := newQNetworkAccessManager(QNetworkAccessManager_new())
 	ret.isSubclass = true
 	return ret
@@ -32,7 +32,6 @@ func NewQNetworkAccessManager() *QNetworkAccessManager {
 
 // NewQNetworkAccessManager2 constructs a new QNetworkAccessManager object.
 func NewQNetworkAccessManager2(parent *qt.QObject) *QNetworkAccessManager {
-
 	ret := newQNetworkAccessManager(QNetworkAccessManager_new2((*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -286,6 +285,7 @@ func (this *QNetworkAccessManager) SetTransferTimeout2() {
 func (this *QNetworkAccessManager) ProxyAuthenticationRequired(proxy *QNetworkProxy, authenticator *QAuthenticator) {
 	QNetworkAccessManager_ProxyAuthenticationRequired(this.h, proxy.cPointer(), authenticator.cPointer())
 }
+
 func (this *QNetworkAccessManager) OnProxyAuthenticationRequired(slot func(proxy *QNetworkProxy, authenticator *QAuthenticator)) {
 	QNetworkAccessManager_connect_ProxyAuthenticationRequired(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -308,6 +308,7 @@ func miqt_exec_callback_QNetworkAccessManager_ProxyAuthenticationRequired(cb int
 func (this *QNetworkAccessManager) AuthenticationRequired(reply *QNetworkReply, authenticator *QAuthenticator) {
 	QNetworkAccessManager_AuthenticationRequired(this.h, reply.cPointer(), authenticator.cPointer())
 }
+
 func (this *QNetworkAccessManager) OnAuthenticationRequired(slot func(reply *QNetworkReply, authenticator *QAuthenticator)) {
 	QNetworkAccessManager_connect_AuthenticationRequired(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -330,6 +331,7 @@ func miqt_exec_callback_QNetworkAccessManager_AuthenticationRequired(cb intptr_t
 func (this *QNetworkAccessManager) Finished(reply *QNetworkReply) {
 	QNetworkAccessManager_Finished(this.h, reply.cPointer())
 }
+
 func (this *QNetworkAccessManager) OnFinished(slot func(reply *QNetworkReply)) {
 	QNetworkAccessManager_connect_Finished(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -350,6 +352,7 @@ func miqt_exec_callback_QNetworkAccessManager_Finished(cb intptr_t, reply *QNetw
 func (this *QNetworkAccessManager) Encrypted(reply *QNetworkReply) {
 	QNetworkAccessManager_Encrypted(this.h, reply.cPointer())
 }
+
 func (this *QNetworkAccessManager) OnEncrypted(slot func(reply *QNetworkReply)) {
 	QNetworkAccessManager_connect_Encrypted(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -376,6 +379,7 @@ func (this *QNetworkAccessManager) SslErrors(reply *QNetworkReply, errors []QSsl
 	errors_ma := struct_miqt_array{len: size_t(len(errors)), data: unsafe.Pointer(errors_CArray)}
 	QNetworkAccessManager_SslErrors(this.h, reply.cPointer(), errors_ma)
 }
+
 func (this *QNetworkAccessManager) OnSslErrors(slot func(reply *QNetworkReply, errors []QSslError)) {
 	QNetworkAccessManager_connect_SslErrors(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -406,6 +410,7 @@ func miqt_exec_callback_QNetworkAccessManager_SslErrors(cb intptr_t, reply *QNet
 func (this *QNetworkAccessManager) PreSharedKeyAuthenticationRequired(reply *QNetworkReply, authenticator *QSslPreSharedKeyAuthenticator) {
 	QNetworkAccessManager_PreSharedKeyAuthenticationRequired(this.h, reply.cPointer(), authenticator.cPointer())
 }
+
 func (this *QNetworkAccessManager) OnPreSharedKeyAuthenticationRequired(slot func(reply *QNetworkReply, authenticator *QSslPreSharedKeyAuthenticator)) {
 	QNetworkAccessManager_connect_PreSharedKeyAuthenticationRequired(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -486,265 +491,55 @@ func (this *QNetworkAccessManager) ConnectToHost2(hostName string, port uint16) 
 	QNetworkAccessManager_ConnectToHost2(this.h, hostName_ms, (uint16_t)(port))
 }
 
-func (this *QNetworkAccessManager) callVirtualBase_SupportedSchemes() []string {
-
-	var _ma struct_miqt_array = QNetworkAccessManager_virtualbase_SupportedSchemes(unsafe.Pointer(this.h))
-	_ret := make([]string, int(_ma.len))
-	_outCast := (*[0xffff]struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
-	for i := 0; i < int(_ma.len); i++ {
-		var _lv_ms struct_miqt_string = _outCast[i]
-		_lv_ret := GoStringN(_lv_ms.data, int(int64(_lv_ms.len)))
-		free(unsafe.Pointer(_lv_ms.data))
-		_ret[i] = _lv_ret
-	}
-	return _ret
-
+func (this *QNetworkAccessManager) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QNetworkAccessManager_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QNetworkAccessManager) OnSupportedSchemes(slot func(super func() []string) []string) {
+
+func (this *QNetworkAccessManager) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QNetworkAccessManager_override_virtual_SupportedSchemes(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QNetworkAccessManager_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QNetworkAccessManager_SupportedSchemes
-func miqt_exec_callback_QNetworkAccessManager_SupportedSchemes(self QNetworkAccessManager, cb intptr_t) struct_miqt_array {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() []string) []string)
+//export miqt_exec_callback_QNetworkAccessManager_MetaObject
+func miqt_exec_callback_QNetworkAccessManager_MetaObject(self QNetworkAccessManager, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_SupportedSchemes)
-	virtualReturn_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(virtualReturn))))
-	defer free(unsafe.Pointer(virtualReturn_CArray))
-	for i := range virtualReturn {
-		virtualReturn_i_ms := struct_miqt_string{}
-		virtualReturn_i_ms.data = CString(virtualReturn[i])
-		virtualReturn_i_ms.len = size_t(len(virtualReturn[i]))
-		defer free(unsafe.Pointer(virtualReturn_i_ms.data))
-		virtualReturn_CArray[i] = virtualReturn_i_ms
-	}
-	virtualReturn_ma := struct_miqt_array{len: size_t(len(virtualReturn)), data: unsafe.Pointer(virtualReturn_CArray)}
+	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_MetaObject)
 
-	return virtualReturn_ma
-
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
 }
 
-func (this *QNetworkAccessManager) callVirtualBase_CreateRequest(op Operation, request *QNetworkRequest, outgoingData *qt.QIODevice) *QNetworkReply {
+func (this *QNetworkAccessManager) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	return newQNetworkReply(QNetworkAccessManager_virtualbase_CreateRequest(unsafe.Pointer(this.h), op, request.cPointer(), (*QIODevice)(outgoingData.UnsafePointer())))
-
+	return (unsafe.Pointer)(QNetworkAccessManager_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QNetworkAccessManager) OnCreateRequest(slot func(super func(op Operation, request *QNetworkRequest, outgoingData *qt.QIODevice) *QNetworkReply, op Operation, request *QNetworkRequest, outgoingData *qt.QIODevice) *QNetworkReply) {
+
+func (this *QNetworkAccessManager) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QNetworkAccessManager_override_virtual_CreateRequest(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QNetworkAccessManager_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QNetworkAccessManager_CreateRequest
-func miqt_exec_callback_QNetworkAccessManager_CreateRequest(self QNetworkAccessManager, cb intptr_t, op Operation, request *QNetworkRequest, outgoingData *QIODevice) *QNetworkReply {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(op Operation, request *QNetworkRequest, outgoingData *qt.QIODevice) *QNetworkReply, op Operation, request *QNetworkRequest, outgoingData *qt.QIODevice) *QNetworkReply)
+//export miqt_exec_callback_QNetworkAccessManager_Metacast
+func miqt_exec_callback_QNetworkAccessManager_Metacast(self QNetworkAccessManager, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	xxxxxxxxx
-	slotval2 := newQNetworkRequest(request)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	slotval3 := qt.UnsafeNewQIODevice(unsafe.Pointer(outgoingData))
+	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_Metacast, slotval1)
 
-	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_CreateRequest, slotval1, slotval2, slotval3)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_Event(event *qt.QEvent) bool {
-
-	return (bool)(QNetworkAccessManager_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
-
-}
-func (this *QNetworkAccessManager) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_Event
-func miqt_exec_callback_QNetworkAccessManager_Event(self QNetworkAccessManager, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
-
-	return (bool)(QNetworkAccessManager_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
-
-}
-func (this *QNetworkAccessManager) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_EventFilter
-func miqt_exec_callback_QNetworkAccessManager_EventFilter(self QNetworkAccessManager, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQObject(unsafe.Pointer(watched))
-
-	slotval2 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
-
-	QNetworkAccessManager_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
-
-}
-func (this *QNetworkAccessManager) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_TimerEvent
-func miqt_exec_callback_QNetworkAccessManager_TimerEvent(self QNetworkAccessManager, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQTimerEvent(unsafe.Pointer(event))
-
-	gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
-
-	QNetworkAccessManager_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
-
-}
-func (this *QNetworkAccessManager) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_ChildEvent
-func miqt_exec_callback_QNetworkAccessManager_ChildEvent(self QNetworkAccessManager, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQChildEvent(unsafe.Pointer(event))
-
-	gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_CustomEvent(event *qt.QEvent) {
-
-	QNetworkAccessManager_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
-
-}
-func (this *QNetworkAccessManager) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_CustomEvent
-func miqt_exec_callback_QNetworkAccessManager_CustomEvent(self QNetworkAccessManager, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(event))
-
-	gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
-
-	QNetworkAccessManager_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QNetworkAccessManager) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_ConnectNotify
-func miqt_exec_callback_QNetworkAccessManager_ConnectNotify(self QNetworkAccessManager, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QNetworkAccessManager) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
-
-	QNetworkAccessManager_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
-
-}
-func (this *QNetworkAccessManager) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QNetworkAccessManager_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QNetworkAccessManager_DisconnectNotify
-func miqt_exec_callback_QNetworkAccessManager_DisconnectNotify(self QNetworkAccessManager, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQMetaMethod(unsafe.Pointer(signal))
-
-	gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

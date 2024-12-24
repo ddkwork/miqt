@@ -83,7 +83,6 @@ type QDataStream struct {
 
 // NewQDataStream constructs a new QDataStream object.
 func NewQDataStream() *QDataStream {
-
 	ret := newQDataStream(QDataStream_new())
 	ret.isSubclass = true
 	return ret
@@ -91,7 +90,6 @@ func NewQDataStream() *QDataStream {
 
 // NewQDataStream2 constructs a new QDataStream object.
 func NewQDataStream2(param1 *QIODevice) *QDataStream {
-
 	ret := newQDataStream(QDataStream_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

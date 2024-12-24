@@ -8,19 +8,13 @@
 
 #include "../libmiqt/libmiqt.h"
 extern "C" {
-typedef struct QAbstractItemDelegate QAbstractItemDelegate;
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractItemView QAbstractItemView;
 typedef struct QAbstractScrollArea QAbstractScrollArea;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
 typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
 typedef struct QEvent QEvent;
-typedef struct QFocusEvent QFocusEvent;
 typedef struct QFrame QFrame;
 typedef struct QHeaderView QHeaderView;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QItemSelection QItemSelection;
 typedef struct QItemSelectionModel QItemSelectionModel;
 typedef struct QKeyEvent QKeyEvent;
@@ -34,250 +28,233 @@ typedef struct QPainter QPainter;
 typedef struct QPoint QPoint;
 typedef struct QRect QRect;
 typedef struct QRegion QRegion;
-typedef struct QResizeEvent QResizeEvent;
 typedef struct QSize QSize;
 typedef struct QStyleOptionViewItem QStyleOptionViewItem;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct QTreeView QTreeView;
-typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTreeView* QTreeView_new(QWidget* parent);
-extern __declspec(dllexport) QTreeView* QTreeView_new2();
-extern __declspec(dllexport) void QTreeView_virtbase(QTreeView* src, QAbstractItemView** outptr_QAbstractItemView);
-extern __declspec(dllexport) QMetaObject* QTreeView_MetaObject(const QTreeView* self);
-extern __declspec(dllexport) void* QTreeView_Metacast(QTreeView* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QTreeView_Tr(const char* s);
-extern __declspec(dllexport) void QTreeView_SetModel(QTreeView* self, QAbstractItemModel* model);
-extern __declspec(dllexport) void QTreeView_SetRootIndex(QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_SetSelectionModel(QTreeView* self, QItemSelectionModel* selectionModel);
-extern __declspec(dllexport) QHeaderView* QTreeView_Header(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetHeader(QTreeView* self, QHeaderView* header);
-extern __declspec(dllexport) int QTreeView_AutoExpandDelay(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetAutoExpandDelay(QTreeView* self, int delay);
-extern __declspec(dllexport) int QTreeView_Indentation(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetIndentation(QTreeView* self, int i);
-extern __declspec(dllexport) void QTreeView_ResetIndentation(QTreeView* self);
-extern __declspec(dllexport) bool QTreeView_RootIsDecorated(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetRootIsDecorated(QTreeView* self, bool show);
-extern __declspec(dllexport) bool QTreeView_UniformRowHeights(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetUniformRowHeights(QTreeView* self, bool uniform);
-extern __declspec(dllexport) bool QTreeView_ItemsExpandable(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetItemsExpandable(QTreeView* self, bool enable);
-extern __declspec(dllexport) bool QTreeView_ExpandsOnDoubleClick(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetExpandsOnDoubleClick(QTreeView* self, bool enable);
-extern __declspec(dllexport) int QTreeView_ColumnViewportPosition(const QTreeView* self, int column);
-extern __declspec(dllexport) int QTreeView_ColumnWidth(const QTreeView* self, int column);
-extern __declspec(dllexport) void QTreeView_SetColumnWidth(QTreeView* self, int column, int width);
-extern __declspec(dllexport) int QTreeView_ColumnAt(const QTreeView* self, int x);
-extern __declspec(dllexport) bool QTreeView_IsColumnHidden(const QTreeView* self, int column);
-extern __declspec(dllexport) void QTreeView_SetColumnHidden(QTreeView* self, int column, bool hide);
-extern __declspec(dllexport) bool QTreeView_IsHeaderHidden(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetHeaderHidden(QTreeView* self, bool hide);
-extern __declspec(dllexport) bool QTreeView_IsRowHidden(const QTreeView* self, int row, QModelIndex* parent);
-extern __declspec(dllexport) void QTreeView_SetRowHidden(QTreeView* self, int row, QModelIndex* parent, bool hide);
-extern __declspec(dllexport) bool QTreeView_IsFirstColumnSpanned(const QTreeView* self, int row, QModelIndex* parent);
-extern __declspec(dllexport) void QTreeView_SetFirstColumnSpanned(QTreeView* self, int row, QModelIndex* parent, bool span);
-extern __declspec(dllexport) bool QTreeView_IsExpanded(const QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_SetExpanded(QTreeView* self, QModelIndex* index, bool expand);
-extern __declspec(dllexport) void QTreeView_SetSortingEnabled(QTreeView* self, bool enable);
-extern __declspec(dllexport) bool QTreeView_IsSortingEnabled(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetAnimated(QTreeView* self, bool enable);
-extern __declspec(dllexport) bool QTreeView_IsAnimated(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetAllColumnsShowFocus(QTreeView* self, bool enable);
-extern __declspec(dllexport) bool QTreeView_AllColumnsShowFocus(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetWordWrap(QTreeView* self, bool on);
-extern __declspec(dllexport) bool QTreeView_WordWrap(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetTreePosition(QTreeView* self, int logicalIndex);
-extern __declspec(dllexport) int QTreeView_TreePosition(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_KeyboardSearch(QTreeView* self, struct miqt_string search);
-extern __declspec(dllexport) QRect* QTreeView_VisualRect(const QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_ScrollTo(QTreeView* self, QModelIndex* index, ScrollHint hint);
-extern __declspec(dllexport) QModelIndex* QTreeView_IndexAt(const QTreeView* self, QPoint* p);
-extern __declspec(dllexport) QModelIndex* QTreeView_IndexAbove(const QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) QModelIndex* QTreeView_IndexBelow(const QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_DoItemsLayout(QTreeView* self);
-extern __declspec(dllexport) void QTreeView_Reset(QTreeView* self);
-extern __declspec(dllexport) void QTreeView_DataChanged(QTreeView* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
-extern __declspec(dllexport) void QTreeView_SelectAll(QTreeView* self);
-extern __declspec(dllexport) void QTreeView_Expanded(QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+QTreeView* QTreeView_new(QWidget* parent);
+extern __declspec(dllexport) 
+QTreeView* QTreeView_new2();
+extern __declspec(dllexport) 
+void QTreeView_virtbase(QTreeView* src
+, QAbstractItemView** outptr_QAbstractItemView
+);
+extern __declspec(dllexport) 
+QMetaObject* QTreeView_MetaObject(const QTreeView* self);
+extern __declspec(dllexport) 
+void* QTreeView_Metacast(QTreeView* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QTreeView_Tr(const char* s);
+extern __declspec(dllexport) 
+void QTreeView_SetModel(QTreeView* self, QAbstractItemModel* model);
+extern __declspec(dllexport) 
+void QTreeView_SetRootIndex(QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_SetSelectionModel(QTreeView* self, QItemSelectionModel* selectionModel);
+extern __declspec(dllexport) 
+QHeaderView* QTreeView_Header(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetHeader(QTreeView* self, QHeaderView* header);
+extern __declspec(dllexport) 
+int QTreeView_AutoExpandDelay(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetAutoExpandDelay(QTreeView* self, int delay);
+extern __declspec(dllexport) 
+int QTreeView_Indentation(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetIndentation(QTreeView* self, int i);
+extern __declspec(dllexport) 
+void QTreeView_ResetIndentation(QTreeView* self);
+extern __declspec(dllexport) 
+bool QTreeView_RootIsDecorated(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetRootIsDecorated(QTreeView* self, bool show);
+extern __declspec(dllexport) 
+bool QTreeView_UniformRowHeights(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetUniformRowHeights(QTreeView* self, bool uniform);
+extern __declspec(dllexport) 
+bool QTreeView_ItemsExpandable(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetItemsExpandable(QTreeView* self, bool enable);
+extern __declspec(dllexport) 
+bool QTreeView_ExpandsOnDoubleClick(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetExpandsOnDoubleClick(QTreeView* self, bool enable);
+extern __declspec(dllexport) 
+int QTreeView_ColumnViewportPosition(const QTreeView* self, int column);
+extern __declspec(dllexport) 
+int QTreeView_ColumnWidth(const QTreeView* self, int column);
+extern __declspec(dllexport) 
+void QTreeView_SetColumnWidth(QTreeView* self, int column, int width);
+extern __declspec(dllexport) 
+int QTreeView_ColumnAt(const QTreeView* self, int x);
+extern __declspec(dllexport) 
+bool QTreeView_IsColumnHidden(const QTreeView* self, int column);
+extern __declspec(dllexport) 
+void QTreeView_SetColumnHidden(QTreeView* self, int column, bool hide);
+extern __declspec(dllexport) 
+bool QTreeView_IsHeaderHidden(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetHeaderHidden(QTreeView* self, bool hide);
+extern __declspec(dllexport) 
+bool QTreeView_IsRowHidden(const QTreeView* self, int row, QModelIndex* parent);
+extern __declspec(dllexport) 
+void QTreeView_SetRowHidden(QTreeView* self, int row, QModelIndex* parent, bool hide);
+extern __declspec(dllexport) 
+bool QTreeView_IsFirstColumnSpanned(const QTreeView* self, int row, QModelIndex* parent);
+extern __declspec(dllexport) 
+void QTreeView_SetFirstColumnSpanned(QTreeView* self, int row, QModelIndex* parent, bool span);
+extern __declspec(dllexport) 
+bool QTreeView_IsExpanded(const QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_SetExpanded(QTreeView* self, QModelIndex* index, bool expand);
+extern __declspec(dllexport) 
+void QTreeView_SetSortingEnabled(QTreeView* self, bool enable);
+extern __declspec(dllexport) 
+bool QTreeView_IsSortingEnabled(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetAnimated(QTreeView* self, bool enable);
+extern __declspec(dllexport) 
+bool QTreeView_IsAnimated(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetAllColumnsShowFocus(QTreeView* self, bool enable);
+extern __declspec(dllexport) 
+bool QTreeView_AllColumnsShowFocus(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetWordWrap(QTreeView* self, bool on);
+extern __declspec(dllexport) 
+bool QTreeView_WordWrap(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetTreePosition(QTreeView* self, int logicalIndex);
+extern __declspec(dllexport) 
+int QTreeView_TreePosition(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_KeyboardSearch(QTreeView* self, struct miqt_string search);
+extern __declspec(dllexport) 
+QRect* QTreeView_VisualRect(const QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_ScrollTo(QTreeView* self, QModelIndex* index, ScrollHint hint);
+extern __declspec(dllexport) 
+QModelIndex* QTreeView_IndexAt(const QTreeView* self, QPoint* p);
+extern __declspec(dllexport) 
+QModelIndex* QTreeView_IndexAbove(const QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+QModelIndex* QTreeView_IndexBelow(const QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_DoItemsLayout(QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_Reset(QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_DataChanged(QTreeView* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
+extern __declspec(dllexport) 
+void QTreeView_SelectAll(QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_Expanded(QTreeView* self, QModelIndex* index);
 void QTreeView_connect_Expanded(QTreeView* self, intptr_t slot);
-extern __declspec(dllexport) void QTreeView_Collapsed(QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_Collapsed(QTreeView* self, QModelIndex* index);
 void QTreeView_connect_Collapsed(QTreeView* self, intptr_t slot);
-extern __declspec(dllexport) void QTreeView_HideColumn(QTreeView* self, int column);
-extern __declspec(dllexport) void QTreeView_ShowColumn(QTreeView* self, int column);
-extern __declspec(dllexport) void QTreeView_Expand(QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_Collapse(QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_ResizeColumnToContents(QTreeView* self, int column);
-extern __declspec(dllexport) void QTreeView_SortByColumn(QTreeView* self, int column, int order);
-extern __declspec(dllexport) void QTreeView_ExpandAll(QTreeView* self);
-extern __declspec(dllexport) void QTreeView_ExpandRecursively(QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_CollapseAll(QTreeView* self);
-extern __declspec(dllexport) void QTreeView_ExpandToDepth(QTreeView* self, int depth);
-extern __declspec(dllexport) void QTreeView_VerticalScrollbarValueChanged(QTreeView* self, int value);
-extern __declspec(dllexport) void QTreeView_ScrollContentsBy(QTreeView* self, int dx, int dy);
-extern __declspec(dllexport) void QTreeView_RowsInserted(QTreeView* self, QModelIndex* parent, int start, int end);
-extern __declspec(dllexport) void QTreeView_RowsAboutToBeRemoved(QTreeView* self, QModelIndex* parent, int start, int end);
-extern __declspec(dllexport) QModelIndex* QTreeView_MoveCursor(QTreeView* self, CursorAction cursorAction, int modifiers);
-extern __declspec(dllexport) int QTreeView_HorizontalOffset(const QTreeView* self);
-extern __declspec(dllexport) int QTreeView_VerticalOffset(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_SetSelection(QTreeView* self, QRect* rect, int command);
-extern __declspec(dllexport) QRegion* QTreeView_VisualRegionForSelection(const QTreeView* self, QItemSelection* selection);
-extern __declspec(dllexport) struct miqt_array /* of QModelIndex* */  QTreeView_SelectedIndexes(const QTreeView* self);
-extern __declspec(dllexport) void QTreeView_ChangeEvent(QTreeView* self, QEvent* event);
-extern __declspec(dllexport) void QTreeView_TimerEvent(QTreeView* self, QTimerEvent* event);
-extern __declspec(dllexport) void QTreeView_PaintEvent(QTreeView* self, QPaintEvent* event);
-extern __declspec(dllexport) void QTreeView_DrawRow(const QTreeView* self, QPainter* painter, QStyleOptionViewItem* options, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_DrawBranches(const QTreeView* self, QPainter* painter, QRect* rect, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_MousePressEvent(QTreeView* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_MouseReleaseEvent(QTreeView* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_MouseDoubleClickEvent(QTreeView* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_MouseMoveEvent(QTreeView* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_KeyPressEvent(QTreeView* self, QKeyEvent* event);
-extern __declspec(dllexport) void QTreeView_DragMoveEvent(QTreeView* self, QDragMoveEvent* event);
-extern __declspec(dllexport) bool QTreeView_ViewportEvent(QTreeView* self, QEvent* event);
-extern __declspec(dllexport) void QTreeView_UpdateGeometries(QTreeView* self);
-extern __declspec(dllexport) QSize* QTreeView_ViewportSizeHint(const QTreeView* self);
-extern __declspec(dllexport) int QTreeView_SizeHintForColumn(const QTreeView* self, int column);
-extern __declspec(dllexport) void QTreeView_HorizontalScrollbarAction(QTreeView* self, int action);
-extern __declspec(dllexport) bool QTreeView_IsIndexHidden(const QTreeView* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_SelectionChanged(QTreeView* self, QItemSelection* selected, QItemSelection* deselected);
-extern __declspec(dllexport) void QTreeView_CurrentChanged(QTreeView* self, QModelIndex* current, QModelIndex* previous);
-extern __declspec(dllexport) struct miqt_string QTreeView_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QTreeView_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QTreeView_ExpandRecursively2(QTreeView* self, QModelIndex* index, int depth);
-extern __declspec(dllexport) void QTreeView_override_virtual_SetModel(void* self, intptr_t slot);
-void QTreeView_virtualbase_SetModel(void* self, QAbstractItemModel* model);
-extern __declspec(dllexport) void QTreeView_override_virtual_SetRootIndex(void* self, intptr_t slot);
-void QTreeView_virtualbase_SetRootIndex(void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_override_virtual_SetSelectionModel(void* self, intptr_t slot);
-void QTreeView_virtualbase_SetSelectionModel(void* self, QItemSelectionModel* selectionModel);
-extern __declspec(dllexport) void QTreeView_override_virtual_KeyboardSearch(void* self, intptr_t slot);
-void QTreeView_virtualbase_KeyboardSearch(void* self, struct miqt_string search);
-extern __declspec(dllexport) void QTreeView_override_virtual_VisualRect(void* self, intptr_t slot);
-QRect* QTreeView_virtualbase_VisualRect(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_override_virtual_ScrollTo(void* self, intptr_t slot);
-void QTreeView_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint);
-extern __declspec(dllexport) void QTreeView_override_virtual_IndexAt(void* self, intptr_t slot);
-QModelIndex* QTreeView_virtualbase_IndexAt(const void* self, QPoint* p);
-extern __declspec(dllexport) void QTreeView_override_virtual_DoItemsLayout(void* self, intptr_t slot);
-void QTreeView_virtualbase_DoItemsLayout(void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_Reset(void* self, intptr_t slot);
-void QTreeView_virtualbase_Reset(void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_DataChanged(void* self, intptr_t slot);
-void QTreeView_virtualbase_DataChanged(void* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
-extern __declspec(dllexport) void QTreeView_override_virtual_SelectAll(void* self, intptr_t slot);
-void QTreeView_virtualbase_SelectAll(void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_VerticalScrollbarValueChanged(void* self, intptr_t slot);
-void QTreeView_virtualbase_VerticalScrollbarValueChanged(void* self, int value);
-extern __declspec(dllexport) void QTreeView_override_virtual_ScrollContentsBy(void* self, intptr_t slot);
-void QTreeView_virtualbase_ScrollContentsBy(void* self, int dx, int dy);
-extern __declspec(dllexport) void QTreeView_override_virtual_RowsInserted(void* self, intptr_t slot);
-void QTreeView_virtualbase_RowsInserted(void* self, QModelIndex* parent, int start, int end);
-extern __declspec(dllexport) void QTreeView_override_virtual_RowsAboutToBeRemoved(void* self, intptr_t slot);
-void QTreeView_virtualbase_RowsAboutToBeRemoved(void* self, QModelIndex* parent, int start, int end);
-extern __declspec(dllexport) void QTreeView_override_virtual_MoveCursor(void* self, intptr_t slot);
-QModelIndex* QTreeView_virtualbase_MoveCursor(void* self, CursorAction cursorAction, int modifiers);
-extern __declspec(dllexport) void QTreeView_override_virtual_HorizontalOffset(void* self, intptr_t slot);
-int QTreeView_virtualbase_HorizontalOffset(const void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_VerticalOffset(void* self, intptr_t slot);
-int QTreeView_virtualbase_VerticalOffset(const void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_SetSelection(void* self, intptr_t slot);
-void QTreeView_virtualbase_SetSelection(void* self, QRect* rect, int command);
-extern __declspec(dllexport) void QTreeView_override_virtual_VisualRegionForSelection(void* self, intptr_t slot);
-QRegion* QTreeView_virtualbase_VisualRegionForSelection(const void* self, QItemSelection* selection);
-extern __declspec(dllexport) void QTreeView_override_virtual_SelectedIndexes(void* self, intptr_t slot);
-struct miqt_array /* of QModelIndex* */  QTreeView_virtualbase_SelectedIndexes(const void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_ChangeEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_PaintEvent(void* self, QPaintEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_DrawRow(void* self, intptr_t slot);
-void QTreeView_virtualbase_DrawRow(const void* self, QPainter* painter, QStyleOptionViewItem* options, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_override_virtual_DrawBranches(void* self, intptr_t slot);
-void QTreeView_virtualbase_DrawBranches(const void* self, QPainter* painter, QRect* rect, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_MousePressEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_MouseMoveEvent(void* self, QMouseEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_KeyPressEvent(void* self, QKeyEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_ViewportEvent(void* self, intptr_t slot);
-bool QTreeView_virtualbase_ViewportEvent(void* self, QEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_UpdateGeometries(void* self, intptr_t slot);
-void QTreeView_virtualbase_UpdateGeometries(void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_ViewportSizeHint(void* self, intptr_t slot);
-QSize* QTreeView_virtualbase_ViewportSizeHint(const void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_SizeHintForColumn(void* self, intptr_t slot);
-int QTreeView_virtualbase_SizeHintForColumn(const void* self, int column);
-extern __declspec(dllexport) void QTreeView_override_virtual_HorizontalScrollbarAction(void* self, intptr_t slot);
-void QTreeView_virtualbase_HorizontalScrollbarAction(void* self, int action);
-extern __declspec(dllexport) void QTreeView_override_virtual_IsIndexHidden(void* self, intptr_t slot);
-bool QTreeView_virtualbase_IsIndexHidden(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_override_virtual_SelectionChanged(void* self, intptr_t slot);
-void QTreeView_virtualbase_SelectionChanged(void* self, QItemSelection* selected, QItemSelection* deselected);
-extern __declspec(dllexport) void QTreeView_override_virtual_CurrentChanged(void* self, intptr_t slot);
-void QTreeView_virtualbase_CurrentChanged(void* self, QModelIndex* current, QModelIndex* previous);
-extern __declspec(dllexport) void QTreeView_override_virtual_SizeHintForRow(void* self, intptr_t slot);
-int QTreeView_virtualbase_SizeHintForRow(const void* self, int row);
-extern __declspec(dllexport) void QTreeView_override_virtual_ItemDelegateForIndex(void* self, intptr_t slot);
-QAbstractItemDelegate* QTreeView_virtualbase_ItemDelegateForIndex(const void* self, QModelIndex* index);
-extern __declspec(dllexport) void QTreeView_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QTreeView_virtualbase_InputMethodQuery(const void* self, int query);
-extern __declspec(dllexport) void QTreeView_override_virtual_UpdateEditorData(void* self, intptr_t slot);
-void QTreeView_virtualbase_UpdateEditorData(void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_UpdateEditorGeometries(void* self, intptr_t slot);
-void QTreeView_virtualbase_UpdateEditorGeometries(void* self);
-extern __declspec(dllexport) void QTreeView_override_virtual_VerticalScrollbarAction(void* self, intptr_t slot);
-void QTreeView_virtualbase_VerticalScrollbarAction(void* self, int action);
-extern __declspec(dllexport) void QTreeView_override_virtual_HorizontalScrollbarValueChanged(void* self, intptr_t slot);
-void QTreeView_virtualbase_HorizontalScrollbarValueChanged(void* self, int value);
-extern __declspec(dllexport) void QTreeView_override_virtual_CloseEditor(void* self, intptr_t slot);
-void QTreeView_virtualbase_CloseEditor(void* self, QWidget* editor, int hint);
-extern __declspec(dllexport) void QTreeView_override_virtual_CommitData(void* self, intptr_t slot);
-void QTreeView_virtualbase_CommitData(void* self, QWidget* editor);
-extern __declspec(dllexport) void QTreeView_override_virtual_EditorDestroyed(void* self, intptr_t slot);
-void QTreeView_virtualbase_EditorDestroyed(void* self, QObject* editor);
-extern __declspec(dllexport) void QTreeView_override_virtual_Edit2(void* self, intptr_t slot);
-bool QTreeView_virtualbase_Edit2(void* self, QModelIndex* index, EditTrigger trigger, QEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_SelectionCommand(void* self, intptr_t slot);
-int QTreeView_virtualbase_SelectionCommand(const void* self, QModelIndex* index, QEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_StartDrag(void* self, intptr_t slot);
-void QTreeView_virtualbase_StartDrag(void* self, int supportedActions);
-extern __declspec(dllexport) void QTreeView_override_virtual_InitViewItemOption(void* self, intptr_t slot);
-void QTreeView_virtualbase_InitViewItemOption(const void* self, QStyleOptionViewItem* option);
-extern __declspec(dllexport) void QTreeView_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QTreeView_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QTreeView_override_virtual_Event(void* self, intptr_t slot);
-bool QTreeView_virtualbase_Event(void* self, QEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_DropEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_DropEvent(void* self, QDropEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_FocusInEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_FocusOutEvent(void* self, QFocusEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_ResizeEvent(void* self, QResizeEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QTreeView_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* event);
-extern __declspec(dllexport) void QTreeView_override_virtual_EventFilter(void* self, intptr_t slot);
-bool QTreeView_virtualbase_EventFilter(void* self, QObject* object, QEvent* event);
-extern __declspec(dllexport) void QTreeView_Delete(QTreeView* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QTreeView_HideColumn(QTreeView* self, int column);
+extern __declspec(dllexport) 
+void QTreeView_ShowColumn(QTreeView* self, int column);
+extern __declspec(dllexport) 
+void QTreeView_Expand(QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_Collapse(QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_ResizeColumnToContents(QTreeView* self, int column);
+extern __declspec(dllexport) 
+void QTreeView_SortByColumn(QTreeView* self, int column, int order);
+extern __declspec(dllexport) 
+void QTreeView_ExpandAll(QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_ExpandRecursively(QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_CollapseAll(QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_ExpandToDepth(QTreeView* self, int depth);
+extern __declspec(dllexport) 
+void QTreeView_VerticalScrollbarValueChanged(QTreeView* self, int value);
+extern __declspec(dllexport) 
+void QTreeView_ScrollContentsBy(QTreeView* self, int dx, int dy);
+extern __declspec(dllexport) 
+void QTreeView_RowsInserted(QTreeView* self, QModelIndex* parent, int start, int end);
+extern __declspec(dllexport) 
+void QTreeView_RowsAboutToBeRemoved(QTreeView* self, QModelIndex* parent, int start, int end);
+extern __declspec(dllexport) 
+QModelIndex* QTreeView_MoveCursor(QTreeView* self, CursorAction cursorAction, int modifiers);
+extern __declspec(dllexport) 
+int QTreeView_HorizontalOffset(const QTreeView* self);
+extern __declspec(dllexport) 
+int QTreeView_VerticalOffset(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_SetSelection(QTreeView* self, QRect* rect, int command);
+extern __declspec(dllexport) 
+QRegion* QTreeView_VisualRegionForSelection(const QTreeView* self, QItemSelection* selection);
+extern __declspec(dllexport) 
+struct miqt_array /* of QModelIndex* */  QTreeView_SelectedIndexes(const QTreeView* self);
+extern __declspec(dllexport) 
+void QTreeView_ChangeEvent(QTreeView* self, QEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_TimerEvent(QTreeView* self, QTimerEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_PaintEvent(QTreeView* self, QPaintEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_DrawRow(const QTreeView* self, QPainter* painter, QStyleOptionViewItem* options, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_DrawBranches(const QTreeView* self, QPainter* painter, QRect* rect, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_MousePressEvent(QTreeView* self, QMouseEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_MouseReleaseEvent(QTreeView* self, QMouseEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_MouseDoubleClickEvent(QTreeView* self, QMouseEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_MouseMoveEvent(QTreeView* self, QMouseEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_KeyPressEvent(QTreeView* self, QKeyEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_DragMoveEvent(QTreeView* self, QDragMoveEvent* event);
+extern __declspec(dllexport) 
+bool QTreeView_ViewportEvent(QTreeView* self, QEvent* event);
+extern __declspec(dllexport) 
+void QTreeView_UpdateGeometries(QTreeView* self);
+extern __declspec(dllexport) 
+QSize* QTreeView_ViewportSizeHint(const QTreeView* self);
+extern __declspec(dllexport) 
+int QTreeView_SizeHintForColumn(const QTreeView* self, int column);
+extern __declspec(dllexport) 
+void QTreeView_HorizontalScrollbarAction(QTreeView* self, int action);
+extern __declspec(dllexport) 
+bool QTreeView_IsIndexHidden(const QTreeView* self, QModelIndex* index);
+extern __declspec(dllexport) 
+void QTreeView_SelectionChanged(QTreeView* self, QItemSelection* selected, QItemSelection* deselected);
+extern __declspec(dllexport) 
+void QTreeView_CurrentChanged(QTreeView* self, QModelIndex* current, QModelIndex* previous);
+extern __declspec(dllexport) 
+struct miqt_string QTreeView_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QTreeView_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QTreeView_ExpandRecursively2(QTreeView* self, QModelIndex* index, int depth);
+extern __declspec(dllexport) 
+void QTreeView_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QTreeView_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QTreeView_override_virtual_Metacast(void* self, intptr_t slot);
+void* QTreeView_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QTreeView_Delete(QTreeView* self, bool isSubclass);
 
-} 
+}

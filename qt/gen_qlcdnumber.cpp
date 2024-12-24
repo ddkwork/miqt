@@ -11,7 +11,6 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QStyleOptionFrame>
 #include <QWidget>
 #include <qlcdnumber.h>
 #include "gen_qlcdnumber.h"
@@ -27,119 +26,47 @@ public:
 	virtual ~MiqtVirtualQLCDNumber() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SizeHint = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QSize sizeHint() const override {
-		if (handle__SizeHint == 0) {
-			return QLCDNumber::sizeHint();
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QLCDNumber::metaObject();
 		}
 		
 
-		QSize* callback_return_value = miqt_exec_callback_QLCDNumber_SizeHint(const_cast<MiqtVirtualQLCDNumber*>(this), handle__SizeHint);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_SizeHint() const {
-
-		return new QSize(QLCDNumber::sizeHint());
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* e) override {
-		if (handle__Event == 0) {
-			return QLCDNumber::event(e);
-		}
-		
-		QEvent* sigval1 = e;
-
-		bool callback_return_value = miqt_exec_callback_QLCDNumber_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QLCDNumber_MetaObject(const_cast<MiqtVirtualQLCDNumber*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* e) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QLCDNumber::event(e);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__PaintEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void paintEvent(QPaintEvent* param1) override {
-		if (handle__PaintEvent == 0) {
-			QLCDNumber::paintEvent(param1);
-			return;
-		}
-		
-		QPaintEvent* sigval1 = param1;
-
-		miqt_exec_callback_QLCDNumber_PaintEvent(this, handle__PaintEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_PaintEvent(QPaintEvent* param1) {
-
-		QLCDNumber::paintEvent(param1);
+		return (QMetaObject*) QLCDNumber::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChangeEvent = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void changeEvent(QEvent* param1) override {
-		if (handle__ChangeEvent == 0) {
-			QLCDNumber::changeEvent(param1);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QLCDNumber::qt_metacast(param1);
 		}
 		
-		QEvent* sigval1 = param1;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QLCDNumber_ChangeEvent(this, handle__ChangeEvent, sigval1);
+		void* callback_return_value = miqt_exec_callback_QLCDNumber_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ChangeEvent(QEvent* param1) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QLCDNumber::changeEvent(param1);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__InitStyleOption = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void initStyleOption(QStyleOptionFrame* option) const override {
-		if (handle__InitStyleOption == 0) {
-			QLCDNumber::initStyleOption(option);
-			return;
-		}
-		
-		QStyleOptionFrame* sigval1 = option;
-
-		miqt_exec_callback_QLCDNumber_InitStyleOption(const_cast<MiqtVirtualQLCDNumber*>(this), handle__InitStyleOption, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
-
-		QLCDNumber::initStyleOption(option);
+		return QLCDNumber::qt_metacast(param1);
 
 	}
 
@@ -297,44 +224,20 @@ struct miqt_string QLCDNumber_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QLCDNumber_override_virtual_SizeHint(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__SizeHint = slot;
+void QLCDNumber_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__MetaObject = slot;
 }
 
-QSize* QLCDNumber_virtualbase_SizeHint(const void* self) {
-	return ( (const MiqtVirtualQLCDNumber*)(self) )->virtualbase_SizeHint();
+QMetaObject* QLCDNumber_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQLCDNumber*)(self) )->virtualbase_MetaObject();
 }
 
-void QLCDNumber_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__Event = slot;
+void QLCDNumber_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__Metacast = slot;
 }
 
-bool QLCDNumber_virtualbase_Event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQLCDNumber*)(self) )->virtualbase_Event(e);
-}
-
-void QLCDNumber_override_virtual_PaintEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__PaintEvent = slot;
-}
-
-void QLCDNumber_virtualbase_PaintEvent(void* self, QPaintEvent* param1) {
-	( (MiqtVirtualQLCDNumber*)(self) )->virtualbase_PaintEvent(param1);
-}
-
-void QLCDNumber_override_virtual_ChangeEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__ChangeEvent = slot;
-}
-
-void QLCDNumber_virtualbase_ChangeEvent(void* self, QEvent* param1) {
-	( (MiqtVirtualQLCDNumber*)(self) )->virtualbase_ChangeEvent(param1);
-}
-
-void QLCDNumber_override_virtual_InitStyleOption(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__InitStyleOption = slot;
-}
-
-void QLCDNumber_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
-	( (const MiqtVirtualQLCDNumber*)(self) )->virtualbase_InitStyleOption(option);
+void* QLCDNumber_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQLCDNumber*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QLCDNumber_Delete(QLCDNumber* self, bool isSubclass) {

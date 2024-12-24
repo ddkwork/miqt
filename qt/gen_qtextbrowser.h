@@ -9,156 +9,132 @@
 #include "../libmiqt/libmiqt.h"
 extern "C" {
 typedef struct QAbstractScrollArea QAbstractScrollArea;
-typedef struct QContextMenuEvent QContextMenuEvent;
-typedef struct QDragEnterEvent QDragEnterEvent;
-typedef struct QDragLeaveEvent QDragLeaveEvent;
-typedef struct QDragMoveEvent QDragMoveEvent;
-typedef struct QDropEvent QDropEvent;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
 typedef struct QFrame QFrame;
-typedef struct QInputMethodEvent QInputMethodEvent;
 typedef struct QKeyEvent QKeyEvent;
 typedef struct QMetaObject QMetaObject;
-typedef struct QMimeData QMimeData;
 typedef struct QMouseEvent QMouseEvent;
 typedef struct QObject QObject;
 typedef struct QPaintDevice QPaintDevice;
 typedef struct QPaintEvent QPaintEvent;
-typedef struct QResizeEvent QResizeEvent;
-typedef struct QShowEvent QShowEvent;
 typedef struct QTextBrowser QTextBrowser;
-typedef struct QTextCursor QTextCursor;
 typedef struct QTextEdit QTextEdit;
-typedef struct QTimerEvent QTimerEvent;
 typedef struct QUrl QUrl;
 typedef struct QVariant QVariant;
-typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QTextBrowser* QTextBrowser_new(QWidget* parent);
-extern __declspec(dllexport) QTextBrowser* QTextBrowser_new2();
-extern __declspec(dllexport) void QTextBrowser_virtbase(QTextBrowser* src, QTextEdit** outptr_QTextEdit);
-extern __declspec(dllexport) QMetaObject* QTextBrowser_MetaObject(const QTextBrowser* self);
-extern __declspec(dllexport) void* QTextBrowser_Metacast(QTextBrowser* self, const char* param1);
-extern __declspec(dllexport) struct miqt_string QTextBrowser_Tr(const char* s);
-extern __declspec(dllexport) QUrl* QTextBrowser_Source(const QTextBrowser* self);
-extern __declspec(dllexport) int QTextBrowser_SourceType(const QTextBrowser* self);
-extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QTextBrowser_SearchPaths(const QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_SetSearchPaths(QTextBrowser* self, struct miqt_array /* of struct miqt_string */  paths);
-extern __declspec(dllexport) QVariant* QTextBrowser_LoadResource(QTextBrowser* self, int typeVal, QUrl* name);
-extern __declspec(dllexport) bool QTextBrowser_IsBackwardAvailable(const QTextBrowser* self);
-extern __declspec(dllexport) bool QTextBrowser_IsForwardAvailable(const QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_ClearHistory(QTextBrowser* self);
-extern __declspec(dllexport) struct miqt_string QTextBrowser_HistoryTitle(const QTextBrowser* self, int param1);
-extern __declspec(dllexport) QUrl* QTextBrowser_HistoryUrl(const QTextBrowser* self, int param1);
-extern __declspec(dllexport) int QTextBrowser_BackwardHistoryCount(const QTextBrowser* self);
-extern __declspec(dllexport) int QTextBrowser_ForwardHistoryCount(const QTextBrowser* self);
-extern __declspec(dllexport) bool QTextBrowser_OpenExternalLinks(const QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_SetOpenExternalLinks(QTextBrowser* self, bool open);
-extern __declspec(dllexport) bool QTextBrowser_OpenLinks(const QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_SetOpenLinks(QTextBrowser* self, bool open);
-extern __declspec(dllexport) void QTextBrowser_SetSource(QTextBrowser* self, QUrl* name);
-extern __declspec(dllexport) void QTextBrowser_Backward(QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_Forward(QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_Home(QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_Reload(QTextBrowser* self);
-extern __declspec(dllexport) void QTextBrowser_BackwardAvailable(QTextBrowser* self, bool param1);
+extern __declspec(dllexport) 
+QTextBrowser* QTextBrowser_new(QWidget* parent);
+extern __declspec(dllexport) 
+QTextBrowser* QTextBrowser_new2();
+extern __declspec(dllexport) 
+void QTextBrowser_virtbase(QTextBrowser* src
+, QTextEdit** outptr_QTextEdit
+);
+extern __declspec(dllexport) 
+QMetaObject* QTextBrowser_MetaObject(const QTextBrowser* self);
+extern __declspec(dllexport) 
+void* QTextBrowser_Metacast(QTextBrowser* self, const char* param1);
+extern __declspec(dllexport) 
+struct miqt_string QTextBrowser_Tr(const char* s);
+extern __declspec(dllexport) 
+QUrl* QTextBrowser_Source(const QTextBrowser* self);
+extern __declspec(dllexport) 
+int QTextBrowser_SourceType(const QTextBrowser* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of struct miqt_string */  QTextBrowser_SearchPaths(const QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_SetSearchPaths(QTextBrowser* self, struct miqt_array /* of struct miqt_string */  paths);
+extern __declspec(dllexport) 
+QVariant* QTextBrowser_LoadResource(QTextBrowser* self, int typeVal, QUrl* name);
+extern __declspec(dllexport) 
+bool QTextBrowser_IsBackwardAvailable(const QTextBrowser* self);
+extern __declspec(dllexport) 
+bool QTextBrowser_IsForwardAvailable(const QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_ClearHistory(QTextBrowser* self);
+extern __declspec(dllexport) 
+struct miqt_string QTextBrowser_HistoryTitle(const QTextBrowser* self, int param1);
+extern __declspec(dllexport) 
+QUrl* QTextBrowser_HistoryUrl(const QTextBrowser* self, int param1);
+extern __declspec(dllexport) 
+int QTextBrowser_BackwardHistoryCount(const QTextBrowser* self);
+extern __declspec(dllexport) 
+int QTextBrowser_ForwardHistoryCount(const QTextBrowser* self);
+extern __declspec(dllexport) 
+bool QTextBrowser_OpenExternalLinks(const QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_SetOpenExternalLinks(QTextBrowser* self, bool open);
+extern __declspec(dllexport) 
+bool QTextBrowser_OpenLinks(const QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_SetOpenLinks(QTextBrowser* self, bool open);
+extern __declspec(dllexport) 
+void QTextBrowser_SetSource(QTextBrowser* self, QUrl* name);
+extern __declspec(dllexport) 
+void QTextBrowser_Backward(QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_Forward(QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_Home(QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_Reload(QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_BackwardAvailable(QTextBrowser* self, bool param1);
 void QTextBrowser_connect_BackwardAvailable(QTextBrowser* self, intptr_t slot);
-extern __declspec(dllexport) void QTextBrowser_ForwardAvailable(QTextBrowser* self, bool param1);
+extern __declspec(dllexport) 
+void QTextBrowser_ForwardAvailable(QTextBrowser* self, bool param1);
 void QTextBrowser_connect_ForwardAvailable(QTextBrowser* self, intptr_t slot);
-extern __declspec(dllexport) void QTextBrowser_HistoryChanged(QTextBrowser* self);
+extern __declspec(dllexport) 
+void QTextBrowser_HistoryChanged(QTextBrowser* self);
 void QTextBrowser_connect_HistoryChanged(QTextBrowser* self, intptr_t slot);
-extern __declspec(dllexport) void QTextBrowser_SourceChanged(QTextBrowser* self, QUrl* param1);
+extern __declspec(dllexport) 
+void QTextBrowser_SourceChanged(QTextBrowser* self, QUrl* param1);
 void QTextBrowser_connect_SourceChanged(QTextBrowser* self, intptr_t slot);
-extern __declspec(dllexport) void QTextBrowser_Highlighted(QTextBrowser* self, QUrl* param1);
+extern __declspec(dllexport) 
+void QTextBrowser_Highlighted(QTextBrowser* self, QUrl* param1);
 void QTextBrowser_connect_Highlighted(QTextBrowser* self, intptr_t slot);
-extern __declspec(dllexport) void QTextBrowser_AnchorClicked(QTextBrowser* self, QUrl* param1);
+extern __declspec(dllexport) 
+void QTextBrowser_AnchorClicked(QTextBrowser* self, QUrl* param1);
 void QTextBrowser_connect_AnchorClicked(QTextBrowser* self, intptr_t slot);
-extern __declspec(dllexport) bool QTextBrowser_Event(QTextBrowser* self, QEvent* e);
-extern __declspec(dllexport) void QTextBrowser_KeyPressEvent(QTextBrowser* self, QKeyEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_MouseMoveEvent(QTextBrowser* self, QMouseEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_MousePressEvent(QTextBrowser* self, QMouseEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_MouseReleaseEvent(QTextBrowser* self, QMouseEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_FocusOutEvent(QTextBrowser* self, QFocusEvent* ev);
-extern __declspec(dllexport) bool QTextBrowser_FocusNextPrevChild(QTextBrowser* self, bool next);
-extern __declspec(dllexport) void QTextBrowser_PaintEvent(QTextBrowser* self, QPaintEvent* e);
-extern __declspec(dllexport) void QTextBrowser_DoSetSource(QTextBrowser* self, QUrl* name, int typeVal);
-extern __declspec(dllexport) struct miqt_string QTextBrowser_Tr2(const char* s, const char* c);
-extern __declspec(dllexport) struct miqt_string QTextBrowser_Tr3(const char* s, const char* c, int n);
-extern __declspec(dllexport) void QTextBrowser_SetSource2(QTextBrowser* self, QUrl* name, int typeVal);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_LoadResource(void* self, intptr_t slot);
-QVariant* QTextBrowser_virtualbase_LoadResource(void* self, int typeVal, QUrl* name);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_Backward(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_Backward(void* self);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_Forward(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_Forward(void* self);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_Home(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_Home(void* self);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_Reload(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_Reload(void* self);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_Event(void* self, intptr_t slot);
-bool QTextBrowser_virtualbase_Event(void* self, QEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_KeyPressEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_KeyPressEvent(void* self, QKeyEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_MouseMoveEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_MouseMoveEvent(void* self, QMouseEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_MousePressEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_MousePressEvent(void* self, QMouseEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_MouseReleaseEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_FocusOutEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_FocusOutEvent(void* self, QFocusEvent* ev);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_FocusNextPrevChild(void* self, intptr_t slot);
-bool QTextBrowser_virtualbase_FocusNextPrevChild(void* self, bool next);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_PaintEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_PaintEvent(void* self, QPaintEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_DoSetSource(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_DoSetSource(void* self, QUrl* name, int typeVal);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_InputMethodQuery(void* self, intptr_t slot);
-QVariant* QTextBrowser_virtualbase_InputMethodQuery(const void* self, int property);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_TimerEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_TimerEvent(void* self, QTimerEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_KeyReleaseEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_ResizeEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_ResizeEvent(void* self, QResizeEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_MouseDoubleClickEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_MouseDoubleClickEvent(void* self, QMouseEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_ContextMenuEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_DragEnterEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_DragEnterEvent(void* self, QDragEnterEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_DragLeaveEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_DragLeaveEvent(void* self, QDragLeaveEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_DragMoveEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_DragMoveEvent(void* self, QDragMoveEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_DropEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_DropEvent(void* self, QDropEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_FocusInEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_FocusInEvent(void* self, QFocusEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_ShowEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_ShowEvent(void* self, QShowEvent* param1);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_ChangeEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_ChangeEvent(void* self, QEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_WheelEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_WheelEvent(void* self, QWheelEvent* e);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_CreateMimeDataFromSelection(void* self, intptr_t slot);
-QMimeData* QTextBrowser_virtualbase_CreateMimeDataFromSelection(const void* self);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_CanInsertFromMimeData(void* self, intptr_t slot);
-bool QTextBrowser_virtualbase_CanInsertFromMimeData(const void* self, QMimeData* source);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_InsertFromMimeData(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_InsertFromMimeData(void* self, QMimeData* source);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_InputMethodEvent(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param1);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_ScrollContentsBy(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_ScrollContentsBy(void* self, int dx, int dy);
-extern __declspec(dllexport) void QTextBrowser_override_virtual_DoSetTextCursor(void* self, intptr_t slot);
-void QTextBrowser_virtualbase_DoSetTextCursor(void* self, QTextCursor* cursor);
-extern __declspec(dllexport) void QTextBrowser_Delete(QTextBrowser* self, bool isSubclass);
+extern __declspec(dllexport) 
+bool QTextBrowser_Event(QTextBrowser* self, QEvent* e);
+extern __declspec(dllexport) 
+void QTextBrowser_KeyPressEvent(QTextBrowser* self, QKeyEvent* ev);
+extern __declspec(dllexport) 
+void QTextBrowser_MouseMoveEvent(QTextBrowser* self, QMouseEvent* ev);
+extern __declspec(dllexport) 
+void QTextBrowser_MousePressEvent(QTextBrowser* self, QMouseEvent* ev);
+extern __declspec(dllexport) 
+void QTextBrowser_MouseReleaseEvent(QTextBrowser* self, QMouseEvent* ev);
+extern __declspec(dllexport) 
+void QTextBrowser_FocusOutEvent(QTextBrowser* self, QFocusEvent* ev);
+extern __declspec(dllexport) 
+bool QTextBrowser_FocusNextPrevChild(QTextBrowser* self, bool next);
+extern __declspec(dllexport) 
+void QTextBrowser_PaintEvent(QTextBrowser* self, QPaintEvent* e);
+extern __declspec(dllexport) 
+void QTextBrowser_DoSetSource(QTextBrowser* self, QUrl* name, int typeVal);
+extern __declspec(dllexport) 
+struct miqt_string QTextBrowser_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) 
+struct miqt_string QTextBrowser_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) 
+void QTextBrowser_SetSource2(QTextBrowser* self, QUrl* name, int typeVal);
+extern __declspec(dllexport) 
+void QTextBrowser_override_virtual_MetaObject(void* self, intptr_t slot);
+QMetaObject* QTextBrowser_virtualbase_MetaObject(const void* self);
+extern __declspec(dllexport) 
+void QTextBrowser_override_virtual_Metacast(void* self, intptr_t slot);
+void* QTextBrowser_virtualbase_Metacast(void* self, const char* param1);
+extern __declspec(dllexport) 
+void QTextBrowser_Delete(QTextBrowser* self, bool isSubclass);
 
-} 
+}

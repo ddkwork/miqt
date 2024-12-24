@@ -1,8 +1,9 @@
 package svg
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QGraphicsSvgItem__ int
@@ -18,7 +19,6 @@ type QGraphicsSvgItem struct {
 
 // NewQGraphicsSvgItem constructs a new QGraphicsSvgItem object.
 func NewQGraphicsSvgItem() *QGraphicsSvgItem {
-
 	ret := newQGraphicsSvgItem(QGraphicsSvgItem_new())
 	ret.isSubclass = true
 	return ret
@@ -38,7 +38,6 @@ func NewQGraphicsSvgItem2(fileName string) *QGraphicsSvgItem {
 
 // NewQGraphicsSvgItem3 constructs a new QGraphicsSvgItem object.
 func NewQGraphicsSvgItem3(parentItem *qt.QGraphicsItem) *QGraphicsSvgItem {
-
 	ret := newQGraphicsSvgItem(QGraphicsSvgItem_new3((*QGraphicsItem)(parentItem.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -152,112 +151,55 @@ func QGraphicsSvgItem_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QGraphicsSvgItem) callVirtualBase_BoundingRect() *qt.QRectF {
-
-	_goptr := qt.UnsafeNewQRectF(unsafe.Pointer(QGraphicsSvgItem_virtualbase_BoundingRect(unsafe.Pointer(this.h))))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QGraphicsSvgItem) callVirtualBase_MetaObject() *qt.QMetaObject {
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QGraphicsSvgItem_virtualbase_MetaObject(unsafe.Pointer(this.h))))
 }
-func (this *QGraphicsSvgItem) OnBoundingRect(slot func(super func() *qt.QRectF) *qt.QRectF) {
+
+func (this *QGraphicsSvgItem) OnMetaObject(slot func(super func() *qt.QMetaObject) *qt.QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsSvgItem_override_virtual_BoundingRect(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsSvgItem_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsSvgItem_BoundingRect
-func miqt_exec_callback_QGraphicsSvgItem_BoundingRect(self QGraphicsSvgItem, cb intptr_t) *QRectF {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QRectF) *qt.QRectF)
+//export miqt_exec_callback_QGraphicsSvgItem_MetaObject
+func miqt_exec_callback_QGraphicsSvgItem_MetaObject(self QGraphicsSvgItem, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QMetaObject) *qt.QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	virtualReturn := gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_BoundingRect)
+	virtualReturn := gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_MetaObject)
 
-	return (*QRectF)(virtualReturn.UnsafePointer())
-
+	return (*QMetaObject)(virtualReturn.UnsafePointer())
 }
 
-func (this *QGraphicsSvgItem) callVirtualBase_Paint(painter *qt.QPainter, option *qt.QStyleOptionGraphicsItem, widget *qt.QWidget) {
+func (this *QGraphicsSvgItem) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	QGraphicsSvgItem_virtualbase_Paint(unsafe.Pointer(this.h), (*QPainter)(painter.UnsafePointer()), (*QStyleOptionGraphicsItem)(option.UnsafePointer()), (*QWidget)(widget.UnsafePointer()))
-
+	return (unsafe.Pointer)(QGraphicsSvgItem_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QGraphicsSvgItem) OnPaint(slot func(super func(painter *qt.QPainter, option *qt.QStyleOptionGraphicsItem, widget *qt.QWidget), painter *qt.QPainter, option *qt.QStyleOptionGraphicsItem, widget *qt.QWidget)) {
+
+func (this *QGraphicsSvgItem) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGraphicsSvgItem_override_virtual_Paint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGraphicsSvgItem_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGraphicsSvgItem_Paint
-func miqt_exec_callback_QGraphicsSvgItem_Paint(self QGraphicsSvgItem, cb intptr_t, painter *QPainter, option *QStyleOptionGraphicsItem, widget *QWidget) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *qt.QPainter, option *qt.QStyleOptionGraphicsItem, widget *qt.QWidget), painter *qt.QPainter, option *qt.QStyleOptionGraphicsItem, widget *qt.QWidget))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQPainter(unsafe.Pointer(painter))
-
-	slotval2 := qt.UnsafeNewQStyleOptionGraphicsItem(unsafe.Pointer(option))
-
-	slotval3 := qt.UnsafeNewQWidget(unsafe.Pointer(widget))
-
-	gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_Paint, slotval1, slotval2, slotval3)
-
-}
-
-func (this *QGraphicsSvgItem) callVirtualBase_Type() int {
-
-	return (int)(QGraphicsSvgItem_virtualbase_Type(unsafe.Pointer(this.h)))
-
-}
-func (this *QGraphicsSvgItem) OnType(slot func(super func() int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsSvgItem_override_virtual_Type(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsSvgItem_Type
-func miqt_exec_callback_QGraphicsSvgItem_Type(self QGraphicsSvgItem, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_Type)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGraphicsSvgItem) callVirtualBase_Event(ev *qt.QEvent) bool {
-
-	return (bool)(QGraphicsSvgItem_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(ev.UnsafePointer())))
-
-}
-func (this *QGraphicsSvgItem) OnEvent(slot func(super func(ev *qt.QEvent) bool, ev *qt.QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGraphicsSvgItem_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGraphicsSvgItem_Event
-func miqt_exec_callback_QGraphicsSvgItem_Event(self QGraphicsSvgItem, cb intptr_t, ev *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(ev *qt.QEvent) bool, ev *qt.QEvent) bool)
+//export miqt_exec_callback_QGraphicsSvgItem_Metacast
+func miqt_exec_callback_QGraphicsSvgItem_Metacast(self QGraphicsSvgItem, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQEvent(unsafe.Pointer(ev))
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
+	return virtualReturn
 }

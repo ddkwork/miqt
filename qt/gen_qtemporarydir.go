@@ -11,7 +11,6 @@ type QTemporaryDir struct {
 
 // NewQTemporaryDir constructs a new QTemporaryDir object.
 func NewQTemporaryDir() *QTemporaryDir {
-
 	ret := newQTemporaryDir(QTemporaryDir_new())
 	ret.isSubclass = true
 	return ret

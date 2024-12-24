@@ -11,7 +11,6 @@ type QSignalMapper struct {
 
 // NewQSignalMapper constructs a new QSignalMapper object.
 func NewQSignalMapper() *QSignalMapper {
-
 	ret := newQSignalMapper(QSignalMapper_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQSignalMapper() *QSignalMapper {
 
 // NewQSignalMapper2 constructs a new QSignalMapper object.
 func NewQSignalMapper2(parent *QObject) *QSignalMapper {
-
 	ret := newQSignalMapper(QSignalMapper_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -83,6 +81,7 @@ func (this *QSignalMapper) MappingWithObject(object *QObject) *QObject {
 func (this *QSignalMapper) MappedInt(param1 int) {
 	QSignalMapper_MappedInt(this.h, (int)(param1))
 }
+
 func (this *QSignalMapper) OnMappedInt(slot func(param1 int)) {
 	QSignalMapper_connect_MappedInt(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -107,6 +106,7 @@ func (this *QSignalMapper) MappedString(param1 string) {
 	defer free(unsafe.Pointer(param1_ms.data))
 	QSignalMapper_MappedString(this.h, param1_ms)
 }
+
 func (this *QSignalMapper) OnMappedString(slot func(param1 string)) {
 	QSignalMapper_connect_MappedString(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -130,6 +130,7 @@ func miqt_exec_callback_QSignalMapper_MappedString(cb intptr_t, param1 struct_mi
 func (this *QSignalMapper) MappedObject(param1 *QObject) {
 	QSignalMapper_MappedObject(this.h, param1.cPointer())
 }
+
 func (this *QSignalMapper) OnMappedObject(slot func(param1 *QObject)) {
 	QSignalMapper_connect_MappedObject(this.h, intptr_t(cgo.NewHandle(slot)))
 }
@@ -177,190 +178,55 @@ func QSignalMapper_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QSignalMapper) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QSignalMapper_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
+func (this *QSignalMapper) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QSignalMapper_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QSignalMapper) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
+
+func (this *QSignalMapper) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QSignalMapper_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QSignalMapper_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QSignalMapper_Event
-func miqt_exec_callback_QSignalMapper_Event(self QSignalMapper, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
+//export miqt_exec_callback_QSignalMapper_MetaObject
+func miqt_exec_callback_QSignalMapper_MetaObject(self QSignalMapper, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QSignalMapper{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QSignalMapper) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QSignalMapper_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QSignalMapper) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QSignalMapper_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QSignalMapper_Metacast
+func miqt_exec_callback_QSignalMapper_Metacast(self QSignalMapper, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QSignalMapper{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QSignalMapper{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSignalMapper) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QSignalMapper_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QSignalMapper) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSignalMapper_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSignalMapper_EventFilter
-func miqt_exec_callback_QSignalMapper_EventFilter(self QSignalMapper, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QSignalMapper{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QSignalMapper) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QSignalMapper_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSignalMapper) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSignalMapper_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSignalMapper_TimerEvent
-func miqt_exec_callback_QSignalMapper_TimerEvent(self QSignalMapper, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QSignalMapper{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QSignalMapper) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QSignalMapper_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSignalMapper) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSignalMapper_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSignalMapper_ChildEvent
-func miqt_exec_callback_QSignalMapper_ChildEvent(self QSignalMapper, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QSignalMapper{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QSignalMapper) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QSignalMapper_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QSignalMapper) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSignalMapper_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSignalMapper_CustomEvent
-func miqt_exec_callback_QSignalMapper_CustomEvent(self QSignalMapper, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QSignalMapper{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QSignalMapper) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QSignalMapper_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QSignalMapper) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSignalMapper_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSignalMapper_ConnectNotify
-func miqt_exec_callback_QSignalMapper_ConnectNotify(self QSignalMapper, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QSignalMapper{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QSignalMapper) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QSignalMapper_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QSignalMapper) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QSignalMapper_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QSignalMapper_DisconnectNotify
-func miqt_exec_callback_QSignalMapper_DisconnectNotify(self QSignalMapper, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QSignalMapper{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

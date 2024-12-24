@@ -1,8 +1,9 @@
 package network
 
 import (
-	"github.com/mappu/miqt/qt"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QFormDataBuilder__Option int
@@ -22,7 +23,6 @@ type QFormDataPartBuilder struct {
 
 // NewQFormDataPartBuilder constructs a new QFormDataPartBuilder object.
 func NewQFormDataPartBuilder() *QFormDataPartBuilder {
-
 	ret := newQFormDataPartBuilder(QFormDataPartBuilder_new())
 	ret.isSubclass = true
 	return ret
@@ -30,7 +30,6 @@ func NewQFormDataPartBuilder() *QFormDataPartBuilder {
 
 // NewQFormDataPartBuilder2 constructs a new QFormDataPartBuilder object.
 func NewQFormDataPartBuilder2(param1 *QFormDataPartBuilder) *QFormDataPartBuilder {
-
 	ret := newQFormDataPartBuilder(QFormDataPartBuilder_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -89,7 +88,6 @@ type QFormDataBuilder struct {
 
 // NewQFormDataBuilder constructs a new QFormDataBuilder object.
 func NewQFormDataBuilder() *QFormDataBuilder {
-
 	ret := newQFormDataBuilder(QFormDataBuilder_new())
 	ret.isSubclass = true
 	return ret

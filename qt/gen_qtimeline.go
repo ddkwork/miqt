@@ -26,7 +26,6 @@ type QTimeLine struct {
 
 // NewQTimeLine constructs a new QTimeLine object.
 func NewQTimeLine() *QTimeLine {
-
 	ret := newQTimeLine(QTimeLine_new())
 	ret.isSubclass = true
 	return ret
@@ -34,7 +33,6 @@ func NewQTimeLine() *QTimeLine {
 
 // NewQTimeLine2 constructs a new QTimeLine object.
 func NewQTimeLine2(duration int) *QTimeLine {
-
 	ret := newQTimeLine(QTimeLine_new2((int)(duration)))
 	ret.isSubclass = true
 	return ret
@@ -42,7 +40,6 @@ func NewQTimeLine2(duration int) *QTimeLine {
 
 // NewQTimeLine3 constructs a new QTimeLine object.
 func NewQTimeLine3(duration int, parent *QObject) *QTimeLine {
-
 	ret := newQTimeLine(QTimeLine_new3((int)(duration), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -199,218 +196,55 @@ func QTimeLine_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QTimeLine) callVirtualBase_ValueForTime(msec int) float64 {
-
-	return (float64)(QTimeLine_virtualbase_ValueForTime(unsafe.Pointer(this.h), (int)(msec)))
-
+func (this *QTimeLine) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QTimeLine_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QTimeLine) OnValueForTime(slot func(super func(msec int) float64, msec int) float64) {
+
+func (this *QTimeLine) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QTimeLine_override_virtual_ValueForTime(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QTimeLine_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QTimeLine_ValueForTime
-func miqt_exec_callback_QTimeLine_ValueForTime(self QTimeLine, cb intptr_t, msec int) double {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(msec int) float64, msec int) float64)
+//export miqt_exec_callback_QTimeLine_MetaObject
+func miqt_exec_callback_QTimeLine_MetaObject(self QTimeLine, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QTimeLine) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QTimeLine_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QTimeLine) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QTimeLine_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QTimeLine_Metacast
+func miqt_exec_callback_QTimeLine_Metacast(self QTimeLine, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(msec)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_ValueForTime, slotval1)
+	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (double)(virtualReturn)
-
-}
-
-func (this *QTimeLine) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QTimeLine_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QTimeLine) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_TimerEvent
-func miqt_exec_callback_QTimeLine_TimerEvent(self QTimeLine, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QTimeLine{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QTimeLine) callVirtualBase_Event(event *QEvent) bool {
-
-	return (bool)(QTimeLine_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
-
-}
-func (this *QTimeLine) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_Event
-func miqt_exec_callback_QTimeLine_Event(self QTimeLine, cb intptr_t, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_Event, slotval1)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QTimeLine) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QTimeLine_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QTimeLine) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_EventFilter
-func miqt_exec_callback_QTimeLine_EventFilter(self QTimeLine, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QTimeLine{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QTimeLine) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QTimeLine_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QTimeLine) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_ChildEvent
-func miqt_exec_callback_QTimeLine_ChildEvent(self QTimeLine, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QTimeLine{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QTimeLine) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QTimeLine_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QTimeLine) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_CustomEvent
-func miqt_exec_callback_QTimeLine_CustomEvent(self QTimeLine, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QTimeLine{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QTimeLine) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QTimeLine_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QTimeLine) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_ConnectNotify
-func miqt_exec_callback_QTimeLine_ConnectNotify(self QTimeLine, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QTimeLine{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QTimeLine) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QTimeLine_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QTimeLine) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QTimeLine_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QTimeLine_DisconnectNotify
-func miqt_exec_callback_QTimeLine_DisconnectNotify(self QTimeLine, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QTimeLine{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

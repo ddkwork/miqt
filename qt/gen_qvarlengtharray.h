@@ -10,12 +10,17 @@
 extern "C" {
 typedef struct QVLABaseBase QVLABaseBase;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) size_type QVLABaseBase_Capacity(const QVLABaseBase* self);
-extern __declspec(dllexport) size_type QVLABaseBase_Size(const QVLABaseBase* self);
-extern __declspec(dllexport) bool QVLABaseBase_Empty(const QVLABaseBase* self);
+extern __declspec(dllexport) 
+size_type QVLABaseBase_Capacity(const QVLABaseBase* self);
+extern __declspec(dllexport) 
+size_type QVLABaseBase_Size(const QVLABaseBase* self);
+extern __declspec(dllexport) 
+bool QVLABaseBase_Empty(const QVLABaseBase* self);
 
-} 
+}

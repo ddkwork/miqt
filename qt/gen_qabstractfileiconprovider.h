@@ -12,26 +12,25 @@ typedef struct QAbstractFileIconProvider QAbstractFileIconProvider;
 typedef struct QFileInfo QFileInfo;
 typedef struct QIcon QIcon;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QAbstractFileIconProvider* QAbstractFileIconProvider_new();
-extern __declspec(dllexport) QIcon* QAbstractFileIconProvider_Icon(const QAbstractFileIconProvider* self, IconType param1);
-extern __declspec(dllexport) QIcon* QAbstractFileIconProvider_IconWithQFileInfo(const QAbstractFileIconProvider* self, QFileInfo* param1);
-extern __declspec(dllexport) struct miqt_string QAbstractFileIconProvider_Type(const QAbstractFileIconProvider* self, QFileInfo* param1);
-extern __declspec(dllexport) void QAbstractFileIconProvider_SetOptions(QAbstractFileIconProvider* self, Options options);
-extern __declspec(dllexport) Options QAbstractFileIconProvider_Options(const QAbstractFileIconProvider* self);
-extern __declspec(dllexport) void QAbstractFileIconProvider_override_virtual_Icon(void* self, intptr_t slot);
-QIcon* QAbstractFileIconProvider_virtualbase_Icon(const void* self, IconType param1);
-extern __declspec(dllexport) void QAbstractFileIconProvider_override_virtual_IconWithQFileInfo(void* self, intptr_t slot);
-QIcon* QAbstractFileIconProvider_virtualbase_IconWithQFileInfo(const void* self, QFileInfo* param1);
-extern __declspec(dllexport) void QAbstractFileIconProvider_override_virtual_Type(void* self, intptr_t slot);
-struct miqt_string QAbstractFileIconProvider_virtualbase_Type(const void* self, QFileInfo* param1);
-extern __declspec(dllexport) void QAbstractFileIconProvider_override_virtual_SetOptions(void* self, intptr_t slot);
-void QAbstractFileIconProvider_virtualbase_SetOptions(void* self, Options options);
-extern __declspec(dllexport) void QAbstractFileIconProvider_override_virtual_Options(void* self, intptr_t slot);
-Options QAbstractFileIconProvider_virtualbase_Options(const void* self);
-extern __declspec(dllexport) void QAbstractFileIconProvider_Delete(QAbstractFileIconProvider* self, bool isSubclass);
+extern __declspec(dllexport) 
+QAbstractFileIconProvider* QAbstractFileIconProvider_new();
+extern __declspec(dllexport) 
+QIcon* QAbstractFileIconProvider_Icon(const QAbstractFileIconProvider* self, IconType param1);
+extern __declspec(dllexport) 
+QIcon* QAbstractFileIconProvider_IconWithQFileInfo(const QAbstractFileIconProvider* self, QFileInfo* param1);
+extern __declspec(dllexport) 
+struct miqt_string QAbstractFileIconProvider_Type(const QAbstractFileIconProvider* self, QFileInfo* param1);
+extern __declspec(dllexport) 
+void QAbstractFileIconProvider_SetOptions(QAbstractFileIconProvider* self, Options options);
+extern __declspec(dllexport) 
+Options QAbstractFileIconProvider_Options(const QAbstractFileIconProvider* self);
+extern __declspec(dllexport) 
+void QAbstractFileIconProvider_Delete(QAbstractFileIconProvider* self, bool isSubclass);
 
-} 
+}

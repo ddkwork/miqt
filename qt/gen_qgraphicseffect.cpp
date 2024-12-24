@@ -1,15 +1,12 @@
 // +build ignore
 
 #include <QBrush>
-#include <QChildEvent>
 #include <QColor>
-#include <QEvent>
 #include <QGraphicsBlurEffect>
 #include <QGraphicsColorizeEffect>
 #include <QGraphicsDropShadowEffect>
 #include <QGraphicsEffect>
 #include <QGraphicsOpacityEffect>
-#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QPainter>
@@ -18,7 +15,6 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTimerEvent>
 #include <qgraphicseffect.h>
 #include "gen_qgraphicseffect.h"
 
@@ -31,238 +27,47 @@ public:
 	virtual ~MiqtVirtualQGraphicsEffect() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BoundingRectFor = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QRectF boundingRectFor(const QRectF& sourceRect) const override {
-		if (handle__BoundingRectFor == 0) {
-			return QGraphicsEffect::boundingRectFor(sourceRect);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGraphicsEffect::metaObject();
 		}
 		
-		const QRectF& sourceRect_ret = sourceRect;
-		// Cast returned reference into pointer
-		QRectF* sigval1 = const_cast<QRectF*>(&sourceRect_ret);
 
-		QRectF* callback_return_value = miqt_exec_callback_QGraphicsEffect_BoundingRectFor(const_cast<MiqtVirtualQGraphicsEffect*>(this), handle__BoundingRectFor, sigval1);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QRectF* virtualbase_BoundingRectFor(QRectF* sourceRect) const {
-
-		return new QRectF(QGraphicsEffect::boundingRectFor(*sourceRect));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Draw = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* painter) override {
-		if (handle__Draw == 0) {
-			return; // Pure virtual, there is no base we can call
-		}
-		
-		QPainter* sigval1 = painter;
-
-		miqt_exec_callback_QGraphicsEffect_Draw(this, handle__Draw, sigval1);
-
-		
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SourceChanged = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(ChangeFlags flags) override {
-		if (handle__SourceChanged == 0) {
-			QGraphicsEffect::sourceChanged(flags);
-			return;
-		}
-		
-		ChangeFlags sigval1 = flags;
-
-		miqt_exec_callback_QGraphicsEffect_SourceChanged(this, handle__SourceChanged, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(ChangeFlags flags) {
-
-		QGraphicsEffect::sourceChanged(flags);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Event = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool event(QEvent* event) override {
-		if (handle__Event == 0) {
-			return QGraphicsEffect::event(event);
-		}
-		
-		QEvent* sigval1 = event;
-
-		bool callback_return_value = miqt_exec_callback_QGraphicsEffect_Event(this, handle__Event, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGraphicsEffect_MetaObject(const_cast<MiqtVirtualQGraphicsEffect*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Event(QEvent* event) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return QGraphicsEffect::event(event);
+		return (QMetaObject*) QGraphicsEffect::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__EventFilter = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool eventFilter(QObject* watched, QEvent* event) override {
-		if (handle__EventFilter == 0) {
-			return QGraphicsEffect::eventFilter(watched, event);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGraphicsEffect::qt_metacast(param1);
 		}
 		
-		QObject* sigval1 = watched;
-		QEvent* sigval2 = event;
+		const char* sigval1 = (const char*) param1;
 
-		bool callback_return_value = miqt_exec_callback_QGraphicsEffect_EventFilter(this, handle__EventFilter, sigval1, sigval2);
+		void* callback_return_value = miqt_exec_callback_QGraphicsEffect_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_EventFilter(QObject* watched, QEvent* event) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return QGraphicsEffect::eventFilter(watched, event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__TimerEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void timerEvent(QTimerEvent* event) override {
-		if (handle__TimerEvent == 0) {
-			QGraphicsEffect::timerEvent(event);
-			return;
-		}
-		
-		QTimerEvent* sigval1 = event;
-
-		miqt_exec_callback_QGraphicsEffect_TimerEvent(this, handle__TimerEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_TimerEvent(QTimerEvent* event) {
-
-		QGraphicsEffect::timerEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ChildEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void childEvent(QChildEvent* event) override {
-		if (handle__ChildEvent == 0) {
-			QGraphicsEffect::childEvent(event);
-			return;
-		}
-		
-		QChildEvent* sigval1 = event;
-
-		miqt_exec_callback_QGraphicsEffect_ChildEvent(this, handle__ChildEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ChildEvent(QChildEvent* event) {
-
-		QGraphicsEffect::childEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CustomEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void customEvent(QEvent* event) override {
-		if (handle__CustomEvent == 0) {
-			QGraphicsEffect::customEvent(event);
-			return;
-		}
-		
-		QEvent* sigval1 = event;
-
-		miqt_exec_callback_QGraphicsEffect_CustomEvent(this, handle__CustomEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_CustomEvent(QEvent* event) {
-
-		QGraphicsEffect::customEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ConnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void connectNotify(const QMetaMethod& signal) override {
-		if (handle__ConnectNotify == 0) {
-			QGraphicsEffect::connectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QGraphicsEffect_ConnectNotify(this, handle__ConnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_ConnectNotify(QMetaMethod* signal) {
-
-		QGraphicsEffect::connectNotify(*signal);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__DisconnectNotify = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void disconnectNotify(const QMetaMethod& signal) override {
-		if (handle__DisconnectNotify == 0) {
-			QGraphicsEffect::disconnectNotify(signal);
-			return;
-		}
-		
-		const QMetaMethod& signal_ret = signal;
-		// Cast returned reference into pointer
-		QMetaMethod* sigval1 = const_cast<QMetaMethod*>(&signal_ret);
-
-		miqt_exec_callback_QGraphicsEffect_DisconnectNotify(this, handle__DisconnectNotify, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_DisconnectNotify(QMetaMethod* signal) {
-
-		QGraphicsEffect::disconnectNotify(*signal);
+		return QGraphicsEffect::qt_metacast(param1);
 
 	}
 
@@ -352,80 +157,20 @@ struct miqt_string QGraphicsEffect_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-void QGraphicsEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__BoundingRectFor = slot;
+void QGraphicsEffect_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__MetaObject = slot;
 }
 
-QRectF* QGraphicsEffect_virtualbase_BoundingRectFor(const void* self, QRectF* sourceRect) {
-	return ( (const MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_BoundingRectFor(sourceRect);
+QMetaObject* QGraphicsEffect_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_MetaObject();
 }
 
-void QGraphicsEffect_override_virtual_Draw(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__Draw = slot;
+void QGraphicsEffect_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__Metacast = slot;
 }
 
-void QGraphicsEffect_override_virtual_SourceChanged(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__SourceChanged = slot;
-}
-
-void QGraphicsEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
-	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_SourceChanged(flags);
-}
-
-void QGraphicsEffect_override_virtual_Event(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__Event = slot;
-}
-
-bool QGraphicsEffect_virtualbase_Event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_Event(event);
-}
-
-void QGraphicsEffect_override_virtual_EventFilter(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__EventFilter = slot;
-}
-
-bool QGraphicsEffect_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_EventFilter(watched, event);
-}
-
-void QGraphicsEffect_override_virtual_TimerEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__TimerEvent = slot;
-}
-
-void QGraphicsEffect_virtualbase_TimerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_TimerEvent(event);
-}
-
-void QGraphicsEffect_override_virtual_ChildEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__ChildEvent = slot;
-}
-
-void QGraphicsEffect_virtualbase_ChildEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_ChildEvent(event);
-}
-
-void QGraphicsEffect_override_virtual_CustomEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__CustomEvent = slot;
-}
-
-void QGraphicsEffect_virtualbase_CustomEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_CustomEvent(event);
-}
-
-void QGraphicsEffect_override_virtual_ConnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__ConnectNotify = slot;
-}
-
-void QGraphicsEffect_virtualbase_ConnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_ConnectNotify(signal);
-}
-
-void QGraphicsEffect_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__DisconnectNotify = slot;
-}
-
-void QGraphicsEffect_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_DisconnectNotify(signal);
+void* QGraphicsEffect_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGraphicsEffect_Delete(QGraphicsEffect* self, bool isSubclass) {
@@ -445,75 +190,47 @@ public:
 	virtual ~MiqtVirtualQGraphicsColorizeEffect() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Draw = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* painter) override {
-		if (handle__Draw == 0) {
-			QGraphicsColorizeEffect::draw(painter);
-			return;
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGraphicsColorizeEffect::metaObject();
 		}
 		
-		QPainter* sigval1 = painter;
 
-		miqt_exec_callback_QGraphicsColorizeEffect_Draw(this, handle__Draw, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGraphicsColorizeEffect_MetaObject(const_cast<MiqtVirtualQGraphicsColorizeEffect*>(this), handle__MetaObject);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Draw(QPainter* painter) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		QGraphicsColorizeEffect::draw(painter);
+		return (QMetaObject*) QGraphicsColorizeEffect::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BoundingRectFor = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QRectF boundingRectFor(const QRectF& sourceRect) const override {
-		if (handle__BoundingRectFor == 0) {
-			return QGraphicsColorizeEffect::boundingRectFor(sourceRect);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGraphicsColorizeEffect::qt_metacast(param1);
 		}
 		
-		const QRectF& sourceRect_ret = sourceRect;
-		// Cast returned reference into pointer
-		QRectF* sigval1 = const_cast<QRectF*>(&sourceRect_ret);
+		const char* sigval1 = (const char*) param1;
 
-		QRectF* callback_return_value = miqt_exec_callback_QGraphicsColorizeEffect_BoundingRectFor(const_cast<MiqtVirtualQGraphicsColorizeEffect*>(this), handle__BoundingRectFor, sigval1);
+		void* callback_return_value = miqt_exec_callback_QGraphicsColorizeEffect_Metacast(this, handle__Metacast, sigval1);
 
-		return *callback_return_value;
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QRectF* virtualbase_BoundingRectFor(QRectF* sourceRect) const {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return new QRectF(QGraphicsColorizeEffect::boundingRectFor(*sourceRect));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SourceChanged = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(ChangeFlags flags) override {
-		if (handle__SourceChanged == 0) {
-			QGraphicsColorizeEffect::sourceChanged(flags);
-			return;
-		}
-		
-		ChangeFlags sigval1 = flags;
-
-		miqt_exec_callback_QGraphicsColorizeEffect_SourceChanged(this, handle__SourceChanged, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(ChangeFlags flags) {
-
-		QGraphicsColorizeEffect::sourceChanged(flags);
+		return QGraphicsColorizeEffect::qt_metacast(param1);
 
 	}
 
@@ -614,28 +331,20 @@ struct miqt_string QGraphicsColorizeEffect_Tr3(const char* s, const char* c, int
 	return _ms;
 }
 
-void QGraphicsColorizeEffect_override_virtual_Draw(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__Draw = slot;
+void QGraphicsColorizeEffect_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__MetaObject = slot;
 }
 
-void QGraphicsColorizeEffect_virtualbase_Draw(void* self, QPainter* painter) {
-	( (MiqtVirtualQGraphicsColorizeEffect*)(self) )->virtualbase_Draw(painter);
+QMetaObject* QGraphicsColorizeEffect_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGraphicsColorizeEffect*)(self) )->virtualbase_MetaObject();
 }
 
-void QGraphicsColorizeEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__BoundingRectFor = slot;
+void QGraphicsColorizeEffect_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__Metacast = slot;
 }
 
-QRectF* QGraphicsColorizeEffect_virtualbase_BoundingRectFor(const void* self, QRectF* sourceRect) {
-	return ( (const MiqtVirtualQGraphicsColorizeEffect*)(self) )->virtualbase_BoundingRectFor(sourceRect);
-}
-
-void QGraphicsColorizeEffect_override_virtual_SourceChanged(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__SourceChanged = slot;
-}
-
-void QGraphicsColorizeEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
-	( (MiqtVirtualQGraphicsColorizeEffect*)(self) )->virtualbase_SourceChanged(flags);
+void* QGraphicsColorizeEffect_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGraphicsColorizeEffect*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGraphicsColorizeEffect_Delete(QGraphicsColorizeEffect* self, bool isSubclass) {
@@ -655,75 +364,47 @@ public:
 	virtual ~MiqtVirtualQGraphicsBlurEffect() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BoundingRectFor = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QRectF boundingRectFor(const QRectF& rect) const override {
-		if (handle__BoundingRectFor == 0) {
-			return QGraphicsBlurEffect::boundingRectFor(rect);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGraphicsBlurEffect::metaObject();
 		}
 		
-		const QRectF& rect_ret = rect;
-		// Cast returned reference into pointer
-		QRectF* sigval1 = const_cast<QRectF*>(&rect_ret);
 
-		QRectF* callback_return_value = miqt_exec_callback_QGraphicsBlurEffect_BoundingRectFor(const_cast<MiqtVirtualQGraphicsBlurEffect*>(this), handle__BoundingRectFor, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGraphicsBlurEffect_MetaObject(const_cast<MiqtVirtualQGraphicsBlurEffect*>(this), handle__MetaObject);
 
-		return *callback_return_value;
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QRectF* virtualbase_BoundingRectFor(QRectF* rect) const {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return new QRectF(QGraphicsBlurEffect::boundingRectFor(*rect));
+		return (QMetaObject*) QGraphicsBlurEffect::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Draw = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* painter) override {
-		if (handle__Draw == 0) {
-			QGraphicsBlurEffect::draw(painter);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGraphicsBlurEffect::qt_metacast(param1);
 		}
 		
-		QPainter* sigval1 = painter;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QGraphicsBlurEffect_Draw(this, handle__Draw, sigval1);
+		void* callback_return_value = miqt_exec_callback_QGraphicsBlurEffect_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Draw(QPainter* painter) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QGraphicsBlurEffect::draw(painter);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SourceChanged = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(ChangeFlags flags) override {
-		if (handle__SourceChanged == 0) {
-			QGraphicsBlurEffect::sourceChanged(flags);
-			return;
-		}
-		
-		ChangeFlags sigval1 = flags;
-
-		miqt_exec_callback_QGraphicsBlurEffect_SourceChanged(this, handle__SourceChanged, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(ChangeFlags flags) {
-
-		QGraphicsBlurEffect::sourceChanged(flags);
+		return QGraphicsBlurEffect::qt_metacast(param1);
 
 	}
 
@@ -826,28 +507,20 @@ struct miqt_string QGraphicsBlurEffect_Tr3(const char* s, const char* c, int n) 
 	return _ms;
 }
 
-void QGraphicsBlurEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsBlurEffect*>( (QGraphicsBlurEffect*)(self) )->handle__BoundingRectFor = slot;
+void QGraphicsBlurEffect_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsBlurEffect*>( (QGraphicsBlurEffect*)(self) )->handle__MetaObject = slot;
 }
 
-QRectF* QGraphicsBlurEffect_virtualbase_BoundingRectFor(const void* self, QRectF* rect) {
-	return ( (const MiqtVirtualQGraphicsBlurEffect*)(self) )->virtualbase_BoundingRectFor(rect);
+QMetaObject* QGraphicsBlurEffect_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGraphicsBlurEffect*)(self) )->virtualbase_MetaObject();
 }
 
-void QGraphicsBlurEffect_override_virtual_Draw(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsBlurEffect*>( (QGraphicsBlurEffect*)(self) )->handle__Draw = slot;
+void QGraphicsBlurEffect_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsBlurEffect*>( (QGraphicsBlurEffect*)(self) )->handle__Metacast = slot;
 }
 
-void QGraphicsBlurEffect_virtualbase_Draw(void* self, QPainter* painter) {
-	( (MiqtVirtualQGraphicsBlurEffect*)(self) )->virtualbase_Draw(painter);
-}
-
-void QGraphicsBlurEffect_override_virtual_SourceChanged(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsBlurEffect*>( (QGraphicsBlurEffect*)(self) )->handle__SourceChanged = slot;
-}
-
-void QGraphicsBlurEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
-	( (MiqtVirtualQGraphicsBlurEffect*)(self) )->virtualbase_SourceChanged(flags);
+void* QGraphicsBlurEffect_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGraphicsBlurEffect*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGraphicsBlurEffect_Delete(QGraphicsBlurEffect* self, bool isSubclass) {
@@ -867,75 +540,47 @@ public:
 	virtual ~MiqtVirtualQGraphicsDropShadowEffect() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BoundingRectFor = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QRectF boundingRectFor(const QRectF& rect) const override {
-		if (handle__BoundingRectFor == 0) {
-			return QGraphicsDropShadowEffect::boundingRectFor(rect);
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGraphicsDropShadowEffect::metaObject();
 		}
 		
-		const QRectF& rect_ret = rect;
-		// Cast returned reference into pointer
-		QRectF* sigval1 = const_cast<QRectF*>(&rect_ret);
 
-		QRectF* callback_return_value = miqt_exec_callback_QGraphicsDropShadowEffect_BoundingRectFor(const_cast<MiqtVirtualQGraphicsDropShadowEffect*>(this), handle__BoundingRectFor, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGraphicsDropShadowEffect_MetaObject(const_cast<MiqtVirtualQGraphicsDropShadowEffect*>(this), handle__MetaObject);
 
-		return *callback_return_value;
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QRectF* virtualbase_BoundingRectFor(QRectF* rect) const {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		return new QRectF(QGraphicsDropShadowEffect::boundingRectFor(*rect));
+		return (QMetaObject*) QGraphicsDropShadowEffect::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Draw = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* painter) override {
-		if (handle__Draw == 0) {
-			QGraphicsDropShadowEffect::draw(painter);
-			return;
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGraphicsDropShadowEffect::qt_metacast(param1);
 		}
 		
-		QPainter* sigval1 = painter;
+		const char* sigval1 = (const char*) param1;
 
-		miqt_exec_callback_QGraphicsDropShadowEffect_Draw(this, handle__Draw, sigval1);
+		void* callback_return_value = miqt_exec_callback_QGraphicsDropShadowEffect_Metacast(this, handle__Metacast, sigval1);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Draw(QPainter* painter) {
+	void* virtualbase_Metacast(const char* param1) {
 
-		QGraphicsDropShadowEffect::draw(painter);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SourceChanged = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(ChangeFlags flags) override {
-		if (handle__SourceChanged == 0) {
-			QGraphicsDropShadowEffect::sourceChanged(flags);
-			return;
-		}
-		
-		ChangeFlags sigval1 = flags;
-
-		miqt_exec_callback_QGraphicsDropShadowEffect_SourceChanged(this, handle__SourceChanged, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(ChangeFlags flags) {
-
-		QGraphicsDropShadowEffect::sourceChanged(flags);
+		return QGraphicsDropShadowEffect::qt_metacast(param1);
 
 	}
 
@@ -1087,28 +732,20 @@ struct miqt_string QGraphicsDropShadowEffect_Tr3(const char* s, const char* c, i
 	return _ms;
 }
 
-void QGraphicsDropShadowEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__BoundingRectFor = slot;
+void QGraphicsDropShadowEffect_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__MetaObject = slot;
 }
 
-QRectF* QGraphicsDropShadowEffect_virtualbase_BoundingRectFor(const void* self, QRectF* rect) {
-	return ( (const MiqtVirtualQGraphicsDropShadowEffect*)(self) )->virtualbase_BoundingRectFor(rect);
+QMetaObject* QGraphicsDropShadowEffect_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGraphicsDropShadowEffect*)(self) )->virtualbase_MetaObject();
 }
 
-void QGraphicsDropShadowEffect_override_virtual_Draw(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__Draw = slot;
+void QGraphicsDropShadowEffect_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__Metacast = slot;
 }
 
-void QGraphicsDropShadowEffect_virtualbase_Draw(void* self, QPainter* painter) {
-	( (MiqtVirtualQGraphicsDropShadowEffect*)(self) )->virtualbase_Draw(painter);
-}
-
-void QGraphicsDropShadowEffect_override_virtual_SourceChanged(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__SourceChanged = slot;
-}
-
-void QGraphicsDropShadowEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
-	( (MiqtVirtualQGraphicsDropShadowEffect*)(self) )->virtualbase_SourceChanged(flags);
+void* QGraphicsDropShadowEffect_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGraphicsDropShadowEffect*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGraphicsDropShadowEffect_Delete(QGraphicsDropShadowEffect* self, bool isSubclass) {
@@ -1128,75 +765,47 @@ public:
 	virtual ~MiqtVirtualQGraphicsOpacityEffect() = default;
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Draw = 0;
+	intptr_t handle__MetaObject = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* painter) override {
-		if (handle__Draw == 0) {
-			QGraphicsOpacityEffect::draw(painter);
-			return;
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QGraphicsOpacityEffect::metaObject();
 		}
 		
-		QPainter* sigval1 = painter;
 
-		miqt_exec_callback_QGraphicsOpacityEffect_Draw(this, handle__Draw, sigval1);
+		QMetaObject* callback_return_value = miqt_exec_callback_QGraphicsOpacityEffect_MetaObject(const_cast<MiqtVirtualQGraphicsOpacityEffect*>(this), handle__MetaObject);
 
-		
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Draw(QPainter* painter) {
+	QMetaObject* virtualbase_MetaObject() const {
 
-		QGraphicsOpacityEffect::draw(painter);
+		return (QMetaObject*) QGraphicsOpacityEffect::metaObject();
 
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__BoundingRectFor = 0;
+	intptr_t handle__Metacast = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QRectF boundingRectFor(const QRectF& sourceRect) const override {
-		if (handle__BoundingRectFor == 0) {
-			return QGraphicsOpacityEffect::boundingRectFor(sourceRect);
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QGraphicsOpacityEffect::qt_metacast(param1);
 		}
 		
-		const QRectF& sourceRect_ret = sourceRect;
-		// Cast returned reference into pointer
-		QRectF* sigval1 = const_cast<QRectF*>(&sourceRect_ret);
+		const char* sigval1 = (const char*) param1;
 
-		QRectF* callback_return_value = miqt_exec_callback_QGraphicsOpacityEffect_BoundingRectFor(const_cast<MiqtVirtualQGraphicsOpacityEffect*>(this), handle__BoundingRectFor, sigval1);
+		void* callback_return_value = miqt_exec_callback_QGraphicsOpacityEffect_Metacast(this, handle__Metacast, sigval1);
 
-		return *callback_return_value;
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QRectF* virtualbase_BoundingRectFor(QRectF* sourceRect) const {
+	void* virtualbase_Metacast(const char* param1) {
 
-		return new QRectF(QGraphicsOpacityEffect::boundingRectFor(*sourceRect));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SourceChanged = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(ChangeFlags flags) override {
-		if (handle__SourceChanged == 0) {
-			QGraphicsOpacityEffect::sourceChanged(flags);
-			return;
-		}
-		
-		ChangeFlags sigval1 = flags;
-
-		miqt_exec_callback_QGraphicsOpacityEffect_SourceChanged(this, handle__SourceChanged, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(ChangeFlags flags) {
-
-		QGraphicsOpacityEffect::sourceChanged(flags);
+		return QGraphicsOpacityEffect::qt_metacast(param1);
 
 	}
 
@@ -1297,28 +906,20 @@ struct miqt_string QGraphicsOpacityEffect_Tr3(const char* s, const char* c, int 
 	return _ms;
 }
 
-void QGraphicsOpacityEffect_override_virtual_Draw(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__Draw = slot;
+void QGraphicsOpacityEffect_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__MetaObject = slot;
 }
 
-void QGraphicsOpacityEffect_virtualbase_Draw(void* self, QPainter* painter) {
-	( (MiqtVirtualQGraphicsOpacityEffect*)(self) )->virtualbase_Draw(painter);
+QMetaObject* QGraphicsOpacityEffect_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGraphicsOpacityEffect*)(self) )->virtualbase_MetaObject();
 }
 
-void QGraphicsOpacityEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__BoundingRectFor = slot;
+void QGraphicsOpacityEffect_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__Metacast = slot;
 }
 
-QRectF* QGraphicsOpacityEffect_virtualbase_BoundingRectFor(const void* self, QRectF* sourceRect) {
-	return ( (const MiqtVirtualQGraphicsOpacityEffect*)(self) )->virtualbase_BoundingRectFor(sourceRect);
-}
-
-void QGraphicsOpacityEffect_override_virtual_SourceChanged(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__SourceChanged = slot;
-}
-
-void QGraphicsOpacityEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
-	( (MiqtVirtualQGraphicsOpacityEffect*)(self) )->virtualbase_SourceChanged(flags);
+void* QGraphicsOpacityEffect_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGraphicsOpacityEffect*)(self) )->virtualbase_Metacast(param1);
 }
 
 void QGraphicsOpacityEffect_Delete(QGraphicsOpacityEffect* self, bool isSubclass) {

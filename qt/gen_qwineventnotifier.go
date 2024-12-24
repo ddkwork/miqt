@@ -11,7 +11,6 @@ type QWinEventNotifier struct {
 
 // NewQWinEventNotifier constructs a new QWinEventNotifier object.
 func NewQWinEventNotifier() *QWinEventNotifier {
-
 	ret := newQWinEventNotifier(QWinEventNotifier_new())
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQWinEventNotifier() *QWinEventNotifier {
 
 // NewQWinEventNotifier2 constructs a new QWinEventNotifier object.
 func NewQWinEventNotifier2(hEvent HANDLE) *QWinEventNotifier {
-
 	ret := newQWinEventNotifier(QWinEventNotifier_new2(hEvent))
 	ret.isSubclass = true
 	return ret
@@ -27,7 +25,6 @@ func NewQWinEventNotifier2(hEvent HANDLE) *QWinEventNotifier {
 
 // NewQWinEventNotifier3 constructs a new QWinEventNotifier object.
 func NewQWinEventNotifier3(parent *QObject) *QWinEventNotifier {
-
 	ret := newQWinEventNotifier(QWinEventNotifier_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -35,7 +32,6 @@ func NewQWinEventNotifier3(parent *QObject) *QWinEventNotifier {
 
 // NewQWinEventNotifier4 constructs a new QWinEventNotifier object.
 func NewQWinEventNotifier4(hEvent HANDLE, parent *QObject) *QWinEventNotifier {
-
 	ret := newQWinEventNotifier(QWinEventNotifier_new4(hEvent, parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -98,190 +94,55 @@ func QWinEventNotifier_Tr3(s string, c string, n int) string {
 	return _ret
 }
 
-func (this *QWinEventNotifier) callVirtualBase_Event(e *QEvent) bool {
-
-	return (bool)(QWinEventNotifier_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
-
+func (this *QWinEventNotifier) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QWinEventNotifier_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QWinEventNotifier) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
+
+func (this *QWinEventNotifier) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QWinEventNotifier_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QWinEventNotifier_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QWinEventNotifier_Event
-func miqt_exec_callback_QWinEventNotifier_Event(self QWinEventNotifier, cb intptr_t, e *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
+//export miqt_exec_callback_QWinEventNotifier_MetaObject
+func miqt_exec_callback_QWinEventNotifier_MetaObject(self QWinEventNotifier, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QWinEventNotifier{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QWinEventNotifier) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QWinEventNotifier_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QWinEventNotifier) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QWinEventNotifier_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QWinEventNotifier_Metacast
+func miqt_exec_callback_QWinEventNotifier_Metacast(self QWinEventNotifier, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(e)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	virtualReturn := gofunc((&QWinEventNotifier{h: self}).callVirtualBase_Event, slotval1)
+	virtualReturn := gofunc((&QWinEventNotifier{h: self}).callVirtualBase_Metacast, slotval1)
 
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QWinEventNotifier) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
-
-	return (bool)(QWinEventNotifier_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
-
-}
-func (this *QWinEventNotifier) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWinEventNotifier_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWinEventNotifier_EventFilter
-func miqt_exec_callback_QWinEventNotifier_EventFilter(self QWinEventNotifier, cb intptr_t, watched *QObject, event *QEvent) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQObject(watched)
-
-	slotval2 := newQEvent(event)
-
-	virtualReturn := gofunc((&QWinEventNotifier{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QWinEventNotifier) callVirtualBase_TimerEvent(event *QTimerEvent) {
-
-	QWinEventNotifier_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QWinEventNotifier) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWinEventNotifier_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWinEventNotifier_TimerEvent
-func miqt_exec_callback_QWinEventNotifier_TimerEvent(self QWinEventNotifier, cb intptr_t, event *QTimerEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQTimerEvent(event)
-
-	gofunc((&QWinEventNotifier{h: self}).callVirtualBase_TimerEvent, slotval1)
-
-}
-
-func (this *QWinEventNotifier) callVirtualBase_ChildEvent(event *QChildEvent) {
-
-	QWinEventNotifier_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QWinEventNotifier) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWinEventNotifier_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWinEventNotifier_ChildEvent
-func miqt_exec_callback_QWinEventNotifier_ChildEvent(self QWinEventNotifier, cb intptr_t, event *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(event)
-
-	gofunc((&QWinEventNotifier{h: self}).callVirtualBase_ChildEvent, slotval1)
-
-}
-
-func (this *QWinEventNotifier) callVirtualBase_CustomEvent(event *QEvent) {
-
-	QWinEventNotifier_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
-
-}
-func (this *QWinEventNotifier) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWinEventNotifier_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWinEventNotifier_CustomEvent
-func miqt_exec_callback_QWinEventNotifier_CustomEvent(self QWinEventNotifier, cb intptr_t, event *QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
-
-	gofunc((&QWinEventNotifier{h: self}).callVirtualBase_CustomEvent, slotval1)
-
-}
-
-func (this *QWinEventNotifier) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
-
-	QWinEventNotifier_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QWinEventNotifier) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWinEventNotifier_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWinEventNotifier_ConnectNotify
-func miqt_exec_callback_QWinEventNotifier_ConnectNotify(self QWinEventNotifier, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QWinEventNotifier{h: self}).callVirtualBase_ConnectNotify, slotval1)
-
-}
-
-func (this *QWinEventNotifier) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
-
-	QWinEventNotifier_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
-
-}
-func (this *QWinEventNotifier) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QWinEventNotifier_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QWinEventNotifier_DisconnectNotify
-func miqt_exec_callback_QWinEventNotifier_DisconnectNotify(self QWinEventNotifier, cb intptr_t, signal *QMetaMethod) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQMetaMethod(signal)
-
-	gofunc((&QWinEventNotifier{h: self}).callVirtualBase_DisconnectNotify, slotval1)
-
+	return virtualReturn
 }

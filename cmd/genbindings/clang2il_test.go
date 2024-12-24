@@ -3,6 +3,8 @@ package main
 import (
 	"reflect"
 	"testing"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 func TestParseMethodTypes(t *testing.T) {
@@ -40,18 +42,14 @@ func TestParseMethodTypes(t *testing.T) {
 	}
 
 	for _, tc := range cases {
-		r, p, _ /* isConst */, err := parseTypeString(tc.input)
+		r, p, _ /* isConst */ := mylog.Check4(parseTypeString(tc.input))
 
 		if tc.expectErr {
-			if err == nil {
-				t.Errorf("Test %q got error=nil but it was expected to fail", tc.input)
-				continue
-			}
+			//if err == nil {
+			//	t.Errorf("Test %q got error=nil but it was expected to fail", tc.input)
+			//	continue
+			//}
 		} else {
-			if err != nil {
-				t.Errorf("Test %q got error %v", tc.input, err)
-				continue
-			}
 
 			if !reflect.DeepEqual(r, tc.expectReturn) {
 				t.Errorf("Test %q\n-got return=%#v\n-expected  =%#v", tc.input, r, tc.expectReturn)

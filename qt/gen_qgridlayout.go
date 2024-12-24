@@ -11,7 +11,6 @@ type QGridLayout struct {
 
 // NewQGridLayout constructs a new QGridLayout object.
 func NewQGridLayout(parent *QWidget) *QGridLayout {
-
 	ret := newQGridLayout(QGridLayout_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
@@ -19,7 +18,6 @@ func NewQGridLayout(parent *QWidget) *QGridLayout {
 
 // NewQGridLayout2 constructs a new QGridLayout object.
 func NewQGridLayout2() *QGridLayout {
-
 	ret := newQGridLayout(QGridLayout_new2())
 	ret.isSubclass = true
 	return ret
@@ -262,584 +260,55 @@ func (this *QGridLayout) AddItem6(item *QLayoutItem, row int, column int, rowSpa
 	QGridLayout_AddItem6(this.h, item.cPointer(), (int)(row), (int)(column), (int)(rowSpan), (int)(columnSpan), (int)(param6))
 }
 
-func (this *QGridLayout) callVirtualBase_SizeHint() *QSize {
-
-	_goptr := newQSize(QGridLayout_virtualbase_SizeHint(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+func (this *QGridLayout) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGridLayout_virtualbase_MetaObject(unsafe.Pointer(this.h)))
 }
-func (this *QGridLayout) OnSizeHint(slot func(super func() *QSize) *QSize) {
+
+func (this *QGridLayout) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGridLayout_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGridLayout_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGridLayout_SizeHint
-func miqt_exec_callback_QGridLayout_SizeHint(self QGridLayout, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
+//export miqt_exec_callback_QGridLayout_MetaObject
+func miqt_exec_callback_QGridLayout_MetaObject(self QGridLayout, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_SizeHint)
+	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_MetaObject)
 
 	return virtualReturn.cPointer()
-
 }
 
-func (this *QGridLayout) callVirtualBase_MinimumSize() *QSize {
+func (this *QGridLayout) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
 
-	_goptr := newQSize(QGridLayout_virtualbase_MinimumSize(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
+	return (unsafe.Pointer)(QGridLayout_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
 }
-func (this *QGridLayout) OnMinimumSize(slot func(super func() *QSize) *QSize) {
+
+func (this *QGridLayout) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	QGridLayout_override_virtual_MinimumSize(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+	QGridLayout_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-//export miqt_exec_callback_QGridLayout_MinimumSize
-func miqt_exec_callback_QGridLayout_MinimumSize(self QGridLayout, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_MinimumSize)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_MaximumSize() *QSize {
-
-	_goptr := newQSize(QGridLayout_virtualbase_MaximumSize(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QGridLayout) OnMaximumSize(slot func(super func() *QSize) *QSize) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_MaximumSize(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_MaximumSize
-func miqt_exec_callback_QGridLayout_MaximumSize(self QGridLayout, cb intptr_t) *QSize {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_MaximumSize)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_SetSpacing(spacing int) {
-
-	QGridLayout_virtualbase_SetSpacing(unsafe.Pointer(this.h), (int)(spacing))
-
-}
-func (this *QGridLayout) OnSetSpacing(slot func(super func(spacing int), spacing int)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_SetSpacing(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_SetSpacing
-func miqt_exec_callback_QGridLayout_SetSpacing(self QGridLayout, cb intptr_t, spacing int) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(spacing int), spacing int))
+//export miqt_exec_callback_QGridLayout_Metacast
+func miqt_exec_callback_QGridLayout_Metacast(self QGridLayout, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(spacing)
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
 
-	gofunc((&QGridLayout{h: self}).callVirtualBase_SetSpacing, slotval1)
+	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_Metacast, slotval1)
 
-}
-
-func (this *QGridLayout) callVirtualBase_Spacing() int {
-
-	return (int)(QGridLayout_virtualbase_Spacing(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnSpacing(slot func(super func() int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_Spacing(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_Spacing
-func miqt_exec_callback_QGridLayout_Spacing(self QGridLayout, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_Spacing)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_HasHeightForWidth() bool {
-
-	return (bool)(QGridLayout_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnHasHeightForWidth(slot func(super func() bool) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_HasHeightForWidth(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_HasHeightForWidth
-func miqt_exec_callback_QGridLayout_HasHeightForWidth(self QGridLayout, cb intptr_t) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_HasHeightForWidth)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_HeightForWidth(param1 int) int {
-
-	return (int)(QGridLayout_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (int)(param1)))
-
-}
-func (this *QGridLayout) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_HeightForWidth(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_HeightForWidth
-func miqt_exec_callback_QGridLayout_HeightForWidth(self QGridLayout, cb intptr_t, param1 int) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 int) int, param1 int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(param1)
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_HeightForWidth, slotval1)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_MinimumHeightForWidth(param1 int) int {
-
-	return (int)(QGridLayout_virtualbase_MinimumHeightForWidth(unsafe.Pointer(this.h), (int)(param1)))
-
-}
-func (this *QGridLayout) OnMinimumHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_MinimumHeightForWidth(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_MinimumHeightForWidth
-func miqt_exec_callback_QGridLayout_MinimumHeightForWidth(self QGridLayout, cb intptr_t, param1 int) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 int) int, param1 int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(param1)
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_MinimumHeightForWidth, slotval1)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_ExpandingDirections() Orientation {
-
-	return (Orientation)(QGridLayout_virtualbase_ExpandingDirections(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnExpandingDirections(slot func(super func() Orientation) Orientation) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_ExpandingDirections(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_ExpandingDirections
-func miqt_exec_callback_QGridLayout_ExpandingDirections(self QGridLayout, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() Orientation) Orientation)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_ExpandingDirections)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_Invalidate() {
-
-	QGridLayout_virtualbase_Invalidate(unsafe.Pointer(this.h))
-
-}
-func (this *QGridLayout) OnInvalidate(slot func(super func())) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_Invalidate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_Invalidate
-func miqt_exec_callback_QGridLayout_Invalidate(self QGridLayout, cb intptr_t) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	gofunc((&QGridLayout{h: self}).callVirtualBase_Invalidate)
-
-}
-
-func (this *QGridLayout) callVirtualBase_ItemAt(index int) *QLayoutItem {
-
-	return newQLayoutItem(QGridLayout_virtualbase_ItemAt(unsafe.Pointer(this.h), (int)(index)))
-
-}
-func (this *QGridLayout) OnItemAt(slot func(super func(index int) *QLayoutItem, index int) *QLayoutItem) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_ItemAt(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_ItemAt
-func miqt_exec_callback_QGridLayout_ItemAt(self QGridLayout, cb intptr_t, index int) *QLayoutItem {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(index int) *QLayoutItem, index int) *QLayoutItem)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(index)
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_ItemAt, slotval1)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_TakeAt(index int) *QLayoutItem {
-
-	return newQLayoutItem(QGridLayout_virtualbase_TakeAt(unsafe.Pointer(this.h), (int)(index)))
-
-}
-func (this *QGridLayout) OnTakeAt(slot func(super func(index int) *QLayoutItem, index int) *QLayoutItem) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_TakeAt(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_TakeAt
-func miqt_exec_callback_QGridLayout_TakeAt(self QGridLayout, cb intptr_t, index int) *QLayoutItem {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(index int) *QLayoutItem, index int) *QLayoutItem)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (int)(index)
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_TakeAt, slotval1)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_Count() int {
-
-	return (int)(QGridLayout_virtualbase_Count(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnCount(slot func(super func() int) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_Count(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_Count
-func miqt_exec_callback_QGridLayout_Count(self QGridLayout, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_Count)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_SetGeometry(geometry *QRect) {
-
-	QGridLayout_virtualbase_SetGeometry(unsafe.Pointer(this.h), geometry.cPointer())
-
-}
-func (this *QGridLayout) OnSetGeometry(slot func(super func(geometry *QRect), geometry *QRect)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_SetGeometry(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_SetGeometry
-func miqt_exec_callback_QGridLayout_SetGeometry(self QGridLayout, cb intptr_t, geometry *QRect) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(geometry *QRect), geometry *QRect))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQRect(geometry)
-
-	gofunc((&QGridLayout{h: self}).callVirtualBase_SetGeometry, slotval1)
-
-}
-
-func (this *QGridLayout) callVirtualBase_AddItemWithQLayoutItem(param1 *QLayoutItem) {
-
-	QGridLayout_virtualbase_AddItemWithQLayoutItem(unsafe.Pointer(this.h), param1.cPointer())
-
-}
-func (this *QGridLayout) OnAddItemWithQLayoutItem(slot func(super func(param1 *QLayoutItem), param1 *QLayoutItem)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_AddItemWithQLayoutItem(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_AddItemWithQLayoutItem
-func miqt_exec_callback_QGridLayout_AddItemWithQLayoutItem(self QGridLayout, cb intptr_t, param1 *QLayoutItem) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QLayoutItem), param1 *QLayoutItem))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQLayoutItem(param1)
-
-	gofunc((&QGridLayout{h: self}).callVirtualBase_AddItemWithQLayoutItem, slotval1)
-
-}
-
-func (this *QGridLayout) callVirtualBase_Geometry() *QRect {
-
-	_goptr := newQRect(QGridLayout_virtualbase_Geometry(unsafe.Pointer(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-
-}
-func (this *QGridLayout) OnGeometry(slot func(super func() *QRect) *QRect) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_Geometry(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_Geometry
-func miqt_exec_callback_QGridLayout_Geometry(self QGridLayout, cb intptr_t) *QRect {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QRect) *QRect)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_Geometry)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_IndexOf(param1 *QWidget) int {
-
-	return (int)(QGridLayout_virtualbase_IndexOf(unsafe.Pointer(this.h), param1.cPointer()))
-
-}
-func (this *QGridLayout) OnIndexOf(slot func(super func(param1 *QWidget) int, param1 *QWidget) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_IndexOf(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_IndexOf
-func miqt_exec_callback_QGridLayout_IndexOf(self QGridLayout, cb intptr_t, param1 *QWidget) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QWidget) int, param1 *QWidget) int)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQWidget(param1)
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_IndexOf, slotval1)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_IsEmpty() bool {
-
-	return (bool)(QGridLayout_virtualbase_IsEmpty(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnIsEmpty(slot func(super func() bool) bool) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_IsEmpty(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_IsEmpty
-func miqt_exec_callback_QGridLayout_IsEmpty(self QGridLayout, cb intptr_t) bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_IsEmpty)
-
-	return (bool)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_ControlTypes() ControlType {
-
-	return (ControlType)(QGridLayout_virtualbase_ControlTypes(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnControlTypes(slot func(super func() ControlType) ControlType) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_ControlTypes(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_ControlTypes
-func miqt_exec_callback_QGridLayout_ControlTypes(self QGridLayout, cb intptr_t) int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() ControlType) ControlType)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_ControlTypes)
-
-	return (int)(virtualReturn)
-
-}
-
-func (this *QGridLayout) callVirtualBase_ReplaceWidget(from *QWidget, to *QWidget, options FindChildOption) *QLayoutItem {
-
-	return newQLayoutItem(QGridLayout_virtualbase_ReplaceWidget(unsafe.Pointer(this.h), from.cPointer(), to.cPointer(), (int)(options)))
-
-}
-func (this *QGridLayout) OnReplaceWidget(slot func(super func(from *QWidget, to *QWidget, options FindChildOption) *QLayoutItem, from *QWidget, to *QWidget, options FindChildOption) *QLayoutItem) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_ReplaceWidget(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_ReplaceWidget
-func miqt_exec_callback_QGridLayout_ReplaceWidget(self QGridLayout, cb intptr_t, from *QWidget, to *QWidget, options int) *QLayoutItem {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(from *QWidget, to *QWidget, options FindChildOption) *QLayoutItem, from *QWidget, to *QWidget, options FindChildOption) *QLayoutItem)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQWidget(from)
-
-	slotval2 := newQWidget(to)
-
-	slotval3 := (FindChildOption)(options)
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_ReplaceWidget, slotval1, slotval2, slotval3)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_Layout() *QLayout {
-
-	return newQLayout(QGridLayout_virtualbase_Layout(unsafe.Pointer(this.h)))
-
-}
-func (this *QGridLayout) OnLayout(slot func(super func() *QLayout) *QLayout) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_Layout(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_Layout
-func miqt_exec_callback_QGridLayout_Layout(self QGridLayout, cb intptr_t) *QLayout {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QLayout) *QLayout)
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	virtualReturn := gofunc((&QGridLayout{h: self}).callVirtualBase_Layout)
-
-	return virtualReturn.cPointer()
-
-}
-
-func (this *QGridLayout) callVirtualBase_ChildEvent(e *QChildEvent) {
-
-	QGridLayout_virtualbase_ChildEvent(unsafe.Pointer(this.h), e.cPointer())
-
-}
-func (this *QGridLayout) OnChildEvent(slot func(super func(e *QChildEvent), e *QChildEvent)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	QGridLayout_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QGridLayout_ChildEvent
-func miqt_exec_callback_QGridLayout_ChildEvent(self QGridLayout, cb intptr_t, e *QChildEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QChildEvent), e *QChildEvent))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := newQChildEvent(e)
-
-	gofunc((&QGridLayout{h: self}).callVirtualBase_ChildEvent, slotval1)
-
+	return virtualReturn
 }

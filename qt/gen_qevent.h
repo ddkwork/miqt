@@ -75,654 +75,946 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWindow QWindow;
 typedef struct QWindowStateChangeEvent QWindowStateChangeEvent;
 
-extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+extern __declspec(dllexport) 
+void _GUID_Delete(_GUID* self, bool isSubclass);
 
-extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+extern __declspec(dllexport) 
+void type_info_Delete(type_info* self, bool isSubclass);
 
-extern __declspec(dllexport) QInputEvent* QInputEvent_new(Type typeVal, QInputDevice* m_dev);
-extern __declspec(dllexport) QInputEvent* QInputEvent_new2(Type typeVal, QInputDevice* m_dev, int modifiers);
-extern __declspec(dllexport) void QInputEvent_virtbase(QInputEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QInputEvent* QInputEvent_Clone(const QInputEvent* self);
-extern __declspec(dllexport) QInputDevice* QInputEvent_Device(const QInputEvent* self);
-extern __declspec(dllexport) int QInputEvent_DeviceType(const QInputEvent* self);
-extern __declspec(dllexport) int QInputEvent_Modifiers(const QInputEvent* self);
-extern __declspec(dllexport) void QInputEvent_SetModifiers(QInputEvent* self, int modifiers);
-extern __declspec(dllexport) unsigned long long QInputEvent_Timestamp(const QInputEvent* self);
-extern __declspec(dllexport) void QInputEvent_SetTimestamp(QInputEvent* self, unsigned long long timestamp);
-extern __declspec(dllexport) void QInputEvent_override_virtual_Clone(void* self, intptr_t slot);
-QInputEvent* QInputEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QInputEvent_override_virtual_SetTimestamp(void* self, intptr_t slot);
-void QInputEvent_virtualbase_SetTimestamp(void* self, unsigned long long timestamp);
-extern __declspec(dllexport) void QInputEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QInputEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QInputEvent_Delete(QInputEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QInputEvent* QInputEvent_new(Type typeVal, QInputDevice* m_dev);
+extern __declspec(dllexport) 
+QInputEvent* QInputEvent_new2(Type typeVal, QInputDevice* m_dev, int modifiers);
+extern __declspec(dllexport) 
+void QInputEvent_virtbase(QInputEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QInputEvent* QInputEvent_Clone(const QInputEvent* self);
+extern __declspec(dllexport) 
+QInputDevice* QInputEvent_Device(const QInputEvent* self);
+extern __declspec(dllexport) 
+int QInputEvent_DeviceType(const QInputEvent* self);
+extern __declspec(dllexport) 
+int QInputEvent_Modifiers(const QInputEvent* self);
+extern __declspec(dllexport) 
+void QInputEvent_SetModifiers(QInputEvent* self, int modifiers);
+extern __declspec(dllexport) 
+unsigned long long QInputEvent_Timestamp(const QInputEvent* self);
+extern __declspec(dllexport) 
+void QInputEvent_SetTimestamp(QInputEvent* self, unsigned long long timestamp);
+extern __declspec(dllexport) 
+void QInputEvent_Delete(QInputEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QPointerEvent* QPointerEvent_new(Type typeVal, QPointingDevice* dev);
-extern __declspec(dllexport) QPointerEvent* QPointerEvent_new2(Type typeVal, QPointingDevice* dev, int modifiers);
-extern __declspec(dllexport) QPointerEvent* QPointerEvent_new3(Type typeVal, QPointingDevice* dev, int modifiers, struct miqt_array /* of QEventPoint* */  points);
-extern __declspec(dllexport) void QPointerEvent_virtbase(QPointerEvent* src, QInputEvent** outptr_QInputEvent);
-extern __declspec(dllexport) QPointerEvent* QPointerEvent_Clone(const QPointerEvent* self);
-extern __declspec(dllexport) QPointingDevice* QPointerEvent_PointingDevice(const QPointerEvent* self);
-extern __declspec(dllexport) int QPointerEvent_PointerType(const QPointerEvent* self);
-extern __declspec(dllexport) void QPointerEvent_SetTimestamp(QPointerEvent* self, unsigned long long timestamp);
-extern __declspec(dllexport) ptrdiff_t QPointerEvent_PointCount(const QPointerEvent* self);
-extern __declspec(dllexport) QEventPoint* QPointerEvent_Point(QPointerEvent* self, ptrdiff_t i);
-extern __declspec(dllexport) struct miqt_array /* of QEventPoint* */  QPointerEvent_Points(const QPointerEvent* self);
-extern __declspec(dllexport) QEventPoint* QPointerEvent_PointById(QPointerEvent* self, int id);
-extern __declspec(dllexport) bool QPointerEvent_AllPointsGrabbed(const QPointerEvent* self);
-extern __declspec(dllexport) bool QPointerEvent_IsBeginEvent(const QPointerEvent* self);
-extern __declspec(dllexport) bool QPointerEvent_IsUpdateEvent(const QPointerEvent* self);
-extern __declspec(dllexport) bool QPointerEvent_IsEndEvent(const QPointerEvent* self);
-extern __declspec(dllexport) bool QPointerEvent_AllPointsAccepted(const QPointerEvent* self);
-extern __declspec(dllexport) void QPointerEvent_SetAccepted(QPointerEvent* self, bool accepted);
-extern __declspec(dllexport) QObject* QPointerEvent_ExclusiveGrabber(const QPointerEvent* self, QEventPoint* point);
-extern __declspec(dllexport) void QPointerEvent_SetExclusiveGrabber(QPointerEvent* self, QEventPoint* point, QObject* exclusiveGrabber);
-extern __declspec(dllexport) void QPointerEvent_ClearPassiveGrabbers(QPointerEvent* self, QEventPoint* point);
-extern __declspec(dllexport) bool QPointerEvent_AddPassiveGrabber(QPointerEvent* self, QEventPoint* point, QObject* grabber);
-extern __declspec(dllexport) bool QPointerEvent_RemovePassiveGrabber(QPointerEvent* self, QEventPoint* point, QObject* grabber);
-extern __declspec(dllexport) void QPointerEvent_override_virtual_Clone(void* self, intptr_t slot);
-QPointerEvent* QPointerEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QPointerEvent_override_virtual_SetTimestamp(void* self, intptr_t slot);
-void QPointerEvent_virtualbase_SetTimestamp(void* self, unsigned long long timestamp);
-extern __declspec(dllexport) void QPointerEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QPointerEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QPointerEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QPointerEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QPointerEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QPointerEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QPointerEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QPointerEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QPointerEvent_Delete(QPointerEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QPointerEvent* QPointerEvent_new(Type typeVal, QPointingDevice* dev);
+extern __declspec(dllexport) 
+QPointerEvent* QPointerEvent_new2(Type typeVal, QPointingDevice* dev, int modifiers);
+extern __declspec(dllexport) 
+QPointerEvent* QPointerEvent_new3(Type typeVal, QPointingDevice* dev, int modifiers, struct miqt_array /* of QEventPoint* */  points);
+extern __declspec(dllexport) 
+void QPointerEvent_virtbase(QPointerEvent* src
+, QInputEvent** outptr_QInputEvent
+);
+extern __declspec(dllexport) 
+QPointerEvent* QPointerEvent_Clone(const QPointerEvent* self);
+extern __declspec(dllexport) 
+QPointingDevice* QPointerEvent_PointingDevice(const QPointerEvent* self);
+extern __declspec(dllexport) 
+int QPointerEvent_PointerType(const QPointerEvent* self);
+extern __declspec(dllexport) 
+void QPointerEvent_SetTimestamp(QPointerEvent* self, unsigned long long timestamp);
+extern __declspec(dllexport) 
+ptrdiff_t QPointerEvent_PointCount(const QPointerEvent* self);
+extern __declspec(dllexport) 
+QEventPoint* QPointerEvent_Point(QPointerEvent* self, ptrdiff_t i);
+extern __declspec(dllexport) 
+struct miqt_array /* of QEventPoint* */  QPointerEvent_Points(const QPointerEvent* self);
+extern __declspec(dllexport) 
+QEventPoint* QPointerEvent_PointById(QPointerEvent* self, int id);
+extern __declspec(dllexport) 
+bool QPointerEvent_AllPointsGrabbed(const QPointerEvent* self);
+extern __declspec(dllexport) 
+bool QPointerEvent_IsBeginEvent(const QPointerEvent* self);
+extern __declspec(dllexport) 
+bool QPointerEvent_IsUpdateEvent(const QPointerEvent* self);
+extern __declspec(dllexport) 
+bool QPointerEvent_IsEndEvent(const QPointerEvent* self);
+extern __declspec(dllexport) 
+bool QPointerEvent_AllPointsAccepted(const QPointerEvent* self);
+extern __declspec(dllexport) 
+void QPointerEvent_SetAccepted(QPointerEvent* self, bool accepted);
+extern __declspec(dllexport) 
+QObject* QPointerEvent_ExclusiveGrabber(const QPointerEvent* self, QEventPoint* point);
+extern __declspec(dllexport) 
+void QPointerEvent_SetExclusiveGrabber(QPointerEvent* self, QEventPoint* point, QObject* exclusiveGrabber);
+extern __declspec(dllexport) 
+void QPointerEvent_ClearPassiveGrabbers(QPointerEvent* self, QEventPoint* point);
+extern __declspec(dllexport) 
+bool QPointerEvent_AddPassiveGrabber(QPointerEvent* self, QEventPoint* point, QObject* grabber);
+extern __declspec(dllexport) 
+bool QPointerEvent_RemovePassiveGrabber(QPointerEvent* self, QEventPoint* point, QObject* grabber);
+extern __declspec(dllexport) 
+void QPointerEvent_Delete(QPointerEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) void QSinglePointEvent_virtbase(QSinglePointEvent* src, QPointerEvent** outptr_QPointerEvent);
-extern __declspec(dllexport) QSinglePointEvent* QSinglePointEvent_Clone(const QSinglePointEvent* self);
-extern __declspec(dllexport) int QSinglePointEvent_Button(const QSinglePointEvent* self);
-extern __declspec(dllexport) int QSinglePointEvent_Buttons(const QSinglePointEvent* self);
-extern __declspec(dllexport) QPointF* QSinglePointEvent_Position(const QSinglePointEvent* self);
-extern __declspec(dllexport) QPointF* QSinglePointEvent_ScenePosition(const QSinglePointEvent* self);
-extern __declspec(dllexport) QPointF* QSinglePointEvent_GlobalPosition(const QSinglePointEvent* self);
-extern __declspec(dllexport) bool QSinglePointEvent_IsBeginEvent(const QSinglePointEvent* self);
-extern __declspec(dllexport) bool QSinglePointEvent_IsUpdateEvent(const QSinglePointEvent* self);
-extern __declspec(dllexport) bool QSinglePointEvent_IsEndEvent(const QSinglePointEvent* self);
-extern __declspec(dllexport) QObject* QSinglePointEvent_ExclusivePointGrabber(const QSinglePointEvent* self);
-extern __declspec(dllexport) void QSinglePointEvent_SetExclusivePointGrabber(QSinglePointEvent* self, QObject* exclusiveGrabber);
-extern __declspec(dllexport) void QSinglePointEvent_Delete(QSinglePointEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+void QSinglePointEvent_virtbase(QSinglePointEvent* src
+, QPointerEvent** outptr_QPointerEvent
+);
+extern __declspec(dllexport) 
+QSinglePointEvent* QSinglePointEvent_Clone(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+int QSinglePointEvent_Button(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+int QSinglePointEvent_Buttons(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+QPointF* QSinglePointEvent_Position(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+QPointF* QSinglePointEvent_ScenePosition(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+QPointF* QSinglePointEvent_GlobalPosition(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+bool QSinglePointEvent_IsBeginEvent(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+bool QSinglePointEvent_IsUpdateEvent(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+bool QSinglePointEvent_IsEndEvent(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+QObject* QSinglePointEvent_ExclusivePointGrabber(const QSinglePointEvent* self);
+extern __declspec(dllexport) 
+void QSinglePointEvent_SetExclusivePointGrabber(QSinglePointEvent* self, QObject* exclusiveGrabber);
+extern __declspec(dllexport) 
+void QSinglePointEvent_Delete(QSinglePointEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QEnterEvent* QEnterEvent_new(QPointF* localPos, QPointF* scenePos, QPointF* globalPos);
-extern __declspec(dllexport) QEnterEvent* QEnterEvent_new2(QPointF* localPos, QPointF* scenePos, QPointF* globalPos, QPointingDevice* device);
-extern __declspec(dllexport) void QEnterEvent_virtbase(QEnterEvent* src, QSinglePointEvent** outptr_QSinglePointEvent);
-extern __declspec(dllexport) QEnterEvent* QEnterEvent_Clone(const QEnterEvent* self);
-extern __declspec(dllexport) QPoint* QEnterEvent_Pos(const QEnterEvent* self);
-extern __declspec(dllexport) QPoint* QEnterEvent_GlobalPos(const QEnterEvent* self);
-extern __declspec(dllexport) int QEnterEvent_X(const QEnterEvent* self);
-extern __declspec(dllexport) int QEnterEvent_Y(const QEnterEvent* self);
-extern __declspec(dllexport) int QEnterEvent_GlobalX(const QEnterEvent* self);
-extern __declspec(dllexport) int QEnterEvent_GlobalY(const QEnterEvent* self);
-extern __declspec(dllexport) QPointF* QEnterEvent_LocalPos(const QEnterEvent* self);
-extern __declspec(dllexport) QPointF* QEnterEvent_WindowPos(const QEnterEvent* self);
-extern __declspec(dllexport) QPointF* QEnterEvent_ScreenPos(const QEnterEvent* self);
-extern __declspec(dllexport) void QEnterEvent_override_virtual_Clone(void* self, intptr_t slot);
-QEnterEvent* QEnterEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QEnterEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QEnterEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QEnterEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QEnterEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QEnterEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QEnterEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QEnterEvent_Delete(QEnterEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QEnterEvent* QEnterEvent_new(QPointF* localPos, QPointF* scenePos, QPointF* globalPos);
+extern __declspec(dllexport) 
+QEnterEvent* QEnterEvent_new2(QPointF* localPos, QPointF* scenePos, QPointF* globalPos, QPointingDevice* device);
+extern __declspec(dllexport) 
+void QEnterEvent_virtbase(QEnterEvent* src
+, QSinglePointEvent** outptr_QSinglePointEvent
+);
+extern __declspec(dllexport) 
+QEnterEvent* QEnterEvent_Clone(const QEnterEvent* self);
+extern __declspec(dllexport) 
+QPoint* QEnterEvent_Pos(const QEnterEvent* self);
+extern __declspec(dllexport) 
+QPoint* QEnterEvent_GlobalPos(const QEnterEvent* self);
+extern __declspec(dllexport) 
+int QEnterEvent_X(const QEnterEvent* self);
+extern __declspec(dllexport) 
+int QEnterEvent_Y(const QEnterEvent* self);
+extern __declspec(dllexport) 
+int QEnterEvent_GlobalX(const QEnterEvent* self);
+extern __declspec(dllexport) 
+int QEnterEvent_GlobalY(const QEnterEvent* self);
+extern __declspec(dllexport) 
+QPointF* QEnterEvent_LocalPos(const QEnterEvent* self);
+extern __declspec(dllexport) 
+QPointF* QEnterEvent_WindowPos(const QEnterEvent* self);
+extern __declspec(dllexport) 
+QPointF* QEnterEvent_ScreenPos(const QEnterEvent* self);
+extern __declspec(dllexport) 
+void QEnterEvent_Delete(QEnterEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new(Type typeVal, QPointF* localPos, int button, int buttons, int modifiers);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new2(Type typeVal, QPointF* localPos, QPointF* globalPos, int button, int buttons, int modifiers);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new3(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new4(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers, int source);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new5(Type typeVal, QPointF* localPos, int button, int buttons, int modifiers, QPointingDevice* device);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new6(Type typeVal, QPointF* localPos, QPointF* globalPos, int button, int buttons, int modifiers, QPointingDevice* device);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new7(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers, QPointingDevice* device);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_new8(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers, int source, QPointingDevice* device);
-extern __declspec(dllexport) void QMouseEvent_virtbase(QMouseEvent* src, QSinglePointEvent** outptr_QSinglePointEvent);
-extern __declspec(dllexport) QMouseEvent* QMouseEvent_Clone(const QMouseEvent* self);
-extern __declspec(dllexport) QPoint* QMouseEvent_Pos(const QMouseEvent* self);
-extern __declspec(dllexport) QPoint* QMouseEvent_GlobalPos(const QMouseEvent* self);
-extern __declspec(dllexport) int QMouseEvent_X(const QMouseEvent* self);
-extern __declspec(dllexport) int QMouseEvent_Y(const QMouseEvent* self);
-extern __declspec(dllexport) int QMouseEvent_GlobalX(const QMouseEvent* self);
-extern __declspec(dllexport) int QMouseEvent_GlobalY(const QMouseEvent* self);
-extern __declspec(dllexport) QPointF* QMouseEvent_LocalPos(const QMouseEvent* self);
-extern __declspec(dllexport) QPointF* QMouseEvent_WindowPos(const QMouseEvent* self);
-extern __declspec(dllexport) QPointF* QMouseEvent_ScreenPos(const QMouseEvent* self);
-extern __declspec(dllexport) int QMouseEvent_Source(const QMouseEvent* self);
-extern __declspec(dllexport) int QMouseEvent_Flags(const QMouseEvent* self);
-extern __declspec(dllexport) void QMouseEvent_override_virtual_Clone(void* self, intptr_t slot);
-QMouseEvent* QMouseEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QMouseEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QMouseEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QMouseEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QMouseEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QMouseEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QMouseEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QMouseEvent_Delete(QMouseEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new(Type typeVal, QPointF* localPos, int button, int buttons, int modifiers);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new2(Type typeVal, QPointF* localPos, QPointF* globalPos, int button, int buttons, int modifiers);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new3(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new4(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers, int source);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new5(Type typeVal, QPointF* localPos, int button, int buttons, int modifiers, QPointingDevice* device);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new6(Type typeVal, QPointF* localPos, QPointF* globalPos, int button, int buttons, int modifiers, QPointingDevice* device);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new7(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers, QPointingDevice* device);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_new8(Type typeVal, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, int button, int buttons, int modifiers, int source, QPointingDevice* device);
+extern __declspec(dllexport) 
+void QMouseEvent_virtbase(QMouseEvent* src
+, QSinglePointEvent** outptr_QSinglePointEvent
+);
+extern __declspec(dllexport) 
+QMouseEvent* QMouseEvent_Clone(const QMouseEvent* self);
+extern __declspec(dllexport) 
+QPoint* QMouseEvent_Pos(const QMouseEvent* self);
+extern __declspec(dllexport) 
+QPoint* QMouseEvent_GlobalPos(const QMouseEvent* self);
+extern __declspec(dllexport) 
+int QMouseEvent_X(const QMouseEvent* self);
+extern __declspec(dllexport) 
+int QMouseEvent_Y(const QMouseEvent* self);
+extern __declspec(dllexport) 
+int QMouseEvent_GlobalX(const QMouseEvent* self);
+extern __declspec(dllexport) 
+int QMouseEvent_GlobalY(const QMouseEvent* self);
+extern __declspec(dllexport) 
+QPointF* QMouseEvent_LocalPos(const QMouseEvent* self);
+extern __declspec(dllexport) 
+QPointF* QMouseEvent_WindowPos(const QMouseEvent* self);
+extern __declspec(dllexport) 
+QPointF* QMouseEvent_ScreenPos(const QMouseEvent* self);
+extern __declspec(dllexport) 
+int QMouseEvent_Source(const QMouseEvent* self);
+extern __declspec(dllexport) 
+int QMouseEvent_Flags(const QMouseEvent* self);
+extern __declspec(dllexport) 
+void QMouseEvent_Delete(QMouseEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_new(Type typeVal, QPointF* scenePos, QPointF* globalPos, QPointF* oldPos);
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_new2(Type typeVal, QPointF* pos, QPointF* oldPos);
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_new3(Type typeVal, QPointF* scenePos, QPointF* globalPos, QPointF* oldPos, int modifiers);
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_new4(Type typeVal, QPointF* scenePos, QPointF* globalPos, QPointF* oldPos, int modifiers, QPointingDevice* device);
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_new5(Type typeVal, QPointF* pos, QPointF* oldPos, int modifiers);
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_new6(Type typeVal, QPointF* pos, QPointF* oldPos, int modifiers, QPointingDevice* device);
-extern __declspec(dllexport) void QHoverEvent_virtbase(QHoverEvent* src, QSinglePointEvent** outptr_QSinglePointEvent);
-extern __declspec(dllexport) QHoverEvent* QHoverEvent_Clone(const QHoverEvent* self);
-extern __declspec(dllexport) QPoint* QHoverEvent_Pos(const QHoverEvent* self);
-extern __declspec(dllexport) QPointF* QHoverEvent_PosF(const QHoverEvent* self);
-extern __declspec(dllexport) bool QHoverEvent_IsUpdateEvent(const QHoverEvent* self);
-extern __declspec(dllexport) QPoint* QHoverEvent_OldPos(const QHoverEvent* self);
-extern __declspec(dllexport) QPointF* QHoverEvent_OldPosF(const QHoverEvent* self);
-extern __declspec(dllexport) void QHoverEvent_override_virtual_Clone(void* self, intptr_t slot);
-QHoverEvent* QHoverEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QHoverEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QHoverEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QHoverEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QHoverEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QHoverEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QHoverEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QHoverEvent_Delete(QHoverEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_new(Type typeVal, QPointF* scenePos, QPointF* globalPos, QPointF* oldPos);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_new2(Type typeVal, QPointF* pos, QPointF* oldPos);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_new3(Type typeVal, QPointF* scenePos, QPointF* globalPos, QPointF* oldPos, int modifiers);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_new4(Type typeVal, QPointF* scenePos, QPointF* globalPos, QPointF* oldPos, int modifiers, QPointingDevice* device);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_new5(Type typeVal, QPointF* pos, QPointF* oldPos, int modifiers);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_new6(Type typeVal, QPointF* pos, QPointF* oldPos, int modifiers, QPointingDevice* device);
+extern __declspec(dllexport) 
+void QHoverEvent_virtbase(QHoverEvent* src
+, QSinglePointEvent** outptr_QSinglePointEvent
+);
+extern __declspec(dllexport) 
+QHoverEvent* QHoverEvent_Clone(const QHoverEvent* self);
+extern __declspec(dllexport) 
+QPoint* QHoverEvent_Pos(const QHoverEvent* self);
+extern __declspec(dllexport) 
+QPointF* QHoverEvent_PosF(const QHoverEvent* self);
+extern __declspec(dllexport) 
+bool QHoverEvent_IsUpdateEvent(const QHoverEvent* self);
+extern __declspec(dllexport) 
+QPoint* QHoverEvent_OldPos(const QHoverEvent* self);
+extern __declspec(dllexport) 
+QPointF* QHoverEvent_OldPosF(const QHoverEvent* self);
+extern __declspec(dllexport) 
+void QHoverEvent_Delete(QHoverEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QWheelEvent* QWheelEvent_new(QPointF* pos, QPointF* globalPos, QPoint* pixelDelta, QPoint* angleDelta, int buttons, int modifiers, int phase, bool inverted);
-extern __declspec(dllexport) QWheelEvent* QWheelEvent_new2(QPointF* pos, QPointF* globalPos, QPoint* pixelDelta, QPoint* angleDelta, int buttons, int modifiers, int phase, bool inverted, int source);
-extern __declspec(dllexport) QWheelEvent* QWheelEvent_new3(QPointF* pos, QPointF* globalPos, QPoint* pixelDelta, QPoint* angleDelta, int buttons, int modifiers, int phase, bool inverted, int source, QPointingDevice* device);
-extern __declspec(dllexport) void QWheelEvent_virtbase(QWheelEvent* src, QSinglePointEvent** outptr_QSinglePointEvent);
-extern __declspec(dllexport) QWheelEvent* QWheelEvent_Clone(const QWheelEvent* self);
-extern __declspec(dllexport) QPoint* QWheelEvent_PixelDelta(const QWheelEvent* self);
-extern __declspec(dllexport) QPoint* QWheelEvent_AngleDelta(const QWheelEvent* self);
-extern __declspec(dllexport) int QWheelEvent_Phase(const QWheelEvent* self);
-extern __declspec(dllexport) bool QWheelEvent_Inverted(const QWheelEvent* self);
-extern __declspec(dllexport) bool QWheelEvent_IsInverted(const QWheelEvent* self);
-extern __declspec(dllexport) bool QWheelEvent_HasPixelDelta(const QWheelEvent* self);
-extern __declspec(dllexport) bool QWheelEvent_IsBeginEvent(const QWheelEvent* self);
-extern __declspec(dllexport) bool QWheelEvent_IsUpdateEvent(const QWheelEvent* self);
-extern __declspec(dllexport) bool QWheelEvent_IsEndEvent(const QWheelEvent* self);
-extern __declspec(dllexport) int QWheelEvent_Source(const QWheelEvent* self);
-extern __declspec(dllexport) void QWheelEvent_override_virtual_Clone(void* self, intptr_t slot);
-QWheelEvent* QWheelEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QWheelEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QWheelEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QWheelEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QWheelEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QWheelEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QWheelEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QWheelEvent_Delete(QWheelEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QWheelEvent* QWheelEvent_new(QPointF* pos, QPointF* globalPos, QPoint* pixelDelta, QPoint* angleDelta, int buttons, int modifiers, int phase, bool inverted);
+extern __declspec(dllexport) 
+QWheelEvent* QWheelEvent_new2(QPointF* pos, QPointF* globalPos, QPoint* pixelDelta, QPoint* angleDelta, int buttons, int modifiers, int phase, bool inverted, int source);
+extern __declspec(dllexport) 
+QWheelEvent* QWheelEvent_new3(QPointF* pos, QPointF* globalPos, QPoint* pixelDelta, QPoint* angleDelta, int buttons, int modifiers, int phase, bool inverted, int source, QPointingDevice* device);
+extern __declspec(dllexport) 
+void QWheelEvent_virtbase(QWheelEvent* src
+, QSinglePointEvent** outptr_QSinglePointEvent
+);
+extern __declspec(dllexport) 
+QWheelEvent* QWheelEvent_Clone(const QWheelEvent* self);
+extern __declspec(dllexport) 
+QPoint* QWheelEvent_PixelDelta(const QWheelEvent* self);
+extern __declspec(dllexport) 
+QPoint* QWheelEvent_AngleDelta(const QWheelEvent* self);
+extern __declspec(dllexport) 
+int QWheelEvent_Phase(const QWheelEvent* self);
+extern __declspec(dllexport) 
+bool QWheelEvent_Inverted(const QWheelEvent* self);
+extern __declspec(dllexport) 
+bool QWheelEvent_IsInverted(const QWheelEvent* self);
+extern __declspec(dllexport) 
+bool QWheelEvent_HasPixelDelta(const QWheelEvent* self);
+extern __declspec(dllexport) 
+bool QWheelEvent_IsBeginEvent(const QWheelEvent* self);
+extern __declspec(dllexport) 
+bool QWheelEvent_IsUpdateEvent(const QWheelEvent* self);
+extern __declspec(dllexport) 
+bool QWheelEvent_IsEndEvent(const QWheelEvent* self);
+extern __declspec(dllexport) 
+int QWheelEvent_Source(const QWheelEvent* self);
+extern __declspec(dllexport) 
+void QWheelEvent_Delete(QWheelEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QTabletEvent* QTabletEvent_new(Type t, QPointingDevice* device, QPointF* pos, QPointF* globalPos, double pressure, float xTilt, float yTilt, float tangentialPressure, double rotation, float z, int keyState, int button, int buttons);
-extern __declspec(dllexport) void QTabletEvent_virtbase(QTabletEvent* src, QSinglePointEvent** outptr_QSinglePointEvent);
-extern __declspec(dllexport) QTabletEvent* QTabletEvent_Clone(const QTabletEvent* self);
-extern __declspec(dllexport) QPoint* QTabletEvent_Pos(const QTabletEvent* self);
-extern __declspec(dllexport) QPoint* QTabletEvent_GlobalPos(const QTabletEvent* self);
-extern __declspec(dllexport) QPointF* QTabletEvent_PosF(const QTabletEvent* self);
-extern __declspec(dllexport) QPointF* QTabletEvent_GlobalPosF(const QTabletEvent* self);
-extern __declspec(dllexport) int QTabletEvent_X(const QTabletEvent* self);
-extern __declspec(dllexport) int QTabletEvent_Y(const QTabletEvent* self);
-extern __declspec(dllexport) int QTabletEvent_GlobalX(const QTabletEvent* self);
-extern __declspec(dllexport) int QTabletEvent_GlobalY(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_HiResGlobalX(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_HiResGlobalY(const QTabletEvent* self);
-extern __declspec(dllexport) long long QTabletEvent_UniqueId(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_Pressure(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_Rotation(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_Z(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_TangentialPressure(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_XTilt(const QTabletEvent* self);
-extern __declspec(dllexport) double QTabletEvent_YTilt(const QTabletEvent* self);
-extern __declspec(dllexport) void QTabletEvent_override_virtual_Clone(void* self, intptr_t slot);
-QTabletEvent* QTabletEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QTabletEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QTabletEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QTabletEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QTabletEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QTabletEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QTabletEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QTabletEvent_Delete(QTabletEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTabletEvent* QTabletEvent_new(Type t, QPointingDevice* device, QPointF* pos, QPointF* globalPos, double pressure, float xTilt, float yTilt, float tangentialPressure, double rotation, float z, int keyState, int button, int buttons);
+extern __declspec(dllexport) 
+void QTabletEvent_virtbase(QTabletEvent* src
+, QSinglePointEvent** outptr_QSinglePointEvent
+);
+extern __declspec(dllexport) 
+QTabletEvent* QTabletEvent_Clone(const QTabletEvent* self);
+extern __declspec(dllexport) 
+QPoint* QTabletEvent_Pos(const QTabletEvent* self);
+extern __declspec(dllexport) 
+QPoint* QTabletEvent_GlobalPos(const QTabletEvent* self);
+extern __declspec(dllexport) 
+QPointF* QTabletEvent_PosF(const QTabletEvent* self);
+extern __declspec(dllexport) 
+QPointF* QTabletEvent_GlobalPosF(const QTabletEvent* self);
+extern __declspec(dllexport) 
+int QTabletEvent_X(const QTabletEvent* self);
+extern __declspec(dllexport) 
+int QTabletEvent_Y(const QTabletEvent* self);
+extern __declspec(dllexport) 
+int QTabletEvent_GlobalX(const QTabletEvent* self);
+extern __declspec(dllexport) 
+int QTabletEvent_GlobalY(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_HiResGlobalX(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_HiResGlobalY(const QTabletEvent* self);
+extern __declspec(dllexport) 
+long long QTabletEvent_UniqueId(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_Pressure(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_Rotation(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_Z(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_TangentialPressure(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_XTilt(const QTabletEvent* self);
+extern __declspec(dllexport) 
+double QTabletEvent_YTilt(const QTabletEvent* self);
+extern __declspec(dllexport) 
+void QTabletEvent_Delete(QTabletEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QNativeGestureEvent* QNativeGestureEvent_new(int typeVal, QPointingDevice* dev, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, double value, unsigned long long sequenceId, unsigned long long intArgument);
-extern __declspec(dllexport) QNativeGestureEvent* QNativeGestureEvent_new2(int typeVal, QPointingDevice* dev, int fingerCount, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, double value, QPointF* delta);
-extern __declspec(dllexport) QNativeGestureEvent* QNativeGestureEvent_new3(int typeVal, QPointingDevice* dev, int fingerCount, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, double value, QPointF* delta, unsigned long long sequenceId);
-extern __declspec(dllexport) void QNativeGestureEvent_virtbase(QNativeGestureEvent* src, QSinglePointEvent** outptr_QSinglePointEvent);
-extern __declspec(dllexport) QNativeGestureEvent* QNativeGestureEvent_Clone(const QNativeGestureEvent* self);
-extern __declspec(dllexport) int QNativeGestureEvent_GestureType(const QNativeGestureEvent* self);
-extern __declspec(dllexport) int QNativeGestureEvent_FingerCount(const QNativeGestureEvent* self);
-extern __declspec(dllexport) double QNativeGestureEvent_Value(const QNativeGestureEvent* self);
-extern __declspec(dllexport) QPointF* QNativeGestureEvent_Delta(const QNativeGestureEvent* self);
-extern __declspec(dllexport) QPoint* QNativeGestureEvent_Pos(const QNativeGestureEvent* self);
-extern __declspec(dllexport) QPoint* QNativeGestureEvent_GlobalPos(const QNativeGestureEvent* self);
-extern __declspec(dllexport) QPointF* QNativeGestureEvent_LocalPos(const QNativeGestureEvent* self);
-extern __declspec(dllexport) QPointF* QNativeGestureEvent_WindowPos(const QNativeGestureEvent* self);
-extern __declspec(dllexport) QPointF* QNativeGestureEvent_ScreenPos(const QNativeGestureEvent* self);
-extern __declspec(dllexport) void QNativeGestureEvent_override_virtual_Clone(void* self, intptr_t slot);
-QNativeGestureEvent* QNativeGestureEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QNativeGestureEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QNativeGestureEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QNativeGestureEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QNativeGestureEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QNativeGestureEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QNativeGestureEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QNativeGestureEvent_Delete(QNativeGestureEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QNativeGestureEvent* QNativeGestureEvent_new(int typeVal, QPointingDevice* dev, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, double value, unsigned long long sequenceId, unsigned long long intArgument);
+extern __declspec(dllexport) 
+QNativeGestureEvent* QNativeGestureEvent_new2(int typeVal, QPointingDevice* dev, int fingerCount, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, double value, QPointF* delta);
+extern __declspec(dllexport) 
+QNativeGestureEvent* QNativeGestureEvent_new3(int typeVal, QPointingDevice* dev, int fingerCount, QPointF* localPos, QPointF* scenePos, QPointF* globalPos, double value, QPointF* delta, unsigned long long sequenceId);
+extern __declspec(dllexport) 
+void QNativeGestureEvent_virtbase(QNativeGestureEvent* src
+, QSinglePointEvent** outptr_QSinglePointEvent
+);
+extern __declspec(dllexport) 
+QNativeGestureEvent* QNativeGestureEvent_Clone(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+int QNativeGestureEvent_GestureType(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+int QNativeGestureEvent_FingerCount(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+double QNativeGestureEvent_Value(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+QPointF* QNativeGestureEvent_Delta(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+QPoint* QNativeGestureEvent_Pos(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+QPoint* QNativeGestureEvent_GlobalPos(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+QPointF* QNativeGestureEvent_LocalPos(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+QPointF* QNativeGestureEvent_WindowPos(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+QPointF* QNativeGestureEvent_ScreenPos(const QNativeGestureEvent* self);
+extern __declspec(dllexport) 
+void QNativeGestureEvent_Delete(QNativeGestureEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new(Type typeVal, int key, int modifiers);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new2(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new3(Type typeVal, int key, int modifiers, struct miqt_string text);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new4(Type typeVal, int key, int modifiers, struct miqt_string text, bool autorep);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new5(Type typeVal, int key, int modifiers, struct miqt_string text, bool autorep, uint16_t count);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new6(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new7(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text, bool autorep);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new8(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text, bool autorep, uint16_t count);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_new9(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text, bool autorep, uint16_t count, QInputDevice* device);
-extern __declspec(dllexport) void QKeyEvent_virtbase(QKeyEvent* src, QInputEvent** outptr_QInputEvent);
-extern __declspec(dllexport) QKeyEvent* QKeyEvent_Clone(const QKeyEvent* self);
-extern __declspec(dllexport) int QKeyEvent_Key(const QKeyEvent* self);
-extern __declspec(dllexport) bool QKeyEvent_Matches(const QKeyEvent* self, int key);
-extern __declspec(dllexport) int QKeyEvent_Modifiers(const QKeyEvent* self);
-extern __declspec(dllexport) QKeyCombination* QKeyEvent_KeyCombination(const QKeyEvent* self);
-extern __declspec(dllexport) struct miqt_string QKeyEvent_Text(const QKeyEvent* self);
-extern __declspec(dllexport) bool QKeyEvent_IsAutoRepeat(const QKeyEvent* self);
-extern __declspec(dllexport) int QKeyEvent_Count(const QKeyEvent* self);
-extern __declspec(dllexport) unsigned int QKeyEvent_NativeScanCode(const QKeyEvent* self);
-extern __declspec(dllexport) unsigned int QKeyEvent_NativeVirtualKey(const QKeyEvent* self);
-extern __declspec(dllexport) unsigned int QKeyEvent_NativeModifiers(const QKeyEvent* self);
-extern __declspec(dllexport) void QKeyEvent_override_virtual_Clone(void* self, intptr_t slot);
-QKeyEvent* QKeyEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QKeyEvent_override_virtual_SetTimestamp(void* self, intptr_t slot);
-void QKeyEvent_virtualbase_SetTimestamp(void* self, unsigned long long timestamp);
-extern __declspec(dllexport) void QKeyEvent_Delete(QKeyEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new(Type typeVal, int key, int modifiers);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new2(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new3(Type typeVal, int key, int modifiers, struct miqt_string text);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new4(Type typeVal, int key, int modifiers, struct miqt_string text, bool autorep);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new5(Type typeVal, int key, int modifiers, struct miqt_string text, bool autorep, uint16_t count);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new6(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new7(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text, bool autorep);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new8(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text, bool autorep, uint16_t count);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_new9(Type typeVal, int key, int modifiers, unsigned int nativeScanCode, unsigned int nativeVirtualKey, unsigned int nativeModifiers, struct miqt_string text, bool autorep, uint16_t count, QInputDevice* device);
+extern __declspec(dllexport) 
+void QKeyEvent_virtbase(QKeyEvent* src
+, QInputEvent** outptr_QInputEvent
+);
+extern __declspec(dllexport) 
+QKeyEvent* QKeyEvent_Clone(const QKeyEvent* self);
+extern __declspec(dllexport) 
+int QKeyEvent_Key(const QKeyEvent* self);
+extern __declspec(dllexport) 
+bool QKeyEvent_Matches(const QKeyEvent* self, int key);
+extern __declspec(dllexport) 
+int QKeyEvent_Modifiers(const QKeyEvent* self);
+extern __declspec(dllexport) 
+QKeyCombination* QKeyEvent_KeyCombination(const QKeyEvent* self);
+extern __declspec(dllexport) 
+struct miqt_string QKeyEvent_Text(const QKeyEvent* self);
+extern __declspec(dllexport) 
+bool QKeyEvent_IsAutoRepeat(const QKeyEvent* self);
+extern __declspec(dllexport) 
+int QKeyEvent_Count(const QKeyEvent* self);
+extern __declspec(dllexport) 
+unsigned int QKeyEvent_NativeScanCode(const QKeyEvent* self);
+extern __declspec(dllexport) 
+unsigned int QKeyEvent_NativeVirtualKey(const QKeyEvent* self);
+extern __declspec(dllexport) 
+unsigned int QKeyEvent_NativeModifiers(const QKeyEvent* self);
+extern __declspec(dllexport) 
+void QKeyEvent_Delete(QKeyEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QFocusEvent* QFocusEvent_new(Type typeVal);
-extern __declspec(dllexport) QFocusEvent* QFocusEvent_new2(Type typeVal, int reason);
-extern __declspec(dllexport) void QFocusEvent_virtbase(QFocusEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QFocusEvent* QFocusEvent_Clone(const QFocusEvent* self);
-extern __declspec(dllexport) bool QFocusEvent_GotFocus(const QFocusEvent* self);
-extern __declspec(dllexport) bool QFocusEvent_LostFocus(const QFocusEvent* self);
-extern __declspec(dllexport) int QFocusEvent_Reason(const QFocusEvent* self);
-extern __declspec(dllexport) void QFocusEvent_override_virtual_Clone(void* self, intptr_t slot);
-QFocusEvent* QFocusEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QFocusEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QFocusEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QFocusEvent_Delete(QFocusEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QFocusEvent* QFocusEvent_new(Type typeVal);
+extern __declspec(dllexport) 
+QFocusEvent* QFocusEvent_new2(Type typeVal, int reason);
+extern __declspec(dllexport) 
+void QFocusEvent_virtbase(QFocusEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QFocusEvent* QFocusEvent_Clone(const QFocusEvent* self);
+extern __declspec(dllexport) 
+bool QFocusEvent_GotFocus(const QFocusEvent* self);
+extern __declspec(dllexport) 
+bool QFocusEvent_LostFocus(const QFocusEvent* self);
+extern __declspec(dllexport) 
+int QFocusEvent_Reason(const QFocusEvent* self);
+extern __declspec(dllexport) 
+void QFocusEvent_Delete(QFocusEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QPaintEvent* QPaintEvent_new(QRegion* paintRegion);
-extern __declspec(dllexport) QPaintEvent* QPaintEvent_new2(QRect* paintRect);
-extern __declspec(dllexport) void QPaintEvent_virtbase(QPaintEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QPaintEvent* QPaintEvent_Clone(const QPaintEvent* self);
-extern __declspec(dllexport) QRect* QPaintEvent_Rect(const QPaintEvent* self);
-extern __declspec(dllexport) QRegion* QPaintEvent_Region(const QPaintEvent* self);
-extern __declspec(dllexport) void QPaintEvent_override_virtual_Clone(void* self, intptr_t slot);
-QPaintEvent* QPaintEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QPaintEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QPaintEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QPaintEvent_Delete(QPaintEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QPaintEvent* QPaintEvent_new(QRegion* paintRegion);
+extern __declspec(dllexport) 
+QPaintEvent* QPaintEvent_new2(QRect* paintRect);
+extern __declspec(dllexport) 
+void QPaintEvent_virtbase(QPaintEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QPaintEvent* QPaintEvent_Clone(const QPaintEvent* self);
+extern __declspec(dllexport) 
+QRect* QPaintEvent_Rect(const QPaintEvent* self);
+extern __declspec(dllexport) 
+QRegion* QPaintEvent_Region(const QPaintEvent* self);
+extern __declspec(dllexport) 
+void QPaintEvent_Delete(QPaintEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QMoveEvent* QMoveEvent_new(QPoint* pos, QPoint* oldPos);
-extern __declspec(dllexport) void QMoveEvent_virtbase(QMoveEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QMoveEvent* QMoveEvent_Clone(const QMoveEvent* self);
-extern __declspec(dllexport) QPoint* QMoveEvent_Pos(const QMoveEvent* self);
-extern __declspec(dllexport) QPoint* QMoveEvent_OldPos(const QMoveEvent* self);
-extern __declspec(dllexport) void QMoveEvent_override_virtual_Clone(void* self, intptr_t slot);
-QMoveEvent* QMoveEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QMoveEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QMoveEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QMoveEvent_Delete(QMoveEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QMoveEvent* QMoveEvent_new(QPoint* pos, QPoint* oldPos);
+extern __declspec(dllexport) 
+void QMoveEvent_virtbase(QMoveEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QMoveEvent* QMoveEvent_Clone(const QMoveEvent* self);
+extern __declspec(dllexport) 
+QPoint* QMoveEvent_Pos(const QMoveEvent* self);
+extern __declspec(dllexport) 
+QPoint* QMoveEvent_OldPos(const QMoveEvent* self);
+extern __declspec(dllexport) 
+void QMoveEvent_Delete(QMoveEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QExposeEvent* QExposeEvent_new(QRegion* m_region);
-extern __declspec(dllexport) void QExposeEvent_virtbase(QExposeEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QExposeEvent* QExposeEvent_Clone(const QExposeEvent* self);
-extern __declspec(dllexport) QRegion* QExposeEvent_Region(const QExposeEvent* self);
-extern __declspec(dllexport) void QExposeEvent_override_virtual_Clone(void* self, intptr_t slot);
-QExposeEvent* QExposeEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QExposeEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QExposeEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QExposeEvent_Delete(QExposeEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QExposeEvent* QExposeEvent_new(QRegion* m_region);
+extern __declspec(dllexport) 
+void QExposeEvent_virtbase(QExposeEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QExposeEvent* QExposeEvent_Clone(const QExposeEvent* self);
+extern __declspec(dllexport) 
+QRegion* QExposeEvent_Region(const QExposeEvent* self);
+extern __declspec(dllexport) 
+void QExposeEvent_Delete(QExposeEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QPlatformSurfaceEvent* QPlatformSurfaceEvent_new(SurfaceEventType surfaceEventType);
-extern __declspec(dllexport) void QPlatformSurfaceEvent_virtbase(QPlatformSurfaceEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QPlatformSurfaceEvent* QPlatformSurfaceEvent_Clone(const QPlatformSurfaceEvent* self);
-extern __declspec(dllexport) SurfaceEventType QPlatformSurfaceEvent_SurfaceEventType(const QPlatformSurfaceEvent* self);
-extern __declspec(dllexport) void QPlatformSurfaceEvent_override_virtual_Clone(void* self, intptr_t slot);
-QPlatformSurfaceEvent* QPlatformSurfaceEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QPlatformSurfaceEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QPlatformSurfaceEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QPlatformSurfaceEvent_Delete(QPlatformSurfaceEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QPlatformSurfaceEvent* QPlatformSurfaceEvent_new(SurfaceEventType surfaceEventType);
+extern __declspec(dllexport) 
+void QPlatformSurfaceEvent_virtbase(QPlatformSurfaceEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QPlatformSurfaceEvent* QPlatformSurfaceEvent_Clone(const QPlatformSurfaceEvent* self);
+extern __declspec(dllexport) 
+SurfaceEventType QPlatformSurfaceEvent_SurfaceEventType(const QPlatformSurfaceEvent* self);
+extern __declspec(dllexport) 
+void QPlatformSurfaceEvent_Delete(QPlatformSurfaceEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QResizeEvent* QResizeEvent_new(QSize* size, QSize* oldSize);
-extern __declspec(dllexport) void QResizeEvent_virtbase(QResizeEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QResizeEvent* QResizeEvent_Clone(const QResizeEvent* self);
-extern __declspec(dllexport) QSize* QResizeEvent_Size(const QResizeEvent* self);
-extern __declspec(dllexport) QSize* QResizeEvent_OldSize(const QResizeEvent* self);
-extern __declspec(dllexport) void QResizeEvent_override_virtual_Clone(void* self, intptr_t slot);
-QResizeEvent* QResizeEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QResizeEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QResizeEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QResizeEvent_Delete(QResizeEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QResizeEvent* QResizeEvent_new(QSize* size, QSize* oldSize);
+extern __declspec(dllexport) 
+void QResizeEvent_virtbase(QResizeEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QResizeEvent* QResizeEvent_Clone(const QResizeEvent* self);
+extern __declspec(dllexport) 
+QSize* QResizeEvent_Size(const QResizeEvent* self);
+extern __declspec(dllexport) 
+QSize* QResizeEvent_OldSize(const QResizeEvent* self);
+extern __declspec(dllexport) 
+void QResizeEvent_Delete(QResizeEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QCloseEvent* QCloseEvent_new();
-extern __declspec(dllexport) void QCloseEvent_virtbase(QCloseEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QCloseEvent* QCloseEvent_Clone(const QCloseEvent* self);
-extern __declspec(dllexport) void QCloseEvent_override_virtual_Clone(void* self, intptr_t slot);
-QCloseEvent* QCloseEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QCloseEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QCloseEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QCloseEvent_Delete(QCloseEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QCloseEvent* QCloseEvent_new();
+extern __declspec(dllexport) 
+void QCloseEvent_virtbase(QCloseEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QCloseEvent* QCloseEvent_Clone(const QCloseEvent* self);
+extern __declspec(dllexport) 
+void QCloseEvent_Delete(QCloseEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QIconDragEvent* QIconDragEvent_new();
-extern __declspec(dllexport) void QIconDragEvent_virtbase(QIconDragEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QIconDragEvent* QIconDragEvent_Clone(const QIconDragEvent* self);
-extern __declspec(dllexport) void QIconDragEvent_override_virtual_Clone(void* self, intptr_t slot);
-QIconDragEvent* QIconDragEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QIconDragEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QIconDragEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QIconDragEvent_Delete(QIconDragEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QIconDragEvent* QIconDragEvent_new();
+extern __declspec(dllexport) 
+void QIconDragEvent_virtbase(QIconDragEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QIconDragEvent* QIconDragEvent_Clone(const QIconDragEvent* self);
+extern __declspec(dllexport) 
+void QIconDragEvent_Delete(QIconDragEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QShowEvent* QShowEvent_new();
-extern __declspec(dllexport) void QShowEvent_virtbase(QShowEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QShowEvent* QShowEvent_Clone(const QShowEvent* self);
-extern __declspec(dllexport) void QShowEvent_override_virtual_Clone(void* self, intptr_t slot);
-QShowEvent* QShowEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QShowEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QShowEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QShowEvent_Delete(QShowEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QShowEvent* QShowEvent_new();
+extern __declspec(dllexport) 
+void QShowEvent_virtbase(QShowEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QShowEvent* QShowEvent_Clone(const QShowEvent* self);
+extern __declspec(dllexport) 
+void QShowEvent_Delete(QShowEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QHideEvent* QHideEvent_new();
-extern __declspec(dllexport) void QHideEvent_virtbase(QHideEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QHideEvent* QHideEvent_Clone(const QHideEvent* self);
-extern __declspec(dllexport) void QHideEvent_override_virtual_Clone(void* self, intptr_t slot);
-QHideEvent* QHideEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QHideEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QHideEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QHideEvent_Delete(QHideEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QHideEvent* QHideEvent_new();
+extern __declspec(dllexport) 
+void QHideEvent_virtbase(QHideEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QHideEvent* QHideEvent_Clone(const QHideEvent* self);
+extern __declspec(dllexport) 
+void QHideEvent_Delete(QHideEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QContextMenuEvent* QContextMenuEvent_new(Reason reason, QPoint* pos, QPoint* globalPos);
-extern __declspec(dllexport) QContextMenuEvent* QContextMenuEvent_new2(Reason reason, QPoint* pos);
-extern __declspec(dllexport) QContextMenuEvent* QContextMenuEvent_new3(Reason reason, QPoint* pos, QPoint* globalPos, int modifiers);
-extern __declspec(dllexport) void QContextMenuEvent_virtbase(QContextMenuEvent* src, QInputEvent** outptr_QInputEvent);
-extern __declspec(dllexport) QContextMenuEvent* QContextMenuEvent_Clone(const QContextMenuEvent* self);
-extern __declspec(dllexport) int QContextMenuEvent_X(const QContextMenuEvent* self);
-extern __declspec(dllexport) int QContextMenuEvent_Y(const QContextMenuEvent* self);
-extern __declspec(dllexport) int QContextMenuEvent_GlobalX(const QContextMenuEvent* self);
-extern __declspec(dllexport) int QContextMenuEvent_GlobalY(const QContextMenuEvent* self);
-extern __declspec(dllexport) QPoint* QContextMenuEvent_Pos(const QContextMenuEvent* self);
-extern __declspec(dllexport) QPoint* QContextMenuEvent_GlobalPos(const QContextMenuEvent* self);
-extern __declspec(dllexport) Reason QContextMenuEvent_Reason(const QContextMenuEvent* self);
-extern __declspec(dllexport) void QContextMenuEvent_override_virtual_Clone(void* self, intptr_t slot);
-QContextMenuEvent* QContextMenuEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QContextMenuEvent_override_virtual_SetTimestamp(void* self, intptr_t slot);
-void QContextMenuEvent_virtualbase_SetTimestamp(void* self, unsigned long long timestamp);
-extern __declspec(dllexport) void QContextMenuEvent_Delete(QContextMenuEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QContextMenuEvent* QContextMenuEvent_new(Reason reason, QPoint* pos, QPoint* globalPos);
+extern __declspec(dllexport) 
+QContextMenuEvent* QContextMenuEvent_new2(Reason reason, QPoint* pos);
+extern __declspec(dllexport) 
+QContextMenuEvent* QContextMenuEvent_new3(Reason reason, QPoint* pos, QPoint* globalPos, int modifiers);
+extern __declspec(dllexport) 
+void QContextMenuEvent_virtbase(QContextMenuEvent* src
+, QInputEvent** outptr_QInputEvent
+);
+extern __declspec(dllexport) 
+QContextMenuEvent* QContextMenuEvent_Clone(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+int QContextMenuEvent_X(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+int QContextMenuEvent_Y(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+int QContextMenuEvent_GlobalX(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+int QContextMenuEvent_GlobalY(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+QPoint* QContextMenuEvent_Pos(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+QPoint* QContextMenuEvent_GlobalPos(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+Reason QContextMenuEvent_Reason(const QContextMenuEvent* self);
+extern __declspec(dllexport) 
+void QContextMenuEvent_Delete(QContextMenuEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QInputMethodEvent* QInputMethodEvent_new();
-extern __declspec(dllexport) QInputMethodEvent* QInputMethodEvent_new2(struct miqt_string preeditText, struct miqt_array /* of Attribute */  attributes);
-extern __declspec(dllexport) void QInputMethodEvent_virtbase(QInputMethodEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QInputMethodEvent* QInputMethodEvent_Clone(const QInputMethodEvent* self);
-extern __declspec(dllexport) void QInputMethodEvent_SetCommitString(QInputMethodEvent* self, struct miqt_string commitString);
-extern __declspec(dllexport) struct miqt_array /* of Attribute */  QInputMethodEvent_Attributes(const QInputMethodEvent* self);
-extern __declspec(dllexport) struct miqt_string QInputMethodEvent_PreeditString(const QInputMethodEvent* self);
-extern __declspec(dllexport) struct miqt_string QInputMethodEvent_CommitString(const QInputMethodEvent* self);
-extern __declspec(dllexport) int QInputMethodEvent_ReplacementStart(const QInputMethodEvent* self);
-extern __declspec(dllexport) int QInputMethodEvent_ReplacementLength(const QInputMethodEvent* self);
-extern __declspec(dllexport) void QInputMethodEvent_SetCommitString2(QInputMethodEvent* self, struct miqt_string commitString, int replaceFrom);
-extern __declspec(dllexport) void QInputMethodEvent_SetCommitString3(QInputMethodEvent* self, struct miqt_string commitString, int replaceFrom, int replaceLength);
-extern __declspec(dllexport) void QInputMethodEvent_override_virtual_Clone(void* self, intptr_t slot);
-QInputMethodEvent* QInputMethodEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QInputMethodEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QInputMethodEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QInputMethodEvent_Delete(QInputMethodEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QInputMethodEvent* QInputMethodEvent_new();
+extern __declspec(dllexport) 
+QInputMethodEvent* QInputMethodEvent_new2(struct miqt_string preeditText, struct miqt_array /* of Attribute */  attributes);
+extern __declspec(dllexport) 
+void QInputMethodEvent_virtbase(QInputMethodEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QInputMethodEvent* QInputMethodEvent_Clone(const QInputMethodEvent* self);
+extern __declspec(dllexport) 
+void QInputMethodEvent_SetCommitString(QInputMethodEvent* self, struct miqt_string commitString);
+extern __declspec(dllexport) 
+struct miqt_array /* of Attribute */  QInputMethodEvent_Attributes(const QInputMethodEvent* self);
+extern __declspec(dllexport) 
+struct miqt_string QInputMethodEvent_PreeditString(const QInputMethodEvent* self);
+extern __declspec(dllexport) 
+struct miqt_string QInputMethodEvent_CommitString(const QInputMethodEvent* self);
+extern __declspec(dllexport) 
+int QInputMethodEvent_ReplacementStart(const QInputMethodEvent* self);
+extern __declspec(dllexport) 
+int QInputMethodEvent_ReplacementLength(const QInputMethodEvent* self);
+extern __declspec(dllexport) 
+void QInputMethodEvent_SetCommitString2(QInputMethodEvent* self, struct miqt_string commitString, int replaceFrom);
+extern __declspec(dllexport) 
+void QInputMethodEvent_SetCommitString3(QInputMethodEvent* self, struct miqt_string commitString, int replaceFrom, int replaceLength);
+extern __declspec(dllexport) 
+void QInputMethodEvent_Delete(QInputMethodEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QInputMethodQueryEvent* QInputMethodQueryEvent_new(int queries);
-extern __declspec(dllexport) void QInputMethodQueryEvent_virtbase(QInputMethodQueryEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QInputMethodQueryEvent* QInputMethodQueryEvent_Clone(const QInputMethodQueryEvent* self);
-extern __declspec(dllexport) int QInputMethodQueryEvent_Queries(const QInputMethodQueryEvent* self);
-extern __declspec(dllexport) void QInputMethodQueryEvent_SetValue(QInputMethodQueryEvent* self, int query, QVariant* value);
-extern __declspec(dllexport) QVariant* QInputMethodQueryEvent_Value(const QInputMethodQueryEvent* self, int query);
-extern __declspec(dllexport) void QInputMethodQueryEvent_override_virtual_Clone(void* self, intptr_t slot);
-QInputMethodQueryEvent* QInputMethodQueryEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QInputMethodQueryEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QInputMethodQueryEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QInputMethodQueryEvent_Delete(QInputMethodQueryEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QInputMethodQueryEvent* QInputMethodQueryEvent_new(int queries);
+extern __declspec(dllexport) 
+void QInputMethodQueryEvent_virtbase(QInputMethodQueryEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QInputMethodQueryEvent* QInputMethodQueryEvent_Clone(const QInputMethodQueryEvent* self);
+extern __declspec(dllexport) 
+int QInputMethodQueryEvent_Queries(const QInputMethodQueryEvent* self);
+extern __declspec(dllexport) 
+void QInputMethodQueryEvent_SetValue(QInputMethodQueryEvent* self, int query, QVariant* value);
+extern __declspec(dllexport) 
+QVariant* QInputMethodQueryEvent_Value(const QInputMethodQueryEvent* self, int query);
+extern __declspec(dllexport) 
+void QInputMethodQueryEvent_Delete(QInputMethodQueryEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QDropEvent* QDropEvent_new(QPointF* pos, int actions, QMimeData* data, int buttons, int modifiers);
-extern __declspec(dllexport) QDropEvent* QDropEvent_new2(QPointF* pos, int actions, QMimeData* data, int buttons, int modifiers, Type typeVal);
-extern __declspec(dllexport) void QDropEvent_virtbase(QDropEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QDropEvent* QDropEvent_Clone(const QDropEvent* self);
-extern __declspec(dllexport) QPoint* QDropEvent_Pos(const QDropEvent* self);
-extern __declspec(dllexport) QPointF* QDropEvent_PosF(const QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_MouseButtons(const QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_KeyboardModifiers(const QDropEvent* self);
-extern __declspec(dllexport) QPointF* QDropEvent_Position(const QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_Buttons(const QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_Modifiers(const QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_PossibleActions(const QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_ProposedAction(const QDropEvent* self);
-extern __declspec(dllexport) void QDropEvent_AcceptProposedAction(QDropEvent* self);
-extern __declspec(dllexport) int QDropEvent_DropAction(const QDropEvent* self);
-extern __declspec(dllexport) void QDropEvent_SetDropAction(QDropEvent* self, int action);
-extern __declspec(dllexport) QObject* QDropEvent_Source(const QDropEvent* self);
-extern __declspec(dllexport) QMimeData* QDropEvent_MimeData(const QDropEvent* self);
-extern __declspec(dllexport) void QDropEvent_override_virtual_Clone(void* self, intptr_t slot);
-QDropEvent* QDropEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QDropEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QDropEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QDropEvent_Delete(QDropEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QDropEvent* QDropEvent_new(QPointF* pos, int actions, QMimeData* data, int buttons, int modifiers);
+extern __declspec(dllexport) 
+QDropEvent* QDropEvent_new2(QPointF* pos, int actions, QMimeData* data, int buttons, int modifiers, Type typeVal);
+extern __declspec(dllexport) 
+void QDropEvent_virtbase(QDropEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QDropEvent* QDropEvent_Clone(const QDropEvent* self);
+extern __declspec(dllexport) 
+QPoint* QDropEvent_Pos(const QDropEvent* self);
+extern __declspec(dllexport) 
+QPointF* QDropEvent_PosF(const QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_MouseButtons(const QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_KeyboardModifiers(const QDropEvent* self);
+extern __declspec(dllexport) 
+QPointF* QDropEvent_Position(const QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_Buttons(const QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_Modifiers(const QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_PossibleActions(const QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_ProposedAction(const QDropEvent* self);
+extern __declspec(dllexport) 
+void QDropEvent_AcceptProposedAction(QDropEvent* self);
+extern __declspec(dllexport) 
+int QDropEvent_DropAction(const QDropEvent* self);
+extern __declspec(dllexport) 
+void QDropEvent_SetDropAction(QDropEvent* self, int action);
+extern __declspec(dllexport) 
+QObject* QDropEvent_Source(const QDropEvent* self);
+extern __declspec(dllexport) 
+QMimeData* QDropEvent_MimeData(const QDropEvent* self);
+extern __declspec(dllexport) 
+void QDropEvent_Delete(QDropEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QDragMoveEvent* QDragMoveEvent_new(QPoint* pos, int actions, QMimeData* data, int buttons, int modifiers);
-extern __declspec(dllexport) QDragMoveEvent* QDragMoveEvent_new2(QPoint* pos, int actions, QMimeData* data, int buttons, int modifiers, Type typeVal);
-extern __declspec(dllexport) void QDragMoveEvent_virtbase(QDragMoveEvent* src, QDropEvent** outptr_QDropEvent);
-extern __declspec(dllexport) QDragMoveEvent* QDragMoveEvent_Clone(const QDragMoveEvent* self);
-extern __declspec(dllexport) QRect* QDragMoveEvent_AnswerRect(const QDragMoveEvent* self);
-extern __declspec(dllexport) void QDragMoveEvent_Accept(QDragMoveEvent* self);
-extern __declspec(dllexport) void QDragMoveEvent_Ignore(QDragMoveEvent* self);
-extern __declspec(dllexport) void QDragMoveEvent_AcceptWithQRect(QDragMoveEvent* self, QRect* r);
-extern __declspec(dllexport) void QDragMoveEvent_IgnoreWithQRect(QDragMoveEvent* self, QRect* r);
-extern __declspec(dllexport) void QDragMoveEvent_override_virtual_Clone(void* self, intptr_t slot);
-QDragMoveEvent* QDragMoveEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QDragMoveEvent_Delete(QDragMoveEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QDragMoveEvent* QDragMoveEvent_new(QPoint* pos, int actions, QMimeData* data, int buttons, int modifiers);
+extern __declspec(dllexport) 
+QDragMoveEvent* QDragMoveEvent_new2(QPoint* pos, int actions, QMimeData* data, int buttons, int modifiers, Type typeVal);
+extern __declspec(dllexport) 
+void QDragMoveEvent_virtbase(QDragMoveEvent* src
+, QDropEvent** outptr_QDropEvent
+);
+extern __declspec(dllexport) 
+QDragMoveEvent* QDragMoveEvent_Clone(const QDragMoveEvent* self);
+extern __declspec(dllexport) 
+QRect* QDragMoveEvent_AnswerRect(const QDragMoveEvent* self);
+extern __declspec(dllexport) 
+void QDragMoveEvent_Accept(QDragMoveEvent* self);
+extern __declspec(dllexport) 
+void QDragMoveEvent_Ignore(QDragMoveEvent* self);
+extern __declspec(dllexport) 
+void QDragMoveEvent_AcceptWithQRect(QDragMoveEvent* self, QRect* r);
+extern __declspec(dllexport) 
+void QDragMoveEvent_IgnoreWithQRect(QDragMoveEvent* self, QRect* r);
+extern __declspec(dllexport) 
+void QDragMoveEvent_Delete(QDragMoveEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QDragEnterEvent* QDragEnterEvent_new(QPoint* pos, int actions, QMimeData* data, int buttons, int modifiers);
-extern __declspec(dllexport) void QDragEnterEvent_virtbase(QDragEnterEvent* src, QDragMoveEvent** outptr_QDragMoveEvent);
-extern __declspec(dllexport) QDragEnterEvent* QDragEnterEvent_Clone(const QDragEnterEvent* self);
-extern __declspec(dllexport) void QDragEnterEvent_override_virtual_Clone(void* self, intptr_t slot);
-QDragEnterEvent* QDragEnterEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QDragEnterEvent_Delete(QDragEnterEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QDragEnterEvent* QDragEnterEvent_new(QPoint* pos, int actions, QMimeData* data, int buttons, int modifiers);
+extern __declspec(dllexport) 
+void QDragEnterEvent_virtbase(QDragEnterEvent* src
+, QDragMoveEvent** outptr_QDragMoveEvent
+);
+extern __declspec(dllexport) 
+QDragEnterEvent* QDragEnterEvent_Clone(const QDragEnterEvent* self);
+extern __declspec(dllexport) 
+void QDragEnterEvent_Delete(QDragEnterEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QDragLeaveEvent* QDragLeaveEvent_new();
-extern __declspec(dllexport) void QDragLeaveEvent_virtbase(QDragLeaveEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QDragLeaveEvent* QDragLeaveEvent_Clone(const QDragLeaveEvent* self);
-extern __declspec(dllexport) void QDragLeaveEvent_override_virtual_Clone(void* self, intptr_t slot);
-QDragLeaveEvent* QDragLeaveEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QDragLeaveEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QDragLeaveEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QDragLeaveEvent_Delete(QDragLeaveEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QDragLeaveEvent* QDragLeaveEvent_new();
+extern __declspec(dllexport) 
+void QDragLeaveEvent_virtbase(QDragLeaveEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QDragLeaveEvent* QDragLeaveEvent_Clone(const QDragLeaveEvent* self);
+extern __declspec(dllexport) 
+void QDragLeaveEvent_Delete(QDragLeaveEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QHelpEvent* QHelpEvent_new(Type typeVal, QPoint* pos, QPoint* globalPos);
-extern __declspec(dllexport) void QHelpEvent_virtbase(QHelpEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QHelpEvent* QHelpEvent_Clone(const QHelpEvent* self);
-extern __declspec(dllexport) int QHelpEvent_X(const QHelpEvent* self);
-extern __declspec(dllexport) int QHelpEvent_Y(const QHelpEvent* self);
-extern __declspec(dllexport) int QHelpEvent_GlobalX(const QHelpEvent* self);
-extern __declspec(dllexport) int QHelpEvent_GlobalY(const QHelpEvent* self);
-extern __declspec(dllexport) QPoint* QHelpEvent_Pos(const QHelpEvent* self);
-extern __declspec(dllexport) QPoint* QHelpEvent_GlobalPos(const QHelpEvent* self);
-extern __declspec(dllexport) void QHelpEvent_override_virtual_Clone(void* self, intptr_t slot);
-QHelpEvent* QHelpEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QHelpEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QHelpEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QHelpEvent_Delete(QHelpEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QHelpEvent* QHelpEvent_new(Type typeVal, QPoint* pos, QPoint* globalPos);
+extern __declspec(dllexport) 
+void QHelpEvent_virtbase(QHelpEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QHelpEvent* QHelpEvent_Clone(const QHelpEvent* self);
+extern __declspec(dllexport) 
+int QHelpEvent_X(const QHelpEvent* self);
+extern __declspec(dllexport) 
+int QHelpEvent_Y(const QHelpEvent* self);
+extern __declspec(dllexport) 
+int QHelpEvent_GlobalX(const QHelpEvent* self);
+extern __declspec(dllexport) 
+int QHelpEvent_GlobalY(const QHelpEvent* self);
+extern __declspec(dllexport) 
+QPoint* QHelpEvent_Pos(const QHelpEvent* self);
+extern __declspec(dllexport) 
+QPoint* QHelpEvent_GlobalPos(const QHelpEvent* self);
+extern __declspec(dllexport) 
+void QHelpEvent_Delete(QHelpEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QStatusTipEvent* QStatusTipEvent_new(struct miqt_string tip);
-extern __declspec(dllexport) void QStatusTipEvent_virtbase(QStatusTipEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QStatusTipEvent* QStatusTipEvent_Clone(const QStatusTipEvent* self);
-extern __declspec(dllexport) struct miqt_string QStatusTipEvent_Tip(const QStatusTipEvent* self);
-extern __declspec(dllexport) void QStatusTipEvent_override_virtual_Clone(void* self, intptr_t slot);
-QStatusTipEvent* QStatusTipEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QStatusTipEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QStatusTipEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QStatusTipEvent_Delete(QStatusTipEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QStatusTipEvent* QStatusTipEvent_new(struct miqt_string tip);
+extern __declspec(dllexport) 
+void QStatusTipEvent_virtbase(QStatusTipEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QStatusTipEvent* QStatusTipEvent_Clone(const QStatusTipEvent* self);
+extern __declspec(dllexport) 
+struct miqt_string QStatusTipEvent_Tip(const QStatusTipEvent* self);
+extern __declspec(dllexport) 
+void QStatusTipEvent_Delete(QStatusTipEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QWhatsThisClickedEvent* QWhatsThisClickedEvent_new(struct miqt_string href);
-extern __declspec(dllexport) void QWhatsThisClickedEvent_virtbase(QWhatsThisClickedEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QWhatsThisClickedEvent* QWhatsThisClickedEvent_Clone(const QWhatsThisClickedEvent* self);
-extern __declspec(dllexport) struct miqt_string QWhatsThisClickedEvent_Href(const QWhatsThisClickedEvent* self);
-extern __declspec(dllexport) void QWhatsThisClickedEvent_override_virtual_Clone(void* self, intptr_t slot);
-QWhatsThisClickedEvent* QWhatsThisClickedEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QWhatsThisClickedEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QWhatsThisClickedEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QWhatsThisClickedEvent_Delete(QWhatsThisClickedEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QWhatsThisClickedEvent* QWhatsThisClickedEvent_new(struct miqt_string href);
+extern __declspec(dllexport) 
+void QWhatsThisClickedEvent_virtbase(QWhatsThisClickedEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QWhatsThisClickedEvent* QWhatsThisClickedEvent_Clone(const QWhatsThisClickedEvent* self);
+extern __declspec(dllexport) 
+struct miqt_string QWhatsThisClickedEvent_Href(const QWhatsThisClickedEvent* self);
+extern __declspec(dllexport) 
+void QWhatsThisClickedEvent_Delete(QWhatsThisClickedEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QActionEvent* QActionEvent_new(int typeVal, QAction* action);
-extern __declspec(dllexport) QActionEvent* QActionEvent_new2(int typeVal, QAction* action, QAction* before);
-extern __declspec(dllexport) void QActionEvent_virtbase(QActionEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QActionEvent* QActionEvent_Clone(const QActionEvent* self);
-extern __declspec(dllexport) QAction* QActionEvent_Action(const QActionEvent* self);
-extern __declspec(dllexport) QAction* QActionEvent_Before(const QActionEvent* self);
-extern __declspec(dllexport) void QActionEvent_override_virtual_Clone(void* self, intptr_t slot);
-QActionEvent* QActionEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QActionEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QActionEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QActionEvent_Delete(QActionEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QActionEvent* QActionEvent_new(int typeVal, QAction* action);
+extern __declspec(dllexport) 
+QActionEvent* QActionEvent_new2(int typeVal, QAction* action, QAction* before);
+extern __declspec(dllexport) 
+void QActionEvent_virtbase(QActionEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QActionEvent* QActionEvent_Clone(const QActionEvent* self);
+extern __declspec(dllexport) 
+QAction* QActionEvent_Action(const QActionEvent* self);
+extern __declspec(dllexport) 
+QAction* QActionEvent_Before(const QActionEvent* self);
+extern __declspec(dllexport) 
+void QActionEvent_Delete(QActionEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QFileOpenEvent* QFileOpenEvent_new(struct miqt_string file);
-extern __declspec(dllexport) QFileOpenEvent* QFileOpenEvent_new2(QUrl* url);
-extern __declspec(dllexport) void QFileOpenEvent_virtbase(QFileOpenEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QFileOpenEvent* QFileOpenEvent_Clone(const QFileOpenEvent* self);
-extern __declspec(dllexport) struct miqt_string QFileOpenEvent_File(const QFileOpenEvent* self);
-extern __declspec(dllexport) QUrl* QFileOpenEvent_Url(const QFileOpenEvent* self);
-extern __declspec(dllexport) bool QFileOpenEvent_OpenFile(const QFileOpenEvent* self, QFile* file, int flags);
-extern __declspec(dllexport) void QFileOpenEvent_override_virtual_Clone(void* self, intptr_t slot);
-QFileOpenEvent* QFileOpenEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QFileOpenEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QFileOpenEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QFileOpenEvent_Delete(QFileOpenEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QFileOpenEvent* QFileOpenEvent_new(struct miqt_string file);
+extern __declspec(dllexport) 
+QFileOpenEvent* QFileOpenEvent_new2(QUrl* url);
+extern __declspec(dllexport) 
+void QFileOpenEvent_virtbase(QFileOpenEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QFileOpenEvent* QFileOpenEvent_Clone(const QFileOpenEvent* self);
+extern __declspec(dllexport) 
+struct miqt_string QFileOpenEvent_File(const QFileOpenEvent* self);
+extern __declspec(dllexport) 
+QUrl* QFileOpenEvent_Url(const QFileOpenEvent* self);
+extern __declspec(dllexport) 
+bool QFileOpenEvent_OpenFile(const QFileOpenEvent* self, QFile* file, int flags);
+extern __declspec(dllexport) 
+void QFileOpenEvent_Delete(QFileOpenEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QToolBarChangeEvent* QToolBarChangeEvent_new(bool t);
-extern __declspec(dllexport) void QToolBarChangeEvent_virtbase(QToolBarChangeEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QToolBarChangeEvent* QToolBarChangeEvent_Clone(const QToolBarChangeEvent* self);
-extern __declspec(dllexport) bool QToolBarChangeEvent_Toggle(const QToolBarChangeEvent* self);
-extern __declspec(dllexport) void QToolBarChangeEvent_override_virtual_Clone(void* self, intptr_t slot);
-QToolBarChangeEvent* QToolBarChangeEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QToolBarChangeEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QToolBarChangeEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QToolBarChangeEvent_Delete(QToolBarChangeEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QToolBarChangeEvent* QToolBarChangeEvent_new(bool t);
+extern __declspec(dllexport) 
+void QToolBarChangeEvent_virtbase(QToolBarChangeEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QToolBarChangeEvent* QToolBarChangeEvent_Clone(const QToolBarChangeEvent* self);
+extern __declspec(dllexport) 
+bool QToolBarChangeEvent_Toggle(const QToolBarChangeEvent* self);
+extern __declspec(dllexport) 
+void QToolBarChangeEvent_Delete(QToolBarChangeEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QShortcutEvent* QShortcutEvent_new(QKeySequence* key, int id);
-extern __declspec(dllexport) QShortcutEvent* QShortcutEvent_new2(QKeySequence* key);
-extern __declspec(dllexport) QShortcutEvent* QShortcutEvent_new3(QKeySequence* key, int id, bool ambiguous);
-extern __declspec(dllexport) QShortcutEvent* QShortcutEvent_new4(QKeySequence* key, QShortcut* shortcut);
-extern __declspec(dllexport) QShortcutEvent* QShortcutEvent_new5(QKeySequence* key, QShortcut* shortcut, bool ambiguous);
-extern __declspec(dllexport) void QShortcutEvent_virtbase(QShortcutEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QShortcutEvent* QShortcutEvent_Clone(const QShortcutEvent* self);
-extern __declspec(dllexport) QKeySequence* QShortcutEvent_Key(const QShortcutEvent* self);
-extern __declspec(dllexport) int QShortcutEvent_ShortcutId(const QShortcutEvent* self);
-extern __declspec(dllexport) bool QShortcutEvent_IsAmbiguous(const QShortcutEvent* self);
-extern __declspec(dllexport) void QShortcutEvent_override_virtual_Clone(void* self, intptr_t slot);
-QShortcutEvent* QShortcutEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QShortcutEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QShortcutEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QShortcutEvent_Delete(QShortcutEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QShortcutEvent* QShortcutEvent_new(QKeySequence* key, int id);
+extern __declspec(dllexport) 
+QShortcutEvent* QShortcutEvent_new2(QKeySequence* key);
+extern __declspec(dllexport) 
+QShortcutEvent* QShortcutEvent_new3(QKeySequence* key, int id, bool ambiguous);
+extern __declspec(dllexport) 
+QShortcutEvent* QShortcutEvent_new4(QKeySequence* key, QShortcut* shortcut);
+extern __declspec(dllexport) 
+QShortcutEvent* QShortcutEvent_new5(QKeySequence* key, QShortcut* shortcut, bool ambiguous);
+extern __declspec(dllexport) 
+void QShortcutEvent_virtbase(QShortcutEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QShortcutEvent* QShortcutEvent_Clone(const QShortcutEvent* self);
+extern __declspec(dllexport) 
+QKeySequence* QShortcutEvent_Key(const QShortcutEvent* self);
+extern __declspec(dllexport) 
+int QShortcutEvent_ShortcutId(const QShortcutEvent* self);
+extern __declspec(dllexport) 
+bool QShortcutEvent_IsAmbiguous(const QShortcutEvent* self);
+extern __declspec(dllexport) 
+void QShortcutEvent_Delete(QShortcutEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QWindowStateChangeEvent* QWindowStateChangeEvent_new(int oldState);
-extern __declspec(dllexport) QWindowStateChangeEvent* QWindowStateChangeEvent_new2(int oldState, bool isOverride);
-extern __declspec(dllexport) void QWindowStateChangeEvent_virtbase(QWindowStateChangeEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QWindowStateChangeEvent* QWindowStateChangeEvent_Clone(const QWindowStateChangeEvent* self);
-extern __declspec(dllexport) int QWindowStateChangeEvent_OldState(const QWindowStateChangeEvent* self);
-extern __declspec(dllexport) bool QWindowStateChangeEvent_IsOverride(const QWindowStateChangeEvent* self);
-extern __declspec(dllexport) void QWindowStateChangeEvent_override_virtual_Clone(void* self, intptr_t slot);
-QWindowStateChangeEvent* QWindowStateChangeEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QWindowStateChangeEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QWindowStateChangeEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QWindowStateChangeEvent_Delete(QWindowStateChangeEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QWindowStateChangeEvent* QWindowStateChangeEvent_new(int oldState);
+extern __declspec(dllexport) 
+QWindowStateChangeEvent* QWindowStateChangeEvent_new2(int oldState, bool isOverride);
+extern __declspec(dllexport) 
+void QWindowStateChangeEvent_virtbase(QWindowStateChangeEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QWindowStateChangeEvent* QWindowStateChangeEvent_Clone(const QWindowStateChangeEvent* self);
+extern __declspec(dllexport) 
+int QWindowStateChangeEvent_OldState(const QWindowStateChangeEvent* self);
+extern __declspec(dllexport) 
+bool QWindowStateChangeEvent_IsOverride(const QWindowStateChangeEvent* self);
+extern __declspec(dllexport) 
+void QWindowStateChangeEvent_Delete(QWindowStateChangeEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_new(int eventType);
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_new2(int eventType, QPointingDevice* device, int modifiers, int touchPointStates);
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_new3(int eventType, QPointingDevice* device);
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_new4(int eventType, QPointingDevice* device, int modifiers);
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_new5(int eventType, QPointingDevice* device, int modifiers, struct miqt_array /* of QEventPoint* */  touchPoints);
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_new6(int eventType, QPointingDevice* device, int modifiers, int touchPointStates, struct miqt_array /* of QEventPoint* */  touchPoints);
-extern __declspec(dllexport) void QTouchEvent_virtbase(QTouchEvent* src, QPointerEvent** outptr_QPointerEvent);
-extern __declspec(dllexport) QTouchEvent* QTouchEvent_Clone(const QTouchEvent* self);
-extern __declspec(dllexport) QObject* QTouchEvent_Target(const QTouchEvent* self);
-extern __declspec(dllexport) int QTouchEvent_TouchPointStates(const QTouchEvent* self);
-extern __declspec(dllexport) struct miqt_array /* of QEventPoint* */  QTouchEvent_TouchPoints(const QTouchEvent* self);
-extern __declspec(dllexport) bool QTouchEvent_IsBeginEvent(const QTouchEvent* self);
-extern __declspec(dllexport) bool QTouchEvent_IsUpdateEvent(const QTouchEvent* self);
-extern __declspec(dllexport) bool QTouchEvent_IsEndEvent(const QTouchEvent* self);
-extern __declspec(dllexport) void QTouchEvent_override_virtual_Clone(void* self, intptr_t slot);
-QTouchEvent* QTouchEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QTouchEvent_override_virtual_IsBeginEvent(void* self, intptr_t slot);
-bool QTouchEvent_virtualbase_IsBeginEvent(const void* self);
-extern __declspec(dllexport) void QTouchEvent_override_virtual_IsUpdateEvent(void* self, intptr_t slot);
-bool QTouchEvent_virtualbase_IsUpdateEvent(const void* self);
-extern __declspec(dllexport) void QTouchEvent_override_virtual_IsEndEvent(void* self, intptr_t slot);
-bool QTouchEvent_virtualbase_IsEndEvent(const void* self);
-extern __declspec(dllexport) void QTouchEvent_override_virtual_SetTimestamp(void* self, intptr_t slot);
-void QTouchEvent_virtualbase_SetTimestamp(void* self, unsigned long long timestamp);
-extern __declspec(dllexport) void QTouchEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QTouchEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QTouchEvent_Delete(QTouchEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_new(int eventType);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_new2(int eventType, QPointingDevice* device, int modifiers, int touchPointStates);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_new3(int eventType, QPointingDevice* device);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_new4(int eventType, QPointingDevice* device, int modifiers);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_new5(int eventType, QPointingDevice* device, int modifiers, struct miqt_array /* of QEventPoint* */  touchPoints);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_new6(int eventType, QPointingDevice* device, int modifiers, int touchPointStates, struct miqt_array /* of QEventPoint* */  touchPoints);
+extern __declspec(dllexport) 
+void QTouchEvent_virtbase(QTouchEvent* src
+, QPointerEvent** outptr_QPointerEvent
+);
+extern __declspec(dllexport) 
+QTouchEvent* QTouchEvent_Clone(const QTouchEvent* self);
+extern __declspec(dllexport) 
+QObject* QTouchEvent_Target(const QTouchEvent* self);
+extern __declspec(dllexport) 
+int QTouchEvent_TouchPointStates(const QTouchEvent* self);
+extern __declspec(dllexport) 
+struct miqt_array /* of QEventPoint* */  QTouchEvent_TouchPoints(const QTouchEvent* self);
+extern __declspec(dllexport) 
+bool QTouchEvent_IsBeginEvent(const QTouchEvent* self);
+extern __declspec(dllexport) 
+bool QTouchEvent_IsUpdateEvent(const QTouchEvent* self);
+extern __declspec(dllexport) 
+bool QTouchEvent_IsEndEvent(const QTouchEvent* self);
+extern __declspec(dllexport) 
+void QTouchEvent_Delete(QTouchEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QScrollPrepareEvent* QScrollPrepareEvent_new(QPointF* startPos);
-extern __declspec(dllexport) void QScrollPrepareEvent_virtbase(QScrollPrepareEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QScrollPrepareEvent* QScrollPrepareEvent_Clone(const QScrollPrepareEvent* self);
-extern __declspec(dllexport) QPointF* QScrollPrepareEvent_StartPos(const QScrollPrepareEvent* self);
-extern __declspec(dllexport) QSizeF* QScrollPrepareEvent_ViewportSize(const QScrollPrepareEvent* self);
-extern __declspec(dllexport) QRectF* QScrollPrepareEvent_ContentPosRange(const QScrollPrepareEvent* self);
-extern __declspec(dllexport) QPointF* QScrollPrepareEvent_ContentPos(const QScrollPrepareEvent* self);
-extern __declspec(dllexport) void QScrollPrepareEvent_SetViewportSize(QScrollPrepareEvent* self, QSizeF* size);
-extern __declspec(dllexport) void QScrollPrepareEvent_SetContentPosRange(QScrollPrepareEvent* self, QRectF* rect);
-extern __declspec(dllexport) void QScrollPrepareEvent_SetContentPos(QScrollPrepareEvent* self, QPointF* pos);
-extern __declspec(dllexport) void QScrollPrepareEvent_override_virtual_Clone(void* self, intptr_t slot);
-QScrollPrepareEvent* QScrollPrepareEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QScrollPrepareEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QScrollPrepareEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QScrollPrepareEvent_Delete(QScrollPrepareEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QScrollPrepareEvent* QScrollPrepareEvent_new(QPointF* startPos);
+extern __declspec(dllexport) 
+void QScrollPrepareEvent_virtbase(QScrollPrepareEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QScrollPrepareEvent* QScrollPrepareEvent_Clone(const QScrollPrepareEvent* self);
+extern __declspec(dllexport) 
+QPointF* QScrollPrepareEvent_StartPos(const QScrollPrepareEvent* self);
+extern __declspec(dllexport) 
+QSizeF* QScrollPrepareEvent_ViewportSize(const QScrollPrepareEvent* self);
+extern __declspec(dllexport) 
+QRectF* QScrollPrepareEvent_ContentPosRange(const QScrollPrepareEvent* self);
+extern __declspec(dllexport) 
+QPointF* QScrollPrepareEvent_ContentPos(const QScrollPrepareEvent* self);
+extern __declspec(dllexport) 
+void QScrollPrepareEvent_SetViewportSize(QScrollPrepareEvent* self, QSizeF* size);
+extern __declspec(dllexport) 
+void QScrollPrepareEvent_SetContentPosRange(QScrollPrepareEvent* self, QRectF* rect);
+extern __declspec(dllexport) 
+void QScrollPrepareEvent_SetContentPos(QScrollPrepareEvent* self, QPointF* pos);
+extern __declspec(dllexport) 
+void QScrollPrepareEvent_Delete(QScrollPrepareEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QScrollEvent* QScrollEvent_new(QPointF* contentPos, QPointF* overshoot, ScrollState scrollState);
-extern __declspec(dllexport) void QScrollEvent_virtbase(QScrollEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QScrollEvent* QScrollEvent_Clone(const QScrollEvent* self);
-extern __declspec(dllexport) QPointF* QScrollEvent_ContentPos(const QScrollEvent* self);
-extern __declspec(dllexport) QPointF* QScrollEvent_OvershootDistance(const QScrollEvent* self);
-extern __declspec(dllexport) ScrollState QScrollEvent_ScrollState(const QScrollEvent* self);
-extern __declspec(dllexport) void QScrollEvent_override_virtual_Clone(void* self, intptr_t slot);
-QScrollEvent* QScrollEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QScrollEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QScrollEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QScrollEvent_Delete(QScrollEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QScrollEvent* QScrollEvent_new(QPointF* contentPos, QPointF* overshoot, ScrollState scrollState);
+extern __declspec(dllexport) 
+void QScrollEvent_virtbase(QScrollEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QScrollEvent* QScrollEvent_Clone(const QScrollEvent* self);
+extern __declspec(dllexport) 
+QPointF* QScrollEvent_ContentPos(const QScrollEvent* self);
+extern __declspec(dllexport) 
+QPointF* QScrollEvent_OvershootDistance(const QScrollEvent* self);
+extern __declspec(dllexport) 
+ScrollState QScrollEvent_ScrollState(const QScrollEvent* self);
+extern __declspec(dllexport) 
+void QScrollEvent_Delete(QScrollEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QScreenOrientationChangeEvent* QScreenOrientationChangeEvent_new(QScreen* screen, int orientation);
-extern __declspec(dllexport) void QScreenOrientationChangeEvent_virtbase(QScreenOrientationChangeEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QScreenOrientationChangeEvent* QScreenOrientationChangeEvent_Clone(const QScreenOrientationChangeEvent* self);
-extern __declspec(dllexport) QScreen* QScreenOrientationChangeEvent_Screen(const QScreenOrientationChangeEvent* self);
-extern __declspec(dllexport) int QScreenOrientationChangeEvent_Orientation(const QScreenOrientationChangeEvent* self);
-extern __declspec(dllexport) void QScreenOrientationChangeEvent_override_virtual_Clone(void* self, intptr_t slot);
-QScreenOrientationChangeEvent* QScreenOrientationChangeEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QScreenOrientationChangeEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QScreenOrientationChangeEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QScreenOrientationChangeEvent_Delete(QScreenOrientationChangeEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QScreenOrientationChangeEvent* QScreenOrientationChangeEvent_new(QScreen* screen, int orientation);
+extern __declspec(dllexport) 
+void QScreenOrientationChangeEvent_virtbase(QScreenOrientationChangeEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QScreenOrientationChangeEvent* QScreenOrientationChangeEvent_Clone(const QScreenOrientationChangeEvent* self);
+extern __declspec(dllexport) 
+QScreen* QScreenOrientationChangeEvent_Screen(const QScreenOrientationChangeEvent* self);
+extern __declspec(dllexport) 
+int QScreenOrientationChangeEvent_Orientation(const QScreenOrientationChangeEvent* self);
+extern __declspec(dllexport) 
+void QScreenOrientationChangeEvent_Delete(QScreenOrientationChangeEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QApplicationStateChangeEvent* QApplicationStateChangeEvent_new(int state);
-extern __declspec(dllexport) void QApplicationStateChangeEvent_virtbase(QApplicationStateChangeEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QApplicationStateChangeEvent* QApplicationStateChangeEvent_Clone(const QApplicationStateChangeEvent* self);
-extern __declspec(dllexport) int QApplicationStateChangeEvent_ApplicationState(const QApplicationStateChangeEvent* self);
-extern __declspec(dllexport) void QApplicationStateChangeEvent_override_virtual_Clone(void* self, intptr_t slot);
-QApplicationStateChangeEvent* QApplicationStateChangeEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QApplicationStateChangeEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QApplicationStateChangeEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QApplicationStateChangeEvent_Delete(QApplicationStateChangeEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QApplicationStateChangeEvent* QApplicationStateChangeEvent_new(int state);
+extern __declspec(dllexport) 
+void QApplicationStateChangeEvent_virtbase(QApplicationStateChangeEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QApplicationStateChangeEvent* QApplicationStateChangeEvent_Clone(const QApplicationStateChangeEvent* self);
+extern __declspec(dllexport) 
+int QApplicationStateChangeEvent_ApplicationState(const QApplicationStateChangeEvent* self);
+extern __declspec(dllexport) 
+void QApplicationStateChangeEvent_Delete(QApplicationStateChangeEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QChildWindowEvent* QChildWindowEvent_new(Type typeVal, QWindow* childWindow);
-extern __declspec(dllexport) void QChildWindowEvent_virtbase(QChildWindowEvent* src, QEvent** outptr_QEvent);
-extern __declspec(dllexport) QChildWindowEvent* QChildWindowEvent_Clone(const QChildWindowEvent* self);
-extern __declspec(dllexport) QWindow* QChildWindowEvent_Child(const QChildWindowEvent* self);
-extern __declspec(dllexport) void QChildWindowEvent_override_virtual_Clone(void* self, intptr_t slot);
-QChildWindowEvent* QChildWindowEvent_virtualbase_Clone(const void* self);
-extern __declspec(dllexport) void QChildWindowEvent_override_virtual_SetAccepted(void* self, intptr_t slot);
-void QChildWindowEvent_virtualbase_SetAccepted(void* self, bool accepted);
-extern __declspec(dllexport) void QChildWindowEvent_Delete(QChildWindowEvent* self, bool isSubclass);
+extern __declspec(dllexport) 
+QChildWindowEvent* QChildWindowEvent_new(Type typeVal, QWindow* childWindow);
+extern __declspec(dllexport) 
+void QChildWindowEvent_virtbase(QChildWindowEvent* src
+, QEvent** outptr_QEvent
+);
+extern __declspec(dllexport) 
+QChildWindowEvent* QChildWindowEvent_Clone(const QChildWindowEvent* self);
+extern __declspec(dllexport) 
+QWindow* QChildWindowEvent_Child(const QChildWindowEvent* self);
+extern __declspec(dllexport) 
+void QChildWindowEvent_Delete(QChildWindowEvent* self, bool isSubclass);
 
-extern __declspec(dllexport) QInputMethodEvent__Attribute* QInputMethodEvent__Attribute_new(AttributeType typ, int s, int l, QVariant* val);
-extern __declspec(dllexport) QInputMethodEvent__Attribute* QInputMethodEvent__Attribute_new2(AttributeType typ, int s, int l);
-extern __declspec(dllexport) void QInputMethodEvent__Attribute_OperatorAssign(QInputMethodEvent__Attribute* self, const Attribute* param1);
-extern __declspec(dllexport) void QInputMethodEvent__Attribute_Delete(QInputMethodEvent__Attribute* self, bool isSubclass);
+extern __declspec(dllexport) 
+QInputMethodEvent__Attribute* QInputMethodEvent__Attribute_new(AttributeType typ, int s, int l, QVariant* val);
+extern __declspec(dllexport) 
+QInputMethodEvent__Attribute* QInputMethodEvent__Attribute_new2(AttributeType typ, int s, int l);
+extern __declspec(dllexport) 
+void QInputMethodEvent__Attribute_OperatorAssign(QInputMethodEvent__Attribute* self, const Attribute* param1);
+extern __declspec(dllexport) 
+void QInputMethodEvent__Attribute_Delete(QInputMethodEvent__Attribute* self, bool isSubclass);
 
-} 
+}

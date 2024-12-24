@@ -132,7 +132,6 @@ type QMetaType struct {
 
 // NewQMetaType constructs a new QMetaType object.
 func NewQMetaType(typeVal int) *QMetaType {
-
 	ret := newQMetaType(QMetaType_new((int)(typeVal)))
 	ret.isSubclass = true
 	return ret
@@ -140,7 +139,6 @@ func NewQMetaType(typeVal int) *QMetaType {
 
 // NewQMetaType2 constructs a new QMetaType object.
 func NewQMetaType2() *QMetaType {
-
 	ret := newQMetaType(QMetaType_new2())
 	ret.isSubclass = true
 	return ret
@@ -148,7 +146,6 @@ func NewQMetaType2() *QMetaType {
 
 // NewQMetaType3 constructs a new QMetaType object.
 func NewQMetaType3(param1 *QMetaType) *QMetaType {
-
 	ret := newQMetaType(QMetaType_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

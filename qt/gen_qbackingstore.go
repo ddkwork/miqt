@@ -11,7 +11,6 @@ type QBackingStore struct {
 
 // NewQBackingStore constructs a new QBackingStore object.
 func NewQBackingStore(window *QWindow) *QBackingStore {
-
 	ret := newQBackingStore(QBackingStore_new(window.cPointer()))
 	ret.isSubclass = true
 	return ret

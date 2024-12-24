@@ -20,7 +20,6 @@ type QElapsedTimer struct {
 
 // NewQElapsedTimer constructs a new QElapsedTimer object.
 func NewQElapsedTimer() *QElapsedTimer {
-
 	ret := newQElapsedTimer(QElapsedTimer_new())
 	ret.isSubclass = true
 	return ret

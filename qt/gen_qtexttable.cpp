@@ -101,8 +101,62 @@ void QTextTableCell_Delete(QTextTableCell* self, bool isSubclass) {
 	}
 }
 
+class MiqtVirtualQTextTable : public virtual QTextTable {
+public:
+
+	MiqtVirtualQTextTable(QTextDocument* doc): QTextTable(doc) {};
+
+	virtual ~MiqtVirtualQTextTable() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MetaObject = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual const QMetaObject* metaObject() const override {
+		if (handle__MetaObject == 0) {
+			return QTextTable::metaObject();
+		}
+		
+
+		QMetaObject* callback_return_value = miqt_exec_callback_QTextTable_MetaObject(const_cast<MiqtVirtualQTextTable*>(this), handle__MetaObject);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QMetaObject* virtualbase_MetaObject() const {
+
+		return (QMetaObject*) QTextTable::metaObject();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+		if (handle__Metacast == 0) {
+			return QTextTable::qt_metacast(param1);
+		}
+		
+		const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QTextTable_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QTextTable::qt_metacast(param1);
+
+	}
+
+};
+
 QTextTable* QTextTable_new(QTextDocument* doc) {
-	return new QTextTable(doc);
+	return new MiqtVirtualQTextTable(doc);
 }
 
 void QTextTable_virtbase(QTextTable* src, QTextFrame** outptr_QTextFrame) {
@@ -226,9 +280,25 @@ struct miqt_string QTextTable_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
+void QTextTable_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextTable*>( (QTextTable*)(self) )->handle__MetaObject = slot;
+}
+
+QMetaObject* QTextTable_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQTextTable*)(self) )->virtualbase_MetaObject();
+}
+
+void QTextTable_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextTable*>( (QTextTable*)(self) )->handle__Metacast = slot;
+}
+
+void* QTextTable_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQTextTable*)(self) )->virtualbase_Metacast(param1);
+}
+
 void QTextTable_Delete(QTextTable* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QTextTable*>( self );
+		delete dynamic_cast<MiqtVirtualQTextTable*>( self );
 	} else {
 		delete self;
 	}

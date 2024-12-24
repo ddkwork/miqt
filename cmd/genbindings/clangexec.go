@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -12,6 +11,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 const (
@@ -44,15 +45,10 @@ func clangExec(ctx context.Context, inputHeader string, cflags []string, matcher
 	clangArgs = append(clangArgs, `-Xclang`, `-ast-dump=json`, `-fsyntax-only`, inputHeader)
 	log.Println("clang " + strings.Join(clangArgs, " "))
 	cmd := exec.CommandContext(ctx, clangBin, clangArgs...)
-	pr, err := cmd.StdoutPipe()
-	if err != nil {
-		return nil, fmt.Errorf("StdoutPipe: %w", err)
-	}
+	pr := mylog.Check2(cmd.StdoutPipe())
+
 	cmd.Stderr = os.Stderr
-	err = cmd.Start()
-	if err != nil {
-		return nil, fmt.Errorf("start: %w", err)
-	}
+	mylog.Check(cmd.Start())
 
 	var wg sync.WaitGroup
 	var inner []any
@@ -63,11 +59,7 @@ func clangExec(ctx context.Context, inputHeader string, cflags []string, matcher
 		defer wg.Done()
 		inner, innerErr = clangStripUpToFile(pr, matcher)
 	}()
-
-	err = cmd.Wait()
-	if err != nil {
-		return nil, fmt.Errorf("command: %w", err)
-	}
+	mylog.Check(cmd.Wait())
 
 	wg.Wait()
 
@@ -76,14 +68,11 @@ func clangExec(ctx context.Context, inputHeader string, cflags []string, matcher
 
 func mustClangExec(ctx context.Context, inputHeader string, cflags []string, matcher ClangMatcher) []any {
 	for i := 0; i < ClangMaxRetries; i++ {
-		astInner, err := clangExec(ctx, inputHeader, cflags, matcher)
-		if err != nil {
-			// Log and continue with next retry
-			log.Printf("WARNING: Clang execution failed: %v", err)
-			// time.Sleep(ClangRetryDelay)
-			log.Printf("Retrying...")
-			continue
-		}
+		astInner := mylog.Check2(clangExec(ctx, inputHeader, cflags, matcher))
+
+		// Log and continue with next retry
+
+		// time.Sleep(ClangRetryDelay)
 
 		// Success
 		return astInner
@@ -101,10 +90,7 @@ func mustClangExec(ctx context.Context, inputHeader string, cflags []string, mat
 // @ref https://stackoverflow.com/a/71128654
 func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]any, error) {
 	obj := map[string]any{}
-	err := json.NewDecoder(stdout).Decode(&obj)
-	if err != nil {
-		return nil, fmt.Errorf("json.Decode: %v", err)
-	}
+	mylog.Check(json.NewDecoder(stdout).Decode(&obj))
 
 	inner, ok := obj["inner"].([]any)
 	if !ok {
