@@ -33,16 +33,16 @@ type QAbstractPrintDialog struct {
 
 // NewQAbstractPrintDialog constructs a new QAbstractPrintDialog object.
 func NewQAbstractPrintDialog(printer *QPrinter) *QAbstractPrintDialog {
-	ret := newQAbstractPrintDialog(QAbstractPrintDialog_new(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAbstractPrintDialog(QAbstractPrintDialog_new(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAbstractPrintDialog2 constructs a new QAbstractPrintDialog object.
 func NewQAbstractPrintDialog2(printer *QPrinter, parent *qt.QWidget) *QAbstractPrintDialog {
-	ret := newQAbstractPrintDialog(QAbstractPrintDialog_new2(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAbstractPrintDialog(QAbstractPrintDialog_new2(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAbstractPrintDialog) MetaObject() *qt.QMetaObject {
@@ -175,11 +175,9 @@ func miqt_exec_callback_QAbstractPrintDialog_Metacast(self QAbstractPrintDialog,
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAbstractPrintDialog{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

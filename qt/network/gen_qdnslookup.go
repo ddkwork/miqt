@@ -85,16 +85,16 @@ type QDnsDomainNameRecord struct {
 
 // NewQDnsDomainNameRecord constructs a new QDnsDomainNameRecord object.
 func NewQDnsDomainNameRecord() *QDnsDomainNameRecord {
-	ret := newQDnsDomainNameRecord(QDnsDomainNameRecord_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsDomainNameRecord(QDnsDomainNameRecord_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsDomainNameRecord2 constructs a new QDnsDomainNameRecord object.
 func NewQDnsDomainNameRecord2(other *QDnsDomainNameRecord) *QDnsDomainNameRecord {
-	ret := newQDnsDomainNameRecord(QDnsDomainNameRecord_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsDomainNameRecord(QDnsDomainNameRecord_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsDomainNameRecord) OperatorAssign(other *QDnsDomainNameRecord) {
@@ -130,16 +130,16 @@ type QDnsHostAddressRecord struct {
 
 // NewQDnsHostAddressRecord constructs a new QDnsHostAddressRecord object.
 func NewQDnsHostAddressRecord() *QDnsHostAddressRecord {
-	ret := newQDnsHostAddressRecord(QDnsHostAddressRecord_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsHostAddressRecord(QDnsHostAddressRecord_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsHostAddressRecord2 constructs a new QDnsHostAddressRecord object.
 func NewQDnsHostAddressRecord2(other *QDnsHostAddressRecord) *QDnsHostAddressRecord {
-	ret := newQDnsHostAddressRecord(QDnsHostAddressRecord_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsHostAddressRecord(QDnsHostAddressRecord_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsHostAddressRecord) OperatorAssign(other *QDnsHostAddressRecord) {
@@ -174,16 +174,16 @@ type QDnsMailExchangeRecord struct {
 
 // NewQDnsMailExchangeRecord constructs a new QDnsMailExchangeRecord object.
 func NewQDnsMailExchangeRecord() *QDnsMailExchangeRecord {
-	ret := newQDnsMailExchangeRecord(QDnsMailExchangeRecord_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsMailExchangeRecord(QDnsMailExchangeRecord_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsMailExchangeRecord2 constructs a new QDnsMailExchangeRecord object.
 func NewQDnsMailExchangeRecord2(other *QDnsMailExchangeRecord) *QDnsMailExchangeRecord {
-	ret := newQDnsMailExchangeRecord(QDnsMailExchangeRecord_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsMailExchangeRecord(QDnsMailExchangeRecord_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsMailExchangeRecord) OperatorAssign(other *QDnsMailExchangeRecord) {
@@ -223,16 +223,16 @@ type QDnsServiceRecord struct {
 
 // NewQDnsServiceRecord constructs a new QDnsServiceRecord object.
 func NewQDnsServiceRecord() *QDnsServiceRecord {
-	ret := newQDnsServiceRecord(QDnsServiceRecord_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsServiceRecord(QDnsServiceRecord_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsServiceRecord2 constructs a new QDnsServiceRecord object.
 func NewQDnsServiceRecord2(other *QDnsServiceRecord) *QDnsServiceRecord {
-	ret := newQDnsServiceRecord(QDnsServiceRecord_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsServiceRecord(QDnsServiceRecord_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsServiceRecord) OperatorAssign(other *QDnsServiceRecord) {
@@ -280,16 +280,16 @@ type QDnsTextRecord struct {
 
 // NewQDnsTextRecord constructs a new QDnsTextRecord object.
 func NewQDnsTextRecord() *QDnsTextRecord {
-	ret := newQDnsTextRecord(QDnsTextRecord_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsTextRecord(QDnsTextRecord_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsTextRecord2 constructs a new QDnsTextRecord object.
 func NewQDnsTextRecord2(other *QDnsTextRecord) *QDnsTextRecord {
-	ret := newQDnsTextRecord(QDnsTextRecord_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsTextRecord(QDnsTextRecord_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsTextRecord) OperatorAssign(other *QDnsTextRecord) {
@@ -331,16 +331,16 @@ type QDnsTlsAssociationRecord struct {
 
 // NewQDnsTlsAssociationRecord constructs a new QDnsTlsAssociationRecord object.
 func NewQDnsTlsAssociationRecord() *QDnsTlsAssociationRecord {
-	ret := newQDnsTlsAssociationRecord(QDnsTlsAssociationRecord_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsTlsAssociationRecord(QDnsTlsAssociationRecord_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsTlsAssociationRecord2 constructs a new QDnsTlsAssociationRecord object.
 func NewQDnsTlsAssociationRecord2(other *QDnsTlsAssociationRecord) *QDnsTlsAssociationRecord {
-	ret := newQDnsTlsAssociationRecord(QDnsTlsAssociationRecord_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsTlsAssociationRecord(QDnsTlsAssociationRecord_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsTlsAssociationRecord) OperatorAssign(other *QDnsTlsAssociationRecord) {
@@ -388,9 +388,9 @@ type QDnsLookup struct {
 
 // NewQDnsLookup constructs a new QDnsLookup object.
 func NewQDnsLookup() *QDnsLookup {
-	ret := newQDnsLookup(QDnsLookup_new())
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup2 constructs a new QDnsLookup object.
@@ -399,10 +399,9 @@ func NewQDnsLookup2(typeVal Type, name string) *QDnsLookup {
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new2(typeVal, name_ms))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new2(typeVal, name_ms))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup3 constructs a new QDnsLookup object.
@@ -411,10 +410,9 @@ func NewQDnsLookup3(typeVal Type, name string, nameserver *QHostAddress) *QDnsLo
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new3(typeVal, name_ms, nameserver.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new3(typeVal, name_ms, nameserver.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup4 constructs a new QDnsLookup object.
@@ -423,10 +421,9 @@ func NewQDnsLookup4(typeVal Type, name string, nameserver *QHostAddress, port ui
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new4(typeVal, name_ms, nameserver.cPointer(), (uint16_t)(port)))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new4(typeVal, name_ms, nameserver.cPointer(), (uint16_t)(port)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup5 constructs a new QDnsLookup object.
@@ -435,17 +432,16 @@ func NewQDnsLookup5(typeVal Type, name string, protocol Protocol, nameserver *QH
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new5(typeVal, name_ms, protocol, nameserver.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new5(typeVal, name_ms, protocol, nameserver.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup6 constructs a new QDnsLookup object.
 func NewQDnsLookup6(parent *qt.QObject) *QDnsLookup {
-	ret := newQDnsLookup(QDnsLookup_new6((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new6((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup7 constructs a new QDnsLookup object.
@@ -454,10 +450,9 @@ func NewQDnsLookup7(typeVal Type, name string, parent *qt.QObject) *QDnsLookup {
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new7(typeVal, name_ms, (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new7(typeVal, name_ms, (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup8 constructs a new QDnsLookup object.
@@ -466,10 +461,9 @@ func NewQDnsLookup8(typeVal Type, name string, nameserver *QHostAddress, parent 
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new8(typeVal, name_ms, nameserver.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new8(typeVal, name_ms, nameserver.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup9 constructs a new QDnsLookup object.
@@ -478,10 +472,9 @@ func NewQDnsLookup9(typeVal Type, name string, nameserver *QHostAddress, port ui
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new9(typeVal, name_ms, nameserver.cPointer(), (uint16_t)(port), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new9(typeVal, name_ms, nameserver.cPointer(), (uint16_t)(port), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup10 constructs a new QDnsLookup object.
@@ -490,10 +483,9 @@ func NewQDnsLookup10(typeVal Type, name string, protocol Protocol, nameserver *Q
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new10(typeVal, name_ms, protocol, nameserver.cPointer(), (uint16_t)(port)))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new10(typeVal, name_ms, protocol, nameserver.cPointer(), (uint16_t)(port)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQDnsLookup11 constructs a new QDnsLookup object.
@@ -502,10 +494,9 @@ func NewQDnsLookup11(typeVal Type, name string, protocol Protocol, nameserver *Q
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQDnsLookup(QDnsLookup_new11(typeVal, name_ms, protocol, nameserver.cPointer(), (uint16_t)(port), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQDnsLookup(QDnsLookup_new11(typeVal, name_ms, protocol, nameserver.cPointer(), (uint16_t)(port), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QDnsLookup) MetaObject() *qt.QMetaObject {
@@ -924,11 +915,9 @@ func miqt_exec_callback_QDnsLookup_Metacast(self QDnsLookup, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QDnsLookup{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

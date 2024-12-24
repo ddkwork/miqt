@@ -13,16 +13,16 @@ type QNetworkDiskCache struct {
 
 // NewQNetworkDiskCache constructs a new QNetworkDiskCache object.
 func NewQNetworkDiskCache() *QNetworkDiskCache {
-	ret := newQNetworkDiskCache(QNetworkDiskCache_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDiskCache(QNetworkDiskCache_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkDiskCache2 constructs a new QNetworkDiskCache object.
 func NewQNetworkDiskCache2(parent *qt.QObject) *QNetworkDiskCache {
-	ret := newQNetworkDiskCache(QNetworkDiskCache_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDiskCache(QNetworkDiskCache_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkDiskCache) MetaObject() *qt.QMetaObject {
@@ -176,11 +176,9 @@ func miqt_exec_callback_QNetworkDiskCache_Metacast(self QNetworkDiskCache, cb in
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QNetworkDiskCache{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

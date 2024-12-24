@@ -19,16 +19,16 @@ type QAudioDevice struct {
 
 // NewQAudioDevice constructs a new QAudioDevice object.
 func NewQAudioDevice() *QAudioDevice {
-	ret := newQAudioDevice(QAudioDevice_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioDevice(QAudioDevice_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioDevice2 constructs a new QAudioDevice object.
 func NewQAudioDevice2(other *QAudioDevice) *QAudioDevice {
-	ret := newQAudioDevice(QAudioDevice_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioDevice(QAudioDevice_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioDevice) Swap(other *QAudioDevice) {

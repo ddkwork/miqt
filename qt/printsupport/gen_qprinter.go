@@ -103,30 +103,30 @@ type QPrinter struct {
 
 // NewQPrinter constructs a new QPrinter object.
 func NewQPrinter() *QPrinter {
-	ret := newQPrinter(QPrinter_new())
-	ret.isSubclass = true
-	return ret
+	g := newQPrinter(QPrinter_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrinter2 constructs a new QPrinter object.
 func NewQPrinter2(printer *QPrinterInfo) *QPrinter {
-	ret := newQPrinter(QPrinter_new2(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPrinter(QPrinter_new2(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrinter3 constructs a new QPrinter object.
 func NewQPrinter3(mode PrinterMode) *QPrinter {
-	ret := newQPrinter(QPrinter_new3(mode))
-	ret.isSubclass = true
-	return ret
+	g := newQPrinter(QPrinter_new3(mode))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrinter4 constructs a new QPrinter object.
 func NewQPrinter4(printer *QPrinterInfo, mode PrinterMode) *QPrinter {
-	ret := newQPrinter(QPrinter_new4(printer.cPointer(), mode))
-	ret.isSubclass = true
-	return ret
+	g := newQPrinter(QPrinter_new4(printer.cPointer(), mode))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QPrinter) DevType() int {

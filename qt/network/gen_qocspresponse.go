@@ -33,16 +33,16 @@ type QOcspResponse struct {
 
 // NewQOcspResponse constructs a new QOcspResponse object.
 func NewQOcspResponse() *QOcspResponse {
-	ret := newQOcspResponse(QOcspResponse_new())
-	ret.isSubclass = true
-	return ret
+	g := newQOcspResponse(QOcspResponse_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQOcspResponse2 constructs a new QOcspResponse object.
 func NewQOcspResponse2(other *QOcspResponse) *QOcspResponse {
-	ret := newQOcspResponse(QOcspResponse_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQOcspResponse(QOcspResponse_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QOcspResponse) OperatorAssign(other *QOcspResponse) {

@@ -23,16 +23,16 @@ type QWindowCapture struct {
 
 // NewQWindowCapture constructs a new QWindowCapture object.
 func NewQWindowCapture() *QWindowCapture {
-	ret := newQWindowCapture(QWindowCapture_new())
-	ret.isSubclass = true
-	return ret
+	g := newQWindowCapture(QWindowCapture_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQWindowCapture2 constructs a new QWindowCapture object.
 func NewQWindowCapture2(parent *qt.QObject) *QWindowCapture {
-	ret := newQWindowCapture(QWindowCapture_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQWindowCapture(QWindowCapture_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QWindowCapture) MetaObject() *qt.QMetaObject {
@@ -264,11 +264,9 @@ func miqt_exec_callback_QWindowCapture_Metacast(self QWindowCapture, cb intptr_t
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QWindowCapture{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

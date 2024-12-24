@@ -101,9 +101,9 @@ type QAbstractSocket struct {
 
 // NewQAbstractSocket constructs a new QAbstractSocket object.
 func NewQAbstractSocket(socketType SocketType, parent *qt.QObject) *QAbstractSocket {
-	ret := newQAbstractSocket(QAbstractSocket_new(socketType, (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAbstractSocket(QAbstractSocket_new(socketType, (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAbstractSocket) MetaObject() *qt.QMetaObject {
@@ -491,11 +491,9 @@ func miqt_exec_callback_QAbstractSocket_Metacast(self QAbstractSocket, cb intptr
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAbstractSocket{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

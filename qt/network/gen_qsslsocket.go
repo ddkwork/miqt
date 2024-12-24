@@ -30,16 +30,16 @@ type QSslSocket struct {
 
 // NewQSslSocket constructs a new QSslSocket object.
 func NewQSslSocket() *QSslSocket {
-	ret := newQSslSocket(QSslSocket_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslSocket(QSslSocket_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslSocket2 constructs a new QSslSocket object.
 func NewQSslSocket2(parent *qt.QObject) *QSslSocket {
-	ret := newQSslSocket(QSslSocket_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQSslSocket(QSslSocket_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslSocket) MetaObject() *qt.QMetaObject {
@@ -902,11 +902,9 @@ func miqt_exec_callback_QSslSocket_Metacast(self QSslSocket, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QSslSocket{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

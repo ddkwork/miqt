@@ -11,16 +11,16 @@ type QSslPreSharedKeyAuthenticator struct {
 
 // NewQSslPreSharedKeyAuthenticator constructs a new QSslPreSharedKeyAuthenticator object.
 func NewQSslPreSharedKeyAuthenticator() *QSslPreSharedKeyAuthenticator {
-	ret := newQSslPreSharedKeyAuthenticator(QSslPreSharedKeyAuthenticator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslPreSharedKeyAuthenticator(QSslPreSharedKeyAuthenticator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslPreSharedKeyAuthenticator2 constructs a new QSslPreSharedKeyAuthenticator object.
 func NewQSslPreSharedKeyAuthenticator2(authenticator *QSslPreSharedKeyAuthenticator) *QSslPreSharedKeyAuthenticator {
-	ret := newQSslPreSharedKeyAuthenticator(QSslPreSharedKeyAuthenticator_new2(authenticator.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslPreSharedKeyAuthenticator(QSslPreSharedKeyAuthenticator_new2(authenticator.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslPreSharedKeyAuthenticator) OperatorAssign(authenticator *QSslPreSharedKeyAuthenticator) {

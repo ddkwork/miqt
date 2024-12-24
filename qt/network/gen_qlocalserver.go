@@ -24,16 +24,16 @@ type QLocalServer struct {
 
 // NewQLocalServer constructs a new QLocalServer object.
 func NewQLocalServer() *QLocalServer {
-	ret := newQLocalServer(QLocalServer_new())
-	ret.isSubclass = true
-	return ret
+	g := newQLocalServer(QLocalServer_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQLocalServer2 constructs a new QLocalServer object.
 func NewQLocalServer2(parent *qt.QObject) *QLocalServer {
-	ret := newQLocalServer(QLocalServer_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQLocalServer(QLocalServer_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QLocalServer) MetaObject() *qt.QMetaObject {
@@ -239,11 +239,9 @@ func miqt_exec_callback_QLocalServer_Metacast(self QLocalServer, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QLocalServer{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

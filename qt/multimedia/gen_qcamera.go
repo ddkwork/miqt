@@ -94,44 +94,44 @@ type QCamera struct {
 
 // NewQCamera constructs a new QCamera object.
 func NewQCamera() *QCamera {
-	ret := newQCamera(QCamera_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCamera(QCamera_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCamera2 constructs a new QCamera object.
 func NewQCamera2(cameraDevice *QCameraDevice) *QCamera {
-	ret := newQCamera(QCamera_new2(cameraDevice.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQCamera(QCamera_new2(cameraDevice.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQCamera3 constructs a new QCamera object.
 func NewQCamera3(position QCameraDevice__Position) *QCamera {
-	ret := newQCamera(QCamera_new3((int)(position)))
-	ret.isSubclass = true
-	return ret
+	g := newQCamera(QCamera_new3((int)(position)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQCamera4 constructs a new QCamera object.
 func NewQCamera4(parent *qt.QObject) *QCamera {
-	ret := newQCamera(QCamera_new4((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQCamera(QCamera_new4((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQCamera5 constructs a new QCamera object.
 func NewQCamera5(cameraDevice *QCameraDevice, parent *qt.QObject) *QCamera {
-	ret := newQCamera(QCamera_new5(cameraDevice.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQCamera(QCamera_new5(cameraDevice.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQCamera6 constructs a new QCamera object.
 func NewQCamera6(position QCameraDevice__Position, parent *qt.QObject) *QCamera {
-	ret := newQCamera(QCamera_new6((int)(position), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQCamera(QCamera_new6((int)(position), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCamera) MetaObject() *qt.QMetaObject {
@@ -998,11 +998,9 @@ func miqt_exec_callback_QCamera_Metacast(self QCamera, cb intptr_t, param1 *cons
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QCamera{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

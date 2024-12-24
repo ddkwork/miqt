@@ -11,16 +11,16 @@ type QAudioBuffer struct {
 
 // NewQAudioBuffer constructs a new QAudioBuffer object.
 func NewQAudioBuffer() *QAudioBuffer {
-	ret := newQAudioBuffer(QAudioBuffer_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBuffer(QAudioBuffer_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBuffer2 constructs a new QAudioBuffer object.
 func NewQAudioBuffer2(other *QAudioBuffer) *QAudioBuffer {
-	ret := newQAudioBuffer(QAudioBuffer_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBuffer(QAudioBuffer_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBuffer3 constructs a new QAudioBuffer object.
@@ -28,17 +28,16 @@ func NewQAudioBuffer3(data []byte, format *QAudioFormat) *QAudioBuffer {
 	data_alias := struct_miqt_string{}
 	data_alias.data = (char)(unsafe.Pointer(&data[0]))
 	data_alias.len = size_t(len(data))
-
-	ret := newQAudioBuffer(QAudioBuffer_new3(data_alias, format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBuffer(QAudioBuffer_new3(data_alias, format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBuffer4 constructs a new QAudioBuffer object.
 func NewQAudioBuffer4(numFrames int, format *QAudioFormat) *QAudioBuffer {
-	ret := newQAudioBuffer(QAudioBuffer_new4((int)(numFrames), format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBuffer(QAudioBuffer_new4((int)(numFrames), format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBuffer5 constructs a new QAudioBuffer object.
@@ -46,17 +45,16 @@ func NewQAudioBuffer5(data []byte, format *QAudioFormat, startTime int64) *QAudi
 	data_alias := struct_miqt_string{}
 	data_alias.data = (char)(unsafe.Pointer(&data[0]))
 	data_alias.len = size_t(len(data))
-
-	ret := newQAudioBuffer(QAudioBuffer_new5(data_alias, format.cPointer(), (longlong)(startTime)))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBuffer(QAudioBuffer_new5(data_alias, format.cPointer(), (longlong)(startTime)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBuffer6 constructs a new QAudioBuffer object.
 func NewQAudioBuffer6(numFrames int, format *QAudioFormat, startTime int64) *QAudioBuffer {
-	ret := newQAudioBuffer(QAudioBuffer_new6((int)(numFrames), format.cPointer(), (longlong)(startTime)))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBuffer(QAudioBuffer_new6((int)(numFrames), format.cPointer(), (longlong)(startTime)))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioBuffer) OperatorAssign(other *QAudioBuffer) {

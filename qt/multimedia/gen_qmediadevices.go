@@ -13,16 +13,16 @@ type QMediaDevices struct {
 
 // NewQMediaDevices constructs a new QMediaDevices object.
 func NewQMediaDevices() *QMediaDevices {
-	ret := newQMediaDevices(QMediaDevices_new())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaDevices(QMediaDevices_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaDevices2 constructs a new QMediaDevices object.
 func NewQMediaDevices2(parent *qt.QObject) *QMediaDevices {
-	ret := newQMediaDevices(QMediaDevices_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaDevices(QMediaDevices_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaDevices) MetaObject() *qt.QMetaObject {
@@ -217,11 +217,9 @@ func miqt_exec_callback_QMediaDevices_Metacast(self QMediaDevices, cb intptr_t, 
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QMediaDevices{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

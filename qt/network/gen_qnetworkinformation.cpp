@@ -9,19 +9,17 @@
 #include <cstring>
 #include <qnetworkinformation.h>
 #include "gen_qnetworkinformation.h"
-
-void QNetworkInformation_virtbase(QNetworkInformation* src, QObject** outptr_QObject) {
-	*outptr_QObject = static_cast<QObject*>(src);
+void QNetworkInformation_virtbase(QNetworkInformation* src
+, QObject** outptr_QObject
+) {
+*outptr_QObject = static_cast<QObject*>(src);
 }
-
 QMetaObject* QNetworkInformation_MetaObject(const QNetworkInformation* self) {
 	return (QMetaObject*) self->metaObject();
 }
-
 void* QNetworkInformation_Metacast(QNetworkInformation* self, const char* param1) {
 	return self->qt_metacast(param1);
 }
-
 struct miqt_string QNetworkInformation_Tr(const char* s) {
 	QString _ret = QNetworkInformation::tr(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -32,23 +30,18 @@ struct miqt_string QNetworkInformation_Tr(const char* s) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 Reachability QNetworkInformation_Reachability(const QNetworkInformation* self) {
 	return self->reachability();
 }
-
 bool QNetworkInformation_IsBehindCaptivePortal(const QNetworkInformation* self) {
 	return self->isBehindCaptivePortal();
 }
-
 TransportMedium QNetworkInformation_TransportMedium(const QNetworkInformation* self) {
 	return self->transportMedium();
 }
-
 bool QNetworkInformation_IsMetered(const QNetworkInformation* self) {
 	return self->isMetered();
 }
-
 struct miqt_string QNetworkInformation_BackendName(const QNetworkInformation* self) {
 	QString _ret = self->backendName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -59,27 +52,21 @@ struct miqt_string QNetworkInformation_BackendName(const QNetworkInformation* se
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 bool QNetworkInformation_Supports(const QNetworkInformation* self, Features features) {
 	return self->supports(features);
 }
-
 Features QNetworkInformation_SupportedFeatures(const QNetworkInformation* self) {
 	return self->supportedFeatures();
 }
-
 bool QNetworkInformation_LoadDefaultBackend() {
 	return QNetworkInformation::loadDefaultBackend();
 }
-
 bool QNetworkInformation_LoadBackendByFeatures(Features features) {
 	return QNetworkInformation::loadBackendByFeatures(features);
 }
-
 bool QNetworkInformation_LoadWithFeatures(Features features) {
 	return QNetworkInformation::load(features);
 }
-
 struct miqt_array /* of struct miqt_string */  QNetworkInformation_AvailableBackends() {
 	QStringList _ret = QNetworkInformation::availableBackends();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -99,15 +86,12 @@ struct miqt_array /* of struct miqt_string */  QNetworkInformation_AvailableBack
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 QNetworkInformation* QNetworkInformation_Instance() {
 	return QNetworkInformation::instance();
 }
-
 void QNetworkInformation_ReachabilityChanged(QNetworkInformation* self, int newReachability) {
 	self->reachabilityChanged(static_cast<QNetworkInformation::Reachability>(newReachability));
 }
-
 void QNetworkInformation_connect_ReachabilityChanged(QNetworkInformation* self, intptr_t slot) {
 	QNetworkInformation::connect(self, static_cast<void (QNetworkInformation::*)(QNetworkInformation::Reachability)>(&QNetworkInformation::reachabilityChanged), self, [=](QNetworkInformation::Reachability newReachability) {
 		QNetworkInformation::Reachability newReachability_ret = newReachability;
@@ -115,22 +99,18 @@ void QNetworkInformation_connect_ReachabilityChanged(QNetworkInformation* self, 
 		miqt_exec_callback_QNetworkInformation_ReachabilityChanged(slot, sigval1);
 	});
 }
-
 void QNetworkInformation_IsBehindCaptivePortalChanged(QNetworkInformation* self, bool state) {
 	self->isBehindCaptivePortalChanged(state);
 }
-
 void QNetworkInformation_connect_IsBehindCaptivePortalChanged(QNetworkInformation* self, intptr_t slot) {
 	QNetworkInformation::connect(self, static_cast<void (QNetworkInformation::*)(bool)>(&QNetworkInformation::isBehindCaptivePortalChanged), self, [=](bool state) {
 		bool sigval1 = state;
 		miqt_exec_callback_QNetworkInformation_IsBehindCaptivePortalChanged(slot, sigval1);
 	});
 }
-
 void QNetworkInformation_TransportMediumChanged(QNetworkInformation* self, int current) {
 	self->transportMediumChanged(static_cast<QNetworkInformation::TransportMedium>(current));
 }
-
 void QNetworkInformation_connect_TransportMediumChanged(QNetworkInformation* self, intptr_t slot) {
 	QNetworkInformation::connect(self, static_cast<void (QNetworkInformation::*)(QNetworkInformation::TransportMedium)>(&QNetworkInformation::transportMediumChanged), self, [=](QNetworkInformation::TransportMedium current) {
 		QNetworkInformation::TransportMedium current_ret = current;
@@ -138,18 +118,15 @@ void QNetworkInformation_connect_TransportMediumChanged(QNetworkInformation* sel
 		miqt_exec_callback_QNetworkInformation_TransportMediumChanged(slot, sigval1);
 	});
 }
-
 void QNetworkInformation_IsMeteredChanged(QNetworkInformation* self, bool isMetered) {
 	self->isMeteredChanged(isMetered);
 }
-
 void QNetworkInformation_connect_IsMeteredChanged(QNetworkInformation* self, intptr_t slot) {
 	QNetworkInformation::connect(self, static_cast<void (QNetworkInformation::*)(bool)>(&QNetworkInformation::isMeteredChanged), self, [=](bool isMetered) {
 		bool sigval1 = isMetered;
 		miqt_exec_callback_QNetworkInformation_IsMeteredChanged(slot, sigval1);
 	});
 }
-
 struct miqt_string QNetworkInformation_Tr2(const char* s, const char* c) {
 	QString _ret = QNetworkInformation::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -160,7 +137,6 @@ struct miqt_string QNetworkInformation_Tr2(const char* s, const char* c) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QNetworkInformation_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QNetworkInformation::tr(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -171,4 +147,3 @@ struct miqt_string QNetworkInformation_Tr3(const char* s, const char* c, int n) 
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-

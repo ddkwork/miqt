@@ -13,16 +13,16 @@ type QMediaCaptureSession struct {
 
 // NewQMediaCaptureSession constructs a new QMediaCaptureSession object.
 func NewQMediaCaptureSession() *QMediaCaptureSession {
-	ret := newQMediaCaptureSession(QMediaCaptureSession_new())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaCaptureSession(QMediaCaptureSession_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaCaptureSession2 constructs a new QMediaCaptureSession object.
 func NewQMediaCaptureSession2(parent *qt.QObject) *QMediaCaptureSession {
-	ret := newQMediaCaptureSession(QMediaCaptureSession_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaCaptureSession(QMediaCaptureSession_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaCaptureSession) MetaObject() *qt.QMetaObject {
@@ -377,11 +377,9 @@ func miqt_exec_callback_QMediaCaptureSession_Metacast(self QMediaCaptureSession,
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QMediaCaptureSession{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

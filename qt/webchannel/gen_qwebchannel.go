@@ -13,16 +13,16 @@ type QWebChannel struct {
 
 // NewQWebChannel constructs a new QWebChannel object.
 func NewQWebChannel() *QWebChannel {
-	ret := newQWebChannel(QWebChannel_new())
-	ret.isSubclass = true
-	return ret
+	g := newQWebChannel(QWebChannel_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQWebChannel2 constructs a new QWebChannel object.
 func NewQWebChannel2(parent *qt.QObject) *QWebChannel {
-	ret := newQWebChannel(QWebChannel_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQWebChannel(QWebChannel_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QWebChannel) MetaObject() *qt.QMetaObject {
@@ -206,11 +206,9 @@ func miqt_exec_callback_QWebChannel_Metacast(self QWebChannel, cb intptr_t, para
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QWebChannel{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

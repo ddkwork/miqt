@@ -20,16 +20,16 @@ type QSvgGenerator struct {
 
 // NewQSvgGenerator constructs a new QSvgGenerator object.
 func NewQSvgGenerator() *QSvgGenerator {
-	ret := newQSvgGenerator(QSvgGenerator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSvgGenerator(QSvgGenerator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSvgGenerator2 constructs a new QSvgGenerator object.
 func NewQSvgGenerator2(version SvgVersion) *QSvgGenerator {
-	ret := newQSvgGenerator(QSvgGenerator_new2(version))
-	ret.isSubclass = true
-	return ret
+	g := newQSvgGenerator(QSvgGenerator_new2(version))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSvgGenerator) Title() string {

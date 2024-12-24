@@ -53,9 +53,9 @@ type QAudioRoom struct {
 
 // NewQAudioRoom constructs a new QAudioRoom object.
 func NewQAudioRoom(engine *QAudioEngine) *QAudioRoom {
-	ret := newQAudioRoom(QAudioRoom_new(engine.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioRoom(QAudioRoom_new(engine.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioRoom) MetaObject() *qt.QMetaObject {
@@ -356,11 +356,9 @@ func miqt_exec_callback_QAudioRoom_Metacast(self QAudioRoom, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioRoom{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

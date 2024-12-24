@@ -11,16 +11,16 @@ type QSslEllipticCurve struct {
 
 // NewQSslEllipticCurve constructs a new QSslEllipticCurve object.
 func NewQSslEllipticCurve() *QSslEllipticCurve {
-	ret := newQSslEllipticCurve(QSslEllipticCurve_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslEllipticCurve(QSslEllipticCurve_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslEllipticCurve2 constructs a new QSslEllipticCurve object.
 func NewQSslEllipticCurve2(param1 *QSslEllipticCurve) *QSslEllipticCurve {
-	ret := newQSslEllipticCurve(QSslEllipticCurve_new2(param1.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslEllipticCurve(QSslEllipticCurve_new2(param1.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func QSslEllipticCurve_FromShortName(name string) *QSslEllipticCurve {

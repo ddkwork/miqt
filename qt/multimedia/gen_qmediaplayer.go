@@ -51,16 +51,16 @@ type QMediaPlayer struct {
 
 // NewQMediaPlayer constructs a new QMediaPlayer object.
 func NewQMediaPlayer() *QMediaPlayer {
-	ret := newQMediaPlayer(QMediaPlayer_new())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaPlayer(QMediaPlayer_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaPlayer2 constructs a new QMediaPlayer object.
 func NewQMediaPlayer2(parent *qt.QObject) *QMediaPlayer {
-	ret := newQMediaPlayer(QMediaPlayer_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaPlayer(QMediaPlayer_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaPlayer) MetaObject() *qt.QMetaObject {
@@ -761,11 +761,9 @@ func miqt_exec_callback_QMediaPlayer_Metacast(self QMediaPlayer, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QMediaPlayer{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

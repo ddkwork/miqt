@@ -13,16 +13,16 @@ type QCborMap struct {
 
 // NewQCborMap constructs a new QCborMap object.
 func NewQCborMap() *QCborMap {
-	ret := newQCborMap(QCborMap_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCborMap(QCborMap_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCborMap2 constructs a new QCborMap object.
 func NewQCborMap2(other *QCborMap) *QCborMap {
-	ret := newQCborMap(QCborMap_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQCborMap(QCborMap_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCborMap) OperatorAssign(other *QCborMap) {
@@ -418,16 +418,16 @@ type QCborMap__Iterator struct {
 
 // NewQCborMap__Iterator constructs a new QCborMap::Iterator object.
 func NewQCborMap__Iterator() *QCborMap__Iterator {
-	ret := newQCborMap__Iterator(QCborMap__Iterator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCborMap__Iterator(QCborMap__Iterator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCborMap__Iterator2 constructs a new QCborMap::Iterator object.
 func NewQCborMap__Iterator2(param1 *Iterator) *QCborMap__Iterator {
-	ret := newQCborMap__Iterator(QCborMap__Iterator_new2(param1))
-	ret.isSubclass = true
-	return ret
+	g := newQCborMap__Iterator(QCborMap__Iterator_new2(param1))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCborMap__Iterator) OperatorAssign(other *Iterator) {
@@ -505,16 +505,16 @@ type QCborMap__ConstIterator struct {
 
 // NewQCborMap__ConstIterator constructs a new QCborMap::ConstIterator object.
 func NewQCborMap__ConstIterator() *QCborMap__ConstIterator {
-	ret := newQCborMap__ConstIterator(QCborMap__ConstIterator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCborMap__ConstIterator(QCborMap__ConstIterator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCborMap__ConstIterator2 constructs a new QCborMap::ConstIterator object.
 func NewQCborMap__ConstIterator2(param1 *ConstIterator) *QCborMap__ConstIterator {
-	ret := newQCborMap__ConstIterator(QCborMap__ConstIterator_new2(param1))
-	ret.isSubclass = true
-	return ret
+	g := newQCborMap__ConstIterator(QCborMap__ConstIterator_new2(param1))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCborMap__ConstIterator) OperatorAssign(other *ConstIterator) {

@@ -13,16 +13,16 @@ type QWebChannelAbstractTransport struct {
 
 // NewQWebChannelAbstractTransport constructs a new QWebChannelAbstractTransport object.
 func NewQWebChannelAbstractTransport() *QWebChannelAbstractTransport {
-	ret := newQWebChannelAbstractTransport(QWebChannelAbstractTransport_new())
-	ret.isSubclass = true
-	return ret
+	g := newQWebChannelAbstractTransport(QWebChannelAbstractTransport_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQWebChannelAbstractTransport2 constructs a new QWebChannelAbstractTransport object.
 func NewQWebChannelAbstractTransport2(parent *qt.QObject) *QWebChannelAbstractTransport {
-	ret := newQWebChannelAbstractTransport(QWebChannelAbstractTransport_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQWebChannelAbstractTransport(QWebChannelAbstractTransport_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QWebChannelAbstractTransport) MetaObject() *qt.QMetaObject {
@@ -136,11 +136,9 @@ func miqt_exec_callback_QWebChannelAbstractTransport_Metacast(self QWebChannelAb
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QWebChannelAbstractTransport{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

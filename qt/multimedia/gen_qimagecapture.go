@@ -45,16 +45,16 @@ type QImageCapture struct {
 
 // NewQImageCapture constructs a new QImageCapture object.
 func NewQImageCapture() *QImageCapture {
-	ret := newQImageCapture(QImageCapture_new())
-	ret.isSubclass = true
-	return ret
+	g := newQImageCapture(QImageCapture_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQImageCapture2 constructs a new QImageCapture object.
 func NewQImageCapture2(parent *qt.QObject) *QImageCapture {
-	ret := newQImageCapture(QImageCapture_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQImageCapture(QImageCapture_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QImageCapture) MetaObject() *qt.QMetaObject {
@@ -511,11 +511,9 @@ func miqt_exec_callback_QImageCapture_Metacast(self QImageCapture, cb intptr_t, 
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QImageCapture{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

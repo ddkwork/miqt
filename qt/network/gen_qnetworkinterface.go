@@ -52,16 +52,16 @@ type QNetworkAddressEntry struct {
 
 // NewQNetworkAddressEntry constructs a new QNetworkAddressEntry object.
 func NewQNetworkAddressEntry() *QNetworkAddressEntry {
-	ret := newQNetworkAddressEntry(QNetworkAddressEntry_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkAddressEntry(QNetworkAddressEntry_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkAddressEntry2 constructs a new QNetworkAddressEntry object.
 func NewQNetworkAddressEntry2(other *QNetworkAddressEntry) *QNetworkAddressEntry {
-	ret := newQNetworkAddressEntry(QNetworkAddressEntry_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkAddressEntry(QNetworkAddressEntry_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkAddressEntry) OperatorAssign(other *QNetworkAddressEntry) {
@@ -165,16 +165,16 @@ type QNetworkInterface struct {
 
 // NewQNetworkInterface constructs a new QNetworkInterface object.
 func NewQNetworkInterface() *QNetworkInterface {
-	ret := newQNetworkInterface(QNetworkInterface_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkInterface(QNetworkInterface_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkInterface2 constructs a new QNetworkInterface object.
 func NewQNetworkInterface2(other *QNetworkInterface) *QNetworkInterface {
-	ret := newQNetworkInterface(QNetworkInterface_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkInterface(QNetworkInterface_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkInterface) OperatorAssign(other *QNetworkInterface) {

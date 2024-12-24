@@ -11,9 +11,9 @@ type QNetworkDatagram struct {
 
 // NewQNetworkDatagram constructs a new QNetworkDatagram object.
 func NewQNetworkDatagram() *QNetworkDatagram {
-	ret := newQNetworkDatagram(QNetworkDatagram_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDatagram(QNetworkDatagram_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkDatagram2 constructs a new QNetworkDatagram object.
@@ -21,17 +21,16 @@ func NewQNetworkDatagram2(data []byte) *QNetworkDatagram {
 	data_alias := struct_miqt_string{}
 	data_alias.data = (char)(unsafe.Pointer(&data[0]))
 	data_alias.len = size_t(len(data))
-
-	ret := newQNetworkDatagram(QNetworkDatagram_new2(data_alias))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDatagram(QNetworkDatagram_new2(data_alias))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkDatagram3 constructs a new QNetworkDatagram object.
 func NewQNetworkDatagram3(other *QNetworkDatagram) *QNetworkDatagram {
-	ret := newQNetworkDatagram(QNetworkDatagram_new3(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDatagram(QNetworkDatagram_new3(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkDatagram4 constructs a new QNetworkDatagram object.
@@ -39,10 +38,9 @@ func NewQNetworkDatagram4(data []byte, destinationAddress *QHostAddress) *QNetwo
 	data_alias := struct_miqt_string{}
 	data_alias.data = (char)(unsafe.Pointer(&data[0]))
 	data_alias.len = size_t(len(data))
-
-	ret := newQNetworkDatagram(QNetworkDatagram_new4(data_alias, destinationAddress.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDatagram(QNetworkDatagram_new4(data_alias, destinationAddress.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkDatagram5 constructs a new QNetworkDatagram object.
@@ -50,10 +48,9 @@ func NewQNetworkDatagram5(data []byte, destinationAddress *QHostAddress, port ui
 	data_alias := struct_miqt_string{}
 	data_alias.data = (char)(unsafe.Pointer(&data[0]))
 	data_alias.len = size_t(len(data))
-
-	ret := newQNetworkDatagram(QNetworkDatagram_new5(data_alias, destinationAddress.cPointer(), (uint16_t)(port)))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkDatagram(QNetworkDatagram_new5(data_alias, destinationAddress.cPointer(), (uint16_t)(port)))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkDatagram) OperatorAssign(other *QNetworkDatagram) {

@@ -108,23 +108,23 @@ type QNetworkRequest struct {
 
 // NewQNetworkRequest constructs a new QNetworkRequest object.
 func NewQNetworkRequest() *QNetworkRequest {
-	ret := newQNetworkRequest(QNetworkRequest_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkRequest(QNetworkRequest_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkRequest2 constructs a new QNetworkRequest object.
 func NewQNetworkRequest2(url *qt.QUrl) *QNetworkRequest {
-	ret := newQNetworkRequest(QNetworkRequest_new2((*QUrl)(url.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkRequest(QNetworkRequest_new2((*QUrl)(url.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkRequest3 constructs a new QNetworkRequest object.
 func NewQNetworkRequest3(other *QNetworkRequest) *QNetworkRequest {
-	ret := newQNetworkRequest(QNetworkRequest_new3(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkRequest(QNetworkRequest_new3(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkRequest) OperatorAssign(other *QNetworkRequest) {

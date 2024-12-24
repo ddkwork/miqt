@@ -21,19 +21,17 @@
 #include <QVariant>
 #include <qnetworkreply.h>
 #include "gen_qnetworkreply.h"
-
-void QNetworkReply_virtbase(QNetworkReply* src, QIODevice** outptr_QIODevice) {
-	*outptr_QIODevice = static_cast<QIODevice*>(src);
+void QNetworkReply_virtbase(QNetworkReply* src
+, QIODevice** outptr_QIODevice
+) {
+*outptr_QIODevice = static_cast<QIODevice*>(src);
 }
-
 QMetaObject* QNetworkReply_MetaObject(const QNetworkReply* self) {
 	return (QMetaObject*) self->metaObject();
 }
-
 void* QNetworkReply_Metacast(QNetworkReply* self, const char* param1) {
 	return self->qt_metacast(param1);
 }
-
 struct miqt_string QNetworkReply_Tr(const char* s) {
 	QString _ret = QNetworkReply::tr(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -44,61 +42,47 @@ struct miqt_string QNetworkReply_Tr(const char* s) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QNetworkReply_Close(QNetworkReply* self) {
 	self->close();
 }
-
 bool QNetworkReply_IsSequential(const QNetworkReply* self) {
 	return self->isSequential();
 }
-
 long long QNetworkReply_ReadBufferSize(const QNetworkReply* self) {
 	qint64 _ret = self->readBufferSize();
 	return static_cast<long long>(_ret);
 }
-
 void QNetworkReply_SetReadBufferSize(QNetworkReply* self, long long size) {
 	self->setReadBufferSize(static_cast<qint64>(size));
 }
-
 QNetworkAccessManager* QNetworkReply_Manager(const QNetworkReply* self) {
 	return self->manager();
 }
-
 int QNetworkReply_Operation(const QNetworkReply* self) {
 	QNetworkAccessManager::Operation _ret = self->operation();
 	return static_cast<int>(_ret);
 }
-
 QNetworkRequest* QNetworkReply_Request(const QNetworkReply* self) {
 	return new QNetworkRequest(self->request());
 }
-
 NetworkError QNetworkReply_Error(const QNetworkReply* self) {
 	return self->error();
 }
-
 bool QNetworkReply_IsFinished(const QNetworkReply* self) {
 	return self->isFinished();
 }
-
 bool QNetworkReply_IsRunning(const QNetworkReply* self) {
 	return self->isRunning();
 }
-
 QUrl* QNetworkReply_Url(const QNetworkReply* self) {
 	return new QUrl(self->url());
 }
-
 QVariant* QNetworkReply_Header(const QNetworkReply* self, int header) {
 	return new QVariant(self->header(static_cast<QNetworkRequest::KnownHeaders>(header)));
 }
-
 bool QNetworkReply_HasRawHeader(const QNetworkReply* self, QAnyStringView* headerName) {
 	return self->hasRawHeader(*headerName);
 }
-
 struct miqt_array /* of struct miqt_string */  QNetworkReply_RawHeaderList(const QNetworkReply* self) {
 	QList<QByteArray> _ret = self->rawHeaderList();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -116,7 +100,6 @@ struct miqt_array /* of struct miqt_string */  QNetworkReply_RawHeaderList(const
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 struct miqt_string QNetworkReply_RawHeader(const QNetworkReply* self, QAnyStringView* headerName) {
 	QByteArray _qb = self->rawHeader(*headerName);
 	struct miqt_string _ms;
@@ -125,7 +108,6 @@ struct miqt_string QNetworkReply_RawHeader(const QNetworkReply* self, QAnyString
 	memcpy(_ms.data, _qb.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_array /* of RawHeaderPair */  QNetworkReply_RawHeaderPairs(const QNetworkReply* self) {
 	const QList<RawHeaderPair>& _ret = self->rawHeaderPairs();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -138,23 +120,18 @@ struct miqt_array /* of RawHeaderPair */  QNetworkReply_RawHeaderPairs(const QNe
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 QHttpHeaders* QNetworkReply_Headers(const QNetworkReply* self) {
 	return new QHttpHeaders(self->headers());
 }
-
 QVariant* QNetworkReply_Attribute(const QNetworkReply* self, int code) {
 	return new QVariant(self->attribute(static_cast<QNetworkRequest::Attribute>(code)));
 }
-
 QSslConfiguration* QNetworkReply_SslConfiguration(const QNetworkReply* self) {
 	return new QSslConfiguration(self->sslConfiguration());
 }
-
 void QNetworkReply_SetSslConfiguration(QNetworkReply* self, QSslConfiguration* configuration) {
 	self->setSslConfiguration(*configuration);
 }
-
 void QNetworkReply_IgnoreSslErrors(QNetworkReply* self, struct miqt_array /* of QSslError* */  errors) {
 	QList<QSslError> errors_QList;
 	errors_QList.reserve(errors.len);
@@ -164,59 +141,47 @@ void QNetworkReply_IgnoreSslErrors(QNetworkReply* self, struct miqt_array /* of 
 	}
 	self->ignoreSslErrors(errors_QList);
 }
-
 void QNetworkReply_Abort(QNetworkReply* self) {
 	self->abort();
 }
-
 void QNetworkReply_IgnoreSslErrors2(QNetworkReply* self) {
 	self->ignoreSslErrors();
 }
-
 void QNetworkReply_SocketStartedConnecting(QNetworkReply* self) {
 	self->socketStartedConnecting();
 }
-
 void QNetworkReply_connect_SocketStartedConnecting(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::socketStartedConnecting), self, [=]() {
 		miqt_exec_callback_QNetworkReply_SocketStartedConnecting(slot);
 	});
 }
-
 void QNetworkReply_RequestSent(QNetworkReply* self) {
 	self->requestSent();
 }
-
 void QNetworkReply_connect_RequestSent(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::requestSent), self, [=]() {
 		miqt_exec_callback_QNetworkReply_RequestSent(slot);
 	});
 }
-
 void QNetworkReply_MetaDataChanged(QNetworkReply* self) {
 	self->metaDataChanged();
 }
-
 void QNetworkReply_connect_MetaDataChanged(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::metaDataChanged), self, [=]() {
 		miqt_exec_callback_QNetworkReply_MetaDataChanged(slot);
 	});
 }
-
 void QNetworkReply_Finished(QNetworkReply* self) {
 	self->finished();
 }
-
 void QNetworkReply_connect_Finished(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::finished), self, [=]() {
 		miqt_exec_callback_QNetworkReply_Finished(slot);
 	});
 }
-
 void QNetworkReply_ErrorOccurred(QNetworkReply* self, int param1) {
 	self->errorOccurred(static_cast<QNetworkReply::NetworkError>(param1));
 }
-
 void QNetworkReply_connect_ErrorOccurred(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::errorOccurred), self, [=](QNetworkReply::NetworkError param1) {
 		QNetworkReply::NetworkError param1_ret = param1;
@@ -224,17 +189,14 @@ void QNetworkReply_connect_ErrorOccurred(QNetworkReply* self, intptr_t slot) {
 		miqt_exec_callback_QNetworkReply_ErrorOccurred(slot, sigval1);
 	});
 }
-
 void QNetworkReply_Encrypted(QNetworkReply* self) {
 	self->encrypted();
 }
-
 void QNetworkReply_connect_Encrypted(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::encrypted), self, [=]() {
 		miqt_exec_callback_QNetworkReply_Encrypted(slot);
 	});
 }
-
 void QNetworkReply_SslErrors(QNetworkReply* self, struct miqt_array /* of QSslError* */  errors) {
 	QList<QSslError> errors_QList;
 	errors_QList.reserve(errors.len);
@@ -244,7 +206,6 @@ void QNetworkReply_SslErrors(QNetworkReply* self, struct miqt_array /* of QSslEr
 	}
 	self->sslErrors(errors_QList);
 }
-
 void QNetworkReply_connect_SslErrors(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(const QList<QSslError>&)>(&QNetworkReply::sslErrors), self, [=](const QList<QSslError>& errors) {
 		const QList<QSslError>& errors_ret = errors;
@@ -260,22 +221,18 @@ void QNetworkReply_connect_SslErrors(QNetworkReply* self, intptr_t slot) {
 		miqt_exec_callback_QNetworkReply_SslErrors(slot, sigval1);
 	});
 }
-
 void QNetworkReply_PreSharedKeyAuthenticationRequired(QNetworkReply* self, QSslPreSharedKeyAuthenticator* authenticator) {
 	self->preSharedKeyAuthenticationRequired(authenticator);
 }
-
 void QNetworkReply_connect_PreSharedKeyAuthenticationRequired(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(QSslPreSharedKeyAuthenticator*)>(&QNetworkReply::preSharedKeyAuthenticationRequired), self, [=](QSslPreSharedKeyAuthenticator* authenticator) {
 		QSslPreSharedKeyAuthenticator* sigval1 = authenticator;
 		miqt_exec_callback_QNetworkReply_PreSharedKeyAuthenticationRequired(slot, sigval1);
 	});
 }
-
 void QNetworkReply_Redirected(QNetworkReply* self, QUrl* url) {
 	self->redirected(*url);
 }
-
 void QNetworkReply_connect_Redirected(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(const QUrl&)>(&QNetworkReply::redirected), self, [=](const QUrl& url) {
 		const QUrl& url_ret = url;
@@ -284,21 +241,17 @@ void QNetworkReply_connect_Redirected(QNetworkReply* self, intptr_t slot) {
 		miqt_exec_callback_QNetworkReply_Redirected(slot, sigval1);
 	});
 }
-
 void QNetworkReply_RedirectAllowed(QNetworkReply* self) {
 	self->redirectAllowed();
 }
-
 void QNetworkReply_connect_RedirectAllowed(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::redirectAllowed), self, [=]() {
 		miqt_exec_callback_QNetworkReply_RedirectAllowed(slot);
 	});
 }
-
 void QNetworkReply_UploadProgress(QNetworkReply* self, long long bytesSent, long long bytesTotal) {
 	self->uploadProgress(static_cast<qint64>(bytesSent), static_cast<qint64>(bytesTotal));
 }
-
 void QNetworkReply_connect_UploadProgress(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::uploadProgress), self, [=](qint64 bytesSent, qint64 bytesTotal) {
 		qint64 bytesSent_ret = bytesSent;
@@ -308,11 +261,9 @@ void QNetworkReply_connect_UploadProgress(QNetworkReply* self, intptr_t slot) {
 		miqt_exec_callback_QNetworkReply_UploadProgress(slot, sigval1, sigval2);
 	});
 }
-
 void QNetworkReply_DownloadProgress(QNetworkReply* self, long long bytesReceived, long long bytesTotal) {
 	self->downloadProgress(static_cast<qint64>(bytesReceived), static_cast<qint64>(bytesTotal));
 }
-
 void QNetworkReply_connect_DownloadProgress(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(qint64, qint64)>(&QNetworkReply::downloadProgress), self, [=](qint64 bytesReceived, qint64 bytesTotal) {
 		qint64 bytesReceived_ret = bytesReceived;
@@ -322,7 +273,6 @@ void QNetworkReply_connect_DownloadProgress(QNetworkReply* self, intptr_t slot) 
 		miqt_exec_callback_QNetworkReply_DownloadProgress(slot, sigval1, sigval2);
 	});
 }
-
 struct miqt_string QNetworkReply_Tr2(const char* s, const char* c) {
 	QString _ret = QNetworkReply::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -333,7 +283,6 @@ struct miqt_string QNetworkReply_Tr2(const char* s, const char* c) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QNetworkReply_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QNetworkReply::tr(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -344,7 +293,6 @@ struct miqt_string QNetworkReply_Tr3(const char* s, const char* c, int n) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QNetworkReply_Delete(QNetworkReply* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QNetworkReply*>( self );
@@ -352,4 +300,3 @@ void QNetworkReply_Delete(QNetworkReply* self, bool isSubclass) {
 		delete self;
 	}
 }
-

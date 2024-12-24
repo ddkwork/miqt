@@ -14,82 +14,66 @@
 #include <QTcpServer>
 #include <qsslserver.h>
 #include "gen_qsslserver.h"
-
 class MiqtVirtualQSslServer : public virtual QSslServer {
 public:
+MiqtVirtualQSslServer(): QSslServer() {};
+MiqtVirtualQSslServer(QObject* parent): QSslServer(parent) {};
 
-	MiqtVirtualQSslServer(): QSslServer() {};
-	MiqtVirtualQSslServer(QObject* parent): QSslServer(parent) {};
-
-	virtual ~MiqtVirtualQSslServer() = default;
-
-	// cgo.Handle value for overwritten implementation
+virtual ~MiqtVirtualQSslServer() = default;
+// cgo.Handle value for overwritten implementation
 	intptr_t handle__MetaObject = 0;
-
-	// Subclass to allow providing a Go implementation
+// Subclass to allow providing a Go implementation
 	virtual const QMetaObject* metaObject() const override {
-		if (handle__MetaObject == 0) {
-			return QSslServer::metaObject();
-		}
-		
-
-		QMetaObject* callback_return_value = miqt_exec_callback_QSslServer_MetaObject(const_cast<MiqtVirtualQSslServer*>(this), handle__MetaObject);
+if (handle__MetaObject == 0) {
+return QSslServer::metaObject();
+}
+QMetaObject* callback_return_value = miqt_exec_callback_QSslServer_MetaObject(const_cast<MiqtVirtualQSslServer*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
-
-	// Wrapper to allow calling protected method
+// Wrapper to allow calling protected method
 	QMetaObject* virtualbase_MetaObject() const {
 
 		return (QMetaObject*) QSslServer::metaObject();
 
 	}
-
-	// cgo.Handle value for overwritten implementation
+// cgo.Handle value for overwritten implementation
 	intptr_t handle__Metacast = 0;
-
-	// Subclass to allow providing a Go implementation
+// Subclass to allow providing a Go implementation
 	virtual void* qt_metacast(const char* param1) override {
-		if (handle__Metacast == 0) {
-			return QSslServer::qt_metacast(param1);
-		}
-		
-		const char* sigval1 = (const char*) param1;
+if (handle__Metacast == 0) {
+return QSslServer::qt_metacast(param1);
+}
+const char* sigval1 = (const char*) param1;
 
 		void* callback_return_value = miqt_exec_callback_QSslServer_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
-
-	// Wrapper to allow calling protected method
+// Wrapper to allow calling protected method
 	void* virtualbase_Metacast(const char* param1) {
 
 		return QSslServer::qt_metacast(param1);
 
 	}
-
 };
-
 QSslServer* QSslServer_new() {
-	return new MiqtVirtualQSslServer();
+return new MiqtVirtualQSslServer();
 }
-
 QSslServer* QSslServer_new2(QObject* parent) {
-	return new MiqtVirtualQSslServer(parent);
+return new MiqtVirtualQSslServer(parent);
 }
-
-void QSslServer_virtbase(QSslServer* src, QTcpServer** outptr_QTcpServer) {
-	*outptr_QTcpServer = static_cast<QTcpServer*>(src);
+void QSslServer_virtbase(QSslServer* src
+, QTcpServer** outptr_QTcpServer
+) {
+*outptr_QTcpServer = static_cast<QTcpServer*>(src);
 }
-
 QMetaObject* QSslServer_MetaObject(const QSslServer* self) {
 	return (QMetaObject*) self->metaObject();
 }
-
 void* QSslServer_Metacast(QSslServer* self, const char* param1) {
 	return self->qt_metacast(param1);
 }
-
 struct miqt_string QSslServer_Tr(const char* s) {
 	QString _ret = QSslServer::tr(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -100,23 +84,18 @@ struct miqt_string QSslServer_Tr(const char* s) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QSslServer_SetSslConfiguration(QSslServer* self, QSslConfiguration* sslConfiguration) {
 	self->setSslConfiguration(*sslConfiguration);
 }
-
 QSslConfiguration* QSslServer_SslConfiguration(const QSslServer* self) {
 	return new QSslConfiguration(self->sslConfiguration());
 }
-
 void QSslServer_SetHandshakeTimeout(QSslServer* self, int timeout) {
 	self->setHandshakeTimeout(static_cast<int>(timeout));
 }
-
 int QSslServer_HandshakeTimeout(const QSslServer* self) {
 	return self->handshakeTimeout();
 }
-
 void QSslServer_SslErrors(QSslServer* self, QSslSocket* socket, struct miqt_array /* of QSslError* */  errors) {
 	QList<QSslError> errors_QList;
 	errors_QList.reserve(errors.len);
@@ -126,7 +105,6 @@ void QSslServer_SslErrors(QSslServer* self, QSslSocket* socket, struct miqt_arra
 	}
 	self->sslErrors(socket, errors_QList);
 }
-
 void QSslServer_connect_SslErrors(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, const QList<QSslError>&)>(&QSslServer::sslErrors), self, [=](QSslSocket* socket, const QList<QSslError>& errors) {
 		QSslSocket* sigval1 = socket;
@@ -143,11 +121,9 @@ void QSslServer_connect_SslErrors(QSslServer* self, intptr_t slot) {
 		miqt_exec_callback_QSslServer_SslErrors(slot, sigval1, sigval2);
 	});
 }
-
 void QSslServer_PeerVerifyError(QSslServer* self, QSslSocket* socket, QSslError* error) {
 	self->peerVerifyError(socket, *error);
 }
-
 void QSslServer_connect_PeerVerifyError(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, const QSslError&)>(&QSslServer::peerVerifyError), self, [=](QSslSocket* socket, const QSslError& error) {
 		QSslSocket* sigval1 = socket;
@@ -157,11 +133,9 @@ void QSslServer_connect_PeerVerifyError(QSslServer* self, intptr_t slot) {
 		miqt_exec_callback_QSslServer_PeerVerifyError(slot, sigval1, sigval2);
 	});
 }
-
 void QSslServer_ErrorOccurred(QSslServer* self, QSslSocket* socket, int error) {
 	self->errorOccurred(socket, static_cast<QAbstractSocket::SocketError>(error));
 }
-
 void QSslServer_connect_ErrorOccurred(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, QAbstractSocket::SocketError)>(&QSslServer::errorOccurred), self, [=](QSslSocket* socket, QAbstractSocket::SocketError error) {
 		QSslSocket* sigval1 = socket;
@@ -170,11 +144,9 @@ void QSslServer_connect_ErrorOccurred(QSslServer* self, intptr_t slot) {
 		miqt_exec_callback_QSslServer_ErrorOccurred(slot, sigval1, sigval2);
 	});
 }
-
 void QSslServer_PreSharedKeyAuthenticationRequired(QSslServer* self, QSslSocket* socket, QSslPreSharedKeyAuthenticator* authenticator) {
 	self->preSharedKeyAuthenticationRequired(socket, authenticator);
 }
-
 void QSslServer_connect_PreSharedKeyAuthenticationRequired(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, QSslPreSharedKeyAuthenticator*)>(&QSslServer::preSharedKeyAuthenticationRequired), self, [=](QSslSocket* socket, QSslPreSharedKeyAuthenticator* authenticator) {
 		QSslSocket* sigval1 = socket;
@@ -182,12 +154,10 @@ void QSslServer_connect_PreSharedKeyAuthenticationRequired(QSslServer* self, int
 		miqt_exec_callback_QSslServer_PreSharedKeyAuthenticationRequired(slot, sigval1, sigval2);
 	});
 }
-
 void QSslServer_AlertSent(QSslServer* self, QSslSocket* socket, int level, int typeVal, struct miqt_string description) {
 	QString description_QString = QString::fromUtf8(description.data, description.len);
 	self->alertSent(socket, static_cast<QSsl::AlertLevel>(level), static_cast<QSsl::AlertType>(typeVal), description_QString);
 }
-
 void QSslServer_connect_AlertSent(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, QSsl::AlertLevel, QSsl::AlertType, const QString&)>(&QSslServer::alertSent), self, [=](QSslSocket* socket, QSsl::AlertLevel level, QSsl::AlertType typeVal, const QString& description) {
 		QSslSocket* sigval1 = socket;
@@ -206,12 +176,10 @@ void QSslServer_connect_AlertSent(QSslServer* self, intptr_t slot) {
 		miqt_exec_callback_QSslServer_AlertSent(slot, sigval1, sigval2, sigval3, sigval4);
 	});
 }
-
 void QSslServer_AlertReceived(QSslServer* self, QSslSocket* socket, int level, int typeVal, struct miqt_string description) {
 	QString description_QString = QString::fromUtf8(description.data, description.len);
 	self->alertReceived(socket, static_cast<QSsl::AlertLevel>(level), static_cast<QSsl::AlertType>(typeVal), description_QString);
 }
-
 void QSslServer_connect_AlertReceived(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, QSsl::AlertLevel, QSsl::AlertType, const QString&)>(&QSslServer::alertReceived), self, [=](QSslSocket* socket, QSsl::AlertLevel level, QSsl::AlertType typeVal, const QString& description) {
 		QSslSocket* sigval1 = socket;
@@ -230,11 +198,9 @@ void QSslServer_connect_AlertReceived(QSslServer* self, intptr_t slot) {
 		miqt_exec_callback_QSslServer_AlertReceived(slot, sigval1, sigval2, sigval3, sigval4);
 	});
 }
-
 void QSslServer_HandshakeInterruptedOnError(QSslServer* self, QSslSocket* socket, QSslError* error) {
 	self->handshakeInterruptedOnError(socket, *error);
 }
-
 void QSslServer_connect_HandshakeInterruptedOnError(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*, const QSslError&)>(&QSslServer::handshakeInterruptedOnError), self, [=](QSslSocket* socket, const QSslError& error) {
 		QSslSocket* sigval1 = socket;
@@ -244,18 +210,15 @@ void QSslServer_connect_HandshakeInterruptedOnError(QSslServer* self, intptr_t s
 		miqt_exec_callback_QSslServer_HandshakeInterruptedOnError(slot, sigval1, sigval2);
 	});
 }
-
 void QSslServer_StartedEncryptionHandshake(QSslServer* self, QSslSocket* socket) {
 	self->startedEncryptionHandshake(socket);
 }
-
 void QSslServer_connect_StartedEncryptionHandshake(QSslServer* self, intptr_t slot) {
 	MiqtVirtualQSslServer::connect(self, static_cast<void (QSslServer::*)(QSslSocket*)>(&QSslServer::startedEncryptionHandshake), self, [=](QSslSocket* socket) {
 		QSslSocket* sigval1 = socket;
 		miqt_exec_callback_QSslServer_StartedEncryptionHandshake(slot, sigval1);
 	});
 }
-
 struct miqt_string QSslServer_Tr2(const char* s, const char* c) {
 	QString _ret = QSslServer::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -266,7 +229,6 @@ struct miqt_string QSslServer_Tr2(const char* s, const char* c) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QSslServer_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSslServer::tr(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -277,23 +239,18 @@ struct miqt_string QSslServer_Tr3(const char* s, const char* c, int n) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QSslServer_override_virtual_MetaObject(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSslServer*>( (QSslServer*)(self) )->handle__MetaObject = slot;
 }
-
 QMetaObject* QSslServer_virtualbase_MetaObject(const void* self) {
 	return ( (const MiqtVirtualQSslServer*)(self) )->virtualbase_MetaObject();
 }
-
 void QSslServer_override_virtual_Metacast(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSslServer*>( (QSslServer*)(self) )->handle__Metacast = slot;
 }
-
 void* QSslServer_virtualbase_Metacast(void* self, const char* param1) {
 	return ( (MiqtVirtualQSslServer*)(self) )->virtualbase_Metacast(param1);
 }
-
 void QSslServer_Delete(QSslServer* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<MiqtVirtualQSslServer*>( self );
@@ -301,4 +258,3 @@ void QSslServer_Delete(QSslServer* self, bool isSubclass) {
 		delete self;
 	}
 }
-

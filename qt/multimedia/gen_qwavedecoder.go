@@ -13,30 +13,30 @@ type QWaveDecoder struct {
 
 // NewQWaveDecoder constructs a new QWaveDecoder object.
 func NewQWaveDecoder(device *qt.QIODevice) *QWaveDecoder {
-	ret := newQWaveDecoder(QWaveDecoder_new((*QIODevice)(device.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQWaveDecoder(QWaveDecoder_new((*QIODevice)(device.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQWaveDecoder2 constructs a new QWaveDecoder object.
 func NewQWaveDecoder2(device *qt.QIODevice, format *QAudioFormat) *QWaveDecoder {
-	ret := newQWaveDecoder(QWaveDecoder_new2((*QIODevice)(device.UnsafePointer()), format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQWaveDecoder(QWaveDecoder_new2((*QIODevice)(device.UnsafePointer()), format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQWaveDecoder3 constructs a new QWaveDecoder object.
 func NewQWaveDecoder3(device *qt.QIODevice, parent *qt.QObject) *QWaveDecoder {
-	ret := newQWaveDecoder(QWaveDecoder_new3((*QIODevice)(device.UnsafePointer()), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQWaveDecoder(QWaveDecoder_new3((*QIODevice)(device.UnsafePointer()), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQWaveDecoder4 constructs a new QWaveDecoder object.
 func NewQWaveDecoder4(device *qt.QIODevice, format *QAudioFormat, parent *qt.QObject) *QWaveDecoder {
-	ret := newQWaveDecoder(QWaveDecoder_new4((*QIODevice)(device.UnsafePointer()), format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQWaveDecoder(QWaveDecoder_new4((*QIODevice)(device.UnsafePointer()), format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QWaveDecoder) MetaObject() *qt.QMetaObject {
@@ -205,11 +205,9 @@ func miqt_exec_callback_QWaveDecoder_Metacast(self QWaveDecoder, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QWaveDecoder{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

@@ -13,16 +13,16 @@ type QVideoWidget struct {
 
 // NewQVideoWidget constructs a new QVideoWidget object.
 func NewQVideoWidget(parent *qt.QWidget) *QVideoWidget {
-	ret := newQVideoWidget(QVideoWidget_new((*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoWidget(QVideoWidget_new((*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoWidget2 constructs a new QVideoWidget object.
 func NewQVideoWidget2() *QVideoWidget {
-	ret := newQVideoWidget(QVideoWidget_new2())
-	ret.isSubclass = true
-	return ret
+	g := newQVideoWidget(QVideoWidget_new2())
+	g.isSubclass = true
+	return g
 }
 
 func (this *QVideoWidget) MetaObject() *qt.QMetaObject {
@@ -173,11 +173,9 @@ func miqt_exec_callback_QVideoWidget_Metacast(self QVideoWidget, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QVideoWidget{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

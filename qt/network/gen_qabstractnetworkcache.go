@@ -13,16 +13,16 @@ type QNetworkCacheMetaData struct {
 
 // NewQNetworkCacheMetaData constructs a new QNetworkCacheMetaData object.
 func NewQNetworkCacheMetaData() *QNetworkCacheMetaData {
-	ret := newQNetworkCacheMetaData(QNetworkCacheMetaData_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCacheMetaData(QNetworkCacheMetaData_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkCacheMetaData2 constructs a new QNetworkCacheMetaData object.
 func NewQNetworkCacheMetaData2(other *QNetworkCacheMetaData) *QNetworkCacheMetaData {
-	ret := newQNetworkCacheMetaData(QNetworkCacheMetaData_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCacheMetaData(QNetworkCacheMetaData_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkCacheMetaData) OperatorAssign(other *QNetworkCacheMetaData) {

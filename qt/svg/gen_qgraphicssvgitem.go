@@ -19,9 +19,9 @@ type QGraphicsSvgItem struct {
 
 // NewQGraphicsSvgItem constructs a new QGraphicsSvgItem object.
 func NewQGraphicsSvgItem() *QGraphicsSvgItem {
-	ret := newQGraphicsSvgItem(QGraphicsSvgItem_new())
-	ret.isSubclass = true
-	return ret
+	g := newQGraphicsSvgItem(QGraphicsSvgItem_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQGraphicsSvgItem2 constructs a new QGraphicsSvgItem object.
@@ -30,17 +30,16 @@ func NewQGraphicsSvgItem2(fileName string) *QGraphicsSvgItem {
 	fileName_ms.data = CString(fileName)
 	fileName_ms.len = size_t(len(fileName))
 	defer free(unsafe.Pointer(fileName_ms.data))
-
-	ret := newQGraphicsSvgItem(QGraphicsSvgItem_new2(fileName_ms))
-	ret.isSubclass = true
-	return ret
+	g := newQGraphicsSvgItem(QGraphicsSvgItem_new2(fileName_ms))
+	g.isSubclass = true
+	return g
 }
 
 // NewQGraphicsSvgItem3 constructs a new QGraphicsSvgItem object.
 func NewQGraphicsSvgItem3(parentItem *qt.QGraphicsItem) *QGraphicsSvgItem {
-	ret := newQGraphicsSvgItem(QGraphicsSvgItem_new3((*QGraphicsItem)(parentItem.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQGraphicsSvgItem(QGraphicsSvgItem_new3((*QGraphicsItem)(parentItem.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQGraphicsSvgItem4 constructs a new QGraphicsSvgItem object.
@@ -49,10 +48,9 @@ func NewQGraphicsSvgItem4(fileName string, parentItem *qt.QGraphicsItem) *QGraph
 	fileName_ms.data = CString(fileName)
 	fileName_ms.len = size_t(len(fileName))
 	defer free(unsafe.Pointer(fileName_ms.data))
-
-	ret := newQGraphicsSvgItem(QGraphicsSvgItem_new4(fileName_ms, (*QGraphicsItem)(parentItem.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQGraphicsSvgItem(QGraphicsSvgItem_new4(fileName_ms, (*QGraphicsItem)(parentItem.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QGraphicsSvgItem) MetaObject() *qt.QMetaObject {
@@ -194,11 +192,9 @@ func miqt_exec_callback_QGraphicsSvgItem_Metacast(self QGraphicsSvgItem, cb intp
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QGraphicsSvgItem{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

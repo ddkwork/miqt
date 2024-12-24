@@ -13,30 +13,30 @@ type QAudioBufferOutput struct {
 
 // NewQAudioBufferOutput constructs a new QAudioBufferOutput object.
 func NewQAudioBufferOutput() *QAudioBufferOutput {
-	ret := newQAudioBufferOutput(QAudioBufferOutput_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferOutput(QAudioBufferOutput_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBufferOutput2 constructs a new QAudioBufferOutput object.
 func NewQAudioBufferOutput2(format *QAudioFormat) *QAudioBufferOutput {
-	ret := newQAudioBufferOutput(QAudioBufferOutput_new2(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferOutput(QAudioBufferOutput_new2(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBufferOutput3 constructs a new QAudioBufferOutput object.
 func NewQAudioBufferOutput3(parent *qt.QObject) *QAudioBufferOutput {
-	ret := newQAudioBufferOutput(QAudioBufferOutput_new3((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferOutput(QAudioBufferOutput_new3((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBufferOutput4 constructs a new QAudioBufferOutput object.
 func NewQAudioBufferOutput4(format *QAudioFormat, parent *qt.QObject) *QAudioBufferOutput {
-	ret := newQAudioBufferOutput(QAudioBufferOutput_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferOutput(QAudioBufferOutput_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioBufferOutput) MetaObject() *qt.QMetaObject {
@@ -150,11 +150,9 @@ func miqt_exec_callback_QAudioBufferOutput_Metacast(self QAudioBufferOutput, cb 
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioBufferOutput{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

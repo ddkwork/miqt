@@ -13,9 +13,9 @@ type QAudioListener struct {
 
 // NewQAudioListener constructs a new QAudioListener object.
 func NewQAudioListener(engine *QAudioEngine) *QAudioListener {
-	ret := newQAudioListener(QAudioListener_new(engine.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioListener(QAudioListener_new(engine.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioListener) SetPosition(pos qt.QVector3D) {
@@ -85,11 +85,9 @@ func miqt_exec_callback_QAudioListener_Metacast(self QAudioListener, cb intptr_t
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioListener{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

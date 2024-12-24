@@ -10,82 +10,66 @@
 #include <QWebChannelAbstractTransport>
 #include <qwebchannel.h>
 #include "gen_qwebchannel.h"
-
 class MiqtVirtualQWebChannel : public virtual QWebChannel {
 public:
+MiqtVirtualQWebChannel(): QWebChannel() {};
+MiqtVirtualQWebChannel(QObject* parent): QWebChannel(parent) {};
 
-	MiqtVirtualQWebChannel(): QWebChannel() {};
-	MiqtVirtualQWebChannel(QObject* parent): QWebChannel(parent) {};
-
-	virtual ~MiqtVirtualQWebChannel() = default;
-
-	// cgo.Handle value for overwritten implementation
+virtual ~MiqtVirtualQWebChannel() = default;
+// cgo.Handle value for overwritten implementation
 	intptr_t handle__MetaObject = 0;
-
-	// Subclass to allow providing a Go implementation
+// Subclass to allow providing a Go implementation
 	virtual const QMetaObject* metaObject() const override {
-		if (handle__MetaObject == 0) {
-			return QWebChannel::metaObject();
-		}
-		
-
-		QMetaObject* callback_return_value = miqt_exec_callback_QWebChannel_MetaObject(const_cast<MiqtVirtualQWebChannel*>(this), handle__MetaObject);
+if (handle__MetaObject == 0) {
+return QWebChannel::metaObject();
+}
+QMetaObject* callback_return_value = miqt_exec_callback_QWebChannel_MetaObject(const_cast<MiqtVirtualQWebChannel*>(this), handle__MetaObject);
 
 		return callback_return_value;
 	}
-
-	// Wrapper to allow calling protected method
+// Wrapper to allow calling protected method
 	QMetaObject* virtualbase_MetaObject() const {
 
 		return (QMetaObject*) QWebChannel::metaObject();
 
 	}
-
-	// cgo.Handle value for overwritten implementation
+// cgo.Handle value for overwritten implementation
 	intptr_t handle__Metacast = 0;
-
-	// Subclass to allow providing a Go implementation
+// Subclass to allow providing a Go implementation
 	virtual void* qt_metacast(const char* param1) override {
-		if (handle__Metacast == 0) {
-			return QWebChannel::qt_metacast(param1);
-		}
-		
-		const char* sigval1 = (const char*) param1;
+if (handle__Metacast == 0) {
+return QWebChannel::qt_metacast(param1);
+}
+const char* sigval1 = (const char*) param1;
 
 		void* callback_return_value = miqt_exec_callback_QWebChannel_Metacast(this, handle__Metacast, sigval1);
 
 		return callback_return_value;
 	}
-
-	// Wrapper to allow calling protected method
+// Wrapper to allow calling protected method
 	void* virtualbase_Metacast(const char* param1) {
 
 		return QWebChannel::qt_metacast(param1);
 
 	}
-
 };
-
 QWebChannel* QWebChannel_new() {
-	return new MiqtVirtualQWebChannel();
+return new MiqtVirtualQWebChannel();
 }
-
 QWebChannel* QWebChannel_new2(QObject* parent) {
-	return new MiqtVirtualQWebChannel(parent);
+return new MiqtVirtualQWebChannel(parent);
 }
-
-void QWebChannel_virtbase(QWebChannel* src, QObject** outptr_QObject) {
-	*outptr_QObject = static_cast<QObject*>(src);
+void QWebChannel_virtbase(QWebChannel* src
+, QObject** outptr_QObject
+) {
+*outptr_QObject = static_cast<QObject*>(src);
 }
-
 QMetaObject* QWebChannel_MetaObject(const QWebChannel* self) {
 	return (QMetaObject*) self->metaObject();
 }
-
 void* QWebChannel_Metacast(QWebChannel* self, const char* param1) {
 	return self->qt_metacast(param1);
 }
-
 struct miqt_string QWebChannel_Tr(const char* s) {
 	QString _ret = QWebChannel::tr(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -96,7 +80,6 @@ struct miqt_string QWebChannel_Tr(const char* s) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QWebChannel_RegisterObjects(QWebChannel* self, struct miqt_map /* of struct miqt_string to QObject* */  objects) {
 	QHash<QString, QObject *> objects_QMap;
 	objects_QMap.reserve(objects.len);
@@ -108,7 +91,6 @@ void QWebChannel_RegisterObjects(QWebChannel* self, struct miqt_map /* of struct
 	}
 	self->registerObjects(objects_QMap);
 }
-
 struct miqt_map /* of struct miqt_string to QObject* */  QWebChannel_RegisteredObjects(const QWebChannel* self) {
 	QHash<QString, QObject *> _ret = self->registeredObjects();
 	// Convert QMap<> from C++ memory to manually-managed C memory
@@ -133,51 +115,40 @@ struct miqt_map /* of struct miqt_string to QObject* */  QWebChannel_RegisteredO
 	_out.values = static_cast<void*>(_varr);
 	return _out;
 }
-
 void QWebChannel_RegisterObject(QWebChannel* self, struct miqt_string id, QObject* object) {
 	QString id_QString = QString::fromUtf8(id.data, id.len);
 	self->registerObject(id_QString, object);
 }
-
 void QWebChannel_DeregisterObject(QWebChannel* self, QObject* object) {
 	self->deregisterObject(object);
 }
-
 bool QWebChannel_BlockUpdates(const QWebChannel* self) {
 	return self->blockUpdates();
 }
-
 void QWebChannel_SetBlockUpdates(QWebChannel* self, bool block) {
 	self->setBlockUpdates(block);
 }
-
 int QWebChannel_PropertyUpdateInterval(const QWebChannel* self) {
 	return self->propertyUpdateInterval();
 }
-
 void QWebChannel_SetPropertyUpdateInterval(QWebChannel* self, int ms) {
 	self->setPropertyUpdateInterval(static_cast<int>(ms));
 }
-
 void QWebChannel_BlockUpdatesChanged(QWebChannel* self, bool block) {
 	self->blockUpdatesChanged(block);
 }
-
 void QWebChannel_connect_BlockUpdatesChanged(QWebChannel* self, intptr_t slot) {
 	MiqtVirtualQWebChannel::connect(self, static_cast<void (QWebChannel::*)(bool)>(&QWebChannel::blockUpdatesChanged), self, [=](bool block) {
 		bool sigval1 = block;
 		miqt_exec_callback_QWebChannel_BlockUpdatesChanged(slot, sigval1);
 	});
 }
-
 void QWebChannel_ConnectTo(QWebChannel* self, QWebChannelAbstractTransport* transport) {
 	self->connectTo(transport);
 }
-
 void QWebChannel_DisconnectFrom(QWebChannel* self, QWebChannelAbstractTransport* transport) {
 	self->disconnectFrom(transport);
 }
-
 struct miqt_string QWebChannel_Tr2(const char* s, const char* c) {
 	QString _ret = QWebChannel::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -188,7 +159,6 @@ struct miqt_string QWebChannel_Tr2(const char* s, const char* c) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QWebChannel_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QWebChannel::tr(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -199,23 +169,18 @@ struct miqt_string QWebChannel_Tr3(const char* s, const char* c, int n) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QWebChannel_override_virtual_MetaObject(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWebChannel*>( (QWebChannel*)(self) )->handle__MetaObject = slot;
 }
-
 QMetaObject* QWebChannel_virtualbase_MetaObject(const void* self) {
 	return ( (const MiqtVirtualQWebChannel*)(self) )->virtualbase_MetaObject();
 }
-
 void QWebChannel_override_virtual_Metacast(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWebChannel*>( (QWebChannel*)(self) )->handle__Metacast = slot;
 }
-
 void* QWebChannel_virtualbase_Metacast(void* self, const char* param1) {
 	return ( (MiqtVirtualQWebChannel*)(self) )->virtualbase_Metacast(param1);
 }
-
 void QWebChannel_Delete(QWebChannel* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<MiqtVirtualQWebChannel*>( self );
@@ -223,4 +188,3 @@ void QWebChannel_Delete(QWebChannel* self, bool isSubclass) {
 		delete self;
 	}
 }
-

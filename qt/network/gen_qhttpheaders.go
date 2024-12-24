@@ -195,16 +195,16 @@ type QHttpHeaders struct {
 
 // NewQHttpHeaders constructs a new QHttpHeaders object.
 func NewQHttpHeaders() *QHttpHeaders {
-	ret := newQHttpHeaders(QHttpHeaders_new())
-	ret.isSubclass = true
-	return ret
+	g := newQHttpHeaders(QHttpHeaders_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQHttpHeaders2 constructs a new QHttpHeaders object.
 func NewQHttpHeaders2(other *QHttpHeaders) *QHttpHeaders {
-	ret := newQHttpHeaders(QHttpHeaders_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQHttpHeaders(QHttpHeaders_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QHttpHeaders) OperatorAssign(other *QHttpHeaders) {

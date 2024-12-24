@@ -19,16 +19,16 @@ type QGraphicsVideoItem struct {
 
 // NewQGraphicsVideoItem constructs a new QGraphicsVideoItem object.
 func NewQGraphicsVideoItem() *QGraphicsVideoItem {
-	ret := newQGraphicsVideoItem(QGraphicsVideoItem_new())
-	ret.isSubclass = true
-	return ret
+	g := newQGraphicsVideoItem(QGraphicsVideoItem_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQGraphicsVideoItem2 constructs a new QGraphicsVideoItem object.
 func NewQGraphicsVideoItem2(parent *qt.QGraphicsItem) *QGraphicsVideoItem {
-	ret := newQGraphicsVideoItem(QGraphicsVideoItem_new2((*QGraphicsItem)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQGraphicsVideoItem(QGraphicsVideoItem_new2((*QGraphicsItem)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QGraphicsVideoItem) MetaObject() *qt.QMetaObject {
@@ -188,11 +188,9 @@ func miqt_exec_callback_QGraphicsVideoItem_Metacast(self QGraphicsVideoItem, cb 
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QGraphicsVideoItem{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

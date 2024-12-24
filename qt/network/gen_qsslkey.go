@@ -13,9 +13,9 @@ type QSslKey struct {
 
 // NewQSslKey constructs a new QSslKey object.
 func NewQSslKey() *QSslKey {
-	ret := newQSslKey(QSslKey_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey2 constructs a new QSslKey object.
@@ -23,31 +23,30 @@ func NewQSslKey2(encoded []byte, algorithm QSsl__KeyAlgorithm) *QSslKey {
 	encoded_alias := struct_miqt_string{}
 	encoded_alias.data = (char)(unsafe.Pointer(&encoded[0]))
 	encoded_alias.len = size_t(len(encoded))
-
-	ret := newQSslKey(QSslKey_new2(encoded_alias, (int)(algorithm)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new2(encoded_alias, (int)(algorithm)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey3 constructs a new QSslKey object.
 func NewQSslKey3(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm) *QSslKey {
-	ret := newQSslKey(QSslKey_new3((*QIODevice)(device.UnsafePointer()), (int)(algorithm)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new3((*QIODevice)(device.UnsafePointer()), (int)(algorithm)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey4 constructs a new QSslKey object.
 func NewQSslKey4(handle unsafe.Pointer) *QSslKey {
-	ret := newQSslKey(QSslKey_new4(handle))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new4(handle))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey5 constructs a new QSslKey object.
 func NewQSslKey5(other *QSslKey) *QSslKey {
-	ret := newQSslKey(QSslKey_new5(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new5(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey6 constructs a new QSslKey object.
@@ -55,10 +54,9 @@ func NewQSslKey6(encoded []byte, algorithm QSsl__KeyAlgorithm, format QSsl__Enco
 	encoded_alias := struct_miqt_string{}
 	encoded_alias.data = (char)(unsafe.Pointer(&encoded[0]))
 	encoded_alias.len = size_t(len(encoded))
-
-	ret := newQSslKey(QSslKey_new6(encoded_alias, (int)(algorithm), (int)(format)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new6(encoded_alias, (int)(algorithm), (int)(format)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey7 constructs a new QSslKey object.
@@ -66,10 +64,9 @@ func NewQSslKey7(encoded []byte, algorithm QSsl__KeyAlgorithm, format QSsl__Enco
 	encoded_alias := struct_miqt_string{}
 	encoded_alias.data = (char)(unsafe.Pointer(&encoded[0]))
 	encoded_alias.len = size_t(len(encoded))
-
-	ret := newQSslKey(QSslKey_new7(encoded_alias, (int)(algorithm), (int)(format), (int)(typeVal)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new7(encoded_alias, (int)(algorithm), (int)(format), (int)(typeVal)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey8 constructs a new QSslKey object.
@@ -80,24 +77,23 @@ func NewQSslKey8(encoded []byte, algorithm QSsl__KeyAlgorithm, format QSsl__Enco
 	passPhrase_alias := struct_miqt_string{}
 	passPhrase_alias.data = (char)(unsafe.Pointer(&passPhrase[0]))
 	passPhrase_alias.len = size_t(len(passPhrase))
-
-	ret := newQSslKey(QSslKey_new8(encoded_alias, (int)(algorithm), (int)(format), (int)(typeVal), passPhrase_alias))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new8(encoded_alias, (int)(algorithm), (int)(format), (int)(typeVal), passPhrase_alias))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey9 constructs a new QSslKey object.
 func NewQSslKey9(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSsl__EncodingFormat) *QSslKey {
-	ret := newQSslKey(QSslKey_new9((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new9((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey10 constructs a new QSslKey object.
 func NewQSslKey10(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSsl__EncodingFormat, typeVal QSsl__KeyType) *QSslKey {
-	ret := newQSslKey(QSslKey_new10((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format), (int)(typeVal)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new10((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format), (int)(typeVal)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey11 constructs a new QSslKey object.
@@ -105,17 +101,16 @@ func NewQSslKey11(device *qt.QIODevice, algorithm QSsl__KeyAlgorithm, format QSs
 	passPhrase_alias := struct_miqt_string{}
 	passPhrase_alias.data = (char)(unsafe.Pointer(&passPhrase[0]))
 	passPhrase_alias.len = size_t(len(passPhrase))
-
-	ret := newQSslKey(QSslKey_new11((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format), (int)(typeVal), passPhrase_alias))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new11((*QIODevice)(device.UnsafePointer()), (int)(algorithm), (int)(format), (int)(typeVal), passPhrase_alias))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslKey12 constructs a new QSslKey object.
 func NewQSslKey12(handle unsafe.Pointer, typeVal QSsl__KeyType) *QSslKey {
-	ret := newQSslKey(QSslKey_new12(handle, (int)(typeVal)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslKey(QSslKey_new12(handle, (int)(typeVal)))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslKey) OperatorAssign(other *QSslKey) {

@@ -7,43 +7,33 @@
 #include <cstring>
 #include <qsslerror.h>
 #include "gen_qsslerror.h"
-
 QSslError* QSslError_new() {
-	return new QSslError();
+return new QSslError();
 }
-
 QSslError* QSslError_new2(SslError error) {
-	return new QSslError(error);
+return new QSslError(error);
 }
-
 QSslError* QSslError_new3(SslError error, QSslCertificate* certificate) {
-	return new QSslError(error, *certificate);
+return new QSslError(error, *certificate);
 }
-
 QSslError* QSslError_new4(QSslError* other) {
-	return new QSslError(*other);
+return new QSslError(*other);
 }
-
 void QSslError_Swap(QSslError* self, QSslError* other) {
 	self->swap(*other);
 }
-
 void QSslError_OperatorAssign(QSslError* self, QSslError* other) {
 	self->operator=(*other);
 }
-
 bool QSslError_OperatorEqual(const QSslError* self, QSslError* other) {
 	return (*self == *other);
 }
-
 bool QSslError_OperatorNotEqual(const QSslError* self, QSslError* other) {
 	return (*self != *other);
 }
-
 SslError QSslError_Error(const QSslError* self) {
 	return self->error();
 }
-
 struct miqt_string QSslError_ErrorString(const QSslError* self) {
 	QString _ret = self->errorString();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -54,11 +44,9 @@ struct miqt_string QSslError_ErrorString(const QSslError* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 QSslCertificate* QSslError_Certificate(const QSslError* self) {
 	return new QSslCertificate(self->certificate());
 }
-
 void QSslError_Delete(QSslError* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QSslError*>( self );
@@ -66,4 +54,3 @@ void QSslError_Delete(QSslError* self, bool isSubclass) {
 		delete self;
 	}
 }
-

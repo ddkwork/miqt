@@ -8,6 +8,8 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/ddkwork/golibrary/stream"
+
 	"mvdan.cc/gofumpt/format"
 )
 
@@ -544,8 +546,8 @@ func (gfs *goFileState) emitCabiToGo(assignExpr string, rt CppParameter, rvalue 
 }
 
 func emitGo(src *CppParsedHeader, headerName string, packageName string) (string, error) {
-	ret := strings.Builder{}
-	ret.WriteString(`package ` + path.Base(packageName) + `
+	g := stream.NewGeneratedFile()
+	g.P(`package ` + path.Base(packageName) + `
 %%_IMPORTLIBS_%%
 `)
 
@@ -591,16 +593,16 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		if _, ok := preventShortNames[e.EnumName]; !ok {
 			goEnumShortName = cabiClassName(e.ShortEnumName())
 		}
-		ret.WriteString(`
+		g.P(`
 		type ` + goEnumName + ` ` + e.UnderlyingType.RenderTypeGo(&gfs) + `
 		`)
 
 		if len(e.Entries) > 0 {
-			ret.WriteString("const (\n")
+			g.P("const (\n")
 			for _, ee := range e.Entries {
-				ret.WriteString(titleCase(cabiClassName(goEnumShortName+"::"+ee.EntryName)) + " " + goEnumName + " = " + ee.EntryValue + "\n")
+				g.P(titleCase(cabiClassName(goEnumShortName+"::"+ee.EntryName)) + " " + goEnumName + " = " + ee.EntryValue + "\n")
 			}
-			ret.WriteString("\n)\n\n")
+			g.P("\n)\n\n")
 		}
 	}
 	for _, c := range src.Classes {
@@ -610,7 +612,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 			continue
 		}
 		// Type definition
-		ret.WriteString(`
+		g.P(`
 		type ` + goClassName + ` struct {
 			h uintptr` + `
 			isSubclass bool
@@ -621,18 +623,18 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		// on these types already
 		//for _, base := range c.DirectInherits {
 		//	if strings.HasPrefix(base, `QList<`) {
-		//		ret.WriteString("/* Also inherits unprojectable " + base + " */\n")
+		//		g.P("/* Also inherits unprojectable " + base + " */\n")
 		//	} else if pkg, ok := KnownClassnames[base]; ok && pkg.PackageName != gfs.currentPackageName {
 		//		// Cross-package parent class
-		//		ret.WriteString("*" + path.Base(pkg.PackageName) + "." + cabiClassName(base) + "\n")
+		//		g.P("*" + path.Base(pkg.PackageName) + "." + cabiClassName(base) + "\n")
 		//		gfs.imports[importPathForQtPackage(pkg.PackageName)] = struct{}{}
 		//	} else {
 		//		// Same-package parent class
-		//		ret.WriteString("*" + cabiClassName(base) + "\n")
+		//		g.P("*" + cabiClassName(base) + "\n")
 		//	}
 		//}
 
-		//ret.WriteString(`
+		//g.P(`
 		//}
 		//
 		//func (this *` + goClassName + `) cPointer() ` + goClassName + ` {
@@ -660,7 +662,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 
 		// localInit := "h: h"
 
-		//ret.WriteString(`
+		//g.P(`
 		//	// new` + goClassName + ` constructs the type using only CGO pointers.
 		//	func new` + goClassName + `(h ` + goClassName + `) *` + goClassName + ` {
 		//		if h == nil {
@@ -676,7 +678,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		//
 		//		// Make extra CGO call to get base pointers from C++ space
 		//		outptrVar := "outptr_" + cabiClassName(base)
-		//		ret.WriteString("var " + outptrVar + " " + cabiClassName(base) + " = nil\n")
+		//		g.P("var " + outptrVar + " " + cabiClassName(base) + " = nil\n")
 		//		xbaseParams += ", &" + outptrVar
 		//
 		//		// Set up how we would pass the pointer to its own make function
@@ -689,11 +691,11 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		//	}
 		//
 		//	// Populate outptr pointers
-		//	ret.WriteString(cabiClassName(c.ClassName) + "_virtbase(h" + xbaseParams + ")\n")
+		//	g.P(cabiClassName(c.ClassName) + "_virtbase(h" + xbaseParams + ")\n")
 		//
 		//}
 		//
-		//ret.WriteString(`
+		//g.P(`
 		//		return &` + goClassName + `{` + localInit + `}
 		//	}
 		//
@@ -707,24 +709,24 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		// 实例化对象
 		for i, ctor := range c.Ctors {
 			preamble, forwarding := gfs.emitParametersGo2CABIForwarding(ctor)
-			ret.WriteString(`
+			g.P(`
 			// New` + goClassName + maybeSuffix(i) + ` constructs a new ` + c.ClassName + ` object.
 			func New` + goClassName + maybeSuffix(i) + `(` + gfs.emitParametersGo(ctor.Parameters) + `) *` + goClassName + ` {
 				`,
 			)
 			if ctor.LinuxOnly {
 				gfs.imports["runtime"] = struct{}{}
-				ret.WriteString(`
+				g.P(`
 					if runtime.GOOS != "linux" {
 						panic("Unsupported OS")
 					}
 				`)
 			}
-			ret.WriteString(preamble)
-			ret.WriteString(`				
-				ret := new` + goClassName + `(` + goClassName + `_new` + maybeSuffix(i) + `(` + forwarding + `))
-				ret.isSubclass = true
-				return ret
+			g.P(preamble)
+			g.P(`				
+				g := new` + goClassName + `(` + goClassName + `_new` + maybeSuffix(i) + `(` + forwarding + `))
+				g.isSubclass = true
+				return g
 			}
 			
 			`)
@@ -743,17 +745,17 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 			if m.IsStatic {
 				receiverAndMethod = goClassName + `_` + m.SafeMethodName()
 			}
-			ret.WriteString(`
+			g.P(`
 			func ` + receiverAndMethod + `(` + gfs.emitParametersGo(m.Parameters) + `) ` + returnTypeDecl + ` {`)
 			if m.LinuxOnly {
 				gfs.imports["runtime"] = struct{}{}
-				ret.WriteString(`
+				g.P(`
 				if runtime.GOOS != "linux" {
 					panic("Unsupported OS")
 				}
 				`)
 			}
-			ret.WriteString(`
+			g.P(`
 				` + preamble +
 				returnFunc + `}
 			`)
@@ -775,7 +777,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 				}
 
 				goCbType := `func(` + gfs.emitParametersGo(m.Parameters) + `)`
-				ret.WriteString(`func (this *` + goClassName + `) On` + m.SafeMethodName() + `(slot ` + goCbType + `) {
+				g.P(`func (this *` + goClassName + `) On` + m.SafeMethodName() + `(slot ` + goCbType + `) {
 					` + goClassName + `_connect_` + m.SafeMethodName() + `(this.h, intptr_t(cgo.NewHandle(slot)) )
 				}
 				
@@ -804,7 +806,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 				preamble, forwarding := gfs.emitParametersGo2CABIForwarding(m)
 				forwarding = "unsafe.Pointer(this.h)" + strings.TrimPrefix(forwarding, `this.h`) // TODO integrate properly
 				returnTypeDecl := m.ReturnType.renderReturnTypeGo(&gfs)
-				ret.WriteString(`
+				g.P(`
 				func (this *` + goClassName + `) callVirtualBase_` + m.SafeMethodName() + `(` + gfs.emitParametersGo(m.Parameters) + `) ` + returnTypeDecl + ` {
 					` + preamble + `
 					` + gfs.emitCabiToGo("return ", m.ReturnType, goClassName+`_virtualbase_`+m.SafeMethodName()+`(`+forwarding+`)`) + `
@@ -845,7 +847,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 				}
 				goCbType += gfs.emitParametersGo(m.Parameters)
 				goCbType += `) ` + m.ReturnType.renderReturnTypeGo(&gfs)
-				ret.WriteString(`func (this *` + goClassName + `) On` + m.SafeMethodName() + `(slot ` + goCbType + `) {
+				g.P(`func (this *` + goClassName + `) On` + m.SafeMethodName() + `(slot ` + goCbType + `) {
 					if ! this.isSubclass {
 						panic("miqt: can only override virtual methods for directly constructed types")
 					}
@@ -860,18 +862,18 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 					}
 				
 			`)
-				ret.WriteString(conversion + "\n")
+				g.P(conversion + "\n")
 				if cabiReturnType == "" {
-					ret.WriteString(`gofunc(` + strings.Join(paramNames, `, `) + " )\n")
+					g.P(`gofunc(` + strings.Join(paramNames, `, `) + " )\n")
 				} else {
-					ret.WriteString(`virtualReturn := gofunc(` + strings.Join(paramNames, `, `) + " )\n")
+					g.P(`virtualReturn := gofunc(` + strings.Join(paramNames, `, `) + " )\n")
 					virtualRetP := m.ReturnType // copy
 					virtualRetP.ParameterName = "virtualReturn"
 					binding, rvalue := gfs.emitParameterGo2CABIForwarding(virtualRetP)
-					ret.WriteString(binding + "\n")
-					ret.WriteString("return " + rvalue + "\n")
+					g.P(binding + "\n")
+					g.P("return " + rvalue + "\n")
 				}
-				ret.WriteString(`
+				g.P(`
 				}
 			`)
 			}
@@ -880,7 +882,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		if c.CanDelete {
 			//gfs.imports["runtime"] = struct{}{} // Finalizer
 			//
-			//ret.WriteString(`
+			//g.P(`
 			//// Delete this object from C++ memory.
 			//func (this *` + goClassName + `) Delete() {
 			//	` + goClassName + `_Delete(this.h, bool(this.isSubclass))
@@ -898,7 +900,7 @@ func emitGo(src *CppParsedHeader, headerName string, packageName string) (string
 		}
 	}
 
-	goSrc := ret.String()
+	goSrc := string(g.Bytes())
 	// Fixup imports
 	if len(gfs.imports) > 0 {
 		allImports := make([]string, 0, len(gfs.imports))

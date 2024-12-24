@@ -21,16 +21,16 @@ type QSslDiffieHellmanParameters struct {
 
 // NewQSslDiffieHellmanParameters constructs a new QSslDiffieHellmanParameters object.
 func NewQSslDiffieHellmanParameters() *QSslDiffieHellmanParameters {
-	ret := newQSslDiffieHellmanParameters(QSslDiffieHellmanParameters_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslDiffieHellmanParameters(QSslDiffieHellmanParameters_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslDiffieHellmanParameters2 constructs a new QSslDiffieHellmanParameters object.
 func NewQSslDiffieHellmanParameters2(other *QSslDiffieHellmanParameters) *QSslDiffieHellmanParameters {
-	ret := newQSslDiffieHellmanParameters(QSslDiffieHellmanParameters_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslDiffieHellmanParameters(QSslDiffieHellmanParameters_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func QSslDiffieHellmanParameters_DefaultParameters() *QSslDiffieHellmanParameters {

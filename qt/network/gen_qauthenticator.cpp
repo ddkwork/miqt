@@ -8,27 +8,21 @@
 #include <QVariant>
 #include <qauthenticator.h>
 #include "gen_qauthenticator.h"
-
 QAuthenticator* QAuthenticator_new() {
-	return new QAuthenticator();
+return new QAuthenticator();
 }
-
 QAuthenticator* QAuthenticator_new2(QAuthenticator* other) {
-	return new QAuthenticator(*other);
+return new QAuthenticator(*other);
 }
-
 void QAuthenticator_OperatorAssign(QAuthenticator* self, QAuthenticator* other) {
 	self->operator=(*other);
 }
-
 bool QAuthenticator_OperatorEqual(const QAuthenticator* self, QAuthenticator* other) {
 	return (*self == *other);
 }
-
 bool QAuthenticator_OperatorNotEqual(const QAuthenticator* self, QAuthenticator* other) {
 	return (*self != *other);
 }
-
 struct miqt_string QAuthenticator_User(const QAuthenticator* self) {
 	QString _ret = self->user();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -39,12 +33,10 @@ struct miqt_string QAuthenticator_User(const QAuthenticator* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QAuthenticator_SetUser(QAuthenticator* self, struct miqt_string user) {
 	QString user_QString = QString::fromUtf8(user.data, user.len);
 	self->setUser(user_QString);
 }
-
 struct miqt_string QAuthenticator_Password(const QAuthenticator* self) {
 	QString _ret = self->password();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -55,12 +47,10 @@ struct miqt_string QAuthenticator_Password(const QAuthenticator* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QAuthenticator_SetPassword(QAuthenticator* self, struct miqt_string password) {
 	QString password_QString = QString::fromUtf8(password.data, password.len);
 	self->setPassword(password_QString);
 }
-
 struct miqt_string QAuthenticator_Realm(const QAuthenticator* self) {
 	QString _ret = self->realm();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -71,17 +61,14 @@ struct miqt_string QAuthenticator_Realm(const QAuthenticator* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QAuthenticator_SetRealm(QAuthenticator* self, struct miqt_string realm) {
 	QString realm_QString = QString::fromUtf8(realm.data, realm.len);
 	self->setRealm(realm_QString);
 }
-
 QVariant* QAuthenticator_Option(const QAuthenticator* self, struct miqt_string opt) {
 	QString opt_QString = QString::fromUtf8(opt.data, opt.len);
 	return new QVariant(self->option(opt_QString));
 }
-
 struct miqt_map /* of struct miqt_string to QVariant* */  QAuthenticator_Options(const QAuthenticator* self) {
 	QVariantHash _ret = self->options();
 	// Convert QMap<> from C++ memory to manually-managed C memory
@@ -106,20 +93,16 @@ struct miqt_map /* of struct miqt_string to QVariant* */  QAuthenticator_Options
 	_out.values = static_cast<void*>(_varr);
 	return _out;
 }
-
 void QAuthenticator_SetOption(QAuthenticator* self, struct miqt_string opt, QVariant* value) {
 	QString opt_QString = QString::fromUtf8(opt.data, opt.len);
 	self->setOption(opt_QString, *value);
 }
-
 bool QAuthenticator_IsNull(const QAuthenticator* self) {
 	return self->isNull();
 }
-
 void QAuthenticator_Detach(QAuthenticator* self) {
 	self->detach();
 }
-
 void QAuthenticator_Delete(QAuthenticator* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QAuthenticator*>( self );
@@ -127,4 +110,3 @@ void QAuthenticator_Delete(QAuthenticator* self, bool isSubclass) {
 		delete self;
 	}
 }
-

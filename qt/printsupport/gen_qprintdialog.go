@@ -13,30 +13,30 @@ type QPrintDialog struct {
 
 // NewQPrintDialog constructs a new QPrintDialog object.
 func NewQPrintDialog(parent *qt.QWidget) *QPrintDialog {
-	ret := newQPrintDialog(QPrintDialog_new((*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintDialog(QPrintDialog_new((*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintDialog2 constructs a new QPrintDialog object.
 func NewQPrintDialog2(printer *QPrinter) *QPrintDialog {
-	ret := newQPrintDialog(QPrintDialog_new2(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintDialog(QPrintDialog_new2(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintDialog3 constructs a new QPrintDialog object.
 func NewQPrintDialog3() *QPrintDialog {
-	ret := newQPrintDialog(QPrintDialog_new3())
-	ret.isSubclass = true
-	return ret
+	g := newQPrintDialog(QPrintDialog_new3())
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintDialog4 constructs a new QPrintDialog object.
 func NewQPrintDialog4(printer *QPrinter, parent *qt.QWidget) *QPrintDialog {
-	ret := newQPrintDialog(QPrintDialog_new4(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintDialog(QPrintDialog_new4(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QPrintDialog) MetaObject() *qt.QMetaObject {
@@ -176,11 +176,9 @@ func miqt_exec_callback_QPrintDialog_Metacast(self QPrintDialog, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QPrintDialog{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

@@ -67,16 +67,16 @@ type QAudioFormat struct {
 
 // NewQAudioFormat constructs a new QAudioFormat object.
 func NewQAudioFormat() *QAudioFormat {
-	ret := newQAudioFormat(QAudioFormat_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioFormat(QAudioFormat_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioFormat2 constructs a new QAudioFormat object.
 func NewQAudioFormat2(param1 *QAudioFormat) *QAudioFormat {
-	ret := newQAudioFormat(QAudioFormat_new2(param1.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioFormat(QAudioFormat_new2(param1.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioFormat) IsValid() bool {

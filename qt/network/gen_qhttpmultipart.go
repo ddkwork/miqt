@@ -22,16 +22,16 @@ type QHttpPart struct {
 
 // NewQHttpPart constructs a new QHttpPart object.
 func NewQHttpPart() *QHttpPart {
-	ret := newQHttpPart(QHttpPart_new())
-	ret.isSubclass = true
-	return ret
+	g := newQHttpPart(QHttpPart_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQHttpPart2 constructs a new QHttpPart object.
 func NewQHttpPart2(other *QHttpPart) *QHttpPart {
-	ret := newQHttpPart(QHttpPart_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQHttpPart(QHttpPart_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QHttpPart) OperatorAssign(other *QHttpPart) {
@@ -82,30 +82,30 @@ type QHttpMultiPart struct {
 
 // NewQHttpMultiPart constructs a new QHttpMultiPart object.
 func NewQHttpMultiPart() *QHttpMultiPart {
-	ret := newQHttpMultiPart(QHttpMultiPart_new())
-	ret.isSubclass = true
-	return ret
+	g := newQHttpMultiPart(QHttpMultiPart_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQHttpMultiPart2 constructs a new QHttpMultiPart object.
 func NewQHttpMultiPart2(contentType ContentType) *QHttpMultiPart {
-	ret := newQHttpMultiPart(QHttpMultiPart_new2(contentType))
-	ret.isSubclass = true
-	return ret
+	g := newQHttpMultiPart(QHttpMultiPart_new2(contentType))
+	g.isSubclass = true
+	return g
 }
 
 // NewQHttpMultiPart3 constructs a new QHttpMultiPart object.
 func NewQHttpMultiPart3(parent *qt.QObject) *QHttpMultiPart {
-	ret := newQHttpMultiPart(QHttpMultiPart_new3((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQHttpMultiPart(QHttpMultiPart_new3((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQHttpMultiPart4 constructs a new QHttpMultiPart object.
 func NewQHttpMultiPart4(contentType ContentType, parent *qt.QObject) *QHttpMultiPart {
-	ret := newQHttpMultiPart(QHttpMultiPart_new4(contentType, (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQHttpMultiPart(QHttpMultiPart_new4(contentType, (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QHttpMultiPart) MetaObject() *qt.QMetaObject {
@@ -214,11 +214,9 @@ func miqt_exec_callback_QHttpMultiPart_Metacast(self QHttpMultiPart, cb intptr_t
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QHttpMultiPart{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

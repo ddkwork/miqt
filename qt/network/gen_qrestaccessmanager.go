@@ -13,16 +13,16 @@ type QRestAccessManager struct {
 
 // NewQRestAccessManager constructs a new QRestAccessManager object.
 func NewQRestAccessManager(manager *QNetworkAccessManager) *QRestAccessManager {
-	ret := newQRestAccessManager(QRestAccessManager_new(manager.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQRestAccessManager(QRestAccessManager_new(manager.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQRestAccessManager2 constructs a new QRestAccessManager object.
 func NewQRestAccessManager2(manager *QNetworkAccessManager, parent *qt.QObject) *QRestAccessManager {
-	ret := newQRestAccessManager(QRestAccessManager_new2(manager.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQRestAccessManager(QRestAccessManager_new2(manager.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QRestAccessManager) MetaObject() *qt.QMetaObject {
@@ -286,11 +286,9 @@ func miqt_exec_callback_QRestAccessManager_Metacast(self QRestAccessManager, cb 
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QRestAccessManager{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

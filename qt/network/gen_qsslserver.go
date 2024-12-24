@@ -13,16 +13,16 @@ type QSslServer struct {
 
 // NewQSslServer constructs a new QSslServer object.
 func NewQSslServer() *QSslServer {
-	ret := newQSslServer(QSslServer_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslServer(QSslServer_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslServer2 constructs a new QSslServer object.
 func NewQSslServer2(parent *qt.QObject) *QSslServer {
-	ret := newQSslServer(QSslServer_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQSslServer(QSslServer_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslServer) MetaObject() *qt.QMetaObject {
@@ -345,11 +345,9 @@ func miqt_exec_callback_QSslServer_Metacast(self QSslServer, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QSslServer{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

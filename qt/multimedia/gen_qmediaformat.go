@@ -83,23 +83,23 @@ type QMediaFormat struct {
 
 // NewQMediaFormat constructs a new QMediaFormat object.
 func NewQMediaFormat() *QMediaFormat {
-	ret := newQMediaFormat(QMediaFormat_new())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaFormat(QMediaFormat_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaFormat2 constructs a new QMediaFormat object.
 func NewQMediaFormat2(other *QMediaFormat) *QMediaFormat {
-	ret := newQMediaFormat(QMediaFormat_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaFormat(QMediaFormat_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaFormat3 constructs a new QMediaFormat object.
 func NewQMediaFormat3(format FileFormat) *QMediaFormat {
-	ret := newQMediaFormat(QMediaFormat_new3(format))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaFormat(QMediaFormat_new3(format))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaFormat) OperatorAssign(other *QMediaFormat) {

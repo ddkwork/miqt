@@ -28,9 +28,9 @@ type QSpatialSound struct {
 
 // NewQSpatialSound constructs a new QSpatialSound object.
 func NewQSpatialSound(engine *QAudioEngine) *QSpatialSound {
-	ret := newQSpatialSound(QSpatialSound_new(engine.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSpatialSound(QSpatialSound_new(engine.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSpatialSound) MetaObject() *qt.QMetaObject {
@@ -503,11 +503,9 @@ func miqt_exec_callback_QSpatialSound_Metacast(self QSpatialSound, cb intptr_t, 
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QSpatialSound{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

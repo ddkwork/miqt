@@ -6,7 +6,6 @@
 #include <cstring>
 #include <qcborcommon.h>
 #include "gen_qcborcommon.h"
-
 struct miqt_string QCborError_ToString(const QCborError* self) {
 	QString _ret = self->toString();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -17,7 +16,6 @@ struct miqt_string QCborError_ToString(const QCborError* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QCborError_Delete(QCborError* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QCborError*>( self );
@@ -25,4 +23,3 @@ void QCborError_Delete(QCborError* self, bool isSubclass) {
 		delete self;
 	}
 }
-

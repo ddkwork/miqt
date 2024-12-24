@@ -13,16 +13,16 @@ type QAuthenticator struct {
 
 // NewQAuthenticator constructs a new QAuthenticator object.
 func NewQAuthenticator() *QAuthenticator {
-	ret := newQAuthenticator(QAuthenticator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAuthenticator(QAuthenticator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAuthenticator2 constructs a new QAuthenticator object.
 func NewQAuthenticator2(other *QAuthenticator) *QAuthenticator {
-	ret := newQAuthenticator(QAuthenticator_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAuthenticator(QAuthenticator_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAuthenticator) OperatorAssign(other *QAuthenticator) {

@@ -13,30 +13,30 @@ type QPageSetupDialog struct {
 
 // NewQPageSetupDialog constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog(parent *qt.QWidget) *QPageSetupDialog {
-	ret := newQPageSetupDialog(QPageSetupDialog_new((*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPageSetupDialog(QPageSetupDialog_new((*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPageSetupDialog2 constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog2(printer *QPrinter) *QPageSetupDialog {
-	ret := newQPageSetupDialog(QPageSetupDialog_new2(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPageSetupDialog(QPageSetupDialog_new2(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPageSetupDialog3 constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog3() *QPageSetupDialog {
-	ret := newQPageSetupDialog(QPageSetupDialog_new3())
-	ret.isSubclass = true
-	return ret
+	g := newQPageSetupDialog(QPageSetupDialog_new3())
+	g.isSubclass = true
+	return g
 }
 
 // NewQPageSetupDialog4 constructs a new QPageSetupDialog object.
 func NewQPageSetupDialog4(printer *QPrinter, parent *qt.QWidget) *QPageSetupDialog {
-	ret := newQPageSetupDialog(QPageSetupDialog_new4(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPageSetupDialog(QPageSetupDialog_new4(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QPageSetupDialog) MetaObject() *qt.QMetaObject {
@@ -139,11 +139,9 @@ func miqt_exec_callback_QPageSetupDialog_Metacast(self QPageSetupDialog, cb intp
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QPageSetupDialog{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

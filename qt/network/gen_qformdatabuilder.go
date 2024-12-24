@@ -23,16 +23,16 @@ type QFormDataPartBuilder struct {
 
 // NewQFormDataPartBuilder constructs a new QFormDataPartBuilder object.
 func NewQFormDataPartBuilder() *QFormDataPartBuilder {
-	ret := newQFormDataPartBuilder(QFormDataPartBuilder_new())
-	ret.isSubclass = true
-	return ret
+	g := newQFormDataPartBuilder(QFormDataPartBuilder_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQFormDataPartBuilder2 constructs a new QFormDataPartBuilder object.
 func NewQFormDataPartBuilder2(param1 *QFormDataPartBuilder) *QFormDataPartBuilder {
-	ret := newQFormDataPartBuilder(QFormDataPartBuilder_new2(param1.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQFormDataPartBuilder(QFormDataPartBuilder_new2(param1.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QFormDataPartBuilder) Swap(other *QFormDataPartBuilder) {
@@ -88,9 +88,9 @@ type QFormDataBuilder struct {
 
 // NewQFormDataBuilder constructs a new QFormDataBuilder object.
 func NewQFormDataBuilder() *QFormDataBuilder {
-	ret := newQFormDataBuilder(QFormDataBuilder_new())
-	ret.isSubclass = true
-	return ret
+	g := newQFormDataBuilder(QFormDataBuilder_new())
+	g.isSubclass = true
+	return g
 }
 
 func (this *QFormDataBuilder) Swap(other *QFormDataBuilder) {

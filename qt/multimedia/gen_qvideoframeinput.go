@@ -13,30 +13,30 @@ type QVideoFrameInput struct {
 
 // NewQVideoFrameInput constructs a new QVideoFrameInput object.
 func NewQVideoFrameInput() *QVideoFrameInput {
-	ret := newQVideoFrameInput(QVideoFrameInput_new())
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameInput(QVideoFrameInput_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrameInput2 constructs a new QVideoFrameInput object.
 func NewQVideoFrameInput2(format *QVideoFrameFormat) *QVideoFrameInput {
-	ret := newQVideoFrameInput(QVideoFrameInput_new2(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameInput(QVideoFrameInput_new2(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrameInput3 constructs a new QVideoFrameInput object.
 func NewQVideoFrameInput3(parent *qt.QObject) *QVideoFrameInput {
-	ret := newQVideoFrameInput(QVideoFrameInput_new3((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameInput(QVideoFrameInput_new3((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrameInput4 constructs a new QVideoFrameInput object.
 func NewQVideoFrameInput4(format *QVideoFrameFormat, parent *qt.QObject) *QVideoFrameInput {
-	ret := newQVideoFrameInput(QVideoFrameInput_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameInput(QVideoFrameInput_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QVideoFrameInput) MetaObject() *qt.QMetaObject {
@@ -155,11 +155,9 @@ func miqt_exec_callback_QVideoFrameInput_Metacast(self QVideoFrameInput, cb intp
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QVideoFrameInput{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

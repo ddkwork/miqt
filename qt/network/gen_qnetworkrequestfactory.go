@@ -13,23 +13,23 @@ type QNetworkRequestFactory struct {
 
 // NewQNetworkRequestFactory constructs a new QNetworkRequestFactory object.
 func NewQNetworkRequestFactory() *QNetworkRequestFactory {
-	ret := newQNetworkRequestFactory(QNetworkRequestFactory_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkRequestFactory(QNetworkRequestFactory_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkRequestFactory2 constructs a new QNetworkRequestFactory object.
 func NewQNetworkRequestFactory2(baseUrl *qt.QUrl) *QNetworkRequestFactory {
-	ret := newQNetworkRequestFactory(QNetworkRequestFactory_new2((*QUrl)(baseUrl.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkRequestFactory(QNetworkRequestFactory_new2((*QUrl)(baseUrl.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkRequestFactory3 constructs a new QNetworkRequestFactory object.
 func NewQNetworkRequestFactory3(other *QNetworkRequestFactory) *QNetworkRequestFactory {
-	ret := newQNetworkRequestFactory(QNetworkRequestFactory_new3(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkRequestFactory(QNetworkRequestFactory_new3(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkRequestFactory) OperatorAssign(other *QNetworkRequestFactory) {

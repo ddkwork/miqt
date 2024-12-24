@@ -100,23 +100,23 @@ type QVideoFrameFormat struct {
 
 // NewQVideoFrameFormat constructs a new QVideoFrameFormat object.
 func NewQVideoFrameFormat() *QVideoFrameFormat {
-	ret := newQVideoFrameFormat(QVideoFrameFormat_new())
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameFormat(QVideoFrameFormat_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrameFormat2 constructs a new QVideoFrameFormat object.
 func NewQVideoFrameFormat2(size *qt.QSize, pixelFormat PixelFormat) *QVideoFrameFormat {
-	ret := newQVideoFrameFormat(QVideoFrameFormat_new2((*QSize)(size.UnsafePointer()), pixelFormat))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameFormat(QVideoFrameFormat_new2((*QSize)(size.UnsafePointer()), pixelFormat))
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrameFormat3 constructs a new QVideoFrameFormat object.
 func NewQVideoFrameFormat3(format *QVideoFrameFormat) *QVideoFrameFormat {
-	ret := newQVideoFrameFormat(QVideoFrameFormat_new3(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrameFormat(QVideoFrameFormat_new3(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QVideoFrameFormat) Swap(other *QVideoFrameFormat) {

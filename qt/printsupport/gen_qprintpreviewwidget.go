@@ -29,44 +29,44 @@ type QPrintPreviewWidget struct {
 
 // NewQPrintPreviewWidget constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget(parent *qt.QWidget) *QPrintPreviewWidget {
-	ret := newQPrintPreviewWidget(QPrintPreviewWidget_new((*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewWidget(QPrintPreviewWidget_new((*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewWidget2 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget2(printer *QPrinter) *QPrintPreviewWidget {
-	ret := newQPrintPreviewWidget(QPrintPreviewWidget_new2(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewWidget(QPrintPreviewWidget_new2(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewWidget3 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget3() *QPrintPreviewWidget {
-	ret := newQPrintPreviewWidget(QPrintPreviewWidget_new3())
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewWidget(QPrintPreviewWidget_new3())
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewWidget4 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget4(printer *QPrinter, parent *qt.QWidget) *QPrintPreviewWidget {
-	ret := newQPrintPreviewWidget(QPrintPreviewWidget_new4(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewWidget(QPrintPreviewWidget_new4(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewWidget5 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget5(printer *QPrinter, parent *qt.QWidget, flags WindowType) *QPrintPreviewWidget {
-	ret := newQPrintPreviewWidget(QPrintPreviewWidget_new5(printer.cPointer(), (*QWidget)(parent.UnsafePointer()), (int)(flags)))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewWidget(QPrintPreviewWidget_new5(printer.cPointer(), (*QWidget)(parent.UnsafePointer()), (int)(flags)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewWidget6 constructs a new QPrintPreviewWidget object.
 func NewQPrintPreviewWidget6(parent *qt.QWidget, flags WindowType) *QPrintPreviewWidget {
-	ret := newQPrintPreviewWidget(QPrintPreviewWidget_new6((*QWidget)(parent.UnsafePointer()), (int)(flags)))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewWidget(QPrintPreviewWidget_new6((*QWidget)(parent.UnsafePointer()), (int)(flags)))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QPrintPreviewWidget) MetaObject() *qt.QMetaObject {
@@ -292,11 +292,9 @@ func miqt_exec_callback_QPrintPreviewWidget_Metacast(self QPrintPreviewWidget, c
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QPrintPreviewWidget{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

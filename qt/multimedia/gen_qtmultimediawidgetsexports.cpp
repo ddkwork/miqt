@@ -2,4 +2,3 @@
 
 #include <qtmultimediawidgetsexports.h>
 #include "gen_qtmultimediawidgetsexports.h"
-

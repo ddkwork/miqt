@@ -13,44 +13,44 @@ type QAudioSource struct {
 
 // NewQAudioSource constructs a new QAudioSource object.
 func NewQAudioSource() *QAudioSource {
-	ret := newQAudioSource(QAudioSource_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSource(QAudioSource_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSource2 constructs a new QAudioSource object.
 func NewQAudioSource2(audioDeviceInfo *QAudioDevice) *QAudioSource {
-	ret := newQAudioSource(QAudioSource_new2(audioDeviceInfo.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSource(QAudioSource_new2(audioDeviceInfo.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSource3 constructs a new QAudioSource object.
 func NewQAudioSource3(format *QAudioFormat) *QAudioSource {
-	ret := newQAudioSource(QAudioSource_new3(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSource(QAudioSource_new3(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSource4 constructs a new QAudioSource object.
 func NewQAudioSource4(format *QAudioFormat, parent *qt.QObject) *QAudioSource {
-	ret := newQAudioSource(QAudioSource_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSource(QAudioSource_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSource5 constructs a new QAudioSource object.
 func NewQAudioSource5(audioDeviceInfo *QAudioDevice, format *QAudioFormat) *QAudioSource {
-	ret := newQAudioSource(QAudioSource_new5(audioDeviceInfo.cPointer(), format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSource(QAudioSource_new5(audioDeviceInfo.cPointer(), format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSource6 constructs a new QAudioSource object.
 func NewQAudioSource6(audioDeviceInfo *QAudioDevice, format *QAudioFormat, parent *qt.QObject) *QAudioSource {
-	ret := newQAudioSource(QAudioSource_new6(audioDeviceInfo.cPointer(), format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSource(QAudioSource_new6(audioDeviceInfo.cPointer(), format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioSource) MetaObject() *qt.QMetaObject {
@@ -228,11 +228,9 @@ func miqt_exec_callback_QAudioSource_Metacast(self QAudioSource, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioSource{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

@@ -11,16 +11,16 @@ type QCapturableWindow struct {
 
 // NewQCapturableWindow constructs a new QCapturableWindow object.
 func NewQCapturableWindow() *QCapturableWindow {
-	ret := newQCapturableWindow(QCapturableWindow_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCapturableWindow(QCapturableWindow_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCapturableWindow2 constructs a new QCapturableWindow object.
 func NewQCapturableWindow2(other *QCapturableWindow) *QCapturableWindow {
-	ret := newQCapturableWindow(QCapturableWindow_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQCapturableWindow(QCapturableWindow_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCapturableWindow) OperatorAssign(other *QCapturableWindow) {

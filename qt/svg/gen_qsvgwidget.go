@@ -13,16 +13,16 @@ type QSvgWidget struct {
 
 // NewQSvgWidget constructs a new QSvgWidget object.
 func NewQSvgWidget(parent *qt.QWidget) *QSvgWidget {
-	ret := newQSvgWidget(QSvgWidget_new((*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQSvgWidget(QSvgWidget_new((*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSvgWidget2 constructs a new QSvgWidget object.
 func NewQSvgWidget2() *QSvgWidget {
-	ret := newQSvgWidget(QSvgWidget_new2())
-	ret.isSubclass = true
-	return ret
+	g := newQSvgWidget(QSvgWidget_new2())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSvgWidget3 constructs a new QSvgWidget object.
@@ -31,10 +31,9 @@ func NewQSvgWidget3(file string) *QSvgWidget {
 	file_ms.data = CString(file)
 	file_ms.len = size_t(len(file))
 	defer free(unsafe.Pointer(file_ms.data))
-
-	ret := newQSvgWidget(QSvgWidget_new3(file_ms))
-	ret.isSubclass = true
-	return ret
+	g := newQSvgWidget(QSvgWidget_new3(file_ms))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSvgWidget4 constructs a new QSvgWidget object.
@@ -43,10 +42,9 @@ func NewQSvgWidget4(file string, parent *qt.QWidget) *QSvgWidget {
 	file_ms.data = CString(file)
 	file_ms.len = size_t(len(file))
 	defer free(unsafe.Pointer(file_ms.data))
-
-	ret := newQSvgWidget(QSvgWidget_new4(file_ms, (*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQSvgWidget(QSvgWidget_new4(file_ms, (*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSvgWidget) MetaObject() *qt.QMetaObject {
@@ -166,11 +164,9 @@ func miqt_exec_callback_QSvgWidget_Metacast(self QSvgWidget, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QSvgWidget{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

@@ -25,16 +25,16 @@ type QNetworkAccessManager struct {
 
 // NewQNetworkAccessManager constructs a new QNetworkAccessManager object.
 func NewQNetworkAccessManager() *QNetworkAccessManager {
-	ret := newQNetworkAccessManager(QNetworkAccessManager_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkAccessManager(QNetworkAccessManager_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkAccessManager2 constructs a new QNetworkAccessManager object.
 func NewQNetworkAccessManager2(parent *qt.QObject) *QNetworkAccessManager {
-	ret := newQNetworkAccessManager(QNetworkAccessManager_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkAccessManager(QNetworkAccessManager_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkAccessManager) MetaObject() *qt.QMetaObject {
@@ -534,11 +534,9 @@ func miqt_exec_callback_QNetworkAccessManager_Metacast(self QNetworkAccessManage
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QNetworkAccessManager{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

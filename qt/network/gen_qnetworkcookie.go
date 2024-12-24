@@ -29,16 +29,16 @@ type QNetworkCookie struct {
 
 // NewQNetworkCookie constructs a new QNetworkCookie object.
 func NewQNetworkCookie() *QNetworkCookie {
-	ret := newQNetworkCookie(QNetworkCookie_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCookie(QNetworkCookie_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkCookie2 constructs a new QNetworkCookie object.
 func NewQNetworkCookie2(other *QNetworkCookie) *QNetworkCookie {
-	ret := newQNetworkCookie(QNetworkCookie_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCookie(QNetworkCookie_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkCookie3 constructs a new QNetworkCookie object.
@@ -46,10 +46,9 @@ func NewQNetworkCookie3(name []byte) *QNetworkCookie {
 	name_alias := struct_miqt_string{}
 	name_alias.data = (char)(unsafe.Pointer(&name[0]))
 	name_alias.len = size_t(len(name))
-
-	ret := newQNetworkCookie(QNetworkCookie_new3(name_alias))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCookie(QNetworkCookie_new3(name_alias))
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkCookie4 constructs a new QNetworkCookie object.
@@ -60,10 +59,9 @@ func NewQNetworkCookie4(name []byte, value []byte) *QNetworkCookie {
 	value_alias := struct_miqt_string{}
 	value_alias.data = (char)(unsafe.Pointer(&value[0]))
 	value_alias.len = size_t(len(value))
-
-	ret := newQNetworkCookie(QNetworkCookie_new4(name_alias, value_alias))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCookie(QNetworkCookie_new4(name_alias, value_alias))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkCookie) OperatorAssign(other *QNetworkCookie) {

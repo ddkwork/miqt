@@ -11,9 +11,9 @@ type QSslCipher struct {
 
 // NewQSslCipher constructs a new QSslCipher object.
 func NewQSslCipher() *QSslCipher {
-	ret := newQSslCipher(QSslCipher_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslCipher(QSslCipher_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslCipher2 constructs a new QSslCipher object.
@@ -22,10 +22,9 @@ func NewQSslCipher2(name string) *QSslCipher {
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQSslCipher(QSslCipher_new2(name_ms))
-	ret.isSubclass = true
-	return ret
+	g := newQSslCipher(QSslCipher_new2(name_ms))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslCipher3 constructs a new QSslCipher object.
@@ -34,17 +33,16 @@ func NewQSslCipher3(name string, protocol QSsl__SslProtocol) *QSslCipher {
 	name_ms.data = CString(name)
 	name_ms.len = size_t(len(name))
 	defer free(unsafe.Pointer(name_ms.data))
-
-	ret := newQSslCipher(QSslCipher_new3(name_ms, (int)(protocol)))
-	ret.isSubclass = true
-	return ret
+	g := newQSslCipher(QSslCipher_new3(name_ms, (int)(protocol)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslCipher4 constructs a new QSslCipher object.
 func NewQSslCipher4(other *QSslCipher) *QSslCipher {
-	ret := newQSslCipher(QSslCipher_new4(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslCipher(QSslCipher_new4(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslCipher) OperatorAssign(other *QSslCipher) {

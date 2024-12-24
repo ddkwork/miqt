@@ -44,30 +44,30 @@ type QVideoFrame struct {
 
 // NewQVideoFrame constructs a new QVideoFrame object.
 func NewQVideoFrame() *QVideoFrame {
-	ret := newQVideoFrame(QVideoFrame_new())
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrame(QVideoFrame_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrame2 constructs a new QVideoFrame object.
 func NewQVideoFrame2(format *QVideoFrameFormat) *QVideoFrame {
-	ret := newQVideoFrame(QVideoFrame_new2(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrame(QVideoFrame_new2(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrame3 constructs a new QVideoFrame object.
 func NewQVideoFrame3(image *qt.QImage) *QVideoFrame {
-	ret := newQVideoFrame(QVideoFrame_new3((*QImage)(image.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrame(QVideoFrame_new3((*QImage)(image.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQVideoFrame4 constructs a new QVideoFrame object.
 func NewQVideoFrame4(other *QVideoFrame) *QVideoFrame {
-	ret := newQVideoFrame(QVideoFrame_new4(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQVideoFrame(QVideoFrame_new4(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QVideoFrame) Swap(other *QVideoFrame) {

@@ -11,30 +11,30 @@ type QMediaTimeRange struct {
 
 // NewQMediaTimeRange constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange() *QMediaTimeRange {
-	ret := newQMediaTimeRange(QMediaTimeRange_new())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange(QMediaTimeRange_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaTimeRange2 constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange2(start int64, end int64) *QMediaTimeRange {
-	ret := newQMediaTimeRange(QMediaTimeRange_new2((longlong)(start), (longlong)(end)))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange(QMediaTimeRange_new2((longlong)(start), (longlong)(end)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaTimeRange3 constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange3(param1 *Interval) *QMediaTimeRange {
-	ret := newQMediaTimeRange(QMediaTimeRange_new3(param1))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange(QMediaTimeRange_new3(param1))
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaTimeRange4 constructs a new QMediaTimeRange object.
 func NewQMediaTimeRange4(rangeVal *QMediaTimeRange) *QMediaTimeRange {
-	ret := newQMediaTimeRange(QMediaTimeRange_new4(rangeVal.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange(QMediaTimeRange_new4(rangeVal.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaTimeRange) OperatorAssign(param1 *QMediaTimeRange) {
@@ -136,23 +136,23 @@ type QMediaTimeRange__Interval struct {
 
 // NewQMediaTimeRange__Interval constructs a new QMediaTimeRange::Interval object.
 func NewQMediaTimeRange__Interval() *QMediaTimeRange__Interval {
-	ret := newQMediaTimeRange__Interval(QMediaTimeRange__Interval_new())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange__Interval(QMediaTimeRange__Interval_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaTimeRange__Interval2 constructs a new QMediaTimeRange::Interval object.
 func NewQMediaTimeRange__Interval2(start int64, end int64) *QMediaTimeRange__Interval {
-	ret := newQMediaTimeRange__Interval(QMediaTimeRange__Interval_new2((longlong)(start), (longlong)(end)))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange__Interval(QMediaTimeRange__Interval_new2((longlong)(start), (longlong)(end)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaTimeRange__Interval3 constructs a new QMediaTimeRange::Interval object.
 func NewQMediaTimeRange__Interval3(param1 *Interval) *QMediaTimeRange__Interval {
-	ret := newQMediaTimeRange__Interval(QMediaTimeRange__Interval_new3(param1))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaTimeRange__Interval(QMediaTimeRange__Interval_new3(param1))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaTimeRange__Interval) Start() int64 {

@@ -13,16 +13,16 @@ type QSslCertificateExtension struct {
 
 // NewQSslCertificateExtension constructs a new QSslCertificateExtension object.
 func NewQSslCertificateExtension() *QSslCertificateExtension {
-	ret := newQSslCertificateExtension(QSslCertificateExtension_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslCertificateExtension(QSslCertificateExtension_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslCertificateExtension2 constructs a new QSslCertificateExtension object.
 func NewQSslCertificateExtension2(other *QSslCertificateExtension) *QSslCertificateExtension {
-	ret := newQSslCertificateExtension(QSslCertificateExtension_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslCertificateExtension(QSslCertificateExtension_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslCertificateExtension) OperatorAssign(other *QSslCertificateExtension) {

@@ -28,30 +28,30 @@ type QSoundEffect struct {
 
 // NewQSoundEffect constructs a new QSoundEffect object.
 func NewQSoundEffect() *QSoundEffect {
-	ret := newQSoundEffect(QSoundEffect_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSoundEffect(QSoundEffect_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSoundEffect2 constructs a new QSoundEffect object.
 func NewQSoundEffect2(audioDevice *QAudioDevice) *QSoundEffect {
-	ret := newQSoundEffect(QSoundEffect_new2(audioDevice.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSoundEffect(QSoundEffect_new2(audioDevice.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSoundEffect3 constructs a new QSoundEffect object.
 func NewQSoundEffect3(parent *qt.QObject) *QSoundEffect {
-	ret := newQSoundEffect(QSoundEffect_new3((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQSoundEffect(QSoundEffect_new3((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSoundEffect4 constructs a new QSoundEffect object.
 func NewQSoundEffect4(audioDevice *QAudioDevice, parent *qt.QObject) *QSoundEffect {
-	ret := newQSoundEffect(QSoundEffect_new4(audioDevice.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQSoundEffect(QSoundEffect_new4(audioDevice.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSoundEffect) MetaObject() *qt.QMetaObject {
@@ -381,11 +381,9 @@ func miqt_exec_callback_QSoundEffect_Metacast(self QSoundEffect, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QSoundEffect{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

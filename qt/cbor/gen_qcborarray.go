@@ -13,16 +13,16 @@ type QCborArray struct {
 
 // NewQCborArray constructs a new QCborArray object.
 func NewQCborArray() *QCborArray {
-	ret := newQCborArray(QCborArray_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCborArray(QCborArray_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCborArray2 constructs a new QCborArray object.
 func NewQCborArray2(other *QCborArray) *QCborArray {
-	ret := newQCborArray(QCborArray_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQCborArray(QCborArray_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCborArray) OperatorAssign(other *QCborArray) {
@@ -272,16 +272,16 @@ type QCborArray__Iterator struct {
 
 // NewQCborArray__Iterator constructs a new QCborArray::Iterator object.
 func NewQCborArray__Iterator() *QCborArray__Iterator {
-	ret := newQCborArray__Iterator(QCborArray__Iterator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCborArray__Iterator(QCborArray__Iterator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCborArray__Iterator2 constructs a new QCborArray::Iterator object.
 func NewQCborArray__Iterator2(param1 *Iterator) *QCborArray__Iterator {
-	ret := newQCborArray__Iterator(QCborArray__Iterator_new2(param1))
-	ret.isSubclass = true
-	return ret
+	g := newQCborArray__Iterator(QCborArray__Iterator_new2(param1))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCborArray__Iterator) OperatorAssign(other *Iterator) {
@@ -351,16 +351,16 @@ type QCborArray__ConstIterator struct {
 
 // NewQCborArray__ConstIterator constructs a new QCborArray::ConstIterator object.
 func NewQCborArray__ConstIterator() *QCborArray__ConstIterator {
-	ret := newQCborArray__ConstIterator(QCborArray__ConstIterator_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCborArray__ConstIterator(QCborArray__ConstIterator_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCborArray__ConstIterator2 constructs a new QCborArray::ConstIterator object.
 func NewQCborArray__ConstIterator2(param1 *ConstIterator) *QCborArray__ConstIterator {
-	ret := newQCborArray__ConstIterator(QCborArray__ConstIterator_new2(param1))
-	ret.isSubclass = true
-	return ret
+	g := newQCborArray__ConstIterator(QCborArray__ConstIterator_new2(param1))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCborArray__ConstIterator) OperatorAssign(other *ConstIterator) {

@@ -13,44 +13,44 @@ type QAudioSink struct {
 
 // NewQAudioSink constructs a new QAudioSink object.
 func NewQAudioSink() *QAudioSink {
-	ret := newQAudioSink(QAudioSink_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSink(QAudioSink_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSink2 constructs a new QAudioSink object.
 func NewQAudioSink2(audioDeviceInfo *QAudioDevice) *QAudioSink {
-	ret := newQAudioSink(QAudioSink_new2(audioDeviceInfo.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSink(QAudioSink_new2(audioDeviceInfo.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSink3 constructs a new QAudioSink object.
 func NewQAudioSink3(format *QAudioFormat) *QAudioSink {
-	ret := newQAudioSink(QAudioSink_new3(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSink(QAudioSink_new3(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSink4 constructs a new QAudioSink object.
 func NewQAudioSink4(format *QAudioFormat, parent *qt.QObject) *QAudioSink {
-	ret := newQAudioSink(QAudioSink_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSink(QAudioSink_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSink5 constructs a new QAudioSink object.
 func NewQAudioSink5(audioDeviceInfo *QAudioDevice, format *QAudioFormat) *QAudioSink {
-	ret := newQAudioSink(QAudioSink_new5(audioDeviceInfo.cPointer(), format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSink(QAudioSink_new5(audioDeviceInfo.cPointer(), format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioSink6 constructs a new QAudioSink object.
 func NewQAudioSink6(audioDeviceInfo *QAudioDevice, format *QAudioFormat, parent *qt.QObject) *QAudioSink {
-	ret := newQAudioSink(QAudioSink_new6(audioDeviceInfo.cPointer(), format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioSink(QAudioSink_new6(audioDeviceInfo.cPointer(), format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioSink) MetaObject() *qt.QMetaObject {
@@ -228,11 +228,9 @@ func miqt_exec_callback_QAudioSink_Metacast(self QAudioSink, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioSink{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

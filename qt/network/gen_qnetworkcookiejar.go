@@ -13,16 +13,16 @@ type QNetworkCookieJar struct {
 
 // NewQNetworkCookieJar constructs a new QNetworkCookieJar object.
 func NewQNetworkCookieJar() *QNetworkCookieJar {
-	ret := newQNetworkCookieJar(QNetworkCookieJar_new())
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCookieJar(QNetworkCookieJar_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQNetworkCookieJar2 constructs a new QNetworkCookieJar object.
 func NewQNetworkCookieJar2(parent *qt.QObject) *QNetworkCookieJar {
-	ret := newQNetworkCookieJar(QNetworkCookieJar_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQNetworkCookieJar(QNetworkCookieJar_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QNetworkCookieJar) MetaObject() *qt.QMetaObject {
@@ -143,11 +143,9 @@ func miqt_exec_callback_QNetworkCookieJar_Metacast(self QNetworkCookieJar, cb in
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QNetworkCookieJar{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

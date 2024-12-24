@@ -21,16 +21,16 @@ type QCameraFormat struct {
 
 // NewQCameraFormat constructs a new QCameraFormat object.
 func NewQCameraFormat() *QCameraFormat {
-	ret := newQCameraFormat(QCameraFormat_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCameraFormat(QCameraFormat_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCameraFormat2 constructs a new QCameraFormat object.
 func NewQCameraFormat2(other *QCameraFormat) *QCameraFormat {
-	ret := newQCameraFormat(QCameraFormat_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQCameraFormat(QCameraFormat_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCameraFormat) OperatorAssign(other *QCameraFormat) {
@@ -74,16 +74,16 @@ type QCameraDevice struct {
 
 // NewQCameraDevice constructs a new QCameraDevice object.
 func NewQCameraDevice() *QCameraDevice {
-	ret := newQCameraDevice(QCameraDevice_new())
-	ret.isSubclass = true
-	return ret
+	g := newQCameraDevice(QCameraDevice_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQCameraDevice2 constructs a new QCameraDevice object.
 func NewQCameraDevice2(other *QCameraDevice) *QCameraDevice {
-	ret := newQCameraDevice(QCameraDevice_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQCameraDevice(QCameraDevice_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QCameraDevice) OperatorAssign(other *QCameraDevice) {

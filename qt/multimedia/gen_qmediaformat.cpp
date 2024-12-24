@@ -8,59 +8,45 @@
 #include <cstring>
 #include <qmediaformat.h>
 #include "gen_qmediaformat.h"
-
 QMediaFormat* QMediaFormat_new() {
-	return new QMediaFormat();
+return new QMediaFormat();
 }
-
 QMediaFormat* QMediaFormat_new2(QMediaFormat* other) {
-	return new QMediaFormat(*other);
+return new QMediaFormat(*other);
 }
-
 QMediaFormat* QMediaFormat_new3(FileFormat format) {
-	return new QMediaFormat(format);
+return new QMediaFormat(format);
 }
-
 void QMediaFormat_OperatorAssign(QMediaFormat* self, QMediaFormat* other) {
 	self->operator=(*other);
 }
-
 void QMediaFormat_Swap(QMediaFormat* self, QMediaFormat* other) {
 	self->swap(*other);
 }
-
 FileFormat QMediaFormat_FileFormat(const QMediaFormat* self) {
 	return self->fileFormat();
 }
-
 void QMediaFormat_SetFileFormat(QMediaFormat* self, FileFormat f) {
 	self->setFileFormat(f);
 }
-
 void QMediaFormat_SetVideoCodec(QMediaFormat* self, VideoCodec codec) {
 	self->setVideoCodec(codec);
 }
-
 VideoCodec QMediaFormat_VideoCodec(const QMediaFormat* self) {
 	return self->videoCodec();
 }
-
 void QMediaFormat_SetAudioCodec(QMediaFormat* self, AudioCodec codec) {
 	self->setAudioCodec(codec);
 }
-
 AudioCodec QMediaFormat_AudioCodec(const QMediaFormat* self) {
 	return self->audioCodec();
 }
-
 bool QMediaFormat_IsSupported(const QMediaFormat* self, ConversionMode mode) {
 	return self->isSupported(mode);
 }
-
 QMimeType* QMediaFormat_MimeType(const QMediaFormat* self) {
 	return new QMimeType(self->mimeType());
 }
-
 struct miqt_array /* of FileFormat */  QMediaFormat_SupportedFileFormats(QMediaFormat* self, ConversionMode m) {
 	QList<FileFormat> _ret = self->supportedFileFormats(m);
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -73,7 +59,6 @@ struct miqt_array /* of FileFormat */  QMediaFormat_SupportedFileFormats(QMediaF
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 struct miqt_array /* of VideoCodec */  QMediaFormat_SupportedVideoCodecs(QMediaFormat* self, ConversionMode m) {
 	QList<VideoCodec> _ret = self->supportedVideoCodecs(m);
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -86,7 +71,6 @@ struct miqt_array /* of VideoCodec */  QMediaFormat_SupportedVideoCodecs(QMediaF
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 struct miqt_array /* of AudioCodec */  QMediaFormat_SupportedAudioCodecs(QMediaFormat* self, ConversionMode m) {
 	QList<AudioCodec> _ret = self->supportedAudioCodecs(m);
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -99,7 +83,6 @@ struct miqt_array /* of AudioCodec */  QMediaFormat_SupportedAudioCodecs(QMediaF
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 struct miqt_string QMediaFormat_FileFormatName(FileFormat fileFormat) {
 	QString _ret = QMediaFormat::fileFormatName(fileFormat);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -110,7 +93,6 @@ struct miqt_string QMediaFormat_FileFormatName(FileFormat fileFormat) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QMediaFormat_AudioCodecName(AudioCodec codec) {
 	QString _ret = QMediaFormat::audioCodecName(codec);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -121,7 +103,6 @@ struct miqt_string QMediaFormat_AudioCodecName(AudioCodec codec) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QMediaFormat_VideoCodecName(VideoCodec codec) {
 	QString _ret = QMediaFormat::videoCodecName(codec);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -132,7 +113,6 @@ struct miqt_string QMediaFormat_VideoCodecName(VideoCodec codec) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QMediaFormat_FileFormatDescription(int fileFormat) {
 	QString _ret = QMediaFormat::fileFormatDescription(static_cast<QMediaFormat::FileFormat>(fileFormat));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -143,7 +123,6 @@ struct miqt_string QMediaFormat_FileFormatDescription(int fileFormat) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QMediaFormat_AudioCodecDescription(int codec) {
 	QString _ret = QMediaFormat::audioCodecDescription(static_cast<QMediaFormat::AudioCodec>(codec));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -154,7 +133,6 @@ struct miqt_string QMediaFormat_AudioCodecDescription(int codec) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QMediaFormat_VideoCodecDescription(int codec) {
 	QString _ret = QMediaFormat::videoCodecDescription(static_cast<QMediaFormat::VideoCodec>(codec));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -165,19 +143,15 @@ struct miqt_string QMediaFormat_VideoCodecDescription(int codec) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 bool QMediaFormat_OperatorEqual(const QMediaFormat* self, QMediaFormat* other) {
 	return (*self == *other);
 }
-
 bool QMediaFormat_OperatorNotEqual(const QMediaFormat* self, QMediaFormat* other) {
 	return (*self != *other);
 }
-
 void QMediaFormat_ResolveForEncoding(QMediaFormat* self, ResolveFlags flags) {
 	self->resolveForEncoding(flags);
 }
-
 void QMediaFormat_Delete(QMediaFormat* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QMediaFormat*>( self );
@@ -185,4 +159,3 @@ void QMediaFormat_Delete(QMediaFormat* self, bool isSubclass) {
 		delete self;
 	}
 }
-

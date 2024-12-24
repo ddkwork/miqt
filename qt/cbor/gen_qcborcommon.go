@@ -13,9 +13,10 @@ const (
 	QCborSimpleType__Undefined QCborSimpleType = 23
 )
 
-type QCborTag uint64
-
-type QCborKnownTags int
+type (
+	QCborTag       uint64
+	QCborKnownTags int
+)
 
 const (
 	QCborKnownTags__DateTimeString    QCborKnownTags = 0
@@ -43,9 +44,10 @@ const (
 	QCborKnownTags__Signature         QCborKnownTags = 55799
 )
 
-type QCborNegativeInteger uint64
-
-type QCborError__Code int
+type (
+	QCborNegativeInteger uint64
+	QCborError__Code     int
+)
 
 const (
 	QCborError__UnknownError      QCborError__Code = 1

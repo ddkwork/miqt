@@ -13,23 +13,23 @@ type QPrinterInfo struct {
 
 // NewQPrinterInfo constructs a new QPrinterInfo object.
 func NewQPrinterInfo() *QPrinterInfo {
-	ret := newQPrinterInfo(QPrinterInfo_new())
-	ret.isSubclass = true
-	return ret
+	g := newQPrinterInfo(QPrinterInfo_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrinterInfo2 constructs a new QPrinterInfo object.
 func NewQPrinterInfo2(other *QPrinterInfo) *QPrinterInfo {
-	ret := newQPrinterInfo(QPrinterInfo_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPrinterInfo(QPrinterInfo_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrinterInfo3 constructs a new QPrinterInfo object.
 func NewQPrinterInfo3(printer *QPrinter) *QPrinterInfo {
-	ret := newQPrinterInfo(QPrinterInfo_new3(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPrinterInfo(QPrinterInfo_new3(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QPrinterInfo) OperatorAssign(other *QPrinterInfo) {

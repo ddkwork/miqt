@@ -47,16 +47,16 @@ type QMediaMetaData struct {
 
 // NewQMediaMetaData constructs a new QMediaMetaData object.
 func NewQMediaMetaData(param1 *QMediaMetaData) *QMediaMetaData {
-	ret := newQMediaMetaData(QMediaMetaData_new(param1.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQMediaMetaData(QMediaMetaData_new(param1.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQMediaMetaData2 constructs a new QMediaMetaData object.
 func NewQMediaMetaData2() *QMediaMetaData {
-	ret := newQMediaMetaData(QMediaMetaData_new2())
-	ret.isSubclass = true
-	return ret
+	g := newQMediaMetaData(QMediaMetaData_new2())
+	g.isSubclass = true
+	return g
 }
 
 func (this *QMediaMetaData) Value(k Key) *qt.QVariant {

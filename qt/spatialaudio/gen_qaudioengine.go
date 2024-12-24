@@ -22,30 +22,30 @@ type QAudioEngine struct {
 
 // NewQAudioEngine constructs a new QAudioEngine object.
 func NewQAudioEngine() *QAudioEngine {
-	ret := newQAudioEngine(QAudioEngine_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioEngine(QAudioEngine_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioEngine2 constructs a new QAudioEngine object.
 func NewQAudioEngine2(parent *qt.QObject) *QAudioEngine {
-	ret := newQAudioEngine(QAudioEngine_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioEngine(QAudioEngine_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioEngine3 constructs a new QAudioEngine object.
 func NewQAudioEngine3(sampleRate int) *QAudioEngine {
-	ret := newQAudioEngine(QAudioEngine_new3((int)(sampleRate)))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioEngine(QAudioEngine_new3((int)(sampleRate)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioEngine4 constructs a new QAudioEngine object.
 func NewQAudioEngine4(sampleRate int, parent *qt.QObject) *QAudioEngine {
-	ret := newQAudioEngine(QAudioEngine_new4((int)(sampleRate), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioEngine(QAudioEngine_new4((int)(sampleRate), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioEngine) MetaObject() *qt.QMetaObject {
@@ -292,11 +292,9 @@ func miqt_exec_callback_QAudioEngine_Metacast(self QAudioEngine, cb intptr_t, pa
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioEngine{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

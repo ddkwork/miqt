@@ -10,48 +10,37 @@
 #include <cstring>
 #include <qcameradevice.h>
 #include "gen_qcameradevice.h"
-
 QCameraFormat* QCameraFormat_new() {
-	return new QCameraFormat();
+return new QCameraFormat();
 }
-
 QCameraFormat* QCameraFormat_new2(QCameraFormat* other) {
-	return new QCameraFormat(*other);
+return new QCameraFormat(*other);
 }
-
 void QCameraFormat_OperatorAssign(QCameraFormat* self, QCameraFormat* other) {
 	self->operator=(*other);
 }
-
 int QCameraFormat_PixelFormat(const QCameraFormat* self) {
 	QVideoFrameFormat::PixelFormat _ret = self->pixelFormat();
 	return static_cast<int>(_ret);
 }
-
 QSize* QCameraFormat_Resolution(const QCameraFormat* self) {
 	return new QSize(self->resolution());
 }
-
 float QCameraFormat_MinFrameRate(const QCameraFormat* self) {
 	return self->minFrameRate();
 }
-
 float QCameraFormat_MaxFrameRate(const QCameraFormat* self) {
 	return self->maxFrameRate();
 }
-
 bool QCameraFormat_IsNull(const QCameraFormat* self) {
 	return self->isNull();
 }
-
 bool QCameraFormat_OperatorEqual(const QCameraFormat* self, QCameraFormat* other) {
 	return (*self == *other);
 }
-
 bool QCameraFormat_OperatorNotEqual(const QCameraFormat* self, QCameraFormat* other) {
 	return (*self != *other);
 }
-
 void QCameraFormat_Delete(QCameraFormat* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QCameraFormat*>( self );
@@ -59,31 +48,24 @@ void QCameraFormat_Delete(QCameraFormat* self, bool isSubclass) {
 		delete self;
 	}
 }
-
 QCameraDevice* QCameraDevice_new() {
-	return new QCameraDevice();
+return new QCameraDevice();
 }
-
 QCameraDevice* QCameraDevice_new2(QCameraDevice* other) {
-	return new QCameraDevice(*other);
+return new QCameraDevice(*other);
 }
-
 void QCameraDevice_OperatorAssign(QCameraDevice* self, QCameraDevice* other) {
 	self->operator=(*other);
 }
-
 bool QCameraDevice_OperatorEqual(const QCameraDevice* self, QCameraDevice* other) {
 	return (*self == *other);
 }
-
 bool QCameraDevice_OperatorNotEqual(const QCameraDevice* self, QCameraDevice* other) {
 	return (*self != *other);
 }
-
 bool QCameraDevice_IsNull(const QCameraDevice* self) {
 	return self->isNull();
 }
-
 struct miqt_string QCameraDevice_Id(const QCameraDevice* self) {
 	QByteArray _qb = self->id();
 	struct miqt_string _ms;
@@ -92,7 +74,6 @@ struct miqt_string QCameraDevice_Id(const QCameraDevice* self) {
 	memcpy(_ms.data, _qb.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QCameraDevice_Description(const QCameraDevice* self) {
 	QString _ret = self->description();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -103,15 +84,12 @@ struct miqt_string QCameraDevice_Description(const QCameraDevice* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 bool QCameraDevice_IsDefault(const QCameraDevice* self) {
 	return self->isDefault();
 }
-
 Position QCameraDevice_Position(const QCameraDevice* self) {
 	return self->position();
 }
-
 struct miqt_array /* of QSize* */  QCameraDevice_PhotoResolutions(const QCameraDevice* self) {
 	QList<QSize> _ret = self->photoResolutions();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -124,7 +102,6 @@ struct miqt_array /* of QSize* */  QCameraDevice_PhotoResolutions(const QCameraD
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 struct miqt_array /* of QCameraFormat* */  QCameraDevice_VideoFormats(const QCameraDevice* self) {
 	QList<QCameraFormat> _ret = self->videoFormats();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -137,12 +114,10 @@ struct miqt_array /* of QCameraFormat* */  QCameraDevice_VideoFormats(const QCam
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 int QCameraDevice_CorrectionAngle(const QCameraDevice* self) {
 	QtVideo::Rotation _ret = self->correctionAngle();
 	return static_cast<int>(_ret);
 }
-
 void QCameraDevice_Delete(QCameraDevice* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QCameraDevice*>( self );
@@ -150,4 +125,3 @@ void QCameraDevice_Delete(QCameraDevice* self, bool isSubclass) {
 		delete self;
 	}
 }
-

@@ -23,16 +23,16 @@ type QScreenCapture struct {
 
 // NewQScreenCapture constructs a new QScreenCapture object.
 func NewQScreenCapture() *QScreenCapture {
-	ret := newQScreenCapture(QScreenCapture_new())
-	ret.isSubclass = true
-	return ret
+	g := newQScreenCapture(QScreenCapture_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQScreenCapture2 constructs a new QScreenCapture object.
 func NewQScreenCapture2(parent *qt.QObject) *QScreenCapture {
-	ret := newQScreenCapture(QScreenCapture_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQScreenCapture(QScreenCapture_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QScreenCapture) MetaObject() *qt.QMetaObject {
@@ -248,11 +248,9 @@ func miqt_exec_callback_QScreenCapture_Metacast(self QScreenCapture, cb intptr_t
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QScreenCapture{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

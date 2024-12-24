@@ -13,30 +13,30 @@ type QAudioBufferInput struct {
 
 // NewQAudioBufferInput constructs a new QAudioBufferInput object.
 func NewQAudioBufferInput() *QAudioBufferInput {
-	ret := newQAudioBufferInput(QAudioBufferInput_new())
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferInput(QAudioBufferInput_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBufferInput2 constructs a new QAudioBufferInput object.
 func NewQAudioBufferInput2(format *QAudioFormat) *QAudioBufferInput {
-	ret := newQAudioBufferInput(QAudioBufferInput_new2(format.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferInput(QAudioBufferInput_new2(format.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBufferInput3 constructs a new QAudioBufferInput object.
 func NewQAudioBufferInput3(parent *qt.QObject) *QAudioBufferInput {
-	ret := newQAudioBufferInput(QAudioBufferInput_new3((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferInput(QAudioBufferInput_new3((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQAudioBufferInput4 constructs a new QAudioBufferInput object.
 func NewQAudioBufferInput4(format *QAudioFormat, parent *qt.QObject) *QAudioBufferInput {
-	ret := newQAudioBufferInput(QAudioBufferInput_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQAudioBufferInput(QAudioBufferInput_new4(format.cPointer(), (*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QAudioBufferInput) MetaObject() *qt.QMetaObject {
@@ -155,11 +155,9 @@ func miqt_exec_callback_QAudioBufferInput_Metacast(self QAudioBufferInput, cb in
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QAudioBufferInput{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

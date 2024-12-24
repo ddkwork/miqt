@@ -19,9 +19,9 @@ type QHstsPolicy struct {
 
 // NewQHstsPolicy constructs a new QHstsPolicy object.
 func NewQHstsPolicy() *QHstsPolicy {
-	ret := newQHstsPolicy(QHstsPolicy_new())
-	ret.isSubclass = true
-	return ret
+	g := newQHstsPolicy(QHstsPolicy_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQHstsPolicy2 constructs a new QHstsPolicy object.
@@ -30,17 +30,16 @@ func NewQHstsPolicy2(expiry *qt.QDateTime, flags PolicyFlags, host string) *QHst
 	host_ms.data = CString(host)
 	host_ms.len = size_t(len(host))
 	defer free(unsafe.Pointer(host_ms.data))
-
-	ret := newQHstsPolicy(QHstsPolicy_new2((*QDateTime)(expiry.UnsafePointer()), flags, host_ms))
-	ret.isSubclass = true
-	return ret
+	g := newQHstsPolicy(QHstsPolicy_new2((*QDateTime)(expiry.UnsafePointer()), flags, host_ms))
+	g.isSubclass = true
+	return g
 }
 
 // NewQHstsPolicy3 constructs a new QHstsPolicy object.
 func NewQHstsPolicy3(rhs *QHstsPolicy) *QHstsPolicy {
-	ret := newQHstsPolicy(QHstsPolicy_new3(rhs.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQHstsPolicy(QHstsPolicy_new3(rhs.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQHstsPolicy4 constructs a new QHstsPolicy object.
@@ -49,10 +48,9 @@ func NewQHstsPolicy4(expiry *qt.QDateTime, flags PolicyFlags, host string, mode 
 	host_ms.data = CString(host)
 	host_ms.len = size_t(len(host))
 	defer free(unsafe.Pointer(host_ms.data))
-
-	ret := newQHstsPolicy(QHstsPolicy_new4((*QDateTime)(expiry.UnsafePointer()), flags, host_ms, (int)(mode)))
-	ret.isSubclass = true
-	return ret
+	g := newQHstsPolicy(QHstsPolicy_new4((*QDateTime)(expiry.UnsafePointer()), flags, host_ms, (int)(mode)))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QHstsPolicy) OperatorAssign(rhs *QHstsPolicy) {

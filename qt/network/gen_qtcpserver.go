@@ -13,16 +13,16 @@ type QTcpServer struct {
 
 // NewQTcpServer constructs a new QTcpServer object.
 func NewQTcpServer() *QTcpServer {
-	ret := newQTcpServer(QTcpServer_new())
-	ret.isSubclass = true
-	return ret
+	g := newQTcpServer(QTcpServer_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQTcpServer2 constructs a new QTcpServer object.
 func NewQTcpServer2(parent *qt.QObject) *QTcpServer {
-	ret := newQTcpServer(QTcpServer_new2((*QObject)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQTcpServer(QTcpServer_new2((*QObject)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QTcpServer) MetaObject() *qt.QMetaObject {
@@ -251,11 +251,9 @@ func miqt_exec_callback_QTcpServer_Metacast(self QTcpServer, cb intptr_t, param1
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

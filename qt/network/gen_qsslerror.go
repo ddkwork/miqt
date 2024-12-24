@@ -54,30 +54,30 @@ type QSslError struct {
 
 // NewQSslError constructs a new QSslError object.
 func NewQSslError() *QSslError {
-	ret := newQSslError(QSslError_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslError(QSslError_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslError2 constructs a new QSslError object.
 func NewQSslError2(error SslError) *QSslError {
-	ret := newQSslError(QSslError_new2(error))
-	ret.isSubclass = true
-	return ret
+	g := newQSslError(QSslError_new2(error))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslError3 constructs a new QSslError object.
 func NewQSslError3(error SslError, certificate *QSslCertificate) *QSslError {
-	ret := newQSslError(QSslError_new3(error, certificate.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslError(QSslError_new3(error, certificate.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslError4 constructs a new QSslError object.
 func NewQSslError4(other *QSslError) *QSslError {
-	ret := newQSslError(QSslError_new4(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslError(QSslError_new4(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslError) Swap(other *QSslError) {

@@ -13,44 +13,44 @@ type QPrintPreviewDialog struct {
 
 // NewQPrintPreviewDialog constructs a new QPrintPreviewDialog object.
 func NewQPrintPreviewDialog(parent *qt.QWidget) *QPrintPreviewDialog {
-	ret := newQPrintPreviewDialog(QPrintPreviewDialog_new((*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewDialog(QPrintPreviewDialog_new((*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewDialog2 constructs a new QPrintPreviewDialog object.
 func NewQPrintPreviewDialog2() *QPrintPreviewDialog {
-	ret := newQPrintPreviewDialog(QPrintPreviewDialog_new2())
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewDialog(QPrintPreviewDialog_new2())
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewDialog3 constructs a new QPrintPreviewDialog object.
 func NewQPrintPreviewDialog3(printer *QPrinter) *QPrintPreviewDialog {
-	ret := newQPrintPreviewDialog(QPrintPreviewDialog_new3(printer.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewDialog(QPrintPreviewDialog_new3(printer.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewDialog4 constructs a new QPrintPreviewDialog object.
 func NewQPrintPreviewDialog4(parent *qt.QWidget, flags WindowType) *QPrintPreviewDialog {
-	ret := newQPrintPreviewDialog(QPrintPreviewDialog_new4((*QWidget)(parent.UnsafePointer()), (int)(flags)))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewDialog(QPrintPreviewDialog_new4((*QWidget)(parent.UnsafePointer()), (int)(flags)))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewDialog5 constructs a new QPrintPreviewDialog object.
 func NewQPrintPreviewDialog5(printer *QPrinter, parent *qt.QWidget) *QPrintPreviewDialog {
-	ret := newQPrintPreviewDialog(QPrintPreviewDialog_new5(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewDialog(QPrintPreviewDialog_new5(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
+	g.isSubclass = true
+	return g
 }
 
 // NewQPrintPreviewDialog6 constructs a new QPrintPreviewDialog object.
 func NewQPrintPreviewDialog6(printer *QPrinter, parent *qt.QWidget, flags WindowType) *QPrintPreviewDialog {
-	ret := newQPrintPreviewDialog(QPrintPreviewDialog_new6(printer.cPointer(), (*QWidget)(parent.UnsafePointer()), (int)(flags)))
-	ret.isSubclass = true
-	return ret
+	g := newQPrintPreviewDialog(QPrintPreviewDialog_new6(printer.cPointer(), (*QWidget)(parent.UnsafePointer()), (int)(flags)))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QPrintPreviewDialog) MetaObject() *qt.QMetaObject {
@@ -170,11 +170,9 @@ func miqt_exec_callback_QPrintPreviewDialog_Metacast(self QPrintPreviewDialog, c
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
-
 	// Convert all CABI parameters to Go parameters
 	param1_ret := param1
 	slotval1 := GoString(param1_ret)
-
 	virtualReturn := gofunc((&QPrintPreviewDialog{h: self}).callVirtualBase_Metacast, slotval1)
 
 	return virtualReturn

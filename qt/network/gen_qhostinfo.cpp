@@ -8,27 +8,21 @@
 #include <cstring>
 #include <qhostinfo.h>
 #include "gen_qhostinfo.h"
-
 QHostInfo* QHostInfo_new() {
-	return new QHostInfo();
+return new QHostInfo();
 }
-
 QHostInfo* QHostInfo_new2(QHostInfo* d) {
-	return new QHostInfo(*d);
+return new QHostInfo(*d);
 }
-
 QHostInfo* QHostInfo_new3(int lookupId) {
-	return new QHostInfo(static_cast<int>(lookupId));
+return new QHostInfo(static_cast<int>(lookupId));
 }
-
 void QHostInfo_OperatorAssign(QHostInfo* self, QHostInfo* d) {
 	self->operator=(*d);
 }
-
 void QHostInfo_Swap(QHostInfo* self, QHostInfo* other) {
 	self->swap(*other);
 }
-
 struct miqt_string QHostInfo_HostName(const QHostInfo* self) {
 	QString _ret = self->hostName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -39,12 +33,10 @@ struct miqt_string QHostInfo_HostName(const QHostInfo* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QHostInfo_SetHostName(QHostInfo* self, struct miqt_string name) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	self->setHostName(name_QString);
 }
-
 struct miqt_array /* of QHostAddress* */  QHostInfo_Addresses(const QHostInfo* self) {
 	QList<QHostAddress> _ret = self->addresses();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -57,7 +49,6 @@ struct miqt_array /* of QHostAddress* */  QHostInfo_Addresses(const QHostInfo* s
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 void QHostInfo_SetAddresses(QHostInfo* self, struct miqt_array /* of QHostAddress* */  addresses) {
 	QList<QHostAddress> addresses_QList;
 	addresses_QList.reserve(addresses.len);
@@ -67,15 +58,12 @@ void QHostInfo_SetAddresses(QHostInfo* self, struct miqt_array /* of QHostAddres
 	}
 	self->setAddresses(addresses_QList);
 }
-
 HostInfoError QHostInfo_Error(const QHostInfo* self) {
 	return self->error();
 }
-
 void QHostInfo_SetError(QHostInfo* self, HostInfoError error) {
 	self->setError(error);
 }
-
 struct miqt_string QHostInfo_ErrorString(const QHostInfo* self) {
 	QString _ret = self->errorString();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -86,29 +74,23 @@ struct miqt_string QHostInfo_ErrorString(const QHostInfo* self) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QHostInfo_SetErrorString(QHostInfo* self, struct miqt_string errorString) {
 	QString errorString_QString = QString::fromUtf8(errorString.data, errorString.len);
 	self->setErrorString(errorString_QString);
 }
-
 void QHostInfo_SetLookupId(QHostInfo* self, int id) {
 	self->setLookupId(static_cast<int>(id));
 }
-
 int QHostInfo_LookupId(const QHostInfo* self) {
 	return self->lookupId();
 }
-
 void QHostInfo_AbortHostLookup(int lookupId) {
 	QHostInfo::abortHostLookup(static_cast<int>(lookupId));
 }
-
 QHostInfo* QHostInfo_FromName(struct miqt_string name) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	return new QHostInfo(QHostInfo::fromName(name_QString));
 }
-
 struct miqt_string QHostInfo_LocalHostName() {
 	QString _ret = QHostInfo::localHostName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -119,7 +101,6 @@ struct miqt_string QHostInfo_LocalHostName() {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QHostInfo_LocalDomainName() {
 	QString _ret = QHostInfo::localDomainName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -130,7 +111,6 @@ struct miqt_string QHostInfo_LocalDomainName() {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QHostInfo_Delete(QHostInfo* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QHostInfo*>( self );
@@ -138,4 +118,3 @@ void QHostInfo_Delete(QHostInfo* self, bool isSubclass) {
 		delete self;
 	}
 }
-

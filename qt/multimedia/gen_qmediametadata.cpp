@@ -8,27 +8,21 @@
 #include <QVariant>
 #include <qmediametadata.h>
 #include "gen_qmediametadata.h"
-
 QMediaMetaData* QMediaMetaData_new(QMediaMetaData* param1) {
-	return new QMediaMetaData(*param1);
+return new QMediaMetaData(*param1);
 }
-
 QMediaMetaData* QMediaMetaData_new2() {
-	return new QMediaMetaData();
+return new QMediaMetaData();
 }
-
 QVariant* QMediaMetaData_Value(const QMediaMetaData* self, Key k) {
 	return new QVariant(self->value(k));
 }
-
 void QMediaMetaData_Insert(QMediaMetaData* self, Key k, QVariant* value) {
 	self->insert(k, *value);
 }
-
 void QMediaMetaData_Remove(QMediaMetaData* self, Key k) {
 	self->remove(k);
 }
-
 struct miqt_array /* of Key */  QMediaMetaData_Keys(const QMediaMetaData* self) {
 	QList<Key> _ret = self->keys();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -41,21 +35,17 @@ struct miqt_array /* of Key */  QMediaMetaData_Keys(const QMediaMetaData* self) 
 	_out.data = static_cast<void*>(_arr);
 	return _out;
 }
-
 QVariant* QMediaMetaData_OperatorSubscript(QMediaMetaData* self, Key k) {
 	QVariant& _ret = self->operator[](k);
 	// Cast returned reference into pointer
 	return &_ret;
 }
-
 void QMediaMetaData_Clear(QMediaMetaData* self) {
 	self->clear();
 }
-
 bool QMediaMetaData_IsEmpty(const QMediaMetaData* self) {
 	return self->isEmpty();
 }
-
 struct miqt_string QMediaMetaData_StringValue(const QMediaMetaData* self, Key k) {
 	QString _ret = self->stringValue(k);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -66,7 +56,6 @@ struct miqt_string QMediaMetaData_StringValue(const QMediaMetaData* self, Key k)
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 struct miqt_string QMediaMetaData_MetaDataKeyToString(Key k) {
 	QString _ret = QMediaMetaData::metaDataKeyToString(k);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -77,7 +66,6 @@ struct miqt_string QMediaMetaData_MetaDataKeyToString(Key k) {
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
 }
-
 void QMediaMetaData_Delete(QMediaMetaData* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QMediaMetaData*>( self );
@@ -85,4 +73,3 @@ void QMediaMetaData_Delete(QMediaMetaData* self, bool isSubclass) {
 		delete self;
 	}
 }
-

@@ -21,16 +21,16 @@ type QSslConfiguration struct {
 
 // NewQSslConfiguration constructs a new QSslConfiguration object.
 func NewQSslConfiguration() *QSslConfiguration {
-	ret := newQSslConfiguration(QSslConfiguration_new())
-	ret.isSubclass = true
-	return ret
+	g := newQSslConfiguration(QSslConfiguration_new())
+	g.isSubclass = true
+	return g
 }
 
 // NewQSslConfiguration2 constructs a new QSslConfiguration object.
 func NewQSslConfiguration2(other *QSslConfiguration) *QSslConfiguration {
-	ret := newQSslConfiguration(QSslConfiguration_new2(other.cPointer()))
-	ret.isSubclass = true
-	return ret
+	g := newQSslConfiguration(QSslConfiguration_new2(other.cPointer()))
+	g.isSubclass = true
+	return g
 }
 
 func (this *QSslConfiguration) OperatorAssign(other *QSslConfiguration) {
