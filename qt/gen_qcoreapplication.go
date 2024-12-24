@@ -1,7 +1,6 @@
 package qt
 
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -18,34 +17,28 @@ type QCoreApplication struct {
 
 // NewQCoreApplication constructs a new QCoreApplication object.
 func NewQCoreApplication(args []string) *QCoreApplication {
-	// Convert []string to long-lived int& argc, char** argv, never call free()
-	argc := (int)(malloc(8))
-	*argc = int(len(args))
-	argv := (*[0xffff]char)(malloc(size_t(8 * len(args))))
-	for i := range args {
-		argv[i] = CString(args[i])
+	argcPtr := uintptr(unsafe.Pointer(&argc))
+	var argvPtr uintptr
+	if argv != nil && len(argv) > 0 {
+		argvPtr = uintptr(unsafe.Pointer(&argv[0])) // 获取argv的指针
+	} else {
+		argvPtr = 0 // 或者使用nil
 	}
-
-	runtime.LockOSThread() // Prevent Go from migrating the main Qt thread
-
-	ret := newQCoreApplication(QCoreApplication_new(argc, &argv[0]))
+	ret := newQCoreApplication(QCoreApplication_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQCoreApplication2 constructs a new QCoreApplication object.
 func NewQCoreApplication2(args []string, param3 int) *QCoreApplication {
-	// Convert []string to long-lived int& argc, char** argv, never call free()
-	argc := (int)(malloc(8))
-	*argc = int(len(args))
-	argv := (*[0xffff]char)(malloc(size_t(8 * len(args))))
-	for i := range args {
-		argv[i] = CString(args[i])
+	argcPtr := uintptr(unsafe.Pointer(&argc))
+	var argvPtr uintptr
+	if argv != nil && len(argv) > 0 {
+		argvPtr = uintptr(unsafe.Pointer(&argv[0])) // 获取argv的指针
+	} else {
+		argvPtr = 0 // 或者使用nil
 	}
-
-	runtime.LockOSThread() // Prevent Go from migrating the main Qt thread
-
-	ret := newQCoreApplication(QCoreApplication_new2(argc, &argv[0], (int)(param3)))
+	ret := newQCoreApplication(QCoreApplication_new2((int)(param3)))
 	ret.isSubclass = true
 	return ret
 }

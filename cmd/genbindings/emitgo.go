@@ -260,19 +260,26 @@ func (gfs *goFileState) emitParametersGo2CABIForwarding(m CppMethod) (preamble s
 			// for the entire lifetype of QApplication, so, malloc + never free
 			// This transformation only affects the Go side. The CABI side is
 			// projected naturally
-			preamble += "// Convert []string to long-lived int& argc, char** argv, never call free()\n"
-			preamble += "argc := (int)(malloc(8))\n"
-			preamble += "*argc = int(len(args))\n"
-			preamble += "argv := (*[0xffff]char)(malloc(size_t(8 * len(args))))\n"
-			preamble += "for i := range args {\n"
-			preamble += "argv[i] = CString(args[i])\n"
-			preamble += "}\n"
-			tmp = append(tmp, "argc, &argv[0]")
-			// Additional quirk for QApplication constructor: bind to OS thread
-			gfs.imports["runtime"] = struct{}{}
-			preamble += "\n"
-			preamble += "runtime.LockOSThread() // Prevent Go from migrating the main Qt thread\n"
-			preamble += "\n"
+			//preamble += "// Convert []string to long-lived int& argc, char** argv, never call free()\n"
+			//preamble += "argc := (int)(malloc(8))\n"
+			//preamble += "*argc = int(len(args))\n"
+			//preamble += "argv := (*[0xffff]char)(malloc(size_t(8 * len(args))))\n"
+			//preamble += "for i := range args {\n"
+			//preamble += "argv[i] = CString(args[i])\n"
+			//preamble += "}\n"
+			//tmp = append(tmp, "argc, &argv[0]")
+			//// Additional quirk for QApplication constructor: bind to OS thread
+			//gfs.imports["runtime"] = struct{}{}
+			//preamble += "\n"
+			//preamble += "runtime.LockOSThread() // Prevent Go from migrating the main Qt thread\n"
+			//preamble += "\n"
+			preamble += `argcPtr := uintptr(unsafe.Pointer(&argc))
+	var argvPtr uintptr
+	if argv != nil && len(argv) > 0 {
+		argvPtr = uintptr(unsafe.Pointer(&argv[0])) // 获取argv的指针
+	} else {
+		argvPtr = 0 // 或者使用nil
+	}`
 		} else if skipNext {
 			// Skip this parameter, already handled
 			skipNext = false
