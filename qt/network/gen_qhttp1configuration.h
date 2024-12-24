@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QHttp1Configuration;
-class _GUID;
-class type_info;
-#else
 typedef struct QHttp1Configuration QHttp1Configuration;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -36,8 +24,4 @@ extern __declspec(dllexport) ptrdiff_t QHttp1Configuration_NumberOfConnectionsPe
 extern __declspec(dllexport) void QHttp1Configuration_Swap(QHttp1Configuration* self, QHttp1Configuration* other);
 extern __declspec(dllexport) void QHttp1Configuration_Delete(QHttp1Configuration* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

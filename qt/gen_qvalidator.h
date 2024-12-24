@@ -6,30 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChildEvent;
-class QDoubleValidator;
-class QEvent;
-class QIntValidator;
-class QLocale;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QRegularExpression;
-class QRegularExpressionValidator;
-class QTimerEvent;
-class QValidator;
-class _GUID;
-class type_info;
-#else
 typedef struct QChildEvent QChildEvent;
 typedef struct QDoubleValidator QDoubleValidator;
 typedef struct QEvent QEvent;
@@ -44,7 +22,6 @@ typedef struct QTimerEvent QTimerEvent;
 typedef struct QValidator QValidator;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -168,8 +145,4 @@ extern __declspec(dllexport) void QRegularExpressionValidator_override_virtual_F
 void QRegularExpressionValidator_virtualbase_Fixup(const void* self, struct miqt_string param1);
 extern __declspec(dllexport) void QRegularExpressionValidator_Delete(QRegularExpressionValidator* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

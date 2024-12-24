@@ -6,59 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBrush;
-class QChildEvent;
-class QEvent;
-class QFocusEvent;
-class QFont;
-class QGraphicsEllipseItem;
-class QGraphicsItem;
-class QGraphicsItemGroup;
-class QGraphicsLineItem;
-class QGraphicsPathItem;
-class QGraphicsPixmapItem;
-class QGraphicsProxyWidget;
-class QGraphicsRectItem;
-class QGraphicsScene;
-class QGraphicsSceneContextMenuEvent;
-class QGraphicsSceneDragDropEvent;
-class QGraphicsSceneHelpEvent;
-class QGraphicsSceneMouseEvent;
-class QGraphicsSceneWheelEvent;
-class QGraphicsSimpleTextItem;
-class QGraphicsTextItem;
-class QGraphicsView;
-class QGraphicsWidget;
-class QInputMethodEvent;
-class QKeyEvent;
-class QLineF;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QPainter;
-class QPainterPath;
-class QPalette;
-class QPen;
-class QPixmap;
-class QPointF;
-class QRectF;
-class QStyle;
-class QTimerEvent;
-class QTransform;
-class QVariant;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QBrush QBrush;
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
@@ -102,7 +51,6 @@ typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -319,8 +267,4 @@ extern __declspec(dllexport) void QGraphicsScene_override_virtual_DisconnectNoti
 void QGraphicsScene_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QGraphicsScene_Delete(QGraphicsScene* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,30 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QByteArrayView;
-class QGenericArgument;
-class QGenericReturnArgument;
-class QMetaClassInfo;
-class QMetaEnum;
-class QMetaMethod;
-class QMetaObject;
-class QMetaProperty;
-class QMetaType;
-class QObject;
-class QUntypedBindable;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QByteArrayView QByteArrayView;
 typedef struct QGenericArgument QGenericArgument;
 typedef struct QGenericReturnArgument QGenericReturnArgument;
@@ -44,7 +22,6 @@ typedef struct QUntypedBindable QUntypedBindable;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -209,8 +186,4 @@ extern __declspec(dllexport) const char* QMetaClassInfo_Value(const QMetaClassIn
 extern __declspec(dllexport) QMetaObject* QMetaClassInfo_EnclosingMetaObject(const QMetaClassInfo* self);
 extern __declspec(dllexport) void QMetaClassInfo_Delete(QMetaClassInfo* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

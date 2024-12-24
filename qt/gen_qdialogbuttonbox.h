@@ -6,50 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractButton;
-class QActionEvent;
-class QCloseEvent;
-class QContextMenuEvent;
-class QDialogButtonBox;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEnterEvent;
-class QEvent;
-class QFocusEvent;
-class QHideEvent;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QMoveEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEngine;
-class QPaintEvent;
-class QPainter;
-class QPoint;
-class QPushButton;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QTabletEvent;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractButton QAbstractButton;
 typedef struct QActionEvent QActionEvent;
 typedef struct QCloseEvent QCloseEvent;
@@ -84,7 +42,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -213,8 +170,4 @@ extern __declspec(dllexport) void QDialogButtonBox_override_virtual_FocusNextPre
 bool QDialogButtonBox_virtualbase_FocusNextPrevChild(void* self, bool next);
 extern __declspec(dllexport) void QDialogButtonBox_Delete(QDialogButtonBox* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,37 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBrush;
-class QColor;
-class QFont;
-class QPen;
-class QTextBlockFormat;
-class QTextCharFormat;
-class QTextFormat;
-class QTextFrameFormat;
-class QTextImageFormat;
-class QTextLength;
-class QTextListFormat;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextOption__Tab)
 typedef QTextOption::Tab QTextOption__Tab;
-#else
-class QTextOption__Tab;
-#endif
-class QTextTableCellFormat;
-class QTextTableFormat;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QBrush QBrush;
 typedef struct QColor QColor;
 typedef struct QFont QFont;
@@ -54,7 +27,6 @@ typedef struct QTextTableFormat QTextTableFormat;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -356,8 +328,4 @@ extern __declspec(dllexport) QBrush* QTextTableCellFormat_RightBorderBrush(const
 extern __declspec(dllexport) void QTextTableCellFormat_SetBorderBrush(QTextTableCellFormat* self, QBrush* brush);
 extern __declspec(dllexport) void QTextTableCellFormat_Delete(QTextTableCellFormat* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

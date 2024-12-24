@@ -6,28 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemModel;
-class QAbstractProxyModel;
-class QItemSelection;
-class QMetaObject;
-class QMimeData;
-class QModelIndex;
-class QObject;
-class QSize;
-class QTransposeProxyModel;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractProxyModel QAbstractProxyModel;
 typedef struct QItemSelection QItemSelection;
@@ -40,7 +20,6 @@ typedef struct QTransposeProxyModel QTransposeProxyModel;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -153,8 +132,4 @@ extern __declspec(dllexport) void QTransposeProxyModel_override_virtual_RoleName
 struct miqt_map /* of int to struct miqt_string */  QTransposeProxyModel_virtualbase_RoleNames(const void* self);
 extern __declspec(dllexport) void QTransposeProxyModel_Delete(QTransposeProxyModel* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

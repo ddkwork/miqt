@@ -6,51 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractScrollArea;
-class QBrush;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFocusEvent;
-class QFrame;
-class QGraphicsItem;
-class QGraphicsScene;
-class QGraphicsView;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QPainter;
-class QPainterPath;
-class QPoint;
-class QPointF;
-class QRect;
-class QRectF;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QTransform;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QBrush QBrush;
 typedef struct QContextMenuEvent QContextMenuEvent;
@@ -86,7 +43,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -282,8 +238,4 @@ extern __declspec(dllexport) void QGraphicsView_override_virtual_ViewportSizeHin
 QSize* QGraphicsView_virtualbase_ViewportSizeHint(const void* self);
 extern __declspec(dllexport) void QGraphicsView_Delete(QGraphicsView* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

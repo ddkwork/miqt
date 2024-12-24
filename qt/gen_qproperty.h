@@ -6,27 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QMetaType;
-class QPropertyBindingError;
-class QPropertyBindingSourceLocation;
-class QPropertyNotifier;
-class QPropertyObserver;
-class QPropertyObserverBase;
-class QScopedPropertyUpdateGroup;
-class QUntypedBindable;
-class QUntypedPropertyBinding;
-class _GUID;
-class type_info;
-#else
 typedef struct QMetaType QMetaType;
 typedef struct QPropertyBindingError QPropertyBindingError;
 typedef struct QPropertyBindingSourceLocation QPropertyBindingSourceLocation;
@@ -38,7 +19,6 @@ typedef struct QUntypedBindable QUntypedBindable;
 typedef struct QUntypedPropertyBinding QUntypedPropertyBinding;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -97,8 +77,4 @@ extern __declspec(dllexport) QMetaType* QUntypedBindable_MetaType(const QUntyped
 extern __declspec(dllexport) QUntypedPropertyBinding* QUntypedBindable_MakeBinding1(const QUntypedBindable* self, QPropertyBindingSourceLocation* location);
 extern __declspec(dllexport) void QUntypedBindable_Delete(QUntypedBindable* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

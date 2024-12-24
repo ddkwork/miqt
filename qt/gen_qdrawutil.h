@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QTileRules;
-class _GUID;
-class type_info;
-#else
 typedef struct QTileRules QTileRules;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -34,8 +22,4 @@ extern __declspec(dllexport) QTileRules* QTileRules_new3(QTileRules* param1);
 extern __declspec(dllexport) QTileRules* QTileRules_new4(int rule);
 extern __declspec(dllexport) void QTileRules_Delete(QTileRules* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

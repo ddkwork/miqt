@@ -6,32 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCborArray;
-class QCborMap;
-class QCborParserError;
-class QCborStreamReader;
-class QCborStreamWriter;
-class QCborValue;
-class QCborValueConstRef;
-class QCborValueRef;
-class QDateTime;
-class QJsonValue;
-class QRegularExpression;
-class QUrl;
-class QUuid;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QCborArray QCborArray;
 typedef struct QCborMap QCborMap;
 typedef struct QCborParserError QCborParserError;
@@ -48,7 +24,6 @@ typedef struct QUuid QUuid;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -285,8 +260,4 @@ extern __declspec(dllexport) void QCborValueRef_ToCbor2(QCborValueRef* self, QCb
 extern __declspec(dllexport) struct miqt_string QCborValueRef_ToDiagnosticNotation1(QCborValueRef* self, int opt);
 extern __declspec(dllexport) void QCborValueRef_Delete(QCborValueRef* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

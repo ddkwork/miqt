@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QIODevice;
-class QImage;
-class QImageWriter;
-class _GUID;
-class type_info;
-#else
 typedef struct QIODevice QIODevice;
 typedef struct QImage QImage;
 typedef struct QImageWriter QImageWriter;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -69,8 +55,4 @@ extern __declspec(dllexport) struct miqt_string QImageWriter_Tr2(const char* sou
 extern __declspec(dllexport) struct miqt_string QImageWriter_Tr3(const char* sourceText, const char* disambiguation, int n);
 extern __declspec(dllexport) void QImageWriter_Delete(QImageWriter* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

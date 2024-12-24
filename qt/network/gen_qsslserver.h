@@ -6,27 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QMetaObject;
-class QObject;
-class QSslConfiguration;
-class QSslError;
-class QSslPreSharedKeyAuthenticator;
-class QSslServer;
-class QSslSocket;
-class QTcpServer;
-class QTcpSocket;
-class _GUID;
-class type_info;
-#else
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QSslConfiguration QSslConfiguration;
@@ -38,7 +19,6 @@ typedef struct QTcpServer QTcpServer;
 typedef struct QTcpSocket QTcpSocket;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -81,8 +61,4 @@ extern __declspec(dllexport) void QSslServer_override_virtual_NextPendingConnect
 QTcpSocket* QSslServer_virtualbase_NextPendingConnection(void* self);
 extern __declspec(dllexport) void QSslServer_Delete(QSslServer* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

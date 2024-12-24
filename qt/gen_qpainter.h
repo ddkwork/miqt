@@ -6,48 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBrush;
-class QColor;
-class QFont;
-class QFontInfo;
-class QFontMetrics;
-class QGlyphRun;
-class QImage;
-class QLine;
-class QLineF;
-class QPaintDevice;
-class QPaintEngine;
-class QPainter;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPainter__PixmapFragment)
 typedef QPainter::PixmapFragment QPainter__PixmapFragment;
-#else
-class QPainter__PixmapFragment;
-#endif
-class QPainterPath;
-class QPen;
-class QPicture;
-class QPixmap;
-class QPoint;
-class QPointF;
-class QRect;
-class QRectF;
-class QRegion;
-class QStaticText;
-class QTextItem;
-class QTextOption;
-class QTransform;
-class _GUID;
-class type_info;
-#else
 typedef struct QBrush QBrush;
 typedef struct QColor QColor;
 typedef struct QFont QFont;
@@ -76,7 +38,6 @@ typedef struct QTextOption QTextOption;
 typedef struct QTransform QTransform;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -316,8 +277,4 @@ extern __declspec(dllexport) PixmapFragment QPainter__PixmapFragment_Create5(QPo
 extern __declspec(dllexport) PixmapFragment QPainter__PixmapFragment_Create6(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY, double rotation, double opacity);
 extern __declspec(dllexport) void QPainter__PixmapFragment_Delete(QPainter__PixmapFragment* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

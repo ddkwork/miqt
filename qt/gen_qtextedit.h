@@ -6,59 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractScrollArea;
-class QColor;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFocusEvent;
-class QFont;
-class QFrame;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMenu;
-class QMetaObject;
-class QMimeData;
-class QMouseEvent;
-class QObject;
-class QPagedPaintDevice;
-class QPaintDevice;
-class QPaintEvent;
-class QPoint;
-class QRect;
-class QRegularExpression;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QTextCharFormat;
-class QTextCursor;
-class QTextDocument;
-class QTextEdit;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextEdit__ExtraSelection)
 typedef QTextEdit::ExtraSelection QTextEdit__ExtraSelection;
-#else
-class QTextEdit__ExtraSelection;
-#endif
-class QTimerEvent;
-class QUrl;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QColor QColor;
 typedef struct QContextMenuEvent QContextMenuEvent;
@@ -98,7 +49,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -327,8 +277,4 @@ extern __declspec(dllexport) QTextEdit__ExtraSelection* QTextEdit__ExtraSelectio
 extern __declspec(dllexport) void QTextEdit__ExtraSelection_OperatorAssign(QTextEdit__ExtraSelection* self, const ExtraSelection* param1);
 extern __declspec(dllexport) void QTextEdit__ExtraSelection_Delete(QTextEdit__ExtraSelection* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

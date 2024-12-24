@@ -6,27 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAmbientSound;
-class QAudioEngine;
-class QChildEvent;
-class QEvent;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QTimerEvent;
-class QUrl;
-class _GUID;
-class type_info;
-#else
 typedef struct QAmbientSound QAmbientSound;
 typedef struct QAudioEngine QAudioEngine;
 typedef struct QChildEvent QChildEvent;
@@ -38,7 +19,6 @@ typedef struct QTimerEvent QTimerEvent;
 typedef struct QUrl QUrl;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -87,8 +67,4 @@ extern __declspec(dllexport) void QAmbientSound_override_virtual_DisconnectNotif
 void QAmbientSound_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QAmbientSound_Delete(QAmbientSound* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

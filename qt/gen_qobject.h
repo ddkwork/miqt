@@ -6,40 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAnyStringView;
-class QBindingStorage;
-class QChildEvent;
-class QEvent;
-class QMetaMethod;
-class QMetaObject;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__Connection)
 typedef QMetaObject::Connection QMetaObject__Connection;
-#else
-class QMetaObject__Connection;
-#endif
-class QObject;
-class QObjectData;
-class QSignalBlocker;
-class QThread;
-class QTimerEvent;
-class QVariant;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_Disambiguated_t)
 typedef Qt::Disambiguated_t Disambiguated_t;
-#else
-class Disambiguated_t;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QAnyStringView QAnyStringView;
 typedef struct QBindingStorage QBindingStorage;
 typedef struct QChildEvent QChildEvent;
@@ -56,7 +28,6 @@ typedef struct QVariant QVariant;
 typedef struct Disambiguated_t Disambiguated_t;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -140,8 +111,4 @@ extern __declspec(dllexport) void QSignalBlocker_Unblock(QSignalBlocker* self);
 extern __declspec(dllexport) void QSignalBlocker_Dismiss(QSignalBlocker* self);
 extern __declspec(dllexport) void QSignalBlocker_Delete(QSignalBlocker* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

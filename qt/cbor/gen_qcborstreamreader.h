@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCborError;
-class QCborStreamReader;
-class QIODevice;
-class _GUID;
-class type_info;
-#else
 typedef struct QCborError QCborError;
 typedef struct QCborStreamReader QCborStreamReader;
 typedef struct QIODevice QIODevice;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -95,8 +81,4 @@ extern __declspec(dllexport) struct miqt_string QCborStreamReader_ReadAllByteArr
 extern __declspec(dllexport) bool QCborStreamReader_Next1(QCborStreamReader* self, int maxRecursion);
 extern __declspec(dllexport) void QCborStreamReader_Delete(QCborStreamReader* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

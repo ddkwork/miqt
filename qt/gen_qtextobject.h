@@ -6,51 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QGlyphRun;
-class QMetaObject;
-class QObject;
-class QTextBlock;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextBlock__iterator)
 typedef QTextBlock::iterator QTextBlock__iterator;
-#else
-class QTextBlock__iterator;
-#endif
-class QTextBlockFormat;
-class QTextBlockGroup;
-class QTextBlockUserData;
-class QTextCharFormat;
-class QTextCursor;
-class QTextDocument;
-class QTextFormat;
-class QTextFragment;
-class QTextFrame;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextFrame__iterator)
 typedef QTextFrame::iterator QTextFrame__iterator;
-#else
-class QTextFrame__iterator;
-#endif
-class QTextFrameFormat;
-class QTextFrameLayoutData;
-class QTextLayout;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextLayout__FormatRange)
 typedef QTextLayout::FormatRange QTextLayout__FormatRange;
-#else
-class QTextLayout__FormatRange;
-#endif
-class QTextList;
-class QTextObject;
-class _GUID;
-class type_info;
-#else
 typedef struct QGlyphRun QGlyphRun;
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
@@ -74,7 +37,6 @@ typedef struct QTextList QTextList;
 typedef struct QTextObject QTextObject;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -212,8 +174,4 @@ extern __declspec(dllexport) iterator* QTextBlock__iterator_OperatorMinusMinus(Q
 extern __declspec(dllexport) iterator QTextBlock__iterator_OperatorMinusMinusWithInt(QTextBlock__iterator* self, int param1);
 extern __declspec(dllexport) void QTextBlock__iterator_Delete(QTextBlock__iterator* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

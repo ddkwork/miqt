@@ -6,36 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QFont;
-class QGlyphRun;
-class QPaintDevice;
-class QPainter;
-class QPointF;
-class QRawFont;
-class QRectF;
-class QTextBlock;
-class QTextFormat;
-class QTextInlineObject;
-class QTextLayout;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextLayout__FormatRange)
 typedef QTextLayout::FormatRange QTextLayout__FormatRange;
-#else
-class QTextLayout__FormatRange;
-#endif
-class QTextLine;
-class QTextOption;
-class _GUID;
-class type_info;
-#else
 typedef struct QFont QFont;
 typedef struct QGlyphRun QGlyphRun;
 typedef struct QPaintDevice QPaintDevice;
@@ -52,7 +26,6 @@ typedef struct QTextLine QTextLine;
 typedef struct QTextOption QTextOption;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -166,8 +139,4 @@ extern __declspec(dllexport) void QTextLine_Delete(QTextLine* self, bool isSubcl
 extern __declspec(dllexport) QTextLayout__FormatRange* QTextLayout__FormatRange_new();
 extern __declspec(dllexport) void QTextLayout__FormatRange_Delete(QTextLayout__FormatRange* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

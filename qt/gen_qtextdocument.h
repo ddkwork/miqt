@@ -6,42 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractTextDocumentLayout;
-class QAbstractUndoItem;
-class QChar;
-class QChildEvent;
-class QEvent;
-class QFont;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QPagedPaintDevice;
-class QPainter;
-class QRectF;
-class QRegularExpression;
-class QSizeF;
-class QTextBlock;
-class QTextCursor;
-class QTextDocument;
-class QTextFormat;
-class QTextFrame;
-class QTextObject;
-class QTextOption;
-class QTimerEvent;
-class QUrl;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractTextDocumentLayout QAbstractTextDocumentLayout;
 typedef struct QAbstractUndoItem QAbstractUndoItem;
 typedef struct QChar QChar;
@@ -68,7 +34,6 @@ typedef struct QUrl QUrl;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -235,8 +200,4 @@ extern __declspec(dllexport) void QTextDocument_override_virtual_DisconnectNotif
 void QTextDocument_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QTextDocument_Delete(QTextDocument* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

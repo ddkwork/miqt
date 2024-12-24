@@ -6,25 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractNetworkCache;
-class QIODevice;
-class QMetaObject;
-class QNetworkCacheMetaData;
-class QNetworkDiskCache;
-class QObject;
-class QUrl;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractNetworkCache QAbstractNetworkCache;
 typedef struct QIODevice QIODevice;
 typedef struct QMetaObject QMetaObject;
@@ -34,7 +17,6 @@ typedef struct QObject QObject;
 typedef struct QUrl QUrl;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -82,8 +64,4 @@ extern __declspec(dllexport) void QNetworkDiskCache_override_virtual_Expire(void
 long long QNetworkDiskCache_virtualbase_Expire(void* self);
 extern __declspec(dllexport) void QNetworkDiskCache_Delete(QNetworkDiskCache* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

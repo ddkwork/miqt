@@ -6,36 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractEventDispatcher;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QAbstractEventDispatcher__TimerInfo)
 typedef QAbstractEventDispatcher::TimerInfo QAbstractEventDispatcher__TimerInfo;
-#else
-class QAbstractEventDispatcher__TimerInfo;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QAbstractEventDispatcher__TimerInfoV2)
 typedef QAbstractEventDispatcher::TimerInfoV2 QAbstractEventDispatcher__TimerInfoV2;
-#else
-class QAbstractEventDispatcher__TimerInfoV2;
-#endif
-class QAbstractEventDispatcherV2;
-class QAbstractNativeEventFilter;
-class QDeadlineTimer;
-class QMetaObject;
-class QObject;
-class QSocketNotifier;
-class QThread;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractEventDispatcher QAbstractEventDispatcher;
 typedef struct QAbstractEventDispatcher__TimerInfo QAbstractEventDispatcher__TimerInfo;
 typedef struct QAbstractEventDispatcher__TimerInfoV2 QAbstractEventDispatcher__TimerInfoV2;
@@ -48,7 +24,6 @@ typedef struct QSocketNotifier QSocketNotifier;
 typedef struct QThread QThread;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -112,8 +87,4 @@ extern __declspec(dllexport) QAbstractEventDispatcher__TimerInfoV2* QAbstractEve
 extern __declspec(dllexport) QAbstractEventDispatcher__TimerInfoV2* QAbstractEventDispatcher__TimerInfoV2_new2(const TimerInfoV2* param1);
 extern __declspec(dllexport) void QAbstractEventDispatcher__TimerInfoV2_Delete(QAbstractEventDispatcher__TimerInfoV2* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

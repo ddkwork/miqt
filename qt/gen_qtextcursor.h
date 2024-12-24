@@ -6,32 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QImage;
-class QTextBlock;
-class QTextBlockFormat;
-class QTextCharFormat;
-class QTextCursor;
-class QTextDocument;
-class QTextDocumentFragment;
-class QTextFrame;
-class QTextFrameFormat;
-class QTextImageFormat;
-class QTextList;
-class QTextListFormat;
-class QTextTable;
-class QTextTableFormat;
-class _GUID;
-class type_info;
-#else
 typedef struct QImage QImage;
 typedef struct QTextBlock QTextBlock;
 typedef struct QTextBlockFormat QTextBlockFormat;
@@ -48,7 +24,6 @@ typedef struct QTextTable QTextTable;
 typedef struct QTextTableFormat QTextTableFormat;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -141,8 +116,4 @@ extern __declspec(dllexport) void QTextCursor_InsertMarkdown2(QTextCursor* self,
 extern __declspec(dllexport) void QTextCursor_InsertImage2(QTextCursor* self, QImage* image, struct miqt_string name);
 extern __declspec(dllexport) void QTextCursor_Delete(QTextCursor* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

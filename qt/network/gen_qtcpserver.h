@@ -6,28 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChildEvent;
-class QEvent;
-class QHostAddress;
-class QMetaMethod;
-class QMetaObject;
-class QNetworkProxy;
-class QObject;
-class QTcpServer;
-class QTcpSocket;
-class QTimerEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
 typedef struct QHostAddress QHostAddress;
@@ -40,7 +20,6 @@ typedef struct QTcpSocket QTcpSocket;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -105,8 +84,4 @@ extern __declspec(dllexport) void QTcpServer_override_virtual_DisconnectNotify(v
 void QTcpServer_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QTcpServer_Delete(QTcpServer* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

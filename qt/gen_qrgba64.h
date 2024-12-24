@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QRgba64;
-class _GUID;
-class type_info;
-#else
 typedef struct QRgba64 QRgba64;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -55,8 +43,4 @@ extern __declspec(dllexport) QRgba64* QRgba64_Unpremultiplied(const QRgba64* sel
 extern __declspec(dllexport) void QRgba64_OperatorAssign(QRgba64* self, unsigned long long _rgba);
 extern __declspec(dllexport) void QRgba64_Delete(QRgba64* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,28 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChildEvent;
-class QDeadlineTimer;
-class QEvent;
-class QEventLoop;
-class QEventLoopLocker;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QThread;
-class QTimerEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QChildEvent QChildEvent;
 typedef struct QDeadlineTimer QDeadlineTimer;
 typedef struct QEvent QEvent;
@@ -40,7 +20,6 @@ typedef struct QThread QThread;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -88,8 +67,4 @@ extern __declspec(dllexport) QEventLoopLocker* QEventLoopLocker_new3(QThread* th
 extern __declspec(dllexport) void QEventLoopLocker_Swap(QEventLoopLocker* self, QEventLoopLocker* other);
 extern __declspec(dllexport) void QEventLoopLocker_Delete(QEventLoopLocker* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

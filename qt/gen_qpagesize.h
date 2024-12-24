@@ -6,23 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QPageSize;
-class QRect;
-class QRectF;
-class QSize;
-class QSizeF;
-class _GUID;
-class type_info;
-#else
 typedef struct QPageSize QPageSize;
 typedef struct QRect QRect;
 typedef struct QRectF QRectF;
@@ -30,7 +15,6 @@ typedef struct QSize QSize;
 typedef struct QSizeF QSizeF;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -76,8 +60,4 @@ extern __declspec(dllexport) PageSizeId QPageSize_Id22(QSize* pointSize, SizeMat
 extern __declspec(dllexport) PageSizeId QPageSize_Id3(QSizeF* size, Unit units, SizeMatchPolicy matchPolicy);
 extern __declspec(dllexport) void QPageSize_Delete(QPageSize* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

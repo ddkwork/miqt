@@ -6,27 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAnyStringView;
-class QHttp1Configuration;
-class QHttp2Configuration;
-class QHttpHeaders;
-class QNetworkRequest;
-class QObject;
-class QSslConfiguration;
-class QUrl;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QAnyStringView QAnyStringView;
 typedef struct QHttp1Configuration QHttp1Configuration;
 typedef struct QHttp2Configuration QHttp2Configuration;
@@ -38,7 +19,6 @@ typedef struct QUrl QUrl;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -85,8 +65,4 @@ extern __declspec(dllexport) void QNetworkRequest_SetTransferTimeout2(QNetworkRe
 extern __declspec(dllexport) QVariant* QNetworkRequest_Attribute2(const QNetworkRequest* self, Attribute code, QVariant* defaultValue);
 extern __declspec(dllexport) void QNetworkRequest_Delete(QNetworkRequest* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QScrollerProperties;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QScrollerProperties QScrollerProperties;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -41,8 +28,4 @@ extern __declspec(dllexport) QVariant* QScrollerProperties_ScrollMetric(const QS
 extern __declspec(dllexport) void QScrollerProperties_SetScrollMetric(QScrollerProperties* self, ScrollMetric metric, QVariant* value);
 extern __declspec(dllexport) void QScrollerProperties_Delete(QScrollerProperties* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

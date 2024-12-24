@@ -6,30 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QFont;
-class QPainterPath;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPainterPath__Element)
 typedef QPainterPath::Element QPainterPath__Element;
-#else
-class QPainterPath__Element;
-#endif
-class QPainterPathStroker;
-class QPen;
-class QPointF;
-class QRectF;
-class QRegion;
-class _GUID;
-class type_info;
-#else
 typedef struct QFont QFont;
 typedef struct QPainterPath QPainterPath;
 typedef struct QPainterPath__Element QPainterPath__Element;
@@ -40,7 +20,6 @@ typedef struct QRectF QRectF;
 typedef struct QRegion QRegion;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -150,8 +129,4 @@ extern __declspec(dllexport) bool QPainterPath__Element_OperatorEqual(const QPai
 extern __declspec(dllexport) bool QPainterPath__Element_OperatorNotEqual(const QPainterPath__Element* self, const Element* e);
 extern __declspec(dllexport) void QPainterPath__Element_Delete(QPainterPath__Element* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

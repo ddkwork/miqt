@@ -6,38 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractNetworkCache;
-class QAuthenticator;
-class QChildEvent;
-class QEvent;
-class QHstsPolicy;
-class QHttpMultiPart;
-class QIODevice;
-class QMetaMethod;
-class QMetaObject;
-class QNetworkAccessManager;
-class QNetworkCookieJar;
-class QNetworkProxy;
-class QNetworkProxyFactory;
-class QNetworkReply;
-class QNetworkRequest;
-class QObject;
-class QSslConfiguration;
-class QSslError;
-class QSslPreSharedKeyAuthenticator;
-class QTimerEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractNetworkCache QAbstractNetworkCache;
 typedef struct QAuthenticator QAuthenticator;
 typedef struct QChildEvent QChildEvent;
@@ -60,7 +30,6 @@ typedef struct QSslPreSharedKeyAuthenticator QSslPreSharedKeyAuthenticator;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -153,8 +122,4 @@ extern __declspec(dllexport) void QNetworkAccessManager_override_virtual_Disconn
 void QNetworkAccessManager_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QNetworkAccessManager_Delete(QNetworkAccessManager* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

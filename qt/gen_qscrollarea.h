@@ -6,37 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractScrollArea;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFrame;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QResizeEvent;
-class QScrollArea;
-class QSize;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDragEnterEvent QDragEnterEvent;
@@ -58,7 +29,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -138,8 +108,4 @@ extern __declspec(dllexport) void QScrollArea_override_virtual_KeyPressEvent(voi
 void QScrollArea_virtualbase_KeyPressEvent(void* self, QKeyEvent* param1);
 extern __declspec(dllexport) void QScrollArea_Delete(QScrollArea* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

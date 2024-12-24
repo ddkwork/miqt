@@ -6,32 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAnyStringView;
-class QCalendar;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QCalendar__SystemId)
 typedef QCalendar::SystemId QCalendar__SystemId;
-#else
-class QCalendar__SystemId;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QCalendar__YearMonthDay)
 typedef QCalendar::YearMonthDay QCalendar__YearMonthDay;
-#else
-class QCalendar__YearMonthDay;
-#endif
-class QDate;
-class QLocale;
-class _GUID;
-class type_info;
-#else
 typedef struct QAnyStringView QAnyStringView;
 typedef struct QCalendar QCalendar;
 typedef struct QCalendar__SystemId QCalendar__SystemId;
@@ -40,7 +20,6 @@ typedef struct QDate QDate;
 typedef struct QLocale QLocale;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -97,8 +76,4 @@ extern __declspec(dllexport) unsigned long long QCalendar__SystemId_Index(const 
 extern __declspec(dllexport) bool QCalendar__SystemId_IsValid(const QCalendar__SystemId* self);
 extern __declspec(dllexport) void QCalendar__SystemId_Delete(QCalendar__SystemId* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

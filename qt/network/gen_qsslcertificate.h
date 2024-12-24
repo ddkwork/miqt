@@ -6,24 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QDateTime;
-class QIODevice;
-class QSslCertificate;
-class QSslCertificateExtension;
-class QSslError;
-class QSslKey;
-class _GUID;
-class type_info;
-#else
 typedef struct QDateTime QDateTime;
 typedef struct QIODevice QIODevice;
 typedef struct QSslCertificate QSslCertificate;
@@ -32,7 +16,6 @@ typedef struct QSslError QSslError;
 typedef struct QSslKey QSslKey;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -86,8 +69,4 @@ extern __declspec(dllexport) bool QSslCertificate_ImportPkcs124(QIODevice* devic
 extern __declspec(dllexport) bool QSslCertificate_ImportPkcs125(QIODevice* device, QSslKey* key, QSslCertificate* cert, struct miqt_array /* of QSslCertificate* */  caCertificates, struct miqt_string passPhrase);
 extern __declspec(dllexport) void QSslCertificate_Delete(QSslCertificate* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

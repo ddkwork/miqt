@@ -6,41 +6,20 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QPartialOrdering;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_partial_ordering)
 typedef Qt::partial_ordering partial_ordering;
-#else
-class partial_ordering;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_strong_ordering)
 typedef Qt::strong_ordering strong_ordering;
-#else
-class strong_ordering;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_weak_ordering)
 typedef Qt::weak_ordering weak_ordering;
-#else
-class weak_ordering;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QPartialOrdering QPartialOrdering;
 typedef struct partial_ordering partial_ordering;
 typedef struct strong_ordering strong_ordering;
 typedef struct weak_ordering weak_ordering;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -61,8 +40,4 @@ extern __declspec(dllexport) QPartialOrdering* QPartialOrdering_new3(strong_orde
 extern __declspec(dllexport) QPartialOrdering* QPartialOrdering_new4(QPartialOrdering* param1);
 extern __declspec(dllexport) void QPartialOrdering_Delete(QPartialOrdering* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

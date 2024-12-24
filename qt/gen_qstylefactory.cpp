@@ -13,22 +13,6 @@
 #define _Bool bool
 #endif
 
-void _GUID_Delete(_GUID* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<_GUID*>( self );
-	} else {
-		delete self;
-	}
-}
-
-void type_info_Delete(type_info* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<type_info*>( self );
-	} else {
-		delete self;
-	}
-}
-
 struct miqt_array /* of struct miqt_string */  QStyleFactory_Keys() {
 	QStringList _ret = QStyleFactory::keys();
 	// Convert QList<> from C++ memory to manually-managed C memory

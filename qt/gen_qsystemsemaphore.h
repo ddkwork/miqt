@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QNativeIpcKey;
-class QSystemSemaphore;
-class _GUID;
-class type_info;
-#else
 typedef struct QNativeIpcKey QNativeIpcKey;
 typedef struct QSystemSemaphore QSystemSemaphore;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -63,8 +50,4 @@ extern __declspec(dllexport) QNativeIpcKey* QSystemSemaphore_PlatformSafeKey2(st
 extern __declspec(dllexport) QNativeIpcKey* QSystemSemaphore_LegacyNativeKey2(struct miqt_string key, uint16_t typeVal);
 extern __declspec(dllexport) void QSystemSemaphore_Delete(QSystemSemaphore* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

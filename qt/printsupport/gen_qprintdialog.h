@@ -6,26 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractPrintDialog;
-class QDialog;
-class QMetaObject;
-class QObject;
-class QPaintDevice;
-class QPrintDialog;
-class QPrinter;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractPrintDialog QAbstractPrintDialog;
 typedef struct QDialog QDialog;
 typedef struct QMetaObject QMetaObject;
@@ -36,7 +18,6 @@ typedef struct QPrinter QPrinter;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -70,8 +51,4 @@ extern __declspec(dllexport) void QPrintDialog_override_virtual_SetVisible(void*
 void QPrintDialog_virtualbase_SetVisible(void* self, bool visible);
 extern __declspec(dllexport) void QPrintDialog_Delete(QPrintDialog* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

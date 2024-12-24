@@ -6,25 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QIcon;
-class QIconEngine;
-class QPainter;
-class QPixmap;
-class QRect;
-class QSize;
-class QWindow;
-class _GUID;
-class type_info;
-#else
 typedef struct QIcon QIcon;
 typedef struct QIconEngine QIconEngine;
 typedef struct QPainter QPainter;
@@ -34,7 +17,6 @@ typedef struct QSize QSize;
 typedef struct QWindow QWindow;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -110,8 +92,4 @@ extern __declspec(dllexport) struct miqt_array /* of QSize* */  QIcon_AvailableS
 extern __declspec(dllexport) struct miqt_array /* of QSize* */  QIcon_AvailableSizes2(const QIcon* self, Mode mode, State state);
 extern __declspec(dllexport) void QIcon_Delete(QIcon* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,32 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCloseEvent;
-class QContextMenuEvent;
-class QDialog;
-class QEvent;
-class QKeyEvent;
-class QMetaObject;
-class QObject;
-class QPageSetupDialog;
-class QPaintDevice;
-class QPrinter;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QCloseEvent QCloseEvent;
 typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDialog QDialog;
@@ -48,7 +24,6 @@ typedef struct QSize QSize;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -98,8 +73,4 @@ extern __declspec(dllexport) void QPageSetupDialog_override_virtual_EventFilter(
 bool QPageSetupDialog_virtualbase_EventFilter(void* self, QObject* param1, QEvent* param2);
 extern __declspec(dllexport) void QPageSetupDialog_Delete(QPageSetupDialog* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

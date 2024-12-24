@@ -6,30 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QEvent;
-class QGraphicsItem;
-class QGraphicsObject;
-class QGraphicsSvgItem;
-class QMetaObject;
-class QObject;
-class QPainter;
-class QRectF;
-class QSize;
-class QStyleOptionGraphicsItem;
-class QSvgRenderer;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QEvent QEvent;
 typedef struct QGraphicsItem QGraphicsItem;
 typedef struct QGraphicsObject QGraphicsObject;
@@ -44,7 +22,6 @@ typedef struct QSvgRenderer QSvgRenderer;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -81,8 +58,4 @@ extern __declspec(dllexport) void QGraphicsSvgItem_override_virtual_Event(void* 
 bool QGraphicsSvgItem_virtualbase_Event(void* self, QEvent* ev);
 extern __declspec(dllexport) void QGraphicsSvgItem_Delete(QGraphicsSvgItem* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

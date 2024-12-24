@@ -6,27 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QByteArrayView;
-class QDateTime;
-class QLocale;
-class QTimeZone;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTimeZone__OffsetData)
 typedef QTimeZone::OffsetData QTimeZone__OffsetData;
-#else
-class QTimeZone__OffsetData;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QByteArrayView QByteArrayView;
 typedef struct QDateTime QDateTime;
 typedef struct QLocale QLocale;
@@ -34,7 +17,6 @@ typedef struct QTimeZone QTimeZone;
 typedef struct QTimeZone__OffsetData QTimeZone__OffsetData;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -98,8 +80,4 @@ extern __declspec(dllexport) QTimeZone__OffsetData* QTimeZone__OffsetData_new2()
 extern __declspec(dllexport) void QTimeZone__OffsetData_OperatorAssign(QTimeZone__OffsetData* self, const OffsetData* param1);
 extern __declspec(dllexport) void QTimeZone__OffsetData_Delete(QTimeZone__OffsetData* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

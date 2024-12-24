@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QDateTime;
-class QLocale;
-class QResource;
-class _GUID;
-class type_info;
-#else
 typedef struct QDateTime QDateTime;
 typedef struct QLocale QLocale;
 typedef struct QResource QResource;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -57,8 +43,4 @@ extern __declspec(dllexport) bool QResource_RegisterResource22(const unsigned ch
 extern __declspec(dllexport) bool QResource_UnregisterResource22(const unsigned char* rccData, struct miqt_string resourceRoot);
 extern __declspec(dllexport) void QResource_Delete(QResource* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QHttp2Configuration;
-class _GUID;
-class type_info;
-#else
 typedef struct QHttp2Configuration QHttp2Configuration;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -46,8 +34,4 @@ extern __declspec(dllexport) unsigned int QHttp2Configuration_MaxConcurrentStrea
 extern __declspec(dllexport) void QHttp2Configuration_Swap(QHttp2Configuration* self, QHttp2Configuration* other);
 extern __declspec(dllexport) void QHttp2Configuration_Delete(QHttp2Configuration* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

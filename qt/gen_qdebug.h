@@ -6,25 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QByteArrayView;
-class QChar;
-class QDebug;
-class QDebugStateSaver;
-class QIODevice;
-class QIODeviceBase;
-class QNoDebug;
-class _GUID;
-class type_info;
-#else
 typedef struct QByteArrayView QByteArrayView;
 typedef struct QChar QChar;
 typedef struct QDebug QDebug;
@@ -34,7 +17,6 @@ typedef struct QIODeviceBase QIODeviceBase;
 typedef struct QNoDebug QNoDebug;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -93,8 +75,4 @@ extern __declspec(dllexport) QNoDebug* QNoDebug_Verbosity(QNoDebug* self, int pa
 extern __declspec(dllexport) QNoDebug* QNoDebug_MaybeQuote1(QNoDebug* self, const char param1);
 extern __declspec(dllexport) void QNoDebug_Delete(QNoDebug* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QFont;
-class QFontDatabase;
-class QFontInfo;
-class _GUID;
-class type_info;
-#else
 typedef struct QFont QFont;
 typedef struct QFontDatabase QFontDatabase;
 typedef struct QFontInfo QFontInfo;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -76,8 +62,4 @@ extern __declspec(dllexport) bool QFontDatabase_IsScalable2(struct miqt_string f
 extern __declspec(dllexport) bool QFontDatabase_IsFixedPitch2(struct miqt_string family, struct miqt_string style);
 extern __declspec(dllexport) void QFontDatabase_Delete(QFontDatabase* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

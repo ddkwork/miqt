@@ -6,47 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBitArray;
-class QChar;
-class QDataStream;
-class QDate;
-class QDateTime;
-class QEasingCurve;
-class QJsonArray;
-class QJsonDocument;
-class QJsonObject;
-class QJsonValue;
-class QLine;
-class QLineF;
-class QLocale;
-class QMetaType;
-class QModelIndex;
-class QPartialOrdering;
-class QPersistentModelIndex;
-class QPoint;
-class QPointF;
-class QRect;
-class QRectF;
-class QRegularExpression;
-class QSize;
-class QSizeF;
-class QTime;
-class QUrl;
-class QUuid;
-class QVariant;
-class QVariantConstPointer;
-class _GUID;
-class type_info;
-#else
 typedef struct QBitArray QBitArray;
 typedef struct QChar QChar;
 typedef struct QDataStream QDataStream;
@@ -78,7 +39,6 @@ typedef struct QVariant QVariant;
 typedef struct QVariantConstPointer QVariantConstPointer;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -196,8 +156,4 @@ extern __declspec(dllexport) QVariant* QVariantConstPointer_OperatorMinusGreater
 extern __declspec(dllexport) void QVariantConstPointer_OperatorAssign(QVariantConstPointer* self, QVariantConstPointer* param1);
 extern __declspec(dllexport) void QVariantConstPointer_Delete(QVariantConstPointer* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,47 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemView;
-class QAbstractScrollArea;
-class QBrush;
-class QDataStream;
-class QDropEvent;
-class QEvent;
-class QFont;
-class QFrame;
-class QIcon;
-class QItemSelection;
-class QItemSelectionModel;
-class QMetaObject;
-class QMimeData;
-class QModelIndex;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QPoint;
-class QRect;
-class QRegion;
-class QSize;
-class QStyleOptionViewItem;
-class QTableView;
-class QTableWidget;
-class QTableWidgetItem;
-class QTableWidgetSelectionRange;
-class QTimerEvent;
-class QVariant;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemView QAbstractItemView;
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QBrush QBrush;
@@ -78,7 +39,6 @@ typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -321,8 +281,4 @@ extern __declspec(dllexport) void QTableWidget_override_virtual_CurrentChanged(v
 void QTableWidget_virtualbase_CurrentChanged(void* self, QModelIndex* current, QModelIndex* previous);
 extern __declspec(dllexport) void QTableWidget_Delete(QTableWidget* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

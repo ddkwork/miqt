@@ -6,26 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemModel;
-class QAbstractListModel;
-class QMetaObject;
-class QMimeData;
-class QModelIndex;
-class QObject;
-class QStringListModel;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractListModel QAbstractListModel;
 typedef struct QMetaObject QMetaObject;
@@ -36,7 +18,6 @@ typedef struct QStringListModel QStringListModel;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -99,8 +80,4 @@ extern __declspec(dllexport) void QStringListModel_override_virtual_DropMimeData
 bool QStringListModel_virtualbase_DropMimeData(void* self, QMimeData* data, int action, int row, int column, QModelIndex* parent);
 extern __declspec(dllexport) void QStringListModel_Delete(QStringListModel* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

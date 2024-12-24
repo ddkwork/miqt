@@ -6,50 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QActionEvent;
-class QChildEvent;
-class QCloseEvent;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEnterEvent;
-class QEvent;
-class QFocusEvent;
-class QGroupBox;
-class QHideEvent;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QMoveEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEngine;
-class QPaintEvent;
-class QPainter;
-class QPoint;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QStyleOptionGroupBox;
-class QTabletEvent;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QActionEvent QActionEvent;
 typedef struct QChildEvent QChildEvent;
 typedef struct QCloseEvent QCloseEvent;
@@ -84,7 +42,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -215,8 +172,4 @@ extern __declspec(dllexport) void QGroupBox_override_virtual_FocusNextPrevChild(
 bool QGroupBox_virtualbase_FocusNextPrevChild(void* self, bool next);
 extern __declspec(dllexport) void QGroupBox_Delete(QGroupBox* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

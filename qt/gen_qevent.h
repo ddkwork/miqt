@@ -6,86 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAction;
-class QActionEvent;
-class QApplicationStateChangeEvent;
-class QChildWindowEvent;
-class QCloseEvent;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEnterEvent;
-class QEvent;
-class QEventPoint;
-class QExposeEvent;
-class QFile;
-class QFileOpenEvent;
-class QFocusEvent;
-class QHelpEvent;
-class QHideEvent;
-class QHoverEvent;
-class QIconDragEvent;
-class QInputDevice;
-class QInputEvent;
-class QInputMethodEvent;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QInputMethodEvent__Attribute)
 typedef QInputMethodEvent::Attribute QInputMethodEvent__Attribute;
-#else
-class QInputMethodEvent__Attribute;
-#endif
-class QInputMethodQueryEvent;
-class QKeyCombination;
-class QKeyEvent;
-class QKeySequence;
-class QMimeData;
-class QMouseEvent;
-class QMoveEvent;
-class QNativeGestureEvent;
-class QObject;
-class QPaintEvent;
-class QPlatformSurfaceEvent;
-class QPoint;
-class QPointF;
-class QPointerEvent;
-class QPointingDevice;
-class QRect;
-class QRectF;
-class QRegion;
-class QResizeEvent;
-class QScreen;
-class QScreenOrientationChangeEvent;
-class QScrollEvent;
-class QScrollPrepareEvent;
-class QShortcut;
-class QShortcutEvent;
-class QShowEvent;
-class QSinglePointEvent;
-class QSize;
-class QSizeF;
-class QStatusTipEvent;
-class QTabletEvent;
-class QToolBarChangeEvent;
-class QTouchEvent;
-class QUrl;
-class QVariant;
-class QWhatsThisClickedEvent;
-class QWheelEvent;
-class QWindow;
-class QWindowStateChangeEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QAction QAction;
 typedef struct QActionEvent QActionEvent;
 typedef struct QApplicationStateChangeEvent QApplicationStateChangeEvent;
@@ -152,7 +76,6 @@ typedef struct QWindow QWindow;
 typedef struct QWindowStateChangeEvent QWindowStateChangeEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -804,8 +727,4 @@ extern __declspec(dllexport) QInputMethodEvent__Attribute* QInputMethodEvent__At
 extern __declspec(dllexport) void QInputMethodEvent__Attribute_OperatorAssign(QInputMethodEvent__Attribute* self, const Attribute* param1);
 extern __declspec(dllexport) void QInputMethodEvent__Attribute_Delete(QInputMethodEvent__Attribute* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

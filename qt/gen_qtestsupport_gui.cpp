@@ -10,22 +10,6 @@
 #define _Bool bool
 #endif
 
-void _GUID_Delete(_GUID* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<_GUID*>( self );
-	} else {
-		delete self;
-	}
-}
-
-void type_info_Delete(type_info* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<type_info*>( self );
-	} else {
-		delete self;
-	}
-}
-
 QTouchEventSequence* QTest__QTouchEventSequence_Press(QTest__QTouchEventSequence* self, int touchId, QPoint* pt) {
 	return &self->press(static_cast<int>(touchId), *pt);
 }

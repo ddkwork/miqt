@@ -6,25 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBitmap;
-class QImage;
-class QPaintDevice;
-class QPaintEngine;
-class QPixmap;
-class QSize;
-class QTransform;
-class _GUID;
-class type_info;
-#else
 typedef struct QBitmap QBitmap;
 typedef struct QImage QImage;
 typedef struct QPaintDevice QPaintDevice;
@@ -34,7 +17,6 @@ typedef struct QSize QSize;
 typedef struct QTransform QTransform;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -65,8 +47,4 @@ extern __declspec(dllexport) void QBitmap_override_virtual_Metric(void* self, in
 int QBitmap_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
 extern __declspec(dllexport) void QBitmap_Delete(QBitmap* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

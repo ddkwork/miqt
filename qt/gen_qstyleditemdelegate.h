@@ -6,34 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemDelegate;
-class QAbstractItemModel;
-class QAbstractItemView;
-class QEvent;
-class QHelpEvent;
-class QItemEditorFactory;
-class QLocale;
-class QMetaObject;
-class QModelIndex;
-class QObject;
-class QPainter;
-class QSize;
-class QStyleOptionViewItem;
-class QStyledItemDelegate;
-class QVariant;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemDelegate QAbstractItemDelegate;
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractItemView QAbstractItemView;
@@ -52,7 +26,6 @@ typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -106,8 +79,4 @@ extern __declspec(dllexport) void QStyledItemDelegate_override_virtual_PaintingR
 struct miqt_array /* of int */  QStyledItemDelegate_virtualbase_PaintingRoles(const void* self);
 extern __declspec(dllexport) void QStyledItemDelegate_Delete(QStyledItemDelegate* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

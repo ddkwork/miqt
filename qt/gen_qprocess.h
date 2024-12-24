@@ -6,29 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QIODevice;
-class QIODeviceBase;
-class QMetaObject;
-class QObject;
-class QProcess;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QProcess__CreateProcessArguments)
 typedef QProcess::CreateProcessArguments QProcess__CreateProcessArguments;
-#else
-class QProcess__CreateProcessArguments;
-#endif
-class QProcessEnvironment;
-class _GUID;
-class type_info;
-#else
 typedef struct QIODevice QIODevice;
 typedef struct QIODeviceBase QIODeviceBase;
 typedef struct QMetaObject QMetaObject;
@@ -38,7 +19,6 @@ typedef struct QProcess__CreateProcessArguments QProcess__CreateProcessArguments
 typedef struct QProcessEnvironment QProcessEnvironment;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -181,8 +161,4 @@ extern __declspec(dllexport) void QProcess_Delete(QProcess* self, bool isSubclas
 
 extern __declspec(dllexport) void QProcess__CreateProcessArguments_Delete(QProcess__CreateProcessArguments* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

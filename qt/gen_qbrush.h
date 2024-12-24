@@ -6,34 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBrush;
-class QBrushData;
-class QColor;
-class QConicalGradient;
-class QGradient;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QGradient__QGradientData)
 typedef QGradient::QGradientData QGradient__QGradientData;
-#else
-class QGradient__QGradientData;
-#endif
-class QImage;
-class QLinearGradient;
-class QPixmap;
-class QPointF;
-class QRadialGradient;
-class QTransform;
-class _GUID;
-class type_info;
-#else
 typedef struct QBrush QBrush;
 typedef struct QBrushData QBrushData;
 typedef struct QColor QColor;
@@ -48,7 +24,6 @@ typedef struct QRadialGradient QRadialGradient;
 typedef struct QTransform QTransform;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -162,8 +137,4 @@ extern __declspec(dllexport) void QConicalGradient_Delete(QConicalGradient* self
 extern __declspec(dllexport) QGradient__QGradientData* QGradient__QGradientData_new(const QGradientData* param1);
 extern __declspec(dllexport) void QGradient__QGradientData_Delete(QGradient__QGradientData* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

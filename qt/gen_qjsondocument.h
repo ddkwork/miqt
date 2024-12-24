@@ -6,24 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QJsonArray;
-class QJsonDocument;
-class QJsonObject;
-class QJsonParseError;
-class QJsonValue;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QJsonArray QJsonArray;
 typedef struct QJsonDocument QJsonDocument;
 typedef struct QJsonObject QJsonObject;
@@ -32,7 +16,6 @@ typedef struct QJsonValue QJsonValue;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -62,8 +45,4 @@ extern __declspec(dllexport) QJsonDocument* QJsonDocument_FromJson2(struct miqt_
 extern __declspec(dllexport) struct miqt_string QJsonDocument_ToJson1(const QJsonDocument* self, JsonFormat format);
 extern __declspec(dllexport) void QJsonDocument_Delete(QJsonDocument* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

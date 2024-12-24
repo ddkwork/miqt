@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QSslEllipticCurve;
-class _GUID;
-class type_info;
-#else
 typedef struct QSslEllipticCurve QSslEllipticCurve;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -38,8 +26,4 @@ extern __declspec(dllexport) bool QSslEllipticCurve_IsValid(const QSslEllipticCu
 extern __declspec(dllexport) bool QSslEllipticCurve_IsTlsNamedCurve(const QSslEllipticCurve* self);
 extern __declspec(dllexport) void QSslEllipticCurve_Delete(QSslEllipticCurve* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

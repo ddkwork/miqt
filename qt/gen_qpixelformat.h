@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QPixelFormat;
-class _GUID;
-class type_info;
-#else
 typedef struct QPixelFormat QPixelFormat;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -57,8 +45,4 @@ extern __declspec(dllexport) YUVLayout QPixelFormat_YuvLayout(const QPixelFormat
 extern __declspec(dllexport) unsigned char QPixelFormat_SubEnum(const QPixelFormat* self);
 extern __declspec(dllexport) void QPixelFormat_Delete(QPixelFormat* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

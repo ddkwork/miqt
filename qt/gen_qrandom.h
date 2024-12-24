@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QRandomGenerator;
-class QRandomGenerator64;
-class _GUID;
-class type_info;
-#else
 typedef struct QRandomGenerator QRandomGenerator;
 typedef struct QRandomGenerator64 QRandomGenerator64;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -82,8 +69,4 @@ extern __declspec(dllexport) QRandomGenerator64* QRandomGenerator64_SecurelySeed
 extern __declspec(dllexport) void QRandomGenerator64_OperatorAssign(QRandomGenerator64* self, QRandomGenerator64* param1);
 extern __declspec(dllexport) void QRandomGenerator64_Delete(QRandomGenerator64* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

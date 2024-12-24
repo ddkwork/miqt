@@ -6,31 +6,15 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QPixmap;
-class QPixmapCache;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPixmapCache__Key)
 typedef QPixmapCache::Key QPixmapCache__Key;
-#else
-class QPixmapCache__Key;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QPixmap QPixmap;
 typedef struct QPixmapCache QPixmapCache;
 typedef struct QPixmapCache__Key QPixmapCache__Key;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -57,8 +41,4 @@ extern __declspec(dllexport) void QPixmapCache__Key_Swap(QPixmapCache__Key* self
 extern __declspec(dllexport) bool QPixmapCache__Key_IsValid(const QPixmapCache__Key* self);
 extern __declspec(dllexport) void QPixmapCache__Key_Delete(QPixmapCache__Key* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

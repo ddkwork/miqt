@@ -6,29 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QMargins;
-class QMarginsF;
-class QSize;
-class QSizeF;
-class _GUID;
-class type_info;
-#else
 typedef struct QMargins QMargins;
 typedef struct QMarginsF QMarginsF;
 typedef struct QSize QSize;
 typedef struct QSizeF QSizeF;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -89,8 +74,4 @@ extern __declspec(dllexport) QSizeF* QSizeF_OperatorDivideAssign(QSizeF* self, d
 extern __declspec(dllexport) QSize* QSizeF_ToSize(const QSizeF* self);
 extern __declspec(dllexport) void QSizeF_Delete(QSizeF* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

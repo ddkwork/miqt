@@ -6,36 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QJsonObject;
-class QPluginMetaData;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPluginMetaData__ElfNoteHeader)
 typedef QPluginMetaData::ElfNoteHeader QPluginMetaData__ElfNoteHeader;
-#else
-class QPluginMetaData__ElfNoteHeader;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPluginMetaData__Header)
 typedef QPluginMetaData::Header QPluginMetaData__Header;
-#else
-class QPluginMetaData__Header;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPluginMetaData__MagicHeader)
 typedef QPluginMetaData::MagicHeader QPluginMetaData__MagicHeader;
-#else
-class QPluginMetaData__MagicHeader;
-#endif
-class QStaticPlugin;
-class _GUID;
-class type_info;
-#else
 typedef struct QJsonObject QJsonObject;
 typedef struct QPluginMetaData QPluginMetaData;
 typedef struct QPluginMetaData__ElfNoteHeader QPluginMetaData__ElfNoteHeader;
@@ -44,7 +22,6 @@ typedef struct QPluginMetaData__MagicHeader QPluginMetaData__MagicHeader;
 typedef struct QStaticPlugin QStaticPlugin;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -67,8 +44,4 @@ extern __declspec(dllexport) QPluginMetaData__ElfNoteHeader* QPluginMetaData__El
 extern __declspec(dllexport) QPluginMetaData__ElfNoteHeader* QPluginMetaData__ElfNoteHeader_new2(const ElfNoteHeader* param1);
 extern __declspec(dllexport) void QPluginMetaData__ElfNoteHeader_Delete(QPluginMetaData__ElfNoteHeader* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

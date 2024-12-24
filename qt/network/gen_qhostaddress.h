@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QHostAddress;
-class QIPv6Address;
-class _GUID;
-class type_info;
-#else
 typedef struct QHostAddress QHostAddress;
 typedef struct QIPv6Address QIPv6Address;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -76,8 +63,4 @@ extern __declspec(dllexport) unsigned int QHostAddress_ToIPv4Address1(const QHos
 extern __declspec(dllexport) bool QHostAddress_IsEqual2(const QHostAddress* self, QHostAddress* address, ConversionMode mode);
 extern __declspec(dllexport) void QHostAddress_Delete(QHostAddress* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -16,38 +16,6 @@
 #define _Bool bool
 #endif
 
-void _GUID_Delete(_GUID* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<_GUID*>( self );
-	} else {
-		delete self;
-	}
-}
-
-void type_info_Delete(type_info* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<type_info*>( self );
-	} else {
-		delete self;
-	}
-}
-
-_GUID* _GUID_new() {
-	return new _GUID();
-}
-
-_GUID* _GUID_new2(_GUID* param1) {
-	return new _GUID(*param1);
-}
-
-void _GUID_Delete(_GUID* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<_GUID*>( self );
-	} else {
-		delete self;
-	}
-}
-
 QUuid* QUuid_new() {
 	return new QUuid();
 }

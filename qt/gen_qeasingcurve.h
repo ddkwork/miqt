@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QEasingCurve;
-class QPointF;
-class _GUID;
-class type_info;
-#else
 typedef struct QEasingCurve QEasingCurve;
 typedef struct QPointF QPointF;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -51,8 +38,4 @@ extern __declspec(dllexport) EasingFunction QEasingCurve_CustomType(const QEasin
 extern __declspec(dllexport) double QEasingCurve_ValueForProgress(const QEasingCurve* self, double progress);
 extern __declspec(dllexport) void QEasingCurve_Delete(QEasingCurve* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

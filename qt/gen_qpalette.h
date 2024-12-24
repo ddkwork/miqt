@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBrush;
-class QColor;
-class QPalette;
-class _GUID;
-class type_info;
-#else
 typedef struct QBrush QBrush;
 typedef struct QColor QColor;
 typedef struct QPalette QPalette;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -84,8 +70,4 @@ extern __declspec(dllexport) ResolveMask QPalette_ResolveMask(const QPalette* se
 extern __declspec(dllexport) void QPalette_SetResolveMask(QPalette* self, ResolveMask mask);
 extern __declspec(dllexport) void QPalette_Delete(QPalette* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

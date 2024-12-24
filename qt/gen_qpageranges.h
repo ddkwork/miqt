@@ -6,29 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QPageRanges;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPageRanges__Range)
 typedef QPageRanges::Range QPageRanges__Range;
-#else
-class QPageRanges__Range;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QPageRanges QPageRanges;
 typedef struct QPageRanges__Range QPageRanges__Range;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -56,8 +41,4 @@ extern __declspec(dllexport) QPageRanges__Range* QPageRanges__Range_new2(const R
 extern __declspec(dllexport) bool QPageRanges__Range_Contains(const QPageRanges__Range* self, int pageNumber);
 extern __declspec(dllexport) void QPageRanges__Range_Delete(QPageRanges__Range* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

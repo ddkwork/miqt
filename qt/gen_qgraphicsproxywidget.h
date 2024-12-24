@@ -6,48 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCloseEvent;
-class QEvent;
-class QFocusEvent;
-class QGraphicsItem;
-class QGraphicsLayoutItem;
-class QGraphicsObject;
-class QGraphicsProxyWidget;
-class QGraphicsSceneContextMenuEvent;
-class QGraphicsSceneDragDropEvent;
-class QGraphicsSceneHoverEvent;
-class QGraphicsSceneMouseEvent;
-class QGraphicsSceneMoveEvent;
-class QGraphicsSceneResizeEvent;
-class QGraphicsSceneWheelEvent;
-class QGraphicsWidget;
-class QHideEvent;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QObject;
-class QPainter;
-class QPainterPath;
-class QPointF;
-class QRectF;
-class QShowEvent;
-class QSizeF;
-class QStyleOption;
-class QStyleOptionGraphicsItem;
-class QVariant;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QCloseEvent QCloseEvent;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
@@ -80,7 +40,6 @@ typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -229,8 +188,4 @@ extern __declspec(dllexport) void QGraphicsProxyWidget_override_virtual_UngrabKe
 void QGraphicsProxyWidget_virtualbase_UngrabKeyboardEvent(void* self, QEvent* event);
 extern __declspec(dllexport) void QGraphicsProxyWidget_Delete(QGraphicsProxyWidget* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

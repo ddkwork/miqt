@@ -6,46 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemView;
-class QAbstractScrollArea;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFrame;
-class QIcon;
-class QItemSelection;
-class QListView;
-class QMetaObject;
-class QModelIndex;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QPoint;
-class QRect;
-class QRegion;
-class QResizeEvent;
-class QSize;
-class QStyleOptionViewItem;
-class QTimerEvent;
-class QUndoGroup;
-class QUndoStack;
-class QUndoView;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemView QAbstractItemView;
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QDragLeaveEvent QDragLeaveEvent;
@@ -76,7 +38,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -170,8 +131,4 @@ extern __declspec(dllexport) void QUndoView_override_virtual_ViewportSizeHint(vo
 QSize* QUndoView_virtualbase_ViewportSizeHint(const void* self);
 extern __declspec(dllexport) void QUndoView_Delete(QUndoView* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

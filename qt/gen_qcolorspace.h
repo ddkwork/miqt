@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QColorSpace;
-class QColorTransform;
-class QPointF;
-class _GUID;
-class type_info;
-#else
 typedef struct QColorSpace QColorSpace;
 typedef struct QColorTransform QColorTransform;
 typedef struct QPointF QPointF;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -75,8 +61,4 @@ extern __declspec(dllexport) void QColorSpace_SetTransferFunction2(QColorSpace* 
 extern __declspec(dllexport) QColorSpace* QColorSpace_WithTransferFunction2(const QColorSpace* self, TransferFunction transferFunction, float gamma);
 extern __declspec(dllexport) void QColorSpace_Delete(QColorSpace* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

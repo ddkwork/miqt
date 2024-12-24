@@ -6,33 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QJsonObject;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QJsonObject__const_iterator)
 typedef QJsonObject::const_iterator QJsonObject__const_iterator;
-#else
-class QJsonObject__const_iterator;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QJsonObject__iterator)
 typedef QJsonObject::iterator QJsonObject__iterator;
-#else
-class QJsonObject__iterator;
-#endif
-class QJsonValue;
-class QJsonValueConstRef;
-class QJsonValueRef;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QJsonObject QJsonObject;
 typedef struct QJsonObject__const_iterator QJsonObject__const_iterator;
 typedef struct QJsonObject__iterator QJsonObject__iterator;
@@ -42,7 +21,6 @@ typedef struct QJsonValueRef QJsonValueRef;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -123,8 +101,4 @@ extern __declspec(dllexport) const_iterator* QJsonObject__const_iterator_Operato
 extern __declspec(dllexport) ptrdiff_t QJsonObject__const_iterator_OperatorMinusWithConstIterator(const QJsonObject__const_iterator* self, const_iterator j);
 extern __declspec(dllexport) void QJsonObject__const_iterator_Delete(QJsonObject__const_iterator* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

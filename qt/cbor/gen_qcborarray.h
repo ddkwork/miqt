@@ -6,33 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCborArray;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QCborArray__ConstIterator)
 typedef QCborArray::ConstIterator QCborArray__ConstIterator;
-#else
-class QCborArray__ConstIterator;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QCborArray__Iterator)
 typedef QCborArray::Iterator QCborArray__Iterator;
-#else
-class QCborArray__Iterator;
-#endif
-class QCborValue;
-class QCborValueConstRef;
-class QCborValueRef;
-class QJsonArray;
-class _GUID;
-class type_info;
-#else
 typedef struct QCborArray QCborArray;
 typedef struct QCborArray__ConstIterator QCborArray__ConstIterator;
 typedef struct QCborArray__Iterator QCborArray__Iterator;
@@ -42,7 +21,6 @@ typedef struct QCborValueRef QCborValueRef;
 typedef struct QJsonArray QJsonArray;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -136,8 +114,4 @@ extern __declspec(dllexport) ConstIterator QCborArray__ConstIterator_OperatorMin
 extern __declspec(dllexport) ptrdiff_t QCborArray__ConstIterator_OperatorMinusWithConstIterator(const QCborArray__ConstIterator* self, ConstIterator j);
 extern __declspec(dllexport) void QCborArray__ConstIterator_Delete(QCborArray__ConstIterator* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

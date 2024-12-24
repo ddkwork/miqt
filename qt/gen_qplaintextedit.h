@@ -6,67 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractScrollArea;
-class QAbstractTextDocumentLayout;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFocusEvent;
-class QFrame;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMenu;
-class QMetaObject;
-class QMimeData;
-class QMouseEvent;
-class QObject;
-class QPagedPaintDevice;
-class QPaintDevice;
-class QPaintEvent;
-class QPainter;
-class QPlainTextDocumentLayout;
-class QPlainTextEdit;
-class QPoint;
-class QPointF;
-class QRect;
-class QRectF;
-class QRegularExpression;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QSizeF;
-class QTextBlock;
-class QTextCharFormat;
-class QTextCursor;
-class QTextDocument;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextEdit__ExtraSelection)
 typedef QTextEdit::ExtraSelection QTextEdit__ExtraSelection;
-#else
-class QTextEdit__ExtraSelection;
-#endif
-class QTextFormat;
-class QTextFrame;
-class QTextInlineObject;
-class QTimerEvent;
-class QUrl;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QAbstractTextDocumentLayout QAbstractTextDocumentLayout;
 typedef struct QContextMenuEvent QContextMenuEvent;
@@ -114,7 +57,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -360,8 +302,4 @@ extern __declspec(dllexport) void QPlainTextDocumentLayout_override_virtual_Draw
 void QPlainTextDocumentLayout_virtualbase_DrawInlineObject(void* self, QPainter* painter, QRectF* rect, QTextInlineObject* object, int posInDocument, QTextFormat* format);
 extern __declspec(dllexport) void QPlainTextDocumentLayout_Delete(QPlainTextDocumentLayout* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

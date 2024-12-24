@@ -6,37 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QDateTime;
-class QDirListing;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QDirListing__DirEntry)
 typedef QDirListing::DirEntry QDirListing__DirEntry;
-#else
-class QDirListing__DirEntry;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QDirListing__const_iterator)
 typedef QDirListing::const_iterator QDirListing__const_iterator;
-#else
-class QDirListing__const_iterator;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QDirListing__sentinel)
 typedef QDirListing::sentinel QDirListing__sentinel;
-#else
-class QDirListing__sentinel;
-#endif
-class QFileInfo;
-class QTimeZone;
-class _GUID;
-class type_info;
-#else
 typedef struct QDateTime QDateTime;
 typedef struct QDirListing QDirListing;
 typedef struct QDirListing__DirEntry QDirListing__DirEntry;
@@ -46,7 +23,6 @@ typedef struct QFileInfo QFileInfo;
 typedef struct QTimeZone QTimeZone;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -109,8 +85,4 @@ extern __declspec(dllexport) const_iterator* QDirListing__const_iterator_Operato
 extern __declspec(dllexport) void QDirListing__const_iterator_OperatorPlusPlusWithInt(QDirListing__const_iterator* self, int param1);
 extern __declspec(dllexport) void QDirListing__const_iterator_Delete(QDirListing__const_iterator* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

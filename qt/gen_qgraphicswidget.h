@@ -6,48 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAction;
-class QCloseEvent;
-class QEvent;
-class QFocusEvent;
-class QFont;
-class QGraphicsItem;
-class QGraphicsLayout;
-class QGraphicsLayoutItem;
-class QGraphicsObject;
-class QGraphicsSceneHoverEvent;
-class QGraphicsSceneMoveEvent;
-class QGraphicsSceneResizeEvent;
-class QGraphicsWidget;
-class QHideEvent;
-class QKeySequence;
-class QMarginsF;
-class QMetaObject;
-class QObject;
-class QPainter;
-class QPainterPath;
-class QPalette;
-class QPointF;
-class QRectF;
-class QShowEvent;
-class QSizeF;
-class QStyle;
-class QStyleOption;
-class QStyleOptionGraphicsItem;
-class QVariant;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAction QAction;
 typedef struct QCloseEvent QCloseEvent;
 typedef struct QEvent QEvent;
@@ -80,7 +40,6 @@ typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -253,8 +212,4 @@ extern __declspec(dllexport) void QGraphicsWidget_override_virtual_IsEmpty(void*
 bool QGraphicsWidget_virtualbase_IsEmpty(const void* self);
 extern __declspec(dllexport) void QGraphicsWidget_Delete(QGraphicsWidget* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

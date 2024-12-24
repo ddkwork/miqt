@@ -6,31 +6,15 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChar;
-class QTextOption;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextOption__Tab)
 typedef QTextOption::Tab QTextOption__Tab;
-#else
-class QTextOption__Tab;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QChar QChar;
 typedef struct QTextOption QTextOption;
 typedef struct QTextOption__Tab QTextOption__Tab;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -65,8 +49,4 @@ extern __declspec(dllexport) bool QTextOption__Tab_OperatorEqual(const QTextOpti
 extern __declspec(dllexport) bool QTextOption__Tab_OperatorNotEqual(const QTextOption__Tab* self, const Tab* other);
 extern __declspec(dllexport) void QTextOption__Tab_Delete(QTextOption__Tab* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

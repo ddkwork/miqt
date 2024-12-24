@@ -6,49 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChildEvent;
-class QCloseEvent;
-class QCursor;
-class QEvent;
-class QExposeEvent;
-class QFocusEvent;
-class QHideEvent;
-class QIcon;
-class QKeyEvent;
-class QMargins;
-class QMetaMethod;
-class QMetaObject;
-class QMouseEvent;
-class QMoveEvent;
-class QObject;
-class QPaintEvent;
-class QPoint;
-class QPointF;
-class QRect;
-class QRegion;
-class QResizeEvent;
-class QScreen;
-class QShowEvent;
-class QSize;
-class QSurface;
-class QSurfaceFormat;
-class QTabletEvent;
-class QTimerEvent;
-class QTouchEvent;
-class QWheelEvent;
-class QWindow;
-class _GUID;
-class type_info;
-#else
 typedef struct QChildEvent QChildEvent;
 typedef struct QCloseEvent QCloseEvent;
 typedef struct QCursor QCursor;
@@ -82,7 +41,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWindow QWindow;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -334,8 +292,4 @@ extern __declspec(dllexport) void QWindow_override_virtual_DisconnectNotify(void
 void QWindow_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QWindow_Delete(QWindow* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

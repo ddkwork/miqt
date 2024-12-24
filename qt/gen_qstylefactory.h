@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QStyle;
-class QStyleFactory;
-class _GUID;
-class type_info;
-#else
 typedef struct QStyle QStyle;
 typedef struct QStyleFactory QStyleFactory;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -34,8 +21,4 @@ extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QSty
 extern __declspec(dllexport) QStyle* QStyleFactory_Create(struct miqt_string param1);
 extern __declspec(dllexport) void QStyleFactory_Delete(QStyleFactory* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

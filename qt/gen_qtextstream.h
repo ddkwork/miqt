@@ -6,23 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChar;
-class QIODevice;
-class QIODeviceBase;
-class QLocale;
-class QTextStream;
-class _GUID;
-class type_info;
-#else
 typedef struct QChar QChar;
 typedef struct QIODevice QIODevice;
 typedef struct QIODeviceBase QIODeviceBase;
@@ -30,7 +15,6 @@ typedef struct QLocale QLocale;
 typedef struct QTextStream QTextStream;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -112,8 +96,4 @@ extern __declspec(dllexport) QTextStream* QTextStream_OperatorShiftLeftWithPtr(Q
 extern __declspec(dllexport) struct miqt_string QTextStream_ReadLine1(QTextStream* self, long long maxlen);
 extern __declspec(dllexport) void QTextStream_Delete(QTextStream* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

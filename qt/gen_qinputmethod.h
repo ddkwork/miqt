@@ -6,25 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QInputMethod;
-class QLocale;
-class QMetaObject;
-class QObject;
-class QRectF;
-class QTransform;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QInputMethod QInputMethod;
 typedef struct QLocale QLocale;
 typedef struct QMetaObject QMetaObject;
@@ -34,7 +17,6 @@ typedef struct QTransform QTransform;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -83,8 +65,4 @@ void QInputMethod_connect_InputDirectionChanged(QInputMethod* self, intptr_t slo
 extern __declspec(dllexport) struct miqt_string QInputMethod_Tr2(const char* s, const char* c);
 extern __declspec(dllexport) struct miqt_string QInputMethod_Tr3(const char* s, const char* c, int n);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

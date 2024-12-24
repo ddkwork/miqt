@@ -6,48 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QStyleHintReturn;
-class QStyleHintReturnMask;
-class QStyleHintReturnVariant;
-class QStyleOption;
-class QStyleOptionButton;
-class QStyleOptionComboBox;
-class QStyleOptionComplex;
-class QStyleOptionDockWidget;
-class QStyleOptionFocusRect;
-class QStyleOptionFrame;
-class QStyleOptionGraphicsItem;
-class QStyleOptionGroupBox;
-class QStyleOptionHeader;
-class QStyleOptionHeaderV2;
-class QStyleOptionMenuItem;
-class QStyleOptionProgressBar;
-class QStyleOptionRubberBand;
-class QStyleOptionSizeGrip;
-class QStyleOptionSlider;
-class QStyleOptionSpinBox;
-class QStyleOptionTab;
-class QStyleOptionTabBarBase;
-class QStyleOptionTabWidgetFrame;
-class QStyleOptionTitleBar;
-class QStyleOptionToolBar;
-class QStyleOptionToolBox;
-class QStyleOptionToolButton;
-class QStyleOptionViewItem;
-class QTransform;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QStyleHintReturn QStyleHintReturn;
 typedef struct QStyleHintReturnMask QStyleHintReturnMask;
 typedef struct QStyleHintReturnVariant QStyleHintReturnVariant;
@@ -80,7 +40,6 @@ typedef struct QTransform QTransform;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -236,8 +195,4 @@ extern __declspec(dllexport) void QStyleHintReturnVariant_virtbase(QStyleHintRet
 extern __declspec(dllexport) void QStyleHintReturnVariant_OperatorAssign(QStyleHintReturnVariant* self, QStyleHintReturnVariant* param1);
 extern __declspec(dllexport) void QStyleHintReturnVariant_Delete(QStyleHintReturnVariant* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

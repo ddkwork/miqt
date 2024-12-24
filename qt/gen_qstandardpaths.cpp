@@ -12,22 +12,6 @@
 #define _Bool bool
 #endif
 
-void _GUID_Delete(_GUID* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<_GUID*>( self );
-	} else {
-		delete self;
-	}
-}
-
-void type_info_Delete(type_info* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<type_info*>( self );
-	} else {
-		delete self;
-	}
-}
-
 struct miqt_string QStandardPaths_WritableLocation(StandardLocation typeVal) {
 	QString _ret = QStandardPaths::writableLocation(typeVal);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory

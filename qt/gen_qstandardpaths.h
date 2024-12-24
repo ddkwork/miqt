@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QStandardPaths;
-class _GUID;
-class type_info;
-#else
 typedef struct QStandardPaths QStandardPaths;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -40,8 +28,4 @@ extern __declspec(dllexport) struct miqt_string QStandardPaths_Locate3(StandardL
 extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QStandardPaths_LocateAll3(StandardLocation typeVal, struct miqt_string fileName, LocateOptions options);
 extern __declspec(dllexport) struct miqt_string QStandardPaths_FindExecutable2(struct miqt_string executableName, struct miqt_array /* of struct miqt_string */  paths);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

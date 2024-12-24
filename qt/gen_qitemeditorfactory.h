@@ -6,27 +6,13 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QItemEditorCreatorBase;
-class QItemEditorFactory;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QItemEditorCreatorBase QItemEditorCreatorBase;
 typedef struct QItemEditorFactory QItemEditorFactory;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -50,8 +36,4 @@ extern __declspec(dllexport) void QItemEditorFactory_override_virtual_ValuePrope
 struct miqt_string QItemEditorFactory_virtualbase_ValuePropertyName(const void* self, int userType);
 extern __declspec(dllexport) void QItemEditorFactory_Delete(QItemEditorFactory* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,37 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QApplication;
-class QCommonStyle;
-class QEvent;
-class QFontMetrics;
-class QIcon;
-class QMetaObject;
-class QObject;
-class QPainter;
-class QPalette;
-class QPixmap;
-class QPoint;
-class QProxyStyle;
-class QRect;
-class QSize;
-class QStyle;
-class QStyleHintReturn;
-class QStyleOption;
-class QStyleOptionComplex;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QApplication QApplication;
 typedef struct QCommonStyle QCommonStyle;
 typedef struct QEvent QEvent;
@@ -58,7 +29,6 @@ typedef struct QStyleOptionComplex QStyleOptionComplex;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -149,8 +119,4 @@ extern __declspec(dllexport) void QProxyStyle_override_virtual_Event(void* self,
 bool QProxyStyle_virtualbase_Event(void* self, QEvent* e);
 extern __declspec(dllexport) void QProxyStyle_Delete(QProxyStyle* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

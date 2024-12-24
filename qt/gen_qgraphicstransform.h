@@ -6,29 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChildEvent;
-class QEvent;
-class QGraphicsRotation;
-class QGraphicsScale;
-class QGraphicsTransform;
-class QMatrix4x4;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QTimerEvent;
-class QVector3D;
-class _GUID;
-class type_info;
-#else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
 typedef struct QGraphicsRotation QGraphicsRotation;
@@ -42,7 +21,6 @@ typedef struct QTimerEvent QTimerEvent;
 typedef struct QVector3D QVector3D;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -132,8 +110,4 @@ extern __declspec(dllexport) void QGraphicsRotation_override_virtual_ApplyTo(voi
 void QGraphicsRotation_virtualbase_ApplyTo(const void* self, QMatrix4x4* matrix);
 extern __declspec(dllexport) void QGraphicsRotation_Delete(QGraphicsRotation* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

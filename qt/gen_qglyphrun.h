@@ -6,29 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QGlyphRun;
-class QPointF;
-class QRawFont;
-class QRectF;
-class _GUID;
-class type_info;
-#else
 typedef struct QGlyphRun QGlyphRun;
 typedef struct QPointF QPointF;
 typedef struct QRawFont QRawFont;
 typedef struct QRectF QRectF;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -69,8 +54,4 @@ extern __declspec(dllexport) bool QGlyphRun_IsEmpty(const QGlyphRun* self);
 extern __declspec(dllexport) void QGlyphRun_SetFlag2(QGlyphRun* self, GlyphRunFlag flag, bool enabled);
 extern __declspec(dllexport) void QGlyphRun_Delete(QGlyphRun* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

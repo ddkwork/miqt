@@ -6,24 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QMetaObject;
-class QObject;
-class QPointF;
-class QRectF;
-class QScroller;
-class QScrollerProperties;
-class _GUID;
-class type_info;
-#else
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QPointF QPointF;
@@ -32,7 +16,6 @@ typedef struct QScroller QScroller;
 typedef struct QScrollerProperties QScrollerProperties;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -76,8 +59,4 @@ extern __declspec(dllexport) struct miqt_string QScroller_Tr3(const char* s, con
 extern __declspec(dllexport) int QScroller_GrabGesture2(QObject* target, ScrollerGestureType gestureType);
 extern __declspec(dllexport) bool QScroller_HandleInput3(QScroller* self, Input input, QPointF* position, long long timestamp);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

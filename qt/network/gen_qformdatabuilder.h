@@ -6,24 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAnyStringView;
-class QByteArrayView;
-class QFormDataBuilder;
-class QFormDataPartBuilder;
-class QHttpHeaders;
-class QIODevice;
-class _GUID;
-class type_info;
-#else
 typedef struct QAnyStringView QAnyStringView;
 typedef struct QByteArrayView QByteArrayView;
 typedef struct QFormDataBuilder QFormDataBuilder;
@@ -32,7 +16,6 @@ typedef struct QHttpHeaders QHttpHeaders;
 typedef struct QIODevice QIODevice;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -55,8 +38,4 @@ extern __declspec(dllexport) void QFormDataBuilder_Swap(QFormDataBuilder* self, 
 extern __declspec(dllexport) QFormDataPartBuilder* QFormDataBuilder_Part(QFormDataBuilder* self, QAnyStringView* name);
 extern __declspec(dllexport) void QFormDataBuilder_Delete(QFormDataBuilder* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

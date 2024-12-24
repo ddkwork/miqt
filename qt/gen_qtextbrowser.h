@@ -6,45 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractScrollArea;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFocusEvent;
-class QFrame;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMimeData;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QResizeEvent;
-class QShowEvent;
-class QTextBrowser;
-class QTextCursor;
-class QTextEdit;
-class QTimerEvent;
-class QUrl;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractScrollArea QAbstractScrollArea;
 typedef struct QContextMenuEvent QContextMenuEvent;
 typedef struct QDragEnterEvent QDragEnterEvent;
@@ -74,7 +37,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -201,8 +163,4 @@ extern __declspec(dllexport) void QTextBrowser_override_virtual_DoSetTextCursor(
 void QTextBrowser_virtualbase_DoSetTextCursor(void* self, QTextCursor* cursor);
 extern __declspec(dllexport) void QTextBrowser_Delete(QTextBrowser* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

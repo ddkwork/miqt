@@ -6,50 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemDelegate;
-class QAbstractItemModel;
-class QAbstractItemView;
-class QAbstractScrollArea;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEvent;
-class QFocusEvent;
-class QFrame;
-class QInputMethodEvent;
-class QItemSelection;
-class QItemSelectionModel;
-class QKeyEvent;
-class QListView;
-class QMetaObject;
-class QModelIndex;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QPoint;
-class QRect;
-class QRegion;
-class QResizeEvent;
-class QSize;
-class QStyleOptionViewItem;
-class QTimerEvent;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemDelegate QAbstractItemDelegate;
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractItemView QAbstractItemView;
@@ -84,7 +42,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -290,8 +247,4 @@ extern __declspec(dllexport) void QListView_override_virtual_EventFilter(void* s
 bool QListView_virtualbase_EventFilter(void* self, QObject* object, QEvent* event);
 extern __declspec(dllexport) void QListView_Delete(QListView* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

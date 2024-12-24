@@ -6,31 +6,15 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QInternal;
-class QKeyCombination;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_Disambiguated_t)
 typedef Qt::Disambiguated_t Disambiguated_t;
-#else
-class Disambiguated_t;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QInternal QInternal;
 typedef struct QKeyCombination QKeyCombination;
 typedef struct Disambiguated_t Disambiguated_t;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -55,8 +39,4 @@ extern __declspec(dllexport) QKeyCombination* QKeyCombination_FromCombined(int c
 extern __declspec(dllexport) int QKeyCombination_ToCombined(const QKeyCombination* self);
 extern __declspec(dllexport) void QKeyCombination_Delete(QKeyCombination* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

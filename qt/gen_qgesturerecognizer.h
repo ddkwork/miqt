@@ -6,29 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QEvent;
-class QGesture;
-class QGestureRecognizer;
-class QObject;
-class _GUID;
-class type_info;
-#else
 typedef struct QEvent QEvent;
 typedef struct QGesture QGesture;
 typedef struct QGestureRecognizer QGestureRecognizer;
 typedef struct QObject QObject;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -49,8 +34,4 @@ extern __declspec(dllexport) void QGestureRecognizer_override_virtual_Reset(void
 void QGestureRecognizer_virtualbase_Reset(void* self, QGesture* state);
 extern __declspec(dllexport) void QGestureRecognizer_Delete(QGestureRecognizer* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

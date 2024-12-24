@@ -6,23 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCalendar;
-class QDate;
-class QDateTime;
-class QTime;
-class QTimeZone;
-class _GUID;
-class type_info;
-#else
 typedef struct QCalendar QCalendar;
 typedef struct QDate QDate;
 typedef struct QDateTime QDateTime;
@@ -30,7 +15,6 @@ typedef struct QTime QTime;
 typedef struct QTimeZone QTimeZone;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -192,8 +176,4 @@ extern __declspec(dllexport) QDateTime* QDateTime_FromMSecsSinceEpoch3(long long
 extern __declspec(dllexport) QDateTime* QDateTime_FromSecsSinceEpoch3(long long secs, int spec, int offsetFromUtc);
 extern __declspec(dllexport) void QDateTime_Delete(QDateTime* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

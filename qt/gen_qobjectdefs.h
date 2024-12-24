@@ -6,45 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QGenericArgument;
-class QGenericReturnArgument;
-class QMetaClassInfo;
-class QMetaEnum;
-class QMetaMethod;
-class QMetaMethodArgument;
-class QMetaMethodReturnArgument;
-class QMetaObject;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__Connection)
 typedef QMetaObject::Connection QMetaObject__Connection;
-#else
-class QMetaObject__Connection;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__Data)
 typedef QMetaObject::Data QMetaObject__Data;
-#else
-class QMetaObject__Data;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__SuperData)
 typedef QMetaObject::SuperData QMetaObject__SuperData;
-#else
-class QMetaObject__SuperData;
-#endif
-class QMetaProperty;
-class QMetaType;
-class QMethodRawArguments;
-class QObject;
-class _GUID;
-class type_info;
-#else
 typedef struct QGenericArgument QGenericArgument;
 typedef struct QGenericReturnArgument QGenericReturnArgument;
 typedef struct QMetaClassInfo QMetaClassInfo;
@@ -62,7 +31,6 @@ typedef struct QMethodRawArguments QMethodRawArguments;
 typedef struct QObject QObject;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -204,8 +172,4 @@ extern __declspec(dllexport) QMetaObject__Data* QMetaObject__Data_new2(const Dat
 extern __declspec(dllexport) void QMetaObject__Data_OperatorAssign(QMetaObject__Data* self, const Data* param1);
 extern __declspec(dllexport) void QMetaObject__Data_Delete(QMetaObject__Data* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

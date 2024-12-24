@@ -6,33 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QMetaObject;
-class QObject;
-class QTextCharFormat;
-class QTextCursor;
-class QTextDocument;
-class QTextFrame;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTextFrame__iterator)
 typedef QTextFrame::iterator QTextFrame__iterator;
-#else
-class QTextFrame__iterator;
-#endif
-class QTextObject;
-class QTextTable;
-class QTextTableCell;
-class QTextTableFormat;
-class _GUID;
-class type_info;
-#else
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QTextCharFormat QTextCharFormat;
@@ -46,7 +23,6 @@ typedef struct QTextTableCell QTextTableCell;
 typedef struct QTextTableFormat QTextTableFormat;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -101,8 +77,4 @@ extern __declspec(dllexport) struct miqt_string QTextTable_Tr2(const char* s, co
 extern __declspec(dllexport) struct miqt_string QTextTable_Tr3(const char* s, const char* c, int n);
 extern __declspec(dllexport) void QTextTable_Delete(QTextTable* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

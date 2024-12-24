@@ -6,31 +6,15 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QStringConverter;
-class QStringConverterBase;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QStringConverterBase__State)
 typedef QStringConverterBase::State QStringConverterBase__State;
-#else
-class QStringConverterBase__State;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QStringConverter QStringConverter;
 typedef struct QStringConverterBase QStringConverterBase;
 typedef struct QStringConverterBase__State QStringConverterBase__State;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -53,8 +37,4 @@ extern __declspec(dllexport) void QStringConverterBase__State_Clear(QStringConve
 extern __declspec(dllexport) void QStringConverterBase__State_Reset(QStringConverterBase__State* self);
 extern __declspec(dllexport) void QStringConverterBase__State_Delete(QStringConverterBase__State* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,33 +6,16 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChar;
-class QDir;
-class QFileInfo;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_Disambiguated_t)
 typedef Qt::Disambiguated_t Disambiguated_t;
-#else
-class Disambiguated_t;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QChar QChar;
 typedef struct QDir QDir;
 typedef struct QFileInfo QFileInfo;
 typedef struct Disambiguated_t Disambiguated_t;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -120,8 +103,4 @@ extern __declspec(dllexport) struct miqt_array /* of QFileInfo* */  QDir_EntryIn
 extern __declspec(dllexport) struct miqt_array /* of QFileInfo* */  QDir_EntryInfoList3(const QDir* self, struct miqt_array /* of struct miqt_string */  nameFilters, Filters filters, SortFlags sort);
 extern __declspec(dllexport) void QDir_Delete(QDir* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,51 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAction;
-class QActionEvent;
-class QCloseEvent;
-class QContextMenuEvent;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEnterEvent;
-class QEvent;
-class QFocusEvent;
-class QHideEvent;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QMoveEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEngine;
-class QPaintEvent;
-class QPainter;
-class QPoint;
-class QRect;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QStyleOptionToolBar;
-class QTabletEvent;
-class QToolBar;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAction QAction;
 typedef struct QActionEvent QActionEvent;
 typedef struct QCloseEvent QCloseEvent;
@@ -86,7 +43,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -233,8 +189,4 @@ extern __declspec(dllexport) void QToolBar_override_virtual_FocusNextPrevChild(v
 bool QToolBar_virtualbase_FocusNextPrevChild(void* self, bool next);
 extern __declspec(dllexport) void QToolBar_Delete(QToolBar* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

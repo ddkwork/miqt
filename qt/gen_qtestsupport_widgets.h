@@ -6,31 +6,15 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QPoint;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QTest__QTouchEventWidgetSequence)
 typedef QTest::QTouchEventWidgetSequence QTest__QTouchEventWidgetSequence;
-#else
-class QTest__QTouchEventWidgetSequence;
-#endif
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QPoint QPoint;
 typedef struct QTest__QTouchEventWidgetSequence QTest__QTouchEventWidgetSequence;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -51,8 +35,4 @@ extern __declspec(dllexport) void QTest__QTouchEventWidgetSequence_override_virt
 bool QTest__QTouchEventWidgetSequence_virtualbase_Commit(void* self, bool processEvents);
 extern __declspec(dllexport) void QTest__QTouchEventWidgetSequence_Delete(QTest__QTouchEventWidgetSequence* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

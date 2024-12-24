@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QNetworkReply;
-class QRestReply;
-class _GUID;
-class type_info;
-#else
 typedef struct QNetworkReply QNetworkReply;
 typedef struct QRestReply QRestReply;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -43,8 +30,4 @@ extern __declspec(dllexport) int QRestReply_Error(const QRestReply* self);
 extern __declspec(dllexport) struct miqt_string QRestReply_ErrorString(const QRestReply* self);
 extern __declspec(dllexport) void QRestReply_Delete(QRestReply* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

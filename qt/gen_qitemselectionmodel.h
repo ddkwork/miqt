@@ -6,30 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemModel;
-class QChildEvent;
-class QEvent;
-class QItemSelection;
-class QItemSelectionModel;
-class QItemSelectionRange;
-class QMetaMethod;
-class QMetaObject;
-class QModelIndex;
-class QObject;
-class QPersistentModelIndex;
-class QTimerEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
@@ -44,7 +22,6 @@ typedef struct QPersistentModelIndex QPersistentModelIndex;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -157,8 +134,4 @@ extern __declspec(dllexport) void QItemSelection_Merge(QItemSelection* self, QIt
 extern __declspec(dllexport) void QItemSelection_Split(QItemSelectionRange* rangeVal, QItemSelectionRange* other, QItemSelection* result);
 extern __declspec(dllexport) void QItemSelection_Delete(QItemSelection* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

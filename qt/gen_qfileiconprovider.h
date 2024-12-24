@@ -6,29 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractFileIconProvider;
-class QFileIconProvider;
-class QFileInfo;
-class QIcon;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractFileIconProvider QAbstractFileIconProvider;
 typedef struct QFileIconProvider QFileIconProvider;
 typedef struct QFileInfo QFileInfo;
 typedef struct QIcon QIcon;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -50,8 +35,4 @@ extern __declspec(dllexport) void QFileIconProvider_override_virtual_Options(voi
 Options QFileIconProvider_virtualbase_Options(const void* self);
 extern __declspec(dllexport) void QFileIconProvider_Delete(QFileIconProvider* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

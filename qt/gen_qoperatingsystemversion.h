@@ -6,29 +6,14 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QOperatingSystemVersion;
-class QOperatingSystemVersionBase;
-class QOperatingSystemVersionUnexported;
-class QVersionNumber;
-class _GUID;
-class type_info;
-#else
 typedef struct QOperatingSystemVersion QOperatingSystemVersion;
 typedef struct QOperatingSystemVersionBase QOperatingSystemVersionBase;
 typedef struct QOperatingSystemVersionUnexported QOperatingSystemVersionUnexported;
 typedef struct QVersionNumber QVersionNumber;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -66,8 +51,4 @@ extern __declspec(dllexport) OSType QOperatingSystemVersion_CurrentType();
 extern __declspec(dllexport) OSType QOperatingSystemVersion_Type(const QOperatingSystemVersion* self);
 extern __declspec(dllexport) void QOperatingSystemVersion_Delete(QOperatingSystemVersion* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

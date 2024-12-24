@@ -6,33 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QEvent;
-class QGraphicsSceneContextMenuEvent;
-class QGraphicsSceneDragDropEvent;
-class QGraphicsSceneEvent;
-class QGraphicsSceneHelpEvent;
-class QGraphicsSceneHoverEvent;
-class QGraphicsSceneMouseEvent;
-class QGraphicsSceneMoveEvent;
-class QGraphicsSceneResizeEvent;
-class QGraphicsSceneWheelEvent;
-class QMimeData;
-class QPoint;
-class QPointF;
-class QSizeF;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QEvent QEvent;
 typedef struct QGraphicsSceneContextMenuEvent QGraphicsSceneContextMenuEvent;
 typedef struct QGraphicsSceneDragDropEvent QGraphicsSceneDragDropEvent;
@@ -50,7 +25,6 @@ typedef struct QSizeF QSizeF;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -211,8 +185,4 @@ extern __declspec(dllexport) QPointF* QGraphicsSceneMoveEvent_NewPos(const QGrap
 extern __declspec(dllexport) void QGraphicsSceneMoveEvent_SetNewPos(QGraphicsSceneMoveEvent* self, QPointF* pos);
 extern __declspec(dllexport) void QGraphicsSceneMoveEvent_Delete(QGraphicsSceneMoveEvent* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

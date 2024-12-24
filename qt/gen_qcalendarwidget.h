@@ -6,52 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QActionEvent;
-class QCalendar;
-class QCalendarWidget;
-class QCloseEvent;
-class QContextMenuEvent;
-class QDate;
-class QDragEnterEvent;
-class QDragLeaveEvent;
-class QDragMoveEvent;
-class QDropEvent;
-class QEnterEvent;
-class QEvent;
-class QFocusEvent;
-class QHideEvent;
-class QInputMethodEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QMoveEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEngine;
-class QPaintEvent;
-class QPainter;
-class QPoint;
-class QRect;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QTabletEvent;
-class QTextCharFormat;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QActionEvent QActionEvent;
 typedef struct QCalendar QCalendar;
 typedef struct QCalendarWidget QCalendarWidget;
@@ -88,7 +44,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -249,8 +204,4 @@ extern __declspec(dllexport) void QCalendarWidget_override_virtual_FocusNextPrev
 bool QCalendarWidget_virtualbase_FocusNextPrevChild(void* self, bool next);
 extern __declspec(dllexport) void QCalendarWidget_Delete(QCalendarWidget* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

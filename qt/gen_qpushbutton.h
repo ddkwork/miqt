@@ -6,35 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractButton;
-class QEvent;
-class QFocusEvent;
-class QIcon;
-class QKeyEvent;
-class QMenu;
-class QMetaObject;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QPoint;
-class QPushButton;
-class QSize;
-class QStyleOptionButton;
-class QTimerEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractButton QAbstractButton;
 typedef struct QEvent QEvent;
 typedef struct QFocusEvent QFocusEvent;
@@ -54,7 +27,6 @@ typedef struct QTimerEvent QTimerEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -127,8 +99,4 @@ extern __declspec(dllexport) void QPushButton_override_virtual_TimerEvent(void* 
 void QPushButton_virtualbase_TimerEvent(void* self, QTimerEvent* e);
 extern __declspec(dllexport) void QPushButton_Delete(QPushButton* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

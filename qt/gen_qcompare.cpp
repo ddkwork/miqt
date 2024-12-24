@@ -11,22 +11,6 @@
 #define _Bool bool
 #endif
 
-void _GUID_Delete(_GUID* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<_GUID*>( self );
-	} else {
-		delete self;
-	}
-}
-
-void type_info_Delete(type_info* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<type_info*>( self );
-	} else {
-		delete self;
-	}
-}
-
 partial_ordering* partial_ordering_new(const partial_ordering* param1) {
 	return new Qt::partial_ordering(*param1);
 }

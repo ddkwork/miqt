@@ -6,31 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAnyStringView;
-class QByteArrayView;
-class QUuid;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QUuid__Id128Bytes)
 typedef QUuid::Id128Bytes QUuid__Id128Bytes;
-#else
-class QUuid__Id128Bytes;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_Disambiguated_t)
 typedef Qt::Disambiguated_t Disambiguated_t;
-#else
-class Disambiguated_t;
-#endif
-class _GUID;
-class type_info;
-#else
 typedef struct QAnyStringView QAnyStringView;
 typedef struct QByteArrayView QByteArrayView;
 typedef struct QUuid QUuid;
@@ -38,7 +19,6 @@ typedef struct QUuid__Id128Bytes QUuid__Id128Bytes;
 typedef struct Disambiguated_t Disambiguated_t;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -84,8 +64,4 @@ extern __declspec(dllexport) QUuid__Id128Bytes* QUuid__Id128Bytes_new();
 extern __declspec(dllexport) QUuid__Id128Bytes* QUuid__Id128Bytes_new2(const Id128Bytes* param1);
 extern __declspec(dllexport) void QUuid__Id128Bytes_Delete(QUuid__Id128Bytes* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

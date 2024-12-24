@@ -6,27 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractSocket;
-class QAuthenticator;
-class QHostAddress;
-class QIODevice;
-class QIODeviceBase;
-class QMetaObject;
-class QNetworkProxy;
-class QObject;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractSocket QAbstractSocket;
 typedef struct QAuthenticator QAuthenticator;
 typedef struct QHostAddress QHostAddress;
@@ -38,7 +19,6 @@ typedef struct QObject QObject;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -165,8 +145,4 @@ extern __declspec(dllexport) void QAbstractSocket_override_virtual_CanReadLine(v
 bool QAbstractSocket_virtualbase_CanReadLine(const void* self);
 extern __declspec(dllexport) void QAbstractSocket_Delete(QAbstractSocket* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

@@ -6,26 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QBluetoothPermission;
-class QCalendarPermission;
-class QCameraPermission;
-class QContactsPermission;
-class QLocationPermission;
-class QMetaType;
-class QMicrophonePermission;
-class QPermission;
-class _GUID;
-class type_info;
-#else
 typedef struct QBluetoothPermission QBluetoothPermission;
 typedef struct QCalendarPermission QCalendarPermission;
 typedef struct QCameraPermission QCameraPermission;
@@ -36,7 +18,6 @@ typedef struct QMicrophonePermission QMicrophonePermission;
 typedef struct QPermission QPermission;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -106,8 +87,4 @@ extern __declspec(dllexport) void QMicrophonePermission_Swap(QMicrophonePermissi
 void QMicrophonePermission_connect_Swap(QMicrophonePermission* self, intptr_t slot);
 extern __declspec(dllexport) void QMicrophonePermission_Delete(QMicrophonePermission* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

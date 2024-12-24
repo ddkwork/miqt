@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QElapsedTimer;
-class _GUID;
-class type_info;
-#else
 typedef struct QElapsedTimer QElapsedTimer;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -45,8 +33,4 @@ extern __declspec(dllexport) long long QElapsedTimer_MsecsTo(const QElapsedTimer
 extern __declspec(dllexport) long long QElapsedTimer_SecsTo(const QElapsedTimer* self, QElapsedTimer* other);
 extern __declspec(dllexport) void QElapsedTimer_Delete(QElapsedTimer* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

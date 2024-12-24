@@ -6,23 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QDebug;
-class QLoggingCategory;
-class QMessageLogContext;
-class QMessageLogger;
-class QNoDebug;
-class _GUID;
-class type_info;
-#else
 typedef struct QDebug QDebug;
 typedef struct QLoggingCategory QLoggingCategory;
 typedef struct QMessageLogContext QMessageLogContext;
@@ -30,7 +15,6 @@ typedef struct QMessageLogger QMessageLogger;
 typedef struct QNoDebug QNoDebug;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -77,8 +61,4 @@ extern __declspec(dllexport) QDebug* QMessageLogger_FatalWithCatFunc(const QMess
 extern __declspec(dllexport) QNoDebug* QMessageLogger_NoDebug2(const QMessageLogger* self);
 extern __declspec(dllexport) void QMessageLogger_Delete(QMessageLogger* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

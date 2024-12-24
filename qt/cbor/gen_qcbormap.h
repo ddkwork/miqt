@@ -6,34 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCborMap;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QCborMap__ConstIterator)
 typedef QCborMap::ConstIterator QCborMap__ConstIterator;
-#else
-class QCborMap__ConstIterator;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QCborMap__Iterator)
 typedef QCborMap::Iterator QCborMap__Iterator;
-#else
-class QCborMap__Iterator;
-#endif
-class QCborValue;
-class QCborValueConstRef;
-class QCborValueRef;
-class QJsonObject;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QCborMap QCborMap;
 typedef struct QCborMap__ConstIterator QCborMap__ConstIterator;
 typedef struct QCborMap__Iterator QCborMap__Iterator;
@@ -44,7 +22,6 @@ typedef struct QJsonObject QJsonObject;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -151,8 +128,4 @@ extern __declspec(dllexport) ConstIterator QCborMap__ConstIterator_OperatorMinus
 extern __declspec(dllexport) ptrdiff_t QCborMap__ConstIterator_OperatorMinusWithConstIterator(const QCborMap__ConstIterator* self, ConstIterator j);
 extern __declspec(dllexport) void QCborMap__ConstIterator_Delete(QCborMap__ConstIterator* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

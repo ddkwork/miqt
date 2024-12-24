@@ -6,47 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractSpinBox;
-class QCalendar;
-class QCalendarWidget;
-class QCloseEvent;
-class QContextMenuEvent;
-class QDate;
-class QDateEdit;
-class QDateTime;
-class QDateTimeEdit;
-class QEvent;
-class QFocusEvent;
-class QHideEvent;
-class QKeyEvent;
-class QMetaObject;
-class QMouseEvent;
-class QObject;
-class QPaintDevice;
-class QPaintEvent;
-class QResizeEvent;
-class QShowEvent;
-class QSize;
-class QStyleOptionSpinBox;
-class QTime;
-class QTimeEdit;
-class QTimeZone;
-class QTimerEvent;
-class QVariant;
-class QWheelEvent;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractSpinBox QAbstractSpinBox;
 typedef struct QCalendar QCalendar;
 typedef struct QCalendarWidget QCalendarWidget;
@@ -78,7 +39,6 @@ typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -320,8 +280,4 @@ extern __declspec(dllexport) void QDateEdit_override_virtual_InitStyleOption(voi
 void QDateEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option);
 extern __declspec(dllexport) void QDateEdit_Delete(QDateEdit* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

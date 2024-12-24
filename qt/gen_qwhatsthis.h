@@ -6,23 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAction;
-class QObject;
-class QPoint;
-class QWhatsThis;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAction QAction;
 typedef struct QObject QObject;
 typedef struct QPoint QPoint;
@@ -30,7 +15,6 @@ typedef struct QWhatsThis QWhatsThis;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -46,8 +30,4 @@ extern __declspec(dllexport) void QWhatsThis_ShowText3(QPoint* pos, struct miqt_
 extern __declspec(dllexport) QAction* QWhatsThis_CreateAction1(QObject* parent);
 extern __declspec(dllexport) void QWhatsThis_Delete(QWhatsThis* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

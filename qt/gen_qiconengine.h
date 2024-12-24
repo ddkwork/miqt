@@ -6,29 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QDataStream;
-class QIconEngine;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QIconEngine__ScaledPixmapArgument)
 typedef QIconEngine::ScaledPixmapArgument QIconEngine__ScaledPixmapArgument;
-#else
-class QIconEngine__ScaledPixmapArgument;
-#endif
-class QPainter;
-class QPixmap;
-class QRect;
-class QSize;
-class _GUID;
-class type_info;
-#else
 typedef struct QDataStream QDataStream;
 typedef struct QIconEngine QIconEngine;
 typedef struct QIconEngine__ScaledPixmapArgument QIconEngine__ScaledPixmapArgument;
@@ -38,7 +19,6 @@ typedef struct QRect QRect;
 typedef struct QSize QSize;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -93,8 +73,4 @@ extern __declspec(dllexport) QIconEngine__ScaledPixmapArgument* QIconEngine__Sca
 extern __declspec(dllexport) void QIconEngine__ScaledPixmapArgument_OperatorAssign(QIconEngine__ScaledPixmapArgument* self, const ScaledPixmapArgument* param1);
 extern __declspec(dllexport) void QIconEngine__ScaledPixmapArgument_Delete(QIconEngine__ScaledPixmapArgument* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

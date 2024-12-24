@@ -6,34 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractItemModel;
-class QAbstractListModel;
-class QAbstractTableModel;
-class QChildEvent;
-class QEvent;
-class QMetaMethod;
-class QMetaObject;
-class QMimeData;
-class QModelIndex;
-class QModelRoleData;
-class QModelRoleDataSpan;
-class QObject;
-class QPersistentModelIndex;
-class QSize;
-class QTimerEvent;
-class QVariant;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractItemModel QAbstractItemModel;
 typedef struct QAbstractListModel QAbstractListModel;
 typedef struct QAbstractTableModel QAbstractTableModel;
@@ -52,7 +26,6 @@ typedef struct QTimerEvent QTimerEvent;
 typedef struct QVariant QVariant;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -452,8 +425,4 @@ extern __declspec(dllexport) void QAbstractListModel_override_virtual_ResetInter
 void QAbstractListModel_virtualbase_ResetInternalData(void* self);
 extern __declspec(dllexport) void QAbstractListModel_Delete(QAbstractListModel* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

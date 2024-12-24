@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QCommandLineOption;
-class _GUID;
-class type_info;
-#else
 typedef struct QCommandLineOption QCommandLineOption;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -51,8 +39,4 @@ extern __declspec(dllexport) Flags QCommandLineOption_Flags(const QCommandLineOp
 extern __declspec(dllexport) void QCommandLineOption_SetFlags(QCommandLineOption* self, Flags aflags);
 extern __declspec(dllexport) void QCommandLineOption_Delete(QCommandLineOption* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

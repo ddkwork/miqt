@@ -6,23 +6,11 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QTemporaryDir;
-class _GUID;
-class type_info;
-#else
 typedef struct QTemporaryDir QTemporaryDir;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -40,8 +28,4 @@ extern __declspec(dllexport) struct miqt_string QTemporaryDir_Path(const QTempor
 extern __declspec(dllexport) struct miqt_string QTemporaryDir_FilePath(const QTemporaryDir* self, struct miqt_string fileName);
 extern __declspec(dllexport) void QTemporaryDir_Delete(QTemporaryDir* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

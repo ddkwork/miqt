@@ -6,46 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractTextDocumentLayout;
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QAbstractTextDocumentLayout__PaintContext)
 typedef QAbstractTextDocumentLayout::PaintContext QAbstractTextDocumentLayout__PaintContext;
-#else
-class QAbstractTextDocumentLayout__PaintContext;
-#endif
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QAbstractTextDocumentLayout__Selection)
 typedef QAbstractTextDocumentLayout::Selection QAbstractTextDocumentLayout__Selection;
-#else
-class QAbstractTextDocumentLayout__Selection;
-#endif
-class QChildEvent;
-class QEvent;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QPaintDevice;
-class QPainter;
-class QPointF;
-class QRectF;
-class QSizeF;
-class QTextBlock;
-class QTextDocument;
-class QTextFormat;
-class QTextFrame;
-class QTextInlineObject;
-class QTextObjectInterface;
-class QTimerEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractTextDocumentLayout QAbstractTextDocumentLayout;
 typedef struct QAbstractTextDocumentLayout__PaintContext QAbstractTextDocumentLayout__PaintContext;
 typedef struct QAbstractTextDocumentLayout__Selection QAbstractTextDocumentLayout__Selection;
@@ -68,7 +34,6 @@ typedef struct QTextObjectInterface QTextObjectInterface;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -161,8 +126,4 @@ extern __declspec(dllexport) QAbstractTextDocumentLayout__PaintContext* QAbstrac
 extern __declspec(dllexport) void QAbstractTextDocumentLayout__PaintContext_OperatorAssign(QAbstractTextDocumentLayout__PaintContext* self, const PaintContext* param1);
 extern __declspec(dllexport) void QAbstractTextDocumentLayout__PaintContext_Delete(QAbstractTextDocumentLayout__PaintContext* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

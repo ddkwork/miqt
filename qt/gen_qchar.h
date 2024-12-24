@@ -6,25 +6,12 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QChar;
-class QLatin1Char;
-class _GUID;
-class type_info;
-#else
 typedef struct QChar QChar;
 typedef struct QLatin1Char QLatin1Char;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -79,8 +66,4 @@ extern __declspec(dllexport) void QChar_SetRow(QChar* self, unsigned char arow);
 extern __declspec(dllexport) UnicodeVersion QChar_CurrentUnicodeVersion();
 extern __declspec(dllexport) void QChar_Delete(QChar* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

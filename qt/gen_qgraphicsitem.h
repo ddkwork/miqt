@@ -6,67 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractGraphicsShapeItem;
-class QBrush;
-class QChildEvent;
-class QColor;
-class QCursor;
-class QEvent;
-class QFocusEvent;
-class QFont;
-class QGraphicsEffect;
-class QGraphicsEllipseItem;
-class QGraphicsItem;
-class QGraphicsItemGroup;
-class QGraphicsLineItem;
-class QGraphicsObject;
-class QGraphicsPathItem;
-class QGraphicsPixmapItem;
-class QGraphicsPolygonItem;
-class QGraphicsRectItem;
-class QGraphicsScene;
-class QGraphicsSceneContextMenuEvent;
-class QGraphicsSceneDragDropEvent;
-class QGraphicsSceneHoverEvent;
-class QGraphicsSceneMouseEvent;
-class QGraphicsSceneWheelEvent;
-class QGraphicsSimpleTextItem;
-class QGraphicsTextItem;
-class QGraphicsTransform;
-class QGraphicsWidget;
-class QInputMethodEvent;
-class QKeyEvent;
-class QLineF;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QPainter;
-class QPainterPath;
-class QPen;
-class QPixmap;
-class QPointF;
-class QRectF;
-class QRegion;
-class QSize;
-class QStyleOptionGraphicsItem;
-class QTextCursor;
-class QTextDocument;
-class QTimerEvent;
-class QTransform;
-class QVariant;
-class QWidget;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractGraphicsShapeItem QAbstractGraphicsShapeItem;
 typedef struct QBrush QBrush;
 typedef struct QChildEvent QChildEvent;
@@ -118,7 +59,6 @@ typedef struct QVariant QVariant;
 typedef struct QWidget QWidget;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -1204,8 +1144,4 @@ extern __declspec(dllexport) void QGraphicsItemGroup_override_virtual_Extension(
 QVariant* QGraphicsItemGroup_virtualbase_Extension(const void* self, QVariant* variant);
 extern __declspec(dllexport) void QGraphicsItemGroup_Delete(QGraphicsItemGroup* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 

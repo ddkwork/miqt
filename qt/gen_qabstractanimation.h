@@ -6,27 +6,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-
 #include "../libmiqt/libmiqt.h"
-
-#ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifdef __cplusplus
-class QAbstractAnimation;
-class QAnimationDriver;
-class QAnimationGroup;
-class QChildEvent;
-class QEvent;
-class QMetaMethod;
-class QMetaObject;
-class QObject;
-class QTimerEvent;
-class _GUID;
-class type_info;
-#else
 typedef struct QAbstractAnimation QAbstractAnimation;
 typedef struct QAnimationDriver QAnimationDriver;
 typedef struct QAnimationGroup QAnimationGroup;
@@ -38,7 +19,6 @@ typedef struct QObject QObject;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct _GUID _GUID;
 typedef struct type_info type_info;
-#endif
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
@@ -149,8 +129,4 @@ extern __declspec(dllexport) void QAnimationDriver_override_virtual_DisconnectNo
 void QAnimationDriver_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
 extern __declspec(dllexport) void QAnimationDriver_Delete(QAnimationDriver* self, bool isSubclass);
 
-#ifdef __cplusplus
-} /* extern C */
-#endif 
-
-#endif
+} 
