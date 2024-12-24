@@ -19,10 +19,6 @@
 #include <qtransposeproxymodel.h>
 #include "gen_qtransposeproxymodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTransposeProxyModel : public virtual QTransposeProxyModel {
 public:
 

@@ -11,10 +11,6 @@
 #include <qimagewriter.h>
 #include "gen_qimagewriter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QImageWriter* QImageWriter_new() {
 	return new QImageWriter();
 }

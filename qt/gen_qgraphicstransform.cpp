@@ -17,10 +17,6 @@
 #include <qgraphicstransform.h>
 #include "gen_qgraphicstransform.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsTransform : public virtual QGraphicsTransform {
 public:
 

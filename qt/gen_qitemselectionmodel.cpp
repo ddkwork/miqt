@@ -19,10 +19,6 @@
 #include <qitemselectionmodel.h>
 #include "gen_qitemselectionmodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QItemSelectionRange* QItemSelectionRange_new() {
 	return new QItemSelectionRange();
 }

@@ -28,10 +28,6 @@
 #include <qnetworkaccessmanager.h>
 #include "gen_qnetworkaccessmanager.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQNetworkAccessManager : public virtual QNetworkAccessManager {
 public:
 

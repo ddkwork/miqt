@@ -4,10 +4,6 @@
 #include <qrgba64.h>
 #include "gen_qrgba64.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRgba64* QRgba64_new() {
 	return new QRgba64();
 }

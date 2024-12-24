@@ -5,10 +5,6 @@
 #include <qprintengine.h>
 #include "gen_qprintengine.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QPrintEngine_SetProperty(QPrintEngine* self, PrintEnginePropertyKey key, QVariant* value) {
 	self->setProperty(key, *value);
 }

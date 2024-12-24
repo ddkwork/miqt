@@ -6,10 +6,6 @@
 #include <qsurface.h>
 #include "gen_qsurface.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 SurfaceClass QSurface_SurfaceClass(const QSurface* self) {
 	return self->surfaceClass();
 }

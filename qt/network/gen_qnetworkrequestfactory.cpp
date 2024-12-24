@@ -14,10 +14,6 @@
 #include <qnetworkrequestfactory.h>
 #include "gen_qnetworkrequestfactory.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkRequestFactory* QNetworkRequestFactory_new() {
 	return new QNetworkRequestFactory();
 }

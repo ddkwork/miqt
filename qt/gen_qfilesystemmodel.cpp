@@ -26,10 +26,6 @@
 #include <qfilesystemmodel.h>
 #include "gen_qfilesystemmodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFileSystemModel : public virtual QFileSystemModel {
 public:
 

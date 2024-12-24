@@ -11,10 +11,6 @@
 #include <qregularexpression.h>
 #include "gen_qregularexpression.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRegularExpression* QRegularExpression_new() {
 	return new QRegularExpression();
 }

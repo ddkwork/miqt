@@ -11,10 +11,6 @@
 #include <qpagesize.h>
 #include "gen_qpagesize.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPageSize* QPageSize_new() {
 	return new QPageSize();
 }

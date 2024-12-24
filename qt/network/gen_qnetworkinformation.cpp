@@ -10,10 +10,6 @@
 #include <qnetworkinformation.h>
 #include "gen_qnetworkinformation.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QNetworkInformation_virtbase(QNetworkInformation* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

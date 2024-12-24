@@ -14,10 +14,6 @@
 #include <qabstractnetworkcache.h>
 #include "gen_qabstractnetworkcache.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkCacheMetaData* QNetworkCacheMetaData_new() {
 	return new QNetworkCacheMetaData();
 }

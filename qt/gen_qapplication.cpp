@@ -19,10 +19,6 @@
 #include <qapplication.h>
 #include "gen_qapplication.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQApplication : public virtual QApplication {
 public:
 

@@ -8,10 +8,6 @@
 #include <qcursor.h>
 #include "gen_qcursor.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCursor* QCursor_new() {
 	return new QCursor();
 }

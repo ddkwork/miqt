@@ -20,10 +20,6 @@
 #include <qinputdialog.h>
 #include "gen_qinputdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQInputDialog : public virtual QInputDialog {
 public:
 

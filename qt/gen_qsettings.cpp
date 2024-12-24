@@ -16,10 +16,6 @@
 #include <qsettings.h>
 #include "gen_qsettings.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSettings : public virtual QSettings {
 public:
 

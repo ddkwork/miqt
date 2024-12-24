@@ -11,10 +11,6 @@
 #include <qfontdatabase.h>
 #include "gen_qfontdatabase.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFontDatabase* QFontDatabase_new() {
 	return new QFontDatabase();
 }

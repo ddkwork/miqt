@@ -4,10 +4,6 @@
 #include <qscreen_platform.h>
 #include "gen_qscreen_platform.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQNativeInterfaceQWindowsScreen : public virtual QNativeInterface::QWindowsScreen {
 public:
 

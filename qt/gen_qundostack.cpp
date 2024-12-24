@@ -15,10 +15,6 @@
 #include <qundostack.h>
 #include "gen_qundostack.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQUndoCommand : public virtual QUndoCommand {
 public:
 

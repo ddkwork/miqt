@@ -23,10 +23,6 @@
 #include <qcommonstyle.h>
 #include "gen_qcommonstyle.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQCommonStyle : public virtual QCommonStyle {
 public:
 

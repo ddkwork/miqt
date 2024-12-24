@@ -23,10 +23,6 @@
 #include <qstyleditemdelegate.h>
 #include "gen_qstyleditemdelegate.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStyledItemDelegate : public virtual QStyledItemDelegate {
 public:
 

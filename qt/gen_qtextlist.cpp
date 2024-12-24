@@ -14,10 +14,6 @@
 #include <qtextlist.h>
 #include "gen_qtextlist.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTextList : public virtual QTextList {
 public:
 

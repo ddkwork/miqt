@@ -35,10 +35,6 @@
 #include <qundoview.h>
 #include "gen_qundoview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQUndoView : public virtual QUndoView {
 public:
 

@@ -12,10 +12,6 @@
 #include <quuid.h>
 #include "gen_quuid.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QUuid* QUuid_new() {
 	return new QUuid();
 }

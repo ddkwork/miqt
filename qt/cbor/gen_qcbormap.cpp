@@ -16,10 +16,6 @@
 #include <qcbormap.h>
 #include "gen_qcbormap.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCborMap* QCborMap_new() {
 	return new QCborMap();
 }

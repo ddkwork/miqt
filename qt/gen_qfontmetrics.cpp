@@ -16,10 +16,6 @@
 #include <qfontmetrics.h>
 #include "gen_qfontmetrics.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFontMetrics* QFontMetrics_new(QFont* param1) {
 	return new QFontMetrics(*param1);
 }

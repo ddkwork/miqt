@@ -13,10 +13,6 @@
 #include <qgenericplugin.h>
 #include "gen_qgenericplugin.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGenericPlugin : public virtual QGenericPlugin {
 public:
 

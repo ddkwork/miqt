@@ -39,10 +39,6 @@
 #include <qabstractspinbox.h>
 #include "gen_qabstractspinbox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractSpinBox : public virtual QAbstractSpinBox {
 public:
 

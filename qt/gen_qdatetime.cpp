@@ -11,10 +11,6 @@
 #include <qdatetime.h>
 #include "gen_qdatetime.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QDate* QDate_new() {
 	return new QDate();
 }

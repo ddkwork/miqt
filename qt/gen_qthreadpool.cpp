@@ -16,10 +16,6 @@
 #include <qthreadpool.h>
 #include "gen_qthreadpool.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQThreadPool : public virtual QThreadPool {
 public:
 

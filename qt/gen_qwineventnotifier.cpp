@@ -13,10 +13,6 @@
 #include <qwineventnotifier.h>
 #include "gen_qwineventnotifier.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQWinEventNotifier : public virtual QWinEventNotifier {
 public:
 

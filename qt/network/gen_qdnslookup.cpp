@@ -23,10 +23,6 @@
 #include <qdnslookup.h>
 #include "gen_qdnslookup.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QDnsDomainNameRecord* QDnsDomainNameRecord_new() {
 	return new QDnsDomainNameRecord();
 }

@@ -12,10 +12,6 @@
 #include <qtextstream.h>
 #include "gen_qtextstream.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextStream* QTextStream_new() {
 	return new QTextStream();
 }

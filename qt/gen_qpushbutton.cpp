@@ -23,10 +23,6 @@
 #include <qpushbutton.h>
 #include "gen_qpushbutton.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPushButton : public virtual QPushButton {
 public:
 

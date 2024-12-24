@@ -8,10 +8,6 @@
 #include <qhttpheaders.h>
 #include "gen_qhttpheaders.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHttpHeaders* QHttpHeaders_new() {
 	return new QHttpHeaders();
 }

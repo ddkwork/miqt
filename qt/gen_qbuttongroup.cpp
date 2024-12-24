@@ -15,10 +15,6 @@
 #include <qbuttongroup.h>
 #include "gen_qbuttongroup.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQButtonGroup : public virtual QButtonGroup {
 public:
 

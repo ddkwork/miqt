@@ -14,10 +14,6 @@
 #include <qtranslator.h>
 #include "gen_qtranslator.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTranslator : public virtual QTranslator {
 public:
 

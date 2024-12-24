@@ -11,10 +11,6 @@
 #include <qdir.h>
 #include "gen_qdir.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QDir* QDir_new(QDir* param1) {
 	return new QDir(*param1);
 }

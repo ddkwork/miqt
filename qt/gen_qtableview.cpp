@@ -39,10 +39,6 @@
 #include <qtableview.h>
 #include "gen_qtableview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTableView : public virtual QTableView {
 public:
 

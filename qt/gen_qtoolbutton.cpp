@@ -25,10 +25,6 @@
 #include <qtoolbutton.h>
 #include "gen_qtoolbutton.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQToolButton : public virtual QToolButton {
 public:
 

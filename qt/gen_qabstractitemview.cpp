@@ -39,10 +39,6 @@
 #include <qabstractitemview.h>
 #include "gen_qabstractitemview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractItemView : public virtual QAbstractItemView {
 public:
 

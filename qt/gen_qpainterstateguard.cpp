@@ -5,10 +5,6 @@
 #include <qpainterstateguard.h>
 #include "gen_qpainterstateguard.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPainterStateGuard* QPainterStateGuard_new(QPainter* painter) {
 	return new QPainterStateGuard(painter);
 }

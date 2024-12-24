@@ -21,10 +21,6 @@
 #include <qmovie.h>
 #include "gen_qmovie.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQMovie : public virtual QMovie {
 public:
 

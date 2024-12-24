@@ -14,10 +14,6 @@
 #include <qpropertyanimation.h>
 #include "gen_qpropertyanimation.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPropertyAnimation : public virtual QPropertyAnimation {
 public:
 

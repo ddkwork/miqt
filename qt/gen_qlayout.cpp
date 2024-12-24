@@ -19,10 +19,6 @@
 #include <qlayout.h>
 #include "gen_qlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLayout : public virtual QLayout {
 public:
 

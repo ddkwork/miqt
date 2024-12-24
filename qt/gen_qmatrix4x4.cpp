@@ -12,10 +12,6 @@
 #include <qmatrix4x4.h>
 #include "gen_qmatrix4x4.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMatrix4x4* QMatrix4x4_new() {
 	return new QMatrix4x4();
 }

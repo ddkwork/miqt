@@ -6,10 +6,6 @@
 #include <qeasingcurve.h>
 #include "gen_qeasingcurve.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QEasingCurve* QEasingCurve_new() {
 	return new QEasingCurve();
 }

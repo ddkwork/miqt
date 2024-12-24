@@ -7,10 +7,6 @@
 #include <qgesturerecognizer.h>
 #include "gen_qgesturerecognizer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGestureRecognizer : public virtual QGestureRecognizer {
 public:
 

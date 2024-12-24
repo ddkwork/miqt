@@ -21,10 +21,6 @@
 #include <qradiobutton.h>
 #include "gen_qradiobutton.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQRadioButton : public virtual QRadioButton {
 public:
 

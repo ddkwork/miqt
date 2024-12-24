@@ -23,10 +23,6 @@
 #include <qstandarditemmodel.h>
 #include "gen_qstandarditemmodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStandardItem : public virtual QStandardItem {
 public:
 

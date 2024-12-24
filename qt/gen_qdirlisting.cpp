@@ -14,10 +14,6 @@
 #include <qdirlisting.h>
 #include "gen_qdirlisting.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QDirListing* QDirListing_new(struct miqt_string path) {
 	QString path_QString = QString::fromUtf8(path.data, path.len);
 	return new QDirListing(path_QString);

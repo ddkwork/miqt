@@ -11,10 +11,6 @@
 #include <qurl.h>
 #include "gen_qurl.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QUrl* QUrl_new() {
 	return new QUrl();
 }

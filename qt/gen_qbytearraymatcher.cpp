@@ -7,10 +7,6 @@
 #include <qbytearraymatcher.h>
 #include "gen_qbytearraymatcher.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QByteArrayMatcher* QByteArrayMatcher_new() {
 	return new QByteArrayMatcher();
 }

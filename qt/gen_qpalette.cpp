@@ -6,10 +6,6 @@
 #include <qpalette.h>
 #include "gen_qpalette.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPalette* QPalette_new() {
 	return new QPalette();
 }

@@ -9,10 +9,6 @@
 #include <qpagedpaintdevice.h>
 #include "gen_qpagedpaintdevice.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QPagedPaintDevice_virtbase(QPagedPaintDevice* src, QPaintDevice** outptr_QPaintDevice) {
 	*outptr_QPaintDevice = static_cast<QPaintDevice*>(src);
 }

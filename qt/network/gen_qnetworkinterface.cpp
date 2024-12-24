@@ -11,10 +11,6 @@
 #include <qnetworkinterface.h>
 #include "gen_qnetworkinterface.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkAddressEntry* QNetworkAddressEntry_new() {
 	return new QNetworkAddressEntry();
 }

@@ -17,10 +17,6 @@
 #include <qoffscreensurface.h>
 #include "gen_qoffscreensurface.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQOffscreenSurface : public virtual QOffscreenSurface {
 public:
 

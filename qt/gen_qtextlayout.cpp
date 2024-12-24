@@ -21,10 +21,6 @@
 #include <qtextlayout.h>
 #include "gen_qtextlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextInlineObject* QTextInlineObject_new() {
 	return new QTextInlineObject();
 }

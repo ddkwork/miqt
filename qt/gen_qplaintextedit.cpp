@@ -52,10 +52,6 @@
 #include <qplaintextedit.h>
 #include "gen_qplaintextedit.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPlainTextEdit : public virtual QPlainTextEdit {
 public:
 

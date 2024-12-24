@@ -9,10 +9,6 @@
 #include <qpdfoutputintent.h>
 #include "gen_qpdfoutputintent.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPdfOutputIntent* QPdfOutputIntent_new() {
 	return new QPdfOutputIntent();
 }

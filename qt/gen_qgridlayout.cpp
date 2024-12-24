@@ -15,10 +15,6 @@
 #include <qgridlayout.h>
 #include "gen_qgridlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGridLayout : public virtual QGridLayout {
 public:
 

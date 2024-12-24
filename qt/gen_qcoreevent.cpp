@@ -10,10 +10,6 @@
 #include <qcoreevent.h>
 #include "gen_qcoreevent.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQEvent : public virtual QEvent {
 public:
 

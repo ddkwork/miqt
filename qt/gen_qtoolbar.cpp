@@ -40,10 +40,6 @@
 #include <qtoolbar.h>
 #include "gen_qtoolbar.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQToolBar : public virtual QToolBar {
 public:
 

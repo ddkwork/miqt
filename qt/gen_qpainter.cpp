@@ -33,10 +33,6 @@
 #include <qpainter.h>
 #include "gen_qpainter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPainter* QPainter_new() {
 	return new QPainter();
 }

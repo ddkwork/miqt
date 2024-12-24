@@ -10,10 +10,6 @@
 #include <qcolor.h>
 #include "gen_qcolor.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QColor* QColor_new() {
 	return new QColor();
 }

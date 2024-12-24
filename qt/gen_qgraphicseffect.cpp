@@ -22,10 +22,6 @@
 #include <qgraphicseffect.h>
 #include "gen_qgraphicseffect.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsEffect : public virtual QGraphicsEffect {
 public:
 

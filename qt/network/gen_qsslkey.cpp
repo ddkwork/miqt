@@ -6,10 +6,6 @@
 #include <qsslkey.h>
 #include "gen_qsslkey.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslKey* QSslKey_new() {
 	return new QSslKey();
 }

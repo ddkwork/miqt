@@ -5,10 +5,6 @@
 #include <qmargins.h>
 #include "gen_qmargins.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMargins* QMargins_new() {
 	return new QMargins();
 }

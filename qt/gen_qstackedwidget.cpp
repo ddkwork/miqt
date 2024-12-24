@@ -16,10 +16,6 @@
 #include <qstackedwidget.h>
 #include "gen_qstackedwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStackedWidget : public virtual QStackedWidget {
 public:
 

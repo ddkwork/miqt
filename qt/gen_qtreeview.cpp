@@ -40,10 +40,6 @@
 #include <qtreeview.h>
 #include "gen_qtreeview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTreeView : public virtual QTreeView {
 public:
 

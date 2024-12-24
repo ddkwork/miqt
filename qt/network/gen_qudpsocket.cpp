@@ -17,10 +17,6 @@
 #include <qudpsocket.h>
 #include "gen_qudpsocket.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQUdpSocket : public virtual QUdpSocket {
 public:
 

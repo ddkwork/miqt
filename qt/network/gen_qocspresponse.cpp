@@ -5,10 +5,6 @@
 #include <qocspresponse.h>
 #include "gen_qocspresponse.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QOcspResponse* QOcspResponse_new() {
 	return new QOcspResponse();
 }

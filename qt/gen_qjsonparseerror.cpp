@@ -7,10 +7,6 @@
 #include <qjsonparseerror.h>
 #include "gen_qjsonparseerror.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_string QJsonParseError_ErrorString(const QJsonParseError* self) {
 	QString _ret = self->errorString();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory

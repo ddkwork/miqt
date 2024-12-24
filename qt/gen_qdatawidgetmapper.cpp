@@ -18,10 +18,6 @@
 #include <qdatawidgetmapper.h>
 #include "gen_qdatawidgetmapper.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQDataWidgetMapper : public virtual QDataWidgetMapper {
 public:
 

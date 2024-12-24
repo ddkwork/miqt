@@ -41,10 +41,6 @@
 #include <qheaderview.h>
 #include "gen_qheaderview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQHeaderView : public virtual QHeaderView {
 public:
 

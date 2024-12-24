@@ -9,10 +9,6 @@
 #include <qhostinfo.h>
 #include "gen_qhostinfo.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHostInfo* QHostInfo_new() {
 	return new QHostInfo();
 }

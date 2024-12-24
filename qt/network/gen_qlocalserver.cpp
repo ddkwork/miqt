@@ -14,10 +14,6 @@
 #include <qlocalserver.h>
 #include "gen_qlocalserver.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLocalServer : public virtual QLocalServer {
 public:
 

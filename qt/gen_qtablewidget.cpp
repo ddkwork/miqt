@@ -36,10 +36,6 @@
 #include <qtablewidget.h>
 #include "gen_qtablewidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTableWidgetSelectionRange* QTableWidgetSelectionRange_new() {
 	return new QTableWidgetSelectionRange();
 }

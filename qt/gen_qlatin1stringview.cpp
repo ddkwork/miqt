@@ -11,10 +11,6 @@
 #include <qlatin1stringview.h>
 #include "gen_qlatin1stringview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QLatin1String* QLatin1String_new() {
 	return new QLatin1String();
 }

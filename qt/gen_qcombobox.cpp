@@ -47,10 +47,6 @@
 #include <qcombobox.h>
 #include "gen_qcombobox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQComboBox : public virtual QComboBox {
 public:
 

@@ -7,10 +7,6 @@
 #include <qpen.h>
 #include "gen_qpen.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPen* QPen_new() {
 	return new QPen();
 }

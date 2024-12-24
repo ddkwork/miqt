@@ -10,10 +10,6 @@
 #include <qtextdocumentfragment.h>
 #include "gen_qtextdocumentfragment.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QTextStream_Delete(QTextStream* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QTextStream*>( self );

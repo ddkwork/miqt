@@ -7,10 +7,6 @@
 #include <qline.h>
 #include "gen_qline.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QLine* QLine_new() {
 	return new QLine();
 }

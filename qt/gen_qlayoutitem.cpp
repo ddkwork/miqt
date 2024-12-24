@@ -12,10 +12,6 @@
 #include <qlayoutitem.h>
 #include "gen_qlayoutitem.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLayoutItem : public virtual QLayoutItem {
 public:
 

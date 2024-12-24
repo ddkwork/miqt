@@ -7,10 +7,6 @@
 #include <qdatastream.h>
 #include "gen_qdatastream.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QDataStream* QDataStream_new() {
 	return new QDataStream();
 }

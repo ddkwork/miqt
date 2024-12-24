@@ -17,10 +17,6 @@
 #include <qrawfont.h>
 #include "gen_qrawfont.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRawFont* QRawFont_new() {
 	return new QRawFont();
 }

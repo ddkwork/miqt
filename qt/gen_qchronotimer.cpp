@@ -13,10 +13,6 @@
 #include <qchronotimer.h>
 #include "gen_qchronotimer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQChronoTimer : public virtual QChronoTimer {
 public:
 

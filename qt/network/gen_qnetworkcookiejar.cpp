@@ -16,10 +16,6 @@
 #include <qnetworkcookiejar.h>
 #include "gen_qnetworkcookiejar.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQNetworkCookieJar : public virtual QNetworkCookieJar {
 public:
 

@@ -39,10 +39,6 @@
 #include <qlistview.h>
 #include "gen_qlistview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQListView : public virtual QListView {
 public:
 

@@ -16,10 +16,6 @@
 #include <qdrag.h>
 #include "gen_qdrag.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQDrag : public virtual QDrag {
 public:
 

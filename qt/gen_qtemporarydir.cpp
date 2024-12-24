@@ -7,10 +7,6 @@
 #include <qtemporarydir.h>
 #include "gen_qtemporarydir.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTemporaryDir* QTemporaryDir_new() {
 	return new QTemporaryDir();
 }

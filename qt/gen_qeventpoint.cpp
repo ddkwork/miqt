@@ -9,10 +9,6 @@
 #include <qeventpoint.h>
 #include "gen_qeventpoint.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QEventPoint* QEventPoint_new() {
 	return new QEventPoint();
 }

@@ -18,10 +18,6 @@
 #include <qmimedata.h>
 #include "gen_qmimedata.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQMimeData : public virtual QMimeData {
 public:
 

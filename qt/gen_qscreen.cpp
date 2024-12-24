@@ -16,10 +16,6 @@
 #include <qscreen.h>
 #include "gen_qscreen.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QScreen_virtbase(QScreen* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

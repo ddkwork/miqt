@@ -20,10 +20,6 @@
 #include <qimageiohandler.h>
 #include "gen_qimageiohandler.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQImageIOHandler : public virtual QImageIOHandler {
 public:
 

@@ -14,10 +14,6 @@
 #include <qnetworkproxy.h>
 #include "gen_qnetworkproxy.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkProxyQuery* QNetworkProxyQuery_new() {
 	return new QNetworkProxyQuery();
 }

@@ -12,10 +12,6 @@
 #include <qparallelanimationgroup.h>
 #include "gen_qparallelanimationgroup.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQParallelAnimationGroup : public virtual QParallelAnimationGroup {
 public:
 

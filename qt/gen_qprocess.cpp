@@ -15,10 +15,6 @@
 #include <qprocess.h>
 #include "gen_qprocess.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QProcessEnvironment* QProcessEnvironment_new() {
 	return new QProcessEnvironment();
 }

@@ -26,10 +26,6 @@
 #include <qpaintengine.h>
 #include "gen_qpaintengine.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextItem* QTextItem_new() {
 	return new QTextItem();
 }

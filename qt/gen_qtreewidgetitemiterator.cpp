@@ -6,10 +6,6 @@
 #include <qtreewidgetitemiterator.h>
 #include "gen_qtreewidgetitemiterator.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTreeWidgetItemIterator* QTreeWidgetItemIterator_new(QTreeWidgetItemIterator* it) {
 	return new QTreeWidgetItemIterator(*it);
 }

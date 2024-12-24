@@ -8,10 +8,6 @@
 #include <qstringmatcher.h>
 #include "gen_qstringmatcher.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStringMatcher* QStringMatcher_new() {
 	return new QStringMatcher();
 }

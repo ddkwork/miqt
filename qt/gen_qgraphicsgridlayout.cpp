@@ -9,10 +9,6 @@
 #include <qgraphicsgridlayout.h>
 #include "gen_qgraphicsgridlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsGridLayout : public virtual QGraphicsGridLayout {
 public:
 

@@ -9,10 +9,6 @@
 #include <qdesktopservices.h>
 #include "gen_qdesktopservices.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 bool QDesktopServices_OpenUrl(QUrl* url) {
 	return QDesktopServices::openUrl(*url);
 }

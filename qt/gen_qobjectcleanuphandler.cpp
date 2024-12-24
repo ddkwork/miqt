@@ -13,10 +13,6 @@
 #include <qobjectcleanuphandler.h>
 #include "gen_qobjectcleanuphandler.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQObjectCleanupHandler : public virtual QObjectCleanupHandler {
 public:
 

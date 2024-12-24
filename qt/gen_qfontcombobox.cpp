@@ -28,10 +28,6 @@
 #include <qfontcombobox.h>
 #include "gen_qfontcombobox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFontComboBox : public virtual QFontComboBox {
 public:
 

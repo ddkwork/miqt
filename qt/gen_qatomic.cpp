@@ -4,10 +4,6 @@
 #include <qatomic.h>
 #include "gen_qatomic.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QAtomicInt* QAtomicInt_new() {
 	return new QAtomicInt();
 }

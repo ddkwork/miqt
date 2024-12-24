@@ -6,10 +6,6 @@
 #include <qnetworkdatagram.h>
 #include "gen_qnetworkdatagram.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkDatagram* QNetworkDatagram_new() {
 	return new QNetworkDatagram();
 }

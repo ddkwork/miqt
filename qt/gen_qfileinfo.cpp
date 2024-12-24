@@ -11,10 +11,6 @@
 #include <qfileinfo.h>
 #include "gen_qfileinfo.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFileInfo* QFileInfo_new() {
 	return new QFileInfo();
 }

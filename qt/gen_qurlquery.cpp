@@ -10,10 +10,6 @@
 #include <qurlquery.h>
 #include "gen_qurlquery.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QUrlQuery* QUrlQuery_new() {
 	return new QUrlQuery();
 }

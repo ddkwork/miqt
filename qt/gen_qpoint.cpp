@@ -5,10 +5,6 @@
 #include <qpoint.h>
 #include "gen_qpoint.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPoint* QPoint_new() {
 	return new QPoint();
 }

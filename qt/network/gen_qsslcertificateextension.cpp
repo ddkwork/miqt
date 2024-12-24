@@ -8,10 +8,6 @@
 #include <qsslcertificateextension.h>
 #include "gen_qsslcertificateextension.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslCertificateExtension* QSslCertificateExtension_new() {
 	return new QSslCertificateExtension();
 }

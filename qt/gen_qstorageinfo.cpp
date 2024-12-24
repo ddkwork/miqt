@@ -10,10 +10,6 @@
 #include <qstorageinfo.h>
 #include "gen_qstorageinfo.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStorageInfo* QStorageInfo_new() {
 	return new QStorageInfo();
 }

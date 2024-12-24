@@ -42,10 +42,6 @@
 #include <qcalendarwidget.h>
 #include "gen_qcalendarwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQCalendarWidget : public virtual QCalendarWidget {
 public:
 

@@ -16,10 +16,6 @@
 #include <qsslserver.h>
 #include "gen_qsslserver.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSslServer : public virtual QSslServer {
 public:
 

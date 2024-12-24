@@ -7,10 +7,6 @@
 #include <qreadwritelock.h>
 #include "gen_qreadwritelock.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QReadWriteLock* QReadWriteLock_new() {
 	return new QReadWriteLock();
 }

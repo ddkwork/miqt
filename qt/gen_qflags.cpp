@@ -5,10 +5,6 @@
 #include <qflags.h>
 #include "gen_qflags.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFlag* QFlag_new(int value) {
 	return new QFlag(static_cast<int>(value));
 }

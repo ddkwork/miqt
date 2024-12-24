@@ -40,10 +40,6 @@
 #include <qtabwidget.h>
 #include "gen_qtabwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTabWidget : public virtual QTabWidget {
 public:
 

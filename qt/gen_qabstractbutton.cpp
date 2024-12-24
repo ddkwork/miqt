@@ -41,10 +41,6 @@
 #include <qabstractbutton.h>
 #include "gen_qabstractbutton.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractButton : public virtual QAbstractButton {
 public:
 

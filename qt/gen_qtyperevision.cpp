@@ -4,10 +4,6 @@
 #include <qtyperevision.h>
 #include "gen_qtyperevision.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTypeRevision* QTypeRevision_new() {
 	return new QTypeRevision();
 }

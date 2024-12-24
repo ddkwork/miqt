@@ -5,10 +5,6 @@
 #include <qsslpresharedkeyauthenticator.h>
 #include "gen_qsslpresharedkeyauthenticator.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslPreSharedKeyAuthenticator* QSslPreSharedKeyAuthenticator_new() {
 	return new QSslPreSharedKeyAuthenticator();
 }

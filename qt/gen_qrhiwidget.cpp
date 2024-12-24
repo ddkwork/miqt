@@ -38,10 +38,6 @@
 #include <qrhiwidget.h>
 #include "gen_qrhiwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQRhiWidget : public virtual QRhiWidget {
 public:
 

@@ -39,10 +39,6 @@
 #include <qgroupbox.h>
 #include "gen_qgroupbox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGroupBox : public virtual QGroupBox {
 public:
 

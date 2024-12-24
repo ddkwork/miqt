@@ -13,10 +13,6 @@
 #include <qpicture.h>
 #include "gen_qpicture.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPicture : public virtual QPicture {
 public:
 

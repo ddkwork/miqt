@@ -18,10 +18,6 @@
 #include <qboxlayout.h>
 #include "gen_qboxlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQBoxLayout : public virtual QBoxLayout {
 public:
 

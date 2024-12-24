@@ -37,10 +37,6 @@
 #include <qgraphicswidget.h>
 #include "gen_qgraphicswidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsWidget : public virtual QGraphicsWidget {
 public:
 

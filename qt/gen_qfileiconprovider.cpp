@@ -10,10 +10,6 @@
 #include <qfileiconprovider.h>
 #include "gen_qfileiconprovider.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFileIconProvider : public virtual QFileIconProvider {
 public:
 

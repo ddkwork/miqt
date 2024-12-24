@@ -5,10 +5,6 @@
 #include <qrandom.h>
 #include "gen_qrandom.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRandomGenerator* QRandomGenerator_new() {
 	return new QRandomGenerator();
 }

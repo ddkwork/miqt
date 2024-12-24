@@ -22,10 +22,6 @@
 #include <qabstractitemdelegate.h>
 #include "gen_qabstractitemdelegate.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractItemDelegate : public virtual QAbstractItemDelegate {
 public:
 

@@ -4,10 +4,6 @@
 #include <qarraydata.h>
 #include "gen_qarraydata.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 ptrdiff_t QArrayData_AllocatedCapacity(QArrayData* self) {
 	qsizetype _ret = self->allocatedCapacity();
 	return static_cast<ptrdiff_t>(_ret);

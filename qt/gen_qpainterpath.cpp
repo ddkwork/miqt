@@ -15,10 +15,6 @@
 #include <qpainterpath.h>
 #include "gen_qpainterpath.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPainterPath* QPainterPath_new() {
 	return new QPainterPath();
 }

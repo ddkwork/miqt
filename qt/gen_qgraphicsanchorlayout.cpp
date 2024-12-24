@@ -15,10 +15,6 @@
 #include <qgraphicsanchorlayout.h>
 #include "gen_qgraphicsanchorlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QGraphicsAnchor_virtbase(QGraphicsAnchor* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

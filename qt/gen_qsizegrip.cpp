@@ -37,10 +37,6 @@
 #include <qsizegrip.h>
 #include "gen_qsizegrip.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSizeGrip : public virtual QSizeGrip {
 public:
 

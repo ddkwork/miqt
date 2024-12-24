@@ -7,10 +7,6 @@
 #include <qloggingcategory.h>
 #include "gen_qloggingcategory.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QLoggingCategory* QLoggingCategory_new(const char* category) {
 	return new QLoggingCategory(category);
 }

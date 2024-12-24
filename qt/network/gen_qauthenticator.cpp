@@ -9,10 +9,6 @@
 #include <qauthenticator.h>
 #include "gen_qauthenticator.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QAuthenticator* QAuthenticator_new() {
 	return new QAuthenticator();
 }

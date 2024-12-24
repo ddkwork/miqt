@@ -8,10 +8,6 @@
 #include <qcommandlineoption.h>
 #include "gen_qcommandlineoption.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCommandLineOption* QCommandLineOption_new(struct miqt_string name) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	return new QCommandLineOption(name_QString);

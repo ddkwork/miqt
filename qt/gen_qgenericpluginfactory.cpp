@@ -9,10 +9,6 @@
 #include <qgenericpluginfactory.h>
 #include "gen_qgenericpluginfactory.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_array /* of struct miqt_string */  QGenericPluginFactory_Keys() {
 	QStringList _ret = QGenericPluginFactory::keys();
 	// Convert QList<> from C++ memory to manually-managed C memory

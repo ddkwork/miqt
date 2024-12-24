@@ -16,10 +16,6 @@
 #include <qxmlstream.h>
 #include "gen_qxmlstream.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QXmlStreamAttribute* QXmlStreamAttribute_new() {
 	return new QXmlStreamAttribute();
 }

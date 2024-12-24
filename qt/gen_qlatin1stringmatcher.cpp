@@ -4,10 +4,6 @@
 #include <qlatin1stringmatcher.h>
 #include "gen_qlatin1stringmatcher.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QLatin1StringMatcher* QLatin1StringMatcher_new() {
 	return new QLatin1StringMatcher();
 }

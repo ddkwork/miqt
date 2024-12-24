@@ -21,10 +21,6 @@
 #include <qabstractprintdialog.h>
 #include "gen_qabstractprintdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractPrintDialog : public virtual QAbstractPrintDialog {
 public:
 

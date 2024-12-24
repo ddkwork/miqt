@@ -16,10 +16,6 @@
 #include <qsystemtrayicon.h>
 #include "gen_qsystemtrayicon.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSystemTrayIcon : public virtual QSystemTrayIcon {
 public:
 

@@ -25,10 +25,6 @@
 #include <qscrollarea.h>
 #include "gen_qscrollarea.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQScrollArea : public virtual QScrollArea {
 public:
 

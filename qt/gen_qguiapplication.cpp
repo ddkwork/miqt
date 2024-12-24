@@ -23,10 +23,6 @@
 #include <qguiapplication.h>
 #include "gen_qguiapplication.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGuiApplication : public virtual QGuiApplication {
 public:
 

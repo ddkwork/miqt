@@ -13,10 +13,6 @@
 #include <qinputmethod.h>
 #include "gen_qinputmethod.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QInputMethod_virtbase(QInputMethod* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

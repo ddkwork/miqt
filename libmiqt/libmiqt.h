@@ -2,6 +2,10 @@
 #ifndef MIQT_LIBMIQT_LIBMIQT_H
 #define MIQT_LIBMIQT_LIBMIQT_H
 
+#ifndef _Bool
+#define _Bool bool
+#endif
+
 #include <string.h>
 #include <stdlib.h>
 

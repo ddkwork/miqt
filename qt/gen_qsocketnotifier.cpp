@@ -14,10 +14,6 @@
 #include <qsocketnotifier.h>
 #include "gen_qsocketnotifier.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSocketNotifier : public virtual QSocketNotifier {
 public:
 

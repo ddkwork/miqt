@@ -4,10 +4,6 @@
 #include <qshareddata.h>
 #include "gen_qshareddata.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSharedData* QSharedData_new() {
 	return new QSharedData();
 }

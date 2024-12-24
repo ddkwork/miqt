@@ -11,10 +11,6 @@
 #include <qfuturewatcher.h>
 #include "gen_qfuturewatcher.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QFutureWatcherBase_virtbase(QFutureWatcherBase* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

@@ -26,10 +26,6 @@
 #include <qabstracttextdocumentlayout.h>
 #include "gen_qabstracttextdocumentlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractTextDocumentLayout : public virtual QAbstractTextDocumentLayout {
 public:
 

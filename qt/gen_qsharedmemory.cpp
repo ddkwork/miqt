@@ -14,10 +14,6 @@
 #include <qsharedmemory.h>
 #include "gen_qsharedmemory.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSharedMemory : public virtual QSharedMemory {
 public:
 

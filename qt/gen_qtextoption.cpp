@@ -7,10 +7,6 @@
 #include <qtextoption.h>
 #include "gen_qtextoption.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextOption* QTextOption_new() {
 	return new QTextOption();
 }

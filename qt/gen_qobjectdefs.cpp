@@ -22,10 +22,6 @@
 #include <qobjectdefs.h>
 #include "gen_qobjectdefs.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QMethodRawArguments_Delete(QMethodRawArguments* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QMethodRawArguments*>( self );

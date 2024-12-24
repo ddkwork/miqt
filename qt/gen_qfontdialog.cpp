@@ -20,10 +20,6 @@
 #include <qfontdialog.h>
 #include "gen_qfontdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFontDialog : public virtual QFontDialog {
 public:
 

@@ -26,10 +26,6 @@
 #include <qfiledialog.h>
 #include "gen_qfiledialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFileDialog : public virtual QFileDialog {
 public:
 

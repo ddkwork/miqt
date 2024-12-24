@@ -42,10 +42,6 @@
 #include <qtabbar.h>
 #include "gen_qtabbar.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTabBar : public virtual QTabBar {
 public:
 

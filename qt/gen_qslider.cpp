@@ -20,10 +20,6 @@
 #include <qslider.h>
 #include "gen_qslider.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSlider : public virtual QSlider {
 public:
 

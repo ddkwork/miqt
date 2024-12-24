@@ -13,10 +13,6 @@
 #include <qjsondocument.h>
 #include "gen_qjsondocument.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QJsonDocument* QJsonDocument_new() {
 	return new QJsonDocument();
 }

@@ -9,10 +9,6 @@
 #include <qssldiffiehellmanparameters.h>
 #include "gen_qssldiffiehellmanparameters.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslDiffieHellmanParameters* QSslDiffieHellmanParameters_new() {
 	return new QSslDiffieHellmanParameters();
 }

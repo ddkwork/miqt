@@ -9,10 +9,6 @@
 #include <qkeysequence.h>
 #include "gen_qkeysequence.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QKeySequence* QKeySequence_new() {
 	return new QKeySequence();
 }

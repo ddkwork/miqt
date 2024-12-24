@@ -10,10 +10,6 @@
 #include <qvectornd.h>
 #include "gen_qvectornd.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QVector2D* QVector2D_new() {
 	return new QVector2D();
 }

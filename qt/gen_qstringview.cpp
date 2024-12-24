@@ -12,10 +12,6 @@
 #include <qstringview.h>
 #include "gen_qstringview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStringView* QStringView_new() {
 	return new QStringView();
 }

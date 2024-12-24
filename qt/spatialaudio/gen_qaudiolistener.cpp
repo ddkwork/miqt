@@ -12,10 +12,6 @@
 #include <qaudiolistener.h>
 #include "gen_qaudiolistener.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAudioListener : public virtual QAudioListener {
 public:
 

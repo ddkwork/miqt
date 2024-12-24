@@ -15,10 +15,6 @@
 #include <qinputdevice.h>
 #include "gen_qinputdevice.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQInputDevice : public virtual QInputDevice {
 public:
 

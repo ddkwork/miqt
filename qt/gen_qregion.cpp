@@ -7,10 +7,6 @@
 #include <qregion.h>
 #include "gen_qregion.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRegion* QRegion_new() {
 	return new QRegion();
 }

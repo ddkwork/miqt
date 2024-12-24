@@ -14,10 +14,6 @@
 #include <qtcpsocket.h>
 #include "gen_qtcpsocket.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTcpSocket : public virtual QTcpSocket {
 public:
 

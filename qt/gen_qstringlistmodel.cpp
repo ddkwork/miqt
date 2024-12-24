@@ -16,10 +16,6 @@
 #include <qstringlistmodel.h>
 #include "gen_qstringlistmodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStringListModel : public virtual QStringListModel {
 public:
 

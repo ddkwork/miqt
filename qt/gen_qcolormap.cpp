@@ -6,10 +6,6 @@
 #include <qcolormap.h>
 #include "gen_qcolormap.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QColormap* QColormap_new(QColormap* colormap) {
 	return new QColormap(*colormap);
 }

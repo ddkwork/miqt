@@ -13,10 +13,6 @@
 #include <qvariantanimation.h>
 #include "gen_qvariantanimation.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQVariantAnimation : public virtual QVariantAnimation {
 public:
 

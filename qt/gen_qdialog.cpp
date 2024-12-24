@@ -37,10 +37,6 @@
 #include <qdialog.h>
 #include "gen_qdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQDialog : public virtual QDialog {
 public:
 

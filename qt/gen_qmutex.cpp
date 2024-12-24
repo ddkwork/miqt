@@ -7,10 +7,6 @@
 #include <qmutex.h>
 #include "gen_qmutex.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QBasicMutex* QBasicMutex_new() {
 	return new QBasicMutex();
 }

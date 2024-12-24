@@ -39,10 +39,6 @@
 #include <qtreewidget.h>
 #include "gen_qtreewidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTreeWidgetItem : public virtual QTreeWidgetItem {
 public:
 

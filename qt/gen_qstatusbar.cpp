@@ -37,10 +37,6 @@
 #include <qstatusbar.h>
 #include "gen_qstatusbar.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStatusBar : public virtual QStatusBar {
 public:
 

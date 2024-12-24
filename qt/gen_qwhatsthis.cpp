@@ -11,10 +11,6 @@
 #include <qwhatsthis.h>
 #include "gen_qwhatsthis.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QWhatsThis_EnterWhatsThisMode() {
 	QWhatsThis::enterWhatsThisMode();
 }

@@ -23,10 +23,6 @@
 #include <qitemdelegate.h>
 #include "gen_qitemdelegate.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQItemDelegate : public virtual QItemDelegate {
 public:
 

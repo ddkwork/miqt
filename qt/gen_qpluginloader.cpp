@@ -16,10 +16,6 @@
 #include <qpluginloader.h>
 #include "gen_qpluginloader.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPluginLoader : public virtual QPluginLoader {
 public:
 

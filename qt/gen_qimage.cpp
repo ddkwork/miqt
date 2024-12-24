@@ -23,10 +23,6 @@
 #include <qimage.h>
 #include "gen_qimage.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQImage : public virtual QImage {
 public:
 

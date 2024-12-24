@@ -15,10 +15,6 @@
 #include <qstackedlayout.h>
 #include "gen_qstackedlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStackedLayout : public virtual QStackedLayout {
 public:
 

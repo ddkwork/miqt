@@ -8,10 +8,6 @@
 #include <qgraphicslayoutitem.h>
 #include "gen_qgraphicslayoutitem.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsLayoutItem : public virtual QGraphicsLayoutItem {
 public:
 

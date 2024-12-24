@@ -18,10 +18,6 @@
 #include <qtoolbox.h>
 #include "gen_qtoolbox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQToolBox : public virtual QToolBox {
 public:
 

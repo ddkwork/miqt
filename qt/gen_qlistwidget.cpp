@@ -40,10 +40,6 @@
 #include <qlistwidget.h>
 #include "gen_qlistwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQListWidgetItem : public virtual QListWidgetItem {
 public:
 

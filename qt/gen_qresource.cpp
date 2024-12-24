@@ -10,10 +10,6 @@
 #include <qresource.h>
 #include "gen_qresource.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QResource* QResource_new() {
 	return new QResource();
 }

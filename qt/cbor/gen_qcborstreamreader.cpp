@@ -10,10 +10,6 @@
 #include <qcborstreamreader.h>
 #include "gen_qcborstreamreader.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCborStreamReader* QCborStreamReader_new() {
 	return new QCborStreamReader();
 }

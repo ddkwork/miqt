@@ -10,10 +10,6 @@
 #include <qstringconverter.h>
 #include "gen_qstringconverter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStringEncoder* QStringEncoder_new() {
 	return new QStringEncoder();
 }

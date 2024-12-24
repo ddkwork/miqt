@@ -4,10 +4,6 @@
 #include <qsizepolicy.h>
 #include "gen_qsizepolicy.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSizePolicy* QSizePolicy_new() {
 	return new QSizePolicy();
 }

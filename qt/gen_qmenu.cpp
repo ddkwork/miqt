@@ -43,10 +43,6 @@
 #include <qmenu.h>
 #include "gen_qmenu.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQMenu : public virtual QMenu {
 public:
 

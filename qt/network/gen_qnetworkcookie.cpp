@@ -12,10 +12,6 @@
 #include <qnetworkcookie.h>
 #include "gen_qnetworkcookie.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkCookie* QNetworkCookie_new() {
 	return new QNetworkCookie();
 }

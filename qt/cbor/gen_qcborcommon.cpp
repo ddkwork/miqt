@@ -7,10 +7,6 @@
 #include <qcborcommon.h>
 #include "gen_qcborcommon.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_string QCborError_ToString(const QCborError* self) {
 	QString _ret = self->toString();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory

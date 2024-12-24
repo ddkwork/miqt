@@ -8,10 +8,6 @@
 #include <qfontvariableaxis.h>
 #include "gen_qfontvariableaxis.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFontVariableAxis* QFontVariableAxis_new() {
 	return new QFontVariableAxis();
 }

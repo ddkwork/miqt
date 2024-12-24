@@ -18,10 +18,6 @@
 #include <qprinter.h>
 #include "gen_qprinter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPrinter : public virtual QPrinter {
 public:
 

@@ -6,10 +6,6 @@
 #include <qsurfaceformat.h>
 #include "gen_qsurfaceformat.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSurfaceFormat* QSurfaceFormat_new() {
 	return new QSurfaceFormat();
 }

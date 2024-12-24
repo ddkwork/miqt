@@ -15,10 +15,6 @@
 #include <qfileselector.h>
 #include "gen_qfileselector.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFileSelector : public virtual QFileSelector {
 public:
 

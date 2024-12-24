@@ -19,10 +19,6 @@
 #include <qabstractproxymodel.h>
 #include "gen_qabstractproxymodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractProxyModel : public virtual QAbstractProxyModel {
 public:
 

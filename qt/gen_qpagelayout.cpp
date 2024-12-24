@@ -9,10 +9,6 @@
 #include <qpagelayout.h>
 #include "gen_qpagelayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPageLayout* QPageLayout_new() {
 	return new QPageLayout();
 }

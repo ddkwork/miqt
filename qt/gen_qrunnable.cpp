@@ -5,10 +5,6 @@
 #include <qrunnable.h>
 #include "gen_qrunnable.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQRunnable : public virtual QRunnable {
 public:
 

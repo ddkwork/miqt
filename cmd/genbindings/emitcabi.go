@@ -758,7 +758,7 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 	}
 
 	ret.WriteString(`#include <` + filename + ">\n")
-	ret.WriteString(`#include "gen_` + filename + "\"\n")
+	ret.WriteString(`#include "gen_` + filename + "\"\n\n")
 
 	// We need to import the cgo header so that we can call functions exported
 	// from Go code
@@ -771,12 +771,12 @@ func emitBindingCpp(src *CppParsedHeader, filename string) (string, error) {
 	// automatically applied in some non-strict mode by default.
 	// We have been recommending CGO_CXXFLAGS=-D_Bool=bool . Now that the problem
 	// is more well understood, do the equivalent thing automatically
-	ret.WriteString(`
-#ifndef _Bool
-#define _Bool bool
-#endif
-
-`)
+	//	ret.WriteString(`
+	//#ifndef _Bool
+	//#define _Bool bool
+	//#endif
+	//
+	//`)
 
 	for _, c := range src.Classes {
 		methodPrefixName := cabiClassName(c.ClassName)

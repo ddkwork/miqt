@@ -45,10 +45,6 @@
 #include <qlineedit.h>
 #include "gen_qlineedit.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLineEdit : public virtual QLineEdit {
 public:
 

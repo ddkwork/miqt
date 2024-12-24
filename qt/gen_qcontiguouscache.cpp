@@ -4,10 +4,6 @@
 #include <qcontiguouscache.h>
 #include "gen_qcontiguouscache.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QContiguousCacheData* QContiguousCacheData_AllocateData(ptrdiff_t size, ptrdiff_t alignment) {
 	return QContiguousCacheData::allocateData((qsizetype)(size), (qsizetype)(alignment));
 }

@@ -16,10 +16,6 @@
 #include <qlcdnumber.h>
 #include "gen_qlcdnumber.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLCDNumber : public virtual QLCDNumber {
 public:
 

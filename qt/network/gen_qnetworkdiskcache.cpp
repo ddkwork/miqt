@@ -13,10 +13,6 @@
 #include <qnetworkdiskcache.h>
 #include "gen_qnetworkdiskcache.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQNetworkDiskCache : public virtual QNetworkDiskCache {
 public:
 

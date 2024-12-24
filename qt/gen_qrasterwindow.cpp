@@ -18,10 +18,6 @@
 #include <qrasterwindow.h>
 #include "gen_qrasterwindow.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQRasterWindow : public virtual QRasterWindow {
 public:
 

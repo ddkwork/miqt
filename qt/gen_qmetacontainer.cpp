@@ -7,10 +7,6 @@
 #include <qmetacontainer.h>
 #include "gen_qmetacontainer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMetaContainer* QMetaContainer_new() {
 	return new QMetaContainer();
 }

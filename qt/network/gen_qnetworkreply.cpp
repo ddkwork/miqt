@@ -22,10 +22,6 @@
 #include <qnetworkreply.h>
 #include "gen_qnetworkreply.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QNetworkReply_virtbase(QNetworkReply* src, QIODevice** outptr_QIODevice) {
 	*outptr_QIODevice = static_cast<QIODevice*>(src);
 }

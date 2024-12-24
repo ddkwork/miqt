@@ -13,10 +13,6 @@
 #include <qlibrary.h>
 #include "gen_qlibrary.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLibrary : public virtual QLibrary {
 public:
 

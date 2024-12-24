@@ -14,10 +14,6 @@
 #include <qimagereader.h>
 #include "gen_qimagereader.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QImageReader* QImageReader_new() {
 	return new QImageReader();
 }

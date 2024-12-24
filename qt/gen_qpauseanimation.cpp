@@ -11,10 +11,6 @@
 #include <qpauseanimation.h>
 #include "gen_qpauseanimation.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPauseAnimation : public virtual QPauseAnimation {
 public:
 

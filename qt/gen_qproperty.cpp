@@ -15,10 +15,6 @@
 #include <qproperty.h>
 #include "gen_qproperty.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QScopedPropertyUpdateGroup* QScopedPropertyUpdateGroup_new() {
 	return new QScopedPropertyUpdateGroup();
 }

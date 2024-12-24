@@ -6,10 +6,6 @@
 #include <qquaternion.h>
 #include "gen_qquaternion.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QQuaternion* QQuaternion_new() {
 	return new QQuaternion();
 }

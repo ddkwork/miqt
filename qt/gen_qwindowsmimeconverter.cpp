@@ -11,10 +11,6 @@
 #include <qwindowsmimeconverter.h>
 #include "gen_qwindowsmimeconverter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQWindowsMimeConverter : public virtual QWindowsMimeConverter {
 public:
 

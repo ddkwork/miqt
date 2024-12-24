@@ -15,10 +15,6 @@
 #include <qsslconfiguration.h>
 #include "gen_qsslconfiguration.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslConfiguration* QSslConfiguration_new() {
 	return new QSslConfiguration();
 }

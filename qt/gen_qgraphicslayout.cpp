@@ -8,10 +8,6 @@
 #include <qgraphicslayout.h>
 #include "gen_qgraphicslayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsLayout : public virtual QGraphicsLayout {
 public:
 

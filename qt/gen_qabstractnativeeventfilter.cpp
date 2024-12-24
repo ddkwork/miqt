@@ -5,10 +5,6 @@
 #include <qabstractnativeeventfilter.h>
 #include "gen_qabstractnativeeventfilter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractNativeEventFilter : public virtual QAbstractNativeEventFilter {
 public:
 

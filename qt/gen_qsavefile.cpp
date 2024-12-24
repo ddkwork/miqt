@@ -12,10 +12,6 @@
 #include <qsavefile.h>
 #include "gen_qsavefile.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSaveFile : public virtual QSaveFile {
 public:
 

@@ -20,10 +20,6 @@
 #include <qsvgrenderer.h>
 #include "gen_qsvgrenderer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSvgRenderer : public virtual QSvgRenderer {
 public:
 

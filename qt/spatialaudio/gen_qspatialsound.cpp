@@ -17,10 +17,6 @@
 #include <qspatialsound.h>
 #include "gen_qspatialsound.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSpatialSound : public virtual QSpatialSound {
 public:
 

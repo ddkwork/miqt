@@ -39,10 +39,6 @@
 #include <qframe.h>
 #include "gen_qframe.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFrame : public virtual QFrame {
 public:
 

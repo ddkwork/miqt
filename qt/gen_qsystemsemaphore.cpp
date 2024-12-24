@@ -8,10 +8,6 @@
 #include <qsystemsemaphore.h>
 #include "gen_qsystemsemaphore.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSystemSemaphore* QSystemSemaphore_new(QNativeIpcKey* key) {
 	return new QSystemSemaphore(*key);
 }

@@ -15,10 +15,6 @@
 #include <qabstractanimation.h>
 #include "gen_qabstractanimation.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractAnimation : public virtual QAbstractAnimation {
 public:
 

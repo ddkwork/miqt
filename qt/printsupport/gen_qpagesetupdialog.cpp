@@ -20,10 +20,6 @@
 #include <qpagesetupdialog.h>
 #include "gen_qpagesetupdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPageSetupDialog : public virtual QPageSetupDialog {
 public:
 

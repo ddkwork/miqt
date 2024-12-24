@@ -8,10 +8,6 @@
 #include <qhostaddress.h>
 #include "gen_qhostaddress.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QIPv6Address* QIPv6Address_new() {
 	return new QIPv6Address();
 }

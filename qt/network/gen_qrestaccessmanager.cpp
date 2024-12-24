@@ -22,10 +22,6 @@
 #include <qrestaccessmanager.h>
 #include "gen_qrestaccessmanager.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQRestAccessManager : public virtual QRestAccessManager {
 public:
 

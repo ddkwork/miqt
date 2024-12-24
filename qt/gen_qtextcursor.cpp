@@ -20,10 +20,6 @@
 #include <qtextcursor.h>
 #include "gen_qtextcursor.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextCursor* QTextCursor_new() {
 	return new QTextCursor();
 }

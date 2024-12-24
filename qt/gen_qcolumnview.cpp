@@ -37,10 +37,6 @@
 #include <qcolumnview.h>
 #include "gen_qcolumnview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQColumnView : public virtual QColumnView {
 public:
 

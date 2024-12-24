@@ -9,10 +9,6 @@
 #include <qversionnumber.h>
 #include "gen_qversionnumber.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QVersionNumber* QVersionNumber_new() {
 	return new QVersionNumber();
 }

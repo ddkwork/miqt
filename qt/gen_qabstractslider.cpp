@@ -38,10 +38,6 @@
 #include <qabstractslider.h>
 #include "gen_qabstractslider.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractSlider : public virtual QAbstractSlider {
 public:
 

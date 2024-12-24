@@ -13,10 +13,6 @@
 #include <qscroller.h>
 #include "gen_qscroller.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QScroller_virtbase(QScroller* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

@@ -13,10 +13,6 @@
 #include <qtimezone.h>
 #include "gen_qtimezone.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTimeZone* QTimeZone_new() {
 	return new QTimeZone();
 }

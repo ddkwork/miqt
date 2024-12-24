@@ -25,10 +25,6 @@
 #include <qproxystyle.h>
 #include "gen_qproxystyle.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQProxyStyle : public virtual QProxyStyle {
 public:
 

@@ -13,10 +13,6 @@
 #include <qpointingdevice.h>
 #include "gen_qpointingdevice.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPointingDeviceUniqueId* QPointingDeviceUniqueId_new() {
 	return new QPointingDeviceUniqueId();
 }

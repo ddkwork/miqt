@@ -16,10 +16,6 @@
 #include <qaudioroom.h>
 #include "gen_qaudioroom.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAudioRoom : public virtual QAudioRoom {
 public:
 

@@ -39,10 +39,6 @@
 #include <qdockwidget.h>
 #include "gen_qdockwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQDockWidget : public virtual QDockWidget {
 public:
 

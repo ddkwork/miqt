@@ -38,10 +38,6 @@
 #include <qwindow.h>
 #include "gen_qwindow.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQWindow : public virtual QWindow {
 public:
 

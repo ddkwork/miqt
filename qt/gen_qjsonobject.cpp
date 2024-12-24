@@ -15,10 +15,6 @@
 #include <qjsonobject.h>
 #include "gen_qjsonobject.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QJsonObject* QJsonObject_new() {
 	return new QJsonObject();
 }

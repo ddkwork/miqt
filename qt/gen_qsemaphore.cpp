@@ -6,10 +6,6 @@
 #include <qsemaphore.h>
 #include "gen_qsemaphore.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSemaphore* QSemaphore_new() {
 	return new QSemaphore();
 }

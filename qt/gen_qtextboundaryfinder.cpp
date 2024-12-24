@@ -8,10 +8,6 @@
 #include <qtextboundaryfinder.h>
 #include "gen_qtextboundaryfinder.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextBoundaryFinder* QTextBoundaryFinder_new() {
 	return new QTextBoundaryFinder();
 }

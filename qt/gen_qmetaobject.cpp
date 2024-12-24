@@ -17,10 +17,6 @@
 #include <qmetaobject.h>
 #include "gen_qmetaobject.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMetaMethod* QMetaMethod_new() {
 	return new QMetaMethod();
 }

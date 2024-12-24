@@ -38,10 +38,6 @@
 #include <qsvgwidget.h>
 #include "gen_qsvgwidget.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSvgWidget : public virtual QSvgWidget {
 public:
 

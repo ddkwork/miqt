@@ -4,10 +4,6 @@
 #include <qscopedpointer.h>
 #include "gen_qscopedpointer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QScopedPointerPodDeleter_Cleanup(void* pointer) {
 	QScopedPointerPodDeleter::cleanup(pointer);
 }

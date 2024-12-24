@@ -12,10 +12,6 @@
 #include <qfiledevice.h>
 #include "gen_qfiledevice.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QFileDevice_virtbase(QFileDevice* src, QIODevice** outptr_QIODevice) {
 	*outptr_QIODevice = static_cast<QIODevice*>(src);
 }

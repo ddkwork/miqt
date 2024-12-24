@@ -11,10 +11,6 @@
 #include <qglyphrun.h>
 #include "gen_qglyphrun.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QGlyphRun* QGlyphRun_new() {
 	return new QGlyphRun();
 }

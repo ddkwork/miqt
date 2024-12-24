@@ -27,10 +27,6 @@
 #include <qabstractscrollarea.h>
 #include "gen_qabstractscrollarea.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractScrollArea : public virtual QAbstractScrollArea {
 public:
 

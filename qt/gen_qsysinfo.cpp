@@ -8,10 +8,6 @@
 #include <qsysinfo.h>
 #include "gen_qsysinfo.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_string QSysInfo_BuildCpuArchitecture() {
 	QString _ret = QSysInfo::buildCpuArchitecture();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory

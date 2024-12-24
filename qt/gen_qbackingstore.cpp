@@ -9,10 +9,6 @@
 #include <qbackingstore.h>
 #include "gen_qbackingstore.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QBackingStore* QBackingStore_new(QWindow* window) {
 	return new QBackingStore(window);
 }

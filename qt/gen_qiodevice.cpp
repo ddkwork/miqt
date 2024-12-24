@@ -16,10 +16,6 @@
 #include <qiodevice.h>
 #include "gen_qiodevice.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQIODevice : public virtual QIODevice {
 public:
 

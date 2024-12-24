@@ -22,10 +22,6 @@
 #include <qprogressdialog.h>
 #include "gen_qprogressdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQProgressDialog : public virtual QProgressDialog {
 public:
 

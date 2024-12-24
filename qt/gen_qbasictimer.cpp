@@ -5,10 +5,6 @@
 #include <qbasictimer.h>
 #include "gen_qbasictimer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QBasicTimer* QBasicTimer_new() {
 	return new QBasicTimer();
 }

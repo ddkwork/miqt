@@ -19,10 +19,6 @@
 #include <qerrormessage.h>
 #include "gen_qerrormessage.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQErrorMessage : public virtual QErrorMessage {
 public:
 

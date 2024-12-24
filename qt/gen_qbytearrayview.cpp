@@ -5,10 +5,6 @@
 #include <qbytearrayview.h>
 #include "gen_qbytearrayview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QByteArrayView* QByteArrayView_new() {
 	return new QByteArrayView();
 }

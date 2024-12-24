@@ -11,10 +11,6 @@
 #include <qrect.h>
 #include "gen_qrect.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRect* QRect_new() {
 	return new QRect();
 }

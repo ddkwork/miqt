@@ -17,10 +17,6 @@
 #include <qtexttable.h>
 #include "gen_qtexttable.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextTableCell* QTextTableCell_new() {
 	return new QTextTableCell();
 }

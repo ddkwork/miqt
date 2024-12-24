@@ -5,10 +5,6 @@
 #include <qpropertyprivate.h>
 #include "gen_qpropertyprivate.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QUntypedPropertyData_Delete(QUntypedPropertyData* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QUntypedPropertyData*>( self );

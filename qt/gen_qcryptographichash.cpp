@@ -7,10 +7,6 @@
 #include <qcryptographichash.h>
 #include "gen_qcryptographichash.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCryptographicHash* QCryptographicHash_new(Algorithm method) {
 	return new QCryptographicHash(method);
 }

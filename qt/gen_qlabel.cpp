@@ -23,10 +23,6 @@
 #include <qlabel.h>
 #include "gen_qlabel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLabel : public virtual QLabel {
 public:
 

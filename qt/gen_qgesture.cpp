@@ -22,10 +22,6 @@
 #include <qgesture.h>
 #include "gen_qgesture.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGesture : public virtual QGesture {
 public:
 

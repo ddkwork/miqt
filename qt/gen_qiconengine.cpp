@@ -14,10 +14,6 @@
 #include <qiconengine.h>
 #include "gen_qiconengine.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQIconEngine : public virtual QIconEngine {
 public:
 

@@ -8,10 +8,6 @@
 #include <qsslerror.h>
 #include "gen_qsslerror.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslError* QSslError_new() {
 	return new QSslError();
 }

@@ -10,10 +10,6 @@
 #include <qcommandlineparser.h>
 #include "gen_qcommandlineparser.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCommandLineParser* QCommandLineParser_new() {
 	return new QCommandLineParser();
 }

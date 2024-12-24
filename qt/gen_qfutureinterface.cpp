@@ -10,10 +10,6 @@
 #include <qfutureinterface.h>
 #include "gen_qfutureinterface.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFutureInterfaceBase* QFutureInterfaceBase_new() {
 	return new QFutureInterfaceBase();
 }

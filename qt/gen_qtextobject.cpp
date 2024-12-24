@@ -28,10 +28,6 @@
 #include <qtextobject.h>
 #include "gen_qtextobject.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QTextObject_virtbase(QTextObject* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

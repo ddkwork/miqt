@@ -9,10 +9,6 @@
 #include <qlibraryinfo.h>
 #include "gen_qlibraryinfo.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 const char* QLibraryInfo_Build() {
 	return (const char*) QLibraryInfo::build();
 }

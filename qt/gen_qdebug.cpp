@@ -14,10 +14,6 @@
 #include <qdebug.h>
 #include "gen_qdebug.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QDebug* QDebug_new(QIODevice* device) {
 	return new QDebug(device);
 }

@@ -14,10 +14,6 @@
 #include <qwebchannelabstracttransport.h>
 #include "gen_qwebchannelabstracttransport.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQWebChannelAbstractTransport : public virtual QWebChannelAbstractTransport {
 public:
 

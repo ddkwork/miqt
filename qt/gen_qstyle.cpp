@@ -26,10 +26,6 @@
 #include <qstyle.h>
 #include "gen_qstyle.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStyle : public virtual QStyle {
 public:
 

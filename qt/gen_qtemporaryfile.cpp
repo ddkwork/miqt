@@ -13,10 +13,6 @@
 #include <qtemporaryfile.h>
 #include "gen_qtemporaryfile.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTemporaryFile : public virtual QTemporaryFile {
 public:
 

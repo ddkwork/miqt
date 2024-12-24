@@ -17,10 +17,6 @@
 #include <qbrush.h>
 #include "gen_qbrush.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QBrush* QBrush_new() {
 	return new QBrush();
 }

@@ -23,10 +23,6 @@
 #include <qsslsocket.h>
 #include "gen_qsslsocket.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSslSocket : public virtual QSslSocket {
 public:
 

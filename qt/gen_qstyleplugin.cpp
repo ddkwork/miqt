@@ -14,10 +14,6 @@
 #include <qstyleplugin.h>
 #include "gen_qstyleplugin.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQStylePlugin : public virtual QStylePlugin {
 public:
 

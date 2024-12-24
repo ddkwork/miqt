@@ -15,10 +15,6 @@
 #include <qsyntaxhighlighter.h>
 #include "gen_qsyntaxhighlighter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSyntaxHighlighter : public virtual QSyntaxHighlighter {
 public:
 

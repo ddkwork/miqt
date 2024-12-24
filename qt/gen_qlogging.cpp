@@ -8,10 +8,6 @@
 #include <qlogging.h>
 #include "gen_qlogging.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMessageLogContext* QMessageLogContext_new() {
 	return new QMessageLogContext();
 }

@@ -9,10 +9,6 @@
 #include <qrestreply.h>
 #include "gen_qrestreply.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QRestReply* QRestReply_new(QNetworkReply* reply) {
 	return new QRestReply(reply);
 }

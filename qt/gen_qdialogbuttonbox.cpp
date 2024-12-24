@@ -40,10 +40,6 @@
 #include <qdialogbuttonbox.h>
 #include "gen_qdialogbuttonbox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQDialogButtonBox : public virtual QDialogButtonBox {
 public:
 

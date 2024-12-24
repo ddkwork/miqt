@@ -9,10 +9,6 @@
 #include <qplugin.h>
 #include "gen_qplugin.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 unsigned char QPluginMetaData_ArchRequirements() {
 	quint8 _ret = QPluginMetaData::archRequirements();
 	return static_cast<unsigned char>(_ret);

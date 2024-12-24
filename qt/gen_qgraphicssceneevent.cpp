@@ -18,10 +18,6 @@
 #include <qgraphicssceneevent.h>
 #include "gen_qgraphicssceneevent.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsSceneEvent : public virtual QGraphicsSceneEvent {
 public:
 

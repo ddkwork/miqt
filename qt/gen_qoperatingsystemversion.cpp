@@ -10,10 +10,6 @@
 #include <qoperatingsystemversion.h>
 #include "gen_qoperatingsystemversion.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QOperatingSystemVersionBase* QOperatingSystemVersionBase_new(OSType osType, int vmajor) {
 	return new QOperatingSystemVersionBase(osType, static_cast<int>(vmajor));
 }

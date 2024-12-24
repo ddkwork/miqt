@@ -19,10 +19,6 @@
 #include <qidentityproxymodel.h>
 #include "gen_qidentityproxymodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQIdentityProxyModel : public virtual QIdentityProxyModel {
 public:
 

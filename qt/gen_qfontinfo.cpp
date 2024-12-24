@@ -10,10 +10,6 @@
 #include <qfontinfo.h>
 #include "gen_qfontinfo.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QFontInfo* QFontInfo_new(QFont* param1) {
 	return new QFontInfo(*param1);
 }

@@ -7,10 +7,6 @@
 #include <qpaintdevice.h>
 #include "gen_qpaintdevice.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 int QPaintDevice_DevType(const QPaintDevice* self) {
 	return self->devType();
 }

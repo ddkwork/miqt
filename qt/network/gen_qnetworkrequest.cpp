@@ -17,10 +17,6 @@
 #include <qnetworkrequest.h>
 #include "gen_qnetworkrequest.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNetworkRequest* QNetworkRequest_new() {
 	return new QNetworkRequest();
 }

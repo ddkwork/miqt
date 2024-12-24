@@ -16,10 +16,6 @@
 #include <qformlayout.h>
 #include "gen_qformlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFormLayout : public virtual QFormLayout {
 public:
 

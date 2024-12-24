@@ -4,10 +4,6 @@
 #include <qhttp2configuration.h>
 #include "gen_qhttp2configuration.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHttp2Configuration* QHttp2Configuration_new() {
 	return new QHttp2Configuration();
 }

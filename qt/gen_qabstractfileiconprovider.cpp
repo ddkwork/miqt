@@ -9,10 +9,6 @@
 #include <qabstractfileiconprovider.h>
 #include "gen_qabstractfileiconprovider.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAbstractFileIconProvider : public virtual QAbstractFileIconProvider {
 public:
 

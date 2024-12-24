@@ -7,10 +7,6 @@
 #include <qsslellipticcurve.h>
 #include "gen_qsslellipticcurve.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QSslEllipticCurve* QSslEllipticCurve_new() {
 	return new QSslEllipticCurve();
 }

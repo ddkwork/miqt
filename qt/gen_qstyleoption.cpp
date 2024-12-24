@@ -33,10 +33,6 @@
 #include <qstyleoption.h>
 #include "gen_qstyleoption.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStyleOption* QStyleOption_new() {
 	return new QStyleOption();
 }

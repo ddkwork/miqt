@@ -31,10 +31,6 @@
 #include <qmdiarea.h>
 #include "gen_qmdiarea.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQMdiArea : public virtual QMdiArea {
 public:
 

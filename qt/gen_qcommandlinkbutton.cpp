@@ -21,10 +21,6 @@
 #include <qcommandlinkbutton.h>
 #include "gen_qcommandlinkbutton.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQCommandLinkButton : public virtual QCommandLinkButton {
 public:
 

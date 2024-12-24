@@ -22,10 +22,6 @@
 #include <qobject.h>
 #include "gen_qobject.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMetaObject* QObjectData_DynamicMetaObject(const QObjectData* self) {
 	return self->dynamicMetaObject();
 }

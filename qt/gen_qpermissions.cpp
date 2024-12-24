@@ -11,10 +11,6 @@
 #include <qpermissions.h>
 #include "gen_qpermissions.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QPermission* QPermission_new() {
 	return new QPermission();
 }

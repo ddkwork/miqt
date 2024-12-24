@@ -25,10 +25,6 @@
 #include <qabstractitemmodel.h>
 #include "gen_qabstractitemmodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QModelRoleData* QModelRoleData_new(int role) {
 	return new QModelRoleData(static_cast<int>(role));
 }

@@ -38,10 +38,6 @@
 #include <qfocusframe.h>
 #include "gen_qfocusframe.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFocusFrame : public virtual QFocusFrame {
 public:
 

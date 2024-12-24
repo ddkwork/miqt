@@ -17,10 +17,6 @@
 #include <qhttpmultipart.h>
 #include "gen_qhttpmultipart.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHttpPart* QHttpPart_new() {
 	return new QHttpPart();
 }

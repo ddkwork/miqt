@@ -9,10 +9,6 @@
 #include <qanystringview.h>
 #include "gen_qanystringview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QAnyStringView* QAnyStringView_new() {
 	return new QAnyStringView();
 }

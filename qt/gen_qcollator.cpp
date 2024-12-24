@@ -10,10 +10,6 @@
 #include <qcollator.h>
 #include "gen_qcollator.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCollatorSortKey* QCollatorSortKey_new(QCollatorSortKey* other) {
 	return new QCollatorSortKey(*other);
 }

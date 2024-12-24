@@ -70,10 +70,6 @@
 #include <qevent.h>
 #include "gen_qevent.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQInputEvent : public virtual QInputEvent {
 public:
 

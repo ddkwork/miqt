@@ -14,10 +14,6 @@
 #include <qprintdialog.h>
 #include "gen_qprintdialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPrintDialog : public virtual QPrintDialog {
 public:
 

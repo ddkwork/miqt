@@ -28,10 +28,6 @@
 #include <qspinbox.h>
 #include "gen_qspinbox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSpinBox : public virtual QSpinBox {
 public:
 

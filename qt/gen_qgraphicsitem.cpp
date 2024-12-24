@@ -56,10 +56,6 @@
 #include <qgraphicsitem.h>
 #include "gen_qgraphicsitem.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsItem : public virtual QGraphicsItem {
 public:
 

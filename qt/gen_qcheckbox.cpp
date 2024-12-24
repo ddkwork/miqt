@@ -21,10 +21,6 @@
 #include <qcheckbox.h>
 #include "gen_qcheckbox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQCheckBox : public virtual QCheckBox {
 public:
 

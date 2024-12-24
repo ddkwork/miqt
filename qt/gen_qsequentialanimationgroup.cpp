@@ -13,10 +13,6 @@
 #include <qsequentialanimationgroup.h>
 #include "gen_qsequentialanimationgroup.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSequentialAnimationGroup : public virtual QSequentialAnimationGroup {
 public:
 

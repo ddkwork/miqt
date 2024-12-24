@@ -3,10 +3,6 @@
 #include <qfloat16.h>
 #include "gen_qfloat16.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 qfloat16* qfloat16_new() {
 	return new qfloat16();
 }

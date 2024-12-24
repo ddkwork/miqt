@@ -8,10 +8,6 @@
 #include <qhstspolicy.h>
 #include "gen_qhstspolicy.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHstsPolicy* QHstsPolicy_new() {
 	return new QHstsPolicy();
 }

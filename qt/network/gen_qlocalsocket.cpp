@@ -11,10 +11,6 @@
 #include <qlocalsocket.h>
 #include "gen_qlocalsocket.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQLocalSocket : public virtual QLocalSocket {
 public:
 

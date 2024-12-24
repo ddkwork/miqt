@@ -19,10 +19,6 @@
 #include <qcompleter.h>
 #include "gen_qcompleter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQCompleter : public virtual QCompleter {
 public:
 

@@ -5,10 +5,6 @@
 #include <qbitarray.h>
 #include "gen_qbitarray.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QBitArray* QBitArray_new() {
 	return new QBitArray();
 }

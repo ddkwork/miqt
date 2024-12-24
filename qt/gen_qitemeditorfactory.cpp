@@ -7,10 +7,6 @@
 #include <qitemeditorfactory.h>
 #include "gen_qitemeditorfactory.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QWidget* QItemEditorCreatorBase_CreateWidget(const QItemEditorCreatorBase* self, QWidget* parent) {
 	return self->createWidget(parent);
 }

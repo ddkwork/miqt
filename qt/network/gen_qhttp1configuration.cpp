@@ -4,10 +4,6 @@
 #include <qhttp1configuration.h>
 #include "gen_qhttp1configuration.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHttp1Configuration* QHttp1Configuration_new() {
 	return new QHttp1Configuration();
 }

@@ -12,10 +12,6 @@
 #include <qtooltip.h>
 #include "gen_qtooltip.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QToolTip_ShowText(QPoint* pos, struct miqt_string text) {
 	QString text_QString = QString::fromUtf8(text.data, text.len);
 	QToolTip::showText(*pos, text_QString);

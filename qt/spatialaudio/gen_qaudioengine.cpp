@@ -13,10 +13,6 @@
 #include <qaudioengine.h>
 #include "gen_qaudioengine.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAudioEngine : public virtual QAudioEngine {
 public:
 

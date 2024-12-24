@@ -13,10 +13,6 @@
 #include <qtimer.h>
 #include "gen_qtimer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTimer : public virtual QTimer {
 public:
 

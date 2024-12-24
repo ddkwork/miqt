@@ -24,10 +24,6 @@
 #include <qmessagebox.h>
 #include "gen_qmessagebox.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQMessageBox : public virtual QMessageBox {
 public:
 

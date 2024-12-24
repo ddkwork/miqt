@@ -34,10 +34,6 @@
 #include <qtextbrowser.h>
 #include "gen_qtextbrowser.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTextBrowser : public virtual QTextBrowser {
 public:
 

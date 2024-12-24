@@ -13,10 +13,6 @@
 #include <qbitmap.h>
 #include "gen_qbitmap.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQBitmap : public virtual QBitmap {
 public:
 

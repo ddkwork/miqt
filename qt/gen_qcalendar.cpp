@@ -13,10 +13,6 @@
 #include <qcalendar.h>
 #include "gen_qcalendar.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCalendar* QCalendar_new() {
 	return new QCalendar();
 }

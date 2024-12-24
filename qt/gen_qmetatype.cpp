@@ -11,10 +11,6 @@
 #include <qmetatype.h>
 #include "gen_qmetatype.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMetaType* QMetaType_new(int typeVal) {
 	return new QMetaType(static_cast<int>(typeVal));
 }

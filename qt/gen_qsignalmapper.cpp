@@ -13,10 +13,6 @@
 #include <qsignalmapper.h>
 #include "gen_qsignalmapper.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSignalMapper : public virtual QSignalMapper {
 public:
 

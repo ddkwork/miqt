@@ -6,10 +6,6 @@
 #include <qnamespace.h>
 #include "gen_qnamespace.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 Disambiguated_t* Disambiguated_t_new() {
 	return new Qt::Disambiguated_t();
 }

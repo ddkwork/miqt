@@ -8,10 +8,6 @@
 #include <qfactoryinterface.h>
 #include "gen_qfactoryinterface.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_array /* of struct miqt_string */  QFactoryInterface_Keys(const QFactoryInterface* self) {
 	QStringList _ret = self->keys();
 	// Convert QList<> from C++ memory to manually-managed C memory

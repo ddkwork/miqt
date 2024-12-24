@@ -22,10 +22,6 @@
 #include <qpixmap.h>
 #include "gen_qpixmap.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPixmap : public virtual QPixmap {
 public:
 

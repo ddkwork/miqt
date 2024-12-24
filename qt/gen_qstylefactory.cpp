@@ -9,10 +9,6 @@
 #include <qstylefactory.h>
 #include "gen_qstylefactory.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_array /* of struct miqt_string */  QStyleFactory_Keys() {
 	QStringList _ret = QStyleFactory::keys();
 	// Convert QList<> from C++ memory to manually-managed C memory

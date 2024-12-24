@@ -41,10 +41,6 @@
 #include <qmdisubwindow.h>
 #include "gen_qmdisubwindow.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQMdiSubWindow : public virtual QMdiSubWindow {
 public:
 

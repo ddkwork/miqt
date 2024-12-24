@@ -16,10 +16,6 @@
 #include <qtcpserver.h>
 #include "gen_qtcpserver.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTcpServer : public virtual QTcpServer {
 public:
 

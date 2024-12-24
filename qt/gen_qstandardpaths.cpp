@@ -8,10 +8,6 @@
 #include <qstandardpaths.h>
 #include "gen_qstandardpaths.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 struct miqt_string QStandardPaths_WritableLocation(StandardLocation typeVal) {
 	QString _ret = QStandardPaths::writableLocation(typeVal);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory

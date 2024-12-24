@@ -7,10 +7,6 @@
 #include <qmessageauthenticationcode.h>
 #include "gen_qmessageauthenticationcode.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMessageAuthenticationCode* QMessageAuthenticationCode_new(int method) {
 	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method));
 }

@@ -31,10 +31,6 @@
 #include <qtextdocument.h>
 #include "gen_qtextdocument.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QAbstractUndoItem_Undo(QAbstractUndoItem* self) {
 	self->undo();
 }

@@ -11,10 +11,6 @@
 #include <qstatictext.h>
 #include "gen_qstatictext.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStaticText* QStaticText_new() {
 	return new QStaticText();
 }

@@ -7,10 +7,6 @@
 #include <qwaitcondition.h>
 #include "gen_qwaitcondition.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QWaitCondition* QWaitCondition_new() {
 	return new QWaitCondition();
 }

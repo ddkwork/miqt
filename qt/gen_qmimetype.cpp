@@ -8,10 +8,6 @@
 #include <qmimetype.h>
 #include "gen_qmimetype.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QMimeType* QMimeType_new() {
 	return new QMimeType();
 }

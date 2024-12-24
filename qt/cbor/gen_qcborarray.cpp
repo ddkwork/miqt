@@ -14,10 +14,6 @@
 #include <qcborarray.h>
 #include "gen_qcborarray.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCborArray* QCborArray_new() {
 	return new QCborArray();
 }

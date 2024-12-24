@@ -20,10 +20,6 @@
 #include <qcolordialog.h>
 #include "gen_qcolordialog.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQColorDialog : public virtual QColorDialog {
 public:
 

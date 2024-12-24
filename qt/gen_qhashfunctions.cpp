@@ -4,10 +4,6 @@
 #include <qhashfunctions.h>
 #include "gen_qhashfunctions.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QHashSeed* QHashSeed_new() {
 	return new QHashSeed();
 }

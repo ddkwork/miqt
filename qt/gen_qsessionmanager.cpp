@@ -10,10 +10,6 @@
 #include <qsessionmanager.h>
 #include "gen_qsessionmanager.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 void QSessionManager_virtbase(QSessionManager* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
 }

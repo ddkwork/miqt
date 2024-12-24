@@ -24,10 +24,6 @@
 #include <qpdfwriter.h>
 #include "gen_qpdfwriter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQPdfWriter : public virtual QPdfWriter {
 public:
 

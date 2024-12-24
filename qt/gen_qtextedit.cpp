@@ -44,10 +44,6 @@
 #include <qtextedit.h>
 #include "gen_qtextedit.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQTextEdit : public virtual QTextEdit {
 public:
 

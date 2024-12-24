@@ -7,10 +7,6 @@
 #include <qtipccommon.h>
 #include "gen_qtipccommon.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QNativeIpcKey* QNativeIpcKey_new() {
 	return new QNativeIpcKey();
 }

@@ -9,10 +9,6 @@
 #include <qgraphicslinearlayout.h>
 #include "gen_qgraphicslinearlayout.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsLinearLayout : public virtual QGraphicsLinearLayout {
 public:
 

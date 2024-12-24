@@ -7,10 +7,6 @@
 #include <qcompare.h>
 #include "gen_qcompare.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 partial_ordering* partial_ordering_new(const partial_ordering* param1) {
 	return new Qt::partial_ordering(*param1);
 }

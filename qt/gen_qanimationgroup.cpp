@@ -11,10 +11,6 @@
 #include <qanimationgroup.h>
 #include "gen_qanimationgroup.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQAnimationGroup : public virtual QAnimationGroup {
 public:
 

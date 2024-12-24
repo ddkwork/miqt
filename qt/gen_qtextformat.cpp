@@ -23,10 +23,6 @@
 #include <qtextformat.h>
 #include "gen_qtextformat.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QTextLength* QTextLength_new() {
 	return new QTextLength();
 }

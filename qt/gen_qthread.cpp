@@ -15,10 +15,6 @@
 #include <qthread.h>
 #include "gen_qthread.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQThread : public virtual QThread {
 public:
 

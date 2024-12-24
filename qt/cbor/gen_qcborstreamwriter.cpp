@@ -6,10 +6,6 @@
 #include <qcborstreamwriter.h>
 #include "gen_qcborstreamwriter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QCborStreamWriter* QCborStreamWriter_new(QIODevice* device) {
 	return new QCborStreamWriter(device);
 }

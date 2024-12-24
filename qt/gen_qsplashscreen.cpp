@@ -40,10 +40,6 @@
 #include <qsplashscreen.h>
 #include "gen_qsplashscreen.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSplashScreen : public virtual QSplashScreen {
 public:
 

@@ -16,10 +16,6 @@
 #include <qstylepainter.h>
 #include "gen_qstylepainter.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QStylePainter* QStylePainter_new(QWidget* w) {
 	return new QStylePainter(w);
 }

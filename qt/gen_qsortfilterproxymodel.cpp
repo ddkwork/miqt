@@ -20,10 +20,6 @@
 #include <qsortfilterproxymodel.h>
 #include "gen_qsortfilterproxymodel.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQSortFilterProxyModel : public virtual QSortFilterProxyModel {
 public:
 

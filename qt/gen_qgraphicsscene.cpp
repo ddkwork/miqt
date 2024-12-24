@@ -48,10 +48,6 @@
 #include <qgraphicsscene.h>
 #include "gen_qgraphicsscene.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsScene : public virtual QGraphicsScene {
 public:
 

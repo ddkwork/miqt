@@ -41,10 +41,6 @@
 #include <qkeysequenceedit.h>
 #include "gen_qkeysequenceedit.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQKeySequenceEdit : public virtual QKeySequenceEdit {
 public:
 

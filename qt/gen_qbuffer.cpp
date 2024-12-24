@@ -13,10 +13,6 @@
 #include <qbuffer.h>
 #include "gen_qbuffer.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQBuffer : public virtual QBuffer {
 public:
 

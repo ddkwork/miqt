@@ -14,10 +14,6 @@
 #include <qfilesystemwatcher.h>
 #include "gen_qfilesystemwatcher.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQFileSystemWatcher : public virtual QFileSystemWatcher {
 public:
 

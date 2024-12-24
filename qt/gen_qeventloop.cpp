@@ -16,10 +16,6 @@
 #include <qeventloop.h>
 #include "gen_qeventloop.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQEventLoop : public virtual QEventLoop {
 public:
 

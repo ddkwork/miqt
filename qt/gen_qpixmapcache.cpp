@@ -9,10 +9,6 @@
 #include <qpixmapcache.h>
 #include "gen_qpixmapcache.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 int QPixmapCache_CacheLimit() {
 	return QPixmapCache::cacheLimit();
 }

@@ -11,10 +11,6 @@
 #include <qcolorspace.h>
 #include "gen_qcolorspace.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QColorSpace* QColorSpace_new() {
 	return new QColorSpace();
 }

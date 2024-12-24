@@ -40,10 +40,6 @@
 #include <qgraphicsview.h>
 #include "gen_qgraphicsview.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 class MiqtVirtualQGraphicsView : public virtual QGraphicsView {
 public:
 

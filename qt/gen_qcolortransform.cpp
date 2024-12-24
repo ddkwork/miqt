@@ -6,10 +6,6 @@
 #include <qcolortransform.h>
 #include "gen_qcolortransform.h"
 
-#ifndef _Bool
-#define _Bool bool
-#endif
-
 QColorTransform* QColorTransform_new() {
 	return new QColorTransform();
 }
