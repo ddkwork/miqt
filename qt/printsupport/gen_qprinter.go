@@ -1,17 +1,7 @@
 package printsupport
 
-/*
-
-#include "gen_qprinter.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
 	"github.com/mappu/miqt/qt"
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -21,13 +11,6 @@ const (
 	QPrinter__ScreenResolution  QPrinter__PrinterMode = 0
 	QPrinter__PrinterResolution QPrinter__PrinterMode = 1
 	QPrinter__HighResolution    QPrinter__PrinterMode = 2
-)
-
-type QPrinter__Orientation int
-
-const (
-	QPrinter__Portrait  QPrinter__Orientation = 0
-	QPrinter__Landscape QPrinter__Orientation = 1
 )
 
 type QPrinter__PageOrder int
@@ -113,46 +96,14 @@ const (
 )
 
 type QPrinter struct {
-	h          *C.QPrinter
+	h          uintptr
 	isSubclass bool
-	*qt.QPagedPaintDevice
-}
-
-func (this *QPrinter) cPointer() *C.QPrinter {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QPrinter) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQPrinter constructs the type using only CGO pointers.
-func newQPrinter(h *C.QPrinter) *QPrinter {
-	if h == nil {
-		return nil
-	}
-	var outptr_QPagedPaintDevice *C.QPagedPaintDevice = nil
-	C.QPrinter_virtbase(h, &outptr_QPagedPaintDevice)
-
-	return &QPrinter{h: h,
-		QPagedPaintDevice: qt.UnsafeNewQPagedPaintDevice(unsafe.Pointer(outptr_QPagedPaintDevice))}
-}
-
-// UnsafeNewQPrinter constructs the type using only unsafe pointers.
-func UnsafeNewQPrinter(h unsafe.Pointer) *QPrinter {
-	return newQPrinter((*C.QPrinter)(h))
 }
 
 // NewQPrinter constructs a new QPrinter object.
 func NewQPrinter() *QPrinter {
 
-	ret := newQPrinter(C.QPrinter_new())
+	ret := newQPrinter(QPrinter_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -160,398 +111,303 @@ func NewQPrinter() *QPrinter {
 // NewQPrinter2 constructs a new QPrinter object.
 func NewQPrinter2(printer *QPrinterInfo) *QPrinter {
 
-	ret := newQPrinter(C.QPrinter_new2(printer.cPointer()))
+	ret := newQPrinter(QPrinter_new2(printer.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQPrinter3 constructs a new QPrinter object.
-func NewQPrinter3(mode QPrinter__PrinterMode) *QPrinter {
+func NewQPrinter3(mode PrinterMode) *QPrinter {
 
-	ret := newQPrinter(C.QPrinter_new3((C.int)(mode)))
+	ret := newQPrinter(QPrinter_new3(mode))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQPrinter4 constructs a new QPrinter object.
-func NewQPrinter4(printer *QPrinterInfo, mode QPrinter__PrinterMode) *QPrinter {
+func NewQPrinter4(printer *QPrinterInfo, mode PrinterMode) *QPrinter {
 
-	ret := newQPrinter(C.QPrinter_new4(printer.cPointer(), (C.int)(mode)))
+	ret := newQPrinter(QPrinter_new4(printer.cPointer(), mode))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QPrinter) DevType() int {
-	return (int)(C.QPrinter_DevType(this.h))
+	return (int)(QPrinter_DevType(this.h))
 }
 
-func (this *QPrinter) SetOutputFormat(format QPrinter__OutputFormat) {
-	C.QPrinter_SetOutputFormat(this.h, (C.int)(format))
+func (this *QPrinter) SetOutputFormat(format OutputFormat) {
+	QPrinter_SetOutputFormat(this.h, format)
 }
 
-func (this *QPrinter) OutputFormat() QPrinter__OutputFormat {
-	return (QPrinter__OutputFormat)(C.QPrinter_OutputFormat(this.h))
+func (this *QPrinter) OutputFormat() OutputFormat {
+	xxxxxxxxx
 }
 
-func (this *QPrinter) SetPdfVersion(version qt.QPagedPaintDevice__PdfVersion) {
-	C.QPrinter_SetPdfVersion(this.h, (C.int)(version))
+func (this *QPrinter) SetPdfVersion(version PdfVersion) {
+	QPrinter_SetPdfVersion(this.h, version)
 }
 
-func (this *QPrinter) PdfVersion() qt.QPagedPaintDevice__PdfVersion {
-	return (qt.QPagedPaintDevice__PdfVersion)(C.QPrinter_PdfVersion(this.h))
+func (this *QPrinter) PdfVersion() PdfVersion {
+	xxxxxxxxx
 }
 
 func (this *QPrinter) SetPrinterName(printerName string) {
-	printerName_ms := C.struct_miqt_string{}
-	printerName_ms.data = C.CString(printerName)
-	printerName_ms.len = C.size_t(len(printerName))
-	defer C.free(unsafe.Pointer(printerName_ms.data))
-	C.QPrinter_SetPrinterName(this.h, printerName_ms)
+	printerName_ms := struct_miqt_string{}
+	printerName_ms.data = CString(printerName)
+	printerName_ms.len = size_t(len(printerName))
+	defer free(unsafe.Pointer(printerName_ms.data))
+	QPrinter_SetPrinterName(this.h, printerName_ms)
 }
 
 func (this *QPrinter) PrinterName() string {
-	var _ms C.struct_miqt_string = C.QPrinter_PrinterName(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QPrinter_PrinterName(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QPrinter) IsValid() bool {
-	return (bool)(C.QPrinter_IsValid(this.h))
+	return (bool)(QPrinter_IsValid(this.h))
 }
 
 func (this *QPrinter) SetOutputFileName(outputFileName string) {
-	outputFileName_ms := C.struct_miqt_string{}
-	outputFileName_ms.data = C.CString(outputFileName)
-	outputFileName_ms.len = C.size_t(len(outputFileName))
-	defer C.free(unsafe.Pointer(outputFileName_ms.data))
-	C.QPrinter_SetOutputFileName(this.h, outputFileName_ms)
+	outputFileName_ms := struct_miqt_string{}
+	outputFileName_ms.data = CString(outputFileName)
+	outputFileName_ms.len = size_t(len(outputFileName))
+	defer free(unsafe.Pointer(outputFileName_ms.data))
+	QPrinter_SetOutputFileName(this.h, outputFileName_ms)
 }
 
 func (this *QPrinter) OutputFileName() string {
-	var _ms C.struct_miqt_string = C.QPrinter_OutputFileName(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QPrinter_OutputFileName(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QPrinter) SetPrintProgram(printProgram string) {
-	printProgram_ms := C.struct_miqt_string{}
-	printProgram_ms.data = C.CString(printProgram)
-	printProgram_ms.len = C.size_t(len(printProgram))
-	defer C.free(unsafe.Pointer(printProgram_ms.data))
-	C.QPrinter_SetPrintProgram(this.h, printProgram_ms)
+	printProgram_ms := struct_miqt_string{}
+	printProgram_ms.data = CString(printProgram)
+	printProgram_ms.len = size_t(len(printProgram))
+	defer free(unsafe.Pointer(printProgram_ms.data))
+	QPrinter_SetPrintProgram(this.h, printProgram_ms)
 }
 
 func (this *QPrinter) PrintProgram() string {
-	var _ms C.struct_miqt_string = C.QPrinter_PrintProgram(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QPrinter_PrintProgram(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QPrinter) SetDocName(docName string) {
-	docName_ms := C.struct_miqt_string{}
-	docName_ms.data = C.CString(docName)
-	docName_ms.len = C.size_t(len(docName))
-	defer C.free(unsafe.Pointer(docName_ms.data))
-	C.QPrinter_SetDocName(this.h, docName_ms)
+	docName_ms := struct_miqt_string{}
+	docName_ms.data = CString(docName)
+	docName_ms.len = size_t(len(docName))
+	defer free(unsafe.Pointer(docName_ms.data))
+	QPrinter_SetDocName(this.h, docName_ms)
 }
 
 func (this *QPrinter) DocName() string {
-	var _ms C.struct_miqt_string = C.QPrinter_DocName(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QPrinter_DocName(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QPrinter) SetCreator(creator string) {
-	creator_ms := C.struct_miqt_string{}
-	creator_ms.data = C.CString(creator)
-	creator_ms.len = C.size_t(len(creator))
-	defer C.free(unsafe.Pointer(creator_ms.data))
-	C.QPrinter_SetCreator(this.h, creator_ms)
+	creator_ms := struct_miqt_string{}
+	creator_ms.data = CString(creator)
+	creator_ms.len = size_t(len(creator))
+	defer free(unsafe.Pointer(creator_ms.data))
+	QPrinter_SetCreator(this.h, creator_ms)
 }
 
 func (this *QPrinter) Creator() string {
-	var _ms C.struct_miqt_string = C.QPrinter_Creator(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QPrinter_Creator(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func (this *QPrinter) SetOrientation(orientation QPrinter__Orientation) {
-	C.QPrinter_SetOrientation(this.h, (C.int)(orientation))
+func (this *QPrinter) SetPageOrder(pageOrder PageOrder) {
+	QPrinter_SetPageOrder(this.h, pageOrder)
 }
 
-func (this *QPrinter) Orientation() QPrinter__Orientation {
-	return (QPrinter__Orientation)(C.QPrinter_Orientation(this.h))
-}
-
-func (this *QPrinter) SetPageSize(pageSize qt.QPagedPaintDevice__PageSize) {
-	C.QPrinter_SetPageSize(this.h, (C.int)(pageSize))
-}
-
-func (this *QPrinter) PageSize() qt.QPagedPaintDevice__PageSize {
-	return (qt.QPagedPaintDevice__PageSize)(C.QPrinter_PageSize(this.h))
-}
-
-func (this *QPrinter) SetPageSizeMM(size *qt.QSizeF) {
-	C.QPrinter_SetPageSizeMM(this.h, (*C.QSizeF)(size.UnsafePointer()))
-}
-
-func (this *QPrinter) SetPaperSize(paperSize qt.QPagedPaintDevice__PageSize) {
-	C.QPrinter_SetPaperSize(this.h, (C.int)(paperSize))
-}
-
-func (this *QPrinter) PaperSize() qt.QPagedPaintDevice__PageSize {
-	return (qt.QPagedPaintDevice__PageSize)(C.QPrinter_PaperSize(this.h))
-}
-
-func (this *QPrinter) SetPaperSize2(paperSize *qt.QSizeF, unit QPrinter__Unit) {
-	C.QPrinter_SetPaperSize2(this.h, (*C.QSizeF)(paperSize.UnsafePointer()), (C.int)(unit))
-}
-
-func (this *QPrinter) PaperSizeWithUnit(unit QPrinter__Unit) *qt.QSizeF {
-	_goptr := qt.UnsafeNewQSizeF(unsafe.Pointer(C.QPrinter_PaperSizeWithUnit(this.h, (C.int)(unit))))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QPrinter) SetPaperName(paperName string) {
-	paperName_ms := C.struct_miqt_string{}
-	paperName_ms.data = C.CString(paperName)
-	paperName_ms.len = C.size_t(len(paperName))
-	defer C.free(unsafe.Pointer(paperName_ms.data))
-	C.QPrinter_SetPaperName(this.h, paperName_ms)
-}
-
-func (this *QPrinter) PaperName() string {
-	var _ms C.struct_miqt_string = C.QPrinter_PaperName(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QPrinter) SetPageOrder(pageOrder QPrinter__PageOrder) {
-	C.QPrinter_SetPageOrder(this.h, (C.int)(pageOrder))
-}
-
-func (this *QPrinter) PageOrder() QPrinter__PageOrder {
-	return (QPrinter__PageOrder)(C.QPrinter_PageOrder(this.h))
+func (this *QPrinter) PageOrder() PageOrder {
+	xxxxxxxxx
 }
 
 func (this *QPrinter) SetResolution(resolution int) {
-	C.QPrinter_SetResolution(this.h, (C.int)(resolution))
+	QPrinter_SetResolution(this.h, (int)(resolution))
 }
 
 func (this *QPrinter) Resolution() int {
-	return (int)(C.QPrinter_Resolution(this.h))
+	return (int)(QPrinter_Resolution(this.h))
 }
 
-func (this *QPrinter) SetColorMode(colorMode QPrinter__ColorMode) {
-	C.QPrinter_SetColorMode(this.h, (C.int)(colorMode))
+func (this *QPrinter) SetColorMode(colorMode ColorMode) {
+	QPrinter_SetColorMode(this.h, colorMode)
 }
 
-func (this *QPrinter) ColorMode() QPrinter__ColorMode {
-	return (QPrinter__ColorMode)(C.QPrinter_ColorMode(this.h))
+func (this *QPrinter) ColorMode() ColorMode {
+	xxxxxxxxx
 }
 
 func (this *QPrinter) SetCollateCopies(collate bool) {
-	C.QPrinter_SetCollateCopies(this.h, (C.bool)(collate))
+	QPrinter_SetCollateCopies(this.h, (bool)(collate))
 }
 
 func (this *QPrinter) CollateCopies() bool {
-	return (bool)(C.QPrinter_CollateCopies(this.h))
+	return (bool)(QPrinter_CollateCopies(this.h))
 }
 
 func (this *QPrinter) SetFullPage(fullPage bool) {
-	C.QPrinter_SetFullPage(this.h, (C.bool)(fullPage))
+	QPrinter_SetFullPage(this.h, (bool)(fullPage))
 }
 
 func (this *QPrinter) FullPage() bool {
-	return (bool)(C.QPrinter_FullPage(this.h))
-}
-
-func (this *QPrinter) SetNumCopies(numCopies int) {
-	C.QPrinter_SetNumCopies(this.h, (C.int)(numCopies))
-}
-
-func (this *QPrinter) NumCopies() int {
-	return (int)(C.QPrinter_NumCopies(this.h))
-}
-
-func (this *QPrinter) ActualNumCopies() int {
-	return (int)(C.QPrinter_ActualNumCopies(this.h))
+	return (bool)(QPrinter_FullPage(this.h))
 }
 
 func (this *QPrinter) SetCopyCount(copyCount int) {
-	C.QPrinter_SetCopyCount(this.h, (C.int)(copyCount))
+	QPrinter_SetCopyCount(this.h, (int)(copyCount))
 }
 
 func (this *QPrinter) CopyCount() int {
-	return (int)(C.QPrinter_CopyCount(this.h))
+	return (int)(QPrinter_CopyCount(this.h))
 }
 
 func (this *QPrinter) SupportsMultipleCopies() bool {
-	return (bool)(C.QPrinter_SupportsMultipleCopies(this.h))
+	return (bool)(QPrinter_SupportsMultipleCopies(this.h))
 }
 
-func (this *QPrinter) SetPaperSource(paperSource QPrinter__PaperSource) {
-	C.QPrinter_SetPaperSource(this.h, (C.int)(paperSource))
+func (this *QPrinter) SetPaperSource(paperSource PaperSource) {
+	QPrinter_SetPaperSource(this.h, paperSource)
 }
 
-func (this *QPrinter) PaperSource() QPrinter__PaperSource {
-	return (QPrinter__PaperSource)(C.QPrinter_PaperSource(this.h))
+func (this *QPrinter) PaperSource() PaperSource {
+	xxxxxxxxx
 }
 
-func (this *QPrinter) SetDuplex(duplex QPrinter__DuplexMode) {
-	C.QPrinter_SetDuplex(this.h, (C.int)(duplex))
+func (this *QPrinter) SetDuplex(duplex DuplexMode) {
+	QPrinter_SetDuplex(this.h, duplex)
 }
 
-func (this *QPrinter) Duplex() QPrinter__DuplexMode {
-	return (QPrinter__DuplexMode)(C.QPrinter_Duplex(this.h))
+func (this *QPrinter) Duplex() DuplexMode {
+	xxxxxxxxx
 }
 
 func (this *QPrinter) SupportedResolutions() []int {
-	var _ma C.struct_miqt_array = C.QPrinter_SupportedResolutions(this.h)
+	var _ma struct_miqt_array = QPrinter_SupportedResolutions(this.h)
 	_ret := make([]int, int(_ma.len))
-	_outCast := (*[0xffff]C.int)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]int)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_ret[i] = (int)(_outCast[i])
 	}
 	return _ret
 }
 
+func (this *QPrinter) SupportedPaperSources() []PaperSource {
+	var _ma struct_miqt_array = QPrinter_SupportedPaperSources(this.h)
+	_ret := make([]PaperSource, int(_ma.len))
+	_outCast := (*[0xffff]PaperSource)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		xxxxxxxxx
+	}
+	return _ret
+}
+
 func (this *QPrinter) SetFontEmbeddingEnabled(enable bool) {
-	C.QPrinter_SetFontEmbeddingEnabled(this.h, (C.bool)(enable))
+	QPrinter_SetFontEmbeddingEnabled(this.h, (bool)(enable))
 }
 
 func (this *QPrinter) FontEmbeddingEnabled() bool {
-	return (bool)(C.QPrinter_FontEmbeddingEnabled(this.h))
+	return (bool)(QPrinter_FontEmbeddingEnabled(this.h))
 }
 
-func (this *QPrinter) SetDoubleSidedPrinting(enable bool) {
-	C.QPrinter_SetDoubleSidedPrinting(this.h, (C.bool)(enable))
-}
-
-func (this *QPrinter) DoubleSidedPrinting() bool {
-	return (bool)(C.QPrinter_DoubleSidedPrinting(this.h))
-}
-
-func (this *QPrinter) SetWinPageSize(winPageSize int) {
-	C.QPrinter_SetWinPageSize(this.h, (C.int)(winPageSize))
-}
-
-func (this *QPrinter) WinPageSize() int {
-	return (int)(C.QPrinter_WinPageSize(this.h))
-}
-
-func (this *QPrinter) PaperRect() *qt.QRect {
-	_goptr := qt.UnsafeNewQRect(unsafe.Pointer(C.QPrinter_PaperRect(this.h)))
+func (this *QPrinter) PaperRect(param1 Unit) *qt.QRectF {
+	_goptr := qt.UnsafeNewQRectF(unsafe.Pointer(QPrinter_PaperRect(this.h, param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QPrinter) PageRect() *qt.QRect {
-	_goptr := qt.UnsafeNewQRect(unsafe.Pointer(C.QPrinter_PageRect(this.h)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QPrinter) PaperRectWithQPrinterUnit(param1 QPrinter__Unit) *qt.QRectF {
-	_goptr := qt.UnsafeNewQRectF(unsafe.Pointer(C.QPrinter_PaperRectWithQPrinterUnit(this.h, (C.int)(param1))))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QPrinter) PageRectWithQPrinterUnit(param1 QPrinter__Unit) *qt.QRectF {
-	_goptr := qt.UnsafeNewQRectF(unsafe.Pointer(C.QPrinter_PageRectWithQPrinterUnit(this.h, (C.int)(param1))))
+func (this *QPrinter) PageRect(param1 Unit) *qt.QRectF {
+	_goptr := qt.UnsafeNewQRectF(unsafe.Pointer(QPrinter_PageRect(this.h, param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QPrinter) PrinterSelectionOption() string {
-	var _ms C.struct_miqt_string = C.QPrinter_PrinterSelectionOption(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QPrinter_PrinterSelectionOption(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QPrinter) SetPrinterSelectionOption(printerSelectionOption string) {
-	printerSelectionOption_ms := C.struct_miqt_string{}
-	printerSelectionOption_ms.data = C.CString(printerSelectionOption)
-	printerSelectionOption_ms.len = C.size_t(len(printerSelectionOption))
-	defer C.free(unsafe.Pointer(printerSelectionOption_ms.data))
-	C.QPrinter_SetPrinterSelectionOption(this.h, printerSelectionOption_ms)
+	printerSelectionOption_ms := struct_miqt_string{}
+	printerSelectionOption_ms.data = CString(printerSelectionOption)
+	printerSelectionOption_ms.len = size_t(len(printerSelectionOption))
+	defer free(unsafe.Pointer(printerSelectionOption_ms.data))
+	QPrinter_SetPrinterSelectionOption(this.h, printerSelectionOption_ms)
 }
 
 func (this *QPrinter) NewPage() bool {
-	return (bool)(C.QPrinter_NewPage(this.h))
+	return (bool)(QPrinter_NewPage(this.h))
 }
 
 func (this *QPrinter) Abort() bool {
-	return (bool)(C.QPrinter_Abort(this.h))
+	return (bool)(QPrinter_Abort(this.h))
 }
 
-func (this *QPrinter) PrinterState() QPrinter__PrinterState {
-	return (QPrinter__PrinterState)(C.QPrinter_PrinterState(this.h))
+func (this *QPrinter) PrinterState() PrinterState {
+	xxxxxxxxx
 }
 
 func (this *QPrinter) PaintEngine() *qt.QPaintEngine {
-	return qt.UnsafeNewQPaintEngine(unsafe.Pointer(C.QPrinter_PaintEngine(this.h)))
+	return qt.UnsafeNewQPaintEngine(unsafe.Pointer(QPrinter_PaintEngine(this.h)))
 }
 
 func (this *QPrinter) PrintEngine() *QPrintEngine {
-	return newQPrintEngine(C.QPrinter_PrintEngine(this.h))
+	return newQPrintEngine(QPrinter_PrintEngine(this.h))
 }
 
 func (this *QPrinter) SetFromTo(fromPage int, toPage int) {
-	C.QPrinter_SetFromTo(this.h, (C.int)(fromPage), (C.int)(toPage))
+	QPrinter_SetFromTo(this.h, (int)(fromPage), (int)(toPage))
 }
 
 func (this *QPrinter) FromPage() int {
-	return (int)(C.QPrinter_FromPage(this.h))
+	return (int)(QPrinter_FromPage(this.h))
 }
 
 func (this *QPrinter) ToPage() int {
-	return (int)(C.QPrinter_ToPage(this.h))
+	return (int)(QPrinter_ToPage(this.h))
 }
 
-func (this *QPrinter) SetPrintRange(rangeVal QPrinter__PrintRange) {
-	C.QPrinter_SetPrintRange(this.h, (C.int)(rangeVal))
+func (this *QPrinter) SetPrintRange(rangeVal PrintRange) {
+	QPrinter_SetPrintRange(this.h, rangeVal)
 }
 
-func (this *QPrinter) PrintRange() QPrinter__PrintRange {
-	return (QPrinter__PrintRange)(C.QPrinter_PrintRange(this.h))
-}
-
-func (this *QPrinter) SetMargins(m *qt.QPagedPaintDevice__Margins) {
-	C.QPrinter_SetMargins(this.h, (*C.QPagedPaintDevice__Margins)(m.UnsafePointer()))
-}
-
-func (this *QPrinter) SetPageMargins(left float64, top float64, right float64, bottom float64, unit QPrinter__Unit) {
-	C.QPrinter_SetPageMargins(this.h, (C.double)(left), (C.double)(top), (C.double)(right), (C.double)(bottom), (C.int)(unit))
-}
-
-func (this *QPrinter) GetPageMargins(left *float64, top *float64, right *float64, bottom *float64, unit QPrinter__Unit) {
-	C.QPrinter_GetPageMargins(this.h, (*C.double)(unsafe.Pointer(left)), (*C.double)(unsafe.Pointer(top)), (*C.double)(unsafe.Pointer(right)), (*C.double)(unsafe.Pointer(bottom)), (C.int)(unit))
+func (this *QPrinter) PrintRange() PrintRange {
+	xxxxxxxxx
 }
 
 func (this *QPrinter) callVirtualBase_DevType() int {
 
-	return (int)(C.QPrinter_virtualbase_DevType(unsafe.Pointer(this.h)))
+	return (int)(QPrinter_virtualbase_DevType(unsafe.Pointer(this.h)))
 
 }
 func (this *QPrinter) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QPrinter_override_virtual_DevType(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QPrinter_override_virtual_DevType(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QPrinter_DevType
-func miqt_exec_callback_QPrinter_DevType(self *C.QPrinter, cb C.intptr_t) C.int {
+func miqt_exec_callback_QPrinter_DevType(self QPrinter, cb intptr_t) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -559,76 +415,24 @@ func miqt_exec_callback_QPrinter_DevType(self *C.QPrinter, cb C.intptr_t) C.int 
 
 	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_DevType)
 
-	return (C.int)(virtualReturn)
-
-}
-
-func (this *QPrinter) callVirtualBase_SetPageSize(pageSize qt.QPagedPaintDevice__PageSize) {
-
-	C.QPrinter_virtualbase_SetPageSize(unsafe.Pointer(this.h), (C.int)(pageSize))
-
-}
-func (this *QPrinter) OnSetPageSize(slot func(super func(pageSize qt.QPagedPaintDevice__PageSize), pageSize qt.QPagedPaintDevice__PageSize)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	C.QPrinter_override_virtual_SetPageSize(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPrinter_SetPageSize
-func miqt_exec_callback_QPrinter_SetPageSize(self *C.QPrinter, cb C.intptr_t, pageSize C.int) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(pageSize qt.QPagedPaintDevice__PageSize), pageSize qt.QPagedPaintDevice__PageSize))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := (qt.QPagedPaintDevice__PageSize)(pageSize)
-
-	gofunc((&QPrinter{h: self}).callVirtualBase_SetPageSize, slotval1)
-
-}
-
-func (this *QPrinter) callVirtualBase_SetPageSizeMM(size *qt.QSizeF) {
-
-	C.QPrinter_virtualbase_SetPageSizeMM(unsafe.Pointer(this.h), (*C.QSizeF)(size.UnsafePointer()))
-
-}
-func (this *QPrinter) OnSetPageSizeMM(slot func(super func(size *qt.QSizeF), size *qt.QSizeF)) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	C.QPrinter_override_virtual_SetPageSizeMM(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPrinter_SetPageSizeMM
-func miqt_exec_callback_QPrinter_SetPageSizeMM(self *C.QPrinter, cb C.intptr_t, size *C.QSizeF) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(size *qt.QSizeF), size *qt.QSizeF))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQSizeF(unsafe.Pointer(size))
-
-	gofunc((&QPrinter{h: self}).callVirtualBase_SetPageSizeMM, slotval1)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QPrinter) callVirtualBase_NewPage() bool {
 
-	return (bool)(C.QPrinter_virtualbase_NewPage(unsafe.Pointer(this.h)))
+	return (bool)(QPrinter_virtualbase_NewPage(unsafe.Pointer(this.h)))
 
 }
 func (this *QPrinter) OnNewPage(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QPrinter_override_virtual_NewPage(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QPrinter_override_virtual_NewPage(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QPrinter_NewPage
-func miqt_exec_callback_QPrinter_NewPage(self *C.QPrinter, cb C.intptr_t) C.bool {
+func miqt_exec_callback_QPrinter_NewPage(self QPrinter, cb intptr_t) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -636,24 +440,24 @@ func miqt_exec_callback_QPrinter_NewPage(self *C.QPrinter, cb C.intptr_t) C.bool
 
 	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_NewPage)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QPrinter) callVirtualBase_PaintEngine() *qt.QPaintEngine {
 
-	return qt.UnsafeNewQPaintEngine(unsafe.Pointer(C.QPrinter_virtualbase_PaintEngine(unsafe.Pointer(this.h))))
+	return qt.UnsafeNewQPaintEngine(unsafe.Pointer(QPrinter_virtualbase_PaintEngine(unsafe.Pointer(this.h))))
 
 }
 func (this *QPrinter) OnPaintEngine(slot func(super func() *qt.QPaintEngine) *qt.QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QPrinter_override_virtual_PaintEngine(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QPrinter_override_virtual_PaintEngine(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QPrinter_PaintEngine
-func miqt_exec_callback_QPrinter_PaintEngine(self *C.QPrinter, cb C.intptr_t) *C.QPaintEngine {
+func miqt_exec_callback_QPrinter_PaintEngine(self QPrinter, cb intptr_t) *QPaintEngine {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QPaintEngine) *qt.QPaintEngine)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -661,74 +465,174 @@ func miqt_exec_callback_QPrinter_PaintEngine(self *C.QPrinter, cb C.intptr_t) *C
 
 	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_PaintEngine)
 
-	return (*C.QPaintEngine)(virtualReturn.UnsafePointer())
+	return (*QPaintEngine)(virtualReturn.UnsafePointer())
 
 }
 
-func (this *QPrinter) callVirtualBase_SetMargins(m *qt.QPagedPaintDevice__Margins) {
+func (this *QPrinter) callVirtualBase_Metric(param1 PaintDeviceMetric) int {
 
-	C.QPrinter_virtualbase_SetMargins(unsafe.Pointer(this.h), (*C.QPagedPaintDevice__Margins)(m.UnsafePointer()))
+	return (int)(QPrinter_virtualbase_Metric(unsafe.Pointer(this.h), param1))
 
 }
-func (this *QPrinter) OnSetMargins(slot func(super func(m *qt.QPagedPaintDevice__Margins), m *qt.QPagedPaintDevice__Margins)) {
+func (this *QPrinter) OnMetric(slot func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QPrinter_override_virtual_SetMargins(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
-}
-
-//export miqt_exec_callback_QPrinter_SetMargins
-func miqt_exec_callback_QPrinter_SetMargins(self *C.QPrinter, cb C.intptr_t, m *C.QPagedPaintDevice__Margins) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(m *qt.QPagedPaintDevice__Margins), m *qt.QPagedPaintDevice__Margins))
-	if !ok {
-		panic("miqt: callback of non-callback type (heap corruption?)")
-	}
-
-	// Convert all CABI parameters to Go parameters
-	slotval1 := qt.UnsafeNewQPagedPaintDevice__Margins(unsafe.Pointer(m))
-
-	gofunc((&QPrinter{h: self}).callVirtualBase_SetMargins, slotval1)
-
-}
-
-func (this *QPrinter) callVirtualBase_Metric(param1 qt.QPaintDevice__PaintDeviceMetric) int {
-
-	return (int)(C.QPrinter_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
-
-}
-func (this *QPrinter) OnMetric(slot func(super func(param1 qt.QPaintDevice__PaintDeviceMetric) int, param1 qt.QPaintDevice__PaintDeviceMetric) int) {
-	if !this.isSubclass {
-		panic("miqt: can only override virtual methods for directly constructed types")
-	}
-	C.QPrinter_override_virtual_Metric(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QPrinter_override_virtual_Metric(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QPrinter_Metric
-func miqt_exec_callback_QPrinter_Metric(self *C.QPrinter, cb C.intptr_t, param1 C.int) C.int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 qt.QPaintDevice__PaintDeviceMetric) int, param1 qt.QPaintDevice__PaintDeviceMetric) int)
+func miqt_exec_callback_QPrinter_Metric(self QPrinter, cb intptr_t, param1 PaintDeviceMetric) int {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (qt.QPaintDevice__PaintDeviceMetric)(param1)
+	xxxxxxxxx
 
 	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_Metric, slotval1)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
-// Delete this object from C++ memory.
-func (this *QPrinter) Delete() {
-	C.QPrinter_Delete(this.h, C.bool(this.isSubclass))
+func (this *QPrinter) callVirtualBase_SetPageLayout(pageLayout *qt.QPageLayout) bool {
+
+	return (bool)(QPrinter_virtualbase_SetPageLayout(unsafe.Pointer(this.h), (*QPageLayout)(pageLayout.UnsafePointer())))
+
+}
+func (this *QPrinter) OnSetPageLayout(slot func(super func(pageLayout *qt.QPageLayout) bool, pageLayout *qt.QPageLayout) bool) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPrinter_override_virtual_SetPageLayout(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QPrinter) GoGC() {
-	runtime.SetFinalizer(this, func(this *QPrinter) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+//export miqt_exec_callback_QPrinter_SetPageLayout
+func miqt_exec_callback_QPrinter_SetPageLayout(self QPrinter, cb intptr_t, pageLayout *QPageLayout) bool {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(pageLayout *qt.QPageLayout) bool, pageLayout *qt.QPageLayout) bool)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := qt.UnsafeNewQPageLayout(unsafe.Pointer(pageLayout))
+
+	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_SetPageLayout, slotval1)
+
+	return (bool)(virtualReturn)
+
+}
+
+func (this *QPrinter) callVirtualBase_SetPageSize(pageSize *qt.QPageSize) bool {
+
+	return (bool)(QPrinter_virtualbase_SetPageSize(unsafe.Pointer(this.h), (*QPageSize)(pageSize.UnsafePointer())))
+
+}
+func (this *QPrinter) OnSetPageSize(slot func(super func(pageSize *qt.QPageSize) bool, pageSize *qt.QPageSize) bool) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPrinter_override_virtual_SetPageSize(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPrinter_SetPageSize
+func miqt_exec_callback_QPrinter_SetPageSize(self QPrinter, cb intptr_t, pageSize *QPageSize) bool {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(pageSize *qt.QPageSize) bool, pageSize *qt.QPageSize) bool)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := qt.UnsafeNewQPageSize(unsafe.Pointer(pageSize))
+
+	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_SetPageSize, slotval1)
+
+	return (bool)(virtualReturn)
+
+}
+
+func (this *QPrinter) callVirtualBase_SetPageOrientation(orientation qt.QPageLayout__Orientation) bool {
+
+	return (bool)(QPrinter_virtualbase_SetPageOrientation(unsafe.Pointer(this.h), (int)(orientation)))
+
+}
+func (this *QPrinter) OnSetPageOrientation(slot func(super func(orientation qt.QPageLayout__Orientation) bool, orientation qt.QPageLayout__Orientation) bool) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPrinter_override_virtual_SetPageOrientation(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPrinter_SetPageOrientation
+func miqt_exec_callback_QPrinter_SetPageOrientation(self QPrinter, cb intptr_t, orientation int) bool {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(orientation qt.QPageLayout__Orientation) bool, orientation qt.QPageLayout__Orientation) bool)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := (qt.QPageLayout__Orientation)(orientation)
+
+	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_SetPageOrientation, slotval1)
+
+	return (bool)(virtualReturn)
+
+}
+
+func (this *QPrinter) callVirtualBase_SetPageMargins(margins *qt.QMarginsF, units qt.QPageLayout__Unit) bool {
+
+	return (bool)(QPrinter_virtualbase_SetPageMargins(unsafe.Pointer(this.h), (*QMarginsF)(margins.UnsafePointer()), (int)(units)))
+
+}
+func (this *QPrinter) OnSetPageMargins(slot func(super func(margins *qt.QMarginsF, units qt.QPageLayout__Unit) bool, margins *qt.QMarginsF, units qt.QPageLayout__Unit) bool) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPrinter_override_virtual_SetPageMargins(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPrinter_SetPageMargins
+func miqt_exec_callback_QPrinter_SetPageMargins(self QPrinter, cb intptr_t, margins *QMarginsF, units int) bool {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(margins *qt.QMarginsF, units qt.QPageLayout__Unit) bool, margins *qt.QMarginsF, units qt.QPageLayout__Unit) bool)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := qt.UnsafeNewQMarginsF(unsafe.Pointer(margins))
+
+	slotval2 := (qt.QPageLayout__Unit)(units)
+
+	virtualReturn := gofunc((&QPrinter{h: self}).callVirtualBase_SetPageMargins, slotval1, slotval2)
+
+	return (bool)(virtualReturn)
+
+}
+
+func (this *QPrinter) callVirtualBase_SetPageRanges(ranges *qt.QPageRanges) {
+
+	QPrinter_virtualbase_SetPageRanges(unsafe.Pointer(this.h), (*QPageRanges)(ranges.UnsafePointer()))
+
+}
+func (this *QPrinter) OnSetPageRanges(slot func(super func(ranges *qt.QPageRanges), ranges *qt.QPageRanges)) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QPrinter_override_virtual_SetPageRanges(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QPrinter_SetPageRanges
+func miqt_exec_callback_QPrinter_SetPageRanges(self QPrinter, cb intptr_t, ranges *QPageRanges) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(ranges *qt.QPageRanges), ranges *qt.QPageRanges))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := qt.UnsafeNewQPageRanges(unsafe.Pointer(ranges))
+
+	gofunc((&QPrinter{h: self}).callVirtualBase_SetPageRanges, slotval1)
+
 }

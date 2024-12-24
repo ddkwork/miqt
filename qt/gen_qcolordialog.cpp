@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCloseEvent>
 #include <QColor>
 #include <QColorDialog>
@@ -21,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQColorDialog : public virtual QColorDialog {
 public:
@@ -425,17 +442,6 @@ struct miqt_string QColorDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QColorDialog_TrUtf8(const char* s) {
-	QString _ret = QColorDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QColorDialog_SetCurrentColor(QColorDialog* self, QColor* color) {
 	self->setCurrentColor(*color);
 }
@@ -448,21 +454,20 @@ QColor* QColorDialog_SelectedColor(const QColorDialog* self) {
 	return new QColor(self->selectedColor());
 }
 
-void QColorDialog_SetOption(QColorDialog* self, int option) {
-	self->setOption(static_cast<QColorDialog::ColorDialogOption>(option));
+void QColorDialog_SetOption(QColorDialog* self, ColorDialogOption option) {
+	self->setOption(option);
 }
 
-bool QColorDialog_TestOption(const QColorDialog* self, int option) {
-	return self->testOption(static_cast<QColorDialog::ColorDialogOption>(option));
+bool QColorDialog_TestOption(const QColorDialog* self, ColorDialogOption option) {
+	return self->testOption(option);
 }
 
-void QColorDialog_SetOptions(QColorDialog* self, int options) {
-	self->setOptions(static_cast<QColorDialog::ColorDialogOptions>(options));
+void QColorDialog_SetOptions(QColorDialog* self, ColorDialogOptions options) {
+	self->setOptions(options);
 }
 
-int QColorDialog_Options(const QColorDialog* self) {
-	QColorDialog::ColorDialogOptions _ret = self->options();
-	return static_cast<int>(_ret);
+ColorDialogOptions QColorDialog_Options(const QColorDialog* self) {
+	return self->options();
 }
 
 void QColorDialog_SetVisible(QColorDialog* self, bool visible) {
@@ -471,11 +476,6 @@ void QColorDialog_SetVisible(QColorDialog* self, bool visible) {
 
 QColor* QColorDialog_GetColor() {
 	return new QColor(QColorDialog::getColor());
-}
-
-unsigned int QColorDialog_GetRgba() {
-	QRgb _ret = QColorDialog::getRgba();
-	return static_cast<unsigned int>(_ret);
 }
 
 int QColorDialog_CustomCount() {
@@ -546,30 +546,8 @@ struct miqt_string QColorDialog_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QColorDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QColorDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QColorDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QColorDialog::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QColorDialog_SetOption2(QColorDialog* self, int option, bool on) {
-	self->setOption(static_cast<QColorDialog::ColorDialogOption>(option), on);
+void QColorDialog_SetOption2(QColorDialog* self, ColorDialogOption option, bool on) {
+	self->setOption(option, on);
 }
 
 QColor* QColorDialog_GetColor1(QColor* initial) {
@@ -585,24 +563,9 @@ QColor* QColorDialog_GetColor3(QColor* initial, QWidget* parent, struct miqt_str
 	return new QColor(QColorDialog::getColor(*initial, parent, title_QString));
 }
 
-QColor* QColorDialog_GetColor4(QColor* initial, QWidget* parent, struct miqt_string title, int options) {
+QColor* QColorDialog_GetColor4(QColor* initial, QWidget* parent, struct miqt_string title, ColorDialogOptions options) {
 	QString title_QString = QString::fromUtf8(title.data, title.len);
-	return new QColor(QColorDialog::getColor(*initial, parent, title_QString, static_cast<QColorDialog::ColorDialogOptions>(options)));
-}
-
-unsigned int QColorDialog_GetRgba1(unsigned int rgba) {
-	QRgb _ret = QColorDialog::getRgba(static_cast<QRgb>(rgba));
-	return static_cast<unsigned int>(_ret);
-}
-
-unsigned int QColorDialog_GetRgba2(unsigned int rgba, bool* ok) {
-	QRgb _ret = QColorDialog::getRgba(static_cast<QRgb>(rgba), ok);
-	return static_cast<unsigned int>(_ret);
-}
-
-unsigned int QColorDialog_GetRgba3(unsigned int rgba, bool* ok, QWidget* parent) {
-	QRgb _ret = QColorDialog::getRgba(static_cast<QRgb>(rgba), ok, parent);
-	return static_cast<unsigned int>(_ret);
+	return new QColor(QColorDialog::getColor(*initial, parent, title_QString, options));
 }
 
 void QColorDialog_override_virtual_SetVisible(void* self, intptr_t slot) {

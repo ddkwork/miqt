@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -17,19 +17,27 @@ extern "C" {
 #ifdef __cplusplus
 class QPrintEngine;
 class QVariant;
+class _GUID;
+class type_info;
 #else
 typedef struct QPrintEngine QPrintEngine;
 typedef struct QVariant QVariant;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-void QPrintEngine_SetProperty(QPrintEngine* self, int key, QVariant* value);
-QVariant* QPrintEngine_Property(const QPrintEngine* self, int key);
-bool QPrintEngine_NewPage(QPrintEngine* self);
-bool QPrintEngine_Abort(QPrintEngine* self);
-int QPrintEngine_Metric(const QPrintEngine* self, int param1);
-int QPrintEngine_PrinterState(const QPrintEngine* self);
-void QPrintEngine_OperatorAssign(QPrintEngine* self, QPrintEngine* param1);
-void QPrintEngine_Delete(QPrintEngine* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) void QPrintEngine_SetProperty(QPrintEngine* self, PrintEnginePropertyKey key, QVariant* value);
+extern __declspec(dllexport) QVariant* QPrintEngine_Property(const QPrintEngine* self, PrintEnginePropertyKey key);
+extern __declspec(dllexport) bool QPrintEngine_NewPage(QPrintEngine* self);
+extern __declspec(dllexport) bool QPrintEngine_Abort(QPrintEngine* self);
+extern __declspec(dllexport) int QPrintEngine_Metric(const QPrintEngine* self, int param1);
+extern __declspec(dllexport) int QPrintEngine_PrinterState(const QPrintEngine* self);
+extern __declspec(dllexport) void QPrintEngine_OperatorAssign(QPrintEngine* self, QPrintEngine* param1);
+extern __declspec(dllexport) void QPrintEngine_Delete(QPrintEngine* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

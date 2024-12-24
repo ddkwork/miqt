@@ -9,8 +9,9 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QsciCommandSet struct {

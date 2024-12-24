@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -17,107 +17,67 @@ extern "C" {
 #ifdef __cplusplus
 class QChar;
 class QLatin1Char;
+class _GUID;
+class type_info;
 #else
 typedef struct QChar QChar;
 typedef struct QLatin1Char QLatin1Char;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QLatin1Char* QLatin1Char_new(char c);
-QLatin1Char* QLatin1Char_new2(QLatin1Char* param1);
-char QLatin1Char_ToLatin1(const QLatin1Char* self);
-uint16_t QLatin1Char_Unicode(const QLatin1Char* self);
-void QLatin1Char_Delete(QLatin1Char* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
-QChar* QChar_new();
-QChar* QChar_new2(uint16_t rc);
-QChar* QChar_new3(unsigned char c, unsigned char r);
-QChar* QChar_new4(int16_t rc);
-QChar* QChar_new5(unsigned int rc);
-QChar* QChar_new6(int rc);
-QChar* QChar_new7(int s);
-QChar* QChar_new8(QLatin1Char* ch);
-QChar* QChar_new9(char c);
-QChar* QChar_new10(unsigned char c);
-QChar* QChar_new11(QChar* param1);
-int QChar_Category(const QChar* self);
-int QChar_Direction(const QChar* self);
-int QChar_JoiningType(const QChar* self);
-int QChar_Joining(const QChar* self);
-unsigned char QChar_CombiningClass(const QChar* self);
-QChar* QChar_MirroredChar(const QChar* self);
-bool QChar_HasMirrored(const QChar* self);
-struct miqt_string QChar_Decomposition(const QChar* self);
-int QChar_DecompositionTag(const QChar* self);
-int QChar_DigitValue(const QChar* self);
-QChar* QChar_ToLower(const QChar* self);
-QChar* QChar_ToUpper(const QChar* self);
-QChar* QChar_ToTitleCase(const QChar* self);
-QChar* QChar_ToCaseFolded(const QChar* self);
-int QChar_Script(const QChar* self);
-int QChar_UnicodeVersion(const QChar* self);
-char QChar_ToLatin1(const QChar* self);
-uint16_t QChar_Unicode(const QChar* self);
-QChar* QChar_FromLatin1(char c);
-bool QChar_IsNull(const QChar* self);
-bool QChar_IsPrint(const QChar* self);
-bool QChar_IsSpace(const QChar* self);
-bool QChar_IsMark(const QChar* self);
-bool QChar_IsPunct(const QChar* self);
-bool QChar_IsSymbol(const QChar* self);
-bool QChar_IsLetter(const QChar* self);
-bool QChar_IsNumber(const QChar* self);
-bool QChar_IsLetterOrNumber(const QChar* self);
-bool QChar_IsDigit(const QChar* self);
-bool QChar_IsLower(const QChar* self);
-bool QChar_IsUpper(const QChar* self);
-bool QChar_IsTitleCase(const QChar* self);
-bool QChar_IsNonCharacter(const QChar* self);
-bool QChar_IsHighSurrogate(const QChar* self);
-bool QChar_IsLowSurrogate(const QChar* self);
-bool QChar_IsSurrogate(const QChar* self);
-unsigned char QChar_Cell(const QChar* self);
-unsigned char QChar_Row(const QChar* self);
-void QChar_SetCell(QChar* self, unsigned char acell);
-void QChar_SetRow(QChar* self, unsigned char arow);
-bool QChar_IsNonCharacterWithUcs4(unsigned int ucs4);
-bool QChar_IsHighSurrogateWithUcs4(unsigned int ucs4);
-bool QChar_IsLowSurrogateWithUcs4(unsigned int ucs4);
-bool QChar_IsSurrogateWithUcs4(unsigned int ucs4);
-bool QChar_RequiresSurrogates(unsigned int ucs4);
-unsigned int QChar_SurrogateToUcs4(uint16_t high, uint16_t low);
-unsigned int QChar_SurrogateToUcs42(QChar* high, QChar* low);
-uint16_t QChar_HighSurrogate(unsigned int ucs4);
-uint16_t QChar_LowSurrogate(unsigned int ucs4);
-int QChar_CategoryWithUcs4(unsigned int ucs4);
-int QChar_DirectionWithUcs4(unsigned int ucs4);
-int QChar_JoiningTypeWithUcs4(unsigned int ucs4);
-int QChar_JoiningWithUcs4(unsigned int ucs4);
-unsigned char QChar_CombiningClassWithUcs4(unsigned int ucs4);
-unsigned int QChar_MirroredCharWithUcs4(unsigned int ucs4);
-bool QChar_HasMirroredWithUcs4(unsigned int ucs4);
-struct miqt_string QChar_DecompositionWithUcs4(unsigned int ucs4);
-int QChar_DecompositionTagWithUcs4(unsigned int ucs4);
-int QChar_DigitValueWithUcs4(unsigned int ucs4);
-unsigned int QChar_ToLowerWithUcs4(unsigned int ucs4);
-unsigned int QChar_ToUpperWithUcs4(unsigned int ucs4);
-unsigned int QChar_ToTitleCaseWithUcs4(unsigned int ucs4);
-unsigned int QChar_ToCaseFoldedWithUcs4(unsigned int ucs4);
-int QChar_ScriptWithUcs4(unsigned int ucs4);
-int QChar_UnicodeVersionWithUcs4(unsigned int ucs4);
-int QChar_CurrentUnicodeVersion();
-bool QChar_IsPrintWithUcs4(unsigned int ucs4);
-bool QChar_IsSpaceWithUcs4(unsigned int ucs4);
-bool QChar_IsMarkWithUcs4(unsigned int ucs4);
-bool QChar_IsPunctWithUcs4(unsigned int ucs4);
-bool QChar_IsSymbolWithUcs4(unsigned int ucs4);
-bool QChar_IsLetterWithUcs4(unsigned int ucs4);
-bool QChar_IsNumberWithUcs4(unsigned int ucs4);
-bool QChar_IsLetterOrNumberWithUcs4(unsigned int ucs4);
-bool QChar_IsDigitWithUcs4(unsigned int ucs4);
-bool QChar_IsLowerWithUcs4(unsigned int ucs4);
-bool QChar_IsUpperWithUcs4(unsigned int ucs4);
-bool QChar_IsTitleCaseWithUcs4(unsigned int ucs4);
-void QChar_Delete(QChar* self, bool isSubclass);
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QLatin1Char* QLatin1Char_new(char c);
+extern __declspec(dllexport) QLatin1Char* QLatin1Char_new2(QLatin1Char* param1);
+extern __declspec(dllexport) char QLatin1Char_ToLatin1(const QLatin1Char* self);
+extern __declspec(dllexport) void QLatin1Char_Delete(QLatin1Char* self, bool isSubclass);
+
+extern __declspec(dllexport) QChar* QChar_new();
+extern __declspec(dllexport) QChar* QChar_new2(unsigned char c, unsigned char r);
+extern __declspec(dllexport) QChar* QChar_new3(QChar* param1);
+extern __declspec(dllexport) Category QChar_Category(const QChar* self);
+extern __declspec(dllexport) Direction QChar_Direction(const QChar* self);
+extern __declspec(dllexport) JoiningType QChar_JoiningType(const QChar* self);
+extern __declspec(dllexport) unsigned char QChar_CombiningClass(const QChar* self);
+extern __declspec(dllexport) QChar* QChar_MirroredChar(const QChar* self);
+extern __declspec(dllexport) bool QChar_HasMirrored(const QChar* self);
+extern __declspec(dllexport) struct miqt_string QChar_Decomposition(const QChar* self);
+extern __declspec(dllexport) Decomposition QChar_DecompositionTag(const QChar* self);
+extern __declspec(dllexport) int QChar_DigitValue(const QChar* self);
+extern __declspec(dllexport) QChar* QChar_ToLower(const QChar* self);
+extern __declspec(dllexport) QChar* QChar_ToUpper(const QChar* self);
+extern __declspec(dllexport) QChar* QChar_ToTitleCase(const QChar* self);
+extern __declspec(dllexport) QChar* QChar_ToCaseFolded(const QChar* self);
+extern __declspec(dllexport) Script QChar_Script(const QChar* self);
+extern __declspec(dllexport) UnicodeVersion QChar_UnicodeVersion(const QChar* self);
+extern __declspec(dllexport) char QChar_ToLatin1(const QChar* self);
+extern __declspec(dllexport) QChar* QChar_FromLatin1(char c);
+extern __declspec(dllexport) bool QChar_IsNull(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsPrint(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsSpace(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsMark(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsPunct(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsSymbol(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsLetter(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsNumber(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsLetterOrNumber(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsDigit(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsLower(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsUpper(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsTitleCase(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsNonCharacter(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsHighSurrogate(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsLowSurrogate(const QChar* self);
+extern __declspec(dllexport) bool QChar_IsSurrogate(const QChar* self);
+extern __declspec(dllexport) unsigned char QChar_Cell(const QChar* self);
+extern __declspec(dllexport) unsigned char QChar_Row(const QChar* self);
+extern __declspec(dllexport) void QChar_SetCell(QChar* self, unsigned char acell);
+extern __declspec(dllexport) void QChar_SetRow(QChar* self, unsigned char arow);
+extern __declspec(dllexport) UnicodeVersion QChar_CurrentUnicodeVersion();
+extern __declspec(dllexport) void QChar_Delete(QChar* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

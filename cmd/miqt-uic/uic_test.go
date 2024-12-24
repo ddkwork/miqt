@@ -3,14 +3,13 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
-	"io/ioutil"
+	"os"
 	"testing"
 )
 
 func TestFixtureMarshalRoundtrip(t *testing.T) {
-
 	testFixture := func(fixtureFile string) {
-		in, err := ioutil.ReadFile(fixtureFile)
+		in, err := os.ReadFile(fixtureFile)
 		if err != nil {
 			t.Fatalf("ReadFile: %v", err)
 		}
@@ -40,7 +39,6 @@ func TestFixtureMarshalRoundtrip(t *testing.T) {
 			t.Errorf("Mismatch")
 			t.Log(lineDiff(string(in), string(ret)))
 		}
-
 	}
 
 	testFixture("../../examples/uidesigner/design.ui")

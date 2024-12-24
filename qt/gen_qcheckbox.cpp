@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QCheckBox>
 #include <QEvent>
@@ -13,6 +15,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionButton>
 #include <QTimerEvent>
 #include <QWidget>
 #include <qcheckbox.h>
@@ -21,7 +24,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQCheckBox : public virtual QCheckBox {
 public:
@@ -216,6 +234,30 @@ public:
 	void virtualbase_MouseMoveEvent(QMouseEvent* param1) {
 
 		QCheckBox::mouseMoveEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionButton* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QCheckBox::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionButton* sigval1 = option;
+
+		miqt_exec_callback_QCheckBox_InitStyleOption(const_cast<MiqtVirtualQCheckBox*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionButton* option) const {
+
+		QCheckBox::initStyleOption(option);
 
 	}
 
@@ -454,17 +496,6 @@ struct miqt_string QCheckBox_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QCheckBox_TrUtf8(const char* s) {
-	QString _ret = QCheckBox::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QCheckBox_SizeHint(const QCheckBox* self) {
 	return new QSize(self->sizeHint());
 }
@@ -501,6 +532,18 @@ void QCheckBox_connect_StateChanged(QCheckBox* self, intptr_t slot) {
 	});
 }
 
+void QCheckBox_CheckStateChanged(QCheckBox* self, int param1) {
+	self->checkStateChanged(static_cast<Qt::CheckState>(param1));
+}
+
+void QCheckBox_connect_CheckStateChanged(QCheckBox* self, intptr_t slot) {
+	MiqtVirtualQCheckBox::connect(self, static_cast<void (QCheckBox::*)(Qt::CheckState)>(&QCheckBox::checkStateChanged), self, [=](Qt::CheckState param1) {
+		Qt::CheckState param1_ret = param1;
+		int sigval1 = static_cast<int>(param1_ret);
+		miqt_exec_callback_QCheckBox_CheckStateChanged(slot, sigval1);
+	});
+}
+
 struct miqt_string QCheckBox_Tr2(const char* s, const char* c) {
 	QString _ret = QCheckBox::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -514,28 +557,6 @@ struct miqt_string QCheckBox_Tr2(const char* s, const char* c) {
 
 struct miqt_string QCheckBox_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QCheckBox::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCheckBox_TrUtf82(const char* s, const char* c) {
-	QString _ret = QCheckBox::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCheckBox_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QCheckBox::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -611,6 +632,14 @@ void QCheckBox_override_virtual_MouseMoveEvent(void* self, intptr_t slot) {
 
 void QCheckBox_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1) {
 	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_MouseMoveEvent(param1);
+}
+
+void QCheckBox_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QCheckBox_virtualbase_InitStyleOption(const void* self, QStyleOptionButton* option) {
+	( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QCheckBox_override_virtual_KeyPressEvent(void* self, intptr_t slot) {

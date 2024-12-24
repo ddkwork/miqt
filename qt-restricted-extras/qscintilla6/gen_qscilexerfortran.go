@@ -9,10 +9,11 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QsciLexerFortran struct {
@@ -43,8 +44,10 @@ func newQsciLexerFortran(h *C.QsciLexerFortran) *QsciLexerFortran {
 	var outptr_QsciLexerFortran77 *C.QsciLexerFortran77 = nil
 	C.QsciLexerFortran_virtbase(h, &outptr_QsciLexerFortran77)
 
-	return &QsciLexerFortran{h: h,
-		QsciLexerFortran77: newQsciLexerFortran77(outptr_QsciLexerFortran77)}
+	return &QsciLexerFortran{
+		h:                  h,
+		QsciLexerFortran77: newQsciLexerFortran77(outptr_QsciLexerFortran77),
+	}
 }
 
 // UnsafeNewQsciLexerFortran constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQsciLexerFortran(h unsafe.Pointer) *QsciLexerFortran {
 
 // NewQsciLexerFortran constructs a new QsciLexerFortran object.
 func NewQsciLexerFortran() *QsciLexerFortran {
-
 	ret := newQsciLexerFortran(C.QsciLexerFortran_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQsciLexerFortran() *QsciLexerFortran {
 
 // NewQsciLexerFortran2 constructs a new QsciLexerFortran object.
 func NewQsciLexerFortran2(parent *qt6.QObject) *QsciLexerFortran {
-
 	ret := newQsciLexerFortran(C.QsciLexerFortran_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -125,10 +126,9 @@ func QsciLexerFortran_Tr3(s string, c string, n int) string {
 }
 
 func (this *QsciLexerFortran) callVirtualBase_SetFoldCompact(fold bool) {
-
 	C.QsciLexerFortran_virtualbase_SetFoldCompact(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerFortran) OnSetFoldCompact(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -147,7 +147,6 @@ func miqt_exec_callback_QsciLexerFortran_SetFoldCompact(self *C.QsciLexerFortran
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerFortran{h: self}).callVirtualBase_SetFoldCompact, slotval1)
-
 }
 
 // Delete this object from C++ memory.

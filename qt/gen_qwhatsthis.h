@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -20,23 +20,31 @@ class QObject;
 class QPoint;
 class QWhatsThis;
 class QWidget;
+class _GUID;
+class type_info;
 #else
 typedef struct QAction QAction;
 typedef struct QObject QObject;
 typedef struct QPoint QPoint;
 typedef struct QWhatsThis QWhatsThis;
 typedef struct QWidget QWidget;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-void QWhatsThis_EnterWhatsThisMode();
-bool QWhatsThis_InWhatsThisMode();
-void QWhatsThis_LeaveWhatsThisMode();
-void QWhatsThis_ShowText(QPoint* pos, struct miqt_string text);
-void QWhatsThis_HideText();
-QAction* QWhatsThis_CreateAction();
-void QWhatsThis_ShowText3(QPoint* pos, struct miqt_string text, QWidget* w);
-QAction* QWhatsThis_CreateAction1(QObject* parent);
-void QWhatsThis_Delete(QWhatsThis* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) void QWhatsThis_EnterWhatsThisMode();
+extern __declspec(dllexport) bool QWhatsThis_InWhatsThisMode();
+extern __declspec(dllexport) void QWhatsThis_LeaveWhatsThisMode();
+extern __declspec(dllexport) void QWhatsThis_ShowText(QPoint* pos, struct miqt_string text);
+extern __declspec(dllexport) void QWhatsThis_HideText();
+extern __declspec(dllexport) QAction* QWhatsThis_CreateAction();
+extern __declspec(dllexport) void QWhatsThis_ShowText3(QPoint* pos, struct miqt_string text, QWidget* w);
+extern __declspec(dllexport) QAction* QWhatsThis_CreateAction1(QObject* parent);
+extern __declspec(dllexport) void QWhatsThis_Delete(QWhatsThis* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

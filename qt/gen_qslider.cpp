@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractSlider>
 #include <QEvent>
 #include <QKeyEvent>
@@ -11,6 +13,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionSlider>
 #include <QTimerEvent>
 #include <QWheelEvent>
 #include <QWidget>
@@ -20,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSlider : public virtual QSlider {
 public:
@@ -196,17 +214,40 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSlider* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QSlider::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSlider* sigval1 = option;
+
+		miqt_exec_callback_QSlider_InitStyleOption(const_cast<MiqtVirtualQSlider*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSlider* option) const {
+
+		QSlider::initStyleOption(option);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__SliderChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sliderChange(QAbstractSlider::SliderChange change) override {
+	virtual void sliderChange(SliderChange change) override {
 		if (handle__SliderChange == 0) {
 			QSlider::sliderChange(change);
 			return;
 		}
 		
-		QAbstractSlider::SliderChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		SliderChange sigval1 = change;
 
 		miqt_exec_callback_QSlider_SliderChange(this, handle__SliderChange, sigval1);
 
@@ -214,9 +255,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SliderChange(int change) {
+	void virtualbase_SliderChange(SliderChange change) {
 
-		QSlider::sliderChange(static_cast<QAbstractSlider::SliderChange>(change));
+		QSlider::sliderChange(change);
 
 	}
 
@@ -357,17 +398,6 @@ struct miqt_string QSlider_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSlider_TrUtf8(const char* s) {
-	QString _ret = QSlider::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QSlider_SizeHint(const QSlider* self) {
 	return new QSize(self->sizeHint());
 }
@@ -376,13 +406,12 @@ QSize* QSlider_MinimumSizeHint(const QSlider* self) {
 	return new QSize(self->minimumSizeHint());
 }
 
-void QSlider_SetTickPosition(QSlider* self, int position) {
-	self->setTickPosition(static_cast<QSlider::TickPosition>(position));
+void QSlider_SetTickPosition(QSlider* self, TickPosition position) {
+	self->setTickPosition(position);
 }
 
-int QSlider_TickPosition(const QSlider* self) {
-	QSlider::TickPosition _ret = self->tickPosition();
-	return static_cast<int>(_ret);
+TickPosition QSlider_TickPosition(const QSlider* self) {
+	return self->tickPosition();
 }
 
 void QSlider_SetTickInterval(QSlider* self, int ti) {
@@ -410,28 +439,6 @@ struct miqt_string QSlider_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSlider_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSlider::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSlider_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSlider::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSlider_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSlider::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -497,11 +504,19 @@ void QSlider_virtualbase_MouseMoveEvent(void* self, QMouseEvent* ev) {
 	( (MiqtVirtualQSlider*)(self) )->virtualbase_MouseMoveEvent(ev);
 }
 
+void QSlider_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSlider*>( (QSlider*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QSlider_virtualbase_InitStyleOption(const void* self, QStyleOptionSlider* option) {
+	( (const MiqtVirtualQSlider*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QSlider_override_virtual_SliderChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSlider*>( (QSlider*)(self) )->handle__SliderChange = slot;
 }
 
-void QSlider_virtualbase_SliderChange(void* self, int change) {
+void QSlider_virtualbase_SliderChange(void* self, SliderChange change) {
 	( (MiqtVirtualQSlider*)(self) )->virtualbase_SliderChange(change);
 }
 

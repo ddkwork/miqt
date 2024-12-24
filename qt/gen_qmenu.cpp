@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
@@ -7,6 +9,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -31,6 +34,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionMenuItem>
 #include <QTabletEvent>
 #include <QTimerEvent>
 #include <QVariant>
@@ -42,7 +46,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQMenu : public virtual QMenu {
 public:
@@ -224,13 +243,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* param1) override {
+	virtual void enterEvent(QEnterEvent* param1) override {
 		if (handle__EnterEvent == 0) {
 			QMenu::enterEvent(param1);
 			return;
 		}
 		
-		QEvent* sigval1 = param1;
+		QEnterEvent* sigval1 = param1;
 
 		miqt_exec_callback_QMenu_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -238,7 +257,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* param1) {
+	void virtualbase_EnterEvent(QEnterEvent* param1) {
 
 		QMenu::enterEvent(param1);
 
@@ -407,6 +426,31 @@ public:
 	bool virtualbase_FocusNextPrevChild(bool next) {
 
 		return QMenu::focusNextPrevChild(next);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionMenuItem* option, const QAction* action) const override {
+		if (handle__InitStyleOption == 0) {
+			QMenu::initStyleOption(option, action);
+			return;
+		}
+		
+		QStyleOptionMenuItem* sigval1 = option;
+		QAction* sigval2 = (QAction*) action;
+
+		miqt_exec_callback_QMenu_InitStyleOption(const_cast<MiqtVirtualQMenu*>(this), handle__InitStyleOption, sigval1, sigval2);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionMenuItem* option, QAction* action) const {
+
+		QMenu::initStyleOption(option, action);
 
 	}
 
@@ -885,7 +929,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QMenu::nativeEvent(eventType, message, result);
 		}
@@ -897,7 +941,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QMenu_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -905,10 +950,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QMenu::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QMenu::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -916,13 +961,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QMenu::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QMenu_Metric(const_cast<MiqtVirtualQMenu*>(this), handle__Metric, sigval1);
 
@@ -930,9 +974,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QMenu::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QMenu::metric(param1);
 
 	}
 
@@ -1096,27 +1140,6 @@ struct miqt_string QMenu_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QMenu_TrUtf8(const char* s) {
-	QString _ret = QMenu::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-QAction* QMenu_AddAction(QMenu* self, struct miqt_string text) {
-	QString text_QString = QString::fromUtf8(text.data, text.len);
-	return self->addAction(text_QString);
-}
-
-QAction* QMenu_AddAction2(QMenu* self, QIcon* icon, struct miqt_string text) {
-	QString text_QString = QString::fromUtf8(text.data, text.len);
-	return self->addAction(*icon, text_QString);
-}
-
 QAction* QMenu_AddMenu(QMenu* self, QMenu* menu) {
 	return self->addMenu(menu);
 }
@@ -1249,6 +1272,10 @@ QAction* QMenu_MenuAction(const QMenu* self) {
 	return self->menuAction();
 }
 
+QMenu* QMenu_MenuInAction(QAction* action) {
+	return QMenu::menuInAction(action);
+}
+
 struct miqt_string QMenu_Title(const QMenu* self) {
 	QString _ret = self->title();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1357,28 +1384,6 @@ struct miqt_string QMenu_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QMenu_TrUtf82(const char* s, const char* c) {
-	QString _ret = QMenu::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QMenu_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QMenu::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QMenu_Popup2(QMenu* self, QPoint* pos, QAction* at) {
 	self->popup(*pos, at);
 }
@@ -1467,7 +1472,7 @@ void QMenu_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMenu*>( (QMenu*)(self) )->handle__EnterEvent = slot;
 }
 
-void QMenu_virtualbase_EnterEvent(void* self, QEvent* param1) {
+void QMenu_virtualbase_EnterEvent(void* self, QEnterEvent* param1) {
 	( (MiqtVirtualQMenu*)(self) )->virtualbase_EnterEvent(param1);
 }
 
@@ -1525,6 +1530,14 @@ void QMenu_override_virtual_FocusNextPrevChild(void* self, intptr_t slot) {
 
 bool QMenu_virtualbase_FocusNextPrevChild(void* self, bool next) {
 	return ( (MiqtVirtualQMenu*)(self) )->virtualbase_FocusNextPrevChild(next);
+}
+
+void QMenu_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMenu*>( (QMenu*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QMenu_virtualbase_InitStyleOption(const void* self, QStyleOptionMenuItem* option, QAction* action) {
+	( (const MiqtVirtualQMenu*)(self) )->virtualbase_InitStyleOption(option, action);
 }
 
 void QMenu_override_virtual_DevType(void* self, intptr_t slot) {
@@ -1691,7 +1704,7 @@ void QMenu_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMenu*>( (QMenu*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QMenu_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QMenu_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQMenu*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1699,7 +1712,7 @@ void QMenu_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMenu*>( (QMenu*)(self) )->handle__Metric = slot;
 }
 
-int QMenu_virtualbase_Metric(const void* self, int param1) {
+int QMenu_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQMenu*)(self) )->virtualbase_Metric(param1);
 }
 

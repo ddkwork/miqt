@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -16,22 +16,30 @@ extern "C" {
 
 #ifdef __cplusplus
 class QSslPreSharedKeyAuthenticator;
+class _GUID;
+class type_info;
 #else
 typedef struct QSslPreSharedKeyAuthenticator QSslPreSharedKeyAuthenticator;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QSslPreSharedKeyAuthenticator* QSslPreSharedKeyAuthenticator_new();
-QSslPreSharedKeyAuthenticator* QSslPreSharedKeyAuthenticator_new2(QSslPreSharedKeyAuthenticator* authenticator);
-void QSslPreSharedKeyAuthenticator_OperatorAssign(QSslPreSharedKeyAuthenticator* self, QSslPreSharedKeyAuthenticator* authenticator);
-void QSslPreSharedKeyAuthenticator_Swap(QSslPreSharedKeyAuthenticator* self, QSslPreSharedKeyAuthenticator* other);
-struct miqt_string QSslPreSharedKeyAuthenticator_IdentityHint(const QSslPreSharedKeyAuthenticator* self);
-void QSslPreSharedKeyAuthenticator_SetIdentity(QSslPreSharedKeyAuthenticator* self, struct miqt_string identity);
-struct miqt_string QSslPreSharedKeyAuthenticator_Identity(const QSslPreSharedKeyAuthenticator* self);
-int QSslPreSharedKeyAuthenticator_MaximumIdentityLength(const QSslPreSharedKeyAuthenticator* self);
-void QSslPreSharedKeyAuthenticator_SetPreSharedKey(QSslPreSharedKeyAuthenticator* self, struct miqt_string preSharedKey);
-struct miqt_string QSslPreSharedKeyAuthenticator_PreSharedKey(const QSslPreSharedKeyAuthenticator* self);
-int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(const QSslPreSharedKeyAuthenticator* self);
-void QSslPreSharedKeyAuthenticator_Delete(QSslPreSharedKeyAuthenticator* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QSslPreSharedKeyAuthenticator* QSslPreSharedKeyAuthenticator_new();
+extern __declspec(dllexport) QSslPreSharedKeyAuthenticator* QSslPreSharedKeyAuthenticator_new2(QSslPreSharedKeyAuthenticator* authenticator);
+extern __declspec(dllexport) void QSslPreSharedKeyAuthenticator_OperatorAssign(QSslPreSharedKeyAuthenticator* self, QSslPreSharedKeyAuthenticator* authenticator);
+extern __declspec(dllexport) void QSslPreSharedKeyAuthenticator_Swap(QSslPreSharedKeyAuthenticator* self, QSslPreSharedKeyAuthenticator* other);
+extern __declspec(dllexport) struct miqt_string QSslPreSharedKeyAuthenticator_IdentityHint(const QSslPreSharedKeyAuthenticator* self);
+extern __declspec(dllexport) void QSslPreSharedKeyAuthenticator_SetIdentity(QSslPreSharedKeyAuthenticator* self, struct miqt_string identity);
+extern __declspec(dllexport) struct miqt_string QSslPreSharedKeyAuthenticator_Identity(const QSslPreSharedKeyAuthenticator* self);
+extern __declspec(dllexport) int QSslPreSharedKeyAuthenticator_MaximumIdentityLength(const QSslPreSharedKeyAuthenticator* self);
+extern __declspec(dllexport) void QSslPreSharedKeyAuthenticator_SetPreSharedKey(QSslPreSharedKeyAuthenticator* self, struct miqt_string preSharedKey);
+extern __declspec(dllexport) struct miqt_string QSslPreSharedKeyAuthenticator_PreSharedKey(const QSslPreSharedKeyAuthenticator* self);
+extern __declspec(dllexport) int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(const QSslPreSharedKeyAuthenticator* self);
+extern __declspec(dllexport) void QSslPreSharedKeyAuthenticator_Delete(QSslPreSharedKeyAuthenticator* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

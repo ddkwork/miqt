@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QAbstractListModel>
 #include <QList>
@@ -17,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQStringListModel : public virtual QStringListModel {
 public:
@@ -133,6 +150,31 @@ public:
 	bool virtualbase_SetData(QModelIndex* index, QVariant* value, int role) {
 
 		return QStringListModel::setData(*index, *value, static_cast<int>(role));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QStringListModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QStringListModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QStringListModel::clearItemData(*index);
 
 	}
 
@@ -499,17 +541,6 @@ struct miqt_string QStringListModel_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QStringListModel_TrUtf8(const char* s) {
-	QString _ret = QStringListModel::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QStringListModel_RowCount(const QStringListModel* self, QModelIndex* parent) {
 	return self->rowCount(*parent);
 }
@@ -524,6 +555,10 @@ QVariant* QStringListModel_Data(const QStringListModel* self, QModelIndex* index
 
 bool QStringListModel_SetData(QStringListModel* self, QModelIndex* index, QVariant* value, int role) {
 	return self->setData(*index, *value, static_cast<int>(role));
+}
+
+bool QStringListModel_ClearItemData(QStringListModel* self, QModelIndex* index) {
+	return self->clearItemData(*index);
 }
 
 int QStringListModel_Flags(const QStringListModel* self, QModelIndex* index) {
@@ -633,28 +668,6 @@ struct miqt_string QStringListModel_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QStringListModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QStringListModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStringListModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QStringListModel::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QStringListModel_override_virtual_RowCount(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStringListModel*>( (QStringListModel*)(self) )->handle__RowCount = slot;
 }
@@ -685,6 +698,14 @@ void QStringListModel_override_virtual_SetData(void* self, intptr_t slot) {
 
 bool QStringListModel_virtualbase_SetData(void* self, QModelIndex* index, QVariant* value, int role) {
 	return ( (MiqtVirtualQStringListModel*)(self) )->virtualbase_SetData(index, value, role);
+}
+
+void QStringListModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStringListModel*>( (QStringListModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QStringListModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQStringListModel*)(self) )->virtualbase_ClearItemData(index);
 }
 
 void QStringListModel_override_virtual_Flags(void* self, intptr_t slot) {

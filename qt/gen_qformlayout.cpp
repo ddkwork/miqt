@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QFormLayout>
 #define WORKAROUND_INNER_CLASS_DEFINITION_QFormLayout__TakeRowResult
@@ -17,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQFormLayout : public virtual QFormLayout {
 public:
@@ -26,6 +43,52 @@ public:
 	MiqtVirtualQFormLayout(): QFormLayout() {};
 
 	virtual ~MiqtVirtualQFormLayout() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QFormLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QFormLayout_Spacing(const_cast<MiqtVirtualQFormLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QFormLayout::spacing();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QFormLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QFormLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QFormLayout::setSpacing(static_cast<int>(spacing));
+
+	}
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__AddItem = 0;
@@ -328,12 +391,12 @@ public:
 	intptr_t handle__IndexOf = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int indexOf(QWidget* param1) const override {
+	virtual int indexOf(const QWidget* param1) const override {
 		if (handle__IndexOf == 0) {
 			return QFormLayout::indexOf(param1);
 		}
 		
-		QWidget* sigval1 = param1;
+		QWidget* sigval1 = (QWidget*) param1;
 
 		int callback_return_value = miqt_exec_callback_QFormLayout_IndexOf(const_cast<MiqtVirtualQFormLayout*>(this), handle__IndexOf, sigval1);
 
@@ -389,6 +452,32 @@ public:
 
 		QSizePolicy::ControlTypes _ret = QFormLayout::controlTypes();
 		return static_cast<int>(_ret);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ReplaceWidget = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QLayoutItem* replaceWidget(QWidget* from, QWidget* to, Qt::FindChildOptions options) override {
+		if (handle__ReplaceWidget == 0) {
+			return QFormLayout::replaceWidget(from, to, options);
+		}
+		
+		QWidget* sigval1 = from;
+		QWidget* sigval2 = to;
+		Qt::FindChildOptions options_ret = options;
+		int sigval3 = static_cast<int>(options_ret);
+
+		QLayoutItem* callback_return_value = miqt_exec_callback_QFormLayout_ReplaceWidget(this, handle__ReplaceWidget, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QLayoutItem* virtualbase_ReplaceWidget(QWidget* from, QWidget* to, int options) {
+
+		return QFormLayout::replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
 
 	}
 
@@ -471,33 +560,20 @@ struct miqt_string QFormLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QFormLayout_TrUtf8(const char* s) {
-	QString _ret = QFormLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QFormLayout_SetFieldGrowthPolicy(QFormLayout* self, FieldGrowthPolicy policy) {
+	self->setFieldGrowthPolicy(policy);
 }
 
-void QFormLayout_SetFieldGrowthPolicy(QFormLayout* self, int policy) {
-	self->setFieldGrowthPolicy(static_cast<QFormLayout::FieldGrowthPolicy>(policy));
+FieldGrowthPolicy QFormLayout_FieldGrowthPolicy(const QFormLayout* self) {
+	return self->fieldGrowthPolicy();
 }
 
-int QFormLayout_FieldGrowthPolicy(const QFormLayout* self) {
-	QFormLayout::FieldGrowthPolicy _ret = self->fieldGrowthPolicy();
-	return static_cast<int>(_ret);
+void QFormLayout_SetRowWrapPolicy(QFormLayout* self, RowWrapPolicy policy) {
+	self->setRowWrapPolicy(policy);
 }
 
-void QFormLayout_SetRowWrapPolicy(QFormLayout* self, int policy) {
-	self->setRowWrapPolicy(static_cast<QFormLayout::RowWrapPolicy>(policy));
-}
-
-int QFormLayout_RowWrapPolicy(const QFormLayout* self) {
-	QFormLayout::RowWrapPolicy _ret = self->rowWrapPolicy();
-	return static_cast<int>(_ret);
+RowWrapPolicy QFormLayout_RowWrapPolicy(const QFormLayout* self) {
+	return self->rowWrapPolicy();
 }
 
 void QFormLayout_SetLabelAlignment(QFormLayout* self, int alignment) {
@@ -606,32 +682,68 @@ void QFormLayout_RemoveRowWithLayout(QFormLayout* self, QLayout* layout) {
 	self->removeRow(layout);
 }
 
-QFormLayout__TakeRowResult* QFormLayout_TakeRow(QFormLayout* self, int row) {
-	return new QFormLayout::TakeRowResult(self->takeRow(static_cast<int>(row)));
+TakeRowResult QFormLayout_TakeRow(QFormLayout* self, int row) {
+	return self->takeRow(static_cast<int>(row));
 }
 
-QFormLayout__TakeRowResult* QFormLayout_TakeRowWithWidget(QFormLayout* self, QWidget* widget) {
-	return new QFormLayout::TakeRowResult(self->takeRow(widget));
+TakeRowResult QFormLayout_TakeRowWithWidget(QFormLayout* self, QWidget* widget) {
+	return self->takeRow(widget);
 }
 
-QFormLayout__TakeRowResult* QFormLayout_TakeRowWithLayout(QFormLayout* self, QLayout* layout) {
-	return new QFormLayout::TakeRowResult(self->takeRow(layout));
+TakeRowResult QFormLayout_TakeRowWithLayout(QFormLayout* self, QLayout* layout) {
+	return self->takeRow(layout);
 }
 
-void QFormLayout_SetItem(QFormLayout* self, int row, int role, QLayoutItem* item) {
-	self->setItem(static_cast<int>(row), static_cast<QFormLayout::ItemRole>(role), item);
+void QFormLayout_SetItem(QFormLayout* self, int row, ItemRole role, QLayoutItem* item) {
+	self->setItem(static_cast<int>(row), role, item);
 }
 
-void QFormLayout_SetWidget(QFormLayout* self, int row, int role, QWidget* widget) {
-	self->setWidget(static_cast<int>(row), static_cast<QFormLayout::ItemRole>(role), widget);
+void QFormLayout_SetWidget(QFormLayout* self, int row, ItemRole role, QWidget* widget) {
+	self->setWidget(static_cast<int>(row), role, widget);
 }
 
-void QFormLayout_SetLayout(QFormLayout* self, int row, int role, QLayout* layout) {
-	self->setLayout(static_cast<int>(row), static_cast<QFormLayout::ItemRole>(role), layout);
+void QFormLayout_SetLayout(QFormLayout* self, int row, ItemRole role, QLayout* layout) {
+	self->setLayout(static_cast<int>(row), role, layout);
 }
 
-QLayoutItem* QFormLayout_ItemAt(const QFormLayout* self, int row, int role) {
-	return self->itemAt(static_cast<int>(row), static_cast<QFormLayout::ItemRole>(role));
+void QFormLayout_SetRowVisible(QFormLayout* self, int row, bool on) {
+	self->setRowVisible(static_cast<int>(row), on);
+}
+
+void QFormLayout_SetRowVisible2(QFormLayout* self, QWidget* widget, bool on) {
+	self->setRowVisible(widget, on);
+}
+
+void QFormLayout_SetRowVisible3(QFormLayout* self, QLayout* layout, bool on) {
+	self->setRowVisible(layout, on);
+}
+
+bool QFormLayout_IsRowVisible(const QFormLayout* self, int row) {
+	return self->isRowVisible(static_cast<int>(row));
+}
+
+bool QFormLayout_IsRowVisibleWithWidget(const QFormLayout* self, QWidget* widget) {
+	return self->isRowVisible(widget);
+}
+
+bool QFormLayout_IsRowVisibleWithLayout(const QFormLayout* self, QLayout* layout) {
+	return self->isRowVisible(layout);
+}
+
+QLayoutItem* QFormLayout_ItemAt(const QFormLayout* self, int row, ItemRole role) {
+	return self->itemAt(static_cast<int>(row), role);
+}
+
+void QFormLayout_GetItemPosition(const QFormLayout* self, int index, int* rowPtr, ItemRole* rolePtr) {
+	self->getItemPosition(static_cast<int>(index), static_cast<int*>(rowPtr), rolePtr);
+}
+
+void QFormLayout_GetWidgetPosition(const QFormLayout* self, QWidget* widget, int* rowPtr, ItemRole* rolePtr) {
+	self->getWidgetPosition(widget, static_cast<int*>(rowPtr), rolePtr);
+}
+
+void QFormLayout_GetLayoutPosition(const QFormLayout* self, QLayout* layout, int* rowPtr, ItemRole* rolePtr) {
+	self->getLayoutPosition(layout, static_cast<int*>(rowPtr), rolePtr);
 }
 
 QWidget* QFormLayout_LabelForField(const QFormLayout* self, QWidget* field) {
@@ -713,26 +825,20 @@ struct miqt_string QFormLayout_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QFormLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QFormLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QFormLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFormLayout*>( (QFormLayout*)(self) )->handle__Spacing = slot;
 }
 
-struct miqt_string QFormLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QFormLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+int QFormLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQFormLayout*)(self) )->virtualbase_Spacing();
+}
+
+void QFormLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFormLayout*>( (QFormLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QFormLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQFormLayout*)(self) )->virtualbase_SetSpacing(spacing);
 }
 
 void QFormLayout_override_virtual_AddItem(void* self, intptr_t slot) {
@@ -863,6 +969,14 @@ int QFormLayout_virtualbase_ControlTypes(const void* self) {
 	return ( (const MiqtVirtualQFormLayout*)(self) )->virtualbase_ControlTypes();
 }
 
+void QFormLayout_override_virtual_ReplaceWidget(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFormLayout*>( (QFormLayout*)(self) )->handle__ReplaceWidget = slot;
+}
+
+QLayoutItem* QFormLayout_virtualbase_ReplaceWidget(void* self, QWidget* from, QWidget* to, int options) {
+	return ( (MiqtVirtualQFormLayout*)(self) )->virtualbase_ReplaceWidget(from, to, options);
+}
+
 void QFormLayout_override_virtual_Layout(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQFormLayout*>( (QFormLayout*)(self) )->handle__Layout = slot;
 }
@@ -885,6 +999,14 @@ void QFormLayout_Delete(QFormLayout* self, bool isSubclass) {
 	} else {
 		delete self;
 	}
+}
+
+QFormLayout__TakeRowResult* QFormLayout__TakeRowResult_new() {
+	return new QFormLayout::TakeRowResult();
+}
+
+QFormLayout__TakeRowResult* QFormLayout__TakeRowResult_new2(const TakeRowResult* param1) {
+	return new QFormLayout::TakeRowResult(*param1);
 }
 
 void QFormLayout__TakeRowResult_Delete(QFormLayout__TakeRowResult* self, bool isSubclass) {

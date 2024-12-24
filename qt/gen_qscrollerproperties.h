@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -17,21 +17,29 @@ extern "C" {
 #ifdef __cplusplus
 class QScrollerProperties;
 class QVariant;
+class _GUID;
+class type_info;
 #else
 typedef struct QScrollerProperties QScrollerProperties;
 typedef struct QVariant QVariant;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QScrollerProperties* QScrollerProperties_new();
-QScrollerProperties* QScrollerProperties_new2(QScrollerProperties* sp);
-void QScrollerProperties_OperatorAssign(QScrollerProperties* self, QScrollerProperties* sp);
-bool QScrollerProperties_OperatorEqual(const QScrollerProperties* self, QScrollerProperties* sp);
-bool QScrollerProperties_OperatorNotEqual(const QScrollerProperties* self, QScrollerProperties* sp);
-void QScrollerProperties_SetDefaultScrollerProperties(QScrollerProperties* sp);
-void QScrollerProperties_UnsetDefaultScrollerProperties();
-QVariant* QScrollerProperties_ScrollMetric(const QScrollerProperties* self, int metric);
-void QScrollerProperties_SetScrollMetric(QScrollerProperties* self, int metric, QVariant* value);
-void QScrollerProperties_Delete(QScrollerProperties* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QScrollerProperties* QScrollerProperties_new();
+extern __declspec(dllexport) QScrollerProperties* QScrollerProperties_new2(QScrollerProperties* sp);
+extern __declspec(dllexport) void QScrollerProperties_OperatorAssign(QScrollerProperties* self, QScrollerProperties* sp);
+extern __declspec(dllexport) bool QScrollerProperties_OperatorEqual(const QScrollerProperties* self, QScrollerProperties* sp);
+extern __declspec(dllexport) bool QScrollerProperties_OperatorNotEqual(const QScrollerProperties* self, QScrollerProperties* sp);
+extern __declspec(dllexport) void QScrollerProperties_SetDefaultScrollerProperties(QScrollerProperties* sp);
+extern __declspec(dllexport) void QScrollerProperties_UnsetDefaultScrollerProperties();
+extern __declspec(dllexport) QVariant* QScrollerProperties_ScrollMetric(const QScrollerProperties* self, ScrollMetric metric);
+extern __declspec(dllexport) void QScrollerProperties_SetScrollMetric(QScrollerProperties* self, ScrollMetric metric, QVariant* value);
+extern __declspec(dllexport) void QScrollerProperties_Delete(QScrollerProperties* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

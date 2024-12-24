@@ -1,4 +1,7 @@
+// +build ignore
+
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QCryptographicHash>
 #include <QIODevice>
 #include <qcryptographichash.h>
@@ -7,23 +10,45 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-QCryptographicHash* QCryptographicHash_new(int method) {
-	return new QCryptographicHash(static_cast<QCryptographicHash::Algorithm>(method));
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QCryptographicHash* QCryptographicHash_new(Algorithm method) {
+	return new QCryptographicHash(method);
+}
+
+void QCryptographicHash_Swap(QCryptographicHash* self, QCryptographicHash* other) {
+	self->swap(*other);
 }
 
 void QCryptographicHash_Reset(QCryptographicHash* self) {
 	self->reset();
 }
 
-void QCryptographicHash_AddData(QCryptographicHash* self, const char* data, int length) {
-	self->addData(data, static_cast<int>(length));
+Algorithm QCryptographicHash_Algorithm(const QCryptographicHash* self) {
+	return self->algorithm();
 }
 
-void QCryptographicHash_AddDataWithData(QCryptographicHash* self, struct miqt_string data) {
-	QByteArray data_QByteArray(data.data, data.len);
-	self->addData(data_QByteArray);
+void QCryptographicHash_AddData(QCryptographicHash* self, const char* data, ptrdiff_t length) {
+	self->addData(data, (qsizetype)(length));
+}
+
+void QCryptographicHash_AddDataWithData(QCryptographicHash* self, QByteArrayView* data) {
+	self->addData(*data);
 }
 
 bool QCryptographicHash_AddDataWithDevice(QCryptographicHash* self, QIODevice* device) {
@@ -39,9 +64,12 @@ struct miqt_string QCryptographicHash_Result(const QCryptographicHash* self) {
 	return _ms;
 }
 
-struct miqt_string QCryptographicHash_Hash(struct miqt_string data, int method) {
-	QByteArray data_QByteArray(data.data, data.len);
-	QByteArray _qb = QCryptographicHash::hash(data_QByteArray, static_cast<QCryptographicHash::Algorithm>(method));
+QByteArrayView* QCryptographicHash_ResultView(const QCryptographicHash* self) {
+	return new QByteArrayView(self->resultView());
+}
+
+struct miqt_string QCryptographicHash_Hash(QByteArrayView* data, Algorithm method) {
+	QByteArray _qb = QCryptographicHash::hash(*data, method);
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));
@@ -49,8 +77,36 @@ struct miqt_string QCryptographicHash_Hash(struct miqt_string data, int method) 
 	return _ms;
 }
 
-int QCryptographicHash_HashLength(int method) {
-	return QCryptographicHash::hashLength(static_cast<QCryptographicHash::Algorithm>(method));
+QByteArrayView* QCryptographicHash_HashInto(QSpan<char> buffer, QByteArrayView* data, Algorithm method) {
+	return new QByteArrayView(QCryptographicHash::hashInto(buffer, *data, method));
+}
+
+QByteArrayView* QCryptographicHash_HashInto2(QSpan<uchar> buffer, QByteArrayView* data, Algorithm method) {
+	return new QByteArrayView(QCryptographicHash::hashInto(buffer, *data, method));
+}
+
+QByteArrayView* QCryptographicHash_HashInto3(QSpan<std::byte> buffer, QByteArrayView* data, Algorithm method) {
+	return new QByteArrayView(QCryptographicHash::hashInto(buffer, *data, method));
+}
+
+QByteArrayView* QCryptographicHash_HashInto4(QSpan<char> buffer, QSpan<const QByteArrayView> data, Algorithm method) {
+	return new QByteArrayView(QCryptographicHash::hashInto(buffer, data, method));
+}
+
+QByteArrayView* QCryptographicHash_HashInto5(QSpan<uchar> buffer, QSpan<const QByteArrayView> data, Algorithm method) {
+	return new QByteArrayView(QCryptographicHash::hashInto(buffer, data, method));
+}
+
+QByteArrayView* QCryptographicHash_HashInto6(QSpan<std::byte> buffer, QSpan<const QByteArrayView> data, Algorithm method) {
+	return new QByteArrayView(QCryptographicHash::hashInto(buffer, data, method));
+}
+
+int QCryptographicHash_HashLength(Algorithm method) {
+	return QCryptographicHash::hashLength(method);
+}
+
+bool QCryptographicHash_SupportsAlgorithm(Algorithm method) {
+	return QCryptographicHash::supportsAlgorithm(method);
 }
 
 void QCryptographicHash_Delete(QCryptographicHash* self, bool isSubclass) {

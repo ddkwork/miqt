@@ -6,14 +6,12 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
 )
 
 func main() {
-
 	// Parse arguments
 
 	input := flag.String("Input", "", "Path to .qrc input file")
@@ -78,7 +76,7 @@ func init() {
 		panic(err)
 	}
 
-	err = ioutil.WriteFile(*outputGo, outputData, 0644)
+	err = os.WriteFile(*outputGo, outputData, 0o644)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Writing to '%s': %s\n", *outputGo, err.Error())
 		os.Exit(1)

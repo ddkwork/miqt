@@ -1,128 +1,108 @@
 package qt
-
-/*
-
-#include "gen_qmessageauthenticationcode.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
-type QMessageAuthenticationCode struct {
-	h          *C.QMessageAuthenticationCode
-	isSubclass bool
+		type QMessageAuthenticationCode struct {
+			h uintptr
+			isSubclass bool
 }
-
-func (this *QMessageAuthenticationCode) cPointer() *C.QMessageAuthenticationCode {
-	if this == nil {
-		return nil
-	}
-	return this.h
+		
+			// NewQMessageAuthenticationCode constructs a new QMessageAuthenticationCode object.
+			func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm) *QMessageAuthenticationCode {
+								
+				ret := newQMessageAuthenticationCode(QMessageAuthenticationCode_new((int)(method)))
+				ret.isSubclass = true
+				return ret
+			}
+			
+			
+			// NewQMessageAuthenticationCode2 constructs a new QMessageAuthenticationCode object.
+			func NewQMessageAuthenticationCode2(method QCryptographicHash__Algorithm, key QByteArrayView) *QMessageAuthenticationCode {
+								
+				ret := newQMessageAuthenticationCode(QMessageAuthenticationCode_new2((int)(method), key.cPointer()))
+				ret.isSubclass = true
+				return ret
+			}
+			
+			
+			func (this *QMessageAuthenticationCode) Swap(other *QMessageAuthenticationCode)  {
+				 QMessageAuthenticationCode_Swap(this.h, other.cPointer())
 }
-
-func (this *QMessageAuthenticationCode) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
+			
+			func (this *QMessageAuthenticationCode) Reset()  {
+				 QMessageAuthenticationCode_Reset(this.h)
 }
-
-// newQMessageAuthenticationCode constructs the type using only CGO pointers.
-func newQMessageAuthenticationCode(h *C.QMessageAuthenticationCode) *QMessageAuthenticationCode {
-	if h == nil {
-		return nil
-	}
-
-	return &QMessageAuthenticationCode{h: h}
+			
+			func (this *QMessageAuthenticationCode) SetKey(key QByteArrayView)  {
+				 QMessageAuthenticationCode_SetKey(this.h, key.cPointer())
 }
-
-// UnsafeNewQMessageAuthenticationCode constructs the type using only unsafe pointers.
-func UnsafeNewQMessageAuthenticationCode(h unsafe.Pointer) *QMessageAuthenticationCode {
-	return newQMessageAuthenticationCode((*C.QMessageAuthenticationCode)(h))
+			
+			func (this *QMessageAuthenticationCode) AddData(data string, length int64)  {
+				data_Cstring := CString(data)
+defer free(unsafe.Pointer(data_Cstring))
+ QMessageAuthenticationCode_AddData(this.h, data_Cstring, (ptrdiff_t)(length))
 }
-
-// NewQMessageAuthenticationCode constructs a new QMessageAuthenticationCode object.
-func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm) *QMessageAuthenticationCode {
-
-	ret := newQMessageAuthenticationCode(C.QMessageAuthenticationCode_new((C.int)(method)))
-	ret.isSubclass = true
-	return ret
+			
+			func (this *QMessageAuthenticationCode) AddDataWithData(data QByteArrayView)  {
+				 QMessageAuthenticationCode_AddDataWithData(this.h, data.cPointer())
 }
-
-// NewQMessageAuthenticationCode2 constructs a new QMessageAuthenticationCode object.
-func NewQMessageAuthenticationCode2(method QCryptographicHash__Algorithm, key []byte) *QMessageAuthenticationCode {
-	key_alias := C.struct_miqt_string{}
-	key_alias.data = (*C.char)(unsafe.Pointer(&key[0]))
-	key_alias.len = C.size_t(len(key))
-
-	ret := newQMessageAuthenticationCode(C.QMessageAuthenticationCode_new2((C.int)(method), key_alias))
-	ret.isSubclass = true
-	return ret
+			
+			func (this *QMessageAuthenticationCode) AddDataWithDevice(device *QIODevice) bool {
+				return (bool)(QMessageAuthenticationCode_AddDataWithDevice(this.h, device.cPointer()))
 }
-
-func (this *QMessageAuthenticationCode) Reset() {
-	C.QMessageAuthenticationCode_Reset(this.h)
+			
+			func (this *QMessageAuthenticationCode) ResultView() *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_ResultView(this.h))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-func (this *QMessageAuthenticationCode) SetKey(key []byte) {
-	key_alias := C.struct_miqt_string{}
-	key_alias.data = (*C.char)(unsafe.Pointer(&key[0]))
-	key_alias.len = C.size_t(len(key))
-	C.QMessageAuthenticationCode_SetKey(this.h, key_alias)
+			
+			func (this *QMessageAuthenticationCode) Result() []byte {
+				var _bytearray struct_miqt_string =  QMessageAuthenticationCode_Result(this.h)
+_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+free(unsafe.Pointer(_bytearray.data))
+return _ret}
+			
+			func QMessageAuthenticationCode_Hash(message QByteArrayView, key QByteArrayView, method QCryptographicHash__Algorithm) []byte {
+				var _bytearray struct_miqt_string =  QMessageAuthenticationCode_Hash(message.cPointer(), key.cPointer(), (int)(method))
+_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+free(unsafe.Pointer(_bytearray.data))
+return _ret}
+			
+			func QMessageAuthenticationCode_HashInto(buffer QSpan<char>, message QByteArrayView, key QByteArrayView, method QCryptographicHash__Algorithm) *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_HashInto(buffer, message.cPointer(), key.cPointer(), (int)(method)))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-func (this *QMessageAuthenticationCode) AddData(data string, length int) {
-	data_Cstring := C.CString(data)
-	defer C.free(unsafe.Pointer(data_Cstring))
-	C.QMessageAuthenticationCode_AddData(this.h, data_Cstring, (C.int)(length))
+			
+			func QMessageAuthenticationCode_HashInto2(buffer QSpan<uchar>, message QByteArrayView, key QByteArrayView, method QCryptographicHash__Algorithm) *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_HashInto2(buffer, message.cPointer(), key.cPointer(), (int)(method)))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-func (this *QMessageAuthenticationCode) AddDataWithData(data []byte) {
-	data_alias := C.struct_miqt_string{}
-	data_alias.data = (*C.char)(unsafe.Pointer(&data[0]))
-	data_alias.len = C.size_t(len(data))
-	C.QMessageAuthenticationCode_AddDataWithData(this.h, data_alias)
+			
+			func QMessageAuthenticationCode_HashInto3(buffer QSpan<std__byte>, message QByteArrayView, key QByteArrayView, method QCryptographicHash__Algorithm) *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_HashInto3(buffer, message.cPointer(), key.cPointer(), (int)(method)))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-func (this *QMessageAuthenticationCode) AddDataWithDevice(device *QIODevice) bool {
-	return (bool)(C.QMessageAuthenticationCode_AddDataWithDevice(this.h, device.cPointer()))
+			
+			func QMessageAuthenticationCode_HashInto4(buffer QSpan<char>, messageParts QSpan<const QByteArrayView>, key QByteArrayView, method QCryptographicHash__Algorithm) *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_HashInto4(buffer, messageParts, key.cPointer(), (int)(method)))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-func (this *QMessageAuthenticationCode) Result() []byte {
-	var _bytearray C.struct_miqt_string = C.QMessageAuthenticationCode_Result(this.h)
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
-	return _ret
+			
+			func QMessageAuthenticationCode_HashInto5(buffer QSpan<uchar>, messageParts QSpan<const QByteArrayView>, key QByteArrayView, method QCryptographicHash__Algorithm) *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_HashInto5(buffer, messageParts, key.cPointer(), (int)(method)))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-func QMessageAuthenticationCode_Hash(message []byte, key []byte, method QCryptographicHash__Algorithm) []byte {
-	message_alias := C.struct_miqt_string{}
-	message_alias.data = (*C.char)(unsafe.Pointer(&message[0]))
-	message_alias.len = C.size_t(len(message))
-	key_alias := C.struct_miqt_string{}
-	key_alias.data = (*C.char)(unsafe.Pointer(&key[0]))
-	key_alias.len = C.size_t(len(key))
-	var _bytearray C.struct_miqt_string = C.QMessageAuthenticationCode_Hash(message_alias, key_alias, (C.int)(method))
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
-	return _ret
+			
+			func QMessageAuthenticationCode_HashInto6(buffer QSpan<std__byte>, message QSpan<const QByteArrayView>, key QByteArrayView, method QCryptographicHash__Algorithm) *QByteArrayView {
+				_goptr := newQByteArrayView(QMessageAuthenticationCode_HashInto6(buffer, message, key.cPointer(), (int)(method)))
+_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+return _goptr
 }
-
-// Delete this object from C++ memory.
-func (this *QMessageAuthenticationCode) Delete() {
-	C.QMessageAuthenticationCode_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QMessageAuthenticationCode) GoGC() {
-	runtime.SetFinalizer(this, func(this *QMessageAuthenticationCode) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
-}
+			

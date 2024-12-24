@@ -5,34 +5,25 @@ import (
 	"strings"
 )
 
-func InsertTypedefs(qt6 bool) {
-
+func InsertTypedefs() {
 	// Seed well-known typedefs
-	pp := "qt"
-	if qt6 {
-		pp = "qt6"
-	}
+	const pkgName = "qt"
 
 	// QString is deleted from this binding
-	KnownTypedefs["QStringList"] = lookupResultTypedef{pp, CppTypedef{"QStringList", parseSingleTypeString("QList<QString>")}}
+	KnownTypedefs["QStringList"] = lookupResultTypedef{pkgName, CppTypedef{"QStringList", parseSingleTypeString("QList<QString>")}}
 
 	// FIXME this isn't picked up automatically because QFile inherits QFileDevice and the name refers to its parent class
-	KnownTypedefs["QFile::FileTime"] = lookupResultTypedef{pp, CppTypedef{"QFile::FileTime", parseSingleTypeString("QFileDevice::FileTime")}}
+	KnownTypedefs["QFile::FileTime"] = lookupResultTypedef{pkgName, CppTypedef{"QFile::FileTime", parseSingleTypeString("QFileDevice::FileTime")}}
 
-	if !qt6 {
-		// n.b. Qt 5 only
-		KnownTypedefs["QLineF::IntersectionType"] = lookupResultTypedef{pp, CppTypedef{"QLineF::IntersectionType", parseSingleTypeString("QLineF::IntersectType")}}
-	} else {
-		// Must be removed for Qt 6
-	}
+	KnownTypedefs["QLineF::IntersectionType"] = lookupResultTypedef{pkgName, CppTypedef{"QLineF::IntersectionType", parseSingleTypeString("QLineF::IntersectType")}}
 
 	// Not sure the reason for this one
-	KnownTypedefs["QSocketDescriptor::DescriptorType"] = lookupResultTypedef{pp, CppTypedef{"QSocketDescriptor::DescriptorType", parseSingleTypeString("QSocketNotifier::Type")}}
+	KnownTypedefs["QSocketDescriptor::DescriptorType"] = lookupResultTypedef{pkgName, CppTypedef{"QSocketDescriptor::DescriptorType", parseSingleTypeString("QSocketNotifier::Type")}}
 
 	// QFile doesn't see QFileDevice parent class enum
-	KnownTypedefs["QFile::Permissions"] = lookupResultTypedef{pp, CppTypedef{"QFile::Permissions", parseSingleTypeString("QFileDevice::Permissions")}}
-	KnownTypedefs["QFileDevice::Permissions"] = lookupResultTypedef{pp, CppTypedef{"QFile::Permissions", parseSingleTypeString("QFlags<QFileDevice::Permission>")}}
-	KnownTypedefs["QIODevice::OpenMode"] = lookupResultTypedef{pp, CppTypedef{"QIODevice::OpenMode", parseSingleTypeString("QIODeviceBase::OpenMode")}}
+	KnownTypedefs["QFile::Permissions"] = lookupResultTypedef{pkgName, CppTypedef{"QFile::Permissions", parseSingleTypeString("QFileDevice::Permissions")}}
+	KnownTypedefs["QFileDevice::Permissions"] = lookupResultTypedef{pkgName, CppTypedef{"QFile::Permissions", parseSingleTypeString("QFlags<QFileDevice::Permission>")}}
+	KnownTypedefs["QIODevice::OpenMode"] = lookupResultTypedef{pkgName, CppTypedef{"QIODevice::OpenMode", parseSingleTypeString("QIODeviceBase::OpenMode")}}
 
 	// Qt 5 WebKit - use of an empty enum (should be possible to support?)
 	KnownEnums["QWebPluginFactory::Extension"] = lookupResultEnum{"qt/webkit", CppEnum{
@@ -41,29 +32,25 @@ func InsertTypedefs(qt6 bool) {
 			ParameterType: "int",
 		},
 	}}
+	// Qt 6 QVariant helper types - needs investigation
+	KnownTypedefs["QVariantHash"] = lookupResultTypedef{pkgName, CppTypedef{"QVariantHash", parseSingleTypeString("QHash<QString,QVariant>")}}
+	KnownTypedefs["QVariantList"] = lookupResultTypedef{pkgName, CppTypedef{"QVariantList", parseSingleTypeString("QList<QVariant>")}}
+	KnownTypedefs["QVariantMap"] = lookupResultTypedef{pkgName, CppTypedef{"QVariantMap", parseSingleTypeString("QMap<QString,QVariant>")}}
 
-	if qt6 {
-		// Qt 6 QVariant helper types - needs investigation
-		KnownTypedefs["QVariantHash"] = lookupResultTypedef{"qt6", CppTypedef{"QVariantHash", parseSingleTypeString("QHash<QString,QVariant>")}}
-		KnownTypedefs["QVariantList"] = lookupResultTypedef{"qt6", CppTypedef{"QVariantList", parseSingleTypeString("QList<QVariant>")}}
-		KnownTypedefs["QVariantMap"] = lookupResultTypedef{"qt6", CppTypedef{"QVariantMap", parseSingleTypeString("QMap<QString,QVariant>")}}
+	// Qt 6 renamed the enum to LibraryPath, but left some uses of LibraryLocation with a typedef
+	// We don't find the typedef - needs investigation
+	// ONLY add this on Qt 6 builds, breaks Qt 5
+	KnownTypedefs["QLibraryInfo::LibraryLocation"] = lookupResultTypedef{pkgName, CppTypedef{"QLibraryInfo::LibraryLocation", parseSingleTypeString("QLibraryInfo::LibraryPath")}}
 
-		// Qt 6 renamed the enum to LibraryPath, but left some uses of LibraryLocation with a typedef
-		// We don't find the typedef - needs investigation
-		// ONLY add this on Qt 6 builds, breaks Qt 5
-		KnownTypedefs["QLibraryInfo::LibraryLocation"] = lookupResultTypedef{"qt6", CppTypedef{"QLibraryInfo::LibraryLocation", parseSingleTypeString("QLibraryInfo::LibraryPath")}}
+	// Enums
 
-		// Enums
-
-		// QSysInfo.h is being truncated and not finding any content
-		KnownEnums["QSysInfo::Endian"] = lookupResultEnum{"qt6", CppEnum{
-			EnumName: "QSysInfo::Endian",
-			UnderlyingType: CppParameter{
-				ParameterType: "int",
-			},
-		}}
-	}
-
+	// QSysInfo.h is being truncated and not finding any content
+	KnownEnums["QSysInfo::Endian"] = lookupResultEnum{pkgName, CppEnum{
+		EnumName: "QSysInfo::Endian",
+		UnderlyingType: CppParameter{
+			ParameterType: "int",
+		},
+	}}
 }
 
 func Widgets_AllowHeader(fullpath string) bool {
@@ -138,7 +125,6 @@ func ImportHeaderForClass(className string) bool {
 }
 
 func AllowClass(className string) bool {
-
 	if strings.HasSuffix(className, "Private") || strings.HasSuffix(className, "PrivateShared") ||
 		strings.Contains(className, "Private::") || strings.HasSuffix(className, "PrivateShared::") {
 		return false
@@ -161,7 +147,7 @@ func AllowClass(className string) bool {
 		"QXmlStreamAttributes",       // Extends a QList<>, too hard
 		"QPolygon",                   // Extends a QVector<QPoint> template class, too hard
 		"QPolygonF",                  // Extends a QVector<QPoint> template class, too hard
-		"QAssociativeIterator",       // Qt 6. Extends a QIterator<>, too hard
+		"QAssociativeIterator",       // Qt 6. Extends a QIterator<>, too hard todo use go1.23 iter pkg ?
 		"QAssociativeConstIterator",  // Qt 6. Extends a QIterator<>, too hard
 		"QAssociativeIterable",       // Qt 6. Extends a QIterator<>, too hard
 		"QSequentialIterator",        // Qt 6. Extends a QIterator<>, too hard
@@ -196,7 +182,6 @@ func AllowSignal(mm CppMethod) bool {
 }
 
 func AllowVirtual(mm CppMethod) bool {
-
 	if mm.MethodName == "metaObject" || mm.MethodName == "qt_metacast" {
 		return false
 	}
@@ -205,7 +190,6 @@ func AllowVirtual(mm CppMethod) bool {
 }
 
 func AllowVirtualForClass(className string) bool {
-
 	// Allowing the subclassing of QAccessibleWidget compiles fine,
 	// but, always gives a linker error:
 	//
@@ -251,7 +235,6 @@ func AllowVirtualForClass(className string) bool {
 }
 
 func AllowMethod(className string, mm CppMethod) error {
-
 	for _, p := range mm.Parameters {
 		if strings.HasSuffix(p.ParameterType, "Private") {
 			return ErrTooComplex // Skip private type
@@ -300,7 +283,6 @@ func AllowMethod(className string, mm CppMethod) error {
 // this type in its parameter list or return type.
 // Any type not permitted by AllowClass is also not permitted by this method.
 func AllowType(p CppParameter, isReturnType bool) error {
-
 	if t, ok := p.QSetOf(); ok {
 		if err := AllowType(t, isReturnType); err != nil {
 			return err

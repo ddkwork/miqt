@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAction>
 #include <QActionGroup>
 #include <QChildEvent>
@@ -17,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQActionGroup : public virtual QActionGroup {
 public:
@@ -226,17 +243,6 @@ struct miqt_string QActionGroup_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QActionGroup_TrUtf8(const char* s) {
-	QString _ret = QActionGroup::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QAction* QActionGroup_AddAction(QActionGroup* self, QAction* a) {
 	return self->addAction(a);
 }
@@ -284,9 +290,8 @@ bool QActionGroup_IsVisible(const QActionGroup* self) {
 	return self->isVisible();
 }
 
-int QActionGroup_ExclusionPolicy(const QActionGroup* self) {
-	QActionGroup::ExclusionPolicy _ret = self->exclusionPolicy();
-	return static_cast<int>(_ret);
+ExclusionPolicy QActionGroup_ExclusionPolicy(const QActionGroup* self) {
+	return self->exclusionPolicy();
 }
 
 void QActionGroup_SetEnabled(QActionGroup* self, bool enabled) {
@@ -305,8 +310,8 @@ void QActionGroup_SetExclusive(QActionGroup* self, bool exclusive) {
 	self->setExclusive(exclusive);
 }
 
-void QActionGroup_SetExclusionPolicy(QActionGroup* self, int policy) {
-	self->setExclusionPolicy(static_cast<QActionGroup::ExclusionPolicy>(policy));
+void QActionGroup_SetExclusionPolicy(QActionGroup* self, ExclusionPolicy policy) {
+	self->setExclusionPolicy(policy);
 }
 
 void QActionGroup_Triggered(QActionGroup* self, QAction* param1) {
@@ -344,28 +349,6 @@ struct miqt_string QActionGroup_Tr2(const char* s, const char* c) {
 
 struct miqt_string QActionGroup_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QActionGroup::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QActionGroup_TrUtf82(const char* s, const char* c) {
-	QString _ret = QActionGroup::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QActionGroup_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QActionGroup::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

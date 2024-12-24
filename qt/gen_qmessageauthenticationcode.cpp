@@ -1,4 +1,7 @@
+// +build ignore
+
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QIODevice>
 #include <QMessageAuthenticationCode>
 #include <qmessageauthenticationcode.h>
@@ -7,37 +10,57 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QMessageAuthenticationCode* QMessageAuthenticationCode_new(int method) {
 	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method));
 }
 
-QMessageAuthenticationCode* QMessageAuthenticationCode_new2(int method, struct miqt_string key) {
-	QByteArray key_QByteArray(key.data, key.len);
-	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), key_QByteArray);
+QMessageAuthenticationCode* QMessageAuthenticationCode_new2(int method, QByteArrayView* key) {
+	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), *key);
+}
+
+void QMessageAuthenticationCode_Swap(QMessageAuthenticationCode* self, QMessageAuthenticationCode* other) {
+	self->swap(*other);
 }
 
 void QMessageAuthenticationCode_Reset(QMessageAuthenticationCode* self) {
 	self->reset();
 }
 
-void QMessageAuthenticationCode_SetKey(QMessageAuthenticationCode* self, struct miqt_string key) {
-	QByteArray key_QByteArray(key.data, key.len);
-	self->setKey(key_QByteArray);
+void QMessageAuthenticationCode_SetKey(QMessageAuthenticationCode* self, QByteArrayView* key) {
+	self->setKey(*key);
 }
 
-void QMessageAuthenticationCode_AddData(QMessageAuthenticationCode* self, const char* data, int length) {
-	self->addData(data, static_cast<int>(length));
+void QMessageAuthenticationCode_AddData(QMessageAuthenticationCode* self, const char* data, ptrdiff_t length) {
+	self->addData(data, (qsizetype)(length));
 }
 
-void QMessageAuthenticationCode_AddDataWithData(QMessageAuthenticationCode* self, struct miqt_string data) {
-	QByteArray data_QByteArray(data.data, data.len);
-	self->addData(data_QByteArray);
+void QMessageAuthenticationCode_AddDataWithData(QMessageAuthenticationCode* self, QByteArrayView* data) {
+	self->addData(*data);
 }
 
 bool QMessageAuthenticationCode_AddDataWithDevice(QMessageAuthenticationCode* self, QIODevice* device) {
 	return self->addData(device);
+}
+
+QByteArrayView* QMessageAuthenticationCode_ResultView(const QMessageAuthenticationCode* self) {
+	return new QByteArrayView(self->resultView());
 }
 
 struct miqt_string QMessageAuthenticationCode_Result(const QMessageAuthenticationCode* self) {
@@ -49,15 +72,37 @@ struct miqt_string QMessageAuthenticationCode_Result(const QMessageAuthenticatio
 	return _ms;
 }
 
-struct miqt_string QMessageAuthenticationCode_Hash(struct miqt_string message, struct miqt_string key, int method) {
-	QByteArray message_QByteArray(message.data, message.len);
-	QByteArray key_QByteArray(key.data, key.len);
-	QByteArray _qb = QMessageAuthenticationCode::hash(message_QByteArray, key_QByteArray, static_cast<QCryptographicHash::Algorithm>(method));
+struct miqt_string QMessageAuthenticationCode_Hash(QByteArrayView* message, QByteArrayView* key, int method) {
+	QByteArray _qb = QMessageAuthenticationCode::hash(*message, *key, static_cast<QCryptographicHash::Algorithm>(method));
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _qb.data(), _ms.len);
 	return _ms;
+}
+
+QByteArrayView* QMessageAuthenticationCode_HashInto(QSpan<char> buffer, QByteArrayView* message, QByteArrayView* key, int method) {
+	return new QByteArrayView(QMessageAuthenticationCode::hashInto(buffer, *message, *key, static_cast<QCryptographicHash::Algorithm>(method)));
+}
+
+QByteArrayView* QMessageAuthenticationCode_HashInto2(QSpan<uchar> buffer, QByteArrayView* message, QByteArrayView* key, int method) {
+	return new QByteArrayView(QMessageAuthenticationCode::hashInto(buffer, *message, *key, static_cast<QCryptographicHash::Algorithm>(method)));
+}
+
+QByteArrayView* QMessageAuthenticationCode_HashInto3(QSpan<std::byte> buffer, QByteArrayView* message, QByteArrayView* key, int method) {
+	return new QByteArrayView(QMessageAuthenticationCode::hashInto(buffer, *message, *key, static_cast<QCryptographicHash::Algorithm>(method)));
+}
+
+QByteArrayView* QMessageAuthenticationCode_HashInto4(QSpan<char> buffer, QSpan<const QByteArrayView> messageParts, QByteArrayView* key, int method) {
+	return new QByteArrayView(QMessageAuthenticationCode::hashInto(buffer, messageParts, *key, static_cast<QCryptographicHash::Algorithm>(method)));
+}
+
+QByteArrayView* QMessageAuthenticationCode_HashInto5(QSpan<uchar> buffer, QSpan<const QByteArrayView> messageParts, QByteArrayView* key, int method) {
+	return new QByteArrayView(QMessageAuthenticationCode::hashInto(buffer, messageParts, *key, static_cast<QCryptographicHash::Algorithm>(method)));
+}
+
+QByteArrayView* QMessageAuthenticationCode_HashInto6(QSpan<std::byte> buffer, QSpan<const QByteArrayView> message, QByteArrayView* key, int method) {
+	return new QByteArrayView(QMessageAuthenticationCode::hashInto(buffer, message, *key, static_cast<QCryptographicHash::Algorithm>(method)));
 }
 
 void QMessageAuthenticationCode_Delete(QMessageAuthenticationCode* self, bool isSubclass) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCommandLineOption>
 #include <QList>
 #include <QString>
@@ -9,7 +11,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QCommandLineOption* QCommandLineOption_new(struct miqt_string name) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
@@ -187,21 +204,12 @@ struct miqt_array /* of struct miqt_string */  QCommandLineOption_DefaultValues(
 	return _out;
 }
 
-int QCommandLineOption_Flags(const QCommandLineOption* self) {
-	QCommandLineOption::Flags _ret = self->flags();
-	return static_cast<int>(_ret);
+Flags QCommandLineOption_Flags(const QCommandLineOption* self) {
+	return self->flags();
 }
 
-void QCommandLineOption_SetFlags(QCommandLineOption* self, int aflags) {
-	self->setFlags(static_cast<QCommandLineOption::Flags>(aflags));
-}
-
-void QCommandLineOption_SetHidden(QCommandLineOption* self, bool hidden) {
-	self->setHidden(hidden);
-}
-
-bool QCommandLineOption_IsHidden(const QCommandLineOption* self) {
-	return self->isHidden();
+void QCommandLineOption_SetFlags(QCommandLineOption* self, Flags aflags) {
+	self->setFlags(aflags);
 }
 
 void QCommandLineOption_Delete(QCommandLineOption* self, bool isSubclass) {

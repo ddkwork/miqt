@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QMetaMethod>
@@ -18,14 +20,29 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQOffscreenSurface : public virtual QOffscreenSurface {
 public:
 
-	MiqtVirtualQOffscreenSurface(QScreen* screen, QObject* parent): QOffscreenSurface(screen, parent) {};
 	MiqtVirtualQOffscreenSurface(): QOffscreenSurface() {};
 	MiqtVirtualQOffscreenSurface(QScreen* screen): QOffscreenSurface(screen) {};
+	MiqtVirtualQOffscreenSurface(QScreen* screen, QObject* parent): QOffscreenSurface(screen, parent) {};
 
 	virtual ~MiqtVirtualQOffscreenSurface() = default;
 
@@ -33,22 +50,21 @@ public:
 	intptr_t handle__SurfaceType = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QSurface::SurfaceType surfaceType() const override {
+	virtual SurfaceType surfaceType() const override {
 		if (handle__SurfaceType == 0) {
 			return QOffscreenSurface::surfaceType();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QOffscreenSurface_SurfaceType(const_cast<MiqtVirtualQOffscreenSurface*>(this), handle__SurfaceType);
+		SurfaceType callback_return_value = miqt_exec_callback_QOffscreenSurface_SurfaceType(const_cast<MiqtVirtualQOffscreenSurface*>(this), handle__SurfaceType);
 
-		return static_cast<QSurface::SurfaceType>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_SurfaceType() const {
+	SurfaceType virtualbase_SurfaceType() const {
 
-		QSurface::SurfaceType _ret = QOffscreenSurface::surfaceType();
-		return static_cast<int>(_ret);
+		return QOffscreenSurface::surfaceType();
 
 	}
 
@@ -269,16 +285,16 @@ public:
 
 };
 
-QOffscreenSurface* QOffscreenSurface_new(QScreen* screen, QObject* parent) {
-	return new MiqtVirtualQOffscreenSurface(screen, parent);
-}
-
-QOffscreenSurface* QOffscreenSurface_new2() {
+QOffscreenSurface* QOffscreenSurface_new() {
 	return new MiqtVirtualQOffscreenSurface();
 }
 
-QOffscreenSurface* QOffscreenSurface_new3(QScreen* screen) {
+QOffscreenSurface* QOffscreenSurface_new2(QScreen* screen) {
 	return new MiqtVirtualQOffscreenSurface(screen);
+}
+
+QOffscreenSurface* QOffscreenSurface_new3(QScreen* screen, QObject* parent) {
+	return new MiqtVirtualQOffscreenSurface(screen, parent);
 }
 
 void QOffscreenSurface_virtbase(QOffscreenSurface* src, QObject** outptr_QObject, QSurface** outptr_QSurface) {
@@ -305,20 +321,8 @@ struct miqt_string QOffscreenSurface_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QOffscreenSurface_TrUtf8(const char* s) {
-	QString _ret = QOffscreenSurface::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QOffscreenSurface_SurfaceType(const QOffscreenSurface* self) {
-	QSurface::SurfaceType _ret = self->surfaceType();
-	return static_cast<int>(_ret);
+SurfaceType QOffscreenSurface_SurfaceType(const QOffscreenSurface* self) {
+	return self->surfaceType();
 }
 
 void QOffscreenSurface_Create(QOffscreenSurface* self) {
@@ -357,14 +361,6 @@ void QOffscreenSurface_SetScreen(QOffscreenSurface* self, QScreen* screen) {
 	self->setScreen(screen);
 }
 
-void* QOffscreenSurface_NativeHandle(const QOffscreenSurface* self) {
-	return self->nativeHandle();
-}
-
-void QOffscreenSurface_SetNativeHandle(QOffscreenSurface* self, void* handle) {
-	self->setNativeHandle(handle);
-}
-
 void QOffscreenSurface_ScreenChanged(QOffscreenSurface* self, QScreen* screen) {
 	self->screenChanged(screen);
 }
@@ -398,33 +394,11 @@ struct miqt_string QOffscreenSurface_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QOffscreenSurface_TrUtf82(const char* s, const char* c) {
-	QString _ret = QOffscreenSurface::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QOffscreenSurface_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QOffscreenSurface::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QOffscreenSurface_override_virtual_SurfaceType(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQOffscreenSurface*>( (QOffscreenSurface*)(self) )->handle__SurfaceType = slot;
 }
 
-int QOffscreenSurface_virtualbase_SurfaceType(const void* self) {
+SurfaceType QOffscreenSurface_virtualbase_SurfaceType(const void* self) {
 	return ( (const MiqtVirtualQOffscreenSurface*)(self) )->virtualbase_SurfaceType();
 }
 

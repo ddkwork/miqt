@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QScrollerProperties>
 #include <QVariant>
 #include <qscrollerproperties.h>
@@ -6,7 +8,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QScrollerProperties* QScrollerProperties_new() {
 	return new QScrollerProperties();
@@ -36,12 +53,12 @@ void QScrollerProperties_UnsetDefaultScrollerProperties() {
 	QScrollerProperties::unsetDefaultScrollerProperties();
 }
 
-QVariant* QScrollerProperties_ScrollMetric(const QScrollerProperties* self, int metric) {
-	return new QVariant(self->scrollMetric(static_cast<QScrollerProperties::ScrollMetric>(metric)));
+QVariant* QScrollerProperties_ScrollMetric(const QScrollerProperties* self, ScrollMetric metric) {
+	return new QVariant(self->scrollMetric(metric));
 }
 
-void QScrollerProperties_SetScrollMetric(QScrollerProperties* self, int metric, QVariant* value) {
-	self->setScrollMetric(static_cast<QScrollerProperties::ScrollMetric>(metric), *value);
+void QScrollerProperties_SetScrollMetric(QScrollerProperties* self, ScrollMetric metric, QVariant* value) {
+	self->setScrollMetric(metric, *value);
 }
 
 void QScrollerProperties_Delete(QScrollerProperties* self, bool isSubclass) {

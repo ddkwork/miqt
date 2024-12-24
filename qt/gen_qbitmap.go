@@ -1,60 +1,18 @@
 package qt
 
-/*
-
-#include "gen_qbitmap.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
 type QBitmap struct {
-	h          *C.QBitmap
+	h          uintptr
 	isSubclass bool
-	*QPixmap
-}
-
-func (this *QBitmap) cPointer() *C.QBitmap {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QBitmap) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQBitmap constructs the type using only CGO pointers.
-func newQBitmap(h *C.QBitmap) *QBitmap {
-	if h == nil {
-		return nil
-	}
-	var outptr_QPixmap *C.QPixmap = nil
-	C.QBitmap_virtbase(h, &outptr_QPixmap)
-
-	return &QBitmap{h: h,
-		QPixmap: newQPixmap(outptr_QPixmap)}
-}
-
-// UnsafeNewQBitmap constructs the type using only unsafe pointers.
-func UnsafeNewQBitmap(h unsafe.Pointer) *QBitmap {
-	return newQBitmap((*C.QBitmap)(h))
 }
 
 // NewQBitmap constructs a new QBitmap object.
 func NewQBitmap() *QBitmap {
 
-	ret := newQBitmap(C.QBitmap_new())
+	ret := newQBitmap(QBitmap_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -62,7 +20,7 @@ func NewQBitmap() *QBitmap {
 // NewQBitmap2 constructs a new QBitmap object.
 func NewQBitmap2(param1 *QPixmap) *QBitmap {
 
-	ret := newQBitmap(C.QBitmap_new2(param1.cPointer()))
+	ret := newQBitmap(QBitmap_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -70,7 +28,7 @@ func NewQBitmap2(param1 *QPixmap) *QBitmap {
 // NewQBitmap3 constructs a new QBitmap object.
 func NewQBitmap3(w int, h int) *QBitmap {
 
-	ret := newQBitmap(C.QBitmap_new3((C.int)(w), (C.int)(h)))
+	ret := newQBitmap(QBitmap_new3((int)(w), (int)(h)))
 	ret.isSubclass = true
 	return ret
 }
@@ -78,111 +36,103 @@ func NewQBitmap3(w int, h int) *QBitmap {
 // NewQBitmap4 constructs a new QBitmap object.
 func NewQBitmap4(param1 *QSize) *QBitmap {
 
-	ret := newQBitmap(C.QBitmap_new4(param1.cPointer()))
+	ret := newQBitmap(QBitmap_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQBitmap5 constructs a new QBitmap object.
 func NewQBitmap5(fileName string) *QBitmap {
-	fileName_ms := C.struct_miqt_string{}
-	fileName_ms.data = C.CString(fileName)
-	fileName_ms.len = C.size_t(len(fileName))
-	defer C.free(unsafe.Pointer(fileName_ms.data))
+	fileName_ms := struct_miqt_string{}
+	fileName_ms.data = CString(fileName)
+	fileName_ms.len = size_t(len(fileName))
+	defer free(unsafe.Pointer(fileName_ms.data))
 
-	ret := newQBitmap(C.QBitmap_new5(fileName_ms))
+	ret := newQBitmap(QBitmap_new5(fileName_ms))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQBitmap6 constructs a new QBitmap object.
-func NewQBitmap6(other *QBitmap) *QBitmap {
+func NewQBitmap6(fileName string, format string) *QBitmap {
+	fileName_ms := struct_miqt_string{}
+	fileName_ms.data = CString(fileName)
+	fileName_ms.len = size_t(len(fileName))
+	defer free(unsafe.Pointer(fileName_ms.data))
+	format_Cstring := CString(format)
+	defer free(unsafe.Pointer(format_Cstring))
 
-	ret := newQBitmap(C.QBitmap_new6(other.cPointer()))
+	ret := newQBitmap(QBitmap_new6(fileName_ms, format_Cstring))
 	ret.isSubclass = true
 	return ret
 }
 
-// NewQBitmap7 constructs a new QBitmap object.
-func NewQBitmap7(fileName string, format string) *QBitmap {
-	fileName_ms := C.struct_miqt_string{}
-	fileName_ms.data = C.CString(fileName)
-	fileName_ms.len = C.size_t(len(fileName))
-	defer C.free(unsafe.Pointer(fileName_ms.data))
-	format_Cstring := C.CString(format)
-	defer C.free(unsafe.Pointer(format_Cstring))
-
-	ret := newQBitmap(C.QBitmap_new7(fileName_ms, format_Cstring))
-	ret.isSubclass = true
-	return ret
-}
-
-func (this *QBitmap) OperatorAssign(other *QBitmap) {
-	C.QBitmap_OperatorAssign(this.h, other.cPointer())
-}
-
-func (this *QBitmap) OperatorAssignWithQPixmap(param1 *QPixmap) {
-	C.QBitmap_OperatorAssignWithQPixmap(this.h, param1.cPointer())
+func (this *QBitmap) OperatorAssign(param1 *QPixmap) {
+	QBitmap_OperatorAssign(this.h, param1.cPointer())
 }
 
 func (this *QBitmap) Swap(other *QBitmap) {
-	C.QBitmap_Swap(this.h, other.cPointer())
+	QBitmap_Swap(this.h, other.cPointer())
 }
 
 func (this *QBitmap) Clear() {
-	C.QBitmap_Clear(this.h)
+	QBitmap_Clear(this.h)
 }
 
 func QBitmap_FromImage(image *QImage) *QBitmap {
-	_goptr := newQBitmap(C.QBitmap_FromImage(image.cPointer()))
+	_goptr := newQBitmap(QBitmap_FromImage(image.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QBitmap_FromData(size *QSize, bits *byte) *QBitmap {
-	_goptr := newQBitmap(C.QBitmap_FromData(size.cPointer(), (*C.uchar)(unsafe.Pointer(bits))))
+	_goptr := newQBitmap(QBitmap_FromData(size.cPointer(), (*uchar)(unsafe.Pointer(bits))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QBitmap) Transformed(param1 *QMatrix) *QBitmap {
-	_goptr := newQBitmap(C.QBitmap_Transformed(this.h, param1.cPointer()))
+func QBitmap_FromPixmap(pixmap *QPixmap) *QBitmap {
+	_goptr := newQBitmap(QBitmap_FromPixmap(pixmap.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QBitmap) TransformedWithMatrix(matrix *QTransform) *QBitmap {
-	_goptr := newQBitmap(C.QBitmap_TransformedWithMatrix(this.h, matrix.cPointer()))
+func (this *QBitmap) Transformed(matrix *QTransform) *QBitmap {
+	_goptr := newQBitmap(QBitmap_Transformed(this.h, matrix.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
+}
+
+func (this *QBitmap) OperatorAssignWithQBitmap(param1 *QBitmap) {
+	QBitmap_OperatorAssignWithQBitmap(this.h, param1.cPointer())
 }
 
 func QBitmap_FromImage2(image *QImage, flags ImageConversionFlag) *QBitmap {
-	_goptr := newQBitmap(C.QBitmap_FromImage2(image.cPointer(), (C.int)(flags)))
+	_goptr := newQBitmap(QBitmap_FromImage2(image.cPointer(), (int)(flags)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QBitmap_FromData3(size *QSize, bits *byte, monoFormat QImage__Format) *QBitmap {
-	_goptr := newQBitmap(C.QBitmap_FromData3(size.cPointer(), (*C.uchar)(unsafe.Pointer(bits)), (C.int)(monoFormat)))
+	_goptr := newQBitmap(QBitmap_FromData3(size.cPointer(), (*uchar)(unsafe.Pointer(bits)), (int)(monoFormat)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QBitmap) callVirtualBase_DevType() int {
 
-	return (int)(C.QBitmap_virtualbase_DevType(unsafe.Pointer(this.h)))
+	return (int)(QBitmap_virtualbase_DevType(unsafe.Pointer(this.h)))
 
 }
 func (this *QBitmap) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QBitmap_override_virtual_DevType(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QBitmap_override_virtual_DevType(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QBitmap_DevType
-func miqt_exec_callback_QBitmap_DevType(self *C.QBitmap, cb C.intptr_t) C.int {
+func miqt_exec_callback_QBitmap_DevType(self QBitmap, cb intptr_t) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -190,24 +140,24 @@ func miqt_exec_callback_QBitmap_DevType(self *C.QBitmap, cb C.intptr_t) C.int {
 
 	virtualReturn := gofunc((&QBitmap{h: self}).callVirtualBase_DevType)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QBitmap) callVirtualBase_PaintEngine() *QPaintEngine {
 
-	return newQPaintEngine(C.QBitmap_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
+	return newQPaintEngine(QBitmap_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
 
 }
 func (this *QBitmap) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QBitmap_override_virtual_PaintEngine(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QBitmap_override_virtual_PaintEngine(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QBitmap_PaintEngine
-func miqt_exec_callback_QBitmap_PaintEngine(self *C.QBitmap, cb C.intptr_t) *C.QPaintEngine {
+func miqt_exec_callback_QBitmap_PaintEngine(self QBitmap, cb intptr_t) *QPaintEngine {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QPaintEngine) *QPaintEngine)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -219,44 +169,30 @@ func miqt_exec_callback_QBitmap_PaintEngine(self *C.QBitmap, cb C.intptr_t) *C.Q
 
 }
 
-func (this *QBitmap) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
+func (this *QBitmap) callVirtualBase_Metric(param1 PaintDeviceMetric) int {
 
-	return (int)(C.QBitmap_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
+	return (int)(QBitmap_virtualbase_Metric(unsafe.Pointer(this.h), param1))
 
 }
-func (this *QBitmap) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
+func (this *QBitmap) OnMetric(slot func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QBitmap_override_virtual_Metric(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QBitmap_override_virtual_Metric(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QBitmap_Metric
-func miqt_exec_callback_QBitmap_Metric(self *C.QBitmap, cb C.intptr_t, param1 C.int) C.int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int)
+func miqt_exec_callback_QBitmap_Metric(self QBitmap, cb intptr_t, param1 PaintDeviceMetric) int {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (QPaintDevice__PaintDeviceMetric)(param1)
+	xxxxxxxxx
 
 	virtualReturn := gofunc((&QBitmap{h: self}).callVirtualBase_Metric, slotval1)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QBitmap) Delete() {
-	C.QBitmap_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QBitmap) GoGC() {
-	runtime.SetFinalizer(this, func(this *QBitmap) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

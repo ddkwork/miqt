@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QIODevice>
 #include <QSslDiffieHellmanParameters>
@@ -10,7 +12,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QSslDiffieHellmanParameters* QSslDiffieHellmanParameters_new() {
 	return new QSslDiffieHellmanParameters();
@@ -49,9 +66,8 @@ bool QSslDiffieHellmanParameters_IsValid(const QSslDiffieHellmanParameters* self
 	return self->isValid();
 }
 
-int QSslDiffieHellmanParameters_Error(const QSslDiffieHellmanParameters* self) {
-	QSslDiffieHellmanParameters::Error _ret = self->error();
-	return static_cast<int>(_ret);
+Error QSslDiffieHellmanParameters_Error(const QSslDiffieHellmanParameters* self) {
+	return self->error();
 }
 
 struct miqt_string QSslDiffieHellmanParameters_ErrorString(const QSslDiffieHellmanParameters* self) {

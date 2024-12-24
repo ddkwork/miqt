@@ -1,8 +1,12 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QFile>
 #include <QFileDevice>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaObject>
+#include <QNtfsPermissionCheckGuard>
 #include <QObject>
 #include <QString>
 #include <QByteArray>
@@ -13,7 +17,34 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QNtfsPermissionCheckGuard* QNtfsPermissionCheckGuard_new() {
+	return new QNtfsPermissionCheckGuard();
+}
+
+void QNtfsPermissionCheckGuard_Delete(QNtfsPermissionCheckGuard* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QNtfsPermissionCheckGuard*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQFile : public virtual QFile {
 public:
@@ -59,13 +90,12 @@ public:
 	intptr_t handle__Open = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool open(QIODevice::OpenMode flags) override {
+	virtual bool open(OpenMode flags) override {
 		if (handle__Open == 0) {
 			return QFile::open(flags);
 		}
 		
-		QIODevice::OpenMode flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		OpenMode sigval1 = flags;
 
 		bool callback_return_value = miqt_exec_callback_QFile_Open(this, handle__Open, sigval1);
 
@@ -73,9 +103,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Open(int flags) {
+	bool virtualbase_Open(OpenMode flags) {
 
-		return QFile::open(static_cast<QIODevice::OpenMode>(flags));
+		return QFile::open(flags);
 
 	}
 
@@ -130,22 +160,21 @@ public:
 	intptr_t handle__Permissions = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QFileDevice::Permissions permissions() const override {
+	virtual Permissions permissions() const override {
 		if (handle__Permissions == 0) {
 			return QFile::permissions();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QFile_Permissions(const_cast<MiqtVirtualQFile*>(this), handle__Permissions);
+		Permissions callback_return_value = miqt_exec_callback_QFile_Permissions(const_cast<MiqtVirtualQFile*>(this), handle__Permissions);
 
-		return static_cast<QFileDevice::Permissions>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Permissions() const {
+	Permissions virtualbase_Permissions() const {
 
-		QFileDevice::Permissions _ret = QFile::permissions();
-		return static_cast<int>(_ret);
+		return QFile::permissions();
 
 	}
 
@@ -153,13 +182,12 @@ public:
 	intptr_t handle__SetPermissions = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool setPermissions(QFileDevice::Permissions permissionSpec) override {
+	virtual bool setPermissions(Permissions permissionSpec) override {
 		if (handle__SetPermissions == 0) {
 			return QFile::setPermissions(permissionSpec);
 		}
 		
-		QFileDevice::Permissions permissionSpec_ret = permissionSpec;
-		int sigval1 = static_cast<int>(permissionSpec_ret);
+		Permissions sigval1 = permissionSpec;
 
 		bool callback_return_value = miqt_exec_callback_QFile_SetPermissions(this, handle__SetPermissions, sigval1);
 
@@ -167,9 +195,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SetPermissions(int permissionSpec) {
+	bool virtualbase_SetPermissions(Permissions permissionSpec) {
 
-		return QFile::setPermissions(static_cast<QFileDevice::Permissions>(permissionSpec));
+		return QFile::setPermissions(permissionSpec);
 
 	}
 
@@ -408,17 +436,6 @@ struct miqt_string QFile_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QFile_TrUtf8(const char* s) {
-	QString _ret = QFile::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QFile_FileName(const QFile* self) {
 	QString _ret = self->fileName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -477,29 +494,6 @@ bool QFile_ExistsWithFileName(struct miqt_string fileName) {
 	return QFile::exists(fileName_QString);
 }
 
-struct miqt_string QFile_ReadLink(const QFile* self) {
-	QString _ret = self->readLink();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFile_ReadLinkWithFileName(struct miqt_string fileName) {
-	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
-	QString _ret = QFile::readLink(fileName_QString);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QFile_SymLinkTarget(const QFile* self) {
 	QString _ret = self->symLinkTarget();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -532,6 +526,10 @@ bool QFile_RemoveWithFileName(struct miqt_string fileName) {
 	return QFile::remove(fileName_QString);
 }
 
+bool QFile_SupportsMoveToTrash() {
+	return QFile::supportsMoveToTrash();
+}
+
 bool QFile_MoveToTrash(QFile* self) {
 	return self->moveToTrash();
 }
@@ -557,10 +555,10 @@ bool QFile_Link(QFile* self, struct miqt_string newName) {
 	return self->link(newName_QString);
 }
 
-bool QFile_Link2(struct miqt_string oldname, struct miqt_string newName) {
-	QString oldname_QString = QString::fromUtf8(oldname.data, oldname.len);
+bool QFile_Link2(struct miqt_string fileName, struct miqt_string newName) {
+	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
 	QString newName_QString = QString::fromUtf8(newName.data, newName.len);
-	return QFile::link(oldname_QString, newName_QString);
+	return QFile::link(fileName_QString, newName_QString);
 }
 
 bool QFile_Copy(QFile* self, struct miqt_string newName) {
@@ -574,12 +572,16 @@ bool QFile_Copy2(struct miqt_string fileName, struct miqt_string newName) {
 	return QFile::copy(fileName_QString, newName_QString);
 }
 
-bool QFile_Open(QFile* self, int flags) {
-	return self->open(static_cast<QIODevice::OpenMode>(flags));
+bool QFile_Open(QFile* self, OpenMode flags) {
+	return self->open(flags);
 }
 
-bool QFile_Open3(QFile* self, int fd, int ioFlags) {
-	return self->open(static_cast<int>(fd), static_cast<QIODevice::OpenMode>(ioFlags));
+bool QFile_Open2(QFile* self, OpenMode flags, Permissions permissions) {
+	return self->open(flags, permissions);
+}
+
+bool QFile_Open4(QFile* self, int fd, OpenMode ioFlags) {
+	return self->open(static_cast<int>(fd), ioFlags);
 }
 
 long long QFile_Size(const QFile* self) {
@@ -596,24 +598,22 @@ bool QFile_Resize2(struct miqt_string filename, long long sz) {
 	return QFile::resize(filename_QString, static_cast<qint64>(sz));
 }
 
-int QFile_Permissions(const QFile* self) {
-	QFileDevice::Permissions _ret = self->permissions();
-	return static_cast<int>(_ret);
+Permissions QFile_Permissions(const QFile* self) {
+	return self->permissions();
 }
 
-int QFile_PermissionsWithFilename(struct miqt_string filename) {
+Permissions QFile_PermissionsWithFilename(struct miqt_string filename) {
 	QString filename_QString = QString::fromUtf8(filename.data, filename.len);
-	QFileDevice::Permissions _ret = QFile::permissions(filename_QString);
-	return static_cast<int>(_ret);
+	return QFile::permissions(filename_QString);
 }
 
-bool QFile_SetPermissions(QFile* self, int permissionSpec) {
-	return self->setPermissions(static_cast<QFileDevice::Permissions>(permissionSpec));
+bool QFile_SetPermissions(QFile* self, Permissions permissionSpec) {
+	return self->setPermissions(permissionSpec);
 }
 
-bool QFile_SetPermissions2(struct miqt_string filename, int permissionSpec) {
+bool QFile_SetPermissions2(struct miqt_string filename, Permissions permissionSpec) {
 	QString filename_QString = QString::fromUtf8(filename.data, filename.len);
-	return QFile::setPermissions(filename_QString, static_cast<QFileDevice::Permissions>(permissionSpec));
+	return QFile::setPermissions(filename_QString, permissionSpec);
 }
 
 struct miqt_string QFile_Tr2(const char* s, const char* c) {
@@ -638,30 +638,8 @@ struct miqt_string QFile_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QFile_TrUtf82(const char* s, const char* c) {
-	QString _ret = QFile::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFile_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QFile::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-bool QFile_Open33(QFile* self, int fd, int ioFlags, int handleFlags) {
-	return self->open(static_cast<int>(fd), static_cast<QIODevice::OpenMode>(ioFlags), static_cast<QFileDevice::FileHandleFlags>(handleFlags));
+bool QFile_Open33(QFile* self, int fd, OpenMode ioFlags, FileHandleFlags handleFlags) {
+	return self->open(static_cast<int>(fd), ioFlags, handleFlags);
 }
 
 void QFile_override_virtual_FileName(void* self, intptr_t slot) {
@@ -676,7 +654,7 @@ void QFile_override_virtual_Open(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQFile*>( (QFile*)(self) )->handle__Open = slot;
 }
 
-bool QFile_virtualbase_Open(void* self, int flags) {
+bool QFile_virtualbase_Open(void* self, OpenMode flags) {
 	return ( (MiqtVirtualQFile*)(self) )->virtualbase_Open(flags);
 }
 
@@ -700,7 +678,7 @@ void QFile_override_virtual_Permissions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQFile*>( (QFile*)(self) )->handle__Permissions = slot;
 }
 
-int QFile_virtualbase_Permissions(const void* self) {
+Permissions QFile_virtualbase_Permissions(const void* self) {
 	return ( (const MiqtVirtualQFile*)(self) )->virtualbase_Permissions();
 }
 
@@ -708,7 +686,7 @@ void QFile_override_virtual_SetPermissions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQFile*>( (QFile*)(self) )->handle__SetPermissions = slot;
 }
 
-bool QFile_virtualbase_SetPermissions(void* self, int permissionSpec) {
+bool QFile_virtualbase_SetPermissions(void* self, Permissions permissionSpec) {
 	return ( (MiqtVirtualQFile*)(self) )->virtualbase_SetPermissions(permissionSpec);
 }
 

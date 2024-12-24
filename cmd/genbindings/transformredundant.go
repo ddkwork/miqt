@@ -6,7 +6,6 @@ type astTransformRedundant struct {
 }
 
 func (a *astTransformRedundant) Process(parsed *CppParsedHeader) {
-
 	for i, e := range parsed.Enums {
 		prev, ok := a.preserve[e.EnumName]
 		if !ok {

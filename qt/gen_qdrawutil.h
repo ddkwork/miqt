@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -16,15 +16,23 @@ extern "C" {
 
 #ifdef __cplusplus
 class QTileRules;
+class _GUID;
+class type_info;
 #else
 typedef struct QTileRules QTileRules;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QTileRules* QTileRules_new(int horizontalRule, int verticalRule);
-QTileRules* QTileRules_new2();
-QTileRules* QTileRules_new3(QTileRules* param1);
-QTileRules* QTileRules_new4(int rule);
-void QTileRules_Delete(QTileRules* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QTileRules* QTileRules_new(int horizontalRule, int verticalRule);
+extern __declspec(dllexport) QTileRules* QTileRules_new2();
+extern __declspec(dllexport) QTileRules* QTileRules_new3(QTileRules* param1);
+extern __declspec(dllexport) QTileRules* QTileRules_new4(int rule);
+extern __declspec(dllexport) void QTileRules_Delete(QTileRules* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

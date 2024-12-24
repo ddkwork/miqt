@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qbrush.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -221,42 +212,14 @@ const (
 )
 
 type QBrush struct {
-	h          *C.QBrush
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QBrush) cPointer() *C.QBrush {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QBrush) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQBrush constructs the type using only CGO pointers.
-func newQBrush(h *C.QBrush) *QBrush {
-	if h == nil {
-		return nil
-	}
-
-	return &QBrush{h: h}
-}
-
-// UnsafeNewQBrush constructs the type using only unsafe pointers.
-func UnsafeNewQBrush(h unsafe.Pointer) *QBrush {
-	return newQBrush((*C.QBrush)(h))
 }
 
 // NewQBrush constructs a new QBrush object.
 func NewQBrush() *QBrush {
 
-	ret := newQBrush(C.QBrush_new())
+	ret := newQBrush(QBrush_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -264,7 +227,7 @@ func NewQBrush() *QBrush {
 // NewQBrush2 constructs a new QBrush object.
 func NewQBrush2(bs BrushStyle) *QBrush {
 
-	ret := newQBrush(C.QBrush_new2((C.int)(bs)))
+	ret := newQBrush(QBrush_new2((int)(bs)))
 	ret.isSubclass = true
 	return ret
 }
@@ -272,7 +235,7 @@ func NewQBrush2(bs BrushStyle) *QBrush {
 // NewQBrush3 constructs a new QBrush object.
 func NewQBrush3(color *QColor) *QBrush {
 
-	ret := newQBrush(C.QBrush_new3(color.cPointer()))
+	ret := newQBrush(QBrush_new3(color.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -280,7 +243,7 @@ func NewQBrush3(color *QColor) *QBrush {
 // NewQBrush4 constructs a new QBrush object.
 func NewQBrush4(color GlobalColor) *QBrush {
 
-	ret := newQBrush(C.QBrush_new4((C.int)(color)))
+	ret := newQBrush(QBrush_new4((int)(color)))
 	ret.isSubclass = true
 	return ret
 }
@@ -288,7 +251,7 @@ func NewQBrush4(color GlobalColor) *QBrush {
 // NewQBrush5 constructs a new QBrush object.
 func NewQBrush5(color *QColor, pixmap *QPixmap) *QBrush {
 
-	ret := newQBrush(C.QBrush_new5(color.cPointer(), pixmap.cPointer()))
+	ret := newQBrush(QBrush_new5(color.cPointer(), pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -296,7 +259,7 @@ func NewQBrush5(color *QColor, pixmap *QPixmap) *QBrush {
 // NewQBrush6 constructs a new QBrush object.
 func NewQBrush6(color GlobalColor, pixmap *QPixmap) *QBrush {
 
-	ret := newQBrush(C.QBrush_new6((C.int)(color), pixmap.cPointer()))
+	ret := newQBrush(QBrush_new6((int)(color), pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -304,7 +267,7 @@ func NewQBrush6(color GlobalColor, pixmap *QPixmap) *QBrush {
 // NewQBrush7 constructs a new QBrush object.
 func NewQBrush7(pixmap *QPixmap) *QBrush {
 
-	ret := newQBrush(C.QBrush_new7(pixmap.cPointer()))
+	ret := newQBrush(QBrush_new7(pixmap.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -312,7 +275,7 @@ func NewQBrush7(pixmap *QPixmap) *QBrush {
 // NewQBrush8 constructs a new QBrush object.
 func NewQBrush8(image *QImage) *QBrush {
 
-	ret := newQBrush(C.QBrush_new8(image.cPointer()))
+	ret := newQBrush(QBrush_new8(image.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -320,7 +283,7 @@ func NewQBrush8(image *QImage) *QBrush {
 // NewQBrush9 constructs a new QBrush object.
 func NewQBrush9(brush *QBrush) *QBrush {
 
-	ret := newQBrush(C.QBrush_new9(brush.cPointer()))
+	ret := newQBrush(QBrush_new9(brush.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -328,7 +291,7 @@ func NewQBrush9(brush *QBrush) *QBrush {
 // NewQBrush10 constructs a new QBrush object.
 func NewQBrush10(gradient *QGradient) *QBrush {
 
-	ret := newQBrush(C.QBrush_new10(gradient.cPointer()))
+	ret := newQBrush(QBrush_new10(gradient.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -336,7 +299,7 @@ func NewQBrush10(gradient *QGradient) *QBrush {
 // NewQBrush11 constructs a new QBrush object.
 func NewQBrush11(color *QColor, bs BrushStyle) *QBrush {
 
-	ret := newQBrush(C.QBrush_new11(color.cPointer(), (C.int)(bs)))
+	ret := newQBrush(QBrush_new11(color.cPointer(), (int)(bs)))
 	ret.isSubclass = true
 	return ret
 }
@@ -344,215 +307,139 @@ func NewQBrush11(color *QColor, bs BrushStyle) *QBrush {
 // NewQBrush12 constructs a new QBrush object.
 func NewQBrush12(color GlobalColor, bs BrushStyle) *QBrush {
 
-	ret := newQBrush(C.QBrush_new12((C.int)(color), (C.int)(bs)))
+	ret := newQBrush(QBrush_new12((int)(color), (int)(bs)))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QBrush) OperatorAssign(brush *QBrush) {
-	C.QBrush_OperatorAssign(this.h, brush.cPointer())
+	QBrush_OperatorAssign(this.h, brush.cPointer())
 }
 
 func (this *QBrush) Swap(other *QBrush) {
-	C.QBrush_Swap(this.h, other.cPointer())
+	QBrush_Swap(this.h, other.cPointer())
+}
+
+func (this *QBrush) OperatorAssignWithStyle(style BrushStyle) {
+	QBrush_OperatorAssignWithStyle(this.h, (int)(style))
+}
+
+func (this *QBrush) OperatorAssignWithColor(color QColor) {
+	QBrush_OperatorAssignWithColor(this.h, color.cPointer())
+}
+
+func (this *QBrush) OperatorAssign2(color GlobalColor) {
+	QBrush_OperatorAssign2(this.h, (int)(color))
 }
 
 func (this *QBrush) Style() BrushStyle {
-	return (BrushStyle)(C.QBrush_Style(this.h))
+	return (BrushStyle)(QBrush_Style(this.h))
 }
 
 func (this *QBrush) SetStyle(style BrushStyle) {
-	C.QBrush_SetStyle(this.h, (C.int)(style))
-}
-
-func (this *QBrush) Matrix() *QMatrix {
-	return newQMatrix(C.QBrush_Matrix(this.h))
-}
-
-func (this *QBrush) SetMatrix(mat *QMatrix) {
-	C.QBrush_SetMatrix(this.h, mat.cPointer())
+	QBrush_SetStyle(this.h, (int)(style))
 }
 
 func (this *QBrush) Transform() *QTransform {
-	_goptr := newQTransform(C.QBrush_Transform(this.h))
+	_goptr := newQTransform(QBrush_Transform(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QBrush) SetTransform(transform *QTransform) {
-	C.QBrush_SetTransform(this.h, transform.cPointer())
+	QBrush_SetTransform(this.h, transform.cPointer())
 }
 
 func (this *QBrush) Texture() *QPixmap {
-	_goptr := newQPixmap(C.QBrush_Texture(this.h))
+	_goptr := newQPixmap(QBrush_Texture(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QBrush) SetTexture(pixmap *QPixmap) {
-	C.QBrush_SetTexture(this.h, pixmap.cPointer())
+	QBrush_SetTexture(this.h, pixmap.cPointer())
 }
 
 func (this *QBrush) TextureImage() *QImage {
-	_goptr := newQImage(C.QBrush_TextureImage(this.h))
+	_goptr := newQImage(QBrush_TextureImage(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QBrush) SetTextureImage(image *QImage) {
-	C.QBrush_SetTextureImage(this.h, image.cPointer())
+	QBrush_SetTextureImage(this.h, image.cPointer())
 }
 
 func (this *QBrush) Color() *QColor {
-	return newQColor(C.QBrush_Color(this.h))
+	return newQColor(QBrush_Color(this.h))
 }
 
 func (this *QBrush) SetColor(color *QColor) {
-	C.QBrush_SetColor(this.h, color.cPointer())
+	QBrush_SetColor(this.h, color.cPointer())
 }
 
 func (this *QBrush) SetColorWithColor(color GlobalColor) {
-	C.QBrush_SetColorWithColor(this.h, (C.int)(color))
+	QBrush_SetColorWithColor(this.h, (int)(color))
 }
 
 func (this *QBrush) Gradient() *QGradient {
-	return newQGradient(C.QBrush_Gradient(this.h))
+	return newQGradient(QBrush_Gradient(this.h))
 }
 
 func (this *QBrush) IsOpaque() bool {
-	return (bool)(C.QBrush_IsOpaque(this.h))
+	return (bool)(QBrush_IsOpaque(this.h))
 }
 
 func (this *QBrush) OperatorEqual(b *QBrush) bool {
-	return (bool)(C.QBrush_OperatorEqual(this.h, b.cPointer()))
+	return (bool)(QBrush_OperatorEqual(this.h, b.cPointer()))
 }
 
 func (this *QBrush) OperatorNotEqual(b *QBrush) bool {
-	return (bool)(C.QBrush_OperatorNotEqual(this.h, b.cPointer()))
+	return (bool)(QBrush_OperatorNotEqual(this.h, b.cPointer()))
 }
 
 func (this *QBrush) IsDetached() bool {
-	return (bool)(C.QBrush_IsDetached(this.h))
+	return (bool)(QBrush_IsDetached(this.h))
 }
 
-// Delete this object from C++ memory.
-func (this *QBrush) Delete() {
-	C.QBrush_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QBrush) GoGC() {
-	runtime.SetFinalizer(this, func(this *QBrush) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func (this *QBrush) DataPtr() *DataPtr {
+	xxxxxxxxx
 }
 
 type QBrushData struct {
-	h          *C.QBrushData
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QBrushData) cPointer() *C.QBrushData {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QBrushData) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQBrushData constructs the type using only CGO pointers.
-func newQBrushData(h *C.QBrushData) *QBrushData {
-	if h == nil {
-		return nil
-	}
-
-	return &QBrushData{h: h}
-}
-
-// UnsafeNewQBrushData constructs the type using only unsafe pointers.
-func UnsafeNewQBrushData(h unsafe.Pointer) *QBrushData {
-	return newQBrushData((*C.QBrushData)(h))
 }
 
 // NewQBrushData constructs a new QBrushData object.
 func NewQBrushData(param1 *QBrushData) *QBrushData {
 
-	ret := newQBrushData(C.QBrushData_new(param1.cPointer()))
+	ret := newQBrushData(QBrushData_new(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QBrushData) OperatorAssign(param1 *QBrushData) {
-	C.QBrushData_OperatorAssign(this.h, param1.cPointer())
-}
-
-// Delete this object from C++ memory.
-func (this *QBrushData) Delete() {
-	C.QBrushData_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QBrushData) GoGC() {
-	runtime.SetFinalizer(this, func(this *QBrushData) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QBrushData_OperatorAssign(this.h, param1.cPointer())
 }
 
 type QGradient struct {
-	h          *C.QGradient
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QGradient) cPointer() *C.QGradient {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QGradient) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQGradient constructs the type using only CGO pointers.
-func newQGradient(h *C.QGradient) *QGradient {
-	if h == nil {
-		return nil
-	}
-
-	return &QGradient{h: h}
-}
-
-// UnsafeNewQGradient constructs the type using only unsafe pointers.
-func UnsafeNewQGradient(h unsafe.Pointer) *QGradient {
-	return newQGradient((*C.QGradient)(h))
 }
 
 // NewQGradient constructs a new QGradient object.
 func NewQGradient() *QGradient {
 
-	ret := newQGradient(C.QGradient_new())
+	ret := newQGradient(QGradient_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQGradient2 constructs a new QGradient object.
-func NewQGradient2(param1 QGradient__Preset) *QGradient {
+func NewQGradient2(param1 Preset) *QGradient {
 
-	ret := newQGradient(C.QGradient_new2((C.int)(param1)))
+	ret := newQGradient(QGradient_new2(param1))
 	ret.isSubclass = true
 	return ret
 }
@@ -560,158 +447,112 @@ func NewQGradient2(param1 QGradient__Preset) *QGradient {
 // NewQGradient3 constructs a new QGradient object.
 func NewQGradient3(param1 *QGradient) *QGradient {
 
-	ret := newQGradient(C.QGradient_new3(param1.cPointer()))
+	ret := newQGradient(QGradient_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
-func (this *QGradient) Type() QGradient__Type {
-	return (QGradient__Type)(C.QGradient_Type(this.h))
+func (this *QGradient) Type() Type {
+	xxxxxxxxx
 }
 
-func (this *QGradient) SetSpread(spread QGradient__Spread) {
-	C.QGradient_SetSpread(this.h, (C.int)(spread))
+func (this *QGradient) SetSpread(spread Spread) {
+	QGradient_SetSpread(this.h, spread)
 }
 
-func (this *QGradient) Spread() QGradient__Spread {
-	return (QGradient__Spread)(C.QGradient_Spread(this.h))
+func (this *QGradient) Spread() Spread {
+	xxxxxxxxx
 }
 
 func (this *QGradient) SetColorAt(pos float64, color *QColor) {
-	C.QGradient_SetColorAt(this.h, (C.double)(pos), color.cPointer())
+	QGradient_SetColorAt(this.h, (double)(pos), color.cPointer())
 }
 
 func (this *QGradient) SetStops(stops []struct {
 	First  float64
 	Second QColor
 }) {
-	stops_CArray := (*[0xffff]C.struct_miqt_map)(C.malloc(C.size_t(8 * len(stops))))
-	defer C.free(unsafe.Pointer(stops_CArray))
+	stops_CArray := (*[0xffff]struct_miqt_map)(malloc(size_t(8 * len(stops))))
+	defer free(unsafe.Pointer(stops_CArray))
 	for i := range stops {
-		stops_i_First_CArray := (*[0xffff]C.double)(C.malloc(C.size_t(8)))
-		defer C.free(unsafe.Pointer(stops_i_First_CArray))
-		stops_i_Second_CArray := (*[0xffff]*C.QColor)(C.malloc(C.size_t(8)))
-		defer C.free(unsafe.Pointer(stops_i_Second_CArray))
-		stops_i_First_CArray[0] = (C.double)(stops[i].First)
+		stops_i_First_CArray := (*[0xffff]double)(malloc(size_t(8)))
+		defer free(unsafe.Pointer(stops_i_First_CArray))
+		stops_i_Second_CArray := (*[0xffff]*QColor)(malloc(size_t(8)))
+		defer free(unsafe.Pointer(stops_i_Second_CArray))
+		stops_i_First_CArray[0] = (double)(stops[i].First)
 		stops_i_Second_CArray[0] = stops[i].Second.cPointer()
-		stops_i_pair := C.struct_miqt_map{
+		stops_i_pair := struct_miqt_map{
 			len:    1,
 			keys:   unsafe.Pointer(stops_i_First_CArray),
 			values: unsafe.Pointer(stops_i_Second_CArray),
 		}
 		stops_CArray[i] = stops_i_pair
 	}
-	stops_ma := C.struct_miqt_array{len: C.size_t(len(stops)), data: unsafe.Pointer(stops_CArray)}
-	C.QGradient_SetStops(this.h, stops_ma)
+	stops_ma := struct_miqt_array{len: size_t(len(stops)), data: unsafe.Pointer(stops_CArray)}
+	QGradient_SetStops(this.h, stops_ma)
 }
 
 func (this *QGradient) Stops() []struct {
 	First  float64
 	Second QColor
 } {
-	var _ma C.struct_miqt_array = C.QGradient_Stops(this.h)
+	var _ma struct_miqt_array = QGradient_Stops(this.h)
 	_ret := make([]struct {
 		First  float64
 		Second QColor
 	}, int(_ma.len))
-	_outCast := (*[0xffff]C.struct_miqt_map)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]struct_miqt_map)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
-		var _vv_mm C.struct_miqt_map = _outCast[i]
-		_vv_First_CArray := (*[0xffff]C.double)(unsafe.Pointer(_vv_mm.keys))
-		_vv_Second_CArray := (*[0xffff]*C.QColor)(unsafe.Pointer(_vv_mm.values))
-		_vv_entry_First := (float64)(_vv_First_CArray[0])
+		var _lv_mm struct_miqt_map = _outCast[i]
+		_lv_First_CArray := (*[0xffff]double)(unsafe.Pointer(_lv_mm.keys))
+		_lv_Second_CArray := (*[0xffff]*QColor)(unsafe.Pointer(_lv_mm.values))
+		_lv_entry_First := (float64)(_lv_First_CArray[0])
 
-		_vv_second_goptr := newQColor(_vv_Second_CArray[0])
-		_vv_second_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-		_vv_entry_Second := *_vv_second_goptr
+		_lv_second_goptr := newQColor(_lv_Second_CArray[0])
+		_lv_second_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+		_lv_entry_Second := *_lv_second_goptr
 
 		_ret[i] = struct {
 			First  float64
 			Second QColor
-		}{First: _vv_entry_First, Second: _vv_entry_Second}
+		}{First: _lv_entry_First, Second: _lv_entry_Second}
 	}
 	return _ret
 }
 
-func (this *QGradient) CoordinateMode() QGradient__CoordinateMode {
-	return (QGradient__CoordinateMode)(C.QGradient_CoordinateMode(this.h))
+func (this *QGradient) CoordinateMode() CoordinateMode {
+	xxxxxxxxx
 }
 
-func (this *QGradient) SetCoordinateMode(mode QGradient__CoordinateMode) {
-	C.QGradient_SetCoordinateMode(this.h, (C.int)(mode))
+func (this *QGradient) SetCoordinateMode(mode CoordinateMode) {
+	QGradient_SetCoordinateMode(this.h, mode)
 }
 
-func (this *QGradient) InterpolationMode() QGradient__InterpolationMode {
-	return (QGradient__InterpolationMode)(C.QGradient_InterpolationMode(this.h))
+func (this *QGradient) InterpolationMode() InterpolationMode {
+	xxxxxxxxx
 }
 
-func (this *QGradient) SetInterpolationMode(mode QGradient__InterpolationMode) {
-	C.QGradient_SetInterpolationMode(this.h, (C.int)(mode))
+func (this *QGradient) SetInterpolationMode(mode InterpolationMode) {
+	QGradient_SetInterpolationMode(this.h, mode)
 }
 
 func (this *QGradient) OperatorEqual(gradient *QGradient) bool {
-	return (bool)(C.QGradient_OperatorEqual(this.h, gradient.cPointer()))
+	return (bool)(QGradient_OperatorEqual(this.h, gradient.cPointer()))
 }
 
 func (this *QGradient) OperatorNotEqual(other *QGradient) bool {
-	return (bool)(C.QGradient_OperatorNotEqual(this.h, other.cPointer()))
-}
-
-// Delete this object from C++ memory.
-func (this *QGradient) Delete() {
-	C.QGradient_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QGradient) GoGC() {
-	runtime.SetFinalizer(this, func(this *QGradient) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (bool)(QGradient_OperatorNotEqual(this.h, other.cPointer()))
 }
 
 type QLinearGradient struct {
-	h          *C.QLinearGradient
+	h          uintptr
 	isSubclass bool
-	*QGradient
-}
-
-func (this *QLinearGradient) cPointer() *C.QLinearGradient {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QLinearGradient) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQLinearGradient constructs the type using only CGO pointers.
-func newQLinearGradient(h *C.QLinearGradient) *QLinearGradient {
-	if h == nil {
-		return nil
-	}
-	var outptr_QGradient *C.QGradient = nil
-	C.QLinearGradient_virtbase(h, &outptr_QGradient)
-
-	return &QLinearGradient{h: h,
-		QGradient: newQGradient(outptr_QGradient)}
-}
-
-// UnsafeNewQLinearGradient constructs the type using only unsafe pointers.
-func UnsafeNewQLinearGradient(h unsafe.Pointer) *QLinearGradient {
-	return newQLinearGradient((*C.QLinearGradient)(h))
 }
 
 // NewQLinearGradient constructs a new QLinearGradient object.
 func NewQLinearGradient() *QLinearGradient {
 
-	ret := newQLinearGradient(C.QLinearGradient_new())
+	ret := newQLinearGradient(QLinearGradient_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -719,7 +560,7 @@ func NewQLinearGradient() *QLinearGradient {
 // NewQLinearGradient2 constructs a new QLinearGradient object.
 func NewQLinearGradient2(start *QPointF, finalStop *QPointF) *QLinearGradient {
 
-	ret := newQLinearGradient(C.QLinearGradient_new2(start.cPointer(), finalStop.cPointer()))
+	ret := newQLinearGradient(QLinearGradient_new2(start.cPointer(), finalStop.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -727,7 +568,7 @@ func NewQLinearGradient2(start *QPointF, finalStop *QPointF) *QLinearGradient {
 // NewQLinearGradient3 constructs a new QLinearGradient object.
 func NewQLinearGradient3(xStart float64, yStart float64, xFinalStop float64, yFinalStop float64) *QLinearGradient {
 
-	ret := newQLinearGradient(C.QLinearGradient_new3((C.double)(xStart), (C.double)(yStart), (C.double)(xFinalStop), (C.double)(yFinalStop)))
+	ret := newQLinearGradient(QLinearGradient_new3((double)(xStart), (double)(yStart), (double)(xFinalStop), (double)(yFinalStop)))
 	ret.isSubclass = true
 	return ret
 }
@@ -735,94 +576,48 @@ func NewQLinearGradient3(xStart float64, yStart float64, xFinalStop float64, yFi
 // NewQLinearGradient4 constructs a new QLinearGradient object.
 func NewQLinearGradient4(param1 *QLinearGradient) *QLinearGradient {
 
-	ret := newQLinearGradient(C.QLinearGradient_new4(param1.cPointer()))
+	ret := newQLinearGradient(QLinearGradient_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QLinearGradient) Start() *QPointF {
-	_goptr := newQPointF(C.QLinearGradient_Start(this.h))
+	_goptr := newQPointF(QLinearGradient_Start(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QLinearGradient) SetStart(start *QPointF) {
-	C.QLinearGradient_SetStart(this.h, start.cPointer())
+	QLinearGradient_SetStart(this.h, start.cPointer())
 }
 
 func (this *QLinearGradient) SetStart2(x float64, y float64) {
-	C.QLinearGradient_SetStart2(this.h, (C.double)(x), (C.double)(y))
+	QLinearGradient_SetStart2(this.h, (double)(x), (double)(y))
 }
 
 func (this *QLinearGradient) FinalStop() *QPointF {
-	_goptr := newQPointF(C.QLinearGradient_FinalStop(this.h))
+	_goptr := newQPointF(QLinearGradient_FinalStop(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QLinearGradient) SetFinalStop(stop *QPointF) {
-	C.QLinearGradient_SetFinalStop(this.h, stop.cPointer())
+	QLinearGradient_SetFinalStop(this.h, stop.cPointer())
 }
 
 func (this *QLinearGradient) SetFinalStop2(x float64, y float64) {
-	C.QLinearGradient_SetFinalStop2(this.h, (C.double)(x), (C.double)(y))
-}
-
-// Delete this object from C++ memory.
-func (this *QLinearGradient) Delete() {
-	C.QLinearGradient_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QLinearGradient) GoGC() {
-	runtime.SetFinalizer(this, func(this *QLinearGradient) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QLinearGradient_SetFinalStop2(this.h, (double)(x), (double)(y))
 }
 
 type QRadialGradient struct {
-	h          *C.QRadialGradient
+	h          uintptr
 	isSubclass bool
-	*QGradient
-}
-
-func (this *QRadialGradient) cPointer() *C.QRadialGradient {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QRadialGradient) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQRadialGradient constructs the type using only CGO pointers.
-func newQRadialGradient(h *C.QRadialGradient) *QRadialGradient {
-	if h == nil {
-		return nil
-	}
-	var outptr_QGradient *C.QGradient = nil
-	C.QRadialGradient_virtbase(h, &outptr_QGradient)
-
-	return &QRadialGradient{h: h,
-		QGradient: newQGradient(outptr_QGradient)}
-}
-
-// UnsafeNewQRadialGradient constructs the type using only unsafe pointers.
-func UnsafeNewQRadialGradient(h unsafe.Pointer) *QRadialGradient {
-	return newQRadialGradient((*C.QRadialGradient)(h))
 }
 
 // NewQRadialGradient constructs a new QRadialGradient object.
 func NewQRadialGradient() *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new())
+	ret := newQRadialGradient(QRadialGradient_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -830,7 +625,7 @@ func NewQRadialGradient() *QRadialGradient {
 // NewQRadialGradient2 constructs a new QRadialGradient object.
 func NewQRadialGradient2(center *QPointF, radius float64, focalPoint *QPointF) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new2(center.cPointer(), (C.double)(radius), focalPoint.cPointer()))
+	ret := newQRadialGradient(QRadialGradient_new2(center.cPointer(), (double)(radius), focalPoint.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -838,7 +633,7 @@ func NewQRadialGradient2(center *QPointF, radius float64, focalPoint *QPointF) *
 // NewQRadialGradient3 constructs a new QRadialGradient object.
 func NewQRadialGradient3(cx float64, cy float64, radius float64, fx float64, fy float64) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new3((C.double)(cx), (C.double)(cy), (C.double)(radius), (C.double)(fx), (C.double)(fy)))
+	ret := newQRadialGradient(QRadialGradient_new3((double)(cx), (double)(cy), (double)(radius), (double)(fx), (double)(fy)))
 	ret.isSubclass = true
 	return ret
 }
@@ -846,7 +641,7 @@ func NewQRadialGradient3(cx float64, cy float64, radius float64, fx float64, fy 
 // NewQRadialGradient4 constructs a new QRadialGradient object.
 func NewQRadialGradient4(center *QPointF, radius float64) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new4(center.cPointer(), (C.double)(radius)))
+	ret := newQRadialGradient(QRadialGradient_new4(center.cPointer(), (double)(radius)))
 	ret.isSubclass = true
 	return ret
 }
@@ -854,7 +649,7 @@ func NewQRadialGradient4(center *QPointF, radius float64) *QRadialGradient {
 // NewQRadialGradient5 constructs a new QRadialGradient object.
 func NewQRadialGradient5(cx float64, cy float64, radius float64) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new5((C.double)(cx), (C.double)(cy), (C.double)(radius)))
+	ret := newQRadialGradient(QRadialGradient_new5((double)(cx), (double)(cy), (double)(radius)))
 	ret.isSubclass = true
 	return ret
 }
@@ -862,7 +657,7 @@ func NewQRadialGradient5(cx float64, cy float64, radius float64) *QRadialGradien
 // NewQRadialGradient6 constructs a new QRadialGradient object.
 func NewQRadialGradient6(center *QPointF, centerRadius float64, focalPoint *QPointF, focalRadius float64) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new6(center.cPointer(), (C.double)(centerRadius), focalPoint.cPointer(), (C.double)(focalRadius)))
+	ret := newQRadialGradient(QRadialGradient_new6(center.cPointer(), (double)(centerRadius), focalPoint.cPointer(), (double)(focalRadius)))
 	ret.isSubclass = true
 	return ret
 }
@@ -870,7 +665,7 @@ func NewQRadialGradient6(center *QPointF, centerRadius float64, focalPoint *QPoi
 // NewQRadialGradient7 constructs a new QRadialGradient object.
 func NewQRadialGradient7(cx float64, cy float64, centerRadius float64, fx float64, fy float64, focalRadius float64) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new7((C.double)(cx), (C.double)(cy), (C.double)(centerRadius), (C.double)(fx), (C.double)(fy), (C.double)(focalRadius)))
+	ret := newQRadialGradient(QRadialGradient_new7((double)(cx), (double)(cy), (double)(centerRadius), (double)(fx), (double)(fy), (double)(focalRadius)))
 	ret.isSubclass = true
 	return ret
 }
@@ -878,118 +673,72 @@ func NewQRadialGradient7(cx float64, cy float64, centerRadius float64, fx float6
 // NewQRadialGradient8 constructs a new QRadialGradient object.
 func NewQRadialGradient8(param1 *QRadialGradient) *QRadialGradient {
 
-	ret := newQRadialGradient(C.QRadialGradient_new8(param1.cPointer()))
+	ret := newQRadialGradient(QRadialGradient_new8(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QRadialGradient) Center() *QPointF {
-	_goptr := newQPointF(C.QRadialGradient_Center(this.h))
+	_goptr := newQPointF(QRadialGradient_Center(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRadialGradient) SetCenter(center *QPointF) {
-	C.QRadialGradient_SetCenter(this.h, center.cPointer())
+	QRadialGradient_SetCenter(this.h, center.cPointer())
 }
 
 func (this *QRadialGradient) SetCenter2(x float64, y float64) {
-	C.QRadialGradient_SetCenter2(this.h, (C.double)(x), (C.double)(y))
+	QRadialGradient_SetCenter2(this.h, (double)(x), (double)(y))
 }
 
 func (this *QRadialGradient) FocalPoint() *QPointF {
-	_goptr := newQPointF(C.QRadialGradient_FocalPoint(this.h))
+	_goptr := newQPointF(QRadialGradient_FocalPoint(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRadialGradient) SetFocalPoint(focalPoint *QPointF) {
-	C.QRadialGradient_SetFocalPoint(this.h, focalPoint.cPointer())
+	QRadialGradient_SetFocalPoint(this.h, focalPoint.cPointer())
 }
 
 func (this *QRadialGradient) SetFocalPoint2(x float64, y float64) {
-	C.QRadialGradient_SetFocalPoint2(this.h, (C.double)(x), (C.double)(y))
+	QRadialGradient_SetFocalPoint2(this.h, (double)(x), (double)(y))
 }
 
 func (this *QRadialGradient) Radius() float64 {
-	return (float64)(C.QRadialGradient_Radius(this.h))
+	return (float64)(QRadialGradient_Radius(this.h))
 }
 
 func (this *QRadialGradient) SetRadius(radius float64) {
-	C.QRadialGradient_SetRadius(this.h, (C.double)(radius))
+	QRadialGradient_SetRadius(this.h, (double)(radius))
 }
 
 func (this *QRadialGradient) CenterRadius() float64 {
-	return (float64)(C.QRadialGradient_CenterRadius(this.h))
+	return (float64)(QRadialGradient_CenterRadius(this.h))
 }
 
 func (this *QRadialGradient) SetCenterRadius(radius float64) {
-	C.QRadialGradient_SetCenterRadius(this.h, (C.double)(radius))
+	QRadialGradient_SetCenterRadius(this.h, (double)(radius))
 }
 
 func (this *QRadialGradient) FocalRadius() float64 {
-	return (float64)(C.QRadialGradient_FocalRadius(this.h))
+	return (float64)(QRadialGradient_FocalRadius(this.h))
 }
 
 func (this *QRadialGradient) SetFocalRadius(radius float64) {
-	C.QRadialGradient_SetFocalRadius(this.h, (C.double)(radius))
-}
-
-// Delete this object from C++ memory.
-func (this *QRadialGradient) Delete() {
-	C.QRadialGradient_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QRadialGradient) GoGC() {
-	runtime.SetFinalizer(this, func(this *QRadialGradient) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QRadialGradient_SetFocalRadius(this.h, (double)(radius))
 }
 
 type QConicalGradient struct {
-	h          *C.QConicalGradient
+	h          uintptr
 	isSubclass bool
-	*QGradient
-}
-
-func (this *QConicalGradient) cPointer() *C.QConicalGradient {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QConicalGradient) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQConicalGradient constructs the type using only CGO pointers.
-func newQConicalGradient(h *C.QConicalGradient) *QConicalGradient {
-	if h == nil {
-		return nil
-	}
-	var outptr_QGradient *C.QGradient = nil
-	C.QConicalGradient_virtbase(h, &outptr_QGradient)
-
-	return &QConicalGradient{h: h,
-		QGradient: newQGradient(outptr_QGradient)}
-}
-
-// UnsafeNewQConicalGradient constructs the type using only unsafe pointers.
-func UnsafeNewQConicalGradient(h unsafe.Pointer) *QConicalGradient {
-	return newQConicalGradient((*C.QConicalGradient)(h))
 }
 
 // NewQConicalGradient constructs a new QConicalGradient object.
 func NewQConicalGradient() *QConicalGradient {
 
-	ret := newQConicalGradient(C.QConicalGradient_new())
+	ret := newQConicalGradient(QConicalGradient_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -997,7 +746,7 @@ func NewQConicalGradient() *QConicalGradient {
 // NewQConicalGradient2 constructs a new QConicalGradient object.
 func NewQConicalGradient2(center *QPointF, startAngle float64) *QConicalGradient {
 
-	ret := newQConicalGradient(C.QConicalGradient_new2(center.cPointer(), (C.double)(startAngle)))
+	ret := newQConicalGradient(QConicalGradient_new2(center.cPointer(), (double)(startAngle)))
 	ret.isSubclass = true
 	return ret
 }
@@ -1005,7 +754,7 @@ func NewQConicalGradient2(center *QPointF, startAngle float64) *QConicalGradient
 // NewQConicalGradient3 constructs a new QConicalGradient object.
 func NewQConicalGradient3(cx float64, cy float64, startAngle float64) *QConicalGradient {
 
-	ret := newQConicalGradient(C.QConicalGradient_new3((C.double)(cx), (C.double)(cy), (C.double)(startAngle)))
+	ret := newQConicalGradient(QConicalGradient_new3((double)(cx), (double)(cy), (double)(startAngle)))
 	ret.isSubclass = true
 	return ret
 }
@@ -1013,102 +762,42 @@ func NewQConicalGradient3(cx float64, cy float64, startAngle float64) *QConicalG
 // NewQConicalGradient4 constructs a new QConicalGradient object.
 func NewQConicalGradient4(param1 *QConicalGradient) *QConicalGradient {
 
-	ret := newQConicalGradient(C.QConicalGradient_new4(param1.cPointer()))
+	ret := newQConicalGradient(QConicalGradient_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QConicalGradient) Center() *QPointF {
-	_goptr := newQPointF(C.QConicalGradient_Center(this.h))
+	_goptr := newQPointF(QConicalGradient_Center(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QConicalGradient) SetCenter(center *QPointF) {
-	C.QConicalGradient_SetCenter(this.h, center.cPointer())
+	QConicalGradient_SetCenter(this.h, center.cPointer())
 }
 
 func (this *QConicalGradient) SetCenter2(x float64, y float64) {
-	C.QConicalGradient_SetCenter2(this.h, (C.double)(x), (C.double)(y))
+	QConicalGradient_SetCenter2(this.h, (double)(x), (double)(y))
 }
 
 func (this *QConicalGradient) Angle() float64 {
-	return (float64)(C.QConicalGradient_Angle(this.h))
+	return (float64)(QConicalGradient_Angle(this.h))
 }
 
 func (this *QConicalGradient) SetAngle(angle float64) {
-	C.QConicalGradient_SetAngle(this.h, (C.double)(angle))
-}
-
-// Delete this object from C++ memory.
-func (this *QConicalGradient) Delete() {
-	C.QConicalGradient_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QConicalGradient) GoGC() {
-	runtime.SetFinalizer(this, func(this *QConicalGradient) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QConicalGradient_SetAngle(this.h, (double)(angle))
 }
 
 type QGradient__QGradientData struct {
-	h          *C.QGradient__QGradientData
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QGradient__QGradientData) cPointer() *C.QGradient__QGradientData {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QGradient__QGradientData) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQGradient__QGradientData constructs the type using only CGO pointers.
-func newQGradient__QGradientData(h *C.QGradient__QGradientData) *QGradient__QGradientData {
-	if h == nil {
-		return nil
-	}
-
-	return &QGradient__QGradientData{h: h}
-}
-
-// UnsafeNewQGradient__QGradientData constructs the type using only unsafe pointers.
-func UnsafeNewQGradient__QGradientData(h unsafe.Pointer) *QGradient__QGradientData {
-	return newQGradient__QGradientData((*C.QGradient__QGradientData)(h))
-}
-
 // NewQGradient__QGradientData constructs a new QGradient::QGradientData object.
-func NewQGradient__QGradientData(param1 *QGradient__QGradientData) *QGradient__QGradientData {
+func NewQGradient__QGradientData(param1 *QGradientData) *QGradient__QGradientData {
 
-	ret := newQGradient__QGradientData(C.QGradient__QGradientData_new(param1.cPointer()))
+	ret := newQGradient__QGradientData(QGradient__QGradientData_new(param1))
 	ret.isSubclass = true
 	return ret
-}
-
-func (this *QGradient__QGradientData) OperatorAssign(param1 *QGradient__QGradientData) {
-	C.QGradient__QGradientData_OperatorAssign(this.h, param1.cPointer())
-}
-
-// Delete this object from C++ memory.
-func (this *QGradient__QGradientData) Delete() {
-	C.QGradient__QGradientData_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QGradient__QGradientData) GoGC() {
-	runtime.SetFinalizer(this, func(this *QGradient__QGradientData) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

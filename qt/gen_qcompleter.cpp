@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QAbstractItemView>
 #include <QChildEvent>
@@ -20,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQCompleter : public virtual QCompleter {
 public:
@@ -355,17 +372,6 @@ struct miqt_string QCompleter_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QCompleter_TrUtf8(const char* s) {
-	QString _ret = QCompleter::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QCompleter_SetWidget(QCompleter* self, QWidget* widget) {
 	self->setWidget(widget);
 }
@@ -382,13 +388,12 @@ QAbstractItemModel* QCompleter_Model(const QCompleter* self) {
 	return self->model();
 }
 
-void QCompleter_SetCompletionMode(QCompleter* self, int mode) {
-	self->setCompletionMode(static_cast<QCompleter::CompletionMode>(mode));
+void QCompleter_SetCompletionMode(QCompleter* self, CompletionMode mode) {
+	self->setCompletionMode(mode);
 }
 
-int QCompleter_CompletionMode(const QCompleter* self) {
-	QCompleter::CompletionMode _ret = self->completionMode();
-	return static_cast<int>(_ret);
+CompletionMode QCompleter_CompletionMode(const QCompleter* self) {
+	return self->completionMode();
 }
 
 void QCompleter_SetFilterMode(QCompleter* self, int filterMode) {
@@ -417,13 +422,12 @@ int QCompleter_CaseSensitivity(const QCompleter* self) {
 	return static_cast<int>(_ret);
 }
 
-void QCompleter_SetModelSorting(QCompleter* self, int sorting) {
-	self->setModelSorting(static_cast<QCompleter::ModelSorting>(sorting));
+void QCompleter_SetModelSorting(QCompleter* self, ModelSorting sorting) {
+	self->setModelSorting(sorting);
 }
 
-int QCompleter_ModelSorting(const QCompleter* self) {
-	QCompleter::ModelSorting _ret = self->modelSorting();
-	return static_cast<int>(_ret);
+ModelSorting QCompleter_ModelSorting(const QCompleter* self) {
+	return self->modelSorting();
 }
 
 void QCompleter_SetCompletionColumn(QCompleter* self, int column) {
@@ -618,28 +622,6 @@ struct miqt_string QCompleter_Tr2(const char* s, const char* c) {
 
 struct miqt_string QCompleter_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QCompleter::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCompleter_TrUtf82(const char* s, const char* c) {
-	QString _ret = QCompleter::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCompleter_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QCompleter::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

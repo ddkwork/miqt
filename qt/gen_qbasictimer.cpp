@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBasicTimer>
 #include <QObject>
 #include <qbasictimer.h>
@@ -6,18 +8,25 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-QBasicTimer* QBasicTimer_new(QBasicTimer* param1) {
-	return new QBasicTimer(*param1);
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
 }
 
-QBasicTimer* QBasicTimer_new2() {
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QBasicTimer* QBasicTimer_new() {
 	return new QBasicTimer();
-}
-
-void QBasicTimer_OperatorAssign(QBasicTimer* self, QBasicTimer* param1) {
-	self->operator=(*param1);
 }
 
 void QBasicTimer_Swap(QBasicTimer* self, QBasicTimer* other) {
@@ -32,12 +41,25 @@ int QBasicTimer_TimerId(const QBasicTimer* self) {
 	return self->timerId();
 }
 
+int QBasicTimer_Id(const QBasicTimer* self) {
+	Qt::TimerId _ret = self->id();
+	return static_cast<int>(_ret);
+}
+
 void QBasicTimer_Start(QBasicTimer* self, int msec, QObject* obj) {
 	self->start(static_cast<int>(msec), obj);
 }
 
 void QBasicTimer_Start2(QBasicTimer* self, int msec, int timerType, QObject* obj) {
 	self->start(static_cast<int>(msec), static_cast<Qt::TimerType>(timerType), obj);
+}
+
+void QBasicTimer_Start3(QBasicTimer* self, Duration duration, QObject* obj) {
+	self->start(duration, obj);
+}
+
+void QBasicTimer_Start4(QBasicTimer* self, Duration duration, int timerType, QObject* obj) {
+	self->start(duration, static_cast<Qt::TimerType>(timerType), obj);
 }
 
 void QBasicTimer_Stop(QBasicTimer* self) {

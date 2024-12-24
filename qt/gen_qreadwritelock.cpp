@@ -1,3 +1,6 @@
+// +build ignore
+
+#include <QDeadlineTimer>
 #include <QReadLocker>
 #include <QReadWriteLock>
 #include <QWriteLocker>
@@ -7,42 +10,65 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QReadWriteLock* QReadWriteLock_new() {
 	return new QReadWriteLock();
 }
 
-QReadWriteLock* QReadWriteLock_new2(int recursionMode) {
-	return new QReadWriteLock(static_cast<QReadWriteLock::RecursionMode>(recursionMode));
+QReadWriteLock* QReadWriteLock_new2(RecursionMode recursionMode) {
+	return new QReadWriteLock(recursionMode);
 }
 
 void QReadWriteLock_LockForRead(QReadWriteLock* self) {
 	self->lockForRead();
 }
 
-bool QReadWriteLock_TryLockForRead(QReadWriteLock* self) {
-	return self->tryLockForRead();
+bool QReadWriteLock_TryLockForRead(QReadWriteLock* self, int timeout) {
+	return self->tryLockForRead(static_cast<int>(timeout));
 }
 
-bool QReadWriteLock_TryLockForReadWithTimeout(QReadWriteLock* self, int timeout) {
-	return self->tryLockForRead(static_cast<int>(timeout));
+bool QReadWriteLock_TryLockForRead2(QReadWriteLock* self) {
+	return self->tryLockForRead();
 }
 
 void QReadWriteLock_LockForWrite(QReadWriteLock* self) {
 	self->lockForWrite();
 }
 
-bool QReadWriteLock_TryLockForWrite(QReadWriteLock* self) {
-	return self->tryLockForWrite();
+bool QReadWriteLock_TryLockForWrite(QReadWriteLock* self, int timeout) {
+	return self->tryLockForWrite(static_cast<int>(timeout));
 }
 
-bool QReadWriteLock_TryLockForWriteWithTimeout(QReadWriteLock* self, int timeout) {
-	return self->tryLockForWrite(static_cast<int>(timeout));
+bool QReadWriteLock_TryLockForWrite2(QReadWriteLock* self) {
+	return self->tryLockForWrite();
 }
 
 void QReadWriteLock_Unlock(QReadWriteLock* self) {
 	self->unlock();
+}
+
+bool QReadWriteLock_TryLockForRead1(QReadWriteLock* self, QDeadlineTimer* timeout) {
+	return self->tryLockForRead(*timeout);
+}
+
+bool QReadWriteLock_TryLockForWrite1(QReadWriteLock* self, QDeadlineTimer* timeout) {
+	return self->tryLockForWrite(*timeout);
 }
 
 void QReadWriteLock_Delete(QReadWriteLock* self, bool isSubclass) {

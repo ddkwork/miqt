@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QActionEvent>
 #include <QByteArray>
 #include <QChildEvent>
@@ -7,6 +9,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QFrame>
@@ -31,7 +34,9 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QTabletEvent>
+#include <QTextStream>
 #include <QVariant>
 #include <QWheelEvent>
 #include <QWidget>
@@ -41,7 +46,30 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void QTextStream_Delete(QTextStream* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QTextStream*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSplitter : public virtual QSplitter {
 public:
@@ -238,6 +266,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QSplitter::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QSplitter_InitStyleOption(const_cast<MiqtVirtualQSplitter*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QSplitter::initStyleOption(option);
+
+	}
+
 };
 
 QSplitter* QSplitter_new(QWidget* parent) {
@@ -270,17 +322,6 @@ void* QSplitter_Metacast(QSplitter* self, const char* param1) {
 
 struct miqt_string QSplitter_Tr(const char* s) {
 	QString _ret = QSplitter::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplitter_TrUtf8(const char* s) {
-	QString _ret = QSplitter::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -450,28 +491,6 @@ struct miqt_string QSplitter_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QSplitter_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSplitter::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplitter_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSplitter::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QSplitter_SetOpaqueResize1(QSplitter* self, bool opaque) {
 	self->setOpaqueResize(opaque);
 }
@@ -538,6 +557,14 @@ void QSplitter_override_virtual_PaintEvent(void* self, intptr_t slot) {
 
 void QSplitter_virtualbase_PaintEvent(void* self, QPaintEvent* param1) {
 	( (MiqtVirtualQSplitter*)(self) )->virtualbase_PaintEvent(param1);
+}
+
+void QSplitter_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSplitter*>( (QSplitter*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QSplitter_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQSplitter*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QSplitter_Delete(QSplitter* self, bool isSubclass) {
@@ -1003,13 +1030,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QSplitterHandle::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QSplitterHandle_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -1017,7 +1044,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QSplitterHandle::enterEvent(event);
 
@@ -1315,7 +1342,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QSplitterHandle::nativeEvent(eventType, message, result);
 		}
@@ -1327,7 +1354,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QSplitterHandle_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -1335,10 +1363,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QSplitterHandle::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QSplitterHandle::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -1370,13 +1398,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QSplitterHandle::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QSplitterHandle_Metric(const_cast<MiqtVirtualQSplitterHandle*>(this), handle__Metric, sigval1);
 
@@ -1384,9 +1411,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QSplitterHandle::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QSplitterHandle::metric(param1);
 
 	}
 
@@ -1559,17 +1586,6 @@ struct miqt_string QSplitterHandle_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSplitterHandle_TrUtf8(const char* s) {
-	QString _ret = QSplitterHandle::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QSplitterHandle_SetOrientation(QSplitterHandle* self, int o) {
 	self->setOrientation(static_cast<Qt::Orientation>(o));
 }
@@ -1604,28 +1620,6 @@ struct miqt_string QSplitterHandle_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSplitterHandle_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSplitterHandle::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplitterHandle_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSplitterHandle::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplitterHandle_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSplitterHandle::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1791,7 +1785,7 @@ void QSplitterHandle_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSplitterHandle*>( (QSplitterHandle*)(self) )->handle__EnterEvent = slot;
 }
 
-void QSplitterHandle_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QSplitterHandle_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQSplitterHandle*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1895,7 +1889,7 @@ void QSplitterHandle_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSplitterHandle*>( (QSplitterHandle*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QSplitterHandle_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QSplitterHandle_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQSplitterHandle*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1911,7 +1905,7 @@ void QSplitterHandle_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSplitterHandle*>( (QSplitterHandle*)(self) )->handle__Metric = slot;
 }
 
-int QSplitterHandle_virtualbase_Metric(const void* self, int param1) {
+int QSplitterHandle_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQSplitterHandle*)(self) )->virtualbase_Metric(param1);
 }
 

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QLayout>
 #include <QLayoutItem>
 #include <QRect>
@@ -13,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLayoutItem : public virtual QLayoutItem {
 public:
@@ -227,19 +244,19 @@ public:
 	intptr_t handle__Widget = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QWidget* widget() override {
+	virtual QWidget* widget() const override {
 		if (handle__Widget == 0) {
 			return QLayoutItem::widget();
 		}
 		
 
-		QWidget* callback_return_value = miqt_exec_callback_QLayoutItem_Widget(this, handle__Widget);
+		QWidget* callback_return_value = miqt_exec_callback_QLayoutItem_Widget(const_cast<MiqtVirtualQLayoutItem*>(this), handle__Widget);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QWidget* virtualbase_Widget() {
+	QWidget* virtualbase_Widget() const {
 
 		return QLayoutItem::widget();
 
@@ -371,7 +388,7 @@ void QLayoutItem_Invalidate(QLayoutItem* self) {
 	self->invalidate();
 }
 
-QWidget* QLayoutItem_Widget(QLayoutItem* self) {
+QWidget* QLayoutItem_Widget(const QLayoutItem* self) {
 	return self->widget();
 }
 
@@ -461,8 +478,8 @@ void QLayoutItem_override_virtual_Widget(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLayoutItem*>( (QLayoutItem*)(self) )->handle__Widget = slot;
 }
 
-QWidget* QLayoutItem_virtualbase_Widget(void* self) {
-	return ( (MiqtVirtualQLayoutItem*)(self) )->virtualbase_Widget();
+QWidget* QLayoutItem_virtualbase_Widget(const void* self) {
+	return ( (const MiqtVirtualQLayoutItem*)(self) )->virtualbase_Widget();
 }
 
 void QLayoutItem_override_virtual_Layout(void* self, intptr_t slot) {
@@ -783,19 +800,19 @@ public:
 	intptr_t handle__Widget = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QWidget* widget() override {
+	virtual QWidget* widget() const override {
 		if (handle__Widget == 0) {
 			return QSpacerItem::widget();
 		}
 		
 
-		QWidget* callback_return_value = miqt_exec_callback_QSpacerItem_Widget(this, handle__Widget);
+		QWidget* callback_return_value = miqt_exec_callback_QSpacerItem_Widget(const_cast<MiqtVirtualQSpacerItem*>(this), handle__Widget);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QWidget* virtualbase_Widget() {
+	QWidget* virtualbase_Widget() const {
 
 		return QSpacerItem::widget();
 
@@ -1017,8 +1034,8 @@ void QSpacerItem_override_virtual_Widget(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSpacerItem*>( (QSpacerItem*)(self) )->handle__Widget = slot;
 }
 
-QWidget* QSpacerItem_virtualbase_Widget(void* self) {
-	return ( (MiqtVirtualQSpacerItem*)(self) )->virtualbase_Widget();
+QWidget* QSpacerItem_virtualbase_Widget(const void* self) {
+	return ( (const MiqtVirtualQSpacerItem*)(self) )->virtualbase_Widget();
 }
 
 void QSpacerItem_override_virtual_Layout(void* self, intptr_t slot) {
@@ -1215,19 +1232,19 @@ public:
 	intptr_t handle__Widget = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QWidget* widget() override {
+	virtual QWidget* widget() const override {
 		if (handle__Widget == 0) {
 			return QWidgetItem::widget();
 		}
 		
 
-		QWidget* callback_return_value = miqt_exec_callback_QWidgetItem_Widget(this, handle__Widget);
+		QWidget* callback_return_value = miqt_exec_callback_QWidgetItem_Widget(const_cast<MiqtVirtualQWidgetItem*>(this), handle__Widget);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QWidget* virtualbase_Widget() {
+	QWidget* virtualbase_Widget() const {
 
 		return QWidgetItem::widget();
 
@@ -1279,29 +1296,6 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ControlTypes = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QSizePolicy::ControlTypes controlTypes() const override {
-		if (handle__ControlTypes == 0) {
-			return QWidgetItem::controlTypes();
-		}
-		
-
-		int callback_return_value = miqt_exec_callback_QWidgetItem_ControlTypes(const_cast<MiqtVirtualQWidgetItem*>(this), handle__ControlTypes);
-
-		return static_cast<QSizePolicy::ControlTypes>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_ControlTypes() const {
-
-		QSizePolicy::ControlTypes _ret = QWidgetItem::controlTypes();
-		return static_cast<int>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__MinimumHeightForWidth = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1321,6 +1315,29 @@ public:
 	int virtualbase_MinimumHeightForWidth(int param1) const {
 
 		return QWidgetItem::minimumHeightForWidth(static_cast<int>(param1));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ControlTypes = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QSizePolicy::ControlTypes controlTypes() const override {
+		if (handle__ControlTypes == 0) {
+			return QWidgetItem::controlTypes();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QWidgetItem_ControlTypes(const_cast<MiqtVirtualQWidgetItem*>(this), handle__ControlTypes);
+
+		return static_cast<QSizePolicy::ControlTypes>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_ControlTypes() const {
+
+		QSizePolicy::ControlTypes _ret = QWidgetItem::controlTypes();
+		return static_cast<int>(_ret);
 
 	}
 
@@ -1430,7 +1447,7 @@ QRect* QWidgetItem_Geometry(const QWidgetItem* self) {
 	return new QRect(self->geometry());
 }
 
-QWidget* QWidgetItem_Widget(QWidgetItem* self) {
+QWidget* QWidgetItem_Widget(const QWidgetItem* self) {
 	return self->widget();
 }
 
@@ -1440,6 +1457,10 @@ bool QWidgetItem_HasHeightForWidth(const QWidgetItem* self) {
 
 int QWidgetItem_HeightForWidth(const QWidgetItem* self, int param1) {
 	return self->heightForWidth(static_cast<int>(param1));
+}
+
+int QWidgetItem_MinimumHeightForWidth(const QWidgetItem* self, int param1) {
+	return self->minimumHeightForWidth(static_cast<int>(param1));
 }
 
 int QWidgetItem_ControlTypes(const QWidgetItem* self) {
@@ -1507,8 +1528,8 @@ void QWidgetItem_override_virtual_Widget(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWidgetItem*>( (QWidgetItem*)(self) )->handle__Widget = slot;
 }
 
-QWidget* QWidgetItem_virtualbase_Widget(void* self) {
-	return ( (MiqtVirtualQWidgetItem*)(self) )->virtualbase_Widget();
+QWidget* QWidgetItem_virtualbase_Widget(const void* self) {
+	return ( (const MiqtVirtualQWidgetItem*)(self) )->virtualbase_Widget();
 }
 
 void QWidgetItem_override_virtual_HasHeightForWidth(void* self, intptr_t slot) {
@@ -1527,20 +1548,20 @@ int QWidgetItem_virtualbase_HeightForWidth(const void* self, int param1) {
 	return ( (const MiqtVirtualQWidgetItem*)(self) )->virtualbase_HeightForWidth(param1);
 }
 
-void QWidgetItem_override_virtual_ControlTypes(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQWidgetItem*>( (QWidgetItem*)(self) )->handle__ControlTypes = slot;
-}
-
-int QWidgetItem_virtualbase_ControlTypes(const void* self) {
-	return ( (const MiqtVirtualQWidgetItem*)(self) )->virtualbase_ControlTypes();
-}
-
 void QWidgetItem_override_virtual_MinimumHeightForWidth(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWidgetItem*>( (QWidgetItem*)(self) )->handle__MinimumHeightForWidth = slot;
 }
 
 int QWidgetItem_virtualbase_MinimumHeightForWidth(const void* self, int param1) {
 	return ( (const MiqtVirtualQWidgetItem*)(self) )->virtualbase_MinimumHeightForWidth(param1);
+}
+
+void QWidgetItem_override_virtual_ControlTypes(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQWidgetItem*>( (QWidgetItem*)(self) )->handle__ControlTypes = slot;
+}
+
+int QWidgetItem_virtualbase_ControlTypes(const void* self) {
+	return ( (const MiqtVirtualQWidgetItem*)(self) )->virtualbase_ControlTypes();
 }
 
 void QWidgetItem_override_virtual_Invalidate(void* self, intptr_t slot) {
@@ -1768,19 +1789,19 @@ public:
 	intptr_t handle__Widget = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QWidget* widget() override {
+	virtual QWidget* widget() const override {
 		if (handle__Widget == 0) {
 			return QWidgetItemV2::widget();
 		}
 		
 
-		QWidget* callback_return_value = miqt_exec_callback_QWidgetItemV2_Widget(this, handle__Widget);
+		QWidget* callback_return_value = miqt_exec_callback_QWidgetItemV2_Widget(const_cast<MiqtVirtualQWidgetItemV2*>(this), handle__Widget);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QWidget* virtualbase_Widget() {
+	QWidget* virtualbase_Widget() const {
 
 		return QWidgetItemV2::widget();
 
@@ -1805,6 +1826,29 @@ public:
 	bool virtualbase_HasHeightForWidth() const {
 
 		return QWidgetItemV2::hasHeightForWidth();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MinimumHeightForWidth = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int minimumHeightForWidth(int param1) const override {
+		if (handle__MinimumHeightForWidth == 0) {
+			return QWidgetItemV2::minimumHeightForWidth(param1);
+		}
+		
+		int sigval1 = param1;
+
+		int callback_return_value = miqt_exec_callback_QWidgetItemV2_MinimumHeightForWidth(const_cast<MiqtVirtualQWidgetItemV2*>(this), handle__MinimumHeightForWidth, sigval1);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_MinimumHeightForWidth(int param1) const {
+
+		return QWidgetItemV2::minimumHeightForWidth(static_cast<int>(param1));
 
 	}
 
@@ -1925,8 +1969,8 @@ void QWidgetItemV2_override_virtual_Widget(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWidgetItemV2*>( (QWidgetItemV2*)(self) )->handle__Widget = slot;
 }
 
-QWidget* QWidgetItemV2_virtualbase_Widget(void* self) {
-	return ( (MiqtVirtualQWidgetItemV2*)(self) )->virtualbase_Widget();
+QWidget* QWidgetItemV2_virtualbase_Widget(const void* self) {
+	return ( (const MiqtVirtualQWidgetItemV2*)(self) )->virtualbase_Widget();
 }
 
 void QWidgetItemV2_override_virtual_HasHeightForWidth(void* self, intptr_t slot) {
@@ -1935,6 +1979,14 @@ void QWidgetItemV2_override_virtual_HasHeightForWidth(void* self, intptr_t slot)
 
 bool QWidgetItemV2_virtualbase_HasHeightForWidth(const void* self) {
 	return ( (const MiqtVirtualQWidgetItemV2*)(self) )->virtualbase_HasHeightForWidth();
+}
+
+void QWidgetItemV2_override_virtual_MinimumHeightForWidth(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQWidgetItemV2*>( (QWidgetItemV2*)(self) )->handle__MinimumHeightForWidth = slot;
+}
+
+int QWidgetItemV2_virtualbase_MinimumHeightForWidth(const void* self, int param1) {
+	return ( (const MiqtVirtualQWidgetItemV2*)(self) )->virtualbase_MinimumHeightForWidth(param1);
 }
 
 void QWidgetItemV2_override_virtual_ControlTypes(void* self, intptr_t slot) {

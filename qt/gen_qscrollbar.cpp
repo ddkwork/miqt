@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractSlider>
 #include <QContextMenuEvent>
 #include <QEvent>
@@ -13,6 +15,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionSlider>
 #include <QTimerEvent>
 #include <QWheelEvent>
 #include <QWidget>
@@ -22,7 +25,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQScrollBar : public virtual QScrollBar {
 public:
@@ -227,14 +245,13 @@ public:
 	intptr_t handle__SliderChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sliderChange(QAbstractSlider::SliderChange change) override {
+	virtual void sliderChange(SliderChange change) override {
 		if (handle__SliderChange == 0) {
 			QScrollBar::sliderChange(change);
 			return;
 		}
 		
-		QAbstractSlider::SliderChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		SliderChange sigval1 = change;
 
 		miqt_exec_callback_QScrollBar_SliderChange(this, handle__SliderChange, sigval1);
 
@@ -242,9 +259,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SliderChange(int change) {
+	void virtualbase_SliderChange(SliderChange change) {
 
-		QScrollBar::sliderChange(static_cast<QAbstractSlider::SliderChange>(change));
+		QScrollBar::sliderChange(change);
 
 	}
 
@@ -269,6 +286,30 @@ public:
 	void virtualbase_ContextMenuEvent(QContextMenuEvent* param1) {
 
 		QScrollBar::contextMenuEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSlider* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QScrollBar::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSlider* sigval1 = option;
+
+		miqt_exec_callback_QScrollBar_InitStyleOption(const_cast<MiqtVirtualQScrollBar*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSlider* option) const {
+
+		QScrollBar::initStyleOption(option);
 
 	}
 
@@ -385,17 +426,6 @@ struct miqt_string QScrollBar_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QScrollBar_TrUtf8(const char* s) {
-	QString _ret = QScrollBar::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QScrollBar_SizeHint(const QScrollBar* self) {
 	return new QSize(self->sizeHint());
 }
@@ -417,28 +447,6 @@ struct miqt_string QScrollBar_Tr2(const char* s, const char* c) {
 
 struct miqt_string QScrollBar_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QScrollBar::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QScrollBar_TrUtf82(const char* s, const char* c) {
-	QString _ret = QScrollBar::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QScrollBar_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QScrollBar::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -516,7 +524,7 @@ void QScrollBar_override_virtual_SliderChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQScrollBar*>( (QScrollBar*)(self) )->handle__SliderChange = slot;
 }
 
-void QScrollBar_virtualbase_SliderChange(void* self, int change) {
+void QScrollBar_virtualbase_SliderChange(void* self, SliderChange change) {
 	( (MiqtVirtualQScrollBar*)(self) )->virtualbase_SliderChange(change);
 }
 
@@ -526,6 +534,14 @@ void QScrollBar_override_virtual_ContextMenuEvent(void* self, intptr_t slot) {
 
 void QScrollBar_virtualbase_ContextMenuEvent(void* self, QContextMenuEvent* param1) {
 	( (MiqtVirtualQScrollBar*)(self) )->virtualbase_ContextMenuEvent(param1);
+}
+
+void QScrollBar_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQScrollBar*>( (QScrollBar*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QScrollBar_virtualbase_InitStyleOption(const void* self, QStyleOptionSlider* option) {
+	( (const MiqtVirtualQScrollBar*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QScrollBar_override_virtual_KeyPressEvent(void* self, intptr_t slot) {

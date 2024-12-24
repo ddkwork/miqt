@@ -1,9 +1,11 @@
+// +build ignore
+
+#include <QAbstractFileIconProvider>
 #include <QAbstractItemModel>
 #include <QByteArray>
 #include <QDateTime>
 #include <QDir>
 #include <QEvent>
-#include <QFileIconProvider>
 #include <QFileInfo>
 #include <QFileSystemModel>
 #include <QIcon>
@@ -12,11 +14,13 @@
 #include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
+#include <QModelRoleDataSpan>
 #include <QObject>
 #include <QSize>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QTimeZone>
 #include <QTimerEvent>
 #include <QVariant>
 #include <qfilesystemmodel.h>
@@ -25,7 +29,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQFileSystemModel : public virtual QFileSystemModel {
 public:
@@ -510,6 +529,55 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__RoleNames = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QHash<int, QByteArray> roleNames() const override {
+		if (handle__RoleNames == 0) {
+			return QFileSystemModel::roleNames();
+		}
+		
+
+		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QFileSystemModel_RoleNames(const_cast<MiqtVirtualQFileSystemModel*>(this), handle__RoleNames);
+		QHash<int, QByteArray> callback_return_value_QMap;
+		callback_return_value_QMap.reserve(callback_return_value.len);
+		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
+		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
+			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
+		}
+
+		return callback_return_value_QMap;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+
+		QHash<int, QByteArray> _ret = QFileSystemModel::roleNames();
+		// Convert QMap<> from C++ memory to manually-managed C memory
+		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+		int _ctr = 0;
+		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+			_karr[_ctr] = _itr->first;
+			QByteArray _hashval_qb = _itr->second;
+			struct miqt_string _hashval_ms;
+			_hashval_ms.len = _hashval_qb.length();
+			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+			_varr[_ctr] = _hashval_ms;
+			_ctr++;
+		}
+		struct miqt_map _out;
+		_out.len = _ret.size();
+		_out.keys = static_cast<void*>(_karr);
+		_out.values = static_cast<void*>(_varr);
+		return _out;
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__TimerEvent = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -673,6 +741,31 @@ public:
 		}
 
 		return QFileSystemModel::setItemData(*index, roles_QMap);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QFileSystemModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QFileSystemModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QFileSystemModel::clearItemData(*index);
 
 	}
 
@@ -997,51 +1090,29 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__RoleNames = 0;
+	intptr_t handle__MultiData = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QHash<int, QByteArray> roleNames() const override {
-		if (handle__RoleNames == 0) {
-			return QFileSystemModel::roleNames();
+	virtual void multiData(const QModelIndex& index, QModelRoleDataSpan roleDataSpan) const override {
+		if (handle__MultiData == 0) {
+			QFileSystemModel::multiData(index, roleDataSpan);
+			return;
 		}
 		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+		QModelRoleDataSpan* sigval2 = new QModelRoleDataSpan(roleDataSpan);
 
-		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QFileSystemModel_RoleNames(const_cast<MiqtVirtualQFileSystemModel*>(this), handle__RoleNames);
-		QHash<int, QByteArray> callback_return_value_QMap;
-		callback_return_value_QMap.reserve(callback_return_value.len);
-		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
-		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
-		for(size_t i = 0; i < callback_return_value.len; ++i) {
-			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
-			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
-		}
+		miqt_exec_callback_QFileSystemModel_MultiData(const_cast<MiqtVirtualQFileSystemModel*>(this), handle__MultiData, sigval1, sigval2);
 
-		return callback_return_value_QMap;
+		
 	}
 
 	// Wrapper to allow calling protected method
-	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+	void virtualbase_MultiData(QModelIndex* index, QModelRoleDataSpan* roleDataSpan) const {
 
-		QHash<int, QByteArray> _ret = QFileSystemModel::roleNames();
-		// Convert QMap<> from C++ memory to manually-managed C memory
-		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
-		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
-		int _ctr = 0;
-		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
-			_karr[_ctr] = _itr->first;
-			QByteArray _hashval_qb = _itr->second;
-			struct miqt_string _hashval_ms;
-			_hashval_ms.len = _hashval_qb.length();
-			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
-			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
-			_varr[_ctr] = _hashval_ms;
-			_ctr++;
-		}
-		struct miqt_map _out;
-		_out.len = _ret.size();
-		_out.keys = static_cast<void*>(_karr);
-		_out.values = static_cast<void*>(_varr);
-		return _out;
+		QFileSystemModel::multiData(*index, *roleDataSpan);
 
 	}
 
@@ -1090,6 +1161,29 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ResetInternalData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void resetInternalData() override {
+		if (handle__ResetInternalData == 0) {
+			QFileSystemModel::resetInternalData();
+			return;
+		}
+		
+
+		miqt_exec_callback_QFileSystemModel_ResetInternalData(this, handle__ResetInternalData);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_ResetInternalData() {
+
+		QFileSystemModel::resetInternalData();
+
+	}
+
 };
 
 QFileSystemModel* QFileSystemModel_new() {
@@ -1114,17 +1208,6 @@ void* QFileSystemModel_Metacast(QFileSystemModel* self, const char* param1) {
 
 struct miqt_string QFileSystemModel_Tr(const char* s) {
 	QString _ret = QFileSystemModel::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFileSystemModel_TrUtf8(const char* s) {
-	QString _ret = QFileSystemModel::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1310,6 +1393,29 @@ int QFileSystemModel_SupportedDropActions(const QFileSystemModel* self) {
 	return static_cast<int>(_ret);
 }
 
+struct miqt_map /* of int to struct miqt_string */  QFileSystemModel_RoleNames(const QFileSystemModel* self) {
+	QHash<int, QByteArray> _ret = self->roleNames();
+	// Convert QMap<> from C++ memory to manually-managed C memory
+	int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+	struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+	int _ctr = 0;
+	for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+		_karr[_ctr] = _itr->first;
+		QByteArray _hashval_qb = _itr->second;
+		struct miqt_string _hashval_ms;
+		_hashval_ms.len = _hashval_qb.length();
+		_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+		memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+		_varr[_ctr] = _hashval_ms;
+		_ctr++;
+	}
+	struct miqt_map _out;
+	_out.len = _ret.size();
+	_out.keys = static_cast<void*>(_karr);
+	_out.values = static_cast<void*>(_varr);
+	return _out;
+}
+
 QModelIndex* QFileSystemModel_SetRootPath(QFileSystemModel* self, struct miqt_string path) {
 	QString path_QString = QString::fromUtf8(path.data, path.len);
 	return new QModelIndex(self->setRootPath(path_QString));
@@ -1330,11 +1436,11 @@ QDir* QFileSystemModel_RootDirectory(const QFileSystemModel* self) {
 	return new QDir(self->rootDirectory());
 }
 
-void QFileSystemModel_SetIconProvider(QFileSystemModel* self, QFileIconProvider* provider) {
+void QFileSystemModel_SetIconProvider(QFileSystemModel* self, QAbstractFileIconProvider* provider) {
 	self->setIconProvider(provider);
 }
 
-QFileIconProvider* QFileSystemModel_IconProvider(const QFileSystemModel* self) {
+QAbstractFileIconProvider* QFileSystemModel_IconProvider(const QFileSystemModel* self) {
 	return self->iconProvider();
 }
 
@@ -1402,21 +1508,20 @@ struct miqt_array /* of struct miqt_string */  QFileSystemModel_NameFilters(cons
 	return _out;
 }
 
-void QFileSystemModel_SetOption(QFileSystemModel* self, int option) {
-	self->setOption(static_cast<QFileSystemModel::Option>(option));
+void QFileSystemModel_SetOption(QFileSystemModel* self, Option option) {
+	self->setOption(option);
 }
 
-bool QFileSystemModel_TestOption(const QFileSystemModel* self, int option) {
-	return self->testOption(static_cast<QFileSystemModel::Option>(option));
+bool QFileSystemModel_TestOption(const QFileSystemModel* self, Option option) {
+	return self->testOption(option);
 }
 
-void QFileSystemModel_SetOptions(QFileSystemModel* self, int options) {
-	self->setOptions(static_cast<QFileSystemModel::Options>(options));
+void QFileSystemModel_SetOptions(QFileSystemModel* self, Options options) {
+	self->setOptions(options);
 }
 
-int QFileSystemModel_Options(const QFileSystemModel* self) {
-	QFileSystemModel::Options _ret = self->options();
-	return static_cast<int>(_ret);
+Options QFileSystemModel_Options(const QFileSystemModel* self) {
+	return self->options();
 }
 
 struct miqt_string QFileSystemModel_FilePath(const QFileSystemModel* self, QModelIndex* index) {
@@ -1452,6 +1557,10 @@ struct miqt_string QFileSystemModel_Type(const QFileSystemModel* self, QModelInd
 
 QDateTime* QFileSystemModel_LastModified(const QFileSystemModel* self, QModelIndex* index) {
 	return new QDateTime(self->lastModified(*index));
+}
+
+QDateTime* QFileSystemModel_LastModified2(const QFileSystemModel* self, QModelIndex* index, QTimeZone* tz) {
+	return new QDateTime(self->lastModified(*index, *tz));
 }
 
 QModelIndex* QFileSystemModel_Mkdir(QFileSystemModel* self, QModelIndex* parent, struct miqt_string name) {
@@ -1513,28 +1622,6 @@ struct miqt_string QFileSystemModel_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QFileSystemModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QFileSystemModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFileSystemModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QFileSystemModel::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QModelIndex* QFileSystemModel_Index2(const QFileSystemModel* self, struct miqt_string path, int column) {
 	QString path_QString = QString::fromUtf8(path.data, path.len);
 	return new QModelIndex(self->index(path_QString, static_cast<int>(column)));
@@ -1544,8 +1631,8 @@ QVariant* QFileSystemModel_MyComputer1(const QFileSystemModel* self, int role) {
 	return new QVariant(self->myComputer(static_cast<int>(role)));
 }
 
-void QFileSystemModel_SetOption2(QFileSystemModel* self, int option, bool on) {
-	self->setOption(static_cast<QFileSystemModel::Option>(option), on);
+void QFileSystemModel_SetOption2(QFileSystemModel* self, Option option, bool on) {
+	self->setOption(option, on);
 }
 
 void QFileSystemModel_override_virtual_Index(void* self, intptr_t slot) {
@@ -1684,6 +1771,14 @@ int QFileSystemModel_virtualbase_SupportedDropActions(const void* self) {
 	return ( (const MiqtVirtualQFileSystemModel*)(self) )->virtualbase_SupportedDropActions();
 }
 
+void QFileSystemModel_override_virtual_RoleNames(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFileSystemModel*>( (QFileSystemModel*)(self) )->handle__RoleNames = slot;
+}
+
+struct miqt_map /* of int to struct miqt_string */  QFileSystemModel_virtualbase_RoleNames(const void* self) {
+	return ( (const MiqtVirtualQFileSystemModel*)(self) )->virtualbase_RoleNames();
+}
+
 void QFileSystemModel_override_virtual_TimerEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQFileSystemModel*>( (QFileSystemModel*)(self) )->handle__TimerEvent = slot;
 }
@@ -1722,6 +1817,14 @@ void QFileSystemModel_override_virtual_SetItemData(void* self, intptr_t slot) {
 
 bool QFileSystemModel_virtualbase_SetItemData(void* self, QModelIndex* index, struct miqt_map /* of int to QVariant* */  roles) {
 	return ( (MiqtVirtualQFileSystemModel*)(self) )->virtualbase_SetItemData(index, roles);
+}
+
+void QFileSystemModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFileSystemModel*>( (QFileSystemModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QFileSystemModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQFileSystemModel*)(self) )->virtualbase_ClearItemData(index);
 }
 
 void QFileSystemModel_override_virtual_CanDropMimeData(void* self, intptr_t slot) {
@@ -1812,12 +1915,12 @@ QSize* QFileSystemModel_virtualbase_Span(const void* self, QModelIndex* index) {
 	return ( (const MiqtVirtualQFileSystemModel*)(self) )->virtualbase_Span(index);
 }
 
-void QFileSystemModel_override_virtual_RoleNames(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQFileSystemModel*>( (QFileSystemModel*)(self) )->handle__RoleNames = slot;
+void QFileSystemModel_override_virtual_MultiData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFileSystemModel*>( (QFileSystemModel*)(self) )->handle__MultiData = slot;
 }
 
-struct miqt_map /* of int to struct miqt_string */  QFileSystemModel_virtualbase_RoleNames(const void* self) {
-	return ( (const MiqtVirtualQFileSystemModel*)(self) )->virtualbase_RoleNames();
+void QFileSystemModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan) {
+	( (const MiqtVirtualQFileSystemModel*)(self) )->virtualbase_MultiData(index, roleDataSpan);
 }
 
 void QFileSystemModel_override_virtual_Submit(void* self, intptr_t slot) {
@@ -1834,6 +1937,14 @@ void QFileSystemModel_override_virtual_Revert(void* self, intptr_t slot) {
 
 void QFileSystemModel_virtualbase_Revert(void* self) {
 	( (MiqtVirtualQFileSystemModel*)(self) )->virtualbase_Revert();
+}
+
+void QFileSystemModel_override_virtual_ResetInternalData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQFileSystemModel*>( (QFileSystemModel*)(self) )->handle__ResetInternalData = slot;
+}
+
+void QFileSystemModel_virtualbase_ResetInternalData(void* self) {
+	( (MiqtVirtualQFileSystemModel*)(self) )->virtualbase_ResetInternalData();
 }
 
 void QFileSystemModel_Delete(QFileSystemModel* self, bool isSubclass) {

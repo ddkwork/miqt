@@ -2,105 +2,118 @@ name: CI
 
 on:
   push:
-    branches: [ "**" ]
-  pull_request:
-    branches: [ "**" ]
+#    branches: [ "**" ]
+#  pull_request:
+#    branches: [ "**" ]
+
+permissions:
+  contents: write
 
 jobs:
   miqt_genbindings:
     runs-on: ubuntu-24.04
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    
-    - name: Linux64 docker build
-      run: docker build -t miqt/genbindings:latest -f docker/genbindings.Dockerfile .
-    
-    - name: Cache clang ASTs
-      uses: actions/cache@v4
-      with:
-        path: cmd/genbindings/cachedir
-        key: linux64-clang-cache
-        
-    - name: Rebuild binding source
-      run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/genbindings:latest /bin/bash -c 'cd cmd/genbindings && go build && ./genbindings'
-    
-    - name: Assert no changes
-      run: git update-index --really-refresh && git diff-index HEAD
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Linux64 docker build
+        run: docker build -t miqt/genbindings:latest -f docker/genbindings.Dockerfile .
+
+      - name: Cache clang ASTs
+        uses: actions/cache@v4
+        with:
+          path: cmd/genbindings/cachedir
+          key: linux64-clang-cache
+
+      - name: Rebuild binding source
+        run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/genbindings:latest /bin/bash -c 'cd cmd/genbindings && go build && ./genbindings'
+
+      - name: Assert no changes
+        run: git update-index --really-refresh && git diff-index HEAD
+
+      - name: Pack cachedir
+        run: tar --zstd -cvf cachedir.tar.zst -C cmd/genbindings/cachedir
+
+      - name: Upload cachedir
+        uses: actions/upload-artifact@v3
+        with:
+          name: cachedir
+          path: cachedir.tar.zst
+
+
   miqt_linux64_qt5:
     runs-on: ubuntu-24.04
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    
-    - name: Linux64 docker build
-      run: docker build -t miqt/linux64:qt5 -f docker/linux64-go1.19-qt5.15-dynamic.Dockerfile .
-    
-    - name: Cache GOCACHE
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/go-build
-        key: linux64-gocache
-    
-    - name: Linux64 bindings compile and test
-      run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/linux64:qt5 /bin/bash -c 'cd qt && go build && cd ../examples/marshalling && env QT_QPA_PLATFORM=offscreen go test -v'
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Linux64 docker build
+        run: docker build -t miqt/linux64:qt5 -f docker/linux64-go1.19-qt5.15-dynamic.Dockerfile .
+
+      - name: Cache GOCACHE
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/go-build
+          key: linux64-gocache
+
+      - name: Linux64 bindings compile and test
+        run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/linux64:qt5 /bin/bash -c 'cd qt && go build && cd ../examples/marshalling && env QT_QPA_PLATFORM=offscreen go test -v'
+
   miqt_linux64_qt6_4:
     runs-on: ubuntu-24.04
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    
-    - name: Linux64 docker build
-      run: docker build -t miqt/linux64:qt64 -f docker/linux64-go1.19-qt6.4-dynamic.Dockerfile .
-    
-    - name: Cache GOCACHE
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/go-build
-        key: linux64-qt64-gocache
-    
-    - name: Linux64 bindings compile
-      run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/linux64:qt64 /bin/bash -c 'cd qt6 && go build'
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Linux64 docker build
+        run: docker build -t miqt/linux64:qt64 -f docker/linux64-go1.19-qt6.4-dynamic.Dockerfile .
+
+      - name: Cache GOCACHE
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/go-build
+          key: linux64-qt64-gocache
+
+      - name: Linux64 bindings compile
+        run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/linux64:qt64 /bin/bash -c 'cd qt6 && go build'
+
   miqt_linux64_qt6_8:
     runs-on: ubuntu-24.04
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    
-    - name: Linux64 docker build
-      run: docker build -t miqt/linux64:qt68 -f docker/linux64-go1.23-qt6.8-dynamic.Dockerfile .
-    
-    - name: Cache GOCACHE
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/go-build
-        key: linux64-qt68-gocache
-    
-    - name: Linux64 bindings compile
-      run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/linux64:qt68 /bin/bash -c 'cd qt6 && go build'
-    
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Linux64 docker build
+        run: docker build -t miqt/linux64:qt68 -f docker/linux64-go1.23-qt6.8-dynamic.Dockerfile .
+
+      - name: Cache GOCACHE
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/go-build
+          key: linux64-qt68-gocache
+
+      - name: Linux64 bindings compile
+        run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/linux64:qt68 /bin/bash -c 'cd qt6 && go build'
+
   miqt_win64_qt5:
     runs-on: ubuntu-24.04
-    
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Cache GOCACHE
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/go-build
-        key: win64-gocache
-    
-    - name: Win64 docker build
-      run: docker build -t miqt/win64:latest -f docker/win64-cross-go1.23-qt5.15-static.Dockerfile .
-    
-    - name: Win64 bindings compile
-      run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/win64:latest /bin/bash -c 'cd qt && go build'
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache GOCACHE
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/go-build
+          key: win64-gocache
+
+      - name: Win64 docker build
+        run: docker build -t miqt/win64:latest -f docker/win64-cross-go1.23-qt5.15-static.Dockerfile .
+
+      - name: Win64 bindings compile
+        run: docker run -v ~/.cache/go-build:/root/.cache/go-build -v $PWD:/src -w /src miqt/win64:latest /bin/bash -c 'cd qt && go build'

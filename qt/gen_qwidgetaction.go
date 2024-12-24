@@ -1,166 +1,93 @@
 package qt
 
-/*
-
-#include "gen_qwidgetaction.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
 type QWidgetAction struct {
-	h          *C.QWidgetAction
+	h          uintptr
 	isSubclass bool
-	*QAction
-}
-
-func (this *QWidgetAction) cPointer() *C.QWidgetAction {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QWidgetAction) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQWidgetAction constructs the type using only CGO pointers.
-func newQWidgetAction(h *C.QWidgetAction) *QWidgetAction {
-	if h == nil {
-		return nil
-	}
-	var outptr_QAction *C.QAction = nil
-	C.QWidgetAction_virtbase(h, &outptr_QAction)
-
-	return &QWidgetAction{h: h,
-		QAction: newQAction(outptr_QAction)}
-}
-
-// UnsafeNewQWidgetAction constructs the type using only unsafe pointers.
-func UnsafeNewQWidgetAction(h unsafe.Pointer) *QWidgetAction {
-	return newQWidgetAction((*C.QWidgetAction)(h))
 }
 
 // NewQWidgetAction constructs a new QWidgetAction object.
 func NewQWidgetAction(parent *QObject) *QWidgetAction {
 
-	ret := newQWidgetAction(C.QWidgetAction_new(parent.cPointer()))
+	ret := newQWidgetAction(QWidgetAction_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QWidgetAction) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QWidgetAction_MetaObject(this.h))
+	return newQMetaObject(QWidgetAction_MetaObject(this.h))
 }
 
 func (this *QWidgetAction) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QWidgetAction_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QWidgetAction_Metacast(this.h, param1_Cstring))
 }
 
 func QWidgetAction_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QWidgetAction_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QWidgetAction_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QWidgetAction_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QWidgetAction_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QWidgetAction) SetDefaultWidget(w *QWidget) {
-	C.QWidgetAction_SetDefaultWidget(this.h, w.cPointer())
+	QWidgetAction_SetDefaultWidget(this.h, w.cPointer())
 }
 
 func (this *QWidgetAction) DefaultWidget() *QWidget {
-	return newQWidget(C.QWidgetAction_DefaultWidget(this.h))
+	return newQWidget(QWidgetAction_DefaultWidget(this.h))
 }
 
 func (this *QWidgetAction) RequestWidget(parent *QWidget) *QWidget {
-	return newQWidget(C.QWidgetAction_RequestWidget(this.h, parent.cPointer()))
+	return newQWidget(QWidgetAction_RequestWidget(this.h, parent.cPointer()))
 }
 
 func (this *QWidgetAction) ReleaseWidget(widget *QWidget) {
-	C.QWidgetAction_ReleaseWidget(this.h, widget.cPointer())
+	QWidgetAction_ReleaseWidget(this.h, widget.cPointer())
 }
 
 func QWidgetAction_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QWidgetAction_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QWidgetAction_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QWidgetAction_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QWidgetAction_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QWidgetAction_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QWidgetAction_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QWidgetAction_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QWidgetAction_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QWidgetAction_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QWidgetAction) callVirtualBase_Event(param1 *QEvent) bool {
 
-	return (bool)(C.QWidgetAction_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
+	return (bool)(QWidgetAction_virtualbase_Event(unsafe.Pointer(this.h), param1.cPointer()))
 
 }
 func (this *QWidgetAction) OnEvent(slot func(super func(param1 *QEvent) bool, param1 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QWidgetAction_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QWidgetAction_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QWidgetAction_Event
-func miqt_exec_callback_QWidgetAction_Event(self *C.QWidgetAction, cb C.intptr_t, param1 *C.QEvent) C.bool {
+func miqt_exec_callback_QWidgetAction_Event(self QWidgetAction, cb intptr_t, param1 *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QEvent) bool, param1 *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -171,24 +98,24 @@ func miqt_exec_callback_QWidgetAction_Event(self *C.QWidgetAction, cb C.intptr_t
 
 	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QWidgetAction) callVirtualBase_EventFilter(param1 *QObject, param2 *QEvent) bool {
 
-	return (bool)(C.QWidgetAction_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
+	return (bool)(QWidgetAction_virtualbase_EventFilter(unsafe.Pointer(this.h), param1.cPointer(), param2.cPointer()))
 
 }
 func (this *QWidgetAction) OnEventFilter(slot func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QWidgetAction_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QWidgetAction_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QWidgetAction_EventFilter
-func miqt_exec_callback_QWidgetAction_EventFilter(self *C.QWidgetAction, cb C.intptr_t, param1 *C.QObject, param2 *C.QEvent) C.bool {
+func miqt_exec_callback_QWidgetAction_EventFilter(self QWidgetAction, cb intptr_t, param1 *QObject, param2 *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QObject, param2 *QEvent) bool, param1 *QObject, param2 *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -201,24 +128,24 @@ func miqt_exec_callback_QWidgetAction_EventFilter(self *C.QWidgetAction, cb C.in
 
 	virtualReturn := gofunc((&QWidgetAction{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QWidgetAction) callVirtualBase_CreateWidget(parent *QWidget) *QWidget {
 
-	return newQWidget(C.QWidgetAction_virtualbase_CreateWidget(unsafe.Pointer(this.h), parent.cPointer()))
+	return newQWidget(QWidgetAction_virtualbase_CreateWidget(unsafe.Pointer(this.h), parent.cPointer()))
 
 }
 func (this *QWidgetAction) OnCreateWidget(slot func(super func(parent *QWidget) *QWidget, parent *QWidget) *QWidget) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QWidgetAction_override_virtual_CreateWidget(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QWidgetAction_override_virtual_CreateWidget(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QWidgetAction_CreateWidget
-func miqt_exec_callback_QWidgetAction_CreateWidget(self *C.QWidgetAction, cb C.intptr_t, parent *C.QWidget) *C.QWidget {
+func miqt_exec_callback_QWidgetAction_CreateWidget(self QWidgetAction, cb intptr_t, parent *QWidget) *QWidget {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(parent *QWidget) *QWidget, parent *QWidget) *QWidget)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -235,18 +162,18 @@ func miqt_exec_callback_QWidgetAction_CreateWidget(self *C.QWidgetAction, cb C.i
 
 func (this *QWidgetAction) callVirtualBase_DeleteWidget(widget *QWidget) {
 
-	C.QWidgetAction_virtualbase_DeleteWidget(unsafe.Pointer(this.h), widget.cPointer())
+	QWidgetAction_virtualbase_DeleteWidget(unsafe.Pointer(this.h), widget.cPointer())
 
 }
 func (this *QWidgetAction) OnDeleteWidget(slot func(super func(widget *QWidget), widget *QWidget)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QWidgetAction_override_virtual_DeleteWidget(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QWidgetAction_override_virtual_DeleteWidget(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QWidgetAction_DeleteWidget
-func miqt_exec_callback_QWidgetAction_DeleteWidget(self *C.QWidgetAction, cb C.intptr_t, widget *C.QWidget) {
+func miqt_exec_callback_QWidgetAction_DeleteWidget(self QWidgetAction, cb intptr_t, widget *QWidget) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(widget *QWidget), widget *QWidget))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -257,18 +184,4 @@ func miqt_exec_callback_QWidgetAction_DeleteWidget(self *C.QWidgetAction, cb C.i
 
 	gofunc((&QWidgetAction{h: self}).callVirtualBase_DeleteWidget, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QWidgetAction) Delete() {
-	C.QWidgetAction_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QWidgetAction) GoGC() {
-	runtime.SetFinalizer(this, func(this *QWidgetAction) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

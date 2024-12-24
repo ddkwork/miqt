@@ -1,6 +1,9 @@
+// +build ignore
+
 #include <QDateTime>
 #include <QFileDevice>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
@@ -12,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QFileDevice_virtbase(QFileDevice* src, QIODevice** outptr_QIODevice) {
 	*outptr_QIODevice = static_cast<QIODevice*>(src);
@@ -37,20 +55,8 @@ struct miqt_string QFileDevice_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QFileDevice_TrUtf8(const char* s) {
-	QString _ret = QFileDevice::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QFileDevice_Error(const QFileDevice* self) {
-	QFileDevice::FileError _ret = self->error();
-	return static_cast<int>(_ret);
+FileError QFileDevice_Error(const QFileDevice* self) {
+	return self->error();
 }
 
 void QFileDevice_UnsetError(QFileDevice* self) {
@@ -106,13 +112,12 @@ bool QFileDevice_Resize(QFileDevice* self, long long sz) {
 	return self->resize(static_cast<qint64>(sz));
 }
 
-int QFileDevice_Permissions(const QFileDevice* self) {
-	QFileDevice::Permissions _ret = self->permissions();
-	return static_cast<int>(_ret);
+Permissions QFileDevice_Permissions(const QFileDevice* self) {
+	return self->permissions();
 }
 
-bool QFileDevice_SetPermissions(QFileDevice* self, int permissionSpec) {
-	return self->setPermissions(static_cast<QFileDevice::Permissions>(permissionSpec));
+bool QFileDevice_SetPermissions(QFileDevice* self, Permissions permissionSpec) {
+	return self->setPermissions(permissionSpec);
 }
 
 unsigned char* QFileDevice_Map(QFileDevice* self, long long offset, long long size) {
@@ -154,30 +159,8 @@ struct miqt_string QFileDevice_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QFileDevice_TrUtf82(const char* s, const char* c) {
-	QString _ret = QFileDevice::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFileDevice_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QFileDevice::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-unsigned char* QFileDevice_Map3(QFileDevice* self, long long offset, long long size, int flags) {
-	uchar* _ret = self->map(static_cast<qint64>(offset), static_cast<qint64>(size), static_cast<QFileDevice::MemoryMapFlags>(flags));
+unsigned char* QFileDevice_Map3(QFileDevice* self, long long offset, long long size, MemoryMapFlags flags) {
+	uchar* _ret = self->map(static_cast<qint64>(offset), static_cast<qint64>(size), flags);
 	return static_cast<unsigned char*>(_ret);
 }
 

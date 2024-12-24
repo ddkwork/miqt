@@ -1,5 +1,8 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QAbstractProxyModel>
+#include <QByteArray>
 #include <QItemSelection>
 #include <QList>
 #include <QMap>
@@ -19,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTransposeProxyModel : public virtual QTransposeProxyModel {
 public:
@@ -749,6 +767,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QTransposeProxyModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QTransposeProxyModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QTransposeProxyModel::clearItemData(*index);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Buddy = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1065,6 +1108,55 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__RoleNames = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QHash<int, QByteArray> roleNames() const override {
+		if (handle__RoleNames == 0) {
+			return QTransposeProxyModel::roleNames();
+		}
+		
+
+		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QTransposeProxyModel_RoleNames(const_cast<MiqtVirtualQTransposeProxyModel*>(this), handle__RoleNames);
+		QHash<int, QByteArray> callback_return_value_QMap;
+		callback_return_value_QMap.reserve(callback_return_value.len);
+		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
+		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
+			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
+		}
+
+		return callback_return_value_QMap;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+
+		QHash<int, QByteArray> _ret = QTransposeProxyModel::roleNames();
+		// Convert QMap<> from C++ memory to manually-managed C memory
+		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+		int _ctr = 0;
+		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+			_karr[_ctr] = _itr->first;
+			QByteArray _hashval_qb = _itr->second;
+			struct miqt_string _hashval_ms;
+			_hashval_ms.len = _hashval_qb.length();
+			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+			_varr[_ctr] = _hashval_ms;
+			_ctr++;
+		}
+		struct miqt_map _out;
+		_out.len = _ret.size();
+		_out.keys = static_cast<void*>(_karr);
+		_out.values = static_cast<void*>(_varr);
+		return _out;
+
+	}
+
 };
 
 QTransposeProxyModel* QTransposeProxyModel_new() {
@@ -1089,17 +1181,6 @@ void* QTransposeProxyModel_Metacast(QTransposeProxyModel* self, const char* para
 
 struct miqt_string QTransposeProxyModel_Tr(const char* s) {
 	QString _ret = QTransposeProxyModel::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTransposeProxyModel_TrUtf8(const char* s) {
-	QString _ret = QTransposeProxyModel::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1218,28 +1299,6 @@ struct miqt_string QTransposeProxyModel_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTransposeProxyModel_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTransposeProxyModel::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTransposeProxyModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTransposeProxyModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTransposeProxyModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTransposeProxyModel::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1457,6 +1516,14 @@ bool QTransposeProxyModel_virtualbase_SetData(void* self, QModelIndex* index, QV
 	return ( (MiqtVirtualQTransposeProxyModel*)(self) )->virtualbase_SetData(index, value, role);
 }
 
+void QTransposeProxyModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTransposeProxyModel*>( (QTransposeProxyModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QTransposeProxyModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQTransposeProxyModel*)(self) )->virtualbase_ClearItemData(index);
+}
+
 void QTransposeProxyModel_override_virtual_Buddy(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTransposeProxyModel*>( (QTransposeProxyModel*)(self) )->handle__Buddy = slot;
 }
@@ -1543,6 +1610,14 @@ void QTransposeProxyModel_override_virtual_SupportedDropActions(void* self, intp
 
 int QTransposeProxyModel_virtualbase_SupportedDropActions(const void* self) {
 	return ( (const MiqtVirtualQTransposeProxyModel*)(self) )->virtualbase_SupportedDropActions();
+}
+
+void QTransposeProxyModel_override_virtual_RoleNames(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTransposeProxyModel*>( (QTransposeProxyModel*)(self) )->handle__RoleNames = slot;
+}
+
+struct miqt_map /* of int to struct miqt_string */  QTransposeProxyModel_virtualbase_RoleNames(const void* self) {
+	return ( (const MiqtVirtualQTransposeProxyModel*)(self) )->virtualbase_RoleNames();
 }
 
 void QTransposeProxyModel_Delete(QTransposeProxyModel* self, bool isSubclass) {

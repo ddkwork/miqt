@@ -15,8 +15,8 @@ import (
 )
 
 const (
-	ClangMaxRetries = 5
-	ClangRetryDelay = 3 * time.Second
+	ClangMaxRetries = 1
+	ClangRetryDelay = time.Second
 )
 
 type ClangMatcher func(astNodeFilename string) bool
@@ -38,27 +38,24 @@ func (c *clangMatchUnderPath) Match(astNodeFilename string) bool {
 
 //
 
-func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []string, matcher ClangMatcher) ([]interface{}, error) {
-
+func clangExec(ctx context.Context, inputHeader string, cflags []string, matcher ClangMatcher) ([]any, error) {
 	clangArgs := []string{`-x`, `c++`}
 	clangArgs = append(clangArgs, cflags...)
 	clangArgs = append(clangArgs, `-Xclang`, `-ast-dump=json`, `-fsyntax-only`, inputHeader)
-
+	log.Println("clang " + strings.Join(clangArgs, " "))
 	cmd := exec.CommandContext(ctx, clangBin, clangArgs...)
 	pr, err := cmd.StdoutPipe()
 	if err != nil {
 		return nil, fmt.Errorf("StdoutPipe: %w", err)
 	}
-
 	cmd.Stderr = os.Stderr
-
 	err = cmd.Start()
 	if err != nil {
-		return nil, fmt.Errorf("Start: %w", err)
+		return nil, fmt.Errorf("start: %w", err)
 	}
 
 	var wg sync.WaitGroup
-	var inner []interface{}
+	var inner []any
 	var innerErr error
 
 	wg.Add(1)
@@ -69,7 +66,7 @@ func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []strin
 
 	err = cmd.Wait()
 	if err != nil {
-		return nil, fmt.Errorf("Command: %w", err)
+		return nil, fmt.Errorf("command: %w", err)
 	}
 
 	wg.Wait()
@@ -77,14 +74,13 @@ func clangExec(ctx context.Context, clangBin, inputHeader string, cflags []strin
 	return inner, innerErr
 }
 
-func mustClangExec(ctx context.Context, clangBin, inputHeader string, cflags []string, matcher ClangMatcher) []interface{} {
-
+func mustClangExec(ctx context.Context, inputHeader string, cflags []string, matcher ClangMatcher) []any {
 	for i := 0; i < ClangMaxRetries; i++ {
-		astInner, err := clangExec(ctx, clangBin, inputHeader, cflags, matcher)
+		astInner, err := clangExec(ctx, inputHeader, cflags, matcher)
 		if err != nil {
 			// Log and continue with next retry
 			log.Printf("WARNING: Clang execution failed: %v", err)
-			time.Sleep(ClangRetryDelay)
+			// time.Sleep(ClangRetryDelay)
 			log.Printf("Retrying...")
 			continue
 		}
@@ -103,15 +99,14 @@ func mustClangExec(ctx context.Context, clangBin, inputHeader string, cflags []s
 // This cleans out everything in the translation unit that came from an
 // #included file.
 // @ref https://stackoverflow.com/a/71128654
-func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]interface{}, error) {
-
-	var obj = map[string]interface{}{}
+func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]any, error) {
+	obj := map[string]any{}
 	err := json.NewDecoder(stdout).Decode(&obj)
 	if err != nil {
 		return nil, fmt.Errorf("json.Decode: %v", err)
 	}
 
-	inner, ok := obj["inner"].([]interface{})
+	inner, ok := obj["inner"].([]any)
 	if !ok {
 		return nil, errors.New("no inner")
 	}
@@ -119,11 +114,11 @@ func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]interface{}, 
 	// This can't be done by matching the first position only, since it's possible
 	// that there are more #include<>s further down the file
 
-	ret := make([]interface{}, 0, len(inner))
+	ret := make([]any, 0, len(inner))
 
 	for _, entry := range inner {
 
-		entry, ok := entry.(map[string]interface{})
+		entry, ok := entry.(map[string]any)
 		if !ok {
 			return nil, errors.New("entry is not a map")
 		}
@@ -131,21 +126,20 @@ func clangStripUpToFile(stdout io.Reader, matcher ClangMatcher) ([]interface{}, 
 		// Check where this AST node came from, if it was directly written
 		// in this header or if it as part of an #include
 
-		var match_filename = ""
+		match_filename := ""
 
-		if loc, ok := entry["loc"].(map[string]interface{}); ok {
-			if includedFrom, ok := loc["includedFrom"].(map[string]interface{}); ok {
+		if loc, ok := entry["loc"].(map[string]any); ok {
+			if includedFrom, ok := loc["includedFrom"].(map[string]any); ok {
 				if filename, ok := includedFrom["file"].(string); ok {
 					match_filename = filename
 				}
 			}
 
 			if match_filename == "" {
-				if expansionloc, ok := loc["expansionLoc"].(map[string]interface{}); ok {
+				if expansionloc, ok := loc["expansionLoc"].(map[string]any); ok {
 					if filename, ok := expansionloc["file"].(string); ok {
 						match_filename = filename
-
-					} else if includedFrom, ok := expansionloc["includedFrom"].(map[string]interface{}); ok {
+					} else if includedFrom, ok := expansionloc["includedFrom"].(map[string]any); ok {
 						if filename, ok := includedFrom["file"].(string); ok {
 							match_filename = filename
 						}

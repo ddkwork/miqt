@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QList>
 #include <QMetaObject>
 #include <QObject>
@@ -11,7 +13,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QSessionManager_virtbase(QSessionManager* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
@@ -27,17 +44,6 @@ void* QSessionManager_Metacast(QSessionManager* self, const char* param1) {
 
 struct miqt_string QSessionManager_Tr(const char* s) {
 	QString _ret = QSessionManager::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSessionManager_TrUtf8(const char* s) {
-	QString _ret = QSessionManager::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -85,13 +91,12 @@ void QSessionManager_Cancel(QSessionManager* self) {
 	self->cancel();
 }
 
-void QSessionManager_SetRestartHint(QSessionManager* self, int restartHint) {
-	self->setRestartHint(static_cast<QSessionManager::RestartHint>(restartHint));
+void QSessionManager_SetRestartHint(QSessionManager* self, RestartHint restartHint) {
+	self->setRestartHint(restartHint);
 }
 
-int QSessionManager_RestartHint(const QSessionManager* self) {
-	QSessionManager::RestartHint _ret = self->restartHint();
-	return static_cast<int>(_ret);
+RestartHint QSessionManager_RestartHint(const QSessionManager* self) {
+	return self->restartHint();
 }
 
 void QSessionManager_SetRestartCommand(QSessionManager* self, struct miqt_array /* of struct miqt_string */  restartCommand) {
@@ -195,28 +200,6 @@ struct miqt_string QSessionManager_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSessionManager_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSessionManager::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSessionManager_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSessionManager::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSessionManager_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSessionManager::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

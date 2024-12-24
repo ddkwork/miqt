@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAction>
 #include <QActionEvent>
 #include <QBackingStore>
@@ -11,6 +13,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QFont>
@@ -39,6 +42,7 @@
 #include <QPalette>
 #include <QPixmap>
 #include <QPoint>
+#include <QPointF>
 #include <QRect>
 #include <QRegion>
 #include <QResizeEvent>
@@ -63,7 +67,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QWidgetData* QWidgetData_new(QWidgetData* param1) {
 	return new QWidgetData(*param1);
@@ -490,13 +509,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QWidget::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QWidget_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -504,7 +523,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QWidget::enterEvent(event);
 
@@ -850,7 +869,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QWidget::nativeEvent(eventType, message, result);
 		}
@@ -862,7 +881,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QWidget_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -870,10 +890,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QWidget::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QWidget::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -905,13 +925,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QWidget::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QWidget_Metric(const_cast<MiqtVirtualQWidget*>(this), handle__Metric, sigval1);
 
@@ -919,9 +938,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QWidget::metric(param1);
 
 	}
 
@@ -1251,17 +1270,6 @@ struct miqt_string QWidget_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QWidget_TrUtf8(const char* s) {
-	QString _ret = QWidget::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QWidget_DevType(const QWidget* self) {
 	return self->devType();
 }
@@ -1320,10 +1328,6 @@ bool QWidget_IsEnabled(const QWidget* self) {
 
 bool QWidget_IsEnabledTo(const QWidget* self, QWidget* param1) {
 	return self->isEnabledTo(param1);
-}
-
-bool QWidget_IsEnabledToTLW(const QWidget* self) {
-	return self->isEnabledToTLW();
 }
 
 void QWidget_SetEnabled(QWidget* self, bool enabled) {
@@ -1488,27 +1492,51 @@ void QWidget_SetFixedHeight(QWidget* self, int h) {
 	self->setFixedHeight(static_cast<int>(h));
 }
 
-QPoint* QWidget_MapToGlobal(const QWidget* self, QPoint* param1) {
+QPointF* QWidget_MapToGlobal(const QWidget* self, QPointF* param1) {
+	return new QPointF(self->mapToGlobal(*param1));
+}
+
+QPoint* QWidget_MapToGlobalWithQPoint(const QWidget* self, QPoint* param1) {
 	return new QPoint(self->mapToGlobal(*param1));
 }
 
-QPoint* QWidget_MapFromGlobal(const QWidget* self, QPoint* param1) {
+QPointF* QWidget_MapFromGlobal(const QWidget* self, QPointF* param1) {
+	return new QPointF(self->mapFromGlobal(*param1));
+}
+
+QPoint* QWidget_MapFromGlobalWithQPoint(const QWidget* self, QPoint* param1) {
 	return new QPoint(self->mapFromGlobal(*param1));
 }
 
-QPoint* QWidget_MapToParent(const QWidget* self, QPoint* param1) {
+QPointF* QWidget_MapToParent(const QWidget* self, QPointF* param1) {
+	return new QPointF(self->mapToParent(*param1));
+}
+
+QPoint* QWidget_MapToParentWithQPoint(const QWidget* self, QPoint* param1) {
 	return new QPoint(self->mapToParent(*param1));
 }
 
-QPoint* QWidget_MapFromParent(const QWidget* self, QPoint* param1) {
+QPointF* QWidget_MapFromParent(const QWidget* self, QPointF* param1) {
+	return new QPointF(self->mapFromParent(*param1));
+}
+
+QPoint* QWidget_MapFromParentWithQPoint(const QWidget* self, QPoint* param1) {
 	return new QPoint(self->mapFromParent(*param1));
 }
 
-QPoint* QWidget_MapTo(const QWidget* self, QWidget* param1, QPoint* param2) {
+QPointF* QWidget_MapTo(const QWidget* self, QWidget* param1, QPointF* param2) {
+	return new QPointF(self->mapTo(param1, *param2));
+}
+
+QPoint* QWidget_MapTo2(const QWidget* self, QWidget* param1, QPoint* param2) {
 	return new QPoint(self->mapTo(param1, *param2));
 }
 
-QPoint* QWidget_MapFrom(const QWidget* self, QWidget* param1, QPoint* param2) {
+QPointF* QWidget_MapFrom(const QWidget* self, QWidget* param1, QPointF* param2) {
+	return new QPointF(self->mapFrom(param1, *param2));
+}
+
+QPoint* QWidget_MapFrom2(const QWidget* self, QWidget* param1, QPoint* param2) {
 	return new QPoint(self->mapFrom(param1, *param2));
 }
 
@@ -1801,38 +1829,6 @@ struct miqt_string QWidget_WhatsThis(const QWidget* self) {
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
-}
-
-struct miqt_string QWidget_AccessibleName(const QWidget* self) {
-	QString _ret = self->accessibleName();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QWidget_SetAccessibleName(QWidget* self, struct miqt_string name) {
-	QString name_QString = QString::fromUtf8(name.data, name.len);
-	self->setAccessibleName(name_QString);
-}
-
-struct miqt_string QWidget_AccessibleDescription(const QWidget* self) {
-	QString _ret = self->accessibleDescription();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QWidget_SetAccessibleDescription(QWidget* self, struct miqt_string description) {
-	QString description_QString = QString::fromUtf8(description.data, description.len);
-	self->setAccessibleDescription(description_QString);
 }
 
 void QWidget_SetLayoutDirection(QWidget* self, int direction) {
@@ -2177,10 +2173,6 @@ void QWidget_SetContentsMarginsWithMargins(QWidget* self, QMargins* margins) {
 	self->setContentsMargins(*margins);
 }
 
-void QWidget_GetContentsMargins(const QWidget* self, int* left, int* top, int* right, int* bottom) {
-	self->getContentsMargins(static_cast<int*>(left), static_cast<int*>(top), static_cast<int*>(right), static_cast<int*>(bottom));
-}
-
 QMargins* QWidget_ContentsMargins(const QWidget* self) {
 	return new QMargins(self->contentsMargins());
 }
@@ -2282,6 +2274,26 @@ struct miqt_array /* of QAction* */  QWidget_Actions(const QWidget* self) {
 	return _out;
 }
 
+QAction* QWidget_AddActionWithText(QWidget* self, struct miqt_string text) {
+	QString text_QString = QString::fromUtf8(text.data, text.len);
+	return self->addAction(text_QString);
+}
+
+QAction* QWidget_AddAction2(QWidget* self, QIcon* icon, struct miqt_string text) {
+	QString text_QString = QString::fromUtf8(text.data, text.len);
+	return self->addAction(*icon, text_QString);
+}
+
+QAction* QWidget_AddAction3(QWidget* self, struct miqt_string text, QKeySequence* shortcut) {
+	QString text_QString = QString::fromUtf8(text.data, text.len);
+	return self->addAction(text_QString, *shortcut);
+}
+
+QAction* QWidget_AddAction4(QWidget* self, QIcon* icon, struct miqt_string text, QKeySequence* shortcut) {
+	QString text_QString = QString::fromUtf8(text.data, text.len);
+	return self->addAction(*icon, text_QString, *shortcut);
+}
+
 QWidget* QWidget_ParentWidget(const QWidget* self) {
 	return self->parentWidget();
 }
@@ -2317,6 +2329,10 @@ QWidget* QWidget_ChildAt(const QWidget* self, int x, int y) {
 }
 
 QWidget* QWidget_ChildAtWithQPoint(const QWidget* self, QPoint* p) {
+	return self->childAt(*p);
+}
+
+QWidget* QWidget_ChildAtWithQPointF(const QWidget* self, QPointF* p) {
 	return self->childAt(*p);
 }
 
@@ -2358,6 +2374,10 @@ QWindow* QWidget_WindowHandle(const QWidget* self) {
 
 QScreen* QWidget_Screen(const QWidget* self) {
 	return self->screen();
+}
+
+void QWidget_SetScreen(QWidget* self, QScreen* screen) {
+	self->setScreen(screen);
 }
 
 QWidget* QWidget_CreateWindowContainer(QWindow* window) {
@@ -2463,28 +2483,6 @@ struct miqt_string QWidget_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QWidget::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QWidget_Render2(QWidget* self, QPaintDevice* target, QPoint* targetOffset) {
 	self->render(target, *targetOffset);
 }
@@ -2493,8 +2491,8 @@ void QWidget_Render3(QWidget* self, QPaintDevice* target, QPoint* targetOffset, 
 	self->render(target, *targetOffset, *sourceRegion);
 }
 
-void QWidget_Render4(QWidget* self, QPaintDevice* target, QPoint* targetOffset, QRegion* sourceRegion, int renderFlags) {
-	self->render(target, *targetOffset, *sourceRegion, static_cast<QWidget::RenderFlags>(renderFlags));
+void QWidget_Render4(QWidget* self, QPaintDevice* target, QPoint* targetOffset, QRegion* sourceRegion, RenderFlags renderFlags) {
+	self->render(target, *targetOffset, *sourceRegion, renderFlags);
 }
 
 void QWidget_Render22(QWidget* self, QPainter* painter, QPoint* targetOffset) {
@@ -2505,8 +2503,8 @@ void QWidget_Render32(QWidget* self, QPainter* painter, QPoint* targetOffset, QR
 	self->render(painter, *targetOffset, *sourceRegion);
 }
 
-void QWidget_Render42(QWidget* self, QPainter* painter, QPoint* targetOffset, QRegion* sourceRegion, int renderFlags) {
-	self->render(painter, *targetOffset, *sourceRegion, static_cast<QWidget::RenderFlags>(renderFlags));
+void QWidget_Render42(QWidget* self, QPainter* painter, QPoint* targetOffset, QRegion* sourceRegion, RenderFlags renderFlags) {
+	self->render(painter, *targetOffset, *sourceRegion, renderFlags);
 }
 
 QPixmap* QWidget_Grab1(QWidget* self, QRect* rectangle) {
@@ -2685,7 +2683,7 @@ void QWidget_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWidget*>( (QWidget*)(self) )->handle__EnterEvent = slot;
 }
 
-void QWidget_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QWidget_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQWidget*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -2805,7 +2803,7 @@ void QWidget_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWidget*>( (QWidget*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQWidget*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -2821,7 +2819,7 @@ void QWidget_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWidget*>( (QWidget*)(self) )->handle__Metric = slot;
 }
 
-int QWidget_virtualbase_Metric(const void* self, int param1) {
+int QWidget_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQWidget*)(self) )->virtualbase_Metric(param1);
 }
 

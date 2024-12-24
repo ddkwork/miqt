@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QActionEvent>
 #include <QByteArray>
 #include <QCloseEvent>
@@ -7,6 +9,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -40,20 +43,32 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSplashScreen : public virtual QSplashScreen {
 public:
 
-	MiqtVirtualQSplashScreen(QWidget* parent): QSplashScreen(parent) {};
 	MiqtVirtualQSplashScreen(): QSplashScreen() {};
 	MiqtVirtualQSplashScreen(QScreen* screen): QSplashScreen(screen) {};
 	MiqtVirtualQSplashScreen(const QPixmap& pixmap): QSplashScreen(pixmap) {};
 	MiqtVirtualQSplashScreen(const QPixmap& pixmap, Qt::WindowFlags f): QSplashScreen(pixmap, f) {};
 	MiqtVirtualQSplashScreen(QScreen* screen, const QPixmap& pixmap): QSplashScreen(screen, pixmap) {};
 	MiqtVirtualQSplashScreen(QScreen* screen, const QPixmap& pixmap, Qt::WindowFlags f): QSplashScreen(screen, pixmap, f) {};
-	MiqtVirtualQSplashScreen(QWidget* parent, const QPixmap& pixmap): QSplashScreen(parent, pixmap) {};
-	MiqtVirtualQSplashScreen(QWidget* parent, const QPixmap& pixmap, Qt::WindowFlags f): QSplashScreen(parent, pixmap, f) {};
 
 	virtual ~MiqtVirtualQSplashScreen() = default;
 
@@ -481,13 +496,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QSplashScreen::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QSplashScreen_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -495,7 +510,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QSplashScreen::enterEvent(event);
 
@@ -841,7 +856,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QSplashScreen::nativeEvent(eventType, message, result);
 		}
@@ -853,7 +868,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QSplashScreen_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -861,10 +877,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QSplashScreen::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QSplashScreen::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -896,13 +912,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QSplashScreen::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QSplashScreen_Metric(const_cast<MiqtVirtualQSplashScreen*>(this), handle__Metric, sigval1);
 
@@ -910,9 +925,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QSplashScreen::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QSplashScreen::metric(param1);
 
 	}
 
@@ -1058,40 +1073,28 @@ public:
 
 };
 
-QSplashScreen* QSplashScreen_new(QWidget* parent) {
-	return new MiqtVirtualQSplashScreen(parent);
-}
-
-QSplashScreen* QSplashScreen_new2() {
+QSplashScreen* QSplashScreen_new() {
 	return new MiqtVirtualQSplashScreen();
 }
 
-QSplashScreen* QSplashScreen_new3(QScreen* screen) {
+QSplashScreen* QSplashScreen_new2(QScreen* screen) {
 	return new MiqtVirtualQSplashScreen(screen);
 }
 
-QSplashScreen* QSplashScreen_new4(QPixmap* pixmap) {
+QSplashScreen* QSplashScreen_new3(QPixmap* pixmap) {
 	return new MiqtVirtualQSplashScreen(*pixmap);
 }
 
-QSplashScreen* QSplashScreen_new5(QPixmap* pixmap, int f) {
+QSplashScreen* QSplashScreen_new4(QPixmap* pixmap, int f) {
 	return new MiqtVirtualQSplashScreen(*pixmap, static_cast<Qt::WindowFlags>(f));
 }
 
-QSplashScreen* QSplashScreen_new6(QScreen* screen, QPixmap* pixmap) {
+QSplashScreen* QSplashScreen_new5(QScreen* screen, QPixmap* pixmap) {
 	return new MiqtVirtualQSplashScreen(screen, *pixmap);
 }
 
-QSplashScreen* QSplashScreen_new7(QScreen* screen, QPixmap* pixmap, int f) {
+QSplashScreen* QSplashScreen_new6(QScreen* screen, QPixmap* pixmap, int f) {
 	return new MiqtVirtualQSplashScreen(screen, *pixmap, static_cast<Qt::WindowFlags>(f));
-}
-
-QSplashScreen* QSplashScreen_new8(QWidget* parent, QPixmap* pixmap) {
-	return new MiqtVirtualQSplashScreen(parent, *pixmap);
-}
-
-QSplashScreen* QSplashScreen_new9(QWidget* parent, QPixmap* pixmap, int f) {
-	return new MiqtVirtualQSplashScreen(parent, *pixmap, static_cast<Qt::WindowFlags>(f));
 }
 
 void QSplashScreen_virtbase(QSplashScreen* src, QWidget** outptr_QWidget) {
@@ -1108,17 +1111,6 @@ void* QSplashScreen_Metacast(QSplashScreen* self, const char* param1) {
 
 struct miqt_string QSplashScreen_Tr(const char* s) {
 	QString _ret = QSplashScreen::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplashScreen_TrUtf8(const char* s) {
-	QString _ret = QSplashScreen::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1196,28 +1188,6 @@ struct miqt_string QSplashScreen_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSplashScreen_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSplashScreen::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplashScreen_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSplashScreen::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSplashScreen_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSplashScreen::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1385,7 +1355,7 @@ void QSplashScreen_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSplashScreen*>( (QSplashScreen*)(self) )->handle__EnterEvent = slot;
 }
 
-void QSplashScreen_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QSplashScreen_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQSplashScreen*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1505,7 +1475,7 @@ void QSplashScreen_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSplashScreen*>( (QSplashScreen*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QSplashScreen_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QSplashScreen_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQSplashScreen*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1521,7 +1491,7 @@ void QSplashScreen_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSplashScreen*>( (QSplashScreen*)(self) )->handle__Metric = slot;
 }
 
-int QSplashScreen_virtualbase_Metric(const void* self, int param1) {
+int QSplashScreen_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQSplashScreen*)(self) )->virtualbase_Metric(param1);
 }
 

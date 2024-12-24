@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QFileInfo>
 #include <QIODevice>
@@ -14,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QMimeDatabase* QMimeDatabase_new() {
 	return new QMimeDatabase();
@@ -97,13 +114,13 @@ struct miqt_array /* of QMimeType* */  QMimeDatabase_AllMimeTypes(const QMimeDat
 	return _out;
 }
 
-QMimeType* QMimeDatabase_MimeTypeForFile2(const QMimeDatabase* self, struct miqt_string fileName, int mode) {
+QMimeType* QMimeDatabase_MimeTypeForFile2(const QMimeDatabase* self, struct miqt_string fileName, MatchMode mode) {
 	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
-	return new QMimeType(self->mimeTypeForFile(fileName_QString, static_cast<QMimeDatabase::MatchMode>(mode)));
+	return new QMimeType(self->mimeTypeForFile(fileName_QString, mode));
 }
 
-QMimeType* QMimeDatabase_MimeTypeForFile22(const QMimeDatabase* self, QFileInfo* fileInfo, int mode) {
-	return new QMimeType(self->mimeTypeForFile(*fileInfo, static_cast<QMimeDatabase::MatchMode>(mode)));
+QMimeType* QMimeDatabase_MimeTypeForFile22(const QMimeDatabase* self, QFileInfo* fileInfo, MatchMode mode) {
+	return new QMimeType(self->mimeTypeForFile(*fileInfo, mode));
 }
 
 void QMimeDatabase_Delete(QMimeDatabase* self, bool isSubclass) {

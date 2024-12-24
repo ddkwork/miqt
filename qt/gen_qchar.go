@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qchar.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -30,6 +21,7 @@ const (
 	QChar__ByteOrderSwapped           QChar__SpecialCharacter = 65534
 	QChar__ParagraphSeparator         QChar__SpecialCharacter = 8233
 	QChar__LineSeparator              QChar__SpecialCharacter = 8232
+	QChar__VisualTabCharacter         QChar__SpecialCharacter = 8594
 	QChar__LastValidCodePoint         QChar__SpecialCharacter = 1114111
 )
 
@@ -228,7 +220,14 @@ const (
 	QChar__Script_DivesAkuru            QChar__Script = 154
 	QChar__Script_KhitanSmallScript     QChar__Script = 155
 	QChar__Script_Yezidi                QChar__Script = 156
-	QChar__ScriptCount                  QChar__Script = 157
+	QChar__Script_CyproMinoan           QChar__Script = 157
+	QChar__Script_OldUyghur             QChar__Script = 158
+	QChar__Script_Tangsa                QChar__Script = 159
+	QChar__Script_Toto                  QChar__Script = 160
+	QChar__Script_Vithkuqi              QChar__Script = 161
+	QChar__Script_Kawi                  QChar__Script = 162
+	QChar__Script_NagMundari            QChar__Script = 163
+	QChar__ScriptCount                  QChar__Script = 164
 )
 
 type QChar__Direction int
@@ -293,15 +292,6 @@ const (
 	QChar__Joining_Transparent QChar__JoiningType = 5
 )
 
-type QChar__Joining int
-
-const (
-	QChar__OtherJoining QChar__Joining = 0
-	QChar__Dual         QChar__Joining = 1
-	QChar__Right        QChar__Joining = 2
-	QChar__Center       QChar__Joining = 3
-)
-
 type QChar__CombiningClass int
 
 const (
@@ -353,45 +343,20 @@ const (
 	QChar__Unicode_12_0       QChar__UnicodeVersion = 21
 	QChar__Unicode_12_1       QChar__UnicodeVersion = 22
 	QChar__Unicode_13_0       QChar__UnicodeVersion = 23
+	QChar__Unicode_14_0       QChar__UnicodeVersion = 24
+	QChar__Unicode_15_0       QChar__UnicodeVersion = 25
+	QChar__Unicode_15_1       QChar__UnicodeVersion = 26
 )
 
 type QLatin1Char struct {
-	h          *C.QLatin1Char
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QLatin1Char) cPointer() *C.QLatin1Char {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QLatin1Char) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQLatin1Char constructs the type using only CGO pointers.
-func newQLatin1Char(h *C.QLatin1Char) *QLatin1Char {
-	if h == nil {
-		return nil
-	}
-
-	return &QLatin1Char{h: h}
-}
-
-// UnsafeNewQLatin1Char constructs the type using only unsafe pointers.
-func UnsafeNewQLatin1Char(h unsafe.Pointer) *QLatin1Char {
-	return newQLatin1Char((*C.QLatin1Char)(h))
 }
 
 // NewQLatin1Char constructs a new QLatin1Char object.
 func NewQLatin1Char(c int8) *QLatin1Char {
 
-	ret := newQLatin1Char(C.QLatin1Char_new((C.char)(c)))
+	ret := newQLatin1Char(QLatin1Char_new((char)(c)))
 	ret.isSubclass = true
 	return ret
 }
@@ -399,494 +364,211 @@ func NewQLatin1Char(c int8) *QLatin1Char {
 // NewQLatin1Char2 constructs a new QLatin1Char object.
 func NewQLatin1Char2(param1 *QLatin1Char) *QLatin1Char {
 
-	ret := newQLatin1Char(C.QLatin1Char_new2(param1.cPointer()))
+	ret := newQLatin1Char(QLatin1Char_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QLatin1Char) ToLatin1() int8 {
-	return (int8)(C.QLatin1Char_ToLatin1(this.h))
-}
-
-func (this *QLatin1Char) Unicode() uint16 {
-	return (uint16)(C.QLatin1Char_Unicode(this.h))
-}
-
-// Delete this object from C++ memory.
-func (this *QLatin1Char) Delete() {
-	C.QLatin1Char_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QLatin1Char) GoGC() {
-	runtime.SetFinalizer(this, func(this *QLatin1Char) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (int8)(QLatin1Char_ToLatin1(this.h))
 }
 
 type QChar struct {
-	h          *C.QChar
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QChar) cPointer() *C.QChar {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QChar) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQChar constructs the type using only CGO pointers.
-func newQChar(h *C.QChar) *QChar {
-	if h == nil {
-		return nil
-	}
-
-	return &QChar{h: h}
-}
-
-// UnsafeNewQChar constructs the type using only unsafe pointers.
-func UnsafeNewQChar(h unsafe.Pointer) *QChar {
-	return newQChar((*C.QChar)(h))
 }
 
 // NewQChar constructs a new QChar object.
 func NewQChar() *QChar {
 
-	ret := newQChar(C.QChar_new())
+	ret := newQChar(QChar_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQChar2 constructs a new QChar object.
-func NewQChar2(rc uint16) *QChar {
+func NewQChar2(c byte, r byte) *QChar {
 
-	ret := newQChar(C.QChar_new2((C.uint16_t)(rc)))
+	ret := newQChar(QChar_new2((uchar)(c), (uchar)(r)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQChar3 constructs a new QChar object.
-func NewQChar3(c byte, r byte) *QChar {
+func NewQChar3(param1 *QChar) *QChar {
 
-	ret := newQChar(C.QChar_new3((C.uchar)(c), (C.uchar)(r)))
+	ret := newQChar(QChar_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
-// NewQChar4 constructs a new QChar object.
-func NewQChar4(rc int16) *QChar {
-
-	ret := newQChar(C.QChar_new4((C.int16_t)(rc)))
-	ret.isSubclass = true
-	return ret
+func (this *QChar) Category() Category {
+	xxxxxxxxx
 }
 
-// NewQChar5 constructs a new QChar object.
-func NewQChar5(rc uint) *QChar {
-
-	ret := newQChar(C.QChar_new5((C.uint)(rc)))
-	ret.isSubclass = true
-	return ret
+func (this *QChar) Direction() Direction {
+	xxxxxxxxx
 }
 
-// NewQChar6 constructs a new QChar object.
-func NewQChar6(rc int) *QChar {
-
-	ret := newQChar(C.QChar_new6((C.int)(rc)))
-	ret.isSubclass = true
-	return ret
-}
-
-// NewQChar7 constructs a new QChar object.
-func NewQChar7(s QChar__SpecialCharacter) *QChar {
-
-	ret := newQChar(C.QChar_new7((C.int)(s)))
-	ret.isSubclass = true
-	return ret
-}
-
-// NewQChar8 constructs a new QChar object.
-func NewQChar8(ch QLatin1Char) *QChar {
-
-	ret := newQChar(C.QChar_new8(ch.cPointer()))
-	ret.isSubclass = true
-	return ret
-}
-
-// NewQChar9 constructs a new QChar object.
-func NewQChar9(c int8) *QChar {
-
-	ret := newQChar(C.QChar_new9((C.char)(c)))
-	ret.isSubclass = true
-	return ret
-}
-
-// NewQChar10 constructs a new QChar object.
-func NewQChar10(c byte) *QChar {
-
-	ret := newQChar(C.QChar_new10((C.uchar)(c)))
-	ret.isSubclass = true
-	return ret
-}
-
-// NewQChar11 constructs a new QChar object.
-func NewQChar11(param1 *QChar) *QChar {
-
-	ret := newQChar(C.QChar_new11(param1.cPointer()))
-	ret.isSubclass = true
-	return ret
-}
-
-func (this *QChar) Category() QChar__Category {
-	return (QChar__Category)(C.QChar_Category(this.h))
-}
-
-func (this *QChar) Direction() QChar__Direction {
-	return (QChar__Direction)(C.QChar_Direction(this.h))
-}
-
-func (this *QChar) JoiningType() QChar__JoiningType {
-	return (QChar__JoiningType)(C.QChar_JoiningType(this.h))
-}
-
-func (this *QChar) Joining() QChar__Joining {
-	return (QChar__Joining)(C.QChar_Joining(this.h))
+func (this *QChar) JoiningType() JoiningType {
+	xxxxxxxxx
 }
 
 func (this *QChar) CombiningClass() byte {
-	return (byte)(C.QChar_CombiningClass(this.h))
+	return (byte)(QChar_CombiningClass(this.h))
 }
 
 func (this *QChar) MirroredChar() *QChar {
-	_goptr := newQChar(C.QChar_MirroredChar(this.h))
+	_goptr := newQChar(QChar_MirroredChar(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QChar) HasMirrored() bool {
-	return (bool)(C.QChar_HasMirrored(this.h))
+	return (bool)(QChar_HasMirrored(this.h))
 }
 
 func (this *QChar) Decomposition() string {
-	var _ms C.struct_miqt_string = C.QChar_Decomposition(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QChar_Decomposition(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func (this *QChar) DecompositionTag() QChar__Decomposition {
-	return (QChar__Decomposition)(C.QChar_DecompositionTag(this.h))
+func (this *QChar) DecompositionTag() Decomposition {
+	xxxxxxxxx
 }
 
 func (this *QChar) DigitValue() int {
-	return (int)(C.QChar_DigitValue(this.h))
+	return (int)(QChar_DigitValue(this.h))
 }
 
 func (this *QChar) ToLower() *QChar {
-	_goptr := newQChar(C.QChar_ToLower(this.h))
+	_goptr := newQChar(QChar_ToLower(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QChar) ToUpper() *QChar {
-	_goptr := newQChar(C.QChar_ToUpper(this.h))
+	_goptr := newQChar(QChar_ToUpper(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QChar) ToTitleCase() *QChar {
-	_goptr := newQChar(C.QChar_ToTitleCase(this.h))
+	_goptr := newQChar(QChar_ToTitleCase(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QChar) ToCaseFolded() *QChar {
-	_goptr := newQChar(C.QChar_ToCaseFolded(this.h))
+	_goptr := newQChar(QChar_ToCaseFolded(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QChar) Script() QChar__Script {
-	return (QChar__Script)(C.QChar_Script(this.h))
+func (this *QChar) Script() Script {
+	xxxxxxxxx
 }
 
-func (this *QChar) UnicodeVersion() QChar__UnicodeVersion {
-	return (QChar__UnicodeVersion)(C.QChar_UnicodeVersion(this.h))
+func (this *QChar) UnicodeVersion() UnicodeVersion {
+	xxxxxxxxx
 }
 
 func (this *QChar) ToLatin1() int8 {
-	return (int8)(C.QChar_ToLatin1(this.h))
-}
-
-func (this *QChar) Unicode() uint16 {
-	return (uint16)(C.QChar_Unicode(this.h))
+	return (int8)(QChar_ToLatin1(this.h))
 }
 
 func QChar_FromLatin1(c int8) *QChar {
-	_goptr := newQChar(C.QChar_FromLatin1((C.char)(c)))
+	_goptr := newQChar(QChar_FromLatin1((char)(c)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QChar) IsNull() bool {
-	return (bool)(C.QChar_IsNull(this.h))
+	return (bool)(QChar_IsNull(this.h))
 }
 
 func (this *QChar) IsPrint() bool {
-	return (bool)(C.QChar_IsPrint(this.h))
+	return (bool)(QChar_IsPrint(this.h))
 }
 
 func (this *QChar) IsSpace() bool {
-	return (bool)(C.QChar_IsSpace(this.h))
+	return (bool)(QChar_IsSpace(this.h))
 }
 
 func (this *QChar) IsMark() bool {
-	return (bool)(C.QChar_IsMark(this.h))
+	return (bool)(QChar_IsMark(this.h))
 }
 
 func (this *QChar) IsPunct() bool {
-	return (bool)(C.QChar_IsPunct(this.h))
+	return (bool)(QChar_IsPunct(this.h))
 }
 
 func (this *QChar) IsSymbol() bool {
-	return (bool)(C.QChar_IsSymbol(this.h))
+	return (bool)(QChar_IsSymbol(this.h))
 }
 
 func (this *QChar) IsLetter() bool {
-	return (bool)(C.QChar_IsLetter(this.h))
+	return (bool)(QChar_IsLetter(this.h))
 }
 
 func (this *QChar) IsNumber() bool {
-	return (bool)(C.QChar_IsNumber(this.h))
+	return (bool)(QChar_IsNumber(this.h))
 }
 
 func (this *QChar) IsLetterOrNumber() bool {
-	return (bool)(C.QChar_IsLetterOrNumber(this.h))
+	return (bool)(QChar_IsLetterOrNumber(this.h))
 }
 
 func (this *QChar) IsDigit() bool {
-	return (bool)(C.QChar_IsDigit(this.h))
+	return (bool)(QChar_IsDigit(this.h))
 }
 
 func (this *QChar) IsLower() bool {
-	return (bool)(C.QChar_IsLower(this.h))
+	return (bool)(QChar_IsLower(this.h))
 }
 
 func (this *QChar) IsUpper() bool {
-	return (bool)(C.QChar_IsUpper(this.h))
+	return (bool)(QChar_IsUpper(this.h))
 }
 
 func (this *QChar) IsTitleCase() bool {
-	return (bool)(C.QChar_IsTitleCase(this.h))
+	return (bool)(QChar_IsTitleCase(this.h))
 }
 
 func (this *QChar) IsNonCharacter() bool {
-	return (bool)(C.QChar_IsNonCharacter(this.h))
+	return (bool)(QChar_IsNonCharacter(this.h))
 }
 
 func (this *QChar) IsHighSurrogate() bool {
-	return (bool)(C.QChar_IsHighSurrogate(this.h))
+	return (bool)(QChar_IsHighSurrogate(this.h))
 }
 
 func (this *QChar) IsLowSurrogate() bool {
-	return (bool)(C.QChar_IsLowSurrogate(this.h))
+	return (bool)(QChar_IsLowSurrogate(this.h))
 }
 
 func (this *QChar) IsSurrogate() bool {
-	return (bool)(C.QChar_IsSurrogate(this.h))
+	return (bool)(QChar_IsSurrogate(this.h))
 }
 
 func (this *QChar) Cell() byte {
-	return (byte)(C.QChar_Cell(this.h))
+	return (byte)(QChar_Cell(this.h))
 }
 
 func (this *QChar) Row() byte {
-	return (byte)(C.QChar_Row(this.h))
+	return (byte)(QChar_Row(this.h))
 }
 
 func (this *QChar) SetCell(acell byte) {
-	C.QChar_SetCell(this.h, (C.uchar)(acell))
+	QChar_SetCell(this.h, (uchar)(acell))
 }
 
 func (this *QChar) SetRow(arow byte) {
-	C.QChar_SetRow(this.h, (C.uchar)(arow))
+	QChar_SetRow(this.h, (uchar)(arow))
 }
 
-func QChar_IsNonCharacterWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsNonCharacterWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsHighSurrogateWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsHighSurrogateWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsLowSurrogateWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsLowSurrogateWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsSurrogateWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsSurrogateWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_RequiresSurrogates(ucs4 uint) bool {
-	return (bool)(C.QChar_RequiresSurrogates((C.uint)(ucs4)))
-}
-
-func QChar_SurrogateToUcs4(high uint16, low uint16) uint {
-	return (uint)(C.QChar_SurrogateToUcs4((C.uint16_t)(high), (C.uint16_t)(low)))
-}
-
-func QChar_SurrogateToUcs42(high QChar, low QChar) uint {
-	return (uint)(C.QChar_SurrogateToUcs42(high.cPointer(), low.cPointer()))
-}
-
-func QChar_HighSurrogate(ucs4 uint) uint16 {
-	return (uint16)(C.QChar_HighSurrogate((C.uint)(ucs4)))
-}
-
-func QChar_LowSurrogate(ucs4 uint) uint16 {
-	return (uint16)(C.QChar_LowSurrogate((C.uint)(ucs4)))
-}
-
-func QChar_CategoryWithUcs4(ucs4 uint) QChar__Category {
-	return (QChar__Category)(C.QChar_CategoryWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_DirectionWithUcs4(ucs4 uint) QChar__Direction {
-	return (QChar__Direction)(C.QChar_DirectionWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_JoiningTypeWithUcs4(ucs4 uint) QChar__JoiningType {
-	return (QChar__JoiningType)(C.QChar_JoiningTypeWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_JoiningWithUcs4(ucs4 uint) QChar__Joining {
-	return (QChar__Joining)(C.QChar_JoiningWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_CombiningClassWithUcs4(ucs4 uint) byte {
-	return (byte)(C.QChar_CombiningClassWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_MirroredCharWithUcs4(ucs4 uint) uint {
-	return (uint)(C.QChar_MirroredCharWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_HasMirroredWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_HasMirroredWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_DecompositionWithUcs4(ucs4 uint) string {
-	var _ms C.struct_miqt_string = C.QChar_DecompositionWithUcs4((C.uint)(ucs4))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QChar_DecompositionTagWithUcs4(ucs4 uint) QChar__Decomposition {
-	return (QChar__Decomposition)(C.QChar_DecompositionTagWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_DigitValueWithUcs4(ucs4 uint) int {
-	return (int)(C.QChar_DigitValueWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_ToLowerWithUcs4(ucs4 uint) uint {
-	return (uint)(C.QChar_ToLowerWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_ToUpperWithUcs4(ucs4 uint) uint {
-	return (uint)(C.QChar_ToUpperWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_ToTitleCaseWithUcs4(ucs4 uint) uint {
-	return (uint)(C.QChar_ToTitleCaseWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_ToCaseFoldedWithUcs4(ucs4 uint) uint {
-	return (uint)(C.QChar_ToCaseFoldedWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_ScriptWithUcs4(ucs4 uint) QChar__Script {
-	return (QChar__Script)(C.QChar_ScriptWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_UnicodeVersionWithUcs4(ucs4 uint) QChar__UnicodeVersion {
-	return (QChar__UnicodeVersion)(C.QChar_UnicodeVersionWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_CurrentUnicodeVersion() QChar__UnicodeVersion {
-	return (QChar__UnicodeVersion)(C.QChar_CurrentUnicodeVersion())
-}
-
-func QChar_IsPrintWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsPrintWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsSpaceWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsSpaceWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsMarkWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsMarkWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsPunctWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsPunctWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsSymbolWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsSymbolWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsLetterWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsLetterWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsNumberWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsNumberWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsLetterOrNumberWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsLetterOrNumberWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsDigitWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsDigitWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsLowerWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsLowerWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsUpperWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsUpperWithUcs4((C.uint)(ucs4)))
-}
-
-func QChar_IsTitleCaseWithUcs4(ucs4 uint) bool {
-	return (bool)(C.QChar_IsTitleCaseWithUcs4((C.uint)(ucs4)))
-}
-
-// Delete this object from C++ memory.
-func (this *QChar) Delete() {
-	C.QChar_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QChar) GoGC() {
-	runtime.SetFinalizer(this, func(this *QChar) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func QChar_CurrentUnicodeVersion() UnicodeVersion {
+	xxxxxxxxx
 }

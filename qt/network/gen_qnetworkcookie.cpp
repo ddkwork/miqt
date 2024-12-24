@@ -1,4 +1,7 @@
+// +build ignore
+
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QDateTime>
 #include <QList>
 #include <QNetworkCookie>
@@ -12,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QNetworkCookie* QNetworkCookie_new() {
 	return new QNetworkCookie();
@@ -63,6 +81,14 @@ bool QNetworkCookie_IsHttpOnly(const QNetworkCookie* self) {
 
 void QNetworkCookie_SetHttpOnly(QNetworkCookie* self, bool enable) {
 	self->setHttpOnly(enable);
+}
+
+SameSite QNetworkCookie_SameSitePolicy(const QNetworkCookie* self) {
+	return self->sameSitePolicy();
+}
+
+void QNetworkCookie_SetSameSitePolicy(QNetworkCookie* self, SameSite sameSite) {
+	self->setSameSitePolicy(sameSite);
 }
 
 bool QNetworkCookie_IsSessionCookie(const QNetworkCookie* self) {
@@ -154,9 +180,8 @@ void QNetworkCookie_Normalize(QNetworkCookie* self, QUrl* url) {
 	self->normalize(*url);
 }
 
-struct miqt_array /* of QNetworkCookie* */  QNetworkCookie_ParseCookies(struct miqt_string cookieString) {
-	QByteArray cookieString_QByteArray(cookieString.data, cookieString.len);
-	QList<QNetworkCookie> _ret = QNetworkCookie::parseCookies(cookieString_QByteArray);
+struct miqt_array /* of QNetworkCookie* */  QNetworkCookie_ParseCookies(QByteArrayView* cookieString) {
+	QList<QNetworkCookie> _ret = QNetworkCookie::parseCookies(*cookieString);
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QNetworkCookie** _arr = static_cast<QNetworkCookie**>(malloc(sizeof(QNetworkCookie*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -168,8 +193,8 @@ struct miqt_array /* of QNetworkCookie* */  QNetworkCookie_ParseCookies(struct m
 	return _out;
 }
 
-struct miqt_string QNetworkCookie_ToRawForm1(const QNetworkCookie* self, int form) {
-	QByteArray _qb = self->toRawForm(static_cast<QNetworkCookie::RawForm>(form));
+struct miqt_string QNetworkCookie_ToRawForm1(const QNetworkCookie* self, RawForm form) {
+	QByteArray _qb = self->toRawForm(form);
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));

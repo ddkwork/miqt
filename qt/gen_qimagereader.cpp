@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QColor>
 #include <QIODevice>
@@ -15,7 +17,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QImageReader* QImageReader_new() {
 	return new QImageReader();
@@ -43,17 +60,6 @@ QImageReader* QImageReader_new5(struct miqt_string fileName, struct miqt_string 
 
 struct miqt_string QImageReader_Tr(const char* sourceText) {
 	QString _ret = QImageReader::tr(sourceText);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QImageReader_TrUtf8(const char* sourceText) {
-	QString _ret = QImageReader::trUtf8(sourceText);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -215,14 +221,6 @@ bool QImageReader_AutoTransform(const QImageReader* self) {
 	return self->autoTransform();
 }
 
-void QImageReader_SetGamma(QImageReader* self, float gamma) {
-	self->setGamma(static_cast<float>(gamma));
-}
-
-float QImageReader_Gamma(const QImageReader* self) {
-	return self->gamma();
-}
-
 struct miqt_string QImageReader_SubType(const QImageReader* self) {
 	QByteArray _qb = self->subType();
 	struct miqt_string _ms;
@@ -290,9 +288,8 @@ QRect* QImageReader_CurrentImageRect(const QImageReader* self) {
 	return new QRect(self->currentImageRect());
 }
 
-int QImageReader_Error(const QImageReader* self) {
-	QImageReader::ImageReaderError _ret = self->error();
-	return static_cast<int>(_ret);
+ImageReaderError QImageReader_Error(const QImageReader* self) {
+	return self->error();
 }
 
 struct miqt_string QImageReader_ErrorString(const QImageReader* self) {
@@ -384,6 +381,14 @@ struct miqt_array /* of struct miqt_string */  QImageReader_ImageFormatsForMimeT
 	return _out;
 }
 
+int QImageReader_AllocationLimit() {
+	return QImageReader::allocationLimit();
+}
+
+void QImageReader_SetAllocationLimit(int mbLimit) {
+	QImageReader::setAllocationLimit(static_cast<int>(mbLimit));
+}
+
 struct miqt_string QImageReader_Tr2(const char* sourceText, const char* disambiguation) {
 	QString _ret = QImageReader::tr(sourceText, disambiguation);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -397,28 +402,6 @@ struct miqt_string QImageReader_Tr2(const char* sourceText, const char* disambig
 
 struct miqt_string QImageReader_Tr3(const char* sourceText, const char* disambiguation, int n) {
 	QString _ret = QImageReader::tr(sourceText, disambiguation, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QImageReader_TrUtf82(const char* sourceText, const char* disambiguation) {
-	QString _ret = QImageReader::trUtf8(sourceText, disambiguation);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QImageReader_TrUtf83(const char* sourceText, const char* disambiguation, int n) {
-	QString _ret = QImageReader::trUtf8(sourceText, disambiguation, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

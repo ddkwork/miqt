@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QGraphicsItem>
 #include <QGraphicsLayoutItem>
 #include <QRectF>
@@ -9,7 +11,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsLayoutItem : public virtual QGraphicsLayoutItem {
 public:
@@ -97,6 +114,28 @@ public:
 	void virtualbase_UpdateGeometry() {
 
 		QGraphicsLayoutItem::updateGeometry();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__IsEmpty = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool isEmpty() const override {
+		if (handle__IsEmpty == 0) {
+			return QGraphicsLayoutItem::isEmpty();
+		}
+		
+
+		bool callback_return_value = miqt_exec_callback_QGraphicsLayoutItem_IsEmpty(const_cast<MiqtVirtualQGraphicsLayoutItem*>(this), handle__IsEmpty);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_IsEmpty() const {
+
+		return QGraphicsLayoutItem::isEmpty();
 
 	}
 
@@ -260,6 +299,10 @@ void QGraphicsLayoutItem_UpdateGeometry(QGraphicsLayoutItem* self) {
 	self->updateGeometry();
 }
 
+bool QGraphicsLayoutItem_IsEmpty(const QGraphicsLayoutItem* self) {
+	return self->isEmpty();
+}
+
 QGraphicsLayoutItem* QGraphicsLayoutItem_ParentLayoutItem(const QGraphicsLayoutItem* self) {
 	return self->parentLayoutItem();
 }
@@ -310,6 +353,14 @@ void QGraphicsLayoutItem_override_virtual_UpdateGeometry(void* self, intptr_t sl
 
 void QGraphicsLayoutItem_virtualbase_UpdateGeometry(void* self) {
 	( (MiqtVirtualQGraphicsLayoutItem*)(self) )->virtualbase_UpdateGeometry();
+}
+
+void QGraphicsLayoutItem_override_virtual_IsEmpty(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsLayoutItem*>( (QGraphicsLayoutItem*)(self) )->handle__IsEmpty = slot;
+}
+
+bool QGraphicsLayoutItem_virtualbase_IsEmpty(const void* self) {
+	return ( (const MiqtVirtualQGraphicsLayoutItem*)(self) )->virtualbase_IsEmpty();
 }
 
 void QGraphicsLayoutItem_override_virtual_SizeHint(void* self, intptr_t slot) {

@@ -1,15 +1,6 @@
 package network
 
-/*
-
-#include "gen_qsslerror.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -57,58 +48,30 @@ const (
 )
 
 type QSslError struct {
-	h          *C.QSslError
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QSslError) cPointer() *C.QSslError {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QSslError) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQSslError constructs the type using only CGO pointers.
-func newQSslError(h *C.QSslError) *QSslError {
-	if h == nil {
-		return nil
-	}
-
-	return &QSslError{h: h}
-}
-
-// UnsafeNewQSslError constructs the type using only unsafe pointers.
-func UnsafeNewQSslError(h unsafe.Pointer) *QSslError {
-	return newQSslError((*C.QSslError)(h))
 }
 
 // NewQSslError constructs a new QSslError object.
 func NewQSslError() *QSslError {
 
-	ret := newQSslError(C.QSslError_new())
+	ret := newQSslError(QSslError_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQSslError2 constructs a new QSslError object.
-func NewQSslError2(error QSslError__SslError) *QSslError {
+func NewQSslError2(error SslError) *QSslError {
 
-	ret := newQSslError(C.QSslError_new2((C.int)(error)))
+	ret := newQSslError(QSslError_new2(error))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQSslError3 constructs a new QSslError object.
-func NewQSslError3(error QSslError__SslError, certificate *QSslCertificate) *QSslError {
+func NewQSslError3(error SslError, certificate *QSslCertificate) *QSslError {
 
-	ret := newQSslError(C.QSslError_new3((C.int)(error), certificate.cPointer()))
+	ret := newQSslError(QSslError_new3(error, certificate.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -116,54 +79,40 @@ func NewQSslError3(error QSslError__SslError, certificate *QSslCertificate) *QSs
 // NewQSslError4 constructs a new QSslError object.
 func NewQSslError4(other *QSslError) *QSslError {
 
-	ret := newQSslError(C.QSslError_new4(other.cPointer()))
+	ret := newQSslError(QSslError_new4(other.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QSslError) Swap(other *QSslError) {
-	C.QSslError_Swap(this.h, other.cPointer())
+	QSslError_Swap(this.h, other.cPointer())
 }
 
 func (this *QSslError) OperatorAssign(other *QSslError) {
-	C.QSslError_OperatorAssign(this.h, other.cPointer())
+	QSslError_OperatorAssign(this.h, other.cPointer())
 }
 
 func (this *QSslError) OperatorEqual(other *QSslError) bool {
-	return (bool)(C.QSslError_OperatorEqual(this.h, other.cPointer()))
+	return (bool)(QSslError_OperatorEqual(this.h, other.cPointer()))
 }
 
 func (this *QSslError) OperatorNotEqual(other *QSslError) bool {
-	return (bool)(C.QSslError_OperatorNotEqual(this.h, other.cPointer()))
+	return (bool)(QSslError_OperatorNotEqual(this.h, other.cPointer()))
 }
 
-func (this *QSslError) Error() QSslError__SslError {
-	return (QSslError__SslError)(C.QSslError_Error(this.h))
+func (this *QSslError) Error() SslError {
+	xxxxxxxxx
 }
 
 func (this *QSslError) ErrorString() string {
-	var _ms C.struct_miqt_string = C.QSslError_ErrorString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QSslError_ErrorString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QSslError) Certificate() *QSslCertificate {
-	_goptr := newQSslCertificate(C.QSslError_Certificate(this.h))
+	_goptr := newQSslCertificate(QSslError_Certificate(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-}
-
-// Delete this object from C++ memory.
-func (this *QSslError) Delete() {
-	C.QSslError_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QSslError) GoGC() {
-	runtime.SetFinalizer(this, func(this *QSslError) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

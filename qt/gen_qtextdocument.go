@@ -1,16 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qtextdocument.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -19,6 +9,8 @@ type QTextDocument__MetaInformation int
 const (
 	QTextDocument__DocumentTitle QTextDocument__MetaInformation = 0
 	QTextDocument__DocumentUrl   QTextDocument__MetaInformation = 1
+	QTextDocument__CssMedia      QTextDocument__MetaInformation = 2
+	QTextDocument__FrontMatter   QTextDocument__MetaInformation = 3
 )
 
 type QTextDocument__MarkdownFeature int
@@ -26,7 +18,7 @@ type QTextDocument__MarkdownFeature int
 const (
 	QTextDocument__MarkdownNoHTML            QTextDocument__MarkdownFeature = 96
 	QTextDocument__MarkdownDialectCommonMark QTextDocument__MarkdownFeature = 0
-	QTextDocument__MarkdownDialectGitHub     QTextDocument__MarkdownFeature = 3852
+	QTextDocument__MarkdownDialectGitHub     QTextDocument__MarkdownFeature = 1068812
 )
 
 type QTextDocument__FindFlag int
@@ -57,117 +49,43 @@ const (
 )
 
 type QAbstractUndoItem struct {
-	h          *C.QAbstractUndoItem
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QAbstractUndoItem) cPointer() *C.QAbstractUndoItem {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QAbstractUndoItem) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQAbstractUndoItem constructs the type using only CGO pointers.
-func newQAbstractUndoItem(h *C.QAbstractUndoItem) *QAbstractUndoItem {
-	if h == nil {
-		return nil
-	}
-
-	return &QAbstractUndoItem{h: h}
-}
-
-// UnsafeNewQAbstractUndoItem constructs the type using only unsafe pointers.
-func UnsafeNewQAbstractUndoItem(h unsafe.Pointer) *QAbstractUndoItem {
-	return newQAbstractUndoItem((*C.QAbstractUndoItem)(h))
 }
 
 func (this *QAbstractUndoItem) Undo() {
-	C.QAbstractUndoItem_Undo(this.h)
+	QAbstractUndoItem_Undo(this.h)
 }
 
 func (this *QAbstractUndoItem) Redo() {
-	C.QAbstractUndoItem_Redo(this.h)
+	QAbstractUndoItem_Redo(this.h)
 }
 
 func (this *QAbstractUndoItem) OperatorAssign(param1 *QAbstractUndoItem) {
-	C.QAbstractUndoItem_OperatorAssign(this.h, param1.cPointer())
-}
-
-// Delete this object from C++ memory.
-func (this *QAbstractUndoItem) Delete() {
-	C.QAbstractUndoItem_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QAbstractUndoItem) GoGC() {
-	runtime.SetFinalizer(this, func(this *QAbstractUndoItem) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QAbstractUndoItem_OperatorAssign(this.h, param1.cPointer())
 }
 
 type QTextDocument struct {
-	h          *C.QTextDocument
+	h          uintptr
 	isSubclass bool
-	*QObject
-}
-
-func (this *QTextDocument) cPointer() *C.QTextDocument {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QTextDocument) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQTextDocument constructs the type using only CGO pointers.
-func newQTextDocument(h *C.QTextDocument) *QTextDocument {
-	if h == nil {
-		return nil
-	}
-	var outptr_QObject *C.QObject = nil
-	C.QTextDocument_virtbase(h, &outptr_QObject)
-
-	return &QTextDocument{h: h,
-		QObject: newQObject(outptr_QObject)}
-}
-
-// UnsafeNewQTextDocument constructs the type using only unsafe pointers.
-func UnsafeNewQTextDocument(h unsafe.Pointer) *QTextDocument {
-	return newQTextDocument((*C.QTextDocument)(h))
 }
 
 // NewQTextDocument constructs a new QTextDocument object.
 func NewQTextDocument() *QTextDocument {
 
-	ret := newQTextDocument(C.QTextDocument_new())
+	ret := newQTextDocument(QTextDocument_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQTextDocument2 constructs a new QTextDocument object.
 func NewQTextDocument2(text string) *QTextDocument {
-	text_ms := C.struct_miqt_string{}
-	text_ms.data = C.CString(text)
-	text_ms.len = C.size_t(len(text))
-	defer C.free(unsafe.Pointer(text_ms.data))
+	text_ms := struct_miqt_string{}
+	text_ms.data = CString(text)
+	text_ms.len = size_t(len(text))
+	defer free(unsafe.Pointer(text_ms.data))
 
-	ret := newQTextDocument(C.QTextDocument_new2(text_ms))
+	ret := newQTextDocument(QTextDocument_new2(text_ms))
 	ret.isSubclass = true
 	return ret
 }
@@ -175,466 +93,485 @@ func NewQTextDocument2(text string) *QTextDocument {
 // NewQTextDocument3 constructs a new QTextDocument object.
 func NewQTextDocument3(parent *QObject) *QTextDocument {
 
-	ret := newQTextDocument(C.QTextDocument_new3(parent.cPointer()))
+	ret := newQTextDocument(QTextDocument_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQTextDocument4 constructs a new QTextDocument object.
 func NewQTextDocument4(text string, parent *QObject) *QTextDocument {
-	text_ms := C.struct_miqt_string{}
-	text_ms.data = C.CString(text)
-	text_ms.len = C.size_t(len(text))
-	defer C.free(unsafe.Pointer(text_ms.data))
+	text_ms := struct_miqt_string{}
+	text_ms.data = CString(text)
+	text_ms.len = size_t(len(text))
+	defer free(unsafe.Pointer(text_ms.data))
 
-	ret := newQTextDocument(C.QTextDocument_new4(text_ms, parent.cPointer()))
+	ret := newQTextDocument(QTextDocument_new4(text_ms, parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QTextDocument) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QTextDocument_MetaObject(this.h))
+	return newQMetaObject(QTextDocument_MetaObject(this.h))
 }
 
 func (this *QTextDocument) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QTextDocument_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QTextDocument_Metacast(this.h, param1_Cstring))
 }
 
 func QTextDocument_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QTextDocument_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QTextDocument_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QTextDocument_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QTextDocument_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) Clone() *QTextDocument {
-	return newQTextDocument(C.QTextDocument_Clone(this.h))
+	return newQTextDocument(QTextDocument_Clone(this.h))
 }
 
 func (this *QTextDocument) IsEmpty() bool {
-	return (bool)(C.QTextDocument_IsEmpty(this.h))
+	return (bool)(QTextDocument_IsEmpty(this.h))
 }
 
 func (this *QTextDocument) Clear() {
-	C.QTextDocument_Clear(this.h)
+	QTextDocument_Clear(this.h)
 }
 
 func (this *QTextDocument) SetUndoRedoEnabled(enable bool) {
-	C.QTextDocument_SetUndoRedoEnabled(this.h, (C.bool)(enable))
+	QTextDocument_SetUndoRedoEnabled(this.h, (bool)(enable))
 }
 
 func (this *QTextDocument) IsUndoRedoEnabled() bool {
-	return (bool)(C.QTextDocument_IsUndoRedoEnabled(this.h))
+	return (bool)(QTextDocument_IsUndoRedoEnabled(this.h))
 }
 
 func (this *QTextDocument) IsUndoAvailable() bool {
-	return (bool)(C.QTextDocument_IsUndoAvailable(this.h))
+	return (bool)(QTextDocument_IsUndoAvailable(this.h))
 }
 
 func (this *QTextDocument) IsRedoAvailable() bool {
-	return (bool)(C.QTextDocument_IsRedoAvailable(this.h))
+	return (bool)(QTextDocument_IsRedoAvailable(this.h))
 }
 
 func (this *QTextDocument) AvailableUndoSteps() int {
-	return (int)(C.QTextDocument_AvailableUndoSteps(this.h))
+	return (int)(QTextDocument_AvailableUndoSteps(this.h))
 }
 
 func (this *QTextDocument) AvailableRedoSteps() int {
-	return (int)(C.QTextDocument_AvailableRedoSteps(this.h))
+	return (int)(QTextDocument_AvailableRedoSteps(this.h))
 }
 
 func (this *QTextDocument) Revision() int {
-	return (int)(C.QTextDocument_Revision(this.h))
+	return (int)(QTextDocument_Revision(this.h))
 }
 
 func (this *QTextDocument) SetDocumentLayout(layout *QAbstractTextDocumentLayout) {
-	C.QTextDocument_SetDocumentLayout(this.h, layout.cPointer())
+	QTextDocument_SetDocumentLayout(this.h, layout.cPointer())
 }
 
 func (this *QTextDocument) DocumentLayout() *QAbstractTextDocumentLayout {
-	return newQAbstractTextDocumentLayout(C.QTextDocument_DocumentLayout(this.h))
+	return newQAbstractTextDocumentLayout(QTextDocument_DocumentLayout(this.h))
 }
 
-func (this *QTextDocument) SetMetaInformation(info QTextDocument__MetaInformation, param2 string) {
-	param2_ms := C.struct_miqt_string{}
-	param2_ms.data = C.CString(param2)
-	param2_ms.len = C.size_t(len(param2))
-	defer C.free(unsafe.Pointer(param2_ms.data))
-	C.QTextDocument_SetMetaInformation(this.h, (C.int)(info), param2_ms)
+func (this *QTextDocument) SetMetaInformation(info MetaInformation, param2 string) {
+	param2_ms := struct_miqt_string{}
+	param2_ms.data = CString(param2)
+	param2_ms.len = size_t(len(param2))
+	defer free(unsafe.Pointer(param2_ms.data))
+	QTextDocument_SetMetaInformation(this.h, info, param2_ms)
 }
 
-func (this *QTextDocument) MetaInformation(info QTextDocument__MetaInformation) string {
-	var _ms C.struct_miqt_string = C.QTextDocument_MetaInformation(this.h, (C.int)(info))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+func (this *QTextDocument) MetaInformation(info MetaInformation) string {
+	var _ms struct_miqt_string = QTextDocument_MetaInformation(this.h, info)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) ToHtml() string {
-	var _ms C.struct_miqt_string = C.QTextDocument_ToHtml(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTextDocument_ToHtml(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) SetHtml(html string) {
-	html_ms := C.struct_miqt_string{}
-	html_ms.data = C.CString(html)
-	html_ms.len = C.size_t(len(html))
-	defer C.free(unsafe.Pointer(html_ms.data))
-	C.QTextDocument_SetHtml(this.h, html_ms)
+	html_ms := struct_miqt_string{}
+	html_ms.data = CString(html)
+	html_ms.len = size_t(len(html))
+	defer free(unsafe.Pointer(html_ms.data))
+	QTextDocument_SetHtml(this.h, html_ms)
 }
 
 func (this *QTextDocument) ToMarkdown() string {
-	var _ms C.struct_miqt_string = C.QTextDocument_ToMarkdown(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTextDocument_ToMarkdown(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) SetMarkdown(markdown string) {
-	markdown_ms := C.struct_miqt_string{}
-	markdown_ms.data = C.CString(markdown)
-	markdown_ms.len = C.size_t(len(markdown))
-	defer C.free(unsafe.Pointer(markdown_ms.data))
-	C.QTextDocument_SetMarkdown(this.h, markdown_ms)
+	markdown_ms := struct_miqt_string{}
+	markdown_ms.data = CString(markdown)
+	markdown_ms.len = size_t(len(markdown))
+	defer free(unsafe.Pointer(markdown_ms.data))
+	QTextDocument_SetMarkdown(this.h, markdown_ms)
 }
 
 func (this *QTextDocument) ToRawText() string {
-	var _ms C.struct_miqt_string = C.QTextDocument_ToRawText(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTextDocument_ToRawText(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) ToPlainText() string {
-	var _ms C.struct_miqt_string = C.QTextDocument_ToPlainText(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTextDocument_ToPlainText(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) SetPlainText(text string) {
-	text_ms := C.struct_miqt_string{}
-	text_ms.data = C.CString(text)
-	text_ms.len = C.size_t(len(text))
-	defer C.free(unsafe.Pointer(text_ms.data))
-	C.QTextDocument_SetPlainText(this.h, text_ms)
+	text_ms := struct_miqt_string{}
+	text_ms.data = CString(text)
+	text_ms.len = size_t(len(text))
+	defer free(unsafe.Pointer(text_ms.data))
+	QTextDocument_SetPlainText(this.h, text_ms)
 }
 
 func (this *QTextDocument) CharacterAt(pos int) *QChar {
-	_goptr := newQChar(C.QTextDocument_CharacterAt(this.h, (C.int)(pos)))
+	_goptr := newQChar(QTextDocument_CharacterAt(this.h, (int)(pos)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) Find(subString string) *QTextCursor {
-	subString_ms := C.struct_miqt_string{}
-	subString_ms.data = C.CString(subString)
-	subString_ms.len = C.size_t(len(subString))
-	defer C.free(unsafe.Pointer(subString_ms.data))
-	_goptr := newQTextCursor(C.QTextDocument_Find(this.h, subString_ms))
+	subString_ms := struct_miqt_string{}
+	subString_ms.data = CString(subString)
+	subString_ms.len = size_t(len(subString))
+	defer free(unsafe.Pointer(subString_ms.data))
+	_goptr := newQTextCursor(QTextDocument_Find(this.h, subString_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) Find2(subString string, cursor *QTextCursor) *QTextCursor {
-	subString_ms := C.struct_miqt_string{}
-	subString_ms.data = C.CString(subString)
-	subString_ms.len = C.size_t(len(subString))
-	defer C.free(unsafe.Pointer(subString_ms.data))
-	_goptr := newQTextCursor(C.QTextDocument_Find2(this.h, subString_ms, cursor.cPointer()))
+	subString_ms := struct_miqt_string{}
+	subString_ms.data = CString(subString)
+	subString_ms.len = size_t(len(subString))
+	defer free(unsafe.Pointer(subString_ms.data))
+	_goptr := newQTextCursor(QTextDocument_Find2(this.h, subString_ms, cursor.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) FindWithExpr(expr *QRegExp) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_FindWithExpr(this.h, expr.cPointer()))
+func (this *QTextDocument) FindWithExpr(expr *QRegularExpression) *QTextCursor {
+	_goptr := newQTextCursor(QTextDocument_FindWithExpr(this.h, expr.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) Find3(expr *QRegExp, cursor *QTextCursor) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find3(this.h, expr.cPointer(), cursor.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QTextDocument) Find4(expr *QRegularExpression) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find4(this.h, expr.cPointer()))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QTextDocument) Find5(expr *QRegularExpression, cursor *QTextCursor) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find5(this.h, expr.cPointer(), cursor.cPointer()))
+func (this *QTextDocument) Find3(expr *QRegularExpression, cursor *QTextCursor) *QTextCursor {
+	_goptr := newQTextCursor(QTextDocument_Find3(this.h, expr.cPointer(), cursor.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) FrameAt(pos int) *QTextFrame {
-	return newQTextFrame(C.QTextDocument_FrameAt(this.h, (C.int)(pos)))
+	return newQTextFrame(QTextDocument_FrameAt(this.h, (int)(pos)))
 }
 
 func (this *QTextDocument) RootFrame() *QTextFrame {
-	return newQTextFrame(C.QTextDocument_RootFrame(this.h))
+	return newQTextFrame(QTextDocument_RootFrame(this.h))
 }
 
 func (this *QTextDocument) Object(objectIndex int) *QTextObject {
-	return newQTextObject(C.QTextDocument_Object(this.h, (C.int)(objectIndex)))
+	return newQTextObject(QTextDocument_Object(this.h, (int)(objectIndex)))
 }
 
 func (this *QTextDocument) ObjectForFormat(param1 *QTextFormat) *QTextObject {
-	return newQTextObject(C.QTextDocument_ObjectForFormat(this.h, param1.cPointer()))
+	return newQTextObject(QTextDocument_ObjectForFormat(this.h, param1.cPointer()))
 }
 
 func (this *QTextDocument) FindBlock(pos int) *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_FindBlock(this.h, (C.int)(pos)))
+	_goptr := newQTextBlock(QTextDocument_FindBlock(this.h, (int)(pos)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) FindBlockByNumber(blockNumber int) *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_FindBlockByNumber(this.h, (C.int)(blockNumber)))
+	_goptr := newQTextBlock(QTextDocument_FindBlockByNumber(this.h, (int)(blockNumber)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) FindBlockByLineNumber(blockNumber int) *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_FindBlockByLineNumber(this.h, (C.int)(blockNumber)))
+	_goptr := newQTextBlock(QTextDocument_FindBlockByLineNumber(this.h, (int)(blockNumber)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) Begin() *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_Begin(this.h))
+	_goptr := newQTextBlock(QTextDocument_Begin(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) End() *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_End(this.h))
+	_goptr := newQTextBlock(QTextDocument_End(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) FirstBlock() *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_FirstBlock(this.h))
+	_goptr := newQTextBlock(QTextDocument_FirstBlock(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) LastBlock() *QTextBlock {
-	_goptr := newQTextBlock(C.QTextDocument_LastBlock(this.h))
+	_goptr := newQTextBlock(QTextDocument_LastBlock(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) SetPageSize(size *QSizeF) {
-	C.QTextDocument_SetPageSize(this.h, size.cPointer())
+	QTextDocument_SetPageSize(this.h, size.cPointer())
 }
 
 func (this *QTextDocument) PageSize() *QSizeF {
-	_goptr := newQSizeF(C.QTextDocument_PageSize(this.h))
+	_goptr := newQSizeF(QTextDocument_PageSize(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) SetDefaultFont(font *QFont) {
-	C.QTextDocument_SetDefaultFont(this.h, font.cPointer())
+	QTextDocument_SetDefaultFont(this.h, font.cPointer())
 }
 
 func (this *QTextDocument) DefaultFont() *QFont {
-	_goptr := newQFont(C.QTextDocument_DefaultFont(this.h))
+	_goptr := newQFont(QTextDocument_DefaultFont(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
+func (this *QTextDocument) SetSuperScriptBaseline(baseline float64) {
+	QTextDocument_SetSuperScriptBaseline(this.h, (double)(baseline))
+}
+
+func (this *QTextDocument) SuperScriptBaseline() float64 {
+	return (float64)(QTextDocument_SuperScriptBaseline(this.h))
+}
+
+func (this *QTextDocument) SetSubScriptBaseline(baseline float64) {
+	QTextDocument_SetSubScriptBaseline(this.h, (double)(baseline))
+}
+
+func (this *QTextDocument) SubScriptBaseline() float64 {
+	return (float64)(QTextDocument_SubScriptBaseline(this.h))
+}
+
+func (this *QTextDocument) SetBaselineOffset(baseline float64) {
+	QTextDocument_SetBaselineOffset(this.h, (double)(baseline))
+}
+
+func (this *QTextDocument) BaselineOffset() float64 {
+	return (float64)(QTextDocument_BaselineOffset(this.h))
+}
+
 func (this *QTextDocument) PageCount() int {
-	return (int)(C.QTextDocument_PageCount(this.h))
+	return (int)(QTextDocument_PageCount(this.h))
 }
 
 func (this *QTextDocument) IsModified() bool {
-	return (bool)(C.QTextDocument_IsModified(this.h))
+	return (bool)(QTextDocument_IsModified(this.h))
 }
 
 func (this *QTextDocument) Print(printer *QPagedPaintDevice) {
-	C.QTextDocument_Print(this.h, printer.cPointer())
+	QTextDocument_Print(this.h, printer.cPointer())
 }
 
 func (this *QTextDocument) Resource(typeVal int, name *QUrl) *QVariant {
-	_goptr := newQVariant(C.QTextDocument_Resource(this.h, (C.int)(typeVal), name.cPointer()))
+	_goptr := newQVariant(QTextDocument_Resource(this.h, (int)(typeVal), name.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) AddResource(typeVal int, name *QUrl, resource *QVariant) {
-	C.QTextDocument_AddResource(this.h, (C.int)(typeVal), name.cPointer(), resource.cPointer())
+	QTextDocument_AddResource(this.h, (int)(typeVal), name.cPointer(), resource.cPointer())
+}
+
+func (this *QTextDocument) SetResourceProvider(provider *ResourceProvider) {
+	QTextDocument_SetResourceProvider(this.h, provider)
+}
+
+func QTextDocument_SetDefaultResourceProvider(provider *ResourceProvider) {
+	QTextDocument_SetDefaultResourceProvider(provider)
 }
 
 func (this *QTextDocument) AllFormats() []QTextFormat {
-	var _ma C.struct_miqt_array = C.QTextDocument_AllFormats(this.h)
+	var _ma struct_miqt_array = QTextDocument_AllFormats(this.h)
 	_ret := make([]QTextFormat, int(_ma.len))
-	_outCast := (*[0xffff]*C.QTextFormat)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]*QTextFormat)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
-		_vv_goptr := newQTextFormat(_outCast[i])
-		_vv_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-		_ret[i] = *_vv_goptr
+		_lv_goptr := newQTextFormat(_outCast[i])
+		_lv_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+		_ret[i] = *_lv_goptr
 	}
 	return _ret
 }
 
 func (this *QTextDocument) MarkContentsDirty(from int, length int) {
-	C.QTextDocument_MarkContentsDirty(this.h, (C.int)(from), (C.int)(length))
+	QTextDocument_MarkContentsDirty(this.h, (int)(from), (int)(length))
 }
 
 func (this *QTextDocument) SetUseDesignMetrics(b bool) {
-	C.QTextDocument_SetUseDesignMetrics(this.h, (C.bool)(b))
+	QTextDocument_SetUseDesignMetrics(this.h, (bool)(b))
 }
 
 func (this *QTextDocument) UseDesignMetrics() bool {
-	return (bool)(C.QTextDocument_UseDesignMetrics(this.h))
+	return (bool)(QTextDocument_UseDesignMetrics(this.h))
+}
+
+func (this *QTextDocument) SetLayoutEnabled(b bool) {
+	QTextDocument_SetLayoutEnabled(this.h, (bool)(b))
+}
+
+func (this *QTextDocument) IsLayoutEnabled() bool {
+	return (bool)(QTextDocument_IsLayoutEnabled(this.h))
 }
 
 func (this *QTextDocument) DrawContents(painter *QPainter) {
-	C.QTextDocument_DrawContents(this.h, painter.cPointer())
+	QTextDocument_DrawContents(this.h, painter.cPointer())
 }
 
 func (this *QTextDocument) SetTextWidth(width float64) {
-	C.QTextDocument_SetTextWidth(this.h, (C.double)(width))
+	QTextDocument_SetTextWidth(this.h, (double)(width))
 }
 
 func (this *QTextDocument) TextWidth() float64 {
-	return (float64)(C.QTextDocument_TextWidth(this.h))
+	return (float64)(QTextDocument_TextWidth(this.h))
 }
 
 func (this *QTextDocument) IdealWidth() float64 {
-	return (float64)(C.QTextDocument_IdealWidth(this.h))
+	return (float64)(QTextDocument_IdealWidth(this.h))
 }
 
 func (this *QTextDocument) IndentWidth() float64 {
-	return (float64)(C.QTextDocument_IndentWidth(this.h))
+	return (float64)(QTextDocument_IndentWidth(this.h))
 }
 
 func (this *QTextDocument) SetIndentWidth(width float64) {
-	C.QTextDocument_SetIndentWidth(this.h, (C.double)(width))
+	QTextDocument_SetIndentWidth(this.h, (double)(width))
 }
 
 func (this *QTextDocument) DocumentMargin() float64 {
-	return (float64)(C.QTextDocument_DocumentMargin(this.h))
+	return (float64)(QTextDocument_DocumentMargin(this.h))
 }
 
 func (this *QTextDocument) SetDocumentMargin(margin float64) {
-	C.QTextDocument_SetDocumentMargin(this.h, (C.double)(margin))
+	QTextDocument_SetDocumentMargin(this.h, (double)(margin))
 }
 
 func (this *QTextDocument) AdjustSize() {
-	C.QTextDocument_AdjustSize(this.h)
+	QTextDocument_AdjustSize(this.h)
 }
 
 func (this *QTextDocument) Size() *QSizeF {
-	_goptr := newQSizeF(C.QTextDocument_Size(this.h))
+	_goptr := newQSizeF(QTextDocument_Size(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) BlockCount() int {
-	return (int)(C.QTextDocument_BlockCount(this.h))
+	return (int)(QTextDocument_BlockCount(this.h))
 }
 
 func (this *QTextDocument) LineCount() int {
-	return (int)(C.QTextDocument_LineCount(this.h))
+	return (int)(QTextDocument_LineCount(this.h))
 }
 
 func (this *QTextDocument) CharacterCount() int {
-	return (int)(C.QTextDocument_CharacterCount(this.h))
+	return (int)(QTextDocument_CharacterCount(this.h))
 }
 
 func (this *QTextDocument) SetDefaultStyleSheet(sheet string) {
-	sheet_ms := C.struct_miqt_string{}
-	sheet_ms.data = C.CString(sheet)
-	sheet_ms.len = C.size_t(len(sheet))
-	defer C.free(unsafe.Pointer(sheet_ms.data))
-	C.QTextDocument_SetDefaultStyleSheet(this.h, sheet_ms)
+	sheet_ms := struct_miqt_string{}
+	sheet_ms.data = CString(sheet)
+	sheet_ms.len = size_t(len(sheet))
+	defer free(unsafe.Pointer(sheet_ms.data))
+	QTextDocument_SetDefaultStyleSheet(this.h, sheet_ms)
 }
 
 func (this *QTextDocument) DefaultStyleSheet() string {
-	var _ms C.struct_miqt_string = C.QTextDocument_DefaultStyleSheet(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTextDocument_DefaultStyleSheet(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) Undo(cursor *QTextCursor) {
-	C.QTextDocument_Undo(this.h, cursor.cPointer())
+	QTextDocument_Undo(this.h, cursor.cPointer())
 }
 
 func (this *QTextDocument) Redo(cursor *QTextCursor) {
-	C.QTextDocument_Redo(this.h, cursor.cPointer())
+	QTextDocument_Redo(this.h, cursor.cPointer())
 }
 
 func (this *QTextDocument) ClearUndoRedoStacks() {
-	C.QTextDocument_ClearUndoRedoStacks(this.h)
+	QTextDocument_ClearUndoRedoStacks(this.h)
 }
 
 func (this *QTextDocument) MaximumBlockCount() int {
-	return (int)(C.QTextDocument_MaximumBlockCount(this.h))
+	return (int)(QTextDocument_MaximumBlockCount(this.h))
 }
 
 func (this *QTextDocument) SetMaximumBlockCount(maximum int) {
-	C.QTextDocument_SetMaximumBlockCount(this.h, (C.int)(maximum))
+	QTextDocument_SetMaximumBlockCount(this.h, (int)(maximum))
 }
 
 func (this *QTextDocument) DefaultTextOption() *QTextOption {
-	_goptr := newQTextOption(C.QTextDocument_DefaultTextOption(this.h))
+	_goptr := newQTextOption(QTextDocument_DefaultTextOption(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) SetDefaultTextOption(option *QTextOption) {
-	C.QTextDocument_SetDefaultTextOption(this.h, option.cPointer())
+	QTextDocument_SetDefaultTextOption(this.h, option.cPointer())
 }
 
 func (this *QTextDocument) BaseUrl() *QUrl {
-	_goptr := newQUrl(C.QTextDocument_BaseUrl(this.h))
+	_goptr := newQUrl(QTextDocument_BaseUrl(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) SetBaseUrl(url *QUrl) {
-	C.QTextDocument_SetBaseUrl(this.h, url.cPointer())
+	QTextDocument_SetBaseUrl(this.h, url.cPointer())
 }
 
 func (this *QTextDocument) DefaultCursorMoveStyle() CursorMoveStyle {
-	return (CursorMoveStyle)(C.QTextDocument_DefaultCursorMoveStyle(this.h))
+	return (CursorMoveStyle)(QTextDocument_DefaultCursorMoveStyle(this.h))
 }
 
 func (this *QTextDocument) SetDefaultCursorMoveStyle(style CursorMoveStyle) {
-	C.QTextDocument_SetDefaultCursorMoveStyle(this.h, (C.int)(style))
+	QTextDocument_SetDefaultCursorMoveStyle(this.h, (int)(style))
 }
 
 func (this *QTextDocument) ContentsChange(from int, charsRemoved int, charsAdded int) {
-	C.QTextDocument_ContentsChange(this.h, (C.int)(from), (C.int)(charsRemoved), (C.int)(charsAdded))
+	QTextDocument_ContentsChange(this.h, (int)(from), (int)(charsRemoved), (int)(charsAdded))
 }
 func (this *QTextDocument) OnContentsChange(slot func(from int, charsRemoved int, charsAdded int)) {
-	C.QTextDocument_connect_ContentsChange(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_ContentsChange(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_ContentsChange
-func miqt_exec_callback_QTextDocument_ContentsChange(cb C.intptr_t, from C.int, charsRemoved C.int, charsAdded C.int) {
+func miqt_exec_callback_QTextDocument_ContentsChange(cb intptr_t, from int, charsRemoved int, charsAdded int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(from int, charsRemoved int, charsAdded int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -651,14 +588,14 @@ func miqt_exec_callback_QTextDocument_ContentsChange(cb C.intptr_t, from C.int, 
 }
 
 func (this *QTextDocument) ContentsChanged() {
-	C.QTextDocument_ContentsChanged(this.h)
+	QTextDocument_ContentsChanged(this.h)
 }
 func (this *QTextDocument) OnContentsChanged(slot func()) {
-	C.QTextDocument_connect_ContentsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_ContentsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_ContentsChanged
-func miqt_exec_callback_QTextDocument_ContentsChanged(cb C.intptr_t) {
+func miqt_exec_callback_QTextDocument_ContentsChanged(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -668,14 +605,14 @@ func miqt_exec_callback_QTextDocument_ContentsChanged(cb C.intptr_t) {
 }
 
 func (this *QTextDocument) UndoAvailable(param1 bool) {
-	C.QTextDocument_UndoAvailable(this.h, (C.bool)(param1))
+	QTextDocument_UndoAvailable(this.h, (bool)(param1))
 }
 func (this *QTextDocument) OnUndoAvailable(slot func(param1 bool)) {
-	C.QTextDocument_connect_UndoAvailable(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_UndoAvailable(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_UndoAvailable
-func miqt_exec_callback_QTextDocument_UndoAvailable(cb C.intptr_t, param1 C.bool) {
+func miqt_exec_callback_QTextDocument_UndoAvailable(cb intptr_t, param1 bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(param1 bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -688,14 +625,14 @@ func miqt_exec_callback_QTextDocument_UndoAvailable(cb C.intptr_t, param1 C.bool
 }
 
 func (this *QTextDocument) RedoAvailable(param1 bool) {
-	C.QTextDocument_RedoAvailable(this.h, (C.bool)(param1))
+	QTextDocument_RedoAvailable(this.h, (bool)(param1))
 }
 func (this *QTextDocument) OnRedoAvailable(slot func(param1 bool)) {
-	C.QTextDocument_connect_RedoAvailable(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_RedoAvailable(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_RedoAvailable
-func miqt_exec_callback_QTextDocument_RedoAvailable(cb C.intptr_t, param1 C.bool) {
+func miqt_exec_callback_QTextDocument_RedoAvailable(cb intptr_t, param1 bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(param1 bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -708,14 +645,14 @@ func miqt_exec_callback_QTextDocument_RedoAvailable(cb C.intptr_t, param1 C.bool
 }
 
 func (this *QTextDocument) UndoCommandAdded() {
-	C.QTextDocument_UndoCommandAdded(this.h)
+	QTextDocument_UndoCommandAdded(this.h)
 }
 func (this *QTextDocument) OnUndoCommandAdded(slot func()) {
-	C.QTextDocument_connect_UndoCommandAdded(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_UndoCommandAdded(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_UndoCommandAdded
-func miqt_exec_callback_QTextDocument_UndoCommandAdded(cb C.intptr_t) {
+func miqt_exec_callback_QTextDocument_UndoCommandAdded(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -725,14 +662,14 @@ func miqt_exec_callback_QTextDocument_UndoCommandAdded(cb C.intptr_t) {
 }
 
 func (this *QTextDocument) ModificationChanged(m bool) {
-	C.QTextDocument_ModificationChanged(this.h, (C.bool)(m))
+	QTextDocument_ModificationChanged(this.h, (bool)(m))
 }
 func (this *QTextDocument) OnModificationChanged(slot func(m bool)) {
-	C.QTextDocument_connect_ModificationChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_ModificationChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_ModificationChanged
-func miqt_exec_callback_QTextDocument_ModificationChanged(cb C.intptr_t, m C.bool) {
+func miqt_exec_callback_QTextDocument_ModificationChanged(cb intptr_t, m bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(m bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -745,14 +682,14 @@ func miqt_exec_callback_QTextDocument_ModificationChanged(cb C.intptr_t, m C.boo
 }
 
 func (this *QTextDocument) CursorPositionChanged(cursor *QTextCursor) {
-	C.QTextDocument_CursorPositionChanged(this.h, cursor.cPointer())
+	QTextDocument_CursorPositionChanged(this.h, cursor.cPointer())
 }
 func (this *QTextDocument) OnCursorPositionChanged(slot func(cursor *QTextCursor)) {
-	C.QTextDocument_connect_CursorPositionChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_CursorPositionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_CursorPositionChanged
-func miqt_exec_callback_QTextDocument_CursorPositionChanged(cb C.intptr_t, cursor *C.QTextCursor) {
+func miqt_exec_callback_QTextDocument_CursorPositionChanged(cb intptr_t, cursor *QTextCursor) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(cursor *QTextCursor))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -765,14 +702,14 @@ func miqt_exec_callback_QTextDocument_CursorPositionChanged(cb C.intptr_t, curso
 }
 
 func (this *QTextDocument) BlockCountChanged(newBlockCount int) {
-	C.QTextDocument_BlockCountChanged(this.h, (C.int)(newBlockCount))
+	QTextDocument_BlockCountChanged(this.h, (int)(newBlockCount))
 }
 func (this *QTextDocument) OnBlockCountChanged(slot func(newBlockCount int)) {
-	C.QTextDocument_connect_BlockCountChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_BlockCountChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_BlockCountChanged
-func miqt_exec_callback_QTextDocument_BlockCountChanged(cb C.intptr_t, newBlockCount C.int) {
+func miqt_exec_callback_QTextDocument_BlockCountChanged(cb intptr_t, newBlockCount int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(newBlockCount int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -785,14 +722,14 @@ func miqt_exec_callback_QTextDocument_BlockCountChanged(cb C.intptr_t, newBlockC
 }
 
 func (this *QTextDocument) BaseUrlChanged(url *QUrl) {
-	C.QTextDocument_BaseUrlChanged(this.h, url.cPointer())
+	QTextDocument_BaseUrlChanged(this.h, url.cPointer())
 }
 func (this *QTextDocument) OnBaseUrlChanged(slot func(url *QUrl)) {
-	C.QTextDocument_connect_BaseUrlChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_BaseUrlChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_BaseUrlChanged
-func miqt_exec_callback_QTextDocument_BaseUrlChanged(cb C.intptr_t, url *C.QUrl) {
+func miqt_exec_callback_QTextDocument_BaseUrlChanged(cb intptr_t, url *QUrl) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(url *QUrl))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -805,14 +742,14 @@ func miqt_exec_callback_QTextDocument_BaseUrlChanged(cb C.intptr_t, url *C.QUrl)
 }
 
 func (this *QTextDocument) DocumentLayoutChanged() {
-	C.QTextDocument_DocumentLayoutChanged(this.h)
+	QTextDocument_DocumentLayoutChanged(this.h)
 }
 func (this *QTextDocument) OnDocumentLayoutChanged(slot func()) {
-	C.QTextDocument_connect_DocumentLayoutChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_connect_DocumentLayoutChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_DocumentLayoutChanged
-func miqt_exec_callback_QTextDocument_DocumentLayoutChanged(cb C.intptr_t) {
+func miqt_exec_callback_QTextDocument_DocumentLayoutChanged(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -822,186 +759,136 @@ func miqt_exec_callback_QTextDocument_DocumentLayoutChanged(cb C.intptr_t) {
 }
 
 func (this *QTextDocument) Undo2() {
-	C.QTextDocument_Undo2(this.h)
+	QTextDocument_Undo2(this.h)
 }
 
 func (this *QTextDocument) Redo2() {
-	C.QTextDocument_Redo2(this.h)
+	QTextDocument_Redo2(this.h)
 }
 
 func (this *QTextDocument) AppendUndoItem(param1 *QAbstractUndoItem) {
-	C.QTextDocument_AppendUndoItem(this.h, param1.cPointer())
+	QTextDocument_AppendUndoItem(this.h, param1.cPointer())
 }
 
 func (this *QTextDocument) SetModified() {
-	C.QTextDocument_SetModified(this.h)
+	QTextDocument_SetModified(this.h)
 }
 
 func QTextDocument_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTextDocument_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QTextDocument_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QTextDocument_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTextDocument_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QTextDocument_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTextDocument_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QTextDocument_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTextDocument_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QTextDocument_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTextDocument) Clone1(parent *QObject) *QTextDocument {
-	return newQTextDocument(C.QTextDocument_Clone1(this.h, parent.cPointer()))
+	return newQTextDocument(QTextDocument_Clone1(this.h, parent.cPointer()))
 }
 
-func (this *QTextDocument) ToHtml1(encoding []byte) string {
-	encoding_alias := C.struct_miqt_string{}
-	encoding_alias.data = (*C.char)(unsafe.Pointer(&encoding[0]))
-	encoding_alias.len = C.size_t(len(encoding))
-	var _ms C.struct_miqt_string = C.QTextDocument_ToHtml1(this.h, encoding_alias)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+func (this *QTextDocument) ToMarkdown1(features MarkdownFeatures) string {
+	var _ms struct_miqt_string = QTextDocument_ToMarkdown1(this.h, features)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func (this *QTextDocument) ToMarkdown1(features QTextDocument__MarkdownFeature) string {
-	var _ms C.struct_miqt_string = C.QTextDocument_ToMarkdown1(this.h, (C.int)(features))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QTextDocument) SetMarkdown2(markdown string, features QTextDocument__MarkdownFeature) {
-	markdown_ms := C.struct_miqt_string{}
-	markdown_ms.data = C.CString(markdown)
-	markdown_ms.len = C.size_t(len(markdown))
-	defer C.free(unsafe.Pointer(markdown_ms.data))
-	C.QTextDocument_SetMarkdown2(this.h, markdown_ms, (C.int)(features))
+func (this *QTextDocument) SetMarkdown2(markdown string, features MarkdownFeatures) {
+	markdown_ms := struct_miqt_string{}
+	markdown_ms.data = CString(markdown)
+	markdown_ms.len = size_t(len(markdown))
+	defer free(unsafe.Pointer(markdown_ms.data))
+	QTextDocument_SetMarkdown2(this.h, markdown_ms, features)
 }
 
 func (this *QTextDocument) Find22(subString string, from int) *QTextCursor {
-	subString_ms := C.struct_miqt_string{}
-	subString_ms.data = C.CString(subString)
-	subString_ms.len = C.size_t(len(subString))
-	defer C.free(unsafe.Pointer(subString_ms.data))
-	_goptr := newQTextCursor(C.QTextDocument_Find22(this.h, subString_ms, (C.int)(from)))
+	subString_ms := struct_miqt_string{}
+	subString_ms.data = CString(subString)
+	subString_ms.len = size_t(len(subString))
+	defer free(unsafe.Pointer(subString_ms.data))
+	_goptr := newQTextCursor(QTextDocument_Find22(this.h, subString_ms, (int)(from)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) Find32(subString string, from int, options QTextDocument__FindFlag) *QTextCursor {
-	subString_ms := C.struct_miqt_string{}
-	subString_ms.data = C.CString(subString)
-	subString_ms.len = C.size_t(len(subString))
-	defer C.free(unsafe.Pointer(subString_ms.data))
-	_goptr := newQTextCursor(C.QTextDocument_Find32(this.h, subString_ms, (C.int)(from), (C.int)(options)))
+func (this *QTextDocument) Find32(subString string, from int, options FindFlags) *QTextCursor {
+	subString_ms := struct_miqt_string{}
+	subString_ms.data = CString(subString)
+	subString_ms.len = size_t(len(subString))
+	defer free(unsafe.Pointer(subString_ms.data))
+	_goptr := newQTextCursor(QTextDocument_Find32(this.h, subString_ms, (int)(from), options))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) Find33(subString string, cursor *QTextCursor, options QTextDocument__FindFlag) *QTextCursor {
-	subString_ms := C.struct_miqt_string{}
-	subString_ms.data = C.CString(subString)
-	subString_ms.len = C.size_t(len(subString))
-	defer C.free(unsafe.Pointer(subString_ms.data))
-	_goptr := newQTextCursor(C.QTextDocument_Find33(this.h, subString_ms, cursor.cPointer(), (C.int)(options)))
+func (this *QTextDocument) Find33(subString string, cursor *QTextCursor, options FindFlags) *QTextCursor {
+	subString_ms := struct_miqt_string{}
+	subString_ms.data = CString(subString)
+	subString_ms.len = size_t(len(subString))
+	defer free(unsafe.Pointer(subString_ms.data))
+	_goptr := newQTextCursor(QTextDocument_Find33(this.h, subString_ms, cursor.cPointer(), options))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) Find23(expr *QRegExp, from int) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find23(this.h, expr.cPointer(), (C.int)(from)))
+func (this *QTextDocument) Find23(expr *QRegularExpression, from int) *QTextCursor {
+	_goptr := newQTextCursor(QTextDocument_Find23(this.h, expr.cPointer(), (int)(from)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) Find34(expr *QRegExp, from int, options QTextDocument__FindFlag) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find34(this.h, expr.cPointer(), (C.int)(from), (C.int)(options)))
+func (this *QTextDocument) Find34(expr *QRegularExpression, from int, options FindFlags) *QTextCursor {
+	_goptr := newQTextCursor(QTextDocument_Find34(this.h, expr.cPointer(), (int)(from), options))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTextDocument) Find35(expr *QRegExp, cursor *QTextCursor, options QTextDocument__FindFlag) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find35(this.h, expr.cPointer(), cursor.cPointer(), (C.int)(options)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QTextDocument) Find24(expr *QRegularExpression, from int) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find24(this.h, expr.cPointer(), (C.int)(from)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QTextDocument) Find36(expr *QRegularExpression, from int, options QTextDocument__FindFlag) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find36(this.h, expr.cPointer(), (C.int)(from), (C.int)(options)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QTextDocument) Find37(expr *QRegularExpression, cursor *QTextCursor, options QTextDocument__FindFlag) *QTextCursor {
-	_goptr := newQTextCursor(C.QTextDocument_Find37(this.h, expr.cPointer(), cursor.cPointer(), (C.int)(options)))
+func (this *QTextDocument) Find35(expr *QRegularExpression, cursor *QTextCursor, options FindFlags) *QTextCursor {
+	_goptr := newQTextCursor(QTextDocument_Find35(this.h, expr.cPointer(), cursor.cPointer(), options))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTextDocument) DrawContents2(painter *QPainter, rect *QRectF) {
-	C.QTextDocument_DrawContents2(this.h, painter.cPointer(), rect.cPointer())
+	QTextDocument_DrawContents2(this.h, painter.cPointer(), rect.cPointer())
 }
 
-func (this *QTextDocument) ClearUndoRedoStacks1(historyToClear QTextDocument__Stacks) {
-	C.QTextDocument_ClearUndoRedoStacks1(this.h, (C.int)(historyToClear))
+func (this *QTextDocument) ClearUndoRedoStacks1(historyToClear Stacks) {
+	QTextDocument_ClearUndoRedoStacks1(this.h, historyToClear)
 }
 
 func (this *QTextDocument) SetModified1(m bool) {
-	C.QTextDocument_SetModified1(this.h, (C.bool)(m))
+	QTextDocument_SetModified1(this.h, (bool)(m))
 }
 
 func (this *QTextDocument) callVirtualBase_Clear() {
 
-	C.QTextDocument_virtualbase_Clear(unsafe.Pointer(this.h))
+	QTextDocument_virtualbase_Clear(unsafe.Pointer(this.h))
 
 }
 func (this *QTextDocument) OnClear(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_Clear(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_Clear(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_Clear
-func miqt_exec_callback_QTextDocument_Clear(self *C.QTextDocument, cb C.intptr_t) {
+func miqt_exec_callback_QTextDocument_Clear(self QTextDocument, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1013,18 +900,18 @@ func miqt_exec_callback_QTextDocument_Clear(self *C.QTextDocument, cb C.intptr_t
 
 func (this *QTextDocument) callVirtualBase_CreateObject(f *QTextFormat) *QTextObject {
 
-	return newQTextObject(C.QTextDocument_virtualbase_CreateObject(unsafe.Pointer(this.h), f.cPointer()))
+	return newQTextObject(QTextDocument_virtualbase_CreateObject(unsafe.Pointer(this.h), f.cPointer()))
 
 }
 func (this *QTextDocument) OnCreateObject(slot func(super func(f *QTextFormat) *QTextObject, f *QTextFormat) *QTextObject) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_CreateObject(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_CreateObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_CreateObject
-func miqt_exec_callback_QTextDocument_CreateObject(self *C.QTextDocument, cb C.intptr_t, f *C.QTextFormat) *C.QTextObject {
+func miqt_exec_callback_QTextDocument_CreateObject(self QTextDocument, cb intptr_t, f *QTextFormat) *QTextObject {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(f *QTextFormat) *QTextObject, f *QTextFormat) *QTextObject)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1041,7 +928,7 @@ func miqt_exec_callback_QTextDocument_CreateObject(self *C.QTextDocument, cb C.i
 
 func (this *QTextDocument) callVirtualBase_LoadResource(typeVal int, name *QUrl) *QVariant {
 
-	_goptr := newQVariant(C.QTextDocument_virtualbase_LoadResource(unsafe.Pointer(this.h), (C.int)(typeVal), name.cPointer()))
+	_goptr := newQVariant(QTextDocument_virtualbase_LoadResource(unsafe.Pointer(this.h), (int)(typeVal), name.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -1050,11 +937,11 @@ func (this *QTextDocument) OnLoadResource(slot func(super func(typeVal int, name
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_LoadResource(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_LoadResource(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_LoadResource
-func miqt_exec_callback_QTextDocument_LoadResource(self *C.QTextDocument, cb C.intptr_t, typeVal C.int, name *C.QUrl) *C.QVariant {
+func miqt_exec_callback_QTextDocument_LoadResource(self QTextDocument, cb intptr_t, typeVal int, name *QUrl) *QVariant {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(typeVal int, name *QUrl) *QVariant, typeVal int, name *QUrl) *QVariant)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1073,18 +960,18 @@ func miqt_exec_callback_QTextDocument_LoadResource(self *C.QTextDocument, cb C.i
 
 func (this *QTextDocument) callVirtualBase_Event(event *QEvent) bool {
 
-	return (bool)(C.QTextDocument_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
+	return (bool)(QTextDocument_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
 
 }
 func (this *QTextDocument) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_Event
-func miqt_exec_callback_QTextDocument_Event(self *C.QTextDocument, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QTextDocument_Event(self QTextDocument, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1095,24 +982,24 @@ func miqt_exec_callback_QTextDocument_Event(self *C.QTextDocument, cb C.intptr_t
 
 	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QTextDocument) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
 
-	return (bool)(C.QTextDocument_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
+	return (bool)(QTextDocument_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
 
 }
 func (this *QTextDocument) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_EventFilter
-func miqt_exec_callback_QTextDocument_EventFilter(self *C.QTextDocument, cb C.intptr_t, watched *C.QObject, event *C.QEvent) C.bool {
+func miqt_exec_callback_QTextDocument_EventFilter(self QTextDocument, cb intptr_t, watched *QObject, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1125,24 +1012,24 @@ func miqt_exec_callback_QTextDocument_EventFilter(self *C.QTextDocument, cb C.in
 
 	virtualReturn := gofunc((&QTextDocument{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QTextDocument) callVirtualBase_TimerEvent(event *QTimerEvent) {
 
-	C.QTextDocument_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
+	QTextDocument_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QTextDocument) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_TimerEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_TimerEvent
-func miqt_exec_callback_QTextDocument_TimerEvent(self *C.QTextDocument, cb C.intptr_t, event *C.QTimerEvent) {
+func miqt_exec_callback_QTextDocument_TimerEvent(self QTextDocument, cb intptr_t, event *QTimerEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1157,18 +1044,18 @@ func miqt_exec_callback_QTextDocument_TimerEvent(self *C.QTextDocument, cb C.int
 
 func (this *QTextDocument) callVirtualBase_ChildEvent(event *QChildEvent) {
 
-	C.QTextDocument_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
+	QTextDocument_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QTextDocument) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_ChildEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_ChildEvent
-func miqt_exec_callback_QTextDocument_ChildEvent(self *C.QTextDocument, cb C.intptr_t, event *C.QChildEvent) {
+func miqt_exec_callback_QTextDocument_ChildEvent(self QTextDocument, cb intptr_t, event *QChildEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1183,18 +1070,18 @@ func miqt_exec_callback_QTextDocument_ChildEvent(self *C.QTextDocument, cb C.int
 
 func (this *QTextDocument) callVirtualBase_CustomEvent(event *QEvent) {
 
-	C.QTextDocument_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
+	QTextDocument_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QTextDocument) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_CustomEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_CustomEvent
-func miqt_exec_callback_QTextDocument_CustomEvent(self *C.QTextDocument, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QTextDocument_CustomEvent(self QTextDocument, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1209,18 +1096,18 @@ func miqt_exec_callback_QTextDocument_CustomEvent(self *C.QTextDocument, cb C.in
 
 func (this *QTextDocument) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
 
-	C.QTextDocument_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
+	QTextDocument_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
 
 }
 func (this *QTextDocument) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_ConnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_ConnectNotify
-func miqt_exec_callback_QTextDocument_ConnectNotify(self *C.QTextDocument, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QTextDocument_ConnectNotify(self QTextDocument, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1235,18 +1122,18 @@ func miqt_exec_callback_QTextDocument_ConnectNotify(self *C.QTextDocument, cb C.
 
 func (this *QTextDocument) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
 
-	C.QTextDocument_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
+	QTextDocument_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
 
 }
 func (this *QTextDocument) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTextDocument_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTextDocument_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTextDocument_DisconnectNotify
-func miqt_exec_callback_QTextDocument_DisconnectNotify(self *C.QTextDocument, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QTextDocument_DisconnectNotify(self QTextDocument, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1257,18 +1144,4 @@ func miqt_exec_callback_QTextDocument_DisconnectNotify(self *C.QTextDocument, cb
 
 	gofunc((&QTextDocument{h: self}).callVirtualBase_DisconnectNotify, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QTextDocument) Delete() {
-	C.QTextDocument_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QTextDocument) GoGC() {
-	runtime.SetFinalizer(this, func(this *QTextDocument) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

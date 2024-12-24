@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	log.Printf("Looking up DNS info, please wait...")

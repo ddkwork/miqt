@@ -1,16 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qfontdialog.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -26,46 +16,14 @@ const (
 )
 
 type QFontDialog struct {
-	h          *C.QFontDialog
+	h          uintptr
 	isSubclass bool
-	*QDialog
-}
-
-func (this *QFontDialog) cPointer() *C.QFontDialog {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QFontDialog) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQFontDialog constructs the type using only CGO pointers.
-func newQFontDialog(h *C.QFontDialog) *QFontDialog {
-	if h == nil {
-		return nil
-	}
-	var outptr_QDialog *C.QDialog = nil
-	C.QFontDialog_virtbase(h, &outptr_QDialog)
-
-	return &QFontDialog{h: h,
-		QDialog: newQDialog(outptr_QDialog)}
-}
-
-// UnsafeNewQFontDialog constructs the type using only unsafe pointers.
-func UnsafeNewQFontDialog(h unsafe.Pointer) *QFontDialog {
-	return newQFontDialog((*C.QFontDialog)(h))
 }
 
 // NewQFontDialog constructs a new QFontDialog object.
 func NewQFontDialog(parent *QWidget) *QFontDialog {
 
-	ret := newQFontDialog(C.QFontDialog_new(parent.cPointer()))
+	ret := newQFontDialog(QFontDialog_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -73,7 +31,7 @@ func NewQFontDialog(parent *QWidget) *QFontDialog {
 // NewQFontDialog2 constructs a new QFontDialog object.
 func NewQFontDialog2() *QFontDialog {
 
-	ret := newQFontDialog(C.QFontDialog_new2())
+	ret := newQFontDialog(QFontDialog_new2())
 	ret.isSubclass = true
 	return ret
 }
@@ -81,7 +39,7 @@ func NewQFontDialog2() *QFontDialog {
 // NewQFontDialog3 constructs a new QFontDialog object.
 func NewQFontDialog3(initial *QFont) *QFontDialog {
 
-	ret := newQFontDialog(C.QFontDialog_new3(initial.cPointer()))
+	ret := newQFontDialog(QFontDialog_new3(initial.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -89,96 +47,87 @@ func NewQFontDialog3(initial *QFont) *QFontDialog {
 // NewQFontDialog4 constructs a new QFontDialog object.
 func NewQFontDialog4(initial *QFont, parent *QWidget) *QFontDialog {
 
-	ret := newQFontDialog(C.QFontDialog_new4(initial.cPointer(), parent.cPointer()))
+	ret := newQFontDialog(QFontDialog_new4(initial.cPointer(), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QFontDialog) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QFontDialog_MetaObject(this.h))
+	return newQMetaObject(QFontDialog_MetaObject(this.h))
 }
 
 func (this *QFontDialog) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QFontDialog_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QFontDialog_Metacast(this.h, param1_Cstring))
 }
 
 func QFontDialog_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QFontDialog_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QFontDialog_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QFontDialog_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QFontDialog_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFontDialog) SetCurrentFont(font *QFont) {
-	C.QFontDialog_SetCurrentFont(this.h, font.cPointer())
+	QFontDialog_SetCurrentFont(this.h, font.cPointer())
 }
 
 func (this *QFontDialog) CurrentFont() *QFont {
-	_goptr := newQFont(C.QFontDialog_CurrentFont(this.h))
+	_goptr := newQFont(QFontDialog_CurrentFont(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QFontDialog) SelectedFont() *QFont {
-	_goptr := newQFont(C.QFontDialog_SelectedFont(this.h))
+	_goptr := newQFont(QFontDialog_SelectedFont(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QFontDialog) SetOption(option QFontDialog__FontDialogOption) {
-	C.QFontDialog_SetOption(this.h, (C.int)(option))
+func (this *QFontDialog) SetOption(option FontDialogOption) {
+	QFontDialog_SetOption(this.h, option)
 }
 
-func (this *QFontDialog) TestOption(option QFontDialog__FontDialogOption) bool {
-	return (bool)(C.QFontDialog_TestOption(this.h, (C.int)(option)))
+func (this *QFontDialog) TestOption(option FontDialogOption) bool {
+	return (bool)(QFontDialog_TestOption(this.h, option))
 }
 
-func (this *QFontDialog) SetOptions(options QFontDialog__FontDialogOption) {
-	C.QFontDialog_SetOptions(this.h, (C.int)(options))
+func (this *QFontDialog) SetOptions(options FontDialogOptions) {
+	QFontDialog_SetOptions(this.h, options)
 }
 
-func (this *QFontDialog) Options() QFontDialog__FontDialogOption {
-	return (QFontDialog__FontDialogOption)(C.QFontDialog_Options(this.h))
+func (this *QFontDialog) Options() FontDialogOptions {
+	xxxxxxxxx
 }
 
 func (this *QFontDialog) SetVisible(visible bool) {
-	C.QFontDialog_SetVisible(this.h, (C.bool)(visible))
+	QFontDialog_SetVisible(this.h, (bool)(visible))
 }
 
 func QFontDialog_GetFont(ok *bool) *QFont {
-	_goptr := newQFont(C.QFontDialog_GetFont((*C.bool)(unsafe.Pointer(ok))))
+	_goptr := newQFont(QFontDialog_GetFont((*bool)(unsafe.Pointer(ok))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QFontDialog_GetFont2(ok *bool, initial *QFont) *QFont {
-	_goptr := newQFont(C.QFontDialog_GetFont2((*C.bool)(unsafe.Pointer(ok)), initial.cPointer()))
+	_goptr := newQFont(QFontDialog_GetFont2((*bool)(unsafe.Pointer(ok)), initial.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QFontDialog) CurrentFontChanged(font *QFont) {
-	C.QFontDialog_CurrentFontChanged(this.h, font.cPointer())
+	QFontDialog_CurrentFontChanged(this.h, font.cPointer())
 }
 func (this *QFontDialog) OnCurrentFontChanged(slot func(font *QFont)) {
-	C.QFontDialog_connect_CurrentFontChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_connect_CurrentFontChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_CurrentFontChanged
-func miqt_exec_callback_QFontDialog_CurrentFontChanged(cb C.intptr_t, font *C.QFont) {
+func miqt_exec_callback_QFontDialog_CurrentFontChanged(cb intptr_t, font *QFont) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(font *QFont))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -191,14 +140,14 @@ func miqt_exec_callback_QFontDialog_CurrentFontChanged(cb C.intptr_t, font *C.QF
 }
 
 func (this *QFontDialog) FontSelected(font *QFont) {
-	C.QFontDialog_FontSelected(this.h, font.cPointer())
+	QFontDialog_FontSelected(this.h, font.cPointer())
 }
 func (this *QFontDialog) OnFontSelected(slot func(font *QFont)) {
-	C.QFontDialog_connect_FontSelected(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_connect_FontSelected(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_FontSelected
-func miqt_exec_callback_QFontDialog_FontSelected(cb C.intptr_t, font *C.QFont) {
+func miqt_exec_callback_QFontDialog_FontSelected(cb intptr_t, font *QFont) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(font *QFont))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -211,99 +160,77 @@ func miqt_exec_callback_QFontDialog_FontSelected(cb C.intptr_t, font *C.QFont) {
 }
 
 func QFontDialog_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontDialog_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QFontDialog_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QFontDialog_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontDialog_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QFontDialog_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QFontDialog_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontDialog_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QFontDialog_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontDialog_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QFontDialog) SetOption2(option QFontDialog__FontDialogOption, on bool) {
-	C.QFontDialog_SetOption2(this.h, (C.int)(option), (C.bool)(on))
+func (this *QFontDialog) SetOption2(option FontDialogOption, on bool) {
+	QFontDialog_SetOption2(this.h, option, (bool)(on))
 }
 
 func QFontDialog_GetFont22(ok *bool, parent *QWidget) *QFont {
-	_goptr := newQFont(C.QFontDialog_GetFont22((*C.bool)(unsafe.Pointer(ok)), parent.cPointer()))
+	_goptr := newQFont(QFontDialog_GetFont22((*bool)(unsafe.Pointer(ok)), parent.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QFontDialog_GetFont3(ok *bool, initial *QFont, parent *QWidget) *QFont {
-	_goptr := newQFont(C.QFontDialog_GetFont3((*C.bool)(unsafe.Pointer(ok)), initial.cPointer(), parent.cPointer()))
+	_goptr := newQFont(QFontDialog_GetFont3((*bool)(unsafe.Pointer(ok)), initial.cPointer(), parent.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QFontDialog_GetFont4(ok *bool, initial *QFont, parent *QWidget, title string) *QFont {
-	title_ms := C.struct_miqt_string{}
-	title_ms.data = C.CString(title)
-	title_ms.len = C.size_t(len(title))
-	defer C.free(unsafe.Pointer(title_ms.data))
-	_goptr := newQFont(C.QFontDialog_GetFont4((*C.bool)(unsafe.Pointer(ok)), initial.cPointer(), parent.cPointer(), title_ms))
+	title_ms := struct_miqt_string{}
+	title_ms.data = CString(title)
+	title_ms.len = size_t(len(title))
+	defer free(unsafe.Pointer(title_ms.data))
+	_goptr := newQFont(QFontDialog_GetFont4((*bool)(unsafe.Pointer(ok)), initial.cPointer(), parent.cPointer(), title_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QFontDialog_GetFont5(ok *bool, initial *QFont, parent *QWidget, title string, options QFontDialog__FontDialogOption) *QFont {
-	title_ms := C.struct_miqt_string{}
-	title_ms.data = C.CString(title)
-	title_ms.len = C.size_t(len(title))
-	defer C.free(unsafe.Pointer(title_ms.data))
-	_goptr := newQFont(C.QFontDialog_GetFont5((*C.bool)(unsafe.Pointer(ok)), initial.cPointer(), parent.cPointer(), title_ms, (C.int)(options)))
+func QFontDialog_GetFont5(ok *bool, initial *QFont, parent *QWidget, title string, options FontDialogOptions) *QFont {
+	title_ms := struct_miqt_string{}
+	title_ms.data = CString(title)
+	title_ms.len = size_t(len(title))
+	defer free(unsafe.Pointer(title_ms.data))
+	_goptr := newQFont(QFontDialog_GetFont5((*bool)(unsafe.Pointer(ok)), initial.cPointer(), parent.cPointer(), title_ms, options))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QFontDialog) callVirtualBase_SetVisible(visible bool) {
 
-	C.QFontDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
+	QFontDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (bool)(visible))
 
 }
 func (this *QFontDialog) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_SetVisible(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_SetVisible(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_SetVisible
-func miqt_exec_callback_QFontDialog_SetVisible(self *C.QFontDialog, cb C.intptr_t, visible C.bool) {
+func miqt_exec_callback_QFontDialog_SetVisible(self QFontDialog, cb intptr_t, visible bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(visible bool), visible bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -318,18 +245,18 @@ func miqt_exec_callback_QFontDialog_SetVisible(self *C.QFontDialog, cb C.intptr_
 
 func (this *QFontDialog) callVirtualBase_ChangeEvent(event *QEvent) {
 
-	C.QFontDialog_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
+	QFontDialog_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QFontDialog) OnChangeEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_ChangeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_ChangeEvent
-func miqt_exec_callback_QFontDialog_ChangeEvent(self *C.QFontDialog, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QFontDialog_ChangeEvent(self QFontDialog, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -344,18 +271,18 @@ func miqt_exec_callback_QFontDialog_ChangeEvent(self *C.QFontDialog, cb C.intptr
 
 func (this *QFontDialog) callVirtualBase_Done(result int) {
 
-	C.QFontDialog_virtualbase_Done(unsafe.Pointer(this.h), (C.int)(result))
+	QFontDialog_virtualbase_Done(unsafe.Pointer(this.h), (int)(result))
 
 }
 func (this *QFontDialog) OnDone(slot func(super func(result int), result int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_Done(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_Done(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_Done
-func miqt_exec_callback_QFontDialog_Done(self *C.QFontDialog, cb C.intptr_t, result C.int) {
+func miqt_exec_callback_QFontDialog_Done(self QFontDialog, cb intptr_t, result int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(result int), result int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -370,18 +297,18 @@ func miqt_exec_callback_QFontDialog_Done(self *C.QFontDialog, cb C.intptr_t, res
 
 func (this *QFontDialog) callVirtualBase_EventFilter(object *QObject, event *QEvent) bool {
 
-	return (bool)(C.QFontDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), object.cPointer(), event.cPointer()))
+	return (bool)(QFontDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), object.cPointer(), event.cPointer()))
 
 }
 func (this *QFontDialog) OnEventFilter(slot func(super func(object *QObject, event *QEvent) bool, object *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_EventFilter
-func miqt_exec_callback_QFontDialog_EventFilter(self *C.QFontDialog, cb C.intptr_t, object *C.QObject, event *C.QEvent) C.bool {
+func miqt_exec_callback_QFontDialog_EventFilter(self QFontDialog, cb intptr_t, object *QObject, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(object *QObject, event *QEvent) bool, object *QObject, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -394,13 +321,13 @@ func miqt_exec_callback_QFontDialog_EventFilter(self *C.QFontDialog, cb C.intptr
 
 	virtualReturn := gofunc((&QFontDialog{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QFontDialog) callVirtualBase_SizeHint() *QSize {
 
-	_goptr := newQSize(C.QFontDialog_virtualbase_SizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QFontDialog_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -409,11 +336,11 @@ func (this *QFontDialog) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_SizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_SizeHint
-func miqt_exec_callback_QFontDialog_SizeHint(self *C.QFontDialog, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QFontDialog_SizeHint(self QFontDialog, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -427,7 +354,7 @@ func miqt_exec_callback_QFontDialog_SizeHint(self *C.QFontDialog, cb C.intptr_t)
 
 func (this *QFontDialog) callVirtualBase_MinimumSizeHint() *QSize {
 
-	_goptr := newQSize(C.QFontDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QFontDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -436,11 +363,11 @@ func (this *QFontDialog) OnMinimumSizeHint(slot func(super func() *QSize) *QSize
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_MinimumSizeHint
-func miqt_exec_callback_QFontDialog_MinimumSizeHint(self *C.QFontDialog, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QFontDialog_MinimumSizeHint(self QFontDialog, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -454,18 +381,18 @@ func miqt_exec_callback_QFontDialog_MinimumSizeHint(self *C.QFontDialog, cb C.in
 
 func (this *QFontDialog) callVirtualBase_Open() {
 
-	C.QFontDialog_virtualbase_Open(unsafe.Pointer(this.h))
+	QFontDialog_virtualbase_Open(unsafe.Pointer(this.h))
 
 }
 func (this *QFontDialog) OnOpen(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_Open(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_Open(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_Open
-func miqt_exec_callback_QFontDialog_Open(self *C.QFontDialog, cb C.intptr_t) {
+func miqt_exec_callback_QFontDialog_Open(self QFontDialog, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -477,18 +404,18 @@ func miqt_exec_callback_QFontDialog_Open(self *C.QFontDialog, cb C.intptr_t) {
 
 func (this *QFontDialog) callVirtualBase_Exec() int {
 
-	return (int)(C.QFontDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
+	return (int)(QFontDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
 
 }
 func (this *QFontDialog) OnExec(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_Exec(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_Exec(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_Exec
-func miqt_exec_callback_QFontDialog_Exec(self *C.QFontDialog, cb C.intptr_t) C.int {
+func miqt_exec_callback_QFontDialog_Exec(self QFontDialog, cb intptr_t) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -496,24 +423,24 @@ func miqt_exec_callback_QFontDialog_Exec(self *C.QFontDialog, cb C.intptr_t) C.i
 
 	virtualReturn := gofunc((&QFontDialog{h: self}).callVirtualBase_Exec)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QFontDialog) callVirtualBase_Accept() {
 
-	C.QFontDialog_virtualbase_Accept(unsafe.Pointer(this.h))
+	QFontDialog_virtualbase_Accept(unsafe.Pointer(this.h))
 
 }
 func (this *QFontDialog) OnAccept(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_Accept(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_Accept(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_Accept
-func miqt_exec_callback_QFontDialog_Accept(self *C.QFontDialog, cb C.intptr_t) {
+func miqt_exec_callback_QFontDialog_Accept(self QFontDialog, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -525,18 +452,18 @@ func miqt_exec_callback_QFontDialog_Accept(self *C.QFontDialog, cb C.intptr_t) {
 
 func (this *QFontDialog) callVirtualBase_Reject() {
 
-	C.QFontDialog_virtualbase_Reject(unsafe.Pointer(this.h))
+	QFontDialog_virtualbase_Reject(unsafe.Pointer(this.h))
 
 }
 func (this *QFontDialog) OnReject(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_Reject(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_Reject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_Reject
-func miqt_exec_callback_QFontDialog_Reject(self *C.QFontDialog, cb C.intptr_t) {
+func miqt_exec_callback_QFontDialog_Reject(self QFontDialog, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -548,18 +475,18 @@ func miqt_exec_callback_QFontDialog_Reject(self *C.QFontDialog, cb C.intptr_t) {
 
 func (this *QFontDialog) callVirtualBase_KeyPressEvent(param1 *QKeyEvent) {
 
-	C.QFontDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QFontDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QFontDialog) OnKeyPressEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_KeyPressEvent
-func miqt_exec_callback_QFontDialog_KeyPressEvent(self *C.QFontDialog, cb C.intptr_t, param1 *C.QKeyEvent) {
+func miqt_exec_callback_QFontDialog_KeyPressEvent(self QFontDialog, cb intptr_t, param1 *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QKeyEvent), param1 *QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -574,18 +501,18 @@ func miqt_exec_callback_QFontDialog_KeyPressEvent(self *C.QFontDialog, cb C.intp
 
 func (this *QFontDialog) callVirtualBase_CloseEvent(param1 *QCloseEvent) {
 
-	C.QFontDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QFontDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QFontDialog) OnCloseEvent(slot func(super func(param1 *QCloseEvent), param1 *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_CloseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_CloseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_CloseEvent
-func miqt_exec_callback_QFontDialog_CloseEvent(self *C.QFontDialog, cb C.intptr_t, param1 *C.QCloseEvent) {
+func miqt_exec_callback_QFontDialog_CloseEvent(self QFontDialog, cb intptr_t, param1 *QCloseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QCloseEvent), param1 *QCloseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -600,18 +527,18 @@ func miqt_exec_callback_QFontDialog_CloseEvent(self *C.QFontDialog, cb C.intptr_
 
 func (this *QFontDialog) callVirtualBase_ShowEvent(param1 *QShowEvent) {
 
-	C.QFontDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QFontDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QFontDialog) OnShowEvent(slot func(super func(param1 *QShowEvent), param1 *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_ShowEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_ShowEvent
-func miqt_exec_callback_QFontDialog_ShowEvent(self *C.QFontDialog, cb C.intptr_t, param1 *C.QShowEvent) {
+func miqt_exec_callback_QFontDialog_ShowEvent(self QFontDialog, cb intptr_t, param1 *QShowEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QShowEvent), param1 *QShowEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -626,18 +553,18 @@ func miqt_exec_callback_QFontDialog_ShowEvent(self *C.QFontDialog, cb C.intptr_t
 
 func (this *QFontDialog) callVirtualBase_ResizeEvent(param1 *QResizeEvent) {
 
-	C.QFontDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QFontDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QFontDialog) OnResizeEvent(slot func(super func(param1 *QResizeEvent), param1 *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_ResizeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_ResizeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_ResizeEvent
-func miqt_exec_callback_QFontDialog_ResizeEvent(self *C.QFontDialog, cb C.intptr_t, param1 *C.QResizeEvent) {
+func miqt_exec_callback_QFontDialog_ResizeEvent(self QFontDialog, cb intptr_t, param1 *QResizeEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QResizeEvent), param1 *QResizeEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -652,18 +579,18 @@ func miqt_exec_callback_QFontDialog_ResizeEvent(self *C.QFontDialog, cb C.intptr
 
 func (this *QFontDialog) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
 
-	C.QFontDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QFontDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QFontDialog) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontDialog_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontDialog_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontDialog_ContextMenuEvent
-func miqt_exec_callback_QFontDialog_ContextMenuEvent(self *C.QFontDialog, cb C.intptr_t, param1 *C.QContextMenuEvent) {
+func miqt_exec_callback_QFontDialog_ContextMenuEvent(self QFontDialog, cb intptr_t, param1 *QContextMenuEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -674,18 +601,4 @@ func miqt_exec_callback_QFontDialog_ContextMenuEvent(self *C.QFontDialog, cb C.i
 
 	gofunc((&QFontDialog{h: self}).callVirtualBase_ContextMenuEvent, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QFontDialog) Delete() {
-	C.QFontDialog_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QFontDialog) GoGC() {
-	runtime.SetFinalizer(this, func(this *QFontDialog) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

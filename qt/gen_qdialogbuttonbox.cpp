@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QActionEvent>
 #include <QByteArray>
@@ -8,6 +10,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -40,7 +43,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQDialogButtonBox : public virtual QDialogButtonBox {
 public:
@@ -48,11 +66,11 @@ public:
 	MiqtVirtualQDialogButtonBox(QWidget* parent): QDialogButtonBox(parent) {};
 	MiqtVirtualQDialogButtonBox(): QDialogButtonBox() {};
 	MiqtVirtualQDialogButtonBox(Qt::Orientation orientation): QDialogButtonBox(orientation) {};
-	MiqtVirtualQDialogButtonBox(QDialogButtonBox::StandardButtons buttons): QDialogButtonBox(buttons) {};
-	MiqtVirtualQDialogButtonBox(QDialogButtonBox::StandardButtons buttons, Qt::Orientation orientation): QDialogButtonBox(buttons, orientation) {};
+	MiqtVirtualQDialogButtonBox(StandardButtons buttons): QDialogButtonBox(buttons) {};
+	MiqtVirtualQDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation): QDialogButtonBox(buttons, orientation) {};
 	MiqtVirtualQDialogButtonBox(Qt::Orientation orientation, QWidget* parent): QDialogButtonBox(orientation, parent) {};
-	MiqtVirtualQDialogButtonBox(QDialogButtonBox::StandardButtons buttons, QWidget* parent): QDialogButtonBox(buttons, parent) {};
-	MiqtVirtualQDialogButtonBox(QDialogButtonBox::StandardButtons buttons, Qt::Orientation orientation, QWidget* parent): QDialogButtonBox(buttons, orientation, parent) {};
+	MiqtVirtualQDialogButtonBox(StandardButtons buttons, QWidget* parent): QDialogButtonBox(buttons, parent) {};
+	MiqtVirtualQDialogButtonBox(StandardButtons buttons, Qt::Orientation orientation, QWidget* parent): QDialogButtonBox(buttons, orientation, parent) {};
 
 	virtual ~MiqtVirtualQDialogButtonBox() = default;
 
@@ -480,13 +498,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QDialogButtonBox::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QDialogButtonBox_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -494,7 +512,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QDialogButtonBox::enterEvent(event);
 
@@ -840,7 +858,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QDialogButtonBox::nativeEvent(eventType, message, result);
 		}
@@ -852,7 +870,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QDialogButtonBox_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -860,10 +879,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QDialogButtonBox::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QDialogButtonBox::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -871,13 +890,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QDialogButtonBox::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QDialogButtonBox_Metric(const_cast<MiqtVirtualQDialogButtonBox*>(this), handle__Metric, sigval1);
 
@@ -885,9 +903,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QDialogButtonBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QDialogButtonBox::metric(param1);
 
 	}
 
@@ -1045,24 +1063,24 @@ QDialogButtonBox* QDialogButtonBox_new3(int orientation) {
 	return new MiqtVirtualQDialogButtonBox(static_cast<Qt::Orientation>(orientation));
 }
 
-QDialogButtonBox* QDialogButtonBox_new4(int buttons) {
-	return new MiqtVirtualQDialogButtonBox(static_cast<QDialogButtonBox::StandardButtons>(buttons));
+QDialogButtonBox* QDialogButtonBox_new4(StandardButtons buttons) {
+	return new MiqtVirtualQDialogButtonBox(buttons);
 }
 
-QDialogButtonBox* QDialogButtonBox_new5(int buttons, int orientation) {
-	return new MiqtVirtualQDialogButtonBox(static_cast<QDialogButtonBox::StandardButtons>(buttons), static_cast<Qt::Orientation>(orientation));
+QDialogButtonBox* QDialogButtonBox_new5(StandardButtons buttons, int orientation) {
+	return new MiqtVirtualQDialogButtonBox(buttons, static_cast<Qt::Orientation>(orientation));
 }
 
 QDialogButtonBox* QDialogButtonBox_new6(int orientation, QWidget* parent) {
 	return new MiqtVirtualQDialogButtonBox(static_cast<Qt::Orientation>(orientation), parent);
 }
 
-QDialogButtonBox* QDialogButtonBox_new7(int buttons, QWidget* parent) {
-	return new MiqtVirtualQDialogButtonBox(static_cast<QDialogButtonBox::StandardButtons>(buttons), parent);
+QDialogButtonBox* QDialogButtonBox_new7(StandardButtons buttons, QWidget* parent) {
+	return new MiqtVirtualQDialogButtonBox(buttons, parent);
 }
 
-QDialogButtonBox* QDialogButtonBox_new8(int buttons, int orientation, QWidget* parent) {
-	return new MiqtVirtualQDialogButtonBox(static_cast<QDialogButtonBox::StandardButtons>(buttons), static_cast<Qt::Orientation>(orientation), parent);
+QDialogButtonBox* QDialogButtonBox_new8(StandardButtons buttons, int orientation, QWidget* parent) {
+	return new MiqtVirtualQDialogButtonBox(buttons, static_cast<Qt::Orientation>(orientation), parent);
 }
 
 void QDialogButtonBox_virtbase(QDialogButtonBox* src, QWidget** outptr_QWidget) {
@@ -1088,17 +1106,6 @@ struct miqt_string QDialogButtonBox_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QDialogButtonBox_TrUtf8(const char* s) {
-	QString _ret = QDialogButtonBox::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QDialogButtonBox_SetOrientation(QDialogButtonBox* self, int orientation) {
 	self->setOrientation(static_cast<Qt::Orientation>(orientation));
 }
@@ -1108,17 +1115,17 @@ int QDialogButtonBox_Orientation(const QDialogButtonBox* self) {
 	return static_cast<int>(_ret);
 }
 
-void QDialogButtonBox_AddButton(QDialogButtonBox* self, QAbstractButton* button, int role) {
-	self->addButton(button, static_cast<QDialogButtonBox::ButtonRole>(role));
+void QDialogButtonBox_AddButton(QDialogButtonBox* self, QAbstractButton* button, ButtonRole role) {
+	self->addButton(button, role);
 }
 
-QPushButton* QDialogButtonBox_AddButton2(QDialogButtonBox* self, struct miqt_string text, int role) {
+QPushButton* QDialogButtonBox_AddButton2(QDialogButtonBox* self, struct miqt_string text, ButtonRole role) {
 	QString text_QString = QString::fromUtf8(text.data, text.len);
-	return self->addButton(text_QString, static_cast<QDialogButtonBox::ButtonRole>(role));
+	return self->addButton(text_QString, role);
 }
 
-QPushButton* QDialogButtonBox_AddButtonWithButton(QDialogButtonBox* self, int button) {
-	return self->addButton(static_cast<QDialogButtonBox::StandardButton>(button));
+QPushButton* QDialogButtonBox_AddButtonWithButton(QDialogButtonBox* self, StandardButton button) {
+	return self->addButton(button);
 }
 
 void QDialogButtonBox_RemoveButton(QDialogButtonBox* self, QAbstractButton* button) {
@@ -1142,27 +1149,24 @@ struct miqt_array /* of QAbstractButton* */  QDialogButtonBox_Buttons(const QDia
 	return _out;
 }
 
-int QDialogButtonBox_ButtonRole(const QDialogButtonBox* self, QAbstractButton* button) {
-	QDialogButtonBox::ButtonRole _ret = self->buttonRole(button);
-	return static_cast<int>(_ret);
+ButtonRole QDialogButtonBox_ButtonRole(const QDialogButtonBox* self, QAbstractButton* button) {
+	return self->buttonRole(button);
 }
 
-void QDialogButtonBox_SetStandardButtons(QDialogButtonBox* self, int buttons) {
-	self->setStandardButtons(static_cast<QDialogButtonBox::StandardButtons>(buttons));
+void QDialogButtonBox_SetStandardButtons(QDialogButtonBox* self, StandardButtons buttons) {
+	self->setStandardButtons(buttons);
 }
 
-int QDialogButtonBox_StandardButtons(const QDialogButtonBox* self) {
-	QDialogButtonBox::StandardButtons _ret = self->standardButtons();
-	return static_cast<int>(_ret);
+StandardButtons QDialogButtonBox_StandardButtons(const QDialogButtonBox* self) {
+	return self->standardButtons();
 }
 
-int QDialogButtonBox_StandardButton(const QDialogButtonBox* self, QAbstractButton* button) {
-	QDialogButtonBox::StandardButton _ret = self->standardButton(button);
-	return static_cast<int>(_ret);
+StandardButton QDialogButtonBox_StandardButton(const QDialogButtonBox* self, QAbstractButton* button) {
+	return self->standardButton(button);
 }
 
-QPushButton* QDialogButtonBox_Button(const QDialogButtonBox* self, int which) {
-	return self->button(static_cast<QDialogButtonBox::StandardButton>(which));
+QPushButton* QDialogButtonBox_Button(const QDialogButtonBox* self, StandardButton which) {
+	return self->button(which);
 }
 
 void QDialogButtonBox_SetCenterButtons(QDialogButtonBox* self, bool center) {
@@ -1227,28 +1231,6 @@ struct miqt_string QDialogButtonBox_Tr2(const char* s, const char* c) {
 
 struct miqt_string QDialogButtonBox_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QDialogButtonBox::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDialogButtonBox_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDialogButtonBox::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDialogButtonBox_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDialogButtonBox::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1406,7 +1388,7 @@ void QDialogButtonBox_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDialogButtonBox*>( (QDialogButtonBox*)(self) )->handle__EnterEvent = slot;
 }
 
-void QDialogButtonBox_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QDialogButtonBox_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQDialogButtonBox*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1526,7 +1508,7 @@ void QDialogButtonBox_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDialogButtonBox*>( (QDialogButtonBox*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QDialogButtonBox_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QDialogButtonBox_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQDialogButtonBox*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1534,7 +1516,7 @@ void QDialogButtonBox_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDialogButtonBox*>( (QDialogButtonBox*)(self) )->handle__Metric = slot;
 }
 
-int QDialogButtonBox_virtualbase_Metric(const void* self, int param1) {
+int QDialogButtonBox_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQDialogButtonBox*)(self) )->virtualbase_Metric(param1);
 }
 

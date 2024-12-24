@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCloseEvent>
 #include <QEvent>
 #include <QFocusEvent>
@@ -37,7 +39,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsProxyWidget : public virtual QGraphicsProxyWidget {
 public:
@@ -126,13 +143,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsProxyWidget::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -143,9 +159,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsProxyWidget::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsProxyWidget::itemChange(change, *value));
 
 	}
 
@@ -1256,17 +1272,6 @@ struct miqt_string QGraphicsProxyWidget_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsProxyWidget_TrUtf8(const char* s) {
-	QString _ret = QGraphicsProxyWidget::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsProxyWidget_SetWidget(QGraphicsProxyWidget* self, QWidget* widget) {
 	self->setWidget(widget);
 }
@@ -1317,28 +1322,6 @@ struct miqt_string QGraphicsProxyWidget_Tr3(const char* s, const char* c, int n)
 	return _ms;
 }
 
-struct miqt_string QGraphicsProxyWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsProxyWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsProxyWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsProxyWidget::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsProxyWidget_override_virtual_SetGeometry(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsProxyWidget*>( (QGraphicsProxyWidget*)(self) )->handle__SetGeometry = slot;
 }
@@ -1367,7 +1350,7 @@ void QGraphicsProxyWidget_override_virtual_ItemChange(void* self, intptr_t slot)
 	dynamic_cast<MiqtVirtualQGraphicsProxyWidget*>( (QGraphicsProxyWidget*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsProxyWidget_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsProxyWidget_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsProxyWidget*)(self) )->virtualbase_ItemChange(change, value);
 }
 

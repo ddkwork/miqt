@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -11,7 +13,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QCommandLineParser* QCommandLineParser_new() {
 	return new QCommandLineParser();
@@ -28,23 +45,12 @@ struct miqt_string QCommandLineParser_Tr(const char* sourceText) {
 	return _ms;
 }
 
-struct miqt_string QCommandLineParser_TrUtf8(const char* sourceText) {
-	QString _ret = QCommandLineParser::trUtf8(sourceText);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QCommandLineParser_SetSingleDashWordOptionMode(QCommandLineParser* self, SingleDashWordOptionMode parsingMode) {
+	self->setSingleDashWordOptionMode(parsingMode);
 }
 
-void QCommandLineParser_SetSingleDashWordOptionMode(QCommandLineParser* self, int parsingMode) {
-	self->setSingleDashWordOptionMode(static_cast<QCommandLineParser::SingleDashWordOptionMode>(parsingMode));
-}
-
-void QCommandLineParser_SetOptionsAfterPositionalArgumentsMode(QCommandLineParser* self, int mode) {
-	self->setOptionsAfterPositionalArgumentsMode(static_cast<QCommandLineParser::OptionsAfterPositionalArgumentsMode>(mode));
+void QCommandLineParser_SetOptionsAfterPositionalArgumentsMode(QCommandLineParser* self, OptionsAfterPositionalArgumentsMode mode) {
+	self->setOptionsAfterPositionalArgumentsMode(mode);
 }
 
 bool QCommandLineParser_AddOption(QCommandLineParser* self, QCommandLineOption* commandLineOption) {
@@ -265,6 +271,14 @@ struct miqt_array /* of struct miqt_string */  QCommandLineParser_UnknownOptionN
 	return _out;
 }
 
+void QCommandLineParser_ShowVersion(QCommandLineParser* self) {
+	self->showVersion();
+}
+
+void QCommandLineParser_ShowHelp(QCommandLineParser* self) {
+	self->showHelp();
+}
+
 struct miqt_string QCommandLineParser_HelpText(const QCommandLineParser* self) {
 	QString _ret = self->helpText();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -274,6 +288,11 @@ struct miqt_string QCommandLineParser_HelpText(const QCommandLineParser* self) {
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
+}
+
+void QCommandLineParser_ShowMessageAndExit(struct miqt_string message, MessageType typeVal) {
+	QString message_QString = QString::fromUtf8(message.data, message.len);
+	QCommandLineParser::showMessageAndExit(message_QString, typeVal);
 }
 
 struct miqt_string QCommandLineParser_Tr2(const char* sourceText, const char* disambiguation) {
@@ -298,33 +317,20 @@ struct miqt_string QCommandLineParser_Tr3(const char* sourceText, const char* di
 	return _ms;
 }
 
-struct miqt_string QCommandLineParser_TrUtf82(const char* sourceText, const char* disambiguation) {
-	QString _ret = QCommandLineParser::trUtf8(sourceText, disambiguation);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCommandLineParser_TrUtf83(const char* sourceText, const char* disambiguation, int n) {
-	QString _ret = QCommandLineParser::trUtf8(sourceText, disambiguation, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QCommandLineParser_AddPositionalArgument3(QCommandLineParser* self, struct miqt_string name, struct miqt_string description, struct miqt_string syntax) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
 	QString description_QString = QString::fromUtf8(description.data, description.len);
 	QString syntax_QString = QString::fromUtf8(syntax.data, syntax.len);
 	self->addPositionalArgument(name_QString, description_QString, syntax_QString);
+}
+
+void QCommandLineParser_ShowHelp1(QCommandLineParser* self, int exitCode) {
+	self->showHelp(static_cast<int>(exitCode));
+}
+
+void QCommandLineParser_ShowMessageAndExit3(struct miqt_string message, MessageType typeVal, int exitCode) {
+	QString message_QString = QString::fromUtf8(message.data, message.len);
+	QCommandLineParser::showMessageAndExit(message_QString, typeVal, static_cast<int>(exitCode));
 }
 
 void QCommandLineParser_Delete(QCommandLineParser* self, bool isSubclass) {

@@ -1,5 +1,6 @@
+// +build ignore
+
 #include <QBitmap>
-#include <QList>
 #include <QPoint>
 #include <QRect>
 #include <QRegion>
@@ -9,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QRegion* QRegion_new() {
 	return new QRegion();
@@ -31,12 +47,12 @@ QRegion* QRegion_new5(QBitmap* bitmap) {
 	return new QRegion(*bitmap);
 }
 
-QRegion* QRegion_new6(int x, int y, int w, int h, int t) {
-	return new QRegion(static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h), static_cast<QRegion::RegionType>(t));
+QRegion* QRegion_new6(int x, int y, int w, int h, RegionType t) {
+	return new QRegion(static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h), t);
 }
 
-QRegion* QRegion_new7(QRect* r, int t) {
-	return new QRegion(*r, static_cast<QRegion::RegionType>(t));
+QRegion* QRegion_new7(QRect* r, RegionType t) {
+	return new QRegion(*r, t);
 }
 
 void QRegion_OperatorAssign(QRegion* self, QRegion* param1) {
@@ -55,24 +71,36 @@ bool QRegion_IsNull(const QRegion* self) {
 	return self->isNull();
 }
 
-QRect* QRegion_Begin(const QRegion* self) {
-	QRegion::const_iterator _ret = self->begin();
-	return const_cast<QRect*>(static_cast<const QRect*>(_ret));
+const_iterator QRegion_Begin(const QRegion* self) {
+	return self->begin();
 }
 
-QRect* QRegion_Cbegin(const QRegion* self) {
-	QRegion::const_iterator _ret = self->cbegin();
-	return const_cast<QRect*>(static_cast<const QRect*>(_ret));
+const_iterator QRegion_Cbegin(const QRegion* self) {
+	return self->cbegin();
 }
 
-QRect* QRegion_End(const QRegion* self) {
-	QRegion::const_iterator _ret = self->end();
-	return const_cast<QRect*>(static_cast<const QRect*>(_ret));
+const_iterator QRegion_End(const QRegion* self) {
+	return self->end();
 }
 
-QRect* QRegion_Cend(const QRegion* self) {
-	QRegion::const_iterator _ret = self->cend();
-	return const_cast<QRect*>(static_cast<const QRect*>(_ret));
+const_iterator QRegion_Cend(const QRegion* self) {
+	return self->cend();
+}
+
+const_reverse_iterator QRegion_Rbegin(const QRegion* self) {
+	return self->rbegin();
+}
+
+const_reverse_iterator QRegion_Crbegin(const QRegion* self) {
+	return self->crbegin();
+}
+
+const_reverse_iterator QRegion_Rend(const QRegion* self) {
+	return self->rend();
+}
+
+const_reverse_iterator QRegion_Crend(const QRegion* self) {
+	return self->crend();
 }
 
 bool QRegion_Contains(const QRegion* self, QPoint* p) {
@@ -135,21 +163,16 @@ QRect* QRegion_BoundingRect(const QRegion* self) {
 	return new QRect(self->boundingRect());
 }
 
-struct miqt_array /* of QRect* */  QRegion_Rects(const QRegion* self) {
-	QVector<QRect> _ret = self->rects();
-	// Convert QList<> from C++ memory to manually-managed C memory
-	QRect** _arr = static_cast<QRect**>(malloc(sizeof(QRect*) * _ret.length()));
-	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		_arr[i] = new QRect(_ret[i]);
-	}
-	struct miqt_array _out;
-	_out.len = _ret.length();
-	_out.data = static_cast<void*>(_arr);
-	return _out;
-}
-
 void QRegion_SetRects(QRegion* self, QRect* rect, int num) {
 	self->setRects(rect, static_cast<int>(num));
+}
+
+void QRegion_SetRectsWithQSpanLesserconstQRectGreater(QRegion* self, QSpan<const QRect> r) {
+	self->setRects(r);
+}
+
+QSpan<const QRect> QRegion_Rects(const QRegion* self) {
+	return self->rects();
 }
 
 int QRegion_RectCount(const QRegion* self) {
@@ -224,6 +247,15 @@ bool QRegion_OperatorEqual(const QRegion* self, QRegion* r) {
 
 bool QRegion_OperatorNotEqual(const QRegion* self, QRegion* r) {
 	return (*self != *r);
+}
+
+struct HRGN__* QRegion_ToHRGN(const QRegion* self) {
+	HRGN _ret = self->toHRGN();
+	return static_cast<struct HRGN__*>(_ret);
+}
+
+QRegion* QRegion_FromHRGN(struct HRGN__* hrgn) {
+	return new QRegion(QRegion::fromHRGN(hrgn));
 }
 
 void QRegion_Delete(QRegion* self, bool isSubclass) {

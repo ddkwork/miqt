@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
@@ -7,10 +9,10 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
-#include <QIcon>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QMetaObject>
@@ -29,6 +31,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionToolBar>
 #include <QTabletEvent>
 #include <QToolBar>
 #include <QVariant>
@@ -40,7 +43,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQToolBar : public virtual QToolBar {
 public:
@@ -144,6 +162,30 @@ public:
 	bool virtualbase_Event(QEvent* event) {
 
 		return QToolBar::event(event);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionToolBar* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QToolBar::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionToolBar* sigval1 = option;
+
+		miqt_exec_callback_QToolBar_InitStyleOption(const_cast<MiqtVirtualQToolBar*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionToolBar* option) const {
+
+		QToolBar::initStyleOption(option);
 
 	}
 
@@ -524,13 +566,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QToolBar::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QToolBar_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -538,7 +580,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QToolBar::enterEvent(event);
 
@@ -836,7 +878,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QToolBar::nativeEvent(eventType, message, result);
 		}
@@ -848,7 +890,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QToolBar_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -856,10 +899,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QToolBar::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QToolBar::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -867,13 +910,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QToolBar::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QToolBar_Metric(const_cast<MiqtVirtualQToolBar*>(this), handle__Metric, sigval1);
 
@@ -881,9 +923,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QToolBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QToolBar::metric(param1);
 
 	}
 
@@ -1070,17 +1112,6 @@ struct miqt_string QToolBar_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QToolBar_TrUtf8(const char* s) {
-	QString _ret = QToolBar::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QToolBar_SetMovable(QToolBar* self, bool movable) {
 	self->setMovable(movable);
 }
@@ -1113,16 +1144,6 @@ int QToolBar_Orientation(const QToolBar* self) {
 
 void QToolBar_Clear(QToolBar* self) {
 	self->clear();
-}
-
-QAction* QToolBar_AddAction(QToolBar* self, struct miqt_string text) {
-	QString text_QString = QString::fromUtf8(text.data, text.len);
-	return self->addAction(text_QString);
-}
-
-QAction* QToolBar_AddAction2(QToolBar* self, QIcon* icon, struct miqt_string text) {
-	QString text_QString = QString::fromUtf8(text.data, text.len);
-	return self->addAction(*icon, text_QString);
 }
 
 QAction* QToolBar_AddSeparator(QToolBar* self) {
@@ -1305,28 +1326,6 @@ struct miqt_string QToolBar_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QToolBar_TrUtf82(const char* s, const char* c) {
-	QString _ret = QToolBar::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QToolBar_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QToolBar::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QToolBar_override_virtual_ActionEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolBar*>( (QToolBar*)(self) )->handle__ActionEvent = slot;
 }
@@ -1357,6 +1356,14 @@ void QToolBar_override_virtual_Event(void* self, intptr_t slot) {
 
 bool QToolBar_virtualbase_Event(void* self, QEvent* event) {
 	return ( (MiqtVirtualQToolBar*)(self) )->virtualbase_Event(event);
+}
+
+void QToolBar_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQToolBar*>( (QToolBar*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QToolBar_virtualbase_InitStyleOption(const void* self, QStyleOptionToolBar* option) {
+	( (const MiqtVirtualQToolBar*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QToolBar_override_virtual_DevType(void* self, intptr_t slot) {
@@ -1491,7 +1498,7 @@ void QToolBar_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolBar*>( (QToolBar*)(self) )->handle__EnterEvent = slot;
 }
 
-void QToolBar_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QToolBar_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQToolBar*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1595,7 +1602,7 @@ void QToolBar_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolBar*>( (QToolBar*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QToolBar_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QToolBar_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQToolBar*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1603,7 +1610,7 @@ void QToolBar_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolBar*>( (QToolBar*)(self) )->handle__Metric = slot;
 }
 
-int QToolBar_virtualbase_Metric(const void* self, int param1) {
+int QToolBar_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQToolBar*)(self) )->virtualbase_Metric(param1);
 }
 

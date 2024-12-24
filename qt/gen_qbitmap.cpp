@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QBitmap>
 #include <QImage>
-#include <QMatrix>
 #include <QPaintDevice>
 #include <QPaintEngine>
 #include <QPixmap>
@@ -15,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQBitmap : public virtual QBitmap {
 public:
@@ -25,7 +41,6 @@ public:
 	MiqtVirtualQBitmap(int w, int h): QBitmap(w, h) {};
 	MiqtVirtualQBitmap(const QSize& param1): QBitmap(param1) {};
 	MiqtVirtualQBitmap(const QString& fileName): QBitmap(fileName) {};
-	MiqtVirtualQBitmap(const QBitmap& other): QBitmap(other) {};
 	MiqtVirtualQBitmap(const QString& fileName, const char* format): QBitmap(fileName, format) {};
 
 	virtual ~MiqtVirtualQBitmap() = default;
@@ -78,13 +93,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QBitmap::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QBitmap_Metric(const_cast<MiqtVirtualQBitmap*>(this), handle__Metric, sigval1);
 
@@ -92,9 +106,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QBitmap::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QBitmap::metric(param1);
 
 	}
 
@@ -121,11 +135,7 @@ QBitmap* QBitmap_new5(struct miqt_string fileName) {
 	return new MiqtVirtualQBitmap(fileName_QString);
 }
 
-QBitmap* QBitmap_new6(QBitmap* other) {
-	return new MiqtVirtualQBitmap(*other);
-}
-
-QBitmap* QBitmap_new7(struct miqt_string fileName, const char* format) {
+QBitmap* QBitmap_new6(struct miqt_string fileName, const char* format) {
 	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
 	return new MiqtVirtualQBitmap(fileName_QString, format);
 }
@@ -134,11 +144,7 @@ void QBitmap_virtbase(QBitmap* src, QPixmap** outptr_QPixmap) {
 	*outptr_QPixmap = static_cast<QPixmap*>(src);
 }
 
-void QBitmap_OperatorAssign(QBitmap* self, QBitmap* other) {
-	self->operator=(*other);
-}
-
-void QBitmap_OperatorAssignWithQPixmap(QBitmap* self, QPixmap* param1) {
+void QBitmap_OperatorAssign(QBitmap* self, QPixmap* param1) {
 	self->operator=(*param1);
 }
 
@@ -158,12 +164,16 @@ QBitmap* QBitmap_FromData(QSize* size, const unsigned char* bits) {
 	return new QBitmap(QBitmap::fromData(*size, static_cast<const uchar*>(bits)));
 }
 
-QBitmap* QBitmap_Transformed(const QBitmap* self, QMatrix* param1) {
-	return new QBitmap(self->transformed(*param1));
+QBitmap* QBitmap_FromPixmap(QPixmap* pixmap) {
+	return new QBitmap(QBitmap::fromPixmap(*pixmap));
 }
 
-QBitmap* QBitmap_TransformedWithMatrix(const QBitmap* self, QTransform* matrix) {
+QBitmap* QBitmap_Transformed(const QBitmap* self, QTransform* matrix) {
 	return new QBitmap(self->transformed(*matrix));
+}
+
+void QBitmap_OperatorAssignWithQBitmap(QBitmap* self, QBitmap* param1) {
+	self->operator=(*param1);
 }
 
 QBitmap* QBitmap_FromImage2(QImage* image, int flags) {
@@ -194,7 +204,7 @@ void QBitmap_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQBitmap*>( (QBitmap*)(self) )->handle__Metric = slot;
 }
 
-int QBitmap_virtualbase_Metric(const void* self, int param1) {
+int QBitmap_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQBitmap*)(self) )->virtualbase_Metric(param1);
 }
 

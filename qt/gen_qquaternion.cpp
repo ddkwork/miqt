@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QQuaternion>
 #include <QVector3D>
 #include <QVector4D>
@@ -7,7 +9,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QQuaternion* QQuaternion_new() {
 	return new QQuaternion();
@@ -111,10 +128,6 @@ QQuaternion* QQuaternion_Inverted(const QQuaternion* self) {
 
 QQuaternion* QQuaternion_Conjugated(const QQuaternion* self) {
 	return new QQuaternion(self->conjugated());
-}
-
-QQuaternion* QQuaternion_Conjugate(const QQuaternion* self) {
-	return new QQuaternion(self->conjugate());
 }
 
 QVector3D* QQuaternion_RotatedVector(const QQuaternion* self, QVector3D* vector) {

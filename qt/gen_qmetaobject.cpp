@@ -1,4 +1,7 @@
+// +build ignore
+
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QGenericArgument>
 #include <QGenericReturnArgument>
 #include <QList>
@@ -7,7 +10,9 @@
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMetaProperty>
+#include <QMetaType>
 #include <QObject>
+#include <QUntypedBindable>
 #include <QVariant>
 #include <qmetaobject.h>
 #include "gen_qmetaobject.h"
@@ -15,7 +20,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QMetaMethod* QMetaMethod_new() {
 	return new QMetaMethod();
@@ -43,6 +63,10 @@ struct miqt_string QMetaMethod_Name(const QMetaMethod* self) {
 	return _ms;
 }
 
+QByteArrayView* QMetaMethod_NameView(const QMetaMethod* self) {
+	return new QByteArrayView(self->nameView());
+}
+
 const char* QMetaMethod_TypeName(const QMetaMethod* self) {
 	return (const char*) self->typeName();
 }
@@ -51,12 +75,20 @@ int QMetaMethod_ReturnType(const QMetaMethod* self) {
 	return self->returnType();
 }
 
+QMetaType* QMetaMethod_ReturnMetaType(const QMetaMethod* self) {
+	return new QMetaType(self->returnMetaType());
+}
+
 int QMetaMethod_ParameterCount(const QMetaMethod* self) {
 	return self->parameterCount();
 }
 
 int QMetaMethod_ParameterType(const QMetaMethod* self, int index) {
 	return self->parameterType(static_cast<int>(index));
+}
+
+QMetaType* QMetaMethod_ParameterMetaType(const QMetaMethod* self, int index) {
+	return new QMetaType(self->parameterMetaType(static_cast<int>(index)));
 }
 
 void QMetaMethod_GetParameterTypes(const QMetaMethod* self, int* types) {
@@ -81,6 +113,15 @@ struct miqt_array /* of struct miqt_string */  QMetaMethod_ParameterTypes(const 
 	return _out;
 }
 
+struct miqt_string QMetaMethod_ParameterTypeName(const QMetaMethod* self, int index) {
+	QByteArray _qb = self->parameterTypeName(static_cast<int>(index));
+	struct miqt_string _ms;
+	_ms.len = _qb.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _qb.data(), _ms.len);
+	return _ms;
+}
+
 struct miqt_array /* of struct miqt_string */  QMetaMethod_ParameterNames(const QMetaMethod* self) {
 	QList<QByteArray> _ret = self->parameterNames();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -103,14 +144,12 @@ const char* QMetaMethod_Tag(const QMetaMethod* self) {
 	return (const char*) self->tag();
 }
 
-int QMetaMethod_Access(const QMetaMethod* self) {
-	QMetaMethod::Access _ret = self->access();
-	return static_cast<int>(_ret);
+Access QMetaMethod_Access(const QMetaMethod* self) {
+	return self->access();
 }
 
-int QMetaMethod_MethodType(const QMetaMethod* self) {
-	QMetaMethod::MethodType _ret = self->methodType();
-	return static_cast<int>(_ret);
+MethodType QMetaMethod_MethodType(const QMetaMethod* self) {
+	return self->methodType();
 }
 
 int QMetaMethod_Attributes(const QMetaMethod* self) {
@@ -121,8 +160,16 @@ int QMetaMethod_MethodIndex(const QMetaMethod* self) {
 	return self->methodIndex();
 }
 
+int QMetaMethod_RelativeMethodIndex(const QMetaMethod* self) {
+	return self->relativeMethodIndex();
+}
+
 int QMetaMethod_Revision(const QMetaMethod* self) {
 	return self->revision();
+}
+
+bool QMetaMethod_IsConst(const QMetaMethod* self) {
+	return self->isConst();
 }
 
 QMetaObject* QMetaMethod_EnclosingMetaObject(const QMetaMethod* self) {
@@ -137,27 +184,27 @@ bool QMetaMethod_Invoke2(const QMetaMethod* self, QObject* object, QGenericRetur
 	return self->invoke(object, *returnValue);
 }
 
-bool QMetaMethod_Invoke3(const QMetaMethod* self, QObject* object, int connectionType) {
-	return self->invoke(object, static_cast<Qt::ConnectionType>(connectionType));
+bool QMetaMethod_Invoke3(const QMetaMethod* self, QObject* object, int connectionType, QGenericArgument* val0) {
+	return self->invoke(object, static_cast<Qt::ConnectionType>(connectionType), *val0);
 }
 
-bool QMetaMethod_InvokeWithObject(const QMetaMethod* self, QObject* object) {
-	return self->invoke(object);
+bool QMetaMethod_Invoke4(const QMetaMethod* self, QObject* object, QGenericArgument* val0) {
+	return self->invoke(object, *val0);
 }
 
 bool QMetaMethod_InvokeOnGadget(const QMetaMethod* self, void* gadget, QGenericReturnArgument* returnValue) {
 	return self->invokeOnGadget(gadget, *returnValue);
 }
 
-bool QMetaMethod_InvokeOnGadgetWithGadget(const QMetaMethod* self, void* gadget) {
-	return self->invokeOnGadget(gadget);
+bool QMetaMethod_InvokeOnGadget2(const QMetaMethod* self, void* gadget, QGenericArgument* val0) {
+	return self->invokeOnGadget(gadget, *val0);
 }
 
 bool QMetaMethod_IsValid(const QMetaMethod* self) {
 	return self->isValid();
 }
 
-bool QMetaMethod_Invoke4(const QMetaMethod* self, QObject* object, int connectionType, QGenericReturnArgument* returnValue, QGenericArgument* val0) {
+bool QMetaMethod_Invoke42(const QMetaMethod* self, QObject* object, int connectionType, QGenericReturnArgument* returnValue, QGenericArgument* val0) {
 	return self->invoke(object, static_cast<Qt::ConnectionType>(connectionType), *returnValue, *val0);
 }
 
@@ -201,7 +248,7 @@ bool QMetaMethod_Invoke32(const QMetaMethod* self, QObject* object, QGenericRetu
 	return self->invoke(object, *returnValue, *val0);
 }
 
-bool QMetaMethod_Invoke42(const QMetaMethod* self, QObject* object, QGenericReturnArgument* returnValue, QGenericArgument* val0, QGenericArgument* val1) {
+bool QMetaMethod_Invoke43(const QMetaMethod* self, QObject* object, QGenericReturnArgument* returnValue, QGenericArgument* val0, QGenericArgument* val1) {
 	return self->invoke(object, *returnValue, *val0, *val1);
 }
 
@@ -237,11 +284,7 @@ bool QMetaMethod_Invoke122(const QMetaMethod* self, QObject* object, QGenericRet
 	return self->invoke(object, *returnValue, *val0, *val1, *val2, *val3, *val4, *val5, *val6, *val7, *val8, *val9);
 }
 
-bool QMetaMethod_Invoke33(const QMetaMethod* self, QObject* object, int connectionType, QGenericArgument* val0) {
-	return self->invoke(object, static_cast<Qt::ConnectionType>(connectionType), *val0);
-}
-
-bool QMetaMethod_Invoke43(const QMetaMethod* self, QObject* object, int connectionType, QGenericArgument* val0, QGenericArgument* val1) {
+bool QMetaMethod_Invoke44(const QMetaMethod* self, QObject* object, int connectionType, QGenericArgument* val0, QGenericArgument* val1) {
 	return self->invoke(object, static_cast<Qt::ConnectionType>(connectionType), *val0, *val1);
 }
 
@@ -277,15 +320,11 @@ bool QMetaMethod_Invoke123(const QMetaMethod* self, QObject* object, int connect
 	return self->invoke(object, static_cast<Qt::ConnectionType>(connectionType), *val0, *val1, *val2, *val3, *val4, *val5, *val6, *val7, *val8, *val9);
 }
 
-bool QMetaMethod_Invoke22(const QMetaMethod* self, QObject* object, QGenericArgument* val0) {
-	return self->invoke(object, *val0);
-}
-
-bool QMetaMethod_Invoke34(const QMetaMethod* self, QObject* object, QGenericArgument* val0, QGenericArgument* val1) {
+bool QMetaMethod_Invoke33(const QMetaMethod* self, QObject* object, QGenericArgument* val0, QGenericArgument* val1) {
 	return self->invoke(object, *val0, *val1);
 }
 
-bool QMetaMethod_Invoke44(const QMetaMethod* self, QObject* object, QGenericArgument* val0, QGenericArgument* val1, QGenericArgument* val2) {
+bool QMetaMethod_Invoke45(const QMetaMethod* self, QObject* object, QGenericArgument* val0, QGenericArgument* val1, QGenericArgument* val2) {
 	return self->invoke(object, *val0, *val1, *val2);
 }
 
@@ -357,10 +396,6 @@ bool QMetaMethod_InvokeOnGadget12(const QMetaMethod* self, void* gadget, QGeneri
 	return self->invokeOnGadget(gadget, *returnValue, *val0, *val1, *val2, *val3, *val4, *val5, *val6, *val7, *val8, *val9);
 }
 
-bool QMetaMethod_InvokeOnGadget2(const QMetaMethod* self, void* gadget, QGenericArgument* val0) {
-	return self->invokeOnGadget(gadget, *val0);
-}
-
 bool QMetaMethod_InvokeOnGadget32(const QMetaMethod* self, void* gadget, QGenericArgument* val0, QGenericArgument* val1) {
 	return self->invokeOnGadget(gadget, *val0, *val1);
 }
@@ -421,12 +456,20 @@ const char* QMetaEnum_EnumName(const QMetaEnum* self) {
 	return (const char*) self->enumName();
 }
 
+QMetaType* QMetaEnum_MetaType(const QMetaEnum* self) {
+	return new QMetaType(self->metaType());
+}
+
 bool QMetaEnum_IsFlag(const QMetaEnum* self) {
 	return self->isFlag();
 }
 
 bool QMetaEnum_IsScoped(const QMetaEnum* self) {
 	return self->isScoped();
+}
+
+bool QMetaEnum_Is64Bit(const QMetaEnum* self) {
+	return self->is64Bit();
 }
 
 int QMetaEnum_KeyCount(const QMetaEnum* self) {
@@ -449,16 +492,16 @@ int QMetaEnum_KeyToValue(const QMetaEnum* self, const char* key) {
 	return self->keyToValue(key);
 }
 
-const char* QMetaEnum_ValueToKey(const QMetaEnum* self, int value) {
-	return (const char*) self->valueToKey(static_cast<int>(value));
-}
-
 int QMetaEnum_KeysToValue(const QMetaEnum* self, const char* keys) {
 	return self->keysToValue(keys);
 }
 
-struct miqt_string QMetaEnum_ValueToKeys(const QMetaEnum* self, int value) {
-	QByteArray _qb = self->valueToKeys(static_cast<int>(value));
+const char* QMetaEnum_ValueToKey(const QMetaEnum* self, unsigned long long value) {
+	return (const char*) self->valueToKey(static_cast<quint64>(value));
+}
+
+struct miqt_string QMetaEnum_ValueToKeys(const QMetaEnum* self, unsigned long long value) {
+	QByteArray _qb = self->valueToKeys(static_cast<quint64>(value));
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));
@@ -511,6 +554,14 @@ int QMetaProperty_UserType(const QMetaProperty* self) {
 	return self->userType();
 }
 
+int QMetaProperty_TypeId(const QMetaProperty* self) {
+	return self->typeId();
+}
+
+QMetaType* QMetaProperty_MetaType(const QMetaProperty* self) {
+	return new QMetaType(self->metaType());
+}
+
 int QMetaProperty_PropertyIndex(const QMetaProperty* self) {
 	return self->propertyIndex();
 }
@@ -543,10 +594,6 @@ bool QMetaProperty_IsStored(const QMetaProperty* self) {
 	return self->isStored();
 }
 
-bool QMetaProperty_IsEditable(const QMetaProperty* self) {
-	return self->isEditable();
-}
-
 bool QMetaProperty_IsUser(const QMetaProperty* self) {
 	return self->isUser();
 }
@@ -561,6 +608,10 @@ bool QMetaProperty_IsFinal(const QMetaProperty* self) {
 
 bool QMetaProperty_IsRequired(const QMetaProperty* self) {
 	return self->isRequired();
+}
+
+bool QMetaProperty_IsBindable(const QMetaProperty* self) {
+	return self->isBindable();
 }
 
 bool QMetaProperty_IsFlagType(const QMetaProperty* self) {
@@ -603,6 +654,10 @@ bool QMetaProperty_Reset(const QMetaProperty* self, QObject* obj) {
 	return self->reset(obj);
 }
 
+QUntypedBindable* QMetaProperty_Bindable(const QMetaProperty* self, QObject* object) {
+	return new QUntypedBindable(self->bindable(object));
+}
+
 QVariant* QMetaProperty_ReadOnGadget(const QMetaProperty* self, const void* gadget) {
 	return new QVariant(self->readOnGadget(gadget));
 }
@@ -619,32 +674,16 @@ bool QMetaProperty_HasStdCppSet(const QMetaProperty* self) {
 	return self->hasStdCppSet();
 }
 
+bool QMetaProperty_IsAlias(const QMetaProperty* self) {
+	return self->isAlias();
+}
+
 bool QMetaProperty_IsValid(const QMetaProperty* self) {
 	return self->isValid();
 }
 
 QMetaObject* QMetaProperty_EnclosingMetaObject(const QMetaProperty* self) {
 	return (QMetaObject*) self->enclosingMetaObject();
-}
-
-bool QMetaProperty_IsDesignable1(const QMetaProperty* self, QObject* obj) {
-	return self->isDesignable(obj);
-}
-
-bool QMetaProperty_IsScriptable1(const QMetaProperty* self, QObject* obj) {
-	return self->isScriptable(obj);
-}
-
-bool QMetaProperty_IsStored1(const QMetaProperty* self, QObject* obj) {
-	return self->isStored(obj);
-}
-
-bool QMetaProperty_IsEditable1(const QMetaProperty* self, QObject* obj) {
-	return self->isEditable(obj);
-}
-
-bool QMetaProperty_IsUser1(const QMetaProperty* self, QObject* obj) {
-	return self->isUser(obj);
 }
 
 void QMetaProperty_Delete(QMetaProperty* self, bool isSubclass) {
@@ -657,6 +696,10 @@ void QMetaProperty_Delete(QMetaProperty* self, bool isSubclass) {
 
 QMetaClassInfo* QMetaClassInfo_new() {
 	return new QMetaClassInfo();
+}
+
+QMetaClassInfo* QMetaClassInfo_new2(QMetaClassInfo* param1) {
+	return new QMetaClassInfo(*param1);
 }
 
 const char* QMetaClassInfo_Name(const QMetaClassInfo* self) {

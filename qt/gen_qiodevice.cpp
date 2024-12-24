@@ -1,7 +1,11 @@
+// +build ignore
+
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -15,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQIODevice : public virtual QIODevice {
 public:
@@ -51,12 +70,12 @@ public:
 	intptr_t handle__Open = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool open(QIODevice::OpenMode mode) override {
+	virtual bool open(QIODeviceBase::OpenMode mode) override {
 		if (handle__Open == 0) {
 			return QIODevice::open(mode);
 		}
 		
-		QIODevice::OpenMode mode_ret = mode;
+		QIODeviceBase::OpenMode mode_ret = mode;
 		int sigval1 = static_cast<int>(mode_ret);
 
 		bool callback_return_value = miqt_exec_callback_QIODevice_Open(this, handle__Open, sigval1);
@@ -67,7 +86,7 @@ public:
 	// Wrapper to allow calling protected method
 	bool virtualbase_Open(int mode) {
 
-		return QIODevice::open(static_cast<QIODevice::OpenMode>(mode));
+		return QIODevice::open(static_cast<QIODeviceBase::OpenMode>(mode));
 
 	}
 
@@ -367,6 +386,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SkipData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual qint64 skipData(qint64 maxSize) override {
+		if (handle__SkipData == 0) {
+			return QIODevice::skipData(maxSize);
+		}
+		
+		qint64 maxSize_ret = maxSize;
+		long long sigval1 = static_cast<long long>(maxSize_ret);
+
+		long long callback_return_value = miqt_exec_callback_QIODevice_SkipData(this, handle__SkipData, sigval1);
+
+		return static_cast<qint64>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	long long virtualbase_SkipData(long long maxSize) {
+
+		qint64 _ret = QIODevice::skipData(static_cast<qint64>(maxSize));
+		return static_cast<long long>(_ret);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__WriteData = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -565,8 +609,9 @@ QIODevice* QIODevice_new2(QObject* parent) {
 	return new MiqtVirtualQIODevice(parent);
 }
 
-void QIODevice_virtbase(QIODevice* src, QObject** outptr_QObject) {
+void QIODevice_virtbase(QIODevice* src, QObject** outptr_QObject, QIODeviceBase** outptr_QIODeviceBase) {
 	*outptr_QObject = static_cast<QObject*>(src);
+	*outptr_QIODeviceBase = static_cast<QIODeviceBase*>(src);
 }
 
 QMetaObject* QIODevice_MetaObject(const QIODevice* self) {
@@ -588,19 +633,8 @@ struct miqt_string QIODevice_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QIODevice_TrUtf8(const char* s) {
-	QString _ret = QIODevice::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QIODevice_OpenMode(const QIODevice* self) {
-	QIODevice::OpenMode _ret = self->openMode();
+	QIODeviceBase::OpenMode _ret = self->openMode();
 	return static_cast<int>(_ret);
 }
 
@@ -653,7 +687,7 @@ void QIODevice_SetCurrentWriteChannel(QIODevice* self, int channel) {
 }
 
 bool QIODevice_Open(QIODevice* self, int mode) {
-	return self->open(static_cast<QIODevice::OpenMode>(mode));
+	return self->open(static_cast<QIODeviceBase::OpenMode>(mode));
 }
 
 void QIODevice_Close(QIODevice* self) {
@@ -727,6 +761,18 @@ struct miqt_string QIODevice_ReadLine2(QIODevice* self) {
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _qb.data(), _ms.len);
 	return _ms;
+}
+
+QByteArrayView* QIODevice_ReadLineIntoWithBuffer(QIODevice* self, QSpan<char> buffer) {
+	return new QByteArrayView(self->readLineInto(buffer));
+}
+
+QByteArrayView* QIODevice_ReadLineInto2(QIODevice* self, QSpan<uchar> buffer) {
+	return new QByteArrayView(self->readLineInto(buffer));
+}
+
+QByteArrayView* QIODevice_ReadLineInto3(QIODevice* self, QSpan<std::byte> buffer) {
+	return new QByteArrayView(self->readLineInto(buffer));
 }
 
 bool QIODevice_CanReadLine(const QIODevice* self) {
@@ -903,28 +949,6 @@ struct miqt_string QIODevice_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QIODevice_TrUtf82(const char* s, const char* c) {
-	QString _ret = QIODevice::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QIODevice_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QIODevice::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QIODevice_ReadLine1(QIODevice* self, long long maxlen) {
 	QByteArray _qb = self->readLine(static_cast<qint64>(maxlen));
 	struct miqt_string _ms;
@@ -1048,6 +1072,14 @@ void QIODevice_override_virtual_ReadLineData(void* self, intptr_t slot) {
 
 long long QIODevice_virtualbase_ReadLineData(void* self, char* data, long long maxlen) {
 	return ( (MiqtVirtualQIODevice*)(self) )->virtualbase_ReadLineData(data, maxlen);
+}
+
+void QIODevice_override_virtual_SkipData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIODevice*>( (QIODevice*)(self) )->handle__SkipData = slot;
+}
+
+long long QIODevice_virtualbase_SkipData(void* self, long long maxSize) {
+	return ( (MiqtVirtualQIODevice*)(self) )->virtualbase_SkipData(maxSize);
 }
 
 void QIODevice_override_virtual_WriteData(void* self, intptr_t slot) {

@@ -1,4 +1,5 @@
-#include <QDate>
+// +build ignore
+
 #include <QLibraryInfo>
 #include <QList>
 #include <QString>
@@ -11,32 +12,21 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-struct miqt_string QLibraryInfo_Licensee() {
-	QString _ret = QLibraryInfo::licensee();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
 }
 
-struct miqt_string QLibraryInfo_LicensedProducts() {
-	QString _ret = QLibraryInfo::licensedProducts();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-QDate* QLibraryInfo_BuildDate() {
-	return new QDate(QLibraryInfo::buildDate());
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
 }
 
 const char* QLibraryInfo_Build() {
@@ -47,12 +37,47 @@ bool QLibraryInfo_IsDebugBuild() {
 	return QLibraryInfo::isDebugBuild();
 }
 
+bool QLibraryInfo_IsSharedBuild() {
+	return QLibraryInfo::isSharedBuild();
+}
+
 QVersionNumber* QLibraryInfo_Version() {
 	return new QVersionNumber(QLibraryInfo::version());
 }
 
-struct miqt_string QLibraryInfo_Location(int param1) {
-	QString _ret = QLibraryInfo::location(static_cast<QLibraryInfo::LibraryLocation>(param1));
+struct miqt_string QLibraryInfo_Path(LibraryPath p) {
+	QString _ret = QLibraryInfo::path(p);
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+
+struct miqt_array /* of struct miqt_string */  QLibraryInfo_Paths(LibraryPath p) {
+	QStringList _ret = QLibraryInfo::paths(p);
+	// Convert QList<> from C++ memory to manually-managed C memory
+	struct miqt_string* _arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		QString _lv_ret = _ret[i];
+		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+		QByteArray _lv_b = _lv_ret.toUtf8();
+		struct miqt_string _lv_ms;
+		_lv_ms.len = _lv_b.length();
+		_lv_ms.data = static_cast<char*>(malloc(_lv_ms.len));
+		memcpy(_lv_ms.data, _lv_b.data(), _lv_ms.len);
+		_arr[i] = _lv_ms;
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+}
+
+struct miqt_string QLibraryInfo_Location(LibraryLocation location) {
+	QString _ret = QLibraryInfo::location(location);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

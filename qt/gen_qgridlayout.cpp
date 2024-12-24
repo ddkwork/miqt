@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QGridLayout>
 #include <QLayout>
@@ -16,7 +18,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGridLayout : public virtual QGridLayout {
 public:
@@ -89,6 +106,52 @@ public:
 	QSize* virtualbase_MaximumSize() const {
 
 		return new QSize(QGridLayout::maximumSize());
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QGridLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QGridLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QGridLayout::setSpacing(static_cast<int>(spacing));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QGridLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QGridLayout_Spacing(const_cast<MiqtVirtualQGridLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QGridLayout::spacing();
 
 	}
 
@@ -350,12 +413,12 @@ public:
 	intptr_t handle__IndexOf = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int indexOf(QWidget* param1) const override {
+	virtual int indexOf(const QWidget* param1) const override {
 		if (handle__IndexOf == 0) {
 			return QGridLayout::indexOf(param1);
 		}
 		
-		QWidget* sigval1 = param1;
+		QWidget* sigval1 = (QWidget*) param1;
 
 		int callback_return_value = miqt_exec_callback_QGridLayout_IndexOf(const_cast<MiqtVirtualQGridLayout*>(this), handle__IndexOf, sigval1);
 
@@ -411,6 +474,32 @@ public:
 
 		QSizePolicy::ControlTypes _ret = QGridLayout::controlTypes();
 		return static_cast<int>(_ret);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ReplaceWidget = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QLayoutItem* replaceWidget(QWidget* from, QWidget* to, Qt::FindChildOptions options) override {
+		if (handle__ReplaceWidget == 0) {
+			return QGridLayout::replaceWidget(from, to, options);
+		}
+		
+		QWidget* sigval1 = from;
+		QWidget* sigval2 = to;
+		Qt::FindChildOptions options_ret = options;
+		int sigval3 = static_cast<int>(options_ret);
+
+		QLayoutItem* callback_return_value = miqt_exec_callback_QGridLayout_ReplaceWidget(this, handle__ReplaceWidget, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QLayoutItem* virtualbase_ReplaceWidget(QWidget* from, QWidget* to, int options) {
+
+		return QGridLayout::replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
 
 	}
 
@@ -484,17 +573,6 @@ void* QGridLayout_Metacast(QGridLayout* self, const char* param1) {
 
 struct miqt_string QGridLayout_Tr(const char* s) {
 	QString _ret = QGridLayout::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGridLayout_TrUtf8(const char* s) {
-	QString _ret = QGridLayout::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -688,28 +766,6 @@ struct miqt_string QGridLayout_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QGridLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGridLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGridLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGridLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGridLayout_AddWidget4(QGridLayout* self, QWidget* param1, int row, int column, int param4) {
 	self->addWidget(param1, static_cast<int>(row), static_cast<int>(column), static_cast<Qt::Alignment>(param4));
 }
@@ -760,6 +816,22 @@ void QGridLayout_override_virtual_MaximumSize(void* self, intptr_t slot) {
 
 QSize* QGridLayout_virtualbase_MaximumSize(const void* self) {
 	return ( (const MiqtVirtualQGridLayout*)(self) )->virtualbase_MaximumSize();
+}
+
+void QGridLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGridLayout*>( (QGridLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QGridLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQGridLayout*)(self) )->virtualbase_SetSpacing(spacing);
+}
+
+void QGridLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGridLayout*>( (QGridLayout*)(self) )->handle__Spacing = slot;
+}
+
+int QGridLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQGridLayout*)(self) )->virtualbase_Spacing();
 }
 
 void QGridLayout_override_virtual_HasHeightForWidth(void* self, intptr_t slot) {
@@ -872,6 +944,14 @@ void QGridLayout_override_virtual_ControlTypes(void* self, intptr_t slot) {
 
 int QGridLayout_virtualbase_ControlTypes(const void* self) {
 	return ( (const MiqtVirtualQGridLayout*)(self) )->virtualbase_ControlTypes();
+}
+
+void QGridLayout_override_virtual_ReplaceWidget(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGridLayout*>( (QGridLayout*)(self) )->handle__ReplaceWidget = slot;
+}
+
+QLayoutItem* QGridLayout_virtualbase_ReplaceWidget(void* self, QWidget* from, QWidget* to, int options) {
+	return ( (MiqtVirtualQGridLayout*)(self) )->virtualbase_ReplaceWidget(from, to, options);
 }
 
 void QGridLayout_override_virtual_Layout(void* self, intptr_t slot) {

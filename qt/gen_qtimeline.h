@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -23,6 +23,8 @@ class QMetaObject;
 class QObject;
 class QTimeLine;
 class QTimerEvent;
+class _GUID;
+class type_info;
 #else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEasingCurve QEasingCurve;
@@ -32,67 +34,68 @@ typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QTimeLine QTimeLine;
 typedef struct QTimerEvent QTimerEvent;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QTimeLine* QTimeLine_new();
-QTimeLine* QTimeLine_new2(int duration);
-QTimeLine* QTimeLine_new3(int duration, QObject* parent);
-void QTimeLine_virtbase(QTimeLine* src, QObject** outptr_QObject);
-QMetaObject* QTimeLine_MetaObject(const QTimeLine* self);
-void* QTimeLine_Metacast(QTimeLine* self, const char* param1);
-struct miqt_string QTimeLine_Tr(const char* s);
-struct miqt_string QTimeLine_TrUtf8(const char* s);
-int QTimeLine_State(const QTimeLine* self);
-int QTimeLine_LoopCount(const QTimeLine* self);
-void QTimeLine_SetLoopCount(QTimeLine* self, int count);
-int QTimeLine_Direction(const QTimeLine* self);
-void QTimeLine_SetDirection(QTimeLine* self, int direction);
-int QTimeLine_Duration(const QTimeLine* self);
-void QTimeLine_SetDuration(QTimeLine* self, int duration);
-int QTimeLine_StartFrame(const QTimeLine* self);
-void QTimeLine_SetStartFrame(QTimeLine* self, int frame);
-int QTimeLine_EndFrame(const QTimeLine* self);
-void QTimeLine_SetEndFrame(QTimeLine* self, int frame);
-void QTimeLine_SetFrameRange(QTimeLine* self, int startFrame, int endFrame);
-int QTimeLine_UpdateInterval(const QTimeLine* self);
-void QTimeLine_SetUpdateInterval(QTimeLine* self, int interval);
-int QTimeLine_CurveShape(const QTimeLine* self);
-void QTimeLine_SetCurveShape(QTimeLine* self, int shape);
-QEasingCurve* QTimeLine_EasingCurve(const QTimeLine* self);
-void QTimeLine_SetEasingCurve(QTimeLine* self, QEasingCurve* curve);
-int QTimeLine_CurrentTime(const QTimeLine* self);
-int QTimeLine_CurrentFrame(const QTimeLine* self);
-double QTimeLine_CurrentValue(const QTimeLine* self);
-int QTimeLine_FrameForTime(const QTimeLine* self, int msec);
-double QTimeLine_ValueForTime(const QTimeLine* self, int msec);
-void QTimeLine_Start(QTimeLine* self);
-void QTimeLine_Resume(QTimeLine* self);
-void QTimeLine_Stop(QTimeLine* self);
-void QTimeLine_SetPaused(QTimeLine* self, bool paused);
-void QTimeLine_SetCurrentTime(QTimeLine* self, int msec);
-void QTimeLine_ToggleDirection(QTimeLine* self);
-void QTimeLine_TimerEvent(QTimeLine* self, QTimerEvent* event);
-struct miqt_string QTimeLine_Tr2(const char* s, const char* c);
-struct miqt_string QTimeLine_Tr3(const char* s, const char* c, int n);
-struct miqt_string QTimeLine_TrUtf82(const char* s, const char* c);
-struct miqt_string QTimeLine_TrUtf83(const char* s, const char* c, int n);
-void QTimeLine_override_virtual_ValueForTime(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QTimeLine* QTimeLine_new();
+extern __declspec(dllexport) QTimeLine* QTimeLine_new2(int duration);
+extern __declspec(dllexport) QTimeLine* QTimeLine_new3(int duration, QObject* parent);
+extern __declspec(dllexport) void QTimeLine_virtbase(QTimeLine* src, QObject** outptr_QObject);
+extern __declspec(dllexport) QMetaObject* QTimeLine_MetaObject(const QTimeLine* self);
+extern __declspec(dllexport) void* QTimeLine_Metacast(QTimeLine* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QTimeLine_Tr(const char* s);
+extern __declspec(dllexport) State QTimeLine_State(const QTimeLine* self);
+extern __declspec(dllexport) int QTimeLine_LoopCount(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetLoopCount(QTimeLine* self, int count);
+extern __declspec(dllexport) Direction QTimeLine_Direction(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetDirection(QTimeLine* self, Direction direction);
+extern __declspec(dllexport) int QTimeLine_Duration(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetDuration(QTimeLine* self, int duration);
+extern __declspec(dllexport) int QTimeLine_StartFrame(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetStartFrame(QTimeLine* self, int frame);
+extern __declspec(dllexport) int QTimeLine_EndFrame(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetEndFrame(QTimeLine* self, int frame);
+extern __declspec(dllexport) void QTimeLine_SetFrameRange(QTimeLine* self, int startFrame, int endFrame);
+extern __declspec(dllexport) int QTimeLine_UpdateInterval(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetUpdateInterval(QTimeLine* self, int interval);
+extern __declspec(dllexport) QEasingCurve* QTimeLine_EasingCurve(const QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetEasingCurve(QTimeLine* self, QEasingCurve* curve);
+extern __declspec(dllexport) int QTimeLine_CurrentTime(const QTimeLine* self);
+extern __declspec(dllexport) int QTimeLine_CurrentFrame(const QTimeLine* self);
+extern __declspec(dllexport) double QTimeLine_CurrentValue(const QTimeLine* self);
+extern __declspec(dllexport) int QTimeLine_FrameForTime(const QTimeLine* self, int msec);
+extern __declspec(dllexport) double QTimeLine_ValueForTime(const QTimeLine* self, int msec);
+extern __declspec(dllexport) void QTimeLine_Start(QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_Resume(QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_Stop(QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_SetPaused(QTimeLine* self, bool paused);
+extern __declspec(dllexport) void QTimeLine_SetCurrentTime(QTimeLine* self, int msec);
+extern __declspec(dllexport) void QTimeLine_ToggleDirection(QTimeLine* self);
+extern __declspec(dllexport) void QTimeLine_TimerEvent(QTimeLine* self, QTimerEvent* event);
+extern __declspec(dllexport) struct miqt_string QTimeLine_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QTimeLine_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QTimeLine_override_virtual_ValueForTime(void* self, intptr_t slot);
 double QTimeLine_virtualbase_ValueForTime(const void* self, int msec);
-void QTimeLine_override_virtual_TimerEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_TimerEvent(void* self, intptr_t slot);
 void QTimeLine_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-void QTimeLine_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_Event(void* self, intptr_t slot);
 bool QTimeLine_virtualbase_Event(void* self, QEvent* event);
-void QTimeLine_override_virtual_EventFilter(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_EventFilter(void* self, intptr_t slot);
 bool QTimeLine_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-void QTimeLine_override_virtual_ChildEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_ChildEvent(void* self, intptr_t slot);
 void QTimeLine_virtualbase_ChildEvent(void* self, QChildEvent* event);
-void QTimeLine_override_virtual_CustomEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_CustomEvent(void* self, intptr_t slot);
 void QTimeLine_virtualbase_CustomEvent(void* self, QEvent* event);
-void QTimeLine_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QTimeLine_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-void QTimeLine_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTimeLine_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QTimeLine_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-void QTimeLine_Delete(QTimeLine* self, bool isSubclass);
+extern __declspec(dllexport) void QTimeLine_Delete(QTimeLine* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

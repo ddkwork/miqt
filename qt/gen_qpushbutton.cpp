@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QEvent>
 #include <QFocusEvent>
@@ -15,6 +17,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionButton>
 #include <QTimerEvent>
 #include <QWidget>
 #include <qpushbutton.h>
@@ -23,7 +26,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPushButton : public virtual QPushButton {
 public:
@@ -201,6 +219,54 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MouseMoveEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void mouseMoveEvent(QMouseEvent* param1) override {
+		if (handle__MouseMoveEvent == 0) {
+			QPushButton::mouseMoveEvent(param1);
+			return;
+		}
+		
+		QMouseEvent* sigval1 = param1;
+
+		miqt_exec_callback_QPushButton_MouseMoveEvent(this, handle__MouseMoveEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_MouseMoveEvent(QMouseEvent* param1) {
+
+		QPushButton::mouseMoveEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionButton* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QPushButton::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionButton* sigval1 = option;
+
+		miqt_exec_callback_QPushButton_InitStyleOption(const_cast<MiqtVirtualQPushButton*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionButton* option) const {
+
+		QPushButton::initStyleOption(option);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__HitButton = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -344,30 +410,6 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__MouseMoveEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void mouseMoveEvent(QMouseEvent* e) override {
-		if (handle__MouseMoveEvent == 0) {
-			QPushButton::mouseMoveEvent(e);
-			return;
-		}
-		
-		QMouseEvent* sigval1 = e;
-
-		miqt_exec_callback_QPushButton_MouseMoveEvent(this, handle__MouseMoveEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_MouseMoveEvent(QMouseEvent* e) {
-
-		QPushButton::mouseMoveEvent(e);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__ChangeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -468,17 +510,6 @@ struct miqt_string QPushButton_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPushButton_TrUtf8(const char* s) {
-	QString _ret = QPushButton::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QPushButton_SizeHint(const QPushButton* self) {
 	return new QSize(self->sizeHint());
 }
@@ -545,28 +576,6 @@ struct miqt_string QPushButton_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QPushButton_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPushButton::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPushButton_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPushButton::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QPushButton_override_virtual_SizeHint(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQPushButton*>( (QPushButton*)(self) )->handle__SizeHint = slot;
 }
@@ -623,6 +632,22 @@ void QPushButton_virtualbase_FocusOutEvent(void* self, QFocusEvent* param1) {
 	( (MiqtVirtualQPushButton*)(self) )->virtualbase_FocusOutEvent(param1);
 }
 
+void QPushButton_override_virtual_MouseMoveEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPushButton*>( (QPushButton*)(self) )->handle__MouseMoveEvent = slot;
+}
+
+void QPushButton_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1) {
+	( (MiqtVirtualQPushButton*)(self) )->virtualbase_MouseMoveEvent(param1);
+}
+
+void QPushButton_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPushButton*>( (QPushButton*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QPushButton_virtualbase_InitStyleOption(const void* self, QStyleOptionButton* option) {
+	( (const MiqtVirtualQPushButton*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QPushButton_override_virtual_HitButton(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQPushButton*>( (QPushButton*)(self) )->handle__HitButton = slot;
 }
@@ -669,14 +694,6 @@ void QPushButton_override_virtual_MouseReleaseEvent(void* self, intptr_t slot) {
 
 void QPushButton_virtualbase_MouseReleaseEvent(void* self, QMouseEvent* e) {
 	( (MiqtVirtualQPushButton*)(self) )->virtualbase_MouseReleaseEvent(e);
-}
-
-void QPushButton_override_virtual_MouseMoveEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPushButton*>( (QPushButton*)(self) )->handle__MouseMoveEvent = slot;
-}
-
-void QPushButton_virtualbase_MouseMoveEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQPushButton*)(self) )->virtualbase_MouseMoveEvent(e);
 }
 
 void QPushButton_override_virtual_ChangeEvent(void* self, intptr_t slot) {

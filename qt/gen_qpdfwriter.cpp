@@ -1,27 +1,48 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
+#include <QMarginsF>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
+#include <QPageLayout>
+#include <QPageRanges>
+#include <QPageSize>
 #include <QPagedPaintDevice>
-#define WORKAROUND_INNER_CLASS_DEFINITION_QPagedPaintDevice__Margins
 #include <QPaintDevice>
 #include <QPaintEngine>
+#include <QPdfOutputIntent>
 #include <QPdfWriter>
-#include <QSizeF>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
 #include <QTimerEvent>
+#include <QUuid>
 #include <qpdfwriter.h>
 #include "gen_qpdfwriter.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPdfWriter : public virtual QPdfWriter {
 public:
@@ -54,83 +75,6 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetPageSize = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setPageSize(QPagedPaintDevice::PageSize size) override {
-		if (handle__SetPageSize == 0) {
-			QPdfWriter::setPageSize(size);
-			return;
-		}
-		
-		QPagedPaintDevice::PageSize size_ret = size;
-		int sigval1 = static_cast<int>(size_ret);
-
-		miqt_exec_callback_QPdfWriter_SetPageSize(this, handle__SetPageSize, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetPageSize(int size) {
-
-		QPdfWriter::setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetPageSizeMM = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setPageSizeMM(const QSizeF& size) override {
-		if (handle__SetPageSizeMM == 0) {
-			QPdfWriter::setPageSizeMM(size);
-			return;
-		}
-		
-		const QSizeF& size_ret = size;
-		// Cast returned reference into pointer
-		QSizeF* sigval1 = const_cast<QSizeF*>(&size_ret);
-
-		miqt_exec_callback_QPdfWriter_SetPageSizeMM(this, handle__SetPageSizeMM, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetPageSizeMM(QSizeF* size) {
-
-		QPdfWriter::setPageSizeMM(*size);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetMargins = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setMargins(const QPagedPaintDevice::Margins& m) override {
-		if (handle__SetMargins == 0) {
-			QPdfWriter::setMargins(m);
-			return;
-		}
-		
-		const QPagedPaintDevice::Margins& m_ret = m;
-		// Cast returned reference into pointer
-		QPagedPaintDevice__Margins* sigval1 = const_cast<QPagedPaintDevice::Margins*>(&m_ret);
-
-		miqt_exec_callback_QPdfWriter_SetMargins(this, handle__SetMargins, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetMargins(QPagedPaintDevice__Margins* m) {
-
-		QPdfWriter::setMargins(*m);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__PaintEngine = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -156,13 +100,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric id) const override {
+	virtual int metric(PaintDeviceMetric id) const override {
 		if (handle__Metric == 0) {
 			return QPdfWriter::metric(id);
 		}
 		
-		QPaintDevice::PaintDeviceMetric id_ret = id;
-		int sigval1 = static_cast<int>(id_ret);
+		PaintDeviceMetric sigval1 = id;
 
 		int callback_return_value = miqt_exec_callback_QPdfWriter_Metric(const_cast<MiqtVirtualQPdfWriter*>(this), handle__Metric, sigval1);
 
@@ -170,9 +113,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int id) const {
+	int virtualbase_Metric(PaintDeviceMetric id) const {
 
-		return QPdfWriter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(id));
+		return QPdfWriter::metric(id);
 
 	}
 
@@ -347,6 +290,133 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetPageLayout = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool setPageLayout(const QPageLayout& pageLayout) override {
+		if (handle__SetPageLayout == 0) {
+			return QPdfWriter::setPageLayout(pageLayout);
+		}
+		
+		const QPageLayout& pageLayout_ret = pageLayout;
+		// Cast returned reference into pointer
+		QPageLayout* sigval1 = const_cast<QPageLayout*>(&pageLayout_ret);
+
+		bool callback_return_value = miqt_exec_callback_QPdfWriter_SetPageLayout(this, handle__SetPageLayout, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_SetPageLayout(QPageLayout* pageLayout) {
+
+		return QPdfWriter::setPageLayout(*pageLayout);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetPageSize = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool setPageSize(const QPageSize& pageSize) override {
+		if (handle__SetPageSize == 0) {
+			return QPdfWriter::setPageSize(pageSize);
+		}
+		
+		const QPageSize& pageSize_ret = pageSize;
+		// Cast returned reference into pointer
+		QPageSize* sigval1 = const_cast<QPageSize*>(&pageSize_ret);
+
+		bool callback_return_value = miqt_exec_callback_QPdfWriter_SetPageSize(this, handle__SetPageSize, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_SetPageSize(QPageSize* pageSize) {
+
+		return QPdfWriter::setPageSize(*pageSize);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetPageOrientation = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool setPageOrientation(QPageLayout::Orientation orientation) override {
+		if (handle__SetPageOrientation == 0) {
+			return QPdfWriter::setPageOrientation(orientation);
+		}
+		
+		QPageLayout::Orientation orientation_ret = orientation;
+		int sigval1 = static_cast<int>(orientation_ret);
+
+		bool callback_return_value = miqt_exec_callback_QPdfWriter_SetPageOrientation(this, handle__SetPageOrientation, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_SetPageOrientation(int orientation) {
+
+		return QPdfWriter::setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetPageMargins = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool setPageMargins(const QMarginsF& margins, QPageLayout::Unit units) override {
+		if (handle__SetPageMargins == 0) {
+			return QPdfWriter::setPageMargins(margins, units);
+		}
+		
+		const QMarginsF& margins_ret = margins;
+		// Cast returned reference into pointer
+		QMarginsF* sigval1 = const_cast<QMarginsF*>(&margins_ret);
+		QPageLayout::Unit units_ret = units;
+		int sigval2 = static_cast<int>(units_ret);
+
+		bool callback_return_value = miqt_exec_callback_QPdfWriter_SetPageMargins(this, handle__SetPageMargins, sigval1, sigval2);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_SetPageMargins(QMarginsF* margins, int units) {
+
+		return QPdfWriter::setPageMargins(*margins, static_cast<QPageLayout::Unit>(units));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetPageRanges = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setPageRanges(const QPageRanges& ranges) override {
+		if (handle__SetPageRanges == 0) {
+			QPdfWriter::setPageRanges(ranges);
+			return;
+		}
+		
+		const QPageRanges& ranges_ret = ranges;
+		// Cast returned reference into pointer
+		QPageRanges* sigval1 = const_cast<QPageRanges*>(&ranges_ret);
+
+		miqt_exec_callback_QPdfWriter_SetPageRanges(this, handle__SetPageRanges, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetPageRanges(QPageRanges* ranges) {
+
+		QPdfWriter::setPageRanges(*ranges);
+
+	}
+
 };
 
 QPdfWriter* QPdfWriter_new(struct miqt_string filename) {
@@ -382,24 +452,12 @@ struct miqt_string QPdfWriter_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPdfWriter_TrUtf8(const char* s) {
-	QString _ret = QPdfWriter::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QPdfWriter_SetPdfVersion(QPdfWriter* self, PdfVersion version) {
+	self->setPdfVersion(version);
 }
 
-void QPdfWriter_SetPdfVersion(QPdfWriter* self, int version) {
-	self->setPdfVersion(static_cast<QPagedPaintDevice::PdfVersion>(version));
-}
-
-int QPdfWriter_PdfVersion(const QPdfWriter* self) {
-	QPagedPaintDevice::PdfVersion _ret = self->pdfVersion();
-	return static_cast<int>(_ret);
+PdfVersion QPdfWriter_PdfVersion(const QPdfWriter* self) {
+	return self->pdfVersion();
 }
 
 struct miqt_string QPdfWriter_Title(const QPdfWriter* self) {
@@ -434,6 +492,30 @@ void QPdfWriter_SetCreator(QPdfWriter* self, struct miqt_string creator) {
 	self->setCreator(creator_QString);
 }
 
+QUuid* QPdfWriter_DocumentId(const QPdfWriter* self) {
+	return new QUuid(self->documentId());
+}
+
+void QPdfWriter_SetDocumentId(QPdfWriter* self, QUuid* documentId) {
+	self->setDocumentId(*documentId);
+}
+
+struct miqt_string QPdfWriter_Author(const QPdfWriter* self) {
+	QString _ret = self->author();
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+
+void QPdfWriter_SetAuthor(QPdfWriter* self, struct miqt_string author) {
+	QString author_QString = QString::fromUtf8(author.data, author.len);
+	self->setAuthor(author_QString);
+}
+
 bool QPdfWriter_NewPage(QPdfWriter* self) {
 	return self->newPage();
 }
@@ -466,16 +548,20 @@ void QPdfWriter_AddFileAttachment(QPdfWriter* self, struct miqt_string fileName,
 	self->addFileAttachment(fileName_QString, data_QByteArray);
 }
 
-void QPdfWriter_SetPageSize(QPdfWriter* self, int size) {
-	self->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+ColorModel QPdfWriter_ColorModel(const QPdfWriter* self) {
+	return self->colorModel();
 }
 
-void QPdfWriter_SetPageSizeMM(QPdfWriter* self, QSizeF* size) {
-	self->setPageSizeMM(*size);
+void QPdfWriter_SetColorModel(QPdfWriter* self, ColorModel model) {
+	self->setColorModel(model);
 }
 
-void QPdfWriter_SetMargins(QPdfWriter* self, QPagedPaintDevice__Margins* m) {
-	self->setMargins(*m);
+QPdfOutputIntent* QPdfWriter_OutputIntent(const QPdfWriter* self) {
+	return new QPdfOutputIntent(self->outputIntent());
+}
+
+void QPdfWriter_SetOutputIntent(QPdfWriter* self, QPdfOutputIntent* intent) {
+	self->setOutputIntent(*intent);
 }
 
 struct miqt_string QPdfWriter_Tr2(const char* s, const char* c) {
@@ -500,28 +586,6 @@ struct miqt_string QPdfWriter_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QPdfWriter_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPdfWriter::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPdfWriter_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPdfWriter::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QPdfWriter_AddFileAttachment3(QPdfWriter* self, struct miqt_string fileName, struct miqt_string data, struct miqt_string mimeType) {
 	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
 	QByteArray data_QByteArray(data.data, data.len);
@@ -537,30 +601,6 @@ bool QPdfWriter_virtualbase_NewPage(void* self) {
 	return ( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_NewPage();
 }
 
-void QPdfWriter_override_virtual_SetPageSize(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageSize = slot;
-}
-
-void QPdfWriter_virtualbase_SetPageSize(void* self, int size) {
-	( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageSize(size);
-}
-
-void QPdfWriter_override_virtual_SetPageSizeMM(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageSizeMM = slot;
-}
-
-void QPdfWriter_virtualbase_SetPageSizeMM(void* self, QSizeF* size) {
-	( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageSizeMM(size);
-}
-
-void QPdfWriter_override_virtual_SetMargins(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetMargins = slot;
-}
-
-void QPdfWriter_virtualbase_SetMargins(void* self, QPagedPaintDevice__Margins* m) {
-	( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetMargins(m);
-}
-
 void QPdfWriter_override_virtual_PaintEngine(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__PaintEngine = slot;
 }
@@ -573,7 +613,7 @@ void QPdfWriter_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__Metric = slot;
 }
 
-int QPdfWriter_virtualbase_Metric(const void* self, int id) {
+int QPdfWriter_virtualbase_Metric(const void* self, PaintDeviceMetric id) {
 	return ( (const MiqtVirtualQPdfWriter*)(self) )->virtualbase_Metric(id);
 }
 
@@ -631,6 +671,46 @@ void QPdfWriter_override_virtual_DisconnectNotify(void* self, intptr_t slot) {
 
 void QPdfWriter_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal) {
 	( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_DisconnectNotify(signal);
+}
+
+void QPdfWriter_override_virtual_SetPageLayout(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageLayout = slot;
+}
+
+bool QPdfWriter_virtualbase_SetPageLayout(void* self, QPageLayout* pageLayout) {
+	return ( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageLayout(pageLayout);
+}
+
+void QPdfWriter_override_virtual_SetPageSize(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageSize = slot;
+}
+
+bool QPdfWriter_virtualbase_SetPageSize(void* self, QPageSize* pageSize) {
+	return ( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageSize(pageSize);
+}
+
+void QPdfWriter_override_virtual_SetPageOrientation(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageOrientation = slot;
+}
+
+bool QPdfWriter_virtualbase_SetPageOrientation(void* self, int orientation) {
+	return ( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageOrientation(orientation);
+}
+
+void QPdfWriter_override_virtual_SetPageMargins(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageMargins = slot;
+}
+
+bool QPdfWriter_virtualbase_SetPageMargins(void* self, QMarginsF* margins, int units) {
+	return ( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageMargins(margins, units);
+}
+
+void QPdfWriter_override_virtual_SetPageRanges(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPdfWriter*>( (QPdfWriter*)(self) )->handle__SetPageRanges = slot;
+}
+
+void QPdfWriter_virtualbase_SetPageRanges(void* self, QPageRanges* ranges) {
+	( (MiqtVirtualQPdfWriter*)(self) )->virtualbase_SetPageRanges(ranges);
 }
 
 void QPdfWriter_Delete(QPdfWriter* self, bool isSubclass) {

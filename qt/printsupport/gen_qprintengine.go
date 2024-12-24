@@ -1,16 +1,7 @@
 package printsupport
 
-/*
-
-#include "gen_qprintengine.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
 	"github.com/mappu/miqt/qt"
-	"runtime"
 	"unsafe"
 )
 
@@ -52,78 +43,36 @@ const (
 )
 
 type QPrintEngine struct {
-	h          *C.QPrintEngine
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QPrintEngine) cPointer() *C.QPrintEngine {
-	if this == nil {
-		return nil
-	}
-	return this.h
+func (this *QPrintEngine) SetProperty(key PrintEnginePropertyKey, value *qt.QVariant) {
+	QPrintEngine_SetProperty(this.h, key, (*QVariant)(value.UnsafePointer()))
 }
 
-func (this *QPrintEngine) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQPrintEngine constructs the type using only CGO pointers.
-func newQPrintEngine(h *C.QPrintEngine) *QPrintEngine {
-	if h == nil {
-		return nil
-	}
-
-	return &QPrintEngine{h: h}
-}
-
-// UnsafeNewQPrintEngine constructs the type using only unsafe pointers.
-func UnsafeNewQPrintEngine(h unsafe.Pointer) *QPrintEngine {
-	return newQPrintEngine((*C.QPrintEngine)(h))
-}
-
-func (this *QPrintEngine) SetProperty(key QPrintEngine__PrintEnginePropertyKey, value *qt.QVariant) {
-	C.QPrintEngine_SetProperty(this.h, (C.int)(key), (*C.QVariant)(value.UnsafePointer()))
-}
-
-func (this *QPrintEngine) Property(key QPrintEngine__PrintEnginePropertyKey) *qt.QVariant {
-	_goptr := qt.UnsafeNewQVariant(unsafe.Pointer(C.QPrintEngine_Property(this.h, (C.int)(key))))
+func (this *QPrintEngine) Property(key PrintEnginePropertyKey) *qt.QVariant {
+	_goptr := qt.UnsafeNewQVariant(unsafe.Pointer(QPrintEngine_Property(this.h, key)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QPrintEngine) NewPage() bool {
-	return (bool)(C.QPrintEngine_NewPage(this.h))
+	return (bool)(QPrintEngine_NewPage(this.h))
 }
 
 func (this *QPrintEngine) Abort() bool {
-	return (bool)(C.QPrintEngine_Abort(this.h))
+	return (bool)(QPrintEngine_Abort(this.h))
 }
 
 func (this *QPrintEngine) Metric(param1 qt.QPaintDevice__PaintDeviceMetric) int {
-	return (int)(C.QPrintEngine_Metric(this.h, (C.int)(param1)))
+	return (int)(QPrintEngine_Metric(this.h, (int)(param1)))
 }
 
 func (this *QPrintEngine) PrinterState() QPrinter__PrinterState {
-	return (QPrinter__PrinterState)(C.QPrintEngine_PrinterState(this.h))
+	return (QPrinter__PrinterState)(QPrintEngine_PrinterState(this.h))
 }
 
 func (this *QPrintEngine) OperatorAssign(param1 *QPrintEngine) {
-	C.QPrintEngine_OperatorAssign(this.h, param1.cPointer())
-}
-
-// Delete this object from C++ memory.
-func (this *QPrintEngine) Delete() {
-	C.QPrintEngine_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QPrintEngine) GoGC() {
-	runtime.SetFinalizer(this, func(this *QPrintEngine) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QPrintEngine_OperatorAssign(this.h, param1.cPointer())
 }

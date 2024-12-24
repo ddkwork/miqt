@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QActionEvent>
 #include <QByteArray>
@@ -8,6 +10,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -42,7 +45,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQWizard : public virtual QWizard {
 public:
@@ -211,6 +229,38 @@ public:
 	void virtualbase_PaintEvent(QPaintEvent* event) {
 
 		QWizard::paintEvent(event);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__NativeEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
+		if (handle__NativeEvent == 0) {
+			return QWizard::nativeEvent(eventType, message, result);
+		}
+		
+		const QByteArray eventType_qb = eventType;
+		struct miqt_string eventType_ms;
+		eventType_ms.len = eventType_qb.length();
+		eventType_ms.data = static_cast<char*>(malloc(eventType_ms.len));
+		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
+		struct miqt_string sigval1 = eventType_ms;
+		void* sigval2 = message;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
+
+		bool callback_return_value = miqt_exec_callback_QWizard_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
+		QByteArray eventType_QByteArray(eventType.data, eventType.len);
+
+		return QWizard::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -556,17 +606,6 @@ struct miqt_string QWizard_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QWizard_TrUtf8(const char* s) {
-	QString _ret = QWizard::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QWizard_AddPage(QWizard* self, QWizardPage* page) {
 	return self->addPage(page);
 }
@@ -585,19 +624,6 @@ QWizardPage* QWizard_Page(const QWizard* self, int id) {
 
 bool QWizard_HasVisitedPage(const QWizard* self, int id) {
 	return self->hasVisitedPage(static_cast<int>(id));
-}
-
-struct miqt_array /* of int */  QWizard_VisitedPages(const QWizard* self) {
-	QList<int> _ret = self->visitedPages();
-	// Convert QList<> from C++ memory to manually-managed C memory
-	int* _arr = static_cast<int*>(malloc(sizeof(int) * _ret.length()));
-	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		_arr[i] = _ret[i];
-	}
-	struct miqt_array _out;
-	_out.len = _ret.length();
-	_out.data = static_cast<void*>(_arr);
-	return _out;
 }
 
 struct miqt_array /* of int */  QWizard_VisitedIds(const QWizard* self) {
@@ -660,39 +686,37 @@ QVariant* QWizard_Field(const QWizard* self, struct miqt_string name) {
 	return new QVariant(self->field(name_QString));
 }
 
-void QWizard_SetWizardStyle(QWizard* self, int style) {
-	self->setWizardStyle(static_cast<QWizard::WizardStyle>(style));
+void QWizard_SetWizardStyle(QWizard* self, WizardStyle style) {
+	self->setWizardStyle(style);
 }
 
-int QWizard_WizardStyle(const QWizard* self) {
-	QWizard::WizardStyle _ret = self->wizardStyle();
-	return static_cast<int>(_ret);
+WizardStyle QWizard_WizardStyle(const QWizard* self) {
+	return self->wizardStyle();
 }
 
-void QWizard_SetOption(QWizard* self, int option) {
-	self->setOption(static_cast<QWizard::WizardOption>(option));
+void QWizard_SetOption(QWizard* self, WizardOption option) {
+	self->setOption(option);
 }
 
-bool QWizard_TestOption(const QWizard* self, int option) {
-	return self->testOption(static_cast<QWizard::WizardOption>(option));
+bool QWizard_TestOption(const QWizard* self, WizardOption option) {
+	return self->testOption(option);
 }
 
-void QWizard_SetOptions(QWizard* self, int options) {
-	self->setOptions(static_cast<QWizard::WizardOptions>(options));
+void QWizard_SetOptions(QWizard* self, WizardOptions options) {
+	self->setOptions(options);
 }
 
-int QWizard_Options(const QWizard* self) {
-	QWizard::WizardOptions _ret = self->options();
-	return static_cast<int>(_ret);
+WizardOptions QWizard_Options(const QWizard* self) {
+	return self->options();
 }
 
-void QWizard_SetButtonText(QWizard* self, int which, struct miqt_string text) {
+void QWizard_SetButtonText(QWizard* self, WizardButton which, struct miqt_string text) {
 	QString text_QString = QString::fromUtf8(text.data, text.len);
-	self->setButtonText(static_cast<QWizard::WizardButton>(which), text_QString);
+	self->setButtonText(which, text_QString);
 }
 
-struct miqt_string QWizard_ButtonText(const QWizard* self, int which) {
-	QString _ret = self->buttonText(static_cast<QWizard::WizardButton>(which));
+struct miqt_string QWizard_ButtonText(const QWizard* self, WizardButton which) {
+	QString _ret = self->buttonText(which);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -702,22 +726,22 @@ struct miqt_string QWizard_ButtonText(const QWizard* self, int which) {
 	return _ms;
 }
 
-void QWizard_SetButtonLayout(QWizard* self, struct miqt_array /* of int */  layout) {
-	QList<QWizard::WizardButton> layout_QList;
+void QWizard_SetButtonLayout(QWizard* self, struct miqt_array /* of WizardButton */  layout) {
+	QList<WizardButton> layout_QList;
 	layout_QList.reserve(layout.len);
-	int* layout_arr = static_cast<int*>(layout.data);
+	WizardButton* layout_arr = static_cast<WizardButton*>(layout.data);
 	for(size_t i = 0; i < layout.len; ++i) {
-		layout_QList.push_back(static_cast<QWizard::WizardButton>(layout_arr[i]));
+		layout_QList.push_back(layout_arr[i]);
 	}
 	self->setButtonLayout(layout_QList);
 }
 
-void QWizard_SetButton(QWizard* self, int which, QAbstractButton* button) {
-	self->setButton(static_cast<QWizard::WizardButton>(which), button);
+void QWizard_SetButton(QWizard* self, WizardButton which, QAbstractButton* button) {
+	self->setButton(which, button);
 }
 
-QAbstractButton* QWizard_Button(const QWizard* self, int which) {
-	return self->button(static_cast<QWizard::WizardButton>(which));
+QAbstractButton* QWizard_Button(const QWizard* self, WizardButton which) {
+	return self->button(which);
 }
 
 void QWizard_SetTitleFormat(QWizard* self, int format) {
@@ -738,12 +762,12 @@ int QWizard_SubTitleFormat(const QWizard* self) {
 	return static_cast<int>(_ret);
 }
 
-void QWizard_SetPixmap(QWizard* self, int which, QPixmap* pixmap) {
-	self->setPixmap(static_cast<QWizard::WizardPixmap>(which), *pixmap);
+void QWizard_SetPixmap(QWizard* self, WizardPixmap which, QPixmap* pixmap) {
+	self->setPixmap(which, *pixmap);
 }
 
-QPixmap* QWizard_Pixmap(const QWizard* self, int which) {
-	return new QPixmap(self->pixmap(static_cast<QWizard::WizardPixmap>(which)));
+QPixmap* QWizard_Pixmap(const QWizard* self, WizardPixmap which) {
+	return new QPixmap(self->pixmap(which));
 }
 
 void QWizard_SetSideWidget(QWizard* self, QWidget* widget) {
@@ -828,6 +852,10 @@ void QWizard_Next(QWizard* self) {
 	self->next();
 }
 
+void QWizard_SetCurrentId(QWizard* self, int id) {
+	self->setCurrentId(static_cast<int>(id));
+}
+
 void QWizard_Restart(QWizard* self) {
 	self->restart();
 }
@@ -854,30 +882,8 @@ struct miqt_string QWizard_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QWizard_TrUtf82(const char* s, const char* c) {
-	QString _ret = QWizard::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QWizard_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QWizard::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QWizard_SetOption2(QWizard* self, int option, bool on) {
-	self->setOption(static_cast<QWizard::WizardOption>(option), on);
+void QWizard_SetOption2(QWizard* self, WizardOption option, bool on) {
+	self->setOption(option, on);
 }
 
 void QWizard_override_virtual_ValidateCurrentPage(void* self, intptr_t slot) {
@@ -934,6 +940,14 @@ void QWizard_override_virtual_PaintEvent(void* self, intptr_t slot) {
 
 void QWizard_virtualbase_PaintEvent(void* self, QPaintEvent* event) {
 	( (MiqtVirtualQWizard*)(self) )->virtualbase_PaintEvent(event);
+}
+
+void QWizard_override_virtual_NativeEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQWizard*>( (QWizard*)(self) )->handle__NativeEvent = slot;
+}
+
+bool QWizard_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
+	return ( (MiqtVirtualQWizard*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
 void QWizard_override_virtual_Done(void* self, intptr_t slot) {
@@ -1568,13 +1582,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QWizardPage::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QWizardPage_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -1582,7 +1596,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QWizardPage::enterEvent(event);
 
@@ -1928,7 +1942,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QWizardPage::nativeEvent(eventType, message, result);
 		}
@@ -1940,7 +1954,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QWizardPage_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -1948,10 +1963,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QWizardPage::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QWizardPage::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -1983,13 +1998,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QWizardPage::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QWizardPage_Metric(const_cast<MiqtVirtualQWizardPage*>(this), handle__Metric, sigval1);
 
@@ -1997,9 +2011,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QWizardPage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QWizardPage::metric(param1);
 
 	}
 
@@ -2176,17 +2190,6 @@ struct miqt_string QWizardPage_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QWizardPage_TrUtf8(const char* s) {
-	QString _ret = QWizardPage::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QWizardPage_SetTitle(QWizardPage* self, struct miqt_string title) {
 	QString title_QString = QString::fromUtf8(title.data, title.len);
 	self->setTitle(title_QString);
@@ -2302,28 +2305,6 @@ struct miqt_string QWizardPage_Tr2(const char* s, const char* c) {
 
 struct miqt_string QWizardPage_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QWizardPage::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QWizardPage_TrUtf82(const char* s, const char* c) {
-	QString _ret = QWizardPage::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QWizardPage_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QWizardPage::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -2513,7 +2494,7 @@ void QWizardPage_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWizardPage*>( (QWizardPage*)(self) )->handle__EnterEvent = slot;
 }
 
-void QWizardPage_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QWizardPage_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQWizardPage*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -2633,7 +2614,7 @@ void QWizardPage_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWizardPage*>( (QWizardPage*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QWizardPage_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QWizardPage_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQWizardPage*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -2649,7 +2630,7 @@ void QWizardPage_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQWizardPage*>( (QWizardPage*)(self) )->handle__Metric = slot;
 }
 
-int QWizardPage_virtualbase_Metric(const void* self, int param1) {
+int QWizardPage_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQWizardPage*)(self) )->virtualbase_Metric(param1);
 }
 

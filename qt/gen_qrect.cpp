@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QMargins>
 #include <QMarginsF>
 #include <QPoint>
@@ -12,7 +14,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QRect* QRect_new() {
 	return new QRect();
@@ -308,6 +325,14 @@ QRect* QRect_OperatorMinusAssign(QRect* self, QMargins* margins) {
 	QRect& _ret = self->operator-=(*margins);
 	// Cast returned reference into pointer
 	return &_ret;
+}
+
+QRect* QRect_Span(QPoint* p1, QPoint* p2) {
+	return new QRect(QRect::span(*p1, *p2));
+}
+
+QRectF* QRect_ToRectF(const QRect* self) {
+	return new QRectF(self->toRectF());
 }
 
 bool QRect_Contains22(const QRect* self, QRect* r, bool proper) {

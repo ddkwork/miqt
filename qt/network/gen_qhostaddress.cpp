@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QHostAddress>
 #include <QIPv6Address>
-#include <QPair>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -10,7 +11,30 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QIPv6Address* QIPv6Address_new() {
+	return new QIPv6Address();
+}
+
+QIPv6Address* QIPv6Address_new2(QIPv6Address* param1) {
+	return new QIPv6Address(*param1);
+}
 
 unsigned char QIPv6Address_OperatorSubscript(const QIPv6Address* self, int index) {
 	quint8 _ret = self->operator[](static_cast<int>(index));
@@ -33,42 +57,33 @@ QHostAddress* QHostAddress_new2(unsigned int ip4Addr) {
 	return new QHostAddress(static_cast<quint32>(ip4Addr));
 }
 
-QHostAddress* QHostAddress_new3(unsigned char* ip6Addr) {
-	return new QHostAddress(static_cast<quint8*>(ip6Addr));
-}
-
-QHostAddress* QHostAddress_new4(const unsigned char* ip6Addr) {
+QHostAddress* QHostAddress_new3(const unsigned char* ip6Addr) {
 	return new QHostAddress(static_cast<const quint8*>(ip6Addr));
 }
 
-QHostAddress* QHostAddress_new5(QIPv6Address* ip6Addr) {
+QHostAddress* QHostAddress_new4(QIPv6Address* ip6Addr) {
 	return new QHostAddress(*ip6Addr);
 }
 
-QHostAddress* QHostAddress_new6(struct miqt_string address) {
+QHostAddress* QHostAddress_new5(struct miqt_string address) {
 	QString address_QString = QString::fromUtf8(address.data, address.len);
 	return new QHostAddress(address_QString);
 }
 
-QHostAddress* QHostAddress_new7(QHostAddress* copyVal) {
+QHostAddress* QHostAddress_new6(QHostAddress* copyVal) {
 	return new QHostAddress(*copyVal);
 }
 
-QHostAddress* QHostAddress_new8(int address) {
-	return new QHostAddress(static_cast<QHostAddress::SpecialAddress>(address));
+QHostAddress* QHostAddress_new7(SpecialAddress address) {
+	return new QHostAddress(address);
 }
 
 void QHostAddress_OperatorAssign(QHostAddress* self, QHostAddress* other) {
 	self->operator=(*other);
 }
 
-void QHostAddress_OperatorAssignWithAddress(QHostAddress* self, struct miqt_string address) {
-	QString address_QString = QString::fromUtf8(address.data, address.len);
-	self->operator=(address_QString);
-}
-
-void QHostAddress_OperatorAssign2(QHostAddress* self, int address) {
-	self->operator=(static_cast<QHostAddress::SpecialAddress>(address));
+void QHostAddress_OperatorAssignWithAddress(QHostAddress* self, SpecialAddress address) {
+	self->operator=(address);
 }
 
 void QHostAddress_Swap(QHostAddress* self, QHostAddress* other) {
@@ -79,39 +94,29 @@ void QHostAddress_SetAddress(QHostAddress* self, unsigned int ip4Addr) {
 	self->setAddress(static_cast<quint32>(ip4Addr));
 }
 
-void QHostAddress_SetAddressWithIp6Addr(QHostAddress* self, unsigned char* ip6Addr) {
-	self->setAddress(static_cast<quint8*>(ip6Addr));
-}
-
-void QHostAddress_SetAddress2(QHostAddress* self, const unsigned char* ip6Addr) {
+void QHostAddress_SetAddressWithIp6Addr(QHostAddress* self, const unsigned char* ip6Addr) {
 	self->setAddress(static_cast<const quint8*>(ip6Addr));
 }
 
-void QHostAddress_SetAddress3(QHostAddress* self, QIPv6Address* ip6Addr) {
+void QHostAddress_SetAddress2(QHostAddress* self, QIPv6Address* ip6Addr) {
 	self->setAddress(*ip6Addr);
 }
 
-bool QHostAddress_SetAddress4(QHostAddress* self, struct miqt_string address) {
+bool QHostAddress_SetAddress3(QHostAddress* self, struct miqt_string address) {
 	QString address_QString = QString::fromUtf8(address.data, address.len);
 	return self->setAddress(address_QString);
 }
 
-void QHostAddress_SetAddress5(QHostAddress* self, int address) {
-	self->setAddress(static_cast<QHostAddress::SpecialAddress>(address));
+void QHostAddress_SetAddress4(QHostAddress* self, SpecialAddress address) {
+	self->setAddress(address);
 }
 
-int QHostAddress_Protocol(const QHostAddress* self) {
-	QAbstractSocket::NetworkLayerProtocol _ret = self->protocol();
-	return static_cast<int>(_ret);
+NetworkLayerProtocol QHostAddress_Protocol(const QHostAddress* self) {
+	return self->protocol();
 }
 
 unsigned int QHostAddress_ToIPv4Address(const QHostAddress* self) {
 	quint32 _ret = self->toIPv4Address();
-	return static_cast<unsigned int>(_ret);
-}
-
-unsigned int QHostAddress_ToIPv4AddressWithOk(const QHostAddress* self, bool* ok) {
-	quint32 _ret = self->toIPv4Address(ok);
 	return static_cast<unsigned int>(_ret);
 }
 
@@ -154,16 +159,16 @@ bool QHostAddress_OperatorEqual(const QHostAddress* self, QHostAddress* address)
 	return (*self == *address);
 }
 
-bool QHostAddress_OperatorEqualWithAddress(const QHostAddress* self, int address) {
-	return (*self == static_cast<QHostAddress::SpecialAddress>(address));
+bool QHostAddress_OperatorEqualWithAddress(const QHostAddress* self, SpecialAddress address) {
+	return (*self == address);
 }
 
 bool QHostAddress_OperatorNotEqual(const QHostAddress* self, QHostAddress* address) {
 	return (*self != *address);
 }
 
-bool QHostAddress_OperatorNotEqualWithAddress(const QHostAddress* self, int address) {
-	return (*self != static_cast<QHostAddress::SpecialAddress>(address));
+bool QHostAddress_OperatorNotEqualWithAddress(const QHostAddress* self, SpecialAddress address) {
+	return (*self != address);
 }
 
 bool QHostAddress_IsNull(const QHostAddress* self) {
@@ -176,15 +181,6 @@ void QHostAddress_Clear(QHostAddress* self) {
 
 bool QHostAddress_IsInSubnet(const QHostAddress* self, QHostAddress* subnet, int netmask) {
 	return self->isInSubnet(*subnet, static_cast<int>(netmask));
-}
-
-bool QHostAddress_IsInSubnetWithSubnet(const QHostAddress* self, struct miqt_map /* tuple of QHostAddress* and int */  subnet) {
-	QPair<QHostAddress, int> subnet_QPair;
-	QHostAddress** subnet_first_arr = static_cast<QHostAddress**>(subnet.keys);
-	int* subnet_second_arr = static_cast<int*>(subnet.values);
-	subnet_QPair.first = *(subnet_first_arr[0]);
-	subnet_QPair.second = static_cast<int>(subnet_second_arr[0]);
-	return self->isInSubnet(subnet_QPair);
 }
 
 bool QHostAddress_IsLoopback(const QHostAddress* self) {
@@ -215,23 +211,17 @@ bool QHostAddress_IsBroadcast(const QHostAddress* self) {
 	return self->isBroadcast();
 }
 
-struct miqt_map /* tuple of QHostAddress* and int */  QHostAddress_ParseSubnet(struct miqt_string subnet) {
-	QString subnet_QString = QString::fromUtf8(subnet.data, subnet.len);
-	QPair<QHostAddress, int> _ret = QHostAddress::parseSubnet(subnet_QString);
-	// Convert QPair<> from C++ memory to manually-managed C memory
-	QHostAddress** _first_arr = static_cast<QHostAddress**>(malloc(sizeof(QHostAddress*)));
-	int* _second_arr = static_cast<int*>(malloc(sizeof(int)));
-	_first_arr[0] = new QHostAddress(_ret.first);
-	_second_arr[0] = _ret.second;
-	struct miqt_map _out;
-	_out.len = 1;
-	_out.keys = static_cast<void*>(_first_arr);
-	_out.values = static_cast<void*>(_second_arr);
-	return _out;
+bool QHostAddress_IsPrivateUse(const QHostAddress* self) {
+	return self->isPrivateUse();
 }
 
-bool QHostAddress_IsEqual2(const QHostAddress* self, QHostAddress* address, int mode) {
-	return self->isEqual(*address, static_cast<QHostAddress::ConversionMode>(mode));
+unsigned int QHostAddress_ToIPv4Address1(const QHostAddress* self, bool* ok) {
+	quint32 _ret = self->toIPv4Address(ok);
+	return static_cast<unsigned int>(_ret);
+}
+
+bool QHostAddress_IsEqual2(const QHostAddress* self, QHostAddress* address, ConversionMode mode) {
+	return self->isEqual(*address, mode);
 }
 
 void QHostAddress_Delete(QHostAddress* self, bool isSubclass) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEvent>
 #include <QGesture>
 #include <QGestureRecognizer>
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGestureRecognizer : public virtual QGestureRecognizer {
 public:
@@ -44,18 +61,18 @@ public:
 	intptr_t handle__Recognize = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QGestureRecognizer::Result recognize(QGesture* state, QObject* watched, QEvent* event) override {
+	virtual Result recognize(QGesture* state, QObject* watched, QEvent* event) override {
 		if (handle__Recognize == 0) {
-			return QGestureRecognizer::Result(); // Pure virtual, there is no base we can call
+			return Result(); // Pure virtual, there is no base we can call
 		}
 		
 		QGesture* sigval1 = state;
 		QObject* sigval2 = watched;
 		QEvent* sigval3 = event;
 
-		int callback_return_value = miqt_exec_callback_QGestureRecognizer_Recognize(this, handle__Recognize, sigval1, sigval2, sigval3);
+		Result callback_return_value = miqt_exec_callback_QGestureRecognizer_Recognize(this, handle__Recognize, sigval1, sigval2, sigval3);
 
-		return static_cast<QGestureRecognizer::Result>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// cgo.Handle value for overwritten implementation
@@ -92,9 +109,8 @@ QGesture* QGestureRecognizer_Create(QGestureRecognizer* self, QObject* target) {
 	return self->create(target);
 }
 
-int QGestureRecognizer_Recognize(QGestureRecognizer* self, QGesture* state, QObject* watched, QEvent* event) {
-	QGestureRecognizer::Result _ret = self->recognize(state, watched, event);
-	return static_cast<int>(_ret);
+Result QGestureRecognizer_Recognize(QGestureRecognizer* self, QGesture* state, QObject* watched, QEvent* event) {
+	return self->recognize(state, watched, event);
 }
 
 void QGestureRecognizer_Reset(QGestureRecognizer* self, QGesture* state) {

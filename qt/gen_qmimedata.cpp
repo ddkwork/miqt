@@ -1,9 +1,12 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
+#include <QMetaType>
 #include <QMimeData>
 #include <QObject>
 #include <QString>
@@ -18,7 +21,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQMimeData : public virtual QMimeData {
 public:
@@ -107,7 +125,7 @@ public:
 	intptr_t handle__RetrieveData = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant retrieveData(const QString& mimetype, QVariant::Type preferredType) const override {
+	virtual QVariant retrieveData(const QString& mimetype, QMetaType preferredType) const override {
 		if (handle__RetrieveData == 0) {
 			return QMimeData::retrieveData(mimetype, preferredType);
 		}
@@ -120,8 +138,7 @@ public:
 		mimetype_ms.data = static_cast<char*>(malloc(mimetype_ms.len));
 		memcpy(mimetype_ms.data, mimetype_b.data(), mimetype_ms.len);
 		struct miqt_string sigval1 = mimetype_ms;
-		QVariant::Type preferredType_ret = preferredType;
-		int sigval2 = static_cast<int>(preferredType_ret);
+		QMetaType* sigval2 = new QMetaType(preferredType);
 
 		QVariant* callback_return_value = miqt_exec_callback_QMimeData_RetrieveData(const_cast<MiqtVirtualQMimeData*>(this), handle__RetrieveData, sigval1, sigval2);
 
@@ -129,10 +146,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_RetrieveData(struct miqt_string mimetype, int preferredType) const {
+	QVariant* virtualbase_RetrieveData(struct miqt_string mimetype, QMetaType* preferredType) const {
 		QString mimetype_QString = QString::fromUtf8(mimetype.data, mimetype.len);
 
-		return new QVariant(QMimeData::retrieveData(mimetype_QString, static_cast<QVariant::Type>(preferredType)));
+		return new QVariant(QMimeData::retrieveData(mimetype_QString, *preferredType));
 
 	}
 
@@ -336,17 +353,6 @@ struct miqt_string QMimeData_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QMimeData_TrUtf8(const char* s) {
-	QString _ret = QMimeData::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_array /* of QUrl* */  QMimeData_Urls(const QMimeData* self) {
 	QList<QUrl> _ret = self->urls();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -510,28 +516,6 @@ struct miqt_string QMimeData_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QMimeData_TrUtf82(const char* s, const char* c) {
-	QString _ret = QMimeData::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QMimeData_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QMimeData::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QMimeData_override_virtual_HasFormat(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMimeData*>( (QMimeData*)(self) )->handle__HasFormat = slot;
 }
@@ -552,7 +536,7 @@ void QMimeData_override_virtual_RetrieveData(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMimeData*>( (QMimeData*)(self) )->handle__RetrieveData = slot;
 }
 
-QVariant* QMimeData_virtualbase_RetrieveData(const void* self, struct miqt_string mimetype, int preferredType) {
+QVariant* QMimeData_virtualbase_RetrieveData(const void* self, struct miqt_string mimetype, QMetaType* preferredType) {
 	return ( (const MiqtVirtualQMimeData*)(self) )->virtualbase_RetrieveData(mimetype, preferredType);
 }
 

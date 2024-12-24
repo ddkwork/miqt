@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAction>
 #include <QActionEvent>
 #include <QByteArray>
@@ -8,6 +10,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -32,7 +35,9 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QTabletEvent>
+#include <QTimerEvent>
 #include <QValidator>
 #include <QVariant>
 #include <QWheelEvent>
@@ -43,7 +48,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLineEdit : public virtual QLineEdit {
 public:
@@ -216,6 +236,30 @@ public:
 	void virtualbase_KeyPressEvent(QKeyEvent* param1) {
 
 		QLineEdit::keyPressEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__KeyReleaseEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void keyReleaseEvent(QKeyEvent* param1) override {
+		if (handle__KeyReleaseEvent == 0) {
+			QLineEdit::keyReleaseEvent(param1);
+			return;
+		}
+		
+		QKeyEvent* sigval1 = param1;
+
+		miqt_exec_callback_QLineEdit_KeyReleaseEvent(this, handle__KeyReleaseEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_KeyReleaseEvent(QKeyEvent* param1) {
+
+		QLineEdit::keyReleaseEvent(param1);
 
 	}
 
@@ -460,6 +504,30 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QLineEdit::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QLineEdit_InitStyleOption(const_cast<MiqtVirtualQLineEdit*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QLineEdit::initStyleOption(option);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__InputMethodQuery = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -480,6 +548,30 @@ public:
 	QVariant* virtualbase_InputMethodQuery(int param1) const {
 
 		return new QVariant(QLineEdit::inputMethodQuery(static_cast<Qt::InputMethodQuery>(param1)));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__TimerEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void timerEvent(QTimerEvent* param1) override {
+		if (handle__TimerEvent == 0) {
+			QLineEdit::timerEvent(param1);
+			return;
+		}
+		
+		QTimerEvent* sigval1 = param1;
+
+		miqt_exec_callback_QLineEdit_TimerEvent(this, handle__TimerEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_TimerEvent(QTimerEvent* param1) {
+
+		QLineEdit::timerEvent(param1);
 
 	}
 
@@ -644,40 +736,16 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__KeyReleaseEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void keyReleaseEvent(QKeyEvent* event) override {
-		if (handle__KeyReleaseEvent == 0) {
-			QLineEdit::keyReleaseEvent(event);
-			return;
-		}
-		
-		QKeyEvent* sigval1 = event;
-
-		miqt_exec_callback_QLineEdit_KeyReleaseEvent(this, handle__KeyReleaseEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_KeyReleaseEvent(QKeyEvent* event) {
-
-		QLineEdit::keyReleaseEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QLineEdit::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QLineEdit_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -685,7 +753,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QLineEdit::enterEvent(event);
 
@@ -887,7 +955,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QLineEdit::nativeEvent(eventType, message, result);
 		}
@@ -899,7 +967,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QLineEdit_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -907,10 +976,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QLineEdit::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QLineEdit::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -918,13 +987,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QLineEdit::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QLineEdit_Metric(const_cast<MiqtVirtualQLineEdit*>(this), handle__Metric, sigval1);
 
@@ -932,9 +1000,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QLineEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QLineEdit::metric(param1);
 
 	}
 
@@ -1073,17 +1141,6 @@ struct miqt_string QLineEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QLineEdit_TrUtf8(const char* s) {
-	QString _ret = QLineEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QLineEdit_Text(const QLineEdit* self) {
 	QString _ret = self->text();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1146,13 +1203,12 @@ bool QLineEdit_IsClearButtonEnabled(const QLineEdit* self) {
 	return self->isClearButtonEnabled();
 }
 
-int QLineEdit_EchoMode(const QLineEdit* self) {
-	QLineEdit::EchoMode _ret = self->echoMode();
-	return static_cast<int>(_ret);
+EchoMode QLineEdit_EchoMode(const QLineEdit* self) {
+	return self->echoMode();
 }
 
-void QLineEdit_SetEchoMode(QLineEdit* self, int echoMode) {
-	self->setEchoMode(static_cast<QLineEdit::EchoMode>(echoMode));
+void QLineEdit_SetEchoMode(QLineEdit* self, EchoMode echoMode) {
+	self->setEchoMode(echoMode);
 }
 
 bool QLineEdit_IsReadOnly(const QLineEdit* self) {
@@ -1332,20 +1388,16 @@ void QLineEdit_SetTextMarginsWithMargins(QLineEdit* self, QMargins* margins) {
 	self->setTextMargins(*margins);
 }
 
-void QLineEdit_GetTextMargins(const QLineEdit* self, int* left, int* top, int* right, int* bottom) {
-	self->getTextMargins(static_cast<int*>(left), static_cast<int*>(top), static_cast<int*>(right), static_cast<int*>(bottom));
-}
-
 QMargins* QLineEdit_TextMargins(const QLineEdit* self) {
 	return new QMargins(self->textMargins());
 }
 
-void QLineEdit_AddAction(QLineEdit* self, QAction* action, int position) {
-	self->addAction(action, static_cast<QLineEdit::ActionPosition>(position));
+void QLineEdit_AddAction(QLineEdit* self, QAction* action, ActionPosition position) {
+	self->addAction(action, position);
 }
 
-QAction* QLineEdit_AddAction2(QLineEdit* self, QIcon* icon, int position) {
-	return self->addAction(*icon, static_cast<QLineEdit::ActionPosition>(position));
+QAction* QLineEdit_AddAction2(QLineEdit* self, QIcon* icon, ActionPosition position) {
+	return self->addAction(*icon, position);
 }
 
 void QLineEdit_SetText(QLineEdit* self, struct miqt_string text) {
@@ -1492,6 +1544,10 @@ QVariant* QLineEdit_InputMethodQuery2(const QLineEdit* self, int property, QVari
 	return new QVariant(self->inputMethodQuery(static_cast<Qt::InputMethodQuery>(property), *argument));
 }
 
+void QLineEdit_TimerEvent(QLineEdit* self, QTimerEvent* param1) {
+	self->timerEvent(param1);
+}
+
 bool QLineEdit_Event(QLineEdit* self, QEvent* param1) {
 	return self->event(param1);
 }
@@ -1509,28 +1565,6 @@ struct miqt_string QLineEdit_Tr2(const char* s, const char* c) {
 
 struct miqt_string QLineEdit_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QLineEdit::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLineEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QLineEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLineEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QLineEdit::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1602,6 +1636,14 @@ void QLineEdit_override_virtual_KeyPressEvent(void* self, intptr_t slot) {
 
 void QLineEdit_virtualbase_KeyPressEvent(void* self, QKeyEvent* param1) {
 	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_KeyPressEvent(param1);
+}
+
+void QLineEdit_override_virtual_KeyReleaseEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__KeyReleaseEvent = slot;
+}
+
+void QLineEdit_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* param1) {
+	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_KeyReleaseEvent(param1);
 }
 
 void QLineEdit_override_virtual_FocusInEvent(void* self, intptr_t slot) {
@@ -1684,12 +1726,28 @@ void QLineEdit_virtualbase_InputMethodEvent(void* self, QInputMethodEvent* param
 	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_InputMethodEvent(param1);
 }
 
+void QLineEdit_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QLineEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQLineEdit*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QLineEdit_override_virtual_InputMethodQuery(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__InputMethodQuery = slot;
 }
 
 QVariant* QLineEdit_virtualbase_InputMethodQuery(const void* self, int param1) {
 	return ( (const MiqtVirtualQLineEdit*)(self) )->virtualbase_InputMethodQuery(param1);
+}
+
+void QLineEdit_override_virtual_TimerEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__TimerEvent = slot;
+}
+
+void QLineEdit_virtualbase_TimerEvent(void* self, QTimerEvent* param1) {
+	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_TimerEvent(param1);
 }
 
 void QLineEdit_override_virtual_Event(void* self, intptr_t slot) {
@@ -1748,19 +1806,11 @@ void QLineEdit_virtualbase_WheelEvent(void* self, QWheelEvent* event) {
 	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_WheelEvent(event);
 }
 
-void QLineEdit_override_virtual_KeyReleaseEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__KeyReleaseEvent = slot;
-}
-
-void QLineEdit_virtualbase_KeyReleaseEvent(void* self, QKeyEvent* event) {
-	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_KeyReleaseEvent(event);
-}
-
 void QLineEdit_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__EnterEvent = slot;
 }
 
-void QLineEdit_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QLineEdit_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQLineEdit*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1832,7 +1882,7 @@ void QLineEdit_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QLineEdit_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QLineEdit_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQLineEdit*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1840,7 +1890,7 @@ void QLineEdit_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLineEdit*>( (QLineEdit*)(self) )->handle__Metric = slot;
 }
 
-int QLineEdit_virtualbase_Metric(const void* self, int param1) {
+int QLineEdit_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQLineEdit*)(self) )->virtualbase_Metric(param1);
 }
 

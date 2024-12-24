@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QImage>
 #include <QString>
 #include <QByteArray>
@@ -21,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTextCursor* QTextCursor_new() {
 	return new QTextCursor();
@@ -81,8 +98,8 @@ void QTextCursor_InsertText2(QTextCursor* self, struct miqt_string text, QTextCh
 	self->insertText(text_QString, *format);
 }
 
-bool QTextCursor_MovePosition(QTextCursor* self, int op) {
-	return self->movePosition(static_cast<QTextCursor::MoveOperation>(op));
+bool QTextCursor_MovePosition(QTextCursor* self, MoveOperation op) {
+	return self->movePosition(op);
 }
 
 bool QTextCursor_VisualNavigation(const QTextCursor* self) {
@@ -117,8 +134,8 @@ void QTextCursor_DeletePreviousChar(QTextCursor* self) {
 	self->deletePreviousChar();
 }
 
-void QTextCursor_Select(QTextCursor* self, int selection) {
-	self->select(static_cast<QTextCursor::SelectionType>(selection));
+void QTextCursor_Select(QTextCursor* self, SelectionType selection) {
+	self->select(selection);
 }
 
 bool QTextCursor_HasSelection(const QTextCursor* self) {
@@ -281,6 +298,11 @@ void QTextCursor_InsertHtml(QTextCursor* self, struct miqt_string html) {
 	self->insertHtml(html_QString);
 }
 
+void QTextCursor_InsertMarkdown(QTextCursor* self, struct miqt_string markdown) {
+	QString markdown_QString = QString::fromUtf8(markdown.data, markdown.len);
+	self->insertMarkdown(markdown_QString);
+}
+
 void QTextCursor_InsertImage(QTextCursor* self, QTextImageFormat* format, int alignment) {
 	self->insertImage(*format, static_cast<QTextFrameFormat::Position>(alignment));
 }
@@ -350,16 +372,21 @@ QTextDocument* QTextCursor_Document(const QTextCursor* self) {
 	return self->document();
 }
 
-void QTextCursor_SetPosition2(QTextCursor* self, int pos, int mode) {
-	self->setPosition(static_cast<int>(pos), static_cast<QTextCursor::MoveMode>(mode));
+void QTextCursor_SetPosition2(QTextCursor* self, int pos, MoveMode mode) {
+	self->setPosition(static_cast<int>(pos), mode);
 }
 
-bool QTextCursor_MovePosition2(QTextCursor* self, int op, int param2) {
-	return self->movePosition(static_cast<QTextCursor::MoveOperation>(op), static_cast<QTextCursor::MoveMode>(param2));
+bool QTextCursor_MovePosition2(QTextCursor* self, MoveOperation op, MoveMode param2) {
+	return self->movePosition(op, param2);
 }
 
-bool QTextCursor_MovePosition3(QTextCursor* self, int op, int param2, int n) {
-	return self->movePosition(static_cast<QTextCursor::MoveOperation>(op), static_cast<QTextCursor::MoveMode>(param2), static_cast<int>(n));
+bool QTextCursor_MovePosition3(QTextCursor* self, MoveOperation op, MoveMode param2, int n) {
+	return self->movePosition(op, param2, static_cast<int>(n));
+}
+
+void QTextCursor_InsertMarkdown2(QTextCursor* self, struct miqt_string markdown, int features) {
+	QString markdown_QString = QString::fromUtf8(markdown.data, markdown.len);
+	self->insertMarkdown(markdown_QString, static_cast<QTextDocument::MarkdownFeatures>(features));
 }
 
 void QTextCursor_InsertImage2(QTextCursor* self, QImage* image, struct miqt_string name) {

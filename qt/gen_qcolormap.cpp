@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QColor>
 #include <QColormap>
 #include <QList>
@@ -7,7 +9,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QColormap* QColormap_new(QColormap* colormap) {
 	return new QColormap(*colormap);
@@ -29,9 +46,8 @@ void QColormap_OperatorAssign(QColormap* self, QColormap* colormap) {
 	self->operator=(*colormap);
 }
 
-int QColormap_Mode(const QColormap* self) {
-	QColormap::Mode _ret = self->mode();
-	return static_cast<int>(_ret);
+Mode QColormap_Mode(const QColormap* self) {
+	return self->mode();
 }
 
 int QColormap_Depth(const QColormap* self) {
@@ -52,7 +68,7 @@ QColor* QColormap_ColorAt(const QColormap* self, unsigned int pixel) {
 }
 
 struct miqt_array /* of QColor* */  QColormap_Colormap(const QColormap* self) {
-	const QVector<QColor> _ret = self->colormap();
+	const QList<QColor> _ret = self->colormap();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QColor** _arr = static_cast<QColor**>(malloc(sizeof(QColor*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {

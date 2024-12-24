@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QGlyphRun>
 #include <QList>
 #include <QMetaObject>
@@ -29,7 +31,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QTextObject_virtbase(QTextObject* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
@@ -45,17 +62,6 @@ void* QTextObject_Metacast(QTextObject* self, const char* param1) {
 
 struct miqt_string QTextObject_Tr(const char* s) {
 	QString _ret = QTextObject::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextObject_TrUtf8(const char* s) {
-	QString _ret = QTextObject::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -103,28 +109,6 @@ struct miqt_string QTextObject_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTextObject_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTextObject::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextObject_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTextObject::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTextBlockGroup_virtbase(QTextBlockGroup* src, QTextObject** outptr_QTextObject) {
 	*outptr_QTextObject = static_cast<QTextObject*>(src);
 }
@@ -148,17 +132,6 @@ struct miqt_string QTextBlockGroup_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTextBlockGroup_TrUtf8(const char* s) {
-	QString _ret = QTextBlockGroup::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QTextBlockGroup_Tr2(const char* s, const char* c) {
 	QString _ret = QTextBlockGroup::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -172,28 +145,6 @@ struct miqt_string QTextBlockGroup_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTextBlockGroup_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTextBlockGroup::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextBlockGroup_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTextBlockGroup::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextBlockGroup_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTextBlockGroup::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -233,17 +184,6 @@ void* QTextFrame_Metacast(QTextFrame* self, const char* param1) {
 
 struct miqt_string QTextFrame_Tr(const char* s) {
 	QString _ret = QTextFrame::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextFrame_TrUtf8(const char* s) {
-	QString _ret = QTextFrame::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -302,12 +242,12 @@ QTextFrame* QTextFrame_ParentFrame(const QTextFrame* self) {
 	return self->parentFrame();
 }
 
-QTextFrame__iterator* QTextFrame_Begin(const QTextFrame* self) {
-	return new QTextFrame::iterator(self->begin());
+iterator QTextFrame_Begin(const QTextFrame* self) {
+	return self->begin();
 }
 
-QTextFrame__iterator* QTextFrame_End(const QTextFrame* self) {
-	return new QTextFrame::iterator(self->end());
+iterator QTextFrame_End(const QTextFrame* self) {
+	return self->end();
 }
 
 struct miqt_string QTextFrame_Tr2(const char* s, const char* c) {
@@ -323,28 +263,6 @@ struct miqt_string QTextFrame_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTextFrame_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTextFrame::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextFrame_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTextFrame::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextFrame_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTextFrame::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -455,7 +373,7 @@ struct miqt_string QTextBlock_Text(const QTextBlock* self) {
 }
 
 struct miqt_array /* of QTextLayout__FormatRange* */  QTextBlock_TextFormats(const QTextBlock* self) {
-	QVector<QTextLayout::FormatRange> _ret = self->textFormats();
+	QList<QTextLayout::FormatRange> _ret = self->textFormats();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QTextLayout__FormatRange** _arr = static_cast<QTextLayout__FormatRange**>(malloc(sizeof(QTextLayout__FormatRange*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -523,12 +441,12 @@ int QTextBlock_LineCount(const QTextBlock* self) {
 	return self->lineCount();
 }
 
-QTextBlock__iterator* QTextBlock_Begin(const QTextBlock* self) {
-	return new QTextBlock::iterator(self->begin());
+iterator QTextBlock_Begin(const QTextBlock* self) {
+	return self->begin();
 }
 
-QTextBlock__iterator* QTextBlock_End(const QTextBlock* self) {
-	return new QTextBlock::iterator(self->end());
+iterator QTextBlock_End(const QTextBlock* self) {
+	return self->end();
 }
 
 QTextBlock* QTextBlock_Next(const QTextBlock* self) {
@@ -661,12 +579,8 @@ QTextFrame__iterator* QTextFrame__iterator_new() {
 	return new QTextFrame::iterator();
 }
 
-QTextFrame__iterator* QTextFrame__iterator_new2(QTextFrame__iterator* o) {
-	return new QTextFrame::iterator(*o);
-}
-
-void QTextFrame__iterator_OperatorAssign(QTextFrame__iterator* self, QTextFrame__iterator* o) {
-	self->operator=(*o);
+QTextFrame__iterator* QTextFrame__iterator_new2(const iterator* param1) {
+	return new QTextFrame::iterator(*param1);
 }
 
 QTextFrame* QTextFrame__iterator_ParentFrame(const QTextFrame__iterator* self) {
@@ -685,32 +599,28 @@ bool QTextFrame__iterator_AtEnd(const QTextFrame__iterator* self) {
 	return self->atEnd();
 }
 
-bool QTextFrame__iterator_OperatorEqual(const QTextFrame__iterator* self, QTextFrame__iterator* o) {
+bool QTextFrame__iterator_OperatorEqual(const QTextFrame__iterator* self, const iterator* o) {
 	return (*self == *o);
 }
 
-bool QTextFrame__iterator_OperatorNotEqual(const QTextFrame__iterator* self, QTextFrame__iterator* o) {
+bool QTextFrame__iterator_OperatorNotEqual(const QTextFrame__iterator* self, const iterator* o) {
 	return (*self != *o);
 }
 
-QTextFrame__iterator* QTextFrame__iterator_OperatorPlusPlus(QTextFrame__iterator* self) {
-	QTextFrame::iterator& _ret = self->operator++();
-	// Cast returned reference into pointer
-	return &_ret;
+iterator* QTextFrame__iterator_OperatorPlusPlus(QTextFrame__iterator* self) {
+	return &self->operator++();
 }
 
-QTextFrame__iterator* QTextFrame__iterator_OperatorPlusPlusWithInt(QTextFrame__iterator* self, int param1) {
-	return new QTextFrame::iterator(self->operator++(static_cast<int>(param1)));
+iterator QTextFrame__iterator_OperatorPlusPlusWithInt(QTextFrame__iterator* self, int param1) {
+	return self->operator++(static_cast<int>(param1));
 }
 
-QTextFrame__iterator* QTextFrame__iterator_OperatorMinusMinus(QTextFrame__iterator* self) {
-	QTextFrame::iterator& _ret = self->operator--();
-	// Cast returned reference into pointer
-	return &_ret;
+iterator* QTextFrame__iterator_OperatorMinusMinus(QTextFrame__iterator* self) {
+	return &self->operator--();
 }
 
-QTextFrame__iterator* QTextFrame__iterator_OperatorMinusMinusWithInt(QTextFrame__iterator* self, int param1) {
-	return new QTextFrame::iterator(self->operator--(static_cast<int>(param1)));
+iterator QTextFrame__iterator_OperatorMinusMinusWithInt(QTextFrame__iterator* self, int param1) {
+	return self->operator--(static_cast<int>(param1));
 }
 
 void QTextFrame__iterator_Delete(QTextFrame__iterator* self, bool isSubclass) {
@@ -725,12 +635,8 @@ QTextBlock__iterator* QTextBlock__iterator_new() {
 	return new QTextBlock::iterator();
 }
 
-QTextBlock__iterator* QTextBlock__iterator_new2(QTextBlock__iterator* o) {
-	return new QTextBlock::iterator(*o);
-}
-
-void QTextBlock__iterator_OperatorAssign(QTextBlock__iterator* self, QTextBlock__iterator* o) {
-	self->operator=(*o);
+QTextBlock__iterator* QTextBlock__iterator_new2(const iterator* param1) {
+	return new QTextBlock::iterator(*param1);
 }
 
 QTextFragment* QTextBlock__iterator_Fragment(const QTextBlock__iterator* self) {
@@ -741,32 +647,28 @@ bool QTextBlock__iterator_AtEnd(const QTextBlock__iterator* self) {
 	return self->atEnd();
 }
 
-bool QTextBlock__iterator_OperatorEqual(const QTextBlock__iterator* self, QTextBlock__iterator* o) {
+bool QTextBlock__iterator_OperatorEqual(const QTextBlock__iterator* self, const iterator* o) {
 	return (*self == *o);
 }
 
-bool QTextBlock__iterator_OperatorNotEqual(const QTextBlock__iterator* self, QTextBlock__iterator* o) {
+bool QTextBlock__iterator_OperatorNotEqual(const QTextBlock__iterator* self, const iterator* o) {
 	return (*self != *o);
 }
 
-QTextBlock__iterator* QTextBlock__iterator_OperatorPlusPlus(QTextBlock__iterator* self) {
-	QTextBlock::iterator& _ret = self->operator++();
-	// Cast returned reference into pointer
-	return &_ret;
+iterator* QTextBlock__iterator_OperatorPlusPlus(QTextBlock__iterator* self) {
+	return &self->operator++();
 }
 
-QTextBlock__iterator* QTextBlock__iterator_OperatorPlusPlusWithInt(QTextBlock__iterator* self, int param1) {
-	return new QTextBlock::iterator(self->operator++(static_cast<int>(param1)));
+iterator QTextBlock__iterator_OperatorPlusPlusWithInt(QTextBlock__iterator* self, int param1) {
+	return self->operator++(static_cast<int>(param1));
 }
 
-QTextBlock__iterator* QTextBlock__iterator_OperatorMinusMinus(QTextBlock__iterator* self) {
-	QTextBlock::iterator& _ret = self->operator--();
-	// Cast returned reference into pointer
-	return &_ret;
+iterator* QTextBlock__iterator_OperatorMinusMinus(QTextBlock__iterator* self) {
+	return &self->operator--();
 }
 
-QTextBlock__iterator* QTextBlock__iterator_OperatorMinusMinusWithInt(QTextBlock__iterator* self, int param1) {
-	return new QTextBlock::iterator(self->operator--(static_cast<int>(param1)));
+iterator QTextBlock__iterator_OperatorMinusMinusWithInt(QTextBlock__iterator* self, int param1) {
+	return self->operator--(static_cast<int>(param1));
 }
 
 void QTextBlock__iterator_Delete(QTextBlock__iterator* self, bool isSubclass) {

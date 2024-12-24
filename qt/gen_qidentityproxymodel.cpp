@@ -1,5 +1,8 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QAbstractProxyModel>
+#include <QByteArray>
 #include <QIdentityProxyModel>
 #include <QItemSelection>
 #include <QList>
@@ -19,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQIdentityProxyModel : public virtual QIdentityProxyModel {
 public:
@@ -802,6 +820,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QIdentityProxyModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QIdentityProxyModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QIdentityProxyModel::clearItemData(*index);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Buddy = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1112,6 +1155,55 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__RoleNames = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QHash<int, QByteArray> roleNames() const override {
+		if (handle__RoleNames == 0) {
+			return QIdentityProxyModel::roleNames();
+		}
+		
+
+		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QIdentityProxyModel_RoleNames(const_cast<MiqtVirtualQIdentityProxyModel*>(this), handle__RoleNames);
+		QHash<int, QByteArray> callback_return_value_QMap;
+		callback_return_value_QMap.reserve(callback_return_value.len);
+		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
+		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
+			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
+		}
+
+		return callback_return_value_QMap;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+
+		QHash<int, QByteArray> _ret = QIdentityProxyModel::roleNames();
+		// Convert QMap<> from C++ memory to manually-managed C memory
+		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+		int _ctr = 0;
+		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+			_karr[_ctr] = _itr->first;
+			QByteArray _hashval_qb = _itr->second;
+			struct miqt_string _hashval_ms;
+			_hashval_ms.len = _hashval_qb.length();
+			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+			_varr[_ctr] = _hashval_ms;
+			_ctr++;
+		}
+		struct miqt_map _out;
+		_out.len = _ret.size();
+		_out.keys = static_cast<void*>(_karr);
+		_out.values = static_cast<void*>(_varr);
+		return _out;
+
+	}
+
 };
 
 QIdentityProxyModel* QIdentityProxyModel_new() {
@@ -1136,17 +1228,6 @@ void* QIdentityProxyModel_Metacast(QIdentityProxyModel* self, const char* param1
 
 struct miqt_string QIdentityProxyModel_Tr(const char* s) {
 	QString _ret = QIdentityProxyModel::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QIdentityProxyModel_TrUtf8(const char* s) {
-	QString _ret = QIdentityProxyModel::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1241,6 +1322,14 @@ bool QIdentityProxyModel_MoveColumns(QIdentityProxyModel* self, QModelIndex* sou
 	return self->moveColumns(*sourceParent, static_cast<int>(sourceColumn), static_cast<int>(count), *destinationParent, static_cast<int>(destinationChild));
 }
 
+bool QIdentityProxyModel_HandleSourceLayoutChanges(const QIdentityProxyModel* self) {
+	return self->handleSourceLayoutChanges();
+}
+
+bool QIdentityProxyModel_HandleSourceDataChanges(const QIdentityProxyModel* self) {
+	return self->handleSourceDataChanges();
+}
+
 struct miqt_string QIdentityProxyModel_Tr2(const char* s, const char* c) {
 	QString _ret = QIdentityProxyModel::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1254,28 +1343,6 @@ struct miqt_string QIdentityProxyModel_Tr2(const char* s, const char* c) {
 
 struct miqt_string QIdentityProxyModel_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QIdentityProxyModel::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QIdentityProxyModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QIdentityProxyModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QIdentityProxyModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QIdentityProxyModel::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1501,6 +1568,14 @@ bool QIdentityProxyModel_virtualbase_SetHeaderData(void* self, int section, int 
 	return ( (MiqtVirtualQIdentityProxyModel*)(self) )->virtualbase_SetHeaderData(section, orientation, value, role);
 }
 
+void QIdentityProxyModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIdentityProxyModel*>( (QIdentityProxyModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QIdentityProxyModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQIdentityProxyModel*)(self) )->virtualbase_ClearItemData(index);
+}
+
 void QIdentityProxyModel_override_virtual_Buddy(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQIdentityProxyModel*>( (QIdentityProxyModel*)(self) )->handle__Buddy = slot;
 }
@@ -1587,6 +1662,14 @@ void QIdentityProxyModel_override_virtual_SupportedDropActions(void* self, intpt
 
 int QIdentityProxyModel_virtualbase_SupportedDropActions(const void* self) {
 	return ( (const MiqtVirtualQIdentityProxyModel*)(self) )->virtualbase_SupportedDropActions();
+}
+
+void QIdentityProxyModel_override_virtual_RoleNames(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIdentityProxyModel*>( (QIdentityProxyModel*)(self) )->handle__RoleNames = slot;
+}
+
+struct miqt_map /* of int to struct miqt_string */  QIdentityProxyModel_virtualbase_RoleNames(const void* self) {
+	return ( (const MiqtVirtualQIdentityProxyModel*)(self) )->virtualbase_RoleNames();
 }
 
 void QIdentityProxyModel_Delete(QIdentityProxyModel* self, bool isSubclass) {

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -18,16 +18,24 @@ extern "C" {
 class QDesktopServices;
 class QObject;
 class QUrl;
+class _GUID;
+class type_info;
 #else
 typedef struct QDesktopServices QDesktopServices;
 typedef struct QObject QObject;
 typedef struct QUrl QUrl;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-bool QDesktopServices_OpenUrl(QUrl* url);
-void QDesktopServices_SetUrlHandler(struct miqt_string scheme, QObject* receiver, const char* method);
-void QDesktopServices_UnsetUrlHandler(struct miqt_string scheme);
-void QDesktopServices_Delete(QDesktopServices* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) bool QDesktopServices_OpenUrl(QUrl* url);
+extern __declspec(dllexport) void QDesktopServices_SetUrlHandler(struct miqt_string scheme, QObject* receiver, const char* method);
+extern __declspec(dllexport) void QDesktopServices_UnsetUrlHandler(struct miqt_string scheme);
+extern __declspec(dllexport) void QDesktopServices_Delete(QDesktopServices* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

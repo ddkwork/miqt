@@ -3,7 +3,6 @@ package main
 import (
 	"embed"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -57,7 +56,6 @@ func NewAppTab() *AppTab {
 }
 
 func NewAppWindow() *AppWindow {
-
 	ret := AppWindow{}
 
 	ret.w = qt.NewQMainWindow2()
@@ -127,7 +125,7 @@ func (a *AppWindow) handleFileOpen() {
 		return
 	}
 
-	contents, err := ioutil.ReadFile(fname)
+	contents, err := os.ReadFile(fname)
 	if err != nil {
 		qt.QMessageBox_Warning(a.w.QWidget, "Failed to open file", fmt.Sprintf("Opening file %q: %v", fname, err))
 		return
@@ -137,7 +135,6 @@ func (a *AppWindow) handleFileOpen() {
 }
 
 func (a *AppWindow) createTabWithContents(tabTitle, tabContent string) {
-
 	tab := NewAppTab()
 	tab.textArea.SetText(tabContent)
 

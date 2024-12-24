@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QPrintEngine>
 #include <QVariant>
 #include <qprintengine.h>
@@ -6,14 +8,29 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-void QPrintEngine_SetProperty(QPrintEngine* self, int key, QVariant* value) {
-	self->setProperty(static_cast<QPrintEngine::PrintEnginePropertyKey>(key), *value);
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
 }
 
-QVariant* QPrintEngine_Property(const QPrintEngine* self, int key) {
-	return new QVariant(self->property(static_cast<QPrintEngine::PrintEnginePropertyKey>(key)));
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void QPrintEngine_SetProperty(QPrintEngine* self, PrintEnginePropertyKey key, QVariant* value) {
+	self->setProperty(key, *value);
+}
+
+QVariant* QPrintEngine_Property(const QPrintEngine* self, PrintEnginePropertyKey key) {
+	return new QVariant(self->property(key));
 }
 
 bool QPrintEngine_NewPage(QPrintEngine* self) {

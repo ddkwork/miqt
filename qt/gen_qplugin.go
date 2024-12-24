@@ -1,67 +1,80 @@
 package qt
 
-/*
-
-#include "gen_qplugin.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
-type QStaticPlugin struct {
-	h          *C.QStaticPlugin
+type QPluginMetaData struct {
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QStaticPlugin) cPointer() *C.QStaticPlugin {
-	if this == nil {
-		return nil
-	}
-	return this.h
+func QPluginMetaData_ArchRequirements() byte {
+	return (byte)(QPluginMetaData_ArchRequirements())
 }
 
-func (this *QStaticPlugin) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
+type QStaticPlugin struct {
+	h          uintptr
+	isSubclass bool
 }
 
-// newQStaticPlugin constructs the type using only CGO pointers.
-func newQStaticPlugin(h *C.QStaticPlugin) *QStaticPlugin {
-	if h == nil {
-		return nil
-	}
+// NewQStaticPlugin constructs a new QStaticPlugin object.
+func NewQStaticPlugin(param1 *QStaticPlugin) *QStaticPlugin {
 
-	return &QStaticPlugin{h: h}
-}
-
-// UnsafeNewQStaticPlugin constructs the type using only unsafe pointers.
-func UnsafeNewQStaticPlugin(h unsafe.Pointer) *QStaticPlugin {
-	return newQStaticPlugin((*C.QStaticPlugin)(h))
+	ret := newQStaticPlugin(QStaticPlugin_new(param1.cPointer()))
+	ret.isSubclass = true
+	return ret
 }
 
 func (this *QStaticPlugin) MetaData() *QJsonObject {
-	_goptr := newQJsonObject(C.QStaticPlugin_MetaData(this.h))
+	_goptr := newQJsonObject(QStaticPlugin_MetaData(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-// Delete this object from C++ memory.
-func (this *QStaticPlugin) Delete() {
-	C.QStaticPlugin_Delete(this.h, C.bool(this.isSubclass))
+type QPluginMetaData__Header struct {
+	h          uintptr
+	isSubclass bool
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QStaticPlugin) GoGC() {
-	runtime.SetFinalizer(this, func(this *QStaticPlugin) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+// NewQPluginMetaData__Header constructs a new QPluginMetaData::Header object.
+func NewQPluginMetaData__Header(param1 *Header) *QPluginMetaData__Header {
+
+	ret := newQPluginMetaData__Header(QPluginMetaData__Header_new(param1))
+	ret.isSubclass = true
+	return ret
+}
+
+type QPluginMetaData__MagicHeader struct {
+	h          uintptr
+	isSubclass bool
+}
+
+// NewQPluginMetaData__MagicHeader constructs a new QPluginMetaData::MagicHeader object.
+func NewQPluginMetaData__MagicHeader() *QPluginMetaData__MagicHeader {
+
+	ret := newQPluginMetaData__MagicHeader(QPluginMetaData__MagicHeader_new())
+	ret.isSubclass = true
+	return ret
+}
+
+type QPluginMetaData__ElfNoteHeader struct {
+	h          uintptr
+	isSubclass bool
+}
+
+// NewQPluginMetaData__ElfNoteHeader constructs a new QPluginMetaData::ElfNoteHeader object.
+func NewQPluginMetaData__ElfNoteHeader(payloadSize uint) *QPluginMetaData__ElfNoteHeader {
+
+	ret := newQPluginMetaData__ElfNoteHeader(QPluginMetaData__ElfNoteHeader_new((uint)(payloadSize)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQPluginMetaData__ElfNoteHeader2 constructs a new QPluginMetaData::ElfNoteHeader object.
+func NewQPluginMetaData__ElfNoteHeader2(param1 *ElfNoteHeader) *QPluginMetaData__ElfNoteHeader {
+
+	ret := newQPluginMetaData__ElfNoteHeader(QPluginMetaData__ElfNoteHeader_new2(param1))
+	ret.isSubclass = true
+	return ret
 }

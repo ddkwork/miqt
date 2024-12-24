@@ -1,4 +1,7 @@
+// +build ignore
+
 #include <QChildEvent>
+#include <QDeadlineTimer>
 #include <QEvent>
 #include <QMetaMethod>
 #include <QMetaObject>
@@ -16,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQThreadPool : public virtual QThreadPool {
 public:
@@ -230,17 +248,6 @@ struct miqt_string QThreadPool_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QThreadPool_TrUtf8(const char* s) {
-	QString _ret = QThreadPool::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QThreadPool* QThreadPool_GlobalInstance() {
 	return QThreadPool::globalInstance();
 }
@@ -251,6 +258,10 @@ void QThreadPool_Start(QThreadPool* self, QRunnable* runnable) {
 
 bool QThreadPool_TryStart(QThreadPool* self, QRunnable* runnable) {
 	return self->tryStart(runnable);
+}
+
+void QThreadPool_StartOnReservedThread(QThreadPool* self, QRunnable* runnable) {
+	self->startOnReservedThread(runnable);
 }
 
 int QThreadPool_ExpiryTimeout(const QThreadPool* self) {
@@ -282,6 +293,15 @@ unsigned int QThreadPool_StackSize(const QThreadPool* self) {
 	return static_cast<unsigned int>(_ret);
 }
 
+void QThreadPool_SetThreadPriority(QThreadPool* self, int priority) {
+	self->setThreadPriority(static_cast<QThread::Priority>(priority));
+}
+
+int QThreadPool_ThreadPriority(const QThreadPool* self) {
+	QThread::Priority _ret = self->threadPriority();
+	return static_cast<int>(_ret);
+}
+
 void QThreadPool_ReserveThread(QThreadPool* self) {
 	self->reserveThread();
 }
@@ -290,7 +310,20 @@ void QThreadPool_ReleaseThread(QThreadPool* self) {
 	self->releaseThread();
 }
 
-bool QThreadPool_WaitForDone(QThreadPool* self) {
+void QThreadPool_SetServiceLevel(QThreadPool* self, int serviceLevel) {
+	self->setServiceLevel(static_cast<QThread::QualityOfService>(serviceLevel));
+}
+
+int QThreadPool_ServiceLevel(const QThreadPool* self) {
+	QThread::QualityOfService _ret = self->serviceLevel();
+	return static_cast<int>(_ret);
+}
+
+bool QThreadPool_WaitForDone(QThreadPool* self, int msecs) {
+	return self->waitForDone(static_cast<int>(msecs));
+}
+
+bool QThreadPool_WaitForDone2(QThreadPool* self) {
 	return self->waitForDone();
 }
 
@@ -300,10 +333,6 @@ void QThreadPool_Clear(QThreadPool* self) {
 
 bool QThreadPool_Contains(const QThreadPool* self, QThread* thread) {
 	return self->contains(thread);
-}
-
-void QThreadPool_Cancel(QThreadPool* self, QRunnable* runnable) {
-	self->cancel(runnable);
 }
 
 bool QThreadPool_TryTake(QThreadPool* self, QRunnable* runnable) {
@@ -332,34 +361,12 @@ struct miqt_string QThreadPool_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QThreadPool_TrUtf82(const char* s, const char* c) {
-	QString _ret = QThreadPool::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QThreadPool_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QThreadPool::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QThreadPool_Start2(QThreadPool* self, QRunnable* runnable, int priority) {
 	self->start(runnable, static_cast<int>(priority));
 }
 
-bool QThreadPool_WaitForDone1(QThreadPool* self, int msecs) {
-	return self->waitForDone(static_cast<int>(msecs));
+bool QThreadPool_WaitForDone1(QThreadPool* self, QDeadlineTimer* deadline) {
+	return self->waitForDone(*deadline);
 }
 
 void QThreadPool_override_virtual_Event(void* self, intptr_t slot) {

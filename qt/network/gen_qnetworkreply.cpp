@@ -1,12 +1,16 @@
+// +build ignore
+
+#include <QAnyStringView>
 #include <QByteArray>
+#include <QHttpHeaders>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QList>
 #include <QMetaObject>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QObject>
-#include <QPair>
 #include <QSslConfiguration>
 #include <QSslError>
 #include <QSslPreSharedKeyAuthenticator>
@@ -21,7 +25,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QNetworkReply_virtbase(QNetworkReply* src, QIODevice** outptr_QIODevice) {
 	*outptr_QIODevice = static_cast<QIODevice*>(src);
@@ -37,17 +56,6 @@ void* QNetworkReply_Metacast(QNetworkReply* self, const char* param1) {
 
 struct miqt_string QNetworkReply_Tr(const char* s) {
 	QString _ret = QNetworkReply::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QNetworkReply_TrUtf8(const char* s) {
-	QString _ret = QNetworkReply::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -87,9 +95,8 @@ QNetworkRequest* QNetworkReply_Request(const QNetworkReply* self) {
 	return new QNetworkRequest(self->request());
 }
 
-int QNetworkReply_Error(const QNetworkReply* self) {
-	QNetworkReply::NetworkError _ret = self->error();
-	return static_cast<int>(_ret);
+NetworkError QNetworkReply_Error(const QNetworkReply* self) {
+	return self->error();
 }
 
 bool QNetworkReply_IsFinished(const QNetworkReply* self) {
@@ -108,9 +115,8 @@ QVariant* QNetworkReply_Header(const QNetworkReply* self, int header) {
 	return new QVariant(self->header(static_cast<QNetworkRequest::KnownHeaders>(header)));
 }
 
-bool QNetworkReply_HasRawHeader(const QNetworkReply* self, struct miqt_string headerName) {
-	QByteArray headerName_QByteArray(headerName.data, headerName.len);
-	return self->hasRawHeader(headerName_QByteArray);
+bool QNetworkReply_HasRawHeader(const QNetworkReply* self, QAnyStringView* headerName) {
+	return self->hasRawHeader(*headerName);
 }
 
 struct miqt_array /* of struct miqt_string */  QNetworkReply_RawHeaderList(const QNetworkReply* self) {
@@ -131,9 +137,8 @@ struct miqt_array /* of struct miqt_string */  QNetworkReply_RawHeaderList(const
 	return _out;
 }
 
-struct miqt_string QNetworkReply_RawHeader(const QNetworkReply* self, struct miqt_string headerName) {
-	QByteArray headerName_QByteArray(headerName.data, headerName.len);
-	QByteArray _qb = self->rawHeader(headerName_QByteArray);
+struct miqt_string QNetworkReply_RawHeader(const QNetworkReply* self, QAnyStringView* headerName) {
+	QByteArray _qb = self->rawHeader(*headerName);
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));
@@ -141,37 +146,21 @@ struct miqt_string QNetworkReply_RawHeader(const QNetworkReply* self, struct miq
 	return _ms;
 }
 
-struct miqt_array /* of struct miqt_map  tuple of struct miqt_string and struct miqt_string   */  QNetworkReply_RawHeaderPairs(const QNetworkReply* self) {
-	const QList<QNetworkReply::RawHeaderPair>& _ret = self->rawHeaderPairs();
+struct miqt_array /* of RawHeaderPair */  QNetworkReply_RawHeaderPairs(const QNetworkReply* self) {
+	const QList<RawHeaderPair>& _ret = self->rawHeaderPairs();
 	// Convert QList<> from C++ memory to manually-managed C memory
-	struct miqt_map /* tuple of struct miqt_string and struct miqt_string */ * _arr = static_cast<struct miqt_map /* tuple of struct miqt_string and struct miqt_string */ *>(malloc(sizeof(struct miqt_map /* tuple of struct miqt_string and struct miqt_string */ ) * _ret.length()));
+	RawHeaderPair* _arr = static_cast<RawHeaderPair*>(malloc(sizeof(RawHeaderPair) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		QPair<QByteArray, QByteArray> _lv_ret = _ret[i];
-		// Convert QPair<> from C++ memory to manually-managed C memory
-		struct miqt_string* _lv_first_arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string)));
-		struct miqt_string* _lv_second_arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string)));
-		QByteArray _lv_first_qb = _lv_ret.first;
-		struct miqt_string _lv_first_ms;
-		_lv_first_ms.len = _lv_first_qb.length();
-		_lv_first_ms.data = static_cast<char*>(malloc(_lv_first_ms.len));
-		memcpy(_lv_first_ms.data, _lv_first_qb.data(), _lv_first_ms.len);
-		_lv_first_arr[0] = _lv_first_ms;
-		QByteArray _lv_second_qb = _lv_ret.second;
-		struct miqt_string _lv_second_ms;
-		_lv_second_ms.len = _lv_second_qb.length();
-		_lv_second_ms.data = static_cast<char*>(malloc(_lv_second_ms.len));
-		memcpy(_lv_second_ms.data, _lv_second_qb.data(), _lv_second_ms.len);
-		_lv_second_arr[0] = _lv_second_ms;
-		struct miqt_map _lv_out;
-		_lv_out.len = 1;
-		_lv_out.keys = static_cast<void*>(_lv_first_arr);
-		_lv_out.values = static_cast<void*>(_lv_second_arr);
-		_arr[i] = _lv_out;
+		_arr[i] = _ret[i];
 	}
 	struct miqt_array _out;
 	_out.len = _ret.length();
 	_out.data = static_cast<void*>(_arr);
 	return _out;
+}
+
+QHttpHeaders* QNetworkReply_Headers(const QNetworkReply* self) {
+	return new QHttpHeaders(self->headers());
 }
 
 QVariant* QNetworkReply_Attribute(const QNetworkReply* self, int code) {
@@ -204,6 +193,26 @@ void QNetworkReply_IgnoreSslErrors2(QNetworkReply* self) {
 	self->ignoreSslErrors();
 }
 
+void QNetworkReply_SocketStartedConnecting(QNetworkReply* self) {
+	self->socketStartedConnecting();
+}
+
+void QNetworkReply_connect_SocketStartedConnecting(QNetworkReply* self, intptr_t slot) {
+	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::socketStartedConnecting), self, [=]() {
+		miqt_exec_callback_QNetworkReply_SocketStartedConnecting(slot);
+	});
+}
+
+void QNetworkReply_RequestSent(QNetworkReply* self) {
+	self->requestSent();
+}
+
+void QNetworkReply_connect_RequestSent(QNetworkReply* self, intptr_t slot) {
+	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::requestSent), self, [=]() {
+		miqt_exec_callback_QNetworkReply_RequestSent(slot);
+	});
+}
+
 void QNetworkReply_MetaDataChanged(QNetworkReply* self) {
 	self->metaDataChanged();
 }
@@ -221,18 +230,6 @@ void QNetworkReply_Finished(QNetworkReply* self) {
 void QNetworkReply_connect_Finished(QNetworkReply* self, intptr_t slot) {
 	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)()>(&QNetworkReply::finished), self, [=]() {
 		miqt_exec_callback_QNetworkReply_Finished(slot);
-	});
-}
-
-void QNetworkReply_ErrorWithQNetworkReplyNetworkError(QNetworkReply* self, int param1) {
-	self->error(static_cast<QNetworkReply::NetworkError>(param1));
-}
-
-void QNetworkReply_connect_ErrorWithQNetworkReplyNetworkError(QNetworkReply* self, intptr_t slot) {
-	QNetworkReply::connect(self, static_cast<void (QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error), self, [=](QNetworkReply::NetworkError param1) {
-		QNetworkReply::NetworkError param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
-		miqt_exec_callback_QNetworkReply_ErrorWithQNetworkReplyNetworkError(slot, sigval1);
 	});
 }
 
@@ -359,28 +356,6 @@ struct miqt_string QNetworkReply_Tr2(const char* s, const char* c) {
 
 struct miqt_string QNetworkReply_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QNetworkReply::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QNetworkReply_TrUtf82(const char* s, const char* c) {
-	QString _ret = QNetworkReply::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QNetworkReply_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QNetworkReply::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

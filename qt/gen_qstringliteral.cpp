@@ -1,15 +1,23 @@
-#include <QStringDataPtr>
+// +build ignore
+
 #include <qstringliteral.h>
 #include "gen_qstringliteral.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-void QStringDataPtr_Delete(QStringDataPtr* self, bool isSubclass) {
+void _GUID_Delete(_GUID* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QStringDataPtr*>( self );
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
 	} else {
 		delete self;
 	}

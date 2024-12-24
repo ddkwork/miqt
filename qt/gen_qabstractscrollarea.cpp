@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractScrollArea>
 #include <QContextMenuEvent>
 #include <QDragEnterEvent>
@@ -19,6 +21,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QWheelEvent>
 #include <QWidget>
 #include <qabstractscrollarea.h>
@@ -27,7 +30,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractScrollArea : public virtual QAbstractScrollArea {
 public:
@@ -558,6 +576,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QAbstractScrollArea::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QAbstractScrollArea_InitStyleOption(const_cast<MiqtVirtualQAbstractScrollArea*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QAbstractScrollArea::initStyleOption(option);
+
+	}
+
 };
 
 QAbstractScrollArea* QAbstractScrollArea_new(QWidget* parent) {
@@ -582,17 +624,6 @@ void* QAbstractScrollArea_Metacast(QAbstractScrollArea* self, const char* param1
 
 struct miqt_string QAbstractScrollArea_Tr(const char* s) {
 	QString _ret = QAbstractScrollArea::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractScrollArea_TrUtf8(const char* s) {
-	QString _ret = QAbstractScrollArea::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -685,13 +716,12 @@ void QAbstractScrollArea_SetupViewport(QAbstractScrollArea* self, QWidget* viewp
 	self->setupViewport(viewport);
 }
 
-int QAbstractScrollArea_SizeAdjustPolicy(const QAbstractScrollArea* self) {
-	QAbstractScrollArea::SizeAdjustPolicy _ret = self->sizeAdjustPolicy();
-	return static_cast<int>(_ret);
+SizeAdjustPolicy QAbstractScrollArea_SizeAdjustPolicy(const QAbstractScrollArea* self) {
+	return self->sizeAdjustPolicy();
 }
 
-void QAbstractScrollArea_SetSizeAdjustPolicy(QAbstractScrollArea* self, int policy) {
-	self->setSizeAdjustPolicy(static_cast<QAbstractScrollArea::SizeAdjustPolicy>(policy));
+void QAbstractScrollArea_SetSizeAdjustPolicy(QAbstractScrollArea* self, SizeAdjustPolicy policy) {
+	self->setSizeAdjustPolicy(policy);
 }
 
 struct miqt_string QAbstractScrollArea_Tr2(const char* s, const char* c) {
@@ -707,28 +737,6 @@ struct miqt_string QAbstractScrollArea_Tr2(const char* s, const char* c) {
 
 struct miqt_string QAbstractScrollArea_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QAbstractScrollArea::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractScrollArea_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractScrollArea::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractScrollArea_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractScrollArea::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -912,6 +920,14 @@ void QAbstractScrollArea_override_virtual_ChangeEvent(void* self, intptr_t slot)
 
 void QAbstractScrollArea_virtualbase_ChangeEvent(void* self, QEvent* param1) {
 	( (MiqtVirtualQAbstractScrollArea*)(self) )->virtualbase_ChangeEvent(param1);
+}
+
+void QAbstractScrollArea_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractScrollArea*>( (QAbstractScrollArea*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QAbstractScrollArea_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQAbstractScrollArea*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QAbstractScrollArea_Delete(QAbstractScrollArea* self, bool isSubclass) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractSpinBox>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
@@ -18,6 +20,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionSpinBox>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QWheelEvent>
@@ -28,7 +31,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSpinBox : public virtual QSpinBox {
 public:
@@ -688,25 +706,48 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSpinBox* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QSpinBox::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSpinBox* sigval1 = option;
+
+		miqt_exec_callback_QSpinBox_InitStyleOption(const_cast<MiqtVirtualQSpinBox*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSpinBox* option) const {
+
+		QSpinBox::initStyleOption(option);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__StepEnabled = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QAbstractSpinBox::StepEnabled stepEnabled() const override {
+	virtual StepEnabled stepEnabled() const override {
 		if (handle__StepEnabled == 0) {
 			return QSpinBox::stepEnabled();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QSpinBox_StepEnabled(const_cast<MiqtVirtualQSpinBox*>(this), handle__StepEnabled);
+		StepEnabled callback_return_value = miqt_exec_callback_QSpinBox_StepEnabled(const_cast<MiqtVirtualQSpinBox*>(this), handle__StepEnabled);
 
-		return static_cast<QAbstractSpinBox::StepEnabled>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_StepEnabled() const {
+	StepEnabled virtualbase_StepEnabled() const {
 
-		QAbstractSpinBox::StepEnabled _ret = QSpinBox::stepEnabled();
-		return static_cast<int>(_ret);
+		return QSpinBox::stepEnabled();
 
 	}
 
@@ -734,17 +775,6 @@ void* QSpinBox_Metacast(QSpinBox* self, const char* param1) {
 
 struct miqt_string QSpinBox_Tr(const char* s) {
 	QString _ret = QSpinBox::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSpinBox_TrUtf8(const char* s) {
-	QString _ret = QSpinBox::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -829,13 +859,12 @@ void QSpinBox_SetRange(QSpinBox* self, int min, int max) {
 	self->setRange(static_cast<int>(min), static_cast<int>(max));
 }
 
-int QSpinBox_StepType(const QSpinBox* self) {
-	QAbstractSpinBox::StepType _ret = self->stepType();
-	return static_cast<int>(_ret);
+StepType QSpinBox_StepType(const QSpinBox* self) {
+	return self->stepType();
 }
 
-void QSpinBox_SetStepType(QSpinBox* self, int stepType) {
-	self->setStepType(static_cast<QAbstractSpinBox::StepType>(stepType));
+void QSpinBox_SetStepType(QSpinBox* self, StepType stepType) {
+	self->setStepType(stepType);
 }
 
 int QSpinBox_DisplayIntegerBase(const QSpinBox* self) {
@@ -880,25 +909,6 @@ void QSpinBox_connect_TextChanged(QSpinBox* self, intptr_t slot) {
 	});
 }
 
-void QSpinBox_ValueChangedWithQString(QSpinBox* self, struct miqt_string param1) {
-	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-	self->valueChanged(param1_QString);
-}
-
-void QSpinBox_connect_ValueChangedWithQString(QSpinBox* self, intptr_t slot) {
-	MiqtVirtualQSpinBox::connect(self, static_cast<void (QSpinBox::*)(const QString&)>(&QSpinBox::valueChanged), self, [=](const QString& param1) {
-		const QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		miqt_exec_callback_QSpinBox_ValueChangedWithQString(slot, sigval1);
-	});
-}
-
 struct miqt_string QSpinBox_Tr2(const char* s, const char* c) {
 	QString _ret = QSpinBox::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -912,28 +922,6 @@ struct miqt_string QSpinBox_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSpinBox_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSpinBox::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSpinBox_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSpinBox::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSpinBox_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSpinBox::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1151,11 +1139,19 @@ void QSpinBox_virtualbase_ShowEvent(void* self, QShowEvent* event) {
 	( (MiqtVirtualQSpinBox*)(self) )->virtualbase_ShowEvent(event);
 }
 
+void QSpinBox_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSpinBox*>( (QSpinBox*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QSpinBox_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option) {
+	( (const MiqtVirtualQSpinBox*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QSpinBox_override_virtual_StepEnabled(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSpinBox*>( (QSpinBox*)(self) )->handle__StepEnabled = slot;
 }
 
-int QSpinBox_virtualbase_StepEnabled(const void* self) {
+StepEnabled QSpinBox_virtualbase_StepEnabled(const void* self) {
 	return ( (const MiqtVirtualQSpinBox*)(self) )->virtualbase_StepEnabled();
 }
 
@@ -1825,25 +1821,48 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSpinBox* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QDoubleSpinBox::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSpinBox* sigval1 = option;
+
+		miqt_exec_callback_QDoubleSpinBox_InitStyleOption(const_cast<MiqtVirtualQDoubleSpinBox*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSpinBox* option) const {
+
+		QDoubleSpinBox::initStyleOption(option);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__StepEnabled = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QAbstractSpinBox::StepEnabled stepEnabled() const override {
+	virtual StepEnabled stepEnabled() const override {
 		if (handle__StepEnabled == 0) {
 			return QDoubleSpinBox::stepEnabled();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QDoubleSpinBox_StepEnabled(const_cast<MiqtVirtualQDoubleSpinBox*>(this), handle__StepEnabled);
+		StepEnabled callback_return_value = miqt_exec_callback_QDoubleSpinBox_StepEnabled(const_cast<MiqtVirtualQDoubleSpinBox*>(this), handle__StepEnabled);
 
-		return static_cast<QAbstractSpinBox::StepEnabled>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_StepEnabled() const {
+	StepEnabled virtualbase_StepEnabled() const {
 
-		QAbstractSpinBox::StepEnabled _ret = QDoubleSpinBox::stepEnabled();
-		return static_cast<int>(_ret);
+		return QDoubleSpinBox::stepEnabled();
 
 	}
 
@@ -1871,17 +1890,6 @@ void* QDoubleSpinBox_Metacast(QDoubleSpinBox* self, const char* param1) {
 
 struct miqt_string QDoubleSpinBox_Tr(const char* s) {
 	QString _ret = QDoubleSpinBox::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDoubleSpinBox_TrUtf8(const char* s) {
-	QString _ret = QDoubleSpinBox::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1966,13 +1974,12 @@ void QDoubleSpinBox_SetRange(QDoubleSpinBox* self, double min, double max) {
 	self->setRange(static_cast<double>(min), static_cast<double>(max));
 }
 
-int QDoubleSpinBox_StepType(const QDoubleSpinBox* self) {
-	QAbstractSpinBox::StepType _ret = self->stepType();
-	return static_cast<int>(_ret);
+StepType QDoubleSpinBox_StepType(const QDoubleSpinBox* self) {
+	return self->stepType();
 }
 
-void QDoubleSpinBox_SetStepType(QDoubleSpinBox* self, int stepType) {
-	self->setStepType(static_cast<QAbstractSpinBox::StepType>(stepType));
+void QDoubleSpinBox_SetStepType(QDoubleSpinBox* self, StepType stepType) {
+	self->setStepType(stepType);
 }
 
 int QDoubleSpinBox_Decimals(const QDoubleSpinBox* self) {
@@ -2044,25 +2051,6 @@ void QDoubleSpinBox_connect_TextChanged(QDoubleSpinBox* self, intptr_t slot) {
 	});
 }
 
-void QDoubleSpinBox_ValueChangedWithQString(QDoubleSpinBox* self, struct miqt_string param1) {
-	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-	self->valueChanged(param1_QString);
-}
-
-void QDoubleSpinBox_connect_ValueChangedWithQString(QDoubleSpinBox* self, intptr_t slot) {
-	MiqtVirtualQDoubleSpinBox::connect(self, static_cast<void (QDoubleSpinBox::*)(const QString&)>(&QDoubleSpinBox::valueChanged), self, [=](const QString& param1) {
-		const QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		miqt_exec_callback_QDoubleSpinBox_ValueChangedWithQString(slot, sigval1);
-	});
-}
-
 struct miqt_string QDoubleSpinBox_Tr2(const char* s, const char* c) {
 	QString _ret = QDoubleSpinBox::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -2076,28 +2064,6 @@ struct miqt_string QDoubleSpinBox_Tr2(const char* s, const char* c) {
 
 struct miqt_string QDoubleSpinBox_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QDoubleSpinBox::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDoubleSpinBox_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDoubleSpinBox::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDoubleSpinBox_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDoubleSpinBox::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -2315,11 +2281,19 @@ void QDoubleSpinBox_virtualbase_ShowEvent(void* self, QShowEvent* event) {
 	( (MiqtVirtualQDoubleSpinBox*)(self) )->virtualbase_ShowEvent(event);
 }
 
+void QDoubleSpinBox_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQDoubleSpinBox*>( (QDoubleSpinBox*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QDoubleSpinBox_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option) {
+	( (const MiqtVirtualQDoubleSpinBox*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QDoubleSpinBox_override_virtual_StepEnabled(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDoubleSpinBox*>( (QDoubleSpinBox*)(self) )->handle__StepEnabled = slot;
 }
 
-int QDoubleSpinBox_virtualbase_StepEnabled(const void* self) {
+StepEnabled QDoubleSpinBox_virtualbase_StepEnabled(const void* self) {
 	return ( (const MiqtVirtualQDoubleSpinBox*)(self) )->virtualbase_StepEnabled();
 }
 

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QIODevice>
 #include <QPaintDevice>
 #include <QPaintEngine>
@@ -16,12 +18,28 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSvgGenerator : public virtual QSvgGenerator {
 public:
 
 	MiqtVirtualQSvgGenerator(): QSvgGenerator() {};
+	MiqtVirtualQSvgGenerator(SvgVersion version): QSvgGenerator(version) {};
 
 	virtual ~MiqtVirtualQSvgGenerator() = default;
 
@@ -168,6 +186,10 @@ QSvgGenerator* QSvgGenerator_new() {
 	return new MiqtVirtualQSvgGenerator();
 }
 
+QSvgGenerator* QSvgGenerator_new2(SvgVersion version) {
+	return new MiqtVirtualQSvgGenerator(version);
+}
+
 void QSvgGenerator_virtbase(QSvgGenerator* src, QPaintDevice** outptr_QPaintDevice) {
 	*outptr_QPaintDevice = static_cast<QPaintDevice*>(src);
 }
@@ -258,6 +280,10 @@ void QSvgGenerator_SetResolution(QSvgGenerator* self, int dpi) {
 
 int QSvgGenerator_Resolution(const QSvgGenerator* self) {
 	return self->resolution();
+}
+
+SvgVersion QSvgGenerator_SvgVersion(const QSvgGenerator* self) {
+	return self->svgVersion();
 }
 
 void QSvgGenerator_override_virtual_PaintEngine(void* self, intptr_t slot) {

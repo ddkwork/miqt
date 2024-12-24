@@ -1,7 +1,8 @@
+// +build ignore
+
 #include <QAbstractItemView>
 #include <QAbstractScrollArea>
 #include <QBrush>
-#include <QColor>
 #include <QDataStream>
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
@@ -42,7 +43,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQListWidgetItem : public virtual QListWidgetItem {
 public:
@@ -79,32 +95,6 @@ public:
 	QListWidgetItem* virtualbase_Clone() const {
 
 		return QListWidgetItem::clone();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetBackgroundColor = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setBackgroundColor(const QColor& color) override {
-		if (handle__SetBackgroundColor == 0) {
-			QListWidgetItem::setBackgroundColor(color);
-			return;
-		}
-		
-		const QColor& color_ret = color;
-		// Cast returned reference into pointer
-		QColor* sigval1 = const_cast<QColor*>(&color_ret);
-
-		miqt_exec_callback_QListWidgetItem_SetBackgroundColor(this, handle__SetBackgroundColor, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetBackgroundColor(QColor* color) {
-
-		QListWidgetItem::setBackgroundColor(*color);
 
 	}
 
@@ -404,12 +394,12 @@ void QListWidgetItem_SetTextAlignment(QListWidgetItem* self, int alignment) {
 	self->setTextAlignment(static_cast<int>(alignment));
 }
 
-QColor* QListWidgetItem_BackgroundColor(const QListWidgetItem* self) {
-	return new QColor(self->backgroundColor());
+void QListWidgetItem_SetTextAlignmentWithAlignment(QListWidgetItem* self, int alignment) {
+	self->setTextAlignment(static_cast<Qt::AlignmentFlag>(alignment));
 }
 
-void QListWidgetItem_SetBackgroundColor(QListWidgetItem* self, QColor* color) {
-	self->setBackgroundColor(*color);
+void QListWidgetItem_SetTextAlignment2(QListWidgetItem* self, int alignment) {
+	self->setTextAlignment(static_cast<Qt::Alignment>(alignment));
 }
 
 QBrush* QListWidgetItem_Background(const QListWidgetItem* self) {
@@ -418,14 +408,6 @@ QBrush* QListWidgetItem_Background(const QListWidgetItem* self) {
 
 void QListWidgetItem_SetBackground(QListWidgetItem* self, QBrush* brush) {
 	self->setBackground(*brush);
-}
-
-QColor* QListWidgetItem_TextColor(const QListWidgetItem* self) {
-	return new QColor(self->textColor());
-}
-
-void QListWidgetItem_SetTextColor(QListWidgetItem* self, QColor* color) {
-	self->setTextColor(*color);
 }
 
 QBrush* QListWidgetItem_Foreground(const QListWidgetItem* self) {
@@ -487,14 +469,6 @@ void QListWidgetItem_override_virtual_Clone(void* self, intptr_t slot) {
 
 QListWidgetItem* QListWidgetItem_virtualbase_Clone(const void* self) {
 	return ( (const MiqtVirtualQListWidgetItem*)(self) )->virtualbase_Clone();
-}
-
-void QListWidgetItem_override_virtual_SetBackgroundColor(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQListWidgetItem*>( (QListWidgetItem*)(self) )->handle__SetBackgroundColor = slot;
-}
-
-void QListWidgetItem_virtualbase_SetBackgroundColor(void* self, QColor* color) {
-	( (MiqtVirtualQListWidgetItem*)(self) )->virtualbase_SetBackgroundColor(color);
 }
 
 void QListWidgetItem_override_virtual_Data(void* self, intptr_t slot) {
@@ -673,12 +647,12 @@ public:
 	intptr_t handle__MimeData = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QMimeData* mimeData(const QList<QListWidgetItem *> items) const override {
+	virtual QMimeData* mimeData(const QList<QListWidgetItem *>& items) const override {
 		if (handle__MimeData == 0) {
 			return QListWidget::mimeData(items);
 		}
 		
-		const QList<QListWidgetItem *> items_ret = items;
+		const QList<QListWidgetItem *>& items_ret = items;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		QListWidgetItem** items_arr = static_cast<QListWidgetItem**>(malloc(sizeof(QListWidgetItem*) * items_ret.length()));
 		for (size_t i = 0, e = items_ret.length(); i < e; ++i) {
@@ -785,7 +759,7 @@ public:
 	intptr_t handle__ScrollTo = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void scrollTo(const QModelIndex& index, QAbstractItemView::ScrollHint hint) override {
+	virtual void scrollTo(const QModelIndex& index, ScrollHint hint) override {
 		if (handle__ScrollTo == 0) {
 			QListWidget::scrollTo(index, hint);
 			return;
@@ -794,8 +768,7 @@ public:
 		const QModelIndex& index_ret = index;
 		// Cast returned reference into pointer
 		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
-		QAbstractItemView::ScrollHint hint_ret = hint;
-		int sigval2 = static_cast<int>(hint_ret);
+		ScrollHint sigval2 = hint;
 
 		miqt_exec_callback_QListWidget_ScrollTo(this, handle__ScrollTo, sigval1, sigval2);
 
@@ -803,9 +776,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ScrollTo(QModelIndex* index, int hint) {
+	void virtualbase_ScrollTo(QModelIndex* index, ScrollHint hint) {
 
-		QListWidget::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
+		QListWidget::scrollTo(*index, hint);
 
 	}
 
@@ -935,7 +908,7 @@ public:
 	intptr_t handle__DataChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles) override {
+	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QList<int>& roles) override {
 		if (handle__DataChanged == 0) {
 			QListWidget::dataChanged(topLeft, bottomRight, roles);
 			return;
@@ -947,7 +920,7 @@ public:
 		const QModelIndex& bottomRight_ret = bottomRight;
 		// Cast returned reference into pointer
 		QModelIndex* sigval2 = const_cast<QModelIndex*>(&bottomRight_ret);
-		const QVector<int>& roles_ret = roles;
+		const QList<int>& roles_ret = roles;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		int* roles_arr = static_cast<int*>(malloc(sizeof(int) * roles_ret.length()));
 		for (size_t i = 0, e = roles_ret.length(); i < e; ++i) {
@@ -965,7 +938,7 @@ public:
 
 	// Wrapper to allow calling protected method
 	void virtualbase_DataChanged(QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-		QVector<int> roles_QList;
+		QList<int> roles_QList;
 		roles_QList.reserve(roles.len);
 		int* roles_arr = static_cast<int*>(roles.data);
 		for(size_t i = 0; i < roles.len; ++i) {
@@ -1226,24 +1199,26 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ViewOptions = 0;
+	intptr_t handle__InitViewItemOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QStyleOptionViewItem viewOptions() const override {
-		if (handle__ViewOptions == 0) {
-			return QListWidget::viewOptions();
+	virtual void initViewItemOption(QStyleOptionViewItem* option) const override {
+		if (handle__InitViewItemOption == 0) {
+			QListWidget::initViewItemOption(option);
+			return;
 		}
 		
+		QStyleOptionViewItem* sigval1 = option;
 
-		QStyleOptionViewItem* callback_return_value = miqt_exec_callback_QListWidget_ViewOptions(const_cast<MiqtVirtualQListWidget*>(this), handle__ViewOptions);
+		miqt_exec_callback_QListWidget_InitViewItemOption(const_cast<MiqtVirtualQListWidget*>(this), handle__InitViewItemOption, sigval1);
 
-		return *callback_return_value;
+		
 	}
 
 	// Wrapper to allow calling protected method
-	QStyleOptionViewItem* virtualbase_ViewOptions() const {
+	void virtualbase_InitViewItemOption(QStyleOptionViewItem* option) const {
 
-		return new QStyleOptionViewItem(QListWidget::viewOptions());
+		QListWidget::initViewItemOption(option);
 
 	}
 
@@ -1319,13 +1294,12 @@ public:
 	intptr_t handle__MoveCursor = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
+	virtual QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
 		if (handle__MoveCursor == 0) {
 			return QListWidget::moveCursor(cursorAction, modifiers);
 		}
 		
-		QAbstractItemView::CursorAction cursorAction_ret = cursorAction;
-		int sigval1 = static_cast<int>(cursorAction_ret);
+		CursorAction sigval1 = cursorAction;
 		Qt::KeyboardModifiers modifiers_ret = modifiers;
 		int sigval2 = static_cast<int>(modifiers_ret);
 
@@ -1335,9 +1309,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_MoveCursor(int cursorAction, int modifiers) {
+	QModelIndex* virtualbase_MoveCursor(CursorAction cursorAction, int modifiers) {
 
-		return new QModelIndex(QListWidget::moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifiers>(modifiers)));
+		return new QModelIndex(QListWidget::moveCursor(cursorAction, static_cast<Qt::KeyboardModifiers>(modifiers)));
 
 	}
 
@@ -1592,17 +1566,6 @@ struct miqt_string QListWidget_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QListWidget_TrUtf8(const char* s) {
-	QString _ret = QListWidget::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QListWidget_SetSelectionModel(QListWidget* self, QItemSelectionModel* selectionModel) {
 	self->setSelectionModel(selectionModel);
 }
@@ -1739,14 +1702,6 @@ void QListWidget_RemoveItemWidget(QListWidget* self, QListWidgetItem* item) {
 	self->removeItemWidget(item);
 }
 
-bool QListWidget_IsItemSelected(const QListWidget* self, QListWidgetItem* item) {
-	return self->isItemSelected(item);
-}
-
-void QListWidget_SetItemSelected(QListWidget* self, QListWidgetItem* item, bool selectVal) {
-	self->setItemSelected(item, selectVal);
-}
-
 struct miqt_array /* of QListWidgetItem* */  QListWidget_SelectedItems(const QListWidget* self) {
 	QList<QListWidgetItem *> _ret = self->selectedItems();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -1774,16 +1729,25 @@ struct miqt_array /* of QListWidgetItem* */  QListWidget_FindItems(const QListWi
 	return _out;
 }
 
-bool QListWidget_IsItemHidden(const QListWidget* self, QListWidgetItem* item) {
-	return self->isItemHidden(item);
+struct miqt_array /* of QListWidgetItem* */  QListWidget_Items(const QListWidget* self, QMimeData* data) {
+	QList<QListWidgetItem *> _ret = self->items(data);
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QListWidgetItem** _arr = static_cast<QListWidgetItem**>(malloc(sizeof(QListWidgetItem*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = _ret[i];
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
 }
 
-void QListWidget_SetItemHidden(QListWidget* self, QListWidgetItem* item, bool hide) {
-	self->setItemHidden(item, hide);
+QModelIndex* QListWidget_IndexFromItem(const QListWidget* self, QListWidgetItem* item) {
+	return new QModelIndex(self->indexFromItem(item));
 }
 
-void QListWidget_DropEvent(QListWidget* self, QDropEvent* event) {
-	self->dropEvent(event);
+QListWidgetItem* QListWidget_ItemFromIndex(const QListWidget* self, QModelIndex* index) {
+	return self->itemFromIndex(*index);
 }
 
 void QListWidget_ScrollToItem(QListWidget* self, QListWidgetItem* item) {
@@ -1934,28 +1898,6 @@ struct miqt_string QListWidget_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QListWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QListWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QListWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QListWidget::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QListWidget_SortItems1(QListWidget* self, int order) {
 	self->sortItems(static_cast<Qt::SortOrder>(order));
 }
@@ -2032,7 +1974,7 @@ void QListWidget_override_virtual_ScrollTo(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) )->handle__ScrollTo = slot;
 }
 
-void QListWidget_virtualbase_ScrollTo(void* self, QModelIndex* index, int hint) {
+void QListWidget_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint) {
 	( (MiqtVirtualQListWidget*)(self) )->virtualbase_ScrollTo(index, hint);
 }
 
@@ -2164,12 +2106,12 @@ void QListWidget_virtualbase_StartDrag(void* self, int supportedActions) {
 	( (MiqtVirtualQListWidget*)(self) )->virtualbase_StartDrag(supportedActions);
 }
 
-void QListWidget_override_virtual_ViewOptions(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) )->handle__ViewOptions = slot;
+void QListWidget_override_virtual_InitViewItemOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) )->handle__InitViewItemOption = slot;
 }
 
-QStyleOptionViewItem* QListWidget_virtualbase_ViewOptions(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_ViewOptions();
+void QListWidget_virtualbase_InitViewItemOption(const void* self, QStyleOptionViewItem* option) {
+	( (const MiqtVirtualQListWidget*)(self) )->virtualbase_InitViewItemOption(option);
 }
 
 void QListWidget_override_virtual_PaintEvent(void* self, intptr_t slot) {
@@ -2200,7 +2142,7 @@ void QListWidget_override_virtual_MoveCursor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) )->handle__MoveCursor = slot;
 }
 
-QModelIndex* QListWidget_virtualbase_MoveCursor(void* self, int cursorAction, int modifiers) {
+QModelIndex* QListWidget_virtualbase_MoveCursor(void* self, CursorAction cursorAction, int modifiers) {
 	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_MoveCursor(cursorAction, modifiers);
 }
 

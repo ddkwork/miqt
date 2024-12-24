@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QContextMenuEvent>
 #include <QEvent>
 #include <QFocusEvent>
@@ -16,6 +18,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QWidget>
 #include <qlabel.h>
 #include "gen_qlabel.h"
@@ -23,7 +26,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLabel : public virtual QLabel {
 public:
@@ -366,6 +384,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QLabel::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QLabel_InitStyleOption(const_cast<MiqtVirtualQLabel*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QLabel::initStyleOption(option);
+
+	}
+
 };
 
 QLabel* QLabel_new(QWidget* parent) {
@@ -418,17 +460,6 @@ struct miqt_string QLabel_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QLabel_TrUtf8(const char* s) {
-	QString _ret = QLabel::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QLabel_Text(const QLabel* self) {
 	QString _ret = self->text();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -440,20 +471,20 @@ struct miqt_string QLabel_Text(const QLabel* self) {
 	return _ms;
 }
 
-QPixmap* QLabel_Pixmap(const QLabel* self) {
-	return (QPixmap*) self->pixmap();
-}
-
-QPixmap* QLabel_PixmapWithQtReturnByValueConstant(const QLabel* self, int param1) {
+QPixmap* QLabel_Pixmap(const QLabel* self, int param1) {
 	return new QPixmap(self->pixmap(static_cast<Qt::ReturnByValueConstant>(param1)));
 }
 
-QPicture* QLabel_Picture(const QLabel* self) {
-	return (QPicture*) self->picture();
+QPixmap* QLabel_Pixmap2(const QLabel* self) {
+	return new QPixmap(self->pixmap());
 }
 
-QPicture* QLabel_PictureWithQtReturnByValueConstant(const QLabel* self, int param1) {
+QPicture* QLabel_Picture(const QLabel* self, int param1) {
 	return new QPicture(self->picture(static_cast<Qt::ReturnByValueConstant>(param1)));
+}
+
+QPicture* QLabel_Picture2(const QLabel* self) {
+	return new QPicture(self->picture());
 }
 
 QMovie* QLabel_Movie(const QLabel* self) {
@@ -659,28 +690,6 @@ struct miqt_string QLabel_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QLabel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QLabel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLabel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QLabel::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QLabel_override_virtual_SizeHint(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLabel*>( (QLabel*)(self) )->handle__SizeHint = slot;
 }
@@ -791,6 +800,14 @@ void QLabel_override_virtual_FocusNextPrevChild(void* self, intptr_t slot) {
 
 bool QLabel_virtualbase_FocusNextPrevChild(void* self, bool next) {
 	return ( (MiqtVirtualQLabel*)(self) )->virtualbase_FocusNextPrevChild(next);
+}
+
+void QLabel_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLabel*>( (QLabel*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QLabel_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQLabel*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QLabel_Delete(QLabel* self, bool isSubclass) {

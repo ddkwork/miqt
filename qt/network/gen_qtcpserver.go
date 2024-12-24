@@ -1,61 +1,19 @@
 package network
 
-/*
-
-#include "gen_qtcpserver.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
 	"github.com/mappu/miqt/qt"
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
 type QTcpServer struct {
-	h          *C.QTcpServer
+	h          uintptr
 	isSubclass bool
-	*qt.QObject
-}
-
-func (this *QTcpServer) cPointer() *C.QTcpServer {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QTcpServer) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQTcpServer constructs the type using only CGO pointers.
-func newQTcpServer(h *C.QTcpServer) *QTcpServer {
-	if h == nil {
-		return nil
-	}
-	var outptr_QObject *C.QObject = nil
-	C.QTcpServer_virtbase(h, &outptr_QObject)
-
-	return &QTcpServer{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
-}
-
-// UnsafeNewQTcpServer constructs the type using only unsafe pointers.
-func UnsafeNewQTcpServer(h unsafe.Pointer) *QTcpServer {
-	return newQTcpServer((*C.QTcpServer)(h))
 }
 
 // NewQTcpServer constructs a new QTcpServer object.
 func NewQTcpServer() *QTcpServer {
 
-	ret := newQTcpServer(C.QTcpServer_new())
+	ret := newQTcpServer(QTcpServer_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -63,127 +21,126 @@ func NewQTcpServer() *QTcpServer {
 // NewQTcpServer2 constructs a new QTcpServer object.
 func NewQTcpServer2(parent *qt.QObject) *QTcpServer {
 
-	ret := newQTcpServer(C.QTcpServer_new2((*C.QObject)(parent.UnsafePointer())))
+	ret := newQTcpServer(QTcpServer_new2((*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QTcpServer) MetaObject() *qt.QMetaObject {
-	return qt.UnsafeNewQMetaObject(unsafe.Pointer(C.QTcpServer_MetaObject(this.h)))
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QTcpServer_MetaObject(this.h)))
 }
 
 func (this *QTcpServer) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QTcpServer_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QTcpServer_Metacast(this.h, param1_Cstring))
 }
 
 func QTcpServer_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QTcpServer_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QTcpServer_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QTcpServer_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QTcpServer_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTcpServer) Listen() bool {
-	return (bool)(C.QTcpServer_Listen(this.h))
+	return (bool)(QTcpServer_Listen(this.h))
 }
 
 func (this *QTcpServer) Close() {
-	C.QTcpServer_Close(this.h)
+	QTcpServer_Close(this.h)
 }
 
 func (this *QTcpServer) IsListening() bool {
-	return (bool)(C.QTcpServer_IsListening(this.h))
+	return (bool)(QTcpServer_IsListening(this.h))
 }
 
 func (this *QTcpServer) SetMaxPendingConnections(numConnections int) {
-	C.QTcpServer_SetMaxPendingConnections(this.h, (C.int)(numConnections))
+	QTcpServer_SetMaxPendingConnections(this.h, (int)(numConnections))
 }
 
 func (this *QTcpServer) MaxPendingConnections() int {
-	return (int)(C.QTcpServer_MaxPendingConnections(this.h))
+	return (int)(QTcpServer_MaxPendingConnections(this.h))
+}
+
+func (this *QTcpServer) SetListenBacklogSize(size int) {
+	QTcpServer_SetListenBacklogSize(this.h, (int)(size))
+}
+
+func (this *QTcpServer) ListenBacklogSize() int {
+	return (int)(QTcpServer_ListenBacklogSize(this.h))
 }
 
 func (this *QTcpServer) ServerPort() uint16 {
-	return (uint16)(C.QTcpServer_ServerPort(this.h))
+	return (uint16)(QTcpServer_ServerPort(this.h))
 }
 
 func (this *QTcpServer) ServerAddress() *QHostAddress {
-	_goptr := newQHostAddress(C.QTcpServer_ServerAddress(this.h))
+	_goptr := newQHostAddress(QTcpServer_ServerAddress(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTcpServer) SocketDescriptor() uintptr {
-	return (uintptr)(C.QTcpServer_SocketDescriptor(this.h))
+	return (uintptr)(QTcpServer_SocketDescriptor(this.h))
 }
 
 func (this *QTcpServer) SetSocketDescriptor(socketDescriptor uintptr) bool {
-	return (bool)(C.QTcpServer_SetSocketDescriptor(this.h, (C.intptr_t)(socketDescriptor)))
+	return (bool)(QTcpServer_SetSocketDescriptor(this.h, (intptr_t)(socketDescriptor)))
 }
 
 func (this *QTcpServer) WaitForNewConnection() bool {
-	return (bool)(C.QTcpServer_WaitForNewConnection(this.h))
+	return (bool)(QTcpServer_WaitForNewConnection(this.h))
 }
 
 func (this *QTcpServer) HasPendingConnections() bool {
-	return (bool)(C.QTcpServer_HasPendingConnections(this.h))
+	return (bool)(QTcpServer_HasPendingConnections(this.h))
 }
 
 func (this *QTcpServer) NextPendingConnection() *QTcpSocket {
-	return newQTcpSocket(C.QTcpServer_NextPendingConnection(this.h))
+	return newQTcpSocket(QTcpServer_NextPendingConnection(this.h))
 }
 
 func (this *QTcpServer) ServerError() QAbstractSocket__SocketError {
-	return (QAbstractSocket__SocketError)(C.QTcpServer_ServerError(this.h))
+	return (QAbstractSocket__SocketError)(QTcpServer_ServerError(this.h))
 }
 
 func (this *QTcpServer) ErrorString() string {
-	var _ms C.struct_miqt_string = C.QTcpServer_ErrorString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTcpServer_ErrorString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTcpServer) PauseAccepting() {
-	C.QTcpServer_PauseAccepting(this.h)
+	QTcpServer_PauseAccepting(this.h)
 }
 
 func (this *QTcpServer) ResumeAccepting() {
-	C.QTcpServer_ResumeAccepting(this.h)
+	QTcpServer_ResumeAccepting(this.h)
 }
 
 func (this *QTcpServer) SetProxy(networkProxy *QNetworkProxy) {
-	C.QTcpServer_SetProxy(this.h, networkProxy.cPointer())
+	QTcpServer_SetProxy(this.h, networkProxy.cPointer())
 }
 
 func (this *QTcpServer) Proxy() *QNetworkProxy {
-	_goptr := newQNetworkProxy(C.QTcpServer_Proxy(this.h))
+	_goptr := newQNetworkProxy(QTcpServer_Proxy(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTcpServer) NewConnection() {
-	C.QTcpServer_NewConnection(this.h)
+	QTcpServer_NewConnection(this.h)
 }
 func (this *QTcpServer) OnNewConnection(slot func()) {
-	C.QTcpServer_connect_NewConnection(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_connect_NewConnection(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_NewConnection
-func miqt_exec_callback_QTcpServer_NewConnection(cb C.intptr_t) {
+func miqt_exec_callback_QTcpServer_NewConnection(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -193,14 +150,14 @@ func miqt_exec_callback_QTcpServer_NewConnection(cb C.intptr_t) {
 }
 
 func (this *QTcpServer) AcceptError(socketError QAbstractSocket__SocketError) {
-	C.QTcpServer_AcceptError(this.h, (C.int)(socketError))
+	QTcpServer_AcceptError(this.h, (int)(socketError))
 }
 func (this *QTcpServer) OnAcceptError(slot func(socketError QAbstractSocket__SocketError)) {
-	C.QTcpServer_connect_AcceptError(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_connect_AcceptError(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_AcceptError
-func miqt_exec_callback_QTcpServer_AcceptError(cb C.intptr_t, socketError C.int) {
+func miqt_exec_callback_QTcpServer_AcceptError(cb intptr_t, socketError int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(socketError QAbstractSocket__SocketError))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -213,79 +170,57 @@ func miqt_exec_callback_QTcpServer_AcceptError(cb C.intptr_t, socketError C.int)
 }
 
 func QTcpServer_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTcpServer_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QTcpServer_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QTcpServer_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTcpServer_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QTcpServer_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTcpServer_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QTcpServer_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QTcpServer_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QTcpServer_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTcpServer) Listen1(address *QHostAddress) bool {
-	return (bool)(C.QTcpServer_Listen1(this.h, address.cPointer()))
+	return (bool)(QTcpServer_Listen1(this.h, address.cPointer()))
 }
 
 func (this *QTcpServer) Listen2(address *QHostAddress, port uint16) bool {
-	return (bool)(C.QTcpServer_Listen2(this.h, address.cPointer(), (C.uint16_t)(port)))
+	return (bool)(QTcpServer_Listen2(this.h, address.cPointer(), (uint16_t)(port)))
 }
 
 func (this *QTcpServer) WaitForNewConnection1(msec int) bool {
-	return (bool)(C.QTcpServer_WaitForNewConnection1(this.h, (C.int)(msec)))
+	return (bool)(QTcpServer_WaitForNewConnection1(this.h, (int)(msec)))
 }
 
 func (this *QTcpServer) WaitForNewConnection2(msec int, timedOut *bool) bool {
-	return (bool)(C.QTcpServer_WaitForNewConnection2(this.h, (C.int)(msec), (*C.bool)(unsafe.Pointer(timedOut))))
+	return (bool)(QTcpServer_WaitForNewConnection2(this.h, (int)(msec), (*bool)(unsafe.Pointer(timedOut))))
 }
 
 func (this *QTcpServer) callVirtualBase_HasPendingConnections() bool {
 
-	return (bool)(C.QTcpServer_virtualbase_HasPendingConnections(unsafe.Pointer(this.h)))
+	return (bool)(QTcpServer_virtualbase_HasPendingConnections(unsafe.Pointer(this.h)))
 
 }
 func (this *QTcpServer) OnHasPendingConnections(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_HasPendingConnections(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_HasPendingConnections(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_HasPendingConnections
-func miqt_exec_callback_QTcpServer_HasPendingConnections(self *C.QTcpServer, cb C.intptr_t) C.bool {
+func miqt_exec_callback_QTcpServer_HasPendingConnections(self QTcpServer, cb intptr_t) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -293,24 +228,24 @@ func miqt_exec_callback_QTcpServer_HasPendingConnections(self *C.QTcpServer, cb 
 
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_HasPendingConnections)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QTcpServer) callVirtualBase_NextPendingConnection() *QTcpSocket {
 
-	return newQTcpSocket(C.QTcpServer_virtualbase_NextPendingConnection(unsafe.Pointer(this.h)))
+	return newQTcpSocket(QTcpServer_virtualbase_NextPendingConnection(unsafe.Pointer(this.h)))
 
 }
 func (this *QTcpServer) OnNextPendingConnection(slot func(super func() *QTcpSocket) *QTcpSocket) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_NextPendingConnection(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_NextPendingConnection(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_NextPendingConnection
-func miqt_exec_callback_QTcpServer_NextPendingConnection(self *C.QTcpServer, cb C.intptr_t) *C.QTcpSocket {
+func miqt_exec_callback_QTcpServer_NextPendingConnection(self QTcpServer, cb intptr_t) *QTcpSocket {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QTcpSocket) *QTcpSocket)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -324,18 +259,18 @@ func miqt_exec_callback_QTcpServer_NextPendingConnection(self *C.QTcpServer, cb 
 
 func (this *QTcpServer) callVirtualBase_IncomingConnection(handle uintptr) {
 
-	C.QTcpServer_virtualbase_IncomingConnection(unsafe.Pointer(this.h), (C.intptr_t)(handle))
+	QTcpServer_virtualbase_IncomingConnection(unsafe.Pointer(this.h), (intptr_t)(handle))
 
 }
 func (this *QTcpServer) OnIncomingConnection(slot func(super func(handle uintptr), handle uintptr)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_IncomingConnection(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_IncomingConnection(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_IncomingConnection
-func miqt_exec_callback_QTcpServer_IncomingConnection(self *C.QTcpServer, cb C.intptr_t, handle C.intptr_t) {
+func miqt_exec_callback_QTcpServer_IncomingConnection(self QTcpServer, cb intptr_t, handle intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(handle uintptr), handle uintptr))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -350,18 +285,18 @@ func miqt_exec_callback_QTcpServer_IncomingConnection(self *C.QTcpServer, cb C.i
 
 func (this *QTcpServer) callVirtualBase_Event(event *qt.QEvent) bool {
 
-	return (bool)(C.QTcpServer_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
+	return (bool)(QTcpServer_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
 
 }
 func (this *QTcpServer) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_Event
-func miqt_exec_callback_QTcpServer_Event(self *C.QTcpServer, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QTcpServer_Event(self QTcpServer, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -372,24 +307,24 @@ func miqt_exec_callback_QTcpServer_Event(self *C.QTcpServer, cb C.intptr_t, even
 
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QTcpServer) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
 
-	return (bool)(C.QTcpServer_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
+	return (bool)(QTcpServer_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
 
 }
 func (this *QTcpServer) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_EventFilter
-func miqt_exec_callback_QTcpServer_EventFilter(self *C.QTcpServer, cb C.intptr_t, watched *C.QObject, event *C.QEvent) C.bool {
+func miqt_exec_callback_QTcpServer_EventFilter(self QTcpServer, cb intptr_t, watched *QObject, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -402,24 +337,24 @@ func miqt_exec_callback_QTcpServer_EventFilter(self *C.QTcpServer, cb C.intptr_t
 
 	virtualReturn := gofunc((&QTcpServer{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QTcpServer) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
 
-	C.QTcpServer_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
+	QTcpServer_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
 
 }
 func (this *QTcpServer) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_TimerEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_TimerEvent
-func miqt_exec_callback_QTcpServer_TimerEvent(self *C.QTcpServer, cb C.intptr_t, event *C.QTimerEvent) {
+func miqt_exec_callback_QTcpServer_TimerEvent(self QTcpServer, cb intptr_t, event *QTimerEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -434,18 +369,18 @@ func miqt_exec_callback_QTcpServer_TimerEvent(self *C.QTcpServer, cb C.intptr_t,
 
 func (this *QTcpServer) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
 
-	C.QTcpServer_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
+	QTcpServer_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
 
 }
 func (this *QTcpServer) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_ChildEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_ChildEvent
-func miqt_exec_callback_QTcpServer_ChildEvent(self *C.QTcpServer, cb C.intptr_t, event *C.QChildEvent) {
+func miqt_exec_callback_QTcpServer_ChildEvent(self QTcpServer, cb intptr_t, event *QChildEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -460,18 +395,18 @@ func miqt_exec_callback_QTcpServer_ChildEvent(self *C.QTcpServer, cb C.intptr_t,
 
 func (this *QTcpServer) callVirtualBase_CustomEvent(event *qt.QEvent) {
 
-	C.QTcpServer_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
+	QTcpServer_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
 
 }
 func (this *QTcpServer) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_CustomEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_CustomEvent
-func miqt_exec_callback_QTcpServer_CustomEvent(self *C.QTcpServer, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QTcpServer_CustomEvent(self QTcpServer, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -486,18 +421,18 @@ func miqt_exec_callback_QTcpServer_CustomEvent(self *C.QTcpServer, cb C.intptr_t
 
 func (this *QTcpServer) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
 
-	C.QTcpServer_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
+	QTcpServer_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
 
 }
 func (this *QTcpServer) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_ConnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_ConnectNotify
-func miqt_exec_callback_QTcpServer_ConnectNotify(self *C.QTcpServer, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QTcpServer_ConnectNotify(self QTcpServer, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -512,18 +447,18 @@ func miqt_exec_callback_QTcpServer_ConnectNotify(self *C.QTcpServer, cb C.intptr
 
 func (this *QTcpServer) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
 
-	C.QTcpServer_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
+	QTcpServer_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
 
 }
 func (this *QTcpServer) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QTcpServer_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QTcpServer_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QTcpServer_DisconnectNotify
-func miqt_exec_callback_QTcpServer_DisconnectNotify(self *C.QTcpServer, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QTcpServer_DisconnectNotify(self QTcpServer, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -534,18 +469,4 @@ func miqt_exec_callback_QTcpServer_DisconnectNotify(self *C.QTcpServer, cb C.int
 
 	gofunc((&QTcpServer{h: self}).callVirtualBase_DisconnectNotify, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QTcpServer) Delete() {
-	C.QTcpServer_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QTcpServer) GoGC() {
-	runtime.SetFinalizer(this, func(this *QTcpServer) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

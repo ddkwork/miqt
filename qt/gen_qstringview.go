@@ -1,105 +1,76 @@
 package qt
 
-/*
-
-#include "gen_qstringview.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
 type QStringView struct {
-	h          *C.QStringView
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QStringView) cPointer() *C.QStringView {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QStringView) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQStringView constructs the type using only CGO pointers.
-func newQStringView(h *C.QStringView) *QStringView {
-	if h == nil {
-		return nil
-	}
-
-	return &QStringView{h: h}
-}
-
-// UnsafeNewQStringView constructs the type using only unsafe pointers.
-func UnsafeNewQStringView(h unsafe.Pointer) *QStringView {
-	return newQStringView((*C.QStringView)(h))
 }
 
 // NewQStringView constructs a new QStringView object.
 func NewQStringView() *QStringView {
 
-	ret := newQStringView(C.QStringView_new())
+	ret := newQStringView(QStringView_new())
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QStringView) ToString() string {
-	var _ms C.struct_miqt_string = C.QStringView_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QStringView_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QStringView) Size() int64 {
-	return (int64)(C.QStringView_Size(this.h))
+	return (int64)(QStringView_Size(this.h))
 }
 
-func (this *QStringView) Data() *QChar {
-	return newQChar(C.QStringView_Data(this.h))
+func (this *QStringView) Data() const_pointer {
+	xxxxxxxxx
+}
+
+func (this *QStringView) ConstData() const_pointer {
+	xxxxxxxxx
+}
+
+func (this *QStringView) Utf16() *storage_type {
+	xxxxxxxxx
 }
 
 func (this *QStringView) OperatorSubscript(n int64) *QChar {
-	_goptr := newQChar(C.QStringView_OperatorSubscript(this.h, (C.ptrdiff_t)(n)))
+	_goptr := newQChar(QStringView_OperatorSubscript(this.h, (ptrdiff_t)(n)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QStringView) ToLatin1() []byte {
-	var _bytearray C.struct_miqt_string = C.QStringView_ToLatin1(this.h)
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
+	var _bytearray struct_miqt_string = QStringView_ToLatin1(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
 	return _ret
 }
 
 func (this *QStringView) ToUtf8() []byte {
-	var _bytearray C.struct_miqt_string = C.QStringView_ToUtf8(this.h)
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
+	var _bytearray struct_miqt_string = QStringView_ToUtf8(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
 	return _ret
 }
 
 func (this *QStringView) ToLocal8Bit() []byte {
-	var _bytearray C.struct_miqt_string = C.QStringView_ToLocal8Bit(this.h)
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
+	var _bytearray struct_miqt_string = QStringView_ToLocal8Bit(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
 	return _ret
 }
 
 func (this *QStringView) ToUcs4() []uint {
-	var _ma C.struct_miqt_array = C.QStringView_ToUcs4(this.h)
+	var _ma struct_miqt_array = QStringView_ToUcs4(this.h)
 	_ret := make([]uint, int(_ma.len))
-	_outCast := (*[0xffff]C.uint)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]uint)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_ret[i] = (uint)(_outCast[i])
 	}
@@ -107,269 +78,331 @@ func (this *QStringView) ToUcs4() []uint {
 }
 
 func (this *QStringView) At(n int64) *QChar {
-	_goptr := newQChar(C.QStringView_At(this.h, (C.ptrdiff_t)(n)))
+	_goptr := newQChar(QStringView_At(this.h, (ptrdiff_t)(n)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QStringView) Truncate(n int64) {
-	C.QStringView_Truncate(this.h, (C.ptrdiff_t)(n))
+	QStringView_Truncate(this.h, (ptrdiff_t)(n))
 }
 
 func (this *QStringView) Chop(n int64) {
-	C.QStringView_Chop(this.h, (C.ptrdiff_t)(n))
+	QStringView_Chop(this.h, (ptrdiff_t)(n))
 }
 
 func (this *QStringView) CompareWithQChar(c QChar) int {
-	return (int)(C.QStringView_CompareWithQChar(this.h, c.cPointer()))
+	return (int)(QStringView_CompareWithQChar(this.h, c.cPointer()))
 }
 
-func (this *QStringView) Compare2(c QChar, cs CaseSensitivity) int {
-	return (int)(C.QStringView_Compare2(this.h, c.cPointer(), (C.int)(cs)))
+func (this *QStringView) Compare3(c QChar, cs CaseSensitivity) int {
+	return (int)(QStringView_Compare3(this.h, c.cPointer(), (int)(cs)))
 }
 
 func (this *QStringView) StartsWithWithQChar(c QChar) bool {
-	return (bool)(C.QStringView_StartsWithWithQChar(this.h, c.cPointer()))
+	return (bool)(QStringView_StartsWithWithQChar(this.h, c.cPointer()))
 }
 
 func (this *QStringView) StartsWith2(c QChar, cs CaseSensitivity) bool {
-	return (bool)(C.QStringView_StartsWith2(this.h, c.cPointer(), (C.int)(cs)))
+	return (bool)(QStringView_StartsWith2(this.h, c.cPointer(), (int)(cs)))
 }
 
 func (this *QStringView) EndsWithWithQChar(c QChar) bool {
-	return (bool)(C.QStringView_EndsWithWithQChar(this.h, c.cPointer()))
+	return (bool)(QStringView_EndsWithWithQChar(this.h, c.cPointer()))
 }
 
 func (this *QStringView) EndsWith2(c QChar, cs CaseSensitivity) bool {
-	return (bool)(C.QStringView_EndsWith2(this.h, c.cPointer(), (C.int)(cs)))
+	return (bool)(QStringView_EndsWith2(this.h, c.cPointer(), (int)(cs)))
 }
 
 func (this *QStringView) IndexOf(c QChar) int64 {
-	return (int64)(C.QStringView_IndexOf(this.h, c.cPointer()))
+	return (int64)(QStringView_IndexOf(this.h, c.cPointer()))
 }
 
 func (this *QStringView) Contains(c QChar) bool {
-	return (bool)(C.QStringView_Contains(this.h, c.cPointer()))
+	return (bool)(QStringView_Contains(this.h, c.cPointer()))
 }
 
 func (this *QStringView) Count(c QChar) int64 {
-	return (int64)(C.QStringView_Count(this.h, c.cPointer()))
+	return (int64)(QStringView_Count(this.h, c.cPointer()))
 }
 
 func (this *QStringView) LastIndexOf(c QChar) int64 {
-	return (int64)(C.QStringView_LastIndexOf(this.h, c.cPointer()))
+	return (int64)(QStringView_LastIndexOf(this.h, c.cPointer()))
+}
+
+func (this *QStringView) LastIndexOf2(c QChar, from int64) int64 {
+	return (int64)(QStringView_LastIndexOf2(this.h, c.cPointer(), (ptrdiff_t)(from)))
+}
+
+func (this *QStringView) IndexOfWithRe(re *QRegularExpression) int64 {
+	return (int64)(QStringView_IndexOfWithRe(this.h, re.cPointer()))
+}
+
+func (this *QStringView) LastIndexOf5(re *QRegularExpression, from int64) int64 {
+	return (int64)(QStringView_LastIndexOf5(this.h, re.cPointer(), (ptrdiff_t)(from)))
+}
+
+func (this *QStringView) ContainsWithRe(re *QRegularExpression) bool {
+	return (bool)(QStringView_ContainsWithRe(this.h, re.cPointer()))
+}
+
+func (this *QStringView) CountWithRe(re *QRegularExpression) int64 {
+	return (int64)(QStringView_CountWithRe(this.h, re.cPointer()))
 }
 
 func (this *QStringView) IsRightToLeft() bool {
-	return (bool)(C.QStringView_IsRightToLeft(this.h))
+	return (bool)(QStringView_IsRightToLeft(this.h))
 }
 
 func (this *QStringView) IsValidUtf16() bool {
-	return (bool)(C.QStringView_IsValidUtf16(this.h))
+	return (bool)(QStringView_IsValidUtf16(this.h))
+}
+
+func (this *QStringView) IsUpper() bool {
+	return (bool)(QStringView_IsUpper(this.h))
+}
+
+func (this *QStringView) IsLower() bool {
+	return (bool)(QStringView_IsLower(this.h))
 }
 
 func (this *QStringView) ToShort() int16 {
-	return (int16)(C.QStringView_ToShort(this.h))
+	return (int16)(QStringView_ToShort(this.h))
 }
 
 func (this *QStringView) ToUShort() uint16 {
-	return (uint16)(C.QStringView_ToUShort(this.h))
+	return (uint16)(QStringView_ToUShort(this.h))
 }
 
 func (this *QStringView) ToInt() int {
-	return (int)(C.QStringView_ToInt(this.h))
+	return (int)(QStringView_ToInt(this.h))
 }
 
 func (this *QStringView) ToUInt() uint {
-	return (uint)(C.QStringView_ToUInt(this.h))
+	return (uint)(QStringView_ToUInt(this.h))
 }
 
-func (this *QStringView) ToLong() int64 {
-	return (int64)(C.QStringView_ToLong(this.h))
+func (this *QStringView) ToLong() int32 {
+	return (int32)(QStringView_ToLong(this.h))
 }
 
-func (this *QStringView) ToULong() uint64 {
-	return (uint64)(C.QStringView_ToULong(this.h))
+func (this *QStringView) ToULong() uint32 {
+	return (uint32)(QStringView_ToULong(this.h))
 }
 
 func (this *QStringView) ToLongLong() int64 {
-	return (int64)(C.QStringView_ToLongLong(this.h))
+	return (int64)(QStringView_ToLongLong(this.h))
 }
 
 func (this *QStringView) ToULongLong() uint64 {
-	return (uint64)(C.QStringView_ToULongLong(this.h))
+	return (uint64)(QStringView_ToULongLong(this.h))
 }
 
 func (this *QStringView) ToFloat() float32 {
-	return (float32)(C.QStringView_ToFloat(this.h))
+	return (float32)(QStringView_ToFloat(this.h))
 }
 
 func (this *QStringView) ToDouble() float64 {
-	return (float64)(C.QStringView_ToDouble(this.h))
+	return (float64)(QStringView_ToDouble(this.h))
 }
 
-func (this *QStringView) Begin() *QChar {
-	return newQChar(C.QStringView_Begin(this.h))
+func (this *QStringView) Begin() const_iterator {
+	xxxxxxxxx
 }
 
-func (this *QStringView) End() *QChar {
-	return newQChar(C.QStringView_End(this.h))
+func (this *QStringView) End() const_iterator {
+	xxxxxxxxx
 }
 
-func (this *QStringView) Cbegin() *QChar {
-	return newQChar(C.QStringView_Cbegin(this.h))
+func (this *QStringView) Cbegin() const_iterator {
+	xxxxxxxxx
 }
 
-func (this *QStringView) Cend() *QChar {
-	return newQChar(C.QStringView_Cend(this.h))
+func (this *QStringView) Cend() const_iterator {
+	xxxxxxxxx
+}
+
+func (this *QStringView) Rbegin() const_reverse_iterator {
+	xxxxxxxxx
+}
+
+func (this *QStringView) Rend() const_reverse_iterator {
+	xxxxxxxxx
+}
+
+func (this *QStringView) Crbegin() const_reverse_iterator {
+	xxxxxxxxx
+}
+
+func (this *QStringView) Crend() const_reverse_iterator {
+	xxxxxxxxx
 }
 
 func (this *QStringView) Empty() bool {
-	return (bool)(C.QStringView_Empty(this.h))
+	return (bool)(QStringView_Empty(this.h))
 }
 
 func (this *QStringView) Front() *QChar {
-	_goptr := newQChar(C.QStringView_Front(this.h))
+	_goptr := newQChar(QStringView_Front(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QStringView) Back() *QChar {
-	_goptr := newQChar(C.QStringView_Back(this.h))
+	_goptr := newQChar(QStringView_Back(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
+}
+
+func (this *QStringView) MaxSize() int64 {
+	return (int64)(QStringView_MaxSize(this.h))
+}
+
+func (this *QStringView) ConstBegin() const_iterator {
+	xxxxxxxxx
+}
+
+func (this *QStringView) ConstEnd() const_iterator {
+	xxxxxxxxx
 }
 
 func (this *QStringView) IsNull() bool {
-	return (bool)(C.QStringView_IsNull(this.h))
+	return (bool)(QStringView_IsNull(this.h))
 }
 
 func (this *QStringView) IsEmpty() bool {
-	return (bool)(C.QStringView_IsEmpty(this.h))
+	return (bool)(QStringView_IsEmpty(this.h))
 }
 
-func (this *QStringView) Length() int {
-	return (int)(C.QStringView_Length(this.h))
+func (this *QStringView) Length() int64 {
+	return (int64)(QStringView_Length(this.h))
 }
 
-func (this *QStringView) First() *QChar {
-	_goptr := newQChar(C.QStringView_First(this.h))
+func (this *QStringView) First2() *QChar {
+	_goptr := newQChar(QStringView_First2(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QStringView) Last() *QChar {
-	_goptr := newQChar(C.QStringView_Last(this.h))
+func (this *QStringView) Last2() *QChar {
+	_goptr := newQChar(QStringView_Last2(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
+}
+
+func QStringView_MaxSize2() int64 {
+	return (int64)(QStringView_MaxSize2())
 }
 
 func (this *QStringView) IndexOf2(c QChar, from int64) int64 {
-	return (int64)(C.QStringView_IndexOf2(this.h, c.cPointer(), (C.ptrdiff_t)(from)))
+	return (int64)(QStringView_IndexOf2(this.h, c.cPointer(), (ptrdiff_t)(from)))
 }
 
 func (this *QStringView) IndexOf3(c QChar, from int64, cs CaseSensitivity) int64 {
-	return (int64)(C.QStringView_IndexOf3(this.h, c.cPointer(), (C.ptrdiff_t)(from), (C.int)(cs)))
+	return (int64)(QStringView_IndexOf3(this.h, c.cPointer(), (ptrdiff_t)(from), (int)(cs)))
 }
 
 func (this *QStringView) Contains2(c QChar, cs CaseSensitivity) bool {
-	return (bool)(C.QStringView_Contains2(this.h, c.cPointer(), (C.int)(cs)))
+	return (bool)(QStringView_Contains2(this.h, c.cPointer(), (int)(cs)))
 }
 
 func (this *QStringView) Count2(c QChar, cs CaseSensitivity) int64 {
-	return (int64)(C.QStringView_Count2(this.h, c.cPointer(), (C.int)(cs)))
+	return (int64)(QStringView_Count2(this.h, c.cPointer(), (int)(cs)))
 }
 
-func (this *QStringView) LastIndexOf2(c QChar, from int64) int64 {
-	return (int64)(C.QStringView_LastIndexOf2(this.h, c.cPointer(), (C.ptrdiff_t)(from)))
+func (this *QStringView) LastIndexOf22(c QChar, cs CaseSensitivity) int64 {
+	return (int64)(QStringView_LastIndexOf22(this.h, c.cPointer(), (int)(cs)))
 }
 
-func (this *QStringView) LastIndexOf3(c QChar, from int64, cs CaseSensitivity) int64 {
-	return (int64)(C.QStringView_LastIndexOf3(this.h, c.cPointer(), (C.ptrdiff_t)(from), (C.int)(cs)))
+func (this *QStringView) LastIndexOf32(c QChar, from int64, cs CaseSensitivity) int64 {
+	return (int64)(QStringView_LastIndexOf32(this.h, c.cPointer(), (ptrdiff_t)(from), (int)(cs)))
+}
+
+func (this *QStringView) IndexOf24(re *QRegularExpression, from int64) int64 {
+	return (int64)(QStringView_IndexOf24(this.h, re.cPointer(), (ptrdiff_t)(from)))
+}
+
+func (this *QStringView) IndexOf34(re *QRegularExpression, from int64, rmatch *QRegularExpressionMatch) int64 {
+	return (int64)(QStringView_IndexOf34(this.h, re.cPointer(), (ptrdiff_t)(from), rmatch.cPointer()))
+}
+
+func (this *QStringView) LastIndexOf35(re *QRegularExpression, from int64, rmatch *QRegularExpressionMatch) int64 {
+	return (int64)(QStringView_LastIndexOf35(this.h, re.cPointer(), (ptrdiff_t)(from), rmatch.cPointer()))
+}
+
+func (this *QStringView) Contains24(re *QRegularExpression, rmatch *QRegularExpressionMatch) bool {
+	return (bool)(QStringView_Contains24(this.h, re.cPointer(), rmatch.cPointer()))
 }
 
 func (this *QStringView) ToShort1(ok *bool) int16 {
-	return (int16)(C.QStringView_ToShort1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (int16)(QStringView_ToShort1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToShort2(ok *bool, base int) int16 {
-	return (int16)(C.QStringView_ToShort2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+	return (int16)(QStringView_ToShort2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
 func (this *QStringView) ToUShort1(ok *bool) uint16 {
-	return (uint16)(C.QStringView_ToUShort1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (uint16)(QStringView_ToUShort1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToUShort2(ok *bool, base int) uint16 {
-	return (uint16)(C.QStringView_ToUShort2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+	return (uint16)(QStringView_ToUShort2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
 func (this *QStringView) ToInt1(ok *bool) int {
-	return (int)(C.QStringView_ToInt1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (int)(QStringView_ToInt1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToInt2(ok *bool, base int) int {
-	return (int)(C.QStringView_ToInt2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+	return (int)(QStringView_ToInt2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
 func (this *QStringView) ToUInt1(ok *bool) uint {
-	return (uint)(C.QStringView_ToUInt1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (uint)(QStringView_ToUInt1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToUInt2(ok *bool, base int) uint {
-	return (uint)(C.QStringView_ToUInt2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+	return (uint)(QStringView_ToUInt2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
-func (this *QStringView) ToLong1(ok *bool) int64 {
-	return (int64)(C.QStringView_ToLong1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+func (this *QStringView) ToLong1(ok *bool) int32 {
+	return (int32)(QStringView_ToLong1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
-func (this *QStringView) ToLong2(ok *bool, base int) int64 {
-	return (int64)(C.QStringView_ToLong2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+func (this *QStringView) ToLong2(ok *bool, base int) int32 {
+	return (int32)(QStringView_ToLong2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
-func (this *QStringView) ToULong1(ok *bool) uint64 {
-	return (uint64)(C.QStringView_ToULong1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+func (this *QStringView) ToULong1(ok *bool) uint32 {
+	return (uint32)(QStringView_ToULong1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
-func (this *QStringView) ToULong2(ok *bool, base int) uint64 {
-	return (uint64)(C.QStringView_ToULong2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+func (this *QStringView) ToULong2(ok *bool, base int) uint32 {
+	return (uint32)(QStringView_ToULong2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
 func (this *QStringView) ToLongLong1(ok *bool) int64 {
-	return (int64)(C.QStringView_ToLongLong1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (int64)(QStringView_ToLongLong1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToLongLong2(ok *bool, base int) int64 {
-	return (int64)(C.QStringView_ToLongLong2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+	return (int64)(QStringView_ToLongLong2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
 func (this *QStringView) ToULongLong1(ok *bool) uint64 {
-	return (uint64)(C.QStringView_ToULongLong1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (uint64)(QStringView_ToULongLong1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToULongLong2(ok *bool, base int) uint64 {
-	return (uint64)(C.QStringView_ToULongLong2(this.h, (*C.bool)(unsafe.Pointer(ok)), (C.int)(base)))
+	return (uint64)(QStringView_ToULongLong2(this.h, (*bool)(unsafe.Pointer(ok)), (int)(base)))
 }
 
 func (this *QStringView) ToFloat1(ok *bool) float32 {
-	return (float32)(C.QStringView_ToFloat1(this.h, (*C.bool)(unsafe.Pointer(ok))))
+	return (float32)(QStringView_ToFloat1(this.h, (*bool)(unsafe.Pointer(ok))))
 }
 
 func (this *QStringView) ToDouble1(ok *bool) float64 {
-	return (float64)(C.QStringView_ToDouble1(this.h, (*C.bool)(unsafe.Pointer(ok))))
-}
-
-// Delete this object from C++ memory.
-func (this *QStringView) Delete() {
-	C.QStringView_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QStringView) GoGC() {
-	runtime.SetFinalizer(this, func(this *QStringView) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (float64)(QStringView_ToDouble1(this.h, (*bool)(unsafe.Pointer(ok))))
 }

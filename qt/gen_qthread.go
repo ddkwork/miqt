@@ -1,16 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qthread.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -27,47 +17,23 @@ const (
 	QThread__InheritPriority      QThread__Priority = 7
 )
 
+type QThread__QualityOfService int
+
+const (
+	QThread__Auto QThread__QualityOfService = 0
+	QThread__High QThread__QualityOfService = 1
+	QThread__Eco  QThread__QualityOfService = 2
+)
+
 type QThread struct {
-	h          *C.QThread
+	h          uintptr
 	isSubclass bool
-	*QObject
-}
-
-func (this *QThread) cPointer() *C.QThread {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QThread) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQThread constructs the type using only CGO pointers.
-func newQThread(h *C.QThread) *QThread {
-	if h == nil {
-		return nil
-	}
-	var outptr_QObject *C.QObject = nil
-	C.QThread_virtbase(h, &outptr_QObject)
-
-	return &QThread{h: h,
-		QObject: newQObject(outptr_QObject)}
-}
-
-// UnsafeNewQThread constructs the type using only unsafe pointers.
-func UnsafeNewQThread(h unsafe.Pointer) *QThread {
-	return newQThread((*C.QThread)(h))
 }
 
 // NewQThread constructs a new QThread object.
 func NewQThread() *QThread {
 
-	ret := newQThread(C.QThread_new())
+	ret := newQThread(QThread_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -75,209 +41,194 @@ func NewQThread() *QThread {
 // NewQThread2 constructs a new QThread object.
 func NewQThread2(parent *QObject) *QThread {
 
-	ret := newQThread(C.QThread_new2(parent.cPointer()))
+	ret := newQThread(QThread_new2(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QThread) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QThread_MetaObject(this.h))
+	return newQMetaObject(QThread_MetaObject(this.h))
 }
 
 func (this *QThread) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QThread_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QThread_Metacast(this.h, param1_Cstring))
 }
 
 func QThread_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QThread_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QThread_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QThread_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QThread_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QThread_CurrentThreadId() unsafe.Pointer {
-	return (unsafe.Pointer)(C.QThread_CurrentThreadId())
+	return (unsafe.Pointer)(QThread_CurrentThreadId())
 }
 
 func QThread_CurrentThread() *QThread {
-	return newQThread(C.QThread_CurrentThread())
+	return newQThread(QThread_CurrentThread())
+}
+
+func QThread_IsMainThread() bool {
+	return (bool)(QThread_IsMainThread())
 }
 
 func QThread_IdealThreadCount() int {
-	return (int)(C.QThread_IdealThreadCount())
+	return (int)(QThread_IdealThreadCount())
 }
 
 func QThread_YieldCurrentThread() {
-	C.QThread_YieldCurrentThread()
+	QThread_YieldCurrentThread()
 }
 
-func (this *QThread) SetPriority(priority QThread__Priority) {
-	C.QThread_SetPriority(this.h, (C.int)(priority))
+func (this *QThread) SetPriority(priority Priority) {
+	QThread_SetPriority(this.h, priority)
 }
 
-func (this *QThread) Priority() QThread__Priority {
-	return (QThread__Priority)(C.QThread_Priority(this.h))
+func (this *QThread) Priority() Priority {
+	xxxxxxxxx
 }
 
 func (this *QThread) IsFinished() bool {
-	return (bool)(C.QThread_IsFinished(this.h))
+	return (bool)(QThread_IsFinished(this.h))
 }
 
 func (this *QThread) IsRunning() bool {
-	return (bool)(C.QThread_IsRunning(this.h))
+	return (bool)(QThread_IsRunning(this.h))
 }
 
 func (this *QThread) RequestInterruption() {
-	C.QThread_RequestInterruption(this.h)
+	QThread_RequestInterruption(this.h)
 }
 
 func (this *QThread) IsInterruptionRequested() bool {
-	return (bool)(C.QThread_IsInterruptionRequested(this.h))
+	return (bool)(QThread_IsInterruptionRequested(this.h))
 }
 
 func (this *QThread) SetStackSize(stackSize uint) {
-	C.QThread_SetStackSize(this.h, (C.uint)(stackSize))
+	QThread_SetStackSize(this.h, (uint)(stackSize))
 }
 
 func (this *QThread) StackSize() uint {
-	return (uint)(C.QThread_StackSize(this.h))
-}
-
-func (this *QThread) Exit() {
-	C.QThread_Exit(this.h)
+	return (uint)(QThread_StackSize(this.h))
 }
 
 func (this *QThread) EventDispatcher() *QAbstractEventDispatcher {
-	return newQAbstractEventDispatcher(C.QThread_EventDispatcher(this.h))
+	return newQAbstractEventDispatcher(QThread_EventDispatcher(this.h))
 }
 
 func (this *QThread) SetEventDispatcher(eventDispatcher *QAbstractEventDispatcher) {
-	C.QThread_SetEventDispatcher(this.h, eventDispatcher.cPointer())
+	QThread_SetEventDispatcher(this.h, eventDispatcher.cPointer())
 }
 
 func (this *QThread) Event(event *QEvent) bool {
-	return (bool)(C.QThread_Event(this.h, event.cPointer()))
+	return (bool)(QThread_Event(this.h, event.cPointer()))
 }
 
 func (this *QThread) LoopLevel() int {
-	return (int)(C.QThread_LoopLevel(this.h))
+	return (int)(QThread_LoopLevel(this.h))
+}
+
+func (this *QThread) IsCurrentThread() bool {
+	return (bool)(QThread_IsCurrentThread(this.h))
+}
+
+func (this *QThread) SetServiceLevel(serviceLevel QualityOfService) {
+	QThread_SetServiceLevel(this.h, serviceLevel)
+}
+
+func (this *QThread) ServiceLevel() QualityOfService {
+	xxxxxxxxx
 }
 
 func (this *QThread) Start() {
-	C.QThread_Start(this.h)
+	QThread_Start(this.h)
 }
 
 func (this *QThread) Terminate() {
-	C.QThread_Terminate(this.h)
+	QThread_Terminate(this.h)
+}
+
+func (this *QThread) Exit() {
+	QThread_Exit(this.h)
 }
 
 func (this *QThread) Quit() {
-	C.QThread_Quit(this.h)
+	QThread_Quit(this.h)
 }
 
 func (this *QThread) Wait() bool {
-	return (bool)(C.QThread_Wait(this.h))
+	return (bool)(QThread_Wait(this.h))
 }
 
-func (this *QThread) WaitWithTime(time uint64) bool {
-	return (bool)(C.QThread_WaitWithTime(this.h, (C.ulong)(time)))
+func (this *QThread) WaitWithTime(time uint32) bool {
+	return (bool)(QThread_WaitWithTime(this.h, (ulong)(time)))
 }
 
-func QThread_Sleep(param1 uint64) {
-	C.QThread_Sleep((C.ulong)(param1))
+func QThread_Sleep(param1 uint32) {
+	QThread_Sleep((ulong)(param1))
 }
 
-func QThread_Msleep(param1 uint64) {
-	C.QThread_Msleep((C.ulong)(param1))
+func QThread_Msleep(param1 uint32) {
+	QThread_Msleep((ulong)(param1))
 }
 
-func QThread_Usleep(param1 uint64) {
-	C.QThread_Usleep((C.ulong)(param1))
+func QThread_Usleep(param1 uint32) {
+	QThread_Usleep((ulong)(param1))
 }
 
 func QThread_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QThread_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QThread_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QThread_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QThread_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QThread_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QThread_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QThread_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QThread_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QThread_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
+func (this *QThread) Start1(param1 Priority) {
+	QThread_Start1(this.h, param1)
 }
 
 func (this *QThread) Exit1(retcode int) {
-	C.QThread_Exit1(this.h, (C.int)(retcode))
-}
-
-func (this *QThread) Start1(param1 QThread__Priority) {
-	C.QThread_Start1(this.h, (C.int)(param1))
+	QThread_Exit1(this.h, (int)(retcode))
 }
 
 func (this *QThread) Wait1(deadline QDeadlineTimer) bool {
-	return (bool)(C.QThread_Wait1(this.h, deadline.cPointer()))
+	return (bool)(QThread_Wait1(this.h, deadline.cPointer()))
 }
 
 func (this *QThread) callVirtualBase_Event(event *QEvent) bool {
 
-	return (bool)(C.QThread_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
+	return (bool)(QThread_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
 
 }
 func (this *QThread) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_Event
-func miqt_exec_callback_QThread_Event(self *C.QThread, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QThread_Event(self QThread, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -288,24 +239,24 @@ func miqt_exec_callback_QThread_Event(self *C.QThread, cb C.intptr_t, event *C.Q
 
 	virtualReturn := gofunc((&QThread{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QThread) callVirtualBase_Run() {
 
-	C.QThread_virtualbase_Run(unsafe.Pointer(this.h))
+	QThread_virtualbase_Run(unsafe.Pointer(this.h))
 
 }
 func (this *QThread) OnRun(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_Run(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_Run(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_Run
-func miqt_exec_callback_QThread_Run(self *C.QThread, cb C.intptr_t) {
+func miqt_exec_callback_QThread_Run(self QThread, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -317,18 +268,18 @@ func miqt_exec_callback_QThread_Run(self *C.QThread, cb C.intptr_t) {
 
 func (this *QThread) callVirtualBase_EventFilter(watched *QObject, event *QEvent) bool {
 
-	return (bool)(C.QThread_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
+	return (bool)(QThread_virtualbase_EventFilter(unsafe.Pointer(this.h), watched.cPointer(), event.cPointer()))
 
 }
 func (this *QThread) OnEventFilter(slot func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_EventFilter
-func miqt_exec_callback_QThread_EventFilter(self *C.QThread, cb C.intptr_t, watched *C.QObject, event *C.QEvent) C.bool {
+func miqt_exec_callback_QThread_EventFilter(self QThread, cb intptr_t, watched *QObject, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *QObject, event *QEvent) bool, watched *QObject, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -341,24 +292,24 @@ func miqt_exec_callback_QThread_EventFilter(self *C.QThread, cb C.intptr_t, watc
 
 	virtualReturn := gofunc((&QThread{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QThread) callVirtualBase_TimerEvent(event *QTimerEvent) {
 
-	C.QThread_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
+	QThread_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QThread) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_TimerEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_TimerEvent
-func miqt_exec_callback_QThread_TimerEvent(self *C.QThread, cb C.intptr_t, event *C.QTimerEvent) {
+func miqt_exec_callback_QThread_TimerEvent(self QThread, cb intptr_t, event *QTimerEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -373,18 +324,18 @@ func miqt_exec_callback_QThread_TimerEvent(self *C.QThread, cb C.intptr_t, event
 
 func (this *QThread) callVirtualBase_ChildEvent(event *QChildEvent) {
 
-	C.QThread_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
+	QThread_virtualbase_ChildEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QThread) OnChildEvent(slot func(super func(event *QChildEvent), event *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_ChildEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_ChildEvent
-func miqt_exec_callback_QThread_ChildEvent(self *C.QThread, cb C.intptr_t, event *C.QChildEvent) {
+func miqt_exec_callback_QThread_ChildEvent(self QThread, cb intptr_t, event *QChildEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QChildEvent), event *QChildEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -399,18 +350,18 @@ func miqt_exec_callback_QThread_ChildEvent(self *C.QThread, cb C.intptr_t, event
 
 func (this *QThread) callVirtualBase_CustomEvent(event *QEvent) {
 
-	C.QThread_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
+	QThread_virtualbase_CustomEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QThread) OnCustomEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_CustomEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_CustomEvent
-func miqt_exec_callback_QThread_CustomEvent(self *C.QThread, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QThread_CustomEvent(self QThread, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -425,18 +376,18 @@ func miqt_exec_callback_QThread_CustomEvent(self *C.QThread, cb C.intptr_t, even
 
 func (this *QThread) callVirtualBase_ConnectNotify(signal *QMetaMethod) {
 
-	C.QThread_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
+	QThread_virtualbase_ConnectNotify(unsafe.Pointer(this.h), signal.cPointer())
 
 }
 func (this *QThread) OnConnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_ConnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_ConnectNotify
-func miqt_exec_callback_QThread_ConnectNotify(self *C.QThread, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QThread_ConnectNotify(self QThread, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -451,18 +402,18 @@ func miqt_exec_callback_QThread_ConnectNotify(self *C.QThread, cb C.intptr_t, si
 
 func (this *QThread) callVirtualBase_DisconnectNotify(signal *QMetaMethod) {
 
-	C.QThread_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
+	QThread_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), signal.cPointer())
 
 }
 func (this *QThread) OnDisconnectNotify(slot func(super func(signal *QMetaMethod), signal *QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QThread_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QThread_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QThread_DisconnectNotify
-func miqt_exec_callback_QThread_DisconnectNotify(self *C.QThread, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QThread_DisconnectNotify(self QThread, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *QMetaMethod), signal *QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -473,18 +424,4 @@ func miqt_exec_callback_QThread_DisconnectNotify(self *C.QThread, cb C.intptr_t,
 
 	gofunc((&QThread{h: self}).callVirtualBase_DisconnectNotify, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QThread) Delete() {
-	C.QThread_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QThread) GoGC() {
-	runtime.SetFinalizer(this, func(this *QThread) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

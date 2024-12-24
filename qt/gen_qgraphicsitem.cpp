@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractGraphicsShapeItem>
 #include <QBrush>
 #include <QChildEvent>
@@ -30,7 +32,6 @@
 #include <QKeyEvent>
 #include <QLineF>
 #include <QList>
-#include <QMatrix>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -58,7 +59,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsItem : public virtual QGraphicsItem {
 public:
@@ -798,13 +814,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsItem::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -815,9 +830,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsItem::itemChange(change, *value));
 
 	}
 
@@ -825,13 +840,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -839,9 +853,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsItem::supportsExtension(extension);
 
 	}
 
@@ -849,14 +863,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -867,9 +880,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsItem::setExtension(extension, *variant);
 
 	}
 
@@ -985,35 +998,32 @@ void QGraphicsItem_SetGroup(QGraphicsItem* self, QGraphicsItemGroup* group) {
 	self->setGroup(group);
 }
 
-int QGraphicsItem_Flags(const QGraphicsItem* self) {
-	QGraphicsItem::GraphicsItemFlags _ret = self->flags();
-	return static_cast<int>(_ret);
+GraphicsItemFlags QGraphicsItem_Flags(const QGraphicsItem* self) {
+	return self->flags();
 }
 
-void QGraphicsItem_SetFlag(QGraphicsItem* self, int flag) {
-	self->setFlag(static_cast<QGraphicsItem::GraphicsItemFlag>(flag));
+void QGraphicsItem_SetFlag(QGraphicsItem* self, GraphicsItemFlag flag) {
+	self->setFlag(flag);
 }
 
-void QGraphicsItem_SetFlags(QGraphicsItem* self, int flags) {
-	self->setFlags(static_cast<QGraphicsItem::GraphicsItemFlags>(flags));
+void QGraphicsItem_SetFlags(QGraphicsItem* self, GraphicsItemFlags flags) {
+	self->setFlags(flags);
 }
 
-int QGraphicsItem_CacheMode(const QGraphicsItem* self) {
-	QGraphicsItem::CacheMode _ret = self->cacheMode();
-	return static_cast<int>(_ret);
+CacheMode QGraphicsItem_CacheMode(const QGraphicsItem* self) {
+	return self->cacheMode();
 }
 
-void QGraphicsItem_SetCacheMode(QGraphicsItem* self, int mode) {
-	self->setCacheMode(static_cast<QGraphicsItem::CacheMode>(mode));
+void QGraphicsItem_SetCacheMode(QGraphicsItem* self, CacheMode mode) {
+	self->setCacheMode(mode);
 }
 
-int QGraphicsItem_PanelModality(const QGraphicsItem* self) {
-	QGraphicsItem::PanelModality _ret = self->panelModality();
-	return static_cast<int>(_ret);
+PanelModality QGraphicsItem_PanelModality(const QGraphicsItem* self) {
+	return self->panelModality();
 }
 
-void QGraphicsItem_SetPanelModality(QGraphicsItem* self, int panelModality) {
-	self->setPanelModality(static_cast<QGraphicsItem::PanelModality>(panelModality));
+void QGraphicsItem_SetPanelModality(QGraphicsItem* self, PanelModality panelModality) {
+	self->setPanelModality(panelModality);
 }
 
 bool QGraphicsItem_IsBlockedByModalPanel(const QGraphicsItem* self) {
@@ -1255,22 +1265,6 @@ void QGraphicsItem_EnsureVisible(QGraphicsItem* self) {
 
 void QGraphicsItem_EnsureVisible2(QGraphicsItem* self, double x, double y, double w, double h) {
 	self->ensureVisible(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
-}
-
-QMatrix* QGraphicsItem_Matrix(const QGraphicsItem* self) {
-	return new QMatrix(self->matrix());
-}
-
-QMatrix* QGraphicsItem_SceneMatrix(const QGraphicsItem* self) {
-	return new QMatrix(self->sceneMatrix());
-}
-
-void QGraphicsItem_SetMatrix(QGraphicsItem* self, QMatrix* matrix) {
-	self->setMatrix(*matrix);
-}
-
-void QGraphicsItem_ResetMatrix(QGraphicsItem* self) {
-	self->resetMatrix();
 }
 
 QTransform* QGraphicsItem_Transform(const QGraphicsItem* self) {
@@ -1622,12 +1616,12 @@ void QGraphicsItem_RemoveSceneEventFilter(QGraphicsItem* self, QGraphicsItem* fi
 	self->removeSceneEventFilter(filterItem);
 }
 
-void QGraphicsItem_SetFlag2(QGraphicsItem* self, int flag, bool enabled) {
-	self->setFlag(static_cast<QGraphicsItem::GraphicsItemFlag>(flag), enabled);
+void QGraphicsItem_SetFlag2(QGraphicsItem* self, GraphicsItemFlag flag, bool enabled) {
+	self->setFlag(flag, enabled);
 }
 
-void QGraphicsItem_SetCacheMode2(QGraphicsItem* self, int mode, QSize* cacheSize) {
-	self->setCacheMode(static_cast<QGraphicsItem::CacheMode>(mode), *cacheSize);
+void QGraphicsItem_SetCacheMode2(QGraphicsItem* self, CacheMode mode, QSize* cacheSize) {
+	self->setCacheMode(mode, *cacheSize);
 }
 
 void QGraphicsItem_SetFocus1(QGraphicsItem* self, int focusReason) {
@@ -1652,10 +1646,6 @@ void QGraphicsItem_EnsureVisible5(QGraphicsItem* self, double x, double y, doubl
 
 void QGraphicsItem_EnsureVisible6(QGraphicsItem* self, double x, double y, double w, double h, int xmargin, int ymargin) {
 	self->ensureVisible(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h), static_cast<int>(xmargin), static_cast<int>(ymargin));
-}
-
-void QGraphicsItem_SetMatrix2(QGraphicsItem* self, QMatrix* matrix, bool combine) {
-	self->setMatrix(*matrix, combine);
 }
 
 QTransform* QGraphicsItem_ItemTransform2(const QGraphicsItem* self, QGraphicsItem* other, bool* ok) {
@@ -1935,7 +1925,7 @@ void QGraphicsItem_override_virtual_ItemChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsItem*>( (QGraphicsItem*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsItem_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsItem*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -1943,7 +1933,7 @@ void QGraphicsItem_override_virtual_SupportsExtension(void* self, intptr_t slot)
 	dynamic_cast<MiqtVirtualQGraphicsItem*>( (QGraphicsItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -1951,7 +1941,7 @@ void QGraphicsItem_override_virtual_SetExtension(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsItem*>( (QGraphicsItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -2880,13 +2870,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsObject::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -2897,9 +2886,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsObject::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsObject::itemChange(change, *value));
 
 	}
 
@@ -2907,13 +2896,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsObject::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsObject_SupportsExtension(const_cast<MiqtVirtualQGraphicsObject*>(this), handle__SupportsExtension, sigval1);
 
@@ -2921,9 +2909,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsObject::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsObject::supportsExtension(extension);
 
 	}
 
@@ -2931,14 +2919,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsObject::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -2949,9 +2936,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsObject::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsObject::setExtension(extension, *variant);
 
 	}
 
@@ -3005,17 +2992,6 @@ void* QGraphicsObject_Metacast(QGraphicsObject* self, const char* param1) {
 
 struct miqt_string QGraphicsObject_Tr(const char* s) {
 	QString _ret = QGraphicsObject::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsObject_TrUtf8(const char* s) {
-	QString _ret = QGraphicsObject::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -3166,28 +3142,6 @@ struct miqt_string QGraphicsObject_Tr2(const char* s, const char* c) {
 
 struct miqt_string QGraphicsObject_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QGraphicsObject::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsObject_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsObject::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsObject_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsObject::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -3501,7 +3455,7 @@ void QGraphicsObject_override_virtual_ItemChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsObject*>( (QGraphicsObject*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsObject_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsObject_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsObject*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -3509,7 +3463,7 @@ void QGraphicsObject_override_virtual_SupportsExtension(void* self, intptr_t slo
 	dynamic_cast<MiqtVirtualQGraphicsObject*>( (QGraphicsObject*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsObject_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsObject_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsObject*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -3517,7 +3471,7 @@ void QGraphicsObject_override_virtual_SetExtension(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsObject*>( (QGraphicsObject*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsObject_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsObject_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsObject*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -4275,13 +4229,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QAbstractGraphicsShapeItem::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -4292,9 +4245,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QAbstractGraphicsShapeItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QAbstractGraphicsShapeItem::itemChange(change, *value));
 
 	}
 
@@ -4302,13 +4255,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QAbstractGraphicsShapeItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QAbstractGraphicsShapeItem_SupportsExtension(const_cast<MiqtVirtualQAbstractGraphicsShapeItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -4316,9 +4268,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QAbstractGraphicsShapeItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QAbstractGraphicsShapeItem::supportsExtension(extension);
 
 	}
 
@@ -4326,14 +4278,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QAbstractGraphicsShapeItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -4344,9 +4295,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QAbstractGraphicsShapeItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QAbstractGraphicsShapeItem::setExtension(extension, *variant);
 
 	}
 
@@ -4657,7 +4608,7 @@ void QAbstractGraphicsShapeItem_override_virtual_ItemChange(void* self, intptr_t
 	dynamic_cast<MiqtVirtualQAbstractGraphicsShapeItem*>( (QAbstractGraphicsShapeItem*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QAbstractGraphicsShapeItem_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QAbstractGraphicsShapeItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQAbstractGraphicsShapeItem*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -4665,7 +4616,7 @@ void QAbstractGraphicsShapeItem_override_virtual_SupportsExtension(void* self, i
 	dynamic_cast<MiqtVirtualQAbstractGraphicsShapeItem*>( (QAbstractGraphicsShapeItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QAbstractGraphicsShapeItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QAbstractGraphicsShapeItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQAbstractGraphicsShapeItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -4673,7 +4624,7 @@ void QAbstractGraphicsShapeItem_override_virtual_SetExtension(void* self, intptr
 	dynamic_cast<MiqtVirtualQAbstractGraphicsShapeItem*>( (QAbstractGraphicsShapeItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QAbstractGraphicsShapeItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QAbstractGraphicsShapeItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQAbstractGraphicsShapeItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -4869,13 +4820,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsPathItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsPathItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsPathItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -4883,9 +4833,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsPathItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsPathItem::supportsExtension(extension);
 
 	}
 
@@ -4893,14 +4843,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsPathItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -4911,9 +4860,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsPathItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsPathItem::setExtension(extension, *variant);
 
 	}
 
@@ -5060,7 +5009,7 @@ void QGraphicsPathItem_override_virtual_SupportsExtension(void* self, intptr_t s
 	dynamic_cast<MiqtVirtualQGraphicsPathItem*>( (QGraphicsPathItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsPathItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsPathItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsPathItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -5068,7 +5017,7 @@ void QGraphicsPathItem_override_virtual_SetExtension(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQGraphicsPathItem*>( (QGraphicsPathItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsPathItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsPathItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsPathItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -5266,13 +5215,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsRectItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsRectItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsRectItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -5280,9 +5228,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsRectItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsRectItem::supportsExtension(extension);
 
 	}
 
@@ -5290,14 +5238,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsRectItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -5308,9 +5255,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsRectItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsRectItem::setExtension(extension, *variant);
 
 	}
 
@@ -5469,7 +5416,7 @@ void QGraphicsRectItem_override_virtual_SupportsExtension(void* self, intptr_t s
 	dynamic_cast<MiqtVirtualQGraphicsRectItem*>( (QGraphicsRectItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsRectItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsRectItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsRectItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -5477,7 +5424,7 @@ void QGraphicsRectItem_override_virtual_SetExtension(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQGraphicsRectItem*>( (QGraphicsRectItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsRectItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsRectItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsRectItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -5675,13 +5622,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsEllipseItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsEllipseItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsEllipseItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -5689,9 +5635,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsEllipseItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsEllipseItem::supportsExtension(extension);
 
 	}
 
@@ -5699,14 +5645,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsEllipseItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -5717,9 +5662,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsEllipseItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsEllipseItem::setExtension(extension, *variant);
 
 	}
 
@@ -5894,7 +5839,7 @@ void QGraphicsEllipseItem_override_virtual_SupportsExtension(void* self, intptr_
 	dynamic_cast<MiqtVirtualQGraphicsEllipseItem*>( (QGraphicsEllipseItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsEllipseItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsEllipseItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsEllipseItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -5902,7 +5847,7 @@ void QGraphicsEllipseItem_override_virtual_SetExtension(void* self, intptr_t slo
 	dynamic_cast<MiqtVirtualQGraphicsEllipseItem*>( (QGraphicsEllipseItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsEllipseItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsEllipseItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsEllipseItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -6096,13 +6041,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsPolygonItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsPolygonItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsPolygonItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -6110,9 +6054,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsPolygonItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsPolygonItem::supportsExtension(extension);
 
 	}
 
@@ -6120,14 +6064,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsPolygonItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -6138,9 +6081,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsPolygonItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsPolygonItem::setExtension(extension, *variant);
 
 	}
 
@@ -6280,7 +6223,7 @@ void QGraphicsPolygonItem_override_virtual_SupportsExtension(void* self, intptr_
 	dynamic_cast<MiqtVirtualQGraphicsPolygonItem*>( (QGraphicsPolygonItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsPolygonItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsPolygonItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsPolygonItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -6288,7 +6231,7 @@ void QGraphicsPolygonItem_override_virtual_SetExtension(void* self, intptr_t slo
 	dynamic_cast<MiqtVirtualQGraphicsPolygonItem*>( (QGraphicsPolygonItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsPolygonItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsPolygonItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsPolygonItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -6486,13 +6429,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsLineItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsLineItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsLineItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -6500,9 +6442,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsLineItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsLineItem::supportsExtension(extension);
 
 	}
 
@@ -6510,14 +6452,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsLineItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -6528,9 +6469,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsLineItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsLineItem::setExtension(extension, *variant);
 
 	}
 
@@ -7142,13 +7083,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsLineItem::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -7159,9 +7099,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsLineItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsLineItem::itemChange(change, *value));
 
 	}
 
@@ -7303,7 +7243,7 @@ void QGraphicsLineItem_override_virtual_SupportsExtension(void* self, intptr_t s
 	dynamic_cast<MiqtVirtualQGraphicsLineItem*>( (QGraphicsLineItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsLineItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsLineItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsLineItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -7311,7 +7251,7 @@ void QGraphicsLineItem_override_virtual_SetExtension(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQGraphicsLineItem*>( (QGraphicsLineItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsLineItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsLineItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsLineItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -7519,7 +7459,7 @@ void QGraphicsLineItem_override_virtual_ItemChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsLineItem*>( (QGraphicsLineItem*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsLineItem_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsLineItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsLineItem*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -7707,13 +7647,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsPixmapItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsPixmapItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsPixmapItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -7721,9 +7660,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsPixmapItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsPixmapItem::supportsExtension(extension);
 
 	}
 
@@ -7731,14 +7670,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsPixmapItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -7749,9 +7687,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsPixmapItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsPixmapItem::setExtension(extension, *variant);
 
 	}
 
@@ -8363,13 +8301,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsPixmapItem::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -8380,9 +8317,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsPixmapItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsPixmapItem::itemChange(change, *value));
 
 	}
 
@@ -8465,13 +8402,12 @@ int QGraphicsPixmapItem_Type(const QGraphicsPixmapItem* self) {
 	return self->type();
 }
 
-int QGraphicsPixmapItem_ShapeMode(const QGraphicsPixmapItem* self) {
-	QGraphicsPixmapItem::ShapeMode _ret = self->shapeMode();
-	return static_cast<int>(_ret);
+ShapeMode QGraphicsPixmapItem_ShapeMode(const QGraphicsPixmapItem* self) {
+	return self->shapeMode();
 }
 
-void QGraphicsPixmapItem_SetShapeMode(QGraphicsPixmapItem* self, int mode) {
-	self->setShapeMode(static_cast<QGraphicsPixmapItem::ShapeMode>(mode));
+void QGraphicsPixmapItem_SetShapeMode(QGraphicsPixmapItem* self, ShapeMode mode) {
+	self->setShapeMode(mode);
 }
 
 void QGraphicsPixmapItem_override_virtual_BoundingRect(void* self, intptr_t slot) {
@@ -8534,7 +8470,7 @@ void QGraphicsPixmapItem_override_virtual_SupportsExtension(void* self, intptr_t
 	dynamic_cast<MiqtVirtualQGraphicsPixmapItem*>( (QGraphicsPixmapItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsPixmapItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsPixmapItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsPixmapItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -8542,7 +8478,7 @@ void QGraphicsPixmapItem_override_virtual_SetExtension(void* self, intptr_t slot
 	dynamic_cast<MiqtVirtualQGraphicsPixmapItem*>( (QGraphicsPixmapItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsPixmapItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsPixmapItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsPixmapItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -8750,7 +8686,7 @@ void QGraphicsPixmapItem_override_virtual_ItemChange(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQGraphicsPixmapItem*>( (QGraphicsPixmapItem*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsPixmapItem_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsPixmapItem_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsPixmapItem*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -9393,13 +9329,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsTextItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsTextItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsTextItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -9407,9 +9342,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsTextItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsTextItem::supportsExtension(extension);
 
 	}
 
@@ -9417,14 +9352,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsTextItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -9435,9 +9369,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsTextItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsTextItem::setExtension(extension, *variant);
 
 	}
 
@@ -9523,17 +9457,6 @@ void* QGraphicsTextItem_Metacast(QGraphicsTextItem* self, const char* param1) {
 
 struct miqt_string QGraphicsTextItem_Tr(const char* s) {
 	QString _ret = QGraphicsTextItem::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsTextItem_TrUtf8(const char* s) {
-	QString _ret = QGraphicsTextItem::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -9724,28 +9647,6 @@ struct miqt_string QGraphicsTextItem_Tr2(const char* s, const char* c) {
 
 struct miqt_string QGraphicsTextItem_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QGraphicsTextItem::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsTextItem_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsTextItem::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsTextItem_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsTextItem::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -9967,7 +9868,7 @@ void QGraphicsTextItem_override_virtual_SupportsExtension(void* self, intptr_t s
 	dynamic_cast<MiqtVirtualQGraphicsTextItem*>( (QGraphicsTextItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsTextItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsTextItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsTextItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -9975,7 +9876,7 @@ void QGraphicsTextItem_override_virtual_SetExtension(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQGraphicsTextItem*>( (QGraphicsTextItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsTextItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsTextItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsTextItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -10179,13 +10080,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsSimpleTextItem::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsSimpleTextItem_SupportsExtension(const_cast<MiqtVirtualQGraphicsSimpleTextItem*>(this), handle__SupportsExtension, sigval1);
 
@@ -10193,9 +10093,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsSimpleTextItem::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsSimpleTextItem::supportsExtension(extension);
 
 	}
 
@@ -10203,14 +10103,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsSimpleTextItem::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -10221,9 +10120,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsSimpleTextItem::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsSimpleTextItem::setExtension(extension, *variant);
 
 	}
 
@@ -10388,7 +10287,7 @@ void QGraphicsSimpleTextItem_override_virtual_SupportsExtension(void* self, intp
 	dynamic_cast<MiqtVirtualQGraphicsSimpleTextItem*>( (QGraphicsSimpleTextItem*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsSimpleTextItem_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsSimpleTextItem_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsSimpleTextItem*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -10396,7 +10295,7 @@ void QGraphicsSimpleTextItem_override_virtual_SetExtension(void* self, intptr_t 
 	dynamic_cast<MiqtVirtualQGraphicsSimpleTextItem*>( (QGraphicsSimpleTextItem*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsSimpleTextItem_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsSimpleTextItem_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsSimpleTextItem*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 
@@ -11169,13 +11068,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsItemGroup::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -11186,9 +11084,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsItemGroup::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsItemGroup::itemChange(change, *value));
 
 	}
 
@@ -11196,13 +11094,12 @@ public:
 	intptr_t handle__SupportsExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsExtension(QGraphicsItem::Extension extension) const override {
+	virtual bool supportsExtension(Extension extension) const override {
 		if (handle__SupportsExtension == 0) {
 			return QGraphicsItemGroup::supportsExtension(extension);
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 
 		bool callback_return_value = miqt_exec_callback_QGraphicsItemGroup_SupportsExtension(const_cast<MiqtVirtualQGraphicsItemGroup*>(this), handle__SupportsExtension, sigval1);
 
@@ -11210,9 +11107,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsExtension(int extension) const {
+	bool virtualbase_SupportsExtension(Extension extension) const {
 
-		return QGraphicsItemGroup::supportsExtension(static_cast<QGraphicsItem::Extension>(extension));
+		return QGraphicsItemGroup::supportsExtension(extension);
 
 	}
 
@@ -11220,14 +11117,13 @@ public:
 	intptr_t handle__SetExtension = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setExtension(QGraphicsItem::Extension extension, const QVariant& variant) override {
+	virtual void setExtension(Extension extension, const QVariant& variant) override {
 		if (handle__SetExtension == 0) {
 			QGraphicsItemGroup::setExtension(extension, variant);
 			return;
 		}
 		
-		QGraphicsItem::Extension extension_ret = extension;
-		int sigval1 = static_cast<int>(extension_ret);
+		Extension sigval1 = extension;
 		const QVariant& variant_ret = variant;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&variant_ret);
@@ -11238,9 +11134,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetExtension(int extension, QVariant* variant) {
+	void virtualbase_SetExtension(Extension extension, QVariant* variant) {
 
-		QGraphicsItemGroup::setExtension(static_cast<QGraphicsItem::Extension>(extension), *variant);
+		QGraphicsItemGroup::setExtension(extension, *variant);
 
 	}
 
@@ -11563,7 +11459,7 @@ void QGraphicsItemGroup_override_virtual_ItemChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsItemGroup*>( (QGraphicsItemGroup*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsItemGroup_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsItemGroup_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsItemGroup*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -11571,7 +11467,7 @@ void QGraphicsItemGroup_override_virtual_SupportsExtension(void* self, intptr_t 
 	dynamic_cast<MiqtVirtualQGraphicsItemGroup*>( (QGraphicsItemGroup*)(self) )->handle__SupportsExtension = slot;
 }
 
-bool QGraphicsItemGroup_virtualbase_SupportsExtension(const void* self, int extension) {
+bool QGraphicsItemGroup_virtualbase_SupportsExtension(const void* self, Extension extension) {
 	return ( (const MiqtVirtualQGraphicsItemGroup*)(self) )->virtualbase_SupportsExtension(extension);
 }
 
@@ -11579,7 +11475,7 @@ void QGraphicsItemGroup_override_virtual_SetExtension(void* self, intptr_t slot)
 	dynamic_cast<MiqtVirtualQGraphicsItemGroup*>( (QGraphicsItemGroup*)(self) )->handle__SetExtension = slot;
 }
 
-void QGraphicsItemGroup_virtualbase_SetExtension(void* self, int extension, QVariant* variant) {
+void QGraphicsItemGroup_virtualbase_SetExtension(void* self, Extension extension, QVariant* variant) {
 	( (MiqtVirtualQGraphicsItemGroup*)(self) )->virtualbase_SetExtension(extension, variant);
 }
 

@@ -9,10 +9,11 @@ package qscintilla6
 import "C"
 
 import (
-	"github.com/mappu/miqt/qt6"
 	"runtime"
 	"runtime/cgo"
 	"unsafe"
+
+	"github.com/mappu/miqt/qt"
 )
 
 type QsciLexerCSharp struct {
@@ -43,8 +44,10 @@ func newQsciLexerCSharp(h *C.QsciLexerCSharp) *QsciLexerCSharp {
 	var outptr_QsciLexerCPP *C.QsciLexerCPP = nil
 	C.QsciLexerCSharp_virtbase(h, &outptr_QsciLexerCPP)
 
-	return &QsciLexerCSharp{h: h,
-		QsciLexerCPP: newQsciLexerCPP(outptr_QsciLexerCPP)}
+	return &QsciLexerCSharp{
+		h:            h,
+		QsciLexerCPP: newQsciLexerCPP(outptr_QsciLexerCPP),
+	}
 }
 
 // UnsafeNewQsciLexerCSharp constructs the type using only unsafe pointers.
@@ -54,7 +57,6 @@ func UnsafeNewQsciLexerCSharp(h unsafe.Pointer) *QsciLexerCSharp {
 
 // NewQsciLexerCSharp constructs a new QsciLexerCSharp object.
 func NewQsciLexerCSharp() *QsciLexerCSharp {
-
 	ret := newQsciLexerCSharp(C.QsciLexerCSharp_new())
 	ret.isSubclass = true
 	return ret
@@ -62,7 +64,6 @@ func NewQsciLexerCSharp() *QsciLexerCSharp {
 
 // NewQsciLexerCSharp2 constructs a new QsciLexerCSharp object.
 func NewQsciLexerCSharp2(parent *qt6.QObject) *QsciLexerCSharp {
-
 	ret := newQsciLexerCSharp(C.QsciLexerCSharp_new2((*C.QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
@@ -149,10 +150,9 @@ func QsciLexerCSharp_Tr3(s string, c string, n int) string {
 }
 
 func (this *QsciLexerCSharp) callVirtualBase_SetFoldAtElse(fold bool) {
-
 	C.QsciLexerCSharp_virtualbase_SetFoldAtElse(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerCSharp) OnSetFoldAtElse(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -171,14 +171,12 @@ func miqt_exec_callback_QsciLexerCSharp_SetFoldAtElse(self *C.QsciLexerCSharp, c
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerCSharp{h: self}).callVirtualBase_SetFoldAtElse, slotval1)
-
 }
 
 func (this *QsciLexerCSharp) callVirtualBase_SetFoldComments(fold bool) {
-
 	C.QsciLexerCSharp_virtualbase_SetFoldComments(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerCSharp) OnSetFoldComments(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -197,14 +195,12 @@ func miqt_exec_callback_QsciLexerCSharp_SetFoldComments(self *C.QsciLexerCSharp,
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerCSharp{h: self}).callVirtualBase_SetFoldComments, slotval1)
-
 }
 
 func (this *QsciLexerCSharp) callVirtualBase_SetFoldCompact(fold bool) {
-
 	C.QsciLexerCSharp_virtualbase_SetFoldCompact(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerCSharp) OnSetFoldCompact(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -223,14 +219,12 @@ func miqt_exec_callback_QsciLexerCSharp_SetFoldCompact(self *C.QsciLexerCSharp, 
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerCSharp{h: self}).callVirtualBase_SetFoldCompact, slotval1)
-
 }
 
 func (this *QsciLexerCSharp) callVirtualBase_SetFoldPreprocessor(fold bool) {
-
 	C.QsciLexerCSharp_virtualbase_SetFoldPreprocessor(unsafe.Pointer(this.h), (C.bool)(fold))
-
 }
+
 func (this *QsciLexerCSharp) OnSetFoldPreprocessor(slot func(super func(fold bool), fold bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -249,14 +243,12 @@ func miqt_exec_callback_QsciLexerCSharp_SetFoldPreprocessor(self *C.QsciLexerCSh
 	slotval1 := (bool)(fold)
 
 	gofunc((&QsciLexerCSharp{h: self}).callVirtualBase_SetFoldPreprocessor, slotval1)
-
 }
 
 func (this *QsciLexerCSharp) callVirtualBase_SetStylePreprocessor(style bool) {
-
 	C.QsciLexerCSharp_virtualbase_SetStylePreprocessor(unsafe.Pointer(this.h), (C.bool)(style))
-
 }
+
 func (this *QsciLexerCSharp) OnSetStylePreprocessor(slot func(super func(style bool), style bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
@@ -275,7 +267,6 @@ func miqt_exec_callback_QsciLexerCSharp_SetStylePreprocessor(self *C.QsciLexerCS
 	slotval1 := (bool)(style)
 
 	gofunc((&QsciLexerCSharp{h: self}).callVirtualBase_SetStylePreprocessor, slotval1)
-
 }
 
 // Delete this object from C++ memory.

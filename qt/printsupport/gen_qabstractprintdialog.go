@@ -1,17 +1,7 @@
 package printsupport
 
-/*
-
-#include "gen_qabstractprintdialog.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
 	"github.com/mappu/miqt/qt"
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -27,57 +17,23 @@ const (
 type QAbstractPrintDialog__PrintDialogOption int
 
 const (
-	QAbstractPrintDialog__None               QAbstractPrintDialog__PrintDialogOption = 0
 	QAbstractPrintDialog__PrintToFile        QAbstractPrintDialog__PrintDialogOption = 1
 	QAbstractPrintDialog__PrintSelection     QAbstractPrintDialog__PrintDialogOption = 2
 	QAbstractPrintDialog__PrintPageRange     QAbstractPrintDialog__PrintDialogOption = 4
 	QAbstractPrintDialog__PrintShowPageSize  QAbstractPrintDialog__PrintDialogOption = 8
 	QAbstractPrintDialog__PrintCollateCopies QAbstractPrintDialog__PrintDialogOption = 16
-	QAbstractPrintDialog__DontUseSheet       QAbstractPrintDialog__PrintDialogOption = 32
 	QAbstractPrintDialog__PrintCurrentPage   QAbstractPrintDialog__PrintDialogOption = 64
 )
 
 type QAbstractPrintDialog struct {
-	h          *C.QAbstractPrintDialog
+	h          uintptr
 	isSubclass bool
-	*qt.QDialog
-}
-
-func (this *QAbstractPrintDialog) cPointer() *C.QAbstractPrintDialog {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QAbstractPrintDialog) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQAbstractPrintDialog constructs the type using only CGO pointers.
-func newQAbstractPrintDialog(h *C.QAbstractPrintDialog) *QAbstractPrintDialog {
-	if h == nil {
-		return nil
-	}
-	var outptr_QDialog *C.QDialog = nil
-	C.QAbstractPrintDialog_virtbase(h, &outptr_QDialog)
-
-	return &QAbstractPrintDialog{h: h,
-		QDialog: qt.UnsafeNewQDialog(unsafe.Pointer(outptr_QDialog))}
-}
-
-// UnsafeNewQAbstractPrintDialog constructs the type using only unsafe pointers.
-func UnsafeNewQAbstractPrintDialog(h unsafe.Pointer) *QAbstractPrintDialog {
-	return newQAbstractPrintDialog((*C.QAbstractPrintDialog)(h))
 }
 
 // NewQAbstractPrintDialog constructs a new QAbstractPrintDialog object.
 func NewQAbstractPrintDialog(printer *QPrinter) *QAbstractPrintDialog {
 
-	ret := newQAbstractPrintDialog(C.QAbstractPrintDialog_new(printer.cPointer()))
+	ret := newQAbstractPrintDialog(QAbstractPrintDialog_new(printer.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -85,159 +41,112 @@ func NewQAbstractPrintDialog(printer *QPrinter) *QAbstractPrintDialog {
 // NewQAbstractPrintDialog2 constructs a new QAbstractPrintDialog object.
 func NewQAbstractPrintDialog2(printer *QPrinter, parent *qt.QWidget) *QAbstractPrintDialog {
 
-	ret := newQAbstractPrintDialog(C.QAbstractPrintDialog_new2(printer.cPointer(), (*C.QWidget)(parent.UnsafePointer())))
+	ret := newQAbstractPrintDialog(QAbstractPrintDialog_new2(printer.cPointer(), (*QWidget)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QAbstractPrintDialog) MetaObject() *qt.QMetaObject {
-	return qt.UnsafeNewQMetaObject(unsafe.Pointer(C.QAbstractPrintDialog_MetaObject(this.h)))
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QAbstractPrintDialog_MetaObject(this.h)))
 }
 
 func (this *QAbstractPrintDialog) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QAbstractPrintDialog_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QAbstractPrintDialog_Metacast(this.h, param1_Cstring))
 }
 
 func QAbstractPrintDialog_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractPrintDialog_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QAbstractPrintDialog_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
-}
-
-func QAbstractPrintDialog_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractPrintDialog_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QAbstractPrintDialog) AddEnabledOption(option QAbstractPrintDialog__PrintDialogOption) {
-	C.QAbstractPrintDialog_AddEnabledOption(this.h, (C.int)(option))
-}
-
-func (this *QAbstractPrintDialog) SetEnabledOptions(options QAbstractPrintDialog__PrintDialogOption) {
-	C.QAbstractPrintDialog_SetEnabledOptions(this.h, (C.int)(options))
-}
-
-func (this *QAbstractPrintDialog) EnabledOptions() QAbstractPrintDialog__PrintDialogOption {
-	return (QAbstractPrintDialog__PrintDialogOption)(C.QAbstractPrintDialog_EnabledOptions(this.h))
-}
-
-func (this *QAbstractPrintDialog) IsOptionEnabled(option QAbstractPrintDialog__PrintDialogOption) bool {
-	return (bool)(C.QAbstractPrintDialog_IsOptionEnabled(this.h, (C.int)(option)))
 }
 
 func (this *QAbstractPrintDialog) SetOptionTabs(tabs []*qt.QWidget) {
-	tabs_CArray := (*[0xffff]*C.QWidget)(C.malloc(C.size_t(8 * len(tabs))))
-	defer C.free(unsafe.Pointer(tabs_CArray))
+	tabs_CArray := (*[0xffff]*QWidget)(malloc(size_t(8 * len(tabs))))
+	defer free(unsafe.Pointer(tabs_CArray))
 	for i := range tabs {
-		tabs_CArray[i] = (*C.QWidget)(tabs[i].UnsafePointer())
+		tabs_CArray[i] = (*QWidget)(tabs[i].UnsafePointer())
 	}
-	tabs_ma := C.struct_miqt_array{len: C.size_t(len(tabs)), data: unsafe.Pointer(tabs_CArray)}
-	C.QAbstractPrintDialog_SetOptionTabs(this.h, tabs_ma)
+	tabs_ma := struct_miqt_array{len: size_t(len(tabs)), data: unsafe.Pointer(tabs_CArray)}
+	QAbstractPrintDialog_SetOptionTabs(this.h, tabs_ma)
 }
 
-func (this *QAbstractPrintDialog) SetPrintRange(rangeVal QAbstractPrintDialog__PrintRange) {
-	C.QAbstractPrintDialog_SetPrintRange(this.h, (C.int)(rangeVal))
+func (this *QAbstractPrintDialog) SetPrintRange(rangeVal PrintRange) {
+	QAbstractPrintDialog_SetPrintRange(this.h, rangeVal)
 }
 
-func (this *QAbstractPrintDialog) PrintRange() QAbstractPrintDialog__PrintRange {
-	return (QAbstractPrintDialog__PrintRange)(C.QAbstractPrintDialog_PrintRange(this.h))
+func (this *QAbstractPrintDialog) PrintRange() PrintRange {
+	xxxxxxxxx
 }
 
 func (this *QAbstractPrintDialog) SetMinMax(min int, max int) {
-	C.QAbstractPrintDialog_SetMinMax(this.h, (C.int)(min), (C.int)(max))
+	QAbstractPrintDialog_SetMinMax(this.h, (int)(min), (int)(max))
 }
 
 func (this *QAbstractPrintDialog) MinPage() int {
-	return (int)(C.QAbstractPrintDialog_MinPage(this.h))
+	return (int)(QAbstractPrintDialog_MinPage(this.h))
 }
 
 func (this *QAbstractPrintDialog) MaxPage() int {
-	return (int)(C.QAbstractPrintDialog_MaxPage(this.h))
+	return (int)(QAbstractPrintDialog_MaxPage(this.h))
 }
 
 func (this *QAbstractPrintDialog) SetFromTo(fromPage int, toPage int) {
-	C.QAbstractPrintDialog_SetFromTo(this.h, (C.int)(fromPage), (C.int)(toPage))
+	QAbstractPrintDialog_SetFromTo(this.h, (int)(fromPage), (int)(toPage))
 }
 
 func (this *QAbstractPrintDialog) FromPage() int {
-	return (int)(C.QAbstractPrintDialog_FromPage(this.h))
+	return (int)(QAbstractPrintDialog_FromPage(this.h))
 }
 
 func (this *QAbstractPrintDialog) ToPage() int {
-	return (int)(C.QAbstractPrintDialog_ToPage(this.h))
+	return (int)(QAbstractPrintDialog_ToPage(this.h))
 }
 
 func (this *QAbstractPrintDialog) Printer() *QPrinter {
-	return newQPrinter(C.QAbstractPrintDialog_Printer(this.h))
+	return newQPrinter(QAbstractPrintDialog_Printer(this.h))
 }
 
 func QAbstractPrintDialog_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractPrintDialog_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractPrintDialog_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QAbstractPrintDialog_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractPrintDialog_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractPrintDialog_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractPrintDialog_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractPrintDialog_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractPrintDialog_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractPrintDialog_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QAbstractPrintDialog) callVirtualBase_SetVisible(visible bool) {
 
-	C.QAbstractPrintDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
+	QAbstractPrintDialog_virtualbase_SetVisible(unsafe.Pointer(this.h), (bool)(visible))
 
 }
 func (this *QAbstractPrintDialog) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_SetVisible(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_SetVisible(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_SetVisible
-func miqt_exec_callback_QAbstractPrintDialog_SetVisible(self *C.QAbstractPrintDialog, cb C.intptr_t, visible C.bool) {
+func miqt_exec_callback_QAbstractPrintDialog_SetVisible(self QAbstractPrintDialog, cb intptr_t, visible bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(visible bool), visible bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -252,7 +161,7 @@ func miqt_exec_callback_QAbstractPrintDialog_SetVisible(self *C.QAbstractPrintDi
 
 func (this *QAbstractPrintDialog) callVirtualBase_SizeHint() *qt.QSize {
 
-	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(C.QAbstractPrintDialog_virtualbase_SizeHint(unsafe.Pointer(this.h))))
+	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(QAbstractPrintDialog_virtualbase_SizeHint(unsafe.Pointer(this.h))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -261,11 +170,11 @@ func (this *QAbstractPrintDialog) OnSizeHint(slot func(super func() *qt.QSize) *
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_SizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_SizeHint
-func miqt_exec_callback_QAbstractPrintDialog_SizeHint(self *C.QAbstractPrintDialog, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QAbstractPrintDialog_SizeHint(self QAbstractPrintDialog, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QSize) *qt.QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -273,13 +182,13 @@ func miqt_exec_callback_QAbstractPrintDialog_SizeHint(self *C.QAbstractPrintDial
 
 	virtualReturn := gofunc((&QAbstractPrintDialog{h: self}).callVirtualBase_SizeHint)
 
-	return (*C.QSize)(virtualReturn.UnsafePointer())
+	return (*QSize)(virtualReturn.UnsafePointer())
 
 }
 
 func (this *QAbstractPrintDialog) callVirtualBase_MinimumSizeHint() *qt.QSize {
 
-	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(C.QAbstractPrintDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h))))
+	_goptr := qt.UnsafeNewQSize(unsafe.Pointer(QAbstractPrintDialog_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h))))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -288,11 +197,11 @@ func (this *QAbstractPrintDialog) OnMinimumSizeHint(slot func(super func() *qt.Q
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_MinimumSizeHint
-func miqt_exec_callback_QAbstractPrintDialog_MinimumSizeHint(self *C.QAbstractPrintDialog, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QAbstractPrintDialog_MinimumSizeHint(self QAbstractPrintDialog, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *qt.QSize) *qt.QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -300,24 +209,24 @@ func miqt_exec_callback_QAbstractPrintDialog_MinimumSizeHint(self *C.QAbstractPr
 
 	virtualReturn := gofunc((&QAbstractPrintDialog{h: self}).callVirtualBase_MinimumSizeHint)
 
-	return (*C.QSize)(virtualReturn.UnsafePointer())
+	return (*QSize)(virtualReturn.UnsafePointer())
 
 }
 
 func (this *QAbstractPrintDialog) callVirtualBase_Open() {
 
-	C.QAbstractPrintDialog_virtualbase_Open(unsafe.Pointer(this.h))
+	QAbstractPrintDialog_virtualbase_Open(unsafe.Pointer(this.h))
 
 }
 func (this *QAbstractPrintDialog) OnOpen(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_Open(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_Open(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_Open
-func miqt_exec_callback_QAbstractPrintDialog_Open(self *C.QAbstractPrintDialog, cb C.intptr_t) {
+func miqt_exec_callback_QAbstractPrintDialog_Open(self QAbstractPrintDialog, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -329,18 +238,18 @@ func miqt_exec_callback_QAbstractPrintDialog_Open(self *C.QAbstractPrintDialog, 
 
 func (this *QAbstractPrintDialog) callVirtualBase_Exec() int {
 
-	return (int)(C.QAbstractPrintDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
+	return (int)(QAbstractPrintDialog_virtualbase_Exec(unsafe.Pointer(this.h)))
 
 }
 func (this *QAbstractPrintDialog) OnExec(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_Exec(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_Exec(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_Exec
-func miqt_exec_callback_QAbstractPrintDialog_Exec(self *C.QAbstractPrintDialog, cb C.intptr_t) C.int {
+func miqt_exec_callback_QAbstractPrintDialog_Exec(self QAbstractPrintDialog, cb intptr_t) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -348,24 +257,24 @@ func miqt_exec_callback_QAbstractPrintDialog_Exec(self *C.QAbstractPrintDialog, 
 
 	virtualReturn := gofunc((&QAbstractPrintDialog{h: self}).callVirtualBase_Exec)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QAbstractPrintDialog) callVirtualBase_Done(param1 int) {
 
-	C.QAbstractPrintDialog_virtualbase_Done(unsafe.Pointer(this.h), (C.int)(param1))
+	QAbstractPrintDialog_virtualbase_Done(unsafe.Pointer(this.h), (int)(param1))
 
 }
 func (this *QAbstractPrintDialog) OnDone(slot func(super func(param1 int), param1 int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_Done(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_Done(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_Done
-func miqt_exec_callback_QAbstractPrintDialog_Done(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 C.int) {
+func miqt_exec_callback_QAbstractPrintDialog_Done(self QAbstractPrintDialog, cb intptr_t, param1 int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 int), param1 int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -380,18 +289,18 @@ func miqt_exec_callback_QAbstractPrintDialog_Done(self *C.QAbstractPrintDialog, 
 
 func (this *QAbstractPrintDialog) callVirtualBase_Accept() {
 
-	C.QAbstractPrintDialog_virtualbase_Accept(unsafe.Pointer(this.h))
+	QAbstractPrintDialog_virtualbase_Accept(unsafe.Pointer(this.h))
 
 }
 func (this *QAbstractPrintDialog) OnAccept(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_Accept(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_Accept(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_Accept
-func miqt_exec_callback_QAbstractPrintDialog_Accept(self *C.QAbstractPrintDialog, cb C.intptr_t) {
+func miqt_exec_callback_QAbstractPrintDialog_Accept(self QAbstractPrintDialog, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -403,18 +312,18 @@ func miqt_exec_callback_QAbstractPrintDialog_Accept(self *C.QAbstractPrintDialog
 
 func (this *QAbstractPrintDialog) callVirtualBase_Reject() {
 
-	C.QAbstractPrintDialog_virtualbase_Reject(unsafe.Pointer(this.h))
+	QAbstractPrintDialog_virtualbase_Reject(unsafe.Pointer(this.h))
 
 }
 func (this *QAbstractPrintDialog) OnReject(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_Reject(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_Reject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_Reject
-func miqt_exec_callback_QAbstractPrintDialog_Reject(self *C.QAbstractPrintDialog, cb C.intptr_t) {
+func miqt_exec_callback_QAbstractPrintDialog_Reject(self QAbstractPrintDialog, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -426,18 +335,18 @@ func miqt_exec_callback_QAbstractPrintDialog_Reject(self *C.QAbstractPrintDialog
 
 func (this *QAbstractPrintDialog) callVirtualBase_KeyPressEvent(param1 *qt.QKeyEvent) {
 
-	C.QAbstractPrintDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), (*C.QKeyEvent)(param1.UnsafePointer()))
+	QAbstractPrintDialog_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), (*QKeyEvent)(param1.UnsafePointer()))
 
 }
 func (this *QAbstractPrintDialog) OnKeyPressEvent(slot func(super func(param1 *qt.QKeyEvent), param1 *qt.QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_KeyPressEvent
-func miqt_exec_callback_QAbstractPrintDialog_KeyPressEvent(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 *C.QKeyEvent) {
+func miqt_exec_callback_QAbstractPrintDialog_KeyPressEvent(self QAbstractPrintDialog, cb intptr_t, param1 *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *qt.QKeyEvent), param1 *qt.QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -452,18 +361,18 @@ func miqt_exec_callback_QAbstractPrintDialog_KeyPressEvent(self *C.QAbstractPrin
 
 func (this *QAbstractPrintDialog) callVirtualBase_CloseEvent(param1 *qt.QCloseEvent) {
 
-	C.QAbstractPrintDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), (*C.QCloseEvent)(param1.UnsafePointer()))
+	QAbstractPrintDialog_virtualbase_CloseEvent(unsafe.Pointer(this.h), (*QCloseEvent)(param1.UnsafePointer()))
 
 }
 func (this *QAbstractPrintDialog) OnCloseEvent(slot func(super func(param1 *qt.QCloseEvent), param1 *qt.QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_CloseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_CloseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_CloseEvent
-func miqt_exec_callback_QAbstractPrintDialog_CloseEvent(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 *C.QCloseEvent) {
+func miqt_exec_callback_QAbstractPrintDialog_CloseEvent(self QAbstractPrintDialog, cb intptr_t, param1 *QCloseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *qt.QCloseEvent), param1 *qt.QCloseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -478,18 +387,18 @@ func miqt_exec_callback_QAbstractPrintDialog_CloseEvent(self *C.QAbstractPrintDi
 
 func (this *QAbstractPrintDialog) callVirtualBase_ShowEvent(param1 *qt.QShowEvent) {
 
-	C.QAbstractPrintDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), (*C.QShowEvent)(param1.UnsafePointer()))
+	QAbstractPrintDialog_virtualbase_ShowEvent(unsafe.Pointer(this.h), (*QShowEvent)(param1.UnsafePointer()))
 
 }
 func (this *QAbstractPrintDialog) OnShowEvent(slot func(super func(param1 *qt.QShowEvent), param1 *qt.QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_ShowEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_ShowEvent
-func miqt_exec_callback_QAbstractPrintDialog_ShowEvent(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 *C.QShowEvent) {
+func miqt_exec_callback_QAbstractPrintDialog_ShowEvent(self QAbstractPrintDialog, cb intptr_t, param1 *QShowEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *qt.QShowEvent), param1 *qt.QShowEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -504,18 +413,18 @@ func miqt_exec_callback_QAbstractPrintDialog_ShowEvent(self *C.QAbstractPrintDia
 
 func (this *QAbstractPrintDialog) callVirtualBase_ResizeEvent(param1 *qt.QResizeEvent) {
 
-	C.QAbstractPrintDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), (*C.QResizeEvent)(param1.UnsafePointer()))
+	QAbstractPrintDialog_virtualbase_ResizeEvent(unsafe.Pointer(this.h), (*QResizeEvent)(param1.UnsafePointer()))
 
 }
 func (this *QAbstractPrintDialog) OnResizeEvent(slot func(super func(param1 *qt.QResizeEvent), param1 *qt.QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_ResizeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_ResizeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_ResizeEvent
-func miqt_exec_callback_QAbstractPrintDialog_ResizeEvent(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 *C.QResizeEvent) {
+func miqt_exec_callback_QAbstractPrintDialog_ResizeEvent(self QAbstractPrintDialog, cb intptr_t, param1 *QResizeEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *qt.QResizeEvent), param1 *qt.QResizeEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -530,18 +439,18 @@ func miqt_exec_callback_QAbstractPrintDialog_ResizeEvent(self *C.QAbstractPrintD
 
 func (this *QAbstractPrintDialog) callVirtualBase_ContextMenuEvent(param1 *qt.QContextMenuEvent) {
 
-	C.QAbstractPrintDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), (*C.QContextMenuEvent)(param1.UnsafePointer()))
+	QAbstractPrintDialog_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), (*QContextMenuEvent)(param1.UnsafePointer()))
 
 }
 func (this *QAbstractPrintDialog) OnContextMenuEvent(slot func(super func(param1 *qt.QContextMenuEvent), param1 *qt.QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_ContextMenuEvent
-func miqt_exec_callback_QAbstractPrintDialog_ContextMenuEvent(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 *C.QContextMenuEvent) {
+func miqt_exec_callback_QAbstractPrintDialog_ContextMenuEvent(self QAbstractPrintDialog, cb intptr_t, param1 *QContextMenuEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *qt.QContextMenuEvent), param1 *qt.QContextMenuEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -556,18 +465,18 @@ func miqt_exec_callback_QAbstractPrintDialog_ContextMenuEvent(self *C.QAbstractP
 
 func (this *QAbstractPrintDialog) callVirtualBase_EventFilter(param1 *qt.QObject, param2 *qt.QEvent) bool {
 
-	return (bool)(C.QAbstractPrintDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(param1.UnsafePointer()), (*C.QEvent)(param2.UnsafePointer())))
+	return (bool)(QAbstractPrintDialog_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(param1.UnsafePointer()), (*QEvent)(param2.UnsafePointer())))
 
 }
 func (this *QAbstractPrintDialog) OnEventFilter(slot func(super func(param1 *qt.QObject, param2 *qt.QEvent) bool, param1 *qt.QObject, param2 *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractPrintDialog_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractPrintDialog_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractPrintDialog_EventFilter
-func miqt_exec_callback_QAbstractPrintDialog_EventFilter(self *C.QAbstractPrintDialog, cb C.intptr_t, param1 *C.QObject, param2 *C.QEvent) C.bool {
+func miqt_exec_callback_QAbstractPrintDialog_EventFilter(self QAbstractPrintDialog, cb intptr_t, param1 *QObject, param2 *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *qt.QObject, param2 *qt.QEvent) bool, param1 *qt.QObject, param2 *qt.QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -580,20 +489,6 @@ func miqt_exec_callback_QAbstractPrintDialog_EventFilter(self *C.QAbstractPrintD
 
 	virtualReturn := gofunc((&QAbstractPrintDialog{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QAbstractPrintDialog) Delete() {
-	C.QAbstractPrintDialog_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QAbstractPrintDialog) GoGC() {
-	runtime.SetFinalizer(this, func(this *QAbstractPrintDialog) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

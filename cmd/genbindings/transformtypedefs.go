@@ -5,7 +5,6 @@ import (
 )
 
 func applyTypedefs(p CppParameter) CppParameter {
-
 	for {
 		td, ok := KnownTypedefs[p.ParameterType]
 		if !ok {
@@ -64,7 +63,6 @@ func applyTypedefs(p CppParameter) CppParameter {
 }
 
 func applyTypedefs_Method(m *CppMethod) {
-
 	for k, p := range m.Parameters {
 		transformed := applyTypedefs(p)
 		m.Parameters[k] = transformed
@@ -84,7 +82,6 @@ func applyTypedefs_Method(m *CppMethod) {
 
 // astTransformTypedefs replaces the ParameterType with any known typedef value.
 func astTransformTypedefs(parsed *CppParsedHeader) {
-
 	for i, c := range parsed.Classes {
 
 		for j, m := range c.Methods {

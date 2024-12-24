@@ -54,7 +54,6 @@ func (p *CppParameter) GetQtCppType() *CppParameter {
 }
 
 func (p CppParameter) QFlagsOf() (CppParameter, bool) {
-
 	if strings.HasPrefix(p.ParameterType, `QFlags<`) {
 		ret := parseSingleTypeString(p.ParameterType[7 : len(p.ParameterType)-1])
 		ret.ParameterName = p.ParameterName + "_qf"
@@ -78,7 +77,6 @@ func (p CppParameter) IsFlagType() bool {
 }
 
 func (p CppParameter) QtClassType() bool {
-
 	// QtClassType returns false for our customized container types (QList,
 	// QMap, QSet, etc)
 
@@ -188,7 +186,6 @@ func (p CppParameter) QMultiMapOf() bool {
 }
 
 func (p CppParameter) IntType() bool {
-
 	if p.IsKnownEnum() {
 		return true
 	}
@@ -370,7 +367,6 @@ type CppEnum struct {
 }
 
 func (e CppEnum) ShortEnumName() string {
-
 	// Strip back one single :: pair from the generated variable name
 	if nameParts := strings.Split(e.EnumName, `::`); len(nameParts) > 1 {
 		nameParts = nameParts[0 : len(nameParts)-1]
@@ -401,8 +397,8 @@ type CppClass struct {
 // C++ constructors cannot be virtual.
 func (c *CppClass) VirtualMethods() []CppMethod {
 	var ret []CppMethod
-	var retNames = make(map[string]struct{}, 0) // if name is present, a child class found it first
-	var block = slice_to_set(c.PrivateMethods)
+	retNames := make(map[string]struct{}, 0) // if name is present, a child class found it first
+	block := slice_to_set(c.PrivateMethods)
 
 	if len(c.Ctors) == 0 {
 		// This class can't be constructed
@@ -518,6 +514,7 @@ func (c *CppClass) DirectInheritClassInfo() []lookupResultClass {
 				// e.g. QItemSelection extends a QList<>
 				continue
 			} else {
+				continue // Skip unknown class QAtomicInteger<int>  //todo fix me
 				panic("Class " + c.ClassName + " inherits from unknown class " + inh)
 			}
 		}

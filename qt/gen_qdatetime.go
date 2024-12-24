@@ -1,23 +1,20 @@
 package qt
 
-/*
-
-#include "gen_qdatetime.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
-type QDate__MonthNameType int
+type QDateTime__TransitionResolution int
 
 const (
-	QDate__DateFormat       QDate__MonthNameType = 0
-	QDate__StandaloneFormat QDate__MonthNameType = 1
+	QDateTime__Reject               QDateTime__TransitionResolution = 0
+	QDateTime__RelativeToBefore     QDateTime__TransitionResolution = 1
+	QDateTime__RelativeToAfter      QDateTime__TransitionResolution = 2
+	QDateTime__PreferBefore         QDateTime__TransitionResolution = 3
+	QDateTime__PreferAfter          QDateTime__TransitionResolution = 4
+	QDateTime__PreferStandard       QDateTime__TransitionResolution = 5
+	QDateTime__PreferDaylightSaving QDateTime__TransitionResolution = 6
+	QDateTime__LegacyBehavior       QDateTime__TransitionResolution = 1
 )
 
 type QDateTime__YearRange int
@@ -28,42 +25,14 @@ const (
 )
 
 type QDate struct {
-	h          *C.QDate
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QDate) cPointer() *C.QDate {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QDate) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQDate constructs the type using only CGO pointers.
-func newQDate(h *C.QDate) *QDate {
-	if h == nil {
-		return nil
-	}
-
-	return &QDate{h: h}
-}
-
-// UnsafeNewQDate constructs the type using only unsafe pointers.
-func UnsafeNewQDate(h unsafe.Pointer) *QDate {
-	return newQDate((*C.QDate)(h))
 }
 
 // NewQDate constructs a new QDate object.
 func NewQDate() *QDate {
 
-	ret := newQDate(C.QDate_new())
+	ret := newQDate(QDate_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -71,7 +40,7 @@ func NewQDate() *QDate {
 // NewQDate2 constructs a new QDate object.
 func NewQDate2(y int, m int, d int) *QDate {
 
-	ret := newQDate(C.QDate_new2((C.int)(y), (C.int)(m), (C.int)(d)))
+	ret := newQDate(QDate_new2((int)(y), (int)(m), (int)(d)))
 	ret.isSubclass = true
 	return ret
 }
@@ -79,7 +48,7 @@ func NewQDate2(y int, m int, d int) *QDate {
 // NewQDate3 constructs a new QDate object.
 func NewQDate3(y int, m int, d int, cal QCalendar) *QDate {
 
-	ret := newQDate(C.QDate_new3((C.int)(y), (C.int)(m), (C.int)(d), cal.cPointer()))
+	ret := newQDate(QDate_new3((int)(y), (int)(m), (int)(d), cal.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -87,427 +56,322 @@ func NewQDate3(y int, m int, d int, cal QCalendar) *QDate {
 // NewQDate4 constructs a new QDate object.
 func NewQDate4(param1 *QDate) *QDate {
 
-	ret := newQDate(C.QDate_new4(param1.cPointer()))
+	ret := newQDate(QDate_new4(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QDate) IsNull() bool {
-	return (bool)(C.QDate_IsNull(this.h))
+	return (bool)(QDate_IsNull(this.h))
 }
 
 func (this *QDate) IsValid() bool {
-	return (bool)(C.QDate_IsValid(this.h))
+	return (bool)(QDate_IsValid(this.h))
 }
 
 func (this *QDate) Year() int {
-	return (int)(C.QDate_Year(this.h))
+	return (int)(QDate_Year(this.h))
 }
 
 func (this *QDate) Month() int {
-	return (int)(C.QDate_Month(this.h))
+	return (int)(QDate_Month(this.h))
 }
 
 func (this *QDate) Day() int {
-	return (int)(C.QDate_Day(this.h))
+	return (int)(QDate_Day(this.h))
 }
 
 func (this *QDate) DayOfWeek() int {
-	return (int)(C.QDate_DayOfWeek(this.h))
+	return (int)(QDate_DayOfWeek(this.h))
 }
 
 func (this *QDate) DayOfYear() int {
-	return (int)(C.QDate_DayOfYear(this.h))
+	return (int)(QDate_DayOfYear(this.h))
 }
 
 func (this *QDate) DaysInMonth() int {
-	return (int)(C.QDate_DaysInMonth(this.h))
+	return (int)(QDate_DaysInMonth(this.h))
 }
 
 func (this *QDate) DaysInYear() int {
-	return (int)(C.QDate_DaysInYear(this.h))
+	return (int)(QDate_DaysInYear(this.h))
 }
 
 func (this *QDate) WeekNumber() int {
-	return (int)(C.QDate_WeekNumber(this.h))
+	return (int)(QDate_WeekNumber(this.h))
 }
 
 func (this *QDate) YearWithCal(cal QCalendar) int {
-	return (int)(C.QDate_YearWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_YearWithCal(this.h, cal.cPointer()))
 }
 
 func (this *QDate) MonthWithCal(cal QCalendar) int {
-	return (int)(C.QDate_MonthWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_MonthWithCal(this.h, cal.cPointer()))
 }
 
 func (this *QDate) DayWithCal(cal QCalendar) int {
-	return (int)(C.QDate_DayWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_DayWithCal(this.h, cal.cPointer()))
 }
 
 func (this *QDate) DayOfWeekWithCal(cal QCalendar) int {
-	return (int)(C.QDate_DayOfWeekWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_DayOfWeekWithCal(this.h, cal.cPointer()))
 }
 
 func (this *QDate) DayOfYearWithCal(cal QCalendar) int {
-	return (int)(C.QDate_DayOfYearWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_DayOfYearWithCal(this.h, cal.cPointer()))
 }
 
 func (this *QDate) DaysInMonthWithCal(cal QCalendar) int {
-	return (int)(C.QDate_DaysInMonthWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_DaysInMonthWithCal(this.h, cal.cPointer()))
 }
 
 func (this *QDate) DaysInYearWithCal(cal QCalendar) int {
-	return (int)(C.QDate_DaysInYearWithCal(this.h, cal.cPointer()))
+	return (int)(QDate_DaysInYearWithCal(this.h, cal.cPointer()))
 }
 
-func (this *QDate) StartOfDay() *QDateTime {
-	_goptr := newQDateTime(C.QDate_StartOfDay(this.h))
+func (this *QDate) StartOfDay(spec TimeSpec) *QDateTime {
+	_goptr := newQDateTime(QDate_StartOfDay(this.h, (int)(spec)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QDate) EndOfDay() *QDateTime {
-	_goptr := newQDateTime(C.QDate_EndOfDay(this.h))
+func (this *QDate) EndOfDay(spec TimeSpec) *QDateTime {
+	_goptr := newQDateTime(QDate_EndOfDay(this.h, (int)(spec)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) StartOfDayWithZone(zone *QTimeZone) *QDateTime {
-	_goptr := newQDateTime(C.QDate_StartOfDayWithZone(this.h, zone.cPointer()))
+	_goptr := newQDateTime(QDate_StartOfDayWithZone(this.h, zone.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) EndOfDayWithZone(zone *QTimeZone) *QDateTime {
-	_goptr := newQDateTime(C.QDate_EndOfDayWithZone(this.h, zone.cPointer()))
+	_goptr := newQDateTime(QDate_EndOfDayWithZone(this.h, zone.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDate_ShortMonthName(month int) string {
-	var _ms C.struct_miqt_string = C.QDate_ShortMonthName((C.int)(month))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
+func (this *QDate) StartOfDay2() *QDateTime {
+	_goptr := newQDateTime(QDate_StartOfDay2(this.h))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
-func QDate_ShortDayName(weekday int) string {
-	var _ms C.struct_miqt_string = C.QDate_ShortDayName((C.int)(weekday))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QDate_LongMonthName(month int) string {
-	var _ms C.struct_miqt_string = C.QDate_LongMonthName((C.int)(month))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QDate_LongDayName(weekday int) string {
-	var _ms C.struct_miqt_string = C.QDate_LongDayName((C.int)(weekday))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
+func (this *QDate) EndOfDay2() *QDateTime {
+	_goptr := newQDateTime(QDate_EndOfDay2(this.h))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
 func (this *QDate) ToString() string {
-	var _ms C.struct_miqt_string = C.QDate_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QDate) ToString2(format DateFormat, cal QCalendar) string {
-	var _ms C.struct_miqt_string = C.QDate_ToString2(this.h, (C.int)(format), cal.cPointer())
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QDate_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QDate) ToStringWithFormat(format string) string {
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	var _ms C.struct_miqt_string = C.QDate_ToStringWithFormat(this.h, format_ms)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	var _ms struct_miqt_string = QDate_ToStringWithFormat(this.h, format_ms)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func (this *QDate) ToString3(format string, cal QCalendar) string {
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	var _ms C.struct_miqt_string = C.QDate_ToString3(this.h, format_ms, cal.cPointer())
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+func (this *QDate) ToString2(format string, cal QCalendar) string {
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	var _ms struct_miqt_string = QDate_ToString2(this.h, format_ms, cal.cPointer())
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QDate) SetDate(year int, month int, day int) bool {
-	return (bool)(C.QDate_SetDate(this.h, (C.int)(year), (C.int)(month), (C.int)(day)))
+	return (bool)(QDate_SetDate(this.h, (int)(year), (int)(month), (int)(day)))
 }
 
 func (this *QDate) SetDate2(year int, month int, day int, cal QCalendar) bool {
-	return (bool)(C.QDate_SetDate2(this.h, (C.int)(year), (C.int)(month), (C.int)(day), cal.cPointer()))
+	return (bool)(QDate_SetDate2(this.h, (int)(year), (int)(month), (int)(day), cal.cPointer()))
 }
 
 func (this *QDate) GetDate(year *int, month *int, day *int) {
-	C.QDate_GetDate(this.h, (*C.int)(unsafe.Pointer(year)), (*C.int)(unsafe.Pointer(month)), (*C.int)(unsafe.Pointer(day)))
-}
-
-func (this *QDate) GetDate2(year *int, month *int, day *int) {
-	C.QDate_GetDate2(this.h, (*C.int)(unsafe.Pointer(year)), (*C.int)(unsafe.Pointer(month)), (*C.int)(unsafe.Pointer(day)))
+	QDate_GetDate(this.h, (*int)(unsafe.Pointer(year)), (*int)(unsafe.Pointer(month)), (*int)(unsafe.Pointer(day)))
 }
 
 func (this *QDate) AddDays(days int64) *QDate {
-	_goptr := newQDate(C.QDate_AddDays(this.h, (C.longlong)(days)))
+	_goptr := newQDate(QDate_AddDays(this.h, (longlong)(days)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) AddMonths(months int) *QDate {
-	_goptr := newQDate(C.QDate_AddMonths(this.h, (C.int)(months)))
+	_goptr := newQDate(QDate_AddMonths(this.h, (int)(months)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) AddYears(years int) *QDate {
-	_goptr := newQDate(C.QDate_AddYears(this.h, (C.int)(years)))
+	_goptr := newQDate(QDate_AddYears(this.h, (int)(years)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) AddMonths2(months int, cal QCalendar) *QDate {
-	_goptr := newQDate(C.QDate_AddMonths2(this.h, (C.int)(months), cal.cPointer()))
+	_goptr := newQDate(QDate_AddMonths2(this.h, (int)(months), cal.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) AddYears2(years int, cal QCalendar) *QDate {
-	_goptr := newQDate(C.QDate_AddYears2(this.h, (C.int)(years), cal.cPointer()))
+	_goptr := newQDate(QDate_AddYears2(this.h, (int)(years), cal.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QDate) DaysTo(param1 *QDate) int64 {
-	return (int64)(C.QDate_DaysTo(this.h, param1.cPointer()))
-}
-
-func (this *QDate) OperatorEqual(other *QDate) bool {
-	return (bool)(C.QDate_OperatorEqual(this.h, other.cPointer()))
-}
-
-func (this *QDate) OperatorNotEqual(other *QDate) bool {
-	return (bool)(C.QDate_OperatorNotEqual(this.h, other.cPointer()))
-}
-
-func (this *QDate) OperatorLesser(other *QDate) bool {
-	return (bool)(C.QDate_OperatorLesser(this.h, other.cPointer()))
-}
-
-func (this *QDate) OperatorLesserOrEqual(other *QDate) bool {
-	return (bool)(C.QDate_OperatorLesserOrEqual(this.h, other.cPointer()))
-}
-
-func (this *QDate) OperatorGreater(other *QDate) bool {
-	return (bool)(C.QDate_OperatorGreater(this.h, other.cPointer()))
-}
-
-func (this *QDate) OperatorGreaterOrEqual(other *QDate) bool {
-	return (bool)(C.QDate_OperatorGreaterOrEqual(this.h, other.cPointer()))
+func (this *QDate) DaysTo(d QDate) int64 {
+	return (int64)(QDate_DaysTo(this.h, d.cPointer()))
 }
 
 func QDate_CurrentDate() *QDate {
-	_goptr := newQDate(C.QDate_CurrentDate())
+	_goptr := newQDate(QDate_CurrentDate())
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDate_FromString(s string) *QDate {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	_goptr := newQDate(C.QDate_FromString(s_ms))
+func QDate_FromStringWithStringVal(stringVal string) *QDate {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	_goptr := newQDate(QDate_FromStringWithStringVal(stringVal_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDate_FromString2(s string, format string) *QDate {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	_goptr := newQDate(C.QDate_FromString2(s_ms, format_ms))
+func QDate_FromString4(stringVal string, format string, cal QCalendar) *QDate {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDate(QDate_FromString4(stringVal_ms, format_ms, cal.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDate_FromString3(s string, format string, cal QCalendar) *QDate {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	_goptr := newQDate(C.QDate_FromString3(s_ms, format_ms, cal.cPointer()))
+func QDate_FromString9(stringVal string, format string) *QDate {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDate(QDate_FromString9(stringVal_ms, format_ms))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QDate_FromString10(stringVal string, format string, baseYear int, cal QCalendar) *QDate {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDate(QDate_FromString10(stringVal_ms, format_ms, (int)(baseYear), cal.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QDate_IsValid2(y int, m int, d int) bool {
-	return (bool)(C.QDate_IsValid2((C.int)(y), (C.int)(m), (C.int)(d)))
+	return (bool)(QDate_IsValid2((int)(y), (int)(m), (int)(d)))
 }
 
 func QDate_IsLeapYear(year int) bool {
-	return (bool)(C.QDate_IsLeapYear((C.int)(year)))
+	return (bool)(QDate_IsLeapYear((int)(year)))
 }
 
 func QDate_FromJulianDay(jd_ int64) *QDate {
-	_goptr := newQDate(C.QDate_FromJulianDay((C.longlong)(jd_)))
+	_goptr := newQDate(QDate_FromJulianDay((longlong)(jd_)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDate) ToJulianDay() int64 {
-	return (int64)(C.QDate_ToJulianDay(this.h))
+	return (int64)(QDate_ToJulianDay(this.h))
 }
 
 func (this *QDate) WeekNumber1(yearNum *int) int {
-	return (int)(C.QDate_WeekNumber1(this.h, (*C.int)(unsafe.Pointer(yearNum))))
+	return (int)(QDate_WeekNumber1(this.h, (*int)(unsafe.Pointer(yearNum))))
 }
 
-func (this *QDate) StartOfDay1(spec TimeSpec) *QDateTime {
-	_goptr := newQDateTime(C.QDate_StartOfDay1(this.h, (C.int)(spec)))
+func (this *QDate) StartOfDay22(spec TimeSpec, offsetSeconds int) *QDateTime {
+	_goptr := newQDateTime(QDate_StartOfDay22(this.h, (int)(spec), (int)(offsetSeconds)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QDate) StartOfDay2(spec TimeSpec, offsetSeconds int) *QDateTime {
-	_goptr := newQDateTime(C.QDate_StartOfDay2(this.h, (C.int)(spec), (C.int)(offsetSeconds)))
+func (this *QDate) EndOfDay22(spec TimeSpec, offsetSeconds int) *QDateTime {
+	_goptr := newQDateTime(QDate_EndOfDay22(this.h, (int)(spec), (int)(offsetSeconds)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-}
-
-func (this *QDate) EndOfDay1(spec TimeSpec) *QDateTime {
-	_goptr := newQDateTime(C.QDate_EndOfDay1(this.h, (C.int)(spec)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func (this *QDate) EndOfDay2(spec TimeSpec, offsetSeconds int) *QDateTime {
-	_goptr := newQDateTime(C.QDate_EndOfDay2(this.h, (C.int)(spec), (C.int)(offsetSeconds)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func QDate_ShortMonthName2(month int, typeVal QDate__MonthNameType) string {
-	var _ms C.struct_miqt_string = C.QDate_ShortMonthName2((C.int)(month), (C.int)(typeVal))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QDate_ShortDayName2(weekday int, typeVal QDate__MonthNameType) string {
-	var _ms C.struct_miqt_string = C.QDate_ShortDayName2((C.int)(weekday), (C.int)(typeVal))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QDate_LongMonthName2(month int, typeVal QDate__MonthNameType) string {
-	var _ms C.struct_miqt_string = C.QDate_LongMonthName2((C.int)(month), (C.int)(typeVal))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QDate_LongDayName2(weekday int, typeVal QDate__MonthNameType) string {
-	var _ms C.struct_miqt_string = C.QDate_LongDayName2((C.int)(weekday), (C.int)(typeVal))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
 }
 
 func (this *QDate) ToString1(format DateFormat) string {
-	var _ms C.struct_miqt_string = C.QDate_ToString1(this.h, (C.int)(format))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QDate_ToString1(this.h, (int)(format))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QDate_FromString22(s string, f DateFormat) *QDate {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	_goptr := newQDate(C.QDate_FromString22(s_ms, (C.int)(f)))
+func QDate_FromString23(stringVal string, format DateFormat) *QDate {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	_goptr := newQDate(QDate_FromString23(stringVal_ms, (int)(format)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-// Delete this object from C++ memory.
-func (this *QDate) Delete() {
-	C.QDate_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QDate) GoGC() {
-	runtime.SetFinalizer(this, func(this *QDate) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func QDate_FromString34(stringVal string, format string, baseYear int) *QDate {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDate(QDate_FromString34(stringVal_ms, format_ms, (int)(baseYear)))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
 type QTime struct {
-	h          *C.QTime
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QTime) cPointer() *C.QTime {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QTime) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQTime constructs the type using only CGO pointers.
-func newQTime(h *C.QTime) *QTime {
-	if h == nil {
-		return nil
-	}
-
-	return &QTime{h: h}
-}
-
-// UnsafeNewQTime constructs the type using only unsafe pointers.
-func UnsafeNewQTime(h unsafe.Pointer) *QTime {
-	return newQTime((*C.QTime)(h))
 }
 
 // NewQTime constructs a new QTime object.
 func NewQTime() *QTime {
 
-	ret := newQTime(C.QTime_new())
+	ret := newQTime(QTime_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -515,7 +379,7 @@ func NewQTime() *QTime {
 // NewQTime2 constructs a new QTime object.
 func NewQTime2(h int, m int) *QTime {
 
-	ret := newQTime(C.QTime_new2((C.int)(h), (C.int)(m)))
+	ret := newQTime(QTime_new2((int)(h), (int)(m)))
 	ret.isSubclass = true
 	return ret
 }
@@ -523,7 +387,7 @@ func NewQTime2(h int, m int) *QTime {
 // NewQTime3 constructs a new QTime object.
 func NewQTime3(param1 *QTime) *QTime {
 
-	ret := newQTime(C.QTime_new3(param1.cPointer()))
+	ret := newQTime(QTime_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -531,7 +395,7 @@ func NewQTime3(param1 *QTime) *QTime {
 // NewQTime4 constructs a new QTime object.
 func NewQTime4(h int, m int, s int) *QTime {
 
-	ret := newQTime(C.QTime_new4((C.int)(h), (C.int)(m), (C.int)(s)))
+	ret := newQTime(QTime_new4((int)(h), (int)(m), (int)(s)))
 	ret.isSubclass = true
 	return ret
 }
@@ -539,257 +403,179 @@ func NewQTime4(h int, m int, s int) *QTime {
 // NewQTime5 constructs a new QTime object.
 func NewQTime5(h int, m int, s int, ms int) *QTime {
 
-	ret := newQTime(C.QTime_new5((C.int)(h), (C.int)(m), (C.int)(s), (C.int)(ms)))
+	ret := newQTime(QTime_new5((int)(h), (int)(m), (int)(s), (int)(ms)))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QTime) IsNull() bool {
-	return (bool)(C.QTime_IsNull(this.h))
+	return (bool)(QTime_IsNull(this.h))
 }
 
 func (this *QTime) IsValid() bool {
-	return (bool)(C.QTime_IsValid(this.h))
+	return (bool)(QTime_IsValid(this.h))
 }
 
 func (this *QTime) Hour() int {
-	return (int)(C.QTime_Hour(this.h))
+	return (int)(QTime_Hour(this.h))
 }
 
 func (this *QTime) Minute() int {
-	return (int)(C.QTime_Minute(this.h))
+	return (int)(QTime_Minute(this.h))
 }
 
 func (this *QTime) Second() int {
-	return (int)(C.QTime_Second(this.h))
+	return (int)(QTime_Second(this.h))
 }
 
 func (this *QTime) Msec() int {
-	return (int)(C.QTime_Msec(this.h))
+	return (int)(QTime_Msec(this.h))
 }
 
 func (this *QTime) ToString() string {
-	var _ms C.struct_miqt_string = C.QTime_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTime_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTime) ToStringWithFormat(format string) string {
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	var _ms C.struct_miqt_string = C.QTime_ToStringWithFormat(this.h, format_ms)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	var _ms struct_miqt_string = QTime_ToStringWithFormat(this.h, format_ms)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTime) SetHMS(h int, m int, s int) bool {
-	return (bool)(C.QTime_SetHMS(this.h, (C.int)(h), (C.int)(m), (C.int)(s)))
+	return (bool)(QTime_SetHMS(this.h, (int)(h), (int)(m), (int)(s)))
 }
 
 func (this *QTime) AddSecs(secs int) *QTime {
-	_goptr := newQTime(C.QTime_AddSecs(this.h, (C.int)(secs)))
+	_goptr := newQTime(QTime_AddSecs(this.h, (int)(secs)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTime) SecsTo(param1 *QTime) int {
-	return (int)(C.QTime_SecsTo(this.h, param1.cPointer()))
+func (this *QTime) SecsTo(t QTime) int {
+	return (int)(QTime_SecsTo(this.h, t.cPointer()))
 }
 
 func (this *QTime) AddMSecs(ms int) *QTime {
-	_goptr := newQTime(C.QTime_AddMSecs(this.h, (C.int)(ms)))
+	_goptr := newQTime(QTime_AddMSecs(this.h, (int)(ms)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QTime) MsecsTo(param1 *QTime) int {
-	return (int)(C.QTime_MsecsTo(this.h, param1.cPointer()))
-}
-
-func (this *QTime) OperatorEqual(other *QTime) bool {
-	return (bool)(C.QTime_OperatorEqual(this.h, other.cPointer()))
-}
-
-func (this *QTime) OperatorNotEqual(other *QTime) bool {
-	return (bool)(C.QTime_OperatorNotEqual(this.h, other.cPointer()))
-}
-
-func (this *QTime) OperatorLesser(other *QTime) bool {
-	return (bool)(C.QTime_OperatorLesser(this.h, other.cPointer()))
-}
-
-func (this *QTime) OperatorLesserOrEqual(other *QTime) bool {
-	return (bool)(C.QTime_OperatorLesserOrEqual(this.h, other.cPointer()))
-}
-
-func (this *QTime) OperatorGreater(other *QTime) bool {
-	return (bool)(C.QTime_OperatorGreater(this.h, other.cPointer()))
-}
-
-func (this *QTime) OperatorGreaterOrEqual(other *QTime) bool {
-	return (bool)(C.QTime_OperatorGreaterOrEqual(this.h, other.cPointer()))
+func (this *QTime) MsecsTo(t QTime) int {
+	return (int)(QTime_MsecsTo(this.h, t.cPointer()))
 }
 
 func QTime_FromMSecsSinceStartOfDay(msecs int) *QTime {
-	_goptr := newQTime(C.QTime_FromMSecsSinceStartOfDay((C.int)(msecs)))
+	_goptr := newQTime(QTime_FromMSecsSinceStartOfDay((int)(msecs)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QTime) MsecsSinceStartOfDay() int {
-	return (int)(C.QTime_MsecsSinceStartOfDay(this.h))
+	return (int)(QTime_MsecsSinceStartOfDay(this.h))
 }
 
 func QTime_CurrentTime() *QTime {
-	_goptr := newQTime(C.QTime_CurrentTime())
+	_goptr := newQTime(QTime_CurrentTime())
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QTime_FromString(s string) *QTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	_goptr := newQTime(C.QTime_FromString(s_ms))
+func QTime_FromStringWithStringVal(stringVal string) *QTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	_goptr := newQTime(QTime_FromStringWithStringVal(stringVal_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QTime_FromString2(s string, format string) *QTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	_goptr := newQTime(C.QTime_FromString2(s_ms, format_ms))
+func QTime_FromString4(stringVal string, format string) *QTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQTime(QTime_FromString4(stringVal_ms, format_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QTime_IsValid2(h int, m int, s int) bool {
-	return (bool)(C.QTime_IsValid2((C.int)(h), (C.int)(m), (C.int)(s)))
-}
-
-func (this *QTime) Start() {
-	C.QTime_Start(this.h)
-}
-
-func (this *QTime) Restart() int {
-	return (int)(C.QTime_Restart(this.h))
-}
-
-func (this *QTime) Elapsed() int {
-	return (int)(C.QTime_Elapsed(this.h))
+	return (bool)(QTime_IsValid2((int)(h), (int)(m), (int)(s)))
 }
 
 func (this *QTime) ToString1(f DateFormat) string {
-	var _ms C.struct_miqt_string = C.QTime_ToString1(this.h, (C.int)(f))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QTime_ToString1(this.h, (int)(f))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QTime) SetHMS4(h int, m int, s int, ms int) bool {
-	return (bool)(C.QTime_SetHMS4(this.h, (C.int)(h), (C.int)(m), (C.int)(s), (C.int)(ms)))
+	return (bool)(QTime_SetHMS4(this.h, (int)(h), (int)(m), (int)(s), (int)(ms)))
 }
 
-func QTime_FromString22(s string, f DateFormat) *QTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	_goptr := newQTime(C.QTime_FromString22(s_ms, (C.int)(f)))
+func QTime_FromString23(stringVal string, format DateFormat) *QTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	_goptr := newQTime(QTime_FromString23(stringVal_ms, (int)(format)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QTime_IsValid4(h int, m int, s int, ms int) bool {
-	return (bool)(C.QTime_IsValid4((C.int)(h), (C.int)(m), (C.int)(s), (C.int)(ms)))
-}
-
-// Delete this object from C++ memory.
-func (this *QTime) Delete() {
-	C.QTime_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QTime) GoGC() {
-	runtime.SetFinalizer(this, func(this *QTime) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (bool)(QTime_IsValid4((int)(h), (int)(m), (int)(s), (int)(ms)))
 }
 
 type QDateTime struct {
-	h          *C.QDateTime
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QDateTime) cPointer() *C.QDateTime {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QDateTime) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQDateTime constructs the type using only CGO pointers.
-func newQDateTime(h *C.QDateTime) *QDateTime {
-	if h == nil {
-		return nil
-	}
-
-	return &QDateTime{h: h}
-}
-
-// UnsafeNewQDateTime constructs the type using only unsafe pointers.
-func UnsafeNewQDateTime(h unsafe.Pointer) *QDateTime {
-	return newQDateTime((*C.QDateTime)(h))
-}
-
 // NewQDateTime constructs a new QDateTime object.
-func NewQDateTime(param1 *QDate) *QDateTime {
+func NewQDateTime() *QDateTime {
 
-	ret := newQDateTime(C.QDateTime_new(param1.cPointer()))
+	ret := newQDateTime(QDateTime_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQDateTime2 constructs a new QDateTime object.
-func NewQDateTime2(param1 *QDate, param2 *QTime) *QDateTime {
+func NewQDateTime2(date QDate, time QTime, spec TimeSpec) *QDateTime {
 
-	ret := newQDateTime(C.QDateTime_new2(param1.cPointer(), param2.cPointer()))
+	ret := newQDateTime(QDateTime_new2(date.cPointer(), time.cPointer(), (int)(spec)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQDateTime3 constructs a new QDateTime object.
-func NewQDateTime3(date *QDate, time *QTime, spec TimeSpec, offsetSeconds int) *QDateTime {
+func NewQDateTime3(date QDate, time QTime, timeZone *QTimeZone) *QDateTime {
 
-	ret := newQDateTime(C.QDateTime_new3(date.cPointer(), time.cPointer(), (C.int)(spec), (C.int)(offsetSeconds)))
+	ret := newQDateTime(QDateTime_new3(date.cPointer(), time.cPointer(), timeZone.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQDateTime4 constructs a new QDateTime object.
-func NewQDateTime4(date *QDate, time *QTime, timeZone *QTimeZone) *QDateTime {
+func NewQDateTime4(date QDate, time QTime) *QDateTime {
 
-	ret := newQDateTime(C.QDateTime_new4(date.cPointer(), time.cPointer(), timeZone.cPointer()))
+	ret := newQDateTime(QDateTime_new4(date.cPointer(), time.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -797,406 +583,396 @@ func NewQDateTime4(date *QDate, time *QTime, timeZone *QTimeZone) *QDateTime {
 // NewQDateTime5 constructs a new QDateTime object.
 func NewQDateTime5(other *QDateTime) *QDateTime {
 
-	ret := newQDateTime(C.QDateTime_new5(other.cPointer()))
+	ret := newQDateTime(QDateTime_new5(other.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQDateTime6 constructs a new QDateTime object.
-func NewQDateTime6(param1 *QDate, param2 *QTime, spec TimeSpec) *QDateTime {
+func NewQDateTime6(date QDate, time QTime, spec TimeSpec, offsetSeconds int) *QDateTime {
 
-	ret := newQDateTime(C.QDateTime_new6(param1.cPointer(), param2.cPointer(), (C.int)(spec)))
+	ret := newQDateTime(QDateTime_new6(date.cPointer(), time.cPointer(), (int)(spec), (int)(offsetSeconds)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQDateTime7 constructs a new QDateTime object.
+func NewQDateTime7(date QDate, time QTime, timeZone *QTimeZone, resolve TransitionResolution) *QDateTime {
+
+	ret := newQDateTime(QDateTime_new7(date.cPointer(), time.cPointer(), timeZone.cPointer(), resolve))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQDateTime8 constructs a new QDateTime object.
+func NewQDateTime8(date QDate, time QTime, resolve TransitionResolution) *QDateTime {
+
+	ret := newQDateTime(QDateTime_new8(date.cPointer(), time.cPointer(), resolve))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QDateTime) OperatorAssign(other *QDateTime) {
-	C.QDateTime_OperatorAssign(this.h, other.cPointer())
+	QDateTime_OperatorAssign(this.h, other.cPointer())
 }
 
 func (this *QDateTime) Swap(other *QDateTime) {
-	C.QDateTime_Swap(this.h, other.cPointer())
+	QDateTime_Swap(this.h, other.cPointer())
 }
 
 func (this *QDateTime) IsNull() bool {
-	return (bool)(C.QDateTime_IsNull(this.h))
+	return (bool)(QDateTime_IsNull(this.h))
 }
 
 func (this *QDateTime) IsValid() bool {
-	return (bool)(C.QDateTime_IsValid(this.h))
+	return (bool)(QDateTime_IsValid(this.h))
 }
 
 func (this *QDateTime) Date() *QDate {
-	_goptr := newQDate(C.QDateTime_Date(this.h))
+	_goptr := newQDate(QDateTime_Date(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) Time() *QTime {
-	_goptr := newQTime(C.QDateTime_Time(this.h))
+	_goptr := newQTime(QDateTime_Time(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) TimeSpec() TimeSpec {
-	return (TimeSpec)(C.QDateTime_TimeSpec(this.h))
+	return (TimeSpec)(QDateTime_TimeSpec(this.h))
 }
 
 func (this *QDateTime) OffsetFromUtc() int {
-	return (int)(C.QDateTime_OffsetFromUtc(this.h))
+	return (int)(QDateTime_OffsetFromUtc(this.h))
+}
+
+func (this *QDateTime) TimeRepresentation() *QTimeZone {
+	_goptr := newQTimeZone(QDateTime_TimeRepresentation(this.h))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
 func (this *QDateTime) TimeZone() *QTimeZone {
-	_goptr := newQTimeZone(C.QDateTime_TimeZone(this.h))
+	_goptr := newQTimeZone(QDateTime_TimeZone(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) TimeZoneAbbreviation() string {
-	var _ms C.struct_miqt_string = C.QDateTime_TimeZoneAbbreviation(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QDateTime_TimeZoneAbbreviation(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QDateTime) IsDaylightTime() bool {
-	return (bool)(C.QDateTime_IsDaylightTime(this.h))
+	return (bool)(QDateTime_IsDaylightTime(this.h))
 }
 
 func (this *QDateTime) ToMSecsSinceEpoch() int64 {
-	return (int64)(C.QDateTime_ToMSecsSinceEpoch(this.h))
+	return (int64)(QDateTime_ToMSecsSinceEpoch(this.h))
 }
 
 func (this *QDateTime) ToSecsSinceEpoch() int64 {
-	return (int64)(C.QDateTime_ToSecsSinceEpoch(this.h))
+	return (int64)(QDateTime_ToSecsSinceEpoch(this.h))
 }
 
-func (this *QDateTime) SetDate(date *QDate) {
-	C.QDateTime_SetDate(this.h, date.cPointer())
+func (this *QDateTime) SetDate(date QDate) {
+	QDateTime_SetDate(this.h, date.cPointer())
 }
 
-func (this *QDateTime) SetTime(time *QTime) {
-	C.QDateTime_SetTime(this.h, time.cPointer())
+func (this *QDateTime) SetTime(time QTime) {
+	QDateTime_SetTime(this.h, time.cPointer())
 }
 
 func (this *QDateTime) SetTimeSpec(spec TimeSpec) {
-	C.QDateTime_SetTimeSpec(this.h, (C.int)(spec))
+	QDateTime_SetTimeSpec(this.h, (int)(spec))
 }
 
 func (this *QDateTime) SetOffsetFromUtc(offsetSeconds int) {
-	C.QDateTime_SetOffsetFromUtc(this.h, (C.int)(offsetSeconds))
+	QDateTime_SetOffsetFromUtc(this.h, (int)(offsetSeconds))
 }
 
 func (this *QDateTime) SetTimeZone(toZone *QTimeZone) {
-	C.QDateTime_SetTimeZone(this.h, toZone.cPointer())
+	QDateTime_SetTimeZone(this.h, toZone.cPointer())
 }
 
 func (this *QDateTime) SetMSecsSinceEpoch(msecs int64) {
-	C.QDateTime_SetMSecsSinceEpoch(this.h, (C.longlong)(msecs))
+	QDateTime_SetMSecsSinceEpoch(this.h, (longlong)(msecs))
 }
 
 func (this *QDateTime) SetSecsSinceEpoch(secs int64) {
-	C.QDateTime_SetSecsSinceEpoch(this.h, (C.longlong)(secs))
+	QDateTime_SetSecsSinceEpoch(this.h, (longlong)(secs))
 }
 
 func (this *QDateTime) ToString() string {
-	var _ms C.struct_miqt_string = C.QDateTime_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QDateTime_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QDateTime) ToStringWithFormat(format string) string {
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	var _ms C.struct_miqt_string = C.QDateTime_ToStringWithFormat(this.h, format_ms)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	var _ms struct_miqt_string = QDateTime_ToStringWithFormat(this.h, format_ms)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QDateTime) ToString2(format string, cal QCalendar) string {
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	var _ms C.struct_miqt_string = C.QDateTime_ToString2(this.h, format_ms, cal.cPointer())
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	var _ms struct_miqt_string = QDateTime_ToString2(this.h, format_ms, cal.cPointer())
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QDateTime) AddDays(days int64) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_AddDays(this.h, (C.longlong)(days)))
+	_goptr := newQDateTime(QDateTime_AddDays(this.h, (longlong)(days)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) AddMonths(months int) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_AddMonths(this.h, (C.int)(months)))
+	_goptr := newQDateTime(QDateTime_AddMonths(this.h, (int)(months)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) AddYears(years int) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_AddYears(this.h, (C.int)(years)))
+	_goptr := newQDateTime(QDateTime_AddYears(this.h, (int)(years)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) AddSecs(secs int64) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_AddSecs(this.h, (C.longlong)(secs)))
+	_goptr := newQDateTime(QDateTime_AddSecs(this.h, (longlong)(secs)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) AddMSecs(msecs int64) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_AddMSecs(this.h, (C.longlong)(msecs)))
+	_goptr := newQDateTime(QDateTime_AddMSecs(this.h, (longlong)(msecs)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) ToTimeSpec(spec TimeSpec) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_ToTimeSpec(this.h, (C.int)(spec)))
+	_goptr := newQDateTime(QDateTime_ToTimeSpec(this.h, (int)(spec)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) ToLocalTime() *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_ToLocalTime(this.h))
+	_goptr := newQDateTime(QDateTime_ToLocalTime(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) ToUTC() *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_ToUTC(this.h))
+	_goptr := newQDateTime(QDateTime_ToUTC(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) ToOffsetFromUtc(offsetSeconds int) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_ToOffsetFromUtc(this.h, (C.int)(offsetSeconds)))
+	_goptr := newQDateTime(QDateTime_ToOffsetFromUtc(this.h, (int)(offsetSeconds)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) ToTimeZone(toZone *QTimeZone) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_ToTimeZone(this.h, toZone.cPointer()))
+	_goptr := newQDateTime(QDateTime_ToTimeZone(this.h, toZone.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QDateTime) DaysTo(param1 *QDateTime) int64 {
-	return (int64)(C.QDateTime_DaysTo(this.h, param1.cPointer()))
+	return (int64)(QDateTime_DaysTo(this.h, param1.cPointer()))
 }
 
 func (this *QDateTime) SecsTo(param1 *QDateTime) int64 {
-	return (int64)(C.QDateTime_SecsTo(this.h, param1.cPointer()))
+	return (int64)(QDateTime_SecsTo(this.h, param1.cPointer()))
 }
 
 func (this *QDateTime) MsecsTo(param1 *QDateTime) int64 {
-	return (int64)(C.QDateTime_MsecsTo(this.h, param1.cPointer()))
+	return (int64)(QDateTime_MsecsTo(this.h, param1.cPointer()))
 }
 
-func (this *QDateTime) OperatorEqual(other *QDateTime) bool {
-	return (bool)(C.QDateTime_OperatorEqual(this.h, other.cPointer()))
+func QDateTime_CurrentDateTime(zone *QTimeZone) *QDateTime {
+	_goptr := newQDateTime(QDateTime_CurrentDateTime(zone.cPointer()))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
-func (this *QDateTime) OperatorNotEqual(other *QDateTime) bool {
-	return (bool)(C.QDateTime_OperatorNotEqual(this.h, other.cPointer()))
-}
-
-func (this *QDateTime) OperatorLesser(other *QDateTime) bool {
-	return (bool)(C.QDateTime_OperatorLesser(this.h, other.cPointer()))
-}
-
-func (this *QDateTime) OperatorLesserOrEqual(other *QDateTime) bool {
-	return (bool)(C.QDateTime_OperatorLesserOrEqual(this.h, other.cPointer()))
-}
-
-func (this *QDateTime) OperatorGreater(other *QDateTime) bool {
-	return (bool)(C.QDateTime_OperatorGreater(this.h, other.cPointer()))
-}
-
-func (this *QDateTime) OperatorGreaterOrEqual(other *QDateTime) bool {
-	return (bool)(C.QDateTime_OperatorGreaterOrEqual(this.h, other.cPointer()))
-}
-
-func (this *QDateTime) SetUtcOffset(seconds int) {
-	C.QDateTime_SetUtcOffset(this.h, (C.int)(seconds))
-}
-
-func (this *QDateTime) UtcOffset() int {
-	return (int)(C.QDateTime_UtcOffset(this.h))
-}
-
-func QDateTime_CurrentDateTime() *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_CurrentDateTime())
+func QDateTime_CurrentDateTime2() *QDateTime {
+	_goptr := newQDateTime(QDateTime_CurrentDateTime2())
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QDateTime_CurrentDateTimeUtc() *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_CurrentDateTimeUtc())
+	_goptr := newQDateTime(QDateTime_CurrentDateTimeUtc())
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromString(s string) *QDateTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	_goptr := newQDateTime(C.QDateTime_FromString(s_ms))
+func QDateTime_FromStringWithStringVal(stringVal string) *QDateTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	_goptr := newQDateTime(QDateTime_FromStringWithStringVal(stringVal_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromString2(s string, format string) *QDateTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	_goptr := newQDateTime(C.QDateTime_FromString2(s_ms, format_ms))
+func QDateTime_FromString4(stringVal string, format string, cal QCalendar) *QDateTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDateTime(QDateTime_FromString4(stringVal_ms, format_ms, cal.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromString3(s string, format string, cal QCalendar) *QDateTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	format_ms := C.struct_miqt_string{}
-	format_ms.data = C.CString(format)
-	format_ms.len = C.size_t(len(format))
-	defer C.free(unsafe.Pointer(format_ms.data))
-	_goptr := newQDateTime(C.QDateTime_FromString3(s_ms, format_ms, cal.cPointer()))
+func QDateTime_FromString9(stringVal string, format string) *QDateTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDateTime(QDateTime_FromString9(stringVal_ms, format_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QDateTime) ToTimeT() uint {
-	return (uint)(C.QDateTime_ToTimeT(this.h))
-}
-
-func (this *QDateTime) SetTimeT(secsSince1Jan1970UTC uint) {
-	C.QDateTime_SetTimeT(this.h, (C.uint)(secsSince1Jan1970UTC))
-}
-
-func QDateTime_FromTimeT(secsSince1Jan1970UTC uint) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromTimeT((C.uint)(secsSince1Jan1970UTC)))
+func QDateTime_FromString10(stringVal string, format string, baseYear int, cal QCalendar) *QDateTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDateTime(QDateTime_FromString10(stringVal_ms, format_ms, (int)(baseYear), cal.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromTimeT2(secsSince1Jan1970UTC uint, spec TimeSpec) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromTimeT2((C.uint)(secsSince1Jan1970UTC), (C.int)(spec)))
+func QDateTime_FromMSecsSinceEpoch(msecs int64, spec TimeSpec) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromMSecsSinceEpoch((longlong)(msecs), (int)(spec)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromTimeT3(secsSince1Jan1970UTC uint, timeZone *QTimeZone) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromTimeT3((C.uint)(secsSince1Jan1970UTC), timeZone.cPointer()))
+func QDateTime_FromSecsSinceEpoch(secs int64, spec TimeSpec) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromSecsSinceEpoch((longlong)(secs), (int)(spec)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromMSecsSinceEpoch(msecs int64) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromMSecsSinceEpoch((C.longlong)(msecs)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func QDateTime_FromMSecsSinceEpoch2(msecs int64, spec TimeSpec) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromMSecsSinceEpoch2((C.longlong)(msecs), (C.int)(spec)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func QDateTime_FromSecsSinceEpoch(secs int64) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromSecsSinceEpoch((C.longlong)(secs)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-func QDateTime_FromMSecsSinceEpoch3(msecs int64, timeZone *QTimeZone) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromMSecsSinceEpoch3((C.longlong)(msecs), timeZone.cPointer()))
+func QDateTime_FromMSecsSinceEpoch2(msecs int64, timeZone *QTimeZone) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromMSecsSinceEpoch2((longlong)(msecs), timeZone.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QDateTime_FromSecsSinceEpoch2(secs int64, timeZone *QTimeZone) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromSecsSinceEpoch2((C.longlong)(secs), timeZone.cPointer()))
+	_goptr := newQDateTime(QDateTime_FromSecsSinceEpoch2((longlong)(secs), timeZone.cPointer()))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QDateTime_FromMSecsSinceEpochWithMsecs(msecs int64) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromMSecsSinceEpochWithMsecs((longlong)(msecs)))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QDateTime_FromSecsSinceEpochWithSecs(secs int64) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromSecsSinceEpochWithSecs((longlong)(secs)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QDateTime_CurrentMSecsSinceEpoch() int64 {
-	return (int64)(C.QDateTime_CurrentMSecsSinceEpoch())
+	return (int64)(QDateTime_CurrentMSecsSinceEpoch())
 }
 
 func QDateTime_CurrentSecsSinceEpoch() int64 {
-	return (int64)(C.QDateTime_CurrentSecsSinceEpoch())
+	return (int64)(QDateTime_CurrentSecsSinceEpoch())
+}
+
+func (this *QDateTime) SetDate2(date QDate, resolve TransitionResolution) {
+	QDateTime_SetDate2(this.h, date.cPointer(), resolve)
+}
+
+func (this *QDateTime) SetTime2(time QTime, resolve TransitionResolution) {
+	QDateTime_SetTime2(this.h, time.cPointer(), resolve)
+}
+
+func (this *QDateTime) SetTimeZone2(toZone *QTimeZone, resolve TransitionResolution) {
+	QDateTime_SetTimeZone2(this.h, toZone.cPointer(), resolve)
 }
 
 func (this *QDateTime) ToString1(format DateFormat) string {
-	var _ms C.struct_miqt_string = C.QDateTime_ToString1(this.h, (C.int)(format))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QDateTime_ToString1(this.h, (int)(format))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QDateTime_FromString22(s string, f DateFormat) *QDateTime {
-	s_ms := C.struct_miqt_string{}
-	s_ms.data = C.CString(s)
-	s_ms.len = C.size_t(len(s))
-	defer C.free(unsafe.Pointer(s_ms.data))
-	_goptr := newQDateTime(C.QDateTime_FromString22(s_ms, (C.int)(f)))
+func QDateTime_FromString23(stringVal string, format DateFormat) *QDateTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	_goptr := newQDateTime(QDateTime_FromString23(stringVal_ms, (int)(format)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromTimeT32(secsSince1Jan1970UTC uint, spec TimeSpec, offsetFromUtc int) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromTimeT32((C.uint)(secsSince1Jan1970UTC), (C.int)(spec), (C.int)(offsetFromUtc)))
+func QDateTime_FromString34(stringVal string, format string, baseYear int) *QDateTime {
+	stringVal_ms := struct_miqt_string{}
+	stringVal_ms.data = CString(stringVal)
+	stringVal_ms.len = size_t(len(stringVal))
+	defer free(unsafe.Pointer(stringVal_ms.data))
+	format_ms := struct_miqt_string{}
+	format_ms.data = CString(format)
+	format_ms.len = size_t(len(format))
+	defer free(unsafe.Pointer(format_ms.data))
+	_goptr := newQDateTime(QDateTime_FromString34(stringVal_ms, format_ms, (int)(baseYear)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromMSecsSinceEpoch32(msecs int64, spec TimeSpec, offsetFromUtc int) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromMSecsSinceEpoch32((C.longlong)(msecs), (C.int)(spec), (C.int)(offsetFromUtc)))
+func QDateTime_FromMSecsSinceEpoch3(msecs int64, spec TimeSpec, offsetFromUtc int) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromMSecsSinceEpoch3((longlong)(msecs), (int)(spec), (int)(offsetFromUtc)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QDateTime_FromSecsSinceEpoch22(secs int64, spe TimeSpec) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromSecsSinceEpoch22((C.longlong)(secs), (C.int)(spe)))
+func QDateTime_FromSecsSinceEpoch3(secs int64, spec TimeSpec, offsetFromUtc int) *QDateTime {
+	_goptr := newQDateTime(QDateTime_FromSecsSinceEpoch3((longlong)(secs), (int)(spec), (int)(offsetFromUtc)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-}
-
-func QDateTime_FromSecsSinceEpoch3(secs int64, spe TimeSpec, offsetFromUtc int) *QDateTime {
-	_goptr := newQDateTime(C.QDateTime_FromSecsSinceEpoch3((C.longlong)(secs), (C.int)(spe), (C.int)(offsetFromUtc)))
-	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-	return _goptr
-}
-
-// Delete this object from C++ memory.
-func (this *QDateTime) Delete() {
-	C.QDateTime_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QDateTime) GoGC() {
-	runtime.SetFinalizer(this, func(this *QDateTime) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

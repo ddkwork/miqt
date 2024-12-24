@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QAbstractTextDocumentLayout>
 #include <QAbstractUndoItem>
-#include <QByteArray>
 #include <QChar>
 #include <QChildEvent>
 #include <QEvent>
@@ -12,7 +13,6 @@
 #include <QPagedPaintDevice>
 #include <QPainter>
 #include <QRectF>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QSizeF>
 #include <QString>
@@ -34,7 +34,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QAbstractUndoItem_Undo(QAbstractUndoItem* self) {
 	self->undo();
@@ -354,17 +369,6 @@ struct miqt_string QTextDocument_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTextDocument_TrUtf8(const char* s) {
-	QString _ret = QTextDocument::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QTextDocument* QTextDocument_Clone(const QTextDocument* self) {
 	return self->clone();
 }
@@ -413,13 +417,13 @@ QAbstractTextDocumentLayout* QTextDocument_DocumentLayout(const QTextDocument* s
 	return self->documentLayout();
 }
 
-void QTextDocument_SetMetaInformation(QTextDocument* self, int info, struct miqt_string param2) {
+void QTextDocument_SetMetaInformation(QTextDocument* self, MetaInformation info, struct miqt_string param2) {
 	QString param2_QString = QString::fromUtf8(param2.data, param2.len);
-	self->setMetaInformation(static_cast<QTextDocument::MetaInformation>(info), param2_QString);
+	self->setMetaInformation(info, param2_QString);
 }
 
-struct miqt_string QTextDocument_MetaInformation(const QTextDocument* self, int info) {
-	QString _ret = self->metaInformation(static_cast<QTextDocument::MetaInformation>(info));
+struct miqt_string QTextDocument_MetaInformation(const QTextDocument* self, MetaInformation info) {
+	QString _ret = self->metaInformation(info);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -502,19 +506,11 @@ QTextCursor* QTextDocument_Find2(const QTextDocument* self, struct miqt_string s
 	return new QTextCursor(self->find(subString_QString, *cursor));
 }
 
-QTextCursor* QTextDocument_FindWithExpr(const QTextDocument* self, QRegExp* expr) {
+QTextCursor* QTextDocument_FindWithExpr(const QTextDocument* self, QRegularExpression* expr) {
 	return new QTextCursor(self->find(*expr));
 }
 
-QTextCursor* QTextDocument_Find3(const QTextDocument* self, QRegExp* expr, QTextCursor* cursor) {
-	return new QTextCursor(self->find(*expr, *cursor));
-}
-
-QTextCursor* QTextDocument_Find4(const QTextDocument* self, QRegularExpression* expr) {
-	return new QTextCursor(self->find(*expr));
-}
-
-QTextCursor* QTextDocument_Find5(const QTextDocument* self, QRegularExpression* expr, QTextCursor* cursor) {
+QTextCursor* QTextDocument_Find3(const QTextDocument* self, QRegularExpression* expr, QTextCursor* cursor) {
 	return new QTextCursor(self->find(*expr, *cursor));
 }
 
@@ -578,6 +574,33 @@ QFont* QTextDocument_DefaultFont(const QTextDocument* self) {
 	return new QFont(self->defaultFont());
 }
 
+void QTextDocument_SetSuperScriptBaseline(QTextDocument* self, double baseline) {
+	self->setSuperScriptBaseline(static_cast<qreal>(baseline));
+}
+
+double QTextDocument_SuperScriptBaseline(const QTextDocument* self) {
+	qreal _ret = self->superScriptBaseline();
+	return static_cast<double>(_ret);
+}
+
+void QTextDocument_SetSubScriptBaseline(QTextDocument* self, double baseline) {
+	self->setSubScriptBaseline(static_cast<qreal>(baseline));
+}
+
+double QTextDocument_SubScriptBaseline(const QTextDocument* self) {
+	qreal _ret = self->subScriptBaseline();
+	return static_cast<double>(_ret);
+}
+
+void QTextDocument_SetBaselineOffset(QTextDocument* self, double baseline) {
+	self->setBaselineOffset(static_cast<qreal>(baseline));
+}
+
+double QTextDocument_BaselineOffset(const QTextDocument* self) {
+	qreal _ret = self->baselineOffset();
+	return static_cast<double>(_ret);
+}
+
 int QTextDocument_PageCount(const QTextDocument* self) {
 	return self->pageCount();
 }
@@ -598,8 +621,16 @@ void QTextDocument_AddResource(QTextDocument* self, int typeVal, QUrl* name, QVa
 	self->addResource(static_cast<int>(typeVal), *name, *resource);
 }
 
+void QTextDocument_SetResourceProvider(QTextDocument* self, const ResourceProvider* provider) {
+	self->setResourceProvider(*provider);
+}
+
+void QTextDocument_SetDefaultResourceProvider(const ResourceProvider* provider) {
+	QTextDocument::setDefaultResourceProvider(*provider);
+}
+
 struct miqt_array /* of QTextFormat* */  QTextDocument_AllFormats(const QTextDocument* self) {
-	QVector<QTextFormat> _ret = self->allFormats();
+	QList<QTextFormat> _ret = self->allFormats();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QTextFormat** _arr = static_cast<QTextFormat**>(malloc(sizeof(QTextFormat*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -621,6 +652,14 @@ void QTextDocument_SetUseDesignMetrics(QTextDocument* self, bool b) {
 
 bool QTextDocument_UseDesignMetrics(const QTextDocument* self) {
 	return self->useDesignMetrics();
+}
+
+void QTextDocument_SetLayoutEnabled(QTextDocument* self, bool b) {
+	self->setLayoutEnabled(b);
+}
+
+bool QTextDocument_IsLayoutEnabled(const QTextDocument* self) {
+	return self->isLayoutEnabled();
 }
 
 void QTextDocument_DrawContents(QTextDocument* self, QPainter* painter) {
@@ -891,35 +930,12 @@ struct miqt_string QTextDocument_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTextDocument_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTextDocument::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextDocument_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTextDocument::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QTextDocument* QTextDocument_Clone1(const QTextDocument* self, QObject* parent) {
 	return self->clone(parent);
 }
 
-struct miqt_string QTextDocument_ToHtml1(const QTextDocument* self, struct miqt_string encoding) {
-	QByteArray encoding_QByteArray(encoding.data, encoding.len);
-	QString _ret = self->toHtml(encoding_QByteArray);
+struct miqt_string QTextDocument_ToMarkdown1(const QTextDocument* self, MarkdownFeatures features) {
+	QString _ret = self->toMarkdown(features);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -929,20 +945,9 @@ struct miqt_string QTextDocument_ToHtml1(const QTextDocument* self, struct miqt_
 	return _ms;
 }
 
-struct miqt_string QTextDocument_ToMarkdown1(const QTextDocument* self, int features) {
-	QString _ret = self->toMarkdown(static_cast<QTextDocument::MarkdownFeatures>(features));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QTextDocument_SetMarkdown2(QTextDocument* self, struct miqt_string markdown, int features) {
+void QTextDocument_SetMarkdown2(QTextDocument* self, struct miqt_string markdown, MarkdownFeatures features) {
 	QString markdown_QString = QString::fromUtf8(markdown.data, markdown.len);
-	self->setMarkdown(markdown_QString, static_cast<QTextDocument::MarkdownFeatures>(features));
+	self->setMarkdown(markdown_QString, features);
 }
 
 QTextCursor* QTextDocument_Find22(const QTextDocument* self, struct miqt_string subString, int from) {
@@ -950,46 +955,34 @@ QTextCursor* QTextDocument_Find22(const QTextDocument* self, struct miqt_string 
 	return new QTextCursor(self->find(subString_QString, static_cast<int>(from)));
 }
 
-QTextCursor* QTextDocument_Find32(const QTextDocument* self, struct miqt_string subString, int from, int options) {
+QTextCursor* QTextDocument_Find32(const QTextDocument* self, struct miqt_string subString, int from, FindFlags options) {
 	QString subString_QString = QString::fromUtf8(subString.data, subString.len);
-	return new QTextCursor(self->find(subString_QString, static_cast<int>(from), static_cast<QTextDocument::FindFlags>(options)));
+	return new QTextCursor(self->find(subString_QString, static_cast<int>(from), options));
 }
 
-QTextCursor* QTextDocument_Find33(const QTextDocument* self, struct miqt_string subString, QTextCursor* cursor, int options) {
+QTextCursor* QTextDocument_Find33(const QTextDocument* self, struct miqt_string subString, QTextCursor* cursor, FindFlags options) {
 	QString subString_QString = QString::fromUtf8(subString.data, subString.len);
-	return new QTextCursor(self->find(subString_QString, *cursor, static_cast<QTextDocument::FindFlags>(options)));
+	return new QTextCursor(self->find(subString_QString, *cursor, options));
 }
 
-QTextCursor* QTextDocument_Find23(const QTextDocument* self, QRegExp* expr, int from) {
+QTextCursor* QTextDocument_Find23(const QTextDocument* self, QRegularExpression* expr, int from) {
 	return new QTextCursor(self->find(*expr, static_cast<int>(from)));
 }
 
-QTextCursor* QTextDocument_Find34(const QTextDocument* self, QRegExp* expr, int from, int options) {
-	return new QTextCursor(self->find(*expr, static_cast<int>(from), static_cast<QTextDocument::FindFlags>(options)));
+QTextCursor* QTextDocument_Find34(const QTextDocument* self, QRegularExpression* expr, int from, FindFlags options) {
+	return new QTextCursor(self->find(*expr, static_cast<int>(from), options));
 }
 
-QTextCursor* QTextDocument_Find35(const QTextDocument* self, QRegExp* expr, QTextCursor* cursor, int options) {
-	return new QTextCursor(self->find(*expr, *cursor, static_cast<QTextDocument::FindFlags>(options)));
-}
-
-QTextCursor* QTextDocument_Find24(const QTextDocument* self, QRegularExpression* expr, int from) {
-	return new QTextCursor(self->find(*expr, static_cast<int>(from)));
-}
-
-QTextCursor* QTextDocument_Find36(const QTextDocument* self, QRegularExpression* expr, int from, int options) {
-	return new QTextCursor(self->find(*expr, static_cast<int>(from), static_cast<QTextDocument::FindFlags>(options)));
-}
-
-QTextCursor* QTextDocument_Find37(const QTextDocument* self, QRegularExpression* expr, QTextCursor* cursor, int options) {
-	return new QTextCursor(self->find(*expr, *cursor, static_cast<QTextDocument::FindFlags>(options)));
+QTextCursor* QTextDocument_Find35(const QTextDocument* self, QRegularExpression* expr, QTextCursor* cursor, FindFlags options) {
+	return new QTextCursor(self->find(*expr, *cursor, options));
 }
 
 void QTextDocument_DrawContents2(QTextDocument* self, QPainter* painter, QRectF* rect) {
 	self->drawContents(painter, *rect);
 }
 
-void QTextDocument_ClearUndoRedoStacks1(QTextDocument* self, int historyToClear) {
-	self->clearUndoRedoStacks(static_cast<QTextDocument::Stacks>(historyToClear));
+void QTextDocument_ClearUndoRedoStacks1(QTextDocument* self, Stacks historyToClear) {
+	self->clearUndoRedoStacks(historyToClear);
 }
 
 void QTextDocument_SetModified1(QTextDocument* self, bool m) {

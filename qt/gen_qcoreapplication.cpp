@@ -1,12 +1,16 @@
+// +build ignore
+
 #include <QAbstractEventDispatcher>
 #include <QAbstractNativeEventFilter>
 #include <QChildEvent>
 #include <QCoreApplication>
+#include <QDeadlineTimer>
 #include <QEvent>
 #include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
+#include <QPermission>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -18,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQCoreApplication : public virtual QCoreApplication {
 public:
@@ -256,17 +275,6 @@ struct miqt_string QCoreApplication_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QCoreApplication_TrUtf8(const char* s) {
-	QString _ret = QCoreApplication::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_array /* of struct miqt_string */  QCoreApplication_Arguments() {
 	QStringList _ret = QCoreApplication::arguments();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -383,8 +391,8 @@ void QCoreApplication_ProcessEvents2(int flags, int maxtime) {
 	QCoreApplication::processEvents(static_cast<QEventLoop::ProcessEventsFlags>(flags), static_cast<int>(maxtime));
 }
 
-void QCoreApplication_Exit() {
-	QCoreApplication::exit();
+void QCoreApplication_ProcessEvents3(int flags, QDeadlineTimer* deadline) {
+	QCoreApplication::processEvents(static_cast<QEventLoop::ProcessEventsFlags>(flags), *deadline);
 }
 
 bool QCoreApplication_SendEvent(QObject* receiver, QEvent* event) {
@@ -401,10 +409,6 @@ void QCoreApplication_SendPostedEvents() {
 
 void QCoreApplication_RemovePostedEvents(QObject* receiver) {
 	QCoreApplication::removePostedEvents(receiver);
-}
-
-bool QCoreApplication_HasPendingEvents() {
-	return QCoreApplication::hasPendingEvents();
 }
 
 QAbstractEventDispatcher* QCoreApplication_EventDispatcher() {
@@ -452,6 +456,11 @@ struct miqt_string QCoreApplication_ApplicationFilePath() {
 long long QCoreApplication_ApplicationPid() {
 	qint64 _ret = QCoreApplication::applicationPid();
 	return static_cast<long long>(_ret);
+}
+
+int QCoreApplication_CheckPermission(QCoreApplication* self, QPermission* permission) {
+	Qt::PermissionStatus _ret = self->checkPermission(*permission);
+	return static_cast<int>(_ret);
 }
 
 void QCoreApplication_SetLibraryPaths(struct miqt_array /* of struct miqt_string */  libraryPaths) {
@@ -514,16 +523,26 @@ struct miqt_string QCoreApplication_Translate(const char* context, const char* k
 	return _ms;
 }
 
-void QCoreApplication_Flush() {
-	QCoreApplication::flush();
-}
-
 void QCoreApplication_InstallNativeEventFilter(QCoreApplication* self, QAbstractNativeEventFilter* filterObj) {
 	self->installNativeEventFilter(filterObj);
 }
 
+void QCoreApplication_connect_InstallNativeEventFilter(QCoreApplication* self, intptr_t slot) {
+	MiqtVirtualQCoreApplication::connect(self, static_cast<void (QCoreApplication::*)(QAbstractNativeEventFilter*)>(&QCoreApplication::installNativeEventFilter), self, [=](QAbstractNativeEventFilter* filterObj) {
+		QAbstractNativeEventFilter* sigval1 = filterObj;
+		miqt_exec_callback_QCoreApplication_InstallNativeEventFilter(slot, sigval1);
+	});
+}
+
 void QCoreApplication_RemoveNativeEventFilter(QCoreApplication* self, QAbstractNativeEventFilter* filterObj) {
 	self->removeNativeEventFilter(filterObj);
+}
+
+void QCoreApplication_connect_RemoveNativeEventFilter(QCoreApplication* self, intptr_t slot) {
+	MiqtVirtualQCoreApplication::connect(self, static_cast<void (QCoreApplication::*)(QAbstractNativeEventFilter*)>(&QCoreApplication::removeNativeEventFilter), self, [=](QAbstractNativeEventFilter* filterObj) {
+		QAbstractNativeEventFilter* sigval1 = filterObj;
+		miqt_exec_callback_QCoreApplication_RemoveNativeEventFilter(slot, sigval1);
+	});
 }
 
 bool QCoreApplication_IsQuitLockEnabled() {
@@ -536,6 +555,10 @@ void QCoreApplication_SetQuitLockEnabled(bool enabled) {
 
 void QCoreApplication_Quit() {
 	QCoreApplication::quit();
+}
+
+void QCoreApplication_Exit() {
+	QCoreApplication::exit();
 }
 
 void QCoreApplication_OrganizationNameChanged(QCoreApplication* self) {
@@ -600,38 +623,12 @@ struct miqt_string QCoreApplication_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QCoreApplication_TrUtf82(const char* s, const char* c) {
-	QString _ret = QCoreApplication::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCoreApplication_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QCoreApplication::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QCoreApplication_SetAttribute2(int attribute, bool on) {
 	QCoreApplication::setAttribute(static_cast<Qt::ApplicationAttribute>(attribute), on);
 }
 
 void QCoreApplication_ProcessEvents1(int flags) {
 	QCoreApplication::processEvents(static_cast<QEventLoop::ProcessEventsFlags>(flags));
-}
-
-void QCoreApplication_Exit1(int retcode) {
-	QCoreApplication::exit(static_cast<int>(retcode));
 }
 
 void QCoreApplication_PostEvent3(QObject* receiver, QEvent* event, int priority) {
@@ -670,6 +667,10 @@ struct miqt_string QCoreApplication_Translate4(const char* context, const char* 
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
+}
+
+void QCoreApplication_Exit1(int retcode) {
+	QCoreApplication::exit(static_cast<int>(retcode));
 }
 
 void QCoreApplication_override_virtual_Notify(void* self, intptr_t slot) {

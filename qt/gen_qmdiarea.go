@@ -1,16 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qmdiarea.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -36,46 +26,14 @@ const (
 )
 
 type QMdiArea struct {
-	h          *C.QMdiArea
+	h          uintptr
 	isSubclass bool
-	*QAbstractScrollArea
-}
-
-func (this *QMdiArea) cPointer() *C.QMdiArea {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QMdiArea) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQMdiArea constructs the type using only CGO pointers.
-func newQMdiArea(h *C.QMdiArea) *QMdiArea {
-	if h == nil {
-		return nil
-	}
-	var outptr_QAbstractScrollArea *C.QAbstractScrollArea = nil
-	C.QMdiArea_virtbase(h, &outptr_QAbstractScrollArea)
-
-	return &QMdiArea{h: h,
-		QAbstractScrollArea: newQAbstractScrollArea(outptr_QAbstractScrollArea)}
-}
-
-// UnsafeNewQMdiArea constructs the type using only unsafe pointers.
-func UnsafeNewQMdiArea(h unsafe.Pointer) *QMdiArea {
-	return newQMdiArea((*C.QMdiArea)(h))
 }
 
 // NewQMdiArea constructs a new QMdiArea object.
 func NewQMdiArea(parent *QWidget) *QMdiArea {
 
-	ret := newQMdiArea(C.QMdiArea_new(parent.cPointer()))
+	ret := newQMdiArea(QMdiArea_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -83,63 +41,54 @@ func NewQMdiArea(parent *QWidget) *QMdiArea {
 // NewQMdiArea2 constructs a new QMdiArea object.
 func NewQMdiArea2() *QMdiArea {
 
-	ret := newQMdiArea(C.QMdiArea_new2())
+	ret := newQMdiArea(QMdiArea_new2())
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QMdiArea) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QMdiArea_MetaObject(this.h))
+	return newQMetaObject(QMdiArea_MetaObject(this.h))
 }
 
 func (this *QMdiArea) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QMdiArea_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QMdiArea_Metacast(this.h, param1_Cstring))
 }
 
 func QMdiArea_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QMdiArea_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QMdiArea_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QMdiArea_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QMdiArea_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QMdiArea) SizeHint() *QSize {
-	_goptr := newQSize(C.QMdiArea_SizeHint(this.h))
+	_goptr := newQSize(QMdiArea_SizeHint(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QMdiArea) MinimumSizeHint() *QSize {
-	_goptr := newQSize(C.QMdiArea_MinimumSizeHint(this.h))
+	_goptr := newQSize(QMdiArea_MinimumSizeHint(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QMdiArea) CurrentSubWindow() *QMdiSubWindow {
-	return newQMdiSubWindow(C.QMdiArea_CurrentSubWindow(this.h))
+	return newQMdiSubWindow(QMdiArea_CurrentSubWindow(this.h))
 }
 
 func (this *QMdiArea) ActiveSubWindow() *QMdiSubWindow {
-	return newQMdiSubWindow(C.QMdiArea_ActiveSubWindow(this.h))
+	return newQMdiSubWindow(QMdiArea_ActiveSubWindow(this.h))
 }
 
 func (this *QMdiArea) SubWindowList() []*QMdiSubWindow {
-	var _ma C.struct_miqt_array = C.QMdiArea_SubWindowList(this.h)
+	var _ma struct_miqt_array = QMdiArea_SubWindowList(this.h)
 	_ret := make([]*QMdiSubWindow, int(_ma.len))
-	_outCast := (*[0xffff]*C.QMdiSubWindow)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]*QMdiSubWindow)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_ret[i] = newQMdiSubWindow(_outCast[i])
 	}
@@ -147,96 +96,96 @@ func (this *QMdiArea) SubWindowList() []*QMdiSubWindow {
 }
 
 func (this *QMdiArea) AddSubWindow(widget *QWidget) *QMdiSubWindow {
-	return newQMdiSubWindow(C.QMdiArea_AddSubWindow(this.h, widget.cPointer()))
+	return newQMdiSubWindow(QMdiArea_AddSubWindow(this.h, widget.cPointer()))
 }
 
 func (this *QMdiArea) RemoveSubWindow(widget *QWidget) {
-	C.QMdiArea_RemoveSubWindow(this.h, widget.cPointer())
+	QMdiArea_RemoveSubWindow(this.h, widget.cPointer())
 }
 
 func (this *QMdiArea) Background() *QBrush {
-	_goptr := newQBrush(C.QMdiArea_Background(this.h))
+	_goptr := newQBrush(QMdiArea_Background(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QMdiArea) SetBackground(background *QBrush) {
-	C.QMdiArea_SetBackground(this.h, background.cPointer())
+	QMdiArea_SetBackground(this.h, background.cPointer())
 }
 
-func (this *QMdiArea) ActivationOrder() QMdiArea__WindowOrder {
-	return (QMdiArea__WindowOrder)(C.QMdiArea_ActivationOrder(this.h))
+func (this *QMdiArea) ActivationOrder() WindowOrder {
+	xxxxxxxxx
 }
 
-func (this *QMdiArea) SetActivationOrder(order QMdiArea__WindowOrder) {
-	C.QMdiArea_SetActivationOrder(this.h, (C.int)(order))
+func (this *QMdiArea) SetActivationOrder(order WindowOrder) {
+	QMdiArea_SetActivationOrder(this.h, order)
 }
 
-func (this *QMdiArea) SetOption(option QMdiArea__AreaOption) {
-	C.QMdiArea_SetOption(this.h, (C.int)(option))
+func (this *QMdiArea) SetOption(option AreaOption) {
+	QMdiArea_SetOption(this.h, option)
 }
 
-func (this *QMdiArea) TestOption(opton QMdiArea__AreaOption) bool {
-	return (bool)(C.QMdiArea_TestOption(this.h, (C.int)(opton)))
+func (this *QMdiArea) TestOption(opton AreaOption) bool {
+	return (bool)(QMdiArea_TestOption(this.h, opton))
 }
 
-func (this *QMdiArea) SetViewMode(mode QMdiArea__ViewMode) {
-	C.QMdiArea_SetViewMode(this.h, (C.int)(mode))
+func (this *QMdiArea) SetViewMode(mode ViewMode) {
+	QMdiArea_SetViewMode(this.h, mode)
 }
 
-func (this *QMdiArea) ViewMode() QMdiArea__ViewMode {
-	return (QMdiArea__ViewMode)(C.QMdiArea_ViewMode(this.h))
+func (this *QMdiArea) ViewMode() ViewMode {
+	xxxxxxxxx
 }
 
 func (this *QMdiArea) DocumentMode() bool {
-	return (bool)(C.QMdiArea_DocumentMode(this.h))
+	return (bool)(QMdiArea_DocumentMode(this.h))
 }
 
 func (this *QMdiArea) SetDocumentMode(enabled bool) {
-	C.QMdiArea_SetDocumentMode(this.h, (C.bool)(enabled))
+	QMdiArea_SetDocumentMode(this.h, (bool)(enabled))
 }
 
 func (this *QMdiArea) SetTabsClosable(closable bool) {
-	C.QMdiArea_SetTabsClosable(this.h, (C.bool)(closable))
+	QMdiArea_SetTabsClosable(this.h, (bool)(closable))
 }
 
 func (this *QMdiArea) TabsClosable() bool {
-	return (bool)(C.QMdiArea_TabsClosable(this.h))
+	return (bool)(QMdiArea_TabsClosable(this.h))
 }
 
 func (this *QMdiArea) SetTabsMovable(movable bool) {
-	C.QMdiArea_SetTabsMovable(this.h, (C.bool)(movable))
+	QMdiArea_SetTabsMovable(this.h, (bool)(movable))
 }
 
 func (this *QMdiArea) TabsMovable() bool {
-	return (bool)(C.QMdiArea_TabsMovable(this.h))
+	return (bool)(QMdiArea_TabsMovable(this.h))
 }
 
 func (this *QMdiArea) SetTabShape(shape QTabWidget__TabShape) {
-	C.QMdiArea_SetTabShape(this.h, (C.int)(shape))
+	QMdiArea_SetTabShape(this.h, (int)(shape))
 }
 
 func (this *QMdiArea) TabShape() QTabWidget__TabShape {
-	return (QTabWidget__TabShape)(C.QMdiArea_TabShape(this.h))
+	return (QTabWidget__TabShape)(QMdiArea_TabShape(this.h))
 }
 
 func (this *QMdiArea) SetTabPosition(position QTabWidget__TabPosition) {
-	C.QMdiArea_SetTabPosition(this.h, (C.int)(position))
+	QMdiArea_SetTabPosition(this.h, (int)(position))
 }
 
 func (this *QMdiArea) TabPosition() QTabWidget__TabPosition {
-	return (QTabWidget__TabPosition)(C.QMdiArea_TabPosition(this.h))
+	return (QTabWidget__TabPosition)(QMdiArea_TabPosition(this.h))
 }
 
 func (this *QMdiArea) SubWindowActivated(param1 *QMdiSubWindow) {
-	C.QMdiArea_SubWindowActivated(this.h, param1.cPointer())
+	QMdiArea_SubWindowActivated(this.h, param1.cPointer())
 }
 func (this *QMdiArea) OnSubWindowActivated(slot func(param1 *QMdiSubWindow)) {
-	C.QMdiArea_connect_SubWindowActivated(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_connect_SubWindowActivated(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_SubWindowActivated
-func miqt_exec_callback_QMdiArea_SubWindowActivated(cb C.intptr_t, param1 *C.QMdiSubWindow) {
+func miqt_exec_callback_QMdiArea_SubWindowActivated(cb intptr_t, param1 *QMdiSubWindow) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(param1 *QMdiSubWindow))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -249,81 +198,59 @@ func miqt_exec_callback_QMdiArea_SubWindowActivated(cb C.intptr_t, param1 *C.QMd
 }
 
 func (this *QMdiArea) SetActiveSubWindow(window *QMdiSubWindow) {
-	C.QMdiArea_SetActiveSubWindow(this.h, window.cPointer())
+	QMdiArea_SetActiveSubWindow(this.h, window.cPointer())
 }
 
 func (this *QMdiArea) TileSubWindows() {
-	C.QMdiArea_TileSubWindows(this.h)
+	QMdiArea_TileSubWindows(this.h)
 }
 
 func (this *QMdiArea) CascadeSubWindows() {
-	C.QMdiArea_CascadeSubWindows(this.h)
+	QMdiArea_CascadeSubWindows(this.h)
 }
 
 func (this *QMdiArea) CloseActiveSubWindow() {
-	C.QMdiArea_CloseActiveSubWindow(this.h)
+	QMdiArea_CloseActiveSubWindow(this.h)
 }
 
 func (this *QMdiArea) CloseAllSubWindows() {
-	C.QMdiArea_CloseAllSubWindows(this.h)
+	QMdiArea_CloseAllSubWindows(this.h)
 }
 
 func (this *QMdiArea) ActivateNextSubWindow() {
-	C.QMdiArea_ActivateNextSubWindow(this.h)
+	QMdiArea_ActivateNextSubWindow(this.h)
 }
 
 func (this *QMdiArea) ActivatePreviousSubWindow() {
-	C.QMdiArea_ActivatePreviousSubWindow(this.h)
+	QMdiArea_ActivatePreviousSubWindow(this.h)
 }
 
 func QMdiArea_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QMdiArea_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QMdiArea_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QMdiArea_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QMdiArea_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QMdiArea_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QMdiArea_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QMdiArea_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QMdiArea_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QMdiArea_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QMdiArea) SubWindowList1(order QMdiArea__WindowOrder) []*QMdiSubWindow {
-	var _ma C.struct_miqt_array = C.QMdiArea_SubWindowList1(this.h, (C.int)(order))
+func (this *QMdiArea) SubWindowList1(order WindowOrder) []*QMdiSubWindow {
+	var _ma struct_miqt_array = QMdiArea_SubWindowList1(this.h, order)
 	_ret := make([]*QMdiSubWindow, int(_ma.len))
-	_outCast := (*[0xffff]*C.QMdiSubWindow)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]*QMdiSubWindow)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_ret[i] = newQMdiSubWindow(_outCast[i])
 	}
@@ -331,16 +258,16 @@ func (this *QMdiArea) SubWindowList1(order QMdiArea__WindowOrder) []*QMdiSubWind
 }
 
 func (this *QMdiArea) AddSubWindow2(widget *QWidget, flags WindowType) *QMdiSubWindow {
-	return newQMdiSubWindow(C.QMdiArea_AddSubWindow2(this.h, widget.cPointer(), (C.int)(flags)))
+	return newQMdiSubWindow(QMdiArea_AddSubWindow2(this.h, widget.cPointer(), (int)(flags)))
 }
 
-func (this *QMdiArea) SetOption2(option QMdiArea__AreaOption, on bool) {
-	C.QMdiArea_SetOption2(this.h, (C.int)(option), (C.bool)(on))
+func (this *QMdiArea) SetOption2(option AreaOption, on bool) {
+	QMdiArea_SetOption2(this.h, option, (bool)(on))
 }
 
 func (this *QMdiArea) callVirtualBase_SizeHint() *QSize {
 
-	_goptr := newQSize(C.QMdiArea_virtualbase_SizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QMdiArea_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -349,11 +276,11 @@ func (this *QMdiArea) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_SizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_SizeHint
-func miqt_exec_callback_QMdiArea_SizeHint(self *C.QMdiArea, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QMdiArea_SizeHint(self QMdiArea, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -367,7 +294,7 @@ func miqt_exec_callback_QMdiArea_SizeHint(self *C.QMdiArea, cb C.intptr_t) *C.QS
 
 func (this *QMdiArea) callVirtualBase_MinimumSizeHint() *QSize {
 
-	_goptr := newQSize(C.QMdiArea_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QMdiArea_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -376,11 +303,11 @@ func (this *QMdiArea) OnMinimumSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_MinimumSizeHint
-func miqt_exec_callback_QMdiArea_MinimumSizeHint(self *C.QMdiArea, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QMdiArea_MinimumSizeHint(self QMdiArea, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -394,18 +321,18 @@ func miqt_exec_callback_QMdiArea_MinimumSizeHint(self *C.QMdiArea, cb C.intptr_t
 
 func (this *QMdiArea) callVirtualBase_SetupViewport(viewport *QWidget) {
 
-	C.QMdiArea_virtualbase_SetupViewport(unsafe.Pointer(this.h), viewport.cPointer())
+	QMdiArea_virtualbase_SetupViewport(unsafe.Pointer(this.h), viewport.cPointer())
 
 }
 func (this *QMdiArea) OnSetupViewport(slot func(super func(viewport *QWidget), viewport *QWidget)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_SetupViewport(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_SetupViewport(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_SetupViewport
-func miqt_exec_callback_QMdiArea_SetupViewport(self *C.QMdiArea, cb C.intptr_t, viewport *C.QWidget) {
+func miqt_exec_callback_QMdiArea_SetupViewport(self QMdiArea, cb intptr_t, viewport *QWidget) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(viewport *QWidget), viewport *QWidget))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -420,18 +347,18 @@ func miqt_exec_callback_QMdiArea_SetupViewport(self *C.QMdiArea, cb C.intptr_t, 
 
 func (this *QMdiArea) callVirtualBase_Event(event *QEvent) bool {
 
-	return (bool)(C.QMdiArea_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
+	return (bool)(QMdiArea_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
 
 }
 func (this *QMdiArea) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_Event
-func miqt_exec_callback_QMdiArea_Event(self *C.QMdiArea, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QMdiArea_Event(self QMdiArea, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -442,24 +369,24 @@ func miqt_exec_callback_QMdiArea_Event(self *C.QMdiArea, cb C.intptr_t, event *C
 
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QMdiArea) callVirtualBase_EventFilter(object *QObject, event *QEvent) bool {
 
-	return (bool)(C.QMdiArea_virtualbase_EventFilter(unsafe.Pointer(this.h), object.cPointer(), event.cPointer()))
+	return (bool)(QMdiArea_virtualbase_EventFilter(unsafe.Pointer(this.h), object.cPointer(), event.cPointer()))
 
 }
 func (this *QMdiArea) OnEventFilter(slot func(super func(object *QObject, event *QEvent) bool, object *QObject, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_EventFilter
-func miqt_exec_callback_QMdiArea_EventFilter(self *C.QMdiArea, cb C.intptr_t, object *C.QObject, event *C.QEvent) C.bool {
+func miqt_exec_callback_QMdiArea_EventFilter(self QMdiArea, cb intptr_t, object *QObject, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(object *QObject, event *QEvent) bool, object *QObject, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -472,24 +399,24 @@ func miqt_exec_callback_QMdiArea_EventFilter(self *C.QMdiArea, cb C.intptr_t, ob
 
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QMdiArea) callVirtualBase_PaintEvent(paintEvent *QPaintEvent) {
 
-	C.QMdiArea_virtualbase_PaintEvent(unsafe.Pointer(this.h), paintEvent.cPointer())
+	QMdiArea_virtualbase_PaintEvent(unsafe.Pointer(this.h), paintEvent.cPointer())
 
 }
 func (this *QMdiArea) OnPaintEvent(slot func(super func(paintEvent *QPaintEvent), paintEvent *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_PaintEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_PaintEvent
-func miqt_exec_callback_QMdiArea_PaintEvent(self *C.QMdiArea, cb C.intptr_t, paintEvent *C.QPaintEvent) {
+func miqt_exec_callback_QMdiArea_PaintEvent(self QMdiArea, cb intptr_t, paintEvent *QPaintEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(paintEvent *QPaintEvent), paintEvent *QPaintEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -504,18 +431,18 @@ func miqt_exec_callback_QMdiArea_PaintEvent(self *C.QMdiArea, cb C.intptr_t, pai
 
 func (this *QMdiArea) callVirtualBase_ChildEvent(childEvent *QChildEvent) {
 
-	C.QMdiArea_virtualbase_ChildEvent(unsafe.Pointer(this.h), childEvent.cPointer())
+	QMdiArea_virtualbase_ChildEvent(unsafe.Pointer(this.h), childEvent.cPointer())
 
 }
 func (this *QMdiArea) OnChildEvent(slot func(super func(childEvent *QChildEvent), childEvent *QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ChildEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ChildEvent
-func miqt_exec_callback_QMdiArea_ChildEvent(self *C.QMdiArea, cb C.intptr_t, childEvent *C.QChildEvent) {
+func miqt_exec_callback_QMdiArea_ChildEvent(self QMdiArea, cb intptr_t, childEvent *QChildEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(childEvent *QChildEvent), childEvent *QChildEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -530,18 +457,18 @@ func miqt_exec_callback_QMdiArea_ChildEvent(self *C.QMdiArea, cb C.intptr_t, chi
 
 func (this *QMdiArea) callVirtualBase_ResizeEvent(resizeEvent *QResizeEvent) {
 
-	C.QMdiArea_virtualbase_ResizeEvent(unsafe.Pointer(this.h), resizeEvent.cPointer())
+	QMdiArea_virtualbase_ResizeEvent(unsafe.Pointer(this.h), resizeEvent.cPointer())
 
 }
 func (this *QMdiArea) OnResizeEvent(slot func(super func(resizeEvent *QResizeEvent), resizeEvent *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ResizeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ResizeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ResizeEvent
-func miqt_exec_callback_QMdiArea_ResizeEvent(self *C.QMdiArea, cb C.intptr_t, resizeEvent *C.QResizeEvent) {
+func miqt_exec_callback_QMdiArea_ResizeEvent(self QMdiArea, cb intptr_t, resizeEvent *QResizeEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(resizeEvent *QResizeEvent), resizeEvent *QResizeEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -556,18 +483,18 @@ func miqt_exec_callback_QMdiArea_ResizeEvent(self *C.QMdiArea, cb C.intptr_t, re
 
 func (this *QMdiArea) callVirtualBase_TimerEvent(timerEvent *QTimerEvent) {
 
-	C.QMdiArea_virtualbase_TimerEvent(unsafe.Pointer(this.h), timerEvent.cPointer())
+	QMdiArea_virtualbase_TimerEvent(unsafe.Pointer(this.h), timerEvent.cPointer())
 
 }
 func (this *QMdiArea) OnTimerEvent(slot func(super func(timerEvent *QTimerEvent), timerEvent *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_TimerEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_TimerEvent
-func miqt_exec_callback_QMdiArea_TimerEvent(self *C.QMdiArea, cb C.intptr_t, timerEvent *C.QTimerEvent) {
+func miqt_exec_callback_QMdiArea_TimerEvent(self QMdiArea, cb intptr_t, timerEvent *QTimerEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(timerEvent *QTimerEvent), timerEvent *QTimerEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -582,18 +509,18 @@ func miqt_exec_callback_QMdiArea_TimerEvent(self *C.QMdiArea, cb C.intptr_t, tim
 
 func (this *QMdiArea) callVirtualBase_ShowEvent(showEvent *QShowEvent) {
 
-	C.QMdiArea_virtualbase_ShowEvent(unsafe.Pointer(this.h), showEvent.cPointer())
+	QMdiArea_virtualbase_ShowEvent(unsafe.Pointer(this.h), showEvent.cPointer())
 
 }
 func (this *QMdiArea) OnShowEvent(slot func(super func(showEvent *QShowEvent), showEvent *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ShowEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ShowEvent
-func miqt_exec_callback_QMdiArea_ShowEvent(self *C.QMdiArea, cb C.intptr_t, showEvent *C.QShowEvent) {
+func miqt_exec_callback_QMdiArea_ShowEvent(self QMdiArea, cb intptr_t, showEvent *QShowEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(showEvent *QShowEvent), showEvent *QShowEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -608,18 +535,18 @@ func miqt_exec_callback_QMdiArea_ShowEvent(self *C.QMdiArea, cb C.intptr_t, show
 
 func (this *QMdiArea) callVirtualBase_ViewportEvent(event *QEvent) bool {
 
-	return (bool)(C.QMdiArea_virtualbase_ViewportEvent(unsafe.Pointer(this.h), event.cPointer()))
+	return (bool)(QMdiArea_virtualbase_ViewportEvent(unsafe.Pointer(this.h), event.cPointer()))
 
 }
 func (this *QMdiArea) OnViewportEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ViewportEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ViewportEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ViewportEvent
-func miqt_exec_callback_QMdiArea_ViewportEvent(self *C.QMdiArea, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QMdiArea_ViewportEvent(self QMdiArea, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -630,24 +557,24 @@ func miqt_exec_callback_QMdiArea_ViewportEvent(self *C.QMdiArea, cb C.intptr_t, 
 
 	virtualReturn := gofunc((&QMdiArea{h: self}).callVirtualBase_ViewportEvent, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QMdiArea) callVirtualBase_ScrollContentsBy(dx int, dy int) {
 
-	C.QMdiArea_virtualbase_ScrollContentsBy(unsafe.Pointer(this.h), (C.int)(dx), (C.int)(dy))
+	QMdiArea_virtualbase_ScrollContentsBy(unsafe.Pointer(this.h), (int)(dx), (int)(dy))
 
 }
 func (this *QMdiArea) OnScrollContentsBy(slot func(super func(dx int, dy int), dx int, dy int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ScrollContentsBy(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ScrollContentsBy(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ScrollContentsBy
-func miqt_exec_callback_QMdiArea_ScrollContentsBy(self *C.QMdiArea, cb C.intptr_t, dx C.int, dy C.int) {
+func miqt_exec_callback_QMdiArea_ScrollContentsBy(self QMdiArea, cb intptr_t, dx int, dy int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(dx int, dy int), dx int, dy int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -664,18 +591,18 @@ func miqt_exec_callback_QMdiArea_ScrollContentsBy(self *C.QMdiArea, cb C.intptr_
 
 func (this *QMdiArea) callVirtualBase_MousePressEvent(param1 *QMouseEvent) {
 
-	C.QMdiArea_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_MousePressEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnMousePressEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_MousePressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_MousePressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_MousePressEvent
-func miqt_exec_callback_QMdiArea_MousePressEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QMouseEvent) {
+func miqt_exec_callback_QMdiArea_MousePressEvent(self QMdiArea, cb intptr_t, param1 *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QMouseEvent), param1 *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -690,18 +617,18 @@ func miqt_exec_callback_QMdiArea_MousePressEvent(self *C.QMdiArea, cb C.intptr_t
 
 func (this *QMdiArea) callVirtualBase_MouseReleaseEvent(param1 *QMouseEvent) {
 
-	C.QMdiArea_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnMouseReleaseEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_MouseReleaseEvent
-func miqt_exec_callback_QMdiArea_MouseReleaseEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QMouseEvent) {
+func miqt_exec_callback_QMdiArea_MouseReleaseEvent(self QMdiArea, cb intptr_t, param1 *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QMouseEvent), param1 *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -716,18 +643,18 @@ func miqt_exec_callback_QMdiArea_MouseReleaseEvent(self *C.QMdiArea, cb C.intptr
 
 func (this *QMdiArea) callVirtualBase_MouseDoubleClickEvent(param1 *QMouseEvent) {
 
-	C.QMdiArea_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnMouseDoubleClickEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_MouseDoubleClickEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_MouseDoubleClickEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_MouseDoubleClickEvent
-func miqt_exec_callback_QMdiArea_MouseDoubleClickEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QMouseEvent) {
+func miqt_exec_callback_QMdiArea_MouseDoubleClickEvent(self QMdiArea, cb intptr_t, param1 *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QMouseEvent), param1 *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -742,18 +669,18 @@ func miqt_exec_callback_QMdiArea_MouseDoubleClickEvent(self *C.QMdiArea, cb C.in
 
 func (this *QMdiArea) callVirtualBase_MouseMoveEvent(param1 *QMouseEvent) {
 
-	C.QMdiArea_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnMouseMoveEvent(slot func(super func(param1 *QMouseEvent), param1 *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_MouseMoveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_MouseMoveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_MouseMoveEvent
-func miqt_exec_callback_QMdiArea_MouseMoveEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QMouseEvent) {
+func miqt_exec_callback_QMdiArea_MouseMoveEvent(self QMdiArea, cb intptr_t, param1 *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QMouseEvent), param1 *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -768,18 +695,18 @@ func miqt_exec_callback_QMdiArea_MouseMoveEvent(self *C.QMdiArea, cb C.intptr_t,
 
 func (this *QMdiArea) callVirtualBase_WheelEvent(param1 *QWheelEvent) {
 
-	C.QMdiArea_virtualbase_WheelEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_WheelEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnWheelEvent(slot func(super func(param1 *QWheelEvent), param1 *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_WheelEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_WheelEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_WheelEvent
-func miqt_exec_callback_QMdiArea_WheelEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QWheelEvent) {
+func miqt_exec_callback_QMdiArea_WheelEvent(self QMdiArea, cb intptr_t, param1 *QWheelEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QWheelEvent), param1 *QWheelEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -794,18 +721,18 @@ func miqt_exec_callback_QMdiArea_WheelEvent(self *C.QMdiArea, cb C.intptr_t, par
 
 func (this *QMdiArea) callVirtualBase_ContextMenuEvent(param1 *QContextMenuEvent) {
 
-	C.QMdiArea_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnContextMenuEvent(slot func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ContextMenuEvent
-func miqt_exec_callback_QMdiArea_ContextMenuEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QContextMenuEvent) {
+func miqt_exec_callback_QMdiArea_ContextMenuEvent(self QMdiArea, cb intptr_t, param1 *QContextMenuEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QContextMenuEvent), param1 *QContextMenuEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -820,18 +747,18 @@ func miqt_exec_callback_QMdiArea_ContextMenuEvent(self *C.QMdiArea, cb C.intptr_
 
 func (this *QMdiArea) callVirtualBase_DragEnterEvent(param1 *QDragEnterEvent) {
 
-	C.QMdiArea_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnDragEnterEvent(slot func(super func(param1 *QDragEnterEvent), param1 *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_DragEnterEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_DragEnterEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_DragEnterEvent
-func miqt_exec_callback_QMdiArea_DragEnterEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QDragEnterEvent) {
+func miqt_exec_callback_QMdiArea_DragEnterEvent(self QMdiArea, cb intptr_t, param1 *QDragEnterEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QDragEnterEvent), param1 *QDragEnterEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -846,18 +773,18 @@ func miqt_exec_callback_QMdiArea_DragEnterEvent(self *C.QMdiArea, cb C.intptr_t,
 
 func (this *QMdiArea) callVirtualBase_DragMoveEvent(param1 *QDragMoveEvent) {
 
-	C.QMdiArea_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnDragMoveEvent(slot func(super func(param1 *QDragMoveEvent), param1 *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_DragMoveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_DragMoveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_DragMoveEvent
-func miqt_exec_callback_QMdiArea_DragMoveEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QDragMoveEvent) {
+func miqt_exec_callback_QMdiArea_DragMoveEvent(self QMdiArea, cb intptr_t, param1 *QDragMoveEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QDragMoveEvent), param1 *QDragMoveEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -872,18 +799,18 @@ func miqt_exec_callback_QMdiArea_DragMoveEvent(self *C.QMdiArea, cb C.intptr_t, 
 
 func (this *QMdiArea) callVirtualBase_DragLeaveEvent(param1 *QDragLeaveEvent) {
 
-	C.QMdiArea_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnDragLeaveEvent(slot func(super func(param1 *QDragLeaveEvent), param1 *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_DragLeaveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_DragLeaveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_DragLeaveEvent
-func miqt_exec_callback_QMdiArea_DragLeaveEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QDragLeaveEvent) {
+func miqt_exec_callback_QMdiArea_DragLeaveEvent(self QMdiArea, cb intptr_t, param1 *QDragLeaveEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QDragLeaveEvent), param1 *QDragLeaveEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -898,18 +825,18 @@ func miqt_exec_callback_QMdiArea_DragLeaveEvent(self *C.QMdiArea, cb C.intptr_t,
 
 func (this *QMdiArea) callVirtualBase_DropEvent(param1 *QDropEvent) {
 
-	C.QMdiArea_virtualbase_DropEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_DropEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnDropEvent(slot func(super func(param1 *QDropEvent), param1 *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_DropEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_DropEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_DropEvent
-func miqt_exec_callback_QMdiArea_DropEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QDropEvent) {
+func miqt_exec_callback_QMdiArea_DropEvent(self QMdiArea, cb intptr_t, param1 *QDropEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QDropEvent), param1 *QDropEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -924,18 +851,18 @@ func miqt_exec_callback_QMdiArea_DropEvent(self *C.QMdiArea, cb C.intptr_t, para
 
 func (this *QMdiArea) callVirtualBase_KeyPressEvent(param1 *QKeyEvent) {
 
-	C.QMdiArea_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QMdiArea_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QMdiArea) OnKeyPressEvent(slot func(super func(param1 *QKeyEvent), param1 *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_KeyPressEvent
-func miqt_exec_callback_QMdiArea_KeyPressEvent(self *C.QMdiArea, cb C.intptr_t, param1 *C.QKeyEvent) {
+func miqt_exec_callback_QMdiArea_KeyPressEvent(self QMdiArea, cb intptr_t, param1 *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QKeyEvent), param1 *QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -950,7 +877,7 @@ func miqt_exec_callback_QMdiArea_KeyPressEvent(self *C.QMdiArea, cb C.intptr_t, 
 
 func (this *QMdiArea) callVirtualBase_ViewportSizeHint() *QSize {
 
-	_goptr := newQSize(C.QMdiArea_virtualbase_ViewportSizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QMdiArea_virtualbase_ViewportSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -959,11 +886,11 @@ func (this *QMdiArea) OnViewportSizeHint(slot func(super func() *QSize) *QSize) 
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QMdiArea_override_virtual_ViewportSizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QMdiArea_override_virtual_ViewportSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QMdiArea_ViewportSizeHint
-func miqt_exec_callback_QMdiArea_ViewportSizeHint(self *C.QMdiArea, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QMdiArea_ViewportSizeHint(self QMdiArea, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -973,18 +900,4 @@ func miqt_exec_callback_QMdiArea_ViewportSizeHint(self *C.QMdiArea, cb C.intptr_
 
 	return virtualReturn.cPointer()
 
-}
-
-// Delete this object from C++ memory.
-func (this *QMdiArea) Delete() {
-	C.QMdiArea_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QMdiArea) GoGC() {
-	runtime.SetFinalizer(this, func(this *QMdiArea) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -22,43 +22,48 @@ typedef QTextOption::Tab QTextOption__Tab;
 #else
 class QTextOption__Tab;
 #endif
+class _GUID;
+class type_info;
 #else
 typedef struct QChar QChar;
 typedef struct QTextOption QTextOption;
 typedef struct QTextOption__Tab QTextOption__Tab;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QTextOption* QTextOption_new();
-QTextOption* QTextOption_new2(int alignment);
-QTextOption* QTextOption_new3(QTextOption* o);
-void QTextOption_OperatorAssign(QTextOption* self, QTextOption* o);
-void QTextOption_SetAlignment(QTextOption* self, int alignment);
-int QTextOption_Alignment(const QTextOption* self);
-void QTextOption_SetTextDirection(QTextOption* self, int aDirection);
-int QTextOption_TextDirection(const QTextOption* self);
-void QTextOption_SetWrapMode(QTextOption* self, int wrap);
-int QTextOption_WrapMode(const QTextOption* self);
-void QTextOption_SetFlags(QTextOption* self, int flags);
-int QTextOption_Flags(const QTextOption* self);
-void QTextOption_SetTabStop(QTextOption* self, double tabStop);
-double QTextOption_TabStop(const QTextOption* self);
-void QTextOption_SetTabStopDistance(QTextOption* self, double tabStopDistance);
-double QTextOption_TabStopDistance(const QTextOption* self);
-void QTextOption_SetTabArray(QTextOption* self, struct miqt_array /* of double */  tabStops);
-struct miqt_array /* of double */  QTextOption_TabArray(const QTextOption* self);
-void QTextOption_SetTabs(QTextOption* self, struct miqt_array /* of QTextOption__Tab* */  tabStops);
-struct miqt_array /* of QTextOption__Tab* */  QTextOption_Tabs(const QTextOption* self);
-void QTextOption_SetUseDesignMetrics(QTextOption* self, bool b);
-bool QTextOption_UseDesignMetrics(const QTextOption* self);
-void QTextOption_Delete(QTextOption* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
-QTextOption__Tab* QTextOption__Tab_new();
-QTextOption__Tab* QTextOption__Tab_new2(double pos, int tabType);
-QTextOption__Tab* QTextOption__Tab_new3(QTextOption__Tab* param1);
-QTextOption__Tab* QTextOption__Tab_new4(double pos, int tabType, QChar* delim);
-bool QTextOption__Tab_OperatorEqual(const QTextOption__Tab* self, QTextOption__Tab* other);
-bool QTextOption__Tab_OperatorNotEqual(const QTextOption__Tab* self, QTextOption__Tab* other);
-void QTextOption__Tab_Delete(QTextOption__Tab* self, bool isSubclass);
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QTextOption* QTextOption_new();
+extern __declspec(dllexport) QTextOption* QTextOption_new2(int alignment);
+extern __declspec(dllexport) QTextOption* QTextOption_new3(QTextOption* o);
+extern __declspec(dllexport) void QTextOption_OperatorAssign(QTextOption* self, QTextOption* o);
+extern __declspec(dllexport) void QTextOption_SetAlignment(QTextOption* self, int alignment);
+extern __declspec(dllexport) int QTextOption_Alignment(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetTextDirection(QTextOption* self, int aDirection);
+extern __declspec(dllexport) int QTextOption_TextDirection(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetWrapMode(QTextOption* self, WrapMode wrap);
+extern __declspec(dllexport) WrapMode QTextOption_WrapMode(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetFlags(QTextOption* self, Flags flags);
+extern __declspec(dllexport) Flags QTextOption_Flags(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetTabStopDistance(QTextOption* self, double tabStopDistance);
+extern __declspec(dllexport) double QTextOption_TabStopDistance(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetTabArray(QTextOption* self, struct miqt_array /* of double */  tabStops);
+extern __declspec(dllexport) struct miqt_array /* of double */  QTextOption_TabArray(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetTabs(QTextOption* self, struct miqt_array /* of Tab */  tabStops);
+extern __declspec(dllexport) struct miqt_array /* of Tab */  QTextOption_Tabs(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_SetUseDesignMetrics(QTextOption* self, bool b);
+extern __declspec(dllexport) bool QTextOption_UseDesignMetrics(const QTextOption* self);
+extern __declspec(dllexport) void QTextOption_Delete(QTextOption* self, bool isSubclass);
+
+extern __declspec(dllexport) QTextOption__Tab* QTextOption__Tab_new();
+extern __declspec(dllexport) QTextOption__Tab* QTextOption__Tab_new2(double pos, TabType tabType);
+extern __declspec(dllexport) QTextOption__Tab* QTextOption__Tab_new3(double pos, TabType tabType, QChar* delim);
+extern __declspec(dllexport) bool QTextOption__Tab_OperatorEqual(const QTextOption__Tab* self, const Tab* other);
+extern __declspec(dllexport) bool QTextOption__Tab_OperatorNotEqual(const QTextOption__Tab* self, const Tab* other);
+extern __declspec(dllexport) void QTextOption__Tab_Delete(QTextOption__Tab* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

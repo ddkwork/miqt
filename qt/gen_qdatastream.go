@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qdatastream.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -48,7 +39,17 @@ const (
 	QDataStream__Qt_5_13                   QDataStream__Version = 19
 	QDataStream__Qt_5_14                   QDataStream__Version = 19
 	QDataStream__Qt_5_15                   QDataStream__Version = 19
-	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = 19
+	QDataStream__Qt_6_0                    QDataStream__Version = 20
+	QDataStream__Qt_6_1                    QDataStream__Version = 20
+	QDataStream__Qt_6_2                    QDataStream__Version = 20
+	QDataStream__Qt_6_3                    QDataStream__Version = 20
+	QDataStream__Qt_6_4                    QDataStream__Version = 20
+	QDataStream__Qt_6_5                    QDataStream__Version = 20
+	QDataStream__Qt_6_6                    QDataStream__Version = 21
+	QDataStream__Qt_6_7                    QDataStream__Version = 22
+	QDataStream__Qt_6_8                    QDataStream__Version = 22
+	QDataStream__Qt_6_9                    QDataStream__Version = 22
+	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = 22
 )
 
 type QDataStream__ByteOrder int
@@ -61,10 +62,11 @@ const (
 type QDataStream__Status int
 
 const (
-	QDataStream__Ok              QDataStream__Status = 0
-	QDataStream__ReadPastEnd     QDataStream__Status = 1
-	QDataStream__ReadCorruptData QDataStream__Status = 2
-	QDataStream__WriteFailed     QDataStream__Status = 3
+	QDataStream__Ok                QDataStream__Status = 0
+	QDataStream__ReadPastEnd       QDataStream__Status = 1
+	QDataStream__ReadCorruptData   QDataStream__Status = 2
+	QDataStream__WriteFailed       QDataStream__Status = 3
+	QDataStream__SizeLimitExceeded QDataStream__Status = 4
 )
 
 type QDataStream__FloatingPointPrecision int
@@ -75,42 +77,14 @@ const (
 )
 
 type QDataStream struct {
-	h          *C.QDataStream
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QDataStream) cPointer() *C.QDataStream {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QDataStream) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQDataStream constructs the type using only CGO pointers.
-func newQDataStream(h *C.QDataStream) *QDataStream {
-	if h == nil {
-		return nil
-	}
-
-	return &QDataStream{h: h}
-}
-
-// UnsafeNewQDataStream constructs the type using only unsafe pointers.
-func UnsafeNewQDataStream(h unsafe.Pointer) *QDataStream {
-	return newQDataStream((*C.QDataStream)(h))
 }
 
 // NewQDataStream constructs a new QDataStream object.
 func NewQDataStream() *QDataStream {
 
-	ret := newQDataStream(C.QDataStream_new())
+	ret := newQDataStream(QDataStream_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -118,228 +92,224 @@ func NewQDataStream() *QDataStream {
 // NewQDataStream2 constructs a new QDataStream object.
 func NewQDataStream2(param1 *QIODevice) *QDataStream {
 
-	ret := newQDataStream(C.QDataStream_new2(param1.cPointer()))
+	ret := newQDataStream(QDataStream_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQDataStream3 constructs a new QDataStream object.
 func NewQDataStream3(param1 []byte) *QDataStream {
-	param1_alias := C.struct_miqt_string{}
-	param1_alias.data = (*C.char)(unsafe.Pointer(&param1[0]))
-	param1_alias.len = C.size_t(len(param1))
+	param1_alias := struct_miqt_string{}
+	param1_alias.data = (char)(unsafe.Pointer(&param1[0]))
+	param1_alias.len = size_t(len(param1))
 
-	ret := newQDataStream(C.QDataStream_new3(param1_alias))
+	ret := newQDataStream(QDataStream_new3(param1_alias))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QDataStream) Device() *QIODevice {
-	return newQIODevice(C.QDataStream_Device(this.h))
+	return newQIODevice(QDataStream_Device(this.h))
 }
 
 func (this *QDataStream) SetDevice(device *QIODevice) {
-	C.QDataStream_SetDevice(this.h, device.cPointer())
-}
-
-func (this *QDataStream) UnsetDevice() {
-	C.QDataStream_UnsetDevice(this.h)
+	QDataStream_SetDevice(this.h, device.cPointer())
 }
 
 func (this *QDataStream) AtEnd() bool {
-	return (bool)(C.QDataStream_AtEnd(this.h))
+	return (bool)(QDataStream_AtEnd(this.h))
 }
 
-func (this *QDataStream) Status() QDataStream__Status {
-	return (QDataStream__Status)(C.QDataStream_Status(this.h))
+func (this *QDataStream) Status() Status {
+	xxxxxxxxx
 }
 
-func (this *QDataStream) SetStatus(status QDataStream__Status) {
-	C.QDataStream_SetStatus(this.h, (C.int)(status))
+func (this *QDataStream) SetStatus(status Status) {
+	QDataStream_SetStatus(this.h, status)
 }
 
 func (this *QDataStream) ResetStatus() {
-	C.QDataStream_ResetStatus(this.h)
+	QDataStream_ResetStatus(this.h)
 }
 
-func (this *QDataStream) FloatingPointPrecision() QDataStream__FloatingPointPrecision {
-	return (QDataStream__FloatingPointPrecision)(C.QDataStream_FloatingPointPrecision(this.h))
+func (this *QDataStream) FloatingPointPrecision() FloatingPointPrecision {
+	xxxxxxxxx
 }
 
-func (this *QDataStream) SetFloatingPointPrecision(precision QDataStream__FloatingPointPrecision) {
-	C.QDataStream_SetFloatingPointPrecision(this.h, (C.int)(precision))
+func (this *QDataStream) SetFloatingPointPrecision(precision FloatingPointPrecision) {
+	QDataStream_SetFloatingPointPrecision(this.h, precision)
 }
 
-func (this *QDataStream) ByteOrder() QDataStream__ByteOrder {
-	return (QDataStream__ByteOrder)(C.QDataStream_ByteOrder(this.h))
+func (this *QDataStream) ByteOrder() ByteOrder {
+	xxxxxxxxx
 }
 
-func (this *QDataStream) SetByteOrder(byteOrder QDataStream__ByteOrder) {
-	C.QDataStream_SetByteOrder(this.h, (C.int)(byteOrder))
+func (this *QDataStream) SetByteOrder(byteOrder ByteOrder) {
+	QDataStream_SetByteOrder(this.h, byteOrder)
 }
 
 func (this *QDataStream) Version() int {
-	return (int)(C.QDataStream_Version(this.h))
+	return (int)(QDataStream_Version(this.h))
 }
 
 func (this *QDataStream) SetVersion(version int) {
-	C.QDataStream_SetVersion(this.h, (C.int)(version))
+	QDataStream_SetVersion(this.h, (int)(version))
 }
 
 func (this *QDataStream) OperatorShiftRight(i *int8) {
-	C.QDataStream_OperatorShiftRight(this.h, (*C.schar)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRight(this.h, (*char)(unsafe.Pointer(i)))
+}
+
+func (this *QDataStream) OperatorShiftRightWithQint8(i *int8) {
+	QDataStream_OperatorShiftRightWithQint8(this.h, (*schar)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQuint8(i *byte) {
-	C.QDataStream_OperatorShiftRightWithQuint8(this.h, (*C.uchar)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQuint8(this.h, (*uchar)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQint16(i *int16) {
-	C.QDataStream_OperatorShiftRightWithQint16(this.h, (*C.int16_t)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQint16(this.h, (*int16_t)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQuint16(i *uint16) {
-	C.QDataStream_OperatorShiftRightWithQuint16(this.h, (*C.uint16_t)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQuint16(this.h, (*uint16_t)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQint32(i *int) {
-	C.QDataStream_OperatorShiftRightWithQint32(this.h, (*C.int)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQint32(this.h, (*int)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQuint32(i *uint) {
-	C.QDataStream_OperatorShiftRightWithQuint32(this.h, (*C.uint)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQuint32(this.h, (*uint)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQint64(i *int64) {
-	C.QDataStream_OperatorShiftRightWithQint64(this.h, (*C.longlong)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQint64(this.h, (*longlong)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithQuint64(i *uint64) {
-	C.QDataStream_OperatorShiftRightWithQuint64(this.h, (*C.ulonglong)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithQuint64(this.h, (*ulonglong)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithBool(i *bool) {
-	C.QDataStream_OperatorShiftRightWithBool(this.h, (*C.bool)(unsafe.Pointer(i)))
+	QDataStream_OperatorShiftRightWithBool(this.h, (*bool)(unsafe.Pointer(i)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithFloat(f *float32) {
-	C.QDataStream_OperatorShiftRightWithFloat(this.h, (*C.float)(unsafe.Pointer(f)))
+	QDataStream_OperatorShiftRightWithFloat(this.h, (*float)(unsafe.Pointer(f)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithDouble(f *float64) {
-	C.QDataStream_OperatorShiftRightWithDouble(this.h, (*C.double)(unsafe.Pointer(f)))
+	QDataStream_OperatorShiftRightWithDouble(this.h, (*double)(unsafe.Pointer(f)))
 }
 
 func (this *QDataStream) OperatorShiftRightWithStr(str string) {
-	str_Cstring := C.CString(str)
-	defer C.free(unsafe.Pointer(str_Cstring))
-	C.QDataStream_OperatorShiftRightWithStr(this.h, str_Cstring)
+	str_Cstring := CString(str)
+	defer free(unsafe.Pointer(str_Cstring))
+	QDataStream_OperatorShiftRightWithStr(this.h, str_Cstring)
 }
 
 func (this *QDataStream) OperatorShiftLeft(i int8) {
-	C.QDataStream_OperatorShiftLeft(this.h, (C.schar)(i))
+	QDataStream_OperatorShiftLeft(this.h, (char)(i))
+}
+
+func (this *QDataStream) OperatorShiftLeftWithQint8(i int8) {
+	QDataStream_OperatorShiftLeftWithQint8(this.h, (schar)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQuint8(i byte) {
-	C.QDataStream_OperatorShiftLeftWithQuint8(this.h, (C.uchar)(i))
+	QDataStream_OperatorShiftLeftWithQuint8(this.h, (uchar)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQint16(i int16) {
-	C.QDataStream_OperatorShiftLeftWithQint16(this.h, (C.int16_t)(i))
+	QDataStream_OperatorShiftLeftWithQint16(this.h, (int16_t)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQuint16(i uint16) {
-	C.QDataStream_OperatorShiftLeftWithQuint16(this.h, (C.uint16_t)(i))
+	QDataStream_OperatorShiftLeftWithQuint16(this.h, (uint16_t)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQint32(i int) {
-	C.QDataStream_OperatorShiftLeftWithQint32(this.h, (C.int)(i))
+	QDataStream_OperatorShiftLeftWithQint32(this.h, (int)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQuint32(i uint) {
-	C.QDataStream_OperatorShiftLeftWithQuint32(this.h, (C.uint)(i))
+	QDataStream_OperatorShiftLeftWithQuint32(this.h, (uint)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQint64(i int64) {
-	C.QDataStream_OperatorShiftLeftWithQint64(this.h, (C.longlong)(i))
+	QDataStream_OperatorShiftLeftWithQint64(this.h, (longlong)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithQuint64(i uint64) {
-	C.QDataStream_OperatorShiftLeftWithQuint64(this.h, (C.ulonglong)(i))
-}
-
-func (this *QDataStream) OperatorShiftLeftWithBool(i bool) {
-	C.QDataStream_OperatorShiftLeftWithBool(this.h, (C.bool)(i))
+	QDataStream_OperatorShiftLeftWithQuint64(this.h, (ulonglong)(i))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithFloat(f float32) {
-	C.QDataStream_OperatorShiftLeftWithFloat(this.h, (C.float)(f))
+	QDataStream_OperatorShiftLeftWithFloat(this.h, (float)(f))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithDouble(f float64) {
-	C.QDataStream_OperatorShiftLeftWithDouble(this.h, (C.double)(f))
+	QDataStream_OperatorShiftLeftWithDouble(this.h, (double)(f))
 }
 
 func (this *QDataStream) OperatorShiftLeftWithStr(str string) {
-	str_Cstring := C.CString(str)
-	defer C.free(unsafe.Pointer(str_Cstring))
-	C.QDataStream_OperatorShiftLeftWithStr(this.h, str_Cstring)
+	str_Cstring := CString(str)
+	defer free(unsafe.Pointer(str_Cstring))
+	QDataStream_OperatorShiftLeftWithStr(this.h, str_Cstring)
 }
 
 func (this *QDataStream) ReadBytes(param1 string, lenVal *uint) *QDataStream {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return newQDataStream(C.QDataStream_ReadBytes(this.h, param1_Cstring, (*C.uint)(unsafe.Pointer(lenVal))))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return newQDataStream(QDataStream_ReadBytes(this.h, param1_Cstring, (*uint)(unsafe.Pointer(lenVal))))
 }
 
-func (this *QDataStream) ReadRawData(param1 string, lenVal int) int {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (int)(C.QDataStream_ReadRawData(this.h, param1_Cstring, (C.int)(lenVal)))
+func (this *QDataStream) ReadBytes2(param1 string, lenVal *int64) *QDataStream {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return newQDataStream(QDataStream_ReadBytes2(this.h, param1_Cstring, (*longlong)(unsafe.Pointer(lenVal))))
 }
 
-func (this *QDataStream) WriteBytes(param1 string, lenVal uint) {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	C.QDataStream_WriteBytes(this.h, param1_Cstring, (C.uint)(lenVal))
+func (this *QDataStream) ReadRawData(param1 string, lenVal int64) int64 {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (int64)(QDataStream_ReadRawData(this.h, param1_Cstring, (longlong)(lenVal)))
 }
 
-func (this *QDataStream) WriteRawData(param1 string, lenVal int) int {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (int)(C.QDataStream_WriteRawData(this.h, param1_Cstring, (C.int)(lenVal)))
+func (this *QDataStream) WriteBytes(param1 string, lenVal int64) {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	QDataStream_WriteBytes(this.h, param1_Cstring, (longlong)(lenVal))
 }
 
-func (this *QDataStream) SkipRawData(lenVal int) int {
-	return (int)(C.QDataStream_SkipRawData(this.h, (C.int)(lenVal)))
+func (this *QDataStream) WriteRawData(param1 string, lenVal int64) int64 {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (int64)(QDataStream_WriteRawData(this.h, param1_Cstring, (longlong)(lenVal)))
+}
+
+func (this *QDataStream) SkipRawData(lenVal int64) int64 {
+	return (int64)(QDataStream_SkipRawData(this.h, (longlong)(lenVal)))
 }
 
 func (this *QDataStream) StartTransaction() {
-	C.QDataStream_StartTransaction(this.h)
+	QDataStream_StartTransaction(this.h)
 }
 
 func (this *QDataStream) CommitTransaction() bool {
-	return (bool)(C.QDataStream_CommitTransaction(this.h))
+	return (bool)(QDataStream_CommitTransaction(this.h))
 }
 
 func (this *QDataStream) RollbackTransaction() {
-	C.QDataStream_RollbackTransaction(this.h)
+	QDataStream_RollbackTransaction(this.h)
 }
 
 func (this *QDataStream) AbortTransaction() {
-	C.QDataStream_AbortTransaction(this.h)
+	QDataStream_AbortTransaction(this.h)
 }
 
-// Delete this object from C++ memory.
-func (this *QDataStream) Delete() {
-	C.QDataStream_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QDataStream) GoGC() {
-	runtime.SetFinalizer(this, func(this *QDataStream) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func (this *QDataStream) IsDeviceTransactionStarted() bool {
+	return (bool)(QDataStream_IsDeviceTransactionStarted(this.h))
 }

@@ -113,7 +113,7 @@ The import path changes from `github.com/mappu/miqt/qt` to `github.com/mappu/miq
 
 You can replace the import path in two ways:
 1. Add a go.mod directive: Run `go mod edit -replace github.com/mappu/miqt/qt=github.com/mappu/miqt/qt6`
-2. Or, update all imports: Run `find . -type f -name .go -exec sed -i 's_"github.com/mappu/miqt/qt"_qt "github.com/mappu/miqt/qt6"_' {} \;`
+2. Or, update all imports: Run `find . -type f -name .go -exec sed -i 's_"github.com/mappu/miqt/qt"_qt "github.com/mappu/miqt/qt"_' {} \;`
 
 ### Q9. How can I add bindings for another Qt library?
 

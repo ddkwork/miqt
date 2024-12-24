@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAction>
 #include <QCloseEvent>
 #include <QEvent>
@@ -38,7 +40,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsWidget : public virtual QGraphicsWidget {
 public:
@@ -302,13 +319,12 @@ public:
 	intptr_t handle__ItemChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant itemChange(QGraphicsItem::GraphicsItemChange change, const QVariant& value) override {
+	virtual QVariant itemChange(GraphicsItemChange change, const QVariant& value) override {
 		if (handle__ItemChange == 0) {
 			return QGraphicsWidget::itemChange(change, value);
 		}
 		
-		QGraphicsItem::GraphicsItemChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		GraphicsItemChange sigval1 = change;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -319,9 +335,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_ItemChange(int change, QVariant* value) {
+	QVariant* virtualbase_ItemChange(GraphicsItemChange change, QVariant* value) {
 
-		return new QVariant(QGraphicsWidget::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *value));
+		return new QVariant(QGraphicsWidget::itemChange(change, *value));
 
 	}
 
@@ -836,6 +852,28 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__IsEmpty = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool isEmpty() const override {
+		if (handle__IsEmpty == 0) {
+			return QGraphicsWidget::isEmpty();
+		}
+		
+
+		bool callback_return_value = miqt_exec_callback_QGraphicsWidget_IsEmpty(const_cast<MiqtVirtualQGraphicsWidget*>(this), handle__IsEmpty);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_IsEmpty() const {
+
+		return QGraphicsWidget::isEmpty();
+
+	}
+
 };
 
 QGraphicsWidget* QGraphicsWidget_new() {
@@ -865,17 +903,6 @@ void* QGraphicsWidget_Metacast(QGraphicsWidget* self, const char* param1) {
 
 struct miqt_string QGraphicsWidget_Tr(const char* s) {
 	QString _ret = QGraphicsWidget::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsWidget_TrUtf8(const char* s) {
-	QString _ret = QGraphicsWidget::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1188,28 +1215,6 @@ struct miqt_string QGraphicsWidget_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsWidget::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QGraphicsWidget_GrabShortcut2(QGraphicsWidget* self, QKeySequence* sequence, int context) {
 	return self->grabShortcut(*sequence, static_cast<Qt::ShortcutContext>(context));
 }
@@ -1310,7 +1315,7 @@ void QGraphicsWidget_override_virtual_ItemChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsWidget*>( (QGraphicsWidget*)(self) )->handle__ItemChange = slot;
 }
 
-QVariant* QGraphicsWidget_virtualbase_ItemChange(void* self, int change, QVariant* value) {
+QVariant* QGraphicsWidget_virtualbase_ItemChange(void* self, GraphicsItemChange change, QVariant* value) {
 	return ( (MiqtVirtualQGraphicsWidget*)(self) )->virtualbase_ItemChange(change, value);
 }
 
@@ -1480,6 +1485,14 @@ void QGraphicsWidget_override_virtual_UngrabKeyboardEvent(void* self, intptr_t s
 
 void QGraphicsWidget_virtualbase_UngrabKeyboardEvent(void* self, QEvent* event) {
 	( (MiqtVirtualQGraphicsWidget*)(self) )->virtualbase_UngrabKeyboardEvent(event);
+}
+
+void QGraphicsWidget_override_virtual_IsEmpty(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsWidget*>( (QGraphicsWidget*)(self) )->handle__IsEmpty = slot;
+}
+
+bool QGraphicsWidget_virtualbase_IsEmpty(const void* self) {
+	return ( (const MiqtVirtualQGraphicsWidget*)(self) )->virtualbase_IsEmpty();
 }
 
 void QGraphicsWidget_Delete(QGraphicsWidget* self, bool isSubclass) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QByteArray>
 #include <QConcatenateTablesProxyModel>
@@ -6,6 +8,7 @@
 #include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
+#include <QModelRoleDataSpan>
 #include <QObject>
 #include <QSize>
 #include <QString>
@@ -18,7 +21,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQConcatenateTablesProxyModel : public virtual QConcatenateTablesProxyModel {
 public:
@@ -578,6 +596,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QConcatenateTablesProxyModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QConcatenateTablesProxyModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QConcatenateTablesProxyModel::clearItemData(*index);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__SupportedDropActions = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -992,6 +1035,33 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MultiData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void multiData(const QModelIndex& index, QModelRoleDataSpan roleDataSpan) const override {
+		if (handle__MultiData == 0) {
+			QConcatenateTablesProxyModel::multiData(index, roleDataSpan);
+			return;
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+		QModelRoleDataSpan* sigval2 = new QModelRoleDataSpan(roleDataSpan);
+
+		miqt_exec_callback_QConcatenateTablesProxyModel_MultiData(const_cast<MiqtVirtualQConcatenateTablesProxyModel*>(this), handle__MultiData, sigval1, sigval2);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_MultiData(QModelIndex* index, QModelRoleDataSpan* roleDataSpan) const {
+
+		QConcatenateTablesProxyModel::multiData(*index, *roleDataSpan);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Submit = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1036,6 +1106,29 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ResetInternalData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void resetInternalData() override {
+		if (handle__ResetInternalData == 0) {
+			QConcatenateTablesProxyModel::resetInternalData();
+			return;
+		}
+		
+
+		miqt_exec_callback_QConcatenateTablesProxyModel_ResetInternalData(this, handle__ResetInternalData);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_ResetInternalData() {
+
+		QConcatenateTablesProxyModel::resetInternalData();
+
+	}
+
 };
 
 QConcatenateTablesProxyModel* QConcatenateTablesProxyModel_new() {
@@ -1060,17 +1153,6 @@ void* QConcatenateTablesProxyModel_Metacast(QConcatenateTablesProxyModel* self, 
 
 struct miqt_string QConcatenateTablesProxyModel_Tr(const char* s) {
 	QString _ret = QConcatenateTablesProxyModel::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QConcatenateTablesProxyModel_TrUtf8(const char* s) {
-	QString _ret = QConcatenateTablesProxyModel::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1234,28 +1316,6 @@ struct miqt_string QConcatenateTablesProxyModel_Tr3(const char* s, const char* c
 	return _ms;
 }
 
-struct miqt_string QConcatenateTablesProxyModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QConcatenateTablesProxyModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QConcatenateTablesProxyModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QConcatenateTablesProxyModel::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QConcatenateTablesProxyModel_override_virtual_Data(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQConcatenateTablesProxyModel*>( (QConcatenateTablesProxyModel*)(self) )->handle__Data = slot;
 }
@@ -1400,6 +1460,14 @@ bool QConcatenateTablesProxyModel_virtualbase_SetHeaderData(void* self, int sect
 	return ( (MiqtVirtualQConcatenateTablesProxyModel*)(self) )->virtualbase_SetHeaderData(section, orientation, value, role);
 }
 
+void QConcatenateTablesProxyModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQConcatenateTablesProxyModel*>( (QConcatenateTablesProxyModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QConcatenateTablesProxyModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQConcatenateTablesProxyModel*)(self) )->virtualbase_ClearItemData(index);
+}
+
 void QConcatenateTablesProxyModel_override_virtual_SupportedDropActions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQConcatenateTablesProxyModel*>( (QConcatenateTablesProxyModel*)(self) )->handle__SupportedDropActions = slot;
 }
@@ -1512,6 +1580,14 @@ struct miqt_map /* of int to struct miqt_string */  QConcatenateTablesProxyModel
 	return ( (const MiqtVirtualQConcatenateTablesProxyModel*)(self) )->virtualbase_RoleNames();
 }
 
+void QConcatenateTablesProxyModel_override_virtual_MultiData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQConcatenateTablesProxyModel*>( (QConcatenateTablesProxyModel*)(self) )->handle__MultiData = slot;
+}
+
+void QConcatenateTablesProxyModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan) {
+	( (const MiqtVirtualQConcatenateTablesProxyModel*)(self) )->virtualbase_MultiData(index, roleDataSpan);
+}
+
 void QConcatenateTablesProxyModel_override_virtual_Submit(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQConcatenateTablesProxyModel*>( (QConcatenateTablesProxyModel*)(self) )->handle__Submit = slot;
 }
@@ -1526,6 +1602,14 @@ void QConcatenateTablesProxyModel_override_virtual_Revert(void* self, intptr_t s
 
 void QConcatenateTablesProxyModel_virtualbase_Revert(void* self) {
 	( (MiqtVirtualQConcatenateTablesProxyModel*)(self) )->virtualbase_Revert();
+}
+
+void QConcatenateTablesProxyModel_override_virtual_ResetInternalData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQConcatenateTablesProxyModel*>( (QConcatenateTablesProxyModel*)(self) )->handle__ResetInternalData = slot;
+}
+
+void QConcatenateTablesProxyModel_virtualbase_ResetInternalData(void* self) {
+	( (MiqtVirtualQConcatenateTablesProxyModel*)(self) )->virtualbase_ResetInternalData();
 }
 
 void QConcatenateTablesProxyModel_Delete(QConcatenateTablesProxyModel* self, bool isSubclass) {

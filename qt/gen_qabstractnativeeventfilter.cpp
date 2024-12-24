@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractNativeEventFilter>
 #include <QByteArray>
 #include <qabstractnativeeventfilter.h>
@@ -6,7 +8,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractNativeEventFilter : public virtual QAbstractNativeEventFilter {
 public:
@@ -19,7 +36,7 @@ public:
 	intptr_t handle__NativeEventFilter = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEventFilter(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEventFilter(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEventFilter == 0) {
 			return false; // Pure virtual, there is no base we can call
 		}
@@ -31,7 +48,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QAbstractNativeEventFilter_NativeEventFilter(this, handle__NativeEventFilter, sigval1, sigval2, sigval3);
 
@@ -44,9 +62,9 @@ QAbstractNativeEventFilter* QAbstractNativeEventFilter_new() {
 	return new MiqtVirtualQAbstractNativeEventFilter();
 }
 
-bool QAbstractNativeEventFilter_NativeEventFilter(QAbstractNativeEventFilter* self, struct miqt_string eventType, void* message, long* result) {
+bool QAbstractNativeEventFilter_NativeEventFilter(QAbstractNativeEventFilter* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	QByteArray eventType_QByteArray(eventType.data, eventType.len);
-	return self->nativeEventFilter(eventType_QByteArray, message, static_cast<long*>(result));
+	return self->nativeEventFilter(eventType_QByteArray, message, (qintptr*)(result));
 }
 
 void QAbstractNativeEventFilter_override_virtual_NativeEventFilter(void* self, intptr_t slot) {

@@ -1,5 +1,9 @@
+// +build ignore
+
 #include <QFont>
 #include <QFontInfo>
+#include <QFontVariableAxis>
+#include <QList>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -9,7 +13,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QFontInfo* QFontInfo_new(QFont* param1) {
 	return new QFontInfo(*param1);
@@ -100,8 +119,21 @@ int QFontInfo_StyleHint(const QFontInfo* self) {
 	return static_cast<int>(_ret);
 }
 
-bool QFontInfo_RawMode(const QFontInfo* self) {
-	return self->rawMode();
+struct miqt_array /* of QFontVariableAxis* */  QFontInfo_VariableAxes(const QFontInfo* self) {
+	QList<QFontVariableAxis> _ret = self->variableAxes();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QFontVariableAxis** _arr = static_cast<QFontVariableAxis**>(malloc(sizeof(QFontVariableAxis*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = new QFontVariableAxis(_ret[i]);
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+}
+
+int QFontInfo_LegacyWeight(const QFontInfo* self) {
+	return self->legacyWeight();
 }
 
 bool QFontInfo_ExactMatch(const QFontInfo* self) {

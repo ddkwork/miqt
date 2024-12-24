@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractScrollArea>
 #include <QBrush>
 #include <QChildEvent>
@@ -32,7 +34,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQMdiArea : public virtual QMdiArea {
 public:
@@ -644,17 +661,6 @@ struct miqt_string QMdiArea_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QMdiArea_TrUtf8(const char* s) {
-	QString _ret = QMdiArea::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QMdiArea_SizeHint(const QMdiArea* self) {
 	return new QSize(self->sizeHint());
 }
@@ -700,30 +706,28 @@ void QMdiArea_SetBackground(QMdiArea* self, QBrush* background) {
 	self->setBackground(*background);
 }
 
-int QMdiArea_ActivationOrder(const QMdiArea* self) {
-	QMdiArea::WindowOrder _ret = self->activationOrder();
-	return static_cast<int>(_ret);
+WindowOrder QMdiArea_ActivationOrder(const QMdiArea* self) {
+	return self->activationOrder();
 }
 
-void QMdiArea_SetActivationOrder(QMdiArea* self, int order) {
-	self->setActivationOrder(static_cast<QMdiArea::WindowOrder>(order));
+void QMdiArea_SetActivationOrder(QMdiArea* self, WindowOrder order) {
+	self->setActivationOrder(order);
 }
 
-void QMdiArea_SetOption(QMdiArea* self, int option) {
-	self->setOption(static_cast<QMdiArea::AreaOption>(option));
+void QMdiArea_SetOption(QMdiArea* self, AreaOption option) {
+	self->setOption(option);
 }
 
-bool QMdiArea_TestOption(const QMdiArea* self, int opton) {
-	return self->testOption(static_cast<QMdiArea::AreaOption>(opton));
+bool QMdiArea_TestOption(const QMdiArea* self, AreaOption opton) {
+	return self->testOption(opton);
 }
 
-void QMdiArea_SetViewMode(QMdiArea* self, int mode) {
-	self->setViewMode(static_cast<QMdiArea::ViewMode>(mode));
+void QMdiArea_SetViewMode(QMdiArea* self, ViewMode mode) {
+	self->setViewMode(mode);
 }
 
-int QMdiArea_ViewMode(const QMdiArea* self) {
-	QMdiArea::ViewMode _ret = self->viewMode();
-	return static_cast<int>(_ret);
+ViewMode QMdiArea_ViewMode(const QMdiArea* self) {
+	return self->viewMode();
 }
 
 bool QMdiArea_DocumentMode(const QMdiArea* self) {
@@ -829,30 +833,8 @@ struct miqt_string QMdiArea_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QMdiArea_TrUtf82(const char* s, const char* c) {
-	QString _ret = QMdiArea::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QMdiArea_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QMdiArea::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_array /* of QMdiSubWindow* */  QMdiArea_SubWindowList1(const QMdiArea* self, int order) {
-	QList<QMdiSubWindow *> _ret = self->subWindowList(static_cast<QMdiArea::WindowOrder>(order));
+struct miqt_array /* of QMdiSubWindow* */  QMdiArea_SubWindowList1(const QMdiArea* self, WindowOrder order) {
+	QList<QMdiSubWindow *> _ret = self->subWindowList(order);
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QMdiSubWindow** _arr = static_cast<QMdiSubWindow**>(malloc(sizeof(QMdiSubWindow*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -868,8 +850,8 @@ QMdiSubWindow* QMdiArea_AddSubWindow2(QMdiArea* self, QWidget* widget, int flags
 	return self->addSubWindow(widget, static_cast<Qt::WindowFlags>(flags));
 }
 
-void QMdiArea_SetOption2(QMdiArea* self, int option, bool on) {
-	self->setOption(static_cast<QMdiArea::AreaOption>(option), on);
+void QMdiArea_SetOption2(QMdiArea* self, AreaOption option, bool on) {
+	self->setOption(option, on);
 }
 
 void QMdiArea_override_virtual_SizeHint(void* self, intptr_t slot) {

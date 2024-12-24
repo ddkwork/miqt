@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -17,21 +17,30 @@ extern "C" {
 #ifdef __cplusplus
 class QBasicTimer;
 class QObject;
+class _GUID;
+class type_info;
 #else
 typedef struct QBasicTimer QBasicTimer;
 typedef struct QObject QObject;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QBasicTimer* QBasicTimer_new(QBasicTimer* param1);
-QBasicTimer* QBasicTimer_new2();
-void QBasicTimer_OperatorAssign(QBasicTimer* self, QBasicTimer* param1);
-void QBasicTimer_Swap(QBasicTimer* self, QBasicTimer* other);
-bool QBasicTimer_IsActive(const QBasicTimer* self);
-int QBasicTimer_TimerId(const QBasicTimer* self);
-void QBasicTimer_Start(QBasicTimer* self, int msec, QObject* obj);
-void QBasicTimer_Start2(QBasicTimer* self, int msec, int timerType, QObject* obj);
-void QBasicTimer_Stop(QBasicTimer* self);
-void QBasicTimer_Delete(QBasicTimer* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QBasicTimer* QBasicTimer_new();
+extern __declspec(dllexport) void QBasicTimer_Swap(QBasicTimer* self, QBasicTimer* other);
+extern __declspec(dllexport) bool QBasicTimer_IsActive(const QBasicTimer* self);
+extern __declspec(dllexport) int QBasicTimer_TimerId(const QBasicTimer* self);
+extern __declspec(dllexport) int QBasicTimer_Id(const QBasicTimer* self);
+extern __declspec(dllexport) void QBasicTimer_Start(QBasicTimer* self, int msec, QObject* obj);
+extern __declspec(dllexport) void QBasicTimer_Start2(QBasicTimer* self, int msec, int timerType, QObject* obj);
+extern __declspec(dllexport) void QBasicTimer_Start3(QBasicTimer* self, Duration duration, QObject* obj);
+extern __declspec(dllexport) void QBasicTimer_Start4(QBasicTimer* self, Duration duration, int timerType, QObject* obj);
+extern __declspec(dllexport) void QBasicTimer_Stop(QBasicTimer* self);
+extern __declspec(dllexport) void QBasicTimer_Delete(QBasicTimer* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

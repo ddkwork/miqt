@@ -1,9 +1,12 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QCommandLinkButton>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QKeyEvent>
 #include <QMetaObject>
+#include <QMouseEvent>
 #include <QObject>
 #include <QPaintDevice>
 #include <QPaintEvent>
@@ -13,6 +16,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionButton>
 #include <QWidget>
 #include <qcommandlinkbutton.h>
 #include "gen_qcommandlinkbutton.h"
@@ -20,7 +24,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQCommandLinkButton : public virtual QCommandLinkButton {
 public:
@@ -98,6 +117,30 @@ public:
 	QSize* virtualbase_MinimumSizeHint() const {
 
 		return new QSize(QCommandLinkButton::minimumSizeHint());
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionButton* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QCommandLinkButton::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionButton* sigval1 = option;
+
+		miqt_exec_callback_QCommandLinkButton_InitStyleOption(const_cast<MiqtVirtualQCommandLinkButton*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionButton* option) const {
+
+		QCommandLinkButton::initStyleOption(option);
 
 	}
 
@@ -221,6 +264,30 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MouseMoveEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void mouseMoveEvent(QMouseEvent* param1) override {
+		if (handle__MouseMoveEvent == 0) {
+			QCommandLinkButton::mouseMoveEvent(param1);
+			return;
+		}
+		
+		QMouseEvent* sigval1 = param1;
+
+		miqt_exec_callback_QCommandLinkButton_MouseMoveEvent(this, handle__MouseMoveEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_MouseMoveEvent(QMouseEvent* param1) {
+
+		QCommandLinkButton::mouseMoveEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__HitButton = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -300,17 +367,6 @@ struct miqt_string QCommandLinkButton_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QCommandLinkButton_TrUtf8(const char* s) {
-	QString _ret = QCommandLinkButton::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QCommandLinkButton_Description(const QCommandLinkButton* self) {
 	QString _ret = self->description();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -327,6 +383,22 @@ void QCommandLinkButton_SetDescription(QCommandLinkButton* self, struct miqt_str
 	self->setDescription(description_QString);
 }
 
+QSize* QCommandLinkButton_SizeHint(const QCommandLinkButton* self) {
+	return new QSize(self->sizeHint());
+}
+
+int QCommandLinkButton_HeightForWidth(const QCommandLinkButton* self, int param1) {
+	return self->heightForWidth(static_cast<int>(param1));
+}
+
+QSize* QCommandLinkButton_MinimumSizeHint(const QCommandLinkButton* self) {
+	return new QSize(self->minimumSizeHint());
+}
+
+void QCommandLinkButton_InitStyleOption(const QCommandLinkButton* self, QStyleOptionButton* option) {
+	self->initStyleOption(option);
+}
+
 struct miqt_string QCommandLinkButton_Tr2(const char* s, const char* c) {
 	QString _ret = QCommandLinkButton::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -340,28 +412,6 @@ struct miqt_string QCommandLinkButton_Tr2(const char* s, const char* c) {
 
 struct miqt_string QCommandLinkButton_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QCommandLinkButton::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCommandLinkButton_TrUtf82(const char* s, const char* c) {
-	QString _ret = QCommandLinkButton::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCommandLinkButton_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QCommandLinkButton::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -393,6 +443,14 @@ void QCommandLinkButton_override_virtual_MinimumSizeHint(void* self, intptr_t sl
 
 QSize* QCommandLinkButton_virtualbase_MinimumSizeHint(const void* self) {
 	return ( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_MinimumSizeHint();
+}
+
+void QCommandLinkButton_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QCommandLinkButton_virtualbase_InitStyleOption(const void* self, QStyleOptionButton* option) {
+	( (const MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QCommandLinkButton_override_virtual_Event(void* self, intptr_t slot) {
@@ -433,6 +491,14 @@ void QCommandLinkButton_override_virtual_FocusOutEvent(void* self, intptr_t slot
 
 void QCommandLinkButton_virtualbase_FocusOutEvent(void* self, QFocusEvent* param1) {
 	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_FocusOutEvent(param1);
+}
+
+void QCommandLinkButton_override_virtual_MouseMoveEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQCommandLinkButton*>( (QCommandLinkButton*)(self) )->handle__MouseMoveEvent = slot;
+}
+
+void QCommandLinkButton_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1) {
+	( (MiqtVirtualQCommandLinkButton*)(self) )->virtualbase_MouseMoveEvent(param1);
 }
 
 void QCommandLinkButton_override_virtual_HitButton(void* self, intptr_t slot) {

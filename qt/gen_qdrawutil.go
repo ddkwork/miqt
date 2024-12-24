@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qdrawutil.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -32,42 +23,14 @@ const (
 )
 
 type QTileRules struct {
-	h          *C.QTileRules
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QTileRules) cPointer() *C.QTileRules {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QTileRules) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQTileRules constructs the type using only CGO pointers.
-func newQTileRules(h *C.QTileRules) *QTileRules {
-	if h == nil {
-		return nil
-	}
-
-	return &QTileRules{h: h}
-}
-
-// UnsafeNewQTileRules constructs the type using only unsafe pointers.
-func UnsafeNewQTileRules(h unsafe.Pointer) *QTileRules {
-	return newQTileRules((*C.QTileRules)(h))
 }
 
 // NewQTileRules constructs a new QTileRules object.
 func NewQTileRules(horizontalRule TileRule, verticalRule TileRule) *QTileRules {
 
-	ret := newQTileRules(C.QTileRules_new((C.int)(horizontalRule), (C.int)(verticalRule)))
+	ret := newQTileRules(QTileRules_new((int)(horizontalRule), (int)(verticalRule)))
 	ret.isSubclass = true
 	return ret
 }
@@ -75,7 +38,7 @@ func NewQTileRules(horizontalRule TileRule, verticalRule TileRule) *QTileRules {
 // NewQTileRules2 constructs a new QTileRules object.
 func NewQTileRules2() *QTileRules {
 
-	ret := newQTileRules(C.QTileRules_new2())
+	ret := newQTileRules(QTileRules_new2())
 	ret.isSubclass = true
 	return ret
 }
@@ -83,7 +46,7 @@ func NewQTileRules2() *QTileRules {
 // NewQTileRules3 constructs a new QTileRules object.
 func NewQTileRules3(param1 *QTileRules) *QTileRules {
 
-	ret := newQTileRules(C.QTileRules_new3(param1.cPointer()))
+	ret := newQTileRules(QTileRules_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -91,21 +54,7 @@ func NewQTileRules3(param1 *QTileRules) *QTileRules {
 // NewQTileRules4 constructs a new QTileRules object.
 func NewQTileRules4(rule TileRule) *QTileRules {
 
-	ret := newQTileRules(C.QTileRules_new4((C.int)(rule)))
+	ret := newQTileRules(QTileRules_new4((int)(rule)))
 	ret.isSubclass = true
 	return ret
-}
-
-// Delete this object from C++ memory.
-func (this *QTileRules) Delete() {
-	C.QTileRules_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QTileRules) GoGC() {
-	runtime.SetFinalizer(this, func(this *QTileRules) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

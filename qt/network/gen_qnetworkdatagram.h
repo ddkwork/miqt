@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -17,36 +17,44 @@ extern "C" {
 #ifdef __cplusplus
 class QHostAddress;
 class QNetworkDatagram;
+class _GUID;
+class type_info;
 #else
 typedef struct QHostAddress QHostAddress;
 typedef struct QNetworkDatagram QNetworkDatagram;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QNetworkDatagram* QNetworkDatagram_new();
-QNetworkDatagram* QNetworkDatagram_new2(struct miqt_string data);
-QNetworkDatagram* QNetworkDatagram_new3(QNetworkDatagram* other);
-QNetworkDatagram* QNetworkDatagram_new4(struct miqt_string data, QHostAddress* destinationAddress);
-QNetworkDatagram* QNetworkDatagram_new5(struct miqt_string data, QHostAddress* destinationAddress, uint16_t port);
-void QNetworkDatagram_OperatorAssign(QNetworkDatagram* self, QNetworkDatagram* other);
-void QNetworkDatagram_Swap(QNetworkDatagram* self, QNetworkDatagram* other);
-void QNetworkDatagram_Clear(QNetworkDatagram* self);
-bool QNetworkDatagram_IsValid(const QNetworkDatagram* self);
-bool QNetworkDatagram_IsNull(const QNetworkDatagram* self);
-unsigned int QNetworkDatagram_InterfaceIndex(const QNetworkDatagram* self);
-void QNetworkDatagram_SetInterfaceIndex(QNetworkDatagram* self, unsigned int index);
-QHostAddress* QNetworkDatagram_SenderAddress(const QNetworkDatagram* self);
-QHostAddress* QNetworkDatagram_DestinationAddress(const QNetworkDatagram* self);
-int QNetworkDatagram_SenderPort(const QNetworkDatagram* self);
-int QNetworkDatagram_DestinationPort(const QNetworkDatagram* self);
-void QNetworkDatagram_SetSender(QNetworkDatagram* self, QHostAddress* address);
-void QNetworkDatagram_SetDestination(QNetworkDatagram* self, QHostAddress* address, uint16_t port);
-int QNetworkDatagram_HopLimit(const QNetworkDatagram* self);
-void QNetworkDatagram_SetHopLimit(QNetworkDatagram* self, int count);
-struct miqt_string QNetworkDatagram_Data(const QNetworkDatagram* self);
-void QNetworkDatagram_SetData(QNetworkDatagram* self, struct miqt_string data);
-QNetworkDatagram* QNetworkDatagram_MakeReply(const QNetworkDatagram* self, struct miqt_string payload);
-void QNetworkDatagram_SetSender2(QNetworkDatagram* self, QHostAddress* address, uint16_t port);
-void QNetworkDatagram_Delete(QNetworkDatagram* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QNetworkDatagram* QNetworkDatagram_new();
+extern __declspec(dllexport) QNetworkDatagram* QNetworkDatagram_new2(struct miqt_string data);
+extern __declspec(dllexport) QNetworkDatagram* QNetworkDatagram_new3(QNetworkDatagram* other);
+extern __declspec(dllexport) QNetworkDatagram* QNetworkDatagram_new4(struct miqt_string data, QHostAddress* destinationAddress);
+extern __declspec(dllexport) QNetworkDatagram* QNetworkDatagram_new5(struct miqt_string data, QHostAddress* destinationAddress, uint16_t port);
+extern __declspec(dllexport) void QNetworkDatagram_OperatorAssign(QNetworkDatagram* self, QNetworkDatagram* other);
+extern __declspec(dllexport) void QNetworkDatagram_Swap(QNetworkDatagram* self, QNetworkDatagram* other);
+extern __declspec(dllexport) void QNetworkDatagram_Clear(QNetworkDatagram* self);
+extern __declspec(dllexport) bool QNetworkDatagram_IsValid(const QNetworkDatagram* self);
+extern __declspec(dllexport) bool QNetworkDatagram_IsNull(const QNetworkDatagram* self);
+extern __declspec(dllexport) unsigned int QNetworkDatagram_InterfaceIndex(const QNetworkDatagram* self);
+extern __declspec(dllexport) void QNetworkDatagram_SetInterfaceIndex(QNetworkDatagram* self, unsigned int index);
+extern __declspec(dllexport) QHostAddress* QNetworkDatagram_SenderAddress(const QNetworkDatagram* self);
+extern __declspec(dllexport) QHostAddress* QNetworkDatagram_DestinationAddress(const QNetworkDatagram* self);
+extern __declspec(dllexport) int QNetworkDatagram_SenderPort(const QNetworkDatagram* self);
+extern __declspec(dllexport) int QNetworkDatagram_DestinationPort(const QNetworkDatagram* self);
+extern __declspec(dllexport) void QNetworkDatagram_SetSender(QNetworkDatagram* self, QHostAddress* address);
+extern __declspec(dllexport) void QNetworkDatagram_SetDestination(QNetworkDatagram* self, QHostAddress* address, uint16_t port);
+extern __declspec(dllexport) int QNetworkDatagram_HopLimit(const QNetworkDatagram* self);
+extern __declspec(dllexport) void QNetworkDatagram_SetHopLimit(QNetworkDatagram* self, int count);
+extern __declspec(dllexport) struct miqt_string QNetworkDatagram_Data(const QNetworkDatagram* self);
+extern __declspec(dllexport) void QNetworkDatagram_SetData(QNetworkDatagram* self, struct miqt_string data);
+extern __declspec(dllexport) QNetworkDatagram* QNetworkDatagram_MakeReply(const QNetworkDatagram* self, struct miqt_string payload);
+extern __declspec(dllexport) void QNetworkDatagram_SetSender2(QNetworkDatagram* self, QHostAddress* address, uint16_t port);
+extern __declspec(dllexport) void QNetworkDatagram_Delete(QNetworkDatagram* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

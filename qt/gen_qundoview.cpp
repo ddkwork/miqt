@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemView>
 #include <QAbstractScrollArea>
 #include <QDragLeaveEvent>
@@ -36,7 +38,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQUndoView : public virtual QUndoView {
 public:
@@ -79,7 +96,7 @@ public:
 	intptr_t handle__ScrollTo = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void scrollTo(const QModelIndex& index, QAbstractItemView::ScrollHint hint) override {
+	virtual void scrollTo(const QModelIndex& index, ScrollHint hint) override {
 		if (handle__ScrollTo == 0) {
 			QUndoView::scrollTo(index, hint);
 			return;
@@ -88,8 +105,7 @@ public:
 		const QModelIndex& index_ret = index;
 		// Cast returned reference into pointer
 		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
-		QAbstractItemView::ScrollHint hint_ret = hint;
-		int sigval2 = static_cast<int>(hint_ret);
+		ScrollHint sigval2 = hint;
 
 		miqt_exec_callback_QUndoView_ScrollTo(this, handle__ScrollTo, sigval1, sigval2);
 
@@ -97,9 +113,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ScrollTo(QModelIndex* index, int hint) {
+	void virtualbase_ScrollTo(QModelIndex* index, ScrollHint hint) {
 
-		QUndoView::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
+		QUndoView::scrollTo(*index, hint);
 
 	}
 
@@ -252,7 +268,7 @@ public:
 	intptr_t handle__DataChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles) override {
+	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QList<int>& roles) override {
 		if (handle__DataChanged == 0) {
 			QUndoView::dataChanged(topLeft, bottomRight, roles);
 			return;
@@ -264,7 +280,7 @@ public:
 		const QModelIndex& bottomRight_ret = bottomRight;
 		// Cast returned reference into pointer
 		QModelIndex* sigval2 = const_cast<QModelIndex*>(&bottomRight_ret);
-		const QVector<int>& roles_ret = roles;
+		const QList<int>& roles_ret = roles;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		int* roles_arr = static_cast<int*>(malloc(sizeof(int) * roles_ret.length()));
 		for (size_t i = 0, e = roles_ret.length(); i < e; ++i) {
@@ -282,7 +298,7 @@ public:
 
 	// Wrapper to allow calling protected method
 	void virtualbase_DataChanged(QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-		QVector<int> roles_QList;
+		QList<int> roles_QList;
 		roles_QList.reserve(roles.len);
 		int* roles_arr = static_cast<int*>(roles.data);
 		for(size_t i = 0; i < roles.len; ++i) {
@@ -567,24 +583,26 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ViewOptions = 0;
+	intptr_t handle__InitViewItemOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QStyleOptionViewItem viewOptions() const override {
-		if (handle__ViewOptions == 0) {
-			return QUndoView::viewOptions();
+	virtual void initViewItemOption(QStyleOptionViewItem* option) const override {
+		if (handle__InitViewItemOption == 0) {
+			QUndoView::initViewItemOption(option);
+			return;
 		}
 		
+		QStyleOptionViewItem* sigval1 = option;
 
-		QStyleOptionViewItem* callback_return_value = miqt_exec_callback_QUndoView_ViewOptions(const_cast<MiqtVirtualQUndoView*>(this), handle__ViewOptions);
+		miqt_exec_callback_QUndoView_InitViewItemOption(const_cast<MiqtVirtualQUndoView*>(this), handle__InitViewItemOption, sigval1);
 
-		return *callback_return_value;
+		
 	}
 
 	// Wrapper to allow calling protected method
-	QStyleOptionViewItem* virtualbase_ViewOptions() const {
+	void virtualbase_InitViewItemOption(QStyleOptionViewItem* option) const {
 
-		return new QStyleOptionViewItem(QUndoView::viewOptions());
+		QUndoView::initViewItemOption(option);
 
 	}
 
@@ -660,13 +678,12 @@ public:
 	intptr_t handle__MoveCursor = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
+	virtual QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
 		if (handle__MoveCursor == 0) {
 			return QUndoView::moveCursor(cursorAction, modifiers);
 		}
 		
-		QAbstractItemView::CursorAction cursorAction_ret = cursorAction;
-		int sigval1 = static_cast<int>(cursorAction_ret);
+		CursorAction sigval1 = cursorAction;
 		Qt::KeyboardModifiers modifiers_ret = modifiers;
 		int sigval2 = static_cast<int>(modifiers_ret);
 
@@ -676,9 +693,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_MoveCursor(int cursorAction, int modifiers) {
+	QModelIndex* virtualbase_MoveCursor(CursorAction cursorAction, int modifiers) {
 
-		return new QModelIndex(QUndoView::moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifiers>(modifiers)));
+		return new QModelIndex(QUndoView::moveCursor(cursorAction, static_cast<Qt::KeyboardModifiers>(modifiers)));
 
 	}
 
@@ -949,17 +966,6 @@ struct miqt_string QUndoView_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QUndoView_TrUtf8(const char* s) {
-	QString _ret = QUndoView::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QUndoStack* QUndoView_Stack(const QUndoView* self) {
 	return self->stack();
 }
@@ -1022,28 +1028,6 @@ struct miqt_string QUndoView_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QUndoView_TrUtf82(const char* s, const char* c) {
-	QString _ret = QUndoView::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QUndoView_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QUndoView::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QUndoView_override_virtual_VisualRect(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQUndoView*>( (QUndoView*)(self) )->handle__VisualRect = slot;
 }
@@ -1056,7 +1040,7 @@ void QUndoView_override_virtual_ScrollTo(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQUndoView*>( (QUndoView*)(self) )->handle__ScrollTo = slot;
 }
 
-void QUndoView_virtualbase_ScrollTo(void* self, QModelIndex* index, int hint) {
+void QUndoView_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint) {
 	( (MiqtVirtualQUndoView*)(self) )->virtualbase_ScrollTo(index, hint);
 }
 
@@ -1204,12 +1188,12 @@ void QUndoView_virtualbase_StartDrag(void* self, int supportedActions) {
 	( (MiqtVirtualQUndoView*)(self) )->virtualbase_StartDrag(supportedActions);
 }
 
-void QUndoView_override_virtual_ViewOptions(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUndoView*>( (QUndoView*)(self) )->handle__ViewOptions = slot;
+void QUndoView_override_virtual_InitViewItemOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQUndoView*>( (QUndoView*)(self) )->handle__InitViewItemOption = slot;
 }
 
-QStyleOptionViewItem* QUndoView_virtualbase_ViewOptions(const void* self) {
-	return ( (const MiqtVirtualQUndoView*)(self) )->virtualbase_ViewOptions();
+void QUndoView_virtualbase_InitViewItemOption(const void* self, QStyleOptionViewItem* option) {
+	( (const MiqtVirtualQUndoView*)(self) )->virtualbase_InitViewItemOption(option);
 }
 
 void QUndoView_override_virtual_PaintEvent(void* self, intptr_t slot) {
@@ -1240,7 +1224,7 @@ void QUndoView_override_virtual_MoveCursor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQUndoView*>( (QUndoView*)(self) )->handle__MoveCursor = slot;
 }
 
-QModelIndex* QUndoView_virtualbase_MoveCursor(void* self, int cursorAction, int modifiers) {
+QModelIndex* QUndoView_virtualbase_MoveCursor(void* self, CursorAction cursorAction, int modifiers) {
 	return ( (MiqtVirtualQUndoView*)(self) )->virtualbase_MoveCursor(cursorAction, modifiers);
 }
 

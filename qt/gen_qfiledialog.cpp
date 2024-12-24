@@ -1,3 +1,6 @@
+// +build ignore
+
+#include <QAbstractFileIconProvider>
 #include <QAbstractItemDelegate>
 #include <QAbstractProxyModel>
 #include <QByteArray>
@@ -7,7 +10,6 @@
 #include <QDir>
 #include <QEvent>
 #include <QFileDialog>
-#include <QFileIconProvider>
 #include <QKeyEvent>
 #include <QList>
 #include <QMetaObject>
@@ -27,7 +29,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQFileDialog : public virtual QFileDialog {
 public:
@@ -447,17 +464,6 @@ struct miqt_string QFileDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QFileDialog_TrUtf8(const char* s) {
-	QString _ret = QFileDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QFileDialog_SetDirectory(QFileDialog* self, struct miqt_string directory) {
 	QString directory_QString = QString::fromUtf8(directory.data, directory.len);
 	self->setDirectory(directory_QString);
@@ -519,14 +525,6 @@ struct miqt_array /* of QUrl* */  QFileDialog_SelectedUrls(const QFileDialog* se
 	_out.len = _ret.length();
 	_out.data = static_cast<void*>(_arr);
 	return _out;
-}
-
-void QFileDialog_SetNameFilterDetailsVisible(QFileDialog* self, bool enabled) {
-	self->setNameFilterDetailsVisible(enabled);
-}
-
-bool QFileDialog_IsNameFilterDetailsVisible(const QFileDialog* self) {
-	return self->isNameFilterDetailsVisible();
 }
 
 void QFileDialog_SetNameFilter(QFileDialog* self, struct miqt_string filter) {
@@ -637,47 +635,28 @@ void QFileDialog_SetFilter(QFileDialog* self, int filters) {
 	self->setFilter(static_cast<QDir::Filters>(filters));
 }
 
-void QFileDialog_SetViewMode(QFileDialog* self, int mode) {
-	self->setViewMode(static_cast<QFileDialog::ViewMode>(mode));
+void QFileDialog_SetViewMode(QFileDialog* self, ViewMode mode) {
+	self->setViewMode(mode);
 }
 
-int QFileDialog_ViewMode(const QFileDialog* self) {
-	QFileDialog::ViewMode _ret = self->viewMode();
-	return static_cast<int>(_ret);
+ViewMode QFileDialog_ViewMode(const QFileDialog* self) {
+	return self->viewMode();
 }
 
-void QFileDialog_SetFileMode(QFileDialog* self, int mode) {
-	self->setFileMode(static_cast<QFileDialog::FileMode>(mode));
+void QFileDialog_SetFileMode(QFileDialog* self, FileMode mode) {
+	self->setFileMode(mode);
 }
 
-int QFileDialog_FileMode(const QFileDialog* self) {
-	QFileDialog::FileMode _ret = self->fileMode();
-	return static_cast<int>(_ret);
+FileMode QFileDialog_FileMode(const QFileDialog* self) {
+	return self->fileMode();
 }
 
-void QFileDialog_SetAcceptMode(QFileDialog* self, int mode) {
-	self->setAcceptMode(static_cast<QFileDialog::AcceptMode>(mode));
+void QFileDialog_SetAcceptMode(QFileDialog* self, AcceptMode mode) {
+	self->setAcceptMode(mode);
 }
 
-int QFileDialog_AcceptMode(const QFileDialog* self) {
-	QFileDialog::AcceptMode _ret = self->acceptMode();
-	return static_cast<int>(_ret);
-}
-
-void QFileDialog_SetReadOnly(QFileDialog* self, bool enabled) {
-	self->setReadOnly(enabled);
-}
-
-bool QFileDialog_IsReadOnly(const QFileDialog* self) {
-	return self->isReadOnly();
-}
-
-void QFileDialog_SetResolveSymlinks(QFileDialog* self, bool enabled) {
-	self->setResolveSymlinks(enabled);
-}
-
-bool QFileDialog_ResolveSymlinks(const QFileDialog* self) {
-	return self->resolveSymlinks();
+AcceptMode QFileDialog_AcceptMode(const QFileDialog* self) {
+	return self->acceptMode();
 }
 
 void QFileDialog_SetSidebarUrls(QFileDialog* self, struct miqt_array /* of QUrl* */  urls) {
@@ -715,14 +694,6 @@ struct miqt_string QFileDialog_SaveState(const QFileDialog* self) {
 bool QFileDialog_RestoreState(QFileDialog* self, struct miqt_string state) {
 	QByteArray state_QByteArray(state.data, state.len);
 	return self->restoreState(state_QByteArray);
-}
-
-void QFileDialog_SetConfirmOverwrite(QFileDialog* self, bool enabled) {
-	self->setConfirmOverwrite(enabled);
-}
-
-bool QFileDialog_ConfirmOverwrite(const QFileDialog* self) {
-	return self->confirmOverwrite();
 }
 
 void QFileDialog_SetDefaultSuffix(QFileDialog* self, struct miqt_string suffix) {
@@ -780,21 +751,21 @@ QAbstractItemDelegate* QFileDialog_ItemDelegate(const QFileDialog* self) {
 	return self->itemDelegate();
 }
 
-void QFileDialog_SetIconProvider(QFileDialog* self, QFileIconProvider* provider) {
+void QFileDialog_SetIconProvider(QFileDialog* self, QAbstractFileIconProvider* provider) {
 	self->setIconProvider(provider);
 }
 
-QFileIconProvider* QFileDialog_IconProvider(const QFileDialog* self) {
+QAbstractFileIconProvider* QFileDialog_IconProvider(const QFileDialog* self) {
 	return self->iconProvider();
 }
 
-void QFileDialog_SetLabelText(QFileDialog* self, int label, struct miqt_string text) {
+void QFileDialog_SetLabelText(QFileDialog* self, DialogLabel label, struct miqt_string text) {
 	QString text_QString = QString::fromUtf8(text.data, text.len);
-	self->setLabelText(static_cast<QFileDialog::DialogLabel>(label), text_QString);
+	self->setLabelText(label, text_QString);
 }
 
-struct miqt_string QFileDialog_LabelText(const QFileDialog* self, int label) {
-	QString _ret = self->labelText(static_cast<QFileDialog::DialogLabel>(label));
+struct miqt_string QFileDialog_LabelText(const QFileDialog* self, DialogLabel label) {
+	QString _ret = self->labelText(label);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -843,21 +814,20 @@ QAbstractProxyModel* QFileDialog_ProxyModel(const QFileDialog* self) {
 	return self->proxyModel();
 }
 
-void QFileDialog_SetOption(QFileDialog* self, int option) {
-	self->setOption(static_cast<QFileDialog::Option>(option));
+void QFileDialog_SetOption(QFileDialog* self, Option option) {
+	self->setOption(option);
 }
 
-bool QFileDialog_TestOption(const QFileDialog* self, int option) {
-	return self->testOption(static_cast<QFileDialog::Option>(option));
+bool QFileDialog_TestOption(const QFileDialog* self, Option option) {
+	return self->testOption(option);
 }
 
-void QFileDialog_SetOptions(QFileDialog* self, int options) {
-	self->setOptions(static_cast<QFileDialog::Options>(options));
+void QFileDialog_SetOptions(QFileDialog* self, Options options) {
+	self->setOptions(options);
 }
 
-int QFileDialog_Options(const QFileDialog* self) {
-	QFileDialog::Options _ret = self->options();
-	return static_cast<int>(_ret);
+Options QFileDialog_Options(const QFileDialog* self) {
+	return self->options();
 }
 
 void QFileDialog_SetVisible(QFileDialog* self, bool visible) {
@@ -1145,30 +1115,8 @@ struct miqt_string QFileDialog_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QFileDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QFileDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFileDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QFileDialog::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QFileDialog_SetOption2(QFileDialog* self, int option, bool on) {
-	self->setOption(static_cast<QFileDialog::Option>(option), on);
+void QFileDialog_SetOption2(QFileDialog* self, Option option, bool on) {
+	self->setOption(option, on);
 }
 
 struct miqt_string QFileDialog_GetOpenFileName1(QWidget* parent) {
@@ -1347,10 +1295,10 @@ struct miqt_string QFileDialog_GetExistingDirectory3(QWidget* parent, struct miq
 	return _ms;
 }
 
-struct miqt_string QFileDialog_GetExistingDirectory4(QWidget* parent, struct miqt_string caption, struct miqt_string dir, int options) {
+struct miqt_string QFileDialog_GetExistingDirectory4(QWidget* parent, struct miqt_string caption, struct miqt_string dir, Options options) {
 	QString caption_QString = QString::fromUtf8(caption.data, caption.len);
 	QString dir_QString = QString::fromUtf8(dir.data, dir.len);
-	QString _ret = QFileDialog::getExistingDirectory(parent, caption_QString, dir_QString, static_cast<QFileDialog::Options>(options));
+	QString _ret = QFileDialog::getExistingDirectory(parent, caption_QString, dir_QString, options);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1374,12 +1322,12 @@ QUrl* QFileDialog_GetExistingDirectoryUrl3(QWidget* parent, struct miqt_string c
 	return new QUrl(QFileDialog::getExistingDirectoryUrl(parent, caption_QString, *dir));
 }
 
-QUrl* QFileDialog_GetExistingDirectoryUrl4(QWidget* parent, struct miqt_string caption, QUrl* dir, int options) {
+QUrl* QFileDialog_GetExistingDirectoryUrl4(QWidget* parent, struct miqt_string caption, QUrl* dir, Options options) {
 	QString caption_QString = QString::fromUtf8(caption.data, caption.len);
-	return new QUrl(QFileDialog::getExistingDirectoryUrl(parent, caption_QString, *dir, static_cast<QFileDialog::Options>(options)));
+	return new QUrl(QFileDialog::getExistingDirectoryUrl(parent, caption_QString, *dir, options));
 }
 
-QUrl* QFileDialog_GetExistingDirectoryUrl5(QWidget* parent, struct miqt_string caption, QUrl* dir, int options, struct miqt_array /* of struct miqt_string */  supportedSchemes) {
+QUrl* QFileDialog_GetExistingDirectoryUrl5(QWidget* parent, struct miqt_string caption, QUrl* dir, Options options, struct miqt_array /* of struct miqt_string */  supportedSchemes) {
 	QString caption_QString = QString::fromUtf8(caption.data, caption.len);
 	QStringList supportedSchemes_QList;
 	supportedSchemes_QList.reserve(supportedSchemes.len);
@@ -1388,7 +1336,7 @@ QUrl* QFileDialog_GetExistingDirectoryUrl5(QWidget* parent, struct miqt_string c
 		QString supportedSchemes_arr_i_QString = QString::fromUtf8(supportedSchemes_arr[i].data, supportedSchemes_arr[i].len);
 		supportedSchemes_QList.push_back(supportedSchemes_arr_i_QString);
 	}
-	return new QUrl(QFileDialog::getExistingDirectoryUrl(parent, caption_QString, *dir, static_cast<QFileDialog::Options>(options), supportedSchemes_QList));
+	return new QUrl(QFileDialog::getExistingDirectoryUrl(parent, caption_QString, *dir, options, supportedSchemes_QList));
 }
 
 struct miqt_array /* of struct miqt_string */  QFileDialog_GetOpenFileNames1(QWidget* parent) {
@@ -1531,6 +1479,12 @@ struct miqt_array /* of QUrl* */  QFileDialog_GetOpenFileUrls4(QWidget* parent, 
 	_out.len = _ret.length();
 	_out.data = static_cast<void*>(_arr);
 	return _out;
+}
+
+void QFileDialog_SaveFileContent3(struct miqt_string fileContent, struct miqt_string fileNameHint, QWidget* parent) {
+	QByteArray fileContent_QByteArray(fileContent.data, fileContent.len);
+	QString fileNameHint_QString = QString::fromUtf8(fileNameHint.data, fileNameHint.len);
+	QFileDialog::saveFileContent(fileContent_QByteArray, fileNameHint_QString, parent);
 }
 
 void QFileDialog_override_virtual_SetVisible(void* self, intptr_t slot) {

@@ -1,17 +1,16 @@
+// +build ignore
+
 #include <QApplication>
 #include <QCoreApplication>
-#include <QDesktopWidget>
 #include <QEvent>
 #include <QFont>
 #include <QFontMetrics>
 #include <QGuiApplication>
-#include <QIcon>
 #include <QList>
 #include <QMetaObject>
 #include <QObject>
 #include <QPalette>
 #include <QPoint>
-#include <QSize>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -23,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQApplication : public virtual QApplication {
 public:
@@ -113,17 +127,6 @@ struct miqt_string QApplication_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QApplication_TrUtf8(const char* s) {
-	QString _ret = QApplication::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QStyle* QApplication_Style() {
 	return QApplication::style();
 }
@@ -135,14 +138,6 @@ void QApplication_SetStyle(QStyle* style) {
 QStyle* QApplication_SetStyleWithStyle(struct miqt_string style) {
 	QString style_QString = QString::fromUtf8(style.data, style.len);
 	return QApplication::setStyle(style_QString);
-}
-
-int QApplication_ColorSpec() {
-	return QApplication::colorSpec();
-}
-
-void QApplication_SetColorSpec(int colorSpec) {
-	QApplication::setColorSpec(static_cast<int>(colorSpec));
 }
 
 QPalette* QApplication_Palette(QWidget* param1) {
@@ -177,14 +172,6 @@ QFontMetrics* QApplication_FontMetrics() {
 	return new QFontMetrics(QApplication::fontMetrics());
 }
 
-void QApplication_SetWindowIcon(QIcon* icon) {
-	QApplication::setWindowIcon(*icon);
-}
-
-QIcon* QApplication_WindowIcon() {
-	return new QIcon(QApplication::windowIcon());
-}
-
 struct miqt_array /* of QWidget* */  QApplication_AllWidgets() {
 	QWidgetList _ret = QApplication::allWidgets();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -209,10 +196,6 @@ struct miqt_array /* of QWidget* */  QApplication_TopLevelWidgets() {
 	_out.len = _ret.length();
 	_out.data = static_cast<void*>(_arr);
 	return _out;
-}
-
-QDesktopWidget* QApplication_Desktop() {
-	return QApplication::desktop();
 }
 
 QWidget* QApplication_ActivePopupWidget() {
@@ -291,14 +274,6 @@ int QApplication_WheelScrollLines() {
 	return QApplication::wheelScrollLines();
 }
 
-void QApplication_SetGlobalStrut(QSize* globalStrut) {
-	QApplication::setGlobalStrut(*globalStrut);
-}
-
-QSize* QApplication_GlobalStrut() {
-	return new QSize(QApplication::globalStrut());
-}
-
 void QApplication_SetStartDragTime(int ms) {
 	QApplication::setStartDragTime(static_cast<int>(ms));
 }
@@ -354,6 +329,10 @@ struct miqt_string QApplication_StyleSheet(const QApplication* self) {
 	return _ms;
 }
 
+bool QApplication_AutoSipEnabled(const QApplication* self) {
+	return self->autoSipEnabled();
+}
+
 void QApplication_SetStyleSheet(QApplication* self, struct miqt_string sheet) {
 	QString sheet_QString = QString::fromUtf8(sheet.data, sheet.len);
 	self->setStyleSheet(sheet_QString);
@@ -361,10 +340,6 @@ void QApplication_SetStyleSheet(QApplication* self, struct miqt_string sheet) {
 
 void QApplication_SetAutoSipEnabled(QApplication* self, const bool enabled) {
 	self->setAutoSipEnabled(enabled);
-}
-
-bool QApplication_AutoSipEnabled(const QApplication* self) {
-	return self->autoSipEnabled();
 }
 
 void QApplication_CloseAllWindows() {
@@ -388,28 +363,6 @@ struct miqt_string QApplication_Tr2(const char* s, const char* c) {
 
 struct miqt_string QApplication_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QApplication::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QApplication_TrUtf82(const char* s, const char* c) {
-	QString _ret = QApplication::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QApplication_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QApplication::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

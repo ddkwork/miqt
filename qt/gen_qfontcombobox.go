@@ -1,16 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qfontcombobox.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -25,46 +15,14 @@ const (
 )
 
 type QFontComboBox struct {
-	h          *C.QFontComboBox
+	h          uintptr
 	isSubclass bool
-	*QComboBox
-}
-
-func (this *QFontComboBox) cPointer() *C.QFontComboBox {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QFontComboBox) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQFontComboBox constructs the type using only CGO pointers.
-func newQFontComboBox(h *C.QFontComboBox) *QFontComboBox {
-	if h == nil {
-		return nil
-	}
-	var outptr_QComboBox *C.QComboBox = nil
-	C.QFontComboBox_virtbase(h, &outptr_QComboBox)
-
-	return &QFontComboBox{h: h,
-		QComboBox: newQComboBox(outptr_QComboBox)}
-}
-
-// UnsafeNewQFontComboBox constructs the type using only unsafe pointers.
-func UnsafeNewQFontComboBox(h unsafe.Pointer) *QFontComboBox {
-	return newQFontComboBox((*C.QFontComboBox)(h))
 }
 
 // NewQFontComboBox constructs a new QFontComboBox object.
 func NewQFontComboBox(parent *QWidget) *QFontComboBox {
 
-	ret := newQFontComboBox(C.QFontComboBox_new(parent.cPointer()))
+	ret := newQFontComboBox(QFontComboBox_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -72,80 +30,117 @@ func NewQFontComboBox(parent *QWidget) *QFontComboBox {
 // NewQFontComboBox2 constructs a new QFontComboBox object.
 func NewQFontComboBox2() *QFontComboBox {
 
-	ret := newQFontComboBox(C.QFontComboBox_new2())
+	ret := newQFontComboBox(QFontComboBox_new2())
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QFontComboBox) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QFontComboBox_MetaObject(this.h))
+	return newQMetaObject(QFontComboBox_MetaObject(this.h))
 }
 
 func (this *QFontComboBox) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QFontComboBox_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QFontComboBox_Metacast(this.h, param1_Cstring))
 }
 
 func QFontComboBox_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QFontComboBox_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QFontComboBox_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QFontComboBox_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QFontComboBox_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFontComboBox) SetWritingSystem(writingSystem QFontDatabase__WritingSystem) {
-	C.QFontComboBox_SetWritingSystem(this.h, (C.int)(writingSystem))
+	QFontComboBox_SetWritingSystem(this.h, (int)(writingSystem))
 }
 
 func (this *QFontComboBox) WritingSystem() QFontDatabase__WritingSystem {
-	return (QFontDatabase__WritingSystem)(C.QFontComboBox_WritingSystem(this.h))
+	return (QFontDatabase__WritingSystem)(QFontComboBox_WritingSystem(this.h))
 }
 
-func (this *QFontComboBox) SetFontFilters(filters QFontComboBox__FontFilter) {
-	C.QFontComboBox_SetFontFilters(this.h, (C.int)(filters))
+func (this *QFontComboBox) SetFontFilters(filters FontFilters) {
+	QFontComboBox_SetFontFilters(this.h, filters)
 }
 
-func (this *QFontComboBox) FontFilters() QFontComboBox__FontFilter {
-	return (QFontComboBox__FontFilter)(C.QFontComboBox_FontFilters(this.h))
+func (this *QFontComboBox) FontFilters() FontFilters {
+	xxxxxxxxx
 }
 
 func (this *QFontComboBox) CurrentFont() *QFont {
-	_goptr := newQFont(C.QFontComboBox_CurrentFont(this.h))
+	_goptr := newQFont(QFontComboBox_CurrentFont(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QFontComboBox) SizeHint() *QSize {
-	_goptr := newQSize(C.QFontComboBox_SizeHint(this.h))
+	_goptr := newQSize(QFontComboBox_SizeHint(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
+func (this *QFontComboBox) SetSampleTextForSystem(writingSystem QFontDatabase__WritingSystem, sampleText string) {
+	sampleText_ms := struct_miqt_string{}
+	sampleText_ms.data = CString(sampleText)
+	sampleText_ms.len = size_t(len(sampleText))
+	defer free(unsafe.Pointer(sampleText_ms.data))
+	QFontComboBox_SetSampleTextForSystem(this.h, (int)(writingSystem), sampleText_ms)
+}
+
+func (this *QFontComboBox) SampleTextForSystem(writingSystem QFontDatabase__WritingSystem) string {
+	var _ms struct_miqt_string = QFontComboBox_SampleTextForSystem(this.h, (int)(writingSystem))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QFontComboBox) SetSampleTextForFont(fontFamily string, sampleText string) {
+	fontFamily_ms := struct_miqt_string{}
+	fontFamily_ms.data = CString(fontFamily)
+	fontFamily_ms.len = size_t(len(fontFamily))
+	defer free(unsafe.Pointer(fontFamily_ms.data))
+	sampleText_ms := struct_miqt_string{}
+	sampleText_ms.data = CString(sampleText)
+	sampleText_ms.len = size_t(len(sampleText))
+	defer free(unsafe.Pointer(sampleText_ms.data))
+	QFontComboBox_SetSampleTextForFont(this.h, fontFamily_ms, sampleText_ms)
+}
+
+func (this *QFontComboBox) SampleTextForFont(fontFamily string) string {
+	fontFamily_ms := struct_miqt_string{}
+	fontFamily_ms.data = CString(fontFamily)
+	fontFamily_ms.len = size_t(len(fontFamily))
+	defer free(unsafe.Pointer(fontFamily_ms.data))
+	var _ms struct_miqt_string = QFontComboBox_SampleTextForFont(this.h, fontFamily_ms)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QFontComboBox) SetDisplayFont(fontFamily string, font *QFont) {
+	fontFamily_ms := struct_miqt_string{}
+	fontFamily_ms.data = CString(fontFamily)
+	fontFamily_ms.len = size_t(len(fontFamily))
+	defer free(unsafe.Pointer(fontFamily_ms.data))
+	QFontComboBox_SetDisplayFont(this.h, fontFamily_ms, font.cPointer())
+}
+
 func (this *QFontComboBox) SetCurrentFont(f *QFont) {
-	C.QFontComboBox_SetCurrentFont(this.h, f.cPointer())
+	QFontComboBox_SetCurrentFont(this.h, f.cPointer())
 }
 
 func (this *QFontComboBox) CurrentFontChanged(f *QFont) {
-	C.QFontComboBox_CurrentFontChanged(this.h, f.cPointer())
+	QFontComboBox_CurrentFontChanged(this.h, f.cPointer())
 }
 func (this *QFontComboBox) OnCurrentFontChanged(slot func(f *QFont)) {
-	C.QFontComboBox_connect_CurrentFontChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_connect_CurrentFontChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_CurrentFontChanged
-func miqt_exec_callback_QFontComboBox_CurrentFontChanged(cb C.intptr_t, f *C.QFont) {
+func miqt_exec_callback_QFontComboBox_CurrentFontChanged(cb intptr_t, f *QFont) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(f *QFont))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -158,52 +153,30 @@ func miqt_exec_callback_QFontComboBox_CurrentFontChanged(cb C.intptr_t, f *C.QFo
 }
 
 func QFontComboBox_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontComboBox_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QFontComboBox_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QFontComboBox_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontComboBox_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QFontComboBox_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontComboBox_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QFontComboBox_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QFontComboBox_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QFontComboBox_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFontComboBox) callVirtualBase_SizeHint() *QSize {
 
-	_goptr := newQSize(C.QFontComboBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QFontComboBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -212,11 +185,11 @@ func (this *QFontComboBox) OnSizeHint(slot func(super func() *QSize) *QSize) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_SizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_SizeHint
-func miqt_exec_callback_QFontComboBox_SizeHint(self *C.QFontComboBox, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QFontComboBox_SizeHint(self QFontComboBox, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -230,18 +203,18 @@ func miqt_exec_callback_QFontComboBox_SizeHint(self *C.QFontComboBox, cb C.intpt
 
 func (this *QFontComboBox) callVirtualBase_Event(e *QEvent) bool {
 
-	return (bool)(C.QFontComboBox_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
+	return (bool)(QFontComboBox_virtualbase_Event(unsafe.Pointer(this.h), e.cPointer()))
 
 }
 func (this *QFontComboBox) OnEvent(slot func(super func(e *QEvent) bool, e *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_Event
-func miqt_exec_callback_QFontComboBox_Event(self *C.QFontComboBox, cb C.intptr_t, e *C.QEvent) C.bool {
+func miqt_exec_callback_QFontComboBox_Event(self QFontComboBox, cb intptr_t, e *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent) bool, e *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -252,13 +225,39 @@ func miqt_exec_callback_QFontComboBox_Event(self *C.QFontComboBox, cb C.intptr_t
 
 	virtualReturn := gofunc((&QFontComboBox{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
+
+}
+
+func (this *QFontComboBox) callVirtualBase_SetModel(model *QAbstractItemModel) {
+
+	QFontComboBox_virtualbase_SetModel(unsafe.Pointer(this.h), model.cPointer())
+
+}
+func (this *QFontComboBox) OnSetModel(slot func(super func(model *QAbstractItemModel), model *QAbstractItemModel)) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QFontComboBox_override_virtual_SetModel(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QFontComboBox_SetModel
+func miqt_exec_callback_QFontComboBox_SetModel(self QFontComboBox, cb intptr_t, model *QAbstractItemModel) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(model *QAbstractItemModel), model *QAbstractItemModel))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQAbstractItemModel(model)
+
+	gofunc((&QFontComboBox{h: self}).callVirtualBase_SetModel, slotval1)
 
 }
 
 func (this *QFontComboBox) callVirtualBase_MinimumSizeHint() *QSize {
 
-	_goptr := newQSize(C.QFontComboBox_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QFontComboBox_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -267,11 +266,11 @@ func (this *QFontComboBox) OnMinimumSizeHint(slot func(super func() *QSize) *QSi
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_MinimumSizeHint
-func miqt_exec_callback_QFontComboBox_MinimumSizeHint(self *C.QFontComboBox, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QFontComboBox_MinimumSizeHint(self QFontComboBox, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -285,18 +284,18 @@ func miqt_exec_callback_QFontComboBox_MinimumSizeHint(self *C.QFontComboBox, cb 
 
 func (this *QFontComboBox) callVirtualBase_ShowPopup() {
 
-	C.QFontComboBox_virtualbase_ShowPopup(unsafe.Pointer(this.h))
+	QFontComboBox_virtualbase_ShowPopup(unsafe.Pointer(this.h))
 
 }
 func (this *QFontComboBox) OnShowPopup(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_ShowPopup(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_ShowPopup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_ShowPopup
-func miqt_exec_callback_QFontComboBox_ShowPopup(self *C.QFontComboBox, cb C.intptr_t) {
+func miqt_exec_callback_QFontComboBox_ShowPopup(self QFontComboBox, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -308,18 +307,18 @@ func miqt_exec_callback_QFontComboBox_ShowPopup(self *C.QFontComboBox, cb C.intp
 
 func (this *QFontComboBox) callVirtualBase_HidePopup() {
 
-	C.QFontComboBox_virtualbase_HidePopup(unsafe.Pointer(this.h))
+	QFontComboBox_virtualbase_HidePopup(unsafe.Pointer(this.h))
 
 }
 func (this *QFontComboBox) OnHidePopup(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_HidePopup(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_HidePopup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_HidePopup
-func miqt_exec_callback_QFontComboBox_HidePopup(self *C.QFontComboBox, cb C.intptr_t) {
+func miqt_exec_callback_QFontComboBox_HidePopup(self QFontComboBox, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -331,7 +330,7 @@ func miqt_exec_callback_QFontComboBox_HidePopup(self *C.QFontComboBox, cb C.intp
 
 func (this *QFontComboBox) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
 
-	_goptr := newQVariant(C.QFontComboBox_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
+	_goptr := newQVariant(QFontComboBox_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -340,11 +339,11 @@ func (this *QFontComboBox) OnInputMethodQuery(slot func(super func(param1 InputM
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_InputMethodQuery(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_InputMethodQuery(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_InputMethodQuery
-func miqt_exec_callback_QFontComboBox_InputMethodQuery(self *C.QFontComboBox, cb C.intptr_t, param1 C.int) *C.QVariant {
+func miqt_exec_callback_QFontComboBox_InputMethodQuery(self QFontComboBox, cb intptr_t, param1 int) *QVariant {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -361,18 +360,18 @@ func miqt_exec_callback_QFontComboBox_InputMethodQuery(self *C.QFontComboBox, cb
 
 func (this *QFontComboBox) callVirtualBase_FocusInEvent(e *QFocusEvent) {
 
-	C.QFontComboBox_virtualbase_FocusInEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_FocusInEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnFocusInEvent(slot func(super func(e *QFocusEvent), e *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_FocusInEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_FocusInEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_FocusInEvent
-func miqt_exec_callback_QFontComboBox_FocusInEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QFocusEvent) {
+func miqt_exec_callback_QFontComboBox_FocusInEvent(self QFontComboBox, cb intptr_t, e *QFocusEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QFocusEvent), e *QFocusEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -387,18 +386,18 @@ func miqt_exec_callback_QFontComboBox_FocusInEvent(self *C.QFontComboBox, cb C.i
 
 func (this *QFontComboBox) callVirtualBase_FocusOutEvent(e *QFocusEvent) {
 
-	C.QFontComboBox_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnFocusOutEvent(slot func(super func(e *QFocusEvent), e *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_FocusOutEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_FocusOutEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_FocusOutEvent
-func miqt_exec_callback_QFontComboBox_FocusOutEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QFocusEvent) {
+func miqt_exec_callback_QFontComboBox_FocusOutEvent(self QFontComboBox, cb intptr_t, e *QFocusEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QFocusEvent), e *QFocusEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -413,18 +412,18 @@ func miqt_exec_callback_QFontComboBox_FocusOutEvent(self *C.QFontComboBox, cb C.
 
 func (this *QFontComboBox) callVirtualBase_ChangeEvent(e *QEvent) {
 
-	C.QFontComboBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnChangeEvent(slot func(super func(e *QEvent), e *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_ChangeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_ChangeEvent
-func miqt_exec_callback_QFontComboBox_ChangeEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QEvent) {
+func miqt_exec_callback_QFontComboBox_ChangeEvent(self QFontComboBox, cb intptr_t, e *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent), e *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -439,18 +438,18 @@ func miqt_exec_callback_QFontComboBox_ChangeEvent(self *C.QFontComboBox, cb C.in
 
 func (this *QFontComboBox) callVirtualBase_ResizeEvent(e *QResizeEvent) {
 
-	C.QFontComboBox_virtualbase_ResizeEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_ResizeEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnResizeEvent(slot func(super func(e *QResizeEvent), e *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_ResizeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_ResizeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_ResizeEvent
-func miqt_exec_callback_QFontComboBox_ResizeEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QResizeEvent) {
+func miqt_exec_callback_QFontComboBox_ResizeEvent(self QFontComboBox, cb intptr_t, e *QResizeEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QResizeEvent), e *QResizeEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -465,18 +464,18 @@ func miqt_exec_callback_QFontComboBox_ResizeEvent(self *C.QFontComboBox, cb C.in
 
 func (this *QFontComboBox) callVirtualBase_PaintEvent(e *QPaintEvent) {
 
-	C.QFontComboBox_virtualbase_PaintEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_PaintEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnPaintEvent(slot func(super func(e *QPaintEvent), e *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_PaintEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_PaintEvent
-func miqt_exec_callback_QFontComboBox_PaintEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QPaintEvent) {
+func miqt_exec_callback_QFontComboBox_PaintEvent(self QFontComboBox, cb intptr_t, e *QPaintEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QPaintEvent), e *QPaintEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -491,18 +490,18 @@ func miqt_exec_callback_QFontComboBox_PaintEvent(self *C.QFontComboBox, cb C.int
 
 func (this *QFontComboBox) callVirtualBase_ShowEvent(e *QShowEvent) {
 
-	C.QFontComboBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnShowEvent(slot func(super func(e *QShowEvent), e *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_ShowEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_ShowEvent
-func miqt_exec_callback_QFontComboBox_ShowEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QShowEvent) {
+func miqt_exec_callback_QFontComboBox_ShowEvent(self QFontComboBox, cb intptr_t, e *QShowEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QShowEvent), e *QShowEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -517,18 +516,18 @@ func miqt_exec_callback_QFontComboBox_ShowEvent(self *C.QFontComboBox, cb C.intp
 
 func (this *QFontComboBox) callVirtualBase_HideEvent(e *QHideEvent) {
 
-	C.QFontComboBox_virtualbase_HideEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_HideEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnHideEvent(slot func(super func(e *QHideEvent), e *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_HideEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_HideEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_HideEvent
-func miqt_exec_callback_QFontComboBox_HideEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QHideEvent) {
+func miqt_exec_callback_QFontComboBox_HideEvent(self QFontComboBox, cb intptr_t, e *QHideEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QHideEvent), e *QHideEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -543,18 +542,18 @@ func miqt_exec_callback_QFontComboBox_HideEvent(self *C.QFontComboBox, cb C.intp
 
 func (this *QFontComboBox) callVirtualBase_MousePressEvent(e *QMouseEvent) {
 
-	C.QFontComboBox_virtualbase_MousePressEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_MousePressEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnMousePressEvent(slot func(super func(e *QMouseEvent), e *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_MousePressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_MousePressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_MousePressEvent
-func miqt_exec_callback_QFontComboBox_MousePressEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QMouseEvent) {
+func miqt_exec_callback_QFontComboBox_MousePressEvent(self QFontComboBox, cb intptr_t, e *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QMouseEvent), e *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -569,18 +568,18 @@ func miqt_exec_callback_QFontComboBox_MousePressEvent(self *C.QFontComboBox, cb 
 
 func (this *QFontComboBox) callVirtualBase_MouseReleaseEvent(e *QMouseEvent) {
 
-	C.QFontComboBox_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnMouseReleaseEvent(slot func(super func(e *QMouseEvent), e *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_MouseReleaseEvent
-func miqt_exec_callback_QFontComboBox_MouseReleaseEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QMouseEvent) {
+func miqt_exec_callback_QFontComboBox_MouseReleaseEvent(self QFontComboBox, cb intptr_t, e *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QMouseEvent), e *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -595,18 +594,18 @@ func miqt_exec_callback_QFontComboBox_MouseReleaseEvent(self *C.QFontComboBox, c
 
 func (this *QFontComboBox) callVirtualBase_KeyPressEvent(e *QKeyEvent) {
 
-	C.QFontComboBox_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnKeyPressEvent(slot func(super func(e *QKeyEvent), e *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_KeyPressEvent
-func miqt_exec_callback_QFontComboBox_KeyPressEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QKeyEvent) {
+func miqt_exec_callback_QFontComboBox_KeyPressEvent(self QFontComboBox, cb intptr_t, e *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QKeyEvent), e *QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -621,18 +620,18 @@ func miqt_exec_callback_QFontComboBox_KeyPressEvent(self *C.QFontComboBox, cb C.
 
 func (this *QFontComboBox) callVirtualBase_KeyReleaseEvent(e *QKeyEvent) {
 
-	C.QFontComboBox_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnKeyReleaseEvent(slot func(super func(e *QKeyEvent), e *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_KeyReleaseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_KeyReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_KeyReleaseEvent
-func miqt_exec_callback_QFontComboBox_KeyReleaseEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QKeyEvent) {
+func miqt_exec_callback_QFontComboBox_KeyReleaseEvent(self QFontComboBox, cb intptr_t, e *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QKeyEvent), e *QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -647,18 +646,18 @@ func miqt_exec_callback_QFontComboBox_KeyReleaseEvent(self *C.QFontComboBox, cb 
 
 func (this *QFontComboBox) callVirtualBase_WheelEvent(e *QWheelEvent) {
 
-	C.QFontComboBox_virtualbase_WheelEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_WheelEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnWheelEvent(slot func(super func(e *QWheelEvent), e *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_WheelEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_WheelEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_WheelEvent
-func miqt_exec_callback_QFontComboBox_WheelEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QWheelEvent) {
+func miqt_exec_callback_QFontComboBox_WheelEvent(self QFontComboBox, cb intptr_t, e *QWheelEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QWheelEvent), e *QWheelEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -673,18 +672,18 @@ func miqt_exec_callback_QFontComboBox_WheelEvent(self *C.QFontComboBox, cb C.int
 
 func (this *QFontComboBox) callVirtualBase_ContextMenuEvent(e *QContextMenuEvent) {
 
-	C.QFontComboBox_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), e.cPointer())
+	QFontComboBox_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QFontComboBox) OnContextMenuEvent(slot func(super func(e *QContextMenuEvent), e *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_ContextMenuEvent
-func miqt_exec_callback_QFontComboBox_ContextMenuEvent(self *C.QFontComboBox, cb C.intptr_t, e *C.QContextMenuEvent) {
+func miqt_exec_callback_QFontComboBox_ContextMenuEvent(self QFontComboBox, cb intptr_t, e *QContextMenuEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QContextMenuEvent), e *QContextMenuEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -699,18 +698,18 @@ func miqt_exec_callback_QFontComboBox_ContextMenuEvent(self *C.QFontComboBox, cb
 
 func (this *QFontComboBox) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
 
-	C.QFontComboBox_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QFontComboBox_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QFontComboBox) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QFontComboBox_override_virtual_InputMethodEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QFontComboBox_override_virtual_InputMethodEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QFontComboBox_InputMethodEvent
-func miqt_exec_callback_QFontComboBox_InputMethodEvent(self *C.QFontComboBox, cb C.intptr_t, param1 *C.QInputMethodEvent) {
+func miqt_exec_callback_QFontComboBox_InputMethodEvent(self QFontComboBox, cb intptr_t, param1 *QInputMethodEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -723,16 +722,28 @@ func miqt_exec_callback_QFontComboBox_InputMethodEvent(self *C.QFontComboBox, cb
 
 }
 
-// Delete this object from C++ memory.
-func (this *QFontComboBox) Delete() {
-	C.QFontComboBox_Delete(this.h, C.bool(this.isSubclass))
+func (this *QFontComboBox) callVirtualBase_InitStyleOption(option *QStyleOptionComboBox) {
+
+	QFontComboBox_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
+
+}
+func (this *QFontComboBox) OnInitStyleOption(slot func(super func(option *QStyleOptionComboBox), option *QStyleOptionComboBox)) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QFontComboBox_override_virtual_InitStyleOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QFontComboBox) GoGC() {
-	runtime.SetFinalizer(this, func(this *QFontComboBox) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+//export miqt_exec_callback_QFontComboBox_InitStyleOption
+func miqt_exec_callback_QFontComboBox_InitStyleOption(self QFontComboBox, cb intptr_t, option *QStyleOptionComboBox) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option *QStyleOptionComboBox), option *QStyleOptionComboBox))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQStyleOptionComboBox(option)
+
+	gofunc((&QFontComboBox{h: self}).callVirtualBase_InitStyleOption, slotval1)
+
 }

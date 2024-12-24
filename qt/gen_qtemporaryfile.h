@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -18,56 +18,61 @@ extern "C" {
 class QFile;
 class QFileDevice;
 class QIODevice;
+class QIODeviceBase;
 class QMetaObject;
 class QObject;
 class QTemporaryFile;
+class _GUID;
+class type_info;
 #else
 typedef struct QFile QFile;
 typedef struct QFileDevice QFileDevice;
 typedef struct QIODevice QIODevice;
+typedef struct QIODeviceBase QIODeviceBase;
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QTemporaryFile QTemporaryFile;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QTemporaryFile* QTemporaryFile_new();
-QTemporaryFile* QTemporaryFile_new2(struct miqt_string templateName);
-QTemporaryFile* QTemporaryFile_new3(QObject* parent);
-QTemporaryFile* QTemporaryFile_new4(struct miqt_string templateName, QObject* parent);
-void QTemporaryFile_virtbase(QTemporaryFile* src, QFile** outptr_QFile);
-QMetaObject* QTemporaryFile_MetaObject(const QTemporaryFile* self);
-void* QTemporaryFile_Metacast(QTemporaryFile* self, const char* param1);
-struct miqt_string QTemporaryFile_Tr(const char* s);
-struct miqt_string QTemporaryFile_TrUtf8(const char* s);
-bool QTemporaryFile_AutoRemove(const QTemporaryFile* self);
-void QTemporaryFile_SetAutoRemove(QTemporaryFile* self, bool b);
-bool QTemporaryFile_Open(QTemporaryFile* self);
-struct miqt_string QTemporaryFile_FileName(const QTemporaryFile* self);
-struct miqt_string QTemporaryFile_FileTemplate(const QTemporaryFile* self);
-void QTemporaryFile_SetFileTemplate(QTemporaryFile* self, struct miqt_string name);
-bool QTemporaryFile_Rename(QTemporaryFile* self, struct miqt_string newName);
-QTemporaryFile* QTemporaryFile_CreateLocalFile(struct miqt_string fileName);
-QTemporaryFile* QTemporaryFile_CreateLocalFileWithFile(QFile* file);
-QTemporaryFile* QTemporaryFile_CreateNativeFile(struct miqt_string fileName);
-QTemporaryFile* QTemporaryFile_CreateNativeFileWithFile(QFile* file);
-bool QTemporaryFile_OpenWithFlags(QTemporaryFile* self, int flags);
-struct miqt_string QTemporaryFile_Tr2(const char* s, const char* c);
-struct miqt_string QTemporaryFile_Tr3(const char* s, const char* c, int n);
-struct miqt_string QTemporaryFile_TrUtf82(const char* s, const char* c);
-struct miqt_string QTemporaryFile_TrUtf83(const char* s, const char* c, int n);
-void QTemporaryFile_override_virtual_FileName(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QTemporaryFile* QTemporaryFile_new();
+extern __declspec(dllexport) QTemporaryFile* QTemporaryFile_new2(struct miqt_string templateName);
+extern __declspec(dllexport) QTemporaryFile* QTemporaryFile_new3(QObject* parent);
+extern __declspec(dllexport) QTemporaryFile* QTemporaryFile_new4(struct miqt_string templateName, QObject* parent);
+extern __declspec(dllexport) void QTemporaryFile_virtbase(QTemporaryFile* src, QFile** outptr_QFile);
+extern __declspec(dllexport) QMetaObject* QTemporaryFile_MetaObject(const QTemporaryFile* self);
+extern __declspec(dllexport) void* QTemporaryFile_Metacast(QTemporaryFile* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QTemporaryFile_Tr(const char* s);
+extern __declspec(dllexport) bool QTemporaryFile_AutoRemove(const QTemporaryFile* self);
+extern __declspec(dllexport) void QTemporaryFile_SetAutoRemove(QTemporaryFile* self, bool b);
+extern __declspec(dllexport) bool QTemporaryFile_Open(QTemporaryFile* self);
+extern __declspec(dllexport) struct miqt_string QTemporaryFile_FileName(const QTemporaryFile* self);
+extern __declspec(dllexport) struct miqt_string QTemporaryFile_FileTemplate(const QTemporaryFile* self);
+extern __declspec(dllexport) void QTemporaryFile_SetFileTemplate(QTemporaryFile* self, struct miqt_string name);
+extern __declspec(dllexport) bool QTemporaryFile_Rename(QTemporaryFile* self, struct miqt_string newName);
+extern __declspec(dllexport) QTemporaryFile* QTemporaryFile_CreateNativeFile(struct miqt_string fileName);
+extern __declspec(dllexport) QTemporaryFile* QTemporaryFile_CreateNativeFileWithFile(QFile* file);
+extern __declspec(dllexport) bool QTemporaryFile_OpenWithFlags(QTemporaryFile* self, OpenMode flags);
+extern __declspec(dllexport) struct miqt_string QTemporaryFile_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QTemporaryFile_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QTemporaryFile_override_virtual_FileName(void* self, intptr_t slot);
 struct miqt_string QTemporaryFile_virtualbase_FileName(const void* self);
-void QTemporaryFile_override_virtual_OpenWithFlags(void* self, intptr_t slot);
-bool QTemporaryFile_virtualbase_OpenWithFlags(void* self, int flags);
-void QTemporaryFile_override_virtual_Size(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTemporaryFile_override_virtual_OpenWithFlags(void* self, intptr_t slot);
+bool QTemporaryFile_virtualbase_OpenWithFlags(void* self, OpenMode flags);
+extern __declspec(dllexport) void QTemporaryFile_override_virtual_Size(void* self, intptr_t slot);
 long long QTemporaryFile_virtualbase_Size(const void* self);
-void QTemporaryFile_override_virtual_Resize(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTemporaryFile_override_virtual_Resize(void* self, intptr_t slot);
 bool QTemporaryFile_virtualbase_Resize(void* self, long long sz);
-void QTemporaryFile_override_virtual_Permissions(void* self, intptr_t slot);
-int QTemporaryFile_virtualbase_Permissions(const void* self);
-void QTemporaryFile_override_virtual_SetPermissions(void* self, intptr_t slot);
-bool QTemporaryFile_virtualbase_SetPermissions(void* self, int permissionSpec);
-void QTemporaryFile_Delete(QTemporaryFile* self, bool isSubclass);
+extern __declspec(dllexport) void QTemporaryFile_override_virtual_Permissions(void* self, intptr_t slot);
+Permissions QTemporaryFile_virtualbase_Permissions(const void* self);
+extern __declspec(dllexport) void QTemporaryFile_override_virtual_SetPermissions(void* self, intptr_t slot);
+bool QTemporaryFile_virtualbase_SetPermissions(void* self, Permissions permissionSpec);
+extern __declspec(dllexport) void QTemporaryFile_Delete(QTemporaryFile* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

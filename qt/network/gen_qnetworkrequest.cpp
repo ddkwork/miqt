@@ -1,5 +1,10 @@
+// +build ignore
+
+#include <QAnyStringView>
 #include <QByteArray>
+#include <QHttp1Configuration>
 #include <QHttp2Configuration>
+#include <QHttpHeaders>
 #include <QList>
 #include <QNetworkRequest>
 #include <QObject>
@@ -15,7 +20,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QNetworkRequest* QNetworkRequest_new() {
 	return new QNetworkRequest();
@@ -53,17 +73,24 @@ void QNetworkRequest_SetUrl(QNetworkRequest* self, QUrl* url) {
 	self->setUrl(*url);
 }
 
-QVariant* QNetworkRequest_Header(const QNetworkRequest* self, int header) {
-	return new QVariant(self->header(static_cast<QNetworkRequest::KnownHeaders>(header)));
+QHttpHeaders* QNetworkRequest_Headers(const QNetworkRequest* self) {
+	return new QHttpHeaders(self->headers());
 }
 
-void QNetworkRequest_SetHeader(QNetworkRequest* self, int header, QVariant* value) {
-	self->setHeader(static_cast<QNetworkRequest::KnownHeaders>(header), *value);
+void QNetworkRequest_SetHeaders(QNetworkRequest* self, QHttpHeaders* newHeaders) {
+	self->setHeaders(*newHeaders);
 }
 
-bool QNetworkRequest_HasRawHeader(const QNetworkRequest* self, struct miqt_string headerName) {
-	QByteArray headerName_QByteArray(headerName.data, headerName.len);
-	return self->hasRawHeader(headerName_QByteArray);
+QVariant* QNetworkRequest_Header(const QNetworkRequest* self, KnownHeaders header) {
+	return new QVariant(self->header(header));
+}
+
+void QNetworkRequest_SetHeader(QNetworkRequest* self, KnownHeaders header, QVariant* value) {
+	self->setHeader(header, *value);
+}
+
+bool QNetworkRequest_HasRawHeader(const QNetworkRequest* self, QAnyStringView* headerName) {
+	return self->hasRawHeader(*headerName);
 }
 
 struct miqt_array /* of struct miqt_string */  QNetworkRequest_RawHeaderList(const QNetworkRequest* self) {
@@ -84,9 +111,8 @@ struct miqt_array /* of struct miqt_string */  QNetworkRequest_RawHeaderList(con
 	return _out;
 }
 
-struct miqt_string QNetworkRequest_RawHeader(const QNetworkRequest* self, struct miqt_string headerName) {
-	QByteArray headerName_QByteArray(headerName.data, headerName.len);
-	QByteArray _qb = self->rawHeader(headerName_QByteArray);
+struct miqt_string QNetworkRequest_RawHeader(const QNetworkRequest* self, QAnyStringView* headerName) {
+	QByteArray _qb = self->rawHeader(*headerName);
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));
@@ -100,12 +126,12 @@ void QNetworkRequest_SetRawHeader(QNetworkRequest* self, struct miqt_string head
 	self->setRawHeader(headerName_QByteArray, value_QByteArray);
 }
 
-QVariant* QNetworkRequest_Attribute(const QNetworkRequest* self, int code) {
-	return new QVariant(self->attribute(static_cast<QNetworkRequest::Attribute>(code)));
+QVariant* QNetworkRequest_Attribute(const QNetworkRequest* self, Attribute code) {
+	return new QVariant(self->attribute(code));
 }
 
-void QNetworkRequest_SetAttribute(QNetworkRequest* self, int code, QVariant* value) {
-	self->setAttribute(static_cast<QNetworkRequest::Attribute>(code), *value);
+void QNetworkRequest_SetAttribute(QNetworkRequest* self, Attribute code, QVariant* value) {
+	self->setAttribute(code, *value);
 }
 
 QSslConfiguration* QNetworkRequest_SslConfiguration(const QNetworkRequest* self) {
@@ -124,13 +150,12 @@ QObject* QNetworkRequest_OriginatingObject(const QNetworkRequest* self) {
 	return self->originatingObject();
 }
 
-int QNetworkRequest_Priority(const QNetworkRequest* self) {
-	QNetworkRequest::Priority _ret = self->priority();
-	return static_cast<int>(_ret);
+Priority QNetworkRequest_Priority(const QNetworkRequest* self) {
+	return self->priority();
 }
 
-void QNetworkRequest_SetPriority(QNetworkRequest* self, int priority) {
-	self->setPriority(static_cast<QNetworkRequest::Priority>(priority));
+void QNetworkRequest_SetPriority(QNetworkRequest* self, Priority priority) {
+	self->setPriority(priority);
 }
 
 int QNetworkRequest_MaximumRedirectsAllowed(const QNetworkRequest* self) {
@@ -157,6 +182,14 @@ void QNetworkRequest_SetPeerVerifyName(QNetworkRequest* self, struct miqt_string
 	self->setPeerVerifyName(peerName_QString);
 }
 
+QHttp1Configuration* QNetworkRequest_Http1Configuration(const QNetworkRequest* self) {
+	return new QHttp1Configuration(self->http1Configuration());
+}
+
+void QNetworkRequest_SetHttp1Configuration(QNetworkRequest* self, QHttp1Configuration* configuration) {
+	self->setHttp1Configuration(*configuration);
+}
+
 QHttp2Configuration* QNetworkRequest_Http2Configuration(const QNetworkRequest* self) {
 	return new QHttp2Configuration(self->http2Configuration());
 }
@@ -165,20 +198,29 @@ void QNetworkRequest_SetHttp2Configuration(QNetworkRequest* self, QHttp2Configur
 	self->setHttp2Configuration(*configuration);
 }
 
+long long QNetworkRequest_DecompressedSafetyCheckThreshold(const QNetworkRequest* self) {
+	qint64 _ret = self->decompressedSafetyCheckThreshold();
+	return static_cast<long long>(_ret);
+}
+
+void QNetworkRequest_SetDecompressedSafetyCheckThreshold(QNetworkRequest* self, long long threshold) {
+	self->setDecompressedSafetyCheckThreshold(static_cast<qint64>(threshold));
+}
+
 int QNetworkRequest_TransferTimeout(const QNetworkRequest* self) {
 	return self->transferTimeout();
 }
 
-void QNetworkRequest_SetTransferTimeout(QNetworkRequest* self) {
+void QNetworkRequest_SetTransferTimeout(QNetworkRequest* self, int timeout) {
+	self->setTransferTimeout(static_cast<int>(timeout));
+}
+
+void QNetworkRequest_SetTransferTimeout2(QNetworkRequest* self) {
 	self->setTransferTimeout();
 }
 
-QVariant* QNetworkRequest_Attribute2(const QNetworkRequest* self, int code, QVariant* defaultValue) {
-	return new QVariant(self->attribute(static_cast<QNetworkRequest::Attribute>(code), *defaultValue));
-}
-
-void QNetworkRequest_SetTransferTimeout1(QNetworkRequest* self, int timeout) {
-	self->setTransferTimeout(static_cast<int>(timeout));
+QVariant* QNetworkRequest_Attribute2(const QNetworkRequest* self, Attribute code, QVariant* defaultValue) {
+	return new QVariant(self->attribute(code, *defaultValue));
 }
 
 void QNetworkRequest_Delete(QNetworkRequest* self, bool isSubclass) {

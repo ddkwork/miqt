@@ -72,7 +72,6 @@ func NewQsciStyledText2(text string, style *QsciStyle) *QsciStyledText {
 
 // NewQsciStyledText3 constructs a new QsciStyledText object.
 func NewQsciStyledText3(param1 *QsciStyledText) *QsciStyledText {
-
 	ret := newQsciStyledText(C.QsciStyledText_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

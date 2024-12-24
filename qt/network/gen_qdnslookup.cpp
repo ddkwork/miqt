@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChildEvent>
 #include <QDnsDomainNameRecord>
@@ -6,12 +8,14 @@
 #include <QDnsMailExchangeRecord>
 #include <QDnsServiceRecord>
 #include <QDnsTextRecord>
+#include <QDnsTlsAssociationRecord>
 #include <QEvent>
 #include <QHostAddress>
 #include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
+#include <QSslConfiguration>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -22,7 +26,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QDnsDomainNameRecord* QDnsDomainNameRecord_new() {
 	return new QDnsDomainNameRecord();
@@ -299,15 +318,81 @@ void QDnsTextRecord_Delete(QDnsTextRecord* self, bool isSubclass) {
 	}
 }
 
+QDnsTlsAssociationRecord* QDnsTlsAssociationRecord_new() {
+	return new QDnsTlsAssociationRecord();
+}
+
+QDnsTlsAssociationRecord* QDnsTlsAssociationRecord_new2(QDnsTlsAssociationRecord* other) {
+	return new QDnsTlsAssociationRecord(*other);
+}
+
+void QDnsTlsAssociationRecord_OperatorAssign(QDnsTlsAssociationRecord* self, QDnsTlsAssociationRecord* other) {
+	self->operator=(*other);
+}
+
+void QDnsTlsAssociationRecord_Swap(QDnsTlsAssociationRecord* self, QDnsTlsAssociationRecord* other) {
+	self->swap(*other);
+}
+
+struct miqt_string QDnsTlsAssociationRecord_Name(const QDnsTlsAssociationRecord* self) {
+	QString _ret = self->name();
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+
+unsigned int QDnsTlsAssociationRecord_TimeToLive(const QDnsTlsAssociationRecord* self) {
+	quint32 _ret = self->timeToLive();
+	return static_cast<unsigned int>(_ret);
+}
+
+CertificateUsage QDnsTlsAssociationRecord_Usage(const QDnsTlsAssociationRecord* self) {
+	return self->usage();
+}
+
+Selector QDnsTlsAssociationRecord_Selector(const QDnsTlsAssociationRecord* self) {
+	return self->selector();
+}
+
+MatchingType QDnsTlsAssociationRecord_MatchType(const QDnsTlsAssociationRecord* self) {
+	return self->matchType();
+}
+
+struct miqt_string QDnsTlsAssociationRecord_Value(const QDnsTlsAssociationRecord* self) {
+	QByteArray _qb = self->value();
+	struct miqt_string _ms;
+	_ms.len = _qb.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _qb.data(), _ms.len);
+	return _ms;
+}
+
+void QDnsTlsAssociationRecord_Delete(QDnsTlsAssociationRecord* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QDnsTlsAssociationRecord*>( self );
+	} else {
+		delete self;
+	}
+}
+
 class MiqtVirtualQDnsLookup : public virtual QDnsLookup {
 public:
 
 	MiqtVirtualQDnsLookup(): QDnsLookup() {};
-	MiqtVirtualQDnsLookup(QDnsLookup::Type typeVal, const QString& name): QDnsLookup(typeVal, name) {};
-	MiqtVirtualQDnsLookup(QDnsLookup::Type typeVal, const QString& name, const QHostAddress& nameserver): QDnsLookup(typeVal, name, nameserver) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name): QDnsLookup(typeVal, name) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, const QHostAddress& nameserver): QDnsLookup(typeVal, name, nameserver) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, const QHostAddress& nameserver, quint16 port): QDnsLookup(typeVal, name, nameserver, port) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, Protocol protocol, const QHostAddress& nameserver): QDnsLookup(typeVal, name, protocol, nameserver) {};
 	MiqtVirtualQDnsLookup(QObject* parent): QDnsLookup(parent) {};
-	MiqtVirtualQDnsLookup(QDnsLookup::Type typeVal, const QString& name, QObject* parent): QDnsLookup(typeVal, name, parent) {};
-	MiqtVirtualQDnsLookup(QDnsLookup::Type typeVal, const QString& name, const QHostAddress& nameserver, QObject* parent): QDnsLookup(typeVal, name, nameserver, parent) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, QObject* parent): QDnsLookup(typeVal, name, parent) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, const QHostAddress& nameserver, QObject* parent): QDnsLookup(typeVal, name, nameserver, parent) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, const QHostAddress& nameserver, quint16 port, QObject* parent): QDnsLookup(typeVal, name, nameserver, port, parent) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, Protocol protocol, const QHostAddress& nameserver, quint16 port): QDnsLookup(typeVal, name, protocol, nameserver, port) {};
+	MiqtVirtualQDnsLookup(Type typeVal, const QString& name, Protocol protocol, const QHostAddress& nameserver, quint16 port, QObject* parent): QDnsLookup(typeVal, name, protocol, nameserver, port, parent) {};
 
 	virtual ~MiqtVirtualQDnsLookup() = default;
 
@@ -488,28 +573,53 @@ QDnsLookup* QDnsLookup_new() {
 	return new MiqtVirtualQDnsLookup();
 }
 
-QDnsLookup* QDnsLookup_new2(int typeVal, struct miqt_string name) {
+QDnsLookup* QDnsLookup_new2(Type typeVal, struct miqt_string name) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
-	return new MiqtVirtualQDnsLookup(static_cast<QDnsLookup::Type>(typeVal), name_QString);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString);
 }
 
-QDnsLookup* QDnsLookup_new3(int typeVal, struct miqt_string name, QHostAddress* nameserver) {
+QDnsLookup* QDnsLookup_new3(Type typeVal, struct miqt_string name, QHostAddress* nameserver) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
-	return new MiqtVirtualQDnsLookup(static_cast<QDnsLookup::Type>(typeVal), name_QString, *nameserver);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, *nameserver);
 }
 
-QDnsLookup* QDnsLookup_new4(QObject* parent) {
+QDnsLookup* QDnsLookup_new4(Type typeVal, struct miqt_string name, QHostAddress* nameserver, uint16_t port) {
+	QString name_QString = QString::fromUtf8(name.data, name.len);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, *nameserver, static_cast<quint16>(port));
+}
+
+QDnsLookup* QDnsLookup_new5(Type typeVal, struct miqt_string name, Protocol protocol, QHostAddress* nameserver) {
+	QString name_QString = QString::fromUtf8(name.data, name.len);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, protocol, *nameserver);
+}
+
+QDnsLookup* QDnsLookup_new6(QObject* parent) {
 	return new MiqtVirtualQDnsLookup(parent);
 }
 
-QDnsLookup* QDnsLookup_new5(int typeVal, struct miqt_string name, QObject* parent) {
+QDnsLookup* QDnsLookup_new7(Type typeVal, struct miqt_string name, QObject* parent) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
-	return new MiqtVirtualQDnsLookup(static_cast<QDnsLookup::Type>(typeVal), name_QString, parent);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, parent);
 }
 
-QDnsLookup* QDnsLookup_new6(int typeVal, struct miqt_string name, QHostAddress* nameserver, QObject* parent) {
+QDnsLookup* QDnsLookup_new8(Type typeVal, struct miqt_string name, QHostAddress* nameserver, QObject* parent) {
 	QString name_QString = QString::fromUtf8(name.data, name.len);
-	return new MiqtVirtualQDnsLookup(static_cast<QDnsLookup::Type>(typeVal), name_QString, *nameserver, parent);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, *nameserver, parent);
+}
+
+QDnsLookup* QDnsLookup_new9(Type typeVal, struct miqt_string name, QHostAddress* nameserver, uint16_t port, QObject* parent) {
+	QString name_QString = QString::fromUtf8(name.data, name.len);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, *nameserver, static_cast<quint16>(port), parent);
+}
+
+QDnsLookup* QDnsLookup_new10(Type typeVal, struct miqt_string name, Protocol protocol, QHostAddress* nameserver, uint16_t port) {
+	QString name_QString = QString::fromUtf8(name.data, name.len);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, protocol, *nameserver, static_cast<quint16>(port));
+}
+
+QDnsLookup* QDnsLookup_new11(Type typeVal, struct miqt_string name, Protocol protocol, QHostAddress* nameserver, uint16_t port, QObject* parent) {
+	QString name_QString = QString::fromUtf8(name.data, name.len);
+	return new MiqtVirtualQDnsLookup(typeVal, name_QString, protocol, *nameserver, static_cast<quint16>(port), parent);
 }
 
 void QDnsLookup_virtbase(QDnsLookup* src, QObject** outptr_QObject) {
@@ -535,20 +645,12 @@ struct miqt_string QDnsLookup_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QDnsLookup_TrUtf8(const char* s) {
-	QString _ret = QDnsLookup::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+bool QDnsLookup_IsAuthenticData(const QDnsLookup* self) {
+	return self->isAuthenticData();
 }
 
-int QDnsLookup_Error(const QDnsLookup* self) {
-	QDnsLookup::Error _ret = self->error();
-	return static_cast<int>(_ret);
+Error QDnsLookup_Error(const QDnsLookup* self) {
+	return self->error();
 }
 
 struct miqt_string QDnsLookup_ErrorString(const QDnsLookup* self) {
@@ -582,9 +684,8 @@ void QDnsLookup_SetName(QDnsLookup* self, struct miqt_string name) {
 	self->setName(name_QString);
 }
 
-int QDnsLookup_Type(const QDnsLookup* self) {
-	QDnsLookup::Type _ret = self->type();
-	return static_cast<int>(_ret);
+Type QDnsLookup_Type(const QDnsLookup* self) {
+	return self->type();
 }
 
 void QDnsLookup_SetType(QDnsLookup* self, int typeVal) {
@@ -597,6 +698,31 @@ QHostAddress* QDnsLookup_Nameserver(const QDnsLookup* self) {
 
 void QDnsLookup_SetNameserver(QDnsLookup* self, QHostAddress* nameserver) {
 	self->setNameserver(*nameserver);
+}
+
+uint16_t QDnsLookup_NameserverPort(const QDnsLookup* self) {
+	quint16 _ret = self->nameserverPort();
+	return static_cast<uint16_t>(_ret);
+}
+
+void QDnsLookup_SetNameserverPort(QDnsLookup* self, uint16_t port) {
+	self->setNameserverPort(static_cast<quint16>(port));
+}
+
+Protocol QDnsLookup_NameserverProtocol(const QDnsLookup* self) {
+	return self->nameserverProtocol();
+}
+
+void QDnsLookup_SetNameserverProtocol(QDnsLookup* self, Protocol protocol) {
+	self->setNameserverProtocol(protocol);
+}
+
+void QDnsLookup_SetNameserver2(QDnsLookup* self, Protocol protocol, QHostAddress* nameserver) {
+	self->setNameserver(protocol, *nameserver);
+}
+
+void QDnsLookup_SetNameserver3(QDnsLookup* self, QHostAddress* nameserver, uint16_t port) {
+	self->setNameserver(*nameserver, static_cast<quint16>(port));
 }
 
 struct miqt_array /* of QDnsDomainNameRecord* */  QDnsLookup_CanonicalNameRecords(const QDnsLookup* self) {
@@ -690,6 +816,36 @@ struct miqt_array /* of QDnsTextRecord* */  QDnsLookup_TextRecords(const QDnsLoo
 	return _out;
 }
 
+struct miqt_array /* of QDnsTlsAssociationRecord* */  QDnsLookup_TlsAssociationRecords(const QDnsLookup* self) {
+	QList<QDnsTlsAssociationRecord> _ret = self->tlsAssociationRecords();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QDnsTlsAssociationRecord** _arr = static_cast<QDnsTlsAssociationRecord**>(malloc(sizeof(QDnsTlsAssociationRecord*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = new QDnsTlsAssociationRecord(_ret[i]);
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+}
+
+void QDnsLookup_SetSslConfiguration(QDnsLookup* self, QSslConfiguration* sslConfiguration) {
+	self->setSslConfiguration(*sslConfiguration);
+}
+
+QSslConfiguration* QDnsLookup_SslConfiguration(const QDnsLookup* self) {
+	return new QSslConfiguration(self->sslConfiguration());
+}
+
+bool QDnsLookup_IsProtocolSupported(Protocol protocol) {
+	return QDnsLookup::isProtocolSupported(protocol);
+}
+
+uint16_t QDnsLookup_DefaultPortForProtocol(Protocol protocol) {
+	quint16 _ret = QDnsLookup::defaultPortForProtocol(protocol);
+	return static_cast<uint16_t>(_ret);
+}
+
 void QDnsLookup_Abort(QDnsLookup* self) {
 	self->abort();
 }
@@ -752,6 +908,30 @@ void QDnsLookup_connect_NameserverChanged(QDnsLookup* self, intptr_t slot) {
 	});
 }
 
+void QDnsLookup_NameserverPortChanged(QDnsLookup* self, uint16_t port) {
+	self->nameserverPortChanged(static_cast<quint16>(port));
+}
+
+void QDnsLookup_connect_NameserverPortChanged(QDnsLookup* self, intptr_t slot) {
+	MiqtVirtualQDnsLookup::connect(self, static_cast<void (QDnsLookup::*)(quint16)>(&QDnsLookup::nameserverPortChanged), self, [=](quint16 port) {
+		quint16 port_ret = port;
+		uint16_t sigval1 = static_cast<uint16_t>(port_ret);
+		miqt_exec_callback_QDnsLookup_NameserverPortChanged(slot, sigval1);
+	});
+}
+
+void QDnsLookup_NameserverProtocolChanged(QDnsLookup* self, uint8_t protocol) {
+	self->nameserverProtocolChanged(static_cast<QDnsLookup::Protocol>(protocol));
+}
+
+void QDnsLookup_connect_NameserverProtocolChanged(QDnsLookup* self, intptr_t slot) {
+	MiqtVirtualQDnsLookup::connect(self, static_cast<void (QDnsLookup::*)(QDnsLookup::Protocol)>(&QDnsLookup::nameserverProtocolChanged), self, [=](QDnsLookup::Protocol protocol) {
+		QDnsLookup::Protocol protocol_ret = protocol;
+		uint8_t sigval1 = static_cast<uint8_t>(protocol_ret);
+		miqt_exec_callback_QDnsLookup_NameserverProtocolChanged(slot, sigval1);
+	});
+}
+
 struct miqt_string QDnsLookup_Tr2(const char* s, const char* c) {
 	QString _ret = QDnsLookup::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -774,26 +954,8 @@ struct miqt_string QDnsLookup_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QDnsLookup_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDnsLookup::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDnsLookup_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDnsLookup::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QDnsLookup_SetNameserver32(QDnsLookup* self, Protocol protocol, QHostAddress* nameserver, uint16_t port) {
+	self->setNameserver(protocol, *nameserver, static_cast<quint16>(port));
 }
 
 void QDnsLookup_override_virtual_Event(void* self, intptr_t slot) {

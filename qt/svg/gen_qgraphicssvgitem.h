@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -27,6 +27,8 @@ class QSize;
 class QStyleOptionGraphicsItem;
 class QSvgRenderer;
 class QWidget;
+class _GUID;
+class type_info;
 #else
 typedef struct QEvent QEvent;
 typedef struct QGraphicsItem QGraphicsItem;
@@ -40,41 +42,44 @@ typedef struct QSize QSize;
 typedef struct QStyleOptionGraphicsItem QStyleOptionGraphicsItem;
 typedef struct QSvgRenderer QSvgRenderer;
 typedef struct QWidget QWidget;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QGraphicsSvgItem* QGraphicsSvgItem_new();
-QGraphicsSvgItem* QGraphicsSvgItem_new2(struct miqt_string fileName);
-QGraphicsSvgItem* QGraphicsSvgItem_new3(QGraphicsItem* parentItem);
-QGraphicsSvgItem* QGraphicsSvgItem_new4(struct miqt_string fileName, QGraphicsItem* parentItem);
-void QGraphicsSvgItem_virtbase(QGraphicsSvgItem* src, QGraphicsObject** outptr_QGraphicsObject);
-QMetaObject* QGraphicsSvgItem_MetaObject(const QGraphicsSvgItem* self);
-void* QGraphicsSvgItem_Metacast(QGraphicsSvgItem* self, const char* param1);
-struct miqt_string QGraphicsSvgItem_Tr(const char* s);
-struct miqt_string QGraphicsSvgItem_TrUtf8(const char* s);
-void QGraphicsSvgItem_SetSharedRenderer(QGraphicsSvgItem* self, QSvgRenderer* renderer);
-QSvgRenderer* QGraphicsSvgItem_Renderer(const QGraphicsSvgItem* self);
-void QGraphicsSvgItem_SetElementId(QGraphicsSvgItem* self, struct miqt_string id);
-struct miqt_string QGraphicsSvgItem_ElementId(const QGraphicsSvgItem* self);
-void QGraphicsSvgItem_SetCachingEnabled(QGraphicsSvgItem* self, bool cachingEnabled);
-bool QGraphicsSvgItem_IsCachingEnabled(const QGraphicsSvgItem* self);
-void QGraphicsSvgItem_SetMaximumCacheSize(QGraphicsSvgItem* self, QSize* size);
-QSize* QGraphicsSvgItem_MaximumCacheSize(const QGraphicsSvgItem* self);
-QRectF* QGraphicsSvgItem_BoundingRect(const QGraphicsSvgItem* self);
-void QGraphicsSvgItem_Paint(QGraphicsSvgItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-int QGraphicsSvgItem_Type(const QGraphicsSvgItem* self);
-struct miqt_string QGraphicsSvgItem_Tr2(const char* s, const char* c);
-struct miqt_string QGraphicsSvgItem_Tr3(const char* s, const char* c, int n);
-struct miqt_string QGraphicsSvgItem_TrUtf82(const char* s, const char* c);
-struct miqt_string QGraphicsSvgItem_TrUtf83(const char* s, const char* c, int n);
-void QGraphicsSvgItem_override_virtual_BoundingRect(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QGraphicsSvgItem* QGraphicsSvgItem_new();
+extern __declspec(dllexport) QGraphicsSvgItem* QGraphicsSvgItem_new2(struct miqt_string fileName);
+extern __declspec(dllexport) QGraphicsSvgItem* QGraphicsSvgItem_new3(QGraphicsItem* parentItem);
+extern __declspec(dllexport) QGraphicsSvgItem* QGraphicsSvgItem_new4(struct miqt_string fileName, QGraphicsItem* parentItem);
+extern __declspec(dllexport) void QGraphicsSvgItem_virtbase(QGraphicsSvgItem* src, QGraphicsObject** outptr_QGraphicsObject);
+extern __declspec(dllexport) QMetaObject* QGraphicsSvgItem_MetaObject(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) void* QGraphicsSvgItem_Metacast(QGraphicsSvgItem* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QGraphicsSvgItem_Tr(const char* s);
+extern __declspec(dllexport) void QGraphicsSvgItem_SetSharedRenderer(QGraphicsSvgItem* self, QSvgRenderer* renderer);
+extern __declspec(dllexport) QSvgRenderer* QGraphicsSvgItem_Renderer(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) void QGraphicsSvgItem_SetElementId(QGraphicsSvgItem* self, struct miqt_string id);
+extern __declspec(dllexport) struct miqt_string QGraphicsSvgItem_ElementId(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) void QGraphicsSvgItem_SetCachingEnabled(QGraphicsSvgItem* self, bool cachingEnabled);
+extern __declspec(dllexport) bool QGraphicsSvgItem_IsCachingEnabled(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) void QGraphicsSvgItem_SetMaximumCacheSize(QGraphicsSvgItem* self, QSize* size);
+extern __declspec(dllexport) QSize* QGraphicsSvgItem_MaximumCacheSize(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) QRectF* QGraphicsSvgItem_BoundingRect(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) void QGraphicsSvgItem_Paint(QGraphicsSvgItem* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
+extern __declspec(dllexport) int QGraphicsSvgItem_Type(const QGraphicsSvgItem* self);
+extern __declspec(dllexport) struct miqt_string QGraphicsSvgItem_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QGraphicsSvgItem_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QGraphicsSvgItem_override_virtual_BoundingRect(void* self, intptr_t slot);
 QRectF* QGraphicsSvgItem_virtualbase_BoundingRect(const void* self);
-void QGraphicsSvgItem_override_virtual_Paint(void* self, intptr_t slot);
+extern __declspec(dllexport) void QGraphicsSvgItem_override_virtual_Paint(void* self, intptr_t slot);
 void QGraphicsSvgItem_virtualbase_Paint(void* self, QPainter* painter, QStyleOptionGraphicsItem* option, QWidget* widget);
-void QGraphicsSvgItem_override_virtual_Type(void* self, intptr_t slot);
+extern __declspec(dllexport) void QGraphicsSvgItem_override_virtual_Type(void* self, intptr_t slot);
 int QGraphicsSvgItem_virtualbase_Type(const void* self);
-void QGraphicsSvgItem_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) void QGraphicsSvgItem_override_virtual_Event(void* self, intptr_t slot);
 bool QGraphicsSvgItem_virtualbase_Event(void* self, QEvent* ev);
-void QGraphicsSvgItem_Delete(QGraphicsSvgItem* self, bool isSubclass);
+extern __declspec(dllexport) void QGraphicsSvgItem_Delete(QGraphicsSvgItem* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QHostAddress>
@@ -17,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTcpServer : public virtual QTcpServer {
 public:
@@ -300,17 +317,6 @@ struct miqt_string QTcpServer_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTcpServer_TrUtf8(const char* s) {
-	QString _ret = QTcpServer::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QTcpServer_Listen(QTcpServer* self) {
 	return self->listen();
 }
@@ -329,6 +335,14 @@ void QTcpServer_SetMaxPendingConnections(QTcpServer* self, int numConnections) {
 
 int QTcpServer_MaxPendingConnections(const QTcpServer* self) {
 	return self->maxPendingConnections();
+}
+
+void QTcpServer_SetListenBacklogSize(QTcpServer* self, int size) {
+	self->setListenBacklogSize(static_cast<int>(size));
+}
+
+int QTcpServer_ListenBacklogSize(const QTcpServer* self) {
+	return self->listenBacklogSize();
 }
 
 uint16_t QTcpServer_ServerPort(const QTcpServer* self) {
@@ -428,28 +442,6 @@ struct miqt_string QTcpServer_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTcpServer_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTcpServer::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTcpServer_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTcpServer::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTcpServer_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTcpServer::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

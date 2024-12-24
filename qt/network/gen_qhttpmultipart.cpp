@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
@@ -18,7 +20,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QHttpPart* QHttpPart_new() {
 	return new QHttpPart();
@@ -75,9 +92,9 @@ class MiqtVirtualQHttpMultiPart : public virtual QHttpMultiPart {
 public:
 
 	MiqtVirtualQHttpMultiPart(): QHttpMultiPart() {};
-	MiqtVirtualQHttpMultiPart(QHttpMultiPart::ContentType contentType): QHttpMultiPart(contentType) {};
+	MiqtVirtualQHttpMultiPart(ContentType contentType): QHttpMultiPart(contentType) {};
 	MiqtVirtualQHttpMultiPart(QObject* parent): QHttpMultiPart(parent) {};
-	MiqtVirtualQHttpMultiPart(QHttpMultiPart::ContentType contentType, QObject* parent): QHttpMultiPart(contentType, parent) {};
+	MiqtVirtualQHttpMultiPart(ContentType contentType, QObject* parent): QHttpMultiPart(contentType, parent) {};
 
 	virtual ~MiqtVirtualQHttpMultiPart() = default;
 
@@ -258,16 +275,16 @@ QHttpMultiPart* QHttpMultiPart_new() {
 	return new MiqtVirtualQHttpMultiPart();
 }
 
-QHttpMultiPart* QHttpMultiPart_new2(int contentType) {
-	return new MiqtVirtualQHttpMultiPart(static_cast<QHttpMultiPart::ContentType>(contentType));
+QHttpMultiPart* QHttpMultiPart_new2(ContentType contentType) {
+	return new MiqtVirtualQHttpMultiPart(contentType);
 }
 
 QHttpMultiPart* QHttpMultiPart_new3(QObject* parent) {
 	return new MiqtVirtualQHttpMultiPart(parent);
 }
 
-QHttpMultiPart* QHttpMultiPart_new4(int contentType, QObject* parent) {
-	return new MiqtVirtualQHttpMultiPart(static_cast<QHttpMultiPart::ContentType>(contentType), parent);
+QHttpMultiPart* QHttpMultiPart_new4(ContentType contentType, QObject* parent) {
+	return new MiqtVirtualQHttpMultiPart(contentType, parent);
 }
 
 void QHttpMultiPart_virtbase(QHttpMultiPart* src, QObject** outptr_QObject) {
@@ -293,23 +310,12 @@ struct miqt_string QHttpMultiPart_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QHttpMultiPart_TrUtf8(const char* s) {
-	QString _ret = QHttpMultiPart::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QHttpMultiPart_Append(QHttpMultiPart* self, QHttpPart* httpPart) {
 	self->append(*httpPart);
 }
 
-void QHttpMultiPart_SetContentType(QHttpMultiPart* self, int contentType) {
-	self->setContentType(static_cast<QHttpMultiPart::ContentType>(contentType));
+void QHttpMultiPart_SetContentType(QHttpMultiPart* self, ContentType contentType) {
+	self->setContentType(contentType);
 }
 
 struct miqt_string QHttpMultiPart_Boundary(const QHttpMultiPart* self) {
@@ -339,28 +345,6 @@ struct miqt_string QHttpMultiPart_Tr2(const char* s, const char* c) {
 
 struct miqt_string QHttpMultiPart_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QHttpMultiPart::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QHttpMultiPart_TrUtf82(const char* s, const char* c) {
-	QString _ret = QHttpMultiPart::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QHttpMultiPart_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QHttpMultiPart::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

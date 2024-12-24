@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -15,36 +15,74 @@ extern "C" {
 #endif
 
 #ifdef __cplusplus
+class QAnyStringView;
+class QByteArrayView;
 class QUuid;
+#if defined(WORKAROUND_INNER_CLASS_DEFINITION_QUuid__Id128Bytes)
+typedef QUuid::Id128Bytes QUuid__Id128Bytes;
 #else
+class QUuid__Id128Bytes;
+#endif
+#if defined(WORKAROUND_INNER_CLASS_DEFINITION_Disambiguated_t)
+typedef Qt::Disambiguated_t Disambiguated_t;
+#else
+class Disambiguated_t;
+#endif
+class _GUID;
+class type_info;
+#else
+typedef struct QAnyStringView QAnyStringView;
+typedef struct QByteArrayView QByteArrayView;
 typedef struct QUuid QUuid;
+typedef struct QUuid__Id128Bytes QUuid__Id128Bytes;
+typedef struct Disambiguated_t Disambiguated_t;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QUuid* QUuid_new();
-QUuid* QUuid_new2(unsigned int l, uint16_t w1, uint16_t w2, unsigned char b1, unsigned char b2, unsigned char b3, unsigned char b4, unsigned char b5, unsigned char b6, unsigned char b7, unsigned char b8);
-QUuid* QUuid_new3(struct miqt_string param1);
-QUuid* QUuid_new4(const char* param1);
-QUuid* QUuid_new5(struct miqt_string param1);
-QUuid* QUuid_new6(QUuid* param1);
-struct miqt_string QUuid_ToString(const QUuid* self);
-struct miqt_string QUuid_ToStringWithMode(const QUuid* self, int mode);
-struct miqt_string QUuid_ToByteArray(const QUuid* self);
-struct miqt_string QUuid_ToByteArrayWithMode(const QUuid* self, int mode);
-struct miqt_string QUuid_ToRfc4122(const QUuid* self);
-QUuid* QUuid_FromRfc4122(struct miqt_string param1);
-bool QUuid_IsNull(const QUuid* self);
-bool QUuid_OperatorEqual(const QUuid* self, QUuid* orig);
-bool QUuid_OperatorNotEqual(const QUuid* self, QUuid* orig);
-bool QUuid_OperatorLesser(const QUuid* self, QUuid* other);
-bool QUuid_OperatorGreater(const QUuid* self, QUuid* other);
-QUuid* QUuid_CreateUuid();
-QUuid* QUuid_CreateUuidV3(QUuid* ns, struct miqt_string baseData);
-QUuid* QUuid_CreateUuidV5(QUuid* ns, struct miqt_string baseData);
-QUuid* QUuid_CreateUuidV32(QUuid* ns, struct miqt_string baseData);
-QUuid* QUuid_CreateUuidV52(QUuid* ns, struct miqt_string baseData);
-int QUuid_Variant(const QUuid* self);
-int QUuid_Version(const QUuid* self);
-void QUuid_Delete(QUuid* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) _GUID* _GUID_new();
+extern __declspec(dllexport) _GUID* _GUID_new2(_GUID* param1);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) QUuid* QUuid_new();
+extern __declspec(dllexport) QUuid* QUuid_new2(unsigned int l, uint16_t w1, uint16_t w2, unsigned char b1, unsigned char b2, unsigned char b3, unsigned char b4, unsigned char b5, unsigned char b6, unsigned char b7, unsigned char b8);
+extern __declspec(dllexport) QUuid* QUuid_new3(Id128Bytes id128);
+extern __declspec(dllexport) QUuid* QUuid_new4(QAnyStringView* stringVal);
+extern __declspec(dllexport) QUuid* QUuid_new5(const struct _GUID* guid);
+extern __declspec(dllexport) QUuid* QUuid_new6(QUuid* param1);
+extern __declspec(dllexport) QUuid* QUuid_new7(Id128Bytes id128, int order);
+extern __declspec(dllexport) QUuid* QUuid_FromString(QAnyStringView* stringVal);
+extern __declspec(dllexport) struct miqt_string QUuid_ToString(const QUuid* self);
+extern __declspec(dllexport) struct miqt_string QUuid_ToByteArray(const QUuid* self);
+extern __declspec(dllexport) Id128Bytes QUuid_ToBytes(const QUuid* self);
+extern __declspec(dllexport) struct miqt_string QUuid_ToRfc4122(const QUuid* self);
+extern __declspec(dllexport) QUuid* QUuid_FromBytes(const void* bytes);
+extern __declspec(dllexport) QUuid* QUuid_FromRfc4122(QByteArrayView* param1);
+extern __declspec(dllexport) bool QUuid_IsNull(const QUuid* self);
+extern __declspec(dllexport) void QUuid_OperatorAssign(QUuid* self, const struct _GUID* guid);
+extern __declspec(dllexport) QUuid* QUuid_CreateUuid();
+extern __declspec(dllexport) QUuid* QUuid_CreateUuidV5(QUuid* ns, QByteArrayView* baseData);
+extern __declspec(dllexport) QUuid* QUuid_CreateUuidV3(QUuid* ns, QByteArrayView* baseData);
+extern __declspec(dllexport) QUuid* QUuid_CreateUuidV7();
+extern __declspec(dllexport) Variant QUuid_Variant(const QUuid* self);
+extern __declspec(dllexport) Version QUuid_Version(const QUuid* self);
+extern __declspec(dllexport) void QUuid_OperatorAssignWithQUuid(QUuid* self, QUuid* param1);
+extern __declspec(dllexport) struct miqt_string QUuid_ToString1(const QUuid* self, StringFormat mode);
+extern __declspec(dllexport) struct miqt_string QUuid_ToByteArray1(const QUuid* self, StringFormat mode);
+extern __declspec(dllexport) Id128Bytes QUuid_ToBytes1(const QUuid* self, int order);
+extern __declspec(dllexport) QUuid* QUuid_FromBytes2(const void* bytes, int order);
+extern __declspec(dllexport) bool QUuid_IsNull1(const QUuid* self, Disambiguated_t* param1);
+extern __declspec(dllexport) Variant QUuid_Variant1(const QUuid* self, Disambiguated_t* param1);
+extern __declspec(dllexport) Version QUuid_Version1(const QUuid* self, Disambiguated_t* param1);
+extern __declspec(dllexport) void QUuid_Delete(QUuid* self, bool isSubclass);
+
+extern __declspec(dllexport) QUuid__Id128Bytes* QUuid__Id128Bytes_new();
+extern __declspec(dllexport) QUuid__Id128Bytes* QUuid__Id128Bytes_new2(const Id128Bytes* param1);
+extern __declspec(dllexport) void QUuid__Id128Bytes_Delete(QUuid__Id128Bytes* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

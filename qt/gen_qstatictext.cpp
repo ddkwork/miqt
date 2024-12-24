@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QFont>
 #include <QSizeF>
 #include <QStaticText>
@@ -12,7 +14,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QStaticText* QStaticText_new() {
 	return new QStaticText();
@@ -85,13 +102,12 @@ void QStaticText_Prepare(QStaticText* self) {
 	self->prepare();
 }
 
-void QStaticText_SetPerformanceHint(QStaticText* self, int performanceHint) {
-	self->setPerformanceHint(static_cast<QStaticText::PerformanceHint>(performanceHint));
+void QStaticText_SetPerformanceHint(QStaticText* self, PerformanceHint performanceHint) {
+	self->setPerformanceHint(performanceHint);
 }
 
-int QStaticText_PerformanceHint(const QStaticText* self) {
-	QStaticText::PerformanceHint _ret = self->performanceHint();
-	return static_cast<int>(_ret);
+PerformanceHint QStaticText_PerformanceHint(const QStaticText* self) {
+	return self->performanceHint();
 }
 
 bool QStaticText_OperatorEqual(const QStaticText* self, QStaticText* param1) {

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -17,48 +17,53 @@ extern "C" {
 #ifdef __cplusplus
 class QBitmap;
 class QImage;
-class QMatrix;
 class QPaintDevice;
 class QPaintEngine;
 class QPixmap;
 class QSize;
 class QTransform;
+class _GUID;
+class type_info;
 #else
 typedef struct QBitmap QBitmap;
 typedef struct QImage QImage;
-typedef struct QMatrix QMatrix;
 typedef struct QPaintDevice QPaintDevice;
 typedef struct QPaintEngine QPaintEngine;
 typedef struct QPixmap QPixmap;
 typedef struct QSize QSize;
 typedef struct QTransform QTransform;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QBitmap* QBitmap_new();
-QBitmap* QBitmap_new2(QPixmap* param1);
-QBitmap* QBitmap_new3(int w, int h);
-QBitmap* QBitmap_new4(QSize* param1);
-QBitmap* QBitmap_new5(struct miqt_string fileName);
-QBitmap* QBitmap_new6(QBitmap* other);
-QBitmap* QBitmap_new7(struct miqt_string fileName, const char* format);
-void QBitmap_virtbase(QBitmap* src, QPixmap** outptr_QPixmap);
-void QBitmap_OperatorAssign(QBitmap* self, QBitmap* other);
-void QBitmap_OperatorAssignWithQPixmap(QBitmap* self, QPixmap* param1);
-void QBitmap_Swap(QBitmap* self, QBitmap* other);
-void QBitmap_Clear(QBitmap* self);
-QBitmap* QBitmap_FromImage(QImage* image);
-QBitmap* QBitmap_FromData(QSize* size, const unsigned char* bits);
-QBitmap* QBitmap_Transformed(const QBitmap* self, QMatrix* param1);
-QBitmap* QBitmap_TransformedWithMatrix(const QBitmap* self, QTransform* matrix);
-QBitmap* QBitmap_FromImage2(QImage* image, int flags);
-QBitmap* QBitmap_FromData3(QSize* size, const unsigned char* bits, int monoFormat);
-void QBitmap_override_virtual_DevType(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QBitmap* QBitmap_new();
+extern __declspec(dllexport) QBitmap* QBitmap_new2(QPixmap* param1);
+extern __declspec(dllexport) QBitmap* QBitmap_new3(int w, int h);
+extern __declspec(dllexport) QBitmap* QBitmap_new4(QSize* param1);
+extern __declspec(dllexport) QBitmap* QBitmap_new5(struct miqt_string fileName);
+extern __declspec(dllexport) QBitmap* QBitmap_new6(struct miqt_string fileName, const char* format);
+extern __declspec(dllexport) void QBitmap_virtbase(QBitmap* src, QPixmap** outptr_QPixmap);
+extern __declspec(dllexport) void QBitmap_OperatorAssign(QBitmap* self, QPixmap* param1);
+extern __declspec(dllexport) void QBitmap_Swap(QBitmap* self, QBitmap* other);
+extern __declspec(dllexport) void QBitmap_Clear(QBitmap* self);
+extern __declspec(dllexport) QBitmap* QBitmap_FromImage(QImage* image);
+extern __declspec(dllexport) QBitmap* QBitmap_FromData(QSize* size, const unsigned char* bits);
+extern __declspec(dllexport) QBitmap* QBitmap_FromPixmap(QPixmap* pixmap);
+extern __declspec(dllexport) QBitmap* QBitmap_Transformed(const QBitmap* self, QTransform* matrix);
+extern __declspec(dllexport) void QBitmap_OperatorAssignWithQBitmap(QBitmap* self, QBitmap* param1);
+extern __declspec(dllexport) QBitmap* QBitmap_FromImage2(QImage* image, int flags);
+extern __declspec(dllexport) QBitmap* QBitmap_FromData3(QSize* size, const unsigned char* bits, int monoFormat);
+extern __declspec(dllexport) void QBitmap_override_virtual_DevType(void* self, intptr_t slot);
 int QBitmap_virtualbase_DevType(const void* self);
-void QBitmap_override_virtual_PaintEngine(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBitmap_override_virtual_PaintEngine(void* self, intptr_t slot);
 QPaintEngine* QBitmap_virtualbase_PaintEngine(const void* self);
-void QBitmap_override_virtual_Metric(void* self, intptr_t slot);
-int QBitmap_virtualbase_Metric(const void* self, int param1);
-void QBitmap_Delete(QBitmap* self, bool isSubclass);
+extern __declspec(dllexport) void QBitmap_override_virtual_Metric(void* self, intptr_t slot);
+int QBitmap_virtualbase_Metric(const void* self, PaintDeviceMetric param1);
+extern __declspec(dllexport) void QBitmap_Delete(QBitmap* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

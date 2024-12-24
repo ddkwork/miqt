@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -18,92 +18,110 @@ extern "C" {
 class QChildEvent;
 class QEvent;
 class QIODevice;
+class QMarginsF;
 class QMetaMethod;
 class QMetaObject;
 class QObject;
+class QPageLayout;
+class QPageRanges;
+class QPageSize;
 class QPagedPaintDevice;
-#if defined(WORKAROUND_INNER_CLASS_DEFINITION_QPagedPaintDevice__Margins)
-typedef QPagedPaintDevice::Margins QPagedPaintDevice__Margins;
-#else
-class QPagedPaintDevice__Margins;
-#endif
 class QPaintDevice;
 class QPaintEngine;
+class QPdfOutputIntent;
 class QPdfWriter;
-class QSizeF;
 class QTimerEvent;
+class QUuid;
+class _GUID;
+class type_info;
 #else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
 typedef struct QIODevice QIODevice;
+typedef struct QMarginsF QMarginsF;
 typedef struct QMetaMethod QMetaMethod;
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
+typedef struct QPageLayout QPageLayout;
+typedef struct QPageRanges QPageRanges;
+typedef struct QPageSize QPageSize;
 typedef struct QPagedPaintDevice QPagedPaintDevice;
-typedef struct QPagedPaintDevice__Margins QPagedPaintDevice__Margins;
 typedef struct QPaintDevice QPaintDevice;
 typedef struct QPaintEngine QPaintEngine;
+typedef struct QPdfOutputIntent QPdfOutputIntent;
 typedef struct QPdfWriter QPdfWriter;
-typedef struct QSizeF QSizeF;
 typedef struct QTimerEvent QTimerEvent;
+typedef struct QUuid QUuid;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QPdfWriter* QPdfWriter_new(struct miqt_string filename);
-QPdfWriter* QPdfWriter_new2(QIODevice* device);
-void QPdfWriter_virtbase(QPdfWriter* src, QObject** outptr_QObject, QPagedPaintDevice** outptr_QPagedPaintDevice);
-QMetaObject* QPdfWriter_MetaObject(const QPdfWriter* self);
-void* QPdfWriter_Metacast(QPdfWriter* self, const char* param1);
-struct miqt_string QPdfWriter_Tr(const char* s);
-struct miqt_string QPdfWriter_TrUtf8(const char* s);
-void QPdfWriter_SetPdfVersion(QPdfWriter* self, int version);
-int QPdfWriter_PdfVersion(const QPdfWriter* self);
-struct miqt_string QPdfWriter_Title(const QPdfWriter* self);
-void QPdfWriter_SetTitle(QPdfWriter* self, struct miqt_string title);
-struct miqt_string QPdfWriter_Creator(const QPdfWriter* self);
-void QPdfWriter_SetCreator(QPdfWriter* self, struct miqt_string creator);
-bool QPdfWriter_NewPage(QPdfWriter* self);
-void QPdfWriter_SetResolution(QPdfWriter* self, int resolution);
-int QPdfWriter_Resolution(const QPdfWriter* self);
-void QPdfWriter_SetDocumentXmpMetadata(QPdfWriter* self, struct miqt_string xmpMetadata);
-struct miqt_string QPdfWriter_DocumentXmpMetadata(const QPdfWriter* self);
-void QPdfWriter_AddFileAttachment(QPdfWriter* self, struct miqt_string fileName, struct miqt_string data);
-void QPdfWriter_SetPageSize(QPdfWriter* self, int size);
-void QPdfWriter_SetPageSizeMM(QPdfWriter* self, QSizeF* size);
-void QPdfWriter_SetMargins(QPdfWriter* self, QPagedPaintDevice__Margins* m);
-QPaintEngine* QPdfWriter_PaintEngine(const QPdfWriter* self);
-int QPdfWriter_Metric(const QPdfWriter* self, int id);
-struct miqt_string QPdfWriter_Tr2(const char* s, const char* c);
-struct miqt_string QPdfWriter_Tr3(const char* s, const char* c, int n);
-struct miqt_string QPdfWriter_TrUtf82(const char* s, const char* c);
-struct miqt_string QPdfWriter_TrUtf83(const char* s, const char* c, int n);
-void QPdfWriter_AddFileAttachment3(QPdfWriter* self, struct miqt_string fileName, struct miqt_string data, struct miqt_string mimeType);
-void QPdfWriter_override_virtual_NewPage(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QPdfWriter* QPdfWriter_new(struct miqt_string filename);
+extern __declspec(dllexport) QPdfWriter* QPdfWriter_new2(QIODevice* device);
+extern __declspec(dllexport) void QPdfWriter_virtbase(QPdfWriter* src, QObject** outptr_QObject, QPagedPaintDevice** outptr_QPagedPaintDevice);
+extern __declspec(dllexport) QMetaObject* QPdfWriter_MetaObject(const QPdfWriter* self);
+extern __declspec(dllexport) void* QPdfWriter_Metacast(QPdfWriter* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_Tr(const char* s);
+extern __declspec(dllexport) void QPdfWriter_SetPdfVersion(QPdfWriter* self, PdfVersion version);
+extern __declspec(dllexport) PdfVersion QPdfWriter_PdfVersion(const QPdfWriter* self);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_Title(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetTitle(QPdfWriter* self, struct miqt_string title);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_Creator(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetCreator(QPdfWriter* self, struct miqt_string creator);
+extern __declspec(dllexport) QUuid* QPdfWriter_DocumentId(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetDocumentId(QPdfWriter* self, QUuid* documentId);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_Author(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetAuthor(QPdfWriter* self, struct miqt_string author);
+extern __declspec(dllexport) bool QPdfWriter_NewPage(QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetResolution(QPdfWriter* self, int resolution);
+extern __declspec(dllexport) int QPdfWriter_Resolution(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetDocumentXmpMetadata(QPdfWriter* self, struct miqt_string xmpMetadata);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_DocumentXmpMetadata(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_AddFileAttachment(QPdfWriter* self, struct miqt_string fileName, struct miqt_string data);
+extern __declspec(dllexport) ColorModel QPdfWriter_ColorModel(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetColorModel(QPdfWriter* self, ColorModel model);
+extern __declspec(dllexport) QPdfOutputIntent* QPdfWriter_OutputIntent(const QPdfWriter* self);
+extern __declspec(dllexport) void QPdfWriter_SetOutputIntent(QPdfWriter* self, QPdfOutputIntent* intent);
+extern __declspec(dllexport) QPaintEngine* QPdfWriter_PaintEngine(const QPdfWriter* self);
+extern __declspec(dllexport) int QPdfWriter_Metric(const QPdfWriter* self, PaintDeviceMetric id);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QPdfWriter_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QPdfWriter_AddFileAttachment3(QPdfWriter* self, struct miqt_string fileName, struct miqt_string data, struct miqt_string mimeType);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_NewPage(void* self, intptr_t slot);
 bool QPdfWriter_virtualbase_NewPage(void* self);
-void QPdfWriter_override_virtual_SetPageSize(void* self, intptr_t slot);
-void QPdfWriter_virtualbase_SetPageSize(void* self, int size);
-void QPdfWriter_override_virtual_SetPageSizeMM(void* self, intptr_t slot);
-void QPdfWriter_virtualbase_SetPageSizeMM(void* self, QSizeF* size);
-void QPdfWriter_override_virtual_SetMargins(void* self, intptr_t slot);
-void QPdfWriter_virtualbase_SetMargins(void* self, QPagedPaintDevice__Margins* m);
-void QPdfWriter_override_virtual_PaintEngine(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_PaintEngine(void* self, intptr_t slot);
 QPaintEngine* QPdfWriter_virtualbase_PaintEngine(const void* self);
-void QPdfWriter_override_virtual_Metric(void* self, intptr_t slot);
-int QPdfWriter_virtualbase_Metric(const void* self, int id);
-void QPdfWriter_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_Metric(void* self, intptr_t slot);
+int QPdfWriter_virtualbase_Metric(const void* self, PaintDeviceMetric id);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_Event(void* self, intptr_t slot);
 bool QPdfWriter_virtualbase_Event(void* self, QEvent* event);
-void QPdfWriter_override_virtual_EventFilter(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_EventFilter(void* self, intptr_t slot);
 bool QPdfWriter_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-void QPdfWriter_override_virtual_TimerEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_TimerEvent(void* self, intptr_t slot);
 void QPdfWriter_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-void QPdfWriter_override_virtual_ChildEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_ChildEvent(void* self, intptr_t slot);
 void QPdfWriter_virtualbase_ChildEvent(void* self, QChildEvent* event);
-void QPdfWriter_override_virtual_CustomEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_CustomEvent(void* self, intptr_t slot);
 void QPdfWriter_virtualbase_CustomEvent(void* self, QEvent* event);
-void QPdfWriter_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QPdfWriter_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-void QPdfWriter_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QPdfWriter_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-void QPdfWriter_Delete(QPdfWriter* self, bool isSubclass);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_SetPageLayout(void* self, intptr_t slot);
+bool QPdfWriter_virtualbase_SetPageLayout(void* self, QPageLayout* pageLayout);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_SetPageSize(void* self, intptr_t slot);
+bool QPdfWriter_virtualbase_SetPageSize(void* self, QPageSize* pageSize);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_SetPageOrientation(void* self, intptr_t slot);
+bool QPdfWriter_virtualbase_SetPageOrientation(void* self, int orientation);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_SetPageMargins(void* self, intptr_t slot);
+bool QPdfWriter_virtualbase_SetPageMargins(void* self, QMarginsF* margins, int units);
+extern __declspec(dllexport) void QPdfWriter_override_virtual_SetPageRanges(void* self, intptr_t slot);
+void QPdfWriter_virtualbase_SetPageRanges(void* self, QPageRanges* ranges);
+extern __declspec(dllexport) void QPdfWriter_Delete(QPdfWriter* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

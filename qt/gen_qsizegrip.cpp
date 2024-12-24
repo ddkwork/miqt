@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QActionEvent>
 #include <QByteArray>
 #include <QCloseEvent>
@@ -6,6 +8,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -37,7 +40,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSizeGrip : public virtual QSizeGrip {
 public:
@@ -566,13 +584,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QSizeGrip::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QSizeGrip_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -580,7 +598,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QSizeGrip::enterEvent(event);
 
@@ -830,7 +848,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QSizeGrip::nativeEvent(eventType, message, result);
 		}
@@ -842,7 +860,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QSizeGrip_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -850,10 +869,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QSizeGrip::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QSizeGrip::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -885,13 +904,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QSizeGrip::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QSizeGrip_Metric(const_cast<MiqtVirtualQSizeGrip*>(this), handle__Metric, sigval1);
 
@@ -899,9 +917,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QSizeGrip::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QSizeGrip::metric(param1);
 
 	}
 
@@ -1074,17 +1092,6 @@ struct miqt_string QSizeGrip_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSizeGrip_TrUtf8(const char* s) {
-	QString _ret = QSizeGrip::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QSizeGrip_SizeHint(const QSizeGrip* self) {
 	return new QSize(self->sizeHint());
 }
@@ -1106,28 +1113,6 @@ struct miqt_string QSizeGrip_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSizeGrip_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSizeGrip::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSizeGrip_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSizeGrip::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSizeGrip_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSizeGrip::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1317,7 +1302,7 @@ void QSizeGrip_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSizeGrip*>( (QSizeGrip*)(self) )->handle__EnterEvent = slot;
 }
 
-void QSizeGrip_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QSizeGrip_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQSizeGrip*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1405,7 +1390,7 @@ void QSizeGrip_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSizeGrip*>( (QSizeGrip*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QSizeGrip_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QSizeGrip_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQSizeGrip*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1421,7 +1406,7 @@ void QSizeGrip_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSizeGrip*>( (QSizeGrip*)(self) )->handle__Metric = slot;
 }
 
-int QSizeGrip_virtualbase_Metric(const void* self, int param1) {
+int QSizeGrip_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQSizeGrip*)(self) )->virtualbase_Metric(param1);
 }
 

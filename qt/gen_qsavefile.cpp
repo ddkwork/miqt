@@ -1,5 +1,8 @@
+// +build ignore
+
 #include <QFileDevice>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaObject>
 #include <QObject>
 #include <QSaveFile>
@@ -12,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSaveFile : public virtual QSaveFile {
 public:
@@ -58,13 +76,12 @@ public:
 	intptr_t handle__Open = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool open(QIODevice::OpenMode flags) override {
+	virtual bool open(OpenMode flags) override {
 		if (handle__Open == 0) {
 			return QSaveFile::open(flags);
 		}
 		
-		QIODevice::OpenMode flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		OpenMode sigval1 = flags;
 
 		bool callback_return_value = miqt_exec_callback_QSaveFile_Open(this, handle__Open, sigval1);
 
@@ -72,9 +89,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Open(int flags) {
+	bool virtualbase_Open(OpenMode flags) {
 
-		return QSaveFile::open(static_cast<QIODevice::OpenMode>(flags));
+		return QSaveFile::open(flags);
 
 	}
 
@@ -246,22 +263,21 @@ public:
 	intptr_t handle__Permissions = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QFileDevice::Permissions permissions() const override {
+	virtual Permissions permissions() const override {
 		if (handle__Permissions == 0) {
 			return QSaveFile::permissions();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QSaveFile_Permissions(const_cast<MiqtVirtualQSaveFile*>(this), handle__Permissions);
+		Permissions callback_return_value = miqt_exec_callback_QSaveFile_Permissions(const_cast<MiqtVirtualQSaveFile*>(this), handle__Permissions);
 
-		return static_cast<QFileDevice::Permissions>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Permissions() const {
+	Permissions virtualbase_Permissions() const {
 
-		QFileDevice::Permissions _ret = QSaveFile::permissions();
-		return static_cast<int>(_ret);
+		return QSaveFile::permissions();
 
 	}
 
@@ -269,13 +285,12 @@ public:
 	intptr_t handle__SetPermissions = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool setPermissions(QFileDevice::Permissions permissionSpec) override {
+	virtual bool setPermissions(Permissions permissionSpec) override {
 		if (handle__SetPermissions == 0) {
 			return QSaveFile::setPermissions(permissionSpec);
 		}
 		
-		QFileDevice::Permissions permissionSpec_ret = permissionSpec;
-		int sigval1 = static_cast<int>(permissionSpec_ret);
+		Permissions sigval1 = permissionSpec;
 
 		bool callback_return_value = miqt_exec_callback_QSaveFile_SetPermissions(this, handle__SetPermissions, sigval1);
 
@@ -283,9 +298,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SetPermissions(int permissionSpec) {
+	bool virtualbase_SetPermissions(Permissions permissionSpec) {
 
-		return QSaveFile::setPermissions(static_cast<QFileDevice::Permissions>(permissionSpec));
+		return QSaveFile::setPermissions(permissionSpec);
 
 	}
 
@@ -384,17 +399,6 @@ struct miqt_string QSaveFile_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSaveFile_TrUtf8(const char* s) {
-	QString _ret = QSaveFile::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QSaveFile_FileName(const QSaveFile* self) {
 	QString _ret = self->fileName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -411,8 +415,8 @@ void QSaveFile_SetFileName(QSaveFile* self, struct miqt_string name) {
 	self->setFileName(name_QString);
 }
 
-bool QSaveFile_Open(QSaveFile* self, int flags) {
-	return self->open(static_cast<QIODevice::OpenMode>(flags));
+bool QSaveFile_Open(QSaveFile* self, OpenMode flags) {
+	return self->open(flags);
 }
 
 bool QSaveFile_Commit(QSaveFile* self) {
@@ -453,28 +457,6 @@ struct miqt_string QSaveFile_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QSaveFile_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSaveFile::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSaveFile_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSaveFile::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QSaveFile_override_virtual_FileName(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSaveFile*>( (QSaveFile*)(self) )->handle__FileName = slot;
 }
@@ -487,7 +469,7 @@ void QSaveFile_override_virtual_Open(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSaveFile*>( (QSaveFile*)(self) )->handle__Open = slot;
 }
 
-bool QSaveFile_virtualbase_Open(void* self, int flags) {
+bool QSaveFile_virtualbase_Open(void* self, OpenMode flags) {
 	return ( (MiqtVirtualQSaveFile*)(self) )->virtualbase_Open(flags);
 }
 
@@ -551,7 +533,7 @@ void QSaveFile_override_virtual_Permissions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSaveFile*>( (QSaveFile*)(self) )->handle__Permissions = slot;
 }
 
-int QSaveFile_virtualbase_Permissions(const void* self) {
+Permissions QSaveFile_virtualbase_Permissions(const void* self) {
 	return ( (const MiqtVirtualQSaveFile*)(self) )->virtualbase_Permissions();
 }
 
@@ -559,7 +541,7 @@ void QSaveFile_override_virtual_SetPermissions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSaveFile*>( (QSaveFile*)(self) )->handle__SetPermissions = slot;
 }
 
-bool QSaveFile_virtualbase_SetPermissions(void* self, int permissionSpec) {
+bool QSaveFile_virtualbase_SetPermissions(void* self, Permissions permissionSpec) {
 	return ( (MiqtVirtualQSaveFile*)(self) )->virtualbase_SetPermissions(permissionSpec);
 }
 

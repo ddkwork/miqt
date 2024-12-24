@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QLayout>
 #include <QLayoutItem>
@@ -16,7 +18,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQStackedLayout : public virtual QStackedLayout {
 public:
@@ -235,6 +252,52 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QStackedLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QStackedLayout_Spacing(const_cast<MiqtVirtualQStackedLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QStackedLayout::spacing();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QStackedLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QStackedLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QStackedLayout::setSpacing(static_cast<int>(spacing));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Invalidate = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -328,12 +391,12 @@ public:
 	intptr_t handle__IndexOf = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int indexOf(QWidget* param1) const override {
+	virtual int indexOf(const QWidget* param1) const override {
 		if (handle__IndexOf == 0) {
 			return QStackedLayout::indexOf(param1);
 		}
 		
-		QWidget* sigval1 = param1;
+		QWidget* sigval1 = (QWidget*) param1;
 
 		int callback_return_value = miqt_exec_callback_QStackedLayout_IndexOf(const_cast<MiqtVirtualQStackedLayout*>(this), handle__IndexOf, sigval1);
 
@@ -389,6 +452,32 @@ public:
 
 		QSizePolicy::ControlTypes _ret = QStackedLayout::controlTypes();
 		return static_cast<int>(_ret);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ReplaceWidget = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QLayoutItem* replaceWidget(QWidget* from, QWidget* to, Qt::FindChildOptions options) override {
+		if (handle__ReplaceWidget == 0) {
+			return QStackedLayout::replaceWidget(from, to, options);
+		}
+		
+		QWidget* sigval1 = from;
+		QWidget* sigval2 = to;
+		Qt::FindChildOptions options_ret = options;
+		int sigval3 = static_cast<int>(options_ret);
+
+		QLayoutItem* callback_return_value = miqt_exec_callback_QStackedLayout_ReplaceWidget(this, handle__ReplaceWidget, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QLayoutItem* virtualbase_ReplaceWidget(QWidget* from, QWidget* to, int options) {
+
+		return QStackedLayout::replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
 
 	}
 
@@ -475,17 +564,6 @@ struct miqt_string QStackedLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QStackedLayout_TrUtf8(const char* s) {
-	QString _ret = QStackedLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QStackedLayout_AddWidget(QStackedLayout* self, QWidget* w) {
 	return self->addWidget(w);
 }
@@ -510,13 +588,12 @@ int QStackedLayout_Count(const QStackedLayout* self) {
 	return self->count();
 }
 
-int QStackedLayout_StackingMode(const QStackedLayout* self) {
-	QStackedLayout::StackingMode _ret = self->stackingMode();
-	return static_cast<int>(_ret);
+StackingMode QStackedLayout_StackingMode(const QStackedLayout* self) {
+	return self->stackingMode();
 }
 
-void QStackedLayout_SetStackingMode(QStackedLayout* self, int stackingMode) {
-	self->setStackingMode(static_cast<QStackedLayout::StackingMode>(stackingMode));
+void QStackedLayout_SetStackingMode(QStackedLayout* self, StackingMode stackingMode) {
+	self->setStackingMode(stackingMode);
 }
 
 void QStackedLayout_AddItem(QStackedLayout* self, QLayoutItem* item) {
@@ -573,6 +650,17 @@ void QStackedLayout_connect_CurrentChanged(QStackedLayout* self, intptr_t slot) 
 	});
 }
 
+void QStackedLayout_WidgetAdded(QStackedLayout* self, int index) {
+	self->widgetAdded(static_cast<int>(index));
+}
+
+void QStackedLayout_connect_WidgetAdded(QStackedLayout* self, intptr_t slot) {
+	MiqtVirtualQStackedLayout::connect(self, static_cast<void (QStackedLayout::*)(int)>(&QStackedLayout::widgetAdded), self, [=](int index) {
+		int sigval1 = index;
+		miqt_exec_callback_QStackedLayout_WidgetAdded(slot, sigval1);
+	});
+}
+
 void QStackedLayout_SetCurrentIndex(QStackedLayout* self, int index) {
 	self->setCurrentIndex(static_cast<int>(index));
 }
@@ -594,28 +682,6 @@ struct miqt_string QStackedLayout_Tr2(const char* s, const char* c) {
 
 struct miqt_string QStackedLayout_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QStackedLayout::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStackedLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QStackedLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStackedLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QStackedLayout::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -697,6 +763,22 @@ int QStackedLayout_virtualbase_HeightForWidth(const void* self, int width) {
 	return ( (const MiqtVirtualQStackedLayout*)(self) )->virtualbase_HeightForWidth(width);
 }
 
+void QStackedLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStackedLayout*>( (QStackedLayout*)(self) )->handle__Spacing = slot;
+}
+
+int QStackedLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQStackedLayout*)(self) )->virtualbase_Spacing();
+}
+
+void QStackedLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStackedLayout*>( (QStackedLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QStackedLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQStackedLayout*)(self) )->virtualbase_SetSpacing(spacing);
+}
+
 void QStackedLayout_override_virtual_Invalidate(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStackedLayout*>( (QStackedLayout*)(self) )->handle__Invalidate = slot;
 }
@@ -751,6 +833,14 @@ void QStackedLayout_override_virtual_ControlTypes(void* self, intptr_t slot) {
 
 int QStackedLayout_virtualbase_ControlTypes(const void* self) {
 	return ( (const MiqtVirtualQStackedLayout*)(self) )->virtualbase_ControlTypes();
+}
+
+void QStackedLayout_override_virtual_ReplaceWidget(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStackedLayout*>( (QStackedLayout*)(self) )->handle__ReplaceWidget = slot;
+}
+
+QLayoutItem* QStackedLayout_virtualbase_ReplaceWidget(void* self, QWidget* from, QWidget* to, int options) {
+	return ( (MiqtVirtualQStackedLayout*)(self) )->virtualbase_ReplaceWidget(from, to, options);
 }
 
 void QStackedLayout_override_virtual_Layout(void* self, intptr_t slot) {

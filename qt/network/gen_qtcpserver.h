@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -25,6 +25,8 @@ class QObject;
 class QTcpServer;
 class QTcpSocket;
 class QTimerEvent;
+class _GUID;
+class type_info;
 #else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
@@ -36,67 +38,72 @@ typedef struct QObject QObject;
 typedef struct QTcpServer QTcpServer;
 typedef struct QTcpSocket QTcpSocket;
 typedef struct QTimerEvent QTimerEvent;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QTcpServer* QTcpServer_new();
-QTcpServer* QTcpServer_new2(QObject* parent);
-void QTcpServer_virtbase(QTcpServer* src, QObject** outptr_QObject);
-QMetaObject* QTcpServer_MetaObject(const QTcpServer* self);
-void* QTcpServer_Metacast(QTcpServer* self, const char* param1);
-struct miqt_string QTcpServer_Tr(const char* s);
-struct miqt_string QTcpServer_TrUtf8(const char* s);
-bool QTcpServer_Listen(QTcpServer* self);
-void QTcpServer_Close(QTcpServer* self);
-bool QTcpServer_IsListening(const QTcpServer* self);
-void QTcpServer_SetMaxPendingConnections(QTcpServer* self, int numConnections);
-int QTcpServer_MaxPendingConnections(const QTcpServer* self);
-uint16_t QTcpServer_ServerPort(const QTcpServer* self);
-QHostAddress* QTcpServer_ServerAddress(const QTcpServer* self);
-intptr_t QTcpServer_SocketDescriptor(const QTcpServer* self);
-bool QTcpServer_SetSocketDescriptor(QTcpServer* self, intptr_t socketDescriptor);
-bool QTcpServer_WaitForNewConnection(QTcpServer* self);
-bool QTcpServer_HasPendingConnections(const QTcpServer* self);
-QTcpSocket* QTcpServer_NextPendingConnection(QTcpServer* self);
-int QTcpServer_ServerError(const QTcpServer* self);
-struct miqt_string QTcpServer_ErrorString(const QTcpServer* self);
-void QTcpServer_PauseAccepting(QTcpServer* self);
-void QTcpServer_ResumeAccepting(QTcpServer* self);
-void QTcpServer_SetProxy(QTcpServer* self, QNetworkProxy* networkProxy);
-QNetworkProxy* QTcpServer_Proxy(const QTcpServer* self);
-void QTcpServer_IncomingConnection(QTcpServer* self, intptr_t handle);
-void QTcpServer_NewConnection(QTcpServer* self);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QTcpServer* QTcpServer_new();
+extern __declspec(dllexport) QTcpServer* QTcpServer_new2(QObject* parent);
+extern __declspec(dllexport) void QTcpServer_virtbase(QTcpServer* src, QObject** outptr_QObject);
+extern __declspec(dllexport) QMetaObject* QTcpServer_MetaObject(const QTcpServer* self);
+extern __declspec(dllexport) void* QTcpServer_Metacast(QTcpServer* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QTcpServer_Tr(const char* s);
+extern __declspec(dllexport) bool QTcpServer_Listen(QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_Close(QTcpServer* self);
+extern __declspec(dllexport) bool QTcpServer_IsListening(const QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_SetMaxPendingConnections(QTcpServer* self, int numConnections);
+extern __declspec(dllexport) int QTcpServer_MaxPendingConnections(const QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_SetListenBacklogSize(QTcpServer* self, int size);
+extern __declspec(dllexport) int QTcpServer_ListenBacklogSize(const QTcpServer* self);
+extern __declspec(dllexport) uint16_t QTcpServer_ServerPort(const QTcpServer* self);
+extern __declspec(dllexport) QHostAddress* QTcpServer_ServerAddress(const QTcpServer* self);
+extern __declspec(dllexport) intptr_t QTcpServer_SocketDescriptor(const QTcpServer* self);
+extern __declspec(dllexport) bool QTcpServer_SetSocketDescriptor(QTcpServer* self, intptr_t socketDescriptor);
+extern __declspec(dllexport) bool QTcpServer_WaitForNewConnection(QTcpServer* self);
+extern __declspec(dllexport) bool QTcpServer_HasPendingConnections(const QTcpServer* self);
+extern __declspec(dllexport) QTcpSocket* QTcpServer_NextPendingConnection(QTcpServer* self);
+extern __declspec(dllexport) int QTcpServer_ServerError(const QTcpServer* self);
+extern __declspec(dllexport) struct miqt_string QTcpServer_ErrorString(const QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_PauseAccepting(QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_ResumeAccepting(QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_SetProxy(QTcpServer* self, QNetworkProxy* networkProxy);
+extern __declspec(dllexport) QNetworkProxy* QTcpServer_Proxy(const QTcpServer* self);
+extern __declspec(dllexport) void QTcpServer_IncomingConnection(QTcpServer* self, intptr_t handle);
+extern __declspec(dllexport) void QTcpServer_NewConnection(QTcpServer* self);
 void QTcpServer_connect_NewConnection(QTcpServer* self, intptr_t slot);
-void QTcpServer_AcceptError(QTcpServer* self, int socketError);
+extern __declspec(dllexport) void QTcpServer_AcceptError(QTcpServer* self, int socketError);
 void QTcpServer_connect_AcceptError(QTcpServer* self, intptr_t slot);
-struct miqt_string QTcpServer_Tr2(const char* s, const char* c);
-struct miqt_string QTcpServer_Tr3(const char* s, const char* c, int n);
-struct miqt_string QTcpServer_TrUtf82(const char* s, const char* c);
-struct miqt_string QTcpServer_TrUtf83(const char* s, const char* c, int n);
-bool QTcpServer_Listen1(QTcpServer* self, QHostAddress* address);
-bool QTcpServer_Listen2(QTcpServer* self, QHostAddress* address, uint16_t port);
-bool QTcpServer_WaitForNewConnection1(QTcpServer* self, int msec);
-bool QTcpServer_WaitForNewConnection2(QTcpServer* self, int msec, bool* timedOut);
-void QTcpServer_override_virtual_HasPendingConnections(void* self, intptr_t slot);
+extern __declspec(dllexport) struct miqt_string QTcpServer_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QTcpServer_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) bool QTcpServer_Listen1(QTcpServer* self, QHostAddress* address);
+extern __declspec(dllexport) bool QTcpServer_Listen2(QTcpServer* self, QHostAddress* address, uint16_t port);
+extern __declspec(dllexport) bool QTcpServer_WaitForNewConnection1(QTcpServer* self, int msec);
+extern __declspec(dllexport) bool QTcpServer_WaitForNewConnection2(QTcpServer* self, int msec, bool* timedOut);
+extern __declspec(dllexport) void QTcpServer_override_virtual_HasPendingConnections(void* self, intptr_t slot);
 bool QTcpServer_virtualbase_HasPendingConnections(const void* self);
-void QTcpServer_override_virtual_NextPendingConnection(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_NextPendingConnection(void* self, intptr_t slot);
 QTcpSocket* QTcpServer_virtualbase_NextPendingConnection(void* self);
-void QTcpServer_override_virtual_IncomingConnection(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_IncomingConnection(void* self, intptr_t slot);
 void QTcpServer_virtualbase_IncomingConnection(void* self, intptr_t handle);
-void QTcpServer_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_Event(void* self, intptr_t slot);
 bool QTcpServer_virtualbase_Event(void* self, QEvent* event);
-void QTcpServer_override_virtual_EventFilter(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_EventFilter(void* self, intptr_t slot);
 bool QTcpServer_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-void QTcpServer_override_virtual_TimerEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_TimerEvent(void* self, intptr_t slot);
 void QTcpServer_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-void QTcpServer_override_virtual_ChildEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_ChildEvent(void* self, intptr_t slot);
 void QTcpServer_virtualbase_ChildEvent(void* self, QChildEvent* event);
-void QTcpServer_override_virtual_CustomEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_CustomEvent(void* self, intptr_t slot);
 void QTcpServer_virtualbase_CustomEvent(void* self, QEvent* event);
-void QTcpServer_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QTcpServer_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-void QTcpServer_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QTcpServer_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QTcpServer_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-void QTcpServer_Delete(QTcpServer* self, bool isSubclass);
+extern __declspec(dllexport) void QTcpServer_Delete(QTcpServer* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

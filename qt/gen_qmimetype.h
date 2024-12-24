@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -16,31 +16,37 @@ extern "C" {
 
 #ifdef __cplusplus
 class QMimeType;
+class _GUID;
+class type_info;
 #else
 typedef struct QMimeType QMimeType;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QMimeType* QMimeType_new();
-QMimeType* QMimeType_new2(QMimeType* other);
-void QMimeType_OperatorAssign(QMimeType* self, QMimeType* other);
-void QMimeType_Swap(QMimeType* self, QMimeType* other);
-bool QMimeType_OperatorEqual(const QMimeType* self, QMimeType* other);
-bool QMimeType_OperatorNotEqual(const QMimeType* self, QMimeType* other);
-bool QMimeType_IsValid(const QMimeType* self);
-bool QMimeType_IsDefault(const QMimeType* self);
-struct miqt_string QMimeType_Name(const QMimeType* self);
-struct miqt_string QMimeType_Comment(const QMimeType* self);
-struct miqt_string QMimeType_GenericIconName(const QMimeType* self);
-struct miqt_string QMimeType_IconName(const QMimeType* self);
-struct miqt_array /* of struct miqt_string */  QMimeType_GlobPatterns(const QMimeType* self);
-struct miqt_array /* of struct miqt_string */  QMimeType_ParentMimeTypes(const QMimeType* self);
-struct miqt_array /* of struct miqt_string */  QMimeType_AllAncestors(const QMimeType* self);
-struct miqt_array /* of struct miqt_string */  QMimeType_Aliases(const QMimeType* self);
-struct miqt_array /* of struct miqt_string */  QMimeType_Suffixes(const QMimeType* self);
-struct miqt_string QMimeType_PreferredSuffix(const QMimeType* self);
-bool QMimeType_Inherits(const QMimeType* self, struct miqt_string mimeTypeName);
-struct miqt_string QMimeType_FilterString(const QMimeType* self);
-void QMimeType_Delete(QMimeType* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QMimeType* QMimeType_new();
+extern __declspec(dllexport) QMimeType* QMimeType_new2(QMimeType* other);
+extern __declspec(dllexport) void QMimeType_OperatorAssign(QMimeType* self, QMimeType* other);
+extern __declspec(dllexport) void QMimeType_Swap(QMimeType* self, QMimeType* other);
+extern __declspec(dllexport) bool QMimeType_IsValid(const QMimeType* self);
+extern __declspec(dllexport) bool QMimeType_IsDefault(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_string QMimeType_Name(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_string QMimeType_Comment(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_string QMimeType_GenericIconName(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_string QMimeType_IconName(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QMimeType_GlobPatterns(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QMimeType_ParentMimeTypes(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QMimeType_AllAncestors(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QMimeType_Aliases(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QMimeType_Suffixes(const QMimeType* self);
+extern __declspec(dllexport) struct miqt_string QMimeType_PreferredSuffix(const QMimeType* self);
+extern __declspec(dllexport) bool QMimeType_Inherits(const QMimeType* self, struct miqt_string mimeTypeName);
+extern __declspec(dllexport) struct miqt_string QMimeType_FilterString(const QMimeType* self);
+extern __declspec(dllexport) void QMimeType_Delete(QMimeType* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

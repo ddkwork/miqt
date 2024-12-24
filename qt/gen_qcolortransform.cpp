@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QColor>
 #include <QColorTransform>
 #include <QRgba64>
@@ -7,7 +9,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QColorTransform* QColorTransform_new() {
 	return new QColorTransform();
@@ -23,6 +40,10 @@ void QColorTransform_OperatorAssign(QColorTransform* self, QColorTransform* othe
 
 void QColorTransform_Swap(QColorTransform* self, QColorTransform* other) {
 	self->swap(*other);
+}
+
+bool QColorTransform_IsIdentity(const QColorTransform* self) {
+	return self->isIdentity();
 }
 
 unsigned int QColorTransform_Map(const QColorTransform* self, unsigned int argb) {

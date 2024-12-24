@@ -1,7 +1,8 @@
+// +build ignore
+
 #include <QAbstractItemView>
 #include <QAbstractScrollArea>
 #include <QBrush>
-#include <QColor>
 #include <QDataStream>
 #include <QDropEvent>
 #include <QEvent>
@@ -38,7 +39,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTableWidgetSelectionRange* QTableWidgetSelectionRange_new() {
 	return new QTableWidgetSelectionRange();
@@ -46,14 +62,6 @@ QTableWidgetSelectionRange* QTableWidgetSelectionRange_new() {
 
 QTableWidgetSelectionRange* QTableWidgetSelectionRange_new2(int top, int left, int bottom, int right) {
 	return new QTableWidgetSelectionRange(static_cast<int>(top), static_cast<int>(left), static_cast<int>(bottom), static_cast<int>(right));
-}
-
-QTableWidgetSelectionRange* QTableWidgetSelectionRange_new3(QTableWidgetSelectionRange* other) {
-	return new QTableWidgetSelectionRange(*other);
-}
-
-void QTableWidgetSelectionRange_OperatorAssign(QTableWidgetSelectionRange* self, QTableWidgetSelectionRange* other) {
-	self->operator=(*other);
 }
 
 int QTableWidgetSelectionRange_TopRow(const QTableWidgetSelectionRange* self) {
@@ -405,12 +413,12 @@ void QTableWidgetItem_SetTextAlignment(QTableWidgetItem* self, int alignment) {
 	self->setTextAlignment(static_cast<int>(alignment));
 }
 
-QColor* QTableWidgetItem_BackgroundColor(const QTableWidgetItem* self) {
-	return new QColor(self->backgroundColor());
+void QTableWidgetItem_SetTextAlignmentWithAlignment(QTableWidgetItem* self, int alignment) {
+	self->setTextAlignment(static_cast<Qt::AlignmentFlag>(alignment));
 }
 
-void QTableWidgetItem_SetBackgroundColor(QTableWidgetItem* self, QColor* color) {
-	self->setBackgroundColor(*color);
+void QTableWidgetItem_SetTextAlignment2(QTableWidgetItem* self, int alignment) {
+	self->setTextAlignment(static_cast<Qt::Alignment>(alignment));
 }
 
 QBrush* QTableWidgetItem_Background(const QTableWidgetItem* self) {
@@ -419,14 +427,6 @@ QBrush* QTableWidgetItem_Background(const QTableWidgetItem* self) {
 
 void QTableWidgetItem_SetBackground(QTableWidgetItem* self, QBrush* brush) {
 	self->setBackground(*brush);
-}
-
-QColor* QTableWidgetItem_TextColor(const QTableWidgetItem* self) {
-	return new QColor(self->textColor());
-}
-
-void QTableWidgetItem_SetTextColor(QTableWidgetItem* self, QColor* color) {
-	self->setTextColor(*color);
 }
 
 QBrush* QTableWidgetItem_Foreground(const QTableWidgetItem* self) {
@@ -620,12 +620,12 @@ public:
 	intptr_t handle__MimeData = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QMimeData* mimeData(const QList<QTableWidgetItem *> items) const override {
+	virtual QMimeData* mimeData(const QList<QTableWidgetItem *>& items) const override {
 		if (handle__MimeData == 0) {
 			return QTableWidget::mimeData(items);
 		}
 		
-		const QList<QTableWidgetItem *> items_ret = items;
+		const QList<QTableWidgetItem *>& items_ret = items;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		QTableWidgetItem** items_arr = static_cast<QTableWidgetItem**>(malloc(sizeof(QTableWidgetItem*) * items_ret.length()));
 		for (size_t i = 0, e = items_ret.length(); i < e; ++i) {
@@ -830,7 +830,7 @@ public:
 	intptr_t handle__ScrollTo = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void scrollTo(const QModelIndex& index, QAbstractItemView::ScrollHint hint) override {
+	virtual void scrollTo(const QModelIndex& index, ScrollHint hint) override {
 		if (handle__ScrollTo == 0) {
 			QTableWidget::scrollTo(index, hint);
 			return;
@@ -839,8 +839,7 @@ public:
 		const QModelIndex& index_ret = index;
 		// Cast returned reference into pointer
 		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
-		QAbstractItemView::ScrollHint hint_ret = hint;
-		int sigval2 = static_cast<int>(hint_ret);
+		ScrollHint sigval2 = hint;
 
 		miqt_exec_callback_QTableWidget_ScrollTo(this, handle__ScrollTo, sigval1, sigval2);
 
@@ -848,9 +847,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ScrollTo(QModelIndex* index, int hint) {
+	void virtualbase_ScrollTo(QModelIndex* index, ScrollHint hint) {
 
-		QTableWidget::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
+		QTableWidget::scrollTo(*index, hint);
 
 	}
 
@@ -905,24 +904,26 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ViewOptions = 0;
+	intptr_t handle__InitViewItemOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QStyleOptionViewItem viewOptions() const override {
-		if (handle__ViewOptions == 0) {
-			return QTableWidget::viewOptions();
+	virtual void initViewItemOption(QStyleOptionViewItem* option) const override {
+		if (handle__InitViewItemOption == 0) {
+			QTableWidget::initViewItemOption(option);
+			return;
 		}
 		
+		QStyleOptionViewItem* sigval1 = option;
 
-		QStyleOptionViewItem* callback_return_value = miqt_exec_callback_QTableWidget_ViewOptions(const_cast<MiqtVirtualQTableWidget*>(this), handle__ViewOptions);
+		miqt_exec_callback_QTableWidget_InitViewItemOption(const_cast<MiqtVirtualQTableWidget*>(this), handle__InitViewItemOption, sigval1);
 
-		return *callback_return_value;
+		
 	}
 
 	// Wrapper to allow calling protected method
-	QStyleOptionViewItem* virtualbase_ViewOptions() const {
+	void virtualbase_InitViewItemOption(QStyleOptionViewItem* option) const {
 
-		return new QStyleOptionViewItem(QTableWidget::viewOptions());
+		QTableWidget::initViewItemOption(option);
 
 	}
 
@@ -1022,13 +1023,12 @@ public:
 	intptr_t handle__MoveCursor = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
+	virtual QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
 		if (handle__MoveCursor == 0) {
 			return QTableWidget::moveCursor(cursorAction, modifiers);
 		}
 		
-		QAbstractItemView::CursorAction cursorAction_ret = cursorAction;
-		int sigval1 = static_cast<int>(cursorAction_ret);
+		CursorAction sigval1 = cursorAction;
 		Qt::KeyboardModifiers modifiers_ret = modifiers;
 		int sigval2 = static_cast<int>(modifiers_ret);
 
@@ -1038,9 +1038,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_MoveCursor(int cursorAction, int modifiers) {
+	QModelIndex* virtualbase_MoveCursor(CursorAction cursorAction, int modifiers) {
 
-		return new QModelIndex(QTableWidget::moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifiers>(modifiers)));
+		return new QModelIndex(QTableWidget::moveCursor(cursorAction, static_cast<Qt::KeyboardModifiers>(modifiers)));
 
 	}
 
@@ -1397,17 +1397,6 @@ struct miqt_string QTableWidget_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTableWidget_TrUtf8(const char* s) {
-	QString _ret = QTableWidget::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTableWidget_SetRowCount(QTableWidget* self, int rows) {
 	self->setRowCount(static_cast<int>(rows));
 }
@@ -1442,6 +1431,27 @@ void QTableWidget_SetItem(QTableWidget* self, int row, int column, QTableWidgetI
 
 QTableWidgetItem* QTableWidget_TakeItem(QTableWidget* self, int row, int column) {
 	return self->takeItem(static_cast<int>(row), static_cast<int>(column));
+}
+
+struct miqt_array /* of QTableWidgetItem* */  QTableWidget_Items(const QTableWidget* self, QMimeData* data) {
+	QList<QTableWidgetItem *> _ret = self->items(data);
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QTableWidgetItem** _arr = static_cast<QTableWidgetItem**>(malloc(sizeof(QTableWidgetItem*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = _ret[i];
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+}
+
+QModelIndex* QTableWidget_IndexFromItem(const QTableWidget* self, QTableWidgetItem* item) {
+	return new QModelIndex(self->indexFromItem(item));
+}
+
+QTableWidgetItem* QTableWidget_ItemFromIndex(const QTableWidget* self, QModelIndex* index) {
+	return self->itemFromIndex(*index);
 }
 
 QTableWidgetItem* QTableWidget_VerticalHeaderItem(const QTableWidget* self, int row) {
@@ -1556,14 +1566,6 @@ void QTableWidget_SetCellWidget(QTableWidget* self, int row, int column, QWidget
 
 void QTableWidget_RemoveCellWidget(QTableWidget* self, int row, int column) {
 	self->removeCellWidget(static_cast<int>(row), static_cast<int>(column));
-}
-
-bool QTableWidget_IsItemSelected(const QTableWidget* self, QTableWidgetItem* item) {
-	return self->isItemSelected(item);
-}
-
-void QTableWidget_SetItemSelected(QTableWidget* self, QTableWidgetItem* item, bool selectVal) {
-	self->setItemSelected(item, selectVal);
 }
 
 void QTableWidget_SetRangeSelected(QTableWidget* self, QTableWidgetSelectionRange* rangeVal, bool selectVal) {
@@ -1862,28 +1864,6 @@ struct miqt_string QTableWidget_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTableWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTableWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTableWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTableWidget::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTableWidget_SortItems2(QTableWidget* self, int column, int order) {
 	self->sortItems(static_cast<int>(column), static_cast<Qt::SortOrder>(order));
 }
@@ -1976,7 +1956,7 @@ void QTableWidget_override_virtual_ScrollTo(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTableWidget*>( (QTableWidget*)(self) )->handle__ScrollTo = slot;
 }
 
-void QTableWidget_virtualbase_ScrollTo(void* self, QModelIndex* index, int hint) {
+void QTableWidget_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint) {
 	( (MiqtVirtualQTableWidget*)(self) )->virtualbase_ScrollTo(index, hint);
 }
 
@@ -1996,12 +1976,12 @@ void QTableWidget_virtualbase_ScrollContentsBy(void* self, int dx, int dy) {
 	( (MiqtVirtualQTableWidget*)(self) )->virtualbase_ScrollContentsBy(dx, dy);
 }
 
-void QTableWidget_override_virtual_ViewOptions(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTableWidget*>( (QTableWidget*)(self) )->handle__ViewOptions = slot;
+void QTableWidget_override_virtual_InitViewItemOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTableWidget*>( (QTableWidget*)(self) )->handle__InitViewItemOption = slot;
 }
 
-QStyleOptionViewItem* QTableWidget_virtualbase_ViewOptions(const void* self) {
-	return ( (const MiqtVirtualQTableWidget*)(self) )->virtualbase_ViewOptions();
+void QTableWidget_virtualbase_InitViewItemOption(const void* self, QStyleOptionViewItem* option) {
+	( (const MiqtVirtualQTableWidget*)(self) )->virtualbase_InitViewItemOption(option);
 }
 
 void QTableWidget_override_virtual_PaintEvent(void* self, intptr_t slot) {
@@ -2040,7 +2020,7 @@ void QTableWidget_override_virtual_MoveCursor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTableWidget*>( (QTableWidget*)(self) )->handle__MoveCursor = slot;
 }
 
-QModelIndex* QTableWidget_virtualbase_MoveCursor(void* self, int cursorAction, int modifiers) {
+QModelIndex* QTableWidget_virtualbase_MoveCursor(void* self, CursorAction cursorAction, int modifiers) {
 	return ( (MiqtVirtualQTableWidget*)(self) )->virtualbase_MoveCursor(cursorAction, modifiers);
 }
 

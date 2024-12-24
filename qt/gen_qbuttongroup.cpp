@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QButtonGroup>
 #include <QChildEvent>
@@ -16,7 +18,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQButtonGroup : public virtual QButtonGroup {
 public:
@@ -230,17 +247,6 @@ struct miqt_string QButtonGroup_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QButtonGroup_TrUtf8(const char* s) {
-	QString _ret = QButtonGroup::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QButtonGroup_SetExclusive(QButtonGroup* self, bool exclusive) {
 	self->setExclusive(exclusive);
 }
@@ -380,51 +386,6 @@ void QButtonGroup_connect_IdToggled(QButtonGroup* self, intptr_t slot) {
 	});
 }
 
-void QButtonGroup_ButtonClickedWithInt(QButtonGroup* self, int param1) {
-	self->buttonClicked(static_cast<int>(param1));
-}
-
-void QButtonGroup_connect_ButtonClickedWithInt(QButtonGroup* self, intptr_t slot) {
-	MiqtVirtualQButtonGroup::connect(self, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), self, [=](int param1) {
-		int sigval1 = param1;
-		miqt_exec_callback_QButtonGroup_ButtonClickedWithInt(slot, sigval1);
-	});
-}
-
-void QButtonGroup_ButtonPressedWithInt(QButtonGroup* self, int param1) {
-	self->buttonPressed(static_cast<int>(param1));
-}
-
-void QButtonGroup_connect_ButtonPressedWithInt(QButtonGroup* self, intptr_t slot) {
-	MiqtVirtualQButtonGroup::connect(self, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonPressed), self, [=](int param1) {
-		int sigval1 = param1;
-		miqt_exec_callback_QButtonGroup_ButtonPressedWithInt(slot, sigval1);
-	});
-}
-
-void QButtonGroup_ButtonReleasedWithInt(QButtonGroup* self, int param1) {
-	self->buttonReleased(static_cast<int>(param1));
-}
-
-void QButtonGroup_connect_ButtonReleasedWithInt(QButtonGroup* self, intptr_t slot) {
-	MiqtVirtualQButtonGroup::connect(self, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonReleased), self, [=](int param1) {
-		int sigval1 = param1;
-		miqt_exec_callback_QButtonGroup_ButtonReleasedWithInt(slot, sigval1);
-	});
-}
-
-void QButtonGroup_ButtonToggled2(QButtonGroup* self, int param1, bool param2) {
-	self->buttonToggled(static_cast<int>(param1), param2);
-}
-
-void QButtonGroup_connect_ButtonToggled2(QButtonGroup* self, intptr_t slot) {
-	MiqtVirtualQButtonGroup::connect(self, static_cast<void (QButtonGroup::*)(int, bool)>(&QButtonGroup::buttonToggled), self, [=](int param1, bool param2) {
-		int sigval1 = param1;
-		bool sigval2 = param2;
-		miqt_exec_callback_QButtonGroup_ButtonToggled2(slot, sigval1, sigval2);
-	});
-}
-
 struct miqt_string QButtonGroup_Tr2(const char* s, const char* c) {
 	QString _ret = QButtonGroup::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -438,28 +399,6 @@ struct miqt_string QButtonGroup_Tr2(const char* s, const char* c) {
 
 struct miqt_string QButtonGroup_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QButtonGroup::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QButtonGroup_TrUtf82(const char* s, const char* c) {
-	QString _ret = QButtonGroup::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QButtonGroup_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QButtonGroup::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

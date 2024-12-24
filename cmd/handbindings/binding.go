@@ -14,7 +14,6 @@ import (
 )
 
 func CArray(data []string) (C.int, **C.char) {
-
 	c_argv := (*[0xfff]*C.char)(C.malloc(C.size_t(8 /* sizeof pointer */ * len(data))))
 
 	for i, arg := range data {

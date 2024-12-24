@@ -1,13 +1,20 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QGenericArgument>
 #include <QGenericReturnArgument>
 #include <QMetaClassInfo>
 #include <QMetaEnum>
 #include <QMetaMethod>
+#include <QMetaMethodArgument>
+#include <QMetaMethodReturnArgument>
 #include <QMetaObject>
 #define WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__Connection
+#define WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__Data
 #define WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__SuperData
 #include <QMetaProperty>
+#include <QMetaType>
+#include <QMethodRawArguments>
 #include <QObject>
 #include <QString>
 #include <QByteArray>
@@ -18,7 +25,30 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void QMethodRawArguments_Delete(QMethodRawArguments* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QMethodRawArguments*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QGenericArgument* QGenericArgument_new() {
 	return new QGenericArgument();
@@ -80,6 +110,22 @@ void QGenericReturnArgument_Delete(QGenericReturnArgument* self, bool isSubclass
 	}
 }
 
+void QMetaMethodArgument_Delete(QMetaMethodArgument* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QMetaMethodArgument*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void QMetaMethodReturnArgument_Delete(QMetaMethodReturnArgument* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QMetaMethodReturnArgument*>( self );
+	} else {
+		delete self;
+	}
+}
+
 QMetaObject* QMetaObject_new() {
 	return new QMetaObject();
 }
@@ -117,6 +163,10 @@ struct miqt_string QMetaObject_Tr(const QMetaObject* self, const char* s, const 
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
+}
+
+QMetaType* QMetaObject_MetaType(const QMetaObject* self) {
+	return new QMetaType(self->metaType());
 }
 
 int QMetaObject_MethodOffset(const QMetaObject* self) {
@@ -233,8 +283,8 @@ struct miqt_string QMetaObject_NormalizedType(const char* typeVal) {
 	return _ms;
 }
 
-QMetaObject__Connection* QMetaObject_Connect(QObject* sender, int signal_index, QObject* receiver, int method_index) {
-	return new QMetaObject::Connection(QMetaObject::connect(sender, static_cast<int>(signal_index), receiver, static_cast<int>(method_index)));
+Connection QMetaObject_Connect(QObject* sender, int signal_index, QObject* receiver, int method_index) {
+	return QMetaObject::connect(sender, static_cast<int>(signal_index), receiver, static_cast<int>(method_index));
 }
 
 bool QMetaObject_Disconnect(QObject* sender, int signal_index, QObject* receiver, int method_index) {
@@ -257,16 +307,16 @@ bool QMetaObject_InvokeMethod2(QObject* obj, const char* member, QGenericReturnA
 	return QMetaObject::invokeMethod(obj, member, *retVal);
 }
 
-bool QMetaObject_InvokeMethod3(QObject* obj, const char* member, int typeVal) {
-	return QMetaObject::invokeMethod(obj, member, static_cast<Qt::ConnectionType>(typeVal));
+bool QMetaObject_InvokeMethod3(QObject* obj, const char* member, int typeVal, QGenericArgument* val0) {
+	return QMetaObject::invokeMethod(obj, member, static_cast<Qt::ConnectionType>(typeVal), *val0);
 }
 
-bool QMetaObject_InvokeMethod4(QObject* obj, const char* member) {
-	return QMetaObject::invokeMethod(obj, member);
+bool QMetaObject_InvokeMethod4(QObject* obj, const char* member, QGenericArgument* val0) {
+	return QMetaObject::invokeMethod(obj, member, *val0);
 }
 
-QObject* QMetaObject_NewInstance(const QMetaObject* self) {
-	return self->newInstance();
+QObject* QMetaObject_NewInstance(const QMetaObject* self, QGenericArgument* val0) {
+	return self->newInstance(*val0);
 }
 
 struct miqt_string QMetaObject_Tr3(const QMetaObject* self, const char* s, const char* c, int n) {
@@ -280,12 +330,12 @@ struct miqt_string QMetaObject_Tr3(const QMetaObject* self, const char* s, const
 	return _ms;
 }
 
-QMetaObject__Connection* QMetaObject_Connect5(QObject* sender, int signal_index, QObject* receiver, int method_index, int typeVal) {
-	return new QMetaObject::Connection(QMetaObject::connect(sender, static_cast<int>(signal_index), receiver, static_cast<int>(method_index), static_cast<int>(typeVal)));
+Connection QMetaObject_Connect5(QObject* sender, int signal_index, QObject* receiver, int method_index, int typeVal) {
+	return QMetaObject::connect(sender, static_cast<int>(signal_index), receiver, static_cast<int>(method_index), static_cast<int>(typeVal));
 }
 
-QMetaObject__Connection* QMetaObject_Connect6(QObject* sender, int signal_index, QObject* receiver, int method_index, int typeVal, int* types) {
-	return new QMetaObject::Connection(QMetaObject::connect(sender, static_cast<int>(signal_index), receiver, static_cast<int>(method_index), static_cast<int>(typeVal), static_cast<int*>(types)));
+Connection QMetaObject_Connect6(QObject* sender, int signal_index, QObject* receiver, int method_index, int typeVal, int* types) {
+	return QMetaObject::connect(sender, static_cast<int>(signal_index), receiver, static_cast<int>(method_index), static_cast<int>(typeVal), static_cast<int*>(types));
 }
 
 bool QMetaObject_InvokeMethod5(QObject* obj, const char* member, int param3, QGenericReturnArgument* retVal, QGenericArgument* val0) {
@@ -368,10 +418,6 @@ bool QMetaObject_InvokeMethod132(QObject* obj, const char* member, QGenericRetur
 	return QMetaObject::invokeMethod(obj, member, *retVal, *val0, *val1, *val2, *val3, *val4, *val5, *val6, *val7, *val8, *val9);
 }
 
-bool QMetaObject_InvokeMethod43(QObject* obj, const char* member, int typeVal, QGenericArgument* val0) {
-	return QMetaObject::invokeMethod(obj, member, static_cast<Qt::ConnectionType>(typeVal), *val0);
-}
-
 bool QMetaObject_InvokeMethod53(QObject* obj, const char* member, int typeVal, QGenericArgument* val0, QGenericArgument* val1) {
 	return QMetaObject::invokeMethod(obj, member, static_cast<Qt::ConnectionType>(typeVal), *val0, *val1);
 }
@@ -408,11 +454,7 @@ bool QMetaObject_InvokeMethod133(QObject* obj, const char* member, int typeVal, 
 	return QMetaObject::invokeMethod(obj, member, static_cast<Qt::ConnectionType>(typeVal), *val0, *val1, *val2, *val3, *val4, *val5, *val6, *val7, *val8, *val9);
 }
 
-bool QMetaObject_InvokeMethod32(QObject* obj, const char* member, QGenericArgument* val0) {
-	return QMetaObject::invokeMethod(obj, member, *val0);
-}
-
-bool QMetaObject_InvokeMethod44(QObject* obj, const char* member, QGenericArgument* val0, QGenericArgument* val1) {
+bool QMetaObject_InvokeMethod43(QObject* obj, const char* member, QGenericArgument* val0, QGenericArgument* val1) {
 	return QMetaObject::invokeMethod(obj, member, *val0, *val1);
 }
 
@@ -446,10 +488,6 @@ bool QMetaObject_InvokeMethod114(QObject* obj, const char* member, QGenericArgum
 
 bool QMetaObject_InvokeMethod124(QObject* obj, const char* member, QGenericArgument* val0, QGenericArgument* val1, QGenericArgument* val2, QGenericArgument* val3, QGenericArgument* val4, QGenericArgument* val5, QGenericArgument* val6, QGenericArgument* val7, QGenericArgument* val8, QGenericArgument* val9) {
 	return QMetaObject::invokeMethod(obj, member, *val0, *val1, *val2, *val3, *val4, *val5, *val6, *val7, *val8, *val9);
-}
-
-QObject* QMetaObject_NewInstance1(const QMetaObject* self, QGenericArgument* val0) {
-	return self->newInstance(*val0);
 }
 
 QObject* QMetaObject_NewInstance2(const QMetaObject* self, QGenericArgument* val0, QGenericArgument* val1) {
@@ -500,12 +538,16 @@ QMetaObject__Connection* QMetaObject__Connection_new() {
 	return new QMetaObject::Connection();
 }
 
-QMetaObject__Connection* QMetaObject__Connection_new2(QMetaObject__Connection* other) {
+QMetaObject__Connection* QMetaObject__Connection_new2(const Connection* other) {
 	return new QMetaObject::Connection(*other);
 }
 
-void QMetaObject__Connection_OperatorAssign(QMetaObject__Connection* self, QMetaObject__Connection* other) {
+void QMetaObject__Connection_OperatorAssign(QMetaObject__Connection* self, const Connection* other) {
 	self->operator=(*other);
+}
+
+void QMetaObject__Connection_Swap(QMetaObject__Connection* self, Connection* other) {
+	self->swap(*other);
 }
 
 void QMetaObject__Connection_Delete(QMetaObject__Connection* self, bool isSubclass) {
@@ -524,7 +566,11 @@ QMetaObject__SuperData* QMetaObject__SuperData_new2(QMetaObject* mo) {
 	return new QMetaObject::SuperData(mo);
 }
 
-QMetaObject__SuperData* QMetaObject__SuperData_new3(QMetaObject__SuperData* param1) {
+QMetaObject__SuperData* QMetaObject__SuperData_new3(Getter g) {
+	return new QMetaObject::SuperData(g);
+}
+
+QMetaObject__SuperData* QMetaObject__SuperData_new4(const SuperData* param1) {
 	return new QMetaObject::SuperData(*param1);
 }
 
@@ -532,13 +578,33 @@ QMetaObject* QMetaObject__SuperData_OperatorMinusGreater(const QMetaObject__Supe
 	return (QMetaObject*) self->operator->();
 }
 
-void QMetaObject__SuperData_OperatorAssign(QMetaObject__SuperData* self, QMetaObject__SuperData* param1) {
+void QMetaObject__SuperData_OperatorAssign(QMetaObject__SuperData* self, const SuperData* param1) {
 	self->operator=(*param1);
 }
 
 void QMetaObject__SuperData_Delete(QMetaObject__SuperData* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QMetaObject::SuperData*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QMetaObject__Data* QMetaObject__Data_new() {
+	return new QMetaObject::Data();
+}
+
+QMetaObject__Data* QMetaObject__Data_new2(const Data* param1) {
+	return new QMetaObject::Data(*param1);
+}
+
+void QMetaObject__Data_OperatorAssign(QMetaObject__Data* self, const Data* param1) {
+	self->operator=(*param1);
+}
+
+void QMetaObject__Data_Delete(QMetaObject__Data* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QMetaObject::Data*>( self );
 	} else {
 		delete self;
 	}

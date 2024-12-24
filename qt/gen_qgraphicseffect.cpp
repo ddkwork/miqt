@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBrush>
 #include <QChildEvent>
 #include <QColor>
@@ -23,7 +25,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsEffect : public virtual QGraphicsEffect {
 public:
@@ -78,14 +95,13 @@ public:
 	intptr_t handle__SourceChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(QGraphicsEffect::ChangeFlags flags) override {
+	virtual void sourceChanged(ChangeFlags flags) override {
 		if (handle__SourceChanged == 0) {
 			QGraphicsEffect::sourceChanged(flags);
 			return;
 		}
 		
-		QGraphicsEffect::ChangeFlags flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		ChangeFlags sigval1 = flags;
 
 		miqt_exec_callback_QGraphicsEffect_SourceChanged(this, handle__SourceChanged, sigval1);
 
@@ -93,9 +109,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(int flags) {
+	void virtualbase_SourceChanged(ChangeFlags flags) {
 
-		QGraphicsEffect::sourceChanged(static_cast<QGraphicsEffect::ChangeFlags>(flags));
+		QGraphicsEffect::sourceChanged(flags);
 
 	}
 
@@ -303,17 +319,6 @@ struct miqt_string QGraphicsEffect_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsEffect_TrUtf8(const char* s) {
-	QString _ret = QGraphicsEffect::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QRectF* QGraphicsEffect_BoundingRectFor(const QGraphicsEffect* self, QRectF* sourceRect) {
 	return new QRectF(self->boundingRectFor(*sourceRect));
 }
@@ -367,28 +372,6 @@ struct miqt_string QGraphicsEffect_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsEffect_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsEffect::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsEffect_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsEffect::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__BoundingRectFor = slot;
 }
@@ -405,7 +388,7 @@ void QGraphicsEffect_override_virtual_SourceChanged(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsEffect*>( (QGraphicsEffect*)(self) )->handle__SourceChanged = slot;
 }
 
-void QGraphicsEffect_virtualbase_SourceChanged(void* self, int flags) {
+void QGraphicsEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
 	( (MiqtVirtualQGraphicsEffect*)(self) )->virtualbase_SourceChanged(flags);
 }
 
@@ -534,14 +517,13 @@ public:
 	intptr_t handle__SourceChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(QGraphicsEffect::ChangeFlags flags) override {
+	virtual void sourceChanged(ChangeFlags flags) override {
 		if (handle__SourceChanged == 0) {
 			QGraphicsColorizeEffect::sourceChanged(flags);
 			return;
 		}
 		
-		QGraphicsEffect::ChangeFlags flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		ChangeFlags sigval1 = flags;
 
 		miqt_exec_callback_QGraphicsColorizeEffect_SourceChanged(this, handle__SourceChanged, sigval1);
 
@@ -549,9 +531,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(int flags) {
+	void virtualbase_SourceChanged(ChangeFlags flags) {
 
-		QGraphicsColorizeEffect::sourceChanged(static_cast<QGraphicsEffect::ChangeFlags>(flags));
+		QGraphicsColorizeEffect::sourceChanged(flags);
 
 	}
 
@@ -579,17 +561,6 @@ void* QGraphicsColorizeEffect_Metacast(QGraphicsColorizeEffect* self, const char
 
 struct miqt_string QGraphicsColorizeEffect_Tr(const char* s) {
 	QString _ret = QGraphicsColorizeEffect::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsColorizeEffect_TrUtf8(const char* s) {
-	QString _ret = QGraphicsColorizeEffect::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -663,28 +634,6 @@ struct miqt_string QGraphicsColorizeEffect_Tr3(const char* s, const char* c, int
 	return _ms;
 }
 
-struct miqt_string QGraphicsColorizeEffect_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsColorizeEffect::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsColorizeEffect_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsColorizeEffect::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsColorizeEffect_override_virtual_Draw(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__Draw = slot;
 }
@@ -705,7 +654,7 @@ void QGraphicsColorizeEffect_override_virtual_SourceChanged(void* self, intptr_t
 	dynamic_cast<MiqtVirtualQGraphicsColorizeEffect*>( (QGraphicsColorizeEffect*)(self) )->handle__SourceChanged = slot;
 }
 
-void QGraphicsColorizeEffect_virtualbase_SourceChanged(void* self, int flags) {
+void QGraphicsColorizeEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
 	( (MiqtVirtualQGraphicsColorizeEffect*)(self) )->virtualbase_SourceChanged(flags);
 }
 
@@ -778,14 +727,13 @@ public:
 	intptr_t handle__SourceChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(QGraphicsEffect::ChangeFlags flags) override {
+	virtual void sourceChanged(ChangeFlags flags) override {
 		if (handle__SourceChanged == 0) {
 			QGraphicsBlurEffect::sourceChanged(flags);
 			return;
 		}
 		
-		QGraphicsEffect::ChangeFlags flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		ChangeFlags sigval1 = flags;
 
 		miqt_exec_callback_QGraphicsBlurEffect_SourceChanged(this, handle__SourceChanged, sigval1);
 
@@ -793,9 +741,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(int flags) {
+	void virtualbase_SourceChanged(ChangeFlags flags) {
 
-		QGraphicsBlurEffect::sourceChanged(static_cast<QGraphicsEffect::ChangeFlags>(flags));
+		QGraphicsBlurEffect::sourceChanged(flags);
 
 	}
 
@@ -832,17 +780,6 @@ struct miqt_string QGraphicsBlurEffect_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsBlurEffect_TrUtf8(const char* s) {
-	QString _ret = QGraphicsBlurEffect::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QRectF* QGraphicsBlurEffect_BoundingRectFor(const QGraphicsBlurEffect* self, QRectF* rect) {
 	return new QRectF(self->boundingRectFor(*rect));
 }
@@ -852,17 +789,16 @@ double QGraphicsBlurEffect_BlurRadius(const QGraphicsBlurEffect* self) {
 	return static_cast<double>(_ret);
 }
 
-int QGraphicsBlurEffect_BlurHints(const QGraphicsBlurEffect* self) {
-	QGraphicsBlurEffect::BlurHints _ret = self->blurHints();
-	return static_cast<int>(_ret);
+BlurHints QGraphicsBlurEffect_BlurHints(const QGraphicsBlurEffect* self) {
+	return self->blurHints();
 }
 
 void QGraphicsBlurEffect_SetBlurRadius(QGraphicsBlurEffect* self, double blurRadius) {
 	self->setBlurRadius(static_cast<qreal>(blurRadius));
 }
 
-void QGraphicsBlurEffect_SetBlurHints(QGraphicsBlurEffect* self, int hints) {
-	self->setBlurHints(static_cast<QGraphicsBlurEffect::BlurHints>(hints));
+void QGraphicsBlurEffect_SetBlurHints(QGraphicsBlurEffect* self, BlurHints hints) {
+	self->setBlurHints(hints);
 }
 
 void QGraphicsBlurEffect_BlurRadiusChanged(QGraphicsBlurEffect* self, double blurRadius) {
@@ -877,14 +813,13 @@ void QGraphicsBlurEffect_connect_BlurRadiusChanged(QGraphicsBlurEffect* self, in
 	});
 }
 
-void QGraphicsBlurEffect_BlurHintsChanged(QGraphicsBlurEffect* self, int hints) {
-	self->blurHintsChanged(static_cast<QGraphicsBlurEffect::BlurHints>(hints));
+void QGraphicsBlurEffect_BlurHintsChanged(QGraphicsBlurEffect* self, BlurHints hints) {
+	self->blurHintsChanged(hints);
 }
 
 void QGraphicsBlurEffect_connect_BlurHintsChanged(QGraphicsBlurEffect* self, intptr_t slot) {
-	MiqtVirtualQGraphicsBlurEffect::connect(self, static_cast<void (QGraphicsBlurEffect::*)(QGraphicsBlurEffect::BlurHints)>(&QGraphicsBlurEffect::blurHintsChanged), self, [=](QGraphicsBlurEffect::BlurHints hints) {
-		QGraphicsBlurEffect::BlurHints hints_ret = hints;
-		int sigval1 = static_cast<int>(hints_ret);
+	MiqtVirtualQGraphicsBlurEffect::connect(self, static_cast<void (QGraphicsBlurEffect::*)(BlurHints)>(&QGraphicsBlurEffect::blurHintsChanged), self, [=](BlurHints hints) {
+		BlurHints sigval1 = hints;
 		miqt_exec_callback_QGraphicsBlurEffect_BlurHintsChanged(slot, sigval1);
 	});
 }
@@ -902,28 +837,6 @@ struct miqt_string QGraphicsBlurEffect_Tr2(const char* s, const char* c) {
 
 struct miqt_string QGraphicsBlurEffect_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QGraphicsBlurEffect::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsBlurEffect_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsBlurEffect::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsBlurEffect_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsBlurEffect::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -953,7 +866,7 @@ void QGraphicsBlurEffect_override_virtual_SourceChanged(void* self, intptr_t slo
 	dynamic_cast<MiqtVirtualQGraphicsBlurEffect*>( (QGraphicsBlurEffect*)(self) )->handle__SourceChanged = slot;
 }
 
-void QGraphicsBlurEffect_virtualbase_SourceChanged(void* self, int flags) {
+void QGraphicsBlurEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
 	( (MiqtVirtualQGraphicsBlurEffect*)(self) )->virtualbase_SourceChanged(flags);
 }
 
@@ -1026,14 +939,13 @@ public:
 	intptr_t handle__SourceChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(QGraphicsEffect::ChangeFlags flags) override {
+	virtual void sourceChanged(ChangeFlags flags) override {
 		if (handle__SourceChanged == 0) {
 			QGraphicsDropShadowEffect::sourceChanged(flags);
 			return;
 		}
 		
-		QGraphicsEffect::ChangeFlags flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		ChangeFlags sigval1 = flags;
 
 		miqt_exec_callback_QGraphicsDropShadowEffect_SourceChanged(this, handle__SourceChanged, sigval1);
 
@@ -1041,9 +953,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(int flags) {
+	void virtualbase_SourceChanged(ChangeFlags flags) {
 
-		QGraphicsDropShadowEffect::sourceChanged(static_cast<QGraphicsEffect::ChangeFlags>(flags));
+		QGraphicsDropShadowEffect::sourceChanged(flags);
 
 	}
 
@@ -1071,17 +983,6 @@ void* QGraphicsDropShadowEffect_Metacast(QGraphicsDropShadowEffect* self, const 
 
 struct miqt_string QGraphicsDropShadowEffect_Tr(const char* s) {
 	QString _ret = QGraphicsDropShadowEffect::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsDropShadowEffect_TrUtf8(const char* s) {
-	QString _ret = QGraphicsDropShadowEffect::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1206,28 +1107,6 @@ struct miqt_string QGraphicsDropShadowEffect_Tr3(const char* s, const char* c, i
 	return _ms;
 }
 
-struct miqt_string QGraphicsDropShadowEffect_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsDropShadowEffect::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsDropShadowEffect_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsDropShadowEffect::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsDropShadowEffect_override_virtual_BoundingRectFor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__BoundingRectFor = slot;
 }
@@ -1248,7 +1127,7 @@ void QGraphicsDropShadowEffect_override_virtual_SourceChanged(void* self, intptr
 	dynamic_cast<MiqtVirtualQGraphicsDropShadowEffect*>( (QGraphicsDropShadowEffect*)(self) )->handle__SourceChanged = slot;
 }
 
-void QGraphicsDropShadowEffect_virtualbase_SourceChanged(void* self, int flags) {
+void QGraphicsDropShadowEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
 	( (MiqtVirtualQGraphicsDropShadowEffect*)(self) )->virtualbase_SourceChanged(flags);
 }
 
@@ -1321,14 +1200,13 @@ public:
 	intptr_t handle__SourceChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sourceChanged(QGraphicsEffect::ChangeFlags flags) override {
+	virtual void sourceChanged(ChangeFlags flags) override {
 		if (handle__SourceChanged == 0) {
 			QGraphicsOpacityEffect::sourceChanged(flags);
 			return;
 		}
 		
-		QGraphicsEffect::ChangeFlags flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		ChangeFlags sigval1 = flags;
 
 		miqt_exec_callback_QGraphicsOpacityEffect_SourceChanged(this, handle__SourceChanged, sigval1);
 
@@ -1336,9 +1214,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SourceChanged(int flags) {
+	void virtualbase_SourceChanged(ChangeFlags flags) {
 
-		QGraphicsOpacityEffect::sourceChanged(static_cast<QGraphicsEffect::ChangeFlags>(flags));
+		QGraphicsOpacityEffect::sourceChanged(flags);
 
 	}
 
@@ -1366,17 +1244,6 @@ void* QGraphicsOpacityEffect_Metacast(QGraphicsOpacityEffect* self, const char* 
 
 struct miqt_string QGraphicsOpacityEffect_Tr(const char* s) {
 	QString _ret = QGraphicsOpacityEffect::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsOpacityEffect_TrUtf8(const char* s) {
-	QString _ret = QGraphicsOpacityEffect::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1450,28 +1317,6 @@ struct miqt_string QGraphicsOpacityEffect_Tr3(const char* s, const char* c, int 
 	return _ms;
 }
 
-struct miqt_string QGraphicsOpacityEffect_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsOpacityEffect::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsOpacityEffect_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsOpacityEffect::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsOpacityEffect_override_virtual_Draw(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__Draw = slot;
 }
@@ -1492,7 +1337,7 @@ void QGraphicsOpacityEffect_override_virtual_SourceChanged(void* self, intptr_t 
 	dynamic_cast<MiqtVirtualQGraphicsOpacityEffect*>( (QGraphicsOpacityEffect*)(self) )->handle__SourceChanged = slot;
 }
 
-void QGraphicsOpacityEffect_virtualbase_SourceChanged(void* self, int flags) {
+void QGraphicsOpacityEffect_virtualbase_SourceChanged(void* self, ChangeFlags flags) {
 	( (MiqtVirtualQGraphicsOpacityEffect*)(self) )->virtualbase_SourceChanged(flags);
 }
 

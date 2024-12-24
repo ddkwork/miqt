@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTemporaryDir* QTemporaryDir_new() {
 	return new QTemporaryDir();
@@ -17,6 +34,10 @@ QTemporaryDir* QTemporaryDir_new() {
 QTemporaryDir* QTemporaryDir_new2(struct miqt_string templateName) {
 	QString templateName_QString = QString::fromUtf8(templateName.data, templateName.len);
 	return new QTemporaryDir(templateName_QString);
+}
+
+void QTemporaryDir_Swap(QTemporaryDir* self, QTemporaryDir* other) {
+	self->swap(*other);
 }
 
 bool QTemporaryDir_IsValid(const QTemporaryDir* self) {

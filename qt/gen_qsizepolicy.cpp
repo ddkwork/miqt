@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QSizePolicy>
 #include <qsizepolicy.h>
 #include "gen_qsizepolicy.h"
@@ -5,49 +7,61 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QSizePolicy* QSizePolicy_new() {
 	return new QSizePolicy();
 }
 
-QSizePolicy* QSizePolicy_new2(int horizontal, int vertical) {
-	return new QSizePolicy(static_cast<QSizePolicy::Policy>(horizontal), static_cast<QSizePolicy::Policy>(vertical));
+QSizePolicy* QSizePolicy_new2(Policy horizontal, Policy vertical) {
+	return new QSizePolicy(horizontal, vertical);
 }
 
 QSizePolicy* QSizePolicy_new3(QSizePolicy* param1) {
 	return new QSizePolicy(*param1);
 }
 
-QSizePolicy* QSizePolicy_new4(int horizontal, int vertical, int typeVal) {
-	return new QSizePolicy(static_cast<QSizePolicy::Policy>(horizontal), static_cast<QSizePolicy::Policy>(vertical), static_cast<QSizePolicy::ControlType>(typeVal));
+QSizePolicy* QSizePolicy_new4(Policy horizontal, Policy vertical, ControlType typeVal) {
+	return new QSizePolicy(horizontal, vertical, typeVal);
 }
 
-int QSizePolicy_HorizontalPolicy(const QSizePolicy* self) {
-	QSizePolicy::Policy _ret = self->horizontalPolicy();
-	return static_cast<int>(_ret);
+Policy QSizePolicy_HorizontalPolicy(const QSizePolicy* self) {
+	return self->horizontalPolicy();
 }
 
-int QSizePolicy_VerticalPolicy(const QSizePolicy* self) {
-	QSizePolicy::Policy _ret = self->verticalPolicy();
-	return static_cast<int>(_ret);
+Policy QSizePolicy_VerticalPolicy(const QSizePolicy* self) {
+	return self->verticalPolicy();
 }
 
-int QSizePolicy_ControlType(const QSizePolicy* self) {
-	QSizePolicy::ControlType _ret = self->controlType();
-	return static_cast<int>(_ret);
+ControlType QSizePolicy_ControlType(const QSizePolicy* self) {
+	return self->controlType();
 }
 
-void QSizePolicy_SetHorizontalPolicy(QSizePolicy* self, int d) {
-	self->setHorizontalPolicy(static_cast<QSizePolicy::Policy>(d));
+void QSizePolicy_SetHorizontalPolicy(QSizePolicy* self, Policy d) {
+	self->setHorizontalPolicy(d);
 }
 
-void QSizePolicy_SetVerticalPolicy(QSizePolicy* self, int d) {
-	self->setVerticalPolicy(static_cast<QSizePolicy::Policy>(d));
+void QSizePolicy_SetVerticalPolicy(QSizePolicy* self, Policy d) {
+	self->setVerticalPolicy(d);
 }
 
-void QSizePolicy_SetControlType(QSizePolicy* self, int typeVal) {
-	self->setControlType(static_cast<QSizePolicy::ControlType>(typeVal));
+void QSizePolicy_SetControlType(QSizePolicy* self, ControlType typeVal) {
+	self->setControlType(typeVal);
 }
 
 int QSizePolicy_ExpandingDirections(const QSizePolicy* self) {

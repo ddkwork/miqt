@@ -1,17 +1,42 @@
-#include <QByteArray>
+// +build ignore
+
 #include <QString>
 #include <QByteArray>
 #include <cstring>
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
+#include <QTextStream>
 #include <qtextdocumentfragment.h>
 #include "gen_qtextdocumentfragment.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void QTextStream_Delete(QTextStream* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QTextStream*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTextDocumentFragment* QTextDocumentFragment_new() {
 	return new QTextDocumentFragment();
@@ -48,8 +73,30 @@ struct miqt_string QTextDocumentFragment_ToPlainText(const QTextDocumentFragment
 	return _ms;
 }
 
+struct miqt_string QTextDocumentFragment_ToRawText(const QTextDocumentFragment* self) {
+	QString _ret = self->toRawText();
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+
 struct miqt_string QTextDocumentFragment_ToHtml(const QTextDocumentFragment* self) {
 	QString _ret = self->toHtml();
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+
+struct miqt_string QTextDocumentFragment_ToMarkdown(const QTextDocumentFragment* self) {
+	QString _ret = self->toMarkdown();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -69,14 +116,13 @@ QTextDocumentFragment* QTextDocumentFragment_FromHtml(struct miqt_string html) {
 	return new QTextDocumentFragment(QTextDocumentFragment::fromHtml(html_QString));
 }
 
-QTextDocumentFragment* QTextDocumentFragment_FromHtml2(struct miqt_string html, QTextDocument* resourceProvider) {
-	QString html_QString = QString::fromUtf8(html.data, html.len);
-	return new QTextDocumentFragment(QTextDocumentFragment::fromHtml(html_QString, resourceProvider));
+QTextDocumentFragment* QTextDocumentFragment_FromMarkdown(struct miqt_string markdown) {
+	QString markdown_QString = QString::fromUtf8(markdown.data, markdown.len);
+	return new QTextDocumentFragment(QTextDocumentFragment::fromMarkdown(markdown_QString));
 }
 
-struct miqt_string QTextDocumentFragment_ToHtml1(const QTextDocumentFragment* self, struct miqt_string encoding) {
-	QByteArray encoding_QByteArray(encoding.data, encoding.len);
-	QString _ret = self->toHtml(encoding_QByteArray);
+struct miqt_string QTextDocumentFragment_ToMarkdown1(const QTextDocumentFragment* self, int features) {
+	QString _ret = self->toMarkdown(static_cast<QTextDocument::MarkdownFeatures>(features));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -84,6 +130,16 @@ struct miqt_string QTextDocumentFragment_ToHtml1(const QTextDocumentFragment* se
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
+}
+
+QTextDocumentFragment* QTextDocumentFragment_FromHtml2(struct miqt_string html, QTextDocument* resourceProvider) {
+	QString html_QString = QString::fromUtf8(html.data, html.len);
+	return new QTextDocumentFragment(QTextDocumentFragment::fromHtml(html_QString, resourceProvider));
+}
+
+QTextDocumentFragment* QTextDocumentFragment_FromMarkdown2(struct miqt_string markdown, int features) {
+	QString markdown_QString = QString::fromUtf8(markdown.data, markdown.len);
+	return new QTextDocumentFragment(QTextDocumentFragment::fromMarkdown(markdown_QString, static_cast<QTextDocument::MarkdownFeatures>(features)));
 }
 
 void QTextDocumentFragment_Delete(QTextDocumentFragment* self, bool isSubclass) {

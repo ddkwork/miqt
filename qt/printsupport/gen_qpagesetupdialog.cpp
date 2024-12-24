@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCloseEvent>
 #include <QContextMenuEvent>
 #include <QDialog>
@@ -21,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPageSetupDialog : public virtual QPageSetupDialog {
 public:
@@ -32,6 +49,30 @@ public:
 	MiqtVirtualQPageSetupDialog(QPrinter* printer, QWidget* parent): QPageSetupDialog(printer, parent) {};
 
 	virtual ~MiqtVirtualQPageSetupDialog() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetVisible = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setVisible(bool visible) override {
+		if (handle__SetVisible == 0) {
+			QPageSetupDialog::setVisible(visible);
+			return;
+		}
+		
+		bool sigval1 = visible;
+
+		miqt_exec_callback_QPageSetupDialog_SetVisible(this, handle__SetVisible, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetVisible(bool visible) {
+
+		QPageSetupDialog::setVisible(visible);
+
+	}
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Exec = 0;
@@ -76,30 +117,6 @@ public:
 	void virtualbase_Done(int result) {
 
 		QPageSetupDialog::done(static_cast<int>(result));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetVisible = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setVisible(bool visible) override {
-		if (handle__SetVisible == 0) {
-			QPageSetupDialog::setVisible(visible);
-			return;
-		}
-		
-		bool sigval1 = visible;
-
-		miqt_exec_callback_QPageSetupDialog_SetVisible(this, handle__SetVisible, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetVisible(bool visible) {
-
-		QPageSetupDialog::setVisible(visible);
 
 	}
 
@@ -401,15 +418,8 @@ struct miqt_string QPageSetupDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPageSetupDialog_TrUtf8(const char* s) {
-	QString _ret = QPageSetupDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QPageSetupDialog_SetVisible(QPageSetupDialog* self, bool visible) {
+	self->setVisible(visible);
 }
 
 int QPageSetupDialog_Exec(QPageSetupDialog* self) {
@@ -446,26 +456,12 @@ struct miqt_string QPageSetupDialog_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QPageSetupDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPageSetupDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QPageSetupDialog_override_virtual_SetVisible(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQPageSetupDialog*>( (QPageSetupDialog*)(self) )->handle__SetVisible = slot;
 }
 
-struct miqt_string QPageSetupDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPageSetupDialog::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QPageSetupDialog_virtualbase_SetVisible(void* self, bool visible) {
+	( (MiqtVirtualQPageSetupDialog*)(self) )->virtualbase_SetVisible(visible);
 }
 
 void QPageSetupDialog_override_virtual_Exec(void* self, intptr_t slot) {
@@ -482,14 +478,6 @@ void QPageSetupDialog_override_virtual_Done(void* self, intptr_t slot) {
 
 void QPageSetupDialog_virtualbase_Done(void* self, int result) {
 	( (MiqtVirtualQPageSetupDialog*)(self) )->virtualbase_Done(result);
-}
-
-void QPageSetupDialog_override_virtual_SetVisible(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPageSetupDialog*>( (QPageSetupDialog*)(self) )->handle__SetVisible = slot;
-}
-
-void QPageSetupDialog_virtualbase_SetVisible(void* self, bool visible) {
-	( (MiqtVirtualQPageSetupDialog*)(self) )->virtualbase_SetVisible(visible);
 }
 
 void QPageSetupDialog_override_virtual_SizeHint(void* self, intptr_t slot) {

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -17,31 +17,39 @@ extern "C" {
 #ifdef __cplusplus
 class QEasingCurve;
 class QPointF;
+class _GUID;
+class type_info;
 #else
 typedef struct QEasingCurve QEasingCurve;
 typedef struct QPointF QPointF;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QEasingCurve* QEasingCurve_new();
-QEasingCurve* QEasingCurve_new2(QEasingCurve* other);
-QEasingCurve* QEasingCurve_new3(int typeVal);
-void QEasingCurve_OperatorAssign(QEasingCurve* self, QEasingCurve* other);
-void QEasingCurve_Swap(QEasingCurve* self, QEasingCurve* other);
-bool QEasingCurve_OperatorEqual(const QEasingCurve* self, QEasingCurve* other);
-bool QEasingCurve_OperatorNotEqual(const QEasingCurve* self, QEasingCurve* other);
-double QEasingCurve_Amplitude(const QEasingCurve* self);
-void QEasingCurve_SetAmplitude(QEasingCurve* self, double amplitude);
-double QEasingCurve_Period(const QEasingCurve* self);
-void QEasingCurve_SetPeriod(QEasingCurve* self, double period);
-double QEasingCurve_Overshoot(const QEasingCurve* self);
-void QEasingCurve_SetOvershoot(QEasingCurve* self, double overshoot);
-void QEasingCurve_AddCubicBezierSegment(QEasingCurve* self, QPointF* c1, QPointF* c2, QPointF* endPoint);
-void QEasingCurve_AddTCBSegment(QEasingCurve* self, QPointF* nextPoint, double t, double c, double b);
-struct miqt_array /* of QPointF* */  QEasingCurve_ToCubicSpline(const QEasingCurve* self);
-int QEasingCurve_Type(const QEasingCurve* self);
-void QEasingCurve_SetType(QEasingCurve* self, int typeVal);
-double QEasingCurve_ValueForProgress(const QEasingCurve* self, double progress);
-void QEasingCurve_Delete(QEasingCurve* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QEasingCurve* QEasingCurve_new();
+extern __declspec(dllexport) QEasingCurve* QEasingCurve_new2(QEasingCurve* other);
+extern __declspec(dllexport) QEasingCurve* QEasingCurve_new3(Type typeVal);
+extern __declspec(dllexport) void QEasingCurve_OperatorAssign(QEasingCurve* self, QEasingCurve* other);
+extern __declspec(dllexport) void QEasingCurve_Swap(QEasingCurve* self, QEasingCurve* other);
+extern __declspec(dllexport) double QEasingCurve_Amplitude(const QEasingCurve* self);
+extern __declspec(dllexport) void QEasingCurve_SetAmplitude(QEasingCurve* self, double amplitude);
+extern __declspec(dllexport) double QEasingCurve_Period(const QEasingCurve* self);
+extern __declspec(dllexport) void QEasingCurve_SetPeriod(QEasingCurve* self, double period);
+extern __declspec(dllexport) double QEasingCurve_Overshoot(const QEasingCurve* self);
+extern __declspec(dllexport) void QEasingCurve_SetOvershoot(QEasingCurve* self, double overshoot);
+extern __declspec(dllexport) void QEasingCurve_AddCubicBezierSegment(QEasingCurve* self, QPointF* c1, QPointF* c2, QPointF* endPoint);
+extern __declspec(dllexport) void QEasingCurve_AddTCBSegment(QEasingCurve* self, QPointF* nextPoint, double t, double c, double b);
+extern __declspec(dllexport) struct miqt_array /* of QPointF* */  QEasingCurve_ToCubicSpline(const QEasingCurve* self);
+extern __declspec(dllexport) Type QEasingCurve_Type(const QEasingCurve* self);
+extern __declspec(dllexport) void QEasingCurve_SetType(QEasingCurve* self, Type typeVal);
+extern __declspec(dllexport) void QEasingCurve_SetCustomType(QEasingCurve* self, EasingFunction funcVal);
+extern __declspec(dllexport) EasingFunction QEasingCurve_CustomType(const QEasingCurve* self);
+extern __declspec(dllexport) double QEasingCurve_ValueForProgress(const QEasingCurve* self, double progress);
+extern __declspec(dllexport) void QEasingCurve_Delete(QEasingCurve* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

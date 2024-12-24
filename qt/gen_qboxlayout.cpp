@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBoxLayout>
 #include <QChildEvent>
 #include <QHBoxLayout>
@@ -19,13 +21,28 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQBoxLayout : public virtual QBoxLayout {
 public:
 
-	MiqtVirtualQBoxLayout(QBoxLayout::Direction param1): QBoxLayout(param1) {};
-	MiqtVirtualQBoxLayout(QBoxLayout::Direction param1, QWidget* parent): QBoxLayout(param1, parent) {};
+	MiqtVirtualQBoxLayout(Direction param1): QBoxLayout(param1) {};
+	MiqtVirtualQBoxLayout(Direction param1, QWidget* parent): QBoxLayout(param1, parent) {};
 
 	virtual ~MiqtVirtualQBoxLayout() = default;
 
@@ -50,6 +67,52 @@ public:
 	void virtualbase_AddItem(QLayoutItem* param1) {
 
 		QBoxLayout::addItem(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QBoxLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QBoxLayout_Spacing(const_cast<MiqtVirtualQBoxLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QBoxLayout::spacing();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QBoxLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QBoxLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QBoxLayout::setSpacing(static_cast<int>(spacing));
 
 	}
 
@@ -353,12 +416,12 @@ public:
 	intptr_t handle__IndexOf = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int indexOf(QWidget* param1) const override {
+	virtual int indexOf(const QWidget* param1) const override {
 		if (handle__IndexOf == 0) {
 			return QBoxLayout::indexOf(param1);
 		}
 		
-		QWidget* sigval1 = param1;
+		QWidget* sigval1 = (QWidget*) param1;
 
 		int callback_return_value = miqt_exec_callback_QBoxLayout_IndexOf(const_cast<MiqtVirtualQBoxLayout*>(this), handle__IndexOf, sigval1);
 
@@ -418,6 +481,32 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ReplaceWidget = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QLayoutItem* replaceWidget(QWidget* from, QWidget* to, Qt::FindChildOptions options) override {
+		if (handle__ReplaceWidget == 0) {
+			return QBoxLayout::replaceWidget(from, to, options);
+		}
+		
+		QWidget* sigval1 = from;
+		QWidget* sigval2 = to;
+		Qt::FindChildOptions options_ret = options;
+		int sigval3 = static_cast<int>(options_ret);
+
+		QLayoutItem* callback_return_value = miqt_exec_callback_QBoxLayout_ReplaceWidget(this, handle__ReplaceWidget, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QLayoutItem* virtualbase_ReplaceWidget(QWidget* from, QWidget* to, int options) {
+
+		return QBoxLayout::replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Layout = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -465,12 +554,12 @@ public:
 
 };
 
-QBoxLayout* QBoxLayout_new(int param1) {
-	return new MiqtVirtualQBoxLayout(static_cast<QBoxLayout::Direction>(param1));
+QBoxLayout* QBoxLayout_new(Direction param1) {
+	return new MiqtVirtualQBoxLayout(param1);
 }
 
-QBoxLayout* QBoxLayout_new2(int param1, QWidget* parent) {
-	return new MiqtVirtualQBoxLayout(static_cast<QBoxLayout::Direction>(param1), parent);
+QBoxLayout* QBoxLayout_new2(Direction param1, QWidget* parent) {
+	return new MiqtVirtualQBoxLayout(param1, parent);
 }
 
 void QBoxLayout_virtbase(QBoxLayout* src, QLayout** outptr_QLayout) {
@@ -496,24 +585,12 @@ struct miqt_string QBoxLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QBoxLayout_TrUtf8(const char* s) {
-	QString _ret = QBoxLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+Direction QBoxLayout_Direction(const QBoxLayout* self) {
+	return self->direction();
 }
 
-int QBoxLayout_Direction(const QBoxLayout* self) {
-	QBoxLayout::Direction _ret = self->direction();
-	return static_cast<int>(_ret);
-}
-
-void QBoxLayout_SetDirection(QBoxLayout* self, int direction) {
-	self->setDirection(static_cast<QBoxLayout::Direction>(direction));
+void QBoxLayout_SetDirection(QBoxLayout* self, Direction direction) {
+	self->setDirection(direction);
 }
 
 void QBoxLayout_AddSpacing(QBoxLayout* self, int size) {
@@ -663,28 +740,6 @@ struct miqt_string QBoxLayout_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QBoxLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QBoxLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QBoxLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QBoxLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QBoxLayout_AddStretch1(QBoxLayout* self, int stretch) {
 	self->addStretch(static_cast<int>(stretch));
 }
@@ -723,6 +778,22 @@ void QBoxLayout_override_virtual_AddItem(void* self, intptr_t slot) {
 
 void QBoxLayout_virtualbase_AddItem(void* self, QLayoutItem* param1) {
 	( (MiqtVirtualQBoxLayout*)(self) )->virtualbase_AddItem(param1);
+}
+
+void QBoxLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQBoxLayout*>( (QBoxLayout*)(self) )->handle__Spacing = slot;
+}
+
+int QBoxLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQBoxLayout*)(self) )->virtualbase_Spacing();
+}
+
+void QBoxLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQBoxLayout*>( (QBoxLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QBoxLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQBoxLayout*)(self) )->virtualbase_SetSpacing(spacing);
 }
 
 void QBoxLayout_override_virtual_SizeHint(void* self, intptr_t slot) {
@@ -853,6 +924,14 @@ int QBoxLayout_virtualbase_ControlTypes(const void* self) {
 	return ( (const MiqtVirtualQBoxLayout*)(self) )->virtualbase_ControlTypes();
 }
 
+void QBoxLayout_override_virtual_ReplaceWidget(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQBoxLayout*>( (QBoxLayout*)(self) )->handle__ReplaceWidget = slot;
+}
+
+QLayoutItem* QBoxLayout_virtualbase_ReplaceWidget(void* self, QWidget* from, QWidget* to, int options) {
+	return ( (MiqtVirtualQBoxLayout*)(self) )->virtualbase_ReplaceWidget(from, to, options);
+}
+
 void QBoxLayout_override_virtual_Layout(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQBoxLayout*>( (QBoxLayout*)(self) )->handle__Layout = slot;
 }
@@ -906,6 +985,52 @@ public:
 	void virtualbase_AddItem(QLayoutItem* param1) {
 
 		QHBoxLayout::addItem(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QHBoxLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QHBoxLayout_Spacing(const_cast<MiqtVirtualQHBoxLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QHBoxLayout::spacing();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QHBoxLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QHBoxLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QHBoxLayout::setSpacing(static_cast<int>(spacing));
 
 	}
 
@@ -1216,17 +1341,6 @@ struct miqt_string QHBoxLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QHBoxLayout_TrUtf8(const char* s) {
-	QString _ret = QHBoxLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QHBoxLayout_Tr2(const char* s, const char* c) {
 	QString _ret = QHBoxLayout::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1249,34 +1363,28 @@ struct miqt_string QHBoxLayout_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QHBoxLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QHBoxLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QHBoxLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QHBoxLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QHBoxLayout_override_virtual_AddItem(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQHBoxLayout*>( (QHBoxLayout*)(self) )->handle__AddItem = slot;
 }
 
 void QHBoxLayout_virtualbase_AddItem(void* self, QLayoutItem* param1) {
 	( (MiqtVirtualQHBoxLayout*)(self) )->virtualbase_AddItem(param1);
+}
+
+void QHBoxLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQHBoxLayout*>( (QHBoxLayout*)(self) )->handle__Spacing = slot;
+}
+
+int QHBoxLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQHBoxLayout*)(self) )->virtualbase_Spacing();
+}
+
+void QHBoxLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQHBoxLayout*>( (QHBoxLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QHBoxLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQHBoxLayout*)(self) )->virtualbase_SetSpacing(spacing);
 }
 
 void QHBoxLayout_override_virtual_SizeHint(void* self, intptr_t slot) {
@@ -1412,6 +1520,52 @@ public:
 	void virtualbase_AddItem(QLayoutItem* param1) {
 
 		QVBoxLayout::addItem(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QVBoxLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QVBoxLayout_Spacing(const_cast<MiqtVirtualQVBoxLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QVBoxLayout::spacing();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QVBoxLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QVBoxLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QVBoxLayout::setSpacing(static_cast<int>(spacing));
 
 	}
 
@@ -1722,17 +1876,6 @@ struct miqt_string QVBoxLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QVBoxLayout_TrUtf8(const char* s) {
-	QString _ret = QVBoxLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QVBoxLayout_Tr2(const char* s, const char* c) {
 	QString _ret = QVBoxLayout::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1755,34 +1898,28 @@ struct miqt_string QVBoxLayout_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QVBoxLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QVBoxLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QVBoxLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QVBoxLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QVBoxLayout_override_virtual_AddItem(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQVBoxLayout*>( (QVBoxLayout*)(self) )->handle__AddItem = slot;
 }
 
 void QVBoxLayout_virtualbase_AddItem(void* self, QLayoutItem* param1) {
 	( (MiqtVirtualQVBoxLayout*)(self) )->virtualbase_AddItem(param1);
+}
+
+void QVBoxLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQVBoxLayout*>( (QVBoxLayout*)(self) )->handle__Spacing = slot;
+}
+
+int QVBoxLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQVBoxLayout*)(self) )->virtualbase_Spacing();
+}
+
+void QVBoxLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQVBoxLayout*>( (QVBoxLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QVBoxLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQVBoxLayout*)(self) )->virtualbase_SetSpacing(spacing);
 }
 
 void QVBoxLayout_override_virtual_SizeHint(void* self, intptr_t slot) {

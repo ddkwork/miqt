@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qsizepolicy.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -55,50 +46,22 @@ const (
 )
 
 type QSizePolicy struct {
-	h          *C.QSizePolicy
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QSizePolicy) cPointer() *C.QSizePolicy {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QSizePolicy) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQSizePolicy constructs the type using only CGO pointers.
-func newQSizePolicy(h *C.QSizePolicy) *QSizePolicy {
-	if h == nil {
-		return nil
-	}
-
-	return &QSizePolicy{h: h}
-}
-
-// UnsafeNewQSizePolicy constructs the type using only unsafe pointers.
-func UnsafeNewQSizePolicy(h unsafe.Pointer) *QSizePolicy {
-	return newQSizePolicy((*C.QSizePolicy)(h))
 }
 
 // NewQSizePolicy constructs a new QSizePolicy object.
 func NewQSizePolicy() *QSizePolicy {
 
-	ret := newQSizePolicy(C.QSizePolicy_new())
+	ret := newQSizePolicy(QSizePolicy_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQSizePolicy2 constructs a new QSizePolicy object.
-func NewQSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy) *QSizePolicy {
+func NewQSizePolicy2(horizontal Policy, vertical Policy) *QSizePolicy {
 
-	ret := newQSizePolicy(C.QSizePolicy_new2((C.int)(horizontal), (C.int)(vertical)))
+	ret := newQSizePolicy(QSizePolicy_new2(horizontal, vertical))
 	ret.isSubclass = true
 	return ret
 }
@@ -106,115 +69,101 @@ func NewQSizePolicy2(horizontal QSizePolicy__Policy, vertical QSizePolicy__Polic
 // NewQSizePolicy3 constructs a new QSizePolicy object.
 func NewQSizePolicy3(param1 *QSizePolicy) *QSizePolicy {
 
-	ret := newQSizePolicy(C.QSizePolicy_new3(param1.cPointer()))
+	ret := newQSizePolicy(QSizePolicy_new3(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQSizePolicy4 constructs a new QSizePolicy object.
-func NewQSizePolicy4(horizontal QSizePolicy__Policy, vertical QSizePolicy__Policy, typeVal QSizePolicy__ControlType) *QSizePolicy {
+func NewQSizePolicy4(horizontal Policy, vertical Policy, typeVal ControlType) *QSizePolicy {
 
-	ret := newQSizePolicy(C.QSizePolicy_new4((C.int)(horizontal), (C.int)(vertical), (C.int)(typeVal)))
+	ret := newQSizePolicy(QSizePolicy_new4(horizontal, vertical, typeVal))
 	ret.isSubclass = true
 	return ret
 }
 
-func (this *QSizePolicy) HorizontalPolicy() QSizePolicy__Policy {
-	return (QSizePolicy__Policy)(C.QSizePolicy_HorizontalPolicy(this.h))
+func (this *QSizePolicy) HorizontalPolicy() Policy {
+	xxxxxxxxx
 }
 
-func (this *QSizePolicy) VerticalPolicy() QSizePolicy__Policy {
-	return (QSizePolicy__Policy)(C.QSizePolicy_VerticalPolicy(this.h))
+func (this *QSizePolicy) VerticalPolicy() Policy {
+	xxxxxxxxx
 }
 
-func (this *QSizePolicy) ControlType() QSizePolicy__ControlType {
-	return (QSizePolicy__ControlType)(C.QSizePolicy_ControlType(this.h))
+func (this *QSizePolicy) ControlType() ControlType {
+	xxxxxxxxx
 }
 
-func (this *QSizePolicy) SetHorizontalPolicy(d QSizePolicy__Policy) {
-	C.QSizePolicy_SetHorizontalPolicy(this.h, (C.int)(d))
+func (this *QSizePolicy) SetHorizontalPolicy(d Policy) {
+	QSizePolicy_SetHorizontalPolicy(this.h, d)
 }
 
-func (this *QSizePolicy) SetVerticalPolicy(d QSizePolicy__Policy) {
-	C.QSizePolicy_SetVerticalPolicy(this.h, (C.int)(d))
+func (this *QSizePolicy) SetVerticalPolicy(d Policy) {
+	QSizePolicy_SetVerticalPolicy(this.h, d)
 }
 
-func (this *QSizePolicy) SetControlType(typeVal QSizePolicy__ControlType) {
-	C.QSizePolicy_SetControlType(this.h, (C.int)(typeVal))
+func (this *QSizePolicy) SetControlType(typeVal ControlType) {
+	QSizePolicy_SetControlType(this.h, typeVal)
 }
 
 func (this *QSizePolicy) ExpandingDirections() Orientation {
-	return (Orientation)(C.QSizePolicy_ExpandingDirections(this.h))
+	return (Orientation)(QSizePolicy_ExpandingDirections(this.h))
 }
 
 func (this *QSizePolicy) SetHeightForWidth(b bool) {
-	C.QSizePolicy_SetHeightForWidth(this.h, (C.bool)(b))
+	QSizePolicy_SetHeightForWidth(this.h, (bool)(b))
 }
 
 func (this *QSizePolicy) HasHeightForWidth() bool {
-	return (bool)(C.QSizePolicy_HasHeightForWidth(this.h))
+	return (bool)(QSizePolicy_HasHeightForWidth(this.h))
 }
 
 func (this *QSizePolicy) SetWidthForHeight(b bool) {
-	C.QSizePolicy_SetWidthForHeight(this.h, (C.bool)(b))
+	QSizePolicy_SetWidthForHeight(this.h, (bool)(b))
 }
 
 func (this *QSizePolicy) HasWidthForHeight() bool {
-	return (bool)(C.QSizePolicy_HasWidthForHeight(this.h))
+	return (bool)(QSizePolicy_HasWidthForHeight(this.h))
 }
 
 func (this *QSizePolicy) OperatorEqual(s *QSizePolicy) bool {
-	return (bool)(C.QSizePolicy_OperatorEqual(this.h, s.cPointer()))
+	return (bool)(QSizePolicy_OperatorEqual(this.h, s.cPointer()))
 }
 
 func (this *QSizePolicy) OperatorNotEqual(s *QSizePolicy) bool {
-	return (bool)(C.QSizePolicy_OperatorNotEqual(this.h, s.cPointer()))
+	return (bool)(QSizePolicy_OperatorNotEqual(this.h, s.cPointer()))
 }
 
 func (this *QSizePolicy) HorizontalStretch() int {
-	return (int)(C.QSizePolicy_HorizontalStretch(this.h))
+	return (int)(QSizePolicy_HorizontalStretch(this.h))
 }
 
 func (this *QSizePolicy) VerticalStretch() int {
-	return (int)(C.QSizePolicy_VerticalStretch(this.h))
+	return (int)(QSizePolicy_VerticalStretch(this.h))
 }
 
 func (this *QSizePolicy) SetHorizontalStretch(stretchFactor int) {
-	C.QSizePolicy_SetHorizontalStretch(this.h, (C.int)(stretchFactor))
+	QSizePolicy_SetHorizontalStretch(this.h, (int)(stretchFactor))
 }
 
 func (this *QSizePolicy) SetVerticalStretch(stretchFactor int) {
-	C.QSizePolicy_SetVerticalStretch(this.h, (C.int)(stretchFactor))
+	QSizePolicy_SetVerticalStretch(this.h, (int)(stretchFactor))
 }
 
 func (this *QSizePolicy) RetainSizeWhenHidden() bool {
-	return (bool)(C.QSizePolicy_RetainSizeWhenHidden(this.h))
+	return (bool)(QSizePolicy_RetainSizeWhenHidden(this.h))
 }
 
 func (this *QSizePolicy) SetRetainSizeWhenHidden(retainSize bool) {
-	C.QSizePolicy_SetRetainSizeWhenHidden(this.h, (C.bool)(retainSize))
+	QSizePolicy_SetRetainSizeWhenHidden(this.h, (bool)(retainSize))
 }
 
 func (this *QSizePolicy) Transpose() {
-	C.QSizePolicy_Transpose(this.h)
+	QSizePolicy_Transpose(this.h)
 }
 
 func (this *QSizePolicy) Transposed() *QSizePolicy {
-	_goptr := newQSizePolicy(C.QSizePolicy_Transposed(this.h))
+	_goptr := newQSizePolicy(QSizePolicy_Transposed(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-}
-
-// Delete this object from C++ memory.
-func (this *QSizePolicy) Delete() {
-	C.QSizePolicy_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QSizePolicy) GoGC() {
-	runtime.SetFinalizer(this, func(this *QSizePolicy) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

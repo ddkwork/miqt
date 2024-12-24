@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QMetaMethod>
@@ -8,14 +10,28 @@
 #include <QByteArray>
 #include <cstring>
 #include <QTimerEvent>
-#include <QWidget>
 #include <qsignalmapper.h>
 #include "gen_qsignalmapper.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSignalMapper : public virtual QSignalMapper {
 public:
@@ -229,17 +245,6 @@ struct miqt_string QSignalMapper_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSignalMapper_TrUtf8(const char* s) {
-	QString _ret = QSignalMapper::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QSignalMapper_SetMapping(QSignalMapper* self, QObject* sender, int id) {
 	self->setMapping(sender, static_cast<int>(id));
 }
@@ -249,11 +254,7 @@ void QSignalMapper_SetMapping2(QSignalMapper* self, QObject* sender, struct miqt
 	self->setMapping(sender, text_QString);
 }
 
-void QSignalMapper_SetMapping3(QSignalMapper* self, QObject* sender, QWidget* widget) {
-	self->setMapping(sender, widget);
-}
-
-void QSignalMapper_SetMapping4(QSignalMapper* self, QObject* sender, QObject* object) {
+void QSignalMapper_SetMapping3(QSignalMapper* self, QObject* sender, QObject* object) {
 	self->setMapping(sender, object);
 }
 
@@ -270,64 +271,8 @@ QObject* QSignalMapper_MappingWithText(const QSignalMapper* self, struct miqt_st
 	return self->mapping(text_QString);
 }
 
-QObject* QSignalMapper_MappingWithWidget(const QSignalMapper* self, QWidget* widget) {
-	return self->mapping(widget);
-}
-
 QObject* QSignalMapper_MappingWithObject(const QSignalMapper* self, QObject* object) {
 	return self->mapping(object);
-}
-
-void QSignalMapper_Mapped(QSignalMapper* self, int param1) {
-	self->mapped(static_cast<int>(param1));
-}
-
-void QSignalMapper_connect_Mapped(QSignalMapper* self, intptr_t slot) {
-	MiqtVirtualQSignalMapper::connect(self, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped), self, [=](int param1) {
-		int sigval1 = param1;
-		miqt_exec_callback_QSignalMapper_Mapped(slot, sigval1);
-	});
-}
-
-void QSignalMapper_MappedWithQString(QSignalMapper* self, struct miqt_string param1) {
-	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-	self->mapped(param1_QString);
-}
-
-void QSignalMapper_connect_MappedWithQString(QSignalMapper* self, intptr_t slot) {
-	MiqtVirtualQSignalMapper::connect(self, static_cast<void (QSignalMapper::*)(const QString&)>(&QSignalMapper::mapped), self, [=](const QString& param1) {
-		const QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		miqt_exec_callback_QSignalMapper_MappedWithQString(slot, sigval1);
-	});
-}
-
-void QSignalMapper_MappedWithQWidget(QSignalMapper* self, QWidget* param1) {
-	self->mapped(param1);
-}
-
-void QSignalMapper_connect_MappedWithQWidget(QSignalMapper* self, intptr_t slot) {
-	MiqtVirtualQSignalMapper::connect(self, static_cast<void (QSignalMapper::*)(QWidget*)>(&QSignalMapper::mapped), self, [=](QWidget* param1) {
-		QWidget* sigval1 = param1;
-		miqt_exec_callback_QSignalMapper_MappedWithQWidget(slot, sigval1);
-	});
-}
-
-void QSignalMapper_MappedWithQObject(QSignalMapper* self, QObject* param1) {
-	self->mapped(param1);
-}
-
-void QSignalMapper_connect_MappedWithQObject(QSignalMapper* self, intptr_t slot) {
-	MiqtVirtualQSignalMapper::connect(self, static_cast<void (QSignalMapper::*)(QObject*)>(&QSignalMapper::mapped), self, [=](QObject* param1) {
-		QObject* sigval1 = param1;
-		miqt_exec_callback_QSignalMapper_MappedWithQObject(slot, sigval1);
-	});
 }
 
 void QSignalMapper_MappedInt(QSignalMapper* self, int param1) {
@@ -357,17 +302,6 @@ void QSignalMapper_connect_MappedString(QSignalMapper* self, intptr_t slot) {
 		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
 		struct miqt_string sigval1 = param1_ms;
 		miqt_exec_callback_QSignalMapper_MappedString(slot, sigval1);
-	});
-}
-
-void QSignalMapper_MappedWidget(QSignalMapper* self, QWidget* param1) {
-	self->mappedWidget(param1);
-}
-
-void QSignalMapper_connect_MappedWidget(QSignalMapper* self, intptr_t slot) {
-	MiqtVirtualQSignalMapper::connect(self, static_cast<void (QSignalMapper::*)(QWidget*)>(&QSignalMapper::mappedWidget), self, [=](QWidget* param1) {
-		QWidget* sigval1 = param1;
-		miqt_exec_callback_QSignalMapper_MappedWidget(slot, sigval1);
 	});
 }
 
@@ -403,28 +337,6 @@ struct miqt_string QSignalMapper_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSignalMapper_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSignalMapper::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSignalMapper_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSignalMapper::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSignalMapper_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSignalMapper::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -25,6 +25,8 @@ class QObject;
 class QPixmap;
 class QPoint;
 class QTimerEvent;
+class _GUID;
+class type_info;
 #else
 typedef struct QChildEvent QChildEvent;
 typedef struct QDrag QDrag;
@@ -36,55 +38,56 @@ typedef struct QObject QObject;
 typedef struct QPixmap QPixmap;
 typedef struct QPoint QPoint;
 typedef struct QTimerEvent QTimerEvent;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QDrag* QDrag_new(QObject* dragSource);
-void QDrag_virtbase(QDrag* src, QObject** outptr_QObject);
-QMetaObject* QDrag_MetaObject(const QDrag* self);
-void* QDrag_Metacast(QDrag* self, const char* param1);
-struct miqt_string QDrag_Tr(const char* s);
-struct miqt_string QDrag_TrUtf8(const char* s);
-void QDrag_SetMimeData(QDrag* self, QMimeData* data);
-QMimeData* QDrag_MimeData(const QDrag* self);
-void QDrag_SetPixmap(QDrag* self, QPixmap* pixmap);
-QPixmap* QDrag_Pixmap(const QDrag* self);
-void QDrag_SetHotSpot(QDrag* self, QPoint* hotspot);
-QPoint* QDrag_HotSpot(const QDrag* self);
-QObject* QDrag_Source(const QDrag* self);
-QObject* QDrag_Target(const QDrag* self);
-int QDrag_Start(QDrag* self);
-int QDrag_Exec(QDrag* self);
-int QDrag_Exec2(QDrag* self, int supportedActions, int defaultAction);
-void QDrag_SetDragCursor(QDrag* self, QPixmap* cursor, int action);
-QPixmap* QDrag_DragCursor(const QDrag* self, int action);
-int QDrag_SupportedActions(const QDrag* self);
-int QDrag_DefaultAction(const QDrag* self);
-void QDrag_Cancel();
-void QDrag_ActionChanged(QDrag* self, int action);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QDrag* QDrag_new(QObject* dragSource);
+extern __declspec(dllexport) void QDrag_virtbase(QDrag* src, QObject** outptr_QObject);
+extern __declspec(dllexport) QMetaObject* QDrag_MetaObject(const QDrag* self);
+extern __declspec(dllexport) void* QDrag_Metacast(QDrag* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QDrag_Tr(const char* s);
+extern __declspec(dllexport) void QDrag_SetMimeData(QDrag* self, QMimeData* data);
+extern __declspec(dllexport) QMimeData* QDrag_MimeData(const QDrag* self);
+extern __declspec(dllexport) void QDrag_SetPixmap(QDrag* self, QPixmap* pixmap);
+extern __declspec(dllexport) QPixmap* QDrag_Pixmap(const QDrag* self);
+extern __declspec(dllexport) void QDrag_SetHotSpot(QDrag* self, QPoint* hotspot);
+extern __declspec(dllexport) QPoint* QDrag_HotSpot(const QDrag* self);
+extern __declspec(dllexport) QObject* QDrag_Source(const QDrag* self);
+extern __declspec(dllexport) QObject* QDrag_Target(const QDrag* self);
+extern __declspec(dllexport) int QDrag_Exec(QDrag* self);
+extern __declspec(dllexport) int QDrag_Exec2(QDrag* self, int supportedActions, int defaultAction);
+extern __declspec(dllexport) void QDrag_SetDragCursor(QDrag* self, QPixmap* cursor, int action);
+extern __declspec(dllexport) QPixmap* QDrag_DragCursor(const QDrag* self, int action);
+extern __declspec(dllexport) int QDrag_SupportedActions(const QDrag* self);
+extern __declspec(dllexport) int QDrag_DefaultAction(const QDrag* self);
+extern __declspec(dllexport) void QDrag_Cancel();
+extern __declspec(dllexport) void QDrag_ActionChanged(QDrag* self, int action);
 void QDrag_connect_ActionChanged(QDrag* self, intptr_t slot);
-void QDrag_TargetChanged(QDrag* self, QObject* newTarget);
+extern __declspec(dllexport) void QDrag_TargetChanged(QDrag* self, QObject* newTarget);
 void QDrag_connect_TargetChanged(QDrag* self, intptr_t slot);
-struct miqt_string QDrag_Tr2(const char* s, const char* c);
-struct miqt_string QDrag_Tr3(const char* s, const char* c, int n);
-struct miqt_string QDrag_TrUtf82(const char* s, const char* c);
-struct miqt_string QDrag_TrUtf83(const char* s, const char* c, int n);
-int QDrag_Start1(QDrag* self, int supportedActions);
-int QDrag_Exec1(QDrag* self, int supportedActions);
-void QDrag_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) struct miqt_string QDrag_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QDrag_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) int QDrag_Exec1(QDrag* self, int supportedActions);
+extern __declspec(dllexport) void QDrag_override_virtual_Event(void* self, intptr_t slot);
 bool QDrag_virtualbase_Event(void* self, QEvent* event);
-void QDrag_override_virtual_EventFilter(void* self, intptr_t slot);
+extern __declspec(dllexport) void QDrag_override_virtual_EventFilter(void* self, intptr_t slot);
 bool QDrag_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-void QDrag_override_virtual_TimerEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QDrag_override_virtual_TimerEvent(void* self, intptr_t slot);
 void QDrag_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-void QDrag_override_virtual_ChildEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QDrag_override_virtual_ChildEvent(void* self, intptr_t slot);
 void QDrag_virtualbase_ChildEvent(void* self, QChildEvent* event);
-void QDrag_override_virtual_CustomEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QDrag_override_virtual_CustomEvent(void* self, intptr_t slot);
 void QDrag_virtualbase_CustomEvent(void* self, QEvent* event);
-void QDrag_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QDrag_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QDrag_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-void QDrag_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QDrag_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QDrag_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-void QDrag_Delete(QDrag* self, bool isSubclass);
+extern __declspec(dllexport) void QDrag_Delete(QDrag* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

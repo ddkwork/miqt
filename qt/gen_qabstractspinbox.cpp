@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractSpinBox>
 #include <QActionEvent>
 #include <QByteArray>
@@ -7,6 +9,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -27,6 +30,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionSpinBox>
 #include <QTabletEvent>
 #include <QTimerEvent>
 #include <QVariant>
@@ -38,7 +42,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractSpinBox : public virtual QAbstractSpinBox {
 public:
@@ -636,25 +655,48 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSpinBox* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QAbstractSpinBox::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSpinBox* sigval1 = option;
+
+		miqt_exec_callback_QAbstractSpinBox_InitStyleOption(const_cast<MiqtVirtualQAbstractSpinBox*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSpinBox* option) const {
+
+		QAbstractSpinBox::initStyleOption(option);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__StepEnabled = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QAbstractSpinBox::StepEnabled stepEnabled() const override {
+	virtual StepEnabled stepEnabled() const override {
 		if (handle__StepEnabled == 0) {
 			return QAbstractSpinBox::stepEnabled();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QAbstractSpinBox_StepEnabled(const_cast<MiqtVirtualQAbstractSpinBox*>(this), handle__StepEnabled);
+		StepEnabled callback_return_value = miqt_exec_callback_QAbstractSpinBox_StepEnabled(const_cast<MiqtVirtualQAbstractSpinBox*>(this), handle__StepEnabled);
 
-		return static_cast<QAbstractSpinBox::StepEnabled>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_StepEnabled() const {
+	StepEnabled virtualbase_StepEnabled() const {
 
-		QAbstractSpinBox::StepEnabled _ret = QAbstractSpinBox::stepEnabled();
-		return static_cast<int>(_ret);
+		return QAbstractSpinBox::stepEnabled();
 
 	}
 
@@ -799,13 +841,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QAbstractSpinBox::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QAbstractSpinBox_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -813,7 +855,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QAbstractSpinBox::enterEvent(event);
 
@@ -1015,7 +1057,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QAbstractSpinBox::nativeEvent(eventType, message, result);
 		}
@@ -1027,7 +1069,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QAbstractSpinBox_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -1035,10 +1078,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QAbstractSpinBox::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QAbstractSpinBox::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -1046,13 +1089,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QAbstractSpinBox::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QAbstractSpinBox_Metric(const_cast<MiqtVirtualQAbstractSpinBox*>(this), handle__Metric, sigval1);
 
@@ -1060,9 +1102,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QAbstractSpinBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QAbstractSpinBox::metric(param1);
 
 	}
 
@@ -1215,33 +1257,20 @@ struct miqt_string QAbstractSpinBox_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QAbstractSpinBox_TrUtf8(const char* s) {
-	QString _ret = QAbstractSpinBox::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+ButtonSymbols QAbstractSpinBox_ButtonSymbols(const QAbstractSpinBox* self) {
+	return self->buttonSymbols();
 }
 
-int QAbstractSpinBox_ButtonSymbols(const QAbstractSpinBox* self) {
-	QAbstractSpinBox::ButtonSymbols _ret = self->buttonSymbols();
-	return static_cast<int>(_ret);
+void QAbstractSpinBox_SetButtonSymbols(QAbstractSpinBox* self, ButtonSymbols bs) {
+	self->setButtonSymbols(bs);
 }
 
-void QAbstractSpinBox_SetButtonSymbols(QAbstractSpinBox* self, int bs) {
-	self->setButtonSymbols(static_cast<QAbstractSpinBox::ButtonSymbols>(bs));
+void QAbstractSpinBox_SetCorrectionMode(QAbstractSpinBox* self, CorrectionMode cm) {
+	self->setCorrectionMode(cm);
 }
 
-void QAbstractSpinBox_SetCorrectionMode(QAbstractSpinBox* self, int cm) {
-	self->setCorrectionMode(static_cast<QAbstractSpinBox::CorrectionMode>(cm));
-}
-
-int QAbstractSpinBox_CorrectionMode(const QAbstractSpinBox* self) {
-	QAbstractSpinBox::CorrectionMode _ret = self->correctionMode();
-	return static_cast<int>(_ret);
+CorrectionMode QAbstractSpinBox_CorrectionMode(const QAbstractSpinBox* self) {
+	return self->correctionMode();
 }
 
 bool QAbstractSpinBox_HasAcceptableInput(const QAbstractSpinBox* self) {
@@ -1406,28 +1435,6 @@ struct miqt_string QAbstractSpinBox_Tr2(const char* s, const char* c) {
 
 struct miqt_string QAbstractSpinBox_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QAbstractSpinBox::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractSpinBox_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractSpinBox::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractSpinBox_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractSpinBox::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1629,11 +1636,19 @@ void QAbstractSpinBox_virtualbase_ShowEvent(void* self, QShowEvent* event) {
 	( (MiqtVirtualQAbstractSpinBox*)(self) )->virtualbase_ShowEvent(event);
 }
 
+void QAbstractSpinBox_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractSpinBox*>( (QAbstractSpinBox*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QAbstractSpinBox_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option) {
+	( (const MiqtVirtualQAbstractSpinBox*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QAbstractSpinBox_override_virtual_StepEnabled(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSpinBox*>( (QAbstractSpinBox*)(self) )->handle__StepEnabled = slot;
 }
 
-int QAbstractSpinBox_virtualbase_StepEnabled(const void* self) {
+StepEnabled QAbstractSpinBox_virtualbase_StepEnabled(const void* self) {
 	return ( (const MiqtVirtualQAbstractSpinBox*)(self) )->virtualbase_StepEnabled();
 }
 
@@ -1689,7 +1704,7 @@ void QAbstractSpinBox_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSpinBox*>( (QAbstractSpinBox*)(self) )->handle__EnterEvent = slot;
 }
 
-void QAbstractSpinBox_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QAbstractSpinBox_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQAbstractSpinBox*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1761,7 +1776,7 @@ void QAbstractSpinBox_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSpinBox*>( (QAbstractSpinBox*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QAbstractSpinBox_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QAbstractSpinBox_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQAbstractSpinBox*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1769,7 +1784,7 @@ void QAbstractSpinBox_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSpinBox*>( (QAbstractSpinBox*)(self) )->handle__Metric = slot;
 }
 
-int QAbstractSpinBox_virtualbase_Metric(const void* self, int param1) {
+int QAbstractSpinBox_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQAbstractSpinBox*)(self) )->virtualbase_Metric(param1);
 }
 

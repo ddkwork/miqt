@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractPrintDialog>
 #include <QCloseEvent>
 #include <QContextMenuEvent>
@@ -22,7 +24,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractPrintDialog : public virtual QAbstractPrintDialog {
 public:
@@ -392,34 +409,6 @@ struct miqt_string QAbstractPrintDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QAbstractPrintDialog_TrUtf8(const char* s) {
-	QString _ret = QAbstractPrintDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QAbstractPrintDialog_AddEnabledOption(QAbstractPrintDialog* self, int option) {
-	self->addEnabledOption(static_cast<QAbstractPrintDialog::PrintDialogOption>(option));
-}
-
-void QAbstractPrintDialog_SetEnabledOptions(QAbstractPrintDialog* self, int options) {
-	self->setEnabledOptions(static_cast<QAbstractPrintDialog::PrintDialogOptions>(options));
-}
-
-int QAbstractPrintDialog_EnabledOptions(const QAbstractPrintDialog* self) {
-	QAbstractPrintDialog::PrintDialogOptions _ret = self->enabledOptions();
-	return static_cast<int>(_ret);
-}
-
-bool QAbstractPrintDialog_IsOptionEnabled(const QAbstractPrintDialog* self, int option) {
-	return self->isOptionEnabled(static_cast<QAbstractPrintDialog::PrintDialogOption>(option));
-}
-
 void QAbstractPrintDialog_SetOptionTabs(QAbstractPrintDialog* self, struct miqt_array /* of QWidget* */  tabs) {
 	QList<QWidget *> tabs_QList;
 	tabs_QList.reserve(tabs.len);
@@ -430,13 +419,12 @@ void QAbstractPrintDialog_SetOptionTabs(QAbstractPrintDialog* self, struct miqt_
 	self->setOptionTabs(tabs_QList);
 }
 
-void QAbstractPrintDialog_SetPrintRange(QAbstractPrintDialog* self, int rangeVal) {
-	self->setPrintRange(static_cast<QAbstractPrintDialog::PrintRange>(rangeVal));
+void QAbstractPrintDialog_SetPrintRange(QAbstractPrintDialog* self, PrintRange rangeVal) {
+	self->setPrintRange(rangeVal);
 }
 
-int QAbstractPrintDialog_PrintRange(const QAbstractPrintDialog* self) {
-	QAbstractPrintDialog::PrintRange _ret = self->printRange();
-	return static_cast<int>(_ret);
+PrintRange QAbstractPrintDialog_PrintRange(const QAbstractPrintDialog* self) {
+	return self->printRange();
 }
 
 void QAbstractPrintDialog_SetMinMax(QAbstractPrintDialog* self, int min, int max) {
@@ -480,28 +468,6 @@ struct miqt_string QAbstractPrintDialog_Tr2(const char* s, const char* c) {
 
 struct miqt_string QAbstractPrintDialog_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QAbstractPrintDialog::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractPrintDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractPrintDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractPrintDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractPrintDialog::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QAbstractScrollArea>
 #include <QAbstractTextDocumentLayout>
-#define WORKAROUND_INNER_CLASS_DEFINITION_QAbstractTextDocumentLayout__PaintContext
 #include <QContextMenuEvent>
 #include <QDragEnterEvent>
 #include <QDragLeaveEvent>
@@ -27,7 +28,6 @@
 #include <QPointF>
 #include <QRect>
 #include <QRectF>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QResizeEvent>
 #include <QShowEvent>
@@ -55,7 +55,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPlainTextEdit : public virtual QPlainTextEdit {
 public:
@@ -943,17 +958,6 @@ struct miqt_string QPlainTextEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPlainTextEdit_TrUtf8(const char* s) {
-	QString _ret = QPlainTextEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QPlainTextEdit_SetDocument(QPlainTextEdit* self, QTextDocument* document) {
 	self->setDocument(document);
 }
@@ -1055,13 +1059,12 @@ int QPlainTextEdit_MaximumBlockCount(const QPlainTextEdit* self) {
 	return self->maximumBlockCount();
 }
 
-int QPlainTextEdit_LineWrapMode(const QPlainTextEdit* self) {
-	QPlainTextEdit::LineWrapMode _ret = self->lineWrapMode();
-	return static_cast<int>(_ret);
+LineWrapMode QPlainTextEdit_LineWrapMode(const QPlainTextEdit* self) {
+	return self->lineWrapMode();
 }
 
-void QPlainTextEdit_SetLineWrapMode(QPlainTextEdit* self, int mode) {
-	self->setLineWrapMode(static_cast<QPlainTextEdit::LineWrapMode>(mode));
+void QPlainTextEdit_SetLineWrapMode(QPlainTextEdit* self, LineWrapMode mode) {
+	self->setLineWrapMode(mode);
 }
 
 int QPlainTextEdit_WordWrapMode(const QPlainTextEdit* self) {
@@ -1094,11 +1097,7 @@ bool QPlainTextEdit_Find(QPlainTextEdit* self, struct miqt_string exp) {
 	return self->find(exp_QString);
 }
 
-bool QPlainTextEdit_FindWithExp(QPlainTextEdit* self, QRegExp* exp) {
-	return self->find(*exp);
-}
-
-bool QPlainTextEdit_Find2(QPlainTextEdit* self, QRegularExpression* exp) {
+bool QPlainTextEdit_FindWithExp(QPlainTextEdit* self, QRegularExpression* exp) {
 	return self->find(*exp);
 }
 
@@ -1158,14 +1157,6 @@ bool QPlainTextEdit_OverwriteMode(const QPlainTextEdit* self) {
 
 void QPlainTextEdit_SetOverwriteMode(QPlainTextEdit* self, bool overwrite) {
 	self->setOverwriteMode(overwrite);
-}
-
-int QPlainTextEdit_TabStopWidth(const QPlainTextEdit* self) {
-	return self->tabStopWidth();
-}
-
-void QPlainTextEdit_SetTabStopWidth(QPlainTextEdit* self, int width) {
-	self->setTabStopWidth(static_cast<int>(width));
 }
 
 double QPlainTextEdit_TabStopDistance(const QPlainTextEdit* self) {
@@ -1413,38 +1404,12 @@ struct miqt_string QPlainTextEdit_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QPlainTextEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPlainTextEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPlainTextEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPlainTextEdit::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-bool QPlainTextEdit_Find22(QPlainTextEdit* self, struct miqt_string exp, int options) {
+bool QPlainTextEdit_Find2(QPlainTextEdit* self, struct miqt_string exp, int options) {
 	QString exp_QString = QString::fromUtf8(exp.data, exp.len);
 	return self->find(exp_QString, static_cast<QTextDocument::FindFlags>(options));
 }
 
-bool QPlainTextEdit_Find23(QPlainTextEdit* self, QRegExp* exp, int options) {
-	return self->find(*exp, static_cast<QTextDocument::FindFlags>(options));
-}
-
-bool QPlainTextEdit_Find24(QPlainTextEdit* self, QRegularExpression* exp, int options) {
+bool QPlainTextEdit_Find22(QPlainTextEdit* self, QRegularExpression* exp, int options) {
 	return self->find(*exp, static_cast<QTextDocument::FindFlags>(options));
 }
 
@@ -1759,16 +1724,14 @@ public:
 	intptr_t handle__Draw = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* param1, const QAbstractTextDocumentLayout::PaintContext& param2) override {
+	virtual void draw(QPainter* param1, const PaintContext& param2) override {
 		if (handle__Draw == 0) {
 			QPlainTextDocumentLayout::draw(param1, param2);
 			return;
 		}
 		
 		QPainter* sigval1 = param1;
-		const QAbstractTextDocumentLayout::PaintContext& param2_ret = param2;
-		// Cast returned reference into pointer
-		QAbstractTextDocumentLayout__PaintContext* sigval2 = const_cast<QAbstractTextDocumentLayout::PaintContext*>(&param2_ret);
+		const PaintContext* sigval2 = (const PaintContext*) param2;
 
 		miqt_exec_callback_QPlainTextDocumentLayout_Draw(this, handle__Draw, sigval1, sigval2);
 
@@ -1776,7 +1739,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Draw(QPainter* param1, QAbstractTextDocumentLayout__PaintContext* param2) {
+	void virtualbase_Draw(QPainter* param1, const PaintContext* param2) {
 
 		QPlainTextDocumentLayout::draw(param1, *param2);
 
@@ -2044,18 +2007,7 @@ struct miqt_string QPlainTextDocumentLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPlainTextDocumentLayout_TrUtf8(const char* s) {
-	QString _ret = QPlainTextDocumentLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QPlainTextDocumentLayout_Draw(QPlainTextDocumentLayout* self, QPainter* param1, QAbstractTextDocumentLayout__PaintContext* param2) {
+void QPlainTextDocumentLayout_Draw(QPlainTextDocumentLayout* self, QPainter* param1, const PaintContext* param2) {
 	self->draw(param1, *param2);
 }
 
@@ -2117,33 +2069,11 @@ struct miqt_string QPlainTextDocumentLayout_Tr3(const char* s, const char* c, in
 	return _ms;
 }
 
-struct miqt_string QPlainTextDocumentLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPlainTextDocumentLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPlainTextDocumentLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPlainTextDocumentLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QPlainTextDocumentLayout_override_virtual_Draw(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQPlainTextDocumentLayout*>( (QPlainTextDocumentLayout*)(self) )->handle__Draw = slot;
 }
 
-void QPlainTextDocumentLayout_virtualbase_Draw(void* self, QPainter* param1, QAbstractTextDocumentLayout__PaintContext* param2) {
+void QPlainTextDocumentLayout_virtualbase_Draw(void* self, QPainter* param1, const PaintContext* param2) {
 	( (MiqtVirtualQPlainTextDocumentLayout*)(self) )->virtualbase_Draw(param1, param2);
 }
 

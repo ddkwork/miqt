@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QDateTime>
 #include <QHstsPolicy>
 #include <QString>
@@ -9,24 +11,39 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QHstsPolicy* QHstsPolicy_new() {
 	return new QHstsPolicy();
 }
 
-QHstsPolicy* QHstsPolicy_new2(QDateTime* expiry, int flags, struct miqt_string host) {
+QHstsPolicy* QHstsPolicy_new2(QDateTime* expiry, PolicyFlags flags, struct miqt_string host) {
 	QString host_QString = QString::fromUtf8(host.data, host.len);
-	return new QHstsPolicy(*expiry, static_cast<QHstsPolicy::PolicyFlags>(flags), host_QString);
+	return new QHstsPolicy(*expiry, flags, host_QString);
 }
 
 QHstsPolicy* QHstsPolicy_new3(QHstsPolicy* rhs) {
 	return new QHstsPolicy(*rhs);
 }
 
-QHstsPolicy* QHstsPolicy_new4(QDateTime* expiry, int flags, struct miqt_string host, int mode) {
+QHstsPolicy* QHstsPolicy_new4(QDateTime* expiry, PolicyFlags flags, struct miqt_string host, int mode) {
 	QString host_QString = QString::fromUtf8(host.data, host.len);
-	return new QHstsPolicy(*expiry, static_cast<QHstsPolicy::PolicyFlags>(flags), host_QString, static_cast<QUrl::ParsingMode>(mode));
+	return new QHstsPolicy(*expiry, flags, host_QString, static_cast<QUrl::ParsingMode>(mode));
 }
 
 void QHstsPolicy_OperatorAssign(QHstsPolicy* self, QHstsPolicy* rhs) {

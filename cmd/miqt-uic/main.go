@@ -4,7 +4,6 @@ import (
 	"encoding/xml"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -20,7 +19,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	inXml, err := ioutil.ReadFile(*inFile)
+	inXml, err := os.ReadFile(*inFile)
 	if err != nil {
 		panic(err)
 	}
@@ -38,10 +37,9 @@ func main() {
 
 	if *outFile == "-" {
 		fmt.Println(string(gosrc))
-
 	} else {
 
-		err = ioutil.WriteFile(*outFile, gosrc, 0644)
+		err = os.WriteFile(*outFile, gosrc, 0o644)
 		if err != nil {
 			panic(err)
 		}

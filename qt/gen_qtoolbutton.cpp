@@ -1,6 +1,9 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QAction>
 #include <QActionEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QKeyEvent>
@@ -15,6 +18,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionToolButton>
 #include <QTimerEvent>
 #include <QToolButton>
 #include <QWidget>
@@ -24,7 +28,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQToolButton : public virtual QToolButton {
 public:
@@ -201,13 +220,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* param1) override {
+	virtual void enterEvent(QEnterEvent* param1) override {
 		if (handle__EnterEvent == 0) {
 			QToolButton::enterEvent(param1);
 			return;
 		}
 		
-		QEvent* sigval1 = param1;
+		QEnterEvent* sigval1 = param1;
 
 		miqt_exec_callback_QToolButton_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -215,7 +234,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* param1) {
+	void virtualbase_EnterEvent(QEnterEvent* param1) {
 
 		QToolButton::enterEvent(param1);
 
@@ -319,6 +338,29 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__CheckStateSet = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void checkStateSet() override {
+		if (handle__CheckStateSet == 0) {
+			QToolButton::checkStateSet();
+			return;
+		}
+		
+
+		miqt_exec_callback_QToolButton_CheckStateSet(this, handle__CheckStateSet);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_CheckStateSet() {
+
+		QToolButton::checkStateSet();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__NextCheckState = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -342,25 +384,26 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CheckStateSet = 0;
+	intptr_t handle__InitStyleOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void checkStateSet() override {
-		if (handle__CheckStateSet == 0) {
-			QToolButton::checkStateSet();
+	virtual void initStyleOption(QStyleOptionToolButton* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QToolButton::initStyleOption(option);
 			return;
 		}
 		
+		QStyleOptionToolButton* sigval1 = option;
 
-		miqt_exec_callback_QToolButton_CheckStateSet(this, handle__CheckStateSet);
+		miqt_exec_callback_QToolButton_InitStyleOption(const_cast<MiqtVirtualQToolButton*>(this), handle__InitStyleOption, sigval1);
 
 		
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_CheckStateSet() {
+	void virtualbase_InitStyleOption(QStyleOptionToolButton* option) const {
 
-		QToolButton::checkStateSet();
+		QToolButton::initStyleOption(option);
 
 	}
 
@@ -517,17 +560,6 @@ struct miqt_string QToolButton_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QToolButton_TrUtf8(const char* s) {
-	QString _ret = QToolButton::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QToolButton_SizeHint(const QToolButton* self) {
 	return new QSize(self->sizeHint());
 }
@@ -558,13 +590,12 @@ QMenu* QToolButton_Menu(const QToolButton* self) {
 	return self->menu();
 }
 
-void QToolButton_SetPopupMode(QToolButton* self, int mode) {
-	self->setPopupMode(static_cast<QToolButton::ToolButtonPopupMode>(mode));
+void QToolButton_SetPopupMode(QToolButton* self, ToolButtonPopupMode mode) {
+	self->setPopupMode(mode);
 }
 
-int QToolButton_PopupMode(const QToolButton* self) {
-	QToolButton::ToolButtonPopupMode _ret = self->popupMode();
-	return static_cast<int>(_ret);
+ToolButtonPopupMode QToolButton_PopupMode(const QToolButton* self) {
+	return self->popupMode();
 }
 
 QAction* QToolButton_DefaultAction(const QToolButton* self) {
@@ -615,28 +646,6 @@ struct miqt_string QToolButton_Tr2(const char* s, const char* c) {
 
 struct miqt_string QToolButton_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QToolButton::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QToolButton_TrUtf82(const char* s, const char* c) {
-	QString _ret = QToolButton::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QToolButton_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QToolButton::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -706,7 +715,7 @@ void QToolButton_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolButton*>( (QToolButton*)(self) )->handle__EnterEvent = slot;
 }
 
-void QToolButton_virtualbase_EnterEvent(void* self, QEvent* param1) {
+void QToolButton_virtualbase_EnterEvent(void* self, QEnterEvent* param1) {
 	( (MiqtVirtualQToolButton*)(self) )->virtualbase_EnterEvent(param1);
 }
 
@@ -742,6 +751,14 @@ bool QToolButton_virtualbase_HitButton(const void* self, QPoint* pos) {
 	return ( (const MiqtVirtualQToolButton*)(self) )->virtualbase_HitButton(pos);
 }
 
+void QToolButton_override_virtual_CheckStateSet(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQToolButton*>( (QToolButton*)(self) )->handle__CheckStateSet = slot;
+}
+
+void QToolButton_virtualbase_CheckStateSet(void* self) {
+	( (MiqtVirtualQToolButton*)(self) )->virtualbase_CheckStateSet();
+}
+
 void QToolButton_override_virtual_NextCheckState(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolButton*>( (QToolButton*)(self) )->handle__NextCheckState = slot;
 }
@@ -750,12 +767,12 @@ void QToolButton_virtualbase_NextCheckState(void* self) {
 	( (MiqtVirtualQToolButton*)(self) )->virtualbase_NextCheckState();
 }
 
-void QToolButton_override_virtual_CheckStateSet(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQToolButton*>( (QToolButton*)(self) )->handle__CheckStateSet = slot;
+void QToolButton_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQToolButton*>( (QToolButton*)(self) )->handle__InitStyleOption = slot;
 }
 
-void QToolButton_virtualbase_CheckStateSet(void* self) {
-	( (MiqtVirtualQToolButton*)(self) )->virtualbase_CheckStateSet();
+void QToolButton_virtualbase_InitStyleOption(const void* self, QStyleOptionToolButton* option) {
+	( (const MiqtVirtualQToolButton*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QToolButton_override_virtual_KeyPressEvent(void* self, intptr_t slot) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChar>
 #include <QMetaObject>
 #include <QObject>
@@ -11,7 +13,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QStyleHints_virtbase(QStyleHints* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
@@ -27,17 +44,6 @@ void* QStyleHints_Metacast(QStyleHints* self, const char* param1) {
 
 struct miqt_string QStyleHints_Tr(const char* s) {
 	QString _ret = QStyleHints::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStyleHints_TrUtf8(const char* s) {
-	QString _ret = QStyleHints::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -103,6 +109,11 @@ int QStyleHints_KeyboardAutoRepeatRate(const QStyleHints* self) {
 	return self->keyboardAutoRepeatRate();
 }
 
+double QStyleHints_KeyboardAutoRepeatRateF(const QStyleHints* self) {
+	qreal _ret = self->keyboardAutoRepeatRateF();
+	return static_cast<double>(_ret);
+}
+
 void QStyleHints_SetCursorFlashTime(QStyleHints* self, int cursorFlashTime) {
 	self->setCursorFlashTime(static_cast<int>(cursorFlashTime));
 }
@@ -125,6 +136,15 @@ bool QStyleHints_ShowShortcutsInContextMenus(const QStyleHints* self) {
 
 void QStyleHints_SetShowShortcutsInContextMenus(QStyleHints* self, bool showShortcutsInContextMenus) {
 	self->setShowShortcutsInContextMenus(showShortcutsInContextMenus);
+}
+
+int QStyleHints_ContextMenuTrigger(const QStyleHints* self) {
+	Qt::ContextMenuTrigger _ret = self->contextMenuTrigger();
+	return static_cast<int>(_ret);
+}
+
+void QStyleHints_SetContextMenuTrigger(QStyleHints* self, int contextMenuTrigger) {
+	self->setContextMenuTrigger(static_cast<Qt::ContextMenuTrigger>(contextMenuTrigger));
 }
 
 int QStyleHints_PasswordMaskDelay(const QStyleHints* self) {
@@ -183,6 +203,19 @@ void QStyleHints_SetMouseQuickSelectionThreshold(QStyleHints* self, int threshol
 
 int QStyleHints_MouseQuickSelectionThreshold(const QStyleHints* self) {
 	return self->mouseQuickSelectionThreshold();
+}
+
+int QStyleHints_ColorScheme(const QStyleHints* self) {
+	Qt::ColorScheme _ret = self->colorScheme();
+	return static_cast<int>(_ret);
+}
+
+void QStyleHints_SetColorScheme(QStyleHints* self, int scheme) {
+	self->setColorScheme(static_cast<Qt::ColorScheme>(scheme));
+}
+
+void QStyleHints_UnsetColorScheme(QStyleHints* self) {
+	self->unsetColorScheme();
 }
 
 void QStyleHints_CursorFlashTimeChanged(QStyleHints* self, int cursorFlashTime) {
@@ -285,6 +318,18 @@ void QStyleHints_connect_ShowShortcutsInContextMenusChanged(QStyleHints* self, i
 	});
 }
 
+void QStyleHints_ContextMenuTriggerChanged(QStyleHints* self, int contextMenuTrigger) {
+	self->contextMenuTriggerChanged(static_cast<Qt::ContextMenuTrigger>(contextMenuTrigger));
+}
+
+void QStyleHints_connect_ContextMenuTriggerChanged(QStyleHints* self, intptr_t slot) {
+	QStyleHints::connect(self, static_cast<void (QStyleHints::*)(Qt::ContextMenuTrigger)>(&QStyleHints::contextMenuTriggerChanged), self, [=](Qt::ContextMenuTrigger contextMenuTrigger) {
+		Qt::ContextMenuTrigger contextMenuTrigger_ret = contextMenuTrigger;
+		int sigval1 = static_cast<int>(contextMenuTrigger_ret);
+		miqt_exec_callback_QStyleHints_ContextMenuTriggerChanged(slot, sigval1);
+	});
+}
+
 void QStyleHints_WheelScrollLinesChanged(QStyleHints* self, int scrollLines) {
 	self->wheelScrollLinesChanged(static_cast<int>(scrollLines));
 }
@@ -307,6 +352,18 @@ void QStyleHints_connect_MouseQuickSelectionThresholdChanged(QStyleHints* self, 
 	});
 }
 
+void QStyleHints_ColorSchemeChanged(QStyleHints* self, int colorScheme) {
+	self->colorSchemeChanged(static_cast<Qt::ColorScheme>(colorScheme));
+}
+
+void QStyleHints_connect_ColorSchemeChanged(QStyleHints* self, intptr_t slot) {
+	QStyleHints::connect(self, static_cast<void (QStyleHints::*)(Qt::ColorScheme)>(&QStyleHints::colorSchemeChanged), self, [=](Qt::ColorScheme colorScheme) {
+		Qt::ColorScheme colorScheme_ret = colorScheme;
+		int sigval1 = static_cast<int>(colorScheme_ret);
+		miqt_exec_callback_QStyleHints_ColorSchemeChanged(slot, sigval1);
+	});
+}
+
 struct miqt_string QStyleHints_Tr2(const char* s, const char* c) {
 	QString _ret = QStyleHints::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -320,28 +377,6 @@ struct miqt_string QStyleHints_Tr2(const char* s, const char* c) {
 
 struct miqt_string QStyleHints_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QStyleHints::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStyleHints_TrUtf82(const char* s, const char* c) {
-	QString _ret = QStyleHints::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStyleHints_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QStyleHints::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

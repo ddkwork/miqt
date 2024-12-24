@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QDeadlineTimer>
 #include <QHostAddress>
 #include <QList>
@@ -12,7 +14,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QNetworkAddressEntry* QNetworkAddressEntry_new() {
 	return new QNetworkAddressEntry();
@@ -38,13 +55,12 @@ bool QNetworkAddressEntry_OperatorNotEqual(const QNetworkAddressEntry* self, QNe
 	return (*self != *other);
 }
 
-int8_t QNetworkAddressEntry_DnsEligibility(const QNetworkAddressEntry* self) {
-	QNetworkAddressEntry::DnsEligibilityStatus _ret = self->dnsEligibility();
-	return static_cast<int8_t>(_ret);
+DnsEligibilityStatus QNetworkAddressEntry_DnsEligibility(const QNetworkAddressEntry* self) {
+	return self->dnsEligibility();
 }
 
-void QNetworkAddressEntry_SetDnsEligibility(QNetworkAddressEntry* self, int8_t status) {
-	self->setDnsEligibility(static_cast<QNetworkAddressEntry::DnsEligibilityStatus>(status));
+void QNetworkAddressEntry_SetDnsEligibility(QNetworkAddressEntry* self, DnsEligibilityStatus status) {
+	self->setDnsEligibility(status);
 }
 
 QHostAddress* QNetworkAddressEntry_Ip(const QNetworkAddressEntry* self) {
@@ -165,14 +181,12 @@ struct miqt_string QNetworkInterface_HumanReadableName(const QNetworkInterface* 
 	return _ms;
 }
 
-int QNetworkInterface_Flags(const QNetworkInterface* self) {
-	QNetworkInterface::InterfaceFlags _ret = self->flags();
-	return static_cast<int>(_ret);
+InterfaceFlags QNetworkInterface_Flags(const QNetworkInterface* self) {
+	return self->flags();
 }
 
-int QNetworkInterface_Type(const QNetworkInterface* self) {
-	QNetworkInterface::InterfaceType _ret = self->type();
-	return static_cast<int>(_ret);
+InterfaceType QNetworkInterface_Type(const QNetworkInterface* self) {
+	return self->type();
 }
 
 struct miqt_string QNetworkInterface_HardwareAddress(const QNetworkInterface* self) {

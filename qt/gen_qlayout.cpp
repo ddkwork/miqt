@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QLayout>
@@ -20,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLayout : public virtual QLayout {
 public:
@@ -29,6 +46,52 @@ public:
 	MiqtVirtualQLayout(): QLayout() {};
 
 	virtual ~MiqtVirtualQLayout() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Spacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int spacing() const override {
+		if (handle__Spacing == 0) {
+			return QLayout::spacing();
+		}
+		
+
+		int callback_return_value = miqt_exec_callback_QLayout_Spacing(const_cast<MiqtVirtualQLayout*>(this), handle__Spacing);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_Spacing() const {
+
+		return QLayout::spacing();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SetSpacing = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void setSpacing(int spacing) override {
+		if (handle__SetSpacing == 0) {
+			QLayout::setSpacing(spacing);
+			return;
+		}
+		
+		int sigval1 = spacing;
+
+		miqt_exec_callback_QLayout_SetSpacing(this, handle__SetSpacing, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_SetSpacing(int spacing) {
+
+		QLayout::setSpacing(static_cast<int>(spacing));
+
+	}
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Invalidate = 0;
@@ -220,12 +283,12 @@ public:
 	intptr_t handle__IndexOf = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int indexOf(QWidget* param1) const override {
+	virtual int indexOf(const QWidget* param1) const override {
 		if (handle__IndexOf == 0) {
 			return QLayout::indexOf(param1);
 		}
 		
-		QWidget* sigval1 = param1;
+		QWidget* sigval1 = (QWidget*) param1;
 
 		int callback_return_value = miqt_exec_callback_QLayout_IndexOf(const_cast<MiqtVirtualQLayout*>(this), handle__IndexOf, sigval1);
 
@@ -234,6 +297,29 @@ public:
 
 	// Wrapper to allow calling protected method
 	int virtualbase_IndexOf(QWidget* param1) const {
+
+		return QLayout::indexOf(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__IndexOfWithQLayoutItem = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual int indexOf(const QLayoutItem* param1) const override {
+		if (handle__IndexOfWithQLayoutItem == 0) {
+			return QLayout::indexOf(param1);
+		}
+		
+		QLayoutItem* sigval1 = (QLayoutItem*) param1;
+
+		int callback_return_value = miqt_exec_callback_QLayout_IndexOfWithQLayoutItem(const_cast<MiqtVirtualQLayout*>(this), handle__IndexOfWithQLayoutItem, sigval1);
+
+		return static_cast<int>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	int virtualbase_IndexOfWithQLayoutItem(QLayoutItem* param1) const {
 
 		return QLayout::indexOf(param1);
 
@@ -296,6 +382,32 @@ public:
 
 		QSizePolicy::ControlTypes _ret = QLayout::controlTypes();
 		return static_cast<int>(_ret);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ReplaceWidget = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QLayoutItem* replaceWidget(QWidget* from, QWidget* to, Qt::FindChildOptions options) override {
+		if (handle__ReplaceWidget == 0) {
+			return QLayout::replaceWidget(from, to, options);
+		}
+		
+		QWidget* sigval1 = from;
+		QWidget* sigval2 = to;
+		Qt::FindChildOptions options_ret = options;
+		int sigval3 = static_cast<int>(options_ret);
+
+		QLayoutItem* callback_return_value = miqt_exec_callback_QLayout_ReplaceWidget(this, handle__ReplaceWidget, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QLayoutItem* virtualbase_ReplaceWidget(QWidget* from, QWidget* to, int options) {
+
+		return QLayout::replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
 
 	}
 
@@ -579,19 +691,19 @@ public:
 	intptr_t handle__Widget = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QWidget* widget() override {
+	virtual QWidget* widget() const override {
 		if (handle__Widget == 0) {
 			return QLayout::widget();
 		}
 		
 
-		QWidget* callback_return_value = miqt_exec_callback_QLayout_Widget(this, handle__Widget);
+		QWidget* callback_return_value = miqt_exec_callback_QLayout_Widget(const_cast<MiqtVirtualQLayout*>(this), handle__Widget);
 
 		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	QWidget* virtualbase_Widget() {
+	QWidget* virtualbase_Widget() const {
 
 		return QLayout::widget();
 
@@ -653,25 +765,6 @@ struct miqt_string QLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QLayout_TrUtf8(const char* s) {
-	QString _ret = QLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QLayout_Margin(const QLayout* self) {
-	return self->margin();
-}
-
-void QLayout_SetMargin(QLayout* self, int margin) {
-	self->setMargin(static_cast<int>(margin));
-}
-
 int QLayout_Spacing(const QLayout* self) {
 	return self->spacing();
 }
@@ -686,6 +779,10 @@ void QLayout_SetContentsMargins(QLayout* self, int left, int top, int right, int
 
 void QLayout_SetContentsMarginsWithMargins(QLayout* self, QMargins* margins) {
 	self->setContentsMargins(*margins);
+}
+
+void QLayout_UnsetContentsMargins(QLayout* self) {
+	self->unsetContentsMargins();
 }
 
 void QLayout_GetContentsMargins(const QLayout* self, int* left, int* top, int* right, int* bottom) {
@@ -708,13 +805,12 @@ bool QLayout_SetAlignment2(QLayout* self, QLayout* l, int alignment) {
 	return self->setAlignment(l, static_cast<Qt::Alignment>(alignment));
 }
 
-void QLayout_SetSizeConstraint(QLayout* self, int sizeConstraint) {
-	self->setSizeConstraint(static_cast<QLayout::SizeConstraint>(sizeConstraint));
+void QLayout_SetSizeConstraint(QLayout* self, SizeConstraint sizeConstraint) {
+	self->setSizeConstraint(sizeConstraint);
 }
 
-int QLayout_SizeConstraint(const QLayout* self) {
-	QLayout::SizeConstraint _ret = self->sizeConstraint();
-	return static_cast<int>(_ret);
+SizeConstraint QLayout_SizeConstraint(const QLayout* self) {
+	return self->sizeConstraint();
 }
 
 void QLayout_SetMenuBar(QLayout* self, QWidget* w) {
@@ -807,8 +903,12 @@ int QLayout_ControlTypes(const QLayout* self) {
 	return static_cast<int>(_ret);
 }
 
-QLayoutItem* QLayout_ReplaceWidget(QLayout* self, QWidget* from, QWidget* to) {
-	return self->replaceWidget(from, to);
+QLayoutItem* QLayout_ReplaceWidget(QLayout* self, QWidget* from, QWidget* to, int options) {
+	return self->replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
+}
+
+int QLayout_TotalMinimumHeightForWidth(const QLayout* self, int w) {
+	return self->totalMinimumHeightForWidth(static_cast<int>(w));
 }
 
 int QLayout_TotalHeightForWidth(const QLayout* self, int w) {
@@ -865,30 +965,20 @@ struct miqt_string QLayout_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QLayout_override_virtual_Spacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLayout*>( (QLayout*)(self) )->handle__Spacing = slot;
 }
 
-struct miqt_string QLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QLayout::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+int QLayout_virtualbase_Spacing(const void* self) {
+	return ( (const MiqtVirtualQLayout*)(self) )->virtualbase_Spacing();
 }
 
-QLayoutItem* QLayout_ReplaceWidget3(QLayout* self, QWidget* from, QWidget* to, int options) {
-	return self->replaceWidget(from, to, static_cast<Qt::FindChildOptions>(options));
+void QLayout_override_virtual_SetSpacing(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLayout*>( (QLayout*)(self) )->handle__SetSpacing = slot;
+}
+
+void QLayout_virtualbase_SetSpacing(void* self, int spacing) {
+	( (MiqtVirtualQLayout*)(self) )->virtualbase_SetSpacing(spacing);
 }
 
 void QLayout_override_virtual_Invalidate(void* self, intptr_t slot) {
@@ -959,6 +1049,14 @@ int QLayout_virtualbase_IndexOf(const void* self, QWidget* param1) {
 	return ( (const MiqtVirtualQLayout*)(self) )->virtualbase_IndexOf(param1);
 }
 
+void QLayout_override_virtual_IndexOfWithQLayoutItem(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLayout*>( (QLayout*)(self) )->handle__IndexOfWithQLayoutItem = slot;
+}
+
+int QLayout_virtualbase_IndexOfWithQLayoutItem(const void* self, QLayoutItem* param1) {
+	return ( (const MiqtVirtualQLayout*)(self) )->virtualbase_IndexOfWithQLayoutItem(param1);
+}
+
 void QLayout_override_virtual_Count(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLayout*>( (QLayout*)(self) )->handle__Count = slot;
 }
@@ -977,6 +1075,14 @@ void QLayout_override_virtual_ControlTypes(void* self, intptr_t slot) {
 
 int QLayout_virtualbase_ControlTypes(const void* self) {
 	return ( (const MiqtVirtualQLayout*)(self) )->virtualbase_ControlTypes();
+}
+
+void QLayout_override_virtual_ReplaceWidget(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLayout*>( (QLayout*)(self) )->handle__ReplaceWidget = slot;
+}
+
+QLayoutItem* QLayout_virtualbase_ReplaceWidget(void* self, QWidget* from, QWidget* to, int options) {
+	return ( (MiqtVirtualQLayout*)(self) )->virtualbase_ReplaceWidget(from, to, options);
 }
 
 void QLayout_override_virtual_Layout(void* self, intptr_t slot) {
@@ -1075,8 +1181,8 @@ void QLayout_override_virtual_Widget(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLayout*>( (QLayout*)(self) )->handle__Widget = slot;
 }
 
-QWidget* QLayout_virtualbase_Widget(void* self) {
-	return ( (MiqtVirtualQLayout*)(self) )->virtualbase_Widget();
+QWidget* QLayout_virtualbase_Widget(const void* self) {
+	return ( (const MiqtVirtualQLayout*)(self) )->virtualbase_Widget();
 }
 
 void QLayout_override_virtual_SpacerItem(void* self, intptr_t slot) {

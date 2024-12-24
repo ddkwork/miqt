@@ -1,16 +1,37 @@
+// +build ignore
+
 #include <qfloat16.h>
 #include "gen_qfloat16.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 qfloat16* qfloat16_new() {
 	return new qfloat16();
 }
 
-qfloat16* qfloat16_new2(float f) {
+qfloat16* qfloat16_new2(int param1) {
+	return new qfloat16(static_cast<Qt::Initialization>(param1));
+}
+
+qfloat16* qfloat16_new3(float f) {
 	return new qfloat16(static_cast<float>(f));
 }
 

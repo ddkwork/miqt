@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -14,22 +16,18 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-struct miqt_string QJsonParseError_ErrorString(const QJsonParseError* self) {
-	QString _ret = self->errorString();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
 }
 
-void QJsonParseError_Delete(QJsonParseError* self, bool isSubclass) {
+void type_info_Delete(type_info* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QJsonParseError*>( self );
+		delete dynamic_cast<type_info*>( self );
 	} else {
 		delete self;
 	}
@@ -59,28 +57,6 @@ void QJsonDocument_Swap(QJsonDocument* self, QJsonDocument* other) {
 	self->swap(*other);
 }
 
-QJsonDocument* QJsonDocument_FromRawData(const char* data, int size) {
-	return new QJsonDocument(QJsonDocument::fromRawData(data, static_cast<int>(size)));
-}
-
-const char* QJsonDocument_RawData(const QJsonDocument* self, int* size) {
-	return (const char*) self->rawData(static_cast<int*>(size));
-}
-
-QJsonDocument* QJsonDocument_FromBinaryData(struct miqt_string data) {
-	QByteArray data_QByteArray(data.data, data.len);
-	return new QJsonDocument(QJsonDocument::fromBinaryData(data_QByteArray));
-}
-
-struct miqt_string QJsonDocument_ToBinaryData(const QJsonDocument* self) {
-	QByteArray _qb = self->toBinaryData();
-	struct miqt_string _ms;
-	_ms.len = _qb.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _qb.data(), _ms.len);
-	return _ms;
-}
-
 QJsonDocument* QJsonDocument_FromVariant(QVariant* variant) {
 	return new QJsonDocument(QJsonDocument::fromVariant(*variant));
 }
@@ -96,15 +72,6 @@ QJsonDocument* QJsonDocument_FromJson(struct miqt_string json) {
 
 struct miqt_string QJsonDocument_ToJson(const QJsonDocument* self) {
 	QByteArray _qb = self->toJson();
-	struct miqt_string _ms;
-	_ms.len = _qb.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _qb.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QJsonDocument_ToJsonWithFormat(const QJsonDocument* self, int format) {
-	QByteArray _qb = self->toJson(static_cast<QJsonDocument::JsonFormat>(format));
 	struct miqt_string _ms;
 	_ms.len = _qb.length();
 	_ms.data = static_cast<char*>(malloc(_ms.len));
@@ -145,34 +112,26 @@ QJsonValue* QJsonDocument_OperatorSubscript(const QJsonDocument* self, struct mi
 	return new QJsonValue(self->operator[](key_QString));
 }
 
-QJsonValue* QJsonDocument_OperatorSubscriptWithInt(const QJsonDocument* self, int i) {
-	return new QJsonValue(self->operator[](static_cast<int>(i)));
-}
-
-bool QJsonDocument_OperatorEqual(const QJsonDocument* self, QJsonDocument* other) {
-	return (*self == *other);
-}
-
-bool QJsonDocument_OperatorNotEqual(const QJsonDocument* self, QJsonDocument* other) {
-	return (*self != *other);
+QJsonValue* QJsonDocument_OperatorSubscriptWithQsizetype(const QJsonDocument* self, ptrdiff_t i) {
+	return new QJsonValue(self->operator[]((qsizetype)(i)));
 }
 
 bool QJsonDocument_IsNull(const QJsonDocument* self) {
 	return self->isNull();
 }
 
-QJsonDocument* QJsonDocument_FromRawData3(const char* data, int size, int validation) {
-	return new QJsonDocument(QJsonDocument::fromRawData(data, static_cast<int>(size), static_cast<QJsonDocument::DataValidation>(validation)));
-}
-
-QJsonDocument* QJsonDocument_FromBinaryData2(struct miqt_string data, int validation) {
-	QByteArray data_QByteArray(data.data, data.len);
-	return new QJsonDocument(QJsonDocument::fromBinaryData(data_QByteArray, static_cast<QJsonDocument::DataValidation>(validation)));
-}
-
 QJsonDocument* QJsonDocument_FromJson2(struct miqt_string json, QJsonParseError* error) {
 	QByteArray json_QByteArray(json.data, json.len);
 	return new QJsonDocument(QJsonDocument::fromJson(json_QByteArray, error));
+}
+
+struct miqt_string QJsonDocument_ToJson1(const QJsonDocument* self, JsonFormat format) {
+	QByteArray _qb = self->toJson(format);
+	struct miqt_string _ms;
+	_ms.len = _qb.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _qb.data(), _ms.len);
+	return _ms;
 }
 
 void QJsonDocument_Delete(QJsonDocument* self, bool isSubclass) {

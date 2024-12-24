@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QEvent>
 #include <QFocusEvent>
@@ -13,6 +15,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionButton>
 #include <QTimerEvent>
 #include <QWidget>
 #include <qradiobutton.h>
@@ -21,7 +24,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQRadioButton : public virtual QRadioButton {
 public:
@@ -170,6 +188,30 @@ public:
 	void virtualbase_MouseMoveEvent(QMouseEvent* param1) {
 
 		QRadioButton::mouseMoveEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionButton* button) const override {
+		if (handle__InitStyleOption == 0) {
+			QRadioButton::initStyleOption(button);
+			return;
+		}
+		
+		QStyleOptionButton* sigval1 = button;
+
+		miqt_exec_callback_QRadioButton_InitStyleOption(const_cast<MiqtVirtualQRadioButton*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionButton* button) const {
+
+		QRadioButton::initStyleOption(button);
 
 	}
 
@@ -454,17 +496,6 @@ struct miqt_string QRadioButton_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QRadioButton_TrUtf8(const char* s) {
-	QString _ret = QRadioButton::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QRadioButton_SizeHint(const QRadioButton* self) {
 	return new QSize(self->sizeHint());
 }
@@ -486,28 +517,6 @@ struct miqt_string QRadioButton_Tr2(const char* s, const char* c) {
 
 struct miqt_string QRadioButton_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QRadioButton::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRadioButton_TrUtf82(const char* s, const char* c) {
-	QString _ret = QRadioButton::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRadioButton_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QRadioButton::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -563,6 +572,14 @@ void QRadioButton_override_virtual_MouseMoveEvent(void* self, intptr_t slot) {
 
 void QRadioButton_virtualbase_MouseMoveEvent(void* self, QMouseEvent* param1) {
 	( (MiqtVirtualQRadioButton*)(self) )->virtualbase_MouseMoveEvent(param1);
+}
+
+void QRadioButton_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRadioButton*>( (QRadioButton*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QRadioButton_virtualbase_InitStyleOption(const void* self, QStyleOptionButton* button) {
+	( (const MiqtVirtualQRadioButton*)(self) )->virtualbase_InitStyleOption(button);
 }
 
 void QRadioButton_override_virtual_CheckStateSet(void* self, intptr_t slot) {

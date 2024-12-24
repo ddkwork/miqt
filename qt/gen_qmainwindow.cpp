@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QActionEvent>
 #include <QByteArray>
 #include <QCloseEvent>
@@ -7,6 +9,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -43,7 +46,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQMainWindow : public virtual QMainWindow {
 public:
@@ -500,13 +518,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QMainWindow::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QMainWindow_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -514,7 +532,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QMainWindow::enterEvent(event);
 
@@ -836,7 +854,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QMainWindow::nativeEvent(eventType, message, result);
 		}
@@ -848,7 +866,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QMainWindow_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -856,10 +875,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QMainWindow::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QMainWindow::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -891,13 +910,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QMainWindow::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QMainWindow_Metric(const_cast<MiqtVirtualQMainWindow*>(this), handle__Metric, sigval1);
 
@@ -905,9 +923,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QMainWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QMainWindow::metric(param1);
 
 	}
 
@@ -1088,17 +1106,6 @@ struct miqt_string QMainWindow_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QMainWindow_TrUtf8(const char* s) {
-	QString _ret = QMainWindow::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QMainWindow_IconSize(const QMainWindow* self) {
 	return new QSize(self->iconSize());
 }
@@ -1150,13 +1157,12 @@ void QMainWindow_SetTabPosition(QMainWindow* self, int areas, int tabPosition) {
 	self->setTabPosition(static_cast<Qt::DockWidgetAreas>(areas), static_cast<QTabWidget::TabPosition>(tabPosition));
 }
 
-void QMainWindow_SetDockOptions(QMainWindow* self, int options) {
-	self->setDockOptions(static_cast<QMainWindow::DockOptions>(options));
+void QMainWindow_SetDockOptions(QMainWindow* self, DockOptions options) {
+	self->setDockOptions(options);
 }
 
-int QMainWindow_DockOptions(const QMainWindow* self) {
-	QMainWindow::DockOptions _ret = self->dockOptions();
-	return static_cast<int>(_ret);
+DockOptions QMainWindow_DockOptions(const QMainWindow* self) {
+	return self->dockOptions();
 }
 
 bool QMainWindow_IsSeparator(const QMainWindow* self, QPoint* pos) {
@@ -1400,28 +1406,6 @@ struct miqt_string QMainWindow_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QMainWindow_TrUtf82(const char* s, const char* c) {
-	QString _ret = QMainWindow::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QMainWindow_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QMainWindow::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QMainWindow_AddToolBarBreak1(QMainWindow* self, int area) {
 	self->addToolBarBreak(static_cast<Qt::ToolBarArea>(area));
 }
@@ -1596,7 +1580,7 @@ void QMainWindow_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMainWindow*>( (QMainWindow*)(self) )->handle__EnterEvent = slot;
 }
 
-void QMainWindow_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QMainWindow_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQMainWindow*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1708,7 +1692,7 @@ void QMainWindow_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMainWindow*>( (QMainWindow*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QMainWindow_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QMainWindow_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQMainWindow*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1724,7 +1708,7 @@ void QMainWindow_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQMainWindow*>( (QMainWindow*)(self) )->handle__Metric = slot;
 }
 
-int QMainWindow_virtualbase_Metric(const void* self, int param1) {
+int QMainWindow_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQMainWindow*)(self) )->virtualbase_Metric(param1);
 }
 

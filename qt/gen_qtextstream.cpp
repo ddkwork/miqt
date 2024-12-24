@@ -1,11 +1,13 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChar>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QLocale>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTextCodec>
 #include <QTextStream>
 #include <qtextstream.h>
 #include "gen_qtextstream.h"
@@ -13,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTextStream* QTextStream_new() {
 	return new QTextStream();
@@ -28,21 +45,22 @@ QTextStream* QTextStream_new3(struct miqt_string array) {
 	return new QTextStream(array_QByteArray);
 }
 
-QTextStream* QTextStream_new4(struct miqt_string array, int openMode) {
+QTextStream* QTextStream_new4(struct miqt_string array, OpenMode openMode) {
 	QByteArray array_QByteArray(array.data, array.len);
-	return new QTextStream(array_QByteArray, static_cast<QIODevice::OpenMode>(openMode));
+	return new QTextStream(array_QByteArray, openMode);
 }
 
-void QTextStream_SetCodec(QTextStream* self, QTextCodec* codec) {
-	self->setCodec(codec);
+void QTextStream_virtbase(QTextStream* src, QIODeviceBase** outptr_QIODeviceBase) {
+	*outptr_QIODeviceBase = static_cast<QIODeviceBase*>(src);
 }
 
-void QTextStream_SetCodecWithCodecName(QTextStream* self, const char* codecName) {
-	self->setCodec(codecName);
+void QTextStream_SetEncoding(QTextStream* self, int encoding) {
+	self->setEncoding(static_cast<QStringConverter::Encoding>(encoding));
 }
 
-QTextCodec* QTextStream_Codec(const QTextStream* self) {
-	return self->codec();
+int QTextStream_Encoding(const QTextStream* self) {
+	QStringConverter::Encoding _ret = self->encoding();
+	return static_cast<int>(_ret);
 }
 
 void QTextStream_SetAutoDetectUnicode(QTextStream* self, bool enabled) {
@@ -88,13 +106,12 @@ struct miqt_string QTextStream_String(const QTextStream* self) {
 	return _ms;
 }
 
-int QTextStream_Status(const QTextStream* self) {
-	QTextStream::Status _ret = self->status();
-	return static_cast<int>(_ret);
+Status QTextStream_Status(const QTextStream* self) {
+	return self->status();
 }
 
-void QTextStream_SetStatus(QTextStream* self, int status) {
-	self->setStatus(static_cast<QTextStream::Status>(status));
+void QTextStream_SetStatus(QTextStream* self, Status status) {
+	self->setStatus(status);
 }
 
 void QTextStream_ResetStatus(QTextStream* self) {
@@ -159,13 +176,12 @@ struct miqt_string QTextStream_Read(QTextStream* self, long long maxlen) {
 	return _ms;
 }
 
-void QTextStream_SetFieldAlignment(QTextStream* self, int alignment) {
-	self->setFieldAlignment(static_cast<QTextStream::FieldAlignment>(alignment));
+void QTextStream_SetFieldAlignment(QTextStream* self, FieldAlignment alignment) {
+	self->setFieldAlignment(alignment);
 }
 
-int QTextStream_FieldAlignment(const QTextStream* self) {
-	QTextStream::FieldAlignment _ret = self->fieldAlignment();
-	return static_cast<int>(_ret);
+FieldAlignment QTextStream_FieldAlignment(const QTextStream* self) {
+	return self->fieldAlignment();
 }
 
 void QTextStream_SetPadChar(QTextStream* self, QChar* ch) {
@@ -184,13 +200,12 @@ int QTextStream_FieldWidth(const QTextStream* self) {
 	return self->fieldWidth();
 }
 
-void QTextStream_SetNumberFlags(QTextStream* self, int flags) {
-	self->setNumberFlags(static_cast<QTextStream::NumberFlags>(flags));
+void QTextStream_SetNumberFlags(QTextStream* self, NumberFlags flags) {
+	self->setNumberFlags(flags);
 }
 
-int QTextStream_NumberFlags(const QTextStream* self) {
-	QTextStream::NumberFlags _ret = self->numberFlags();
-	return static_cast<int>(_ret);
+NumberFlags QTextStream_NumberFlags(const QTextStream* self) {
+	return self->numberFlags();
 }
 
 void QTextStream_SetIntegerBase(QTextStream* self, int base) {
@@ -201,13 +216,12 @@ int QTextStream_IntegerBase(const QTextStream* self) {
 	return self->integerBase();
 }
 
-void QTextStream_SetRealNumberNotation(QTextStream* self, int notation) {
-	self->setRealNumberNotation(static_cast<QTextStream::RealNumberNotation>(notation));
+void QTextStream_SetRealNumberNotation(QTextStream* self, RealNumberNotation notation) {
+	self->setRealNumberNotation(notation);
 }
 
-int QTextStream_RealNumberNotation(const QTextStream* self) {
-	QTextStream::RealNumberNotation _ret = self->realNumberNotation();
-	return static_cast<int>(_ret);
+RealNumberNotation QTextStream_RealNumberNotation(const QTextStream* self) {
+	return self->realNumberNotation();
 }
 
 void QTextStream_SetRealNumberPrecision(QTextStream* self, int precision) {

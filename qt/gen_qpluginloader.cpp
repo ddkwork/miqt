@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QJsonObject>
@@ -17,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPluginLoader : public virtual QPluginLoader {
 public:
@@ -243,17 +260,6 @@ struct miqt_string QPluginLoader_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPluginLoader_TrUtf8(const char* s) {
-	QString _ret = QPluginLoader::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QObject* QPluginLoader_Instance(QPluginLoader* self) {
 	return self->instance();
 }
@@ -276,7 +282,7 @@ struct miqt_array /* of QObject* */  QPluginLoader_StaticInstances() {
 }
 
 struct miqt_array /* of QStaticPlugin* */  QPluginLoader_StaticPlugins() {
-	QVector<QStaticPlugin> _ret = QPluginLoader::staticPlugins();
+	QList<QStaticPlugin> _ret = QPluginLoader::staticPlugins();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QStaticPlugin** _arr = static_cast<QStaticPlugin**>(malloc(sizeof(QStaticPlugin*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -349,28 +355,6 @@ struct miqt_string QPluginLoader_Tr2(const char* s, const char* c) {
 
 struct miqt_string QPluginLoader_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QPluginLoader::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPluginLoader_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPluginLoader::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPluginLoader_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPluginLoader::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -16,23 +16,27 @@ extern "C" {
 
 #ifdef __cplusplus
 class QArrayData;
+class _GUID;
+class type_info;
 #else
 typedef struct QArrayData QArrayData;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-void* QArrayData_Data(QArrayData* self);
-const void* QArrayData_Data2(const QArrayData* self);
-bool QArrayData_IsMutable(const QArrayData* self);
-size_t QArrayData_DetachCapacity(const QArrayData* self, size_t newSize);
-int QArrayData_DetachFlags(const QArrayData* self);
-int QArrayData_CloneFlags(const QArrayData* self);
-QArrayData* QArrayData_Allocate(size_t objectSize, size_t alignment, size_t capacity);
-QArrayData* QArrayData_ReallocateUnaligned(QArrayData* data, size_t objectSize, size_t newCapacity);
-void QArrayData_Deallocate(QArrayData* data, size_t objectSize, size_t alignment);
-QArrayData* QArrayData_SharedNull();
-QArrayData* QArrayData_Allocate4(size_t objectSize, size_t alignment, size_t capacity, int options);
-QArrayData* QArrayData_ReallocateUnaligned4(QArrayData* data, size_t objectSize, size_t newCapacity, int newOptions);
-void QArrayData_Delete(QArrayData* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) ptrdiff_t QArrayData_AllocatedCapacity(QArrayData* self);
+extern __declspec(dllexport) ptrdiff_t QArrayData_ConstAllocatedCapacity(const QArrayData* self);
+extern __declspec(dllexport) bool QArrayData_Ref(QArrayData* self);
+extern __declspec(dllexport) bool QArrayData_Deref(QArrayData* self);
+extern __declspec(dllexport) bool QArrayData_IsShared(const QArrayData* self);
+extern __declspec(dllexport) bool QArrayData_NeedsDetach(QArrayData* self);
+extern __declspec(dllexport) ptrdiff_t QArrayData_DetachCapacity(const QArrayData* self, ptrdiff_t newSize);
+extern __declspec(dllexport) void QArrayData_Deallocate(QArrayData* data, ptrdiff_t objectSize, ptrdiff_t alignment);
+extern __declspec(dllexport) void QArrayData_Delete(QArrayData* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

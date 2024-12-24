@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -16,28 +16,36 @@ extern "C" {
 
 #ifdef __cplusplus
 class QSslCipher;
+class _GUID;
+class type_info;
 #else
 typedef struct QSslCipher QSslCipher;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QSslCipher* QSslCipher_new();
-QSslCipher* QSslCipher_new2(struct miqt_string name);
-QSslCipher* QSslCipher_new3(struct miqt_string name, int protocol);
-QSslCipher* QSslCipher_new4(QSslCipher* other);
-void QSslCipher_OperatorAssign(QSslCipher* self, QSslCipher* other);
-void QSslCipher_Swap(QSslCipher* self, QSslCipher* other);
-bool QSslCipher_OperatorEqual(const QSslCipher* self, QSslCipher* other);
-bool QSslCipher_OperatorNotEqual(const QSslCipher* self, QSslCipher* other);
-bool QSslCipher_IsNull(const QSslCipher* self);
-struct miqt_string QSslCipher_Name(const QSslCipher* self);
-int QSslCipher_SupportedBits(const QSslCipher* self);
-int QSslCipher_UsedBits(const QSslCipher* self);
-struct miqt_string QSslCipher_KeyExchangeMethod(const QSslCipher* self);
-struct miqt_string QSslCipher_AuthenticationMethod(const QSslCipher* self);
-struct miqt_string QSslCipher_EncryptionMethod(const QSslCipher* self);
-struct miqt_string QSslCipher_ProtocolString(const QSslCipher* self);
-int QSslCipher_Protocol(const QSslCipher* self);
-void QSslCipher_Delete(QSslCipher* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QSslCipher* QSslCipher_new();
+extern __declspec(dllexport) QSslCipher* QSslCipher_new2(struct miqt_string name);
+extern __declspec(dllexport) QSslCipher* QSslCipher_new3(struct miqt_string name, int protocol);
+extern __declspec(dllexport) QSslCipher* QSslCipher_new4(QSslCipher* other);
+extern __declspec(dllexport) void QSslCipher_OperatorAssign(QSslCipher* self, QSslCipher* other);
+extern __declspec(dllexport) void QSslCipher_Swap(QSslCipher* self, QSslCipher* other);
+extern __declspec(dllexport) bool QSslCipher_OperatorEqual(const QSslCipher* self, QSslCipher* other);
+extern __declspec(dllexport) bool QSslCipher_OperatorNotEqual(const QSslCipher* self, QSslCipher* other);
+extern __declspec(dllexport) bool QSslCipher_IsNull(const QSslCipher* self);
+extern __declspec(dllexport) struct miqt_string QSslCipher_Name(const QSslCipher* self);
+extern __declspec(dllexport) int QSslCipher_SupportedBits(const QSslCipher* self);
+extern __declspec(dllexport) int QSslCipher_UsedBits(const QSslCipher* self);
+extern __declspec(dllexport) struct miqt_string QSslCipher_KeyExchangeMethod(const QSslCipher* self);
+extern __declspec(dllexport) struct miqt_string QSslCipher_AuthenticationMethod(const QSslCipher* self);
+extern __declspec(dllexport) struct miqt_string QSslCipher_EncryptionMethod(const QSslCipher* self);
+extern __declspec(dllexport) struct miqt_string QSslCipher_ProtocolString(const QSslCipher* self);
+extern __declspec(dllexport) int QSslCipher_Protocol(const QSslCipher* self);
+extern __declspec(dllexport) void QSslCipher_Delete(QSslCipher* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

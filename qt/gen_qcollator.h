@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -19,37 +19,45 @@ class QChar;
 class QCollator;
 class QCollatorSortKey;
 class QLocale;
+class _GUID;
+class type_info;
 #else
 typedef struct QChar QChar;
 typedef struct QCollator QCollator;
 typedef struct QCollatorSortKey QCollatorSortKey;
 typedef struct QLocale QLocale;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QCollatorSortKey* QCollatorSortKey_new(QCollatorSortKey* other);
-void QCollatorSortKey_OperatorAssign(QCollatorSortKey* self, QCollatorSortKey* other);
-void QCollatorSortKey_Swap(QCollatorSortKey* self, QCollatorSortKey* other);
-int QCollatorSortKey_Compare(const QCollatorSortKey* self, QCollatorSortKey* key);
-void QCollatorSortKey_Delete(QCollatorSortKey* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
-QCollator* QCollator_new();
-QCollator* QCollator_new2(QLocale* locale);
-QCollator* QCollator_new3(QCollator* param1);
-void QCollator_OperatorAssign(QCollator* self, QCollator* param1);
-void QCollator_Swap(QCollator* self, QCollator* other);
-void QCollator_SetLocale(QCollator* self, QLocale* locale);
-QLocale* QCollator_Locale(const QCollator* self);
-int QCollator_CaseSensitivity(const QCollator* self);
-void QCollator_SetCaseSensitivity(QCollator* self, int cs);
-void QCollator_SetNumericMode(QCollator* self, bool on);
-bool QCollator_NumericMode(const QCollator* self);
-void QCollator_SetIgnorePunctuation(QCollator* self, bool on);
-bool QCollator_IgnorePunctuation(const QCollator* self);
-int QCollator_Compare(const QCollator* self, struct miqt_string s1, struct miqt_string s2);
-int QCollator_Compare3(const QCollator* self, QChar* s1, int len1, QChar* s2, int len2);
-bool QCollator_OperatorCall(const QCollator* self, struct miqt_string s1, struct miqt_string s2);
-QCollatorSortKey* QCollator_SortKey(const QCollator* self, struct miqt_string stringVal);
-void QCollator_Delete(QCollator* self, bool isSubclass);
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QCollatorSortKey* QCollatorSortKey_new(QCollatorSortKey* other);
+extern __declspec(dllexport) void QCollatorSortKey_OperatorAssign(QCollatorSortKey* self, QCollatorSortKey* other);
+extern __declspec(dllexport) void QCollatorSortKey_Swap(QCollatorSortKey* self, QCollatorSortKey* other);
+extern __declspec(dllexport) int QCollatorSortKey_Compare(const QCollatorSortKey* self, QCollatorSortKey* key);
+extern __declspec(dllexport) void QCollatorSortKey_Delete(QCollatorSortKey* self, bool isSubclass);
+
+extern __declspec(dllexport) QCollator* QCollator_new();
+extern __declspec(dllexport) QCollator* QCollator_new2(QLocale* locale);
+extern __declspec(dllexport) QCollator* QCollator_new3(QCollator* param1);
+extern __declspec(dllexport) void QCollator_OperatorAssign(QCollator* self, QCollator* param1);
+extern __declspec(dllexport) void QCollator_Swap(QCollator* self, QCollator* other);
+extern __declspec(dllexport) void QCollator_SetLocale(QCollator* self, QLocale* locale);
+extern __declspec(dllexport) QLocale* QCollator_Locale(const QCollator* self);
+extern __declspec(dllexport) int QCollator_CaseSensitivity(const QCollator* self);
+extern __declspec(dllexport) void QCollator_SetCaseSensitivity(QCollator* self, int cs);
+extern __declspec(dllexport) void QCollator_SetNumericMode(QCollator* self, bool on);
+extern __declspec(dllexport) bool QCollator_NumericMode(const QCollator* self);
+extern __declspec(dllexport) void QCollator_SetIgnorePunctuation(QCollator* self, bool on);
+extern __declspec(dllexport) bool QCollator_IgnorePunctuation(const QCollator* self);
+extern __declspec(dllexport) int QCollator_Compare(const QCollator* self, struct miqt_string s1, struct miqt_string s2);
+extern __declspec(dllexport) int QCollator_Compare2(const QCollator* self, QChar* s1, ptrdiff_t len1, QChar* s2, ptrdiff_t len2);
+extern __declspec(dllexport) bool QCollator_OperatorCall(const QCollator* self, struct miqt_string s1, struct miqt_string s2);
+extern __declspec(dllexport) QCollatorSortKey* QCollator_SortKey(const QCollator* self, struct miqt_string stringVal);
+extern __declspec(dllexport) void QCollator_Delete(QCollator* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

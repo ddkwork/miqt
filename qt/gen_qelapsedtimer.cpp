@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QElapsedTimer>
 #include <qelapsedtimer.h>
 #include "gen_qelapsedtimer.h"
@@ -5,15 +7,29 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QElapsedTimer* QElapsedTimer_new() {
 	return new QElapsedTimer();
 }
 
-int QElapsedTimer_ClockType() {
-	QElapsedTimer::ClockType _ret = QElapsedTimer::clockType();
-	return static_cast<int>(_ret);
+ClockType QElapsedTimer_ClockType() {
+	return QElapsedTimer::clockType();
 }
 
 bool QElapsedTimer_IsMonotonic() {
@@ -37,6 +53,10 @@ bool QElapsedTimer_IsValid(const QElapsedTimer* self) {
 	return self->isValid();
 }
 
+Duration QElapsedTimer_DurationElapsed(const QElapsedTimer* self) {
+	return self->durationElapsed();
+}
+
 long long QElapsedTimer_NsecsElapsed(const QElapsedTimer* self) {
 	qint64 _ret = self->nsecsElapsed();
 	return static_cast<long long>(_ret);
@@ -56,6 +76,10 @@ long long QElapsedTimer_MsecsSinceReference(const QElapsedTimer* self) {
 	return static_cast<long long>(_ret);
 }
 
+Duration QElapsedTimer_DurationTo(const QElapsedTimer* self, QElapsedTimer* other) {
+	return self->durationTo(*other);
+}
+
 long long QElapsedTimer_MsecsTo(const QElapsedTimer* self, QElapsedTimer* other) {
 	qint64 _ret = self->msecsTo(*other);
 	return static_cast<long long>(_ret);
@@ -64,14 +88,6 @@ long long QElapsedTimer_MsecsTo(const QElapsedTimer* self, QElapsedTimer* other)
 long long QElapsedTimer_SecsTo(const QElapsedTimer* self, QElapsedTimer* other) {
 	qint64 _ret = self->secsTo(*other);
 	return static_cast<long long>(_ret);
-}
-
-bool QElapsedTimer_OperatorEqual(const QElapsedTimer* self, QElapsedTimer* other) {
-	return (*self == *other);
-}
-
-bool QElapsedTimer_OperatorNotEqual(const QElapsedTimer* self, QElapsedTimer* other) {
-	return (*self != *other);
 }
 
 void QElapsedTimer_Delete(QElapsedTimer* self, bool isSubclass) {

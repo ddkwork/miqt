@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QLoggingCategory>
 #include <QString>
 #include <QByteArray>
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QLoggingCategory* QLoggingCategory_new(const char* category) {
 	return new QLoggingCategory(category);
@@ -48,6 +65,10 @@ QLoggingCategory* QLoggingCategory_OperatorCall2(const QLoggingCategory* self) {
 
 QLoggingCategory* QLoggingCategory_DefaultCategory() {
 	return QLoggingCategory::defaultCategory();
+}
+
+CategoryFilter QLoggingCategory_InstallFilter(CategoryFilter param1) {
+	return QLoggingCategory::installFilter(param1);
 }
 
 void QLoggingCategory_SetFilterRules(struct miqt_string rules) {

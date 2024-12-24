@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QMetaMethod>
@@ -15,13 +17,30 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSocketNotifier : public virtual QSocketNotifier {
 public:
 
-	MiqtVirtualQSocketNotifier(qintptr socket, QSocketNotifier::Type param2): QSocketNotifier(socket, param2) {};
-	MiqtVirtualQSocketNotifier(qintptr socket, QSocketNotifier::Type param2, QObject* parent): QSocketNotifier(socket, param2, parent) {};
+	MiqtVirtualQSocketNotifier(Type param1): QSocketNotifier(param1) {};
+	MiqtVirtualQSocketNotifier(qintptr socket, Type param2): QSocketNotifier(socket, param2) {};
+	MiqtVirtualQSocketNotifier(Type param1, QObject* parent): QSocketNotifier(param1, parent) {};
+	MiqtVirtualQSocketNotifier(qintptr socket, Type param2, QObject* parent): QSocketNotifier(socket, param2, parent) {};
 
 	virtual ~MiqtVirtualQSocketNotifier() = default;
 
@@ -198,12 +217,20 @@ public:
 
 };
 
-QSocketNotifier* QSocketNotifier_new(intptr_t socket, int param2) {
-	return new MiqtVirtualQSocketNotifier((qintptr)(socket), static_cast<QSocketNotifier::Type>(param2));
+QSocketNotifier* QSocketNotifier_new(Type param1) {
+	return new MiqtVirtualQSocketNotifier(param1);
 }
 
-QSocketNotifier* QSocketNotifier_new2(intptr_t socket, int param2, QObject* parent) {
-	return new MiqtVirtualQSocketNotifier((qintptr)(socket), static_cast<QSocketNotifier::Type>(param2), parent);
+QSocketNotifier* QSocketNotifier_new2(intptr_t socket, Type param2) {
+	return new MiqtVirtualQSocketNotifier((qintptr)(socket), param2);
+}
+
+QSocketNotifier* QSocketNotifier_new3(Type param1, QObject* parent) {
+	return new MiqtVirtualQSocketNotifier(param1, parent);
+}
+
+QSocketNotifier* QSocketNotifier_new4(intptr_t socket, Type param2, QObject* parent) {
+	return new MiqtVirtualQSocketNotifier((qintptr)(socket), param2, parent);
 }
 
 void QSocketNotifier_virtbase(QSocketNotifier* src, QObject** outptr_QObject) {
@@ -229,15 +256,8 @@ struct miqt_string QSocketNotifier_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSocketNotifier_TrUtf8(const char* s) {
-	QString _ret = QSocketNotifier::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QSocketNotifier_SetSocket(QSocketNotifier* self, intptr_t socket) {
+	self->setSocket((qintptr)(socket));
 }
 
 intptr_t QSocketNotifier_Socket(const QSocketNotifier* self) {
@@ -245,9 +265,12 @@ intptr_t QSocketNotifier_Socket(const QSocketNotifier* self) {
 	return (intptr_t)(_ret);
 }
 
-int QSocketNotifier_Type(const QSocketNotifier* self) {
-	QSocketNotifier::Type _ret = self->type();
-	return static_cast<int>(_ret);
+Type QSocketNotifier_Type(const QSocketNotifier* self) {
+	return self->type();
+}
+
+bool QSocketNotifier_IsValid(const QSocketNotifier* self) {
+	return self->isValid();
 }
 
 bool QSocketNotifier_IsEnabled(const QSocketNotifier* self) {
@@ -271,28 +294,6 @@ struct miqt_string QSocketNotifier_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSocketNotifier_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSocketNotifier::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSocketNotifier_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSocketNotifier::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSocketNotifier_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSocketNotifier::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -370,16 +371,21 @@ QSocketDescriptor* QSocketDescriptor_new() {
 	return new QSocketDescriptor();
 }
 
-QSocketDescriptor* QSocketDescriptor_new2(QSocketDescriptor* param1) {
+QSocketDescriptor* QSocketDescriptor_new2(intptr_t desc) {
+	return new QSocketDescriptor((qintptr)(desc));
+}
+
+QSocketDescriptor* QSocketDescriptor_new3(QSocketDescriptor* param1) {
 	return new QSocketDescriptor(*param1);
 }
 
-QSocketDescriptor* QSocketDescriptor_new3(int descriptor) {
-#ifndef Q_OS_LINUX
-	return nullptr;
-#else
-	return new QSocketDescriptor(static_cast<QSocketDescriptor::DescriptorType>(descriptor));
-#endif
+QSocketDescriptor* QSocketDescriptor_new4(DescriptorType descriptor) {
+	return new QSocketDescriptor(descriptor);
+}
+
+void* QSocketDescriptor_WinHandle(const QSocketDescriptor* self) {
+	Qt::HANDLE _ret = self->winHandle();
+	return static_cast<void*>(_ret);
 }
 
 bool QSocketDescriptor_IsValid(const QSocketDescriptor* self) {

@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qreadwritelock.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -21,226 +12,108 @@ const (
 )
 
 type QReadWriteLock struct {
-	h          *C.QReadWriteLock
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QReadWriteLock) cPointer() *C.QReadWriteLock {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QReadWriteLock) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQReadWriteLock constructs the type using only CGO pointers.
-func newQReadWriteLock(h *C.QReadWriteLock) *QReadWriteLock {
-	if h == nil {
-		return nil
-	}
-
-	return &QReadWriteLock{h: h}
-}
-
-// UnsafeNewQReadWriteLock constructs the type using only unsafe pointers.
-func UnsafeNewQReadWriteLock(h unsafe.Pointer) *QReadWriteLock {
-	return newQReadWriteLock((*C.QReadWriteLock)(h))
 }
 
 // NewQReadWriteLock constructs a new QReadWriteLock object.
 func NewQReadWriteLock() *QReadWriteLock {
 
-	ret := newQReadWriteLock(C.QReadWriteLock_new())
+	ret := newQReadWriteLock(QReadWriteLock_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQReadWriteLock2 constructs a new QReadWriteLock object.
-func NewQReadWriteLock2(recursionMode QReadWriteLock__RecursionMode) *QReadWriteLock {
+func NewQReadWriteLock2(recursionMode RecursionMode) *QReadWriteLock {
 
-	ret := newQReadWriteLock(C.QReadWriteLock_new2((C.int)(recursionMode)))
+	ret := newQReadWriteLock(QReadWriteLock_new2(recursionMode))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QReadWriteLock) LockForRead() {
-	C.QReadWriteLock_LockForRead(this.h)
+	QReadWriteLock_LockForRead(this.h)
 }
 
-func (this *QReadWriteLock) TryLockForRead() bool {
-	return (bool)(C.QReadWriteLock_TryLockForRead(this.h))
+func (this *QReadWriteLock) TryLockForRead(timeout int) bool {
+	return (bool)(QReadWriteLock_TryLockForRead(this.h, (int)(timeout)))
 }
 
-func (this *QReadWriteLock) TryLockForReadWithTimeout(timeout int) bool {
-	return (bool)(C.QReadWriteLock_TryLockForReadWithTimeout(this.h, (C.int)(timeout)))
+func (this *QReadWriteLock) TryLockForRead2() bool {
+	return (bool)(QReadWriteLock_TryLockForRead2(this.h))
 }
 
 func (this *QReadWriteLock) LockForWrite() {
-	C.QReadWriteLock_LockForWrite(this.h)
+	QReadWriteLock_LockForWrite(this.h)
 }
 
-func (this *QReadWriteLock) TryLockForWrite() bool {
-	return (bool)(C.QReadWriteLock_TryLockForWrite(this.h))
+func (this *QReadWriteLock) TryLockForWrite(timeout int) bool {
+	return (bool)(QReadWriteLock_TryLockForWrite(this.h, (int)(timeout)))
 }
 
-func (this *QReadWriteLock) TryLockForWriteWithTimeout(timeout int) bool {
-	return (bool)(C.QReadWriteLock_TryLockForWriteWithTimeout(this.h, (C.int)(timeout)))
+func (this *QReadWriteLock) TryLockForWrite2() bool {
+	return (bool)(QReadWriteLock_TryLockForWrite2(this.h))
 }
 
 func (this *QReadWriteLock) Unlock() {
-	C.QReadWriteLock_Unlock(this.h)
+	QReadWriteLock_Unlock(this.h)
 }
 
-// Delete this object from C++ memory.
-func (this *QReadWriteLock) Delete() {
-	C.QReadWriteLock_Delete(this.h, C.bool(this.isSubclass))
+func (this *QReadWriteLock) TryLockForRead1(timeout QDeadlineTimer) bool {
+	return (bool)(QReadWriteLock_TryLockForRead1(this.h, timeout.cPointer()))
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QReadWriteLock) GoGC() {
-	runtime.SetFinalizer(this, func(this *QReadWriteLock) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func (this *QReadWriteLock) TryLockForWrite1(timeout QDeadlineTimer) bool {
+	return (bool)(QReadWriteLock_TryLockForWrite1(this.h, timeout.cPointer()))
 }
 
 type QReadLocker struct {
-	h          *C.QReadLocker
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QReadLocker) cPointer() *C.QReadLocker {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QReadLocker) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQReadLocker constructs the type using only CGO pointers.
-func newQReadLocker(h *C.QReadLocker) *QReadLocker {
-	if h == nil {
-		return nil
-	}
-
-	return &QReadLocker{h: h}
-}
-
-// UnsafeNewQReadLocker constructs the type using only unsafe pointers.
-func UnsafeNewQReadLocker(h unsafe.Pointer) *QReadLocker {
-	return newQReadLocker((*C.QReadLocker)(h))
 }
 
 // NewQReadLocker constructs a new QReadLocker object.
 func NewQReadLocker(readWriteLock *QReadWriteLock) *QReadLocker {
 
-	ret := newQReadLocker(C.QReadLocker_new(readWriteLock.cPointer()))
+	ret := newQReadLocker(QReadLocker_new(readWriteLock.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QReadLocker) Unlock() {
-	C.QReadLocker_Unlock(this.h)
+	QReadLocker_Unlock(this.h)
 }
 
 func (this *QReadLocker) Relock() {
-	C.QReadLocker_Relock(this.h)
+	QReadLocker_Relock(this.h)
 }
 
 func (this *QReadLocker) ReadWriteLock() *QReadWriteLock {
-	return newQReadWriteLock(C.QReadLocker_ReadWriteLock(this.h))
-}
-
-// Delete this object from C++ memory.
-func (this *QReadLocker) Delete() {
-	C.QReadLocker_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QReadLocker) GoGC() {
-	runtime.SetFinalizer(this, func(this *QReadLocker) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return newQReadWriteLock(QReadLocker_ReadWriteLock(this.h))
 }
 
 type QWriteLocker struct {
-	h          *C.QWriteLocker
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QWriteLocker) cPointer() *C.QWriteLocker {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QWriteLocker) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQWriteLocker constructs the type using only CGO pointers.
-func newQWriteLocker(h *C.QWriteLocker) *QWriteLocker {
-	if h == nil {
-		return nil
-	}
-
-	return &QWriteLocker{h: h}
-}
-
-// UnsafeNewQWriteLocker constructs the type using only unsafe pointers.
-func UnsafeNewQWriteLocker(h unsafe.Pointer) *QWriteLocker {
-	return newQWriteLocker((*C.QWriteLocker)(h))
 }
 
 // NewQWriteLocker constructs a new QWriteLocker object.
 func NewQWriteLocker(readWriteLock *QReadWriteLock) *QWriteLocker {
 
-	ret := newQWriteLocker(C.QWriteLocker_new(readWriteLock.cPointer()))
+	ret := newQWriteLocker(QWriteLocker_new(readWriteLock.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QWriteLocker) Unlock() {
-	C.QWriteLocker_Unlock(this.h)
+	QWriteLocker_Unlock(this.h)
 }
 
 func (this *QWriteLocker) Relock() {
-	C.QWriteLocker_Relock(this.h)
+	QWriteLocker_Relock(this.h)
 }
 
 func (this *QWriteLocker) ReadWriteLock() *QReadWriteLock {
-	return newQReadWriteLock(C.QWriteLocker_ReadWriteLock(this.h))
-}
-
-// Delete this object from C++ memory.
-func (this *QWriteLocker) Delete() {
-	C.QWriteLocker_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QWriteLocker) GoGC() {
-	runtime.SetFinalizer(this, func(this *QWriteLocker) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return newQReadWriteLock(QWriteLocker_ReadWriteLock(this.h))
 }

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QStyleHintReturn>
 #include <QStyleHintReturnMask>
 #include <QStyleHintReturnVariant>
@@ -11,6 +13,7 @@
 #include <QStyleOptionGraphicsItem>
 #include <QStyleOptionGroupBox>
 #include <QStyleOptionHeader>
+#include <QStyleOptionHeaderV2>
 #include <QStyleOptionMenuItem>
 #include <QStyleOptionProgressBar>
 #include <QStyleOptionRubberBand>
@@ -19,7 +22,6 @@
 #include <QStyleOptionSpinBox>
 #include <QStyleOptionTab>
 #include <QStyleOptionTabBarBase>
-#include <QStyleOptionTabV4>
 #include <QStyleOptionTabWidgetFrame>
 #include <QStyleOptionTitleBar>
 #include <QStyleOptionToolBar>
@@ -34,7 +36,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QStyleOption* QStyleOption_new() {
 	return new QStyleOption();
@@ -50,10 +67,6 @@ QStyleOption* QStyleOption_new3(int version) {
 
 QStyleOption* QStyleOption_new4(int version, int typeVal) {
 	return new QStyleOption(static_cast<int>(version), static_cast<int>(typeVal));
-}
-
-void QStyleOption_Init(QStyleOption* self, QWidget* w) {
-	self->init(w);
 }
 
 void QStyleOption_InitFrom(QStyleOption* self, QWidget* w) {
@@ -172,6 +185,26 @@ void QStyleOptionHeader_Delete(QStyleOptionHeader* self, bool isSubclass) {
 	}
 }
 
+QStyleOptionHeaderV2* QStyleOptionHeaderV2_new() {
+	return new QStyleOptionHeaderV2();
+}
+
+QStyleOptionHeaderV2* QStyleOptionHeaderV2_new2(QStyleOptionHeaderV2* other) {
+	return new QStyleOptionHeaderV2(*other);
+}
+
+void QStyleOptionHeaderV2_virtbase(QStyleOptionHeaderV2* src, QStyleOptionHeader** outptr_QStyleOptionHeader) {
+	*outptr_QStyleOptionHeader = static_cast<QStyleOptionHeader*>(src);
+}
+
+void QStyleOptionHeaderV2_Delete(QStyleOptionHeaderV2* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QStyleOptionHeaderV2*>( self );
+	} else {
+		delete self;
+	}
+}
+
 QStyleOptionButton* QStyleOptionButton_new() {
 	return new QStyleOptionButton();
 }
@@ -207,30 +240,6 @@ void QStyleOptionTab_virtbase(QStyleOptionTab* src, QStyleOption** outptr_QStyle
 void QStyleOptionTab_Delete(QStyleOptionTab* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QStyleOptionTab*>( self );
-	} else {
-		delete self;
-	}
-}
-
-QStyleOptionTabV4* QStyleOptionTabV4_new() {
-	return new QStyleOptionTabV4();
-}
-
-QStyleOptionTabV4* QStyleOptionTabV4_new2(QStyleOptionTabV4* param1) {
-	return new QStyleOptionTabV4(*param1);
-}
-
-void QStyleOptionTabV4_virtbase(QStyleOptionTabV4* src, QStyleOptionTab** outptr_QStyleOptionTab) {
-	*outptr_QStyleOptionTab = static_cast<QStyleOptionTab*>(src);
-}
-
-void QStyleOptionTabV4_OperatorAssign(QStyleOptionTabV4* self, QStyleOptionTabV4* param1) {
-	self->operator=(*param1);
-}
-
-void QStyleOptionTabV4_Delete(QStyleOptionTabV4* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QStyleOptionTabV4*>( self );
 	} else {
 		delete self;
 	}

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractScrollArea>
 #include <QBrush>
 #include <QContextMenuEvent>
@@ -14,7 +16,6 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QList>
-#include <QMatrix>
 #include <QMetaObject>
 #include <QMouseEvent>
 #include <QObject>
@@ -42,7 +43,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsView : public virtual QGraphicsView {
 public:
@@ -813,17 +829,6 @@ struct miqt_string QGraphicsView_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsView_TrUtf8(const char* s) {
-	QString _ret = QGraphicsView::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QGraphicsView_SizeHint(const QGraphicsView* self) {
 	return new QSize(self->sizeHint());
 }
@@ -850,53 +855,48 @@ void QGraphicsView_SetAlignment(QGraphicsView* self, int alignment) {
 	self->setAlignment(static_cast<Qt::Alignment>(alignment));
 }
 
-int QGraphicsView_TransformationAnchor(const QGraphicsView* self) {
-	QGraphicsView::ViewportAnchor _ret = self->transformationAnchor();
-	return static_cast<int>(_ret);
+ViewportAnchor QGraphicsView_TransformationAnchor(const QGraphicsView* self) {
+	return self->transformationAnchor();
 }
 
-void QGraphicsView_SetTransformationAnchor(QGraphicsView* self, int anchor) {
-	self->setTransformationAnchor(static_cast<QGraphicsView::ViewportAnchor>(anchor));
+void QGraphicsView_SetTransformationAnchor(QGraphicsView* self, ViewportAnchor anchor) {
+	self->setTransformationAnchor(anchor);
 }
 
-int QGraphicsView_ResizeAnchor(const QGraphicsView* self) {
-	QGraphicsView::ViewportAnchor _ret = self->resizeAnchor();
-	return static_cast<int>(_ret);
+ViewportAnchor QGraphicsView_ResizeAnchor(const QGraphicsView* self) {
+	return self->resizeAnchor();
 }
 
-void QGraphicsView_SetResizeAnchor(QGraphicsView* self, int anchor) {
-	self->setResizeAnchor(static_cast<QGraphicsView::ViewportAnchor>(anchor));
+void QGraphicsView_SetResizeAnchor(QGraphicsView* self, ViewportAnchor anchor) {
+	self->setResizeAnchor(anchor);
 }
 
-int QGraphicsView_ViewportUpdateMode(const QGraphicsView* self) {
-	QGraphicsView::ViewportUpdateMode _ret = self->viewportUpdateMode();
-	return static_cast<int>(_ret);
+ViewportUpdateMode QGraphicsView_ViewportUpdateMode(const QGraphicsView* self) {
+	return self->viewportUpdateMode();
 }
 
-void QGraphicsView_SetViewportUpdateMode(QGraphicsView* self, int mode) {
-	self->setViewportUpdateMode(static_cast<QGraphicsView::ViewportUpdateMode>(mode));
+void QGraphicsView_SetViewportUpdateMode(QGraphicsView* self, ViewportUpdateMode mode) {
+	self->setViewportUpdateMode(mode);
 }
 
-int QGraphicsView_OptimizationFlags(const QGraphicsView* self) {
-	QGraphicsView::OptimizationFlags _ret = self->optimizationFlags();
-	return static_cast<int>(_ret);
+OptimizationFlags QGraphicsView_OptimizationFlags(const QGraphicsView* self) {
+	return self->optimizationFlags();
 }
 
-void QGraphicsView_SetOptimizationFlag(QGraphicsView* self, int flag) {
-	self->setOptimizationFlag(static_cast<QGraphicsView::OptimizationFlag>(flag));
+void QGraphicsView_SetOptimizationFlag(QGraphicsView* self, OptimizationFlag flag) {
+	self->setOptimizationFlag(flag);
 }
 
-void QGraphicsView_SetOptimizationFlags(QGraphicsView* self, int flags) {
-	self->setOptimizationFlags(static_cast<QGraphicsView::OptimizationFlags>(flags));
+void QGraphicsView_SetOptimizationFlags(QGraphicsView* self, OptimizationFlags flags) {
+	self->setOptimizationFlags(flags);
 }
 
-int QGraphicsView_DragMode(const QGraphicsView* self) {
-	QGraphicsView::DragMode _ret = self->dragMode();
-	return static_cast<int>(_ret);
+DragMode QGraphicsView_DragMode(const QGraphicsView* self) {
+	return self->dragMode();
 }
 
-void QGraphicsView_SetDragMode(QGraphicsView* self, int mode) {
-	self->setDragMode(static_cast<QGraphicsView::DragMode>(mode));
+void QGraphicsView_SetDragMode(QGraphicsView* self, DragMode mode) {
+	self->setDragMode(mode);
 }
 
 int QGraphicsView_RubberBandSelectionMode(const QGraphicsView* self) {
@@ -912,13 +912,12 @@ QRect* QGraphicsView_RubberBandRect(const QGraphicsView* self) {
 	return new QRect(self->rubberBandRect());
 }
 
-int QGraphicsView_CacheMode(const QGraphicsView* self) {
-	QGraphicsView::CacheMode _ret = self->cacheMode();
-	return static_cast<int>(_ret);
+CacheMode QGraphicsView_CacheMode(const QGraphicsView* self) {
+	return self->cacheMode();
 }
 
-void QGraphicsView_SetCacheMode(QGraphicsView* self, int mode) {
-	self->setCacheMode(static_cast<QGraphicsView::CacheMode>(mode));
+void QGraphicsView_SetCacheMode(QGraphicsView* self, CacheMode mode) {
+	self->setCacheMode(mode);
 }
 
 void QGraphicsView_ResetCachedContent(QGraphicsView* self) {
@@ -951,18 +950,6 @@ void QGraphicsView_SetSceneRect(QGraphicsView* self, QRectF* rect) {
 
 void QGraphicsView_SetSceneRect2(QGraphicsView* self, double x, double y, double w, double h) {
 	self->setSceneRect(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal>(w), static_cast<qreal>(h));
-}
-
-QMatrix* QGraphicsView_Matrix(const QGraphicsView* self) {
-	return new QMatrix(self->matrix());
-}
-
-void QGraphicsView_SetMatrix(QGraphicsView* self, QMatrix* matrix) {
-	self->setMatrix(*matrix);
-}
-
-void QGraphicsView_ResetMatrix(QGraphicsView* self) {
-	self->resetMatrix();
 }
 
 QTransform* QGraphicsView_Transform(const QGraphicsView* self) {
@@ -1224,38 +1211,12 @@ struct miqt_string QGraphicsView_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsView_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsView::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsView_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsView::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsView_SetRenderHint2(QGraphicsView* self, int hint, bool enabled) {
 	self->setRenderHint(static_cast<QPainter::RenderHint>(hint), enabled);
 }
 
-void QGraphicsView_SetOptimizationFlag2(QGraphicsView* self, int flag, bool enabled) {
-	self->setOptimizationFlag(static_cast<QGraphicsView::OptimizationFlag>(flag), enabled);
-}
-
-void QGraphicsView_SetMatrix2(QGraphicsView* self, QMatrix* matrix, bool combine) {
-	self->setMatrix(*matrix, combine);
+void QGraphicsView_SetOptimizationFlag2(QGraphicsView* self, OptimizationFlag flag, bool enabled) {
+	self->setOptimizationFlag(flag, enabled);
 }
 
 void QGraphicsView_SetTransform2(QGraphicsView* self, QTransform* matrix, bool combine) {

@@ -1,60 +1,18 @@
 package qt
 
-/*
-
-#include "gen_qgraphicslinearlayout.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
 type QGraphicsLinearLayout struct {
-	h          *C.QGraphicsLinearLayout
+	h          uintptr
 	isSubclass bool
-	*QGraphicsLayout
-}
-
-func (this *QGraphicsLinearLayout) cPointer() *C.QGraphicsLinearLayout {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QGraphicsLinearLayout) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQGraphicsLinearLayout constructs the type using only CGO pointers.
-func newQGraphicsLinearLayout(h *C.QGraphicsLinearLayout) *QGraphicsLinearLayout {
-	if h == nil {
-		return nil
-	}
-	var outptr_QGraphicsLayout *C.QGraphicsLayout = nil
-	C.QGraphicsLinearLayout_virtbase(h, &outptr_QGraphicsLayout)
-
-	return &QGraphicsLinearLayout{h: h,
-		QGraphicsLayout: newQGraphicsLayout(outptr_QGraphicsLayout)}
-}
-
-// UnsafeNewQGraphicsLinearLayout constructs the type using only unsafe pointers.
-func UnsafeNewQGraphicsLinearLayout(h unsafe.Pointer) *QGraphicsLinearLayout {
-	return newQGraphicsLinearLayout((*C.QGraphicsLinearLayout)(h))
 }
 
 // NewQGraphicsLinearLayout constructs a new QGraphicsLinearLayout object.
 func NewQGraphicsLinearLayout() *QGraphicsLinearLayout {
 
-	ret := newQGraphicsLinearLayout(C.QGraphicsLinearLayout_new())
+	ret := newQGraphicsLinearLayout(QGraphicsLinearLayout_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -62,7 +20,7 @@ func NewQGraphicsLinearLayout() *QGraphicsLinearLayout {
 // NewQGraphicsLinearLayout2 constructs a new QGraphicsLinearLayout object.
 func NewQGraphicsLinearLayout2(orientation Orientation) *QGraphicsLinearLayout {
 
-	ret := newQGraphicsLinearLayout(C.QGraphicsLinearLayout_new2((C.int)(orientation)))
+	ret := newQGraphicsLinearLayout(QGraphicsLinearLayout_new2((int)(orientation)))
 	ret.isSubclass = true
 	return ret
 }
@@ -70,7 +28,7 @@ func NewQGraphicsLinearLayout2(orientation Orientation) *QGraphicsLinearLayout {
 // NewQGraphicsLinearLayout3 constructs a new QGraphicsLinearLayout object.
 func NewQGraphicsLinearLayout3(parent *QGraphicsLayoutItem) *QGraphicsLinearLayout {
 
-	ret := newQGraphicsLinearLayout(C.QGraphicsLinearLayout_new3(parent.cPointer()))
+	ret := newQGraphicsLinearLayout(QGraphicsLinearLayout_new3(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -78,127 +36,127 @@ func NewQGraphicsLinearLayout3(parent *QGraphicsLayoutItem) *QGraphicsLinearLayo
 // NewQGraphicsLinearLayout4 constructs a new QGraphicsLinearLayout object.
 func NewQGraphicsLinearLayout4(orientation Orientation, parent *QGraphicsLayoutItem) *QGraphicsLinearLayout {
 
-	ret := newQGraphicsLinearLayout(C.QGraphicsLinearLayout_new4((C.int)(orientation), parent.cPointer()))
+	ret := newQGraphicsLinearLayout(QGraphicsLinearLayout_new4((int)(orientation), parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QGraphicsLinearLayout) SetOrientation(orientation Orientation) {
-	C.QGraphicsLinearLayout_SetOrientation(this.h, (C.int)(orientation))
+	QGraphicsLinearLayout_SetOrientation(this.h, (int)(orientation))
 }
 
 func (this *QGraphicsLinearLayout) Orientation() Orientation {
-	return (Orientation)(C.QGraphicsLinearLayout_Orientation(this.h))
+	return (Orientation)(QGraphicsLinearLayout_Orientation(this.h))
 }
 
 func (this *QGraphicsLinearLayout) AddItem(item *QGraphicsLayoutItem) {
-	C.QGraphicsLinearLayout_AddItem(this.h, item.cPointer())
+	QGraphicsLinearLayout_AddItem(this.h, item.cPointer())
 }
 
 func (this *QGraphicsLinearLayout) AddStretch() {
-	C.QGraphicsLinearLayout_AddStretch(this.h)
+	QGraphicsLinearLayout_AddStretch(this.h)
 }
 
 func (this *QGraphicsLinearLayout) InsertItem(index int, item *QGraphicsLayoutItem) {
-	C.QGraphicsLinearLayout_InsertItem(this.h, (C.int)(index), item.cPointer())
+	QGraphicsLinearLayout_InsertItem(this.h, (int)(index), item.cPointer())
 }
 
 func (this *QGraphicsLinearLayout) InsertStretch(index int) {
-	C.QGraphicsLinearLayout_InsertStretch(this.h, (C.int)(index))
+	QGraphicsLinearLayout_InsertStretch(this.h, (int)(index))
 }
 
 func (this *QGraphicsLinearLayout) RemoveItem(item *QGraphicsLayoutItem) {
-	C.QGraphicsLinearLayout_RemoveItem(this.h, item.cPointer())
+	QGraphicsLinearLayout_RemoveItem(this.h, item.cPointer())
 }
 
 func (this *QGraphicsLinearLayout) RemoveAt(index int) {
-	C.QGraphicsLinearLayout_RemoveAt(this.h, (C.int)(index))
+	QGraphicsLinearLayout_RemoveAt(this.h, (int)(index))
 }
 
 func (this *QGraphicsLinearLayout) SetSpacing(spacing float64) {
-	C.QGraphicsLinearLayout_SetSpacing(this.h, (C.double)(spacing))
+	QGraphicsLinearLayout_SetSpacing(this.h, (double)(spacing))
 }
 
 func (this *QGraphicsLinearLayout) Spacing() float64 {
-	return (float64)(C.QGraphicsLinearLayout_Spacing(this.h))
+	return (float64)(QGraphicsLinearLayout_Spacing(this.h))
 }
 
 func (this *QGraphicsLinearLayout) SetItemSpacing(index int, spacing float64) {
-	C.QGraphicsLinearLayout_SetItemSpacing(this.h, (C.int)(index), (C.double)(spacing))
+	QGraphicsLinearLayout_SetItemSpacing(this.h, (int)(index), (double)(spacing))
 }
 
 func (this *QGraphicsLinearLayout) ItemSpacing(index int) float64 {
-	return (float64)(C.QGraphicsLinearLayout_ItemSpacing(this.h, (C.int)(index)))
+	return (float64)(QGraphicsLinearLayout_ItemSpacing(this.h, (int)(index)))
 }
 
 func (this *QGraphicsLinearLayout) SetStretchFactor(item *QGraphicsLayoutItem, stretch int) {
-	C.QGraphicsLinearLayout_SetStretchFactor(this.h, item.cPointer(), (C.int)(stretch))
+	QGraphicsLinearLayout_SetStretchFactor(this.h, item.cPointer(), (int)(stretch))
 }
 
 func (this *QGraphicsLinearLayout) StretchFactor(item *QGraphicsLayoutItem) int {
-	return (int)(C.QGraphicsLinearLayout_StretchFactor(this.h, item.cPointer()))
+	return (int)(QGraphicsLinearLayout_StretchFactor(this.h, item.cPointer()))
 }
 
 func (this *QGraphicsLinearLayout) SetAlignment(item *QGraphicsLayoutItem, alignment AlignmentFlag) {
-	C.QGraphicsLinearLayout_SetAlignment(this.h, item.cPointer(), (C.int)(alignment))
+	QGraphicsLinearLayout_SetAlignment(this.h, item.cPointer(), (int)(alignment))
 }
 
 func (this *QGraphicsLinearLayout) Alignment(item *QGraphicsLayoutItem) AlignmentFlag {
-	return (AlignmentFlag)(C.QGraphicsLinearLayout_Alignment(this.h, item.cPointer()))
+	return (AlignmentFlag)(QGraphicsLinearLayout_Alignment(this.h, item.cPointer()))
 }
 
 func (this *QGraphicsLinearLayout) SetGeometry(rect *QRectF) {
-	C.QGraphicsLinearLayout_SetGeometry(this.h, rect.cPointer())
+	QGraphicsLinearLayout_SetGeometry(this.h, rect.cPointer())
 }
 
 func (this *QGraphicsLinearLayout) Count() int {
-	return (int)(C.QGraphicsLinearLayout_Count(this.h))
+	return (int)(QGraphicsLinearLayout_Count(this.h))
 }
 
 func (this *QGraphicsLinearLayout) ItemAt(index int) *QGraphicsLayoutItem {
-	return newQGraphicsLayoutItem(C.QGraphicsLinearLayout_ItemAt(this.h, (C.int)(index)))
+	return newQGraphicsLayoutItem(QGraphicsLinearLayout_ItemAt(this.h, (int)(index)))
 }
 
 func (this *QGraphicsLinearLayout) Invalidate() {
-	C.QGraphicsLinearLayout_Invalidate(this.h)
+	QGraphicsLinearLayout_Invalidate(this.h)
 }
 
 func (this *QGraphicsLinearLayout) SizeHint(which SizeHint, constraint *QSizeF) *QSizeF {
-	_goptr := newQSizeF(C.QGraphicsLinearLayout_SizeHint(this.h, (C.int)(which), constraint.cPointer()))
+	_goptr := newQSizeF(QGraphicsLinearLayout_SizeHint(this.h, (int)(which), constraint.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QGraphicsLinearLayout) Dump() {
-	C.QGraphicsLinearLayout_Dump(this.h)
+	QGraphicsLinearLayout_Dump(this.h)
 }
 
 func (this *QGraphicsLinearLayout) AddStretch1(stretch int) {
-	C.QGraphicsLinearLayout_AddStretch1(this.h, (C.int)(stretch))
+	QGraphicsLinearLayout_AddStretch1(this.h, (int)(stretch))
 }
 
 func (this *QGraphicsLinearLayout) InsertStretch2(index int, stretch int) {
-	C.QGraphicsLinearLayout_InsertStretch2(this.h, (C.int)(index), (C.int)(stretch))
+	QGraphicsLinearLayout_InsertStretch2(this.h, (int)(index), (int)(stretch))
 }
 
 func (this *QGraphicsLinearLayout) Dump1(indent int) {
-	C.QGraphicsLinearLayout_Dump1(this.h, (C.int)(indent))
+	QGraphicsLinearLayout_Dump1(this.h, (int)(indent))
 }
 
 func (this *QGraphicsLinearLayout) callVirtualBase_RemoveAt(index int) {
 
-	C.QGraphicsLinearLayout_virtualbase_RemoveAt(unsafe.Pointer(this.h), (C.int)(index))
+	QGraphicsLinearLayout_virtualbase_RemoveAt(unsafe.Pointer(this.h), (int)(index))
 
 }
 func (this *QGraphicsLinearLayout) OnRemoveAt(slot func(super func(index int), index int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_RemoveAt(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_RemoveAt(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_RemoveAt
-func miqt_exec_callback_QGraphicsLinearLayout_RemoveAt(self *C.QGraphicsLinearLayout, cb C.intptr_t, index C.int) {
+func miqt_exec_callback_QGraphicsLinearLayout_RemoveAt(self QGraphicsLinearLayout, cb intptr_t, index int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(index int), index int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -213,18 +171,18 @@ func miqt_exec_callback_QGraphicsLinearLayout_RemoveAt(self *C.QGraphicsLinearLa
 
 func (this *QGraphicsLinearLayout) callVirtualBase_SetGeometry(rect *QRectF) {
 
-	C.QGraphicsLinearLayout_virtualbase_SetGeometry(unsafe.Pointer(this.h), rect.cPointer())
+	QGraphicsLinearLayout_virtualbase_SetGeometry(unsafe.Pointer(this.h), rect.cPointer())
 
 }
 func (this *QGraphicsLinearLayout) OnSetGeometry(slot func(super func(rect *QRectF), rect *QRectF)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_SetGeometry(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_SetGeometry(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_SetGeometry
-func miqt_exec_callback_QGraphicsLinearLayout_SetGeometry(self *C.QGraphicsLinearLayout, cb C.intptr_t, rect *C.QRectF) {
+func miqt_exec_callback_QGraphicsLinearLayout_SetGeometry(self QGraphicsLinearLayout, cb intptr_t, rect *QRectF) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(rect *QRectF), rect *QRectF))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -239,18 +197,18 @@ func miqt_exec_callback_QGraphicsLinearLayout_SetGeometry(self *C.QGraphicsLinea
 
 func (this *QGraphicsLinearLayout) callVirtualBase_Count() int {
 
-	return (int)(C.QGraphicsLinearLayout_virtualbase_Count(unsafe.Pointer(this.h)))
+	return (int)(QGraphicsLinearLayout_virtualbase_Count(unsafe.Pointer(this.h)))
 
 }
 func (this *QGraphicsLinearLayout) OnCount(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_Count(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_Count(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_Count
-func miqt_exec_callback_QGraphicsLinearLayout_Count(self *C.QGraphicsLinearLayout, cb C.intptr_t) C.int {
+func miqt_exec_callback_QGraphicsLinearLayout_Count(self QGraphicsLinearLayout, cb intptr_t) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -258,24 +216,24 @@ func miqt_exec_callback_QGraphicsLinearLayout_Count(self *C.QGraphicsLinearLayou
 
 	virtualReturn := gofunc((&QGraphicsLinearLayout{h: self}).callVirtualBase_Count)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QGraphicsLinearLayout) callVirtualBase_ItemAt(index int) *QGraphicsLayoutItem {
 
-	return newQGraphicsLayoutItem(C.QGraphicsLinearLayout_virtualbase_ItemAt(unsafe.Pointer(this.h), (C.int)(index)))
+	return newQGraphicsLayoutItem(QGraphicsLinearLayout_virtualbase_ItemAt(unsafe.Pointer(this.h), (int)(index)))
 
 }
 func (this *QGraphicsLinearLayout) OnItemAt(slot func(super func(index int) *QGraphicsLayoutItem, index int) *QGraphicsLayoutItem) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_ItemAt(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_ItemAt(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_ItemAt
-func miqt_exec_callback_QGraphicsLinearLayout_ItemAt(self *C.QGraphicsLinearLayout, cb C.intptr_t, index C.int) *C.QGraphicsLayoutItem {
+func miqt_exec_callback_QGraphicsLinearLayout_ItemAt(self QGraphicsLinearLayout, cb intptr_t, index int) *QGraphicsLayoutItem {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(index int) *QGraphicsLayoutItem, index int) *QGraphicsLayoutItem)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -292,18 +250,18 @@ func miqt_exec_callback_QGraphicsLinearLayout_ItemAt(self *C.QGraphicsLinearLayo
 
 func (this *QGraphicsLinearLayout) callVirtualBase_Invalidate() {
 
-	C.QGraphicsLinearLayout_virtualbase_Invalidate(unsafe.Pointer(this.h))
+	QGraphicsLinearLayout_virtualbase_Invalidate(unsafe.Pointer(this.h))
 
 }
 func (this *QGraphicsLinearLayout) OnInvalidate(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_Invalidate(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_Invalidate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_Invalidate
-func miqt_exec_callback_QGraphicsLinearLayout_Invalidate(self *C.QGraphicsLinearLayout, cb C.intptr_t) {
+func miqt_exec_callback_QGraphicsLinearLayout_Invalidate(self QGraphicsLinearLayout, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -315,7 +273,7 @@ func miqt_exec_callback_QGraphicsLinearLayout_Invalidate(self *C.QGraphicsLinear
 
 func (this *QGraphicsLinearLayout) callVirtualBase_SizeHint(which SizeHint, constraint *QSizeF) *QSizeF {
 
-	_goptr := newQSizeF(C.QGraphicsLinearLayout_virtualbase_SizeHint(unsafe.Pointer(this.h), (C.int)(which), constraint.cPointer()))
+	_goptr := newQSizeF(QGraphicsLinearLayout_virtualbase_SizeHint(unsafe.Pointer(this.h), (int)(which), constraint.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -324,11 +282,11 @@ func (this *QGraphicsLinearLayout) OnSizeHint(slot func(super func(which SizeHin
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_SizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_SizeHint
-func miqt_exec_callback_QGraphicsLinearLayout_SizeHint(self *C.QGraphicsLinearLayout, cb C.intptr_t, which C.int, constraint *C.QSizeF) *C.QSizeF {
+func miqt_exec_callback_QGraphicsLinearLayout_SizeHint(self QGraphicsLinearLayout, cb intptr_t, which int, constraint *QSizeF) *QSizeF {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(which SizeHint, constraint *QSizeF) *QSizeF, which SizeHint, constraint *QSizeF) *QSizeF)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -347,18 +305,18 @@ func miqt_exec_callback_QGraphicsLinearLayout_SizeHint(self *C.QGraphicsLinearLa
 
 func (this *QGraphicsLinearLayout) callVirtualBase_GetContentsMargins(left *float64, top *float64, right *float64, bottom *float64) {
 
-	C.QGraphicsLinearLayout_virtualbase_GetContentsMargins(unsafe.Pointer(this.h), (*C.double)(unsafe.Pointer(left)), (*C.double)(unsafe.Pointer(top)), (*C.double)(unsafe.Pointer(right)), (*C.double)(unsafe.Pointer(bottom)))
+	QGraphicsLinearLayout_virtualbase_GetContentsMargins(unsafe.Pointer(this.h), (*double)(unsafe.Pointer(left)), (*double)(unsafe.Pointer(top)), (*double)(unsafe.Pointer(right)), (*double)(unsafe.Pointer(bottom)))
 
 }
 func (this *QGraphicsLinearLayout) OnGetContentsMargins(slot func(super func(left *float64, top *float64, right *float64, bottom *float64), left *float64, top *float64, right *float64, bottom *float64)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_GetContentsMargins(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_GetContentsMargins(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_GetContentsMargins
-func miqt_exec_callback_QGraphicsLinearLayout_GetContentsMargins(self *C.QGraphicsLinearLayout, cb C.intptr_t, left *C.double, top *C.double, right *C.double, bottom *C.double) {
+func miqt_exec_callback_QGraphicsLinearLayout_GetContentsMargins(self QGraphicsLinearLayout, cb intptr_t, left *double, top *double, right *double, bottom *double) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(left *float64, top *float64, right *float64, bottom *float64), left *float64, top *float64, right *float64, bottom *float64))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -379,18 +337,18 @@ func miqt_exec_callback_QGraphicsLinearLayout_GetContentsMargins(self *C.QGraphi
 
 func (this *QGraphicsLinearLayout) callVirtualBase_UpdateGeometry() {
 
-	C.QGraphicsLinearLayout_virtualbase_UpdateGeometry(unsafe.Pointer(this.h))
+	QGraphicsLinearLayout_virtualbase_UpdateGeometry(unsafe.Pointer(this.h))
 
 }
 func (this *QGraphicsLinearLayout) OnUpdateGeometry(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_UpdateGeometry(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_UpdateGeometry(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_UpdateGeometry
-func miqt_exec_callback_QGraphicsLinearLayout_UpdateGeometry(self *C.QGraphicsLinearLayout, cb C.intptr_t) {
+func miqt_exec_callback_QGraphicsLinearLayout_UpdateGeometry(self QGraphicsLinearLayout, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -402,18 +360,18 @@ func miqt_exec_callback_QGraphicsLinearLayout_UpdateGeometry(self *C.QGraphicsLi
 
 func (this *QGraphicsLinearLayout) callVirtualBase_WidgetEvent(e *QEvent) {
 
-	C.QGraphicsLinearLayout_virtualbase_WidgetEvent(unsafe.Pointer(this.h), e.cPointer())
+	QGraphicsLinearLayout_virtualbase_WidgetEvent(unsafe.Pointer(this.h), e.cPointer())
 
 }
 func (this *QGraphicsLinearLayout) OnWidgetEvent(slot func(super func(e *QEvent), e *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QGraphicsLinearLayout_override_virtual_WidgetEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QGraphicsLinearLayout_override_virtual_WidgetEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QGraphicsLinearLayout_WidgetEvent
-func miqt_exec_callback_QGraphicsLinearLayout_WidgetEvent(self *C.QGraphicsLinearLayout, cb C.intptr_t, e *C.QEvent) {
+func miqt_exec_callback_QGraphicsLinearLayout_WidgetEvent(self QGraphicsLinearLayout, cb intptr_t, e *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(e *QEvent), e *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -424,18 +382,4 @@ func miqt_exec_callback_QGraphicsLinearLayout_WidgetEvent(self *C.QGraphicsLinea
 
 	gofunc((&QGraphicsLinearLayout{h: self}).callVirtualBase_WidgetEvent, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QGraphicsLinearLayout) Delete() {
-	C.QGraphicsLinearLayout_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QGraphicsLinearLayout) GoGC() {
-	runtime.SetFinalizer(this, func(this *QGraphicsLinearLayout) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -26,6 +26,8 @@ class QSize;
 class QSurface;
 class QSurfaceFormat;
 class QTimerEvent;
+class _GUID;
+class type_info;
 #else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
@@ -38,55 +40,56 @@ typedef struct QSize QSize;
 typedef struct QSurface QSurface;
 typedef struct QSurfaceFormat QSurfaceFormat;
 typedef struct QTimerEvent QTimerEvent;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QOffscreenSurface* QOffscreenSurface_new(QScreen* screen, QObject* parent);
-QOffscreenSurface* QOffscreenSurface_new2();
-QOffscreenSurface* QOffscreenSurface_new3(QScreen* screen);
-void QOffscreenSurface_virtbase(QOffscreenSurface* src, QObject** outptr_QObject, QSurface** outptr_QSurface);
-QMetaObject* QOffscreenSurface_MetaObject(const QOffscreenSurface* self);
-void* QOffscreenSurface_Metacast(QOffscreenSurface* self, const char* param1);
-struct miqt_string QOffscreenSurface_Tr(const char* s);
-struct miqt_string QOffscreenSurface_TrUtf8(const char* s);
-int QOffscreenSurface_SurfaceType(const QOffscreenSurface* self);
-void QOffscreenSurface_Create(QOffscreenSurface* self);
-void QOffscreenSurface_Destroy(QOffscreenSurface* self);
-bool QOffscreenSurface_IsValid(const QOffscreenSurface* self);
-void QOffscreenSurface_SetFormat(QOffscreenSurface* self, QSurfaceFormat* format);
-QSurfaceFormat* QOffscreenSurface_Format(const QOffscreenSurface* self);
-QSurfaceFormat* QOffscreenSurface_RequestedFormat(const QOffscreenSurface* self);
-QSize* QOffscreenSurface_Size(const QOffscreenSurface* self);
-QScreen* QOffscreenSurface_Screen(const QOffscreenSurface* self);
-void QOffscreenSurface_SetScreen(QOffscreenSurface* self, QScreen* screen);
-void* QOffscreenSurface_NativeHandle(const QOffscreenSurface* self);
-void QOffscreenSurface_SetNativeHandle(QOffscreenSurface* self, void* handle);
-void QOffscreenSurface_ScreenChanged(QOffscreenSurface* self, QScreen* screen);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QOffscreenSurface* QOffscreenSurface_new();
+extern __declspec(dllexport) QOffscreenSurface* QOffscreenSurface_new2(QScreen* screen);
+extern __declspec(dllexport) QOffscreenSurface* QOffscreenSurface_new3(QScreen* screen, QObject* parent);
+extern __declspec(dllexport) void QOffscreenSurface_virtbase(QOffscreenSurface* src, QObject** outptr_QObject, QSurface** outptr_QSurface);
+extern __declspec(dllexport) QMetaObject* QOffscreenSurface_MetaObject(const QOffscreenSurface* self);
+extern __declspec(dllexport) void* QOffscreenSurface_Metacast(QOffscreenSurface* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QOffscreenSurface_Tr(const char* s);
+extern __declspec(dllexport) SurfaceType QOffscreenSurface_SurfaceType(const QOffscreenSurface* self);
+extern __declspec(dllexport) void QOffscreenSurface_Create(QOffscreenSurface* self);
+extern __declspec(dllexport) void QOffscreenSurface_Destroy(QOffscreenSurface* self);
+extern __declspec(dllexport) bool QOffscreenSurface_IsValid(const QOffscreenSurface* self);
+extern __declspec(dllexport) void QOffscreenSurface_SetFormat(QOffscreenSurface* self, QSurfaceFormat* format);
+extern __declspec(dllexport) QSurfaceFormat* QOffscreenSurface_Format(const QOffscreenSurface* self);
+extern __declspec(dllexport) QSurfaceFormat* QOffscreenSurface_RequestedFormat(const QOffscreenSurface* self);
+extern __declspec(dllexport) QSize* QOffscreenSurface_Size(const QOffscreenSurface* self);
+extern __declspec(dllexport) QScreen* QOffscreenSurface_Screen(const QOffscreenSurface* self);
+extern __declspec(dllexport) void QOffscreenSurface_SetScreen(QOffscreenSurface* self, QScreen* screen);
+extern __declspec(dllexport) void QOffscreenSurface_ScreenChanged(QOffscreenSurface* self, QScreen* screen);
 void QOffscreenSurface_connect_ScreenChanged(QOffscreenSurface* self, intptr_t slot);
-struct miqt_string QOffscreenSurface_Tr2(const char* s, const char* c);
-struct miqt_string QOffscreenSurface_Tr3(const char* s, const char* c, int n);
-struct miqt_string QOffscreenSurface_TrUtf82(const char* s, const char* c);
-struct miqt_string QOffscreenSurface_TrUtf83(const char* s, const char* c, int n);
-void QOffscreenSurface_override_virtual_SurfaceType(void* self, intptr_t slot);
-int QOffscreenSurface_virtualbase_SurfaceType(const void* self);
-void QOffscreenSurface_override_virtual_Format(void* self, intptr_t slot);
+extern __declspec(dllexport) struct miqt_string QOffscreenSurface_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QOffscreenSurface_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_SurfaceType(void* self, intptr_t slot);
+SurfaceType QOffscreenSurface_virtualbase_SurfaceType(const void* self);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_Format(void* self, intptr_t slot);
 QSurfaceFormat* QOffscreenSurface_virtualbase_Format(const void* self);
-void QOffscreenSurface_override_virtual_Size(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_Size(void* self, intptr_t slot);
 QSize* QOffscreenSurface_virtualbase_Size(const void* self);
-void QOffscreenSurface_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_Event(void* self, intptr_t slot);
 bool QOffscreenSurface_virtualbase_Event(void* self, QEvent* event);
-void QOffscreenSurface_override_virtual_EventFilter(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_EventFilter(void* self, intptr_t slot);
 bool QOffscreenSurface_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-void QOffscreenSurface_override_virtual_TimerEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_TimerEvent(void* self, intptr_t slot);
 void QOffscreenSurface_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-void QOffscreenSurface_override_virtual_ChildEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_ChildEvent(void* self, intptr_t slot);
 void QOffscreenSurface_virtualbase_ChildEvent(void* self, QChildEvent* event);
-void QOffscreenSurface_override_virtual_CustomEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_CustomEvent(void* self, intptr_t slot);
 void QOffscreenSurface_virtualbase_CustomEvent(void* self, QEvent* event);
-void QOffscreenSurface_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QOffscreenSurface_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-void QOffscreenSurface_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QOffscreenSurface_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QOffscreenSurface_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-void QOffscreenSurface_Delete(QOffscreenSurface* self, bool isSubclass);
+extern __declspec(dllexport) void QOffscreenSurface_Delete(QOffscreenSurface* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

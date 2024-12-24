@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QChildEvent>
 #include <QEvent>
@@ -20,26 +22,33 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QItemSelectionRange* QItemSelectionRange_new() {
 	return new QItemSelectionRange();
 }
 
-QItemSelectionRange* QItemSelectionRange_new2(QItemSelectionRange* other) {
-	return new QItemSelectionRange(*other);
-}
-
-QItemSelectionRange* QItemSelectionRange_new3(QModelIndex* topL, QModelIndex* bottomR) {
+QItemSelectionRange* QItemSelectionRange_new2(QModelIndex* topL, QModelIndex* bottomR) {
 	return new QItemSelectionRange(*topL, *bottomR);
 }
 
-QItemSelectionRange* QItemSelectionRange_new4(QModelIndex* index) {
+QItemSelectionRange* QItemSelectionRange_new3(QModelIndex* index) {
 	return new QItemSelectionRange(*index);
-}
-
-void QItemSelectionRange_OperatorAssign(QItemSelectionRange* self, QItemSelectionRange* other) {
-	self->operator=(*other);
 }
 
 void QItemSelectionRange_Swap(QItemSelectionRange* self, QItemSelectionRange* other) {
@@ -104,18 +113,6 @@ bool QItemSelectionRange_Intersects(const QItemSelectionRange* self, QItemSelect
 
 QItemSelectionRange* QItemSelectionRange_Intersected(const QItemSelectionRange* self, QItemSelectionRange* other) {
 	return new QItemSelectionRange(self->intersected(*other));
-}
-
-bool QItemSelectionRange_OperatorEqual(const QItemSelectionRange* self, QItemSelectionRange* other) {
-	return (*self == *other);
-}
-
-bool QItemSelectionRange_OperatorNotEqual(const QItemSelectionRange* self, QItemSelectionRange* other) {
-	return (*self != *other);
-}
-
-bool QItemSelectionRange_OperatorLesser(const QItemSelectionRange* self, QItemSelectionRange* other) {
-	return (*self < *other);
 }
 
 bool QItemSelectionRange_IsValid(const QItemSelectionRange* self) {
@@ -517,17 +514,6 @@ struct miqt_string QItemSelectionModel_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QItemSelectionModel_TrUtf8(const char* s) {
-	QString _ret = QItemSelectionModel::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QModelIndex* QItemSelectionModel_CurrentIndex(const QItemSelectionModel* self) {
 	return new QModelIndex(self->currentIndex());
 }
@@ -736,28 +722,6 @@ struct miqt_string QItemSelectionModel_Tr3(const char* s, const char* c, int n) 
 	return _ms;
 }
 
-struct miqt_string QItemSelectionModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QItemSelectionModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QItemSelectionModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QItemSelectionModel::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QItemSelectionModel_IsRowSelected2(const QItemSelectionModel* self, int row, QModelIndex* parent) {
 	return self->isRowSelected(static_cast<int>(row), *parent);
 }
@@ -912,12 +876,16 @@ void QItemSelectionModel_Delete(QItemSelectionModel* self, bool isSubclass) {
 	}
 }
 
-QItemSelection* QItemSelection_new() {
+QItemSelection* QItemSelection_new(QModelIndex* topLeft, QModelIndex* bottomRight) {
+	return new QItemSelection(*topLeft, *bottomRight);
+}
+
+QItemSelection* QItemSelection_new2() {
 	return new QItemSelection();
 }
 
-QItemSelection* QItemSelection_new2(QModelIndex* topLeft, QModelIndex* bottomRight) {
-	return new QItemSelection(*topLeft, *bottomRight);
+QItemSelection* QItemSelection_new3(QItemSelection* param1) {
+	return new QItemSelection(*param1);
 }
 
 void QItemSelection_Select(QItemSelection* self, QModelIndex* topLeft, QModelIndex* bottomRight) {
@@ -947,10 +915,6 @@ void QItemSelection_Merge(QItemSelection* self, QItemSelection* other, int comma
 
 void QItemSelection_Split(QItemSelectionRange* rangeVal, QItemSelectionRange* other, QItemSelection* result) {
 	QItemSelection::split(*rangeVal, *other, result);
-}
-
-void QItemSelection_OperatorAssign(QItemSelection* self, QItemSelection* param1) {
-	self->operator=(*param1);
 }
 
 void QItemSelection_Delete(QItemSelection* self, bool isSubclass) {

@@ -1,16 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qabstractspinbox.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -45,46 +35,14 @@ const (
 )
 
 type QAbstractSpinBox struct {
-	h          *C.QAbstractSpinBox
+	h          uintptr
 	isSubclass bool
-	*QWidget
-}
-
-func (this *QAbstractSpinBox) cPointer() *C.QAbstractSpinBox {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QAbstractSpinBox) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQAbstractSpinBox constructs the type using only CGO pointers.
-func newQAbstractSpinBox(h *C.QAbstractSpinBox) *QAbstractSpinBox {
-	if h == nil {
-		return nil
-	}
-	var outptr_QWidget *C.QWidget = nil
-	C.QAbstractSpinBox_virtbase(h, &outptr_QWidget)
-
-	return &QAbstractSpinBox{h: h,
-		QWidget: newQWidget(outptr_QWidget)}
-}
-
-// UnsafeNewQAbstractSpinBox constructs the type using only unsafe pointers.
-func UnsafeNewQAbstractSpinBox(h unsafe.Pointer) *QAbstractSpinBox {
-	return newQAbstractSpinBox((*C.QAbstractSpinBox)(h))
 }
 
 // NewQAbstractSpinBox constructs a new QAbstractSpinBox object.
 func NewQAbstractSpinBox(parent *QWidget) *QAbstractSpinBox {
 
-	ret := newQAbstractSpinBox(C.QAbstractSpinBox_new(parent.cPointer()))
+	ret := newQAbstractSpinBox(QAbstractSpinBox_new(parent.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -92,208 +50,199 @@ func NewQAbstractSpinBox(parent *QWidget) *QAbstractSpinBox {
 // NewQAbstractSpinBox2 constructs a new QAbstractSpinBox object.
 func NewQAbstractSpinBox2() *QAbstractSpinBox {
 
-	ret := newQAbstractSpinBox(C.QAbstractSpinBox_new2())
+	ret := newQAbstractSpinBox(QAbstractSpinBox_new2())
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QAbstractSpinBox) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QAbstractSpinBox_MetaObject(this.h))
+	return newQMetaObject(QAbstractSpinBox_MetaObject(this.h))
 }
 
 func (this *QAbstractSpinBox) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QAbstractSpinBox_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QAbstractSpinBox_Metacast(this.h, param1_Cstring))
 }
 
 func QAbstractSpinBox_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QAbstractSpinBox_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QAbstractSpinBox_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
+func (this *QAbstractSpinBox) ButtonSymbols() ButtonSymbols {
+	xxxxxxxxx
 }
 
-func (this *QAbstractSpinBox) ButtonSymbols() QAbstractSpinBox__ButtonSymbols {
-	return (QAbstractSpinBox__ButtonSymbols)(C.QAbstractSpinBox_ButtonSymbols(this.h))
+func (this *QAbstractSpinBox) SetButtonSymbols(bs ButtonSymbols) {
+	QAbstractSpinBox_SetButtonSymbols(this.h, bs)
 }
 
-func (this *QAbstractSpinBox) SetButtonSymbols(bs QAbstractSpinBox__ButtonSymbols) {
-	C.QAbstractSpinBox_SetButtonSymbols(this.h, (C.int)(bs))
+func (this *QAbstractSpinBox) SetCorrectionMode(cm CorrectionMode) {
+	QAbstractSpinBox_SetCorrectionMode(this.h, cm)
 }
 
-func (this *QAbstractSpinBox) SetCorrectionMode(cm QAbstractSpinBox__CorrectionMode) {
-	C.QAbstractSpinBox_SetCorrectionMode(this.h, (C.int)(cm))
-}
-
-func (this *QAbstractSpinBox) CorrectionMode() QAbstractSpinBox__CorrectionMode {
-	return (QAbstractSpinBox__CorrectionMode)(C.QAbstractSpinBox_CorrectionMode(this.h))
+func (this *QAbstractSpinBox) CorrectionMode() CorrectionMode {
+	xxxxxxxxx
 }
 
 func (this *QAbstractSpinBox) HasAcceptableInput() bool {
-	return (bool)(C.QAbstractSpinBox_HasAcceptableInput(this.h))
+	return (bool)(QAbstractSpinBox_HasAcceptableInput(this.h))
 }
 
 func (this *QAbstractSpinBox) Text() string {
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_Text(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QAbstractSpinBox_Text(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QAbstractSpinBox) SpecialValueText() string {
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_SpecialValueText(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QAbstractSpinBox_SpecialValueText(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QAbstractSpinBox) SetSpecialValueText(txt string) {
-	txt_ms := C.struct_miqt_string{}
-	txt_ms.data = C.CString(txt)
-	txt_ms.len = C.size_t(len(txt))
-	defer C.free(unsafe.Pointer(txt_ms.data))
-	C.QAbstractSpinBox_SetSpecialValueText(this.h, txt_ms)
+	txt_ms := struct_miqt_string{}
+	txt_ms.data = CString(txt)
+	txt_ms.len = size_t(len(txt))
+	defer free(unsafe.Pointer(txt_ms.data))
+	QAbstractSpinBox_SetSpecialValueText(this.h, txt_ms)
 }
 
 func (this *QAbstractSpinBox) Wrapping() bool {
-	return (bool)(C.QAbstractSpinBox_Wrapping(this.h))
+	return (bool)(QAbstractSpinBox_Wrapping(this.h))
 }
 
 func (this *QAbstractSpinBox) SetWrapping(w bool) {
-	C.QAbstractSpinBox_SetWrapping(this.h, (C.bool)(w))
+	QAbstractSpinBox_SetWrapping(this.h, (bool)(w))
 }
 
 func (this *QAbstractSpinBox) SetReadOnly(r bool) {
-	C.QAbstractSpinBox_SetReadOnly(this.h, (C.bool)(r))
+	QAbstractSpinBox_SetReadOnly(this.h, (bool)(r))
 }
 
 func (this *QAbstractSpinBox) IsReadOnly() bool {
-	return (bool)(C.QAbstractSpinBox_IsReadOnly(this.h))
+	return (bool)(QAbstractSpinBox_IsReadOnly(this.h))
 }
 
 func (this *QAbstractSpinBox) SetKeyboardTracking(kt bool) {
-	C.QAbstractSpinBox_SetKeyboardTracking(this.h, (C.bool)(kt))
+	QAbstractSpinBox_SetKeyboardTracking(this.h, (bool)(kt))
 }
 
 func (this *QAbstractSpinBox) KeyboardTracking() bool {
-	return (bool)(C.QAbstractSpinBox_KeyboardTracking(this.h))
+	return (bool)(QAbstractSpinBox_KeyboardTracking(this.h))
 }
 
 func (this *QAbstractSpinBox) SetAlignment(flag AlignmentFlag) {
-	C.QAbstractSpinBox_SetAlignment(this.h, (C.int)(flag))
+	QAbstractSpinBox_SetAlignment(this.h, (int)(flag))
 }
 
 func (this *QAbstractSpinBox) Alignment() AlignmentFlag {
-	return (AlignmentFlag)(C.QAbstractSpinBox_Alignment(this.h))
+	return (AlignmentFlag)(QAbstractSpinBox_Alignment(this.h))
 }
 
 func (this *QAbstractSpinBox) SetFrame(frame bool) {
-	C.QAbstractSpinBox_SetFrame(this.h, (C.bool)(frame))
+	QAbstractSpinBox_SetFrame(this.h, (bool)(frame))
 }
 
 func (this *QAbstractSpinBox) HasFrame() bool {
-	return (bool)(C.QAbstractSpinBox_HasFrame(this.h))
+	return (bool)(QAbstractSpinBox_HasFrame(this.h))
 }
 
 func (this *QAbstractSpinBox) SetAccelerated(on bool) {
-	C.QAbstractSpinBox_SetAccelerated(this.h, (C.bool)(on))
+	QAbstractSpinBox_SetAccelerated(this.h, (bool)(on))
 }
 
 func (this *QAbstractSpinBox) IsAccelerated() bool {
-	return (bool)(C.QAbstractSpinBox_IsAccelerated(this.h))
+	return (bool)(QAbstractSpinBox_IsAccelerated(this.h))
 }
 
 func (this *QAbstractSpinBox) SetGroupSeparatorShown(shown bool) {
-	C.QAbstractSpinBox_SetGroupSeparatorShown(this.h, (C.bool)(shown))
+	QAbstractSpinBox_SetGroupSeparatorShown(this.h, (bool)(shown))
 }
 
 func (this *QAbstractSpinBox) IsGroupSeparatorShown() bool {
-	return (bool)(C.QAbstractSpinBox_IsGroupSeparatorShown(this.h))
+	return (bool)(QAbstractSpinBox_IsGroupSeparatorShown(this.h))
 }
 
 func (this *QAbstractSpinBox) SizeHint() *QSize {
-	_goptr := newQSize(C.QAbstractSpinBox_SizeHint(this.h))
+	_goptr := newQSize(QAbstractSpinBox_SizeHint(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QAbstractSpinBox) MinimumSizeHint() *QSize {
-	_goptr := newQSize(C.QAbstractSpinBox_MinimumSizeHint(this.h))
+	_goptr := newQSize(QAbstractSpinBox_MinimumSizeHint(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QAbstractSpinBox) InterpretText() {
-	C.QAbstractSpinBox_InterpretText(this.h)
+	QAbstractSpinBox_InterpretText(this.h)
 }
 
 func (this *QAbstractSpinBox) Event(event *QEvent) bool {
-	return (bool)(C.QAbstractSpinBox_Event(this.h, event.cPointer()))
+	return (bool)(QAbstractSpinBox_Event(this.h, event.cPointer()))
 }
 
 func (this *QAbstractSpinBox) InputMethodQuery(param1 InputMethodQuery) *QVariant {
-	_goptr := newQVariant(C.QAbstractSpinBox_InputMethodQuery(this.h, (C.int)(param1)))
+	_goptr := newQVariant(QAbstractSpinBox_InputMethodQuery(this.h, (int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QAbstractSpinBox) Validate(input string, pos *int) QValidator__State {
-	input_ms := C.struct_miqt_string{}
-	input_ms.data = C.CString(input)
-	input_ms.len = C.size_t(len(input))
-	defer C.free(unsafe.Pointer(input_ms.data))
-	return (QValidator__State)(C.QAbstractSpinBox_Validate(this.h, input_ms, (*C.int)(unsafe.Pointer(pos))))
+	input_ms := struct_miqt_string{}
+	input_ms.data = CString(input)
+	input_ms.len = size_t(len(input))
+	defer free(unsafe.Pointer(input_ms.data))
+	return (QValidator__State)(QAbstractSpinBox_Validate(this.h, input_ms, (*int)(unsafe.Pointer(pos))))
 }
 
 func (this *QAbstractSpinBox) Fixup(input string) {
-	input_ms := C.struct_miqt_string{}
-	input_ms.data = C.CString(input)
-	input_ms.len = C.size_t(len(input))
-	defer C.free(unsafe.Pointer(input_ms.data))
-	C.QAbstractSpinBox_Fixup(this.h, input_ms)
+	input_ms := struct_miqt_string{}
+	input_ms.data = CString(input)
+	input_ms.len = size_t(len(input))
+	defer free(unsafe.Pointer(input_ms.data))
+	QAbstractSpinBox_Fixup(this.h, input_ms)
 }
 
 func (this *QAbstractSpinBox) StepBy(steps int) {
-	C.QAbstractSpinBox_StepBy(this.h, (C.int)(steps))
+	QAbstractSpinBox_StepBy(this.h, (int)(steps))
 }
 
 func (this *QAbstractSpinBox) StepUp() {
-	C.QAbstractSpinBox_StepUp(this.h)
+	QAbstractSpinBox_StepUp(this.h)
 }
 
 func (this *QAbstractSpinBox) StepDown() {
-	C.QAbstractSpinBox_StepDown(this.h)
+	QAbstractSpinBox_StepDown(this.h)
 }
 
 func (this *QAbstractSpinBox) SelectAll() {
-	C.QAbstractSpinBox_SelectAll(this.h)
+	QAbstractSpinBox_SelectAll(this.h)
 }
 
 func (this *QAbstractSpinBox) Clear() {
-	C.QAbstractSpinBox_Clear(this.h)
+	QAbstractSpinBox_Clear(this.h)
 }
 
 func (this *QAbstractSpinBox) EditingFinished() {
-	C.QAbstractSpinBox_EditingFinished(this.h)
+	QAbstractSpinBox_EditingFinished(this.h)
 }
 func (this *QAbstractSpinBox) OnEditingFinished(slot func()) {
-	C.QAbstractSpinBox_connect_EditingFinished(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_connect_EditingFinished(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_EditingFinished
-func miqt_exec_callback_QAbstractSpinBox_EditingFinished(cb C.intptr_t) {
+func miqt_exec_callback_QAbstractSpinBox_EditingFinished(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -303,52 +252,30 @@ func miqt_exec_callback_QAbstractSpinBox_EditingFinished(cb C.intptr_t) {
 }
 
 func QAbstractSpinBox_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractSpinBox_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QAbstractSpinBox_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractSpinBox_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractSpinBox_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractSpinBox_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractSpinBox_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_SizeHint() *QSize {
 
-	_goptr := newQSize(C.QAbstractSpinBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QAbstractSpinBox_virtualbase_SizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -357,11 +284,11 @@ func (this *QAbstractSpinBox) OnSizeHint(slot func(super func() *QSize) *QSize) 
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_SizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_SizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_SizeHint
-func miqt_exec_callback_QAbstractSpinBox_SizeHint(self *C.QAbstractSpinBox, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QAbstractSpinBox_SizeHint(self QAbstractSpinBox, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -375,7 +302,7 @@ func miqt_exec_callback_QAbstractSpinBox_SizeHint(self *C.QAbstractSpinBox, cb C
 
 func (this *QAbstractSpinBox) callVirtualBase_MinimumSizeHint() *QSize {
 
-	_goptr := newQSize(C.QAbstractSpinBox_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
+	_goptr := newQSize(QAbstractSpinBox_virtualbase_MinimumSizeHint(unsafe.Pointer(this.h)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -384,11 +311,11 @@ func (this *QAbstractSpinBox) OnMinimumSizeHint(slot func(super func() *QSize) *
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_MinimumSizeHint(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_MinimumSizeHint
-func miqt_exec_callback_QAbstractSpinBox_MinimumSizeHint(self *C.QAbstractSpinBox, cb C.intptr_t) *C.QSize {
+func miqt_exec_callback_QAbstractSpinBox_MinimumSizeHint(self QAbstractSpinBox, cb intptr_t) *QSize {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QSize) *QSize)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -402,18 +329,18 @@ func miqt_exec_callback_QAbstractSpinBox_MinimumSizeHint(self *C.QAbstractSpinBo
 
 func (this *QAbstractSpinBox) callVirtualBase_Event(event *QEvent) bool {
 
-	return (bool)(C.QAbstractSpinBox_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
+	return (bool)(QAbstractSpinBox_virtualbase_Event(unsafe.Pointer(this.h), event.cPointer()))
 
 }
 func (this *QAbstractSpinBox) OnEvent(slot func(super func(event *QEvent) bool, event *QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_Event
-func miqt_exec_callback_QAbstractSpinBox_Event(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QAbstractSpinBox_Event(self QAbstractSpinBox, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent) bool, event *QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -424,13 +351,13 @@ func miqt_exec_callback_QAbstractSpinBox_Event(self *C.QAbstractSpinBox, cb C.in
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_InputMethodQuery(param1 InputMethodQuery) *QVariant {
 
-	_goptr := newQVariant(C.QAbstractSpinBox_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (C.int)(param1)))
+	_goptr := newQVariant(QAbstractSpinBox_virtualbase_InputMethodQuery(unsafe.Pointer(this.h), (int)(param1)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 
@@ -439,11 +366,11 @@ func (this *QAbstractSpinBox) OnInputMethodQuery(slot func(super func(param1 Inp
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_InputMethodQuery(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_InputMethodQuery(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_InputMethodQuery
-func miqt_exec_callback_QAbstractSpinBox_InputMethodQuery(self *C.QAbstractSpinBox, cb C.intptr_t, param1 C.int) *C.QVariant {
+func miqt_exec_callback_QAbstractSpinBox_InputMethodQuery(self QAbstractSpinBox, cb intptr_t, param1 int) *QVariant {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 InputMethodQuery) *QVariant, param1 InputMethodQuery) *QVariant)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -459,68 +386,68 @@ func miqt_exec_callback_QAbstractSpinBox_InputMethodQuery(self *C.QAbstractSpinB
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_Validate(input string, pos *int) QValidator__State {
-	input_ms := C.struct_miqt_string{}
-	input_ms.data = C.CString(input)
-	input_ms.len = C.size_t(len(input))
-	defer C.free(unsafe.Pointer(input_ms.data))
+	input_ms := struct_miqt_string{}
+	input_ms.data = CString(input)
+	input_ms.len = size_t(len(input))
+	defer free(unsafe.Pointer(input_ms.data))
 
-	return (QValidator__State)(C.QAbstractSpinBox_virtualbase_Validate(unsafe.Pointer(this.h), input_ms, (*C.int)(unsafe.Pointer(pos))))
+	return (QValidator__State)(QAbstractSpinBox_virtualbase_Validate(unsafe.Pointer(this.h), input_ms, (*int)(unsafe.Pointer(pos))))
 
 }
 func (this *QAbstractSpinBox) OnValidate(slot func(super func(input string, pos *int) QValidator__State, input string, pos *int) QValidator__State) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_Validate(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_Validate(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_Validate
-func miqt_exec_callback_QAbstractSpinBox_Validate(self *C.QAbstractSpinBox, cb C.intptr_t, input C.struct_miqt_string, pos *C.int) C.int {
+func miqt_exec_callback_QAbstractSpinBox_Validate(self QAbstractSpinBox, cb intptr_t, input struct_miqt_string, pos *int) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(input string, pos *int) QValidator__State, input string, pos *int) QValidator__State)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var input_ms C.struct_miqt_string = input
-	input_ret := C.GoStringN(input_ms.data, C.int(int64(input_ms.len)))
-	C.free(unsafe.Pointer(input_ms.data))
+	var input_ms struct_miqt_string = input
+	input_ret := GoStringN(input_ms.data, int(int64(input_ms.len)))
+	free(unsafe.Pointer(input_ms.data))
 	slotval1 := input_ret
 	slotval2 := (*int)(unsafe.Pointer(pos))
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_Validate, slotval1, slotval2)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_Fixup(input string) {
-	input_ms := C.struct_miqt_string{}
-	input_ms.data = C.CString(input)
-	input_ms.len = C.size_t(len(input))
-	defer C.free(unsafe.Pointer(input_ms.data))
+	input_ms := struct_miqt_string{}
+	input_ms.data = CString(input)
+	input_ms.len = size_t(len(input))
+	defer free(unsafe.Pointer(input_ms.data))
 
-	C.QAbstractSpinBox_virtualbase_Fixup(unsafe.Pointer(this.h), input_ms)
+	QAbstractSpinBox_virtualbase_Fixup(unsafe.Pointer(this.h), input_ms)
 
 }
 func (this *QAbstractSpinBox) OnFixup(slot func(super func(input string), input string)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_Fixup(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_Fixup(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_Fixup
-func miqt_exec_callback_QAbstractSpinBox_Fixup(self *C.QAbstractSpinBox, cb C.intptr_t, input C.struct_miqt_string) {
+func miqt_exec_callback_QAbstractSpinBox_Fixup(self QAbstractSpinBox, cb intptr_t, input struct_miqt_string) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(input string), input string))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var input_ms C.struct_miqt_string = input
-	input_ret := C.GoStringN(input_ms.data, C.int(int64(input_ms.len)))
-	C.free(unsafe.Pointer(input_ms.data))
+	var input_ms struct_miqt_string = input
+	input_ret := GoStringN(input_ms.data, int(int64(input_ms.len)))
+	free(unsafe.Pointer(input_ms.data))
 	slotval1 := input_ret
 
 	gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_Fixup, slotval1)
@@ -529,18 +456,18 @@ func miqt_exec_callback_QAbstractSpinBox_Fixup(self *C.QAbstractSpinBox, cb C.in
 
 func (this *QAbstractSpinBox) callVirtualBase_StepBy(steps int) {
 
-	C.QAbstractSpinBox_virtualbase_StepBy(unsafe.Pointer(this.h), (C.int)(steps))
+	QAbstractSpinBox_virtualbase_StepBy(unsafe.Pointer(this.h), (int)(steps))
 
 }
 func (this *QAbstractSpinBox) OnStepBy(slot func(super func(steps int), steps int)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_StepBy(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_StepBy(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_StepBy
-func miqt_exec_callback_QAbstractSpinBox_StepBy(self *C.QAbstractSpinBox, cb C.intptr_t, steps C.int) {
+func miqt_exec_callback_QAbstractSpinBox_StepBy(self QAbstractSpinBox, cb intptr_t, steps int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(steps int), steps int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -555,18 +482,18 @@ func miqt_exec_callback_QAbstractSpinBox_StepBy(self *C.QAbstractSpinBox, cb C.i
 
 func (this *QAbstractSpinBox) callVirtualBase_Clear() {
 
-	C.QAbstractSpinBox_virtualbase_Clear(unsafe.Pointer(this.h))
+	QAbstractSpinBox_virtualbase_Clear(unsafe.Pointer(this.h))
 
 }
 func (this *QAbstractSpinBox) OnClear(slot func(super func())) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_Clear(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_Clear(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_Clear
-func miqt_exec_callback_QAbstractSpinBox_Clear(self *C.QAbstractSpinBox, cb C.intptr_t) {
+func miqt_exec_callback_QAbstractSpinBox_Clear(self QAbstractSpinBox, cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func()))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -578,18 +505,18 @@ func miqt_exec_callback_QAbstractSpinBox_Clear(self *C.QAbstractSpinBox, cb C.in
 
 func (this *QAbstractSpinBox) callVirtualBase_ResizeEvent(event *QResizeEvent) {
 
-	C.QAbstractSpinBox_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_ResizeEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnResizeEvent(slot func(super func(event *QResizeEvent), event *QResizeEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_ResizeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_ResizeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_ResizeEvent
-func miqt_exec_callback_QAbstractSpinBox_ResizeEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QResizeEvent) {
+func miqt_exec_callback_QAbstractSpinBox_ResizeEvent(self QAbstractSpinBox, cb intptr_t, event *QResizeEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QResizeEvent), event *QResizeEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -604,18 +531,18 @@ func miqt_exec_callback_QAbstractSpinBox_ResizeEvent(self *C.QAbstractSpinBox, c
 
 func (this *QAbstractSpinBox) callVirtualBase_KeyPressEvent(event *QKeyEvent) {
 
-	C.QAbstractSpinBox_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_KeyPressEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnKeyPressEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_KeyPressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_KeyPressEvent
-func miqt_exec_callback_QAbstractSpinBox_KeyPressEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QKeyEvent) {
+func miqt_exec_callback_QAbstractSpinBox_KeyPressEvent(self QAbstractSpinBox, cb intptr_t, event *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QKeyEvent), event *QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -630,18 +557,18 @@ func miqt_exec_callback_QAbstractSpinBox_KeyPressEvent(self *C.QAbstractSpinBox,
 
 func (this *QAbstractSpinBox) callVirtualBase_KeyReleaseEvent(event *QKeyEvent) {
 
-	C.QAbstractSpinBox_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_KeyReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnKeyReleaseEvent(slot func(super func(event *QKeyEvent), event *QKeyEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_KeyReleaseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_KeyReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_KeyReleaseEvent
-func miqt_exec_callback_QAbstractSpinBox_KeyReleaseEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QKeyEvent) {
+func miqt_exec_callback_QAbstractSpinBox_KeyReleaseEvent(self QAbstractSpinBox, cb intptr_t, event *QKeyEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QKeyEvent), event *QKeyEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -656,18 +583,18 @@ func miqt_exec_callback_QAbstractSpinBox_KeyReleaseEvent(self *C.QAbstractSpinBo
 
 func (this *QAbstractSpinBox) callVirtualBase_WheelEvent(event *QWheelEvent) {
 
-	C.QAbstractSpinBox_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_WheelEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnWheelEvent(slot func(super func(event *QWheelEvent), event *QWheelEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_WheelEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_WheelEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_WheelEvent
-func miqt_exec_callback_QAbstractSpinBox_WheelEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QWheelEvent) {
+func miqt_exec_callback_QAbstractSpinBox_WheelEvent(self QAbstractSpinBox, cb intptr_t, event *QWheelEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QWheelEvent), event *QWheelEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -682,18 +609,18 @@ func miqt_exec_callback_QAbstractSpinBox_WheelEvent(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_FocusInEvent(event *QFocusEvent) {
 
-	C.QAbstractSpinBox_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_FocusInEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnFocusInEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_FocusInEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_FocusInEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_FocusInEvent
-func miqt_exec_callback_QAbstractSpinBox_FocusInEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QFocusEvent) {
+func miqt_exec_callback_QAbstractSpinBox_FocusInEvent(self QAbstractSpinBox, cb intptr_t, event *QFocusEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QFocusEvent), event *QFocusEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -708,18 +635,18 @@ func miqt_exec_callback_QAbstractSpinBox_FocusInEvent(self *C.QAbstractSpinBox, 
 
 func (this *QAbstractSpinBox) callVirtualBase_FocusOutEvent(event *QFocusEvent) {
 
-	C.QAbstractSpinBox_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_FocusOutEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnFocusOutEvent(slot func(super func(event *QFocusEvent), event *QFocusEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_FocusOutEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_FocusOutEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_FocusOutEvent
-func miqt_exec_callback_QAbstractSpinBox_FocusOutEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QFocusEvent) {
+func miqt_exec_callback_QAbstractSpinBox_FocusOutEvent(self QAbstractSpinBox, cb intptr_t, event *QFocusEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QFocusEvent), event *QFocusEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -734,18 +661,18 @@ func miqt_exec_callback_QAbstractSpinBox_FocusOutEvent(self *C.QAbstractSpinBox,
 
 func (this *QAbstractSpinBox) callVirtualBase_ContextMenuEvent(event *QContextMenuEvent) {
 
-	C.QAbstractSpinBox_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_ContextMenuEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnContextMenuEvent(slot func(super func(event *QContextMenuEvent), event *QContextMenuEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_ContextMenuEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_ContextMenuEvent
-func miqt_exec_callback_QAbstractSpinBox_ContextMenuEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QContextMenuEvent) {
+func miqt_exec_callback_QAbstractSpinBox_ContextMenuEvent(self QAbstractSpinBox, cb intptr_t, event *QContextMenuEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QContextMenuEvent), event *QContextMenuEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -760,18 +687,18 @@ func miqt_exec_callback_QAbstractSpinBox_ContextMenuEvent(self *C.QAbstractSpinB
 
 func (this *QAbstractSpinBox) callVirtualBase_ChangeEvent(event *QEvent) {
 
-	C.QAbstractSpinBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_ChangeEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnChangeEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_ChangeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_ChangeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_ChangeEvent
-func miqt_exec_callback_QAbstractSpinBox_ChangeEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QAbstractSpinBox_ChangeEvent(self QAbstractSpinBox, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -786,18 +713,18 @@ func miqt_exec_callback_QAbstractSpinBox_ChangeEvent(self *C.QAbstractSpinBox, c
 
 func (this *QAbstractSpinBox) callVirtualBase_CloseEvent(event *QCloseEvent) {
 
-	C.QAbstractSpinBox_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_CloseEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnCloseEvent(slot func(super func(event *QCloseEvent), event *QCloseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_CloseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_CloseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_CloseEvent
-func miqt_exec_callback_QAbstractSpinBox_CloseEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QCloseEvent) {
+func miqt_exec_callback_QAbstractSpinBox_CloseEvent(self QAbstractSpinBox, cb intptr_t, event *QCloseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QCloseEvent), event *QCloseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -812,18 +739,18 @@ func miqt_exec_callback_QAbstractSpinBox_CloseEvent(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_HideEvent(event *QHideEvent) {
 
-	C.QAbstractSpinBox_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_HideEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnHideEvent(slot func(super func(event *QHideEvent), event *QHideEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_HideEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_HideEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_HideEvent
-func miqt_exec_callback_QAbstractSpinBox_HideEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QHideEvent) {
+func miqt_exec_callback_QAbstractSpinBox_HideEvent(self QAbstractSpinBox, cb intptr_t, event *QHideEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QHideEvent), event *QHideEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -838,18 +765,18 @@ func miqt_exec_callback_QAbstractSpinBox_HideEvent(self *C.QAbstractSpinBox, cb 
 
 func (this *QAbstractSpinBox) callVirtualBase_MousePressEvent(event *QMouseEvent) {
 
-	C.QAbstractSpinBox_virtualbase_MousePressEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_MousePressEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnMousePressEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_MousePressEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_MousePressEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_MousePressEvent
-func miqt_exec_callback_QAbstractSpinBox_MousePressEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QMouseEvent) {
+func miqt_exec_callback_QAbstractSpinBox_MousePressEvent(self QAbstractSpinBox, cb intptr_t, event *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QMouseEvent), event *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -864,18 +791,18 @@ func miqt_exec_callback_QAbstractSpinBox_MousePressEvent(self *C.QAbstractSpinBo
 
 func (this *QAbstractSpinBox) callVirtualBase_MouseReleaseEvent(event *QMouseEvent) {
 
-	C.QAbstractSpinBox_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_MouseReleaseEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnMouseReleaseEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_MouseReleaseEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_MouseReleaseEvent
-func miqt_exec_callback_QAbstractSpinBox_MouseReleaseEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QMouseEvent) {
+func miqt_exec_callback_QAbstractSpinBox_MouseReleaseEvent(self QAbstractSpinBox, cb intptr_t, event *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QMouseEvent), event *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -890,18 +817,18 @@ func miqt_exec_callback_QAbstractSpinBox_MouseReleaseEvent(self *C.QAbstractSpin
 
 func (this *QAbstractSpinBox) callVirtualBase_MouseMoveEvent(event *QMouseEvent) {
 
-	C.QAbstractSpinBox_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_MouseMoveEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnMouseMoveEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_MouseMoveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_MouseMoveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_MouseMoveEvent
-func miqt_exec_callback_QAbstractSpinBox_MouseMoveEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QMouseEvent) {
+func miqt_exec_callback_QAbstractSpinBox_MouseMoveEvent(self QAbstractSpinBox, cb intptr_t, event *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QMouseEvent), event *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -916,18 +843,18 @@ func miqt_exec_callback_QAbstractSpinBox_MouseMoveEvent(self *C.QAbstractSpinBox
 
 func (this *QAbstractSpinBox) callVirtualBase_TimerEvent(event *QTimerEvent) {
 
-	C.QAbstractSpinBox_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_TimerEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnTimerEvent(slot func(super func(event *QTimerEvent), event *QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_TimerEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_TimerEvent
-func miqt_exec_callback_QAbstractSpinBox_TimerEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QTimerEvent) {
+func miqt_exec_callback_QAbstractSpinBox_TimerEvent(self QAbstractSpinBox, cb intptr_t, event *QTimerEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTimerEvent), event *QTimerEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -942,18 +869,18 @@ func miqt_exec_callback_QAbstractSpinBox_TimerEvent(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_PaintEvent(event *QPaintEvent) {
 
-	C.QAbstractSpinBox_virtualbase_PaintEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_PaintEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnPaintEvent(slot func(super func(event *QPaintEvent), event *QPaintEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_PaintEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_PaintEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_PaintEvent
-func miqt_exec_callback_QAbstractSpinBox_PaintEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QPaintEvent) {
+func miqt_exec_callback_QAbstractSpinBox_PaintEvent(self QAbstractSpinBox, cb intptr_t, event *QPaintEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QPaintEvent), event *QPaintEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -968,18 +895,18 @@ func miqt_exec_callback_QAbstractSpinBox_PaintEvent(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_ShowEvent(event *QShowEvent) {
 
-	C.QAbstractSpinBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_ShowEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnShowEvent(slot func(super func(event *QShowEvent), event *QShowEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_ShowEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_ShowEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_ShowEvent
-func miqt_exec_callback_QAbstractSpinBox_ShowEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QShowEvent) {
+func miqt_exec_callback_QAbstractSpinBox_ShowEvent(self QAbstractSpinBox, cb intptr_t, event *QShowEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QShowEvent), event *QShowEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -992,45 +919,70 @@ func miqt_exec_callback_QAbstractSpinBox_ShowEvent(self *C.QAbstractSpinBox, cb 
 
 }
 
-func (this *QAbstractSpinBox) callVirtualBase_StepEnabled() QAbstractSpinBox__StepEnabledFlag {
+func (this *QAbstractSpinBox) callVirtualBase_InitStyleOption(option *QStyleOptionSpinBox) {
 
-	return (QAbstractSpinBox__StepEnabledFlag)(C.QAbstractSpinBox_virtualbase_StepEnabled(unsafe.Pointer(this.h)))
+	QAbstractSpinBox_virtualbase_InitStyleOption(unsafe.Pointer(this.h), option.cPointer())
 
 }
-func (this *QAbstractSpinBox) OnStepEnabled(slot func(super func() QAbstractSpinBox__StepEnabledFlag) QAbstractSpinBox__StepEnabledFlag) {
+func (this *QAbstractSpinBox) OnInitStyleOption(slot func(super func(option *QStyleOptionSpinBox), option *QStyleOptionSpinBox)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_StepEnabled(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_InitStyleOption(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QAbstractSpinBox_InitStyleOption
+func miqt_exec_callback_QAbstractSpinBox_InitStyleOption(self QAbstractSpinBox, cb intptr_t, option *QStyleOptionSpinBox) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(option *QStyleOptionSpinBox), option *QStyleOptionSpinBox))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQStyleOptionSpinBox(option)
+
+	gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_InitStyleOption, slotval1)
+
+}
+
+func (this *QAbstractSpinBox) callVirtualBase_StepEnabled() StepEnabled {
+
+	xxxxxxxxx
+}
+func (this *QAbstractSpinBox) OnStepEnabled(slot func(super func() StepEnabled) StepEnabled) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QAbstractSpinBox_override_virtual_StepEnabled(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_StepEnabled
-func miqt_exec_callback_QAbstractSpinBox_StepEnabled(self *C.QAbstractSpinBox, cb C.intptr_t) C.int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func() QAbstractSpinBox__StepEnabledFlag) QAbstractSpinBox__StepEnabledFlag)
+func miqt_exec_callback_QAbstractSpinBox_StepEnabled(self QAbstractSpinBox, cb intptr_t) StepEnabled {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() StepEnabled) StepEnabled)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_StepEnabled)
 
-	return (C.int)(virtualReturn)
+	return virtualReturn
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_DevType() int {
 
-	return (int)(C.QAbstractSpinBox_virtualbase_DevType(unsafe.Pointer(this.h)))
+	return (int)(QAbstractSpinBox_virtualbase_DevType(unsafe.Pointer(this.h)))
 
 }
 func (this *QAbstractSpinBox) OnDevType(slot func(super func() int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_DevType(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_DevType(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_DevType
-func miqt_exec_callback_QAbstractSpinBox_DevType(self *C.QAbstractSpinBox, cb C.intptr_t) C.int {
+func miqt_exec_callback_QAbstractSpinBox_DevType(self QAbstractSpinBox, cb intptr_t) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1038,24 +990,24 @@ func miqt_exec_callback_QAbstractSpinBox_DevType(self *C.QAbstractSpinBox, cb C.
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_DevType)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_SetVisible(visible bool) {
 
-	C.QAbstractSpinBox_virtualbase_SetVisible(unsafe.Pointer(this.h), (C.bool)(visible))
+	QAbstractSpinBox_virtualbase_SetVisible(unsafe.Pointer(this.h), (bool)(visible))
 
 }
 func (this *QAbstractSpinBox) OnSetVisible(slot func(super func(visible bool), visible bool)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_SetVisible(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_SetVisible(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_SetVisible
-func miqt_exec_callback_QAbstractSpinBox_SetVisible(self *C.QAbstractSpinBox, cb C.intptr_t, visible C.bool) {
+func miqt_exec_callback_QAbstractSpinBox_SetVisible(self QAbstractSpinBox, cb intptr_t, visible bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(visible bool), visible bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1070,18 +1022,18 @@ func miqt_exec_callback_QAbstractSpinBox_SetVisible(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_HeightForWidth(param1 int) int {
 
-	return (int)(C.QAbstractSpinBox_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (C.int)(param1)))
+	return (int)(QAbstractSpinBox_virtualbase_HeightForWidth(unsafe.Pointer(this.h), (int)(param1)))
 
 }
 func (this *QAbstractSpinBox) OnHeightForWidth(slot func(super func(param1 int) int, param1 int) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_HeightForWidth(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_HeightForWidth(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_HeightForWidth
-func miqt_exec_callback_QAbstractSpinBox_HeightForWidth(self *C.QAbstractSpinBox, cb C.intptr_t, param1 C.int) C.int {
+func miqt_exec_callback_QAbstractSpinBox_HeightForWidth(self QAbstractSpinBox, cb intptr_t, param1 int) int {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 int) int, param1 int) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1092,24 +1044,24 @@ func miqt_exec_callback_QAbstractSpinBox_HeightForWidth(self *C.QAbstractSpinBox
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_HeightForWidth, slotval1)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_HasHeightForWidth() bool {
 
-	return (bool)(C.QAbstractSpinBox_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
+	return (bool)(QAbstractSpinBox_virtualbase_HasHeightForWidth(unsafe.Pointer(this.h)))
 
 }
 func (this *QAbstractSpinBox) OnHasHeightForWidth(slot func(super func() bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_HasHeightForWidth(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_HasHeightForWidth(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_HasHeightForWidth
-func miqt_exec_callback_QAbstractSpinBox_HasHeightForWidth(self *C.QAbstractSpinBox, cb C.intptr_t) C.bool {
+func miqt_exec_callback_QAbstractSpinBox_HasHeightForWidth(self QAbstractSpinBox, cb intptr_t) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() bool) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1117,24 +1069,24 @@ func miqt_exec_callback_QAbstractSpinBox_HasHeightForWidth(self *C.QAbstractSpin
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_HasHeightForWidth)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_PaintEngine() *QPaintEngine {
 
-	return newQPaintEngine(C.QAbstractSpinBox_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
+	return newQPaintEngine(QAbstractSpinBox_virtualbase_PaintEngine(unsafe.Pointer(this.h)))
 
 }
 func (this *QAbstractSpinBox) OnPaintEngine(slot func(super func() *QPaintEngine) *QPaintEngine) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_PaintEngine(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_PaintEngine(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_PaintEngine
-func miqt_exec_callback_QAbstractSpinBox_PaintEngine(self *C.QAbstractSpinBox, cb C.intptr_t) *C.QPaintEngine {
+func miqt_exec_callback_QAbstractSpinBox_PaintEngine(self QAbstractSpinBox, cb intptr_t) *QPaintEngine {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QPaintEngine) *QPaintEngine)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1148,18 +1100,18 @@ func miqt_exec_callback_QAbstractSpinBox_PaintEngine(self *C.QAbstractSpinBox, c
 
 func (this *QAbstractSpinBox) callVirtualBase_MouseDoubleClickEvent(event *QMouseEvent) {
 
-	C.QAbstractSpinBox_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_MouseDoubleClickEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnMouseDoubleClickEvent(slot func(super func(event *QMouseEvent), event *QMouseEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_MouseDoubleClickEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_MouseDoubleClickEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_MouseDoubleClickEvent
-func miqt_exec_callback_QAbstractSpinBox_MouseDoubleClickEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QMouseEvent) {
+func miqt_exec_callback_QAbstractSpinBox_MouseDoubleClickEvent(self QAbstractSpinBox, cb intptr_t, event *QMouseEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QMouseEvent), event *QMouseEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1172,27 +1124,27 @@ func miqt_exec_callback_QAbstractSpinBox_MouseDoubleClickEvent(self *C.QAbstract
 
 }
 
-func (this *QAbstractSpinBox) callVirtualBase_EnterEvent(event *QEvent) {
+func (this *QAbstractSpinBox) callVirtualBase_EnterEvent(event *QEnterEvent) {
 
-	C.QAbstractSpinBox_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_EnterEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
-func (this *QAbstractSpinBox) OnEnterEvent(slot func(super func(event *QEvent), event *QEvent)) {
+func (this *QAbstractSpinBox) OnEnterEvent(slot func(super func(event *QEnterEvent), event *QEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_EnterEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_EnterEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_EnterEvent
-func miqt_exec_callback_QAbstractSpinBox_EnterEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QEvent) {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
+func miqt_exec_callback_QAbstractSpinBox_EnterEvent(self QAbstractSpinBox, cb intptr_t, event *QEnterEvent) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEnterEvent), event *QEnterEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := newQEvent(event)
+	slotval1 := newQEnterEvent(event)
 
 	gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_EnterEvent, slotval1)
 
@@ -1200,18 +1152,18 @@ func miqt_exec_callback_QAbstractSpinBox_EnterEvent(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_LeaveEvent(event *QEvent) {
 
-	C.QAbstractSpinBox_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_LeaveEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnLeaveEvent(slot func(super func(event *QEvent), event *QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_LeaveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_LeaveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_LeaveEvent
-func miqt_exec_callback_QAbstractSpinBox_LeaveEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QAbstractSpinBox_LeaveEvent(self QAbstractSpinBox, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QEvent), event *QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1226,18 +1178,18 @@ func miqt_exec_callback_QAbstractSpinBox_LeaveEvent(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_MoveEvent(event *QMoveEvent) {
 
-	C.QAbstractSpinBox_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_MoveEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnMoveEvent(slot func(super func(event *QMoveEvent), event *QMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_MoveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_MoveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_MoveEvent
-func miqt_exec_callback_QAbstractSpinBox_MoveEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QMoveEvent) {
+func miqt_exec_callback_QAbstractSpinBox_MoveEvent(self QAbstractSpinBox, cb intptr_t, event *QMoveEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QMoveEvent), event *QMoveEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1252,18 +1204,18 @@ func miqt_exec_callback_QAbstractSpinBox_MoveEvent(self *C.QAbstractSpinBox, cb 
 
 func (this *QAbstractSpinBox) callVirtualBase_TabletEvent(event *QTabletEvent) {
 
-	C.QAbstractSpinBox_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_TabletEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnTabletEvent(slot func(super func(event *QTabletEvent), event *QTabletEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_TabletEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_TabletEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_TabletEvent
-func miqt_exec_callback_QAbstractSpinBox_TabletEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QTabletEvent) {
+func miqt_exec_callback_QAbstractSpinBox_TabletEvent(self QAbstractSpinBox, cb intptr_t, event *QTabletEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QTabletEvent), event *QTabletEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1278,18 +1230,18 @@ func miqt_exec_callback_QAbstractSpinBox_TabletEvent(self *C.QAbstractSpinBox, c
 
 func (this *QAbstractSpinBox) callVirtualBase_ActionEvent(event *QActionEvent) {
 
-	C.QAbstractSpinBox_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_ActionEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnActionEvent(slot func(super func(event *QActionEvent), event *QActionEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_ActionEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_ActionEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_ActionEvent
-func miqt_exec_callback_QAbstractSpinBox_ActionEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QActionEvent) {
+func miqt_exec_callback_QAbstractSpinBox_ActionEvent(self QAbstractSpinBox, cb intptr_t, event *QActionEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QActionEvent), event *QActionEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1304,18 +1256,18 @@ func miqt_exec_callback_QAbstractSpinBox_ActionEvent(self *C.QAbstractSpinBox, c
 
 func (this *QAbstractSpinBox) callVirtualBase_DragEnterEvent(event *QDragEnterEvent) {
 
-	C.QAbstractSpinBox_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_DragEnterEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnDragEnterEvent(slot func(super func(event *QDragEnterEvent), event *QDragEnterEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_DragEnterEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_DragEnterEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_DragEnterEvent
-func miqt_exec_callback_QAbstractSpinBox_DragEnterEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QDragEnterEvent) {
+func miqt_exec_callback_QAbstractSpinBox_DragEnterEvent(self QAbstractSpinBox, cb intptr_t, event *QDragEnterEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QDragEnterEvent), event *QDragEnterEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1330,18 +1282,18 @@ func miqt_exec_callback_QAbstractSpinBox_DragEnterEvent(self *C.QAbstractSpinBox
 
 func (this *QAbstractSpinBox) callVirtualBase_DragMoveEvent(event *QDragMoveEvent) {
 
-	C.QAbstractSpinBox_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_DragMoveEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnDragMoveEvent(slot func(super func(event *QDragMoveEvent), event *QDragMoveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_DragMoveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_DragMoveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_DragMoveEvent
-func miqt_exec_callback_QAbstractSpinBox_DragMoveEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QDragMoveEvent) {
+func miqt_exec_callback_QAbstractSpinBox_DragMoveEvent(self QAbstractSpinBox, cb intptr_t, event *QDragMoveEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QDragMoveEvent), event *QDragMoveEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1356,18 +1308,18 @@ func miqt_exec_callback_QAbstractSpinBox_DragMoveEvent(self *C.QAbstractSpinBox,
 
 func (this *QAbstractSpinBox) callVirtualBase_DragLeaveEvent(event *QDragLeaveEvent) {
 
-	C.QAbstractSpinBox_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_DragLeaveEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnDragLeaveEvent(slot func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_DragLeaveEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_DragLeaveEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_DragLeaveEvent
-func miqt_exec_callback_QAbstractSpinBox_DragLeaveEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QDragLeaveEvent) {
+func miqt_exec_callback_QAbstractSpinBox_DragLeaveEvent(self QAbstractSpinBox, cb intptr_t, event *QDragLeaveEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QDragLeaveEvent), event *QDragLeaveEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1382,18 +1334,18 @@ func miqt_exec_callback_QAbstractSpinBox_DragLeaveEvent(self *C.QAbstractSpinBox
 
 func (this *QAbstractSpinBox) callVirtualBase_DropEvent(event *QDropEvent) {
 
-	C.QAbstractSpinBox_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
+	QAbstractSpinBox_virtualbase_DropEvent(unsafe.Pointer(this.h), event.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnDropEvent(slot func(super func(event *QDropEvent), event *QDropEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_DropEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_DropEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_DropEvent
-func miqt_exec_callback_QAbstractSpinBox_DropEvent(self *C.QAbstractSpinBox, cb C.intptr_t, event *C.QDropEvent) {
+func miqt_exec_callback_QAbstractSpinBox_DropEvent(self QAbstractSpinBox, cb intptr_t, event *QDropEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *QDropEvent), event *QDropEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1406,85 +1358,85 @@ func miqt_exec_callback_QAbstractSpinBox_DropEvent(self *C.QAbstractSpinBox, cb 
 
 }
 
-func (this *QAbstractSpinBox) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
-	eventType_alias := C.struct_miqt_string{}
-	eventType_alias.data = (*C.char)(unsafe.Pointer(&eventType[0]))
-	eventType_alias.len = C.size_t(len(eventType))
+func (this *QAbstractSpinBox) callVirtualBase_NativeEvent(eventType []byte, message unsafe.Pointer, result *uintptr) bool {
+	eventType_alias := struct_miqt_string{}
+	eventType_alias.data = (char)(unsafe.Pointer(&eventType[0]))
+	eventType_alias.len = size_t(len(eventType))
 
-	return (bool)(C.QAbstractSpinBox_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
+	return (bool)(QAbstractSpinBox_virtualbase_NativeEvent(unsafe.Pointer(this.h), eventType_alias, message, (*intptr_t)(unsafe.Pointer(result))))
 
 }
-func (this *QAbstractSpinBox) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool) {
+func (this *QAbstractSpinBox) OnNativeEvent(slot func(super func(eventType []byte, message unsafe.Pointer, result *uintptr) bool, eventType []byte, message unsafe.Pointer, result *uintptr) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_NativeEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_NativeEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_NativeEvent
-func miqt_exec_callback_QAbstractSpinBox_NativeEvent(self *C.QAbstractSpinBox, cb C.intptr_t, eventType C.struct_miqt_string, message unsafe.Pointer, result *C.long) C.bool {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(eventType []byte, message unsafe.Pointer, result *int64) bool, eventType []byte, message unsafe.Pointer, result *int64) bool)
+func miqt_exec_callback_QAbstractSpinBox_NativeEvent(self QAbstractSpinBox, cb intptr_t, eventType struct_miqt_string, message unsafe.Pointer, result *intptr_t) bool {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(eventType []byte, message unsafe.Pointer, result *uintptr) bool, eventType []byte, message unsafe.Pointer, result *uintptr) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	var eventType_bytearray C.struct_miqt_string = eventType
-	eventType_ret := C.GoBytes(unsafe.Pointer(eventType_bytearray.data), C.int(int64(eventType_bytearray.len)))
-	C.free(unsafe.Pointer(eventType_bytearray.data))
+	var eventType_bytearray struct_miqt_string = eventType
+	eventType_ret := GoBytes(unsafe.Pointer(eventType_bytearray.data), int(int64(eventType_bytearray.len)))
+	free(unsafe.Pointer(eventType_bytearray.data))
 	slotval1 := eventType_ret
 	slotval2 := (unsafe.Pointer)(message)
 
-	slotval3 := (*int64)(unsafe.Pointer(result))
+	slotval3 := (*uintptr)(unsafe.Pointer(result))
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_NativeEvent, slotval1, slotval2, slotval3)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
-func (this *QAbstractSpinBox) callVirtualBase_Metric(param1 QPaintDevice__PaintDeviceMetric) int {
+func (this *QAbstractSpinBox) callVirtualBase_Metric(param1 PaintDeviceMetric) int {
 
-	return (int)(C.QAbstractSpinBox_virtualbase_Metric(unsafe.Pointer(this.h), (C.int)(param1)))
+	return (int)(QAbstractSpinBox_virtualbase_Metric(unsafe.Pointer(this.h), param1))
 
 }
-func (this *QAbstractSpinBox) OnMetric(slot func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int) {
+func (this *QAbstractSpinBox) OnMetric(slot func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_Metric(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_Metric(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_Metric
-func miqt_exec_callback_QAbstractSpinBox_Metric(self *C.QAbstractSpinBox, cb C.intptr_t, param1 C.int) C.int {
-	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 QPaintDevice__PaintDeviceMetric) int, param1 QPaintDevice__PaintDeviceMetric) int)
+func miqt_exec_callback_QAbstractSpinBox_Metric(self QAbstractSpinBox, cb intptr_t, param1 PaintDeviceMetric) int {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 PaintDeviceMetric) int, param1 PaintDeviceMetric) int)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
 	}
 
 	// Convert all CABI parameters to Go parameters
-	slotval1 := (QPaintDevice__PaintDeviceMetric)(param1)
+	xxxxxxxxx
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_Metric, slotval1)
 
-	return (C.int)(virtualReturn)
+	return (int)(virtualReturn)
 
 }
 
 func (this *QAbstractSpinBox) callVirtualBase_InitPainter(painter *QPainter) {
 
-	C.QAbstractSpinBox_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
+	QAbstractSpinBox_virtualbase_InitPainter(unsafe.Pointer(this.h), painter.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnInitPainter(slot func(super func(painter *QPainter), painter *QPainter)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_InitPainter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_InitPainter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_InitPainter
-func miqt_exec_callback_QAbstractSpinBox_InitPainter(self *C.QAbstractSpinBox, cb C.intptr_t, painter *C.QPainter) {
+func miqt_exec_callback_QAbstractSpinBox_InitPainter(self QAbstractSpinBox, cb intptr_t, painter *QPainter) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(painter *QPainter), painter *QPainter))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1499,18 +1451,18 @@ func miqt_exec_callback_QAbstractSpinBox_InitPainter(self *C.QAbstractSpinBox, c
 
 func (this *QAbstractSpinBox) callVirtualBase_Redirected(offset *QPoint) *QPaintDevice {
 
-	return newQPaintDevice(C.QAbstractSpinBox_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
+	return newQPaintDevice(QAbstractSpinBox_virtualbase_Redirected(unsafe.Pointer(this.h), offset.cPointer()))
 
 }
 func (this *QAbstractSpinBox) OnRedirected(slot func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_Redirected(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_Redirected(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_Redirected
-func miqt_exec_callback_QAbstractSpinBox_Redirected(self *C.QAbstractSpinBox, cb C.intptr_t, offset *C.QPoint) *C.QPaintDevice {
+func miqt_exec_callback_QAbstractSpinBox_Redirected(self QAbstractSpinBox, cb intptr_t, offset *QPoint) *QPaintDevice {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(offset *QPoint) *QPaintDevice, offset *QPoint) *QPaintDevice)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1527,18 +1479,18 @@ func miqt_exec_callback_QAbstractSpinBox_Redirected(self *C.QAbstractSpinBox, cb
 
 func (this *QAbstractSpinBox) callVirtualBase_SharedPainter() *QPainter {
 
-	return newQPainter(C.QAbstractSpinBox_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
+	return newQPainter(QAbstractSpinBox_virtualbase_SharedPainter(unsafe.Pointer(this.h)))
 
 }
 func (this *QAbstractSpinBox) OnSharedPainter(slot func(super func() *QPainter) *QPainter) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_SharedPainter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_SharedPainter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_SharedPainter
-func miqt_exec_callback_QAbstractSpinBox_SharedPainter(self *C.QAbstractSpinBox, cb C.intptr_t) *C.QPainter {
+func miqt_exec_callback_QAbstractSpinBox_SharedPainter(self QAbstractSpinBox, cb intptr_t) *QPainter {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QPainter) *QPainter)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1552,18 +1504,18 @@ func miqt_exec_callback_QAbstractSpinBox_SharedPainter(self *C.QAbstractSpinBox,
 
 func (this *QAbstractSpinBox) callVirtualBase_InputMethodEvent(param1 *QInputMethodEvent) {
 
-	C.QAbstractSpinBox_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
+	QAbstractSpinBox_virtualbase_InputMethodEvent(unsafe.Pointer(this.h), param1.cPointer())
 
 }
 func (this *QAbstractSpinBox) OnInputMethodEvent(slot func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_InputMethodEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_InputMethodEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_InputMethodEvent
-func miqt_exec_callback_QAbstractSpinBox_InputMethodEvent(self *C.QAbstractSpinBox, cb C.intptr_t, param1 *C.QInputMethodEvent) {
+func miqt_exec_callback_QAbstractSpinBox_InputMethodEvent(self QAbstractSpinBox, cb intptr_t, param1 *QInputMethodEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 *QInputMethodEvent), param1 *QInputMethodEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1578,18 +1530,18 @@ func miqt_exec_callback_QAbstractSpinBox_InputMethodEvent(self *C.QAbstractSpinB
 
 func (this *QAbstractSpinBox) callVirtualBase_FocusNextPrevChild(next bool) bool {
 
-	return (bool)(C.QAbstractSpinBox_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (C.bool)(next)))
+	return (bool)(QAbstractSpinBox_virtualbase_FocusNextPrevChild(unsafe.Pointer(this.h), (bool)(next)))
 
 }
 func (this *QAbstractSpinBox) OnFocusNextPrevChild(slot func(super func(next bool) bool, next bool) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QAbstractSpinBox_override_virtual_FocusNextPrevChild(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractSpinBox_override_virtual_FocusNextPrevChild(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractSpinBox_FocusNextPrevChild
-func miqt_exec_callback_QAbstractSpinBox_FocusNextPrevChild(self *C.QAbstractSpinBox, cb C.intptr_t, next C.bool) C.bool {
+func miqt_exec_callback_QAbstractSpinBox_FocusNextPrevChild(self QAbstractSpinBox, cb intptr_t, next bool) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(next bool) bool, next bool) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -1600,20 +1552,6 @@ func miqt_exec_callback_QAbstractSpinBox_FocusNextPrevChild(self *C.QAbstractSpi
 
 	virtualReturn := gofunc((&QAbstractSpinBox{h: self}).callVirtualBase_FocusNextPrevChild, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QAbstractSpinBox) Delete() {
-	C.QAbstractSpinBox_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QAbstractSpinBox) GoGC() {
-	runtime.SetFinalizer(this, func(this *QAbstractSpinBox) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

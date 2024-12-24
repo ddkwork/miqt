@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBitmap>
 #include <QCursor>
 #include <QPixmap>
@@ -9,7 +11,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QCursor* QCursor_new() {
 	return new QCursor();
@@ -64,20 +81,20 @@ void QCursor_SetShape(QCursor* self, int newShape) {
 	self->setShape(static_cast<Qt::CursorShape>(newShape));
 }
 
-QBitmap* QCursor_Bitmap(const QCursor* self) {
-	return (QBitmap*) self->bitmap();
-}
-
-QBitmap* QCursor_Mask(const QCursor* self) {
-	return (QBitmap*) self->mask();
-}
-
-QBitmap* QCursor_BitmapWithQtReturnByValueConstant(const QCursor* self, int param1) {
+QBitmap* QCursor_Bitmap(const QCursor* self, int param1) {
 	return new QBitmap(self->bitmap(static_cast<Qt::ReturnByValueConstant>(param1)));
 }
 
-QBitmap* QCursor_MaskWithQtReturnByValueConstant(const QCursor* self, int param1) {
+QBitmap* QCursor_Mask(const QCursor* self, int param1) {
 	return new QBitmap(self->mask(static_cast<Qt::ReturnByValueConstant>(param1)));
+}
+
+QBitmap* QCursor_Bitmap2(const QCursor* self) {
+	return new QBitmap(self->bitmap());
+}
+
+QBitmap* QCursor_Mask2(const QCursor* self) {
+	return new QBitmap(self->mask());
 }
 
 QPixmap* QCursor_Pixmap(const QCursor* self) {

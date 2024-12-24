@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractTextDocumentLayout>
 #define WORKAROUND_INNER_CLASS_DEFINITION_QAbstractTextDocumentLayout__PaintContext
 #define WORKAROUND_INNER_CLASS_DEFINITION_QAbstractTextDocumentLayout__Selection
@@ -27,7 +29,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractTextDocumentLayout : public virtual QAbstractTextDocumentLayout {
 public:
@@ -40,15 +57,13 @@ public:
 	intptr_t handle__Draw = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void draw(QPainter* painter, const QAbstractTextDocumentLayout::PaintContext& context) override {
+	virtual void draw(QPainter* painter, const PaintContext& context) override {
 		if (handle__Draw == 0) {
 			return; // Pure virtual, there is no base we can call
 		}
 		
 		QPainter* sigval1 = painter;
-		const QAbstractTextDocumentLayout::PaintContext& context_ret = context;
-		// Cast returned reference into pointer
-		QAbstractTextDocumentLayout__PaintContext* sigval2 = const_cast<QAbstractTextDocumentLayout::PaintContext*>(&context_ret);
+		const PaintContext* sigval2 = (const PaintContext*) context;
 
 		miqt_exec_callback_QAbstractTextDocumentLayout_Draw(this, handle__Draw, sigval1, sigval2);
 
@@ -445,18 +460,7 @@ struct miqt_string QAbstractTextDocumentLayout_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QAbstractTextDocumentLayout_TrUtf8(const char* s) {
-	QString _ret = QAbstractTextDocumentLayout::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QAbstractTextDocumentLayout_Draw(QAbstractTextDocumentLayout* self, QPainter* painter, QAbstractTextDocumentLayout__PaintContext* context) {
+void QAbstractTextDocumentLayout_Draw(QAbstractTextDocumentLayout* self, QPainter* painter, const PaintContext* context) {
 	self->draw(painter, *context);
 }
 
@@ -594,28 +598,6 @@ struct miqt_string QAbstractTextDocumentLayout_Tr2(const char* s, const char* c)
 
 struct miqt_string QAbstractTextDocumentLayout_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QAbstractTextDocumentLayout::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractTextDocumentLayout_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractTextDocumentLayout::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractTextDocumentLayout_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractTextDocumentLayout::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -778,11 +760,11 @@ void QTextObjectInterface_Delete(QTextObjectInterface* self, bool isSubclass) {
 	}
 }
 
-QAbstractTextDocumentLayout__Selection* QAbstractTextDocumentLayout__Selection_new(QAbstractTextDocumentLayout__Selection* param1) {
-	return new QAbstractTextDocumentLayout::Selection(*param1);
+QAbstractTextDocumentLayout__Selection* QAbstractTextDocumentLayout__Selection_new() {
+	return new QAbstractTextDocumentLayout::Selection();
 }
 
-void QAbstractTextDocumentLayout__Selection_OperatorAssign(QAbstractTextDocumentLayout__Selection* self, QAbstractTextDocumentLayout__Selection* param1) {
+void QAbstractTextDocumentLayout__Selection_OperatorAssign(QAbstractTextDocumentLayout__Selection* self, const Selection* param1) {
 	self->operator=(*param1);
 }
 
@@ -798,11 +780,7 @@ QAbstractTextDocumentLayout__PaintContext* QAbstractTextDocumentLayout__PaintCon
 	return new QAbstractTextDocumentLayout::PaintContext();
 }
 
-QAbstractTextDocumentLayout__PaintContext* QAbstractTextDocumentLayout__PaintContext_new2(QAbstractTextDocumentLayout__PaintContext* param1) {
-	return new QAbstractTextDocumentLayout::PaintContext(*param1);
-}
-
-void QAbstractTextDocumentLayout__PaintContext_OperatorAssign(QAbstractTextDocumentLayout__PaintContext* self, QAbstractTextDocumentLayout__PaintContext* param1) {
+void QAbstractTextDocumentLayout__PaintContext_OperatorAssign(QAbstractTextDocumentLayout__PaintContext* self, const PaintContext* param1) {
 	self->operator=(*param1);
 }
 

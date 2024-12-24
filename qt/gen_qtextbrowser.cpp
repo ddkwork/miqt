@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractScrollArea>
 #include <QContextMenuEvent>
 #include <QDragEnterEvent>
@@ -35,7 +37,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTextBrowser : public virtual QTextBrowser {
 public:
@@ -68,32 +85,6 @@ public:
 	QVariant* virtualbase_LoadResource(int typeVal, QUrl* name) {
 
 		return new QVariant(QTextBrowser::loadResource(static_cast<int>(typeVal), *name));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetSource = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setSource(const QUrl& name) override {
-		if (handle__SetSource == 0) {
-			QTextBrowser::setSource(name);
-			return;
-		}
-		
-		const QUrl& name_ret = name;
-		// Cast returned reference into pointer
-		QUrl* sigval1 = const_cast<QUrl*>(&name_ret);
-
-		miqt_exec_callback_QTextBrowser_SetSource(this, handle__SetSource, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetSource(QUrl* name) {
-
-		QTextBrowser::setSource(*name);
 
 	}
 
@@ -376,6 +367,34 @@ public:
 	void virtualbase_PaintEvent(QPaintEvent* e) {
 
 		QTextBrowser::paintEvent(e);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__DoSetSource = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void doSetSource(const QUrl& name, QTextDocument::ResourceType typeVal) override {
+		if (handle__DoSetSource == 0) {
+			QTextBrowser::doSetSource(name, typeVal);
+			return;
+		}
+		
+		const QUrl& name_ret = name;
+		// Cast returned reference into pointer
+		QUrl* sigval1 = const_cast<QUrl*>(&name_ret);
+		QTextDocument::ResourceType typeVal_ret = typeVal;
+		int sigval2 = static_cast<int>(typeVal_ret);
+
+		miqt_exec_callback_QTextBrowser_DoSetSource(this, handle__DoSetSource, sigval1, sigval2);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_DoSetSource(QUrl* name, int typeVal) {
+
+		QTextBrowser::doSetSource(*name, static_cast<QTextDocument::ResourceType>(typeVal));
 
 	}
 
@@ -892,17 +911,6 @@ struct miqt_string QTextBrowser_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTextBrowser_TrUtf8(const char* s) {
-	QString _ret = QTextBrowser::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QUrl* QTextBrowser_Source(const QTextBrowser* self) {
 	return new QUrl(self->source());
 }
@@ -1002,10 +1010,6 @@ void QTextBrowser_SetSource(QTextBrowser* self, QUrl* name) {
 	self->setSource(*name);
 }
 
-void QTextBrowser_SetSource2(QTextBrowser* self, QUrl* name, int typeVal) {
-	self->setSource(*name, static_cast<QTextDocument::ResourceType>(typeVal));
-}
-
 void QTextBrowser_Backward(QTextBrowser* self) {
 	self->backward();
 }
@@ -1080,25 +1084,6 @@ void QTextBrowser_connect_Highlighted(QTextBrowser* self, intptr_t slot) {
 	});
 }
 
-void QTextBrowser_HighlightedWithQString(QTextBrowser* self, struct miqt_string param1) {
-	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-	self->highlighted(param1_QString);
-}
-
-void QTextBrowser_connect_HighlightedWithQString(QTextBrowser* self, intptr_t slot) {
-	MiqtVirtualQTextBrowser::connect(self, static_cast<void (QTextBrowser::*)(const QString&)>(&QTextBrowser::highlighted), self, [=](const QString& param1) {
-		const QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-		miqt_exec_callback_QTextBrowser_HighlightedWithQString(slot, sigval1);
-	});
-}
-
 void QTextBrowser_AnchorClicked(QTextBrowser* self, QUrl* param1) {
 	self->anchorClicked(*param1);
 }
@@ -1134,26 +1119,8 @@ struct miqt_string QTextBrowser_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTextBrowser_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTextBrowser::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextBrowser_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTextBrowser::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QTextBrowser_SetSource2(QTextBrowser* self, QUrl* name, int typeVal) {
+	self->setSource(*name, static_cast<QTextDocument::ResourceType>(typeVal));
 }
 
 void QTextBrowser_override_virtual_LoadResource(void* self, intptr_t slot) {
@@ -1162,14 +1129,6 @@ void QTextBrowser_override_virtual_LoadResource(void* self, intptr_t slot) {
 
 QVariant* QTextBrowser_virtualbase_LoadResource(void* self, int typeVal, QUrl* name) {
 	return ( (MiqtVirtualQTextBrowser*)(self) )->virtualbase_LoadResource(typeVal, name);
-}
-
-void QTextBrowser_override_virtual_SetSource(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQTextBrowser*>( (QTextBrowser*)(self) )->handle__SetSource = slot;
-}
-
-void QTextBrowser_virtualbase_SetSource(void* self, QUrl* name) {
-	( (MiqtVirtualQTextBrowser*)(self) )->virtualbase_SetSource(name);
 }
 
 void QTextBrowser_override_virtual_Backward(void* self, intptr_t slot) {
@@ -1266,6 +1225,14 @@ void QTextBrowser_override_virtual_PaintEvent(void* self, intptr_t slot) {
 
 void QTextBrowser_virtualbase_PaintEvent(void* self, QPaintEvent* e) {
 	( (MiqtVirtualQTextBrowser*)(self) )->virtualbase_PaintEvent(e);
+}
+
+void QTextBrowser_override_virtual_DoSetSource(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTextBrowser*>( (QTextBrowser*)(self) )->handle__DoSetSource = slot;
+}
+
+void QTextBrowser_virtualbase_DoSetSource(void* self, QUrl* name, int typeVal) {
+	( (MiqtVirtualQTextBrowser*)(self) )->virtualbase_DoSetSource(name, typeVal);
 }
 
 void QTextBrowser_override_virtual_InputMethodQuery(void* self, intptr_t slot) {

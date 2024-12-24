@@ -1,17 +1,7 @@
 package network
 
-/*
-
-#include "gen_qhttpmultipart.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
 	"github.com/mappu/miqt/qt"
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
@@ -25,42 +15,14 @@ const (
 )
 
 type QHttpPart struct {
-	h          *C.QHttpPart
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QHttpPart) cPointer() *C.QHttpPart {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QHttpPart) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQHttpPart constructs the type using only CGO pointers.
-func newQHttpPart(h *C.QHttpPart) *QHttpPart {
-	if h == nil {
-		return nil
-	}
-
-	return &QHttpPart{h: h}
-}
-
-// UnsafeNewQHttpPart constructs the type using only unsafe pointers.
-func UnsafeNewQHttpPart(h unsafe.Pointer) *QHttpPart {
-	return newQHttpPart((*C.QHttpPart)(h))
 }
 
 // NewQHttpPart constructs a new QHttpPart object.
 func NewQHttpPart() *QHttpPart {
 
-	ret := newQHttpPart(C.QHttpPart_new())
+	ret := newQHttpPart(QHttpPart_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -68,115 +30,69 @@ func NewQHttpPart() *QHttpPart {
 // NewQHttpPart2 constructs a new QHttpPart object.
 func NewQHttpPart2(other *QHttpPart) *QHttpPart {
 
-	ret := newQHttpPart(C.QHttpPart_new2(other.cPointer()))
+	ret := newQHttpPart(QHttpPart_new2(other.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QHttpPart) OperatorAssign(other *QHttpPart) {
-	C.QHttpPart_OperatorAssign(this.h, other.cPointer())
+	QHttpPart_OperatorAssign(this.h, other.cPointer())
 }
 
 func (this *QHttpPart) Swap(other *QHttpPart) {
-	C.QHttpPart_Swap(this.h, other.cPointer())
+	QHttpPart_Swap(this.h, other.cPointer())
 }
 
 func (this *QHttpPart) OperatorEqual(other *QHttpPart) bool {
-	return (bool)(C.QHttpPart_OperatorEqual(this.h, other.cPointer()))
+	return (bool)(QHttpPart_OperatorEqual(this.h, other.cPointer()))
 }
 
 func (this *QHttpPart) OperatorNotEqual(other *QHttpPart) bool {
-	return (bool)(C.QHttpPart_OperatorNotEqual(this.h, other.cPointer()))
+	return (bool)(QHttpPart_OperatorNotEqual(this.h, other.cPointer()))
 }
 
 func (this *QHttpPart) SetHeader(header QNetworkRequest__KnownHeaders, value *qt.QVariant) {
-	C.QHttpPart_SetHeader(this.h, (C.int)(header), (*C.QVariant)(value.UnsafePointer()))
+	QHttpPart_SetHeader(this.h, (int)(header), (*QVariant)(value.UnsafePointer()))
 }
 
 func (this *QHttpPart) SetRawHeader(headerName []byte, headerValue []byte) {
-	headerName_alias := C.struct_miqt_string{}
-	headerName_alias.data = (*C.char)(unsafe.Pointer(&headerName[0]))
-	headerName_alias.len = C.size_t(len(headerName))
-	headerValue_alias := C.struct_miqt_string{}
-	headerValue_alias.data = (*C.char)(unsafe.Pointer(&headerValue[0]))
-	headerValue_alias.len = C.size_t(len(headerValue))
-	C.QHttpPart_SetRawHeader(this.h, headerName_alias, headerValue_alias)
+	headerName_alias := struct_miqt_string{}
+	headerName_alias.data = (char)(unsafe.Pointer(&headerName[0]))
+	headerName_alias.len = size_t(len(headerName))
+	headerValue_alias := struct_miqt_string{}
+	headerValue_alias.data = (char)(unsafe.Pointer(&headerValue[0]))
+	headerValue_alias.len = size_t(len(headerValue))
+	QHttpPart_SetRawHeader(this.h, headerName_alias, headerValue_alias)
 }
 
 func (this *QHttpPart) SetBody(body []byte) {
-	body_alias := C.struct_miqt_string{}
-	body_alias.data = (*C.char)(unsafe.Pointer(&body[0]))
-	body_alias.len = C.size_t(len(body))
-	C.QHttpPart_SetBody(this.h, body_alias)
+	body_alias := struct_miqt_string{}
+	body_alias.data = (char)(unsafe.Pointer(&body[0]))
+	body_alias.len = size_t(len(body))
+	QHttpPart_SetBody(this.h, body_alias)
 }
 
 func (this *QHttpPart) SetBodyDevice(device *qt.QIODevice) {
-	C.QHttpPart_SetBodyDevice(this.h, (*C.QIODevice)(device.UnsafePointer()))
-}
-
-// Delete this object from C++ memory.
-func (this *QHttpPart) Delete() {
-	C.QHttpPart_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QHttpPart) GoGC() {
-	runtime.SetFinalizer(this, func(this *QHttpPart) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QHttpPart_SetBodyDevice(this.h, (*QIODevice)(device.UnsafePointer()))
 }
 
 type QHttpMultiPart struct {
-	h          *C.QHttpMultiPart
+	h          uintptr
 	isSubclass bool
-	*qt.QObject
-}
-
-func (this *QHttpMultiPart) cPointer() *C.QHttpMultiPart {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QHttpMultiPart) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQHttpMultiPart constructs the type using only CGO pointers.
-func newQHttpMultiPart(h *C.QHttpMultiPart) *QHttpMultiPart {
-	if h == nil {
-		return nil
-	}
-	var outptr_QObject *C.QObject = nil
-	C.QHttpMultiPart_virtbase(h, &outptr_QObject)
-
-	return &QHttpMultiPart{h: h,
-		QObject: qt.UnsafeNewQObject(unsafe.Pointer(outptr_QObject))}
-}
-
-// UnsafeNewQHttpMultiPart constructs the type using only unsafe pointers.
-func UnsafeNewQHttpMultiPart(h unsafe.Pointer) *QHttpMultiPart {
-	return newQHttpMultiPart((*C.QHttpMultiPart)(h))
 }
 
 // NewQHttpMultiPart constructs a new QHttpMultiPart object.
 func NewQHttpMultiPart() *QHttpMultiPart {
 
-	ret := newQHttpMultiPart(C.QHttpMultiPart_new())
+	ret := newQHttpMultiPart(QHttpMultiPart_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQHttpMultiPart2 constructs a new QHttpMultiPart object.
-func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType) *QHttpMultiPart {
+func NewQHttpMultiPart2(contentType ContentType) *QHttpMultiPart {
 
-	ret := newQHttpMultiPart(C.QHttpMultiPart_new2((C.int)(contentType)))
+	ret := newQHttpMultiPart(QHttpMultiPart_new2(contentType))
 	ret.isSubclass = true
 	return ret
 }
@@ -184,127 +100,96 @@ func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType) *QHttpMultiPart
 // NewQHttpMultiPart3 constructs a new QHttpMultiPart object.
 func NewQHttpMultiPart3(parent *qt.QObject) *QHttpMultiPart {
 
-	ret := newQHttpMultiPart(C.QHttpMultiPart_new3((*C.QObject)(parent.UnsafePointer())))
+	ret := newQHttpMultiPart(QHttpMultiPart_new3((*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQHttpMultiPart4 constructs a new QHttpMultiPart object.
-func NewQHttpMultiPart4(contentType QHttpMultiPart__ContentType, parent *qt.QObject) *QHttpMultiPart {
+func NewQHttpMultiPart4(contentType ContentType, parent *qt.QObject) *QHttpMultiPart {
 
-	ret := newQHttpMultiPart(C.QHttpMultiPart_new4((C.int)(contentType), (*C.QObject)(parent.UnsafePointer())))
+	ret := newQHttpMultiPart(QHttpMultiPart_new4(contentType, (*QObject)(parent.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QHttpMultiPart) MetaObject() *qt.QMetaObject {
-	return qt.UnsafeNewQMetaObject(unsafe.Pointer(C.QHttpMultiPart_MetaObject(this.h)))
+	return qt.UnsafeNewQMetaObject(unsafe.Pointer(QHttpMultiPart_MetaObject(this.h)))
 }
 
 func (this *QHttpMultiPart) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QHttpMultiPart_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QHttpMultiPart_Metacast(this.h, param1_Cstring))
 }
 
 func QHttpMultiPart_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QHttpMultiPart_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QHttpMultiPart_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QHttpMultiPart_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QHttpMultiPart_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QHttpMultiPart) Append(httpPart *QHttpPart) {
-	C.QHttpMultiPart_Append(this.h, httpPart.cPointer())
+	QHttpMultiPart_Append(this.h, httpPart.cPointer())
 }
 
-func (this *QHttpMultiPart) SetContentType(contentType QHttpMultiPart__ContentType) {
-	C.QHttpMultiPart_SetContentType(this.h, (C.int)(contentType))
+func (this *QHttpMultiPart) SetContentType(contentType ContentType) {
+	QHttpMultiPart_SetContentType(this.h, contentType)
 }
 
 func (this *QHttpMultiPart) Boundary() []byte {
-	var _bytearray C.struct_miqt_string = C.QHttpMultiPart_Boundary(this.h)
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
+	var _bytearray struct_miqt_string = QHttpMultiPart_Boundary(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
 	return _ret
 }
 
 func (this *QHttpMultiPart) SetBoundary(boundary []byte) {
-	boundary_alias := C.struct_miqt_string{}
-	boundary_alias.data = (*C.char)(unsafe.Pointer(&boundary[0]))
-	boundary_alias.len = C.size_t(len(boundary))
-	C.QHttpMultiPart_SetBoundary(this.h, boundary_alias)
+	boundary_alias := struct_miqt_string{}
+	boundary_alias.data = (char)(unsafe.Pointer(&boundary[0]))
+	boundary_alias.len = size_t(len(boundary))
+	QHttpMultiPart_SetBoundary(this.h, boundary_alias)
 }
 
 func QHttpMultiPart_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QHttpMultiPart_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QHttpMultiPart_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QHttpMultiPart_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QHttpMultiPart_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QHttpMultiPart_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QHttpMultiPart_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QHttpMultiPart_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QHttpMultiPart_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QHttpMultiPart_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QHttpMultiPart) callVirtualBase_Event(event *qt.QEvent) bool {
 
-	return (bool)(C.QHttpMultiPart_virtualbase_Event(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer())))
+	return (bool)(QHttpMultiPart_virtualbase_Event(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer())))
 
 }
 func (this *QHttpMultiPart) OnEvent(slot func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_Event(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_Event(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_Event
-func miqt_exec_callback_QHttpMultiPart_Event(self *C.QHttpMultiPart, cb C.intptr_t, event *C.QEvent) C.bool {
+func miqt_exec_callback_QHttpMultiPart_Event(self QHttpMultiPart, cb intptr_t, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent) bool, event *qt.QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -315,24 +200,24 @@ func miqt_exec_callback_QHttpMultiPart_Event(self *C.QHttpMultiPart, cb C.intptr
 
 	virtualReturn := gofunc((&QHttpMultiPart{h: self}).callVirtualBase_Event, slotval1)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QHttpMultiPart) callVirtualBase_EventFilter(watched *qt.QObject, event *qt.QEvent) bool {
 
-	return (bool)(C.QHttpMultiPart_virtualbase_EventFilter(unsafe.Pointer(this.h), (*C.QObject)(watched.UnsafePointer()), (*C.QEvent)(event.UnsafePointer())))
+	return (bool)(QHttpMultiPart_virtualbase_EventFilter(unsafe.Pointer(this.h), (*QObject)(watched.UnsafePointer()), (*QEvent)(event.UnsafePointer())))
 
 }
 func (this *QHttpMultiPart) OnEventFilter(slot func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_EventFilter(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_EventFilter(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_EventFilter
-func miqt_exec_callback_QHttpMultiPart_EventFilter(self *C.QHttpMultiPart, cb C.intptr_t, watched *C.QObject, event *C.QEvent) C.bool {
+func miqt_exec_callback_QHttpMultiPart_EventFilter(self QHttpMultiPart, cb intptr_t, watched *QObject, event *QEvent) bool {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(watched *qt.QObject, event *qt.QEvent) bool, watched *qt.QObject, event *qt.QEvent) bool)
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -345,24 +230,24 @@ func miqt_exec_callback_QHttpMultiPart_EventFilter(self *C.QHttpMultiPart, cb C.
 
 	virtualReturn := gofunc((&QHttpMultiPart{h: self}).callVirtualBase_EventFilter, slotval1, slotval2)
 
-	return (C.bool)(virtualReturn)
+	return (bool)(virtualReturn)
 
 }
 
 func (this *QHttpMultiPart) callVirtualBase_TimerEvent(event *qt.QTimerEvent) {
 
-	C.QHttpMultiPart_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*C.QTimerEvent)(event.UnsafePointer()))
+	QHttpMultiPart_virtualbase_TimerEvent(unsafe.Pointer(this.h), (*QTimerEvent)(event.UnsafePointer()))
 
 }
 func (this *QHttpMultiPart) OnTimerEvent(slot func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_TimerEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_TimerEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_TimerEvent
-func miqt_exec_callback_QHttpMultiPart_TimerEvent(self *C.QHttpMultiPart, cb C.intptr_t, event *C.QTimerEvent) {
+func miqt_exec_callback_QHttpMultiPart_TimerEvent(self QHttpMultiPart, cb intptr_t, event *QTimerEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QTimerEvent), event *qt.QTimerEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -377,18 +262,18 @@ func miqt_exec_callback_QHttpMultiPart_TimerEvent(self *C.QHttpMultiPart, cb C.i
 
 func (this *QHttpMultiPart) callVirtualBase_ChildEvent(event *qt.QChildEvent) {
 
-	C.QHttpMultiPart_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*C.QChildEvent)(event.UnsafePointer()))
+	QHttpMultiPart_virtualbase_ChildEvent(unsafe.Pointer(this.h), (*QChildEvent)(event.UnsafePointer()))
 
 }
 func (this *QHttpMultiPart) OnChildEvent(slot func(super func(event *qt.QChildEvent), event *qt.QChildEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_ChildEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_ChildEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_ChildEvent
-func miqt_exec_callback_QHttpMultiPart_ChildEvent(self *C.QHttpMultiPart, cb C.intptr_t, event *C.QChildEvent) {
+func miqt_exec_callback_QHttpMultiPart_ChildEvent(self QHttpMultiPart, cb intptr_t, event *QChildEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QChildEvent), event *qt.QChildEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -403,18 +288,18 @@ func miqt_exec_callback_QHttpMultiPart_ChildEvent(self *C.QHttpMultiPart, cb C.i
 
 func (this *QHttpMultiPart) callVirtualBase_CustomEvent(event *qt.QEvent) {
 
-	C.QHttpMultiPart_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*C.QEvent)(event.UnsafePointer()))
+	QHttpMultiPart_virtualbase_CustomEvent(unsafe.Pointer(this.h), (*QEvent)(event.UnsafePointer()))
 
 }
 func (this *QHttpMultiPart) OnCustomEvent(slot func(super func(event *qt.QEvent), event *qt.QEvent)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_CustomEvent(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_CustomEvent(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_CustomEvent
-func miqt_exec_callback_QHttpMultiPart_CustomEvent(self *C.QHttpMultiPart, cb C.intptr_t, event *C.QEvent) {
+func miqt_exec_callback_QHttpMultiPart_CustomEvent(self QHttpMultiPart, cb intptr_t, event *QEvent) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(event *qt.QEvent), event *qt.QEvent))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -429,18 +314,18 @@ func miqt_exec_callback_QHttpMultiPart_CustomEvent(self *C.QHttpMultiPart, cb C.
 
 func (this *QHttpMultiPart) callVirtualBase_ConnectNotify(signal *qt.QMetaMethod) {
 
-	C.QHttpMultiPart_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
+	QHttpMultiPart_virtualbase_ConnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
 
 }
 func (this *QHttpMultiPart) OnConnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_ConnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_ConnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_ConnectNotify
-func miqt_exec_callback_QHttpMultiPart_ConnectNotify(self *C.QHttpMultiPart, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QHttpMultiPart_ConnectNotify(self QHttpMultiPart, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -455,18 +340,18 @@ func miqt_exec_callback_QHttpMultiPart_ConnectNotify(self *C.QHttpMultiPart, cb 
 
 func (this *QHttpMultiPart) callVirtualBase_DisconnectNotify(signal *qt.QMetaMethod) {
 
-	C.QHttpMultiPart_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*C.QMetaMethod)(signal.UnsafePointer()))
+	QHttpMultiPart_virtualbase_DisconnectNotify(unsafe.Pointer(this.h), (*QMetaMethod)(signal.UnsafePointer()))
 
 }
 func (this *QHttpMultiPart) OnDisconnectNotify(slot func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod)) {
 	if !this.isSubclass {
 		panic("miqt: can only override virtual methods for directly constructed types")
 	}
-	C.QHttpMultiPart_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), C.intptr_t(cgo.NewHandle(slot)))
+	QHttpMultiPart_override_virtual_DisconnectNotify(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QHttpMultiPart_DisconnectNotify
-func miqt_exec_callback_QHttpMultiPart_DisconnectNotify(self *C.QHttpMultiPart, cb C.intptr_t, signal *C.QMetaMethod) {
+func miqt_exec_callback_QHttpMultiPart_DisconnectNotify(self QHttpMultiPart, cb intptr_t, signal *QMetaMethod) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(super func(signal *qt.QMetaMethod), signal *qt.QMetaMethod))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -477,18 +362,4 @@ func miqt_exec_callback_QHttpMultiPart_DisconnectNotify(self *C.QHttpMultiPart, 
 
 	gofunc((&QHttpMultiPart{h: self}).callVirtualBase_DisconnectNotify, slotval1)
 
-}
-
-// Delete this object from C++ memory.
-func (this *QHttpMultiPart) Delete() {
-	C.QHttpMultiPart_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QHttpMultiPart) GoGC() {
-	runtime.SetFinalizer(this, func(this *QHttpMultiPart) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QDataStream>
 #include <QIconEngine>
-#define WORKAROUND_INNER_CLASS_DEFINITION_QIconEngine__AvailableSizesArgument
 #define WORKAROUND_INNER_CLASS_DEFINITION_QIconEngine__ScaledPixmapArgument
 #include <QList>
 #include <QPainter>
@@ -16,13 +17,27 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQIconEngine : public virtual QIconEngine {
 public:
 
 	MiqtVirtualQIconEngine(): QIconEngine() {};
-	MiqtVirtualQIconEngine(const QIconEngine& other): QIconEngine(other) {};
 
 	virtual ~MiqtVirtualQIconEngine() = default;
 
@@ -275,7 +290,7 @@ public:
 	intptr_t handle__AvailableSizes = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const override {
+	virtual QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) override {
 		if (handle__AvailableSizes == 0) {
 			return QIconEngine::availableSizes(mode, state);
 		}
@@ -285,7 +300,7 @@ public:
 		QIcon::State state_ret = state;
 		int sigval2 = static_cast<int>(state_ret);
 
-		struct miqt_array /* of QSize* */  callback_return_value = miqt_exec_callback_QIconEngine_AvailableSizes(const_cast<MiqtVirtualQIconEngine*>(this), handle__AvailableSizes, sigval1, sigval2);
+		struct miqt_array /* of QSize* */  callback_return_value = miqt_exec_callback_QIconEngine_AvailableSizes(this, handle__AvailableSizes, sigval1, sigval2);
 		QList<QSize> callback_return_value_QList;
 		callback_return_value_QList.reserve(callback_return_value.len);
 		QSize** callback_return_value_arr = static_cast<QSize**>(callback_return_value.data);
@@ -297,7 +312,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	struct miqt_array /* of QSize* */  virtualbase_AvailableSizes(int mode, int state) const {
+	struct miqt_array /* of QSize* */  virtualbase_AvailableSizes(int mode, int state) {
 
 		QList<QSize> _ret = QIconEngine::availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 		// Convert QList<> from C++ memory to manually-managed C memory
@@ -316,20 +331,20 @@ public:
 	intptr_t handle__IconName = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QString iconName() const override {
+	virtual QString iconName() override {
 		if (handle__IconName == 0) {
 			return QIconEngine::iconName();
 		}
 		
 
-		struct miqt_string callback_return_value = miqt_exec_callback_QIconEngine_IconName(const_cast<MiqtVirtualQIconEngine*>(this), handle__IconName);
+		struct miqt_string callback_return_value = miqt_exec_callback_QIconEngine_IconName(this, handle__IconName);
 		QString callback_return_value_QString = QString::fromUtf8(callback_return_value.data, callback_return_value.len);
 
 		return callback_return_value_QString;
 	}
 
 	// Wrapper to allow calling protected method
-	struct miqt_string virtualbase_IconName() const {
+	struct miqt_string virtualbase_IconName() {
 
 		QString _ret = QIconEngine::iconName();
 		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -339,6 +354,59 @@ public:
 		_ms.data = static_cast<char*>(malloc(_ms.len));
 		memcpy(_ms.data, _b.data(), _ms.len);
 		return _ms;
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__IsNull = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool isNull() override {
+		if (handle__IsNull == 0) {
+			return QIconEngine::isNull();
+		}
+		
+
+		bool callback_return_value = miqt_exec_callback_QIconEngine_IsNull(this, handle__IsNull);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_IsNull() {
+
+		return QIconEngine::isNull();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ScaledPixmap = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QPixmap scaledPixmap(const QSize& size, QIcon::Mode mode, QIcon::State state, qreal scale) override {
+		if (handle__ScaledPixmap == 0) {
+			return QIconEngine::scaledPixmap(size, mode, state, scale);
+		}
+		
+		const QSize& size_ret = size;
+		// Cast returned reference into pointer
+		QSize* sigval1 = const_cast<QSize*>(&size_ret);
+		QIcon::Mode mode_ret = mode;
+		int sigval2 = static_cast<int>(mode_ret);
+		QIcon::State state_ret = state;
+		int sigval3 = static_cast<int>(state_ret);
+		qreal scale_ret = scale;
+		double sigval4 = static_cast<double>(scale_ret);
+
+		QPixmap* callback_return_value = miqt_exec_callback_QIconEngine_ScaledPixmap(this, handle__ScaledPixmap, sigval1, sigval2, sigval3, sigval4);
+
+		return *callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QPixmap* virtualbase_ScaledPixmap(QSize* size, int mode, int state, double scale) {
+
+		return new QPixmap(QIconEngine::scaledPixmap(*size, static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state), static_cast<qreal>(scale)));
 
 	}
 
@@ -371,10 +439,6 @@ public:
 
 QIconEngine* QIconEngine_new() {
 	return new MiqtVirtualQIconEngine();
-}
-
-QIconEngine* QIconEngine_new2(QIconEngine* other) {
-	return new MiqtVirtualQIconEngine(*other);
 }
 
 void QIconEngine_Paint(QIconEngine* self, QPainter* painter, QRect* rect, int mode, int state) {
@@ -421,7 +485,7 @@ bool QIconEngine_Write(const QIconEngine* self, QDataStream* out) {
 	return self->write(*out);
 }
 
-struct miqt_array /* of QSize* */  QIconEngine_AvailableSizes(const QIconEngine* self, int mode, int state) {
+struct miqt_array /* of QSize* */  QIconEngine_AvailableSizes(QIconEngine* self, int mode, int state) {
 	QList<QSize> _ret = self->availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QSize** _arr = static_cast<QSize**>(malloc(sizeof(QSize*) * _ret.length()));
@@ -434,7 +498,7 @@ struct miqt_array /* of QSize* */  QIconEngine_AvailableSizes(const QIconEngine*
 	return _out;
 }
 
-struct miqt_string QIconEngine_IconName(const QIconEngine* self) {
+struct miqt_string QIconEngine_IconName(QIconEngine* self) {
 	QString _ret = self->iconName();
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
@@ -445,7 +509,7 @@ struct miqt_string QIconEngine_IconName(const QIconEngine* self) {
 	return _ms;
 }
 
-bool QIconEngine_IsNull(const QIconEngine* self) {
+bool QIconEngine_IsNull(QIconEngine* self) {
 	return self->isNull();
 }
 
@@ -525,16 +589,32 @@ void QIconEngine_override_virtual_AvailableSizes(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQIconEngine*>( (QIconEngine*)(self) )->handle__AvailableSizes = slot;
 }
 
-struct miqt_array /* of QSize* */  QIconEngine_virtualbase_AvailableSizes(const void* self, int mode, int state) {
-	return ( (const MiqtVirtualQIconEngine*)(self) )->virtualbase_AvailableSizes(mode, state);
+struct miqt_array /* of QSize* */  QIconEngine_virtualbase_AvailableSizes(void* self, int mode, int state) {
+	return ( (MiqtVirtualQIconEngine*)(self) )->virtualbase_AvailableSizes(mode, state);
 }
 
 void QIconEngine_override_virtual_IconName(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQIconEngine*>( (QIconEngine*)(self) )->handle__IconName = slot;
 }
 
-struct miqt_string QIconEngine_virtualbase_IconName(const void* self) {
-	return ( (const MiqtVirtualQIconEngine*)(self) )->virtualbase_IconName();
+struct miqt_string QIconEngine_virtualbase_IconName(void* self) {
+	return ( (MiqtVirtualQIconEngine*)(self) )->virtualbase_IconName();
+}
+
+void QIconEngine_override_virtual_IsNull(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIconEngine*>( (QIconEngine*)(self) )->handle__IsNull = slot;
+}
+
+bool QIconEngine_virtualbase_IsNull(void* self) {
+	return ( (MiqtVirtualQIconEngine*)(self) )->virtualbase_IsNull();
+}
+
+void QIconEngine_override_virtual_ScaledPixmap(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQIconEngine*>( (QIconEngine*)(self) )->handle__ScaledPixmap = slot;
+}
+
+QPixmap* QIconEngine_virtualbase_ScaledPixmap(void* self, QSize* size, int mode, int state, double scale) {
+	return ( (MiqtVirtualQIconEngine*)(self) )->virtualbase_ScaledPixmap(size, mode, state, scale);
 }
 
 void QIconEngine_override_virtual_VirtualHook(void* self, intptr_t slot) {
@@ -553,27 +633,11 @@ void QIconEngine_Delete(QIconEngine* self, bool isSubclass) {
 	}
 }
 
-QIconEngine__AvailableSizesArgument* QIconEngine__AvailableSizesArgument_new(QIconEngine__AvailableSizesArgument* param1) {
-	return new QIconEngine::AvailableSizesArgument(*param1);
-}
-
-void QIconEngine__AvailableSizesArgument_OperatorAssign(QIconEngine__AvailableSizesArgument* self, QIconEngine__AvailableSizesArgument* param1) {
-	self->operator=(*param1);
-}
-
-void QIconEngine__AvailableSizesArgument_Delete(QIconEngine__AvailableSizesArgument* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QIconEngine::AvailableSizesArgument*>( self );
-	} else {
-		delete self;
-	}
-}
-
-QIconEngine__ScaledPixmapArgument* QIconEngine__ScaledPixmapArgument_new(QIconEngine__ScaledPixmapArgument* param1) {
+QIconEngine__ScaledPixmapArgument* QIconEngine__ScaledPixmapArgument_new(const ScaledPixmapArgument* param1) {
 	return new QIconEngine::ScaledPixmapArgument(*param1);
 }
 
-void QIconEngine__ScaledPixmapArgument_OperatorAssign(QIconEngine__ScaledPixmapArgument* self, QIconEngine__ScaledPixmapArgument* param1) {
+void QIconEngine__ScaledPixmapArgument_OperatorAssign(QIconEngine__ScaledPixmapArgument* self, const ScaledPixmapArgument* param1) {
 	self->operator=(*param1);
 }
 

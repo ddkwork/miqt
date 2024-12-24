@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QDrag>
 #include <QEvent>
@@ -17,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQDrag : public virtual QDrag {
 public:
@@ -226,17 +243,6 @@ struct miqt_string QDrag_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QDrag_TrUtf8(const char* s) {
-	QString _ret = QDrag::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QDrag_SetMimeData(QDrag* self, QMimeData* data) {
 	self->setMimeData(data);
 }
@@ -267,11 +273,6 @@ QObject* QDrag_Source(const QDrag* self) {
 
 QObject* QDrag_Target(const QDrag* self) {
 	return self->target();
-}
-
-int QDrag_Start(QDrag* self) {
-	Qt::DropAction _ret = self->start();
-	return static_cast<int>(_ret);
 }
 
 int QDrag_Exec(QDrag* self) {
@@ -349,33 +350,6 @@ struct miqt_string QDrag_Tr3(const char* s, const char* c, int n) {
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
-}
-
-struct miqt_string QDrag_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDrag::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDrag_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDrag::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QDrag_Start1(QDrag* self, int supportedActions) {
-	Qt::DropAction _ret = self->start(static_cast<Qt::DropActions>(supportedActions));
-	return static_cast<int>(_ret);
 }
 
 int QDrag_Exec1(QDrag* self, int supportedActions) {

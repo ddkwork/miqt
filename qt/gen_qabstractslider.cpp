@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractSlider>
 #include <QActionEvent>
 #include <QByteArray>
@@ -7,6 +9,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -38,7 +41,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractSlider : public virtual QAbstractSlider {
 public:
@@ -75,14 +93,13 @@ public:
 	intptr_t handle__SliderChange = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void sliderChange(QAbstractSlider::SliderChange change) override {
+	virtual void sliderChange(SliderChange change) override {
 		if (handle__SliderChange == 0) {
 			QAbstractSlider::sliderChange(change);
 			return;
 		}
 		
-		QAbstractSlider::SliderChange change_ret = change;
-		int sigval1 = static_cast<int>(change_ret);
+		SliderChange sigval1 = change;
 
 		miqt_exec_callback_QAbstractSlider_SliderChange(this, handle__SliderChange, sigval1);
 
@@ -90,9 +107,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SliderChange(int change) {
+	void virtualbase_SliderChange(SliderChange change) {
 
-		QAbstractSlider::sliderChange(static_cast<QAbstractSlider::SliderChange>(change));
+		QAbstractSlider::sliderChange(change);
 
 	}
 
@@ -521,13 +538,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QAbstractSlider::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QAbstractSlider_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -535,7 +552,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QAbstractSlider::enterEvent(event);
 
@@ -881,7 +898,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QAbstractSlider::nativeEvent(eventType, message, result);
 		}
@@ -893,7 +910,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QAbstractSlider_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -901,10 +919,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QAbstractSlider::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QAbstractSlider::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -912,13 +930,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QAbstractSlider::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QAbstractSlider_Metric(const_cast<MiqtVirtualQAbstractSlider*>(this), handle__Metric, sigval1);
 
@@ -926,9 +943,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QAbstractSlider::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QAbstractSlider::metric(param1);
 
 	}
 
@@ -1105,17 +1122,6 @@ struct miqt_string QAbstractSlider_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QAbstractSlider_TrUtf8(const char* s) {
-	QString _ret = QAbstractSlider::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QAbstractSlider_Orientation(const QAbstractSlider* self) {
 	Qt::Orientation _ret = self->orientation();
 	return static_cast<int>(_ret);
@@ -1197,8 +1203,8 @@ int QAbstractSlider_Value(const QAbstractSlider* self) {
 	return self->value();
 }
 
-void QAbstractSlider_TriggerAction(QAbstractSlider* self, int action) {
-	self->triggerAction(static_cast<QAbstractSlider::SliderAction>(action));
+void QAbstractSlider_TriggerAction(QAbstractSlider* self, SliderAction action) {
+	self->triggerAction(action);
 }
 
 void QAbstractSlider_SetValue(QAbstractSlider* self, int value) {
@@ -1300,28 +1306,6 @@ struct miqt_string QAbstractSlider_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QAbstractSlider_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractSlider::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractSlider_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractSlider::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QAbstractSlider_override_virtual_Event(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSlider*>( (QAbstractSlider*)(self) )->handle__Event = slot;
 }
@@ -1334,7 +1318,7 @@ void QAbstractSlider_override_virtual_SliderChange(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSlider*>( (QAbstractSlider*)(self) )->handle__SliderChange = slot;
 }
 
-void QAbstractSlider_virtualbase_SliderChange(void* self, int change) {
+void QAbstractSlider_virtualbase_SliderChange(void* self, SliderChange change) {
 	( (MiqtVirtualQAbstractSlider*)(self) )->virtualbase_SliderChange(change);
 }
 
@@ -1486,7 +1470,7 @@ void QAbstractSlider_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSlider*>( (QAbstractSlider*)(self) )->handle__EnterEvent = slot;
 }
 
-void QAbstractSlider_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QAbstractSlider_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQAbstractSlider*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1606,7 +1590,7 @@ void QAbstractSlider_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSlider*>( (QAbstractSlider*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QAbstractSlider_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QAbstractSlider_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQAbstractSlider*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1614,7 +1598,7 @@ void QAbstractSlider_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractSlider*>( (QAbstractSlider*)(self) )->handle__Metric = slot;
 }
 
-int QAbstractSlider_virtualbase_Metric(const void* self, int param1) {
+int QAbstractSlider_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQAbstractSlider*)(self) )->virtualbase_Metric(param1);
 }
 

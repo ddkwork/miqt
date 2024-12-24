@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QPaintDevice>
 #include <QPaintEngine>
 #include <QPainter>
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 int QPaintDevice_DevType(const QPaintDevice* self) {
 	return self->devType();
@@ -54,8 +71,9 @@ int QPaintDevice_PhysicalDpiY(const QPaintDevice* self) {
 	return self->physicalDpiY();
 }
 
-int QPaintDevice_DevicePixelRatio(const QPaintDevice* self) {
-	return self->devicePixelRatio();
+double QPaintDevice_DevicePixelRatio(const QPaintDevice* self) {
+	qreal _ret = self->devicePixelRatio();
+	return static_cast<double>(_ret);
 }
 
 double QPaintDevice_DevicePixelRatioF(const QPaintDevice* self) {
@@ -74,6 +92,10 @@ int QPaintDevice_Depth(const QPaintDevice* self) {
 double QPaintDevice_DevicePixelRatioFScale() {
 	qreal _ret = QPaintDevice::devicePixelRatioFScale();
 	return static_cast<double>(_ret);
+}
+
+int QPaintDevice_EncodeMetricF(PaintDeviceMetric metric, double value) {
+	return QPaintDevice::encodeMetricF(metric, static_cast<double>(value));
 }
 
 void QPaintDevice_Delete(QPaintDevice* self, bool isSubclass) {

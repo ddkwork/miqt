@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qfont.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -34,20 +25,20 @@ const (
 type QFont__StyleStrategy int
 
 const (
-	QFont__PreferDefault       QFont__StyleStrategy = 1
-	QFont__PreferBitmap        QFont__StyleStrategy = 2
-	QFont__PreferDevice        QFont__StyleStrategy = 4
-	QFont__PreferOutline       QFont__StyleStrategy = 8
-	QFont__ForceOutline        QFont__StyleStrategy = 16
-	QFont__PreferMatch         QFont__StyleStrategy = 32
-	QFont__PreferQuality       QFont__StyleStrategy = 64
-	QFont__PreferAntialias     QFont__StyleStrategy = 128
-	QFont__NoAntialias         QFont__StyleStrategy = 256
-	QFont__OpenGLCompatible    QFont__StyleStrategy = 512
-	QFont__ForceIntegerMetrics QFont__StyleStrategy = 1024
-	QFont__NoSubpixelAntialias QFont__StyleStrategy = 2048
-	QFont__PreferNoShaping     QFont__StyleStrategy = 4096
-	QFont__NoFontMerging       QFont__StyleStrategy = 32768
+	QFont__PreferDefault         QFont__StyleStrategy = 1
+	QFont__PreferBitmap          QFont__StyleStrategy = 2
+	QFont__PreferDevice          QFont__StyleStrategy = 4
+	QFont__PreferOutline         QFont__StyleStrategy = 8
+	QFont__ForceOutline          QFont__StyleStrategy = 16
+	QFont__PreferMatch           QFont__StyleStrategy = 32
+	QFont__PreferQuality         QFont__StyleStrategy = 64
+	QFont__PreferAntialias       QFont__StyleStrategy = 128
+	QFont__NoAntialias           QFont__StyleStrategy = 256
+	QFont__NoSubpixelAntialias   QFont__StyleStrategy = 2048
+	QFont__PreferNoShaping       QFont__StyleStrategy = 4096
+	QFont__ContextFontMerging    QFont__StyleStrategy = 8192
+	QFont__PreferTypoLineMetrics QFont__StyleStrategy = 16384
+	QFont__NoFontMerging         QFont__StyleStrategy = 32768
 )
 
 type QFont__HintingPreference int
@@ -62,15 +53,15 @@ const (
 type QFont__Weight int
 
 const (
-	QFont__Thin       QFont__Weight = 0
-	QFont__ExtraLight QFont__Weight = 12
-	QFont__Light      QFont__Weight = 25
-	QFont__Normal     QFont__Weight = 50
-	QFont__Medium     QFont__Weight = 57
-	QFont__DemiBold   QFont__Weight = 63
-	QFont__Bold       QFont__Weight = 75
-	QFont__ExtraBold  QFont__Weight = 81
-	QFont__Black      QFont__Weight = 87
+	QFont__Thin       QFont__Weight = 100
+	QFont__ExtraLight QFont__Weight = 200
+	QFont__Light      QFont__Weight = 300
+	QFont__Normal     QFont__Weight = 400
+	QFont__Medium     QFont__Weight = 500
+	QFont__DemiBold   QFont__Weight = 600
+	QFont__Bold       QFont__Weight = 700
+	QFont__ExtraBold  QFont__Weight = 800
+	QFont__Black      QFont__Weight = 900
 )
 
 type QFont__Style int
@@ -135,66 +126,50 @@ const (
 	QFont__HintingPreferenceResolved QFont__ResolveProperties = 32768
 	QFont__StyleNameResolved         QFont__ResolveProperties = 65536
 	QFont__FamiliesResolved          QFont__ResolveProperties = 131072
-	QFont__AllPropertiesResolved     QFont__ResolveProperties = 262143
+	QFont__FeaturesResolved          QFont__ResolveProperties = 262144
+	QFont__VariableAxesResolved      QFont__ResolveProperties = 524288
+	QFont__AllPropertiesResolved     QFont__ResolveProperties = 1048575
 )
 
 type QFont struct {
-	h          *C.QFont
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QFont) cPointer() *C.QFont {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QFont) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQFont constructs the type using only CGO pointers.
-func newQFont(h *C.QFont) *QFont {
-	if h == nil {
-		return nil
-	}
-
-	return &QFont{h: h}
-}
-
-// UnsafeNewQFont constructs the type using only unsafe pointers.
-func UnsafeNewQFont(h unsafe.Pointer) *QFont {
-	return newQFont((*C.QFont)(h))
 }
 
 // NewQFont constructs a new QFont object.
 func NewQFont() *QFont {
 
-	ret := newQFont(C.QFont_new())
+	ret := newQFont(QFont_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQFont2 constructs a new QFont object.
 func NewQFont2(family string) *QFont {
-	family_ms := C.struct_miqt_string{}
-	family_ms.data = C.CString(family)
-	family_ms.len = C.size_t(len(family))
-	defer C.free(unsafe.Pointer(family_ms.data))
+	family_ms := struct_miqt_string{}
+	family_ms.data = CString(family)
+	family_ms.len = size_t(len(family))
+	defer free(unsafe.Pointer(family_ms.data))
 
-	ret := newQFont(C.QFont_new2(family_ms))
+	ret := newQFont(QFont_new2(family_ms))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQFont3 constructs a new QFont object.
-func NewQFont3(font *QFont, pd *QPaintDevice) *QFont {
+func NewQFont3(families []string) *QFont {
+	families_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(families))))
+	defer free(unsafe.Pointer(families_CArray))
+	for i := range families {
+		families_i_ms := struct_miqt_string{}
+		families_i_ms.data = CString(families[i])
+		families_i_ms.len = size_t(len(families[i]))
+		defer free(unsafe.Pointer(families_i_ms.data))
+		families_CArray[i] = families_i_ms
+	}
+	families_ma := struct_miqt_array{len: size_t(len(families)), data: unsafe.Pointer(families_CArray)}
 
-	ret := newQFont(C.QFont_new3(font.cPointer(), pd.cPointer()))
+	ret := newQFont(QFont_new3(families_ma))
 	ret.isSubclass = true
 	return ret
 }
@@ -202,7 +177,7 @@ func NewQFont3(font *QFont, pd *QPaintDevice) *QFont {
 // NewQFont4 constructs a new QFont object.
 func NewQFont4(font *QFont, pd *QPaintDevice) *QFont {
 
-	ret := newQFont(C.QFont_new4(font.cPointer(), pd.cPointer()))
+	ret := newQFont(QFont_new4(font.cPointer(), pd.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -210,473 +185,580 @@ func NewQFont4(font *QFont, pd *QPaintDevice) *QFont {
 // NewQFont5 constructs a new QFont object.
 func NewQFont5(font *QFont) *QFont {
 
-	ret := newQFont(C.QFont_new5(font.cPointer()))
+	ret := newQFont(QFont_new5(font.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQFont6 constructs a new QFont object.
 func NewQFont6(family string, pointSize int) *QFont {
-	family_ms := C.struct_miqt_string{}
-	family_ms.data = C.CString(family)
-	family_ms.len = C.size_t(len(family))
-	defer C.free(unsafe.Pointer(family_ms.data))
+	family_ms := struct_miqt_string{}
+	family_ms.data = CString(family)
+	family_ms.len = size_t(len(family))
+	defer free(unsafe.Pointer(family_ms.data))
 
-	ret := newQFont(C.QFont_new6(family_ms, (C.int)(pointSize)))
+	ret := newQFont(QFont_new6(family_ms, (int)(pointSize)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQFont7 constructs a new QFont object.
 func NewQFont7(family string, pointSize int, weight int) *QFont {
-	family_ms := C.struct_miqt_string{}
-	family_ms.data = C.CString(family)
-	family_ms.len = C.size_t(len(family))
-	defer C.free(unsafe.Pointer(family_ms.data))
+	family_ms := struct_miqt_string{}
+	family_ms.data = CString(family)
+	family_ms.len = size_t(len(family))
+	defer free(unsafe.Pointer(family_ms.data))
 
-	ret := newQFont(C.QFont_new7(family_ms, (C.int)(pointSize), (C.int)(weight)))
+	ret := newQFont(QFont_new7(family_ms, (int)(pointSize), (int)(weight)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQFont8 constructs a new QFont object.
 func NewQFont8(family string, pointSize int, weight int, italic bool) *QFont {
-	family_ms := C.struct_miqt_string{}
-	family_ms.data = C.CString(family)
-	family_ms.len = C.size_t(len(family))
-	defer C.free(unsafe.Pointer(family_ms.data))
+	family_ms := struct_miqt_string{}
+	family_ms.data = CString(family)
+	family_ms.len = size_t(len(family))
+	defer free(unsafe.Pointer(family_ms.data))
 
-	ret := newQFont(C.QFont_new8(family_ms, (C.int)(pointSize), (C.int)(weight), (C.bool)(italic)))
+	ret := newQFont(QFont_new8(family_ms, (int)(pointSize), (int)(weight), (bool)(italic)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQFont9 constructs a new QFont object.
+func NewQFont9(families []string, pointSize int) *QFont {
+	families_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(families))))
+	defer free(unsafe.Pointer(families_CArray))
+	for i := range families {
+		families_i_ms := struct_miqt_string{}
+		families_i_ms.data = CString(families[i])
+		families_i_ms.len = size_t(len(families[i]))
+		defer free(unsafe.Pointer(families_i_ms.data))
+		families_CArray[i] = families_i_ms
+	}
+	families_ma := struct_miqt_array{len: size_t(len(families)), data: unsafe.Pointer(families_CArray)}
+
+	ret := newQFont(QFont_new9(families_ma, (int)(pointSize)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQFont10 constructs a new QFont object.
+func NewQFont10(families []string, pointSize int, weight int) *QFont {
+	families_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(families))))
+	defer free(unsafe.Pointer(families_CArray))
+	for i := range families {
+		families_i_ms := struct_miqt_string{}
+		families_i_ms.data = CString(families[i])
+		families_i_ms.len = size_t(len(families[i]))
+		defer free(unsafe.Pointer(families_i_ms.data))
+		families_CArray[i] = families_i_ms
+	}
+	families_ma := struct_miqt_array{len: size_t(len(families)), data: unsafe.Pointer(families_CArray)}
+
+	ret := newQFont(QFont_new10(families_ma, (int)(pointSize), (int)(weight)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQFont11 constructs a new QFont object.
+func NewQFont11(families []string, pointSize int, weight int, italic bool) *QFont {
+	families_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(families))))
+	defer free(unsafe.Pointer(families_CArray))
+	for i := range families {
+		families_i_ms := struct_miqt_string{}
+		families_i_ms.data = CString(families[i])
+		families_i_ms.len = size_t(len(families[i]))
+		defer free(unsafe.Pointer(families_i_ms.data))
+		families_CArray[i] = families_i_ms
+	}
+	families_ma := struct_miqt_array{len: size_t(len(families)), data: unsafe.Pointer(families_CArray)}
+
+	ret := newQFont(QFont_new11(families_ma, (int)(pointSize), (int)(weight), (bool)(italic)))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QFont) Swap(other *QFont) {
-	C.QFont_Swap(this.h, other.cPointer())
+	QFont_Swap(this.h, other.cPointer())
 }
 
 func (this *QFont) Family() string {
-	var _ms C.struct_miqt_string = C.QFont_Family(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QFont_Family(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFont) SetFamily(family string) {
-	family_ms := C.struct_miqt_string{}
-	family_ms.data = C.CString(family)
-	family_ms.len = C.size_t(len(family))
-	defer C.free(unsafe.Pointer(family_ms.data))
-	C.QFont_SetFamily(this.h, family_ms)
+	family_ms := struct_miqt_string{}
+	family_ms.data = CString(family)
+	family_ms.len = size_t(len(family))
+	defer free(unsafe.Pointer(family_ms.data))
+	QFont_SetFamily(this.h, family_ms)
 }
 
 func (this *QFont) Families() []string {
-	var _ma C.struct_miqt_array = C.QFont_Families(this.h)
+	var _ma struct_miqt_array = QFont_Families(this.h)
 	_ret := make([]string, int(_ma.len))
-	_outCast := (*[0xffff]C.struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
-		var _lv_ms C.struct_miqt_string = _outCast[i]
-		_lv_ret := C.GoStringN(_lv_ms.data, C.int(int64(_lv_ms.len)))
-		C.free(unsafe.Pointer(_lv_ms.data))
+		var _lv_ms struct_miqt_string = _outCast[i]
+		_lv_ret := GoStringN(_lv_ms.data, int(int64(_lv_ms.len)))
+		free(unsafe.Pointer(_lv_ms.data))
 		_ret[i] = _lv_ret
 	}
 	return _ret
 }
 
 func (this *QFont) SetFamilies(families []string) {
-	families_CArray := (*[0xffff]C.struct_miqt_string)(C.malloc(C.size_t(int(unsafe.Sizeof(C.struct_miqt_string{})) * len(families))))
-	defer C.free(unsafe.Pointer(families_CArray))
+	families_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(families))))
+	defer free(unsafe.Pointer(families_CArray))
 	for i := range families {
-		families_i_ms := C.struct_miqt_string{}
-		families_i_ms.data = C.CString(families[i])
-		families_i_ms.len = C.size_t(len(families[i]))
-		defer C.free(unsafe.Pointer(families_i_ms.data))
+		families_i_ms := struct_miqt_string{}
+		families_i_ms.data = CString(families[i])
+		families_i_ms.len = size_t(len(families[i]))
+		defer free(unsafe.Pointer(families_i_ms.data))
 		families_CArray[i] = families_i_ms
 	}
-	families_ma := C.struct_miqt_array{len: C.size_t(len(families)), data: unsafe.Pointer(families_CArray)}
-	C.QFont_SetFamilies(this.h, families_ma)
+	families_ma := struct_miqt_array{len: size_t(len(families)), data: unsafe.Pointer(families_CArray)}
+	QFont_SetFamilies(this.h, families_ma)
 }
 
 func (this *QFont) StyleName() string {
-	var _ms C.struct_miqt_string = C.QFont_StyleName(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QFont_StyleName(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFont) SetStyleName(styleName string) {
-	styleName_ms := C.struct_miqt_string{}
-	styleName_ms.data = C.CString(styleName)
-	styleName_ms.len = C.size_t(len(styleName))
-	defer C.free(unsafe.Pointer(styleName_ms.data))
-	C.QFont_SetStyleName(this.h, styleName_ms)
+	styleName_ms := struct_miqt_string{}
+	styleName_ms.data = CString(styleName)
+	styleName_ms.len = size_t(len(styleName))
+	defer free(unsafe.Pointer(styleName_ms.data))
+	QFont_SetStyleName(this.h, styleName_ms)
 }
 
 func (this *QFont) PointSize() int {
-	return (int)(C.QFont_PointSize(this.h))
+	return (int)(QFont_PointSize(this.h))
 }
 
 func (this *QFont) SetPointSize(pointSize int) {
-	C.QFont_SetPointSize(this.h, (C.int)(pointSize))
+	QFont_SetPointSize(this.h, (int)(pointSize))
 }
 
 func (this *QFont) PointSizeF() float64 {
-	return (float64)(C.QFont_PointSizeF(this.h))
+	return (float64)(QFont_PointSizeF(this.h))
 }
 
 func (this *QFont) SetPointSizeF(pointSizeF float64) {
-	C.QFont_SetPointSizeF(this.h, (C.double)(pointSizeF))
+	QFont_SetPointSizeF(this.h, (double)(pointSizeF))
 }
 
 func (this *QFont) PixelSize() int {
-	return (int)(C.QFont_PixelSize(this.h))
+	return (int)(QFont_PixelSize(this.h))
 }
 
 func (this *QFont) SetPixelSize(pixelSize int) {
-	C.QFont_SetPixelSize(this.h, (C.int)(pixelSize))
+	QFont_SetPixelSize(this.h, (int)(pixelSize))
 }
 
-func (this *QFont) Weight() int {
-	return (int)(C.QFont_Weight(this.h))
+func (this *QFont) Weight() Weight {
+	xxxxxxxxx
 }
 
-func (this *QFont) SetWeight(weight int) {
-	C.QFont_SetWeight(this.h, (C.int)(weight))
+func (this *QFont) SetWeight(weight Weight) {
+	QFont_SetWeight(this.h, weight)
 }
 
 func (this *QFont) Bold() bool {
-	return (bool)(C.QFont_Bold(this.h))
+	return (bool)(QFont_Bold(this.h))
 }
 
 func (this *QFont) SetBold(bold bool) {
-	C.QFont_SetBold(this.h, (C.bool)(bold))
+	QFont_SetBold(this.h, (bool)(bold))
 }
 
-func (this *QFont) SetStyle(style QFont__Style) {
-	C.QFont_SetStyle(this.h, (C.int)(style))
+func (this *QFont) SetStyle(style Style) {
+	QFont_SetStyle(this.h, style)
 }
 
-func (this *QFont) Style() QFont__Style {
-	return (QFont__Style)(C.QFont_Style(this.h))
+func (this *QFont) Style() Style {
+	xxxxxxxxx
 }
 
 func (this *QFont) Italic() bool {
-	return (bool)(C.QFont_Italic(this.h))
+	return (bool)(QFont_Italic(this.h))
 }
 
 func (this *QFont) SetItalic(b bool) {
-	C.QFont_SetItalic(this.h, (C.bool)(b))
+	QFont_SetItalic(this.h, (bool)(b))
 }
 
 func (this *QFont) Underline() bool {
-	return (bool)(C.QFont_Underline(this.h))
+	return (bool)(QFont_Underline(this.h))
 }
 
 func (this *QFont) SetUnderline(underline bool) {
-	C.QFont_SetUnderline(this.h, (C.bool)(underline))
+	QFont_SetUnderline(this.h, (bool)(underline))
 }
 
 func (this *QFont) Overline() bool {
-	return (bool)(C.QFont_Overline(this.h))
+	return (bool)(QFont_Overline(this.h))
 }
 
 func (this *QFont) SetOverline(overline bool) {
-	C.QFont_SetOverline(this.h, (C.bool)(overline))
+	QFont_SetOverline(this.h, (bool)(overline))
 }
 
 func (this *QFont) StrikeOut() bool {
-	return (bool)(C.QFont_StrikeOut(this.h))
+	return (bool)(QFont_StrikeOut(this.h))
 }
 
 func (this *QFont) SetStrikeOut(strikeOut bool) {
-	C.QFont_SetStrikeOut(this.h, (C.bool)(strikeOut))
+	QFont_SetStrikeOut(this.h, (bool)(strikeOut))
 }
 
 func (this *QFont) FixedPitch() bool {
-	return (bool)(C.QFont_FixedPitch(this.h))
+	return (bool)(QFont_FixedPitch(this.h))
 }
 
 func (this *QFont) SetFixedPitch(fixedPitch bool) {
-	C.QFont_SetFixedPitch(this.h, (C.bool)(fixedPitch))
+	QFont_SetFixedPitch(this.h, (bool)(fixedPitch))
 }
 
 func (this *QFont) Kerning() bool {
-	return (bool)(C.QFont_Kerning(this.h))
+	return (bool)(QFont_Kerning(this.h))
 }
 
 func (this *QFont) SetKerning(kerning bool) {
-	C.QFont_SetKerning(this.h, (C.bool)(kerning))
+	QFont_SetKerning(this.h, (bool)(kerning))
 }
 
-func (this *QFont) StyleHint() QFont__StyleHint {
-	return (QFont__StyleHint)(C.QFont_StyleHint(this.h))
+func (this *QFont) StyleHint() StyleHint {
+	xxxxxxxxx
 }
 
-func (this *QFont) StyleStrategy() QFont__StyleStrategy {
-	return (QFont__StyleStrategy)(C.QFont_StyleStrategy(this.h))
+func (this *QFont) StyleStrategy() StyleStrategy {
+	xxxxxxxxx
 }
 
-func (this *QFont) SetStyleHint(param1 QFont__StyleHint) {
-	C.QFont_SetStyleHint(this.h, (C.int)(param1))
+func (this *QFont) SetStyleHint(param1 StyleHint) {
+	QFont_SetStyleHint(this.h, param1)
 }
 
-func (this *QFont) SetStyleStrategy(s QFont__StyleStrategy) {
-	C.QFont_SetStyleStrategy(this.h, (C.int)(s))
+func (this *QFont) SetStyleStrategy(s StyleStrategy) {
+	QFont_SetStyleStrategy(this.h, s)
 }
 
 func (this *QFont) Stretch() int {
-	return (int)(C.QFont_Stretch(this.h))
+	return (int)(QFont_Stretch(this.h))
 }
 
 func (this *QFont) SetStretch(stretch int) {
-	C.QFont_SetStretch(this.h, (C.int)(stretch))
+	QFont_SetStretch(this.h, (int)(stretch))
 }
 
 func (this *QFont) LetterSpacing() float64 {
-	return (float64)(C.QFont_LetterSpacing(this.h))
+	return (float64)(QFont_LetterSpacing(this.h))
 }
 
-func (this *QFont) LetterSpacingType() QFont__SpacingType {
-	return (QFont__SpacingType)(C.QFont_LetterSpacingType(this.h))
+func (this *QFont) LetterSpacingType() SpacingType {
+	xxxxxxxxx
 }
 
-func (this *QFont) SetLetterSpacing(typeVal QFont__SpacingType, spacing float64) {
-	C.QFont_SetLetterSpacing(this.h, (C.int)(typeVal), (C.double)(spacing))
+func (this *QFont) SetLetterSpacing(typeVal SpacingType, spacing float64) {
+	QFont_SetLetterSpacing(this.h, typeVal, (double)(spacing))
 }
 
 func (this *QFont) WordSpacing() float64 {
-	return (float64)(C.QFont_WordSpacing(this.h))
+	return (float64)(QFont_WordSpacing(this.h))
 }
 
 func (this *QFont) SetWordSpacing(spacing float64) {
-	C.QFont_SetWordSpacing(this.h, (C.double)(spacing))
+	QFont_SetWordSpacing(this.h, (double)(spacing))
 }
 
-func (this *QFont) SetCapitalization(capitalization QFont__Capitalization) {
-	C.QFont_SetCapitalization(this.h, (C.int)(capitalization))
+func (this *QFont) SetCapitalization(capitalization Capitalization) {
+	QFont_SetCapitalization(this.h, capitalization)
 }
 
-func (this *QFont) Capitalization() QFont__Capitalization {
-	return (QFont__Capitalization)(C.QFont_Capitalization(this.h))
+func (this *QFont) Capitalization() Capitalization {
+	xxxxxxxxx
 }
 
-func (this *QFont) SetHintingPreference(hintingPreference QFont__HintingPreference) {
-	C.QFont_SetHintingPreference(this.h, (C.int)(hintingPreference))
+func (this *QFont) SetHintingPreference(hintingPreference HintingPreference) {
+	QFont_SetHintingPreference(this.h, hintingPreference)
 }
 
-func (this *QFont) HintingPreference() QFont__HintingPreference {
-	return (QFont__HintingPreference)(C.QFont_HintingPreference(this.h))
+func (this *QFont) HintingPreference() HintingPreference {
+	xxxxxxxxx
 }
 
-func (this *QFont) RawMode() bool {
-	return (bool)(C.QFont_RawMode(this.h))
+func (this *QFont) SetFeature(tag Tag, value uint) {
+	QFont_SetFeature(this.h, tag, (uint)(value))
 }
 
-func (this *QFont) SetRawMode(rawMode bool) {
-	C.QFont_SetRawMode(this.h, (C.bool)(rawMode))
+func (this *QFont) UnsetFeature(tag Tag) {
+	QFont_UnsetFeature(this.h, tag)
 }
 
-func (this *QFont) ExactMatch() bool {
-	return (bool)(C.QFont_ExactMatch(this.h))
+func (this *QFont) FeatureValue(tag Tag) uint {
+	return (uint)(QFont_FeatureValue(this.h, tag))
 }
 
-func (this *QFont) OperatorAssign(param1 *QFont) {
-	C.QFont_OperatorAssign(this.h, param1.cPointer())
+func (this *QFont) IsFeatureSet(tag Tag) bool {
+	return (bool)(QFont_IsFeatureSet(this.h, tag))
 }
 
-func (this *QFont) OperatorEqual(param1 *QFont) bool {
-	return (bool)(C.QFont_OperatorEqual(this.h, param1.cPointer()))
-}
-
-func (this *QFont) OperatorNotEqual(param1 *QFont) bool {
-	return (bool)(C.QFont_OperatorNotEqual(this.h, param1.cPointer()))
-}
-
-func (this *QFont) OperatorLesser(param1 *QFont) bool {
-	return (bool)(C.QFont_OperatorLesser(this.h, param1.cPointer()))
-}
-
-func (this *QFont) IsCopyOf(param1 *QFont) bool {
-	return (bool)(C.QFont_IsCopyOf(this.h, param1.cPointer()))
-}
-
-func (this *QFont) SetRawName(rawName string) {
-	rawName_ms := C.struct_miqt_string{}
-	rawName_ms.data = C.CString(rawName)
-	rawName_ms.len = C.size_t(len(rawName))
-	defer C.free(unsafe.Pointer(rawName_ms.data))
-	C.QFont_SetRawName(this.h, rawName_ms)
-}
-
-func (this *QFont) RawName() string {
-	var _ms C.struct_miqt_string = C.QFont_RawName(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+func (this *QFont) FeatureTags() []Tag {
+	var _ma struct_miqt_array = QFont_FeatureTags(this.h)
+	_ret := make([]Tag, int(_ma.len))
+	_outCast := (*[0xffff]Tag)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		xxxxxxxxx
+	}
 	return _ret
 }
 
+func (this *QFont) ClearFeatures() {
+	QFont_ClearFeatures(this.h)
+}
+
+func (this *QFont) SetVariableAxis(tag Tag, value float32) {
+	QFont_SetVariableAxis(this.h, tag, (float)(value))
+}
+
+func (this *QFont) UnsetVariableAxis(tag Tag) {
+	QFont_UnsetVariableAxis(this.h, tag)
+}
+
+func (this *QFont) IsVariableAxisSet(tag Tag) bool {
+	return (bool)(QFont_IsVariableAxisSet(this.h, tag))
+}
+
+func (this *QFont) VariableAxisValue(tag Tag) float32 {
+	return (float32)(QFont_VariableAxisValue(this.h, tag))
+}
+
+func (this *QFont) ClearVariableAxes() {
+	QFont_ClearVariableAxes(this.h)
+}
+
+func (this *QFont) VariableAxisTags() []Tag {
+	var _ma struct_miqt_array = QFont_VariableAxisTags(this.h)
+	_ret := make([]Tag, int(_ma.len))
+	_outCast := (*[0xffff]Tag)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		xxxxxxxxx
+	}
+	return _ret
+}
+
+func (this *QFont) ExactMatch() bool {
+	return (bool)(QFont_ExactMatch(this.h))
+}
+
+func (this *QFont) OperatorAssign(param1 *QFont) {
+	QFont_OperatorAssign(this.h, param1.cPointer())
+}
+
+func (this *QFont) OperatorEqual(param1 *QFont) bool {
+	return (bool)(QFont_OperatorEqual(this.h, param1.cPointer()))
+}
+
+func (this *QFont) OperatorNotEqual(param1 *QFont) bool {
+	return (bool)(QFont_OperatorNotEqual(this.h, param1.cPointer()))
+}
+
+func (this *QFont) OperatorLesser(param1 *QFont) bool {
+	return (bool)(QFont_OperatorLesser(this.h, param1.cPointer()))
+}
+
+func (this *QFont) IsCopyOf(param1 *QFont) bool {
+	return (bool)(QFont_IsCopyOf(this.h, param1.cPointer()))
+}
+
 func (this *QFont) Key() string {
-	var _ms C.struct_miqt_string = C.QFont_Key(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QFont_Key(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFont) ToString() string {
-	var _ms C.struct_miqt_string = C.QFont_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QFont_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFont) FromString(param1 string) bool {
-	param1_ms := C.struct_miqt_string{}
-	param1_ms.data = C.CString(param1)
-	param1_ms.len = C.size_t(len(param1))
-	defer C.free(unsafe.Pointer(param1_ms.data))
-	return (bool)(C.QFont_FromString(this.h, param1_ms))
+	param1_ms := struct_miqt_string{}
+	param1_ms.data = CString(param1)
+	param1_ms.len = size_t(len(param1))
+	defer free(unsafe.Pointer(param1_ms.data))
+	return (bool)(QFont_FromString(this.h, param1_ms))
 }
 
 func QFont_Substitute(param1 string) string {
-	param1_ms := C.struct_miqt_string{}
-	param1_ms.data = C.CString(param1)
-	param1_ms.len = C.size_t(len(param1))
-	defer C.free(unsafe.Pointer(param1_ms.data))
-	var _ms C.struct_miqt_string = C.QFont_Substitute(param1_ms)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	param1_ms := struct_miqt_string{}
+	param1_ms.data = CString(param1)
+	param1_ms.len = size_t(len(param1))
+	defer free(unsafe.Pointer(param1_ms.data))
+	var _ms struct_miqt_string = QFont_Substitute(param1_ms)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QFont_Substitutes(param1 string) []string {
-	param1_ms := C.struct_miqt_string{}
-	param1_ms.data = C.CString(param1)
-	param1_ms.len = C.size_t(len(param1))
-	defer C.free(unsafe.Pointer(param1_ms.data))
-	var _ma C.struct_miqt_array = C.QFont_Substitutes(param1_ms)
+	param1_ms := struct_miqt_string{}
+	param1_ms.data = CString(param1)
+	param1_ms.len = size_t(len(param1))
+	defer free(unsafe.Pointer(param1_ms.data))
+	var _ma struct_miqt_array = QFont_Substitutes(param1_ms)
 	_ret := make([]string, int(_ma.len))
-	_outCast := (*[0xffff]C.struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
-		var _lv_ms C.struct_miqt_string = _outCast[i]
-		_lv_ret := C.GoStringN(_lv_ms.data, C.int(int64(_lv_ms.len)))
-		C.free(unsafe.Pointer(_lv_ms.data))
+		var _lv_ms struct_miqt_string = _outCast[i]
+		_lv_ret := GoStringN(_lv_ms.data, int(int64(_lv_ms.len)))
+		free(unsafe.Pointer(_lv_ms.data))
 		_ret[i] = _lv_ret
 	}
 	return _ret
 }
 
 func QFont_Substitutions() []string {
-	var _ma C.struct_miqt_array = C.QFont_Substitutions()
+	var _ma struct_miqt_array = QFont_Substitutions()
 	_ret := make([]string, int(_ma.len))
-	_outCast := (*[0xffff]C.struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]struct_miqt_string)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
-		var _lv_ms C.struct_miqt_string = _outCast[i]
-		_lv_ret := C.GoStringN(_lv_ms.data, C.int(int64(_lv_ms.len)))
-		C.free(unsafe.Pointer(_lv_ms.data))
+		var _lv_ms struct_miqt_string = _outCast[i]
+		_lv_ret := GoStringN(_lv_ms.data, int(int64(_lv_ms.len)))
+		free(unsafe.Pointer(_lv_ms.data))
 		_ret[i] = _lv_ret
 	}
 	return _ret
 }
 
 func QFont_InsertSubstitution(param1 string, param2 string) {
-	param1_ms := C.struct_miqt_string{}
-	param1_ms.data = C.CString(param1)
-	param1_ms.len = C.size_t(len(param1))
-	defer C.free(unsafe.Pointer(param1_ms.data))
-	param2_ms := C.struct_miqt_string{}
-	param2_ms.data = C.CString(param2)
-	param2_ms.len = C.size_t(len(param2))
-	defer C.free(unsafe.Pointer(param2_ms.data))
-	C.QFont_InsertSubstitution(param1_ms, param2_ms)
+	param1_ms := struct_miqt_string{}
+	param1_ms.data = CString(param1)
+	param1_ms.len = size_t(len(param1))
+	defer free(unsafe.Pointer(param1_ms.data))
+	param2_ms := struct_miqt_string{}
+	param2_ms.data = CString(param2)
+	param2_ms.len = size_t(len(param2))
+	defer free(unsafe.Pointer(param2_ms.data))
+	QFont_InsertSubstitution(param1_ms, param2_ms)
 }
 
 func QFont_InsertSubstitutions(param1 string, param2 []string) {
-	param1_ms := C.struct_miqt_string{}
-	param1_ms.data = C.CString(param1)
-	param1_ms.len = C.size_t(len(param1))
-	defer C.free(unsafe.Pointer(param1_ms.data))
-	param2_CArray := (*[0xffff]C.struct_miqt_string)(C.malloc(C.size_t(int(unsafe.Sizeof(C.struct_miqt_string{})) * len(param2))))
-	defer C.free(unsafe.Pointer(param2_CArray))
+	param1_ms := struct_miqt_string{}
+	param1_ms.data = CString(param1)
+	param1_ms.len = size_t(len(param1))
+	defer free(unsafe.Pointer(param1_ms.data))
+	param2_CArray := (*[0xffff]struct_miqt_string)(malloc(size_t(int(unsafe.Sizeof(struct_miqt_string{})) * len(param2))))
+	defer free(unsafe.Pointer(param2_CArray))
 	for i := range param2 {
-		param2_i_ms := C.struct_miqt_string{}
-		param2_i_ms.data = C.CString(param2[i])
-		param2_i_ms.len = C.size_t(len(param2[i]))
-		defer C.free(unsafe.Pointer(param2_i_ms.data))
+		param2_i_ms := struct_miqt_string{}
+		param2_i_ms.data = CString(param2[i])
+		param2_i_ms.len = size_t(len(param2[i]))
+		defer free(unsafe.Pointer(param2_i_ms.data))
 		param2_CArray[i] = param2_i_ms
 	}
-	param2_ma := C.struct_miqt_array{len: C.size_t(len(param2)), data: unsafe.Pointer(param2_CArray)}
-	C.QFont_InsertSubstitutions(param1_ms, param2_ma)
+	param2_ma := struct_miqt_array{len: size_t(len(param2)), data: unsafe.Pointer(param2_CArray)}
+	QFont_InsertSubstitutions(param1_ms, param2_ma)
 }
 
 func QFont_RemoveSubstitutions(param1 string) {
-	param1_ms := C.struct_miqt_string{}
-	param1_ms.data = C.CString(param1)
-	param1_ms.len = C.size_t(len(param1))
-	defer C.free(unsafe.Pointer(param1_ms.data))
-	C.QFont_RemoveSubstitutions(param1_ms)
+	param1_ms := struct_miqt_string{}
+	param1_ms.data = CString(param1)
+	param1_ms.len = size_t(len(param1))
+	defer free(unsafe.Pointer(param1_ms.data))
+	QFont_RemoveSubstitutions(param1_ms)
 }
 
 func QFont_Initialize() {
-	C.QFont_Initialize()
+	QFont_Initialize()
 }
 
 func QFont_Cleanup() {
-	C.QFont_Cleanup()
+	QFont_Cleanup()
 }
 
 func QFont_CacheStatistics() {
-	C.QFont_CacheStatistics()
+	QFont_CacheStatistics()
 }
 
 func (this *QFont) DefaultFamily() string {
-	var _ms C.struct_miqt_string = C.QFont_DefaultFamily(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QFont) LastResortFamily() string {
-	var _ms C.struct_miqt_string = C.QFont_LastResortFamily(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func (this *QFont) LastResortFont() string {
-	var _ms C.struct_miqt_string = C.QFont_LastResortFont(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QFont_DefaultFamily(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QFont) Resolve(param1 *QFont) *QFont {
-	_goptr := newQFont(C.QFont_Resolve(this.h, param1.cPointer()))
+	_goptr := newQFont(QFont_Resolve(this.h, param1.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QFont) Resolve2() uint {
-	return (uint)(C.QFont_Resolve2(this.h))
+func (this *QFont) ResolveMask() uint {
+	return (uint)(QFont_ResolveMask(this.h))
 }
 
-func (this *QFont) ResolveWithMask(mask uint) {
-	C.QFont_ResolveWithMask(this.h, (C.uint)(mask))
+func (this *QFont) SetResolveMask(mask uint) {
+	QFont_SetResolveMask(this.h, (uint)(mask))
 }
 
-func (this *QFont) SetStyleHint2(param1 QFont__StyleHint, param2 QFont__StyleStrategy) {
-	C.QFont_SetStyleHint2(this.h, (C.int)(param1), (C.int)(param2))
+func (this *QFont) SetLegacyWeight(legacyWeight int) {
+	QFont_SetLegacyWeight(this.h, (int)(legacyWeight))
 }
 
-// Delete this object from C++ memory.
-func (this *QFont) Delete() {
-	C.QFont_Delete(this.h, C.bool(this.isSubclass))
+func (this *QFont) LegacyWeight() int {
+	return (int)(QFont_LegacyWeight(this.h))
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QFont) GoGC() {
-	runtime.SetFinalizer(this, func(this *QFont) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func (this *QFont) SetStyleHint2(param1 StyleHint, param2 StyleStrategy) {
+	QFont_SetStyleHint2(this.h, param1, param2)
+}
+
+type QFont__Tag struct {
+	h          uintptr
+	isSubclass bool
+}
+
+// NewQFont__Tag constructs a new QFont::Tag object.
+func NewQFont__Tag() *QFont__Tag {
+
+	ret := newQFont__Tag(QFont__Tag_new())
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQFont__Tag2 constructs a new QFont::Tag object.
+func NewQFont__Tag2(param1 *Tag) *QFont__Tag {
+
+	ret := newQFont__Tag(QFont__Tag_new2(param1))
+	ret.isSubclass = true
+	return ret
+}
+
+func (this *QFont__Tag) IsValid() bool {
+	return (bool)(QFont__Tag_IsValid(this.h))
+}
+
+func (this *QFont__Tag) Value() uint {
+	return (uint)(QFont__Tag_Value(this.h))
+}
+
+func (this *QFont__Tag) ToString() []byte {
+	var _bytearray struct_miqt_string = QFont__Tag_ToString(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
+	return _ret
 }

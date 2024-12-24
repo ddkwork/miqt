@@ -1,16 +1,7 @@
 package cbor
 
-/*
-
-#include "gen_qcborstreamreader.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
 	"github.com/mappu/miqt/qt"
-	"runtime"
 	"unsafe"
 )
 
@@ -43,52 +34,24 @@ const (
 )
 
 type QCborStreamReader struct {
-	h          *C.QCborStreamReader
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QCborStreamReader) cPointer() *C.QCborStreamReader {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QCborStreamReader) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQCborStreamReader constructs the type using only CGO pointers.
-func newQCborStreamReader(h *C.QCborStreamReader) *QCborStreamReader {
-	if h == nil {
-		return nil
-	}
-
-	return &QCborStreamReader{h: h}
-}
-
-// UnsafeNewQCborStreamReader constructs the type using only unsafe pointers.
-func UnsafeNewQCborStreamReader(h unsafe.Pointer) *QCborStreamReader {
-	return newQCborStreamReader((*C.QCborStreamReader)(h))
 }
 
 // NewQCborStreamReader constructs a new QCborStreamReader object.
 func NewQCborStreamReader() *QCborStreamReader {
 
-	ret := newQCborStreamReader(C.QCborStreamReader_new())
+	ret := newQCborStreamReader(QCborStreamReader_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQCborStreamReader2 constructs a new QCborStreamReader object.
 func NewQCborStreamReader2(data string, lenVal int64) *QCborStreamReader {
-	data_Cstring := C.CString(data)
-	defer C.free(unsafe.Pointer(data_Cstring))
+	data_Cstring := CString(data)
+	defer free(unsafe.Pointer(data_Cstring))
 
-	ret := newQCborStreamReader(C.QCborStreamReader_new2(data_Cstring, (C.ptrdiff_t)(lenVal)))
+	ret := newQCborStreamReader(QCborStreamReader_new2(data_Cstring, (ptrdiff_t)(lenVal)))
 	ret.isSubclass = true
 	return ret
 }
@@ -96,18 +59,18 @@ func NewQCborStreamReader2(data string, lenVal int64) *QCborStreamReader {
 // NewQCborStreamReader3 constructs a new QCborStreamReader object.
 func NewQCborStreamReader3(data *byte, lenVal int64) *QCborStreamReader {
 
-	ret := newQCborStreamReader(C.QCborStreamReader_new3((*C.uchar)(unsafe.Pointer(data)), (C.ptrdiff_t)(lenVal)))
+	ret := newQCborStreamReader(QCborStreamReader_new3((*uchar)(unsafe.Pointer(data)), (ptrdiff_t)(lenVal)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQCborStreamReader4 constructs a new QCborStreamReader object.
 func NewQCborStreamReader4(data []byte) *QCborStreamReader {
-	data_alias := C.struct_miqt_string{}
-	data_alias.data = (*C.char)(unsafe.Pointer(&data[0]))
-	data_alias.len = C.size_t(len(data))
+	data_alias := struct_miqt_string{}
+	data_alias.data = (char)(unsafe.Pointer(&data[0]))
+	data_alias.len = size_t(len(data))
 
-	ret := newQCborStreamReader(C.QCborStreamReader_new4(data_alias))
+	ret := newQCborStreamReader(QCborStreamReader_new4(data_alias))
 	ret.isSubclass = true
 	return ret
 }
@@ -115,228 +78,257 @@ func NewQCborStreamReader4(data []byte) *QCborStreamReader {
 // NewQCborStreamReader5 constructs a new QCborStreamReader object.
 func NewQCborStreamReader5(device *qt.QIODevice) *QCborStreamReader {
 
-	ret := newQCborStreamReader(C.QCborStreamReader_new5((*C.QIODevice)(device.UnsafePointer())))
+	ret := newQCborStreamReader(QCborStreamReader_new5((*QIODevice)(device.UnsafePointer())))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QCborStreamReader) SetDevice(device *qt.QIODevice) {
-	C.QCborStreamReader_SetDevice(this.h, (*C.QIODevice)(device.UnsafePointer()))
+	QCborStreamReader_SetDevice(this.h, (*QIODevice)(device.UnsafePointer()))
 }
 
 func (this *QCborStreamReader) Device() *qt.QIODevice {
-	return qt.UnsafeNewQIODevice(unsafe.Pointer(C.QCborStreamReader_Device(this.h)))
+	return qt.UnsafeNewQIODevice(unsafe.Pointer(QCborStreamReader_Device(this.h)))
 }
 
 func (this *QCborStreamReader) AddData(data []byte) {
-	data_alias := C.struct_miqt_string{}
-	data_alias.data = (*C.char)(unsafe.Pointer(&data[0]))
-	data_alias.len = C.size_t(len(data))
-	C.QCborStreamReader_AddData(this.h, data_alias)
+	data_alias := struct_miqt_string{}
+	data_alias.data = (char)(unsafe.Pointer(&data[0]))
+	data_alias.len = size_t(len(data))
+	QCborStreamReader_AddData(this.h, data_alias)
 }
 
 func (this *QCborStreamReader) AddData2(data string, lenVal int64) {
-	data_Cstring := C.CString(data)
-	defer C.free(unsafe.Pointer(data_Cstring))
-	C.QCborStreamReader_AddData2(this.h, data_Cstring, (C.ptrdiff_t)(lenVal))
+	data_Cstring := CString(data)
+	defer free(unsafe.Pointer(data_Cstring))
+	QCborStreamReader_AddData2(this.h, data_Cstring, (ptrdiff_t)(lenVal))
 }
 
 func (this *QCborStreamReader) AddData3(data *byte, lenVal int64) {
-	C.QCborStreamReader_AddData3(this.h, (*C.uchar)(unsafe.Pointer(data)), (C.ptrdiff_t)(lenVal))
+	QCborStreamReader_AddData3(this.h, (*uchar)(unsafe.Pointer(data)), (ptrdiff_t)(lenVal))
 }
 
 func (this *QCborStreamReader) Reparse() {
-	C.QCborStreamReader_Reparse(this.h)
+	QCborStreamReader_Reparse(this.h)
 }
 
 func (this *QCborStreamReader) Clear() {
-	C.QCborStreamReader_Clear(this.h)
+	QCborStreamReader_Clear(this.h)
 }
 
 func (this *QCborStreamReader) Reset() {
-	C.QCborStreamReader_Reset(this.h)
+	QCborStreamReader_Reset(this.h)
 }
 
 func (this *QCborStreamReader) LastError() *QCborError {
-	_goptr := newQCborError(C.QCborStreamReader_LastError(this.h))
+	_goptr := newQCborError(QCborStreamReader_LastError(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QCborStreamReader) CurrentOffset() int64 {
-	return (int64)(C.QCborStreamReader_CurrentOffset(this.h))
+	return (int64)(QCborStreamReader_CurrentOffset(this.h))
 }
 
 func (this *QCborStreamReader) IsValid() bool {
-	return (bool)(C.QCborStreamReader_IsValid(this.h))
+	return (bool)(QCborStreamReader_IsValid(this.h))
 }
 
 func (this *QCborStreamReader) ContainerDepth() int {
-	return (int)(C.QCborStreamReader_ContainerDepth(this.h))
+	return (int)(QCborStreamReader_ContainerDepth(this.h))
 }
 
 func (this *QCborStreamReader) ParentContainerType() QCborStreamReader__Type {
-	return (QCborStreamReader__Type)(C.QCborStreamReader_ParentContainerType(this.h))
+	return (QCborStreamReader__Type)(QCborStreamReader_ParentContainerType(this.h))
 }
 
 func (this *QCborStreamReader) HasNext() bool {
-	return (bool)(C.QCborStreamReader_HasNext(this.h))
+	return (bool)(QCborStreamReader_HasNext(this.h))
 }
 
 func (this *QCborStreamReader) Next() bool {
-	return (bool)(C.QCborStreamReader_Next(this.h))
+	return (bool)(QCborStreamReader_Next(this.h))
 }
 
-func (this *QCborStreamReader) Type() QCborStreamReader__Type {
-	return (QCborStreamReader__Type)(C.QCborStreamReader_Type(this.h))
+func (this *QCborStreamReader) Type() Type {
+	xxxxxxxxx
 }
 
 func (this *QCborStreamReader) IsUnsignedInteger() bool {
-	return (bool)(C.QCborStreamReader_IsUnsignedInteger(this.h))
+	return (bool)(QCborStreamReader_IsUnsignedInteger(this.h))
 }
 
 func (this *QCborStreamReader) IsNegativeInteger() bool {
-	return (bool)(C.QCborStreamReader_IsNegativeInteger(this.h))
+	return (bool)(QCborStreamReader_IsNegativeInteger(this.h))
 }
 
 func (this *QCborStreamReader) IsInteger() bool {
-	return (bool)(C.QCborStreamReader_IsInteger(this.h))
+	return (bool)(QCborStreamReader_IsInteger(this.h))
 }
 
 func (this *QCborStreamReader) IsByteArray() bool {
-	return (bool)(C.QCborStreamReader_IsByteArray(this.h))
+	return (bool)(QCborStreamReader_IsByteArray(this.h))
 }
 
 func (this *QCborStreamReader) IsString() bool {
-	return (bool)(C.QCborStreamReader_IsString(this.h))
+	return (bool)(QCborStreamReader_IsString(this.h))
 }
 
 func (this *QCborStreamReader) IsArray() bool {
-	return (bool)(C.QCborStreamReader_IsArray(this.h))
+	return (bool)(QCborStreamReader_IsArray(this.h))
 }
 
 func (this *QCborStreamReader) IsMap() bool {
-	return (bool)(C.QCborStreamReader_IsMap(this.h))
+	return (bool)(QCborStreamReader_IsMap(this.h))
 }
 
 func (this *QCborStreamReader) IsTag() bool {
-	return (bool)(C.QCborStreamReader_IsTag(this.h))
+	return (bool)(QCborStreamReader_IsTag(this.h))
 }
 
 func (this *QCborStreamReader) IsSimpleType() bool {
-	return (bool)(C.QCborStreamReader_IsSimpleType(this.h))
+	return (bool)(QCborStreamReader_IsSimpleType(this.h))
 }
 
 func (this *QCborStreamReader) IsFloat16() bool {
-	return (bool)(C.QCborStreamReader_IsFloat16(this.h))
+	return (bool)(QCborStreamReader_IsFloat16(this.h))
 }
 
 func (this *QCborStreamReader) IsFloat() bool {
-	return (bool)(C.QCborStreamReader_IsFloat(this.h))
+	return (bool)(QCborStreamReader_IsFloat(this.h))
 }
 
 func (this *QCborStreamReader) IsDouble() bool {
-	return (bool)(C.QCborStreamReader_IsDouble(this.h))
+	return (bool)(QCborStreamReader_IsDouble(this.h))
 }
 
 func (this *QCborStreamReader) IsInvalid() bool {
-	return (bool)(C.QCborStreamReader_IsInvalid(this.h))
+	return (bool)(QCborStreamReader_IsInvalid(this.h))
 }
 
 func (this *QCborStreamReader) IsSimpleTypeWithSt(st QCborSimpleType) bool {
-	return (bool)(C.QCborStreamReader_IsSimpleTypeWithSt(this.h, (C.uint8_t)(st)))
+	return (bool)(QCborStreamReader_IsSimpleTypeWithSt(this.h, (uint8_t)(st)))
 }
 
 func (this *QCborStreamReader) IsFalse() bool {
-	return (bool)(C.QCborStreamReader_IsFalse(this.h))
+	return (bool)(QCborStreamReader_IsFalse(this.h))
 }
 
 func (this *QCborStreamReader) IsTrue() bool {
-	return (bool)(C.QCborStreamReader_IsTrue(this.h))
+	return (bool)(QCborStreamReader_IsTrue(this.h))
 }
 
 func (this *QCborStreamReader) IsBool() bool {
-	return (bool)(C.QCborStreamReader_IsBool(this.h))
+	return (bool)(QCborStreamReader_IsBool(this.h))
 }
 
 func (this *QCborStreamReader) IsNull() bool {
-	return (bool)(C.QCborStreamReader_IsNull(this.h))
+	return (bool)(QCborStreamReader_IsNull(this.h))
 }
 
 func (this *QCborStreamReader) IsUndefined() bool {
-	return (bool)(C.QCborStreamReader_IsUndefined(this.h))
+	return (bool)(QCborStreamReader_IsUndefined(this.h))
 }
 
 func (this *QCborStreamReader) IsLengthKnown() bool {
-	return (bool)(C.QCborStreamReader_IsLengthKnown(this.h))
+	return (bool)(QCborStreamReader_IsLengthKnown(this.h))
 }
 
 func (this *QCborStreamReader) Length() uint64 {
-	return (uint64)(C.QCborStreamReader_Length(this.h))
+	return (uint64)(QCborStreamReader_Length(this.h))
 }
 
 func (this *QCborStreamReader) IsContainer() bool {
-	return (bool)(C.QCborStreamReader_IsContainer(this.h))
+	return (bool)(QCborStreamReader_IsContainer(this.h))
 }
 
 func (this *QCborStreamReader) EnterContainer() bool {
-	return (bool)(C.QCborStreamReader_EnterContainer(this.h))
+	return (bool)(QCborStreamReader_EnterContainer(this.h))
 }
 
 func (this *QCborStreamReader) LeaveContainer() bool {
-	return (bool)(C.QCborStreamReader_LeaveContainer(this.h))
+	return (bool)(QCborStreamReader_LeaveContainer(this.h))
+}
+
+func (this *QCborStreamReader) ReadAndAppendToString(dst string) bool {
+	dst_ms := struct_miqt_string{}
+	dst_ms.data = CString(dst)
+	dst_ms.len = size_t(len(dst))
+	defer free(unsafe.Pointer(dst_ms.data))
+	return (bool)(QCborStreamReader_ReadAndAppendToString(this.h, dst_ms))
+}
+
+func (this *QCborStreamReader) ReadAndAppendToUtf8String(dst []byte) bool {
+	dst_alias := struct_miqt_string{}
+	dst_alias.data = (char)(unsafe.Pointer(&dst[0]))
+	dst_alias.len = size_t(len(dst))
+	return (bool)(QCborStreamReader_ReadAndAppendToUtf8String(this.h, dst_alias))
+}
+
+func (this *QCborStreamReader) ReadAndAppendToByteArray(dst []byte) bool {
+	dst_alias := struct_miqt_string{}
+	dst_alias.data = (char)(unsafe.Pointer(&dst[0]))
+	dst_alias.len = size_t(len(dst))
+	return (bool)(QCborStreamReader_ReadAndAppendToByteArray(this.h, dst_alias))
 }
 
 func (this *QCborStreamReader) CurrentStringChunkSize() int64 {
-	return (int64)(C.QCborStreamReader_CurrentStringChunkSize(this.h))
+	return (int64)(QCborStreamReader_CurrentStringChunkSize(this.h))
 }
 
 func (this *QCborStreamReader) ToBool() bool {
-	return (bool)(C.QCborStreamReader_ToBool(this.h))
+	return (bool)(QCborStreamReader_ToBool(this.h))
 }
 
 func (this *QCborStreamReader) ToTag() QCborTag {
-	return (QCborTag)(C.QCborStreamReader_ToTag(this.h))
+	return (QCborTag)(QCborStreamReader_ToTag(this.h))
 }
 
 func (this *QCborStreamReader) ToUnsignedInteger() uint64 {
-	return (uint64)(C.QCborStreamReader_ToUnsignedInteger(this.h))
+	return (uint64)(QCborStreamReader_ToUnsignedInteger(this.h))
 }
 
 func (this *QCborStreamReader) ToNegativeInteger() QCborNegativeInteger {
-	return (QCborNegativeInteger)(C.QCborStreamReader_ToNegativeInteger(this.h))
+	return (QCborNegativeInteger)(QCborStreamReader_ToNegativeInteger(this.h))
 }
 
 func (this *QCborStreamReader) ToSimpleType() QCborSimpleType {
-	return (QCborSimpleType)(C.QCborStreamReader_ToSimpleType(this.h))
+	return (QCborSimpleType)(QCborStreamReader_ToSimpleType(this.h))
 }
 
 func (this *QCborStreamReader) ToFloat() float32 {
-	return (float32)(C.QCborStreamReader_ToFloat(this.h))
+	return (float32)(QCborStreamReader_ToFloat(this.h))
 }
 
 func (this *QCborStreamReader) ToDouble() float64 {
-	return (float64)(C.QCborStreamReader_ToDouble(this.h))
+	return (float64)(QCborStreamReader_ToDouble(this.h))
 }
 
 func (this *QCborStreamReader) ToInteger() int64 {
-	return (int64)(C.QCborStreamReader_ToInteger(this.h))
+	return (int64)(QCborStreamReader_ToInteger(this.h))
+}
+
+func (this *QCborStreamReader) ReadAllString() string {
+	var _ms struct_miqt_string = QCborStreamReader_ReadAllString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QCborStreamReader) ReadAllUtf8String() []byte {
+	var _bytearray struct_miqt_string = QCborStreamReader_ReadAllUtf8String(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
+	return _ret
+}
+
+func (this *QCborStreamReader) ReadAllByteArray() []byte {
+	var _bytearray struct_miqt_string = QCborStreamReader_ReadAllByteArray(this.h)
+	_ret := GoBytes(unsafe.Pointer(_bytearray.data), int(int64(_bytearray.len)))
+	free(unsafe.Pointer(_bytearray.data))
+	return _ret
 }
 
 func (this *QCborStreamReader) Next1(maxRecursion int) bool {
-	return (bool)(C.QCborStreamReader_Next1(this.h, (C.int)(maxRecursion)))
-}
-
-// Delete this object from C++ memory.
-func (this *QCborStreamReader) Delete() {
-	C.QCborStreamReader_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QCborStreamReader) GoGC() {
-	runtime.SetFinalizer(this, func(this *QCborStreamReader) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (bool)(QCborStreamReader_Next1(this.h, (int)(maxRecursion)))
 }

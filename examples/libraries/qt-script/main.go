@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	qt.NewQApplication(os.Args)
 
 	inputProgram := "1 + 2"

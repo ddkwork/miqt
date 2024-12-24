@@ -1,4 +1,8 @@
+// +build ignore
+
+#include <QByteArray>
 #include <QFont>
+#define WORKAROUND_INNER_CLASS_DEFINITION_QFont__Tag
 #include <QList>
 #include <QPaintDevice>
 #include <QString>
@@ -10,7 +14,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QFont* QFont_new() {
 	return new QFont();
@@ -21,8 +40,15 @@ QFont* QFont_new2(struct miqt_string family) {
 	return new QFont(family_QString);
 }
 
-QFont* QFont_new3(QFont* font, QPaintDevice* pd) {
-	return new QFont(*font, pd);
+QFont* QFont_new3(struct miqt_array /* of struct miqt_string */  families) {
+	QStringList families_QList;
+	families_QList.reserve(families.len);
+	struct miqt_string* families_arr = static_cast<struct miqt_string*>(families.data);
+	for(size_t i = 0; i < families.len; ++i) {
+		QString families_arr_i_QString = QString::fromUtf8(families_arr[i].data, families_arr[i].len);
+		families_QList.push_back(families_arr_i_QString);
+	}
+	return new QFont(families_QList);
 }
 
 QFont* QFont_new4(QFont* font, QPaintDevice* pd) {
@@ -46,6 +72,39 @@ QFont* QFont_new7(struct miqt_string family, int pointSize, int weight) {
 QFont* QFont_new8(struct miqt_string family, int pointSize, int weight, bool italic) {
 	QString family_QString = QString::fromUtf8(family.data, family.len);
 	return new QFont(family_QString, static_cast<int>(pointSize), static_cast<int>(weight), italic);
+}
+
+QFont* QFont_new9(struct miqt_array /* of struct miqt_string */  families, int pointSize) {
+	QStringList families_QList;
+	families_QList.reserve(families.len);
+	struct miqt_string* families_arr = static_cast<struct miqt_string*>(families.data);
+	for(size_t i = 0; i < families.len; ++i) {
+		QString families_arr_i_QString = QString::fromUtf8(families_arr[i].data, families_arr[i].len);
+		families_QList.push_back(families_arr_i_QString);
+	}
+	return new QFont(families_QList, static_cast<int>(pointSize));
+}
+
+QFont* QFont_new10(struct miqt_array /* of struct miqt_string */  families, int pointSize, int weight) {
+	QStringList families_QList;
+	families_QList.reserve(families.len);
+	struct miqt_string* families_arr = static_cast<struct miqt_string*>(families.data);
+	for(size_t i = 0; i < families.len; ++i) {
+		QString families_arr_i_QString = QString::fromUtf8(families_arr[i].data, families_arr[i].len);
+		families_QList.push_back(families_arr_i_QString);
+	}
+	return new QFont(families_QList, static_cast<int>(pointSize), static_cast<int>(weight));
+}
+
+QFont* QFont_new11(struct miqt_array /* of struct miqt_string */  families, int pointSize, int weight, bool italic) {
+	QStringList families_QList;
+	families_QList.reserve(families.len);
+	struct miqt_string* families_arr = static_cast<struct miqt_string*>(families.data);
+	for(size_t i = 0; i < families.len; ++i) {
+		QString families_arr_i_QString = QString::fromUtf8(families_arr[i].data, families_arr[i].len);
+		families_QList.push_back(families_arr_i_QString);
+	}
+	return new QFont(families_QList, static_cast<int>(pointSize), static_cast<int>(weight), italic);
 }
 
 void QFont_Swap(QFont* self, QFont* other) {
@@ -140,12 +199,12 @@ void QFont_SetPixelSize(QFont* self, int pixelSize) {
 	self->setPixelSize(static_cast<int>(pixelSize));
 }
 
-int QFont_Weight(const QFont* self) {
+Weight QFont_Weight(const QFont* self) {
 	return self->weight();
 }
 
-void QFont_SetWeight(QFont* self, int weight) {
-	self->setWeight(static_cast<int>(weight));
+void QFont_SetWeight(QFont* self, Weight weight) {
+	self->setWeight(weight);
 }
 
 bool QFont_Bold(const QFont* self) {
@@ -156,13 +215,12 @@ void QFont_SetBold(QFont* self, bool bold) {
 	self->setBold(bold);
 }
 
-void QFont_SetStyle(QFont* self, int style) {
-	self->setStyle(static_cast<QFont::Style>(style));
+void QFont_SetStyle(QFont* self, Style style) {
+	self->setStyle(style);
 }
 
-int QFont_Style(const QFont* self) {
-	QFont::Style _ret = self->style();
-	return static_cast<int>(_ret);
+Style QFont_Style(const QFont* self) {
+	return self->style();
 }
 
 bool QFont_Italic(const QFont* self) {
@@ -213,22 +271,20 @@ void QFont_SetKerning(QFont* self, bool kerning) {
 	self->setKerning(kerning);
 }
 
-int QFont_StyleHint(const QFont* self) {
-	QFont::StyleHint _ret = self->styleHint();
-	return static_cast<int>(_ret);
+StyleHint QFont_StyleHint(const QFont* self) {
+	return self->styleHint();
 }
 
-int QFont_StyleStrategy(const QFont* self) {
-	QFont::StyleStrategy _ret = self->styleStrategy();
-	return static_cast<int>(_ret);
+StyleStrategy QFont_StyleStrategy(const QFont* self) {
+	return self->styleStrategy();
 }
 
-void QFont_SetStyleHint(QFont* self, int param1) {
-	self->setStyleHint(static_cast<QFont::StyleHint>(param1));
+void QFont_SetStyleHint(QFont* self, StyleHint param1) {
+	self->setStyleHint(param1);
 }
 
-void QFont_SetStyleStrategy(QFont* self, int s) {
-	self->setStyleStrategy(static_cast<QFont::StyleStrategy>(s));
+void QFont_SetStyleStrategy(QFont* self, StyleStrategy s) {
+	self->setStyleStrategy(s);
 }
 
 int QFont_Stretch(const QFont* self) {
@@ -244,13 +300,12 @@ double QFont_LetterSpacing(const QFont* self) {
 	return static_cast<double>(_ret);
 }
 
-int QFont_LetterSpacingType(const QFont* self) {
-	QFont::SpacingType _ret = self->letterSpacingType();
-	return static_cast<int>(_ret);
+SpacingType QFont_LetterSpacingType(const QFont* self) {
+	return self->letterSpacingType();
 }
 
-void QFont_SetLetterSpacing(QFont* self, int typeVal, double spacing) {
-	self->setLetterSpacing(static_cast<QFont::SpacingType>(typeVal), static_cast<qreal>(spacing));
+void QFont_SetLetterSpacing(QFont* self, SpacingType typeVal, double spacing) {
+	self->setLetterSpacing(typeVal, static_cast<qreal>(spacing));
 }
 
 double QFont_WordSpacing(const QFont* self) {
@@ -262,30 +317,87 @@ void QFont_SetWordSpacing(QFont* self, double spacing) {
 	self->setWordSpacing(static_cast<qreal>(spacing));
 }
 
-void QFont_SetCapitalization(QFont* self, int capitalization) {
-	self->setCapitalization(static_cast<QFont::Capitalization>(capitalization));
+void QFont_SetCapitalization(QFont* self, Capitalization capitalization) {
+	self->setCapitalization(capitalization);
 }
 
-int QFont_Capitalization(const QFont* self) {
-	QFont::Capitalization _ret = self->capitalization();
-	return static_cast<int>(_ret);
+Capitalization QFont_Capitalization(const QFont* self) {
+	return self->capitalization();
 }
 
-void QFont_SetHintingPreference(QFont* self, int hintingPreference) {
-	self->setHintingPreference(static_cast<QFont::HintingPreference>(hintingPreference));
+void QFont_SetHintingPreference(QFont* self, HintingPreference hintingPreference) {
+	self->setHintingPreference(hintingPreference);
 }
 
-int QFont_HintingPreference(const QFont* self) {
-	QFont::HintingPreference _ret = self->hintingPreference();
-	return static_cast<int>(_ret);
+HintingPreference QFont_HintingPreference(const QFont* self) {
+	return self->hintingPreference();
 }
 
-bool QFont_RawMode(const QFont* self) {
-	return self->rawMode();
+void QFont_SetFeature(QFont* self, Tag tag, unsigned int value) {
+	self->setFeature(tag, static_cast<quint32>(value));
 }
 
-void QFont_SetRawMode(QFont* self, bool rawMode) {
-	self->setRawMode(rawMode);
+void QFont_UnsetFeature(QFont* self, Tag tag) {
+	self->unsetFeature(tag);
+}
+
+unsigned int QFont_FeatureValue(const QFont* self, Tag tag) {
+	quint32 _ret = self->featureValue(tag);
+	return static_cast<unsigned int>(_ret);
+}
+
+bool QFont_IsFeatureSet(const QFont* self, Tag tag) {
+	return self->isFeatureSet(tag);
+}
+
+struct miqt_array /* of Tag */  QFont_FeatureTags(const QFont* self) {
+	QList<Tag> _ret = self->featureTags();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	Tag* _arr = static_cast<Tag*>(malloc(sizeof(Tag) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = _ret[i];
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+}
+
+void QFont_ClearFeatures(QFont* self) {
+	self->clearFeatures();
+}
+
+void QFont_SetVariableAxis(QFont* self, Tag tag, float value) {
+	self->setVariableAxis(tag, static_cast<float>(value));
+}
+
+void QFont_UnsetVariableAxis(QFont* self, Tag tag) {
+	self->unsetVariableAxis(tag);
+}
+
+bool QFont_IsVariableAxisSet(const QFont* self, Tag tag) {
+	return self->isVariableAxisSet(tag);
+}
+
+float QFont_VariableAxisValue(const QFont* self, Tag tag) {
+	return self->variableAxisValue(tag);
+}
+
+void QFont_ClearVariableAxes(QFont* self) {
+	self->clearVariableAxes();
+}
+
+struct miqt_array /* of Tag */  QFont_VariableAxisTags(const QFont* self) {
+	QList<Tag> _ret = self->variableAxisTags();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	Tag* _arr = static_cast<Tag*>(malloc(sizeof(Tag) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = _ret[i];
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
 }
 
 bool QFont_ExactMatch(const QFont* self) {
@@ -310,22 +422,6 @@ bool QFont_OperatorLesser(const QFont* self, QFont* param1) {
 
 bool QFont_IsCopyOf(const QFont* self, QFont* param1) {
 	return self->isCopyOf(*param1);
-}
-
-void QFont_SetRawName(QFont* self, struct miqt_string rawName) {
-	QString rawName_QString = QString::fromUtf8(rawName.data, rawName.len);
-	self->setRawName(rawName_QString);
-}
-
-struct miqt_string QFont_RawName(const QFont* self) {
-	QString _ret = self->rawName();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
 }
 
 struct miqt_string QFont_Key(const QFont* self) {
@@ -454,48 +550,68 @@ struct miqt_string QFont_DefaultFamily(const QFont* self) {
 	return _ms;
 }
 
-struct miqt_string QFont_LastResortFamily(const QFont* self) {
-	QString _ret = self->lastResortFamily();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QFont_LastResortFont(const QFont* self) {
-	QString _ret = self->lastResortFont();
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QFont* QFont_Resolve(const QFont* self, QFont* param1) {
 	return new QFont(self->resolve(*param1));
 }
 
-unsigned int QFont_Resolve2(const QFont* self) {
-	uint _ret = self->resolve();
+unsigned int QFont_ResolveMask(const QFont* self) {
+	uint _ret = self->resolveMask();
 	return static_cast<unsigned int>(_ret);
 }
 
-void QFont_ResolveWithMask(QFont* self, unsigned int mask) {
-	self->resolve(static_cast<uint>(mask));
+void QFont_SetResolveMask(QFont* self, unsigned int mask) {
+	self->setResolveMask(static_cast<uint>(mask));
 }
 
-void QFont_SetStyleHint2(QFont* self, int param1, int param2) {
-	self->setStyleHint(static_cast<QFont::StyleHint>(param1), static_cast<QFont::StyleStrategy>(param2));
+void QFont_SetLegacyWeight(QFont* self, int legacyWeight) {
+	self->setLegacyWeight(static_cast<int>(legacyWeight));
+}
+
+int QFont_LegacyWeight(const QFont* self) {
+	return self->legacyWeight();
+}
+
+void QFont_SetStyleHint2(QFont* self, StyleHint param1, StyleStrategy param2) {
+	self->setStyleHint(param1, param2);
 }
 
 void QFont_Delete(QFont* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QFont*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QFont__Tag* QFont__Tag_new() {
+	return new QFont::Tag();
+}
+
+QFont__Tag* QFont__Tag_new2(const Tag* param1) {
+	return new QFont::Tag(*param1);
+}
+
+bool QFont__Tag_IsValid(const QFont__Tag* self) {
+	return self->isValid();
+}
+
+unsigned int QFont__Tag_Value(const QFont__Tag* self) {
+	quint32 _ret = self->value();
+	return static_cast<unsigned int>(_ret);
+}
+
+struct miqt_string QFont__Tag_ToString(const QFont__Tag* self) {
+	QByteArray _qb = self->toString();
+	struct miqt_string _ms;
+	_ms.len = _qb.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _qb.data(), _ms.len);
+	return _ms;
+}
+
+void QFont__Tag_Delete(QFont__Tag* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QFont::Tag*>( self );
 	} else {
 		delete self;
 	}

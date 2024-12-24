@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractPrintDialog>
 #include <QDialog>
 #include <QMetaObject>
@@ -15,7 +17,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPrintDialog : public virtual QPrintDialog {
 public:
@@ -46,29 +63,6 @@ public:
 	int virtualbase_Exec() {
 
 		return QPrintDialog::exec();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Accept = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void accept() override {
-		if (handle__Accept == 0) {
-			QPrintDialog::accept();
-			return;
-		}
-		
-
-		miqt_exec_callback_QPrintDialog_Accept(this, handle__Accept);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Accept() {
-
-		QPrintDialog::accept();
 
 	}
 
@@ -161,44 +155,28 @@ struct miqt_string QPrintDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QPrintDialog_TrUtf8(const char* s) {
-	QString _ret = QPrintDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QPrintDialog_Exec(QPrintDialog* self) {
 	return self->exec();
-}
-
-void QPrintDialog_Accept(QPrintDialog* self) {
-	self->accept();
 }
 
 void QPrintDialog_Done(QPrintDialog* self, int result) {
 	self->done(static_cast<int>(result));
 }
 
-void QPrintDialog_SetOption(QPrintDialog* self, int option) {
-	self->setOption(static_cast<QAbstractPrintDialog::PrintDialogOption>(option));
+void QPrintDialog_SetOption(QPrintDialog* self, PrintDialogOption option) {
+	self->setOption(option);
 }
 
-bool QPrintDialog_TestOption(const QPrintDialog* self, int option) {
-	return self->testOption(static_cast<QAbstractPrintDialog::PrintDialogOption>(option));
+bool QPrintDialog_TestOption(const QPrintDialog* self, PrintDialogOption option) {
+	return self->testOption(option);
 }
 
-void QPrintDialog_SetOptions(QPrintDialog* self, int options) {
-	self->setOptions(static_cast<QAbstractPrintDialog::PrintDialogOptions>(options));
+void QPrintDialog_SetOptions(QPrintDialog* self, PrintDialogOptions options) {
+	self->setOptions(options);
 }
 
-int QPrintDialog_Options(const QPrintDialog* self) {
-	QAbstractPrintDialog::PrintDialogOptions _ret = self->options();
-	return static_cast<int>(_ret);
+PrintDialogOptions QPrintDialog_Options(const QPrintDialog* self) {
+	return self->options();
 }
 
 void QPrintDialog_SetVisible(QPrintDialog* self, bool visible) {
@@ -238,30 +216,8 @@ struct miqt_string QPrintDialog_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QPrintDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QPrintDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QPrintDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QPrintDialog::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QPrintDialog_SetOption2(QPrintDialog* self, int option, bool on) {
-	self->setOption(static_cast<QAbstractPrintDialog::PrintDialogOption>(option), on);
+void QPrintDialog_SetOption2(QPrintDialog* self, PrintDialogOption option, bool on) {
+	self->setOption(option, on);
 }
 
 void QPrintDialog_override_virtual_Exec(void* self, intptr_t slot) {
@@ -270,14 +226,6 @@ void QPrintDialog_override_virtual_Exec(void* self, intptr_t slot) {
 
 int QPrintDialog_virtualbase_Exec(void* self) {
 	return ( (MiqtVirtualQPrintDialog*)(self) )->virtualbase_Exec();
-}
-
-void QPrintDialog_override_virtual_Accept(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQPrintDialog*>( (QPrintDialog*)(self) )->handle__Accept = slot;
-}
-
-void QPrintDialog_virtualbase_Accept(void* self) {
-	( (MiqtVirtualQPrintDialog*)(self) )->virtualbase_Accept();
 }
 
 void QPrintDialog_override_virtual_Done(void* self, intptr_t slot) {

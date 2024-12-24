@@ -1,6 +1,8 @@
+// +build ignore
+
 #include <QBasicMutex>
+#include <QDeadlineTimer>
 #include <QMutex>
-#include <QMutexLocker>
 #include <QRecursiveMutex>
 #include <qmutex.h>
 #include "gen_qmutex.h"
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QBasicMutex* QBasicMutex_new() {
 	return new QBasicMutex();
@@ -30,14 +47,6 @@ bool QBasicMutex_TryLock2(QBasicMutex* self) {
 	return self->try_lock();
 }
 
-bool QBasicMutex_IsRecursive(QBasicMutex* self) {
-	return self->isRecursive();
-}
-
-bool QBasicMutex_IsRecursive2(const QBasicMutex* self) {
-	return self->isRecursive();
-}
-
 void QBasicMutex_Delete(QBasicMutex* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QBasicMutex*>( self );
@@ -50,36 +59,20 @@ QMutex* QMutex_new() {
 	return new QMutex();
 }
 
-QMutex* QMutex_new2(int mode) {
-	return new QMutex(static_cast<QMutex::RecursionMode>(mode));
-}
-
 void QMutex_virtbase(QMutex* src, QBasicMutex** outptr_QBasicMutex) {
 	*outptr_QBasicMutex = static_cast<QBasicMutex*>(src);
 }
 
-void QMutex_Lock(QMutex* self) {
-	self->lock();
-}
-
 bool QMutex_TryLock(QMutex* self) {
-	return self->tryLock();
-}
-
-void QMutex_Unlock(QMutex* self) {
-	self->unlock();
-}
-
-bool QMutex_TryLock2(QMutex* self) {
 	return self->try_lock();
 }
 
-bool QMutex_IsRecursive(const QMutex* self) {
-	return self->isRecursive();
+bool QMutex_TryLockWithTimeout(QMutex* self, int timeout) {
+	return self->tryLock(static_cast<int>(timeout));
 }
 
-bool QMutex_TryLock1(QMutex* self, int timeout) {
-	return self->tryLock(static_cast<int>(timeout));
+bool QMutex_TryLock2(QMutex* self, QDeadlineTimer* timeout) {
+	return self->tryLock(*timeout);
 }
 
 void QMutex_Delete(QMutex* self, bool isSubclass) {
@@ -94,37 +87,33 @@ QRecursiveMutex* QRecursiveMutex_new() {
 	return new QRecursiveMutex();
 }
 
-void QRecursiveMutex_Delete(QRecursiveMutex* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QRecursiveMutex*>( self );
-	} else {
-		delete self;
-	}
+void QRecursiveMutex_Lock(QRecursiveMutex* self) {
+	self->lock();
 }
 
-QMutexLocker* QMutexLocker_new(QBasicMutex* m) {
-	return new QMutexLocker(m);
+bool QRecursiveMutex_TryLock(QRecursiveMutex* self, int timeout) {
+	return self->tryLock(static_cast<int>(timeout));
 }
 
-QMutexLocker* QMutexLocker_new2(QRecursiveMutex* m) {
-	return new QMutexLocker(m);
+bool QRecursiveMutex_TryLock2(QRecursiveMutex* self) {
+	return self->tryLock();
 }
 
-void QMutexLocker_Unlock(QMutexLocker* self) {
+void QRecursiveMutex_Unlock(QRecursiveMutex* self) {
 	self->unlock();
 }
 
-void QMutexLocker_Relock(QMutexLocker* self) {
-	self->relock();
+bool QRecursiveMutex_TryLock3(QRecursiveMutex* self) {
+	return self->try_lock();
 }
 
-QMutex* QMutexLocker_Mutex(const QMutexLocker* self) {
-	return self->mutex();
+bool QRecursiveMutex_TryLock1(QRecursiveMutex* self, QDeadlineTimer* timer) {
+	return self->tryLock(*timer);
 }
 
-void QMutexLocker_Delete(QMutexLocker* self, bool isSubclass) {
+void QRecursiveMutex_Delete(QRecursiveMutex* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QMutexLocker*>( self );
+		delete dynamic_cast<QRecursiveMutex*>( self );
 	} else {
 		delete self;
 	}

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -21,6 +21,8 @@ class QPoint;
 class QRegion;
 class QSize;
 class QWindow;
+class _GUID;
+class type_info;
 #else
 typedef struct QBackingStore QBackingStore;
 typedef struct QPaintDevice QPaintDevice;
@@ -28,23 +30,29 @@ typedef struct QPoint QPoint;
 typedef struct QRegion QRegion;
 typedef struct QSize QSize;
 typedef struct QWindow QWindow;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QBackingStore* QBackingStore_new(QWindow* window);
-QWindow* QBackingStore_Window(const QBackingStore* self);
-QPaintDevice* QBackingStore_PaintDevice(QBackingStore* self);
-void QBackingStore_Flush(QBackingStore* self, QRegion* region);
-void QBackingStore_Resize(QBackingStore* self, QSize* size);
-QSize* QBackingStore_Size(const QBackingStore* self);
-bool QBackingStore_Scroll(QBackingStore* self, QRegion* area, int dx, int dy);
-void QBackingStore_BeginPaint(QBackingStore* self, QRegion* param1);
-void QBackingStore_EndPaint(QBackingStore* self);
-void QBackingStore_SetStaticContents(QBackingStore* self, QRegion* region);
-QRegion* QBackingStore_StaticContents(const QBackingStore* self);
-bool QBackingStore_HasStaticContents(const QBackingStore* self);
-void QBackingStore_Flush2(QBackingStore* self, QRegion* region, QWindow* window);
-void QBackingStore_Flush3(QBackingStore* self, QRegion* region, QWindow* window, QPoint* offset);
-void QBackingStore_Delete(QBackingStore* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QBackingStore* QBackingStore_new(QWindow* window);
+extern __declspec(dllexport) QWindow* QBackingStore_Window(const QBackingStore* self);
+extern __declspec(dllexport) QPaintDevice* QBackingStore_PaintDevice(QBackingStore* self);
+extern __declspec(dllexport) void QBackingStore_Flush(QBackingStore* self, QRegion* region);
+extern __declspec(dllexport) void QBackingStore_Resize(QBackingStore* self, QSize* size);
+extern __declspec(dllexport) QSize* QBackingStore_Size(const QBackingStore* self);
+extern __declspec(dllexport) bool QBackingStore_Scroll(QBackingStore* self, QRegion* area, int dx, int dy);
+extern __declspec(dllexport) void QBackingStore_BeginPaint(QBackingStore* self, QRegion* param1);
+extern __declspec(dllexport) void QBackingStore_EndPaint(QBackingStore* self);
+extern __declspec(dllexport) void QBackingStore_SetStaticContents(QBackingStore* self, QRegion* region);
+extern __declspec(dllexport) QRegion* QBackingStore_StaticContents(const QBackingStore* self);
+extern __declspec(dllexport) bool QBackingStore_HasStaticContents(const QBackingStore* self);
+extern __declspec(dllexport) void QBackingStore_Flush2(QBackingStore* self, QRegion* region, QWindow* window);
+extern __declspec(dllexport) void QBackingStore_Flush3(QBackingStore* self, QRegion* region, QWindow* window, QPoint* offset);
+extern __declspec(dllexport) void QBackingStore_Delete(QBackingStore* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

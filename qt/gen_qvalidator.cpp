@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QDoubleValidator>
 #include <QEvent>
@@ -6,8 +8,6 @@
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
-#include <QRegExp>
-#include <QRegExpValidator>
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #include <QString>
@@ -21,7 +21,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQValidator : public virtual QValidator {
 public:
@@ -35,9 +50,9 @@ public:
 	intptr_t handle__Validate = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QValidator::State validate(QString& param1, int& param2) const override {
+	virtual State validate(QString& param1, int& param2) const override {
 		if (handle__Validate == 0) {
-			return (QValidator::State)(0); // Pure virtual, there is no base we can call
+			return State(); // Pure virtual, there is no base we can call
 		}
 		
 		QString param1_ret = param1;
@@ -50,9 +65,9 @@ public:
 		struct miqt_string sigval1 = param1_ms;
 		int* sigval2 = &param2;
 
-		int callback_return_value = miqt_exec_callback_QValidator_Validate(const_cast<MiqtVirtualQValidator*>(this), handle__Validate, sigval1, sigval2);
+		State callback_return_value = miqt_exec_callback_QValidator_Validate(const_cast<MiqtVirtualQValidator*>(this), handle__Validate, sigval1, sigval2);
 
-		return static_cast<QValidator::State>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// cgo.Handle value for overwritten implementation
@@ -291,17 +306,6 @@ struct miqt_string QValidator_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QValidator_TrUtf8(const char* s) {
-	QString _ret = QValidator::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QValidator_SetLocale(QValidator* self, QLocale* locale) {
 	self->setLocale(*locale);
 }
@@ -310,10 +314,9 @@ QLocale* QValidator_Locale(const QValidator* self) {
 	return new QLocale(self->locale());
 }
 
-int QValidator_Validate(const QValidator* self, struct miqt_string param1, int* param2) {
+State QValidator_Validate(const QValidator* self, struct miqt_string param1, int* param2) {
 	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-	QValidator::State _ret = self->validate(param1_QString, static_cast<int&>(*param2));
-	return static_cast<int>(_ret);
+	return self->validate(param1_QString, static_cast<int&>(*param2));
 }
 
 void QValidator_Fixup(const QValidator* self, struct miqt_string param1) {
@@ -344,28 +347,6 @@ struct miqt_string QValidator_Tr2(const char* s, const char* c) {
 
 struct miqt_string QValidator_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QValidator::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QValidator_TrUtf82(const char* s, const char* c) {
-	QString _ret = QValidator::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QValidator_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QValidator::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -526,31 +507,6 @@ public:
 
 	}
 
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetRange = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setRange(int bottom, int top) override {
-		if (handle__SetRange == 0) {
-			QIntValidator::setRange(bottom, top);
-			return;
-		}
-		
-		int sigval1 = bottom;
-		int sigval2 = top;
-
-		miqt_exec_callback_QIntValidator_SetRange(this, handle__SetRange, sigval1, sigval2);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetRange(int bottom, int top) {
-
-		QIntValidator::setRange(static_cast<int>(bottom), static_cast<int>(top));
-
-	}
-
 };
 
 QIntValidator* QIntValidator_new() {
@@ -583,17 +539,6 @@ void* QIntValidator_Metacast(QIntValidator* self, const char* param1) {
 
 struct miqt_string QIntValidator_Tr(const char* s) {
 	QString _ret = QIntValidator::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QIntValidator_TrUtf8(const char* s) {
-	QString _ret = QIntValidator::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -678,28 +623,6 @@ struct miqt_string QIntValidator_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QIntValidator_TrUtf82(const char* s, const char* c) {
-	QString _ret = QIntValidator::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QIntValidator_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QIntValidator::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QIntValidator_override_virtual_Validate(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) )->handle__Validate = slot;
 }
@@ -714,14 +637,6 @@ void QIntValidator_override_virtual_Fixup(void* self, intptr_t slot) {
 
 void QIntValidator_virtualbase_Fixup(const void* self, struct miqt_string input) {
 	( (const MiqtVirtualQIntValidator*)(self) )->virtualbase_Fixup(input);
-}
-
-void QIntValidator_override_virtual_SetRange(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) )->handle__SetRange = slot;
-}
-
-void QIntValidator_virtualbase_SetRange(void* self, int bottom, int top) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_SetRange(bottom, top);
 }
 
 void QIntValidator_Delete(QIntValidator* self, bool isSubclass) {
@@ -776,49 +691,23 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__SetRange = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void setRange(double bottom, double top, int decimals) override {
-		if (handle__SetRange == 0) {
-			QDoubleValidator::setRange(bottom, top, decimals);
-			return;
-		}
-		
-		double sigval1 = bottom;
-		double sigval2 = top;
-		int sigval3 = decimals;
-
-		miqt_exec_callback_QDoubleValidator_SetRange(this, handle__SetRange, sigval1, sigval2, sigval3);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_SetRange(double bottom, double top, int decimals) {
-
-		QDoubleValidator::setRange(static_cast<double>(bottom), static_cast<double>(top), static_cast<int>(decimals));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Fixup = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void fixup(QString& param1) const override {
+	virtual void fixup(QString& input) const override {
 		if (handle__Fixup == 0) {
-			QDoubleValidator::fixup(param1);
+			QDoubleValidator::fixup(input);
 			return;
 		}
 		
-		QString param1_ret = param1;
+		QString input_ret = input;
 		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
+		QByteArray input_b = input_ret.toUtf8();
+		struct miqt_string input_ms;
+		input_ms.len = input_b.length();
+		input_ms.data = static_cast<char*>(malloc(input_ms.len));
+		memcpy(input_ms.data, input_b.data(), input_ms.len);
+		struct miqt_string sigval1 = input_ms;
 
 		miqt_exec_callback_QDoubleValidator_Fixup(const_cast<MiqtVirtualQDoubleValidator*>(this), handle__Fixup, sigval1);
 
@@ -826,10 +715,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_Fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+	void virtualbase_Fixup(struct miqt_string input) const {
+		QString input_QString = QString::fromUtf8(input.data, input.len);
 
-		QDoubleValidator::fixup(param1_QString);
+		QDoubleValidator::fixup(input_QString);
 
 	}
 
@@ -874,25 +763,23 @@ struct miqt_string QDoubleValidator_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QDoubleValidator_TrUtf8(const char* s) {
-	QString _ret = QDoubleValidator::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QDoubleValidator_Validate(const QDoubleValidator* self, struct miqt_string param1, int* param2) {
 	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
 	QValidator::State _ret = self->validate(param1_QString, static_cast<int&>(*param2));
 	return static_cast<int>(_ret);
 }
 
+void QDoubleValidator_Fixup(const QDoubleValidator* self, struct miqt_string input) {
+	QString input_QString = QString::fromUtf8(input.data, input.len);
+	self->fixup(input_QString);
+}
+
 void QDoubleValidator_SetRange(QDoubleValidator* self, double bottom, double top, int decimals) {
 	self->setRange(static_cast<double>(bottom), static_cast<double>(top), static_cast<int>(decimals));
+}
+
+void QDoubleValidator_SetRange2(QDoubleValidator* self, double bottom, double top) {
+	self->setRange(static_cast<double>(bottom), static_cast<double>(top));
 }
 
 void QDoubleValidator_SetBottom(QDoubleValidator* self, double bottom) {
@@ -907,8 +794,8 @@ void QDoubleValidator_SetDecimals(QDoubleValidator* self, int decimals) {
 	self->setDecimals(static_cast<int>(decimals));
 }
 
-void QDoubleValidator_SetNotation(QDoubleValidator* self, int notation) {
-	self->setNotation(static_cast<QDoubleValidator::Notation>(notation));
+void QDoubleValidator_SetNotation(QDoubleValidator* self, Notation notation) {
+	self->setNotation(notation);
 }
 
 double QDoubleValidator_Bottom(const QDoubleValidator* self) {
@@ -923,9 +810,8 @@ int QDoubleValidator_Decimals(const QDoubleValidator* self) {
 	return self->decimals();
 }
 
-int QDoubleValidator_Notation(const QDoubleValidator* self) {
-	QDoubleValidator::Notation _ret = self->notation();
-	return static_cast<int>(_ret);
+Notation QDoubleValidator_Notation(const QDoubleValidator* self) {
+	return self->notation();
 }
 
 void QDoubleValidator_BottomChanged(QDoubleValidator* self, double bottom) {
@@ -995,28 +881,6 @@ struct miqt_string QDoubleValidator_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QDoubleValidator_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDoubleValidator::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDoubleValidator_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDoubleValidator::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QDoubleValidator_override_virtual_Validate(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__Validate = slot;
 }
@@ -1025,249 +889,17 @@ int QDoubleValidator_virtualbase_Validate(const void* self, struct miqt_string p
 	return ( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_Validate(param1, param2);
 }
 
-void QDoubleValidator_override_virtual_SetRange(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__SetRange = slot;
-}
-
-void QDoubleValidator_virtualbase_SetRange(void* self, double bottom, double top, int decimals) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_SetRange(bottom, top, decimals);
-}
-
 void QDoubleValidator_override_virtual_Fixup(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) )->handle__Fixup = slot;
 }
 
-void QDoubleValidator_virtualbase_Fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_Fixup(param1);
+void QDoubleValidator_virtualbase_Fixup(const void* self, struct miqt_string input) {
+	( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_Fixup(input);
 }
 
 void QDoubleValidator_Delete(QDoubleValidator* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<MiqtVirtualQDoubleValidator*>( self );
-	} else {
-		delete self;
-	}
-}
-
-class MiqtVirtualQRegExpValidator : public virtual QRegExpValidator {
-public:
-
-	MiqtVirtualQRegExpValidator(): QRegExpValidator() {};
-	MiqtVirtualQRegExpValidator(const QRegExp& rx): QRegExpValidator(rx) {};
-	MiqtVirtualQRegExpValidator(QObject* parent): QRegExpValidator(parent) {};
-	MiqtVirtualQRegExpValidator(const QRegExp& rx, QObject* parent): QRegExpValidator(rx, parent) {};
-
-	virtual ~MiqtVirtualQRegExpValidator() = default;
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Validate = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QValidator::State validate(QString& input, int& pos) const override {
-		if (handle__Validate == 0) {
-			return QRegExpValidator::validate(input, pos);
-		}
-		
-		QString input_ret = input;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray input_b = input_ret.toUtf8();
-		struct miqt_string input_ms;
-		input_ms.len = input_b.length();
-		input_ms.data = static_cast<char*>(malloc(input_ms.len));
-		memcpy(input_ms.data, input_b.data(), input_ms.len);
-		struct miqt_string sigval1 = input_ms;
-		int* sigval2 = &pos;
-
-		int callback_return_value = miqt_exec_callback_QRegExpValidator_Validate(const_cast<MiqtVirtualQRegExpValidator*>(this), handle__Validate, sigval1, sigval2);
-
-		return static_cast<QValidator::State>(callback_return_value);
-	}
-
-	// Wrapper to allow calling protected method
-	int virtualbase_Validate(struct miqt_string input, int* pos) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
-
-		QValidator::State _ret = QRegExpValidator::validate(input_QString, static_cast<int&>(*pos));
-		return static_cast<int>(_ret);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Fixup = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void fixup(QString& param1) const override {
-		if (handle__Fixup == 0) {
-			QRegExpValidator::fixup(param1);
-			return;
-		}
-		
-		QString param1_ret = param1;
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray param1_b = param1_ret.toUtf8();
-		struct miqt_string param1_ms;
-		param1_ms.len = param1_b.length();
-		param1_ms.data = static_cast<char*>(malloc(param1_ms.len));
-		memcpy(param1_ms.data, param1_b.data(), param1_ms.len);
-		struct miqt_string sigval1 = param1_ms;
-
-		miqt_exec_callback_QRegExpValidator_Fixup(const_cast<MiqtVirtualQRegExpValidator*>(this), handle__Fixup, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_Fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QRegExpValidator::fixup(param1_QString);
-
-	}
-
-};
-
-QRegExpValidator* QRegExpValidator_new() {
-	return new MiqtVirtualQRegExpValidator();
-}
-
-QRegExpValidator* QRegExpValidator_new2(QRegExp* rx) {
-	return new MiqtVirtualQRegExpValidator(*rx);
-}
-
-QRegExpValidator* QRegExpValidator_new3(QObject* parent) {
-	return new MiqtVirtualQRegExpValidator(parent);
-}
-
-QRegExpValidator* QRegExpValidator_new4(QRegExp* rx, QObject* parent) {
-	return new MiqtVirtualQRegExpValidator(*rx, parent);
-}
-
-void QRegExpValidator_virtbase(QRegExpValidator* src, QValidator** outptr_QValidator) {
-	*outptr_QValidator = static_cast<QValidator*>(src);
-}
-
-QMetaObject* QRegExpValidator_MetaObject(const QRegExpValidator* self) {
-	return (QMetaObject*) self->metaObject();
-}
-
-void* QRegExpValidator_Metacast(QRegExpValidator* self, const char* param1) {
-	return self->qt_metacast(param1);
-}
-
-struct miqt_string QRegExpValidator_Tr(const char* s) {
-	QString _ret = QRegExpValidator::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRegExpValidator_TrUtf8(const char* s) {
-	QString _ret = QRegExpValidator::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QRegExpValidator_Validate(const QRegExpValidator* self, struct miqt_string input, int* pos) {
-	QString input_QString = QString::fromUtf8(input.data, input.len);
-	QValidator::State _ret = self->validate(input_QString, static_cast<int&>(*pos));
-	return static_cast<int>(_ret);
-}
-
-void QRegExpValidator_SetRegExp(QRegExpValidator* self, QRegExp* rx) {
-	self->setRegExp(*rx);
-}
-
-QRegExp* QRegExpValidator_RegExp(const QRegExpValidator* self) {
-	const QRegExp& _ret = self->regExp();
-	// Cast returned reference into pointer
-	return const_cast<QRegExp*>(&_ret);
-}
-
-void QRegExpValidator_RegExpChanged(QRegExpValidator* self, QRegExp* regExp) {
-	self->regExpChanged(*regExp);
-}
-
-void QRegExpValidator_connect_RegExpChanged(QRegExpValidator* self, intptr_t slot) {
-	MiqtVirtualQRegExpValidator::connect(self, static_cast<void (QRegExpValidator::*)(const QRegExp&)>(&QRegExpValidator::regExpChanged), self, [=](const QRegExp& regExp) {
-		const QRegExp& regExp_ret = regExp;
-		// Cast returned reference into pointer
-		QRegExp* sigval1 = const_cast<QRegExp*>(&regExp_ret);
-		miqt_exec_callback_QRegExpValidator_RegExpChanged(slot, sigval1);
-	});
-}
-
-struct miqt_string QRegExpValidator_Tr2(const char* s, const char* c) {
-	QString _ret = QRegExpValidator::tr(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRegExpValidator_Tr3(const char* s, const char* c, int n) {
-	QString _ret = QRegExpValidator::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRegExpValidator_TrUtf82(const char* s, const char* c) {
-	QString _ret = QRegExpValidator::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRegExpValidator_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QRegExpValidator::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QRegExpValidator_override_virtual_Validate(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRegExpValidator*>( (QRegExpValidator*)(self) )->handle__Validate = slot;
-}
-
-int QRegExpValidator_virtualbase_Validate(const void* self, struct miqt_string input, int* pos) {
-	return ( (const MiqtVirtualQRegExpValidator*)(self) )->virtualbase_Validate(input, pos);
-}
-
-void QRegExpValidator_override_virtual_Fixup(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRegExpValidator*>( (QRegExpValidator*)(self) )->handle__Fixup = slot;
-}
-
-void QRegExpValidator_virtualbase_Fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQRegExpValidator*)(self) )->virtualbase_Fixup(param1);
-}
-
-void QRegExpValidator_Delete(QRegExpValidator* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<MiqtVirtualQRegExpValidator*>( self );
 	} else {
 		delete self;
 	}
@@ -1389,17 +1021,6 @@ struct miqt_string QRegularExpressionValidator_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QRegularExpressionValidator_TrUtf8(const char* s) {
-	QString _ret = QRegularExpressionValidator::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QRegularExpressionValidator_Validate(const QRegularExpressionValidator* self, struct miqt_string input, int* pos) {
 	QString input_QString = QString::fromUtf8(input.data, input.len);
 	QValidator::State _ret = self->validate(input_QString, static_cast<int&>(*pos));
@@ -1440,28 +1061,6 @@ struct miqt_string QRegularExpressionValidator_Tr2(const char* s, const char* c)
 
 struct miqt_string QRegularExpressionValidator_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QRegularExpressionValidator::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRegularExpressionValidator_TrUtf82(const char* s, const char* c) {
-	QString _ret = QRegularExpressionValidator::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRegularExpressionValidator_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QRegularExpressionValidator::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBrush>
 #include <QColor>
 #include <QList>
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QPen* QPen_new() {
 	return new QPen();
@@ -50,6 +67,14 @@ void QPen_Swap(QPen* self, QPen* other) {
 	self->swap(*other);
 }
 
+void QPen_OperatorAssignWithColor(QPen* self, QColor* color) {
+	self->operator=(*color);
+}
+
+void QPen_OperatorAssignWithStyle(QPen* self, int style) {
+	self->operator=(static_cast<Qt::PenStyle>(style));
+}
+
 int QPen_Style(const QPen* self) {
 	Qt::PenStyle _ret = self->style();
 	return static_cast<int>(_ret);
@@ -60,7 +85,7 @@ void QPen_SetStyle(QPen* self, int style) {
 }
 
 struct miqt_array /* of double */  QPen_DashPattern(const QPen* self) {
-	QVector<qreal> _ret = self->dashPattern();
+	QList<qreal> _ret = self->dashPattern();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	double* _arr = static_cast<double*>(malloc(sizeof(double) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -73,7 +98,7 @@ struct miqt_array /* of double */  QPen_DashPattern(const QPen* self) {
 }
 
 void QPen_SetDashPattern(QPen* self, struct miqt_array /* of double */  pattern) {
-	QVector<qreal> pattern_QList;
+	QList<qreal> pattern_QList;
 	pattern_QList.reserve(pattern.len);
 	double* pattern_arr = static_cast<double*>(pattern.data);
 	for(size_t i = 0; i < pattern.len; ++i) {
@@ -173,6 +198,10 @@ bool QPen_OperatorNotEqual(const QPen* self, QPen* p) {
 
 bool QPen_IsDetached(QPen* self) {
 	return self->isDetached();
+}
+
+DataPtr* QPen_DataPtr(QPen* self) {
+	return &self->data_ptr();
 }
 
 void QPen_Delete(QPen* self, bool isSubclass) {

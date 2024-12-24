@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -22,34 +22,40 @@ typedef QPixmapCache::Key QPixmapCache__Key;
 #else
 class QPixmapCache__Key;
 #endif
+class _GUID;
+class type_info;
 #else
 typedef struct QPixmap QPixmap;
 typedef struct QPixmapCache QPixmapCache;
 typedef struct QPixmapCache__Key QPixmapCache__Key;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-int QPixmapCache_CacheLimit();
-void QPixmapCache_SetCacheLimit(int cacheLimit);
-QPixmap* QPixmapCache_Find(struct miqt_string key);
-bool QPixmapCache_Find2(struct miqt_string key, QPixmap* pixmap);
-bool QPixmapCache_Find3(struct miqt_string key, QPixmap* pixmap);
-bool QPixmapCache_Find4(QPixmapCache__Key* key, QPixmap* pixmap);
-bool QPixmapCache_Insert(struct miqt_string key, QPixmap* pixmap);
-QPixmapCache__Key* QPixmapCache_InsertWithPixmap(QPixmap* pixmap);
-bool QPixmapCache_Replace(QPixmapCache__Key* key, QPixmap* pixmap);
-void QPixmapCache_Remove(struct miqt_string key);
-void QPixmapCache_RemoveWithKey(QPixmapCache__Key* key);
-void QPixmapCache_Clear();
-void QPixmapCache_Delete(QPixmapCache* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
-QPixmapCache__Key* QPixmapCache__Key_new();
-QPixmapCache__Key* QPixmapCache__Key_new2(QPixmapCache__Key* other);
-bool QPixmapCache__Key_OperatorEqual(const QPixmapCache__Key* self, QPixmapCache__Key* key);
-bool QPixmapCache__Key_OperatorNotEqual(const QPixmapCache__Key* self, QPixmapCache__Key* key);
-void QPixmapCache__Key_OperatorAssign(QPixmapCache__Key* self, QPixmapCache__Key* other);
-void QPixmapCache__Key_Swap(QPixmapCache__Key* self, QPixmapCache__Key* other);
-bool QPixmapCache__Key_IsValid(const QPixmapCache__Key* self);
-void QPixmapCache__Key_Delete(QPixmapCache__Key* self, bool isSubclass);
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) int QPixmapCache_CacheLimit();
+extern __declspec(dllexport) void QPixmapCache_SetCacheLimit(int cacheLimit);
+extern __declspec(dllexport) bool QPixmapCache_Find(struct miqt_string key, QPixmap* pixmap);
+extern __declspec(dllexport) bool QPixmapCache_Find2(const Key* key, QPixmap* pixmap);
+extern __declspec(dllexport) bool QPixmapCache_Insert(struct miqt_string key, QPixmap* pixmap);
+extern __declspec(dllexport) Key QPixmapCache_InsertWithPixmap(QPixmap* pixmap);
+extern __declspec(dllexport) bool QPixmapCache_Replace(const Key* key, QPixmap* pixmap);
+extern __declspec(dllexport) void QPixmapCache_Remove(struct miqt_string key);
+extern __declspec(dllexport) void QPixmapCache_RemoveWithKey(const Key* key);
+extern __declspec(dllexport) void QPixmapCache_Clear();
+extern __declspec(dllexport) void QPixmapCache_Delete(QPixmapCache* self, bool isSubclass);
+
+extern __declspec(dllexport) QPixmapCache__Key* QPixmapCache__Key_new();
+extern __declspec(dllexport) QPixmapCache__Key* QPixmapCache__Key_new2(const Key* other);
+extern __declspec(dllexport) bool QPixmapCache__Key_OperatorEqual(const QPixmapCache__Key* self, const Key* key);
+extern __declspec(dllexport) bool QPixmapCache__Key_OperatorNotEqual(const QPixmapCache__Key* self, const Key* key);
+extern __declspec(dllexport) void QPixmapCache__Key_OperatorAssign(QPixmapCache__Key* self, const Key* other);
+extern __declspec(dllexport) void QPixmapCache__Key_Swap(QPixmapCache__Key* self, Key* other);
+extern __declspec(dllexport) bool QPixmapCache__Key_IsValid(const QPixmapCache__Key* self);
+extern __declspec(dllexport) void QPixmapCache__Key_Delete(QPixmapCache__Key* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

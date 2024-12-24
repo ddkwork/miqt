@@ -1,8 +1,12 @@
+// +build ignore
+
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QChar>
 #include <QDebug>
 #include <QDebugStateSaver>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QNoDebug>
 #include <QString>
 #include <QByteArray>
@@ -13,7 +17,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QDebug* QDebug_new(QIODevice* device) {
 	return new QDebug(device);
@@ -21,6 +40,10 @@ QDebug* QDebug_new(QIODevice* device) {
 
 QDebug* QDebug_new2(QDebug* o) {
 	return new QDebug(*o);
+}
+
+void QDebug_virtbase(QDebug* src, QIODeviceBase** outptr_QIODeviceBase) {
+	*outptr_QIODeviceBase = static_cast<QIODeviceBase*>(src);
 }
 
 void QDebug_OperatorAssign(QDebug* self, QDebug* other) {
@@ -75,6 +98,14 @@ bool QDebug_AutoInsertSpaces(const QDebug* self) {
 
 void QDebug_SetAutoInsertSpaces(QDebug* self, bool b) {
 	self->setAutoInsertSpaces(b);
+}
+
+bool QDebug_QuoteStrings(const QDebug* self) {
+	return self->quoteStrings();
+}
+
+void QDebug_SetQuoteStrings(QDebug* self, bool b) {
+	self->setQuoteStrings(b);
 }
 
 QDebug* QDebug_Quote(QDebug* self) {
@@ -189,6 +220,12 @@ QDebug* QDebug_OperatorShiftLeftWithQString(QDebug* self, struct miqt_string t) 
 QDebug* QDebug_OperatorShiftLeftWithQByteArray(QDebug* self, struct miqt_string t) {
 	QByteArray t_QByteArray(t.data, t.len);
 	QDebug& _ret = self->operator<<(t_QByteArray);
+	// Cast returned reference into pointer
+	return &_ret;
+}
+
+QDebug* QDebug_OperatorShiftLeftWithQByteArrayView(QDebug* self, QByteArrayView* t) {
+	QDebug& _ret = self->operator<<(*t);
 	// Cast returned reference into pointer
 	return &_ret;
 }

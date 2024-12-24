@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractNetworkCache>
 #include <QAuthenticator>
 #include <QByteArray>
@@ -10,7 +12,6 @@
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNetworkAccessManager>
-#include <QNetworkConfiguration>
 #include <QNetworkCookieJar>
 #include <QNetworkProxy>
 #include <QNetworkProxyFactory>
@@ -30,7 +31,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQNetworkAccessManager : public virtual QNetworkAccessManager {
 public:
@@ -41,16 +57,60 @@ public:
 	virtual ~MiqtVirtualQNetworkAccessManager() = default;
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SupportedSchemes = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QStringList supportedSchemes() const override {
+		if (handle__SupportedSchemes == 0) {
+			return QNetworkAccessManager::supportedSchemes();
+		}
+		
+
+		struct miqt_array /* of struct miqt_string */  callback_return_value = miqt_exec_callback_QNetworkAccessManager_SupportedSchemes(const_cast<MiqtVirtualQNetworkAccessManager*>(this), handle__SupportedSchemes);
+		QStringList callback_return_value_QList;
+		callback_return_value_QList.reserve(callback_return_value.len);
+		struct miqt_string* callback_return_value_arr = static_cast<struct miqt_string*>(callback_return_value.data);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QString callback_return_value_arr_i_QString = QString::fromUtf8(callback_return_value_arr[i].data, callback_return_value_arr[i].len);
+			callback_return_value_QList.push_back(callback_return_value_arr_i_QString);
+		}
+
+		return callback_return_value_QList;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_array /* of struct miqt_string */  virtualbase_SupportedSchemes() const {
+
+		QStringList _ret = QNetworkAccessManager::supportedSchemes();
+		// Convert QList<> from C++ memory to manually-managed C memory
+		struct miqt_string* _arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.length()));
+		for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+			QString _lv_ret = _ret[i];
+			// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+			QByteArray _lv_b = _lv_ret.toUtf8();
+			struct miqt_string _lv_ms;
+			_lv_ms.len = _lv_b.length();
+			_lv_ms.data = static_cast<char*>(malloc(_lv_ms.len));
+			memcpy(_lv_ms.data, _lv_b.data(), _lv_ms.len);
+			_arr[i] = _lv_ms;
+		}
+		struct miqt_array _out;
+		_out.len = _ret.length();
+		_out.data = static_cast<void*>(_arr);
+		return _out;
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__CreateRequest = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QNetworkReply* createRequest(QNetworkAccessManager::Operation op, const QNetworkRequest& request, QIODevice* outgoingData) override {
+	virtual QNetworkReply* createRequest(Operation op, const QNetworkRequest& request, QIODevice* outgoingData) override {
 		if (handle__CreateRequest == 0) {
 			return QNetworkAccessManager::createRequest(op, request, outgoingData);
 		}
 		
-		QNetworkAccessManager::Operation op_ret = op;
-		int sigval1 = static_cast<int>(op_ret);
+		Operation sigval1 = op;
 		const QNetworkRequest& request_ret = request;
 		// Cast returned reference into pointer
 		QNetworkRequest* sigval2 = const_cast<QNetworkRequest*>(&request_ret);
@@ -62,9 +122,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QNetworkReply* virtualbase_CreateRequest(int op, QNetworkRequest* request, QIODevice* outgoingData) {
+	QNetworkReply* virtualbase_CreateRequest(Operation op, QNetworkRequest* request, QIODevice* outgoingData) {
 
-		return QNetworkAccessManager::createRequest(static_cast<QNetworkAccessManager::Operation>(op), *request, outgoingData);
+		return QNetworkAccessManager::createRequest(op, *request, outgoingData);
 
 	}
 
@@ -272,17 +332,6 @@ struct miqt_string QNetworkAccessManager_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QNetworkAccessManager_TrUtf8(const char* s) {
-	QString _ret = QNetworkAccessManager::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_array /* of struct miqt_string */  QNetworkAccessManager_SupportedSchemes(const QNetworkAccessManager* self) {
 	QStringList _ret = self->supportedSchemes();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -360,7 +409,7 @@ bool QNetworkAccessManager_IsStrictTransportSecurityStoreEnabled(const QNetworkA
 }
 
 void QNetworkAccessManager_AddStrictTransportSecurityHosts(QNetworkAccessManager* self, struct miqt_array /* of QHstsPolicy* */  knownHosts) {
-	QVector<QHstsPolicy> knownHosts_QList;
+	QList<QHstsPolicy> knownHosts_QList;
 	knownHosts_QList.reserve(knownHosts.len);
 	QHstsPolicy** knownHosts_arr = static_cast<QHstsPolicy**>(knownHosts.data);
 	for(size_t i = 0; i < knownHosts.len; ++i) {
@@ -370,7 +419,7 @@ void QNetworkAccessManager_AddStrictTransportSecurityHosts(QNetworkAccessManager
 }
 
 struct miqt_array /* of QHstsPolicy* */  QNetworkAccessManager_StrictTransportSecurityHosts(const QNetworkAccessManager* self) {
-	QVector<QHstsPolicy> _ret = self->strictTransportSecurityHosts();
+	QList<QHstsPolicy> _ret = self->strictTransportSecurityHosts();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QHstsPolicy** _arr = static_cast<QHstsPolicy**>(malloc(sizeof(QHstsPolicy*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -388,6 +437,15 @@ QNetworkReply* QNetworkAccessManager_Head(QNetworkAccessManager* self, QNetworkR
 
 QNetworkReply* QNetworkAccessManager_Get(QNetworkAccessManager* self, QNetworkRequest* request) {
 	return self->get(*request);
+}
+
+QNetworkReply* QNetworkAccessManager_Get2(QNetworkAccessManager* self, QNetworkRequest* request, QIODevice* data) {
+	return self->get(*request, data);
+}
+
+QNetworkReply* QNetworkAccessManager_Get3(QNetworkAccessManager* self, QNetworkRequest* request, struct miqt_string data) {
+	QByteArray data_QByteArray(data.data, data.len);
+	return self->get(*request, data_QByteArray);
 }
 
 QNetworkReply* QNetworkAccessManager_Post(QNetworkAccessManager* self, QNetworkRequest* request, QIODevice* data) {
@@ -423,38 +481,17 @@ QNetworkReply* QNetworkAccessManager_SendCustomRequest2(QNetworkAccessManager* s
 	return self->sendCustomRequest(*request, verb_QByteArray, data_QByteArray);
 }
 
-QNetworkReply* QNetworkAccessManager_Post3(QNetworkAccessManager* self, QNetworkRequest* request, QHttpMultiPart* multiPart) {
+QNetworkReply* QNetworkAccessManager_Post4(QNetworkAccessManager* self, QNetworkRequest* request, QHttpMultiPart* multiPart) {
 	return self->post(*request, multiPart);
 }
 
-QNetworkReply* QNetworkAccessManager_Put3(QNetworkAccessManager* self, QNetworkRequest* request, QHttpMultiPart* multiPart) {
+QNetworkReply* QNetworkAccessManager_Put4(QNetworkAccessManager* self, QNetworkRequest* request, QHttpMultiPart* multiPart) {
 	return self->put(*request, multiPart);
 }
 
 QNetworkReply* QNetworkAccessManager_SendCustomRequest3(QNetworkAccessManager* self, QNetworkRequest* request, struct miqt_string verb, QHttpMultiPart* multiPart) {
 	QByteArray verb_QByteArray(verb.data, verb.len);
 	return self->sendCustomRequest(*request, verb_QByteArray, multiPart);
-}
-
-void QNetworkAccessManager_SetConfiguration(QNetworkAccessManager* self, QNetworkConfiguration* config) {
-	self->setConfiguration(*config);
-}
-
-QNetworkConfiguration* QNetworkAccessManager_Configuration(const QNetworkAccessManager* self) {
-	return new QNetworkConfiguration(self->configuration());
-}
-
-QNetworkConfiguration* QNetworkAccessManager_ActiveConfiguration(const QNetworkAccessManager* self) {
-	return new QNetworkConfiguration(self->activeConfiguration());
-}
-
-void QNetworkAccessManager_SetNetworkAccessible(QNetworkAccessManager* self, int accessible) {
-	self->setNetworkAccessible(static_cast<QNetworkAccessManager::NetworkAccessibility>(accessible));
-}
-
-int QNetworkAccessManager_NetworkAccessible(const QNetworkAccessManager* self) {
-	QNetworkAccessManager::NetworkAccessibility _ret = self->networkAccessible();
-	return static_cast<int>(_ret);
 }
 
 void QNetworkAccessManager_ConnectToHostEncrypted(QNetworkAccessManager* self, struct miqt_string hostName) {
@@ -494,7 +531,11 @@ int QNetworkAccessManager_TransferTimeout(const QNetworkAccessManager* self) {
 	return self->transferTimeout();
 }
 
-void QNetworkAccessManager_SetTransferTimeout(QNetworkAccessManager* self) {
+void QNetworkAccessManager_SetTransferTimeout(QNetworkAccessManager* self, int timeout) {
+	self->setTransferTimeout(static_cast<int>(timeout));
+}
+
+void QNetworkAccessManager_SetTransferTimeout2(QNetworkAccessManager* self) {
 	self->setTransferTimeout();
 }
 
@@ -585,28 +626,6 @@ void QNetworkAccessManager_connect_PreSharedKeyAuthenticationRequired(QNetworkAc
 	});
 }
 
-void QNetworkAccessManager_NetworkSessionConnected(QNetworkAccessManager* self) {
-	self->networkSessionConnected();
-}
-
-void QNetworkAccessManager_connect_NetworkSessionConnected(QNetworkAccessManager* self, intptr_t slot) {
-	MiqtVirtualQNetworkAccessManager::connect(self, static_cast<void (QNetworkAccessManager::*)()>(&QNetworkAccessManager::networkSessionConnected), self, [=]() {
-		miqt_exec_callback_QNetworkAccessManager_NetworkSessionConnected(slot);
-	});
-}
-
-void QNetworkAccessManager_NetworkAccessibleChanged(QNetworkAccessManager* self, int accessible) {
-	self->networkAccessibleChanged(static_cast<QNetworkAccessManager::NetworkAccessibility>(accessible));
-}
-
-void QNetworkAccessManager_connect_NetworkAccessibleChanged(QNetworkAccessManager* self, intptr_t slot) {
-	MiqtVirtualQNetworkAccessManager::connect(self, static_cast<void (QNetworkAccessManager::*)(QNetworkAccessManager::NetworkAccessibility)>(&QNetworkAccessManager::networkAccessibleChanged), self, [=](QNetworkAccessManager::NetworkAccessibility accessible) {
-		QNetworkAccessManager::NetworkAccessibility accessible_ret = accessible;
-		int sigval1 = static_cast<int>(accessible_ret);
-		miqt_exec_callback_QNetworkAccessManager_NetworkAccessibleChanged(slot, sigval1);
-	});
-}
-
 struct miqt_string QNetworkAccessManager_Tr2(const char* s, const char* c) {
 	QString _ret = QNetworkAccessManager::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -620,28 +639,6 @@ struct miqt_string QNetworkAccessManager_Tr2(const char* s, const char* c) {
 
 struct miqt_string QNetworkAccessManager_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QNetworkAccessManager::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QNetworkAccessManager_TrUtf82(const char* s, const char* c) {
-	QString _ret = QNetworkAccessManager::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QNetworkAccessManager_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QNetworkAccessManager::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -676,15 +673,19 @@ void QNetworkAccessManager_ConnectToHost2(QNetworkAccessManager* self, struct mi
 	self->connectToHost(hostName_QString, static_cast<quint16>(port));
 }
 
-void QNetworkAccessManager_SetTransferTimeout1(QNetworkAccessManager* self, int timeout) {
-	self->setTransferTimeout(static_cast<int>(timeout));
+void QNetworkAccessManager_override_virtual_SupportedSchemes(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQNetworkAccessManager*>( (QNetworkAccessManager*)(self) )->handle__SupportedSchemes = slot;
+}
+
+struct miqt_array /* of struct miqt_string */  QNetworkAccessManager_virtualbase_SupportedSchemes(const void* self) {
+	return ( (const MiqtVirtualQNetworkAccessManager*)(self) )->virtualbase_SupportedSchemes();
 }
 
 void QNetworkAccessManager_override_virtual_CreateRequest(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQNetworkAccessManager*>( (QNetworkAccessManager*)(self) )->handle__CreateRequest = slot;
 }
 
-QNetworkReply* QNetworkAccessManager_virtualbase_CreateRequest(void* self, int op, QNetworkRequest* request, QIODevice* outgoingData) {
+QNetworkReply* QNetworkAccessManager_virtualbase_CreateRequest(void* self, Operation op, QNetworkRequest* request, QIODevice* outgoingData) {
 	return ( (MiqtVirtualQNetworkAccessManager*)(self) )->virtualbase_CreateRequest(op, request, outgoingData);
 }
 

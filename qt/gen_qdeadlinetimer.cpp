@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QDeadlineTimer>
 #include <qdeadlinetimer.h>
 #include "gen_qdeadlinetimer.h"
@@ -5,30 +7,45 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QDeadlineTimer* QDeadlineTimer_new() {
 	return new QDeadlineTimer();
 }
 
-QDeadlineTimer* QDeadlineTimer_new2(int param1) {
-	return new QDeadlineTimer(static_cast<QDeadlineTimer::ForeverConstant>(param1));
-}
-
-QDeadlineTimer* QDeadlineTimer_new3(long long msecs) {
-	return new QDeadlineTimer(static_cast<qint64>(msecs));
-}
-
-QDeadlineTimer* QDeadlineTimer_new4(QDeadlineTimer* param1) {
-	return new QDeadlineTimer(*param1);
-}
-
-QDeadlineTimer* QDeadlineTimer_new5(int type_) {
+QDeadlineTimer* QDeadlineTimer_new2(int type_) {
 	return new QDeadlineTimer(static_cast<Qt::TimerType>(type_));
 }
 
-QDeadlineTimer* QDeadlineTimer_new6(int param1, int type_) {
-	return new QDeadlineTimer(static_cast<QDeadlineTimer::ForeverConstant>(param1), static_cast<Qt::TimerType>(type_));
+QDeadlineTimer* QDeadlineTimer_new3(ForeverConstant param1) {
+	return new QDeadlineTimer(param1);
+}
+
+QDeadlineTimer* QDeadlineTimer_new4(long long msecs) {
+	return new QDeadlineTimer(static_cast<qint64>(msecs));
+}
+
+QDeadlineTimer* QDeadlineTimer_new5(QDeadlineTimer* param1) {
+	return new QDeadlineTimer(*param1);
+}
+
+QDeadlineTimer* QDeadlineTimer_new6(ForeverConstant param1, int type_) {
+	return new QDeadlineTimer(param1, static_cast<Qt::TimerType>(type_));
 }
 
 QDeadlineTimer* QDeadlineTimer_new7(long long msecs, int typeVal) {
@@ -110,10 +127,6 @@ QDeadlineTimer* QDeadlineTimer_OperatorMinusAssign(QDeadlineTimer* self, long lo
 	QDeadlineTimer& _ret = self->operator-=(static_cast<qint64>(msecs));
 	// Cast returned reference into pointer
 	return &_ret;
-}
-
-void QDeadlineTimer_OperatorAssign(QDeadlineTimer* self, QDeadlineTimer* param1) {
-	self->operator=(*param1);
 }
 
 void QDeadlineTimer_SetRemainingTime2(QDeadlineTimer* self, long long msecs, int typeVal) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QAbstractProxyModel>
 #include <QByteArray>
@@ -7,6 +9,7 @@
 #include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
+#include <QModelRoleDataSpan>
 #include <QObject>
 #include <QSize>
 #include <QString>
@@ -19,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractProxyModel : public virtual QAbstractProxyModel {
 public:
@@ -412,6 +430,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QAbstractProxyModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QAbstractProxyModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QAbstractProxyModel::clearItemData(*index);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Buddy = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -780,6 +823,55 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__RoleNames = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QHash<int, QByteArray> roleNames() const override {
+		if (handle__RoleNames == 0) {
+			return QAbstractProxyModel::roleNames();
+		}
+		
+
+		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QAbstractProxyModel_RoleNames(const_cast<MiqtVirtualQAbstractProxyModel*>(this), handle__RoleNames);
+		QHash<int, QByteArray> callback_return_value_QMap;
+		callback_return_value_QMap.reserve(callback_return_value.len);
+		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
+		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
+			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
+		}
+
+		return callback_return_value_QMap;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+
+		QHash<int, QByteArray> _ret = QAbstractProxyModel::roleNames();
+		// Convert QMap<> from C++ memory to manually-managed C memory
+		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+		int _ctr = 0;
+		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+			_karr[_ctr] = _itr->first;
+			QByteArray _hashval_qb = _itr->second;
+			struct miqt_string _hashval_ms;
+			_hashval_ms.len = _hashval_qb.length();
+			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+			_varr[_ctr] = _hashval_ms;
+			_ctr++;
+		}
+		struct miqt_map _out;
+		_out.len = _ret.size();
+		_out.keys = static_cast<void*>(_karr);
+		_out.values = static_cast<void*>(_varr);
+		return _out;
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Index = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1071,51 +1163,52 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__RoleNames = 0;
+	intptr_t handle__MultiData = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QHash<int, QByteArray> roleNames() const override {
-		if (handle__RoleNames == 0) {
-			return QAbstractProxyModel::roleNames();
+	virtual void multiData(const QModelIndex& index, QModelRoleDataSpan roleDataSpan) const override {
+		if (handle__MultiData == 0) {
+			QAbstractProxyModel::multiData(index, roleDataSpan);
+			return;
 		}
 		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+		QModelRoleDataSpan* sigval2 = new QModelRoleDataSpan(roleDataSpan);
 
-		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QAbstractProxyModel_RoleNames(const_cast<MiqtVirtualQAbstractProxyModel*>(this), handle__RoleNames);
-		QHash<int, QByteArray> callback_return_value_QMap;
-		callback_return_value_QMap.reserve(callback_return_value.len);
-		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
-		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
-		for(size_t i = 0; i < callback_return_value.len; ++i) {
-			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
-			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
-		}
+		miqt_exec_callback_QAbstractProxyModel_MultiData(const_cast<MiqtVirtualQAbstractProxyModel*>(this), handle__MultiData, sigval1, sigval2);
 
-		return callback_return_value_QMap;
+		
 	}
 
 	// Wrapper to allow calling protected method
-	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+	void virtualbase_MultiData(QModelIndex* index, QModelRoleDataSpan* roleDataSpan) const {
 
-		QHash<int, QByteArray> _ret = QAbstractProxyModel::roleNames();
-		// Convert QMap<> from C++ memory to manually-managed C memory
-		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
-		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
-		int _ctr = 0;
-		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
-			_karr[_ctr] = _itr->first;
-			QByteArray _hashval_qb = _itr->second;
-			struct miqt_string _hashval_ms;
-			_hashval_ms.len = _hashval_qb.length();
-			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
-			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
-			_varr[_ctr] = _hashval_ms;
-			_ctr++;
+		QAbstractProxyModel::multiData(*index, *roleDataSpan);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ResetInternalData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void resetInternalData() override {
+		if (handle__ResetInternalData == 0) {
+			QAbstractProxyModel::resetInternalData();
+			return;
 		}
-		struct miqt_map _out;
-		_out.len = _ret.size();
-		_out.keys = static_cast<void*>(_karr);
-		_out.values = static_cast<void*>(_varr);
-		return _out;
+		
+
+		miqt_exec_callback_QAbstractProxyModel_ResetInternalData(this, handle__ResetInternalData);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_ResetInternalData() {
+
+		QAbstractProxyModel::resetInternalData();
 
 	}
 
@@ -1143,17 +1236,6 @@ void* QAbstractProxyModel_Metacast(QAbstractProxyModel* self, const char* param1
 
 struct miqt_string QAbstractProxyModel_Tr(const char* s) {
 	QString _ret = QAbstractProxyModel::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractProxyModel_TrUtf8(const char* s) {
-	QString _ret = QAbstractProxyModel::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1244,6 +1326,10 @@ bool QAbstractProxyModel_SetHeaderData(QAbstractProxyModel* self, int section, i
 	return self->setHeaderData(static_cast<int>(section), static_cast<Qt::Orientation>(orientation), *value, static_cast<int>(role));
 }
 
+bool QAbstractProxyModel_ClearItemData(QAbstractProxyModel* self, QModelIndex* index) {
+	return self->clearItemData(*index);
+}
+
 QModelIndex* QAbstractProxyModel_Buddy(const QAbstractProxyModel* self, QModelIndex* index) {
 	return new QModelIndex(self->buddy(*index));
 }
@@ -1320,6 +1406,29 @@ int QAbstractProxyModel_SupportedDropActions(const QAbstractProxyModel* self) {
 	return static_cast<int>(_ret);
 }
 
+struct miqt_map /* of int to struct miqt_string */  QAbstractProxyModel_RoleNames(const QAbstractProxyModel* self) {
+	QHash<int, QByteArray> _ret = self->roleNames();
+	// Convert QMap<> from C++ memory to manually-managed C memory
+	int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+	struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+	int _ctr = 0;
+	for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+		_karr[_ctr] = _itr->first;
+		QByteArray _hashval_qb = _itr->second;
+		struct miqt_string _hashval_ms;
+		_hashval_ms.len = _hashval_qb.length();
+		_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+		memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+		_varr[_ctr] = _hashval_ms;
+		_ctr++;
+	}
+	struct miqt_map _out;
+	_out.len = _ret.size();
+	_out.keys = static_cast<void*>(_karr);
+	_out.values = static_cast<void*>(_varr);
+	return _out;
+}
+
 struct miqt_string QAbstractProxyModel_Tr2(const char* s, const char* c) {
 	QString _ret = QAbstractProxyModel::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1333,28 +1442,6 @@ struct miqt_string QAbstractProxyModel_Tr2(const char* s, const char* c) {
 
 struct miqt_string QAbstractProxyModel_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QAbstractProxyModel::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractProxyModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractProxyModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractProxyModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractProxyModel::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1468,6 +1555,14 @@ bool QAbstractProxyModel_virtualbase_SetHeaderData(void* self, int section, int 
 	return ( (MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_SetHeaderData(section, orientation, value, role);
 }
 
+void QAbstractProxyModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QAbstractProxyModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_ClearItemData(index);
+}
+
 void QAbstractProxyModel_override_virtual_Buddy(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__Buddy = slot;
 }
@@ -1572,6 +1667,14 @@ int QAbstractProxyModel_virtualbase_SupportedDropActions(const void* self) {
 	return ( (const MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_SupportedDropActions();
 }
 
+void QAbstractProxyModel_override_virtual_RoleNames(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__RoleNames = slot;
+}
+
+struct miqt_map /* of int to struct miqt_string */  QAbstractProxyModel_virtualbase_RoleNames(const void* self) {
+	return ( (const MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_RoleNames();
+}
+
 void QAbstractProxyModel_override_virtual_Index(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__Index = slot;
 }
@@ -1644,12 +1747,20 @@ struct miqt_array /* of QModelIndex* */  QAbstractProxyModel_virtualbase_Match(c
 	return ( (const MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_Match(start, role, value, hits, flags);
 }
 
-void QAbstractProxyModel_override_virtual_RoleNames(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__RoleNames = slot;
+void QAbstractProxyModel_override_virtual_MultiData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__MultiData = slot;
 }
 
-struct miqt_map /* of int to struct miqt_string */  QAbstractProxyModel_virtualbase_RoleNames(const void* self) {
-	return ( (const MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_RoleNames();
+void QAbstractProxyModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan) {
+	( (const MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_MultiData(index, roleDataSpan);
+}
+
+void QAbstractProxyModel_override_virtual_ResetInternalData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQAbstractProxyModel*>( (QAbstractProxyModel*)(self) )->handle__ResetInternalData = slot;
+}
+
+void QAbstractProxyModel_virtualbase_ResetInternalData(void* self) {
+	( (MiqtVirtualQAbstractProxyModel*)(self) )->virtualbase_ResetInternalData();
 }
 
 void QAbstractProxyModel_Delete(QAbstractProxyModel* self, bool isSubclass) {

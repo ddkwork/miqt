@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCloseEvent>
 #include <QContextMenuEvent>
 #include <QDialog>
@@ -23,7 +25,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQProgressDialog : public virtual QProgressDialog {
 public:
@@ -443,17 +460,6 @@ struct miqt_string QProgressDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QProgressDialog_TrUtf8(const char* s) {
-	QString _ret = QProgressDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QProgressDialog_SetLabel(QProgressDialog* self, QLabel* label) {
 	self->setLabel(label);
 }
@@ -578,28 +584,6 @@ struct miqt_string QProgressDialog_Tr2(const char* s, const char* c) {
 
 struct miqt_string QProgressDialog_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QProgressDialog::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QProgressDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QProgressDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QProgressDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QProgressDialog::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -1,6 +1,9 @@
+// +build ignore
+
 #include <QBuffer>
 #include <QByteArray>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -13,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQBuffer : public virtual QBuffer {
 public:
@@ -27,13 +45,12 @@ public:
 	intptr_t handle__Open = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool open(QIODevice::OpenMode openMode) override {
+	virtual bool open(OpenMode openMode) override {
 		if (handle__Open == 0) {
 			return QBuffer::open(openMode);
 		}
 		
-		QIODevice::OpenMode openMode_ret = openMode;
-		int sigval1 = static_cast<int>(openMode_ret);
+		OpenMode sigval1 = openMode;
 
 		bool callback_return_value = miqt_exec_callback_QBuffer_Open(this, handle__Open, sigval1);
 
@@ -41,9 +58,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Open(int openMode) {
+	bool virtualbase_Open(OpenMode openMode) {
 
-		return QBuffer::open(static_cast<QIODevice::OpenMode>(openMode));
+		return QBuffer::open(openMode);
 
 	}
 
@@ -450,6 +467,31 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SkipData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual qint64 skipData(qint64 maxSize) override {
+		if (handle__SkipData == 0) {
+			return QBuffer::skipData(maxSize);
+		}
+		
+		qint64 maxSize_ret = maxSize;
+		long long sigval1 = static_cast<long long>(maxSize_ret);
+
+		long long callback_return_value = miqt_exec_callback_QBuffer_SkipData(this, handle__SkipData, sigval1);
+
+		return static_cast<qint64>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	long long virtualbase_SkipData(long long maxSize) {
+
+		qint64 _ret = QBuffer::skipData(static_cast<qint64>(maxSize));
+		return static_cast<long long>(_ret);
+
+	}
+
 };
 
 QBuffer* QBuffer_new() {
@@ -483,17 +525,6 @@ struct miqt_string QBuffer_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QBuffer_TrUtf8(const char* s) {
-	QString _ret = QBuffer::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QBuffer_Buffer(QBuffer* self) {
 	QByteArray _qb = self->buffer();
 	struct miqt_string _ms;
@@ -517,8 +548,8 @@ void QBuffer_SetData(QBuffer* self, struct miqt_string data) {
 	self->setData(data_QByteArray);
 }
 
-void QBuffer_SetData2(QBuffer* self, const char* data, int lenVal) {
-	self->setData(data, static_cast<int>(lenVal));
+void QBuffer_SetData2(QBuffer* self, const char* data, ptrdiff_t lenVal) {
+	self->setData(data, (qsizetype)(lenVal));
 }
 
 struct miqt_string QBuffer_Data(const QBuffer* self) {
@@ -530,8 +561,8 @@ struct miqt_string QBuffer_Data(const QBuffer* self) {
 	return _ms;
 }
 
-bool QBuffer_Open(QBuffer* self, int openMode) {
-	return self->open(static_cast<QIODevice::OpenMode>(openMode));
+bool QBuffer_Open(QBuffer* self, OpenMode openMode) {
+	return self->open(openMode);
 }
 
 void QBuffer_Close(QBuffer* self) {
@@ -582,33 +613,11 @@ struct miqt_string QBuffer_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QBuffer_TrUtf82(const char* s, const char* c) {
-	QString _ret = QBuffer::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QBuffer_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QBuffer::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QBuffer_override_virtual_Open(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQBuffer*>( (QBuffer*)(self) )->handle__Open = slot;
 }
 
-bool QBuffer_virtualbase_Open(void* self, int openMode) {
+bool QBuffer_virtualbase_Open(void* self, OpenMode openMode) {
 	return ( (MiqtVirtualQBuffer*)(self) )->virtualbase_Open(openMode);
 }
 
@@ -746,6 +755,14 @@ void QBuffer_override_virtual_ReadLineData(void* self, intptr_t slot) {
 
 long long QBuffer_virtualbase_ReadLineData(void* self, char* data, long long maxlen) {
 	return ( (MiqtVirtualQBuffer*)(self) )->virtualbase_ReadLineData(data, maxlen);
+}
+
+void QBuffer_override_virtual_SkipData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQBuffer*>( (QBuffer*)(self) )->handle__SkipData = slot;
+}
+
+long long QBuffer_virtualbase_SkipData(void* self, long long maxSize) {
+	return ( (MiqtVirtualQBuffer*)(self) )->virtualbase_SkipData(maxSize);
 }
 
 void QBuffer_Delete(QBuffer* self, bool isSubclass) {

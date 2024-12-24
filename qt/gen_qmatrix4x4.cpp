@@ -1,4 +1,5 @@
-#include <QMatrix>
+// +build ignore
+
 #include <QMatrix4x4>
 #include <QPoint>
 #include <QPointF>
@@ -14,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QMatrix4x4* QMatrix4x4_new() {
 	return new QMatrix4x4();
@@ -40,11 +56,7 @@ QMatrix4x4* QMatrix4x4_new6(QTransform* transform) {
 	return new QMatrix4x4(*transform);
 }
 
-QMatrix4x4* QMatrix4x4_new7(QMatrix* matrix) {
-	return new QMatrix4x4(*matrix);
-}
-
-QMatrix4x4* QMatrix4x4_new8(QMatrix4x4* param1) {
+QMatrix4x4* QMatrix4x4_new7(QMatrix4x4* param1) {
 	return new QMatrix4x4(*param1);
 }
 
@@ -210,10 +222,6 @@ void QMatrix4x4_CopyDataTo(const QMatrix4x4* self, float* values) {
 	self->copyDataTo(static_cast<float*>(values));
 }
 
-QMatrix* QMatrix4x4_ToAffine(const QMatrix4x4* self) {
-	return new QMatrix(self->toAffine());
-}
-
 QTransform* QMatrix4x4_ToTransform(const QMatrix4x4* self) {
 	return new QTransform(self->toTransform());
 }
@@ -264,6 +272,18 @@ const float* QMatrix4x4_ConstData(const QMatrix4x4* self) {
 
 void QMatrix4x4_Optimize(QMatrix4x4* self) {
 	self->optimize();
+}
+
+void QMatrix4x4_ProjectedRotate(QMatrix4x4* self, float angle, float x, float y, float z, float distanceToPlane) {
+	self->projectedRotate(static_cast<float>(angle), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z), static_cast<float>(distanceToPlane));
+}
+
+void QMatrix4x4_ProjectedRotate2(QMatrix4x4* self, float angle, float x, float y, float z) {
+	self->projectedRotate(static_cast<float>(angle), static_cast<float>(x), static_cast<float>(y), static_cast<float>(z));
+}
+
+Flags QMatrix4x4_Flags(const QMatrix4x4* self) {
+	return self->flags();
 }
 
 QMatrix4x4* QMatrix4x4_Inverted1(const QMatrix4x4* self, bool* invertible) {

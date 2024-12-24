@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QActionEvent>
 #include <QByteArray>
 #include <QCloseEvent>
@@ -6,13 +8,16 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
 #include <QInputMethodEvent>
+#include <QKeyCombination>
 #include <QKeyEvent>
 #include <QKeySequence>
 #include <QKeySequenceEdit>
+#include <QList>
 #include <QMetaObject>
 #include <QMouseEvent>
 #include <QMoveEvent>
@@ -39,7 +44,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQKeySequenceEdit : public virtual QKeySequenceEdit {
 public:
@@ -143,6 +163,30 @@ public:
 	void virtualbase_TimerEvent(QTimerEvent* param1) {
 
 		QKeySequenceEdit::timerEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__FocusOutEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void focusOutEvent(QFocusEvent* param1) override {
+		if (handle__FocusOutEvent == 0) {
+			QKeySequenceEdit::focusOutEvent(param1);
+			return;
+		}
+		
+		QFocusEvent* sigval1 = param1;
+
+		miqt_exec_callback_QKeySequenceEdit_FocusOutEvent(this, handle__FocusOutEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_FocusOutEvent(QFocusEvent* param1) {
+
+		QKeySequenceEdit::focusOutEvent(param1);
 
 	}
 
@@ -448,40 +492,16 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__FocusOutEvent = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual void focusOutEvent(QFocusEvent* event) override {
-		if (handle__FocusOutEvent == 0) {
-			QKeySequenceEdit::focusOutEvent(event);
-			return;
-		}
-		
-		QFocusEvent* sigval1 = event;
-
-		miqt_exec_callback_QKeySequenceEdit_FocusOutEvent(this, handle__FocusOutEvent, sigval1);
-
-		
-	}
-
-	// Wrapper to allow calling protected method
-	void virtualbase_FocusOutEvent(QFocusEvent* event) {
-
-		QKeySequenceEdit::focusOutEvent(event);
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QKeySequenceEdit::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QKeySequenceEdit_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -489,7 +509,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QKeySequenceEdit::enterEvent(event);
 
@@ -835,7 +855,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QKeySequenceEdit::nativeEvent(eventType, message, result);
 		}
@@ -847,7 +867,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QKeySequenceEdit_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -855,10 +876,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QKeySequenceEdit::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QKeySequenceEdit::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -890,13 +911,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QKeySequenceEdit::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QKeySequenceEdit_Metric(const_cast<MiqtVirtualQKeySequenceEdit*>(this), handle__Metric, sigval1);
 
@@ -904,9 +924,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QKeySequenceEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QKeySequenceEdit::metric(param1);
 
 	}
 
@@ -1091,19 +1111,44 @@ struct miqt_string QKeySequenceEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QKeySequenceEdit_TrUtf8(const char* s) {
-	QString _ret = QKeySequenceEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QKeySequence* QKeySequenceEdit_KeySequence(const QKeySequenceEdit* self) {
 	return new QKeySequence(self->keySequence());
+}
+
+ptrdiff_t QKeySequenceEdit_MaximumSequenceLength(const QKeySequenceEdit* self) {
+	qsizetype _ret = self->maximumSequenceLength();
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+void QKeySequenceEdit_SetClearButtonEnabled(QKeySequenceEdit* self, bool enable) {
+	self->setClearButtonEnabled(enable);
+}
+
+bool QKeySequenceEdit_IsClearButtonEnabled(const QKeySequenceEdit* self) {
+	return self->isClearButtonEnabled();
+}
+
+void QKeySequenceEdit_SetFinishingKeyCombinations(QKeySequenceEdit* self, struct miqt_array /* of QKeyCombination* */  finishingKeyCombinations) {
+	QList<QKeyCombination> finishingKeyCombinations_QList;
+	finishingKeyCombinations_QList.reserve(finishingKeyCombinations.len);
+	QKeyCombination** finishingKeyCombinations_arr = static_cast<QKeyCombination**>(finishingKeyCombinations.data);
+	for(size_t i = 0; i < finishingKeyCombinations.len; ++i) {
+		finishingKeyCombinations_QList.push_back(*(finishingKeyCombinations_arr[i]));
+	}
+	self->setFinishingKeyCombinations(finishingKeyCombinations_QList);
+}
+
+struct miqt_array /* of QKeyCombination* */  QKeySequenceEdit_FinishingKeyCombinations(const QKeySequenceEdit* self) {
+	QList<QKeyCombination> _ret = self->finishingKeyCombinations();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QKeyCombination** _arr = static_cast<QKeyCombination**>(malloc(sizeof(QKeyCombination*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = new QKeyCombination(_ret[i]);
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
 }
 
 void QKeySequenceEdit_SetKeySequence(QKeySequenceEdit* self, QKeySequence* keySequence) {
@@ -1112,6 +1157,10 @@ void QKeySequenceEdit_SetKeySequence(QKeySequenceEdit* self, QKeySequence* keySe
 
 void QKeySequenceEdit_Clear(QKeySequenceEdit* self) {
 	self->clear();
+}
+
+void QKeySequenceEdit_SetMaximumSequenceLength(QKeySequenceEdit* self, ptrdiff_t count) {
+	self->setMaximumSequenceLength((qsizetype)(count));
 }
 
 void QKeySequenceEdit_EditingFinished(QKeySequenceEdit* self) {
@@ -1159,28 +1208,6 @@ struct miqt_string QKeySequenceEdit_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QKeySequenceEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QKeySequenceEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QKeySequenceEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QKeySequenceEdit::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QKeySequenceEdit_override_virtual_Event(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQKeySequenceEdit*>( (QKeySequenceEdit*)(self) )->handle__Event = slot;
 }
@@ -1211,6 +1238,14 @@ void QKeySequenceEdit_override_virtual_TimerEvent(void* self, intptr_t slot) {
 
 void QKeySequenceEdit_virtualbase_TimerEvent(void* self, QTimerEvent* param1) {
 	( (MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_TimerEvent(param1);
+}
+
+void QKeySequenceEdit_override_virtual_FocusOutEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQKeySequenceEdit*>( (QKeySequenceEdit*)(self) )->handle__FocusOutEvent = slot;
+}
+
+void QKeySequenceEdit_virtualbase_FocusOutEvent(void* self, QFocusEvent* param1) {
+	( (MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_FocusOutEvent(param1);
 }
 
 void QKeySequenceEdit_override_virtual_DevType(void* self, intptr_t slot) {
@@ -1317,19 +1352,11 @@ void QKeySequenceEdit_virtualbase_FocusInEvent(void* self, QFocusEvent* event) {
 	( (MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_FocusInEvent(event);
 }
 
-void QKeySequenceEdit_override_virtual_FocusOutEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQKeySequenceEdit*>( (QKeySequenceEdit*)(self) )->handle__FocusOutEvent = slot;
-}
-
-void QKeySequenceEdit_virtualbase_FocusOutEvent(void* self, QFocusEvent* event) {
-	( (MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_FocusOutEvent(event);
-}
-
 void QKeySequenceEdit_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQKeySequenceEdit*>( (QKeySequenceEdit*)(self) )->handle__EnterEvent = slot;
 }
 
-void QKeySequenceEdit_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QKeySequenceEdit_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1449,7 +1476,7 @@ void QKeySequenceEdit_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQKeySequenceEdit*>( (QKeySequenceEdit*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QKeySequenceEdit_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QKeySequenceEdit_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1465,7 +1492,7 @@ void QKeySequenceEdit_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQKeySequenceEdit*>( (QKeySequenceEdit*)(self) )->handle__Metric = slot;
 }
 
-int QKeySequenceEdit_virtualbase_Metric(const void* self, int param1) {
+int QKeySequenceEdit_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQKeySequenceEdit*)(self) )->virtualbase_Metric(param1);
 }
 

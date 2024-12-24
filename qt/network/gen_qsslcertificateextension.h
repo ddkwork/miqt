@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -17,21 +17,29 @@ extern "C" {
 #ifdef __cplusplus
 class QSslCertificateExtension;
 class QVariant;
+class _GUID;
+class type_info;
 #else
 typedef struct QSslCertificateExtension QSslCertificateExtension;
 typedef struct QVariant QVariant;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QSslCertificateExtension* QSslCertificateExtension_new();
-QSslCertificateExtension* QSslCertificateExtension_new2(QSslCertificateExtension* other);
-void QSslCertificateExtension_OperatorAssign(QSslCertificateExtension* self, QSslCertificateExtension* other);
-void QSslCertificateExtension_Swap(QSslCertificateExtension* self, QSslCertificateExtension* other);
-struct miqt_string QSslCertificateExtension_Oid(const QSslCertificateExtension* self);
-struct miqt_string QSslCertificateExtension_Name(const QSslCertificateExtension* self);
-QVariant* QSslCertificateExtension_Value(const QSslCertificateExtension* self);
-bool QSslCertificateExtension_IsCritical(const QSslCertificateExtension* self);
-bool QSslCertificateExtension_IsSupported(const QSslCertificateExtension* self);
-void QSslCertificateExtension_Delete(QSslCertificateExtension* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QSslCertificateExtension* QSslCertificateExtension_new();
+extern __declspec(dllexport) QSslCertificateExtension* QSslCertificateExtension_new2(QSslCertificateExtension* other);
+extern __declspec(dllexport) void QSslCertificateExtension_OperatorAssign(QSslCertificateExtension* self, QSslCertificateExtension* other);
+extern __declspec(dllexport) void QSslCertificateExtension_Swap(QSslCertificateExtension* self, QSslCertificateExtension* other);
+extern __declspec(dllexport) struct miqt_string QSslCertificateExtension_Oid(const QSslCertificateExtension* self);
+extern __declspec(dllexport) struct miqt_string QSslCertificateExtension_Name(const QSslCertificateExtension* self);
+extern __declspec(dllexport) QVariant* QSslCertificateExtension_Value(const QSslCertificateExtension* self);
+extern __declspec(dllexport) bool QSslCertificateExtension_IsCritical(const QSslCertificateExtension* self);
+extern __declspec(dllexport) bool QSslCertificateExtension_IsSupported(const QSslCertificateExtension* self);
+extern __declspec(dllexport) void QSslCertificateExtension_Delete(QSslCertificateExtension* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

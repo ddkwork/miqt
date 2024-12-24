@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEasingCurve>
 #include <QList>
 #include <QPointF>
@@ -7,7 +9,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QEasingCurve* QEasingCurve_new() {
 	return new QEasingCurve();
@@ -17,8 +34,8 @@ QEasingCurve* QEasingCurve_new2(QEasingCurve* other) {
 	return new QEasingCurve(*other);
 }
 
-QEasingCurve* QEasingCurve_new3(int typeVal) {
-	return new QEasingCurve(static_cast<QEasingCurve::Type>(typeVal));
+QEasingCurve* QEasingCurve_new3(Type typeVal) {
+	return new QEasingCurve(typeVal);
 }
 
 void QEasingCurve_OperatorAssign(QEasingCurve* self, QEasingCurve* other) {
@@ -27,14 +44,6 @@ void QEasingCurve_OperatorAssign(QEasingCurve* self, QEasingCurve* other) {
 
 void QEasingCurve_Swap(QEasingCurve* self, QEasingCurve* other) {
 	self->swap(*other);
-}
-
-bool QEasingCurve_OperatorEqual(const QEasingCurve* self, QEasingCurve* other) {
-	return (*self == *other);
-}
-
-bool QEasingCurve_OperatorNotEqual(const QEasingCurve* self, QEasingCurve* other) {
-	return (*self != *other);
 }
 
 double QEasingCurve_Amplitude(const QEasingCurve* self) {
@@ -73,7 +82,7 @@ void QEasingCurve_AddTCBSegment(QEasingCurve* self, QPointF* nextPoint, double t
 }
 
 struct miqt_array /* of QPointF* */  QEasingCurve_ToCubicSpline(const QEasingCurve* self) {
-	QVector<QPointF> _ret = self->toCubicSpline();
+	QList<QPointF> _ret = self->toCubicSpline();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QPointF** _arr = static_cast<QPointF**>(malloc(sizeof(QPointF*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -85,13 +94,20 @@ struct miqt_array /* of QPointF* */  QEasingCurve_ToCubicSpline(const QEasingCur
 	return _out;
 }
 
-int QEasingCurve_Type(const QEasingCurve* self) {
-	QEasingCurve::Type _ret = self->type();
-	return static_cast<int>(_ret);
+Type QEasingCurve_Type(const QEasingCurve* self) {
+	return self->type();
 }
 
-void QEasingCurve_SetType(QEasingCurve* self, int typeVal) {
-	self->setType(static_cast<QEasingCurve::Type>(typeVal));
+void QEasingCurve_SetType(QEasingCurve* self, Type typeVal) {
+	self->setType(typeVal);
+}
+
+void QEasingCurve_SetCustomType(QEasingCurve* self, EasingFunction funcVal) {
+	self->setCustomType(funcVal);
+}
+
+EasingFunction QEasingCurve_CustomType(const QEasingCurve* self) {
+	return self->customType();
 }
 
 double QEasingCurve_ValueForProgress(const QEasingCurve* self, double progress) {

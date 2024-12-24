@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QList>
 #include <QSslCertificate>
@@ -16,7 +18,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QSslConfiguration* QSslConfiguration_new() {
 	return new QSslConfiguration();
@@ -160,6 +177,11 @@ void QSslConfiguration_SetCiphers(QSslConfiguration* self, struct miqt_array /* 
 	self->setCiphers(ciphers_QList);
 }
 
+void QSslConfiguration_SetCiphersWithCiphers(QSslConfiguration* self, struct miqt_string ciphers) {
+	QString ciphers_QString = QString::fromUtf8(ciphers.data, ciphers.len);
+	self->setCiphers(ciphers_QString);
+}
+
 struct miqt_array /* of QSslCipher* */  QSslConfiguration_SupportedCiphers() {
 	QList<QSslCipher> _ret = QSslConfiguration::supportedCiphers();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -259,7 +281,7 @@ QSslKey* QSslConfiguration_EphemeralServerKey(const QSslConfiguration* self) {
 }
 
 struct miqt_array /* of QSslEllipticCurve* */  QSslConfiguration_EllipticCurves(const QSslConfiguration* self) {
-	QVector<QSslEllipticCurve> _ret = self->ellipticCurves();
+	QList<QSslEllipticCurve> _ret = self->ellipticCurves();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QSslEllipticCurve** _arr = static_cast<QSslEllipticCurve**>(malloc(sizeof(QSslEllipticCurve*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -272,7 +294,7 @@ struct miqt_array /* of QSslEllipticCurve* */  QSslConfiguration_EllipticCurves(
 }
 
 void QSslConfiguration_SetEllipticCurves(QSslConfiguration* self, struct miqt_array /* of QSslEllipticCurve* */  curves) {
-	QVector<QSslEllipticCurve> curves_QList;
+	QList<QSslEllipticCurve> curves_QList;
 	curves_QList.reserve(curves.len);
 	QSslEllipticCurve** curves_arr = static_cast<QSslEllipticCurve**>(curves.data);
 	for(size_t i = 0; i < curves.len; ++i) {
@@ -282,7 +304,7 @@ void QSslConfiguration_SetEllipticCurves(QSslConfiguration* self, struct miqt_ar
 }
 
 struct miqt_array /* of QSslEllipticCurve* */  QSslConfiguration_SupportedEllipticCurves() {
-	QVector<QSslEllipticCurve> _ret = QSslConfiguration::supportedEllipticCurves();
+	QList<QSslEllipticCurve> _ret = QSslConfiguration::supportedEllipticCurves();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	QSslEllipticCurve** _arr = static_cast<QSslEllipticCurve**>(malloc(sizeof(QSslEllipticCurve*) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -333,20 +355,20 @@ void QSslConfiguration_SetDefaultConfiguration(QSslConfiguration* configuration)
 	QSslConfiguration::setDefaultConfiguration(*configuration);
 }
 
-bool QSslConfiguration_DtlsCookieVerificationEnabled(const QSslConfiguration* self) {
-	return self->dtlsCookieVerificationEnabled();
+bool QSslConfiguration_HandshakeMustInterruptOnError(const QSslConfiguration* self) {
+	return self->handshakeMustInterruptOnError();
 }
 
-void QSslConfiguration_SetDtlsCookieVerificationEnabled(QSslConfiguration* self, bool enable) {
-	self->setDtlsCookieVerificationEnabled(enable);
+void QSslConfiguration_SetHandshakeMustInterruptOnError(QSslConfiguration* self, bool interrupt) {
+	self->setHandshakeMustInterruptOnError(interrupt);
 }
 
-QSslConfiguration* QSslConfiguration_DefaultDtlsConfiguration() {
-	return new QSslConfiguration(QSslConfiguration::defaultDtlsConfiguration());
+bool QSslConfiguration_MissingCertificateIsFatal(const QSslConfiguration* self) {
+	return self->missingCertificateIsFatal();
 }
 
-void QSslConfiguration_SetDefaultDtlsConfiguration(QSslConfiguration* configuration) {
-	QSslConfiguration::setDefaultDtlsConfiguration(*configuration);
+void QSslConfiguration_SetMissingCertificateIsFatal(QSslConfiguration* self, bool cannotRecover) {
+	self->setMissingCertificateIsFatal(cannotRecover);
 }
 
 void QSslConfiguration_SetOcspStaplingEnabled(QSslConfiguration* self, bool enable) {
@@ -395,9 +417,8 @@ struct miqt_string QSslConfiguration_NextNegotiatedProtocol(const QSslConfigurat
 	return _ms;
 }
 
-int QSslConfiguration_NextProtocolNegotiationStatus(const QSslConfiguration* self) {
-	QSslConfiguration::NextProtocolNegotiationStatus _ret = self->nextProtocolNegotiationStatus();
-	return static_cast<int>(_ret);
+NextProtocolNegotiationStatus QSslConfiguration_NextProtocolNegotiationStatus(const QSslConfiguration* self) {
+	return self->nextProtocolNegotiationStatus();
 }
 
 bool QSslConfiguration_AddCaCertificates2(QSslConfiguration* self, struct miqt_string path, int format) {

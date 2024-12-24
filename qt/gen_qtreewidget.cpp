@@ -1,7 +1,8 @@
+// +build ignore
+
 #include <QAbstractItemView>
 #include <QAbstractScrollArea>
 #include <QBrush>
-#include <QColor>
 #include <QDataStream>
 #include <QDragMoveEvent>
 #include <QDropEvent>
@@ -41,7 +42,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTreeWidgetItem : public virtual QTreeWidgetItem {
 public:
@@ -483,12 +499,12 @@ void QTreeWidgetItem_SetTextAlignment(QTreeWidgetItem* self, int column, int ali
 	self->setTextAlignment(static_cast<int>(column), static_cast<int>(alignment));
 }
 
-QColor* QTreeWidgetItem_BackgroundColor(const QTreeWidgetItem* self, int column) {
-	return new QColor(self->backgroundColor(static_cast<int>(column)));
+void QTreeWidgetItem_SetTextAlignment2(QTreeWidgetItem* self, int column, int alignment) {
+	self->setTextAlignment(static_cast<int>(column), static_cast<Qt::AlignmentFlag>(alignment));
 }
 
-void QTreeWidgetItem_SetBackgroundColor(QTreeWidgetItem* self, int column, QColor* color) {
-	self->setBackgroundColor(static_cast<int>(column), *color);
+void QTreeWidgetItem_SetTextAlignment3(QTreeWidgetItem* self, int column, int alignment) {
+	self->setTextAlignment(static_cast<int>(column), static_cast<Qt::Alignment>(alignment));
 }
 
 QBrush* QTreeWidgetItem_Background(const QTreeWidgetItem* self, int column) {
@@ -497,14 +513,6 @@ QBrush* QTreeWidgetItem_Background(const QTreeWidgetItem* self, int column) {
 
 void QTreeWidgetItem_SetBackground(QTreeWidgetItem* self, int column, QBrush* brush) {
 	self->setBackground(static_cast<int>(column), *brush);
-}
-
-QColor* QTreeWidgetItem_TextColor(const QTreeWidgetItem* self, int column) {
-	return new QColor(self->textColor(static_cast<int>(column)));
-}
-
-void QTreeWidgetItem_SetTextColor(QTreeWidgetItem* self, int column, QColor* color) {
-	self->setTextColor(static_cast<int>(column), *color);
 }
 
 QBrush* QTreeWidgetItem_Foreground(const QTreeWidgetItem* self, int column) {
@@ -793,12 +801,12 @@ public:
 	intptr_t handle__MimeData = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QMimeData* mimeData(const QList<QTreeWidgetItem *> items) const override {
+	virtual QMimeData* mimeData(const QList<QTreeWidgetItem *>& items) const override {
 		if (handle__MimeData == 0) {
 			return QTreeWidget::mimeData(items);
 		}
 		
-		const QList<QTreeWidgetItem *> items_ret = items;
+		const QList<QTreeWidgetItem *>& items_ret = items;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		QTreeWidgetItem** items_arr = static_cast<QTreeWidgetItem**>(malloc(sizeof(QTreeWidgetItem*) * items_ret.length()));
 		for (size_t i = 0, e = items_ret.length(); i < e; ++i) {
@@ -988,7 +996,7 @@ public:
 	intptr_t handle__ScrollTo = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void scrollTo(const QModelIndex& index, QAbstractItemView::ScrollHint hint) override {
+	virtual void scrollTo(const QModelIndex& index, ScrollHint hint) override {
 		if (handle__ScrollTo == 0) {
 			QTreeWidget::scrollTo(index, hint);
 			return;
@@ -997,8 +1005,7 @@ public:
 		const QModelIndex& index_ret = index;
 		// Cast returned reference into pointer
 		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
-		QAbstractItemView::ScrollHint hint_ret = hint;
-		int sigval2 = static_cast<int>(hint_ret);
+		ScrollHint sigval2 = hint;
 
 		miqt_exec_callback_QTreeWidget_ScrollTo(this, handle__ScrollTo, sigval1, sigval2);
 
@@ -1006,9 +1013,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ScrollTo(QModelIndex* index, int hint) {
+	void virtualbase_ScrollTo(QModelIndex* index, ScrollHint hint) {
 
-		QTreeWidget::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
+		QTreeWidget::scrollTo(*index, hint);
 
 	}
 
@@ -1087,7 +1094,7 @@ public:
 	intptr_t handle__DataChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles) override {
+	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QList<int>& roles) override {
 		if (handle__DataChanged == 0) {
 			QTreeWidget::dataChanged(topLeft, bottomRight, roles);
 			return;
@@ -1099,7 +1106,7 @@ public:
 		const QModelIndex& bottomRight_ret = bottomRight;
 		// Cast returned reference into pointer
 		QModelIndex* sigval2 = const_cast<QModelIndex*>(&bottomRight_ret);
-		const QVector<int>& roles_ret = roles;
+		const QList<int>& roles_ret = roles;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		int* roles_arr = static_cast<int*>(malloc(sizeof(int) * roles_ret.length()));
 		for (size_t i = 0, e = roles_ret.length(); i < e; ++i) {
@@ -1117,7 +1124,7 @@ public:
 
 	// Wrapper to allow calling protected method
 	void virtualbase_DataChanged(QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-		QVector<int> roles_QList;
+		QList<int> roles_QList;
 		roles_QList.reserve(roles.len);
 		int* roles_arr = static_cast<int*>(roles.data);
 		for(size_t i = 0; i < roles.len; ++i) {
@@ -1260,13 +1267,12 @@ public:
 	intptr_t handle__MoveCursor = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
+	virtual QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers) override {
 		if (handle__MoveCursor == 0) {
 			return QTreeWidget::moveCursor(cursorAction, modifiers);
 		}
 		
-		QAbstractItemView::CursorAction cursorAction_ret = cursorAction;
-		int sigval1 = static_cast<int>(cursorAction_ret);
+		CursorAction sigval1 = cursorAction;
 		Qt::KeyboardModifiers modifiers_ret = modifiers;
 		int sigval2 = static_cast<int>(modifiers_ret);
 
@@ -1276,9 +1282,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_MoveCursor(int cursorAction, int modifiers) {
+	QModelIndex* virtualbase_MoveCursor(CursorAction cursorAction, int modifiers) {
 
-		return new QModelIndex(QTreeWidget::moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifiers>(modifiers)));
+		return new QModelIndex(QTreeWidget::moveCursor(cursorAction, static_cast<Qt::KeyboardModifiers>(modifiers)));
 
 	}
 
@@ -1413,6 +1419,30 @@ public:
 		_out.len = _ret.length();
 		_out.data = static_cast<void*>(_arr);
 		return _out;
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ChangeEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void changeEvent(QEvent* event) override {
+		if (handle__ChangeEvent == 0) {
+			QTreeWidget::changeEvent(event);
+			return;
+		}
+		
+		QEvent* sigval1 = event;
+
+		miqt_exec_callback_QTreeWidget_ChangeEvent(this, handle__ChangeEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_ChangeEvent(QEvent* event) {
+
+		QTreeWidget::changeEvent(event);
 
 	}
 
@@ -1899,17 +1929,6 @@ struct miqt_string QTreeWidget_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTreeWidget_TrUtf8(const char* s) {
-	QString _ret = QTreeWidget::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QTreeWidget_ColumnCount(const QTreeWidget* self) {
 	return self->columnCount();
 }
@@ -2058,14 +2077,6 @@ void QTreeWidget_RemoveItemWidget(QTreeWidget* self, QTreeWidgetItem* item, int 
 	self->removeItemWidget(item, static_cast<int>(column));
 }
 
-bool QTreeWidget_IsItemSelected(const QTreeWidget* self, QTreeWidgetItem* item) {
-	return self->isItemSelected(item);
-}
-
-void QTreeWidget_SetItemSelected(QTreeWidget* self, QTreeWidgetItem* item, bool selectVal) {
-	self->setItemSelected(item, selectVal);
-}
-
 struct miqt_array /* of QTreeWidgetItem* */  QTreeWidget_SelectedItems(const QTreeWidget* self) {
 	QList<QTreeWidgetItem *> _ret = self->selectedItems();
 	// Convert QList<> from C++ memory to manually-managed C memory
@@ -2093,36 +2104,20 @@ struct miqt_array /* of QTreeWidgetItem* */  QTreeWidget_FindItems(const QTreeWi
 	return _out;
 }
 
-bool QTreeWidget_IsItemHidden(const QTreeWidget* self, QTreeWidgetItem* item) {
-	return self->isItemHidden(item);
-}
-
-void QTreeWidget_SetItemHidden(QTreeWidget* self, QTreeWidgetItem* item, bool hide) {
-	self->setItemHidden(item, hide);
-}
-
-bool QTreeWidget_IsItemExpanded(const QTreeWidget* self, QTreeWidgetItem* item) {
-	return self->isItemExpanded(item);
-}
-
-void QTreeWidget_SetItemExpanded(QTreeWidget* self, QTreeWidgetItem* item, bool expand) {
-	self->setItemExpanded(item, expand);
-}
-
-bool QTreeWidget_IsFirstItemColumnSpanned(const QTreeWidget* self, QTreeWidgetItem* item) {
-	return self->isFirstItemColumnSpanned(item);
-}
-
-void QTreeWidget_SetFirstItemColumnSpanned(QTreeWidget* self, QTreeWidgetItem* item, bool span) {
-	self->setFirstItemColumnSpanned(item, span);
-}
-
 QTreeWidgetItem* QTreeWidget_ItemAbove(const QTreeWidget* self, QTreeWidgetItem* item) {
 	return self->itemAbove(item);
 }
 
 QTreeWidgetItem* QTreeWidget_ItemBelow(const QTreeWidget* self, QTreeWidgetItem* item) {
 	return self->itemBelow(item);
+}
+
+QModelIndex* QTreeWidget_IndexFromItem(const QTreeWidget* self, QTreeWidgetItem* item) {
+	return new QModelIndex(self->indexFromItem(item));
+}
+
+QTreeWidgetItem* QTreeWidget_ItemFromIndex(const QTreeWidget* self, QModelIndex* index) {
+	return self->itemFromIndex(*index);
 }
 
 void QTreeWidget_SetSelectionModel(QTreeWidget* self, QItemSelectionModel* selectionModel) {
@@ -2283,28 +2278,6 @@ struct miqt_string QTreeWidget_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTreeWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTreeWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTreeWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTreeWidget::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTreeWidget_EditItem2(QTreeWidget* self, QTreeWidgetItem* item, int column) {
 	self->editItem(item, static_cast<int>(column));
 }
@@ -2333,6 +2306,10 @@ struct miqt_array /* of QTreeWidgetItem* */  QTreeWidget_FindItems3(const QTreeW
 	_out.len = _ret.length();
 	_out.data = static_cast<void*>(_arr);
 	return _out;
+}
+
+QModelIndex* QTreeWidget_IndexFromItem2(const QTreeWidget* self, QTreeWidgetItem* item, int column) {
+	return new QModelIndex(self->indexFromItem(item, static_cast<int>(column)));
 }
 
 void QTreeWidget_ScrollToItem2(QTreeWidget* self, QTreeWidgetItem* item, int hint) {
@@ -2423,7 +2400,7 @@ void QTreeWidget_override_virtual_ScrollTo(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTreeWidget*>( (QTreeWidget*)(self) )->handle__ScrollTo = slot;
 }
 
-void QTreeWidget_virtualbase_ScrollTo(void* self, QModelIndex* index, int hint) {
+void QTreeWidget_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint) {
 	( (MiqtVirtualQTreeWidget*)(self) )->virtualbase_ScrollTo(index, hint);
 }
 
@@ -2503,7 +2480,7 @@ void QTreeWidget_override_virtual_MoveCursor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTreeWidget*>( (QTreeWidget*)(self) )->handle__MoveCursor = slot;
 }
 
-QModelIndex* QTreeWidget_virtualbase_MoveCursor(void* self, int cursorAction, int modifiers) {
+QModelIndex* QTreeWidget_virtualbase_MoveCursor(void* self, CursorAction cursorAction, int modifiers) {
 	return ( (MiqtVirtualQTreeWidget*)(self) )->virtualbase_MoveCursor(cursorAction, modifiers);
 }
 
@@ -2545,6 +2522,14 @@ void QTreeWidget_override_virtual_SelectedIndexes(void* self, intptr_t slot) {
 
 struct miqt_array /* of QModelIndex* */  QTreeWidget_virtualbase_SelectedIndexes(const void* self) {
 	return ( (const MiqtVirtualQTreeWidget*)(self) )->virtualbase_SelectedIndexes();
+}
+
+void QTreeWidget_override_virtual_ChangeEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTreeWidget*>( (QTreeWidget*)(self) )->handle__ChangeEvent = slot;
+}
+
+void QTreeWidget_virtualbase_ChangeEvent(void* self, QEvent* event) {
+	( (MiqtVirtualQTreeWidget*)(self) )->virtualbase_ChangeEvent(event);
 }
 
 void QTreeWidget_override_virtual_TimerEvent(void* self, intptr_t slot) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractScrollArea>
 #include <QColor>
 #include <QContextMenuEvent>
@@ -22,7 +24,6 @@
 #include <QPaintEvent>
 #include <QPoint>
 #include <QRect>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QResizeEvent>
 #include <QShowEvent>
@@ -46,7 +47,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTextEdit : public virtual QTextEdit {
 public:
@@ -934,17 +950,6 @@ struct miqt_string QTextEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTextEdit_TrUtf8(const char* s) {
-	QString _ret = QTextEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTextEdit_SetDocument(QTextEdit* self, QTextDocument* document) {
 	self->setDocument(document);
 }
@@ -1051,13 +1056,12 @@ QTextCharFormat* QTextEdit_CurrentCharFormat(const QTextEdit* self) {
 	return new QTextCharFormat(self->currentCharFormat());
 }
 
-int QTextEdit_AutoFormatting(const QTextEdit* self) {
-	QTextEdit::AutoFormatting _ret = self->autoFormatting();
-	return static_cast<int>(_ret);
+AutoFormatting QTextEdit_AutoFormatting(const QTextEdit* self) {
+	return self->autoFormatting();
 }
 
-void QTextEdit_SetAutoFormatting(QTextEdit* self, int features) {
-	self->setAutoFormatting(static_cast<QTextEdit::AutoFormatting>(features));
+void QTextEdit_SetAutoFormatting(QTextEdit* self, AutoFormatting features) {
+	self->setAutoFormatting(features);
 }
 
 bool QTextEdit_TabChangesFocus(const QTextEdit* self) {
@@ -1092,13 +1096,12 @@ void QTextEdit_SetUndoRedoEnabled(QTextEdit* self, bool enable) {
 	self->setUndoRedoEnabled(enable);
 }
 
-int QTextEdit_LineWrapMode(const QTextEdit* self) {
-	QTextEdit::LineWrapMode _ret = self->lineWrapMode();
-	return static_cast<int>(_ret);
+LineWrapMode QTextEdit_LineWrapMode(const QTextEdit* self) {
+	return self->lineWrapMode();
 }
 
-void QTextEdit_SetLineWrapMode(QTextEdit* self, int mode) {
-	self->setLineWrapMode(static_cast<QTextEdit::LineWrapMode>(mode));
+void QTextEdit_SetLineWrapMode(QTextEdit* self, LineWrapMode mode) {
+	self->setLineWrapMode(mode);
 }
 
 int QTextEdit_LineWrapColumnOrWidth(const QTextEdit* self) {
@@ -1123,11 +1126,7 @@ bool QTextEdit_Find(QTextEdit* self, struct miqt_string exp) {
 	return self->find(exp_QString);
 }
 
-bool QTextEdit_FindWithExp(QTextEdit* self, QRegExp* exp) {
-	return self->find(*exp);
-}
-
-bool QTextEdit_Find2(QTextEdit* self, QRegularExpression* exp) {
+bool QTextEdit_FindWithExp(QTextEdit* self, QRegularExpression* exp) {
 	return self->find(*exp);
 }
 
@@ -1211,14 +1210,6 @@ void QTextEdit_SetOverwriteMode(QTextEdit* self, bool overwrite) {
 	self->setOverwriteMode(overwrite);
 }
 
-int QTextEdit_TabStopWidth(const QTextEdit* self) {
-	return self->tabStopWidth();
-}
-
-void QTextEdit_SetTabStopWidth(QTextEdit* self, int width) {
-	self->setTabStopWidth(static_cast<int>(width));
-}
-
 double QTextEdit_TabStopDistance(const QTextEdit* self) {
 	qreal _ret = self->tabStopDistance();
 	return static_cast<double>(_ret);
@@ -1244,22 +1235,22 @@ void QTextEdit_SetAcceptRichText(QTextEdit* self, bool accept) {
 	self->setAcceptRichText(accept);
 }
 
-void QTextEdit_SetExtraSelections(QTextEdit* self, struct miqt_array /* of QTextEdit__ExtraSelection* */  selections) {
-	QList<QTextEdit::ExtraSelection> selections_QList;
+void QTextEdit_SetExtraSelections(QTextEdit* self, struct miqt_array /* of ExtraSelection */  selections) {
+	QList<ExtraSelection> selections_QList;
 	selections_QList.reserve(selections.len);
-	QTextEdit__ExtraSelection** selections_arr = static_cast<QTextEdit__ExtraSelection**>(selections.data);
+	ExtraSelection* selections_arr = static_cast<ExtraSelection*>(selections.data);
 	for(size_t i = 0; i < selections.len; ++i) {
-		selections_QList.push_back(*(selections_arr[i]));
+		selections_QList.push_back(selections_arr[i]);
 	}
 	self->setExtraSelections(selections_QList);
 }
 
-struct miqt_array /* of QTextEdit__ExtraSelection* */  QTextEdit_ExtraSelections(const QTextEdit* self) {
-	QList<QTextEdit::ExtraSelection> _ret = self->extraSelections();
+struct miqt_array /* of ExtraSelection */  QTextEdit_ExtraSelections(const QTextEdit* self) {
+	QList<ExtraSelection> _ret = self->extraSelections();
 	// Convert QList<> from C++ memory to manually-managed C memory
-	QTextEdit__ExtraSelection** _arr = static_cast<QTextEdit__ExtraSelection**>(malloc(sizeof(QTextEdit__ExtraSelection*) * _ret.length()));
+	ExtraSelection* _arr = static_cast<ExtraSelection*>(malloc(sizeof(ExtraSelection) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		_arr[i] = new QTextEdit::ExtraSelection(_ret[i]);
+		_arr[i] = _ret[i];
 	}
 	struct miqt_array _out;
 	_out.len = _ret.length();
@@ -1498,38 +1489,12 @@ struct miqt_string QTextEdit_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTextEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTextEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTextEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTextEdit::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-bool QTextEdit_Find22(QTextEdit* self, struct miqt_string exp, int options) {
+bool QTextEdit_Find2(QTextEdit* self, struct miqt_string exp, int options) {
 	QString exp_QString = QString::fromUtf8(exp.data, exp.len);
 	return self->find(exp_QString, static_cast<QTextDocument::FindFlags>(options));
 }
 
-bool QTextEdit_Find23(QTextEdit* self, QRegExp* exp, int options) {
-	return self->find(*exp, static_cast<QTextDocument::FindFlags>(options));
-}
-
-bool QTextEdit_Find24(QTextEdit* self, QRegularExpression* exp, int options) {
+bool QTextEdit_Find22(QTextEdit* self, QRegularExpression* exp, int options) {
 	return self->find(*exp, static_cast<QTextDocument::FindFlags>(options));
 }
 
@@ -1844,11 +1809,11 @@ void QTextEdit_Delete(QTextEdit* self, bool isSubclass) {
 	}
 }
 
-QTextEdit__ExtraSelection* QTextEdit__ExtraSelection_new(QTextEdit__ExtraSelection* param1) {
+QTextEdit__ExtraSelection* QTextEdit__ExtraSelection_new(const ExtraSelection* param1) {
 	return new QTextEdit::ExtraSelection(*param1);
 }
 
-void QTextEdit__ExtraSelection_OperatorAssign(QTextEdit__ExtraSelection* self, QTextEdit__ExtraSelection* param1) {
+void QTextEdit__ExtraSelection_OperatorAssign(QTextEdit__ExtraSelection* self, const ExtraSelection* param1) {
 	self->operator=(*param1);
 }
 

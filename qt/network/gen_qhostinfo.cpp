@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QList>
@@ -10,7 +12,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QHostInfo* QHostInfo_new() {
 	return new QHostInfo();
@@ -71,13 +88,12 @@ void QHostInfo_SetAddresses(QHostInfo* self, struct miqt_array /* of QHostAddres
 	self->setAddresses(addresses_QList);
 }
 
-int QHostInfo_Error(const QHostInfo* self) {
-	QHostInfo::HostInfoError _ret = self->error();
-	return static_cast<int>(_ret);
+HostInfoError QHostInfo_Error(const QHostInfo* self) {
+	return self->error();
 }
 
-void QHostInfo_SetError(QHostInfo* self, int error) {
-	self->setError(static_cast<QHostInfo::HostInfoError>(error));
+void QHostInfo_SetError(QHostInfo* self, HostInfoError error) {
+	self->setError(error);
 }
 
 struct miqt_string QHostInfo_ErrorString(const QHostInfo* self) {

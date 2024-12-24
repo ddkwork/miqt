@@ -1,3 +1,6 @@
+// +build ignore
+
+#include <QAbstractItemDelegate>
 #include <QAbstractItemModel>
 #include <QAbstractItemView>
 #include <QAbstractScrollArea>
@@ -30,6 +33,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionHeader>
 #include <QStyleOptionViewItem>
 #include <QTimerEvent>
 #include <QVariant>
@@ -40,7 +44,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQHeaderView : public virtual QHeaderView {
 public:
@@ -508,7 +527,7 @@ public:
 	intptr_t handle__DataChanged = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles) override {
+	virtual void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QList<int>& roles) override {
 		if (handle__DataChanged == 0) {
 			QHeaderView::dataChanged(topLeft, bottomRight, roles);
 			return;
@@ -520,7 +539,7 @@ public:
 		const QModelIndex& bottomRight_ret = bottomRight;
 		// Cast returned reference into pointer
 		QModelIndex* sigval2 = const_cast<QModelIndex*>(&bottomRight_ret);
-		const QVector<int>& roles_ret = roles;
+		const QList<int>& roles_ret = roles;
 		// Convert QList<> from C++ memory to manually-managed C memory
 		int* roles_arr = static_cast<int*>(malloc(sizeof(int) * roles_ret.length()));
 		for (size_t i = 0, e = roles_ret.length(); i < e; ++i) {
@@ -538,7 +557,7 @@ public:
 
 	// Wrapper to allow calling protected method
 	void virtualbase_DataChanged(QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-		QVector<int> roles_QList;
+		QList<int> roles_QList;
 		roles_QList.reserve(roles.len);
 		int* roles_arr = static_cast<int*>(roles.data);
 		for(size_t i = 0; i < roles.len; ++i) {
@@ -606,7 +625,7 @@ public:
 	intptr_t handle__ScrollTo = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void scrollTo(const QModelIndex& index, QAbstractItemView::ScrollHint hint) override {
+	virtual void scrollTo(const QModelIndex& index, ScrollHint hint) override {
 		if (handle__ScrollTo == 0) {
 			QHeaderView::scrollTo(index, hint);
 			return;
@@ -615,8 +634,7 @@ public:
 		const QModelIndex& index_ret = index;
 		// Cast returned reference into pointer
 		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
-		QAbstractItemView::ScrollHint hint_ret = hint;
-		int sigval2 = static_cast<int>(hint_ret);
+		ScrollHint sigval2 = hint;
 
 		miqt_exec_callback_QHeaderView_ScrollTo(this, handle__ScrollTo, sigval1, sigval2);
 
@@ -624,9 +642,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ScrollTo(QModelIndex* index, int hint) {
+	void virtualbase_ScrollTo(QModelIndex* index, ScrollHint hint) {
 
-		QHeaderView::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
+		QHeaderView::scrollTo(*index, hint);
 
 	}
 
@@ -684,13 +702,12 @@ public:
 	intptr_t handle__MoveCursor = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QModelIndex moveCursor(QAbstractItemView::CursorAction param1, Qt::KeyboardModifiers param2) override {
+	virtual QModelIndex moveCursor(CursorAction param1, Qt::KeyboardModifiers param2) override {
 		if (handle__MoveCursor == 0) {
 			return QHeaderView::moveCursor(param1, param2);
 		}
 		
-		QAbstractItemView::CursorAction param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		CursorAction sigval1 = param1;
 		Qt::KeyboardModifiers param2_ret = param2;
 		int sigval2 = static_cast<int>(param2_ret);
 
@@ -700,9 +717,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_MoveCursor(int param1, int param2) {
+	QModelIndex* virtualbase_MoveCursor(CursorAction param1, int param2) {
 
-		return new QModelIndex(QHeaderView::moveCursor(static_cast<QAbstractItemView::CursorAction>(param1), static_cast<Qt::KeyboardModifiers>(param2)));
+		return new QModelIndex(QHeaderView::moveCursor(param1, static_cast<Qt::KeyboardModifiers>(param2)));
 
 	}
 
@@ -756,6 +773,55 @@ public:
 	QRegion* virtualbase_VisualRegionForSelection(QItemSelection* selection) const {
 
 		return new QRegion(QHeaderView::visualRegionForSelection(*selection));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOptionForIndex = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOptionForIndex(QStyleOptionHeader* option, int logicalIndex) const override {
+		if (handle__InitStyleOptionForIndex == 0) {
+			QHeaderView::initStyleOptionForIndex(option, logicalIndex);
+			return;
+		}
+		
+		QStyleOptionHeader* sigval1 = option;
+		int sigval2 = logicalIndex;
+
+		miqt_exec_callback_QHeaderView_InitStyleOptionForIndex(const_cast<MiqtVirtualQHeaderView*>(this), handle__InitStyleOptionForIndex, sigval1, sigval2);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOptionForIndex(QStyleOptionHeader* option, int logicalIndex) const {
+
+		QHeaderView::initStyleOptionForIndex(option, static_cast<int>(logicalIndex));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionHeader* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QHeaderView::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionHeader* sigval1 = option;
+
+		miqt_exec_callback_QHeaderView_InitStyleOption(const_cast<MiqtVirtualQHeaderView*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionHeader* option) const {
+
+		QHeaderView::initStyleOption(option);
 
 	}
 
@@ -858,6 +924,31 @@ public:
 	int virtualbase_SizeHintForColumn(int column) const {
 
 		return QHeaderView::sizeHintForColumn(static_cast<int>(column));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ItemDelegateForIndex = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QAbstractItemDelegate* itemDelegateForIndex(const QModelIndex& index) const override {
+		if (handle__ItemDelegateForIndex == 0) {
+			return QHeaderView::itemDelegateForIndex(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		QAbstractItemDelegate* callback_return_value = miqt_exec_callback_QHeaderView_ItemDelegateForIndex(const_cast<MiqtVirtualQHeaderView*>(this), handle__ItemDelegateForIndex, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QAbstractItemDelegate* virtualbase_ItemDelegateForIndex(QModelIndex* index) const {
+
+		return QHeaderView::itemDelegateForIndex(*index);
 
 	}
 
@@ -1248,7 +1339,7 @@ public:
 	intptr_t handle__Edit2 = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool edit(const QModelIndex& index, QAbstractItemView::EditTrigger trigger, QEvent* event) override {
+	virtual bool edit(const QModelIndex& index, EditTrigger trigger, QEvent* event) override {
 		if (handle__Edit2 == 0) {
 			return QHeaderView::edit(index, trigger, event);
 		}
@@ -1256,8 +1347,7 @@ public:
 		const QModelIndex& index_ret = index;
 		// Cast returned reference into pointer
 		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
-		QAbstractItemView::EditTrigger trigger_ret = trigger;
-		int sigval2 = static_cast<int>(trigger_ret);
+		EditTrigger sigval2 = trigger;
 		QEvent* sigval3 = event;
 
 		bool callback_return_value = miqt_exec_callback_QHeaderView_Edit2(this, handle__Edit2, sigval1, sigval2, sigval3);
@@ -1266,9 +1356,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_Edit2(QModelIndex* index, int trigger, QEvent* event) {
+	bool virtualbase_Edit2(QModelIndex* index, EditTrigger trigger, QEvent* event) {
 
-		return QHeaderView::edit(*index, static_cast<QAbstractItemView::EditTrigger>(trigger), event);
+		return QHeaderView::edit(*index, trigger, event);
 
 	}
 
@@ -1325,24 +1415,26 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__ViewOptions = 0;
+	intptr_t handle__InitViewItemOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QStyleOptionViewItem viewOptions() const override {
-		if (handle__ViewOptions == 0) {
-			return QHeaderView::viewOptions();
+	virtual void initViewItemOption(QStyleOptionViewItem* option) const override {
+		if (handle__InitViewItemOption == 0) {
+			QHeaderView::initViewItemOption(option);
+			return;
 		}
 		
+		QStyleOptionViewItem* sigval1 = option;
 
-		QStyleOptionViewItem* callback_return_value = miqt_exec_callback_QHeaderView_ViewOptions(const_cast<MiqtVirtualQHeaderView*>(this), handle__ViewOptions);
+		miqt_exec_callback_QHeaderView_InitViewItemOption(const_cast<MiqtVirtualQHeaderView*>(this), handle__InitViewItemOption, sigval1);
 
-		return *callback_return_value;
+		
 	}
 
 	// Wrapper to allow calling protected method
-	QStyleOptionViewItem* virtualbase_ViewOptions() const {
+	void virtualbase_InitViewItemOption(QStyleOptionViewItem* option) const {
 
-		return new QStyleOptionViewItem(QHeaderView::viewOptions());
+		QHeaderView::initViewItemOption(option);
 
 	}
 
@@ -1688,17 +1780,6 @@ struct miqt_string QHeaderView_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QHeaderView_TrUtf8(const char* s) {
-	QString _ret = QHeaderView::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QHeaderView_SetModel(QHeaderView* self, QAbstractItemModel* model) {
 	self->setModel(model);
 }
@@ -1836,17 +1917,16 @@ bool QHeaderView_HighlightSections(const QHeaderView* self) {
 	return self->highlightSections();
 }
 
-int QHeaderView_SectionResizeMode(const QHeaderView* self, int logicalIndex) {
-	QHeaderView::ResizeMode _ret = self->sectionResizeMode(static_cast<int>(logicalIndex));
-	return static_cast<int>(_ret);
+ResizeMode QHeaderView_SectionResizeMode(const QHeaderView* self, int logicalIndex) {
+	return self->sectionResizeMode(static_cast<int>(logicalIndex));
 }
 
-void QHeaderView_SetSectionResizeMode(QHeaderView* self, int mode) {
-	self->setSectionResizeMode(static_cast<QHeaderView::ResizeMode>(mode));
+void QHeaderView_SetSectionResizeMode(QHeaderView* self, ResizeMode mode) {
+	self->setSectionResizeMode(mode);
 }
 
-void QHeaderView_SetSectionResizeMode2(QHeaderView* self, int logicalIndex, int mode) {
-	self->setSectionResizeMode(static_cast<int>(logicalIndex), static_cast<QHeaderView::ResizeMode>(mode));
+void QHeaderView_SetSectionResizeMode2(QHeaderView* self, int logicalIndex, ResizeMode mode) {
+	self->setSectionResizeMode(static_cast<int>(logicalIndex), mode);
 }
 
 void QHeaderView_SetResizeContentsPrecision(QHeaderView* self, int precision) {
@@ -1880,6 +1960,14 @@ int QHeaderView_SortIndicatorSection(const QHeaderView* self) {
 int QHeaderView_SortIndicatorOrder(const QHeaderView* self) {
 	Qt::SortOrder _ret = self->sortIndicatorOrder();
 	return static_cast<int>(_ret);
+}
+
+void QHeaderView_SetSortIndicatorClearable(QHeaderView* self, bool clearable) {
+	self->setSortIndicatorClearable(clearable);
+}
+
+bool QHeaderView_IsSortIndicatorClearable(const QHeaderView* self) {
+	return self->isSortIndicatorClearable();
 }
 
 bool QHeaderView_StretchLastSection(const QHeaderView* self) {
@@ -2097,6 +2185,17 @@ void QHeaderView_connect_SortIndicatorChanged(QHeaderView* self, intptr_t slot) 
 	});
 }
 
+void QHeaderView_SortIndicatorClearableChanged(QHeaderView* self, bool clearable) {
+	self->sortIndicatorClearableChanged(clearable);
+}
+
+void QHeaderView_connect_SortIndicatorClearableChanged(QHeaderView* self, intptr_t slot) {
+	MiqtVirtualQHeaderView::connect(self, static_cast<void (QHeaderView::*)(bool)>(&QHeaderView::sortIndicatorClearableChanged), self, [=](bool clearable) {
+		bool sigval1 = clearable;
+		miqt_exec_callback_QHeaderView_SortIndicatorClearableChanged(slot, sigval1);
+	});
+}
+
 struct miqt_string QHeaderView_Tr2(const char* s, const char* c) {
 	QString _ret = QHeaderView::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -2110,28 +2209,6 @@ struct miqt_string QHeaderView_Tr2(const char* s, const char* c) {
 
 struct miqt_string QHeaderView_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QHeaderView::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QHeaderView_TrUtf82(const char* s, const char* c) {
-	QString _ret = QHeaderView::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QHeaderView_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QHeaderView::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -2321,7 +2398,7 @@ void QHeaderView_override_virtual_ScrollTo(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__ScrollTo = slot;
 }
 
-void QHeaderView_virtualbase_ScrollTo(void* self, QModelIndex* index, int hint) {
+void QHeaderView_virtualbase_ScrollTo(void* self, QModelIndex* index, ScrollHint hint) {
 	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_ScrollTo(index, hint);
 }
 
@@ -2345,7 +2422,7 @@ void QHeaderView_override_virtual_MoveCursor(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__MoveCursor = slot;
 }
 
-QModelIndex* QHeaderView_virtualbase_MoveCursor(void* self, int param1, int param2) {
+QModelIndex* QHeaderView_virtualbase_MoveCursor(void* self, CursorAction param1, int param2) {
 	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_MoveCursor(param1, param2);
 }
 
@@ -2363,6 +2440,22 @@ void QHeaderView_override_virtual_VisualRegionForSelection(void* self, intptr_t 
 
 QRegion* QHeaderView_virtualbase_VisualRegionForSelection(const void* self, QItemSelection* selection) {
 	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_VisualRegionForSelection(selection);
+}
+
+void QHeaderView_override_virtual_InitStyleOptionForIndex(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__InitStyleOptionForIndex = slot;
+}
+
+void QHeaderView_virtualbase_InitStyleOptionForIndex(const void* self, QStyleOptionHeader* option, int logicalIndex) {
+	( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_InitStyleOptionForIndex(option, logicalIndex);
+}
+
+void QHeaderView_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QHeaderView_virtualbase_InitStyleOption(const void* self, QStyleOptionHeader* option) {
+	( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QHeaderView_override_virtual_SetSelectionModel(void* self, intptr_t slot) {
@@ -2395,6 +2488,14 @@ void QHeaderView_override_virtual_SizeHintForColumn(void* self, intptr_t slot) {
 
 int QHeaderView_virtualbase_SizeHintForColumn(const void* self, int column) {
 	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_SizeHintForColumn(column);
+}
+
+void QHeaderView_override_virtual_ItemDelegateForIndex(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__ItemDelegateForIndex = slot;
+}
+
+QAbstractItemDelegate* QHeaderView_virtualbase_ItemDelegateForIndex(const void* self, QModelIndex* index) {
+	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_ItemDelegateForIndex(index);
 }
 
 void QHeaderView_override_virtual_InputMethodQuery(void* self, intptr_t slot) {
@@ -2521,7 +2622,7 @@ void QHeaderView_override_virtual_Edit2(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__Edit2 = slot;
 }
 
-bool QHeaderView_virtualbase_Edit2(void* self, QModelIndex* index, int trigger, QEvent* event) {
+bool QHeaderView_virtualbase_Edit2(void* self, QModelIndex* index, EditTrigger trigger, QEvent* event) {
 	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_Edit2(index, trigger, event);
 }
 
@@ -2541,12 +2642,12 @@ void QHeaderView_virtualbase_StartDrag(void* self, int supportedActions) {
 	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_StartDrag(supportedActions);
 }
 
-void QHeaderView_override_virtual_ViewOptions(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__ViewOptions = slot;
+void QHeaderView_override_virtual_InitViewItemOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) )->handle__InitViewItemOption = slot;
 }
 
-QStyleOptionViewItem* QHeaderView_virtualbase_ViewOptions(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_ViewOptions();
+void QHeaderView_virtualbase_InitViewItemOption(const void* self, QStyleOptionViewItem* option) {
+	( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_InitViewItemOption(option);
 }
 
 void QHeaderView_override_virtual_FocusNextPrevChild(void* self, intptr_t slot) {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QMargins>
 #include <QMarginsF>
 #include <qmargins.h>
@@ -6,7 +8,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QMargins* QMargins_new() {
 	return new QMargins();
@@ -104,6 +121,10 @@ QMargins* QMargins_OperatorDivideAssignWithQreal(QMargins* self, double param1) 
 	return &_ret;
 }
 
+QMarginsF* QMargins_ToMarginsF(const QMargins* self) {
+	return new QMarginsF(self->toMarginsF());
+}
+
 void QMargins_Delete(QMargins* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QMargins*>( self );
@@ -152,20 +173,20 @@ double QMarginsF_Bottom(const QMarginsF* self) {
 	return static_cast<double>(_ret);
 }
 
-void QMarginsF_SetLeft(QMarginsF* self, double left) {
-	self->setLeft(static_cast<qreal>(left));
+void QMarginsF_SetLeft(QMarginsF* self, double aleft) {
+	self->setLeft(static_cast<qreal>(aleft));
 }
 
-void QMarginsF_SetTop(QMarginsF* self, double top) {
-	self->setTop(static_cast<qreal>(top));
+void QMarginsF_SetTop(QMarginsF* self, double atop) {
+	self->setTop(static_cast<qreal>(atop));
 }
 
-void QMarginsF_SetRight(QMarginsF* self, double right) {
-	self->setRight(static_cast<qreal>(right));
+void QMarginsF_SetRight(QMarginsF* self, double aright) {
+	self->setRight(static_cast<qreal>(aright));
 }
 
-void QMarginsF_SetBottom(QMarginsF* self, double bottom) {
-	self->setBottom(static_cast<qreal>(bottom));
+void QMarginsF_SetBottom(QMarginsF* self, double abottom) {
+	self->setBottom(static_cast<qreal>(abottom));
 }
 
 QMarginsF* QMarginsF_OperatorPlusAssign(QMarginsF* self, QMarginsF* margins) {

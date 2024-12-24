@@ -94,11 +94,9 @@ type UiAction struct {
 	Properties []UiProperty `xml:"property"`
 }
 
-type UiResources struct {
-}
+type UiResources struct{}
 
-type UiConnections struct {
-}
+type UiConnections struct{}
 
 type UiLayoutDefault struct {
 	Spacing *int `xml:"spacing,attr,omitempty"`

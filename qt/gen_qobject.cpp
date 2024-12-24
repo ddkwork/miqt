@@ -1,3 +1,7 @@
+// +build ignore
+
+#include <QAnyStringView>
+#include <QBindingStorage>
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
@@ -7,7 +11,6 @@
 #define WORKAROUND_INNER_CLASS_DEFINITION_QMetaObject__Connection
 #include <QObject>
 #include <QObjectData>
-#include <QObjectUserData>
 #include <QSignalBlocker>
 #include <QString>
 #include <QByteArray>
@@ -15,13 +18,29 @@
 #include <QThread>
 #include <QTimerEvent>
 #include <QVariant>
+#define WORKAROUND_INNER_CLASS_DEFINITION_Disambiguated_t
 #include <qobject.h>
 #include "gen_qobject.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QMetaObject* QObjectData_DynamicMetaObject(const QObjectData* self) {
 	return self->dynamicMetaObject();
@@ -243,17 +262,6 @@ struct miqt_string QObject_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QObject_TrUtf8(const char* s) {
-	QString _ret = QObject::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QObject_Event(QObject* self, QEvent* event) {
 	return self->event(event);
 }
@@ -273,9 +281,8 @@ struct miqt_string QObject_ObjectName(const QObject* self) {
 	return _ms;
 }
 
-void QObject_SetObjectName(QObject* self, struct miqt_string name) {
-	QString name_QString = QString::fromUtf8(name.data, name.len);
-	self->setObjectName(name_QString);
+void QObject_SetObjectName(QObject* self, QAnyStringView* name) {
+	self->setObjectName(*name);
 }
 
 bool QObject_IsWidgetType(const QObject* self) {
@@ -284,6 +291,10 @@ bool QObject_IsWidgetType(const QObject* self) {
 
 bool QObject_IsWindowType(const QObject* self) {
 	return self->isWindowType();
+}
+
+bool QObject_IsQuickItemType(const QObject* self) {
+	return self->isQuickItemType();
 }
 
 bool QObject_SignalsBlocked(const QObject* self) {
@@ -298,8 +309,8 @@ QThread* QObject_Thread(const QObject* self) {
 	return self->thread();
 }
 
-void QObject_MoveToThread(QObject* self, QThread* thread) {
-	self->moveToThread(thread);
+bool QObject_MoveToThread(QObject* self, QThread* thread) {
+	return self->moveToThread(thread);
 }
 
 int QObject_StartTimer(QObject* self, int interval) {
@@ -308,6 +319,10 @@ int QObject_StartTimer(QObject* self, int interval) {
 
 void QObject_KillTimer(QObject* self, int id) {
 	self->killTimer(static_cast<int>(id));
+}
+
+void QObject_KillTimerWithId(QObject* self, int id) {
+	self->killTimer(static_cast<Qt::TimerId>(id));
 }
 
 struct miqt_array /* of QObject* */  QObject_Children(const QObject* self) {
@@ -351,19 +366,11 @@ bool QObject_DisconnectWithQMetaObjectConnection(QMetaObject__Connection* param1
 	return QObject::disconnect(*param1);
 }
 
-void QObject_DumpObjectTree(QObject* self) {
+void QObject_DumpObjectTree(const QObject* self) {
 	self->dumpObjectTree();
 }
 
-void QObject_DumpObjectInfo(QObject* self) {
-	self->dumpObjectInfo();
-}
-
-void QObject_DumpObjectTree2(const QObject* self) {
-	self->dumpObjectTree();
-}
-
-void QObject_DumpObjectInfo2(const QObject* self) {
+void QObject_DumpObjectInfo(const QObject* self) {
 	self->dumpObjectInfo();
 }
 
@@ -393,17 +400,12 @@ struct miqt_array /* of struct miqt_string */  QObject_DynamicPropertyNames(cons
 	return _out;
 }
 
-unsigned int QObject_RegisterUserData() {
-	uint _ret = QObject::registerUserData();
-	return static_cast<unsigned int>(_ret);
+QBindingStorage* QObject_BindingStorage(QObject* self) {
+	return self->bindingStorage();
 }
 
-void QObject_SetUserData(QObject* self, unsigned int id, QObjectUserData* data) {
-	self->setUserData(static_cast<uint>(id), data);
-}
-
-QObjectUserData* QObject_UserData(const QObject* self, unsigned int id) {
-	return self->userData(static_cast<uint>(id));
+QBindingStorage* QObject_BindingStorage2(const QObject* self) {
+	return (QBindingStorage*) self->bindingStorage();
 }
 
 void QObject_Destroyed(QObject* self) {
@@ -450,26 +452,8 @@ struct miqt_string QObject_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QObject_TrUtf82(const char* s, const char* c) {
-	QString _ret = QObject::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QObject_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QObject::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+bool QObject_MoveToThread2(QObject* self, QThread* thread, Disambiguated_t* param2) {
+	return self->moveToThread(thread, *param2);
 }
 
 int QObject_StartTimer2(QObject* self, int interval, int timerType) {
@@ -559,18 +543,6 @@ void QObject_Delete(QObject* self, bool isSubclass) {
 	}
 }
 
-QObjectUserData* QObjectUserData_new() {
-	return new QObjectUserData();
-}
-
-void QObjectUserData_Delete(QObjectUserData* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QObjectUserData*>( self );
-	} else {
-		delete self;
-	}
-}
-
 QSignalBlocker* QSignalBlocker_new(QObject* o) {
 	return new QSignalBlocker(o);
 }
@@ -585,6 +557,10 @@ void QSignalBlocker_Reblock(QSignalBlocker* self) {
 
 void QSignalBlocker_Unblock(QSignalBlocker* self) {
 	self->unblock();
+}
+
+void QSignalBlocker_Dismiss(QSignalBlocker* self) {
+	self->dismiss();
 }
 
 void QSignalBlocker_Delete(QSignalBlocker* self, bool isSubclass) {

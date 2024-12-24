@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -15,19 +15,32 @@ extern "C" {
 #endif
 
 #ifdef __cplusplus
+class QGenericRunnable;
 class QRunnable;
+class _GUID;
+class type_info;
 #else
+typedef struct QGenericRunnable QGenericRunnable;
 typedef struct QRunnable QRunnable;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QRunnable* QRunnable_new();
-void QRunnable_Run(QRunnable* self);
-bool QRunnable_AutoDelete(const QRunnable* self);
-void QRunnable_SetAutoDelete(QRunnable* self, bool _autoDelete);
-void QRunnable_OperatorAssign(QRunnable* self, QRunnable* param1);
-void QRunnable_override_virtual_Run(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QRunnable* QRunnable_new();
+extern __declspec(dllexport) void QRunnable_Run(QRunnable* self);
+extern __declspec(dllexport) bool QRunnable_AutoDelete(const QRunnable* self);
+extern __declspec(dllexport) void QRunnable_SetAutoDelete(QRunnable* self, bool autoDelete);
+extern __declspec(dllexport) void QRunnable_override_virtual_Run(void* self, intptr_t slot);
 void QRunnable_virtualbase_Run(void* self);
-void QRunnable_Delete(QRunnable* self, bool isSubclass);
+extern __declspec(dllexport) void QRunnable_Delete(QRunnable* self, bool isSubclass);
+
+extern __declspec(dllexport) void QGenericRunnable_virtbase(QGenericRunnable* src, QRunnable** outptr_QRunnable);
+extern __declspec(dllexport) void QGenericRunnable_Run(QGenericRunnable* self);
+extern __declspec(dllexport) void QGenericRunnable_Delete(QGenericRunnable* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

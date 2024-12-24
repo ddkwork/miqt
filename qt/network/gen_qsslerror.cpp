@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QSslCertificate>
 #include <QSslError>
 #include <QString>
@@ -9,18 +11,33 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QSslError* QSslError_new() {
 	return new QSslError();
 }
 
-QSslError* QSslError_new2(int error) {
-	return new QSslError(static_cast<QSslError::SslError>(error));
+QSslError* QSslError_new2(SslError error) {
+	return new QSslError(error);
 }
 
-QSslError* QSslError_new3(int error, QSslCertificate* certificate) {
-	return new QSslError(static_cast<QSslError::SslError>(error), *certificate);
+QSslError* QSslError_new3(SslError error, QSslCertificate* certificate) {
+	return new QSslError(error, *certificate);
 }
 
 QSslError* QSslError_new4(QSslError* other) {
@@ -43,9 +60,8 @@ bool QSslError_OperatorNotEqual(const QSslError* self, QSslError* other) {
 	return (*self != *other);
 }
 
-int QSslError_Error(const QSslError* self) {
-	QSslError::SslError _ret = self->error();
-	return static_cast<int>(_ret);
+SslError QSslError_Error(const QSslError* self) {
+	return self->error();
 }
 
 struct miqt_string QSslError_ErrorString(const QSslError* self) {

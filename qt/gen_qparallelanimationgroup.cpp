@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractAnimation>
 #include <QAnimationGroup>
 #include <QEvent>
@@ -13,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQParallelAnimationGroup : public virtual QParallelAnimationGroup {
 public:
@@ -177,17 +194,6 @@ struct miqt_string QParallelAnimationGroup_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QParallelAnimationGroup_TrUtf8(const char* s) {
-	QString _ret = QParallelAnimationGroup::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 int QParallelAnimationGroup_Duration(const QParallelAnimationGroup* self) {
 	return self->duration();
 }
@@ -205,28 +211,6 @@ struct miqt_string QParallelAnimationGroup_Tr2(const char* s, const char* c) {
 
 struct miqt_string QParallelAnimationGroup_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QParallelAnimationGroup::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QParallelAnimationGroup_TrUtf82(const char* s, const char* c) {
-	QString _ret = QParallelAnimationGroup::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QParallelAnimationGroup_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QParallelAnimationGroup::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

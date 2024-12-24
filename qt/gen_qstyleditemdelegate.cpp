@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemDelegate>
 #include <QAbstractItemModel>
 #include <QAbstractItemView>
@@ -24,7 +26,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQStyledItemDelegate : public virtual QStyledItemDelegate {
 public:
@@ -384,14 +401,14 @@ public:
 	intptr_t handle__PaintingRoles = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVector<int> paintingRoles() const override {
+	virtual QList<int> paintingRoles() const override {
 		if (handle__PaintingRoles == 0) {
 			return QStyledItemDelegate::paintingRoles();
 		}
 		
 
 		struct miqt_array /* of int */  callback_return_value = miqt_exec_callback_QStyledItemDelegate_PaintingRoles(const_cast<MiqtVirtualQStyledItemDelegate*>(this), handle__PaintingRoles);
-		QVector<int> callback_return_value_QList;
+		QList<int> callback_return_value_QList;
 		callback_return_value_QList.reserve(callback_return_value.len);
 		int* callback_return_value_arr = static_cast<int*>(callback_return_value.data);
 		for(size_t i = 0; i < callback_return_value.len; ++i) {
@@ -404,7 +421,7 @@ public:
 	// Wrapper to allow calling protected method
 	struct miqt_array /* of int */  virtualbase_PaintingRoles() const {
 
-		QVector<int> _ret = QStyledItemDelegate::paintingRoles();
+		QList<int> _ret = QStyledItemDelegate::paintingRoles();
 		// Convert QList<> from C++ memory to manually-managed C memory
 		int* _arr = static_cast<int*>(malloc(sizeof(int) * _ret.length()));
 		for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -441,17 +458,6 @@ void* QStyledItemDelegate_Metacast(QStyledItemDelegate* self, const char* param1
 
 struct miqt_string QStyledItemDelegate_Tr(const char* s) {
 	QString _ret = QStyledItemDelegate::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStyledItemDelegate_TrUtf8(const char* s) {
-	QString _ret = QStyledItemDelegate::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -517,28 +523,6 @@ struct miqt_string QStyledItemDelegate_Tr2(const char* s, const char* c) {
 
 struct miqt_string QStyledItemDelegate_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QStyledItemDelegate::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStyledItemDelegate_TrUtf82(const char* s, const char* c) {
-	QString _ret = QStyledItemDelegate::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStyledItemDelegate_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QStyledItemDelegate::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

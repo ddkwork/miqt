@@ -48,7 +48,6 @@ func UnsafeNewQsciDocument(h unsafe.Pointer) *QsciDocument {
 
 // NewQsciDocument constructs a new QsciDocument object.
 func NewQsciDocument() *QsciDocument {
-
 	ret := newQsciDocument(C.QsciDocument_new())
 	ret.isSubclass = true
 	return ret
@@ -56,7 +55,6 @@ func NewQsciDocument() *QsciDocument {
 
 // NewQsciDocument2 constructs a new QsciDocument object.
 func NewQsciDocument2(param1 *QsciDocument) *QsciDocument {
-
 	ret := newQsciDocument(C.QsciDocument_new2(param1.cPointer()))
 	ret.isSubclass = true
 	return ret

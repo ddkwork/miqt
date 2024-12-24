@@ -9,19 +9,18 @@ import (
 )
 
 var (
-	ErrTooComplex = errors.New("Type declaration is too complex to parse")
-	ErrNoContent  = errors.New("There's no content to include")
+	ErrTooComplex = errors.New("type declaration is too complex to parse")
+	ErrNoContent  = errors.New("there's no content to include")
 )
 
 // parseHeader parses a whole C++ header into our CppParsedHeader intermediate format.
-func parseHeader(topLevel []interface{}, addNamePrefix string) (*CppParsedHeader, error) {
-
+func parseHeader(topLevel []any, addNamePrefix string) (*CppParsedHeader, error) {
 	var ret CppParsedHeader
 
 nextTopLevel:
 	for _, node := range topLevel {
 
-		node, ok := node.(map[string]interface{})
+		node, ok := node.(map[string]any)
 		if !ok {
 			return nil, errors.New("inner[] element not an object")
 		}
@@ -81,13 +80,12 @@ nextTopLevel:
 				continue nextTopLevel
 			}
 
-			namespaceInner, ok := node["inner"].([]interface{})
+			namespaceInner, ok := node["inner"].([]any)
 			if !ok {
 				// A namespace declaration with no inner content means that, for
 				// the rest of this whole file, we are in this namespace
 				// Update our own `addNamePrefix` accordingly
 				addNamePrefix += namespace + "::"
-
 			} else {
 
 				contents, err := parseHeader(namespaceInner, addNamePrefix+namespace+"::")
@@ -166,14 +164,14 @@ nextTopLevel:
 }
 
 // processTypedef parses a single C++ typedef into our intermediate format.
-func processTypedef(node map[string]interface{}, addNamePrefix string) (CppTypedef, error) {
+func processTypedef(node map[string]any, addNamePrefix string) (CppTypedef, error) {
 	// Must have a name
 	nodename, ok := node["name"].(string)
 	if !ok {
 		return CppTypedef{}, errors.New("node has no name")
 	}
 
-	if typ, ok := node["type"].(map[string]interface{}); ok {
+	if typ, ok := node["type"].(map[string]any); ok {
 		if qualType, ok := typ["qualType"].(string); ok {
 			return CppTypedef{
 				Alias:          addNamePrefix + nodename,
@@ -182,7 +180,7 @@ func processTypedef(node map[string]interface{}, addNamePrefix string) (CppTyped
 		}
 	}
 
-	return CppTypedef{}, errors.New("processTypedef: ???")
+	return CppTypedef{}, errors.New("processTypedef: ")
 }
 
 type visibilityState int
@@ -194,7 +192,7 @@ const (
 )
 
 // processClassType parses a single C++ class definition into our intermediate format.
-func processClassType(node map[string]interface{}, addNamePrefix string) (CppClass, error) {
+func processClassType(node map[string]any, addNamePrefix string) (CppClass, error) {
 	var ret CppClass
 	ret.CanDelete = true
 
@@ -223,14 +221,14 @@ func processClassType(node map[string]interface{}, addNamePrefix string) (CppCla
 	// Skip over forward class declarations
 	// This is determined in two ways:
 	// 1. If the class has no inner nodes
-	inner, ok := node["inner"].([]interface{})
+	inner, ok := node["inner"].([]any)
 	if !ok {
 		return CppClass{}, ErrNoContent
 	}
 
 	// 2. If this class has only one `inner` entry that's a VisibilityAttr
 	if len(inner) == 1 {
-		if node, ok := inner[0].(map[string]interface{}); ok {
+		if node, ok := inner[0].(map[string]any); ok {
 			if kind, ok := node["kind"].(string); ok && kind == "VisibilityAttr" {
 				return CppClass{}, ErrNoContent
 			}
@@ -244,16 +242,16 @@ func processClassType(node map[string]interface{}, addNamePrefix string) (CppCla
 	}
 
 	// Check if this is an abstract class
-	if definitionData, ok := node["definitionData"].(map[string]interface{}); ok {
+	if definitionData, ok := node["definitionData"].(map[string]any); ok {
 		if isAbstract, ok := definitionData["isAbstract"].(bool); ok && isAbstract {
 			ret.Abstract = true
 		}
 	}
 
 	// Check if this (publicly) inherits another class
-	if bases, ok := node["bases"].([]interface{}); ok {
+	if bases, ok := node["bases"].([]any); ok {
 		for _, base := range bases {
-			base, ok := base.(map[string]interface{})
+			base, ok := base.(map[string]any)
 			if !ok {
 				continue
 			}
@@ -263,7 +261,7 @@ func processClassType(node map[string]interface{}, addNamePrefix string) (CppCla
 				continue
 			}
 
-			if typ, ok := base["type"].(map[string]interface{}); ok {
+			if typ, ok := base["type"].(map[string]any); ok {
 				if qualType, ok := typ["qualType"].(string); ok {
 					ret.DirectInherits = append(ret.DirectInherits, qualType)
 				}
@@ -277,7 +275,7 @@ func processClassType(node map[string]interface{}, addNamePrefix string) (CppCla
 
 nextMethod:
 	for _, node := range inner {
-		node, ok := node.(map[string]interface{})
+		node, ok := node.(map[string]any)
 		if !ok {
 			return CppClass{}, errors.New("inner[] element not an object")
 		}
@@ -309,8 +307,8 @@ nextMethod:
 			// Clang sees Q_SIGNALS/signals as being a macro for `public`
 			// If this AccessSpecDecl was imported from a macro, assume it's signals
 			isSignal = false
-			if loc, ok := node["loc"].(map[string]interface{}); ok {
-				if _, ok := loc["expansionLoc"].(map[string]interface{}); ok {
+			if loc, ok := node["loc"].(map[string]any); ok {
+				if _, ok := loc["expansionLoc"].(map[string]any); ok {
 					isSignal = true
 				}
 			}
@@ -368,7 +366,6 @@ nextMethod:
 			if isImplicit, ok := node["isImplicit"].(bool); ok && isImplicit {
 				// This is an implicit ctor. Therefore the class is constructable
 				// even if we're currently in a `private:` block.
-
 			} else if visibility != VsPublic {
 				continue // Skip private/protected
 			}
@@ -491,8 +488,7 @@ nextMethod:
 }
 
 // isExplicitlyDeleted checks if this node is marked `= delete`.
-func isExplicitlyDeleted(node map[string]interface{}) bool {
-
+func isExplicitlyDeleted(node map[string]any) bool {
 	if explicitlyDeleted, ok := node["explicitlyDeleted"].(bool); ok && explicitlyDeleted {
 		return true
 	}
@@ -505,12 +501,12 @@ func isExplicitlyDeleted(node map[string]interface{}) bool {
 }
 
 // processEnum parses a Clang enum into our CppEnum intermediate format.
-func processEnum(node map[string]interface{}, addNamePrefix string) (CppEnum, error) {
+func processEnum(node map[string]any, addNamePrefix string) (CppEnum, error) {
 	var ret CppEnum
 
 	// Underlying type
 	ret.UnderlyingType = parseSingleTypeString("int")
-	if nodefut, ok := node["fixedUnderlyingType"].(map[string]interface{}); ok {
+	if nodefut, ok := node["fixedUnderlyingType"].(map[string]any); ok {
 		if nodequal, ok := nodefut["qualType"].(string); ok {
 			ret.UnderlyingType = parseSingleTypeString(nodequal)
 		}
@@ -522,13 +518,12 @@ func processEnum(node map[string]interface{}, addNamePrefix string) (CppEnum, er
 		// An unnamed enum is possible (e.g. qcalendar.h)
 		// It defines integer constants just in the current scope
 		ret.EnumName = addNamePrefix
-
 	} else {
 		ret.EnumName = addNamePrefix + nodename
 	}
 
 	// Entries
-	inner, ok := node["inner"].([]interface{})
+	inner, ok := node["inner"].([]any)
 	if !ok {
 		// An enum with no entries? We're done
 		return ret, nil
@@ -538,7 +533,7 @@ func processEnum(node map[string]interface{}, addNamePrefix string) (CppEnum, er
 
 nextEnumEntry:
 	for _, entry := range inner {
-		entry, ok := entry.(map[string]interface{})
+		entry, ok := entry.(map[string]any)
 		if !ok {
 			return ret, errors.New("bad inner type")
 		}
@@ -563,7 +558,7 @@ nextEnumEntry:
 		cee.EntryName = entryname
 
 		// Try to find the enum value
-		ei1, ok := entry["inner"].([]interface{})
+		ei1, ok := entry["inner"].([]any)
 		if !ok {
 			// No inner value on the enum = autoincrement
 			// Fall through as if a blank ei1, this will be handled
@@ -576,7 +571,7 @@ nextEnumEntry:
 		foundValidInner := false
 		for _, ei1_0 := range ei1 {
 
-			ei1_0 := ei1_0.(map[string]interface{})
+			ei1_0 := ei1_0.(map[string]any)
 			ei1Kind, ok := ei1_0["kind"].(string)
 			if !ok {
 				panic("inner with no kind (1)")
@@ -600,8 +595,8 @@ nextEnumEntry:
 			// Best case: .inner -> kind=ImplicitCastExpr .inner -> kind=ConstantExpr value=xx
 			// e.g. QCalendar (when there is a int typecast)
 			if ei1Kind == "ImplicitCastExpr" {
-				if ei2, ok := ei1_0["inner"].([]interface{}); ok && len(ei2) > 0 {
-					ei2_0 := ei2[0].(map[string]interface{})
+				if ei2, ok := ei1_0["inner"].([]any); ok && len(ei2) > 0 {
+					ei2_0 := ei2[0].(map[string]any)
 					if ei2Kind, ok := ei2_0["kind"].(string); ok && ei2Kind == "ConstantExpr" {
 						if ei2Value, ok := ei2_0["value"].(string); ok {
 							cee.EntryValue = ei2Value
@@ -627,17 +622,16 @@ nextEnumEntry:
 
 	afterParse:
 		if cee.EntryValue == "" {
-			return ret, fmt.Errorf("Complex enum %q entry %q", ret.EnumName, entryname)
+			return ret, fmt.Errorf("complex enum %q entry %q", ret.EnumName, entryname)
 		}
 
 		var err error
 		if cee.EntryValue == "true" || cee.EntryValue == "false" {
 			ret.UnderlyingType = parseSingleTypeString("bool")
-
 		} else {
 			lastImplicitValue, err = strconv.ParseInt(cee.EntryValue, 10, 64)
 			if err != nil {
-				return ret, fmt.Errorf("Enum %q entry %q has non-parseable value %q: %w", ret.EnumName, entryname, cee.EntryValue, err)
+				return ret, fmt.Errorf("enum %q entry %q has non-parseable value %q: %w", ret.EnumName, entryname, cee.EntryValue, err)
 			}
 		}
 
@@ -648,9 +642,8 @@ nextEnumEntry:
 }
 
 // parseMethod parses a Clang method into our CppMethod intermediate format.
-func parseMethod(node map[string]interface{}, mm *CppMethod) error {
-
-	if typobj, ok := node["type"].(map[string]interface{}); ok {
+func parseMethod(node map[string]any, mm *CppMethod) error {
+	if typobj, ok := node["type"].(map[string]any); ok {
 		if qualType, ok := typobj["qualType"].(string); ok {
 			// The qualType is the whole type of the method, including its parameter types
 			// If anything here is too complicated, skip the whole method
@@ -676,10 +669,10 @@ func parseMethod(node map[string]interface{}, mm *CppMethod) error {
 		mm.IsPureVirtual = true
 	}
 
-	if methodInner, ok := node["inner"].([]interface{}); ok {
+	if methodInner, ok := node["inner"].([]any); ok {
 		paramCounter := 0
 		for _, methodObj := range methodInner {
-			methodObj, ok := methodObj.(map[string]interface{})
+			methodObj, ok := methodObj.(map[string]any)
 			if !ok {
 				return errors.New("inner[] element not an object")
 			}
@@ -689,12 +682,10 @@ func parseMethod(node map[string]interface{}, mm *CppMethod) error {
 				// Parameter variable
 				parmName, _ := methodObj["name"].(string) // n.b. may be unnamed
 				if parmName == "" {
-
 					// Generate a default parameter name
 					// Super nice autogen names if this is a Q_PROPERTY setter:
 					if len(mm.Parameters) == 1 && strings.HasPrefix(mm.MethodName, "set") {
 						parmName = strings.ToLower(string(mm.MethodName[3])) + mm.MethodName[4:]
-
 					} else {
 						// Otherwise - default
 						parmName = fmt.Sprintf("param%d", paramCounter+1)
@@ -760,7 +751,6 @@ func parseMethod(node map[string]interface{}, mm *CppMethod) error {
 // These clang strings never contain the parameter's name, so the names here are
 // not filled in.
 func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, error) {
-
 	if strings.Contains(typeString, `&&`) { // TODO Rvalue references
 		return CppParameter{}, nil, false, ErrTooComplex
 	}
@@ -770,7 +760,7 @@ func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, err
 	epos := strings.LastIndex(typeString, `)`)
 
 	if opos == -1 || epos == -1 {
-		return CppParameter{}, nil, false, fmt.Errorf("Type string %q missing brackets", typeString)
+		return CppParameter{}, nil, false, fmt.Errorf("type string %q missing brackets", typeString)
 	}
 
 	isConst := false
@@ -816,7 +806,7 @@ func parseTypeString(typeString string) (CppParameter, []CppParameter, bool, err
 func tokenizeMultipleParameters(p string) []string {
 	// Tokenize into top-level strings
 	templateDepth := 0
-	tokens := []string{}
+	var tokens []string
 	wip := ""
 	p = strings.TrimSpace(p)
 	for _, c := range p {
@@ -843,7 +833,7 @@ func tokenizeMultipleParameters(p string) []string {
 func tokenizeSingleParameter(p string) []string {
 	// Tokenize into top-level strings
 	templateDepth := 0
-	tokens := []string{}
+	var tokens []string
 	wip := ""
 	p = strings.TrimSpace(p)
 	for _, c := range p {
@@ -879,30 +869,23 @@ func tokenizeSingleParameter(p string) []string {
 // parseSingleTypeString parses the Clang qualType for a single type into our
 // CppParameter intermediate format.
 func parseSingleTypeString(p string) CppParameter {
-
 	isSigned := false
 
 	tokens := tokenizeSingleParameter(p)
 	insert := CppParameter{}
 	for _, tok := range tokens {
-
 		if tok == "" {
 			continue // extra space
-
 		} else if tok == "const" {
 			insert.Const = true
-
 		} else if tok == "class" {
 			// QNetwork has some references to 'class QSslCertificate'. Flatten
 			continue
-
 		} else if tok == "&" { // U+0026
 			insert.ByRef = true
-
 		} else if tok == "signed" {
 			// We don't need this - UNLESS it's 'signed char'
 			isSigned = true
-
 		} else if tok == "*" {
 			insert.Pointer = true
 			insert.PointerCount++

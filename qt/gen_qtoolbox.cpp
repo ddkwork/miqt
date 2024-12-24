@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEvent>
 #include <QFrame>
 #include <QIcon>
@@ -10,6 +12,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QToolBox>
 #include <QWidget>
 #include <qtoolbox.h>
@@ -18,7 +21,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQToolBox : public virtual QToolBox {
 public:
@@ -194,6 +212,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QToolBox::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QToolBox_InitStyleOption(const_cast<MiqtVirtualQToolBox*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QToolBox::initStyleOption(option);
+
+	}
+
 };
 
 QToolBox* QToolBox_new(QWidget* parent) {
@@ -222,17 +264,6 @@ void* QToolBox_Metacast(QToolBox* self, const char* param1) {
 
 struct miqt_string QToolBox_Tr(const char* s) {
 	QString _ret = QToolBox::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QToolBox_TrUtf8(const char* s) {
-	QString _ret = QToolBox::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -375,28 +406,6 @@ struct miqt_string QToolBox_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QToolBox_TrUtf82(const char* s, const char* c) {
-	QString _ret = QToolBox::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QToolBox_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QToolBox::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QToolBox_override_virtual_Event(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQToolBox*>( (QToolBox*)(self) )->handle__Event = slot;
 }
@@ -451,6 +460,14 @@ void QToolBox_override_virtual_PaintEvent(void* self, intptr_t slot) {
 
 void QToolBox_virtualbase_PaintEvent(void* self, QPaintEvent* param1) {
 	( (MiqtVirtualQToolBox*)(self) )->virtualbase_PaintEvent(param1);
+}
+
+void QToolBox_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQToolBox*>( (QToolBox*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QToolBox_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQToolBox*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QToolBox_Delete(QToolBox* self, bool isSubclass) {

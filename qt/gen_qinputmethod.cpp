@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QInputMethod>
 #include <QLocale>
 #include <QMetaObject>
@@ -14,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QInputMethod_virtbase(QInputMethod* src, QObject** outptr_QObject) {
 	*outptr_QObject = static_cast<QObject*>(src);
@@ -30,17 +47,6 @@ void* QInputMethod_Metacast(QInputMethod* self, const char* param1) {
 
 struct miqt_string QInputMethod_Tr(const char* s) {
 	QString _ret = QInputMethod::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QInputMethod_TrUtf8(const char* s) {
-	QString _ret = QInputMethod::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -127,8 +133,8 @@ void QInputMethod_Commit(QInputMethod* self) {
 	self->commit();
 }
 
-void QInputMethod_InvokeAction(QInputMethod* self, int a, int cursorPosition) {
-	self->invokeAction(static_cast<QInputMethod::Action>(a), static_cast<int>(cursorPosition));
+void QInputMethod_InvokeAction(QInputMethod* self, Action a, int cursorPosition) {
+	self->invokeAction(a, static_cast<int>(cursorPosition));
 }
 
 void QInputMethod_CursorRectangleChanged(QInputMethod* self) {
@@ -226,28 +232,6 @@ struct miqt_string QInputMethod_Tr2(const char* s, const char* c) {
 
 struct miqt_string QInputMethod_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QInputMethod::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QInputMethod_TrUtf82(const char* s, const char* c) {
-	QString _ret = QInputMethod::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QInputMethod_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QInputMethod::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

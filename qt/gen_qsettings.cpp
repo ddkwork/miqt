@@ -1,3 +1,6 @@
+// +build ignore
+
+#include <QAnyStringView>
 #include <QChildEvent>
 #include <QEvent>
 #include <QList>
@@ -8,7 +11,6 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTextCodec>
 #include <QTimerEvent>
 #include <QVariant>
 #include <qsettings.h>
@@ -17,26 +19,41 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSettings : public virtual QSettings {
 public:
 
 	MiqtVirtualQSettings(const QString& organization): QSettings(organization) {};
-	MiqtVirtualQSettings(QSettings::Scope scope, const QString& organization): QSettings(scope, organization) {};
-	MiqtVirtualQSettings(QSettings::Format format, QSettings::Scope scope, const QString& organization): QSettings(format, scope, organization) {};
-	MiqtVirtualQSettings(const QString& fileName, QSettings::Format format): QSettings(fileName, format) {};
+	MiqtVirtualQSettings(Scope scope, const QString& organization): QSettings(scope, organization) {};
+	MiqtVirtualQSettings(Format format, Scope scope, const QString& organization): QSettings(format, scope, organization) {};
+	MiqtVirtualQSettings(const QString& fileName, Format format): QSettings(fileName, format) {};
 	MiqtVirtualQSettings(): QSettings() {};
-	MiqtVirtualQSettings(QSettings::Scope scope): QSettings(scope) {};
+	MiqtVirtualQSettings(Scope scope): QSettings(scope) {};
 	MiqtVirtualQSettings(const QString& organization, const QString& application): QSettings(organization, application) {};
 	MiqtVirtualQSettings(const QString& organization, const QString& application, QObject* parent): QSettings(organization, application, parent) {};
-	MiqtVirtualQSettings(QSettings::Scope scope, const QString& organization, const QString& application): QSettings(scope, organization, application) {};
-	MiqtVirtualQSettings(QSettings::Scope scope, const QString& organization, const QString& application, QObject* parent): QSettings(scope, organization, application, parent) {};
-	MiqtVirtualQSettings(QSettings::Format format, QSettings::Scope scope, const QString& organization, const QString& application): QSettings(format, scope, organization, application) {};
-	MiqtVirtualQSettings(QSettings::Format format, QSettings::Scope scope, const QString& organization, const QString& application, QObject* parent): QSettings(format, scope, organization, application, parent) {};
-	MiqtVirtualQSettings(const QString& fileName, QSettings::Format format, QObject* parent): QSettings(fileName, format, parent) {};
+	MiqtVirtualQSettings(Scope scope, const QString& organization, const QString& application): QSettings(scope, organization, application) {};
+	MiqtVirtualQSettings(Scope scope, const QString& organization, const QString& application, QObject* parent): QSettings(scope, organization, application, parent) {};
+	MiqtVirtualQSettings(Format format, Scope scope, const QString& organization, const QString& application): QSettings(format, scope, organization, application) {};
+	MiqtVirtualQSettings(Format format, Scope scope, const QString& organization, const QString& application, QObject* parent): QSettings(format, scope, organization, application, parent) {};
+	MiqtVirtualQSettings(const QString& fileName, Format format, QObject* parent): QSettings(fileName, format, parent) {};
 	MiqtVirtualQSettings(QObject* parent): QSettings(parent) {};
-	MiqtVirtualQSettings(QSettings::Scope scope, QObject* parent): QSettings(scope, parent) {};
+	MiqtVirtualQSettings(Scope scope, QObject* parent): QSettings(scope, parent) {};
 
 	virtual ~MiqtVirtualQSettings() = default;
 
@@ -218,27 +235,27 @@ QSettings* QSettings_new(struct miqt_string organization) {
 	return new MiqtVirtualQSettings(organization_QString);
 }
 
-QSettings* QSettings_new2(int scope, struct miqt_string organization) {
+QSettings* QSettings_new2(Scope scope, struct miqt_string organization) {
 	QString organization_QString = QString::fromUtf8(organization.data, organization.len);
-	return new MiqtVirtualQSettings(static_cast<QSettings::Scope>(scope), organization_QString);
+	return new MiqtVirtualQSettings(scope, organization_QString);
 }
 
-QSettings* QSettings_new3(int format, int scope, struct miqt_string organization) {
+QSettings* QSettings_new3(Format format, Scope scope, struct miqt_string organization) {
 	QString organization_QString = QString::fromUtf8(organization.data, organization.len);
-	return new MiqtVirtualQSettings(static_cast<QSettings::Format>(format), static_cast<QSettings::Scope>(scope), organization_QString);
+	return new MiqtVirtualQSettings(format, scope, organization_QString);
 }
 
-QSettings* QSettings_new4(struct miqt_string fileName, int format) {
+QSettings* QSettings_new4(struct miqt_string fileName, Format format) {
 	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
-	return new MiqtVirtualQSettings(fileName_QString, static_cast<QSettings::Format>(format));
+	return new MiqtVirtualQSettings(fileName_QString, format);
 }
 
 QSettings* QSettings_new5() {
 	return new MiqtVirtualQSettings();
 }
 
-QSettings* QSettings_new6(int scope) {
-	return new MiqtVirtualQSettings(static_cast<QSettings::Scope>(scope));
+QSettings* QSettings_new6(Scope scope) {
+	return new MiqtVirtualQSettings(scope);
 }
 
 QSettings* QSettings_new7(struct miqt_string organization, struct miqt_string application) {
@@ -253,41 +270,41 @@ QSettings* QSettings_new8(struct miqt_string organization, struct miqt_string ap
 	return new MiqtVirtualQSettings(organization_QString, application_QString, parent);
 }
 
-QSettings* QSettings_new9(int scope, struct miqt_string organization, struct miqt_string application) {
+QSettings* QSettings_new9(Scope scope, struct miqt_string organization, struct miqt_string application) {
 	QString organization_QString = QString::fromUtf8(organization.data, organization.len);
 	QString application_QString = QString::fromUtf8(application.data, application.len);
-	return new MiqtVirtualQSettings(static_cast<QSettings::Scope>(scope), organization_QString, application_QString);
+	return new MiqtVirtualQSettings(scope, organization_QString, application_QString);
 }
 
-QSettings* QSettings_new10(int scope, struct miqt_string organization, struct miqt_string application, QObject* parent) {
+QSettings* QSettings_new10(Scope scope, struct miqt_string organization, struct miqt_string application, QObject* parent) {
 	QString organization_QString = QString::fromUtf8(organization.data, organization.len);
 	QString application_QString = QString::fromUtf8(application.data, application.len);
-	return new MiqtVirtualQSettings(static_cast<QSettings::Scope>(scope), organization_QString, application_QString, parent);
+	return new MiqtVirtualQSettings(scope, organization_QString, application_QString, parent);
 }
 
-QSettings* QSettings_new11(int format, int scope, struct miqt_string organization, struct miqt_string application) {
+QSettings* QSettings_new11(Format format, Scope scope, struct miqt_string organization, struct miqt_string application) {
 	QString organization_QString = QString::fromUtf8(organization.data, organization.len);
 	QString application_QString = QString::fromUtf8(application.data, application.len);
-	return new MiqtVirtualQSettings(static_cast<QSettings::Format>(format), static_cast<QSettings::Scope>(scope), organization_QString, application_QString);
+	return new MiqtVirtualQSettings(format, scope, organization_QString, application_QString);
 }
 
-QSettings* QSettings_new12(int format, int scope, struct miqt_string organization, struct miqt_string application, QObject* parent) {
+QSettings* QSettings_new12(Format format, Scope scope, struct miqt_string organization, struct miqt_string application, QObject* parent) {
 	QString organization_QString = QString::fromUtf8(organization.data, organization.len);
 	QString application_QString = QString::fromUtf8(application.data, application.len);
-	return new MiqtVirtualQSettings(static_cast<QSettings::Format>(format), static_cast<QSettings::Scope>(scope), organization_QString, application_QString, parent);
+	return new MiqtVirtualQSettings(format, scope, organization_QString, application_QString, parent);
 }
 
-QSettings* QSettings_new13(struct miqt_string fileName, int format, QObject* parent) {
+QSettings* QSettings_new13(struct miqt_string fileName, Format format, QObject* parent) {
 	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
-	return new MiqtVirtualQSettings(fileName_QString, static_cast<QSettings::Format>(format), parent);
+	return new MiqtVirtualQSettings(fileName_QString, format, parent);
 }
 
 QSettings* QSettings_new14(QObject* parent) {
 	return new MiqtVirtualQSettings(parent);
 }
 
-QSettings* QSettings_new15(int scope, QObject* parent) {
-	return new MiqtVirtualQSettings(static_cast<QSettings::Scope>(scope), parent);
+QSettings* QSettings_new15(Scope scope, QObject* parent) {
+	return new MiqtVirtualQSettings(scope, parent);
 }
 
 void QSettings_virtbase(QSettings* src, QObject** outptr_QObject) {
@@ -313,17 +330,6 @@ struct miqt_string QSettings_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSettings_TrUtf8(const char* s) {
-	QString _ret = QSettings::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QSettings_Clear(QSettings* self) {
 	self->clear();
 }
@@ -332,9 +338,8 @@ void QSettings_Sync(QSettings* self) {
 	self->sync();
 }
 
-int QSettings_Status(const QSettings* self) {
-	QSettings::Status _ret = self->status();
-	return static_cast<int>(_ret);
+Status QSettings_Status(const QSettings* self) {
+	return self->status();
 }
 
 bool QSettings_IsAtomicSyncRequired(const QSettings* self) {
@@ -345,9 +350,8 @@ void QSettings_SetAtomicSyncRequired(QSettings* self, bool enable) {
 	self->setAtomicSyncRequired(enable);
 }
 
-void QSettings_BeginGroup(QSettings* self, struct miqt_string prefix) {
-	QString prefix_QString = QString::fromUtf8(prefix.data, prefix.len);
-	self->beginGroup(prefix_QString);
+void QSettings_BeginGroup(QSettings* self, QAnyStringView* prefix) {
+	self->beginGroup(*prefix);
 }
 
 void QSettings_EndGroup(QSettings* self) {
@@ -365,14 +369,12 @@ struct miqt_string QSettings_Group(const QSettings* self) {
 	return _ms;
 }
 
-int QSettings_BeginReadArray(QSettings* self, struct miqt_string prefix) {
-	QString prefix_QString = QString::fromUtf8(prefix.data, prefix.len);
-	return self->beginReadArray(prefix_QString);
+int QSettings_BeginReadArray(QSettings* self, QAnyStringView* prefix) {
+	return self->beginReadArray(*prefix);
 }
 
-void QSettings_BeginWriteArray(QSettings* self, struct miqt_string prefix) {
-	QString prefix_QString = QString::fromUtf8(prefix.data, prefix.len);
-	self->beginWriteArray(prefix_QString);
+void QSettings_BeginWriteArray(QSettings* self, QAnyStringView* prefix) {
+	self->beginWriteArray(*prefix);
 }
 
 void QSettings_EndArray(QSettings* self) {
@@ -447,24 +449,24 @@ bool QSettings_IsWritable(const QSettings* self) {
 	return self->isWritable();
 }
 
-void QSettings_SetValue(QSettings* self, struct miqt_string key, QVariant* value) {
-	QString key_QString = QString::fromUtf8(key.data, key.len);
-	self->setValue(key_QString, *value);
+void QSettings_SetValue(QSettings* self, QAnyStringView* key, QVariant* value) {
+	self->setValue(*key, *value);
 }
 
-QVariant* QSettings_Value(const QSettings* self, struct miqt_string key) {
-	QString key_QString = QString::fromUtf8(key.data, key.len);
-	return new QVariant(self->value(key_QString));
+QVariant* QSettings_Value(const QSettings* self, QAnyStringView* key, QVariant* defaultValue) {
+	return new QVariant(self->value(*key, *defaultValue));
 }
 
-void QSettings_Remove(QSettings* self, struct miqt_string key) {
-	QString key_QString = QString::fromUtf8(key.data, key.len);
-	self->remove(key_QString);
+QVariant* QSettings_ValueWithKey(const QSettings* self, QAnyStringView* key) {
+	return new QVariant(self->value(*key));
 }
 
-bool QSettings_Contains(const QSettings* self, struct miqt_string key) {
-	QString key_QString = QString::fromUtf8(key.data, key.len);
-	return self->contains(key_QString);
+void QSettings_Remove(QSettings* self, QAnyStringView* key) {
+	self->remove(*key);
+}
+
+bool QSettings_Contains(const QSettings* self, QAnyStringView* key) {
+	return self->contains(*key);
 }
 
 void QSettings_SetFallbacksEnabled(QSettings* self, bool b) {
@@ -486,14 +488,12 @@ struct miqt_string QSettings_FileName(const QSettings* self) {
 	return _ms;
 }
 
-int QSettings_Format(const QSettings* self) {
-	QSettings::Format _ret = self->format();
-	return static_cast<int>(_ret);
+Format QSettings_Format(const QSettings* self) {
+	return self->format();
 }
 
-int QSettings_Scope(const QSettings* self) {
-	QSettings::Scope _ret = self->scope();
-	return static_cast<int>(_ret);
+Scope QSettings_Scope(const QSettings* self) {
+	return self->scope();
 }
 
 struct miqt_string QSettings_OrganizationName(const QSettings* self) {
@@ -518,40 +518,22 @@ struct miqt_string QSettings_ApplicationName(const QSettings* self) {
 	return _ms;
 }
 
-void QSettings_SetIniCodec(QSettings* self, QTextCodec* codec) {
-	self->setIniCodec(codec);
+void QSettings_SetDefaultFormat(Format format) {
+	QSettings::setDefaultFormat(format);
 }
 
-void QSettings_SetIniCodecWithCodecName(QSettings* self, const char* codecName) {
-	self->setIniCodec(codecName);
+Format QSettings_DefaultFormat() {
+	return QSettings::defaultFormat();
 }
 
-QTextCodec* QSettings_IniCodec(const QSettings* self) {
-	return self->iniCodec();
-}
-
-void QSettings_SetDefaultFormat(int format) {
-	QSettings::setDefaultFormat(static_cast<QSettings::Format>(format));
-}
-
-int QSettings_DefaultFormat() {
-	QSettings::Format _ret = QSettings::defaultFormat();
-	return static_cast<int>(_ret);
-}
-
-void QSettings_SetSystemIniPath(struct miqt_string dir) {
-	QString dir_QString = QString::fromUtf8(dir.data, dir.len);
-	QSettings::setSystemIniPath(dir_QString);
-}
-
-void QSettings_SetUserIniPath(struct miqt_string dir) {
-	QString dir_QString = QString::fromUtf8(dir.data, dir.len);
-	QSettings::setUserIniPath(dir_QString);
-}
-
-void QSettings_SetPath(int format, int scope, struct miqt_string path) {
+void QSettings_SetPath(Format format, Scope scope, struct miqt_string path) {
 	QString path_QString = QString::fromUtf8(path.data, path.len);
-	QSettings::setPath(static_cast<QSettings::Format>(format), static_cast<QSettings::Scope>(scope), path_QString);
+	QSettings::setPath(format, scope, path_QString);
+}
+
+Format QSettings_RegisterFormat(struct miqt_string extension, ReadFunc readFunc, WriteFunc writeFunc) {
+	QString extension_QString = QString::fromUtf8(extension.data, extension.len);
+	return QSettings::registerFormat(extension_QString, readFunc, writeFunc);
 }
 
 struct miqt_string QSettings_Tr2(const char* s, const char* c) {
@@ -576,36 +558,13 @@ struct miqt_string QSettings_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QSettings_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSettings::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QSettings_BeginWriteArray2(QSettings* self, QAnyStringView* prefix, int size) {
+	self->beginWriteArray(*prefix, static_cast<int>(size));
 }
 
-struct miqt_string QSettings_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSettings::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QSettings_BeginWriteArray2(QSettings* self, struct miqt_string prefix, int size) {
-	QString prefix_QString = QString::fromUtf8(prefix.data, prefix.len);
-	self->beginWriteArray(prefix_QString, static_cast<int>(size));
-}
-
-QVariant* QSettings_Value2(const QSettings* self, struct miqt_string key, QVariant* defaultValue) {
-	QString key_QString = QString::fromUtf8(key.data, key.len);
-	return new QVariant(self->value(key_QString, *defaultValue));
+Format QSettings_RegisterFormat4(struct miqt_string extension, ReadFunc readFunc, WriteFunc writeFunc, int caseSensitivity) {
+	QString extension_QString = QString::fromUtf8(extension.data, extension.len);
+	return QSettings::registerFormat(extension_QString, readFunc, writeFunc, static_cast<Qt::CaseSensitivity>(caseSensitivity));
 }
 
 void QSettings_override_virtual_Event(void* self, intptr_t slot) {

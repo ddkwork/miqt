@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qnamespace.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -38,28 +29,12 @@ const (
 	Transparent GlobalColor = 19
 )
 
-type KeyboardModifier int
+type ColorScheme int
 
 const (
-	NoModifier           KeyboardModifier = 0
-	ShiftModifier        KeyboardModifier = 33554432
-	ControlModifier      KeyboardModifier = 67108864
-	AltModifier          KeyboardModifier = 134217728
-	MetaModifier         KeyboardModifier = 268435456
-	KeypadModifier       KeyboardModifier = 536870912
-	GroupSwitchModifier  KeyboardModifier = 1073741824
-	KeyboardModifierMask KeyboardModifier = 4261412864
-)
-
-type Modifier int
-
-const (
-	META          Modifier = 268435456
-	SHIFT         Modifier = 33554432
-	CTRL          Modifier = 67108864
-	ALT           Modifier = 134217728
-	MODIFIER_MASK Modifier = 4261412864
-	UNICODE_ACCEL Modifier = 0
+	Unknown ColorScheme = 0
+	Light   ColorScheme = 1
+	Dark    ColorScheme = 2
 )
 
 type MouseButton int
@@ -69,7 +44,6 @@ const (
 	LeftButton      MouseButton = 1
 	RightButton     MouseButton = 2
 	MiddleButton    MouseButton = 4
-	MidButton       MouseButton = 4
 	BackButton      MouseButton = 8
 	XButton1        MouseButton = 8
 	ExtraButton1    MouseButton = 8
@@ -187,7 +161,6 @@ const (
 	TextForceLeftToRight      TextFlag = 131072
 	TextForceRightToLeft      TextFlag = 262144
 	TextLongestVariant        TextFlag = 524288
-	TextBypassShaping         TextFlag = 1048576
 )
 
 type TextElideMode int
@@ -249,6 +222,8 @@ const (
 	WindowOverridesSystemGestures       WindowType = 1048576
 	WindowDoesNotAcceptFocus            WindowType = 2097152
 	MaximizeUsingFullscreenGeometryHint WindowType = 4194304
+	ExpandedClientAreaHint              WindowType = 4194304
+	NoTitleBarBackgroundHint            WindowType = 8388608
 	CustomizeWindowHint                 WindowType = 33554432
 	WindowStaysOnBottomHint             WindowType = 67108864
 	WindowCloseButtonHint               WindowType = 134217728
@@ -293,16 +268,13 @@ const (
 	WA_Disabled                        WidgetAttribute = 0
 	WA_UnderMouse                      WidgetAttribute = 1
 	WA_MouseTracking                   WidgetAttribute = 2
-	WA_ContentsPropagated              WidgetAttribute = 3
 	WA_OpaquePaintEvent                WidgetAttribute = 4
-	WA_NoBackground                    WidgetAttribute = 4
 	WA_StaticContents                  WidgetAttribute = 5
 	WA_LaidOut                         WidgetAttribute = 7
 	WA_PaintOnScreen                   WidgetAttribute = 8
 	WA_NoSystemBackground              WidgetAttribute = 9
 	WA_UpdatesDisabled                 WidgetAttribute = 10
 	WA_Mapped                          WidgetAttribute = 11
-	WA_MacNoClickThrough               WidgetAttribute = 12
 	WA_InputMethodEnabled              WidgetAttribute = 14
 	WA_WState_Visible                  WidgetAttribute = 15
 	WA_WState_Hidden                   WidgetAttribute = 16
@@ -319,8 +291,6 @@ const (
 	WA_Moved                           WidgetAttribute = 43
 	WA_PendingUpdate                   WidgetAttribute = 44
 	WA_InvalidSize                     WidgetAttribute = 45
-	WA_MacBrushedMetal                 WidgetAttribute = 46
-	WA_MacMetalStyle                   WidgetAttribute = 46
 	WA_CustomWhatsThis                 WidgetAttribute = 47
 	WA_LayoutOnEntireRect              WidgetAttribute = 48
 	WA_OutsideWSRange                  WidgetAttribute = 49
@@ -340,12 +310,10 @@ const (
 	WA_WState_Reparented               WidgetAttribute = 63
 	WA_WState_ConfigPending            WidgetAttribute = 64
 	WA_WState_Polished                 WidgetAttribute = 66
-	WA_WState_DND                      WidgetAttribute = 67
 	WA_WState_OwnSizePolicy            WidgetAttribute = 68
 	WA_WState_ExplicitShowHide         WidgetAttribute = 69
 	WA_ShowModal                       WidgetAttribute = 70
 	WA_MouseNoMask                     WidgetAttribute = 71
-	WA_GroupLeader                     WidgetAttribute = 72
 	WA_NoMousePropagation              WidgetAttribute = 73
 	WA_Hover                           WidgetAttribute = 74
 	WA_InputMethodTransparent          WidgetAttribute = 75
@@ -353,7 +321,6 @@ const (
 	WA_KeyboardFocusChange             WidgetAttribute = 77
 	WA_AcceptDrops                     WidgetAttribute = 78
 	WA_DropSiteRegistered              WidgetAttribute = 79
-	WA_ForceAcceptDrops                WidgetAttribute = 79
 	WA_WindowPropagation               WidgetAttribute = 80
 	WA_NoX11EventCompression           WidgetAttribute = 81
 	WA_TintedBackground                WidgetAttribute = 82
@@ -368,7 +335,6 @@ const (
 	WA_MacMiniSize                     WidgetAttribute = 91
 	WA_LayoutUsesWidgetRect            WidgetAttribute = 92
 	WA_StyledBackground                WidgetAttribute = 93
-	WA_MSWindowsUseDirect3D            WidgetAttribute = 94
 	WA_CanHostQMdiSubWindowTitleBar    WidgetAttribute = 95
 	WA_MacAlwaysShowToolWindow         WidgetAttribute = 96
 	WA_StyleSheet                      WidgetAttribute = 97
@@ -376,7 +342,6 @@ const (
 	WA_X11BypassTransientForHint       WidgetAttribute = 99
 	WA_NativeWindow                    WidgetAttribute = 100
 	WA_DontCreateNativeAncestors       WidgetAttribute = 101
-	WA_MacVariableSize                 WidgetAttribute = 102
 	WA_DontShowOnScreen                WidgetAttribute = 103
 	WA_X11NetWmWindowTypeDesktop       WidgetAttribute = 104
 	WA_X11NetWmWindowTypeDock          WidgetAttribute = 105
@@ -391,7 +356,6 @@ const (
 	WA_X11NetWmWindowTypeNotification  WidgetAttribute = 114
 	WA_X11NetWmWindowTypeCombo         WidgetAttribute = 115
 	WA_X11NetWmWindowTypeDND           WidgetAttribute = 116
-	WA_MacFrameworkScaled              WidgetAttribute = 117
 	WA_SetWindowModality               WidgetAttribute = 118
 	WA_WState_WindowOpacitySet         WidgetAttribute = 119
 	WA_TranslucentBackground           WidgetAttribute = 120
@@ -399,7 +363,6 @@ const (
 	WA_WState_AcceptedTouchBeginEvent  WidgetAttribute = 122
 	WA_TouchPadAcceptSingleTouchEvents WidgetAttribute = 123
 	WA_X11DoNotAcceptFocus             WidgetAttribute = 126
-	WA_MacNoShadow                     WidgetAttribute = 127
 	WA_AlwaysStackOnTop                WidgetAttribute = 128
 	WA_TabletTracking                  WidgetAttribute = 129
 	WA_ContentsMarginsRespectsSafeArea WidgetAttribute = 130
@@ -410,18 +373,16 @@ const (
 type ApplicationAttribute int
 
 const (
-	AA_ImmediateWidgetCreation                 ApplicationAttribute = 0
-	AA_MSWindowsUseDirect3DByDefault           ApplicationAttribute = 1
+	AA_QtQuickUseDefaultSizePolicy             ApplicationAttribute = 1
 	AA_DontShowIconsInMenus                    ApplicationAttribute = 2
 	AA_NativeWindows                           ApplicationAttribute = 3
 	AA_DontCreateNativeWidgetSiblings          ApplicationAttribute = 4
 	AA_PluginApplication                       ApplicationAttribute = 5
-	AA_MacPluginApplication                    ApplicationAttribute = 5
 	AA_DontUseNativeMenuBar                    ApplicationAttribute = 6
 	AA_MacDontSwapCtrlAndMeta                  ApplicationAttribute = 7
 	AA_Use96Dpi                                ApplicationAttribute = 8
 	AA_DisableNativeVirtualKeyboard            ApplicationAttribute = 9
-	AA_X11InitThreads                          ApplicationAttribute = 10
+	AA_DontUseNativeMenuWindows                ApplicationAttribute = 10
 	AA_SynthesizeTouchForUnhandledMouseEvents  ApplicationAttribute = 11
 	AA_SynthesizeMouseForUnhandledTouchEvents  ApplicationAttribute = 12
 	AA_UseHighDpiPixmaps                       ApplicationAttribute = 13
@@ -441,7 +402,6 @@ const (
 	AA_DisableShaderDiskCache                  ApplicationAttribute = 27
 	AA_DontShowShortcutsInContextMenus         ApplicationAttribute = 28
 	AA_CompressTabletEvents                    ApplicationAttribute = 29
-	AA_DisableWindowContextHelpButton          ApplicationAttribute = 30
 	AA_DisableSessionManager                   ApplicationAttribute = 31
 	AA_AttributeCount                          ApplicationAttribute = 32
 )
@@ -480,76 +440,6 @@ const (
 type Key int
 
 const (
-	Key_Escape                  Key = 16777216
-	Key_Tab                     Key = 16777217
-	Key_Backtab                 Key = 16777218
-	Key_Backspace               Key = 16777219
-	Key_Return                  Key = 16777220
-	Key_Enter                   Key = 16777221
-	Key_Insert                  Key = 16777222
-	Key_Delete                  Key = 16777223
-	Key_Pause                   Key = 16777224
-	Key_Print                   Key = 16777225
-	Key_SysReq                  Key = 16777226
-	Key_Clear                   Key = 16777227
-	Key_Home                    Key = 16777232
-	Key_End                     Key = 16777233
-	Key_Left                    Key = 16777234
-	Key_Up                      Key = 16777235
-	Key_Right                   Key = 16777236
-	Key_Down                    Key = 16777237
-	Key_PageUp                  Key = 16777238
-	Key_PageDown                Key = 16777239
-	Key_Shift                   Key = 16777248
-	Key_Control                 Key = 16777249
-	Key_Meta                    Key = 16777250
-	Key_Alt                     Key = 16777251
-	Key_CapsLock                Key = 16777252
-	Key_NumLock                 Key = 16777253
-	Key_ScrollLock              Key = 16777254
-	Key_F1                      Key = 16777264
-	Key_F2                      Key = 16777265
-	Key_F3                      Key = 16777266
-	Key_F4                      Key = 16777267
-	Key_F5                      Key = 16777268
-	Key_F6                      Key = 16777269
-	Key_F7                      Key = 16777270
-	Key_F8                      Key = 16777271
-	Key_F9                      Key = 16777272
-	Key_F10                     Key = 16777273
-	Key_F11                     Key = 16777274
-	Key_F12                     Key = 16777275
-	Key_F13                     Key = 16777276
-	Key_F14                     Key = 16777277
-	Key_F15                     Key = 16777278
-	Key_F16                     Key = 16777279
-	Key_F17                     Key = 16777280
-	Key_F18                     Key = 16777281
-	Key_F19                     Key = 16777282
-	Key_F20                     Key = 16777283
-	Key_F21                     Key = 16777284
-	Key_F22                     Key = 16777285
-	Key_F23                     Key = 16777286
-	Key_F24                     Key = 16777287
-	Key_F25                     Key = 16777288
-	Key_F26                     Key = 16777289
-	Key_F27                     Key = 16777290
-	Key_F28                     Key = 16777291
-	Key_F29                     Key = 16777292
-	Key_F30                     Key = 16777293
-	Key_F31                     Key = 16777294
-	Key_F32                     Key = 16777295
-	Key_F33                     Key = 16777296
-	Key_F34                     Key = 16777297
-	Key_F35                     Key = 16777298
-	Key_Super_L                 Key = 16777299
-	Key_Super_R                 Key = 16777300
-	Key_Menu                    Key = 16777301
-	Key_Hyper_L                 Key = 16777302
-	Key_Hyper_R                 Key = 16777303
-	Key_Help                    Key = 16777304
-	Key_Direction_L             Key = 16777305
-	Key_Direction_R             Key = 16777312
 	Key_Space                   Key = 32
 	Key_Any                     Key = 32
 	Key_Exclam                  Key = 33
@@ -641,6 +531,7 @@ const (
 	Key_twosuperior             Key = 178
 	Key_threesuperior           Key = 179
 	Key_acute                   Key = 180
+	Key_micro                   Key = 181
 	Key_mu                      Key = 181
 	Key_paragraph               Key = 182
 	Key_periodcentered          Key = 183
@@ -686,6 +577,76 @@ const (
 	Key_ssharp                  Key = 223
 	Key_division                Key = 247
 	Key_ydiaeresis              Key = 255
+	Key_Escape                  Key = 16777216
+	Key_Tab                     Key = 16777217
+	Key_Backtab                 Key = 16777218
+	Key_Backspace               Key = 16777219
+	Key_Return                  Key = 16777220
+	Key_Enter                   Key = 16777221
+	Key_Insert                  Key = 16777222
+	Key_Delete                  Key = 16777223
+	Key_Pause                   Key = 16777224
+	Key_Print                   Key = 16777225
+	Key_SysReq                  Key = 16777226
+	Key_Clear                   Key = 16777227
+	Key_Home                    Key = 16777232
+	Key_End                     Key = 16777233
+	Key_Left                    Key = 16777234
+	Key_Up                      Key = 16777235
+	Key_Right                   Key = 16777236
+	Key_Down                    Key = 16777237
+	Key_PageUp                  Key = 16777238
+	Key_PageDown                Key = 16777239
+	Key_Shift                   Key = 16777248
+	Key_Control                 Key = 16777249
+	Key_Meta                    Key = 16777250
+	Key_Alt                     Key = 16777251
+	Key_CapsLock                Key = 16777252
+	Key_NumLock                 Key = 16777253
+	Key_ScrollLock              Key = 16777254
+	Key_F1                      Key = 16777264
+	Key_F2                      Key = 16777265
+	Key_F3                      Key = 16777266
+	Key_F4                      Key = 16777267
+	Key_F5                      Key = 16777268
+	Key_F6                      Key = 16777269
+	Key_F7                      Key = 16777270
+	Key_F8                      Key = 16777271
+	Key_F9                      Key = 16777272
+	Key_F10                     Key = 16777273
+	Key_F11                     Key = 16777274
+	Key_F12                     Key = 16777275
+	Key_F13                     Key = 16777276
+	Key_F14                     Key = 16777277
+	Key_F15                     Key = 16777278
+	Key_F16                     Key = 16777279
+	Key_F17                     Key = 16777280
+	Key_F18                     Key = 16777281
+	Key_F19                     Key = 16777282
+	Key_F20                     Key = 16777283
+	Key_F21                     Key = 16777284
+	Key_F22                     Key = 16777285
+	Key_F23                     Key = 16777286
+	Key_F24                     Key = 16777287
+	Key_F25                     Key = 16777288
+	Key_F26                     Key = 16777289
+	Key_F27                     Key = 16777290
+	Key_F28                     Key = 16777291
+	Key_F29                     Key = 16777292
+	Key_F30                     Key = 16777293
+	Key_F31                     Key = 16777294
+	Key_F32                     Key = 16777295
+	Key_F33                     Key = 16777296
+	Key_F34                     Key = 16777297
+	Key_F35                     Key = 16777298
+	Key_Super_L                 Key = 16777299
+	Key_Super_R                 Key = 16777300
+	Key_Menu                    Key = 16777301
+	Key_Hyper_L                 Key = 16777302
+	Key_Hyper_R                 Key = 16777303
+	Key_Help                    Key = 16777304
+	Key_Direction_L             Key = 16777305
+	Key_Direction_R             Key = 16777312
 	Key_AltGr                   Key = 16781571
 	Key_Multi_key               Key = 16781600
 	Key_Codeinput               Key = 16781623
@@ -951,6 +912,29 @@ const (
 	Key_unknown                 Key = 33554431
 )
 
+type KeyboardModifier int
+
+const (
+	NoModifier           KeyboardModifier = 0
+	ShiftModifier        KeyboardModifier = 33554432
+	ControlModifier      KeyboardModifier = 67108864
+	AltModifier          KeyboardModifier = 134217728
+	MetaModifier         KeyboardModifier = 268435456
+	KeypadModifier       KeyboardModifier = 536870912
+	GroupSwitchModifier  KeyboardModifier = 1073741824
+	KeyboardModifierMask KeyboardModifier = 4261412864
+)
+
+type Modifier int
+
+const (
+	META          Modifier = 268435456
+	SHIFT         Modifier = 33554432
+	CTRL          Modifier = 67108864
+	ALT           Modifier = 134217728
+	MODIFIER_MASK Modifier = -33554432
+)
+
 type ArrowType int
 
 const (
@@ -1122,17 +1106,10 @@ const (
 type DateFormat int
 
 const (
-	TextDate               DateFormat = 0
-	ISODate                DateFormat = 1
-	SystemLocaleDate       DateFormat = 2
-	LocalDate              DateFormat = 2
-	LocaleDate             DateFormat = 3
-	SystemLocaleShortDate  DateFormat = 4
-	SystemLocaleLongDate   DateFormat = 5
-	DefaultLocaleShortDate DateFormat = 6
-	DefaultLocaleLongDate  DateFormat = 7
-	RFC2822Date            DateFormat = 8
-	ISODateWithMs          DateFormat = 9
+	TextDate      DateFormat = 0
+	ISODate       DateFormat = 1
+	RFC2822Date   DateFormat = 8
+	ISODateWithMs DateFormat = 9
 )
 
 type TimeSpec int
@@ -1197,6 +1174,7 @@ const (
 	QueuedConnection         ConnectionType = 2
 	BlockingQueuedConnection ConnectionType = 3
 	UniqueConnection         ConnectionType = 128
+	SingleShotConnection     ConnectionType = 256
 )
 
 type ShortcutContext int
@@ -1285,12 +1263,18 @@ const (
 	PreventContextMenu ContextMenuPolicy = 4
 )
 
+type ContextMenuTrigger int
+
+const (
+	Press   ContextMenuTrigger = 0
+	Release ContextMenuTrigger = 1
+)
+
 type InputMethodQuery int
 
 const (
 	ImEnabled                InputMethodQuery = 1
 	ImCursorRectangle        InputMethodQuery = 2
-	ImMicroFocus             InputMethodQuery = 2
 	ImFont                   InputMethodQuery = 4
 	ImCursorPosition         InputMethodQuery = 8
 	ImSurroundingText        InputMethodQuery = 16
@@ -1305,6 +1289,7 @@ const (
 	ImEnterKeyType           InputMethodQuery = 8192
 	ImAnchorRectangle        InputMethodQuery = 16384
 	ImInputItemClipRectangle InputMethodQuery = 32768
+	ImReadOnly               InputMethodQuery = 65536
 	ImPlatformData           InputMethodQuery = 2147483648
 	ImQueryInput             InputMethodQuery = 16570
 	ImQueryAll               InputMethodQuery = 4294967295
@@ -1419,8 +1404,6 @@ const (
 	TextAlignmentRole         ItemDataRole = 7
 	BackgroundRole            ItemDataRole = 8
 	ForegroundRole            ItemDataRole = 9
-	BackgroundColorRole       ItemDataRole = 8
-	TextColorRole             ItemDataRole = 9
 	CheckStateRole            ItemDataRole = 10
 	AccessibleTextRole        ItemDataRole = 11
 	AccessibleDescriptionRole ItemDataRole = 12
@@ -1445,7 +1428,6 @@ const (
 	ItemIsUserCheckable  ItemFlag = 16
 	ItemIsEnabled        ItemFlag = 32
 	ItemIsAutoTristate   ItemFlag = 64
-	ItemIsTristate       ItemFlag = 64
 	ItemNeverHasChildren ItemFlag = 128
 	ItemIsUserTristate   ItemFlag = 256
 )
@@ -1457,10 +1439,10 @@ const (
 	MatchContains          MatchFlag = 1
 	MatchStartsWith        MatchFlag = 2
 	MatchEndsWith          MatchFlag = 3
-	MatchRegExp            MatchFlag = 4
+	MatchRegularExpression MatchFlag = 4
 	MatchWildcard          MatchFlag = 5
 	MatchFixedString       MatchFlag = 8
-	MatchRegularExpression MatchFlag = 9
+	MatchTypeMask          MatchFlag = 15
 	MatchCaseSensitive     MatchFlag = 16
 	MatchWrap              MatchFlag = 32
 	MatchRecursive         MatchFlag = 64
@@ -1536,10 +1518,11 @@ const (
 type TouchPointState int
 
 const (
-	TouchPointPressed    TouchPointState = 1
-	TouchPointMoved      TouchPointState = 2
-	TouchPointStationary TouchPointState = 4
-	TouchPointReleased   TouchPointState = 8
+	TouchPointUnknownState TouchPointState = 0
+	TouchPointPressed      TouchPointState = 1
+	TouchPointMoved        TouchPointState = 2
+	TouchPointStationary   TouchPointState = 4
+	TouchPointReleased     TouchPointState = 8
 )
 
 type GestureState int
@@ -1609,6 +1592,12 @@ const (
 	VeryCoarseTimer TimerType = 2
 )
 
+type TimerId int
+
+const (
+	Invalid TimerId = 0
+)
+
 type ScrollPhase int
 
 const (
@@ -1631,6 +1620,7 @@ const (
 type MouseEventFlag int
 
 const (
+	NoMouseEventFlag             MouseEventFlag = 0
 	MouseEventCreatedDoubleClick MouseEventFlag = 1
 	MouseEventFlagMask           MouseEventFlag = 255
 )
@@ -1653,6 +1643,14 @@ const (
 	PassThrough      HighDpiScaleFactorRoundingPolicy = 5
 )
 
+type PermissionStatus int
+
+const (
+	Undetermined PermissionStatus = 0
+	Granted      PermissionStatus = 1
+	Denied       PermissionStatus = 2
+)
+
 type ReturnByValueConstant int
 
 const (
@@ -1671,7 +1669,6 @@ const (
 	QInternal__Pbuffer           QInternal__PaintDeviceFlags = 6
 	QInternal__FramebufferObject QInternal__PaintDeviceFlags = 7
 	QInternal__CustomRaster      QInternal__PaintDeviceFlags = 8
-	QInternal__MacQuartz         QInternal__PaintDeviceFlags = 9
 	QInternal__PaintBuffer       QInternal__PaintDeviceFlags = 10
 	QInternal__OpenGL            QInternal__PaintDeviceFlags = 11
 )
@@ -1701,49 +1698,107 @@ const (
 	QInternal__LastCallback        QInternal__Callback = 1
 )
 
-type QInternal struct {
-	h          *C.QInternal
+type Disambiguated_t struct {
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QInternal) cPointer() *C.QInternal {
-	if this == nil {
-		return nil
-	}
-	return this.h
+// NewDisambiguated_t constructs a new Qt::Disambiguated_t object.
+func NewDisambiguated_t() *Disambiguated_t {
+
+	ret := newDisambiguated_t(Disambiguated_t_new())
+	ret.isSubclass = true
+	return ret
 }
 
-func (this *QInternal) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
+// NewDisambiguated_t2 constructs a new Qt::Disambiguated_t object.
+func NewDisambiguated_t2(param1 *Disambiguated_t) *Disambiguated_t {
+
+	ret := newDisambiguated_t(Disambiguated_t_new2(param1))
+	ret.isSubclass = true
+	return ret
 }
 
-// newQInternal constructs the type using only CGO pointers.
-func newQInternal(h *C.QInternal) *QInternal {
-	if h == nil {
-		return nil
-	}
-
-	return &QInternal{h: h}
+type QInternal struct {
+	h          uintptr
+	isSubclass bool
 }
 
-// UnsafeNewQInternal constructs the type using only unsafe pointers.
-func UnsafeNewQInternal(h unsafe.Pointer) *QInternal {
-	return newQInternal((*C.QInternal)(h))
+type QKeyCombination struct {
+	h          uintptr
+	isSubclass bool
 }
 
-// Delete this object from C++ memory.
-func (this *QInternal) Delete() {
-	C.QInternal_Delete(this.h, C.bool(this.isSubclass))
+// NewQKeyCombination constructs a new QKeyCombination object.
+func NewQKeyCombination() *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new())
+	ret.isSubclass = true
+	return ret
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QInternal) GoGC() {
-	runtime.SetFinalizer(this, func(this *QInternal) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+// NewQKeyCombination2 constructs a new QKeyCombination object.
+func NewQKeyCombination2(modifiers Modifier) *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new2((int)(modifiers)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeyCombination3 constructs a new QKeyCombination object.
+func NewQKeyCombination3(modifiers KeyboardModifier) *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new3((int)(modifiers)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeyCombination4 constructs a new QKeyCombination object.
+func NewQKeyCombination4(param1 *QKeyCombination) *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new4(param1.cPointer()))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeyCombination5 constructs a new QKeyCombination object.
+func NewQKeyCombination5(key Key) *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new5((int)(key)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeyCombination6 constructs a new QKeyCombination object.
+func NewQKeyCombination6(modifiers Modifier, key Key) *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new6((int)(modifiers), (int)(key)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeyCombination7 constructs a new QKeyCombination object.
+func NewQKeyCombination7(modifiers KeyboardModifier, key Key) *QKeyCombination {
+
+	ret := newQKeyCombination(QKeyCombination_new7((int)(modifiers), (int)(key)))
+	ret.isSubclass = true
+	return ret
+}
+
+func (this *QKeyCombination) KeyboardModifiers() KeyboardModifier {
+	return (KeyboardModifier)(QKeyCombination_KeyboardModifiers(this.h))
+}
+
+func (this *QKeyCombination) Key() Key {
+	return (Key)(QKeyCombination_Key(this.h))
+}
+
+func QKeyCombination_FromCombined(combined int) *QKeyCombination {
+	_goptr := newQKeyCombination(QKeyCombination_FromCombined((int)(combined)))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func (this *QKeyCombination) ToCombined() int {
+	return (int)(QKeyCombination_ToCombined(this.h))
 }

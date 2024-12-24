@@ -1,7 +1,10 @@
+// +build ignore
+
 #include <QAbstractSocket>
 #include <QByteArray>
 #include <QHostAddress>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaObject>
 #include <QNetworkDatagram>
 #include <QNetworkInterface>
@@ -17,7 +20,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQUdpSocket : public virtual QUdpSocket {
 public:
@@ -51,10 +69,38 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Bind = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool bind(const QHostAddress& address, quint16 port, BindMode mode) override {
+		if (handle__Bind == 0) {
+			return QUdpSocket::bind(address, port, mode);
+		}
+		
+		const QHostAddress& address_ret = address;
+		// Cast returned reference into pointer
+		QHostAddress* sigval1 = const_cast<QHostAddress*>(&address_ret);
+		quint16 port_ret = port;
+		uint16_t sigval2 = static_cast<uint16_t>(port_ret);
+		BindMode sigval3 = mode;
+
+		bool callback_return_value = miqt_exec_callback_QUdpSocket_Bind(this, handle__Bind, sigval1, sigval2, sigval3);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_Bind(QHostAddress* address, uint16_t port, BindMode mode) {
+
+		return QUdpSocket::bind(*address, static_cast<quint16>(port), mode);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__ConnectToHost = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void connectToHost(const QString& hostName, quint16 port, QIODevice::OpenMode mode, QAbstractSocket::NetworkLayerProtocol protocol) override {
+	virtual void connectToHost(const QString& hostName, quint16 port, OpenMode mode, NetworkLayerProtocol protocol) override {
 		if (handle__ConnectToHost == 0) {
 			QUdpSocket::connectToHost(hostName, port, mode, protocol);
 			return;
@@ -70,10 +116,8 @@ public:
 		struct miqt_string sigval1 = hostName_ms;
 		quint16 port_ret = port;
 		uint16_t sigval2 = static_cast<uint16_t>(port_ret);
-		QIODevice::OpenMode mode_ret = mode;
-		int sigval3 = static_cast<int>(mode_ret);
-		QAbstractSocket::NetworkLayerProtocol protocol_ret = protocol;
-		int sigval4 = static_cast<int>(protocol_ret);
+		OpenMode sigval3 = mode;
+		NetworkLayerProtocol sigval4 = protocol;
 
 		miqt_exec_callback_QUdpSocket_ConnectToHost(this, handle__ConnectToHost, sigval1, sigval2, sigval3, sigval4);
 
@@ -81,10 +125,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_ConnectToHost(struct miqt_string hostName, uint16_t port, int mode, int protocol) {
+	void virtualbase_ConnectToHost(struct miqt_string hostName, uint16_t port, OpenMode mode, NetworkLayerProtocol protocol) {
 		QString hostName_QString = QString::fromUtf8(hostName.data, hostName.len);
 
-		QUdpSocket::connectToHost(hostName_QString, static_cast<quint16>(port), static_cast<QIODevice::OpenMode>(mode), static_cast<QAbstractSocket::NetworkLayerProtocol>(protocol));
+		QUdpSocket::connectToHost(hostName_QString, static_cast<quint16>(port), mode, protocol);
 
 	}
 
@@ -158,28 +202,6 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__CanReadLine = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool canReadLine() const override {
-		if (handle__CanReadLine == 0) {
-			return QUdpSocket::canReadLine();
-		}
-		
-
-		bool callback_return_value = miqt_exec_callback_QUdpSocket_CanReadLine(const_cast<MiqtVirtualQUdpSocket*>(this), handle__CanReadLine);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_CanReadLine() const {
-
-		return QUdpSocket::canReadLine();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__SetReadBufferSize = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -231,17 +253,15 @@ public:
 	intptr_t handle__SetSocketDescriptor = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool setSocketDescriptor(qintptr socketDescriptor, QAbstractSocket::SocketState state, QIODevice::OpenMode openMode) override {
+	virtual bool setSocketDescriptor(qintptr socketDescriptor, SocketState state, OpenMode openMode) override {
 		if (handle__SetSocketDescriptor == 0) {
 			return QUdpSocket::setSocketDescriptor(socketDescriptor, state, openMode);
 		}
 		
 		qintptr socketDescriptor_ret = socketDescriptor;
 		intptr_t sigval1 = (intptr_t)(socketDescriptor_ret);
-		QAbstractSocket::SocketState state_ret = state;
-		int sigval2 = static_cast<int>(state_ret);
-		QIODevice::OpenMode openMode_ret = openMode;
-		int sigval3 = static_cast<int>(openMode_ret);
+		SocketState sigval2 = state;
+		OpenMode sigval3 = openMode;
 
 		bool callback_return_value = miqt_exec_callback_QUdpSocket_SetSocketDescriptor(this, handle__SetSocketDescriptor, sigval1, sigval2, sigval3);
 
@@ -249,9 +269,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SetSocketDescriptor(intptr_t socketDescriptor, int state, int openMode) {
+	bool virtualbase_SetSocketDescriptor(intptr_t socketDescriptor, SocketState state, OpenMode openMode) {
 
-		return QUdpSocket::setSocketDescriptor((qintptr)(socketDescriptor), static_cast<QAbstractSocket::SocketState>(state), static_cast<QIODevice::OpenMode>(openMode));
+		return QUdpSocket::setSocketDescriptor((qintptr)(socketDescriptor), state, openMode);
 
 	}
 
@@ -349,28 +369,6 @@ public:
 	bool virtualbase_IsSequential() const {
 
 		return QUdpSocket::isSequential();
-
-	}
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__AtEnd = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual bool atEnd() const override {
-		if (handle__AtEnd == 0) {
-			return QUdpSocket::atEnd();
-		}
-		
-
-		bool callback_return_value = miqt_exec_callback_QUdpSocket_AtEnd(const_cast<MiqtVirtualQUdpSocket*>(this), handle__AtEnd);
-
-		return callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	bool virtualbase_AtEnd() const {
-
-		return QUdpSocket::atEnd();
 
 	}
 
@@ -519,6 +517,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__SkipData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual qint64 skipData(qint64 maxSize) override {
+		if (handle__SkipData == 0) {
+			return QUdpSocket::skipData(maxSize);
+		}
+		
+		qint64 maxSize_ret = maxSize;
+		long long sigval1 = static_cast<long long>(maxSize_ret);
+
+		long long callback_return_value = miqt_exec_callback_QUdpSocket_SkipData(this, handle__SkipData, sigval1);
+
+		return static_cast<qint64>(callback_return_value);
+	}
+
+	// Wrapper to allow calling protected method
+	long long virtualbase_SkipData(long long maxSize) {
+
+		qint64 _ret = QUdpSocket::skipData(static_cast<qint64>(maxSize));
+		return static_cast<long long>(_ret);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__WriteData = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -577,15 +600,8 @@ struct miqt_string QUdpSocket_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QUdpSocket_TrUtf8(const char* s) {
-	QString _ret = QUdpSocket::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+bool QUdpSocket_Bind(QUdpSocket* self, int addr) {
+	return self->bind(static_cast<QHostAddress::SpecialAddress>(addr));
 }
 
 bool QUdpSocket_JoinMulticastGroup(QUdpSocket* self, QHostAddress* groupAddress) {
@@ -668,26 +684,12 @@ struct miqt_string QUdpSocket_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QUdpSocket_TrUtf82(const char* s, const char* c) {
-	QString _ret = QUdpSocket::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+bool QUdpSocket_Bind2(QUdpSocket* self, int addr, uint16_t port) {
+	return self->bind(static_cast<QHostAddress::SpecialAddress>(addr), static_cast<quint16>(port));
 }
 
-struct miqt_string QUdpSocket_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QUdpSocket::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+bool QUdpSocket_Bind3(QUdpSocket* self, int addr, uint16_t port, BindMode mode) {
+	return self->bind(static_cast<QHostAddress::SpecialAddress>(addr), static_cast<quint16>(port), mode);
 }
 
 QNetworkDatagram* QUdpSocket_ReceiveDatagram1(QUdpSocket* self, long long maxSize) {
@@ -712,11 +714,19 @@ void QUdpSocket_virtualbase_Resume(void* self) {
 	( (MiqtVirtualQUdpSocket*)(self) )->virtualbase_Resume();
 }
 
+void QUdpSocket_override_virtual_Bind(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__Bind = slot;
+}
+
+bool QUdpSocket_virtualbase_Bind(void* self, QHostAddress* address, uint16_t port, BindMode mode) {
+	return ( (MiqtVirtualQUdpSocket*)(self) )->virtualbase_Bind(address, port, mode);
+}
+
 void QUdpSocket_override_virtual_ConnectToHost(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__ConnectToHost = slot;
 }
 
-void QUdpSocket_virtualbase_ConnectToHost(void* self, struct miqt_string hostName, uint16_t port, int mode, int protocol) {
+void QUdpSocket_virtualbase_ConnectToHost(void* self, struct miqt_string hostName, uint16_t port, OpenMode mode, NetworkLayerProtocol protocol) {
 	( (MiqtVirtualQUdpSocket*)(self) )->virtualbase_ConnectToHost(hostName, port, mode, protocol);
 }
 
@@ -744,14 +754,6 @@ long long QUdpSocket_virtualbase_BytesToWrite(const void* self) {
 	return ( (const MiqtVirtualQUdpSocket*)(self) )->virtualbase_BytesToWrite();
 }
 
-void QUdpSocket_override_virtual_CanReadLine(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__CanReadLine = slot;
-}
-
-bool QUdpSocket_virtualbase_CanReadLine(const void* self) {
-	return ( (const MiqtVirtualQUdpSocket*)(self) )->virtualbase_CanReadLine();
-}
-
 void QUdpSocket_override_virtual_SetReadBufferSize(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__SetReadBufferSize = slot;
 }
@@ -772,7 +774,7 @@ void QUdpSocket_override_virtual_SetSocketDescriptor(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__SetSocketDescriptor = slot;
 }
 
-bool QUdpSocket_virtualbase_SetSocketDescriptor(void* self, intptr_t socketDescriptor, int state, int openMode) {
+bool QUdpSocket_virtualbase_SetSocketDescriptor(void* self, intptr_t socketDescriptor, SocketState state, OpenMode openMode) {
 	return ( (MiqtVirtualQUdpSocket*)(self) )->virtualbase_SetSocketDescriptor(socketDescriptor, state, openMode);
 }
 
@@ -806,14 +808,6 @@ void QUdpSocket_override_virtual_IsSequential(void* self, intptr_t slot) {
 
 bool QUdpSocket_virtualbase_IsSequential(const void* self) {
 	return ( (const MiqtVirtualQUdpSocket*)(self) )->virtualbase_IsSequential();
-}
-
-void QUdpSocket_override_virtual_AtEnd(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__AtEnd = slot;
-}
-
-bool QUdpSocket_virtualbase_AtEnd(const void* self) {
-	return ( (const MiqtVirtualQUdpSocket*)(self) )->virtualbase_AtEnd();
 }
 
 void QUdpSocket_override_virtual_WaitForConnected(void* self, intptr_t slot) {
@@ -862,6 +856,14 @@ void QUdpSocket_override_virtual_ReadLineData(void* self, intptr_t slot) {
 
 long long QUdpSocket_virtualbase_ReadLineData(void* self, char* data, long long maxlen) {
 	return ( (MiqtVirtualQUdpSocket*)(self) )->virtualbase_ReadLineData(data, maxlen);
+}
+
+void QUdpSocket_override_virtual_SkipData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQUdpSocket*>( (QUdpSocket*)(self) )->handle__SkipData = slot;
+}
+
+long long QUdpSocket_virtualbase_SkipData(void* self, long long maxSize) {
+	return ( (MiqtVirtualQUdpSocket*)(self) )->virtualbase_SkipData(maxSize);
 }
 
 void QUdpSocket_override_virtual_WriteData(void* self, intptr_t slot) {

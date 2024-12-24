@@ -1,5 +1,8 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QAbstractProxyModel>
+#include <QByteArray>
 #include <QItemSelection>
 #include <QList>
 #include <QMap>
@@ -7,7 +10,6 @@
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
-#include <QRegExp>
 #include <QRegularExpression>
 #include <QSize>
 #include <QSortFilterProxyModel>
@@ -21,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSortFilterProxyModel : public virtual QSortFilterProxyModel {
 public:
@@ -1080,6 +1097,31 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QSortFilterProxyModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QSortFilterProxyModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QSortFilterProxyModel::clearItemData(*index);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__CanDropMimeData = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1132,6 +1174,55 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__RoleNames = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QHash<int, QByteArray> roleNames() const override {
+		if (handle__RoleNames == 0) {
+			return QSortFilterProxyModel::roleNames();
+		}
+		
+
+		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QSortFilterProxyModel_RoleNames(const_cast<MiqtVirtualQSortFilterProxyModel*>(this), handle__RoleNames);
+		QHash<int, QByteArray> callback_return_value_QMap;
+		callback_return_value_QMap.reserve(callback_return_value.len);
+		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
+		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
+			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
+		}
+
+		return callback_return_value_QMap;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+
+		QHash<int, QByteArray> _ret = QSortFilterProxyModel::roleNames();
+		// Convert QMap<> from C++ memory to manually-managed C memory
+		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+		int _ctr = 0;
+		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+			_karr[_ctr] = _itr->first;
+			QByteArray _hashval_qb = _itr->second;
+			struct miqt_string _hashval_ms;
+			_hashval_ms.len = _hashval_qb.length();
+			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+			_varr[_ctr] = _hashval_ms;
+			_ctr++;
+		}
+		struct miqt_map _out;
+		_out.len = _ret.size();
+		_out.keys = static_cast<void*>(_karr);
+		_out.values = static_cast<void*>(_varr);
+		return _out;
+
+	}
+
 };
 
 QSortFilterProxyModel* QSortFilterProxyModel_new() {
@@ -1165,17 +1256,6 @@ struct miqt_string QSortFilterProxyModel_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSortFilterProxyModel_TrUtf8(const char* s) {
-	QString _ret = QSortFilterProxyModel::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QSortFilterProxyModel_SetSourceModel(QSortFilterProxyModel* self, QAbstractItemModel* sourceModel) {
 	self->setSourceModel(sourceModel);
 }
@@ -1194,10 +1274,6 @@ QItemSelection* QSortFilterProxyModel_MapSelectionToSource(const QSortFilterProx
 
 QItemSelection* QSortFilterProxyModel_MapSelectionFromSource(const QSortFilterProxyModel* self, QItemSelection* sourceSelection) {
 	return new QItemSelection(self->mapSelectionFromSource(*sourceSelection));
-}
-
-QRegExp* QSortFilterProxyModel_FilterRegExp(const QSortFilterProxyModel* self) {
-	return new QRegExp(self->filterRegExp());
 }
 
 QRegularExpression* QSortFilterProxyModel_FilterRegularExpression(const QSortFilterProxyModel* self) {
@@ -1279,13 +1355,12 @@ void QSortFilterProxyModel_SetRecursiveFilteringEnabled(QSortFilterProxyModel* s
 	self->setRecursiveFilteringEnabled(recursive);
 }
 
-void QSortFilterProxyModel_SetFilterRegExp(QSortFilterProxyModel* self, struct miqt_string pattern) {
-	QString pattern_QString = QString::fromUtf8(pattern.data, pattern.len);
-	self->setFilterRegExp(pattern_QString);
+bool QSortFilterProxyModel_AutoAcceptChildRows(const QSortFilterProxyModel* self) {
+	return self->autoAcceptChildRows();
 }
 
-void QSortFilterProxyModel_SetFilterRegExpWithRegExp(QSortFilterProxyModel* self, QRegExp* regExp) {
-	self->setFilterRegExp(*regExp);
+void QSortFilterProxyModel_SetAutoAcceptChildRows(QSortFilterProxyModel* self, bool accept) {
+	self->setAutoAcceptChildRows(accept);
 }
 
 void QSortFilterProxyModel_SetFilterRegularExpression(QSortFilterProxyModel* self, struct miqt_string pattern) {
@@ -1305,10 +1380,6 @@ void QSortFilterProxyModel_SetFilterWildcard(QSortFilterProxyModel* self, struct
 void QSortFilterProxyModel_SetFilterFixedString(QSortFilterProxyModel* self, struct miqt_string pattern) {
 	QString pattern_QString = QString::fromUtf8(pattern.data, pattern.len);
 	self->setFilterFixedString(pattern_QString);
-}
-
-void QSortFilterProxyModel_Clear(QSortFilterProxyModel* self) {
-	self->clear();
 }
 
 void QSortFilterProxyModel_Invalidate(QSortFilterProxyModel* self) {
@@ -1527,6 +1598,17 @@ void QSortFilterProxyModel_connect_RecursiveFilteringEnabledChanged(QSortFilterP
 	});
 }
 
+void QSortFilterProxyModel_AutoAcceptChildRowsChanged(QSortFilterProxyModel* self, bool autoAcceptChildRows) {
+	self->autoAcceptChildRowsChanged(autoAcceptChildRows);
+}
+
+void QSortFilterProxyModel_connect_AutoAcceptChildRowsChanged(QSortFilterProxyModel* self, intptr_t slot) {
+	MiqtVirtualQSortFilterProxyModel::connect(self, static_cast<void (QSortFilterProxyModel::*)(bool)>(&QSortFilterProxyModel::autoAcceptChildRowsChanged), self, [=](bool autoAcceptChildRows) {
+		bool sigval1 = autoAcceptChildRows;
+		miqt_exec_callback_QSortFilterProxyModel_AutoAcceptChildRowsChanged(slot, sigval1);
+	});
+}
+
 struct miqt_string QSortFilterProxyModel_Tr2(const char* s, const char* c) {
 	QString _ret = QSortFilterProxyModel::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -1540,28 +1622,6 @@ struct miqt_string QSortFilterProxyModel_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSortFilterProxyModel_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSortFilterProxyModel::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSortFilterProxyModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSortFilterProxyModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSortFilterProxyModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSortFilterProxyModel::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1867,6 +1927,14 @@ bool QSortFilterProxyModel_virtualbase_SetItemData(void* self, QModelIndex* inde
 	return ( (MiqtVirtualQSortFilterProxyModel*)(self) )->virtualbase_SetItemData(index, roles);
 }
 
+void QSortFilterProxyModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSortFilterProxyModel*>( (QSortFilterProxyModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QSortFilterProxyModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQSortFilterProxyModel*)(self) )->virtualbase_ClearItemData(index);
+}
+
 void QSortFilterProxyModel_override_virtual_CanDropMimeData(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQSortFilterProxyModel*>( (QSortFilterProxyModel*)(self) )->handle__CanDropMimeData = slot;
 }
@@ -1881,6 +1949,14 @@ void QSortFilterProxyModel_override_virtual_SupportedDragActions(void* self, int
 
 int QSortFilterProxyModel_virtualbase_SupportedDragActions(const void* self) {
 	return ( (const MiqtVirtualQSortFilterProxyModel*)(self) )->virtualbase_SupportedDragActions();
+}
+
+void QSortFilterProxyModel_override_virtual_RoleNames(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQSortFilterProxyModel*>( (QSortFilterProxyModel*)(self) )->handle__RoleNames = slot;
+}
+
+struct miqt_map /* of int to struct miqt_string */  QSortFilterProxyModel_virtualbase_RoleNames(const void* self) {
+	return ( (const MiqtVirtualQSortFilterProxyModel*)(self) )->virtualbase_RoleNames();
 }
 
 void QSortFilterProxyModel_Delete(QSortFilterProxyModel* self, bool isSubclass) {

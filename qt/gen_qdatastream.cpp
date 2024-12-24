@@ -1,13 +1,31 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QDataStream>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <qdatastream.h>
 #include "gen_qdatastream.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QDataStream* QDataStream_new() {
 	return new QDataStream();
@@ -22,6 +40,10 @@ QDataStream* QDataStream_new3(struct miqt_string param1) {
 	return new QDataStream(param1_QByteArray);
 }
 
+void QDataStream_virtbase(QDataStream* src, QIODeviceBase** outptr_QIODeviceBase) {
+	*outptr_QIODeviceBase = static_cast<QIODeviceBase*>(src);
+}
+
 QIODevice* QDataStream_Device(const QDataStream* self) {
 	return self->device();
 }
@@ -30,43 +52,36 @@ void QDataStream_SetDevice(QDataStream* self, QIODevice* device) {
 	self->setDevice(device);
 }
 
-void QDataStream_UnsetDevice(QDataStream* self) {
-	self->unsetDevice();
-}
-
 bool QDataStream_AtEnd(const QDataStream* self) {
 	return self->atEnd();
 }
 
-int QDataStream_Status(const QDataStream* self) {
-	QDataStream::Status _ret = self->status();
-	return static_cast<int>(_ret);
+Status QDataStream_Status(const QDataStream* self) {
+	return self->status();
 }
 
-void QDataStream_SetStatus(QDataStream* self, int status) {
-	self->setStatus(static_cast<QDataStream::Status>(status));
+void QDataStream_SetStatus(QDataStream* self, Status status) {
+	self->setStatus(status);
 }
 
 void QDataStream_ResetStatus(QDataStream* self) {
 	self->resetStatus();
 }
 
-int QDataStream_FloatingPointPrecision(const QDataStream* self) {
-	QDataStream::FloatingPointPrecision _ret = self->floatingPointPrecision();
-	return static_cast<int>(_ret);
+FloatingPointPrecision QDataStream_FloatingPointPrecision(const QDataStream* self) {
+	return self->floatingPointPrecision();
 }
 
-void QDataStream_SetFloatingPointPrecision(QDataStream* self, int precision) {
-	self->setFloatingPointPrecision(static_cast<QDataStream::FloatingPointPrecision>(precision));
+void QDataStream_SetFloatingPointPrecision(QDataStream* self, FloatingPointPrecision precision) {
+	self->setFloatingPointPrecision(precision);
 }
 
-int QDataStream_ByteOrder(const QDataStream* self) {
-	QDataStream::ByteOrder _ret = self->byteOrder();
-	return static_cast<int>(_ret);
+ByteOrder QDataStream_ByteOrder(const QDataStream* self) {
+	return self->byteOrder();
 }
 
-void QDataStream_SetByteOrder(QDataStream* self, int byteOrder) {
-	self->setByteOrder(static_cast<QDataStream::ByteOrder>(byteOrder));
+void QDataStream_SetByteOrder(QDataStream* self, ByteOrder byteOrder) {
+	self->setByteOrder(byteOrder);
 }
 
 int QDataStream_Version(const QDataStream* self) {
@@ -77,7 +92,11 @@ void QDataStream_SetVersion(QDataStream* self, int version) {
 	self->setVersion(static_cast<int>(version));
 }
 
-void QDataStream_OperatorShiftRight(QDataStream* self, signed char* i) {
+void QDataStream_OperatorShiftRight(QDataStream* self, char* i) {
+	self->operator>>(static_cast<char&>(*i));
+}
+
+void QDataStream_OperatorShiftRightWithQint8(QDataStream* self, signed char* i) {
 	self->operator>>(static_cast<qint8&>(*i));
 }
 
@@ -125,7 +144,11 @@ void QDataStream_OperatorShiftRightWithStr(QDataStream* self, char* str) {
 	self->operator>>(str);
 }
 
-void QDataStream_OperatorShiftLeft(QDataStream* self, signed char i) {
+void QDataStream_OperatorShiftLeft(QDataStream* self, char i) {
+	self->operator<<(static_cast<char>(i));
+}
+
+void QDataStream_OperatorShiftLeftWithQint8(QDataStream* self, signed char i) {
 	self->operator<<(static_cast<qint8>(i));
 }
 
@@ -157,10 +180,6 @@ void QDataStream_OperatorShiftLeftWithQuint64(QDataStream* self, unsigned long l
 	self->operator<<(static_cast<quint64>(i));
 }
 
-void QDataStream_OperatorShiftLeftWithBool(QDataStream* self, bool i) {
-	self->operator<<(i);
-}
-
 void QDataStream_OperatorShiftLeftWithFloat(QDataStream* self, float f) {
 	self->operator<<(static_cast<float>(f));
 }
@@ -179,20 +198,29 @@ QDataStream* QDataStream_ReadBytes(QDataStream* self, char* param1, unsigned int
 	return &_ret;
 }
 
-int QDataStream_ReadRawData(QDataStream* self, char* param1, int lenVal) {
-	return self->readRawData(param1, static_cast<int>(lenVal));
+QDataStream* QDataStream_ReadBytes2(QDataStream* self, char* param1, long long* lenVal) {
+	QDataStream& _ret = self->readBytes(param1, static_cast<qint64&>(*lenVal));
+	// Cast returned reference into pointer
+	return &_ret;
 }
 
-void QDataStream_WriteBytes(QDataStream* self, const char* param1, unsigned int lenVal) {
-	self->writeBytes(param1, static_cast<uint>(lenVal));
+long long QDataStream_ReadRawData(QDataStream* self, char* param1, long long lenVal) {
+	qint64 _ret = self->readRawData(param1, static_cast<qint64>(lenVal));
+	return static_cast<long long>(_ret);
 }
 
-int QDataStream_WriteRawData(QDataStream* self, const char* param1, int lenVal) {
-	return self->writeRawData(param1, static_cast<int>(lenVal));
+void QDataStream_WriteBytes(QDataStream* self, const char* param1, long long lenVal) {
+	self->writeBytes(param1, static_cast<qint64>(lenVal));
 }
 
-int QDataStream_SkipRawData(QDataStream* self, int lenVal) {
-	return self->skipRawData(static_cast<int>(lenVal));
+long long QDataStream_WriteRawData(QDataStream* self, const char* param1, long long lenVal) {
+	qint64 _ret = self->writeRawData(param1, static_cast<qint64>(lenVal));
+	return static_cast<long long>(_ret);
+}
+
+long long QDataStream_SkipRawData(QDataStream* self, long long lenVal) {
+	qint64 _ret = self->skipRawData(static_cast<qint64>(lenVal));
+	return static_cast<long long>(_ret);
 }
 
 void QDataStream_StartTransaction(QDataStream* self) {
@@ -209,6 +237,10 @@ void QDataStream_RollbackTransaction(QDataStream* self) {
 
 void QDataStream_AbortTransaction(QDataStream* self) {
 	self->abortTransaction();
+}
+
+bool QDataStream_IsDeviceTransactionStarted(const QDataStream* self) {
+	return self->isDeviceTransactionStarted();
 }
 
 void QDataStream_Delete(QDataStream* self, bool isSubclass) {

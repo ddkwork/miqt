@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractEventDispatcher>
 #include <QChildEvent>
 #include <QDeadlineTimer>
@@ -16,7 +18,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQThread : public virtual QThread {
 public:
@@ -253,17 +270,6 @@ struct miqt_string QThread_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QThread_TrUtf8(const char* s) {
-	QString _ret = QThread::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void* QThread_CurrentThreadId() {
 	Qt::HANDLE _ret = QThread::currentThreadId();
 	return static_cast<void*>(_ret);
@@ -271,6 +277,10 @@ void* QThread_CurrentThreadId() {
 
 QThread* QThread_CurrentThread() {
 	return QThread::currentThread();
+}
+
+bool QThread_IsMainThread() {
+	return QThread::isMainThread();
 }
 
 int QThread_IdealThreadCount() {
@@ -281,13 +291,12 @@ void QThread_YieldCurrentThread() {
 	QThread::yieldCurrentThread();
 }
 
-void QThread_SetPriority(QThread* self, int priority) {
-	self->setPriority(static_cast<QThread::Priority>(priority));
+void QThread_SetPriority(QThread* self, Priority priority) {
+	self->setPriority(priority);
 }
 
-int QThread_Priority(const QThread* self) {
-	QThread::Priority _ret = self->priority();
-	return static_cast<int>(_ret);
+Priority QThread_Priority(const QThread* self) {
+	return self->priority();
 }
 
 bool QThread_IsFinished(const QThread* self) {
@@ -315,10 +324,6 @@ unsigned int QThread_StackSize(const QThread* self) {
 	return static_cast<unsigned int>(_ret);
 }
 
-void QThread_Exit(QThread* self) {
-	self->exit();
-}
-
 QAbstractEventDispatcher* QThread_EventDispatcher(const QThread* self) {
 	return self->eventDispatcher();
 }
@@ -335,12 +340,28 @@ int QThread_LoopLevel(const QThread* self) {
 	return self->loopLevel();
 }
 
+bool QThread_IsCurrentThread(const QThread* self) {
+	return self->isCurrentThread();
+}
+
+void QThread_SetServiceLevel(QThread* self, QualityOfService serviceLevel) {
+	self->setServiceLevel(serviceLevel);
+}
+
+QualityOfService QThread_ServiceLevel(const QThread* self) {
+	return self->serviceLevel();
+}
+
 void QThread_Start(QThread* self) {
 	self->start();
 }
 
 void QThread_Terminate(QThread* self) {
 	self->terminate();
+}
+
+void QThread_Exit(QThread* self) {
+	self->exit();
 }
 
 void QThread_Quit(QThread* self) {
@@ -389,34 +410,12 @@ struct miqt_string QThread_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QThread_TrUtf82(const char* s, const char* c) {
-	QString _ret = QThread::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QThread_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QThread::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QThread_Start1(QThread* self, Priority param1) {
+	self->start(param1);
 }
 
 void QThread_Exit1(QThread* self, int retcode) {
 	self->exit(static_cast<int>(retcode));
-}
-
-void QThread_Start1(QThread* self, int param1) {
-	self->start(static_cast<QThread::Priority>(param1));
 }
 
 bool QThread_Wait1(QThread* self, QDeadlineTimer* deadline) {

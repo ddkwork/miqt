@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QFont>
 #include <QPalette>
 #include <QPoint>
@@ -13,21 +15,26 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 void QToolTip_ShowText(QPoint* pos, struct miqt_string text) {
 	QString text_QString = QString::fromUtf8(text.data, text.len);
 	QToolTip::showText(*pos, text_QString);
-}
-
-void QToolTip_ShowText2(QPoint* pos, struct miqt_string text, QWidget* w, QRect* rect) {
-	QString text_QString = QString::fromUtf8(text.data, text.len);
-	QToolTip::showText(*pos, text_QString, w, *rect);
-}
-
-void QToolTip_ShowText3(QPoint* pos, struct miqt_string text, QWidget* w, QRect* rect, int msecShowTime) {
-	QString text_QString = QString::fromUtf8(text.data, text.len);
-	QToolTip::showText(*pos, text_QString, w, *rect, static_cast<int>(msecShowTime));
 }
 
 void QToolTip_HideText() {
@@ -65,9 +72,19 @@ void QToolTip_SetFont(QFont* font) {
 	QToolTip::setFont(*font);
 }
 
-void QToolTip_ShowText32(QPoint* pos, struct miqt_string text, QWidget* w) {
+void QToolTip_ShowText3(QPoint* pos, struct miqt_string text, QWidget* w) {
 	QString text_QString = QString::fromUtf8(text.data, text.len);
 	QToolTip::showText(*pos, text_QString, w);
+}
+
+void QToolTip_ShowText4(QPoint* pos, struct miqt_string text, QWidget* w, QRect* rect) {
+	QString text_QString = QString::fromUtf8(text.data, text.len);
+	QToolTip::showText(*pos, text_QString, w, *rect);
+}
+
+void QToolTip_ShowText5(QPoint* pos, struct miqt_string text, QWidget* w, QRect* rect, int msecShowTime) {
+	QString text_QString = QString::fromUtf8(text.data, text.len);
+	QToolTip::showText(*pos, text_QString, w, *rect, static_cast<int>(msecShowTime));
 }
 
 void QToolTip_Delete(QToolTip* self, bool isSubclass) {

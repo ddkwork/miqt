@@ -1,7 +1,8 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
-#include <QMatrix>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -22,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQSvgRenderer : public virtual QSvgRenderer {
 public:
@@ -270,17 +286,6 @@ struct miqt_string QSvgRenderer_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QSvgRenderer_TrUtf8(const char* s) {
-	QString _ret = QSvgRenderer::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QSvgRenderer_IsValid(const QSvgRenderer* self) {
 	return self->isValid();
 }
@@ -314,6 +319,15 @@ void QSvgRenderer_SetAspectRatioMode(QSvgRenderer* self, int mode) {
 	self->setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
 }
 
+int QSvgRenderer_Options(const QSvgRenderer* self) {
+	QtSvg::Options _ret = self->options();
+	return static_cast<int>(_ret);
+}
+
+void QSvgRenderer_SetOptions(QSvgRenderer* self, int flags) {
+	self->setOptions(static_cast<QtSvg::Options>(flags));
+}
+
 bool QSvgRenderer_Animated(const QSvgRenderer* self) {
 	return self->animated();
 }
@@ -338,6 +352,14 @@ int QSvgRenderer_AnimationDuration(const QSvgRenderer* self) {
 	return self->animationDuration();
 }
 
+bool QSvgRenderer_IsAnimationEnabled(const QSvgRenderer* self) {
+	return self->isAnimationEnabled();
+}
+
+void QSvgRenderer_SetAnimationEnabled(QSvgRenderer* self, bool enable) {
+	self->setAnimationEnabled(enable);
+}
+
 QRectF* QSvgRenderer_BoundsOnElement(const QSvgRenderer* self, struct miqt_string id) {
 	QString id_QString = QString::fromUtf8(id.data, id.len);
 	return new QRectF(self->boundsOnElement(id_QString));
@@ -348,14 +370,13 @@ bool QSvgRenderer_ElementExists(const QSvgRenderer* self, struct miqt_string id)
 	return self->elementExists(id_QString);
 }
 
-QMatrix* QSvgRenderer_MatrixForElement(const QSvgRenderer* self, struct miqt_string id) {
-	QString id_QString = QString::fromUtf8(id.data, id.len);
-	return new QMatrix(self->matrixForElement(id_QString));
-}
-
 QTransform* QSvgRenderer_TransformForElement(const QSvgRenderer* self, struct miqt_string id) {
 	QString id_QString = QString::fromUtf8(id.data, id.len);
 	return new QTransform(self->transformForElement(id_QString));
+}
+
+void QSvgRenderer_SetDefaultOptions(int flags) {
+	QSvgRenderer::setDefaultOptions(static_cast<QtSvg::Options>(flags));
 }
 
 bool QSvgRenderer_Load(QSvgRenderer* self, struct miqt_string filename) {
@@ -408,28 +429,6 @@ struct miqt_string QSvgRenderer_Tr2(const char* s, const char* c) {
 
 struct miqt_string QSvgRenderer_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QSvgRenderer::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSvgRenderer_TrUtf82(const char* s, const char* c) {
-	QString _ret = QSvgRenderer::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QSvgRenderer_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QSvgRenderer::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QLocalServer>
@@ -15,7 +17,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLocalServer : public virtual QLocalServer {
 public:
@@ -298,17 +315,6 @@ struct miqt_string QLocalServer_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QLocalServer_TrUtf8(const char* s) {
-	QString _ret = QLocalServer::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QLocalServer_NewConnection(QLocalServer* self) {
 	self->newConnection();
 }
@@ -399,13 +405,20 @@ bool QLocalServer_WaitForNewConnection(QLocalServer* self) {
 	return self->waitForNewConnection();
 }
 
-void QLocalServer_SetSocketOptions(QLocalServer* self, int options) {
-	self->setSocketOptions(static_cast<QLocalServer::SocketOptions>(options));
+void QLocalServer_SetListenBacklogSize(QLocalServer* self, int size) {
+	self->setListenBacklogSize(static_cast<int>(size));
 }
 
-int QLocalServer_SocketOptions(const QLocalServer* self) {
-	QLocalServer::SocketOptions _ret = self->socketOptions();
-	return static_cast<int>(_ret);
+int QLocalServer_ListenBacklogSize(const QLocalServer* self) {
+	return self->listenBacklogSize();
+}
+
+void QLocalServer_SetSocketOptions(QLocalServer* self, SocketOptions options) {
+	self->setSocketOptions(options);
+}
+
+SocketOptions QLocalServer_SocketOptions(const QLocalServer* self) {
+	return self->socketOptions();
 }
 
 intptr_t QLocalServer_SocketDescriptor(const QLocalServer* self) {
@@ -426,28 +439,6 @@ struct miqt_string QLocalServer_Tr2(const char* s, const char* c) {
 
 struct miqt_string QLocalServer_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QLocalServer::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLocalServer_TrUtf82(const char* s, const char* c) {
-	QString _ret = QLocalServer::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLocalServer_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QLocalServer::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

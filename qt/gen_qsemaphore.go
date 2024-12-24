@@ -1,55 +1,18 @@
 package qt
 
-/*
-
-#include "gen_qsemaphore.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
 type QSemaphore struct {
-	h          *C.QSemaphore
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QSemaphore) cPointer() *C.QSemaphore {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QSemaphore) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQSemaphore constructs the type using only CGO pointers.
-func newQSemaphore(h *C.QSemaphore) *QSemaphore {
-	if h == nil {
-		return nil
-	}
-
-	return &QSemaphore{h: h}
-}
-
-// UnsafeNewQSemaphore constructs the type using only unsafe pointers.
-func UnsafeNewQSemaphore(h unsafe.Pointer) *QSemaphore {
-	return newQSemaphore((*C.QSemaphore)(h))
 }
 
 // NewQSemaphore constructs a new QSemaphore object.
 func NewQSemaphore() *QSemaphore {
 
-	ret := newQSemaphore(C.QSemaphore_new())
+	ret := newQSemaphore(QSemaphore_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -57,94 +20,60 @@ func NewQSemaphore() *QSemaphore {
 // NewQSemaphore2 constructs a new QSemaphore object.
 func NewQSemaphore2(n int) *QSemaphore {
 
-	ret := newQSemaphore(C.QSemaphore_new2((C.int)(n)))
+	ret := newQSemaphore(QSemaphore_new2((int)(n)))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QSemaphore) Acquire() {
-	C.QSemaphore_Acquire(this.h)
+	QSemaphore_Acquire(this.h)
 }
 
 func (this *QSemaphore) TryAcquire() bool {
-	return (bool)(C.QSemaphore_TryAcquire(this.h))
+	return (bool)(QSemaphore_TryAcquire(this.h))
 }
 
 func (this *QSemaphore) TryAcquire2(n int, timeout int) bool {
-	return (bool)(C.QSemaphore_TryAcquire2(this.h, (C.int)(n), (C.int)(timeout)))
+	return (bool)(QSemaphore_TryAcquire2(this.h, (int)(n), (int)(timeout)))
+}
+
+func (this *QSemaphore) TryAcquire3(n int, timeout QDeadlineTimer) bool {
+	return (bool)(QSemaphore_TryAcquire3(this.h, (int)(n), timeout.cPointer()))
 }
 
 func (this *QSemaphore) Release() {
-	C.QSemaphore_Release(this.h)
+	QSemaphore_Release(this.h)
 }
 
 func (this *QSemaphore) Available() int {
-	return (int)(C.QSemaphore_Available(this.h))
+	return (int)(QSemaphore_Available(this.h))
+}
+
+func (this *QSemaphore) TryAcquire4() bool {
+	return (bool)(QSemaphore_TryAcquire4(this.h))
 }
 
 func (this *QSemaphore) Acquire1(n int) {
-	C.QSemaphore_Acquire1(this.h, (C.int)(n))
+	QSemaphore_Acquire1(this.h, (int)(n))
 }
 
 func (this *QSemaphore) TryAcquire1(n int) bool {
-	return (bool)(C.QSemaphore_TryAcquire1(this.h, (C.int)(n)))
+	return (bool)(QSemaphore_TryAcquire1(this.h, (int)(n)))
 }
 
 func (this *QSemaphore) Release1(n int) {
-	C.QSemaphore_Release1(this.h, (C.int)(n))
-}
-
-// Delete this object from C++ memory.
-func (this *QSemaphore) Delete() {
-	C.QSemaphore_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QSemaphore) GoGC() {
-	runtime.SetFinalizer(this, func(this *QSemaphore) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	QSemaphore_Release1(this.h, (int)(n))
 }
 
 type QSemaphoreReleaser struct {
-	h          *C.QSemaphoreReleaser
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QSemaphoreReleaser) cPointer() *C.QSemaphoreReleaser {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QSemaphoreReleaser) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQSemaphoreReleaser constructs the type using only CGO pointers.
-func newQSemaphoreReleaser(h *C.QSemaphoreReleaser) *QSemaphoreReleaser {
-	if h == nil {
-		return nil
-	}
-
-	return &QSemaphoreReleaser{h: h}
-}
-
-// UnsafeNewQSemaphoreReleaser constructs the type using only unsafe pointers.
-func UnsafeNewQSemaphoreReleaser(h unsafe.Pointer) *QSemaphoreReleaser {
-	return newQSemaphoreReleaser((*C.QSemaphoreReleaser)(h))
 }
 
 // NewQSemaphoreReleaser constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser() *QSemaphoreReleaser {
 
-	ret := newQSemaphoreReleaser(C.QSemaphoreReleaser_new())
+	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -152,7 +81,7 @@ func NewQSemaphoreReleaser() *QSemaphoreReleaser {
 // NewQSemaphoreReleaser2 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser2(sem *QSemaphore) *QSemaphoreReleaser {
 
-	ret := newQSemaphoreReleaser(C.QSemaphoreReleaser_new2(sem.cPointer()))
+	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new2(sem.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -160,7 +89,7 @@ func NewQSemaphoreReleaser2(sem *QSemaphore) *QSemaphoreReleaser {
 // NewQSemaphoreReleaser3 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser3(sem *QSemaphore) *QSemaphoreReleaser {
 
-	ret := newQSemaphoreReleaser(C.QSemaphoreReleaser_new3(sem.cPointer()))
+	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new3(sem.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -168,7 +97,7 @@ func NewQSemaphoreReleaser3(sem *QSemaphore) *QSemaphoreReleaser {
 // NewQSemaphoreReleaser4 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser4(sem *QSemaphore, n int) *QSemaphoreReleaser {
 
-	ret := newQSemaphoreReleaser(C.QSemaphoreReleaser_new4(sem.cPointer(), (C.int)(n)))
+	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new4(sem.cPointer(), (int)(n)))
 	ret.isSubclass = true
 	return ret
 }
@@ -176,33 +105,19 @@ func NewQSemaphoreReleaser4(sem *QSemaphore, n int) *QSemaphoreReleaser {
 // NewQSemaphoreReleaser5 constructs a new QSemaphoreReleaser object.
 func NewQSemaphoreReleaser5(sem *QSemaphore, n int) *QSemaphoreReleaser {
 
-	ret := newQSemaphoreReleaser(C.QSemaphoreReleaser_new5(sem.cPointer(), (C.int)(n)))
+	ret := newQSemaphoreReleaser(QSemaphoreReleaser_new5(sem.cPointer(), (int)(n)))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QSemaphoreReleaser) Swap(other *QSemaphoreReleaser) {
-	C.QSemaphoreReleaser_Swap(this.h, other.cPointer())
+	QSemaphoreReleaser_Swap(this.h, other.cPointer())
 }
 
 func (this *QSemaphoreReleaser) Semaphore() *QSemaphore {
-	return newQSemaphore(C.QSemaphoreReleaser_Semaphore(this.h))
+	return newQSemaphore(QSemaphoreReleaser_Semaphore(this.h))
 }
 
 func (this *QSemaphoreReleaser) Cancel() *QSemaphore {
-	return newQSemaphore(C.QSemaphoreReleaser_Cancel(this.h))
-}
-
-// Delete this object from C++ memory.
-func (this *QSemaphoreReleaser) Delete() {
-	C.QSemaphoreReleaser_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QSemaphoreReleaser) GoGC() {
-	runtime.SetFinalizer(this, func(this *QSemaphoreReleaser) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return newQSemaphore(QSemaphoreReleaser_Cancel(this.h))
 }

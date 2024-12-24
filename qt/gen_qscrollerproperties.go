@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qscrollerproperties.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -57,42 +48,14 @@ const (
 )
 
 type QScrollerProperties struct {
-	h          *C.QScrollerProperties
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QScrollerProperties) cPointer() *C.QScrollerProperties {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QScrollerProperties) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQScrollerProperties constructs the type using only CGO pointers.
-func newQScrollerProperties(h *C.QScrollerProperties) *QScrollerProperties {
-	if h == nil {
-		return nil
-	}
-
-	return &QScrollerProperties{h: h}
-}
-
-// UnsafeNewQScrollerProperties constructs the type using only unsafe pointers.
-func UnsafeNewQScrollerProperties(h unsafe.Pointer) *QScrollerProperties {
-	return newQScrollerProperties((*C.QScrollerProperties)(h))
 }
 
 // NewQScrollerProperties constructs a new QScrollerProperties object.
 func NewQScrollerProperties() *QScrollerProperties {
 
-	ret := newQScrollerProperties(C.QScrollerProperties_new())
+	ret := newQScrollerProperties(QScrollerProperties_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -100,51 +63,37 @@ func NewQScrollerProperties() *QScrollerProperties {
 // NewQScrollerProperties2 constructs a new QScrollerProperties object.
 func NewQScrollerProperties2(sp *QScrollerProperties) *QScrollerProperties {
 
-	ret := newQScrollerProperties(C.QScrollerProperties_new2(sp.cPointer()))
+	ret := newQScrollerProperties(QScrollerProperties_new2(sp.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QScrollerProperties) OperatorAssign(sp *QScrollerProperties) {
-	C.QScrollerProperties_OperatorAssign(this.h, sp.cPointer())
+	QScrollerProperties_OperatorAssign(this.h, sp.cPointer())
 }
 
 func (this *QScrollerProperties) OperatorEqual(sp *QScrollerProperties) bool {
-	return (bool)(C.QScrollerProperties_OperatorEqual(this.h, sp.cPointer()))
+	return (bool)(QScrollerProperties_OperatorEqual(this.h, sp.cPointer()))
 }
 
 func (this *QScrollerProperties) OperatorNotEqual(sp *QScrollerProperties) bool {
-	return (bool)(C.QScrollerProperties_OperatorNotEqual(this.h, sp.cPointer()))
+	return (bool)(QScrollerProperties_OperatorNotEqual(this.h, sp.cPointer()))
 }
 
 func QScrollerProperties_SetDefaultScrollerProperties(sp *QScrollerProperties) {
-	C.QScrollerProperties_SetDefaultScrollerProperties(sp.cPointer())
+	QScrollerProperties_SetDefaultScrollerProperties(sp.cPointer())
 }
 
 func QScrollerProperties_UnsetDefaultScrollerProperties() {
-	C.QScrollerProperties_UnsetDefaultScrollerProperties()
+	QScrollerProperties_UnsetDefaultScrollerProperties()
 }
 
-func (this *QScrollerProperties) ScrollMetric(metric QScrollerProperties__ScrollMetric) *QVariant {
-	_goptr := newQVariant(C.QScrollerProperties_ScrollMetric(this.h, (C.int)(metric)))
+func (this *QScrollerProperties) ScrollMetric(metric ScrollMetric) *QVariant {
+	_goptr := newQVariant(QScrollerProperties_ScrollMetric(this.h, metric))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func (this *QScrollerProperties) SetScrollMetric(metric QScrollerProperties__ScrollMetric, value *QVariant) {
-	C.QScrollerProperties_SetScrollMetric(this.h, (C.int)(metric), value.cPointer())
-}
-
-// Delete this object from C++ memory.
-func (this *QScrollerProperties) Delete() {
-	C.QScrollerProperties_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QScrollerProperties) GoGC() {
-	runtime.SetFinalizer(this, func(this *QScrollerProperties) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+func (this *QScrollerProperties) SetScrollMetric(metric ScrollMetric, value *QVariant) {
+	QScrollerProperties_SetScrollMetric(this.h, metric, value.cPointer())
 }

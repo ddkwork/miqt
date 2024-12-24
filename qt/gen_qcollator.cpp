@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChar>
 #include <QCollator>
 #include <QCollatorSortKey>
@@ -11,7 +13,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QCollatorSortKey* QCollatorSortKey_new(QCollatorSortKey* other) {
 	return new QCollatorSortKey(*other);
@@ -96,8 +113,8 @@ int QCollator_Compare(const QCollator* self, struct miqt_string s1, struct miqt_
 	return self->compare(s1_QString, s2_QString);
 }
 
-int QCollator_Compare3(const QCollator* self, QChar* s1, int len1, QChar* s2, int len2) {
-	return self->compare(s1, static_cast<int>(len1), s2, static_cast<int>(len2));
+int QCollator_Compare2(const QCollator* self, QChar* s1, ptrdiff_t len1, QChar* s2, ptrdiff_t len2) {
+	return self->compare(s1, (qsizetype)(len1), s2, (qsizetype)(len2));
 }
 
 bool QCollator_OperatorCall(const QCollator* self, struct miqt_string s1, struct miqt_string s2) {

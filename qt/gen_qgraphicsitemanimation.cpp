@@ -1,9 +1,10 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QGraphicsItem>
 #include <QGraphicsItemAnimation>
 #include <QList>
-#include <QMatrix>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -21,7 +22,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsItemAnimation : public virtual QGraphicsItemAnimation {
 public:
@@ -285,17 +301,6 @@ struct miqt_string QGraphicsItemAnimation_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsItemAnimation_TrUtf8(const char* s) {
-	QString _ret = QGraphicsItemAnimation::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QGraphicsItem* QGraphicsItemAnimation_Item(const QGraphicsItemAnimation* self) {
 	return self->item();
 }
@@ -341,10 +346,6 @@ struct miqt_array /* of struct miqt_map  tuple of double and QPointF*   */  QGra
 
 void QGraphicsItemAnimation_SetPosAt(QGraphicsItemAnimation* self, double step, QPointF* pos) {
 	self->setPosAt(static_cast<qreal>(step), *pos);
-}
-
-QMatrix* QGraphicsItemAnimation_MatrixAt(const QGraphicsItemAnimation* self, double step) {
-	return new QMatrix(self->matrixAt(static_cast<qreal>(step)));
 }
 
 QTransform* QGraphicsItemAnimation_TransformAt(const QGraphicsItemAnimation* self, double step) {
@@ -502,10 +503,6 @@ void QGraphicsItemAnimation_SetStep(QGraphicsItemAnimation* self, double x) {
 	self->setStep(static_cast<qreal>(x));
 }
 
-void QGraphicsItemAnimation_Reset(QGraphicsItemAnimation* self) {
-	self->reset();
-}
-
 struct miqt_string QGraphicsItemAnimation_Tr2(const char* s, const char* c) {
 	QString _ret = QGraphicsItemAnimation::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -519,28 +516,6 @@ struct miqt_string QGraphicsItemAnimation_Tr2(const char* s, const char* c) {
 
 struct miqt_string QGraphicsItemAnimation_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QGraphicsItemAnimation::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsItemAnimation_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsItemAnimation::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsItemAnimation_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsItemAnimation::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -15,23 +15,41 @@ extern "C" {
 #endif
 
 #ifdef __cplusplus
+class QByteArrayView;
 class QIODevice;
 class QMessageAuthenticationCode;
+class _GUID;
+class type_info;
 #else
+typedef struct QByteArrayView QByteArrayView;
 typedef struct QIODevice QIODevice;
 typedef struct QMessageAuthenticationCode QMessageAuthenticationCode;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QMessageAuthenticationCode* QMessageAuthenticationCode_new(int method);
-QMessageAuthenticationCode* QMessageAuthenticationCode_new2(int method, struct miqt_string key);
-void QMessageAuthenticationCode_Reset(QMessageAuthenticationCode* self);
-void QMessageAuthenticationCode_SetKey(QMessageAuthenticationCode* self, struct miqt_string key);
-void QMessageAuthenticationCode_AddData(QMessageAuthenticationCode* self, const char* data, int length);
-void QMessageAuthenticationCode_AddDataWithData(QMessageAuthenticationCode* self, struct miqt_string data);
-bool QMessageAuthenticationCode_AddDataWithDevice(QMessageAuthenticationCode* self, QIODevice* device);
-struct miqt_string QMessageAuthenticationCode_Result(const QMessageAuthenticationCode* self);
-struct miqt_string QMessageAuthenticationCode_Hash(struct miqt_string message, struct miqt_string key, int method);
-void QMessageAuthenticationCode_Delete(QMessageAuthenticationCode* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QMessageAuthenticationCode* QMessageAuthenticationCode_new(int method);
+extern __declspec(dllexport) QMessageAuthenticationCode* QMessageAuthenticationCode_new2(int method, QByteArrayView* key);
+extern __declspec(dllexport) void QMessageAuthenticationCode_Swap(QMessageAuthenticationCode* self, QMessageAuthenticationCode* other);
+extern __declspec(dllexport) void QMessageAuthenticationCode_Reset(QMessageAuthenticationCode* self);
+extern __declspec(dllexport) void QMessageAuthenticationCode_SetKey(QMessageAuthenticationCode* self, QByteArrayView* key);
+extern __declspec(dllexport) void QMessageAuthenticationCode_AddData(QMessageAuthenticationCode* self, const char* data, ptrdiff_t length);
+extern __declspec(dllexport) void QMessageAuthenticationCode_AddDataWithData(QMessageAuthenticationCode* self, QByteArrayView* data);
+extern __declspec(dllexport) bool QMessageAuthenticationCode_AddDataWithDevice(QMessageAuthenticationCode* self, QIODevice* device);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_ResultView(const QMessageAuthenticationCode* self);
+extern __declspec(dllexport) struct miqt_string QMessageAuthenticationCode_Result(const QMessageAuthenticationCode* self);
+extern __declspec(dllexport) struct miqt_string QMessageAuthenticationCode_Hash(QByteArrayView* message, QByteArrayView* key, int method);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_HashInto(QSpan<char> buffer, QByteArrayView* message, QByteArrayView* key, int method);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_HashInto2(QSpan<uchar> buffer, QByteArrayView* message, QByteArrayView* key, int method);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_HashInto3(QSpan<std::byte> buffer, QByteArrayView* message, QByteArrayView* key, int method);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_HashInto4(QSpan<char> buffer, QSpan<const QByteArrayView> messageParts, QByteArrayView* key, int method);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_HashInto5(QSpan<uchar> buffer, QSpan<const QByteArrayView> messageParts, QByteArrayView* key, int method);
+extern __declspec(dllexport) QByteArrayView* QMessageAuthenticationCode_HashInto6(QSpan<std::byte> buffer, QSpan<const QByteArrayView> message, QByteArrayView* key, int method);
+extern __declspec(dllexport) void QMessageAuthenticationCode_Delete(QMessageAuthenticationCode* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

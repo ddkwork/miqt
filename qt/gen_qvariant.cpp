@@ -1,4 +1,5 @@
-#define WORKAROUND_INNER_CLASS_DEFINITION_QAssociativeIterable__const_iterator
+// +build ignore
+
 #include <QBitArray>
 #include <QByteArray>
 #include <QChar>
@@ -15,15 +16,15 @@
 #include <QList>
 #include <QLocale>
 #include <QMap>
+#include <QMetaType>
 #include <QModelIndex>
+#include <QPartialOrdering>
 #include <QPersistentModelIndex>
 #include <QPoint>
 #include <QPointF>
 #include <QRect>
 #include <QRectF>
-#include <QRegExp>
 #include <QRegularExpression>
-#define WORKAROUND_INNER_CLASS_DEFINITION_QSequentialIterable__const_iterator
 #include <QSize>
 #include <QSizeF>
 #include <QString>
@@ -33,70 +34,84 @@
 #include <QUrl>
 #include <QUuid>
 #include <QVariant>
-#define WORKAROUND_INNER_CLASS_DEFINITION_QVariant__Handler
-#include <QVariantComparisonHelper>
+#include <QVariantConstPointer>
 #include <qvariant.h>
 #include "gen_qvariant.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QVariant* QVariant_new() {
 	return new QVariant();
 }
 
-QVariant* QVariant_new2(int typeVal) {
-	return new QVariant(static_cast<QVariant::Type>(typeVal));
+QVariant* QVariant_new2(QMetaType* typeVal) {
+	return new QVariant(*typeVal);
 }
 
-QVariant* QVariant_new3(int typeId, const void* copyVal) {
-	return new QVariant(static_cast<int>(typeId), copyVal);
-}
-
-QVariant* QVariant_new4(int typeId, const void* copyVal, unsigned int flags) {
-	return new QVariant(static_cast<int>(typeId), copyVal, static_cast<uint>(flags));
-}
-
-QVariant* QVariant_new5(QVariant* other) {
+QVariant* QVariant_new3(QVariant* other) {
 	return new QVariant(*other);
 }
 
-QVariant* QVariant_new6(QDataStream* s) {
-	return new QVariant(*s);
-}
-
-QVariant* QVariant_new7(int i) {
+QVariant* QVariant_new4(int i) {
 	return new QVariant(static_cast<int>(i));
 }
 
-QVariant* QVariant_new8(unsigned int ui) {
+QVariant* QVariant_new5(unsigned int ui) {
 	return new QVariant(static_cast<uint>(ui));
 }
 
-QVariant* QVariant_new9(long long ll) {
+QVariant* QVariant_new6(long long ll) {
 	return new QVariant(static_cast<qlonglong>(ll));
 }
 
-QVariant* QVariant_new10(unsigned long long ull) {
+QVariant* QVariant_new7(unsigned long long ull) {
 	return new QVariant(static_cast<qulonglong>(ull));
 }
 
-QVariant* QVariant_new11(bool b) {
+QVariant* QVariant_new8(bool b) {
 	return new QVariant(b);
 }
 
-QVariant* QVariant_new12(double d) {
+QVariant* QVariant_new9(double d) {
 	return new QVariant(static_cast<double>(d));
 }
 
-QVariant* QVariant_new13(float f) {
+QVariant* QVariant_new10(float f) {
 	return new QVariant(static_cast<float>(f));
 }
 
-QVariant* QVariant_new14(const char* str) {
-	return new QVariant(str);
+QVariant* QVariant_new11(QChar* qchar) {
+	return new QVariant(*qchar);
+}
+
+QVariant* QVariant_new12(QDate* date) {
+	return new QVariant(*date);
+}
+
+QVariant* QVariant_new13(QTime* time) {
+	return new QVariant(*time);
+}
+
+QVariant* QVariant_new14(QBitArray* bitarray) {
+	return new QVariant(*bitarray);
 }
 
 QVariant* QVariant_new15(struct miqt_string bytearray) {
@@ -104,54 +119,11 @@ QVariant* QVariant_new15(struct miqt_string bytearray) {
 	return new QVariant(bytearray_QByteArray);
 }
 
-QVariant* QVariant_new16(QBitArray* bitarray) {
-	return new QVariant(*bitarray);
-}
-
-QVariant* QVariant_new17(struct miqt_string stringVal) {
-	QString stringVal_QString = QString::fromUtf8(stringVal.data, stringVal.len);
-	return new QVariant(stringVal_QString);
-}
-
-QVariant* QVariant_new18(struct miqt_array /* of struct miqt_string */  stringlist) {
-	QStringList stringlist_QList;
-	stringlist_QList.reserve(stringlist.len);
-	struct miqt_string* stringlist_arr = static_cast<struct miqt_string*>(stringlist.data);
-	for(size_t i = 0; i < stringlist.len; ++i) {
-		QString stringlist_arr_i_QString = QString::fromUtf8(stringlist_arr[i].data, stringlist_arr[i].len);
-		stringlist_QList.push_back(stringlist_arr_i_QString);
-	}
-	return new QVariant(stringlist_QList);
-}
-
-QVariant* QVariant_new19(QChar* qchar) {
-	return new QVariant(*qchar);
-}
-
-QVariant* QVariant_new20(QDate* date) {
-	return new QVariant(*date);
-}
-
-QVariant* QVariant_new21(QTime* time) {
-	return new QVariant(*time);
-}
-
-QVariant* QVariant_new22(QDateTime* datetime) {
+QVariant* QVariant_new16(QDateTime* datetime) {
 	return new QVariant(*datetime);
 }
 
-QVariant* QVariant_new23(struct miqt_map /* of struct miqt_string to QVariant* */  mapVal) {
-	QMap<QString, QVariant> mapVal_QMap;
-	struct miqt_string* mapVal_karr = static_cast<struct miqt_string*>(mapVal.keys);
-	QVariant** mapVal_varr = static_cast<QVariant**>(mapVal.values);
-	for(size_t i = 0; i < mapVal.len; ++i) {
-		QString mapVal_karr_i_QString = QString::fromUtf8(mapVal_karr[i].data, mapVal_karr[i].len);
-		mapVal_QMap[mapVal_karr_i_QString] = *(mapVal_varr[i]);
-	}
-	return new QVariant(mapVal_QMap);
-}
-
-QVariant* QVariant_new24(struct miqt_map /* of struct miqt_string to QVariant* */  hash) {
+QVariant* QVariant_new17(struct miqt_map /* of struct miqt_string to QVariant* */  hash) {
 	QHash<QString, QVariant> hash_QMap;
 	hash_QMap.reserve(hash.len);
 	struct miqt_string* hash_karr = static_cast<struct miqt_string*>(hash.keys);
@@ -163,11 +135,54 @@ QVariant* QVariant_new24(struct miqt_map /* of struct miqt_string to QVariant* *
 	return new QVariant(hash_QMap);
 }
 
-QVariant* QVariant_new25(QSize* size) {
-	return new QVariant(*size);
+QVariant* QVariant_new18(QJsonArray* jsonArray) {
+	return new QVariant(*jsonArray);
 }
 
-QVariant* QVariant_new26(QSizeF* size) {
+QVariant* QVariant_new19(QJsonObject* jsonObject) {
+	return new QVariant(*jsonObject);
+}
+
+QVariant* QVariant_new20(QLocale* locale) {
+	return new QVariant(*locale);
+}
+
+QVariant* QVariant_new21(struct miqt_map /* of struct miqt_string to QVariant* */  mapVal) {
+	QMap<QString, QVariant> mapVal_QMap;
+	struct miqt_string* mapVal_karr = static_cast<struct miqt_string*>(mapVal.keys);
+	QVariant** mapVal_varr = static_cast<QVariant**>(mapVal.values);
+	for(size_t i = 0; i < mapVal.len; ++i) {
+		QString mapVal_karr_i_QString = QString::fromUtf8(mapVal_karr[i].data, mapVal_karr[i].len);
+		mapVal_QMap[mapVal_karr_i_QString] = *(mapVal_varr[i]);
+	}
+	return new QVariant(mapVal_QMap);
+}
+
+QVariant* QVariant_new22(QRegularExpression* re) {
+	return new QVariant(*re);
+}
+
+QVariant* QVariant_new23(struct miqt_string stringVal) {
+	QString stringVal_QString = QString::fromUtf8(stringVal.data, stringVal.len);
+	return new QVariant(stringVal_QString);
+}
+
+QVariant* QVariant_new24(struct miqt_array /* of struct miqt_string */  stringlist) {
+	QStringList stringlist_QList;
+	stringlist_QList.reserve(stringlist.len);
+	struct miqt_string* stringlist_arr = static_cast<struct miqt_string*>(stringlist.data);
+	for(size_t i = 0; i < stringlist.len; ++i) {
+		QString stringlist_arr_i_QString = QString::fromUtf8(stringlist_arr[i].data, stringlist_arr[i].len);
+		stringlist_QList.push_back(stringlist_arr_i_QString);
+	}
+	return new QVariant(stringlist_QList);
+}
+
+QVariant* QVariant_new25(QUrl* url) {
+	return new QVariant(*url);
+}
+
+QVariant* QVariant_new26(QSize* size) {
 	return new QVariant(*size);
 }
 
@@ -175,72 +190,12 @@ QVariant* QVariant_new27(QPoint* pt) {
 	return new QVariant(*pt);
 }
 
-QVariant* QVariant_new28(QPointF* pt) {
-	return new QVariant(*pt);
+QVariant* QVariant_new28(Type typeVal) {
+	return new QVariant(typeVal);
 }
 
-QVariant* QVariant_new29(QLine* line) {
-	return new QVariant(*line);
-}
-
-QVariant* QVariant_new30(QLineF* line) {
-	return new QVariant(*line);
-}
-
-QVariant* QVariant_new31(QRect* rect) {
-	return new QVariant(*rect);
-}
-
-QVariant* QVariant_new32(QRectF* rect) {
-	return new QVariant(*rect);
-}
-
-QVariant* QVariant_new33(QLocale* locale) {
-	return new QVariant(*locale);
-}
-
-QVariant* QVariant_new34(QRegExp* regExp) {
-	return new QVariant(*regExp);
-}
-
-QVariant* QVariant_new35(QRegularExpression* re) {
-	return new QVariant(*re);
-}
-
-QVariant* QVariant_new36(QEasingCurve* easing) {
-	return new QVariant(*easing);
-}
-
-QVariant* QVariant_new37(QUuid* uuid) {
-	return new QVariant(*uuid);
-}
-
-QVariant* QVariant_new38(QUrl* url) {
-	return new QVariant(*url);
-}
-
-QVariant* QVariant_new39(QJsonValue* jsonValue) {
-	return new QVariant(*jsonValue);
-}
-
-QVariant* QVariant_new40(QJsonObject* jsonObject) {
-	return new QVariant(*jsonObject);
-}
-
-QVariant* QVariant_new41(QJsonArray* jsonArray) {
-	return new QVariant(*jsonArray);
-}
-
-QVariant* QVariant_new42(QJsonDocument* jsonDocument) {
-	return new QVariant(*jsonDocument);
-}
-
-QVariant* QVariant_new43(QModelIndex* modelIndex) {
-	return new QVariant(*modelIndex);
-}
-
-QVariant* QVariant_new44(QPersistentModelIndex* modelIndex) {
-	return new QVariant(*modelIndex);
+QVariant* QVariant_new29(QMetaType* typeVal, const void* copyVal) {
+	return new QVariant(*typeVal, copyVal);
 }
 
 void QVariant_OperatorAssign(QVariant* self, QVariant* other) {
@@ -251,24 +206,39 @@ void QVariant_Swap(QVariant* self, QVariant* other) {
 	self->swap(*other);
 }
 
-int QVariant_Type(const QVariant* self) {
-	QVariant::Type _ret = self->type();
-	return static_cast<int>(_ret);
-}
-
 int QVariant_UserType(const QVariant* self) {
 	return self->userType();
+}
+
+int QVariant_TypeId(const QVariant* self) {
+	return self->typeId();
 }
 
 const char* QVariant_TypeName(const QVariant* self) {
 	return (const char*) self->typeName();
 }
 
-bool QVariant_CanConvert(const QVariant* self, int targetTypeId) {
+QMetaType* QVariant_MetaType(const QVariant* self) {
+	return new QMetaType(self->metaType());
+}
+
+bool QVariant_CanConvert(const QVariant* self, QMetaType* targetType) {
+	return self->canConvert(*targetType);
+}
+
+bool QVariant_Convert(QVariant* self, QMetaType* typeVal) {
+	return self->convert(*typeVal);
+}
+
+bool QVariant_CanView(const QVariant* self, QMetaType* targetType) {
+	return self->canView(*targetType);
+}
+
+bool QVariant_CanConvertWithTargetTypeId(const QVariant* self, int targetTypeId) {
 	return self->canConvert(static_cast<int>(targetTypeId));
 }
 
-bool QVariant_Convert(QVariant* self, int targetTypeId) {
+bool QVariant_ConvertWithTargetTypeId(QVariant* self, int targetTypeId) {
 	return self->convert(static_cast<int>(targetTypeId));
 }
 
@@ -474,10 +444,6 @@ QLocale* QVariant_ToLocale(const QVariant* self) {
 	return new QLocale(self->toLocale());
 }
 
-QRegExp* QVariant_ToRegExp(const QVariant* self) {
-	return new QRegExp(self->toRegExp());
-}
-
 QRegularExpression* QVariant_ToRegularExpression(const QVariant* self) {
 	return new QRegularExpression(self->toRegularExpression());
 }
@@ -526,13 +492,16 @@ void QVariant_Save(const QVariant* self, QDataStream* ds) {
 	self->save(*ds);
 }
 
+Type QVariant_Type(const QVariant* self) {
+	return self->type();
+}
+
 const char* QVariant_TypeToName(int typeId) {
 	return (const char*) QVariant::typeToName(static_cast<int>(typeId));
 }
 
-int QVariant_NameToType(const char* name) {
-	QVariant::Type _ret = QVariant::nameToType(name);
-	return static_cast<int>(_ret);
+Type QVariant_NameToType(const char* name) {
+	return QVariant::nameToType(name);
 }
 
 void* QVariant_Data(QVariant* self) {
@@ -547,28 +516,24 @@ const void* QVariant_Data2(const QVariant* self) {
 	return (const void*) self->data();
 }
 
-bool QVariant_OperatorEqual(const QVariant* self, QVariant* v) {
-	return (*self == *v);
+void QVariant_SetValue(QVariant* self, QVariant* avalue) {
+	self->setValue(*avalue);
 }
 
-bool QVariant_OperatorNotEqual(const QVariant* self, QVariant* v) {
-	return (*self != *v);
+QVariant* QVariant_FromMetaType(QMetaType* typeVal) {
+	return new QVariant(QVariant::fromMetaType(*typeVal));
 }
 
-bool QVariant_OperatorLesser(const QVariant* self, QVariant* v) {
-	return (*self < *v);
+QPartialOrdering* QVariant_Compare(QVariant* lhs, QVariant* rhs) {
+	return new QPartialOrdering(QVariant::compare(*lhs, *rhs));
 }
 
-bool QVariant_OperatorLesserOrEqual(const QVariant* self, QVariant* v) {
-	return (*self <= *v);
+DataPtr* QVariant_DataPtr(QVariant* self) {
+	return &self->data_ptr();
 }
 
-bool QVariant_OperatorGreater(const QVariant* self, QVariant* v) {
-	return (*self > *v);
-}
-
-bool QVariant_OperatorGreaterOrEqual(const QVariant* self, QVariant* v) {
-	return (*self >= *v);
+const DataPtr* QVariant_DataPtr2(const QVariant* self) {
+	return (const DataPtr*) self->data_ptr();
 }
 
 int QVariant_ToInt1(const QVariant* self, bool* ok) {
@@ -603,6 +568,10 @@ double QVariant_ToReal1(const QVariant* self, bool* ok) {
 	return static_cast<double>(_ret);
 }
 
+QVariant* QVariant_FromMetaType2(QMetaType* typeVal, const void* copyVal) {
+	return new QVariant(QVariant::fromMetaType(*typeVal, copyVal));
+}
+
 void QVariant_Delete(QVariant* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QVariant*>( self );
@@ -611,169 +580,29 @@ void QVariant_Delete(QVariant* self, bool isSubclass) {
 	}
 }
 
-QVariantComparisonHelper* QVariantComparisonHelper_new(QVariant* varVal) {
-	return new QVariantComparisonHelper(*varVal);
+QVariantConstPointer* QVariantConstPointer_new(QVariant* variant) {
+	return new QVariantConstPointer(*variant);
 }
 
-QVariantComparisonHelper* QVariantComparisonHelper_new2(QVariantComparisonHelper* param1) {
-	return new QVariantComparisonHelper(*param1);
+QVariantConstPointer* QVariantConstPointer_new2(QVariantConstPointer* param1) {
+	return new QVariantConstPointer(*param1);
 }
 
-void QVariantComparisonHelper_Delete(QVariantComparisonHelper* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QVariantComparisonHelper*>( self );
-	} else {
-		delete self;
-	}
-}
-
-void QVariant__Handler_Delete(QVariant__Handler* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QVariant::Handler*>( self );
-	} else {
-		delete self;
-	}
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_new(QSequentialIterable__const_iterator* other) {
-	return new QSequentialIterable::const_iterator(*other);
-}
-
-void QSequentialIterable__const_iterator_OperatorAssign(QSequentialIterable__const_iterator* self, QSequentialIterable__const_iterator* other) {
-	self->operator=(*other);
-}
-
-QVariant* QSequentialIterable__const_iterator_OperatorMultiply(const QSequentialIterable__const_iterator* self) {
+QVariant* QVariantConstPointer_OperatorMultiply(const QVariantConstPointer* self) {
 	return new QVariant(self->operator*());
 }
 
-bool QSequentialIterable__const_iterator_OperatorEqual(const QSequentialIterable__const_iterator* self, QSequentialIterable__const_iterator* o) {
-	return (*self == *o);
+QVariant* QVariantConstPointer_OperatorMinusGreater(const QVariantConstPointer* self) {
+	return (QVariant*) self->operator->();
 }
 
-bool QSequentialIterable__const_iterator_OperatorNotEqual(const QSequentialIterable__const_iterator* self, QSequentialIterable__const_iterator* o) {
-	return (*self != *o);
+void QVariantConstPointer_OperatorAssign(QVariantConstPointer* self, QVariantConstPointer* param1) {
+	self->operator=(*param1);
 }
 
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorPlusPlus(QSequentialIterable__const_iterator* self) {
-	QSequentialIterable::const_iterator& _ret = self->operator++();
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorPlusPlusWithInt(QSequentialIterable__const_iterator* self, int param1) {
-	return new QSequentialIterable::const_iterator(self->operator++(static_cast<int>(param1)));
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorMinusMinus(QSequentialIterable__const_iterator* self) {
-	QSequentialIterable::const_iterator& _ret = self->operator--();
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorMinusMinusWithInt(QSequentialIterable__const_iterator* self, int param1) {
-	return new QSequentialIterable::const_iterator(self->operator--(static_cast<int>(param1)));
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorPlusAssign(QSequentialIterable__const_iterator* self, int j) {
-	QSequentialIterable::const_iterator& _ret = self->operator+=(static_cast<int>(j));
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorMinusAssign(QSequentialIterable__const_iterator* self, int j) {
-	QSequentialIterable::const_iterator& _ret = self->operator-=(static_cast<int>(j));
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorPlus(const QSequentialIterable__const_iterator* self, int j) {
-	return new QSequentialIterable::const_iterator(self->operator+(static_cast<int>(j)));
-}
-
-QSequentialIterable__const_iterator* QSequentialIterable__const_iterator_OperatorMinus(const QSequentialIterable__const_iterator* self, int j) {
-	return new QSequentialIterable::const_iterator(self->operator-(static_cast<int>(j)));
-}
-
-void QSequentialIterable__const_iterator_Delete(QSequentialIterable__const_iterator* self, bool isSubclass) {
+void QVariantConstPointer_Delete(QVariantConstPointer* self, bool isSubclass) {
 	if (isSubclass) {
-		delete dynamic_cast<QSequentialIterable::const_iterator*>( self );
-	} else {
-		delete self;
-	}
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_new(QAssociativeIterable__const_iterator* other) {
-	return new QAssociativeIterable::const_iterator(*other);
-}
-
-void QAssociativeIterable__const_iterator_OperatorAssign(QAssociativeIterable__const_iterator* self, QAssociativeIterable__const_iterator* other) {
-	self->operator=(*other);
-}
-
-QVariant* QAssociativeIterable__const_iterator_Key(const QAssociativeIterable__const_iterator* self) {
-	return new QVariant(self->key());
-}
-
-QVariant* QAssociativeIterable__const_iterator_Value(const QAssociativeIterable__const_iterator* self) {
-	return new QVariant(self->value());
-}
-
-QVariant* QAssociativeIterable__const_iterator_OperatorMultiply(const QAssociativeIterable__const_iterator* self) {
-	return new QVariant(self->operator*());
-}
-
-bool QAssociativeIterable__const_iterator_OperatorEqual(const QAssociativeIterable__const_iterator* self, QAssociativeIterable__const_iterator* o) {
-	return (*self == *o);
-}
-
-bool QAssociativeIterable__const_iterator_OperatorNotEqual(const QAssociativeIterable__const_iterator* self, QAssociativeIterable__const_iterator* o) {
-	return (*self != *o);
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorPlusPlus(QAssociativeIterable__const_iterator* self) {
-	QAssociativeIterable::const_iterator& _ret = self->operator++();
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorPlusPlusWithInt(QAssociativeIterable__const_iterator* self, int param1) {
-	return new QAssociativeIterable::const_iterator(self->operator++(static_cast<int>(param1)));
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorMinusMinus(QAssociativeIterable__const_iterator* self) {
-	QAssociativeIterable::const_iterator& _ret = self->operator--();
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorMinusMinusWithInt(QAssociativeIterable__const_iterator* self, int param1) {
-	return new QAssociativeIterable::const_iterator(self->operator--(static_cast<int>(param1)));
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorPlusAssign(QAssociativeIterable__const_iterator* self, int j) {
-	QAssociativeIterable::const_iterator& _ret = self->operator+=(static_cast<int>(j));
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorMinusAssign(QAssociativeIterable__const_iterator* self, int j) {
-	QAssociativeIterable::const_iterator& _ret = self->operator-=(static_cast<int>(j));
-	// Cast returned reference into pointer
-	return &_ret;
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorPlus(const QAssociativeIterable__const_iterator* self, int j) {
-	return new QAssociativeIterable::const_iterator(self->operator+(static_cast<int>(j)));
-}
-
-QAssociativeIterable__const_iterator* QAssociativeIterable__const_iterator_OperatorMinus(const QAssociativeIterable__const_iterator* self, int j) {
-	return new QAssociativeIterable::const_iterator(self->operator-(static_cast<int>(j)));
-}
-
-void QAssociativeIterable__const_iterator_Delete(QAssociativeIterable__const_iterator* self, bool isSubclass) {
-	if (isSubclass) {
-		delete dynamic_cast<QAssociativeIterable::const_iterator*>( self );
+		delete dynamic_cast<QVariantConstPointer*>( self );
 	} else {
 		delete self;
 	}

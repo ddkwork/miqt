@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QLine>
 #include <QLineF>
-#include <QMatrix>
 #include <QPainterPath>
 #include <QPoint>
 #include <QPointF>
@@ -14,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTransform* QTransform_new(int param1) {
 	return new QTransform(static_cast<Qt::Initialization>(param1));
@@ -24,24 +40,16 @@ QTransform* QTransform_new2() {
 	return new QTransform();
 }
 
-QTransform* QTransform_new3(double h11, double h12, double h13, double h21, double h22, double h23, double h31, double h32) {
-	return new QTransform(static_cast<qreal>(h11), static_cast<qreal>(h12), static_cast<qreal>(h13), static_cast<qreal>(h21), static_cast<qreal>(h22), static_cast<qreal>(h23), static_cast<qreal>(h31), static_cast<qreal>(h32));
+QTransform* QTransform_new3(double h11, double h12, double h13, double h21, double h22, double h23, double h31, double h32, double h33) {
+	return new QTransform(static_cast<qreal>(h11), static_cast<qreal>(h12), static_cast<qreal>(h13), static_cast<qreal>(h21), static_cast<qreal>(h22), static_cast<qreal>(h23), static_cast<qreal>(h31), static_cast<qreal>(h32), static_cast<qreal>(h33));
 }
 
 QTransform* QTransform_new4(double h11, double h12, double h21, double h22, double dx, double dy) {
 	return new QTransform(static_cast<qreal>(h11), static_cast<qreal>(h12), static_cast<qreal>(h21), static_cast<qreal>(h22), static_cast<qreal>(dx), static_cast<qreal>(dy));
 }
 
-QTransform* QTransform_new5(QMatrix* mtx) {
-	return new QTransform(*mtx);
-}
-
-QTransform* QTransform_new6(QTransform* other) {
+QTransform* QTransform_new5(QTransform* other) {
 	return new QTransform(*other);
-}
-
-QTransform* QTransform_new7(double h11, double h12, double h13, double h21, double h22, double h23, double h31, double h32, double h33) {
-	return new QTransform(static_cast<qreal>(h11), static_cast<qreal>(h12), static_cast<qreal>(h13), static_cast<qreal>(h21), static_cast<qreal>(h22), static_cast<qreal>(h23), static_cast<qreal>(h31), static_cast<qreal>(h32), static_cast<qreal>(h33));
 }
 
 void QTransform_OperatorAssign(QTransform* self, QTransform* param1) {
@@ -72,18 +80,12 @@ bool QTransform_IsTranslating(const QTransform* self) {
 	return self->isTranslating();
 }
 
-int QTransform_Type(const QTransform* self) {
-	QTransform::TransformationType _ret = self->type();
-	return static_cast<int>(_ret);
+TransformationType QTransform_Type(const QTransform* self) {
+	return self->type();
 }
 
 double QTransform_Determinant(const QTransform* self) {
 	qreal _ret = self->determinant();
-	return static_cast<double>(_ret);
-}
-
-double QTransform_Det(const QTransform* self) {
-	qreal _ret = self->det();
 	return static_cast<double>(_ret);
 }
 
@@ -176,13 +178,25 @@ QTransform* QTransform_Shear(QTransform* self, double sh, double sv) {
 	return &_ret;
 }
 
-QTransform* QTransform_Rotate(QTransform* self, double a) {
+QTransform* QTransform_Rotate(QTransform* self, double a, int axis, double distanceToPlane) {
+	QTransform& _ret = self->rotate(static_cast<qreal>(a), static_cast<Qt::Axis>(axis), static_cast<qreal>(distanceToPlane));
+	// Cast returned reference into pointer
+	return &_ret;
+}
+
+QTransform* QTransform_RotateWithQreal(QTransform* self, double a) {
 	QTransform& _ret = self->rotate(static_cast<qreal>(a));
 	// Cast returned reference into pointer
 	return &_ret;
 }
 
-QTransform* QTransform_RotateRadians(QTransform* self, double a) {
+QTransform* QTransform_RotateRadians(QTransform* self, double a, int axis, double distanceToPlane) {
+	QTransform& _ret = self->rotateRadians(static_cast<qreal>(a), static_cast<Qt::Axis>(axis), static_cast<qreal>(distanceToPlane));
+	// Cast returned reference into pointer
+	return &_ret;
+}
+
+QTransform* QTransform_RotateRadiansWithQreal(QTransform* self, double a) {
 	QTransform& _ret = self->rotateRadians(static_cast<qreal>(a));
 	// Cast returned reference into pointer
 	return &_ret;
@@ -250,12 +264,6 @@ void QTransform_Map3(const QTransform* self, double x, double y, double* tx, dou
 	self->map(static_cast<qreal>(x), static_cast<qreal>(y), static_cast<qreal*>(tx), static_cast<qreal*>(ty));
 }
 
-QMatrix* QTransform_ToAffine(const QTransform* self) {
-	const QMatrix& _ret = self->toAffine();
-	// Cast returned reference into pointer
-	return const_cast<QMatrix*>(&_ret);
-}
-
 QTransform* QTransform_OperatorMultiplyAssignWithDiv(QTransform* self, double div) {
 	QTransform& _ret = self->operator*=(static_cast<qreal>(div));
 	// Cast returned reference into pointer
@@ -286,6 +294,10 @@ QTransform* QTransform_FromTranslate(double dx, double dy) {
 
 QTransform* QTransform_FromScale(double dx, double dy) {
 	return new QTransform(QTransform::fromScale(static_cast<qreal>(dx), static_cast<qreal>(dy)));
+}
+
+Affine QTransform_AsAffineMatrix(QTransform* self) {
+	return self->asAffineMatrix();
 }
 
 QTransform* QTransform_Inverted1(const QTransform* self, bool* invertible) {

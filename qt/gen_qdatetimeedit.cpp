@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractSpinBox>
 #include <QCalendar>
 #include <QCalendarWidget>
@@ -22,8 +24,10 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionSpinBox>
 #include <QTime>
 #include <QTimeEdit>
+#include <QTimeZone>
 #include <QTimerEvent>
 #include <QVariant>
 #include <QWheelEvent>
@@ -34,7 +38,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQDateTimeEdit : public virtual QDateTimeEdit {
 public:
@@ -42,11 +61,11 @@ public:
 	MiqtVirtualQDateTimeEdit(QWidget* parent): QDateTimeEdit(parent) {};
 	MiqtVirtualQDateTimeEdit(): QDateTimeEdit() {};
 	MiqtVirtualQDateTimeEdit(const QDateTime& dt): QDateTimeEdit(dt) {};
-	MiqtVirtualQDateTimeEdit(const QDate& d): QDateTimeEdit(d) {};
-	MiqtVirtualQDateTimeEdit(const QTime& t): QDateTimeEdit(t) {};
+	MiqtVirtualQDateTimeEdit(QDate d): QDateTimeEdit(d) {};
+	MiqtVirtualQDateTimeEdit(QTime t): QDateTimeEdit(t) {};
 	MiqtVirtualQDateTimeEdit(const QDateTime& dt, QWidget* parent): QDateTimeEdit(dt, parent) {};
-	MiqtVirtualQDateTimeEdit(const QDate& d, QWidget* parent): QDateTimeEdit(d, parent) {};
-	MiqtVirtualQDateTimeEdit(const QTime& t, QWidget* parent): QDateTimeEdit(t, parent) {};
+	MiqtVirtualQDateTimeEdit(QDate d, QWidget* parent): QDateTimeEdit(d, parent) {};
+	MiqtVirtualQDateTimeEdit(QTime t, QWidget* parent): QDateTimeEdit(t, parent) {};
 
 	virtual ~MiqtVirtualQDateTimeEdit() = default;
 
@@ -370,22 +389,21 @@ public:
 	intptr_t handle__StepEnabled = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QAbstractSpinBox::StepEnabled stepEnabled() const override {
+	virtual StepEnabled stepEnabled() const override {
 		if (handle__StepEnabled == 0) {
 			return QDateTimeEdit::stepEnabled();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QDateTimeEdit_StepEnabled(const_cast<MiqtVirtualQDateTimeEdit*>(this), handle__StepEnabled);
+		StepEnabled callback_return_value = miqt_exec_callback_QDateTimeEdit_StepEnabled(const_cast<MiqtVirtualQDateTimeEdit*>(this), handle__StepEnabled);
 
-		return static_cast<QAbstractSpinBox::StepEnabled>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_StepEnabled() const {
+	StepEnabled virtualbase_StepEnabled() const {
 
-		QAbstractSpinBox::StepEnabled _ret = QDateTimeEdit::stepEnabled();
-		return static_cast<int>(_ret);
+		return QDateTimeEdit::stepEnabled();
 
 	}
 
@@ -434,6 +452,30 @@ public:
 	void virtualbase_PaintEvent(QPaintEvent* event) {
 
 		QDateTimeEdit::paintEvent(event);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSpinBox* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QDateTimeEdit::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSpinBox* sigval1 = option;
+
+		miqt_exec_callback_QDateTimeEdit_InitStyleOption(const_cast<MiqtVirtualQDateTimeEdit*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSpinBox* option) const {
+
+		QDateTimeEdit::initStyleOption(option);
 
 	}
 
@@ -804,17 +846,6 @@ struct miqt_string QDateTimeEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QDateTimeEdit_TrUtf8(const char* s) {
-	QString _ret = QDateTimeEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QDateTime* QDateTimeEdit_DateTime(const QDateTimeEdit* self) {
 	return new QDateTime(self->dateTime());
 }
@@ -919,23 +950,20 @@ void QDateTimeEdit_SetTimeRange(QDateTimeEdit* self, QTime* min, QTime* max) {
 	self->setTimeRange(*min, *max);
 }
 
-int QDateTimeEdit_DisplayedSections(const QDateTimeEdit* self) {
-	QDateTimeEdit::Sections _ret = self->displayedSections();
-	return static_cast<int>(_ret);
+Sections QDateTimeEdit_DisplayedSections(const QDateTimeEdit* self) {
+	return self->displayedSections();
 }
 
-int QDateTimeEdit_CurrentSection(const QDateTimeEdit* self) {
-	QDateTimeEdit::Section _ret = self->currentSection();
-	return static_cast<int>(_ret);
+Section QDateTimeEdit_CurrentSection(const QDateTimeEdit* self) {
+	return self->currentSection();
 }
 
-int QDateTimeEdit_SectionAt(const QDateTimeEdit* self, int index) {
-	QDateTimeEdit::Section _ret = self->sectionAt(static_cast<int>(index));
-	return static_cast<int>(_ret);
+Section QDateTimeEdit_SectionAt(const QDateTimeEdit* self, int index) {
+	return self->sectionAt(static_cast<int>(index));
 }
 
-void QDateTimeEdit_SetCurrentSection(QDateTimeEdit* self, int section) {
-	self->setCurrentSection(static_cast<QDateTimeEdit::Section>(section));
+void QDateTimeEdit_SetCurrentSection(QDateTimeEdit* self, Section section) {
+	self->setCurrentSection(section);
 }
 
 int QDateTimeEdit_CurrentSectionIndex(const QDateTimeEdit* self) {
@@ -958,12 +986,12 @@ int QDateTimeEdit_SectionCount(const QDateTimeEdit* self) {
 	return self->sectionCount();
 }
 
-void QDateTimeEdit_SetSelectedSection(QDateTimeEdit* self, int section) {
-	self->setSelectedSection(static_cast<QDateTimeEdit::Section>(section));
+void QDateTimeEdit_SetSelectedSection(QDateTimeEdit* self, Section section) {
+	self->setSelectedSection(section);
 }
 
-struct miqt_string QDateTimeEdit_SectionText(const QDateTimeEdit* self, int section) {
-	QString _ret = self->sectionText(static_cast<QDateTimeEdit::Section>(section));
+struct miqt_string QDateTimeEdit_SectionText(const QDateTimeEdit* self, Section section) {
+	QString _ret = self->sectionText(section);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1006,6 +1034,14 @@ void QDateTimeEdit_SetTimeSpec(QDateTimeEdit* self, int spec) {
 	self->setTimeSpec(static_cast<Qt::TimeSpec>(spec));
 }
 
+QTimeZone* QDateTimeEdit_TimeZone(const QDateTimeEdit* self) {
+	return new QTimeZone(self->timeZone());
+}
+
+void QDateTimeEdit_SetTimeZone(QDateTimeEdit* self, QTimeZone* zone) {
+	self->setTimeZone(*zone);
+}
+
 QSize* QDateTimeEdit_SizeHint(const QDateTimeEdit* self) {
 	return new QSize(self->sizeHint());
 }
@@ -1040,10 +1076,8 @@ void QDateTimeEdit_TimeChanged(QDateTimeEdit* self, QTime* time) {
 }
 
 void QDateTimeEdit_connect_TimeChanged(QDateTimeEdit* self, intptr_t slot) {
-	MiqtVirtualQDateTimeEdit::connect(self, static_cast<void (QDateTimeEdit::*)(const QTime&)>(&QDateTimeEdit::timeChanged), self, [=](const QTime& time) {
-		const QTime& time_ret = time;
-		// Cast returned reference into pointer
-		QTime* sigval1 = const_cast<QTime*>(&time_ret);
+	MiqtVirtualQDateTimeEdit::connect(self, static_cast<void (QDateTimeEdit::*)(QTime)>(&QDateTimeEdit::timeChanged), self, [=](QTime time) {
+		QTime* sigval1 = new QTime(time);
 		miqt_exec_callback_QDateTimeEdit_TimeChanged(slot, sigval1);
 	});
 }
@@ -1053,10 +1087,8 @@ void QDateTimeEdit_DateChanged(QDateTimeEdit* self, QDate* date) {
 }
 
 void QDateTimeEdit_connect_DateChanged(QDateTimeEdit* self, intptr_t slot) {
-	MiqtVirtualQDateTimeEdit::connect(self, static_cast<void (QDateTimeEdit::*)(const QDate&)>(&QDateTimeEdit::dateChanged), self, [=](const QDate& date) {
-		const QDate& date_ret = date;
-		// Cast returned reference into pointer
-		QDate* sigval1 = const_cast<QDate*>(&date_ret);
+	MiqtVirtualQDateTimeEdit::connect(self, static_cast<void (QDateTimeEdit::*)(QDate)>(&QDateTimeEdit::dateChanged), self, [=](QDate date) {
+		QDate* sigval1 = new QDate(date);
 		miqt_exec_callback_QDateTimeEdit_DateChanged(slot, sigval1);
 	});
 }
@@ -1086,28 +1118,6 @@ struct miqt_string QDateTimeEdit_Tr2(const char* s, const char* c) {
 
 struct miqt_string QDateTimeEdit_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QDateTimeEdit::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDateTimeEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDateTimeEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDateTimeEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDateTimeEdit::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1217,7 +1227,7 @@ void QDateTimeEdit_override_virtual_StepEnabled(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDateTimeEdit*>( (QDateTimeEdit*)(self) )->handle__StepEnabled = slot;
 }
 
-int QDateTimeEdit_virtualbase_StepEnabled(const void* self) {
+StepEnabled QDateTimeEdit_virtualbase_StepEnabled(const void* self) {
 	return ( (const MiqtVirtualQDateTimeEdit*)(self) )->virtualbase_StepEnabled();
 }
 
@@ -1235,6 +1245,14 @@ void QDateTimeEdit_override_virtual_PaintEvent(void* self, intptr_t slot) {
 
 void QDateTimeEdit_virtualbase_PaintEvent(void* self, QPaintEvent* event) {
 	( (MiqtVirtualQDateTimeEdit*)(self) )->virtualbase_PaintEvent(event);
+}
+
+void QDateTimeEdit_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQDateTimeEdit*>( (QDateTimeEdit*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QDateTimeEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option) {
+	( (const MiqtVirtualQDateTimeEdit*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QDateTimeEdit_override_virtual_MinimumSizeHint(void* self, intptr_t slot) {
@@ -1354,8 +1372,8 @@ public:
 
 	MiqtVirtualQTimeEdit(QWidget* parent): QTimeEdit(parent) {};
 	MiqtVirtualQTimeEdit(): QTimeEdit() {};
-	MiqtVirtualQTimeEdit(const QTime& time): QTimeEdit(time) {};
-	MiqtVirtualQTimeEdit(const QTime& time, QWidget* parent): QTimeEdit(time, parent) {};
+	MiqtVirtualQTimeEdit(QTime time): QTimeEdit(time) {};
+	MiqtVirtualQTimeEdit(QTime time, QWidget* parent): QTimeEdit(time, parent) {};
 
 	virtual ~MiqtVirtualQTimeEdit() = default;
 
@@ -1679,22 +1697,21 @@ public:
 	intptr_t handle__StepEnabled = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QAbstractSpinBox::StepEnabled stepEnabled() const override {
+	virtual StepEnabled stepEnabled() const override {
 		if (handle__StepEnabled == 0) {
 			return QTimeEdit::stepEnabled();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QTimeEdit_StepEnabled(const_cast<MiqtVirtualQTimeEdit*>(this), handle__StepEnabled);
+		StepEnabled callback_return_value = miqt_exec_callback_QTimeEdit_StepEnabled(const_cast<MiqtVirtualQTimeEdit*>(this), handle__StepEnabled);
 
-		return static_cast<QAbstractSpinBox::StepEnabled>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_StepEnabled() const {
+	StepEnabled virtualbase_StepEnabled() const {
 
-		QAbstractSpinBox::StepEnabled _ret = QTimeEdit::stepEnabled();
-		return static_cast<int>(_ret);
+		return QTimeEdit::stepEnabled();
 
 	}
 
@@ -1746,6 +1763,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSpinBox* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QTimeEdit::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSpinBox* sigval1 = option;
+
+		miqt_exec_callback_QTimeEdit_InitStyleOption(const_cast<MiqtVirtualQTimeEdit*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSpinBox* option) const {
+
+		QTimeEdit::initStyleOption(option);
+
+	}
+
 };
 
 QTimeEdit* QTimeEdit_new(QWidget* parent) {
@@ -1787,26 +1828,13 @@ struct miqt_string QTimeEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTimeEdit_TrUtf8(const char* s) {
-	QString _ret = QTimeEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTimeEdit_UserTimeChanged(QTimeEdit* self, QTime* time) {
 	self->userTimeChanged(*time);
 }
 
 void QTimeEdit_connect_UserTimeChanged(QTimeEdit* self, intptr_t slot) {
-	MiqtVirtualQTimeEdit::connect(self, static_cast<void (QTimeEdit::*)(const QTime&)>(&QTimeEdit::userTimeChanged), self, [=](const QTime& time) {
-		const QTime& time_ret = time;
-		// Cast returned reference into pointer
-		QTime* sigval1 = const_cast<QTime*>(&time_ret);
+	MiqtVirtualQTimeEdit::connect(self, static_cast<void (QTimeEdit::*)(QTime)>(&QTimeEdit::userTimeChanged), self, [=](QTime time) {
+		QTime* sigval1 = new QTime(time);
 		miqt_exec_callback_QTimeEdit_UserTimeChanged(slot, sigval1);
 	});
 }
@@ -1824,28 +1852,6 @@ struct miqt_string QTimeEdit_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTimeEdit_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTimeEdit::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTimeEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTimeEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTimeEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTimeEdit::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1955,7 +1961,7 @@ void QTimeEdit_override_virtual_StepEnabled(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTimeEdit*>( (QTimeEdit*)(self) )->handle__StepEnabled = slot;
 }
 
-int QTimeEdit_virtualbase_StepEnabled(const void* self) {
+StepEnabled QTimeEdit_virtualbase_StepEnabled(const void* self) {
 	return ( (const MiqtVirtualQTimeEdit*)(self) )->virtualbase_StepEnabled();
 }
 
@@ -1975,6 +1981,14 @@ void QTimeEdit_virtualbase_PaintEvent(void* self, QPaintEvent* event) {
 	( (MiqtVirtualQTimeEdit*)(self) )->virtualbase_PaintEvent(event);
 }
 
+void QTimeEdit_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQTimeEdit*>( (QTimeEdit*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QTimeEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option) {
+	( (const MiqtVirtualQTimeEdit*)(self) )->virtualbase_InitStyleOption(option);
+}
+
 void QTimeEdit_Delete(QTimeEdit* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<MiqtVirtualQTimeEdit*>( self );
@@ -1988,8 +2002,8 @@ public:
 
 	MiqtVirtualQDateEdit(QWidget* parent): QDateEdit(parent) {};
 	MiqtVirtualQDateEdit(): QDateEdit() {};
-	MiqtVirtualQDateEdit(const QDate& date): QDateEdit(date) {};
-	MiqtVirtualQDateEdit(const QDate& date, QWidget* parent): QDateEdit(date, parent) {};
+	MiqtVirtualQDateEdit(QDate date): QDateEdit(date) {};
+	MiqtVirtualQDateEdit(QDate date, QWidget* parent): QDateEdit(date, parent) {};
 
 	virtual ~MiqtVirtualQDateEdit() = default;
 
@@ -2313,22 +2327,21 @@ public:
 	intptr_t handle__StepEnabled = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QAbstractSpinBox::StepEnabled stepEnabled() const override {
+	virtual StepEnabled stepEnabled() const override {
 		if (handle__StepEnabled == 0) {
 			return QDateEdit::stepEnabled();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QDateEdit_StepEnabled(const_cast<MiqtVirtualQDateEdit*>(this), handle__StepEnabled);
+		StepEnabled callback_return_value = miqt_exec_callback_QDateEdit_StepEnabled(const_cast<MiqtVirtualQDateEdit*>(this), handle__StepEnabled);
 
-		return static_cast<QAbstractSpinBox::StepEnabled>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_StepEnabled() const {
+	StepEnabled virtualbase_StepEnabled() const {
 
-		QAbstractSpinBox::StepEnabled _ret = QDateEdit::stepEnabled();
-		return static_cast<int>(_ret);
+		return QDateEdit::stepEnabled();
 
 	}
 
@@ -2380,6 +2393,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionSpinBox* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QDateEdit::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionSpinBox* sigval1 = option;
+
+		miqt_exec_callback_QDateEdit_InitStyleOption(const_cast<MiqtVirtualQDateEdit*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionSpinBox* option) const {
+
+		QDateEdit::initStyleOption(option);
+
+	}
+
 };
 
 QDateEdit* QDateEdit_new(QWidget* parent) {
@@ -2421,26 +2458,13 @@ struct miqt_string QDateEdit_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QDateEdit_TrUtf8(const char* s) {
-	QString _ret = QDateEdit::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QDateEdit_UserDateChanged(QDateEdit* self, QDate* date) {
 	self->userDateChanged(*date);
 }
 
 void QDateEdit_connect_UserDateChanged(QDateEdit* self, intptr_t slot) {
-	MiqtVirtualQDateEdit::connect(self, static_cast<void (QDateEdit::*)(const QDate&)>(&QDateEdit::userDateChanged), self, [=](const QDate& date) {
-		const QDate& date_ret = date;
-		// Cast returned reference into pointer
-		QDate* sigval1 = const_cast<QDate*>(&date_ret);
+	MiqtVirtualQDateEdit::connect(self, static_cast<void (QDateEdit::*)(QDate)>(&QDateEdit::userDateChanged), self, [=](QDate date) {
+		QDate* sigval1 = new QDate(date);
 		miqt_exec_callback_QDateEdit_UserDateChanged(slot, sigval1);
 	});
 }
@@ -2458,28 +2482,6 @@ struct miqt_string QDateEdit_Tr2(const char* s, const char* c) {
 
 struct miqt_string QDateEdit_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QDateEdit::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDateEdit_TrUtf82(const char* s, const char* c) {
-	QString _ret = QDateEdit::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QDateEdit_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QDateEdit::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -2589,7 +2591,7 @@ void QDateEdit_override_virtual_StepEnabled(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQDateEdit*>( (QDateEdit*)(self) )->handle__StepEnabled = slot;
 }
 
-int QDateEdit_virtualbase_StepEnabled(const void* self) {
+StepEnabled QDateEdit_virtualbase_StepEnabled(const void* self) {
 	return ( (const MiqtVirtualQDateEdit*)(self) )->virtualbase_StepEnabled();
 }
 
@@ -2607,6 +2609,14 @@ void QDateEdit_override_virtual_PaintEvent(void* self, intptr_t slot) {
 
 void QDateEdit_virtualbase_PaintEvent(void* self, QPaintEvent* event) {
 	( (MiqtVirtualQDateEdit*)(self) )->virtualbase_PaintEvent(event);
+}
+
+void QDateEdit_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQDateEdit*>( (QDateEdit*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QDateEdit_virtualbase_InitStyleOption(const void* self, QStyleOptionSpinBox* option) {
+	( (const MiqtVirtualQDateEdit*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QDateEdit_Delete(QDateEdit* self, bool isSubclass) {

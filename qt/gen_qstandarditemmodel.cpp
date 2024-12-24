@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractItemModel>
 #include <QBrush>
 #include <QByteArray>
@@ -9,6 +11,7 @@
 #include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
+#include <QModelRoleDataSpan>
 #include <QObject>
 #include <QSize>
 #include <QStandardItem>
@@ -23,7 +26,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQStandardItem : public virtual QStandardItem {
 public:
@@ -56,6 +74,30 @@ public:
 	QVariant* virtualbase_Data(int role) const {
 
 		return new QVariant(QStandardItem::data(static_cast<int>(role)));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MultiData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void multiData(QModelRoleDataSpan roleDataSpan) const override {
+		if (handle__MultiData == 0) {
+			QStandardItem::multiData(roleDataSpan);
+			return;
+		}
+		
+		QModelRoleDataSpan* sigval1 = new QModelRoleDataSpan(roleDataSpan);
+
+		miqt_exec_callback_QStandardItem_MultiData(const_cast<MiqtVirtualQStandardItem*>(this), handle__MultiData, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_MultiData(QModelRoleDataSpan* roleDataSpan) const {
+
+		QStandardItem::multiData(*roleDataSpan);
 
 	}
 
@@ -233,6 +275,10 @@ QStandardItem* QStandardItem_new5(int rows, int columns) {
 
 QVariant* QStandardItem_Data(const QStandardItem* self, int role) {
 	return new QVariant(self->data(static_cast<int>(role)));
+}
+
+void QStandardItem_MultiData(const QStandardItem* self, QModelRoleDataSpan* roleDataSpan) {
+	self->multiData(*roleDataSpan);
 }
 
 void QStandardItem_SetData(QStandardItem* self, QVariant* value, int role) {
@@ -452,14 +498,6 @@ bool QStandardItem_IsUserTristate(const QStandardItem* self) {
 
 void QStandardItem_SetUserTristate(QStandardItem* self, bool tristate) {
 	self->setUserTristate(tristate);
-}
-
-bool QStandardItem_IsTristate(const QStandardItem* self) {
-	return self->isTristate();
-}
-
-void QStandardItem_SetTristate(QStandardItem* self, bool tristate) {
-	self->setTristate(tristate);
 }
 
 bool QStandardItem_IsDragEnabled(const QStandardItem* self) {
@@ -696,6 +734,14 @@ QVariant* QStandardItem_virtualbase_Data(const void* self, int role) {
 	return ( (const MiqtVirtualQStandardItem*)(self) )->virtualbase_Data(role);
 }
 
+void QStandardItem_override_virtual_MultiData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStandardItem*>( (QStandardItem*)(self) )->handle__MultiData = slot;
+}
+
+void QStandardItem_virtualbase_MultiData(const void* self, QModelRoleDataSpan* roleDataSpan) {
+	( (const MiqtVirtualQStandardItem*)(self) )->virtualbase_MultiData(roleDataSpan);
+}
+
 void QStandardItem_override_virtual_SetData(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStandardItem*>( (QStandardItem*)(self) )->handle__SetData = slot;
 }
@@ -761,6 +807,55 @@ public:
 	MiqtVirtualQStandardItemModel(int rows, int columns, QObject* parent): QStandardItemModel(rows, columns, parent) {};
 
 	virtual ~MiqtVirtualQStandardItemModel() = default;
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__RoleNames = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QHash<int, QByteArray> roleNames() const override {
+		if (handle__RoleNames == 0) {
+			return QStandardItemModel::roleNames();
+		}
+		
+
+		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QStandardItemModel_RoleNames(const_cast<MiqtVirtualQStandardItemModel*>(this), handle__RoleNames);
+		QHash<int, QByteArray> callback_return_value_QMap;
+		callback_return_value_QMap.reserve(callback_return_value.len);
+		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
+		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
+		for(size_t i = 0; i < callback_return_value.len; ++i) {
+			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
+			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
+		}
+
+		return callback_return_value_QMap;
+	}
+
+	// Wrapper to allow calling protected method
+	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
+
+		QHash<int, QByteArray> _ret = QStandardItemModel::roleNames();
+		// Convert QMap<> from C++ memory to manually-managed C memory
+		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+		int _ctr = 0;
+		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+			_karr[_ctr] = _itr->first;
+			QByteArray _hashval_qb = _itr->second;
+			struct miqt_string _hashval_ms;
+			_hashval_ms.len = _hashval_qb.length();
+			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+			_varr[_ctr] = _hashval_ms;
+			_ctr++;
+		}
+		struct miqt_map _out;
+		_out.len = _ret.size();
+		_out.keys = static_cast<void*>(_karr);
+		_out.values = static_cast<void*>(_varr);
+		return _out;
+
+	}
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Index = 0;
@@ -890,33 +985,6 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Sibling = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QModelIndex sibling(int row, int column, const QModelIndex& idx) const override {
-		if (handle__Sibling == 0) {
-			return QStandardItemModel::sibling(row, column, idx);
-		}
-		
-		int sigval1 = row;
-		int sigval2 = column;
-		const QModelIndex& idx_ret = idx;
-		// Cast returned reference into pointer
-		QModelIndex* sigval3 = const_cast<QModelIndex*>(&idx_ret);
-
-		QModelIndex* callback_return_value = miqt_exec_callback_QStandardItemModel_Sibling(const_cast<MiqtVirtualQStandardItemModel*>(this), handle__Sibling, sigval1, sigval2, sigval3);
-
-		return *callback_return_value;
-	}
-
-	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_Sibling(int row, int column, QModelIndex* idx) const {
-
-		return new QModelIndex(QStandardItemModel::sibling(static_cast<int>(row), static_cast<int>(column), *idx));
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Data = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -939,6 +1007,33 @@ public:
 	QVariant* virtualbase_Data(QModelIndex* index, int role) const {
 
 		return new QVariant(QStandardItemModel::data(*index, static_cast<int>(role)));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__MultiData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void multiData(const QModelIndex& index, QModelRoleDataSpan roleDataSpan) const override {
+		if (handle__MultiData == 0) {
+			QStandardItemModel::multiData(index, roleDataSpan);
+			return;
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+		QModelRoleDataSpan* sigval2 = new QModelRoleDataSpan(roleDataSpan);
+
+		miqt_exec_callback_QStandardItemModel_MultiData(const_cast<MiqtVirtualQStandardItemModel*>(this), handle__MultiData, sigval1, sigval2);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_MultiData(QModelIndex* index, QModelRoleDataSpan* roleDataSpan) const {
+
+		QStandardItemModel::multiData(*index, *roleDataSpan);
 
 	}
 
@@ -968,6 +1063,31 @@ public:
 	bool virtualbase_SetData(QModelIndex* index, QVariant* value, int role) {
 
 		return QStandardItemModel::setData(*index, *value, static_cast<int>(role));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ClearItemData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool clearItemData(const QModelIndex& index) override {
+		if (handle__ClearItemData == 0) {
+			return QStandardItemModel::clearItemData(index);
+		}
+		
+		const QModelIndex& index_ret = index;
+		// Cast returned reference into pointer
+		QModelIndex* sigval1 = const_cast<QModelIndex*>(&index_ret);
+
+		bool callback_return_value = miqt_exec_callback_QStandardItemModel_ClearItemData(this, handle__ClearItemData, sigval1);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_ClearItemData(QModelIndex* index) {
+
+		return QStandardItemModel::clearItemData(*index);
 
 	}
 
@@ -1414,6 +1534,33 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__Sibling = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual QModelIndex sibling(int row, int column, const QModelIndex& idx) const override {
+		if (handle__Sibling == 0) {
+			return QStandardItemModel::sibling(row, column, idx);
+		}
+		
+		int sigval1 = row;
+		int sigval2 = column;
+		const QModelIndex& idx_ret = idx;
+		// Cast returned reference into pointer
+		QModelIndex* sigval3 = const_cast<QModelIndex*>(&idx_ret);
+
+		QModelIndex* callback_return_value = miqt_exec_callback_QStandardItemModel_Sibling(const_cast<MiqtVirtualQStandardItemModel*>(this), handle__Sibling, sigval1, sigval2, sigval3);
+
+		return *callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	QModelIndex* virtualbase_Sibling(int row, int column, QModelIndex* idx) const {
+
+		return new QModelIndex(QStandardItemModel::sibling(static_cast<int>(row), static_cast<int>(column), *idx));
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__CanDropMimeData = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1677,55 +1824,6 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__RoleNames = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QHash<int, QByteArray> roleNames() const override {
-		if (handle__RoleNames == 0) {
-			return QStandardItemModel::roleNames();
-		}
-		
-
-		struct miqt_map /* of int to struct miqt_string */  callback_return_value = miqt_exec_callback_QStandardItemModel_RoleNames(const_cast<MiqtVirtualQStandardItemModel*>(this), handle__RoleNames);
-		QHash<int, QByteArray> callback_return_value_QMap;
-		callback_return_value_QMap.reserve(callback_return_value.len);
-		int* callback_return_value_karr = static_cast<int*>(callback_return_value.keys);
-		struct miqt_string* callback_return_value_varr = static_cast<struct miqt_string*>(callback_return_value.values);
-		for(size_t i = 0; i < callback_return_value.len; ++i) {
-			QByteArray callback_return_value_varr_i_QByteArray(callback_return_value_varr[i].data, callback_return_value_varr[i].len);
-			callback_return_value_QMap[static_cast<int>(callback_return_value_karr[i])] = callback_return_value_varr_i_QByteArray;
-		}
-
-		return callback_return_value_QMap;
-	}
-
-	// Wrapper to allow calling protected method
-	struct miqt_map /* of int to struct miqt_string */  virtualbase_RoleNames() const {
-
-		QHash<int, QByteArray> _ret = QStandardItemModel::roleNames();
-		// Convert QMap<> from C++ memory to manually-managed C memory
-		int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
-		struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
-		int _ctr = 0;
-		for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
-			_karr[_ctr] = _itr->first;
-			QByteArray _hashval_qb = _itr->second;
-			struct miqt_string _hashval_ms;
-			_hashval_ms.len = _hashval_qb.length();
-			_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
-			memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
-			_varr[_ctr] = _hashval_ms;
-			_ctr++;
-		}
-		struct miqt_map _out;
-		_out.len = _ret.size();
-		_out.keys = static_cast<void*>(_karr);
-		_out.values = static_cast<void*>(_varr);
-		return _out;
-
-	}
-
-	// cgo.Handle value for overwritten implementation
 	intptr_t handle__Submit = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -1770,6 +1868,29 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__ResetInternalData = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void resetInternalData() override {
+		if (handle__ResetInternalData == 0) {
+			QStandardItemModel::resetInternalData();
+			return;
+		}
+		
+
+		miqt_exec_callback_QStandardItemModel_ResetInternalData(this, handle__ResetInternalData);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_ResetInternalData() {
+
+		QStandardItemModel::resetInternalData();
+
+	}
+
 };
 
 QStandardItemModel* QStandardItemModel_new() {
@@ -1811,17 +1932,6 @@ struct miqt_string QStandardItemModel_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QStandardItemModel_TrUtf8(const char* s) {
-	QString _ret = QStandardItemModel::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QStandardItemModel_SetItemRoleNames(QStandardItemModel* self, struct miqt_map /* of int to struct miqt_string */  roleNames) {
 	QHash<int, QByteArray> roleNames_QMap;
 	roleNames_QMap.reserve(roleNames.len);
@@ -1832,6 +1942,29 @@ void QStandardItemModel_SetItemRoleNames(QStandardItemModel* self, struct miqt_m
 		roleNames_QMap[static_cast<int>(roleNames_karr[i])] = roleNames_varr_i_QByteArray;
 	}
 	self->setItemRoleNames(roleNames_QMap);
+}
+
+struct miqt_map /* of int to struct miqt_string */  QStandardItemModel_RoleNames(const QStandardItemModel* self) {
+	QHash<int, QByteArray> _ret = self->roleNames();
+	// Convert QMap<> from C++ memory to manually-managed C memory
+	int* _karr = static_cast<int*>(malloc(sizeof(int) * _ret.size()));
+	struct miqt_string* _varr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.size()));
+	int _ctr = 0;
+	for (auto _itr = _ret.keyValueBegin(); _itr != _ret.keyValueEnd(); ++_itr) {
+		_karr[_ctr] = _itr->first;
+		QByteArray _hashval_qb = _itr->second;
+		struct miqt_string _hashval_ms;
+		_hashval_ms.len = _hashval_qb.length();
+		_hashval_ms.data = static_cast<char*>(malloc(_hashval_ms.len));
+		memcpy(_hashval_ms.data, _hashval_qb.data(), _hashval_ms.len);
+		_varr[_ctr] = _hashval_ms;
+		_ctr++;
+	}
+	struct miqt_map _out;
+	_out.len = _ret.size();
+	_out.keys = static_cast<void*>(_karr);
+	_out.values = static_cast<void*>(_varr);
+	return _out;
 }
 
 QModelIndex* QStandardItemModel_Index(const QStandardItemModel* self, int row, int column, QModelIndex* parent) {
@@ -1854,12 +1987,12 @@ bool QStandardItemModel_HasChildren(const QStandardItemModel* self, QModelIndex*
 	return self->hasChildren(*parent);
 }
 
-QModelIndex* QStandardItemModel_Sibling(const QStandardItemModel* self, int row, int column, QModelIndex* idx) {
-	return new QModelIndex(self->sibling(static_cast<int>(row), static_cast<int>(column), *idx));
-}
-
 QVariant* QStandardItemModel_Data(const QStandardItemModel* self, QModelIndex* index, int role) {
 	return new QVariant(self->data(*index, static_cast<int>(role)));
+}
+
+void QStandardItemModel_MultiData(const QStandardItemModel* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan) {
+	self->multiData(*index, *roleDataSpan);
 }
 
 bool QStandardItemModel_SetData(QStandardItemModel* self, QModelIndex* index, QVariant* value, int role) {
@@ -2201,28 +2334,6 @@ struct miqt_string QStandardItemModel_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QStandardItemModel_TrUtf82(const char* s, const char* c) {
-	QString _ret = QStandardItemModel::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStandardItemModel_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QStandardItemModel::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QStandardItem* QStandardItemModel_Item2(const QStandardItemModel* self, int row, int column) {
 	return self->item(static_cast<int>(row), static_cast<int>(column));
 }
@@ -2267,6 +2378,14 @@ struct miqt_array /* of QStandardItem* */  QStandardItemModel_FindItems3(const Q
 	return _out;
 }
 
+void QStandardItemModel_override_virtual_RoleNames(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__RoleNames = slot;
+}
+
+struct miqt_map /* of int to struct miqt_string */  QStandardItemModel_virtualbase_RoleNames(const void* self) {
+	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_RoleNames();
+}
+
 void QStandardItemModel_override_virtual_Index(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__Index = slot;
 }
@@ -2307,14 +2426,6 @@ bool QStandardItemModel_virtualbase_HasChildren(const void* self, QModelIndex* p
 	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_HasChildren(parent);
 }
 
-void QStandardItemModel_override_virtual_Sibling(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__Sibling = slot;
-}
-
-QModelIndex* QStandardItemModel_virtualbase_Sibling(const void* self, int row, int column, QModelIndex* idx) {
-	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_Sibling(row, column, idx);
-}
-
 void QStandardItemModel_override_virtual_Data(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__Data = slot;
 }
@@ -2323,12 +2434,28 @@ QVariant* QStandardItemModel_virtualbase_Data(const void* self, QModelIndex* ind
 	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_Data(index, role);
 }
 
+void QStandardItemModel_override_virtual_MultiData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__MultiData = slot;
+}
+
+void QStandardItemModel_virtualbase_MultiData(const void* self, QModelIndex* index, QModelRoleDataSpan* roleDataSpan) {
+	( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_MultiData(index, roleDataSpan);
+}
+
 void QStandardItemModel_override_virtual_SetData(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__SetData = slot;
 }
 
 bool QStandardItemModel_virtualbase_SetData(void* self, QModelIndex* index, QVariant* value, int role) {
 	return ( (MiqtVirtualQStandardItemModel*)(self) )->virtualbase_SetData(index, value, role);
+}
+
+void QStandardItemModel_override_virtual_ClearItemData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__ClearItemData = slot;
+}
+
+bool QStandardItemModel_virtualbase_ClearItemData(void* self, QModelIndex* index) {
+	return ( (MiqtVirtualQStandardItemModel*)(self) )->virtualbase_ClearItemData(index);
 }
 
 void QStandardItemModel_override_virtual_HeaderData(void* self, intptr_t slot) {
@@ -2443,6 +2570,14 @@ bool QStandardItemModel_virtualbase_DropMimeData(void* self, QMimeData* data, in
 	return ( (MiqtVirtualQStandardItemModel*)(self) )->virtualbase_DropMimeData(data, action, row, column, parent);
 }
 
+void QStandardItemModel_override_virtual_Sibling(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__Sibling = slot;
+}
+
+QModelIndex* QStandardItemModel_virtualbase_Sibling(const void* self, int row, int column, QModelIndex* idx) {
+	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_Sibling(row, column, idx);
+}
+
 void QStandardItemModel_override_virtual_CanDropMimeData(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__CanDropMimeData = slot;
 }
@@ -2515,14 +2650,6 @@ QSize* QStandardItemModel_virtualbase_Span(const void* self, QModelIndex* index)
 	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_Span(index);
 }
 
-void QStandardItemModel_override_virtual_RoleNames(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__RoleNames = slot;
-}
-
-struct miqt_map /* of int to struct miqt_string */  QStandardItemModel_virtualbase_RoleNames(const void* self) {
-	return ( (const MiqtVirtualQStandardItemModel*)(self) )->virtualbase_RoleNames();
-}
-
 void QStandardItemModel_override_virtual_Submit(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__Submit = slot;
 }
@@ -2537,6 +2664,14 @@ void QStandardItemModel_override_virtual_Revert(void* self, intptr_t slot) {
 
 void QStandardItemModel_virtualbase_Revert(void* self) {
 	( (MiqtVirtualQStandardItemModel*)(self) )->virtualbase_Revert();
+}
+
+void QStandardItemModel_override_virtual_ResetInternalData(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStandardItemModel*>( (QStandardItemModel*)(self) )->handle__ResetInternalData = slot;
+}
+
+void QStandardItemModel_virtualbase_ResetInternalData(void* self) {
+	( (MiqtVirtualQStandardItemModel*)(self) )->virtualbase_ResetInternalData();
 }
 
 void QStandardItemModel_Delete(QStandardItemModel* self, bool isSubclass) {

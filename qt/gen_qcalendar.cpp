@@ -1,4 +1,8 @@
+// +build ignore
+
+#include <QAnyStringView>
 #include <QCalendar>
+#define WORKAROUND_INNER_CLASS_DEFINITION_QCalendar__SystemId
 #define WORKAROUND_INNER_CLASS_DEFINITION_QCalendar__YearMonthDay
 #include <QDate>
 #include <QList>
@@ -12,14 +16,37 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QCalendar* QCalendar_new() {
 	return new QCalendar();
 }
 
-QCalendar* QCalendar_new2(int system) {
-	return new QCalendar(static_cast<QCalendar::System>(system));
+QCalendar* QCalendar_new2(System system) {
+	return new QCalendar(system);
+}
+
+QCalendar* QCalendar_new3(QAnyStringView* name) {
+	return new QCalendar(*name);
+}
+
+QCalendar* QCalendar_new4(SystemId id) {
+	return new QCalendar(id);
 }
 
 bool QCalendar_IsValid(const QCalendar* self) {
@@ -97,12 +124,16 @@ QDate* QCalendar_DateFromParts(const QCalendar* self, int year, int month, int d
 	return new QDate(self->dateFromParts(static_cast<int>(year), static_cast<int>(month), static_cast<int>(day)));
 }
 
-QDate* QCalendar_DateFromPartsWithParts(const QCalendar* self, QCalendar__YearMonthDay* parts) {
+QDate* QCalendar_DateFromPartsWithParts(const QCalendar* self, const YearMonthDay* parts) {
 	return new QDate(self->dateFromParts(*parts));
 }
 
-QCalendar__YearMonthDay* QCalendar_PartsFromDate(const QCalendar* self, QDate* date) {
-	return new QCalendar::YearMonthDay(self->partsFromDate(*date));
+QDate* QCalendar_MatchCenturyToWeekday(const QCalendar* self, const YearMonthDay* parts, int dow) {
+	return new QDate(self->matchCenturyToWeekday(*parts, static_cast<int>(dow)));
+}
+
+YearMonthDay QCalendar_PartsFromDate(const QCalendar* self, QDate* date) {
+	return self->partsFromDate(*date);
 }
 
 int QCalendar_DayOfWeek(const QCalendar* self, QDate* date) {
@@ -274,6 +305,27 @@ bool QCalendar__YearMonthDay_IsValid(const QCalendar__YearMonthDay* self) {
 void QCalendar__YearMonthDay_Delete(QCalendar__YearMonthDay* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<QCalendar::YearMonthDay*>( self );
+	} else {
+		delete self;
+	}
+}
+
+QCalendar__SystemId* QCalendar__SystemId_new() {
+	return new QCalendar::SystemId();
+}
+
+unsigned long long QCalendar__SystemId_Index(const QCalendar__SystemId* self) {
+	size_t _ret = self->index();
+	return static_cast<unsigned long long>(_ret);
+}
+
+bool QCalendar__SystemId_IsValid(const QCalendar__SystemId* self) {
+	return self->isValid();
+}
+
+void QCalendar__SystemId_Delete(QCalendar__SystemId* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QCalendar::SystemId*>( self );
 	} else {
 		delete self;
 	}

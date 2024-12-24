@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEasingCurve>
 #include <QEvent>
@@ -15,7 +17,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTimeLine : public virtual QTimeLine {
 public:
@@ -258,20 +275,8 @@ struct miqt_string QTimeLine_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTimeLine_TrUtf8(const char* s) {
-	QString _ret = QTimeLine::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QTimeLine_State(const QTimeLine* self) {
-	QTimeLine::State _ret = self->state();
-	return static_cast<int>(_ret);
+State QTimeLine_State(const QTimeLine* self) {
+	return self->state();
 }
 
 int QTimeLine_LoopCount(const QTimeLine* self) {
@@ -282,13 +287,12 @@ void QTimeLine_SetLoopCount(QTimeLine* self, int count) {
 	self->setLoopCount(static_cast<int>(count));
 }
 
-int QTimeLine_Direction(const QTimeLine* self) {
-	QTimeLine::Direction _ret = self->direction();
-	return static_cast<int>(_ret);
+Direction QTimeLine_Direction(const QTimeLine* self) {
+	return self->direction();
 }
 
-void QTimeLine_SetDirection(QTimeLine* self, int direction) {
-	self->setDirection(static_cast<QTimeLine::Direction>(direction));
+void QTimeLine_SetDirection(QTimeLine* self, Direction direction) {
+	self->setDirection(direction);
 }
 
 int QTimeLine_Duration(const QTimeLine* self) {
@@ -325,15 +329,6 @@ int QTimeLine_UpdateInterval(const QTimeLine* self) {
 
 void QTimeLine_SetUpdateInterval(QTimeLine* self, int interval) {
 	self->setUpdateInterval(static_cast<int>(interval));
-}
-
-int QTimeLine_CurveShape(const QTimeLine* self) {
-	QTimeLine::CurveShape _ret = self->curveShape();
-	return static_cast<int>(_ret);
-}
-
-void QTimeLine_SetCurveShape(QTimeLine* self, int shape) {
-	self->setCurveShape(static_cast<QTimeLine::CurveShape>(shape));
 }
 
 QEasingCurve* QTimeLine_EasingCurve(const QTimeLine* self) {
@@ -403,28 +398,6 @@ struct miqt_string QTimeLine_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTimeLine_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTimeLine::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTimeLine_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTimeLine::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTimeLine_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTimeLine::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

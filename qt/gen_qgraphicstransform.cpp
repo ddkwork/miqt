@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QGraphicsRotation>
@@ -18,7 +20,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsTransform : public virtual QGraphicsTransform {
 public:
@@ -248,17 +265,6 @@ struct miqt_string QGraphicsTransform_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsTransform_TrUtf8(const char* s) {
-	QString _ret = QGraphicsTransform::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsTransform_ApplyTo(const QGraphicsTransform* self, QMatrix4x4* matrix) {
 	self->applyTo(matrix);
 }
@@ -276,28 +282,6 @@ struct miqt_string QGraphicsTransform_Tr2(const char* s, const char* c) {
 
 struct miqt_string QGraphicsTransform_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QGraphicsTransform::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsTransform_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsTransform::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsTransform_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsTransform::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -440,17 +424,6 @@ struct miqt_string QGraphicsScale_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsScale_TrUtf8(const char* s) {
-	QString _ret = QGraphicsScale::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QVector3D* QGraphicsScale_Origin(const QGraphicsScale* self) {
 	return new QVector3D(self->origin());
 }
@@ -562,28 +535,6 @@ struct miqt_string QGraphicsScale_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QGraphicsScale_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsScale::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsScale_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsScale::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QGraphicsScale_override_virtual_ApplyTo(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQGraphicsScale*>( (QGraphicsScale*)(self) )->handle__ApplyTo = slot;
 }
@@ -656,17 +607,6 @@ void* QGraphicsRotation_Metacast(QGraphicsRotation* self, const char* param1) {
 
 struct miqt_string QGraphicsRotation_Tr(const char* s) {
 	QString _ret = QGraphicsRotation::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsRotation_TrUtf8(const char* s) {
-	QString _ret = QGraphicsRotation::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -752,28 +692,6 @@ struct miqt_string QGraphicsRotation_Tr2(const char* s, const char* c) {
 
 struct miqt_string QGraphicsRotation_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QGraphicsRotation::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsRotation_TrUtf82(const char* s, const char* c) {
-	QString _ret = QGraphicsRotation::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QGraphicsRotation_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QGraphicsRotation::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

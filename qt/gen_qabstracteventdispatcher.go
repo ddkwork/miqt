@@ -1,180 +1,145 @@
 package qt
 
-/*
-
-#include "gen_qabstracteventdispatcher.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
 type QAbstractEventDispatcher struct {
-	h          *C.QAbstractEventDispatcher
+	h          uintptr
 	isSubclass bool
-	*QObject
-}
-
-func (this *QAbstractEventDispatcher) cPointer() *C.QAbstractEventDispatcher {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QAbstractEventDispatcher) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQAbstractEventDispatcher constructs the type using only CGO pointers.
-func newQAbstractEventDispatcher(h *C.QAbstractEventDispatcher) *QAbstractEventDispatcher {
-	if h == nil {
-		return nil
-	}
-	var outptr_QObject *C.QObject = nil
-	C.QAbstractEventDispatcher_virtbase(h, &outptr_QObject)
-
-	return &QAbstractEventDispatcher{h: h,
-		QObject: newQObject(outptr_QObject)}
-}
-
-// UnsafeNewQAbstractEventDispatcher constructs the type using only unsafe pointers.
-func UnsafeNewQAbstractEventDispatcher(h unsafe.Pointer) *QAbstractEventDispatcher {
-	return newQAbstractEventDispatcher((*C.QAbstractEventDispatcher)(h))
 }
 
 func (this *QAbstractEventDispatcher) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QAbstractEventDispatcher_MetaObject(this.h))
+	return newQMetaObject(QAbstractEventDispatcher_MetaObject(this.h))
 }
 
 func (this *QAbstractEventDispatcher) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QAbstractEventDispatcher_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QAbstractEventDispatcher_Metacast(this.h, param1_Cstring))
 }
 
 func QAbstractEventDispatcher_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractEventDispatcher_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractEventDispatcher_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractEventDispatcher_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QAbstractEventDispatcher_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QAbstractEventDispatcher_Instance() *QAbstractEventDispatcher {
-	return newQAbstractEventDispatcher(C.QAbstractEventDispatcher_Instance())
+	return newQAbstractEventDispatcher(QAbstractEventDispatcher_Instance())
 }
 
-func (this *QAbstractEventDispatcher) ProcessEvents(flags QEventLoop__ProcessEventsFlag) bool {
-	return (bool)(C.QAbstractEventDispatcher_ProcessEvents(this.h, (C.int)(flags)))
-}
-
-func (this *QAbstractEventDispatcher) HasPendingEvents() bool {
-	return (bool)(C.QAbstractEventDispatcher_HasPendingEvents(this.h))
+func (this *QAbstractEventDispatcher) ProcessEvents(flags ProcessEventsFlag) bool {
+	return (bool)(QAbstractEventDispatcher_ProcessEvents(this.h, (int)(flags)))
 }
 
 func (this *QAbstractEventDispatcher) RegisterSocketNotifier(notifier *QSocketNotifier) {
-	C.QAbstractEventDispatcher_RegisterSocketNotifier(this.h, notifier.cPointer())
+	QAbstractEventDispatcher_RegisterSocketNotifier(this.h, notifier.cPointer())
 }
 
 func (this *QAbstractEventDispatcher) UnregisterSocketNotifier(notifier *QSocketNotifier) {
-	C.QAbstractEventDispatcher_UnregisterSocketNotifier(this.h, notifier.cPointer())
+	QAbstractEventDispatcher_UnregisterSocketNotifier(this.h, notifier.cPointer())
 }
 
-func (this *QAbstractEventDispatcher) RegisterTimer(interval int, timerType TimerType, object *QObject) int {
-	return (int)(C.QAbstractEventDispatcher_RegisterTimer(this.h, (C.int)(interval), (C.int)(timerType), object.cPointer()))
+func (this *QAbstractEventDispatcher) RegisterTimer(interval Duration, timerType TimerType, object *QObject) TimerId {
+	return (TimerId)(QAbstractEventDispatcher_RegisterTimer(this.h, interval, (int)(timerType), object.cPointer()))
 }
 
-func (this *QAbstractEventDispatcher) RegisterTimer2(timerId int, interval int, timerType TimerType, object *QObject) {
-	C.QAbstractEventDispatcher_RegisterTimer2(this.h, (C.int)(timerId), (C.int)(interval), (C.int)(timerType), object.cPointer())
+func (this *QAbstractEventDispatcher) RegisterTimer2(interval int64, timerType TimerType, object *QObject) int {
+	return (int)(QAbstractEventDispatcher_RegisterTimer2(this.h, (longlong)(interval), (int)(timerType), object.cPointer()))
+}
+
+func (this *QAbstractEventDispatcher) RegisterTimer3(timerId int, interval int64, timerType TimerType, object *QObject) {
+	QAbstractEventDispatcher_RegisterTimer3(this.h, (int)(timerId), (longlong)(interval), (int)(timerType), object.cPointer())
 }
 
 func (this *QAbstractEventDispatcher) UnregisterTimer(timerId int) bool {
-	return (bool)(C.QAbstractEventDispatcher_UnregisterTimer(this.h, (C.int)(timerId)))
+	return (bool)(QAbstractEventDispatcher_UnregisterTimer(this.h, (int)(timerId)))
 }
 
 func (this *QAbstractEventDispatcher) UnregisterTimers(object *QObject) bool {
-	return (bool)(C.QAbstractEventDispatcher_UnregisterTimers(this.h, object.cPointer()))
+	return (bool)(QAbstractEventDispatcher_UnregisterTimers(this.h, object.cPointer()))
 }
 
-func (this *QAbstractEventDispatcher) RegisteredTimers(object *QObject) []QAbstractEventDispatcher__TimerInfo {
-	var _ma C.struct_miqt_array = C.QAbstractEventDispatcher_RegisteredTimers(this.h, object.cPointer())
-	_ret := make([]QAbstractEventDispatcher__TimerInfo, int(_ma.len))
-	_outCast := (*[0xffff]*C.QAbstractEventDispatcher__TimerInfo)(unsafe.Pointer(_ma.data)) // hey ya
+func (this *QAbstractEventDispatcher) RegisteredTimers(object *QObject) []TimerInfo {
+	var _ma struct_miqt_array = QAbstractEventDispatcher_RegisteredTimers(this.h, object.cPointer())
+	_ret := make([]TimerInfo, int(_ma.len))
+	_outCast := (*[0xffff]TimerInfo)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
-		_lv_goptr := newQAbstractEventDispatcher__TimerInfo(_outCast[i])
-		_lv_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
-		_ret[i] = *_lv_goptr
+		xxxxxxxxx
 	}
 	return _ret
 }
 
 func (this *QAbstractEventDispatcher) RemainingTime(timerId int) int {
-	return (int)(C.QAbstractEventDispatcher_RemainingTime(this.h, (C.int)(timerId)))
+	return (int)(QAbstractEventDispatcher_RemainingTime(this.h, (int)(timerId)))
+}
+
+func (this *QAbstractEventDispatcher) RegisterTimer4(timerId TimerId, interval Duration, timerType TimerType, object *QObject) {
+	QAbstractEventDispatcher_RegisterTimer4(this.h, (int)(timerId), interval, (int)(timerType), object.cPointer())
+}
+
+func (this *QAbstractEventDispatcher) UnregisterTimerWithTimerId(timerId TimerId) bool {
+	return (bool)(QAbstractEventDispatcher_UnregisterTimerWithTimerId(this.h, (int)(timerId)))
+}
+
+func (this *QAbstractEventDispatcher) TimersForObject(object *QObject) []TimerInfoV2 {
+	var _ma struct_miqt_array = QAbstractEventDispatcher_TimersForObject(this.h, object.cPointer())
+	_ret := make([]TimerInfoV2, int(_ma.len))
+	_outCast := (*[0xffff]TimerInfoV2)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		xxxxxxxxx
+	}
+	return _ret
+}
+
+func (this *QAbstractEventDispatcher) RemainingTimeWithTimerId(timerId TimerId) Duration {
+	xxxxxxxxx
 }
 
 func (this *QAbstractEventDispatcher) WakeUp() {
-	C.QAbstractEventDispatcher_WakeUp(this.h)
+	QAbstractEventDispatcher_WakeUp(this.h)
 }
 
 func (this *QAbstractEventDispatcher) Interrupt() {
-	C.QAbstractEventDispatcher_Interrupt(this.h)
-}
-
-func (this *QAbstractEventDispatcher) Flush() {
-	C.QAbstractEventDispatcher_Flush(this.h)
+	QAbstractEventDispatcher_Interrupt(this.h)
 }
 
 func (this *QAbstractEventDispatcher) StartingUp() {
-	C.QAbstractEventDispatcher_StartingUp(this.h)
+	QAbstractEventDispatcher_StartingUp(this.h)
 }
 
 func (this *QAbstractEventDispatcher) ClosingDown() {
-	C.QAbstractEventDispatcher_ClosingDown(this.h)
+	QAbstractEventDispatcher_ClosingDown(this.h)
 }
 
 func (this *QAbstractEventDispatcher) InstallNativeEventFilter(filterObj *QAbstractNativeEventFilter) {
-	C.QAbstractEventDispatcher_InstallNativeEventFilter(this.h, filterObj.cPointer())
+	QAbstractEventDispatcher_InstallNativeEventFilter(this.h, filterObj.cPointer())
 }
 
 func (this *QAbstractEventDispatcher) RemoveNativeEventFilter(filterObj *QAbstractNativeEventFilter) {
-	C.QAbstractEventDispatcher_RemoveNativeEventFilter(this.h, filterObj.cPointer())
+	QAbstractEventDispatcher_RemoveNativeEventFilter(this.h, filterObj.cPointer())
 }
 
-func (this *QAbstractEventDispatcher) FilterNativeEvent(eventType []byte, message unsafe.Pointer, result *int64) bool {
-	eventType_alias := C.struct_miqt_string{}
-	eventType_alias.data = (*C.char)(unsafe.Pointer(&eventType[0]))
-	eventType_alias.len = C.size_t(len(eventType))
-	return (bool)(C.QAbstractEventDispatcher_FilterNativeEvent(this.h, eventType_alias, message, (*C.long)(unsafe.Pointer(result))))
+func (this *QAbstractEventDispatcher) FilterNativeEvent(eventType []byte, message unsafe.Pointer, result *uintptr) bool {
+	eventType_alias := struct_miqt_string{}
+	eventType_alias.data = (char)(unsafe.Pointer(&eventType[0]))
+	eventType_alias.len = size_t(len(eventType))
+	return (bool)(QAbstractEventDispatcher_FilterNativeEvent(this.h, eventType_alias, message, (*intptr_t)(unsafe.Pointer(result))))
 }
 
 func (this *QAbstractEventDispatcher) AboutToBlock() {
-	C.QAbstractEventDispatcher_AboutToBlock(this.h)
+	QAbstractEventDispatcher_AboutToBlock(this.h)
 }
 func (this *QAbstractEventDispatcher) OnAboutToBlock(slot func()) {
-	C.QAbstractEventDispatcher_connect_AboutToBlock(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractEventDispatcher_connect_AboutToBlock(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractEventDispatcher_AboutToBlock
-func miqt_exec_callback_QAbstractEventDispatcher_AboutToBlock(cb C.intptr_t) {
+func miqt_exec_callback_QAbstractEventDispatcher_AboutToBlock(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -184,14 +149,14 @@ func miqt_exec_callback_QAbstractEventDispatcher_AboutToBlock(cb C.intptr_t) {
 }
 
 func (this *QAbstractEventDispatcher) Awake() {
-	C.QAbstractEventDispatcher_Awake(this.h)
+	QAbstractEventDispatcher_Awake(this.h)
 }
 func (this *QAbstractEventDispatcher) OnAwake(slot func()) {
-	C.QAbstractEventDispatcher_connect_Awake(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QAbstractEventDispatcher_connect_Awake(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QAbstractEventDispatcher_Awake
-func miqt_exec_callback_QAbstractEventDispatcher_Awake(cb C.intptr_t) {
+func miqt_exec_callback_QAbstractEventDispatcher_Awake(cb intptr_t) {
 	gofunc, ok := cgo.Handle(cb).Value().(func())
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -201,118 +166,157 @@ func miqt_exec_callback_QAbstractEventDispatcher_Awake(cb C.intptr_t) {
 }
 
 func QAbstractEventDispatcher_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractEventDispatcher_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractEventDispatcher_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QAbstractEventDispatcher_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractEventDispatcher_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractEventDispatcher_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractEventDispatcher_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QAbstractEventDispatcher_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QAbstractEventDispatcher_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractEventDispatcher_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QAbstractEventDispatcher_Instance1(thread *QThread) *QAbstractEventDispatcher {
-	return newQAbstractEventDispatcher(C.QAbstractEventDispatcher_Instance1(thread.cPointer()))
+	return newQAbstractEventDispatcher(QAbstractEventDispatcher_Instance1(thread.cPointer()))
 }
 
-// Delete this object from C++ memory.
-func (this *QAbstractEventDispatcher) Delete() {
-	C.QAbstractEventDispatcher_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QAbstractEventDispatcher) GoGC() {
-	runtime.SetFinalizer(this, func(this *QAbstractEventDispatcher) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
-}
-
-type QAbstractEventDispatcher__TimerInfo struct {
-	h          *C.QAbstractEventDispatcher__TimerInfo
+type QAbstractEventDispatcherV2 struct {
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QAbstractEventDispatcher__TimerInfo) cPointer() *C.QAbstractEventDispatcher__TimerInfo {
-	if this == nil {
-		return nil
-	}
-	return this.h
+// NewQAbstractEventDispatcherV2 constructs a new QAbstractEventDispatcherV2 object.
+func NewQAbstractEventDispatcherV2() *QAbstractEventDispatcherV2 {
+
+	ret := newQAbstractEventDispatcherV2(QAbstractEventDispatcherV2_new())
+	ret.isSubclass = true
+	return ret
 }
 
-func (this *QAbstractEventDispatcher__TimerInfo) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
+// NewQAbstractEventDispatcherV22 constructs a new QAbstractEventDispatcherV2 object.
+func NewQAbstractEventDispatcherV22(parent *QObject) *QAbstractEventDispatcherV2 {
+
+	ret := newQAbstractEventDispatcherV2(QAbstractEventDispatcherV2_new2(parent.cPointer()))
+	ret.isSubclass = true
+	return ret
 }
 
-// newQAbstractEventDispatcher__TimerInfo constructs the type using only CGO pointers.
-func newQAbstractEventDispatcher__TimerInfo(h *C.QAbstractEventDispatcher__TimerInfo) *QAbstractEventDispatcher__TimerInfo {
-	if h == nil {
-		return nil
-	}
-
-	return &QAbstractEventDispatcher__TimerInfo{h: h}
+func (this *QAbstractEventDispatcherV2) MetaObject() *QMetaObject {
+	return newQMetaObject(QAbstractEventDispatcherV2_MetaObject(this.h))
 }
 
-// UnsafeNewQAbstractEventDispatcher__TimerInfo constructs the type using only unsafe pointers.
-func UnsafeNewQAbstractEventDispatcher__TimerInfo(h unsafe.Pointer) *QAbstractEventDispatcher__TimerInfo {
-	return newQAbstractEventDispatcher__TimerInfo((*C.QAbstractEventDispatcher__TimerInfo)(h))
+func (this *QAbstractEventDispatcherV2) Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QAbstractEventDispatcherV2_Metacast(this.h, param1_Cstring))
+}
+
+func QAbstractEventDispatcherV2_Tr(s string) string {
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QAbstractEventDispatcherV2_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QAbstractEventDispatcherV2) RegisterTimer(timerId TimerId, interval Duration, timerType TimerType, object *QObject) {
+	QAbstractEventDispatcherV2_RegisterTimer(this.h, (int)(timerId), interval, (int)(timerType), object.cPointer())
+}
+
+func (this *QAbstractEventDispatcherV2) UnregisterTimer(timerId TimerId) bool {
+	return (bool)(QAbstractEventDispatcherV2_UnregisterTimer(this.h, (int)(timerId)))
+}
+
+func (this *QAbstractEventDispatcherV2) TimersForObject(object *QObject) []TimerInfoV2 {
+	var _ma struct_miqt_array = QAbstractEventDispatcherV2_TimersForObject(this.h, object.cPointer())
+	_ret := make([]TimerInfoV2, int(_ma.len))
+	_outCast := (*[0xffff]TimerInfoV2)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		xxxxxxxxx
+	}
+	return _ret
+}
+
+func (this *QAbstractEventDispatcherV2) RemainingTime(timerId TimerId) Duration {
+	xxxxxxxxx
+}
+
+func (this *QAbstractEventDispatcherV2) ProcessEventsWithDeadline(flags ProcessEventsFlag, deadline QDeadlineTimer) bool {
+	return (bool)(QAbstractEventDispatcherV2_ProcessEventsWithDeadline(this.h, (int)(flags), deadline.cPointer()))
+}
+
+func QAbstractEventDispatcherV2_Tr2(s string, c string) string {
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractEventDispatcherV2_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func QAbstractEventDispatcherV2_Tr3(s string, c string, n int) string {
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QAbstractEventDispatcherV2_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+type QAbstractEventDispatcher__TimerInfo struct {
+	h          uintptr
+	isSubclass bool
 }
 
 // NewQAbstractEventDispatcher__TimerInfo constructs a new QAbstractEventDispatcher::TimerInfo object.
 func NewQAbstractEventDispatcher__TimerInfo(id int, i int, t TimerType) *QAbstractEventDispatcher__TimerInfo {
 
-	ret := newQAbstractEventDispatcher__TimerInfo(C.QAbstractEventDispatcher__TimerInfo_new((C.int)(id), (C.int)(i), (C.int)(t)))
+	ret := newQAbstractEventDispatcher__TimerInfo(QAbstractEventDispatcher__TimerInfo_new((int)(id), (int)(i), (int)(t)))
 	ret.isSubclass = true
 	return ret
 }
 
-// Delete this object from C++ memory.
-func (this *QAbstractEventDispatcher__TimerInfo) Delete() {
-	C.QAbstractEventDispatcher__TimerInfo_Delete(this.h, C.bool(this.isSubclass))
+// NewQAbstractEventDispatcher__TimerInfo2 constructs a new QAbstractEventDispatcher::TimerInfo object.
+func NewQAbstractEventDispatcher__TimerInfo2(param1 *TimerInfo) *QAbstractEventDispatcher__TimerInfo {
+
+	ret := newQAbstractEventDispatcher__TimerInfo(QAbstractEventDispatcher__TimerInfo_new2(param1))
+	ret.isSubclass = true
+	return ret
 }
 
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QAbstractEventDispatcher__TimerInfo) GoGC() {
-	runtime.SetFinalizer(this, func(this *QAbstractEventDispatcher__TimerInfo) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+type QAbstractEventDispatcher__TimerInfoV2 struct {
+	h          uintptr
+	isSubclass bool
+}
+
+// NewQAbstractEventDispatcher__TimerInfoV2 constructs a new QAbstractEventDispatcher::TimerInfoV2 object.
+func NewQAbstractEventDispatcher__TimerInfoV2() *QAbstractEventDispatcher__TimerInfoV2 {
+
+	ret := newQAbstractEventDispatcher__TimerInfoV2(QAbstractEventDispatcher__TimerInfoV2_new())
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQAbstractEventDispatcher__TimerInfoV22 constructs a new QAbstractEventDispatcher::TimerInfoV2 object.
+func NewQAbstractEventDispatcher__TimerInfoV22(param1 *TimerInfoV2) *QAbstractEventDispatcher__TimerInfoV2 {
+
+	ret := newQAbstractEventDispatcher__TimerInfoV2(QAbstractEventDispatcher__TimerInfoV2_new2(param1))
+	ret.isSubclass = true
+	return ret
 }

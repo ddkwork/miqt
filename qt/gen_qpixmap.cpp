@@ -1,11 +1,11 @@
+// +build ignore
+
 #include <QBitmap>
 #include <QByteArray>
 #include <QColor>
 #include <QIODevice>
 #include <QImage>
 #include <QImageReader>
-#include <QMatrix>
-#include <QObject>
 #include <QPaintDevice>
 #include <QPaintEngine>
 #include <QPainter>
@@ -14,6 +14,7 @@
 #include <QRect>
 #include <QRegion>
 #include <QSize>
+#include <QSizeF>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -24,7 +25,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQPixmap : public virtual QPixmap {
 public:
@@ -87,13 +103,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QPixmap::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QPixmap_Metric(const_cast<MiqtVirtualQPixmap*>(this), handle__Metric, sigval1);
 
@@ -101,9 +116,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QPixmap::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QPixmap::metric(param1);
 
 	}
 
@@ -257,14 +272,6 @@ void QPixmap_Fill(QPixmap* self) {
 	self->fill();
 }
 
-void QPixmap_Fill2(QPixmap* self, QPaintDevice* device, QPoint* ofs) {
-	self->fill(device, *ofs);
-}
-
-void QPixmap_Fill3(QPixmap* self, QPaintDevice* device, int xofs, int yofs) {
-	self->fill(device, static_cast<int>(xofs), static_cast<int>(yofs));
-}
-
 QBitmap* QPixmap_Mask(const QPixmap* self) {
 	return new QBitmap(self->mask());
 }
@@ -280,6 +287,10 @@ double QPixmap_DevicePixelRatio(const QPixmap* self) {
 
 void QPixmap_SetDevicePixelRatio(QPixmap* self, double scaleFactor) {
 	self->setDevicePixelRatio(static_cast<qreal>(scaleFactor));
+}
+
+QSizeF* QPixmap_DeviceIndependentSize(const QPixmap* self) {
+	return new QSizeF(self->deviceIndependentSize());
 }
 
 bool QPixmap_HasAlpha(const QPixmap* self) {
@@ -298,18 +309,6 @@ QBitmap* QPixmap_CreateMaskFromColor(const QPixmap* self, QColor* maskColor) {
 	return new QBitmap(self->createMaskFromColor(*maskColor));
 }
 
-QPixmap* QPixmap_GrabWindow(uintptr_t param1) {
-	return new QPixmap(QPixmap::grabWindow(static_cast<WId>(param1)));
-}
-
-QPixmap* QPixmap_GrabWidget(QObject* widget, QRect* rect) {
-	return new QPixmap(QPixmap::grabWidget(widget, *rect));
-}
-
-QPixmap* QPixmap_GrabWidgetWithWidget(QObject* widget) {
-	return new QPixmap(QPixmap::grabWidget(widget));
-}
-
 QPixmap* QPixmap_Scaled(const QPixmap* self, int w, int h) {
 	return new QPixmap(self->scaled(static_cast<int>(w), static_cast<int>(h)));
 }
@@ -326,19 +325,11 @@ QPixmap* QPixmap_ScaledToHeight(const QPixmap* self, int h) {
 	return new QPixmap(self->scaledToHeight(static_cast<int>(h)));
 }
 
-QPixmap* QPixmap_Transformed(const QPixmap* self, QMatrix* param1) {
+QPixmap* QPixmap_Transformed(const QPixmap* self, QTransform* param1) {
 	return new QPixmap(self->transformed(*param1));
 }
 
-QMatrix* QPixmap_TrueMatrix(QMatrix* m, int w, int h) {
-	return new QMatrix(QPixmap::trueMatrix(*m, static_cast<int>(w), static_cast<int>(h)));
-}
-
-QPixmap* QPixmap_TransformedWithQTransform(const QPixmap* self, QTransform* param1) {
-	return new QPixmap(self->transformed(*param1));
-}
-
-QTransform* QPixmap_TrueMatrix2(QTransform* m, int w, int h) {
+QTransform* QPixmap_TrueMatrix(QTransform* m, int w, int h) {
 	return new QTransform(QPixmap::trueMatrix(*m, static_cast<int>(w), static_cast<int>(h)));
 }
 
@@ -422,6 +413,10 @@ bool QPixmap_OperatorNot(const QPixmap* self) {
 	return self->operator!();
 }
 
+DataPtr* QPixmap_DataPtr(QPixmap* self) {
+	return &self->data_ptr();
+}
+
 void QPixmap_Fill1(QPixmap* self, QColor* fillColor) {
 	self->fill(*fillColor);
 }
@@ -432,38 +427,6 @@ QBitmap* QPixmap_CreateHeuristicMask1(const QPixmap* self, bool clipTight) {
 
 QBitmap* QPixmap_CreateMaskFromColor2(const QPixmap* self, QColor* maskColor, int mode) {
 	return new QBitmap(self->createMaskFromColor(*maskColor, static_cast<Qt::MaskMode>(mode)));
-}
-
-QPixmap* QPixmap_GrabWindow2(uintptr_t param1, int x) {
-	return new QPixmap(QPixmap::grabWindow(static_cast<WId>(param1), static_cast<int>(x)));
-}
-
-QPixmap* QPixmap_GrabWindow3(uintptr_t param1, int x, int y) {
-	return new QPixmap(QPixmap::grabWindow(static_cast<WId>(param1), static_cast<int>(x), static_cast<int>(y)));
-}
-
-QPixmap* QPixmap_GrabWindow4(uintptr_t param1, int x, int y, int w) {
-	return new QPixmap(QPixmap::grabWindow(static_cast<WId>(param1), static_cast<int>(x), static_cast<int>(y), static_cast<int>(w)));
-}
-
-QPixmap* QPixmap_GrabWindow5(uintptr_t param1, int x, int y, int w, int h) {
-	return new QPixmap(QPixmap::grabWindow(static_cast<WId>(param1), static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h)));
-}
-
-QPixmap* QPixmap_GrabWidget2(QObject* widget, int x) {
-	return new QPixmap(QPixmap::grabWidget(widget, static_cast<int>(x)));
-}
-
-QPixmap* QPixmap_GrabWidget3(QObject* widget, int x, int y) {
-	return new QPixmap(QPixmap::grabWidget(widget, static_cast<int>(x), static_cast<int>(y)));
-}
-
-QPixmap* QPixmap_GrabWidget4(QObject* widget, int x, int y, int w) {
-	return new QPixmap(QPixmap::grabWidget(widget, static_cast<int>(x), static_cast<int>(y), static_cast<int>(w)));
-}
-
-QPixmap* QPixmap_GrabWidget5(QObject* widget, int x, int y, int w, int h) {
-	return new QPixmap(QPixmap::grabWidget(widget, static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h)));
 }
 
 QPixmap* QPixmap_Scaled3(const QPixmap* self, int w, int h, int aspectMode) {
@@ -490,11 +453,7 @@ QPixmap* QPixmap_ScaledToHeight2(const QPixmap* self, int h, int mode) {
 	return new QPixmap(self->scaledToHeight(static_cast<int>(h), static_cast<Qt::TransformationMode>(mode)));
 }
 
-QPixmap* QPixmap_Transformed2(const QPixmap* self, QMatrix* param1, int mode) {
-	return new QPixmap(self->transformed(*param1, static_cast<Qt::TransformationMode>(mode)));
-}
-
-QPixmap* QPixmap_Transformed22(const QPixmap* self, QTransform* param1, int mode) {
+QPixmap* QPixmap_Transformed2(const QPixmap* self, QTransform* param1, int mode) {
 	return new QPixmap(self->transformed(*param1, static_cast<Qt::TransformationMode>(mode)));
 }
 
@@ -588,7 +547,7 @@ void QPixmap_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQPixmap*>( (QPixmap*)(self) )->handle__Metric = slot;
 }
 
-int QPixmap_virtualbase_Metric(const void* self, int param1) {
+int QPixmap_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQPixmap*)(self) )->virtualbase_Metric(param1);
 }
 

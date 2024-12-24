@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -25,6 +25,8 @@ class QMetaObject;
 class QObject;
 class QTimerEvent;
 class QVariant;
+class _GUID;
+class type_info;
 #else
 typedef struct QChildEvent QChildEvent;
 typedef struct QEvent QEvent;
@@ -36,52 +38,55 @@ typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QTimerEvent QTimerEvent;
 typedef struct QVariant QVariant;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QHttpPart* QHttpPart_new();
-QHttpPart* QHttpPart_new2(QHttpPart* other);
-void QHttpPart_OperatorAssign(QHttpPart* self, QHttpPart* other);
-void QHttpPart_Swap(QHttpPart* self, QHttpPart* other);
-bool QHttpPart_OperatorEqual(const QHttpPart* self, QHttpPart* other);
-bool QHttpPart_OperatorNotEqual(const QHttpPart* self, QHttpPart* other);
-void QHttpPart_SetHeader(QHttpPart* self, int header, QVariant* value);
-void QHttpPart_SetRawHeader(QHttpPart* self, struct miqt_string headerName, struct miqt_string headerValue);
-void QHttpPart_SetBody(QHttpPart* self, struct miqt_string body);
-void QHttpPart_SetBodyDevice(QHttpPart* self, QIODevice* device);
-void QHttpPart_Delete(QHttpPart* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
-QHttpMultiPart* QHttpMultiPart_new();
-QHttpMultiPart* QHttpMultiPart_new2(int contentType);
-QHttpMultiPart* QHttpMultiPart_new3(QObject* parent);
-QHttpMultiPart* QHttpMultiPart_new4(int contentType, QObject* parent);
-void QHttpMultiPart_virtbase(QHttpMultiPart* src, QObject** outptr_QObject);
-QMetaObject* QHttpMultiPart_MetaObject(const QHttpMultiPart* self);
-void* QHttpMultiPart_Metacast(QHttpMultiPart* self, const char* param1);
-struct miqt_string QHttpMultiPart_Tr(const char* s);
-struct miqt_string QHttpMultiPart_TrUtf8(const char* s);
-void QHttpMultiPart_Append(QHttpMultiPart* self, QHttpPart* httpPart);
-void QHttpMultiPart_SetContentType(QHttpMultiPart* self, int contentType);
-struct miqt_string QHttpMultiPart_Boundary(const QHttpMultiPart* self);
-void QHttpMultiPart_SetBoundary(QHttpMultiPart* self, struct miqt_string boundary);
-struct miqt_string QHttpMultiPart_Tr2(const char* s, const char* c);
-struct miqt_string QHttpMultiPart_Tr3(const char* s, const char* c, int n);
-struct miqt_string QHttpMultiPart_TrUtf82(const char* s, const char* c);
-struct miqt_string QHttpMultiPart_TrUtf83(const char* s, const char* c, int n);
-void QHttpMultiPart_override_virtual_Event(void* self, intptr_t slot);
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QHttpPart* QHttpPart_new();
+extern __declspec(dllexport) QHttpPart* QHttpPart_new2(QHttpPart* other);
+extern __declspec(dllexport) void QHttpPart_OperatorAssign(QHttpPart* self, QHttpPart* other);
+extern __declspec(dllexport) void QHttpPart_Swap(QHttpPart* self, QHttpPart* other);
+extern __declspec(dllexport) bool QHttpPart_OperatorEqual(const QHttpPart* self, QHttpPart* other);
+extern __declspec(dllexport) bool QHttpPart_OperatorNotEqual(const QHttpPart* self, QHttpPart* other);
+extern __declspec(dllexport) void QHttpPart_SetHeader(QHttpPart* self, int header, QVariant* value);
+extern __declspec(dllexport) void QHttpPart_SetRawHeader(QHttpPart* self, struct miqt_string headerName, struct miqt_string headerValue);
+extern __declspec(dllexport) void QHttpPart_SetBody(QHttpPart* self, struct miqt_string body);
+extern __declspec(dllexport) void QHttpPart_SetBodyDevice(QHttpPart* self, QIODevice* device);
+extern __declspec(dllexport) void QHttpPart_Delete(QHttpPart* self, bool isSubclass);
+
+extern __declspec(dllexport) QHttpMultiPart* QHttpMultiPart_new();
+extern __declspec(dllexport) QHttpMultiPart* QHttpMultiPart_new2(ContentType contentType);
+extern __declspec(dllexport) QHttpMultiPart* QHttpMultiPart_new3(QObject* parent);
+extern __declspec(dllexport) QHttpMultiPart* QHttpMultiPart_new4(ContentType contentType, QObject* parent);
+extern __declspec(dllexport) void QHttpMultiPart_virtbase(QHttpMultiPart* src, QObject** outptr_QObject);
+extern __declspec(dllexport) QMetaObject* QHttpMultiPart_MetaObject(const QHttpMultiPart* self);
+extern __declspec(dllexport) void* QHttpMultiPart_Metacast(QHttpMultiPart* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QHttpMultiPart_Tr(const char* s);
+extern __declspec(dllexport) void QHttpMultiPart_Append(QHttpMultiPart* self, QHttpPart* httpPart);
+extern __declspec(dllexport) void QHttpMultiPart_SetContentType(QHttpMultiPart* self, ContentType contentType);
+extern __declspec(dllexport) struct miqt_string QHttpMultiPart_Boundary(const QHttpMultiPart* self);
+extern __declspec(dllexport) void QHttpMultiPart_SetBoundary(QHttpMultiPart* self, struct miqt_string boundary);
+extern __declspec(dllexport) struct miqt_string QHttpMultiPart_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QHttpMultiPart_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_Event(void* self, intptr_t slot);
 bool QHttpMultiPart_virtualbase_Event(void* self, QEvent* event);
-void QHttpMultiPart_override_virtual_EventFilter(void* self, intptr_t slot);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_EventFilter(void* self, intptr_t slot);
 bool QHttpMultiPart_virtualbase_EventFilter(void* self, QObject* watched, QEvent* event);
-void QHttpMultiPart_override_virtual_TimerEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_TimerEvent(void* self, intptr_t slot);
 void QHttpMultiPart_virtualbase_TimerEvent(void* self, QTimerEvent* event);
-void QHttpMultiPart_override_virtual_ChildEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_ChildEvent(void* self, intptr_t slot);
 void QHttpMultiPart_virtualbase_ChildEvent(void* self, QChildEvent* event);
-void QHttpMultiPart_override_virtual_CustomEvent(void* self, intptr_t slot);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_CustomEvent(void* self, intptr_t slot);
 void QHttpMultiPart_virtualbase_CustomEvent(void* self, QEvent* event);
-void QHttpMultiPart_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QHttpMultiPart_virtualbase_ConnectNotify(void* self, QMetaMethod* signal);
-void QHttpMultiPart_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QHttpMultiPart_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QHttpMultiPart_virtualbase_DisconnectNotify(void* self, QMetaMethod* signal);
-void QHttpMultiPart_Delete(QHttpMultiPart* self, bool isSubclass);
+extern __declspec(dllexport) void QHttpMultiPart_Delete(QHttpMultiPart* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

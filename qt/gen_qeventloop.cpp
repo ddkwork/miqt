@@ -1,4 +1,7 @@
+// +build ignore
+
 #include <QChildEvent>
+#include <QDeadlineTimer>
 #include <QEvent>
 #include <QEventLoop>
 #include <QEventLoopLocker>
@@ -16,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQEventLoop : public virtual QEventLoop {
 public:
@@ -230,31 +248,20 @@ struct miqt_string QEventLoop_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QEventLoop_TrUtf8(const char* s) {
-	QString _ret = QEventLoop::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QEventLoop_ProcessEvents(QEventLoop* self) {
 	return self->processEvents();
 }
 
-void QEventLoop_ProcessEvents2(QEventLoop* self, int flags, int maximumTime) {
-	self->processEvents(static_cast<QEventLoop::ProcessEventsFlags>(flags), static_cast<int>(maximumTime));
+void QEventLoop_ProcessEvents2(QEventLoop* self, ProcessEventsFlags flags, int maximumTime) {
+	self->processEvents(flags, static_cast<int>(maximumTime));
+}
+
+void QEventLoop_ProcessEvents3(QEventLoop* self, ProcessEventsFlags flags, QDeadlineTimer* deadline) {
+	self->processEvents(flags, *deadline);
 }
 
 int QEventLoop_Exec(QEventLoop* self) {
 	return self->exec();
-}
-
-void QEventLoop_Exit(QEventLoop* self) {
-	self->exit();
 }
 
 bool QEventLoop_IsRunning(const QEventLoop* self) {
@@ -267,6 +274,10 @@ void QEventLoop_WakeUp(QEventLoop* self) {
 
 bool QEventLoop_Event(QEventLoop* self, QEvent* event) {
 	return self->event(event);
+}
+
+void QEventLoop_Exit(QEventLoop* self) {
+	self->exit();
 }
 
 void QEventLoop_Quit(QEventLoop* self) {
@@ -295,34 +306,12 @@ struct miqt_string QEventLoop_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QEventLoop_TrUtf82(const char* s, const char* c) {
-	QString _ret = QEventLoop::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+bool QEventLoop_ProcessEvents1(QEventLoop* self, ProcessEventsFlags flags) {
+	return self->processEvents(flags);
 }
 
-struct miqt_string QEventLoop_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QEventLoop::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-bool QEventLoop_ProcessEvents1(QEventLoop* self, int flags) {
-	return self->processEvents(static_cast<QEventLoop::ProcessEventsFlags>(flags));
-}
-
-int QEventLoop_Exec1(QEventLoop* self, int flags) {
-	return self->exec(static_cast<QEventLoop::ProcessEventsFlags>(flags));
+int QEventLoop_Exec1(QEventLoop* self, ProcessEventsFlags flags) {
+	return self->exec(flags);
 }
 
 void QEventLoop_Exit1(QEventLoop* self, int returnCode) {
@@ -403,6 +392,10 @@ QEventLoopLocker* QEventLoopLocker_new2(QEventLoop* loop) {
 
 QEventLoopLocker* QEventLoopLocker_new3(QThread* thread) {
 	return new QEventLoopLocker(thread);
+}
+
+void QEventLoopLocker_Swap(QEventLoopLocker* self, QEventLoopLocker* other) {
+	self->swap(*other);
 }
 
 void QEventLoopLocker_Delete(QEventLoopLocker* self, bool isSubclass) {

@@ -1,13 +1,13 @@
+// +build ignore
+
 #include <QAction>
 #include <QActionGroup>
 #include <QChildEvent>
 #include <QEvent>
 #include <QFont>
-#include <QGraphicsWidget>
 #include <QIcon>
 #include <QKeySequence>
 #include <QList>
-#include <QMenu>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -16,14 +16,28 @@
 #include <cstring>
 #include <QTimerEvent>
 #include <QVariant>
-#include <QWidget>
 #include <qaction.h>
 #include "gen_qaction.h"
 
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAction : public virtual QAction {
 public:
@@ -261,15 +275,17 @@ struct miqt_string QAction_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QAction_TrUtf8(const char* s) {
-	QString _ret = QAction::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+struct miqt_array /* of QObject* */  QAction_AssociatedObjects(const QAction* self) {
+	QList<QObject *> _ret = self->associatedObjects();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QObject** _arr = static_cast<QObject**>(malloc(sizeof(QObject*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = _ret[i];
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
 }
 
 void QAction_SetActionGroup(QAction* self, QActionGroup* group) {
@@ -368,21 +384,12 @@ struct miqt_string QAction_WhatsThis(const QAction* self) {
 	return _ms;
 }
 
-void QAction_SetPriority(QAction* self, int priority) {
-	self->setPriority(static_cast<QAction::Priority>(priority));
+void QAction_SetPriority(QAction* self, Priority priority) {
+	self->setPriority(priority);
 }
 
-int QAction_Priority(const QAction* self) {
-	QAction::Priority _ret = self->priority();
-	return static_cast<int>(_ret);
-}
-
-QMenu* QAction_Menu(const QAction* self) {
-	return self->menu();
-}
-
-void QAction_SetMenu(QAction* self, QMenu* menu) {
-	self->setMenu(menu);
+Priority QAction_Priority(const QAction* self) {
+	return self->priority();
 }
 
 void QAction_SetSeparator(QAction* self, bool b) {
@@ -481,21 +488,16 @@ bool QAction_IsVisible(const QAction* self) {
 	return self->isVisible();
 }
 
-void QAction_Activate(QAction* self, int event) {
-	self->activate(static_cast<QAction::ActionEvent>(event));
+void QAction_Activate(QAction* self, ActionEvent event) {
+	self->activate(event);
 }
 
-bool QAction_ShowStatusText(QAction* self) {
-	return self->showStatusText();
+void QAction_SetMenuRole(QAction* self, MenuRole menuRole) {
+	self->setMenuRole(menuRole);
 }
 
-void QAction_SetMenuRole(QAction* self, int menuRole) {
-	self->setMenuRole(static_cast<QAction::MenuRole>(menuRole));
-}
-
-int QAction_MenuRole(const QAction* self) {
-	QAction::MenuRole _ret = self->menuRole();
-	return static_cast<int>(_ret);
+MenuRole QAction_MenuRole(const QAction* self) {
+	return self->menuRole();
 }
 
 void QAction_SetIconVisibleInMenu(QAction* self, bool visible) {
@@ -514,34 +516,8 @@ bool QAction_IsShortcutVisibleInContextMenu(const QAction* self) {
 	return self->isShortcutVisibleInContextMenu();
 }
 
-QWidget* QAction_ParentWidget(const QAction* self) {
-	return self->parentWidget();
-}
-
-struct miqt_array /* of QWidget* */  QAction_AssociatedWidgets(const QAction* self) {
-	QList<QWidget *> _ret = self->associatedWidgets();
-	// Convert QList<> from C++ memory to manually-managed C memory
-	QWidget** _arr = static_cast<QWidget**>(malloc(sizeof(QWidget*) * _ret.length()));
-	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		_arr[i] = _ret[i];
-	}
-	struct miqt_array _out;
-	_out.len = _ret.length();
-	_out.data = static_cast<void*>(_arr);
-	return _out;
-}
-
-struct miqt_array /* of QGraphicsWidget* */  QAction_AssociatedGraphicsWidgets(const QAction* self) {
-	QList<QGraphicsWidget *> _ret = self->associatedGraphicsWidgets();
-	// Convert QList<> from C++ memory to manually-managed C memory
-	QGraphicsWidget** _arr = static_cast<QGraphicsWidget**>(malloc(sizeof(QGraphicsWidget*) * _ret.length()));
-	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		_arr[i] = _ret[i];
-	}
-	struct miqt_array _out;
-	_out.len = _ret.length();
-	_out.data = static_cast<void*>(_arr);
-	return _out;
+bool QAction_ShowStatusText(QAction* self) {
+	return self->showStatusText();
 }
 
 void QAction_Trigger(QAction* self) {
@@ -564,6 +540,10 @@ void QAction_SetEnabled(QAction* self, bool enabled) {
 	self->setEnabled(enabled);
 }
 
+void QAction_ResetEnabled(QAction* self) {
+	self->resetEnabled();
+}
+
 void QAction_SetDisabled(QAction* self, bool b) {
 	self->setDisabled(b);
 }
@@ -579,6 +559,38 @@ void QAction_Changed(QAction* self) {
 void QAction_connect_Changed(QAction* self, intptr_t slot) {
 	MiqtVirtualQAction::connect(self, static_cast<void (QAction::*)()>(&QAction::changed), self, [=]() {
 		miqt_exec_callback_QAction_Changed(slot);
+	});
+}
+
+void QAction_EnabledChanged(QAction* self, bool enabled) {
+	self->enabledChanged(enabled);
+}
+
+void QAction_connect_EnabledChanged(QAction* self, intptr_t slot) {
+	MiqtVirtualQAction::connect(self, static_cast<void (QAction::*)(bool)>(&QAction::enabledChanged), self, [=](bool enabled) {
+		bool sigval1 = enabled;
+		miqt_exec_callback_QAction_EnabledChanged(slot, sigval1);
+	});
+}
+
+void QAction_CheckableChanged(QAction* self, bool checkable) {
+	self->checkableChanged(checkable);
+}
+
+void QAction_connect_CheckableChanged(QAction* self, intptr_t slot) {
+	MiqtVirtualQAction::connect(self, static_cast<void (QAction::*)(bool)>(&QAction::checkableChanged), self, [=](bool checkable) {
+		bool sigval1 = checkable;
+		miqt_exec_callback_QAction_CheckableChanged(slot, sigval1);
+	});
+}
+
+void QAction_VisibleChanged(QAction* self) {
+	self->visibleChanged();
+}
+
+void QAction_connect_VisibleChanged(QAction* self, intptr_t slot) {
+	MiqtVirtualQAction::connect(self, static_cast<void (QAction::*)()>(&QAction::visibleChanged), self, [=]() {
+		miqt_exec_callback_QAction_VisibleChanged(slot);
 	});
 }
 
@@ -635,30 +647,8 @@ struct miqt_string QAction_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QAction_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAction::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAction_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAction::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-bool QAction_ShowStatusText1(QAction* self, QWidget* widget) {
-	return self->showStatusText(widget);
+bool QAction_ShowStatusText1(QAction* self, QObject* object) {
+	return self->showStatusText(object);
 }
 
 void QAction_Triggered1(QAction* self, bool checked) {

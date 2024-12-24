@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QPoint>
 #include <QPointF>
 #include <qpoint.h>
@@ -6,7 +8,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QPoint* QPoint_new() {
 	return new QPoint();
@@ -86,6 +103,10 @@ QPoint* QPoint_OperatorDivideAssign(QPoint* self, double divisor) {
 
 int QPoint_DotProduct(QPoint* p1, QPoint* p2) {
 	return QPoint::dotProduct(*p1, *p2);
+}
+
+QPointF* QPoint_ToPointF(const QPoint* self) {
+	return new QPointF(self->toPointF());
 }
 
 void QPoint_Delete(QPoint* self, bool isSubclass) {

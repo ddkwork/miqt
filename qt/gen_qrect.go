@@ -1,55 +1,18 @@
 package qt
 
-/*
-
-#include "gen_qrect.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
 type QRect struct {
-	h          *C.QRect
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QRect) cPointer() *C.QRect {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QRect) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQRect constructs the type using only CGO pointers.
-func newQRect(h *C.QRect) *QRect {
-	if h == nil {
-		return nil
-	}
-
-	return &QRect{h: h}
-}
-
-// UnsafeNewQRect constructs the type using only unsafe pointers.
-func UnsafeNewQRect(h unsafe.Pointer) *QRect {
-	return newQRect((*C.QRect)(h))
 }
 
 // NewQRect constructs a new QRect object.
 func NewQRect() *QRect {
 
-	ret := newQRect(C.QRect_new())
+	ret := newQRect(QRect_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -57,7 +20,7 @@ func NewQRect() *QRect {
 // NewQRect2 constructs a new QRect object.
 func NewQRect2(topleft *QPoint, bottomright *QPoint) *QRect {
 
-	ret := newQRect(C.QRect_new2(topleft.cPointer(), bottomright.cPointer()))
+	ret := newQRect(QRect_new2(topleft.cPointer(), bottomright.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -65,7 +28,7 @@ func NewQRect2(topleft *QPoint, bottomright *QPoint) *QRect {
 // NewQRect3 constructs a new QRect object.
 func NewQRect3(topleft *QPoint, size *QSize) *QRect {
 
-	ret := newQRect(C.QRect_new3(topleft.cPointer(), size.cPointer()))
+	ret := newQRect(QRect_new3(topleft.cPointer(), size.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -73,7 +36,7 @@ func NewQRect3(topleft *QPoint, size *QSize) *QRect {
 // NewQRect4 constructs a new QRect object.
 func NewQRect4(left int, top int, width int, height int) *QRect {
 
-	ret := newQRect(C.QRect_new4((C.int)(left), (C.int)(top), (C.int)(width), (C.int)(height)))
+	ret := newQRect(QRect_new4((int)(left), (int)(top), (int)(width), (int)(height)))
 	ret.isSubclass = true
 	return ret
 }
@@ -81,376 +44,346 @@ func NewQRect4(left int, top int, width int, height int) *QRect {
 // NewQRect5 constructs a new QRect object.
 func NewQRect5(param1 *QRect) *QRect {
 
-	ret := newQRect(C.QRect_new5(param1.cPointer()))
+	ret := newQRect(QRect_new5(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QRect) IsNull() bool {
-	return (bool)(C.QRect_IsNull(this.h))
+	return (bool)(QRect_IsNull(this.h))
 }
 
 func (this *QRect) IsEmpty() bool {
-	return (bool)(C.QRect_IsEmpty(this.h))
+	return (bool)(QRect_IsEmpty(this.h))
 }
 
 func (this *QRect) IsValid() bool {
-	return (bool)(C.QRect_IsValid(this.h))
+	return (bool)(QRect_IsValid(this.h))
 }
 
 func (this *QRect) Left() int {
-	return (int)(C.QRect_Left(this.h))
+	return (int)(QRect_Left(this.h))
 }
 
 func (this *QRect) Top() int {
-	return (int)(C.QRect_Top(this.h))
+	return (int)(QRect_Top(this.h))
 }
 
 func (this *QRect) Right() int {
-	return (int)(C.QRect_Right(this.h))
+	return (int)(QRect_Right(this.h))
 }
 
 func (this *QRect) Bottom() int {
-	return (int)(C.QRect_Bottom(this.h))
+	return (int)(QRect_Bottom(this.h))
 }
 
 func (this *QRect) Normalized() *QRect {
-	_goptr := newQRect(C.QRect_Normalized(this.h))
+	_goptr := newQRect(QRect_Normalized(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) X() int {
-	return (int)(C.QRect_X(this.h))
+	return (int)(QRect_X(this.h))
 }
 
 func (this *QRect) Y() int {
-	return (int)(C.QRect_Y(this.h))
+	return (int)(QRect_Y(this.h))
 }
 
 func (this *QRect) SetLeft(pos int) {
-	C.QRect_SetLeft(this.h, (C.int)(pos))
+	QRect_SetLeft(this.h, (int)(pos))
 }
 
 func (this *QRect) SetTop(pos int) {
-	C.QRect_SetTop(this.h, (C.int)(pos))
+	QRect_SetTop(this.h, (int)(pos))
 }
 
 func (this *QRect) SetRight(pos int) {
-	C.QRect_SetRight(this.h, (C.int)(pos))
+	QRect_SetRight(this.h, (int)(pos))
 }
 
 func (this *QRect) SetBottom(pos int) {
-	C.QRect_SetBottom(this.h, (C.int)(pos))
+	QRect_SetBottom(this.h, (int)(pos))
 }
 
 func (this *QRect) SetX(x int) {
-	C.QRect_SetX(this.h, (C.int)(x))
+	QRect_SetX(this.h, (int)(x))
 }
 
 func (this *QRect) SetY(y int) {
-	C.QRect_SetY(this.h, (C.int)(y))
+	QRect_SetY(this.h, (int)(y))
 }
 
 func (this *QRect) SetTopLeft(p *QPoint) {
-	C.QRect_SetTopLeft(this.h, p.cPointer())
+	QRect_SetTopLeft(this.h, p.cPointer())
 }
 
 func (this *QRect) SetBottomRight(p *QPoint) {
-	C.QRect_SetBottomRight(this.h, p.cPointer())
+	QRect_SetBottomRight(this.h, p.cPointer())
 }
 
 func (this *QRect) SetTopRight(p *QPoint) {
-	C.QRect_SetTopRight(this.h, p.cPointer())
+	QRect_SetTopRight(this.h, p.cPointer())
 }
 
 func (this *QRect) SetBottomLeft(p *QPoint) {
-	C.QRect_SetBottomLeft(this.h, p.cPointer())
+	QRect_SetBottomLeft(this.h, p.cPointer())
 }
 
 func (this *QRect) TopLeft() *QPoint {
-	_goptr := newQPoint(C.QRect_TopLeft(this.h))
+	_goptr := newQPoint(QRect_TopLeft(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) BottomRight() *QPoint {
-	_goptr := newQPoint(C.QRect_BottomRight(this.h))
+	_goptr := newQPoint(QRect_BottomRight(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) TopRight() *QPoint {
-	_goptr := newQPoint(C.QRect_TopRight(this.h))
+	_goptr := newQPoint(QRect_TopRight(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) BottomLeft() *QPoint {
-	_goptr := newQPoint(C.QRect_BottomLeft(this.h))
+	_goptr := newQPoint(QRect_BottomLeft(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) Center() *QPoint {
-	_goptr := newQPoint(C.QRect_Center(this.h))
+	_goptr := newQPoint(QRect_Center(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) MoveLeft(pos int) {
-	C.QRect_MoveLeft(this.h, (C.int)(pos))
+	QRect_MoveLeft(this.h, (int)(pos))
 }
 
 func (this *QRect) MoveTop(pos int) {
-	C.QRect_MoveTop(this.h, (C.int)(pos))
+	QRect_MoveTop(this.h, (int)(pos))
 }
 
 func (this *QRect) MoveRight(pos int) {
-	C.QRect_MoveRight(this.h, (C.int)(pos))
+	QRect_MoveRight(this.h, (int)(pos))
 }
 
 func (this *QRect) MoveBottom(pos int) {
-	C.QRect_MoveBottom(this.h, (C.int)(pos))
+	QRect_MoveBottom(this.h, (int)(pos))
 }
 
 func (this *QRect) MoveTopLeft(p *QPoint) {
-	C.QRect_MoveTopLeft(this.h, p.cPointer())
+	QRect_MoveTopLeft(this.h, p.cPointer())
 }
 
 func (this *QRect) MoveBottomRight(p *QPoint) {
-	C.QRect_MoveBottomRight(this.h, p.cPointer())
+	QRect_MoveBottomRight(this.h, p.cPointer())
 }
 
 func (this *QRect) MoveTopRight(p *QPoint) {
-	C.QRect_MoveTopRight(this.h, p.cPointer())
+	QRect_MoveTopRight(this.h, p.cPointer())
 }
 
 func (this *QRect) MoveBottomLeft(p *QPoint) {
-	C.QRect_MoveBottomLeft(this.h, p.cPointer())
+	QRect_MoveBottomLeft(this.h, p.cPointer())
 }
 
 func (this *QRect) MoveCenter(p *QPoint) {
-	C.QRect_MoveCenter(this.h, p.cPointer())
+	QRect_MoveCenter(this.h, p.cPointer())
 }
 
 func (this *QRect) Translate(dx int, dy int) {
-	C.QRect_Translate(this.h, (C.int)(dx), (C.int)(dy))
+	QRect_Translate(this.h, (int)(dx), (int)(dy))
 }
 
 func (this *QRect) TranslateWithQPoint(p *QPoint) {
-	C.QRect_TranslateWithQPoint(this.h, p.cPointer())
+	QRect_TranslateWithQPoint(this.h, p.cPointer())
 }
 
 func (this *QRect) Translated(dx int, dy int) *QRect {
-	_goptr := newQRect(C.QRect_Translated(this.h, (C.int)(dx), (C.int)(dy)))
+	_goptr := newQRect(QRect_Translated(this.h, (int)(dx), (int)(dy)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) TranslatedWithQPoint(p *QPoint) *QRect {
-	_goptr := newQRect(C.QRect_TranslatedWithQPoint(this.h, p.cPointer()))
+	_goptr := newQRect(QRect_TranslatedWithQPoint(this.h, p.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) Transposed() *QRect {
-	_goptr := newQRect(C.QRect_Transposed(this.h))
+	_goptr := newQRect(QRect_Transposed(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) MoveTo(x int, t int) {
-	C.QRect_MoveTo(this.h, (C.int)(x), (C.int)(t))
+	QRect_MoveTo(this.h, (int)(x), (int)(t))
 }
 
 func (this *QRect) MoveToWithQPoint(p *QPoint) {
-	C.QRect_MoveToWithQPoint(this.h, p.cPointer())
+	QRect_MoveToWithQPoint(this.h, p.cPointer())
 }
 
 func (this *QRect) SetRect(x int, y int, w int, h int) {
-	C.QRect_SetRect(this.h, (C.int)(x), (C.int)(y), (C.int)(w), (C.int)(h))
+	QRect_SetRect(this.h, (int)(x), (int)(y), (int)(w), (int)(h))
 }
 
 func (this *QRect) GetRect(x *int, y *int, w *int, h *int) {
-	C.QRect_GetRect(this.h, (*C.int)(unsafe.Pointer(x)), (*C.int)(unsafe.Pointer(y)), (*C.int)(unsafe.Pointer(w)), (*C.int)(unsafe.Pointer(h)))
+	QRect_GetRect(this.h, (*int)(unsafe.Pointer(x)), (*int)(unsafe.Pointer(y)), (*int)(unsafe.Pointer(w)), (*int)(unsafe.Pointer(h)))
 }
 
 func (this *QRect) SetCoords(x1 int, y1 int, x2 int, y2 int) {
-	C.QRect_SetCoords(this.h, (C.int)(x1), (C.int)(y1), (C.int)(x2), (C.int)(y2))
+	QRect_SetCoords(this.h, (int)(x1), (int)(y1), (int)(x2), (int)(y2))
 }
 
 func (this *QRect) GetCoords(x1 *int, y1 *int, x2 *int, y2 *int) {
-	C.QRect_GetCoords(this.h, (*C.int)(unsafe.Pointer(x1)), (*C.int)(unsafe.Pointer(y1)), (*C.int)(unsafe.Pointer(x2)), (*C.int)(unsafe.Pointer(y2)))
+	QRect_GetCoords(this.h, (*int)(unsafe.Pointer(x1)), (*int)(unsafe.Pointer(y1)), (*int)(unsafe.Pointer(x2)), (*int)(unsafe.Pointer(y2)))
 }
 
 func (this *QRect) Adjust(x1 int, y1 int, x2 int, y2 int) {
-	C.QRect_Adjust(this.h, (C.int)(x1), (C.int)(y1), (C.int)(x2), (C.int)(y2))
+	QRect_Adjust(this.h, (int)(x1), (int)(y1), (int)(x2), (int)(y2))
 }
 
 func (this *QRect) Adjusted(x1 int, y1 int, x2 int, y2 int) *QRect {
-	_goptr := newQRect(C.QRect_Adjusted(this.h, (C.int)(x1), (C.int)(y1), (C.int)(x2), (C.int)(y2)))
+	_goptr := newQRect(QRect_Adjusted(this.h, (int)(x1), (int)(y1), (int)(x2), (int)(y2)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) Size() *QSize {
-	_goptr := newQSize(C.QRect_Size(this.h))
+	_goptr := newQSize(QRect_Size(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) Width() int {
-	return (int)(C.QRect_Width(this.h))
+	return (int)(QRect_Width(this.h))
 }
 
 func (this *QRect) Height() int {
-	return (int)(C.QRect_Height(this.h))
+	return (int)(QRect_Height(this.h))
 }
 
 func (this *QRect) SetWidth(w int) {
-	C.QRect_SetWidth(this.h, (C.int)(w))
+	QRect_SetWidth(this.h, (int)(w))
 }
 
 func (this *QRect) SetHeight(h int) {
-	C.QRect_SetHeight(this.h, (C.int)(h))
+	QRect_SetHeight(this.h, (int)(h))
 }
 
 func (this *QRect) SetSize(s *QSize) {
-	C.QRect_SetSize(this.h, s.cPointer())
+	QRect_SetSize(this.h, s.cPointer())
 }
 
 func (this *QRect) OperatorBitwiseOr(r *QRect) *QRect {
-	_goptr := newQRect(C.QRect_OperatorBitwiseOr(this.h, r.cPointer()))
+	_goptr := newQRect(QRect_OperatorBitwiseOr(this.h, r.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) OperatorBitwiseAnd(r *QRect) *QRect {
-	_goptr := newQRect(C.QRect_OperatorBitwiseAnd(this.h, r.cPointer()))
+	_goptr := newQRect(QRect_OperatorBitwiseAnd(this.h, r.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) OperatorBitwiseOrAssign(r *QRect) {
-	C.QRect_OperatorBitwiseOrAssign(this.h, r.cPointer())
+	QRect_OperatorBitwiseOrAssign(this.h, r.cPointer())
 }
 
 func (this *QRect) OperatorBitwiseAndAssign(r *QRect) {
-	C.QRect_OperatorBitwiseAndAssign(this.h, r.cPointer())
+	QRect_OperatorBitwiseAndAssign(this.h, r.cPointer())
 }
 
 func (this *QRect) Contains(r *QRect) bool {
-	return (bool)(C.QRect_Contains(this.h, r.cPointer()))
+	return (bool)(QRect_Contains(this.h, r.cPointer()))
 }
 
 func (this *QRect) ContainsWithQPoint(p *QPoint) bool {
-	return (bool)(C.QRect_ContainsWithQPoint(this.h, p.cPointer()))
+	return (bool)(QRect_ContainsWithQPoint(this.h, p.cPointer()))
 }
 
 func (this *QRect) Contains2(x int, y int) bool {
-	return (bool)(C.QRect_Contains2(this.h, (C.int)(x), (C.int)(y)))
+	return (bool)(QRect_Contains2(this.h, (int)(x), (int)(y)))
 }
 
 func (this *QRect) Contains3(x int, y int, proper bool) bool {
-	return (bool)(C.QRect_Contains3(this.h, (C.int)(x), (C.int)(y), (C.bool)(proper)))
+	return (bool)(QRect_Contains3(this.h, (int)(x), (int)(y), (bool)(proper)))
 }
 
 func (this *QRect) United(other *QRect) *QRect {
-	_goptr := newQRect(C.QRect_United(this.h, other.cPointer()))
+	_goptr := newQRect(QRect_United(this.h, other.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) Intersected(other *QRect) *QRect {
-	_goptr := newQRect(C.QRect_Intersected(this.h, other.cPointer()))
+	_goptr := newQRect(QRect_Intersected(this.h, other.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) Intersects(r *QRect) bool {
-	return (bool)(C.QRect_Intersects(this.h, r.cPointer()))
+	return (bool)(QRect_Intersects(this.h, r.cPointer()))
 }
 
 func (this *QRect) MarginsAdded(margins *QMargins) *QRect {
-	_goptr := newQRect(C.QRect_MarginsAdded(this.h, margins.cPointer()))
+	_goptr := newQRect(QRect_MarginsAdded(this.h, margins.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) MarginsRemoved(margins *QMargins) *QRect {
-	_goptr := newQRect(C.QRect_MarginsRemoved(this.h, margins.cPointer()))
+	_goptr := newQRect(QRect_MarginsRemoved(this.h, margins.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRect) OperatorPlusAssign(margins *QMargins) *QRect {
-	return newQRect(C.QRect_OperatorPlusAssign(this.h, margins.cPointer()))
+	return newQRect(QRect_OperatorPlusAssign(this.h, margins.cPointer()))
 }
 
 func (this *QRect) OperatorMinusAssign(margins *QMargins) *QRect {
-	return newQRect(C.QRect_OperatorMinusAssign(this.h, margins.cPointer()))
+	return newQRect(QRect_OperatorMinusAssign(this.h, margins.cPointer()))
+}
+
+func QRect_Span(p1 *QPoint, p2 *QPoint) *QRect {
+	_goptr := newQRect(QRect_Span(p1.cPointer(), p2.cPointer()))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func (this *QRect) ToRectF() *QRectF {
+	_goptr := newQRectF(QRect_ToRectF(this.h))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
 func (this *QRect) Contains22(r *QRect, proper bool) bool {
-	return (bool)(C.QRect_Contains22(this.h, r.cPointer(), (C.bool)(proper)))
+	return (bool)(QRect_Contains22(this.h, r.cPointer(), (bool)(proper)))
 }
 
 func (this *QRect) Contains23(p *QPoint, proper bool) bool {
-	return (bool)(C.QRect_Contains23(this.h, p.cPointer(), (C.bool)(proper)))
-}
-
-// Delete this object from C++ memory.
-func (this *QRect) Delete() {
-	C.QRect_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QRect) GoGC() {
-	runtime.SetFinalizer(this, func(this *QRect) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (bool)(QRect_Contains23(this.h, p.cPointer(), (bool)(proper)))
 }
 
 type QRectF struct {
-	h          *C.QRectF
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QRectF) cPointer() *C.QRectF {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QRectF) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQRectF constructs the type using only CGO pointers.
-func newQRectF(h *C.QRectF) *QRectF {
-	if h == nil {
-		return nil
-	}
-
-	return &QRectF{h: h}
-}
-
-// UnsafeNewQRectF constructs the type using only unsafe pointers.
-func UnsafeNewQRectF(h unsafe.Pointer) *QRectF {
-	return newQRectF((*C.QRectF)(h))
 }
 
 // NewQRectF constructs a new QRectF object.
 func NewQRectF() *QRectF {
 
-	ret := newQRectF(C.QRectF_new())
+	ret := newQRectF(QRectF_new())
 	ret.isSubclass = true
 	return ret
 }
@@ -458,7 +391,7 @@ func NewQRectF() *QRectF {
 // NewQRectF2 constructs a new QRectF object.
 func NewQRectF2(topleft *QPointF, size *QSizeF) *QRectF {
 
-	ret := newQRectF(C.QRectF_new2(topleft.cPointer(), size.cPointer()))
+	ret := newQRectF(QRectF_new2(topleft.cPointer(), size.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -466,7 +399,7 @@ func NewQRectF2(topleft *QPointF, size *QSizeF) *QRectF {
 // NewQRectF3 constructs a new QRectF object.
 func NewQRectF3(topleft *QPointF, bottomRight *QPointF) *QRectF {
 
-	ret := newQRectF(C.QRectF_new3(topleft.cPointer(), bottomRight.cPointer()))
+	ret := newQRectF(QRectF_new3(topleft.cPointer(), bottomRight.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -474,7 +407,7 @@ func NewQRectF3(topleft *QPointF, bottomRight *QPointF) *QRectF {
 // NewQRectF4 constructs a new QRectF object.
 func NewQRectF4(left float64, top float64, width float64, height float64) *QRectF {
 
-	ret := newQRectF(C.QRectF_new4((C.double)(left), (C.double)(top), (C.double)(width), (C.double)(height)))
+	ret := newQRectF(QRectF_new4((double)(left), (double)(top), (double)(width), (double)(height)))
 	ret.isSubclass = true
 	return ret
 }
@@ -482,7 +415,7 @@ func NewQRectF4(left float64, top float64, width float64, height float64) *QRect
 // NewQRectF5 constructs a new QRectF object.
 func NewQRectF5(rect *QRect) *QRectF {
 
-	ret := newQRectF(C.QRectF_new5(rect.cPointer()))
+	ret := newQRectF(QRectF_new5(rect.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
@@ -490,335 +423,321 @@ func NewQRectF5(rect *QRect) *QRectF {
 // NewQRectF6 constructs a new QRectF object.
 func NewQRectF6(param1 *QRectF) *QRectF {
 
-	ret := newQRectF(C.QRectF_new6(param1.cPointer()))
+	ret := newQRectF(QRectF_new6(param1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QRectF) IsNull() bool {
-	return (bool)(C.QRectF_IsNull(this.h))
+	return (bool)(QRectF_IsNull(this.h))
 }
 
 func (this *QRectF) IsEmpty() bool {
-	return (bool)(C.QRectF_IsEmpty(this.h))
+	return (bool)(QRectF_IsEmpty(this.h))
 }
 
 func (this *QRectF) IsValid() bool {
-	return (bool)(C.QRectF_IsValid(this.h))
+	return (bool)(QRectF_IsValid(this.h))
 }
 
 func (this *QRectF) Normalized() *QRectF {
-	_goptr := newQRectF(C.QRectF_Normalized(this.h))
+	_goptr := newQRectF(QRectF_Normalized(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Left() float64 {
-	return (float64)(C.QRectF_Left(this.h))
+	return (float64)(QRectF_Left(this.h))
 }
 
 func (this *QRectF) Top() float64 {
-	return (float64)(C.QRectF_Top(this.h))
+	return (float64)(QRectF_Top(this.h))
 }
 
 func (this *QRectF) Right() float64 {
-	return (float64)(C.QRectF_Right(this.h))
+	return (float64)(QRectF_Right(this.h))
 }
 
 func (this *QRectF) Bottom() float64 {
-	return (float64)(C.QRectF_Bottom(this.h))
+	return (float64)(QRectF_Bottom(this.h))
 }
 
 func (this *QRectF) X() float64 {
-	return (float64)(C.QRectF_X(this.h))
+	return (float64)(QRectF_X(this.h))
 }
 
 func (this *QRectF) Y() float64 {
-	return (float64)(C.QRectF_Y(this.h))
+	return (float64)(QRectF_Y(this.h))
 }
 
 func (this *QRectF) SetLeft(pos float64) {
-	C.QRectF_SetLeft(this.h, (C.double)(pos))
+	QRectF_SetLeft(this.h, (double)(pos))
 }
 
 func (this *QRectF) SetTop(pos float64) {
-	C.QRectF_SetTop(this.h, (C.double)(pos))
+	QRectF_SetTop(this.h, (double)(pos))
 }
 
 func (this *QRectF) SetRight(pos float64) {
-	C.QRectF_SetRight(this.h, (C.double)(pos))
+	QRectF_SetRight(this.h, (double)(pos))
 }
 
 func (this *QRectF) SetBottom(pos float64) {
-	C.QRectF_SetBottom(this.h, (C.double)(pos))
+	QRectF_SetBottom(this.h, (double)(pos))
 }
 
 func (this *QRectF) SetX(pos float64) {
-	C.QRectF_SetX(this.h, (C.double)(pos))
+	QRectF_SetX(this.h, (double)(pos))
 }
 
 func (this *QRectF) SetY(pos float64) {
-	C.QRectF_SetY(this.h, (C.double)(pos))
+	QRectF_SetY(this.h, (double)(pos))
 }
 
 func (this *QRectF) TopLeft() *QPointF {
-	_goptr := newQPointF(C.QRectF_TopLeft(this.h))
+	_goptr := newQPointF(QRectF_TopLeft(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) BottomRight() *QPointF {
-	_goptr := newQPointF(C.QRectF_BottomRight(this.h))
+	_goptr := newQPointF(QRectF_BottomRight(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) TopRight() *QPointF {
-	_goptr := newQPointF(C.QRectF_TopRight(this.h))
+	_goptr := newQPointF(QRectF_TopRight(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) BottomLeft() *QPointF {
-	_goptr := newQPointF(C.QRectF_BottomLeft(this.h))
+	_goptr := newQPointF(QRectF_BottomLeft(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Center() *QPointF {
-	_goptr := newQPointF(C.QRectF_Center(this.h))
+	_goptr := newQPointF(QRectF_Center(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) SetTopLeft(p *QPointF) {
-	C.QRectF_SetTopLeft(this.h, p.cPointer())
+	QRectF_SetTopLeft(this.h, p.cPointer())
 }
 
 func (this *QRectF) SetBottomRight(p *QPointF) {
-	C.QRectF_SetBottomRight(this.h, p.cPointer())
+	QRectF_SetBottomRight(this.h, p.cPointer())
 }
 
 func (this *QRectF) SetTopRight(p *QPointF) {
-	C.QRectF_SetTopRight(this.h, p.cPointer())
+	QRectF_SetTopRight(this.h, p.cPointer())
 }
 
 func (this *QRectF) SetBottomLeft(p *QPointF) {
-	C.QRectF_SetBottomLeft(this.h, p.cPointer())
+	QRectF_SetBottomLeft(this.h, p.cPointer())
 }
 
 func (this *QRectF) MoveLeft(pos float64) {
-	C.QRectF_MoveLeft(this.h, (C.double)(pos))
+	QRectF_MoveLeft(this.h, (double)(pos))
 }
 
 func (this *QRectF) MoveTop(pos float64) {
-	C.QRectF_MoveTop(this.h, (C.double)(pos))
+	QRectF_MoveTop(this.h, (double)(pos))
 }
 
 func (this *QRectF) MoveRight(pos float64) {
-	C.QRectF_MoveRight(this.h, (C.double)(pos))
+	QRectF_MoveRight(this.h, (double)(pos))
 }
 
 func (this *QRectF) MoveBottom(pos float64) {
-	C.QRectF_MoveBottom(this.h, (C.double)(pos))
+	QRectF_MoveBottom(this.h, (double)(pos))
 }
 
 func (this *QRectF) MoveTopLeft(p *QPointF) {
-	C.QRectF_MoveTopLeft(this.h, p.cPointer())
+	QRectF_MoveTopLeft(this.h, p.cPointer())
 }
 
 func (this *QRectF) MoveBottomRight(p *QPointF) {
-	C.QRectF_MoveBottomRight(this.h, p.cPointer())
+	QRectF_MoveBottomRight(this.h, p.cPointer())
 }
 
 func (this *QRectF) MoveTopRight(p *QPointF) {
-	C.QRectF_MoveTopRight(this.h, p.cPointer())
+	QRectF_MoveTopRight(this.h, p.cPointer())
 }
 
 func (this *QRectF) MoveBottomLeft(p *QPointF) {
-	C.QRectF_MoveBottomLeft(this.h, p.cPointer())
+	QRectF_MoveBottomLeft(this.h, p.cPointer())
 }
 
 func (this *QRectF) MoveCenter(p *QPointF) {
-	C.QRectF_MoveCenter(this.h, p.cPointer())
+	QRectF_MoveCenter(this.h, p.cPointer())
 }
 
 func (this *QRectF) Translate(dx float64, dy float64) {
-	C.QRectF_Translate(this.h, (C.double)(dx), (C.double)(dy))
+	QRectF_Translate(this.h, (double)(dx), (double)(dy))
 }
 
 func (this *QRectF) TranslateWithQPointF(p *QPointF) {
-	C.QRectF_TranslateWithQPointF(this.h, p.cPointer())
+	QRectF_TranslateWithQPointF(this.h, p.cPointer())
 }
 
 func (this *QRectF) Translated(dx float64, dy float64) *QRectF {
-	_goptr := newQRectF(C.QRectF_Translated(this.h, (C.double)(dx), (C.double)(dy)))
+	_goptr := newQRectF(QRectF_Translated(this.h, (double)(dx), (double)(dy)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) TranslatedWithQPointF(p *QPointF) *QRectF {
-	_goptr := newQRectF(C.QRectF_TranslatedWithQPointF(this.h, p.cPointer()))
+	_goptr := newQRectF(QRectF_TranslatedWithQPointF(this.h, p.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Transposed() *QRectF {
-	_goptr := newQRectF(C.QRectF_Transposed(this.h))
+	_goptr := newQRectF(QRectF_Transposed(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) MoveTo(x float64, y float64) {
-	C.QRectF_MoveTo(this.h, (C.double)(x), (C.double)(y))
+	QRectF_MoveTo(this.h, (double)(x), (double)(y))
 }
 
 func (this *QRectF) MoveToWithQPointF(p *QPointF) {
-	C.QRectF_MoveToWithQPointF(this.h, p.cPointer())
+	QRectF_MoveToWithQPointF(this.h, p.cPointer())
 }
 
 func (this *QRectF) SetRect(x float64, y float64, w float64, h float64) {
-	C.QRectF_SetRect(this.h, (C.double)(x), (C.double)(y), (C.double)(w), (C.double)(h))
+	QRectF_SetRect(this.h, (double)(x), (double)(y), (double)(w), (double)(h))
 }
 
 func (this *QRectF) GetRect(x *float64, y *float64, w *float64, h *float64) {
-	C.QRectF_GetRect(this.h, (*C.double)(unsafe.Pointer(x)), (*C.double)(unsafe.Pointer(y)), (*C.double)(unsafe.Pointer(w)), (*C.double)(unsafe.Pointer(h)))
+	QRectF_GetRect(this.h, (*double)(unsafe.Pointer(x)), (*double)(unsafe.Pointer(y)), (*double)(unsafe.Pointer(w)), (*double)(unsafe.Pointer(h)))
 }
 
 func (this *QRectF) SetCoords(x1 float64, y1 float64, x2 float64, y2 float64) {
-	C.QRectF_SetCoords(this.h, (C.double)(x1), (C.double)(y1), (C.double)(x2), (C.double)(y2))
+	QRectF_SetCoords(this.h, (double)(x1), (double)(y1), (double)(x2), (double)(y2))
 }
 
 func (this *QRectF) GetCoords(x1 *float64, y1 *float64, x2 *float64, y2 *float64) {
-	C.QRectF_GetCoords(this.h, (*C.double)(unsafe.Pointer(x1)), (*C.double)(unsafe.Pointer(y1)), (*C.double)(unsafe.Pointer(x2)), (*C.double)(unsafe.Pointer(y2)))
+	QRectF_GetCoords(this.h, (*double)(unsafe.Pointer(x1)), (*double)(unsafe.Pointer(y1)), (*double)(unsafe.Pointer(x2)), (*double)(unsafe.Pointer(y2)))
 }
 
 func (this *QRectF) Adjust(x1 float64, y1 float64, x2 float64, y2 float64) {
-	C.QRectF_Adjust(this.h, (C.double)(x1), (C.double)(y1), (C.double)(x2), (C.double)(y2))
+	QRectF_Adjust(this.h, (double)(x1), (double)(y1), (double)(x2), (double)(y2))
 }
 
 func (this *QRectF) Adjusted(x1 float64, y1 float64, x2 float64, y2 float64) *QRectF {
-	_goptr := newQRectF(C.QRectF_Adjusted(this.h, (C.double)(x1), (C.double)(y1), (C.double)(x2), (C.double)(y2)))
+	_goptr := newQRectF(QRectF_Adjusted(this.h, (double)(x1), (double)(y1), (double)(x2), (double)(y2)))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Size() *QSizeF {
-	_goptr := newQSizeF(C.QRectF_Size(this.h))
+	_goptr := newQSizeF(QRectF_Size(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Width() float64 {
-	return (float64)(C.QRectF_Width(this.h))
+	return (float64)(QRectF_Width(this.h))
 }
 
 func (this *QRectF) Height() float64 {
-	return (float64)(C.QRectF_Height(this.h))
+	return (float64)(QRectF_Height(this.h))
 }
 
 func (this *QRectF) SetWidth(w float64) {
-	C.QRectF_SetWidth(this.h, (C.double)(w))
+	QRectF_SetWidth(this.h, (double)(w))
 }
 
 func (this *QRectF) SetHeight(h float64) {
-	C.QRectF_SetHeight(this.h, (C.double)(h))
+	QRectF_SetHeight(this.h, (double)(h))
 }
 
 func (this *QRectF) SetSize(s *QSizeF) {
-	C.QRectF_SetSize(this.h, s.cPointer())
+	QRectF_SetSize(this.h, s.cPointer())
 }
 
 func (this *QRectF) OperatorBitwiseOr(r *QRectF) *QRectF {
-	_goptr := newQRectF(C.QRectF_OperatorBitwiseOr(this.h, r.cPointer()))
+	_goptr := newQRectF(QRectF_OperatorBitwiseOr(this.h, r.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) OperatorBitwiseAnd(r *QRectF) *QRectF {
-	_goptr := newQRectF(C.QRectF_OperatorBitwiseAnd(this.h, r.cPointer()))
+	_goptr := newQRectF(QRectF_OperatorBitwiseAnd(this.h, r.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) OperatorBitwiseOrAssign(r *QRectF) {
-	C.QRectF_OperatorBitwiseOrAssign(this.h, r.cPointer())
+	QRectF_OperatorBitwiseOrAssign(this.h, r.cPointer())
 }
 
 func (this *QRectF) OperatorBitwiseAndAssign(r *QRectF) {
-	C.QRectF_OperatorBitwiseAndAssign(this.h, r.cPointer())
+	QRectF_OperatorBitwiseAndAssign(this.h, r.cPointer())
 }
 
 func (this *QRectF) Contains(r *QRectF) bool {
-	return (bool)(C.QRectF_Contains(this.h, r.cPointer()))
+	return (bool)(QRectF_Contains(this.h, r.cPointer()))
 }
 
 func (this *QRectF) ContainsWithQPointF(p *QPointF) bool {
-	return (bool)(C.QRectF_ContainsWithQPointF(this.h, p.cPointer()))
+	return (bool)(QRectF_ContainsWithQPointF(this.h, p.cPointer()))
 }
 
 func (this *QRectF) Contains2(x float64, y float64) bool {
-	return (bool)(C.QRectF_Contains2(this.h, (C.double)(x), (C.double)(y)))
+	return (bool)(QRectF_Contains2(this.h, (double)(x), (double)(y)))
 }
 
 func (this *QRectF) United(other *QRectF) *QRectF {
-	_goptr := newQRectF(C.QRectF_United(this.h, other.cPointer()))
+	_goptr := newQRectF(QRectF_United(this.h, other.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Intersected(other *QRectF) *QRectF {
-	_goptr := newQRectF(C.QRectF_Intersected(this.h, other.cPointer()))
+	_goptr := newQRectF(QRectF_Intersected(this.h, other.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) Intersects(r *QRectF) bool {
-	return (bool)(C.QRectF_Intersects(this.h, r.cPointer()))
+	return (bool)(QRectF_Intersects(this.h, r.cPointer()))
 }
 
 func (this *QRectF) MarginsAdded(margins *QMarginsF) *QRectF {
-	_goptr := newQRectF(C.QRectF_MarginsAdded(this.h, margins.cPointer()))
+	_goptr := newQRectF(QRectF_MarginsAdded(this.h, margins.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) MarginsRemoved(margins *QMarginsF) *QRectF {
-	_goptr := newQRectF(C.QRectF_MarginsRemoved(this.h, margins.cPointer()))
+	_goptr := newQRectF(QRectF_MarginsRemoved(this.h, margins.cPointer()))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) OperatorPlusAssign(margins *QMarginsF) *QRectF {
-	return newQRectF(C.QRectF_OperatorPlusAssign(this.h, margins.cPointer()))
+	return newQRectF(QRectF_OperatorPlusAssign(this.h, margins.cPointer()))
 }
 
 func (this *QRectF) OperatorMinusAssign(margins *QMarginsF) *QRectF {
-	return newQRectF(C.QRectF_OperatorMinusAssign(this.h, margins.cPointer()))
+	return newQRectF(QRectF_OperatorMinusAssign(this.h, margins.cPointer()))
 }
 
 func (this *QRectF) ToRect() *QRect {
-	_goptr := newQRect(C.QRectF_ToRect(this.h))
+	_goptr := newQRect(QRectF_ToRect(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QRectF) ToAlignedRect() *QRect {
-	_goptr := newQRect(C.QRectF_ToAlignedRect(this.h))
+	_goptr := newQRect(QRectF_ToAlignedRect(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
-}
-
-// Delete this object from C++ memory.
-func (this *QRectF) Delete() {
-	C.QRectF_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QRectF) GoGC() {
-	runtime.SetFinalizer(this, func(this *QRectF) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

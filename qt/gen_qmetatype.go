@@ -1,38 +1,14 @@
 package qt
 
-/*
-
-#include "gen_qmetatype.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
 type QCborSimpleType byte
 
-type QtMetaTypePrivate__IteratorCapability int
-
-const (
-	QtMetaTypePrivate__ForwardCapability       QtMetaTypePrivate__IteratorCapability = 1
-	QtMetaTypePrivate__BiDirectionalCapability QtMetaTypePrivate__IteratorCapability = 2
-	QtMetaTypePrivate__RandomAccessCapability  QtMetaTypePrivate__IteratorCapability = 4
-)
-
-type QtMetaTypePrivate__ContainerCapability int
-
-const (
-	QtMetaTypePrivate__ContainerIsAppendable QtMetaTypePrivate__ContainerCapability = 1
-)
-
 type QMetaType__Type int
 
 const (
-	QMetaType__Void                  QMetaType__Type = 43
 	QMetaType__Bool                  QMetaType__Type = 1
 	QMetaType__Int                   QMetaType__Type = 2
 	QMetaType__UInt                  QMetaType__Type = 3
@@ -42,6 +18,8 @@ const (
 	QMetaType__Long                  QMetaType__Type = 32
 	QMetaType__Short                 QMetaType__Type = 33
 	QMetaType__Char                  QMetaType__Type = 34
+	QMetaType__Char16                QMetaType__Type = 56
+	QMetaType__Char32                QMetaType__Type = 57
 	QMetaType__ULong                 QMetaType__Type = 35
 	QMetaType__UShort                QMetaType__Type = 36
 	QMetaType__UChar                 QMetaType__Type = 37
@@ -49,10 +27,10 @@ const (
 	QMetaType__SChar                 QMetaType__Type = 40
 	QMetaType__Nullptr               QMetaType__Type = 51
 	QMetaType__QCborSimpleType       QMetaType__Type = 52
+	QMetaType__Void                  QMetaType__Type = 43
 	QMetaType__VoidStar              QMetaType__Type = 31
 	QMetaType__QChar                 QMetaType__Type = 7
 	QMetaType__QString               QMetaType__Type = 10
-	QMetaType__QStringList           QMetaType__Type = 11
 	QMetaType__QByteArray            QMetaType__Type = 12
 	QMetaType__QBitArray             QMetaType__Type = 13
 	QMetaType__QDate                 QMetaType__Type = 14
@@ -68,7 +46,6 @@ const (
 	QMetaType__QLineF                QMetaType__Type = 24
 	QMetaType__QPoint                QMetaType__Type = 25
 	QMetaType__QPointF               QMetaType__Type = 26
-	QMetaType__QRegExp               QMetaType__Type = 27
 	QMetaType__QEasingCurve          QMetaType__Type = 29
 	QMetaType__QUuid                 QMetaType__Type = 30
 	QMetaType__QVariant              QMetaType__Type = 41
@@ -80,48 +57,50 @@ const (
 	QMetaType__QCborValue            QMetaType__Type = 53
 	QMetaType__QCborArray            QMetaType__Type = 54
 	QMetaType__QCborMap              QMetaType__Type = 55
+	QMetaType__Float16               QMetaType__Type = 63
 	QMetaType__QModelIndex           QMetaType__Type = 42
 	QMetaType__QPersistentModelIndex QMetaType__Type = 50
 	QMetaType__QObjectStar           QMetaType__Type = 39
 	QMetaType__QVariantMap           QMetaType__Type = 8
 	QMetaType__QVariantList          QMetaType__Type = 9
 	QMetaType__QVariantHash          QMetaType__Type = 28
+	QMetaType__QVariantPair          QMetaType__Type = 58
 	QMetaType__QByteArrayList        QMetaType__Type = 49
-	QMetaType__QFont                 QMetaType__Type = 64
-	QMetaType__QPixmap               QMetaType__Type = 65
-	QMetaType__QBrush                QMetaType__Type = 66
-	QMetaType__QColor                QMetaType__Type = 67
-	QMetaType__QPalette              QMetaType__Type = 68
-	QMetaType__QIcon                 QMetaType__Type = 69
-	QMetaType__QImage                QMetaType__Type = 70
-	QMetaType__QPolygon              QMetaType__Type = 71
-	QMetaType__QRegion               QMetaType__Type = 72
-	QMetaType__QBitmap               QMetaType__Type = 73
-	QMetaType__QCursor               QMetaType__Type = 74
-	QMetaType__QKeySequence          QMetaType__Type = 75
-	QMetaType__QPen                  QMetaType__Type = 76
-	QMetaType__QTextLength           QMetaType__Type = 77
-	QMetaType__QTextFormat           QMetaType__Type = 78
-	QMetaType__QMatrix               QMetaType__Type = 79
-	QMetaType__QTransform            QMetaType__Type = 80
-	QMetaType__QMatrix4x4            QMetaType__Type = 81
-	QMetaType__QVector2D             QMetaType__Type = 82
-	QMetaType__QVector3D             QMetaType__Type = 83
-	QMetaType__QVector4D             QMetaType__Type = 84
-	QMetaType__QQuaternion           QMetaType__Type = 85
-	QMetaType__QPolygonF             QMetaType__Type = 86
-	QMetaType__QColorSpace           QMetaType__Type = 87
-	QMetaType__QSizePolicy           QMetaType__Type = 121
+	QMetaType__QStringList           QMetaType__Type = 11
+	QMetaType__QFont                 QMetaType__Type = 4096
+	QMetaType__QPixmap               QMetaType__Type = 4097
+	QMetaType__QBrush                QMetaType__Type = 4098
+	QMetaType__QColor                QMetaType__Type = 4099
+	QMetaType__QPalette              QMetaType__Type = 4100
+	QMetaType__QIcon                 QMetaType__Type = 4101
+	QMetaType__QImage                QMetaType__Type = 4102
+	QMetaType__QPolygon              QMetaType__Type = 4103
+	QMetaType__QRegion               QMetaType__Type = 4104
+	QMetaType__QBitmap               QMetaType__Type = 4105
+	QMetaType__QCursor               QMetaType__Type = 4106
+	QMetaType__QKeySequence          QMetaType__Type = 4107
+	QMetaType__QPen                  QMetaType__Type = 4108
+	QMetaType__QTextLength           QMetaType__Type = 4109
+	QMetaType__QTextFormat           QMetaType__Type = 4110
+	QMetaType__QTransform            QMetaType__Type = 4112
+	QMetaType__QMatrix4x4            QMetaType__Type = 4113
+	QMetaType__QVector2D             QMetaType__Type = 4114
+	QMetaType__QVector3D             QMetaType__Type = 4115
+	QMetaType__QVector4D             QMetaType__Type = 4116
+	QMetaType__QQuaternion           QMetaType__Type = 4117
+	QMetaType__QPolygonF             QMetaType__Type = 4118
+	QMetaType__QColorSpace           QMetaType__Type = 4119
+	QMetaType__QSizePolicy           QMetaType__Type = 8192
 	QMetaType__FirstCoreType         QMetaType__Type = 1
-	QMetaType__LastCoreType          QMetaType__Type = 55
-	QMetaType__FirstGuiType          QMetaType__Type = 64
-	QMetaType__LastGuiType           QMetaType__Type = 87
-	QMetaType__FirstWidgetsType      QMetaType__Type = 121
-	QMetaType__LastWidgetsType       QMetaType__Type = 121
-	QMetaType__HighestInternalId     QMetaType__Type = 121
+	QMetaType__LastCoreType          QMetaType__Type = 63
+	QMetaType__FirstGuiType          QMetaType__Type = 4096
+	QMetaType__LastGuiType           QMetaType__Type = 4119
+	QMetaType__FirstWidgetsType      QMetaType__Type = 8192
+	QMetaType__LastWidgetsType       QMetaType__Type = 8192
+	QMetaType__HighestInternalId     QMetaType__Type = 8192
 	QMetaType__QReal                 QMetaType__Type = 6
 	QMetaType__UnknownType           QMetaType__Type = 0
-	QMetaType__User                  QMetaType__Type = 1024
+	QMetaType__User                  QMetaType__Type = 65536
 )
 
 type QMetaType__TypeFlag int
@@ -129,245 +108,320 @@ type QMetaType__TypeFlag int
 const (
 	QMetaType__NeedsConstruction        QMetaType__TypeFlag = 1
 	QMetaType__NeedsDestruction         QMetaType__TypeFlag = 2
+	QMetaType__RelocatableType          QMetaType__TypeFlag = 4
 	QMetaType__MovableType              QMetaType__TypeFlag = 4
 	QMetaType__PointerToQObject         QMetaType__TypeFlag = 8
 	QMetaType__IsEnumeration            QMetaType__TypeFlag = 16
 	QMetaType__SharedPointerToQObject   QMetaType__TypeFlag = 32
 	QMetaType__WeakPointerToQObject     QMetaType__TypeFlag = 64
 	QMetaType__TrackingPointerToQObject QMetaType__TypeFlag = 128
-	QMetaType__WasDeclaredAsMetaType    QMetaType__TypeFlag = 256
+	QMetaType__IsUnsignedEnumeration    QMetaType__TypeFlag = 256
 	QMetaType__IsGadget                 QMetaType__TypeFlag = 512
 	QMetaType__PointerToGadget          QMetaType__TypeFlag = 1024
-)
-
-type QtMetaTypePrivate__QSequentialIterableImpl__Position int
-
-const (
-	QtMetaTypePrivate__QSequentialIterableImpl__ToBegin QtMetaTypePrivate__QSequentialIterableImpl__Position = 0
-	QtMetaTypePrivate__QSequentialIterableImpl__ToEnd   QtMetaTypePrivate__QSequentialIterableImpl__Position = 1
+	QMetaType__IsPointer                QMetaType__TypeFlag = 2048
+	QMetaType__IsQmlList                QMetaType__TypeFlag = 4096
+	QMetaType__IsConst                  QMetaType__TypeFlag = 8192
+	QMetaType__NeedsCopyConstruction    QMetaType__TypeFlag = 16384
+	QMetaType__NeedsMoveConstruction    QMetaType__TypeFlag = 32768
 )
 
 type QMetaType struct {
-	h          *C.QMetaType
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QMetaType) cPointer() *C.QMetaType {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QMetaType) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQMetaType constructs the type using only CGO pointers.
-func newQMetaType(h *C.QMetaType) *QMetaType {
-	if h == nil {
-		return nil
-	}
-
-	return &QMetaType{h: h}
-}
-
-// UnsafeNewQMetaType constructs the type using only unsafe pointers.
-func UnsafeNewQMetaType(h unsafe.Pointer) *QMetaType {
-	return newQMetaType((*C.QMetaType)(h))
-}
-
 // NewQMetaType constructs a new QMetaType object.
-func NewQMetaType() *QMetaType {
+func NewQMetaType(typeVal int) *QMetaType {
 
-	ret := newQMetaType(C.QMetaType_new())
+	ret := newQMetaType(QMetaType_new((int)(typeVal)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQMetaType2 constructs a new QMetaType object.
-func NewQMetaType2(typeVal int) *QMetaType {
+func NewQMetaType2() *QMetaType {
 
-	ret := newQMetaType(C.QMetaType_new2((C.int)(typeVal)))
+	ret := newQMetaType(QMetaType_new2())
 	ret.isSubclass = true
 	return ret
 }
 
-func QMetaType_UnregisterType(typeVal int) bool {
-	return (bool)(C.QMetaType_UnregisterType((C.int)(typeVal)))
+// NewQMetaType3 constructs a new QMetaType object.
+func NewQMetaType3(param1 *QMetaType) *QMetaType {
+
+	ret := newQMetaType(QMetaType_new3(param1.cPointer()))
+	ret.isSubclass = true
+	return ret
 }
 
-func QMetaType_RegisterTypedef(typeName string, aliasId int) int {
-	typeName_Cstring := C.CString(typeName)
-	defer C.free(unsafe.Pointer(typeName_Cstring))
-	return (int)(C.QMetaType_RegisterTypedef(typeName_Cstring, (C.int)(aliasId)))
-}
-
-func QMetaType_RegisterNormalizedTypedef(normalizedTypeName []byte, aliasId int) int {
-	normalizedTypeName_alias := C.struct_miqt_string{}
-	normalizedTypeName_alias.data = (*C.char)(unsafe.Pointer(&normalizedTypeName[0]))
-	normalizedTypeName_alias.len = C.size_t(len(normalizedTypeName))
-	return (int)(C.QMetaType_RegisterNormalizedTypedef(normalizedTypeName_alias, (C.int)(aliasId)))
+func QMetaType_RegisterNormalizedTypedef(normalizedTypeName []byte, typeVal QMetaType) {
+	normalizedTypeName_alias := struct_miqt_string{}
+	normalizedTypeName_alias.data = (char)(unsafe.Pointer(&normalizedTypeName[0]))
+	normalizedTypeName_alias.len = size_t(len(normalizedTypeName))
+	QMetaType_RegisterNormalizedTypedef(normalizedTypeName_alias, typeVal.cPointer())
 }
 
 func QMetaType_Type(typeName string) int {
-	typeName_Cstring := C.CString(typeName)
-	defer C.free(unsafe.Pointer(typeName_Cstring))
-	return (int)(C.QMetaType_Type(typeName_Cstring))
+	typeName_Cstring := CString(typeName)
+	defer free(unsafe.Pointer(typeName_Cstring))
+	return (int)(QMetaType_Type(typeName_Cstring))
 }
 
 func QMetaType_TypeWithTypeName(typeName []byte) int {
-	typeName_alias := C.struct_miqt_string{}
-	typeName_alias.data = (*C.char)(unsafe.Pointer(&typeName[0]))
-	typeName_alias.len = C.size_t(len(typeName))
-	return (int)(C.QMetaType_TypeWithTypeName(typeName_alias))
+	typeName_alias := struct_miqt_string{}
+	typeName_alias.data = (char)(unsafe.Pointer(&typeName[0]))
+	typeName_alias.len = size_t(len(typeName))
+	return (int)(QMetaType_TypeWithTypeName(typeName_alias))
 }
 
 func QMetaType_TypeName(typeVal int) string {
-	_ret := C.QMetaType_TypeName((C.int)(typeVal))
-	return C.GoString(_ret)
+	_ret := QMetaType_TypeName((int)(typeVal))
+	return GoString(_ret)
 }
 
 func QMetaType_SizeOf(typeVal int) int {
-	return (int)(C.QMetaType_SizeOf((C.int)(typeVal)))
+	return (int)(QMetaType_SizeOf((int)(typeVal)))
 }
 
-func QMetaType_TypeFlags(typeVal int) QMetaType__TypeFlag {
-	return (QMetaType__TypeFlag)(C.QMetaType_TypeFlags((C.int)(typeVal)))
+func QMetaType_TypeFlags(typeVal int) TypeFlags {
+	xxxxxxxxx
 }
 
 func QMetaType_MetaObjectForType(typeVal int) *QMetaObject {
-	return newQMetaObject(C.QMetaType_MetaObjectForType((C.int)(typeVal)))
-}
-
-func QMetaType_IsRegistered(typeVal int) bool {
-	return (bool)(C.QMetaType_IsRegistered((C.int)(typeVal)))
+	return newQMetaObject(QMetaType_MetaObjectForType((int)(typeVal)))
 }
 
 func QMetaType_Create(typeVal int) unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_Create((C.int)(typeVal)))
+	return (unsafe.Pointer)(QMetaType_Create((int)(typeVal)))
 }
 
 func QMetaType_Destroy(typeVal int, data unsafe.Pointer) {
-	C.QMetaType_Destroy((C.int)(typeVal), data)
+	QMetaType_Destroy((int)(typeVal), data)
 }
 
 func QMetaType_Construct(typeVal int, where unsafe.Pointer, copyVal unsafe.Pointer) unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_Construct((C.int)(typeVal), where, copyVal))
+	return (unsafe.Pointer)(QMetaType_Construct((int)(typeVal), where, copyVal))
 }
 
 func QMetaType_Destruct(typeVal int, where unsafe.Pointer) {
-	C.QMetaType_Destruct((C.int)(typeVal), where)
+	QMetaType_Destruct((int)(typeVal), where)
 }
 
-func QMetaType_Save(stream *QDataStream, typeVal int, data unsafe.Pointer) bool {
-	return (bool)(C.QMetaType_Save(stream.cPointer(), (C.int)(typeVal), data))
-}
-
-func QMetaType_Load(stream *QDataStream, typeVal int, data unsafe.Pointer) bool {
-	return (bool)(C.QMetaType_Load(stream.cPointer(), (C.int)(typeVal), data))
+func QMetaType_IsRegistered(typeVal int) bool {
+	return (bool)(QMetaType_IsRegistered((int)(typeVal)))
 }
 
 func (this *QMetaType) IsValid() bool {
-	return (bool)(C.QMetaType_IsValid(this.h))
+	return (bool)(QMetaType_IsValid(this.h))
 }
 
 func (this *QMetaType) IsRegistered2() bool {
-	return (bool)(C.QMetaType_IsRegistered2(this.h))
+	return (bool)(QMetaType_IsRegistered2(this.h))
+}
+
+func (this *QMetaType) RegisterType() {
+	QMetaType_RegisterType(this.h)
 }
 
 func (this *QMetaType) Id() int {
-	return (int)(C.QMetaType_Id(this.h))
+	return (int)(QMetaType_Id(this.h))
 }
 
-func (this *QMetaType) SizeOf2() int {
-	return (int)(C.QMetaType_SizeOf2(this.h))
+func (this *QMetaType) SizeOf2() int64 {
+	return (int64)(QMetaType_SizeOf2(this.h))
 }
 
-func (this *QMetaType) Flags() QMetaType__TypeFlag {
-	return (QMetaType__TypeFlag)(C.QMetaType_Flags(this.h))
+func (this *QMetaType) AlignOf() int64 {
+	return (int64)(QMetaType_AlignOf(this.h))
+}
+
+func (this *QMetaType) Flags() TypeFlags {
+	xxxxxxxxx
 }
 
 func (this *QMetaType) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QMetaType_MetaObject(this.h))
+	return newQMetaObject(QMetaType_MetaObject(this.h))
 }
 
-func (this *QMetaType) Name() []byte {
-	var _bytearray C.struct_miqt_string = C.QMetaType_Name(this.h)
-	_ret := C.GoBytes(unsafe.Pointer(_bytearray.data), C.int(int64(_bytearray.len)))
-	C.free(unsafe.Pointer(_bytearray.data))
-	return _ret
+func (this *QMetaType) Name() string {
+	_ret := QMetaType_Name(this.h)
+	return GoString(_ret)
 }
 
 func (this *QMetaType) Create2() unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_Create2(this.h))
+	return (unsafe.Pointer)(QMetaType_Create2(this.h))
 }
 
 func (this *QMetaType) DestroyWithData(data unsafe.Pointer) {
-	C.QMetaType_DestroyWithData(this.h, data)
+	QMetaType_DestroyWithData(this.h, data)
 }
 
 func (this *QMetaType) ConstructWithWhere(where unsafe.Pointer) unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_ConstructWithWhere(this.h, where))
+	return (unsafe.Pointer)(QMetaType_ConstructWithWhere(this.h, where))
 }
 
 func (this *QMetaType) DestructWithData(data unsafe.Pointer) {
-	C.QMetaType_DestructWithData(this.h, data)
+	QMetaType_DestructWithData(this.h, data)
 }
 
-func QMetaType_HasRegisteredComparators(typeId int) bool {
-	return (bool)(C.QMetaType_HasRegisteredComparators((C.int)(typeId)))
+func (this *QMetaType) Compare(lhs unsafe.Pointer, rhs unsafe.Pointer) *QPartialOrdering {
+	_goptr := newQPartialOrdering(QMetaType_Compare(this.h, lhs, rhs))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
-func QMetaType_HasRegisteredDebugStreamOperator(typeId int) bool {
-	return (bool)(C.QMetaType_HasRegisteredDebugStreamOperator((C.int)(typeId)))
+func (this *QMetaType) Equals(lhs unsafe.Pointer, rhs unsafe.Pointer) bool {
+	return (bool)(QMetaType_Equals(this.h, lhs, rhs))
 }
 
-func QMetaType_Convert(from unsafe.Pointer, fromTypeId int, to unsafe.Pointer, toTypeId int) bool {
-	return (bool)(C.QMetaType_Convert(from, (C.int)(fromTypeId), to, (C.int)(toTypeId)))
+func (this *QMetaType) IsDefaultConstructible() bool {
+	return (bool)(QMetaType_IsDefaultConstructible(this.h))
 }
 
-func QMetaType_Compare(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result *int) bool {
-	return (bool)(C.QMetaType_Compare(lhs, rhs, (C.int)(typeId), (*C.int)(unsafe.Pointer(result))))
+func (this *QMetaType) IsCopyConstructible() bool {
+	return (bool)(QMetaType_IsCopyConstructible(this.h))
 }
 
-func QMetaType_Equals(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result *int) bool {
-	return (bool)(C.QMetaType_Equals(lhs, rhs, (C.int)(typeId), (*C.int)(unsafe.Pointer(result))))
+func (this *QMetaType) IsMoveConstructible() bool {
+	return (bool)(QMetaType_IsMoveConstructible(this.h))
 }
 
-func QMetaType_DebugStream(dbg *QDebug, rhs unsafe.Pointer, typeId int) bool {
-	return (bool)(C.QMetaType_DebugStream(dbg.cPointer(), rhs, (C.int)(typeId)))
+func (this *QMetaType) IsDestructible() bool {
+	return (bool)(QMetaType_IsDestructible(this.h))
 }
 
-func QMetaType_HasRegisteredConverterFunction(fromTypeId int, toTypeId int) bool {
-	return (bool)(C.QMetaType_HasRegisteredConverterFunction((C.int)(fromTypeId), (C.int)(toTypeId)))
+func (this *QMetaType) IsEqualityComparable() bool {
+	return (bool)(QMetaType_IsEqualityComparable(this.h))
+}
+
+func (this *QMetaType) IsOrdered() bool {
+	return (bool)(QMetaType_IsOrdered(this.h))
+}
+
+func (this *QMetaType) Save(stream *QDataStream, data unsafe.Pointer) bool {
+	return (bool)(QMetaType_Save(this.h, stream.cPointer(), data))
+}
+
+func (this *QMetaType) Load(stream *QDataStream, data unsafe.Pointer) bool {
+	return (bool)(QMetaType_Load(this.h, stream.cPointer(), data))
+}
+
+func (this *QMetaType) HasRegisteredDataStreamOperators() bool {
+	return (bool)(QMetaType_HasRegisteredDataStreamOperators(this.h))
+}
+
+func QMetaType_Save2(stream *QDataStream, typeVal int, data unsafe.Pointer) bool {
+	return (bool)(QMetaType_Save2(stream.cPointer(), (int)(typeVal), data))
+}
+
+func QMetaType_Load2(stream *QDataStream, typeVal int, data unsafe.Pointer) bool {
+	return (bool)(QMetaType_Load2(stream.cPointer(), (int)(typeVal), data))
+}
+
+func (this *QMetaType) UnderlyingType() *QMetaType {
+	_goptr := newQMetaType(QMetaType_UnderlyingType(this.h))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QMetaType_FromName(name QByteArrayView) *QMetaType {
+	_goptr := newQMetaType(QMetaType_FromName(name.cPointer()))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func (this *QMetaType) DebugStream(dbg *QDebug, rhs unsafe.Pointer) bool {
+	return (bool)(QMetaType_DebugStream(this.h, dbg.cPointer(), rhs))
+}
+
+func (this *QMetaType) HasRegisteredDebugStreamOperator() bool {
+	return (bool)(QMetaType_HasRegisteredDebugStreamOperator(this.h))
+}
+
+func QMetaType_DebugStream2(dbg *QDebug, rhs unsafe.Pointer, typeId int) bool {
+	return (bool)(QMetaType_DebugStream2(dbg.cPointer(), rhs, (int)(typeId)))
+}
+
+func QMetaType_HasRegisteredDebugStreamOperatorWithTypeId(typeId int) bool {
+	return (bool)(QMetaType_HasRegisteredDebugStreamOperatorWithTypeId((int)(typeId)))
+}
+
+func QMetaType_Convert(fromType QMetaType, from unsafe.Pointer, toType QMetaType, to unsafe.Pointer) bool {
+	return (bool)(QMetaType_Convert(fromType.cPointer(), from, toType.cPointer(), to))
+}
+
+func QMetaType_CanConvert(fromType QMetaType, toType QMetaType) bool {
+	return (bool)(QMetaType_CanConvert(fromType.cPointer(), toType.cPointer()))
+}
+
+func QMetaType_View(fromType QMetaType, from unsafe.Pointer, toType QMetaType, to unsafe.Pointer) bool {
+	return (bool)(QMetaType_View(fromType.cPointer(), from, toType.cPointer(), to))
+}
+
+func QMetaType_CanView(fromType QMetaType, toType QMetaType) bool {
+	return (bool)(QMetaType_CanView(fromType.cPointer(), toType.cPointer()))
+}
+
+func QMetaType_Convert2(from unsafe.Pointer, fromTypeId int, to unsafe.Pointer, toTypeId int) bool {
+	return (bool)(QMetaType_Convert2(from, (int)(fromTypeId), to, (int)(toTypeId)))
+}
+
+func QMetaType_Compare2(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result *int) bool {
+	return (bool)(QMetaType_Compare2(lhs, rhs, (int)(typeId), (*int)(unsafe.Pointer(result))))
+}
+
+func QMetaType_Equals2(lhs unsafe.Pointer, rhs unsafe.Pointer, typeId int, result *int) bool {
+	return (bool)(QMetaType_Equals2(lhs, rhs, (int)(typeId), (*int)(unsafe.Pointer(result))))
+}
+
+func QMetaType_HasRegisteredConverterFunction(fromType QMetaType, toType QMetaType) bool {
+	return (bool)(QMetaType_HasRegisteredConverterFunction(fromType.cPointer(), toType.cPointer()))
+}
+
+func QMetaType_HasRegisteredMutableViewFunction(fromType QMetaType, toType QMetaType) bool {
+	return (bool)(QMetaType_HasRegisteredMutableViewFunction(fromType.cPointer(), toType.cPointer()))
+}
+
+func QMetaType_RegisterConverterFunction(f *ConverterFunction, from QMetaType, to QMetaType) bool {
+	return (bool)(QMetaType_RegisterConverterFunction(f, from.cPointer(), to.cPointer()))
+}
+
+func QMetaType_UnregisterConverterFunction(from QMetaType, to QMetaType) {
+	QMetaType_UnregisterConverterFunction(from.cPointer(), to.cPointer())
+}
+
+func QMetaType_RegisterMutableViewFunction(f *MutableViewFunction, from QMetaType, to QMetaType) bool {
+	return (bool)(QMetaType_RegisterMutableViewFunction(f, from.cPointer(), to.cPointer()))
+}
+
+func QMetaType_UnregisterMutableViewFunction(from QMetaType, to QMetaType) {
+	QMetaType_UnregisterMutableViewFunction(from.cPointer(), to.cPointer())
+}
+
+func QMetaType_UnregisterMetaType(typeVal QMetaType) {
+	QMetaType_UnregisterMetaType(typeVal.cPointer())
 }
 
 func QMetaType_Create22(typeVal int, copyVal unsafe.Pointer) unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_Create22((C.int)(typeVal), copyVal))
+	return (unsafe.Pointer)(QMetaType_Create22((int)(typeVal), copyVal))
+}
+
+func (this *QMetaType) IsValid1(param1 Disambiguated_t) bool {
+	return (bool)(QMetaType_IsValid1(this.h, param1.cPointer()))
+}
+
+func (this *QMetaType) IsRegistered1(param1 Disambiguated_t) bool {
+	return (bool)(QMetaType_IsRegistered1(this.h, param1.cPointer()))
+}
+
+func (this *QMetaType) Id1(param1 int) int {
+	return (int)(QMetaType_Id1(this.h, (int)(param1)))
 }
 
 func (this *QMetaType) Create1(copyVal unsafe.Pointer) unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_Create1(this.h, copyVal))
+	return (unsafe.Pointer)(QMetaType_Create1(this.h, copyVal))
 }
 
 func (this *QMetaType) Construct2(where unsafe.Pointer, copyVal unsafe.Pointer) unsafe.Pointer {
-	return (unsafe.Pointer)(C.QMetaType_Construct2(this.h, where, copyVal))
-}
-
-// Delete this object from C++ memory.
-func (this *QMetaType) Delete() {
-	C.QMetaType_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QMetaType) GoGC() {
-	runtime.SetFinalizer(this, func(this *QMetaType) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
+	return (unsafe.Pointer)(QMetaType_Construct2(this.h, where, copyVal))
 }

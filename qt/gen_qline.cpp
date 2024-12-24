@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QLine>
 #include <QLineF>
 #include <QPoint>
@@ -8,7 +10,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QLine* QLine_new() {
 	return new QLine();
@@ -98,12 +115,8 @@ void QLine_SetLine(QLine* self, int x1, int y1, int x2, int y2) {
 	self->setLine(static_cast<int>(x1), static_cast<int>(y1), static_cast<int>(x2), static_cast<int>(y2));
 }
 
-bool QLine_OperatorEqual(const QLine* self, QLine* d) {
-	return (*self == *d);
-}
-
-bool QLine_OperatorNotEqual(const QLine* self, QLine* d) {
-	return (*self != *d);
+QLineF* QLine_ToLineF(const QLine* self) {
+	return new QLineF(self->toLineF());
 }
 
 void QLine_Delete(QLine* self, bool isSubclass) {
@@ -211,19 +224,8 @@ QLineF* QLineF_NormalVector(const QLineF* self) {
 	return new QLineF(self->normalVector());
 }
 
-int QLineF_Intersects(const QLineF* self, QLineF* l, QPointF* intersectionPoint) {
-	QLineF::IntersectionType _ret = self->intersects(*l, intersectionPoint);
-	return static_cast<int>(_ret);
-}
-
-int QLineF_Intersect(const QLineF* self, QLineF* l, QPointF* intersectionPoint) {
-	QLineF::IntersectType _ret = self->intersect(*l, intersectionPoint);
-	return static_cast<int>(_ret);
-}
-
-double QLineF_AngleWithQLineF(const QLineF* self, QLineF* l) {
-	qreal _ret = self->angle(*l);
-	return static_cast<double>(_ret);
+IntersectionType QLineF_Intersects(const QLineF* self, QLineF* l) {
+	return self->intersects(*l);
 }
 
 QPointF* QLineF_PointAt(const QLineF* self, double t) {
@@ -266,16 +268,12 @@ void QLineF_SetLine(QLineF* self, double x1, double y1, double x2, double y2) {
 	self->setLine(static_cast<qreal>(x1), static_cast<qreal>(y1), static_cast<qreal>(x2), static_cast<qreal>(y2));
 }
 
-bool QLineF_OperatorEqual(const QLineF* self, QLineF* d) {
-	return (*self == *d);
-}
-
-bool QLineF_OperatorNotEqual(const QLineF* self, QLineF* d) {
-	return (*self != *d);
-}
-
 QLine* QLineF_ToLine(const QLineF* self) {
 	return new QLine(self->toLine());
+}
+
+IntersectionType QLineF_Intersects2(const QLineF* self, QLineF* l, QPointF* intersectionPoint) {
+	return self->intersects(*l, intersectionPoint);
 }
 
 void QLineF_Delete(QLineF* self, bool isSubclass) {

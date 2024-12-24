@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -16,45 +16,46 @@ extern "C" {
 
 #ifdef __cplusplus
 class QBasicMutex;
+class QDeadlineTimer;
 class QMutex;
-class QMutexLocker;
 class QRecursiveMutex;
+class _GUID;
+class type_info;
 #else
 typedef struct QBasicMutex QBasicMutex;
+typedef struct QDeadlineTimer QDeadlineTimer;
 typedef struct QMutex QMutex;
-typedef struct QMutexLocker QMutexLocker;
 typedef struct QRecursiveMutex QRecursiveMutex;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QBasicMutex* QBasicMutex_new();
-void QBasicMutex_Lock(QBasicMutex* self);
-void QBasicMutex_Unlock(QBasicMutex* self);
-bool QBasicMutex_TryLock(QBasicMutex* self);
-bool QBasicMutex_TryLock2(QBasicMutex* self);
-bool QBasicMutex_IsRecursive(QBasicMutex* self);
-bool QBasicMutex_IsRecursive2(const QBasicMutex* self);
-void QBasicMutex_Delete(QBasicMutex* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
-QMutex* QMutex_new();
-QMutex* QMutex_new2(int mode);
-void QMutex_virtbase(QMutex* src, QBasicMutex** outptr_QBasicMutex);
-void QMutex_Lock(QMutex* self);
-bool QMutex_TryLock(QMutex* self);
-void QMutex_Unlock(QMutex* self);
-bool QMutex_TryLock2(QMutex* self);
-bool QMutex_IsRecursive(const QMutex* self);
-bool QMutex_TryLock1(QMutex* self, int timeout);
-void QMutex_Delete(QMutex* self, bool isSubclass);
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
 
-QRecursiveMutex* QRecursiveMutex_new();
-void QRecursiveMutex_Delete(QRecursiveMutex* self, bool isSubclass);
+extern __declspec(dllexport) QBasicMutex* QBasicMutex_new();
+extern __declspec(dllexport) void QBasicMutex_Lock(QBasicMutex* self);
+extern __declspec(dllexport) void QBasicMutex_Unlock(QBasicMutex* self);
+extern __declspec(dllexport) bool QBasicMutex_TryLock(QBasicMutex* self);
+extern __declspec(dllexport) bool QBasicMutex_TryLock2(QBasicMutex* self);
+extern __declspec(dllexport) void QBasicMutex_Delete(QBasicMutex* self, bool isSubclass);
 
-QMutexLocker* QMutexLocker_new(QBasicMutex* m);
-QMutexLocker* QMutexLocker_new2(QRecursiveMutex* m);
-void QMutexLocker_Unlock(QMutexLocker* self);
-void QMutexLocker_Relock(QMutexLocker* self);
-QMutex* QMutexLocker_Mutex(const QMutexLocker* self);
-void QMutexLocker_Delete(QMutexLocker* self, bool isSubclass);
+extern __declspec(dllexport) QMutex* QMutex_new();
+extern __declspec(dllexport) void QMutex_virtbase(QMutex* src, QBasicMutex** outptr_QBasicMutex);
+extern __declspec(dllexport) bool QMutex_TryLock(QMutex* self);
+extern __declspec(dllexport) bool QMutex_TryLockWithTimeout(QMutex* self, int timeout);
+extern __declspec(dllexport) bool QMutex_TryLock2(QMutex* self, QDeadlineTimer* timeout);
+extern __declspec(dllexport) void QMutex_Delete(QMutex* self, bool isSubclass);
+
+extern __declspec(dllexport) QRecursiveMutex* QRecursiveMutex_new();
+extern __declspec(dllexport) void QRecursiveMutex_Lock(QRecursiveMutex* self);
+extern __declspec(dllexport) bool QRecursiveMutex_TryLock(QRecursiveMutex* self, int timeout);
+extern __declspec(dllexport) bool QRecursiveMutex_TryLock2(QRecursiveMutex* self);
+extern __declspec(dllexport) void QRecursiveMutex_Unlock(QRecursiveMutex* self);
+extern __declspec(dllexport) bool QRecursiveMutex_TryLock3(QRecursiveMutex* self);
+extern __declspec(dllexport) bool QRecursiveMutex_TryLock1(QRecursiveMutex* self, QDeadlineTimer* timer);
+extern __declspec(dllexport) void QRecursiveMutex_Delete(QRecursiveMutex* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

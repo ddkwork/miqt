@@ -1,231 +1,204 @@
 package qt
 
-/*
-
-#include "gen_qstylehints.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
-	"runtime/cgo"
 	"unsafe"
 )
 
 type QStyleHints struct {
-	h          *C.QStyleHints
+	h          uintptr
 	isSubclass bool
-	*QObject
-}
-
-func (this *QStyleHints) cPointer() *C.QStyleHints {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QStyleHints) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQStyleHints constructs the type using only CGO pointers.
-func newQStyleHints(h *C.QStyleHints) *QStyleHints {
-	if h == nil {
-		return nil
-	}
-	var outptr_QObject *C.QObject = nil
-	C.QStyleHints_virtbase(h, &outptr_QObject)
-
-	return &QStyleHints{h: h,
-		QObject: newQObject(outptr_QObject)}
-}
-
-// UnsafeNewQStyleHints constructs the type using only unsafe pointers.
-func UnsafeNewQStyleHints(h unsafe.Pointer) *QStyleHints {
-	return newQStyleHints((*C.QStyleHints)(h))
 }
 
 func (this *QStyleHints) MetaObject() *QMetaObject {
-	return newQMetaObject(C.QStyleHints_MetaObject(this.h))
+	return newQMetaObject(QStyleHints_MetaObject(this.h))
 }
 
 func (this *QStyleHints) Metacast(param1 string) unsafe.Pointer {
-	param1_Cstring := C.CString(param1)
-	defer C.free(unsafe.Pointer(param1_Cstring))
-	return (unsafe.Pointer)(C.QStyleHints_Metacast(this.h, param1_Cstring))
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QStyleHints_Metacast(this.h, param1_Cstring))
 }
 
 func QStyleHints_Tr(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QStyleHints_Tr(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QStyleHints_TrUtf8(s string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	var _ms C.struct_miqt_string = C.QStyleHints_TrUtf8(s_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QStyleHints_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func (this *QStyleHints) SetMouseDoubleClickInterval(mouseDoubleClickInterval int) {
-	C.QStyleHints_SetMouseDoubleClickInterval(this.h, (C.int)(mouseDoubleClickInterval))
+	QStyleHints_SetMouseDoubleClickInterval(this.h, (int)(mouseDoubleClickInterval))
 }
 
 func (this *QStyleHints) MouseDoubleClickInterval() int {
-	return (int)(C.QStyleHints_MouseDoubleClickInterval(this.h))
+	return (int)(QStyleHints_MouseDoubleClickInterval(this.h))
 }
 
 func (this *QStyleHints) MouseDoubleClickDistance() int {
-	return (int)(C.QStyleHints_MouseDoubleClickDistance(this.h))
+	return (int)(QStyleHints_MouseDoubleClickDistance(this.h))
 }
 
 func (this *QStyleHints) TouchDoubleTapDistance() int {
-	return (int)(C.QStyleHints_TouchDoubleTapDistance(this.h))
+	return (int)(QStyleHints_TouchDoubleTapDistance(this.h))
 }
 
 func (this *QStyleHints) SetMousePressAndHoldInterval(mousePressAndHoldInterval int) {
-	C.QStyleHints_SetMousePressAndHoldInterval(this.h, (C.int)(mousePressAndHoldInterval))
+	QStyleHints_SetMousePressAndHoldInterval(this.h, (int)(mousePressAndHoldInterval))
 }
 
 func (this *QStyleHints) MousePressAndHoldInterval() int {
-	return (int)(C.QStyleHints_MousePressAndHoldInterval(this.h))
+	return (int)(QStyleHints_MousePressAndHoldInterval(this.h))
 }
 
 func (this *QStyleHints) SetStartDragDistance(startDragDistance int) {
-	C.QStyleHints_SetStartDragDistance(this.h, (C.int)(startDragDistance))
+	QStyleHints_SetStartDragDistance(this.h, (int)(startDragDistance))
 }
 
 func (this *QStyleHints) StartDragDistance() int {
-	return (int)(C.QStyleHints_StartDragDistance(this.h))
+	return (int)(QStyleHints_StartDragDistance(this.h))
 }
 
 func (this *QStyleHints) SetStartDragTime(startDragTime int) {
-	C.QStyleHints_SetStartDragTime(this.h, (C.int)(startDragTime))
+	QStyleHints_SetStartDragTime(this.h, (int)(startDragTime))
 }
 
 func (this *QStyleHints) StartDragTime() int {
-	return (int)(C.QStyleHints_StartDragTime(this.h))
+	return (int)(QStyleHints_StartDragTime(this.h))
 }
 
 func (this *QStyleHints) StartDragVelocity() int {
-	return (int)(C.QStyleHints_StartDragVelocity(this.h))
+	return (int)(QStyleHints_StartDragVelocity(this.h))
 }
 
 func (this *QStyleHints) SetKeyboardInputInterval(keyboardInputInterval int) {
-	C.QStyleHints_SetKeyboardInputInterval(this.h, (C.int)(keyboardInputInterval))
+	QStyleHints_SetKeyboardInputInterval(this.h, (int)(keyboardInputInterval))
 }
 
 func (this *QStyleHints) KeyboardInputInterval() int {
-	return (int)(C.QStyleHints_KeyboardInputInterval(this.h))
+	return (int)(QStyleHints_KeyboardInputInterval(this.h))
 }
 
 func (this *QStyleHints) KeyboardAutoRepeatRate() int {
-	return (int)(C.QStyleHints_KeyboardAutoRepeatRate(this.h))
+	return (int)(QStyleHints_KeyboardAutoRepeatRate(this.h))
+}
+
+func (this *QStyleHints) KeyboardAutoRepeatRateF() float64 {
+	return (float64)(QStyleHints_KeyboardAutoRepeatRateF(this.h))
 }
 
 func (this *QStyleHints) SetCursorFlashTime(cursorFlashTime int) {
-	C.QStyleHints_SetCursorFlashTime(this.h, (C.int)(cursorFlashTime))
+	QStyleHints_SetCursorFlashTime(this.h, (int)(cursorFlashTime))
 }
 
 func (this *QStyleHints) CursorFlashTime() int {
-	return (int)(C.QStyleHints_CursorFlashTime(this.h))
+	return (int)(QStyleHints_CursorFlashTime(this.h))
 }
 
 func (this *QStyleHints) ShowIsFullScreen() bool {
-	return (bool)(C.QStyleHints_ShowIsFullScreen(this.h))
+	return (bool)(QStyleHints_ShowIsFullScreen(this.h))
 }
 
 func (this *QStyleHints) ShowIsMaximized() bool {
-	return (bool)(C.QStyleHints_ShowIsMaximized(this.h))
+	return (bool)(QStyleHints_ShowIsMaximized(this.h))
 }
 
 func (this *QStyleHints) ShowShortcutsInContextMenus() bool {
-	return (bool)(C.QStyleHints_ShowShortcutsInContextMenus(this.h))
+	return (bool)(QStyleHints_ShowShortcutsInContextMenus(this.h))
 }
 
 func (this *QStyleHints) SetShowShortcutsInContextMenus(showShortcutsInContextMenus bool) {
-	C.QStyleHints_SetShowShortcutsInContextMenus(this.h, (C.bool)(showShortcutsInContextMenus))
+	QStyleHints_SetShowShortcutsInContextMenus(this.h, (bool)(showShortcutsInContextMenus))
+}
+
+func (this *QStyleHints) ContextMenuTrigger() ContextMenuTrigger {
+	return (ContextMenuTrigger)(QStyleHints_ContextMenuTrigger(this.h))
+}
+
+func (this *QStyleHints) SetContextMenuTrigger(contextMenuTrigger ContextMenuTrigger) {
+	QStyleHints_SetContextMenuTrigger(this.h, (int)(contextMenuTrigger))
 }
 
 func (this *QStyleHints) PasswordMaskDelay() int {
-	return (int)(C.QStyleHints_PasswordMaskDelay(this.h))
+	return (int)(QStyleHints_PasswordMaskDelay(this.h))
 }
 
 func (this *QStyleHints) PasswordMaskCharacter() *QChar {
-	_goptr := newQChar(C.QStyleHints_PasswordMaskCharacter(this.h))
+	_goptr := newQChar(QStyleHints_PasswordMaskCharacter(this.h))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func (this *QStyleHints) FontSmoothingGamma() float64 {
-	return (float64)(C.QStyleHints_FontSmoothingGamma(this.h))
+	return (float64)(QStyleHints_FontSmoothingGamma(this.h))
 }
 
 func (this *QStyleHints) UseRtlExtensions() bool {
-	return (bool)(C.QStyleHints_UseRtlExtensions(this.h))
+	return (bool)(QStyleHints_UseRtlExtensions(this.h))
 }
 
 func (this *QStyleHints) SetFocusOnTouchRelease() bool {
-	return (bool)(C.QStyleHints_SetFocusOnTouchRelease(this.h))
+	return (bool)(QStyleHints_SetFocusOnTouchRelease(this.h))
 }
 
 func (this *QStyleHints) TabFocusBehavior() TabFocusBehavior {
-	return (TabFocusBehavior)(C.QStyleHints_TabFocusBehavior(this.h))
+	return (TabFocusBehavior)(QStyleHints_TabFocusBehavior(this.h))
 }
 
 func (this *QStyleHints) SetTabFocusBehavior(tabFocusBehavior TabFocusBehavior) {
-	C.QStyleHints_SetTabFocusBehavior(this.h, (C.int)(tabFocusBehavior))
+	QStyleHints_SetTabFocusBehavior(this.h, (int)(tabFocusBehavior))
 }
 
 func (this *QStyleHints) SingleClickActivation() bool {
-	return (bool)(C.QStyleHints_SingleClickActivation(this.h))
+	return (bool)(QStyleHints_SingleClickActivation(this.h))
 }
 
 func (this *QStyleHints) UseHoverEffects() bool {
-	return (bool)(C.QStyleHints_UseHoverEffects(this.h))
+	return (bool)(QStyleHints_UseHoverEffects(this.h))
 }
 
 func (this *QStyleHints) SetUseHoverEffects(useHoverEffects bool) {
-	C.QStyleHints_SetUseHoverEffects(this.h, (C.bool)(useHoverEffects))
+	QStyleHints_SetUseHoverEffects(this.h, (bool)(useHoverEffects))
 }
 
 func (this *QStyleHints) WheelScrollLines() int {
-	return (int)(C.QStyleHints_WheelScrollLines(this.h))
+	return (int)(QStyleHints_WheelScrollLines(this.h))
 }
 
 func (this *QStyleHints) SetWheelScrollLines(scrollLines int) {
-	C.QStyleHints_SetWheelScrollLines(this.h, (C.int)(scrollLines))
+	QStyleHints_SetWheelScrollLines(this.h, (int)(scrollLines))
 }
 
 func (this *QStyleHints) SetMouseQuickSelectionThreshold(threshold int) {
-	C.QStyleHints_SetMouseQuickSelectionThreshold(this.h, (C.int)(threshold))
+	QStyleHints_SetMouseQuickSelectionThreshold(this.h, (int)(threshold))
 }
 
 func (this *QStyleHints) MouseQuickSelectionThreshold() int {
-	return (int)(C.QStyleHints_MouseQuickSelectionThreshold(this.h))
+	return (int)(QStyleHints_MouseQuickSelectionThreshold(this.h))
+}
+
+func (this *QStyleHints) ColorScheme() ColorScheme {
+	return (ColorScheme)(QStyleHints_ColorScheme(this.h))
+}
+
+func (this *QStyleHints) SetColorScheme(scheme ColorScheme) {
+	QStyleHints_SetColorScheme(this.h, (int)(scheme))
+}
+
+func (this *QStyleHints) UnsetColorScheme() {
+	QStyleHints_UnsetColorScheme(this.h)
 }
 
 func (this *QStyleHints) CursorFlashTimeChanged(cursorFlashTime int) {
-	C.QStyleHints_CursorFlashTimeChanged(this.h, (C.int)(cursorFlashTime))
+	QStyleHints_CursorFlashTimeChanged(this.h, (int)(cursorFlashTime))
 }
 func (this *QStyleHints) OnCursorFlashTimeChanged(slot func(cursorFlashTime int)) {
-	C.QStyleHints_connect_CursorFlashTimeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_CursorFlashTimeChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_CursorFlashTimeChanged
-func miqt_exec_callback_QStyleHints_CursorFlashTimeChanged(cb C.intptr_t, cursorFlashTime C.int) {
+func miqt_exec_callback_QStyleHints_CursorFlashTimeChanged(cb intptr_t, cursorFlashTime int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(cursorFlashTime int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -238,14 +211,14 @@ func miqt_exec_callback_QStyleHints_CursorFlashTimeChanged(cb C.intptr_t, cursor
 }
 
 func (this *QStyleHints) KeyboardInputIntervalChanged(keyboardInputInterval int) {
-	C.QStyleHints_KeyboardInputIntervalChanged(this.h, (C.int)(keyboardInputInterval))
+	QStyleHints_KeyboardInputIntervalChanged(this.h, (int)(keyboardInputInterval))
 }
 func (this *QStyleHints) OnKeyboardInputIntervalChanged(slot func(keyboardInputInterval int)) {
-	C.QStyleHints_connect_KeyboardInputIntervalChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_KeyboardInputIntervalChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_KeyboardInputIntervalChanged
-func miqt_exec_callback_QStyleHints_KeyboardInputIntervalChanged(cb C.intptr_t, keyboardInputInterval C.int) {
+func miqt_exec_callback_QStyleHints_KeyboardInputIntervalChanged(cb intptr_t, keyboardInputInterval int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(keyboardInputInterval int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -258,14 +231,14 @@ func miqt_exec_callback_QStyleHints_KeyboardInputIntervalChanged(cb C.intptr_t, 
 }
 
 func (this *QStyleHints) MouseDoubleClickIntervalChanged(mouseDoubleClickInterval int) {
-	C.QStyleHints_MouseDoubleClickIntervalChanged(this.h, (C.int)(mouseDoubleClickInterval))
+	QStyleHints_MouseDoubleClickIntervalChanged(this.h, (int)(mouseDoubleClickInterval))
 }
 func (this *QStyleHints) OnMouseDoubleClickIntervalChanged(slot func(mouseDoubleClickInterval int)) {
-	C.QStyleHints_connect_MouseDoubleClickIntervalChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_MouseDoubleClickIntervalChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_MouseDoubleClickIntervalChanged
-func miqt_exec_callback_QStyleHints_MouseDoubleClickIntervalChanged(cb C.intptr_t, mouseDoubleClickInterval C.int) {
+func miqt_exec_callback_QStyleHints_MouseDoubleClickIntervalChanged(cb intptr_t, mouseDoubleClickInterval int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(mouseDoubleClickInterval int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -278,14 +251,14 @@ func miqt_exec_callback_QStyleHints_MouseDoubleClickIntervalChanged(cb C.intptr_
 }
 
 func (this *QStyleHints) MousePressAndHoldIntervalChanged(mousePressAndHoldInterval int) {
-	C.QStyleHints_MousePressAndHoldIntervalChanged(this.h, (C.int)(mousePressAndHoldInterval))
+	QStyleHints_MousePressAndHoldIntervalChanged(this.h, (int)(mousePressAndHoldInterval))
 }
 func (this *QStyleHints) OnMousePressAndHoldIntervalChanged(slot func(mousePressAndHoldInterval int)) {
-	C.QStyleHints_connect_MousePressAndHoldIntervalChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_MousePressAndHoldIntervalChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_MousePressAndHoldIntervalChanged
-func miqt_exec_callback_QStyleHints_MousePressAndHoldIntervalChanged(cb C.intptr_t, mousePressAndHoldInterval C.int) {
+func miqt_exec_callback_QStyleHints_MousePressAndHoldIntervalChanged(cb intptr_t, mousePressAndHoldInterval int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(mousePressAndHoldInterval int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -298,14 +271,14 @@ func miqt_exec_callback_QStyleHints_MousePressAndHoldIntervalChanged(cb C.intptr
 }
 
 func (this *QStyleHints) StartDragDistanceChanged(startDragDistance int) {
-	C.QStyleHints_StartDragDistanceChanged(this.h, (C.int)(startDragDistance))
+	QStyleHints_StartDragDistanceChanged(this.h, (int)(startDragDistance))
 }
 func (this *QStyleHints) OnStartDragDistanceChanged(slot func(startDragDistance int)) {
-	C.QStyleHints_connect_StartDragDistanceChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_StartDragDistanceChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_StartDragDistanceChanged
-func miqt_exec_callback_QStyleHints_StartDragDistanceChanged(cb C.intptr_t, startDragDistance C.int) {
+func miqt_exec_callback_QStyleHints_StartDragDistanceChanged(cb intptr_t, startDragDistance int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(startDragDistance int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -318,14 +291,14 @@ func miqt_exec_callback_QStyleHints_StartDragDistanceChanged(cb C.intptr_t, star
 }
 
 func (this *QStyleHints) StartDragTimeChanged(startDragTime int) {
-	C.QStyleHints_StartDragTimeChanged(this.h, (C.int)(startDragTime))
+	QStyleHints_StartDragTimeChanged(this.h, (int)(startDragTime))
 }
 func (this *QStyleHints) OnStartDragTimeChanged(slot func(startDragTime int)) {
-	C.QStyleHints_connect_StartDragTimeChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_StartDragTimeChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_StartDragTimeChanged
-func miqt_exec_callback_QStyleHints_StartDragTimeChanged(cb C.intptr_t, startDragTime C.int) {
+func miqt_exec_callback_QStyleHints_StartDragTimeChanged(cb intptr_t, startDragTime int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(startDragTime int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -338,14 +311,14 @@ func miqt_exec_callback_QStyleHints_StartDragTimeChanged(cb C.intptr_t, startDra
 }
 
 func (this *QStyleHints) TabFocusBehaviorChanged(tabFocusBehavior TabFocusBehavior) {
-	C.QStyleHints_TabFocusBehaviorChanged(this.h, (C.int)(tabFocusBehavior))
+	QStyleHints_TabFocusBehaviorChanged(this.h, (int)(tabFocusBehavior))
 }
 func (this *QStyleHints) OnTabFocusBehaviorChanged(slot func(tabFocusBehavior TabFocusBehavior)) {
-	C.QStyleHints_connect_TabFocusBehaviorChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_TabFocusBehaviorChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_TabFocusBehaviorChanged
-func miqt_exec_callback_QStyleHints_TabFocusBehaviorChanged(cb C.intptr_t, tabFocusBehavior C.int) {
+func miqt_exec_callback_QStyleHints_TabFocusBehaviorChanged(cb intptr_t, tabFocusBehavior int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(tabFocusBehavior TabFocusBehavior))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -358,14 +331,14 @@ func miqt_exec_callback_QStyleHints_TabFocusBehaviorChanged(cb C.intptr_t, tabFo
 }
 
 func (this *QStyleHints) UseHoverEffectsChanged(useHoverEffects bool) {
-	C.QStyleHints_UseHoverEffectsChanged(this.h, (C.bool)(useHoverEffects))
+	QStyleHints_UseHoverEffectsChanged(this.h, (bool)(useHoverEffects))
 }
 func (this *QStyleHints) OnUseHoverEffectsChanged(slot func(useHoverEffects bool)) {
-	C.QStyleHints_connect_UseHoverEffectsChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_UseHoverEffectsChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_UseHoverEffectsChanged
-func miqt_exec_callback_QStyleHints_UseHoverEffectsChanged(cb C.intptr_t, useHoverEffects C.bool) {
+func miqt_exec_callback_QStyleHints_UseHoverEffectsChanged(cb intptr_t, useHoverEffects bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(useHoverEffects bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -378,14 +351,14 @@ func miqt_exec_callback_QStyleHints_UseHoverEffectsChanged(cb C.intptr_t, useHov
 }
 
 func (this *QStyleHints) ShowShortcutsInContextMenusChanged(param1 bool) {
-	C.QStyleHints_ShowShortcutsInContextMenusChanged(this.h, (C.bool)(param1))
+	QStyleHints_ShowShortcutsInContextMenusChanged(this.h, (bool)(param1))
 }
 func (this *QStyleHints) OnShowShortcutsInContextMenusChanged(slot func(param1 bool)) {
-	C.QStyleHints_connect_ShowShortcutsInContextMenusChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_ShowShortcutsInContextMenusChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_ShowShortcutsInContextMenusChanged
-func miqt_exec_callback_QStyleHints_ShowShortcutsInContextMenusChanged(cb C.intptr_t, param1 C.bool) {
+func miqt_exec_callback_QStyleHints_ShowShortcutsInContextMenusChanged(cb intptr_t, param1 bool) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(param1 bool))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -397,15 +370,35 @@ func miqt_exec_callback_QStyleHints_ShowShortcutsInContextMenusChanged(cb C.intp
 	gofunc(slotval1)
 }
 
+func (this *QStyleHints) ContextMenuTriggerChanged(contextMenuTrigger ContextMenuTrigger) {
+	QStyleHints_ContextMenuTriggerChanged(this.h, (int)(contextMenuTrigger))
+}
+func (this *QStyleHints) OnContextMenuTriggerChanged(slot func(contextMenuTrigger ContextMenuTrigger)) {
+	QStyleHints_connect_ContextMenuTriggerChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QStyleHints_ContextMenuTriggerChanged
+func miqt_exec_callback_QStyleHints_ContextMenuTriggerChanged(cb intptr_t, contextMenuTrigger int) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(contextMenuTrigger ContextMenuTrigger))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := (ContextMenuTrigger)(contextMenuTrigger)
+
+	gofunc(slotval1)
+}
+
 func (this *QStyleHints) WheelScrollLinesChanged(scrollLines int) {
-	C.QStyleHints_WheelScrollLinesChanged(this.h, (C.int)(scrollLines))
+	QStyleHints_WheelScrollLinesChanged(this.h, (int)(scrollLines))
 }
 func (this *QStyleHints) OnWheelScrollLinesChanged(slot func(scrollLines int)) {
-	C.QStyleHints_connect_WheelScrollLinesChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_WheelScrollLinesChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_WheelScrollLinesChanged
-func miqt_exec_callback_QStyleHints_WheelScrollLinesChanged(cb C.intptr_t, scrollLines C.int) {
+func miqt_exec_callback_QStyleHints_WheelScrollLinesChanged(cb intptr_t, scrollLines int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(scrollLines int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -418,14 +411,14 @@ func miqt_exec_callback_QStyleHints_WheelScrollLinesChanged(cb C.intptr_t, scrol
 }
 
 func (this *QStyleHints) MouseQuickSelectionThresholdChanged(threshold int) {
-	C.QStyleHints_MouseQuickSelectionThresholdChanged(this.h, (C.int)(threshold))
+	QStyleHints_MouseQuickSelectionThresholdChanged(this.h, (int)(threshold))
 }
 func (this *QStyleHints) OnMouseQuickSelectionThresholdChanged(slot func(threshold int)) {
-	C.QStyleHints_connect_MouseQuickSelectionThresholdChanged(this.h, C.intptr_t(cgo.NewHandle(slot)))
+	QStyleHints_connect_MouseQuickSelectionThresholdChanged(this.h, intptr_t(cgo.NewHandle(slot)))
 }
 
 //export miqt_exec_callback_QStyleHints_MouseQuickSelectionThresholdChanged
-func miqt_exec_callback_QStyleHints_MouseQuickSelectionThresholdChanged(cb C.intptr_t, threshold C.int) {
+func miqt_exec_callback_QStyleHints_MouseQuickSelectionThresholdChanged(cb intptr_t, threshold int) {
 	gofunc, ok := cgo.Handle(cb).Value().(func(threshold int))
 	if !ok {
 		panic("miqt: callback of non-callback type (heap corruption?)")
@@ -437,60 +430,44 @@ func miqt_exec_callback_QStyleHints_MouseQuickSelectionThresholdChanged(cb C.int
 	gofunc(slotval1)
 }
 
+func (this *QStyleHints) ColorSchemeChanged(colorScheme ColorScheme) {
+	QStyleHints_ColorSchemeChanged(this.h, (int)(colorScheme))
+}
+func (this *QStyleHints) OnColorSchemeChanged(slot func(colorScheme ColorScheme)) {
+	QStyleHints_connect_ColorSchemeChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QStyleHints_ColorSchemeChanged
+func miqt_exec_callback_QStyleHints_ColorSchemeChanged(cb intptr_t, colorScheme int) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(colorScheme ColorScheme))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := (ColorScheme)(colorScheme)
+
+	gofunc(slotval1)
+}
+
 func QStyleHints_Tr2(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QStyleHints_Tr2(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QStyleHints_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QStyleHints_Tr3(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QStyleHints_Tr3(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QStyleHints_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
-}
-
-func QStyleHints_TrUtf82(s string, c string) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QStyleHints_TrUtf82(s_Cstring, c_Cstring)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-func QStyleHints_TrUtf83(s string, c string, n int) string {
-	s_Cstring := C.CString(s)
-	defer C.free(unsafe.Pointer(s_Cstring))
-	c_Cstring := C.CString(c)
-	defer C.free(unsafe.Pointer(c_Cstring))
-	var _ms C.struct_miqt_string = C.QStyleHints_TrUtf83(s_Cstring, c_Cstring, (C.int)(n))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
-	return _ret
-}
-
-// Delete this object from C++ memory.
-func (this *QStyleHints) Delete() {
-	C.QStyleHints_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QStyleHints) GoGC() {
-	runtime.SetFinalizer(this, func(this *QStyleHints) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

@@ -1,6 +1,7 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QDateTime>
-#include <QList>
 #include <QLocale>
 #include <QResource>
 #include <QString>
@@ -12,7 +13,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QResource* QResource_new() {
 	return new QResource();
@@ -67,9 +83,8 @@ bool QResource_IsValid(const QResource* self) {
 	return self->isValid();
 }
 
-int QResource_CompressionAlgorithm(const QResource* self) {
-	QResource::Compression _ret = self->compressionAlgorithm();
-	return static_cast<int>(_ret);
+Compression QResource_CompressionAlgorithm(const QResource* self) {
+	return self->compressionAlgorithm();
 }
 
 long long QResource_Size(const QResource* self) {
@@ -98,35 +113,6 @@ struct miqt_string QResource_UncompressedData(const QResource* self) {
 
 QDateTime* QResource_LastModified(const QResource* self) {
 	return new QDateTime(self->lastModified());
-}
-
-void QResource_AddSearchPath(struct miqt_string path) {
-	QString path_QString = QString::fromUtf8(path.data, path.len);
-	QResource::addSearchPath(path_QString);
-}
-
-struct miqt_array /* of struct miqt_string */  QResource_SearchPaths() {
-	QStringList _ret = QResource::searchPaths();
-	// Convert QList<> from C++ memory to manually-managed C memory
-	struct miqt_string* _arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.length()));
-	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-		QString _lv_ret = _ret[i];
-		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-		QByteArray _lv_b = _lv_ret.toUtf8();
-		struct miqt_string _lv_ms;
-		_lv_ms.len = _lv_b.length();
-		_lv_ms.data = static_cast<char*>(malloc(_lv_ms.len));
-		memcpy(_lv_ms.data, _lv_b.data(), _lv_ms.len);
-		_arr[i] = _lv_ms;
-	}
-	struct miqt_array _out;
-	_out.len = _ret.length();
-	_out.data = static_cast<void*>(_arr);
-	return _out;
-}
-
-bool QResource_IsCompressed(const QResource* self) {
-	return self->isCompressed();
 }
 
 bool QResource_RegisterResource(struct miqt_string rccFilename) {

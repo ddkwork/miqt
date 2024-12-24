@@ -1,3 +1,6 @@
+// +build ignore
+
+#include <QGenericRunnable>
 #include <QRunnable>
 #include <qrunnable.h>
 #include "gen_qrunnable.h"
@@ -5,7 +8,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQRunnable : public virtual QRunnable {
 public:
@@ -43,12 +61,8 @@ bool QRunnable_AutoDelete(const QRunnable* self) {
 	return self->autoDelete();
 }
 
-void QRunnable_SetAutoDelete(QRunnable* self, bool _autoDelete) {
-	self->setAutoDelete(_autoDelete);
-}
-
-void QRunnable_OperatorAssign(QRunnable* self, QRunnable* param1) {
-	self->operator=(*param1);
+void QRunnable_SetAutoDelete(QRunnable* self, bool autoDelete) {
+	self->setAutoDelete(autoDelete);
 }
 
 void QRunnable_override_virtual_Run(void* self, intptr_t slot) {
@@ -58,6 +72,22 @@ void QRunnable_override_virtual_Run(void* self, intptr_t slot) {
 void QRunnable_Delete(QRunnable* self, bool isSubclass) {
 	if (isSubclass) {
 		delete dynamic_cast<MiqtVirtualQRunnable*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void QGenericRunnable_virtbase(QGenericRunnable* src, QRunnable** outptr_QRunnable) {
+	*outptr_QRunnable = static_cast<QRunnable*>(src);
+}
+
+void QGenericRunnable_Run(QGenericRunnable* self) {
+	self->run();
+}
+
+void QGenericRunnable_Delete(QGenericRunnable* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QGenericRunnable*>( self );
 	} else {
 		delete self;
 	}

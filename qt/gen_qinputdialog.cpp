@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QCloseEvent>
 #include <QContextMenuEvent>
 #include <QDialog>
@@ -21,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQInputDialog : public virtual QInputDialog {
 public:
@@ -396,24 +413,12 @@ struct miqt_string QInputDialog_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QInputDialog_TrUtf8(const char* s) {
-	QString _ret = QInputDialog::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
+void QInputDialog_SetInputMode(QInputDialog* self, InputMode mode) {
+	self->setInputMode(mode);
 }
 
-void QInputDialog_SetInputMode(QInputDialog* self, int mode) {
-	self->setInputMode(static_cast<QInputDialog::InputMode>(mode));
-}
-
-int QInputDialog_InputMode(const QInputDialog* self) {
-	QInputDialog::InputMode _ret = self->inputMode();
-	return static_cast<int>(_ret);
+InputMode QInputDialog_InputMode(const QInputDialog* self) {
+	return self->inputMode();
 }
 
 void QInputDialog_SetLabelText(QInputDialog* self, struct miqt_string text) {
@@ -432,21 +437,20 @@ struct miqt_string QInputDialog_LabelText(const QInputDialog* self) {
 	return _ms;
 }
 
-void QInputDialog_SetOption(QInputDialog* self, int option) {
-	self->setOption(static_cast<QInputDialog::InputDialogOption>(option));
+void QInputDialog_SetOption(QInputDialog* self, InputDialogOption option) {
+	self->setOption(option);
 }
 
-bool QInputDialog_TestOption(const QInputDialog* self, int option) {
-	return self->testOption(static_cast<QInputDialog::InputDialogOption>(option));
+bool QInputDialog_TestOption(const QInputDialog* self, InputDialogOption option) {
+	return self->testOption(option);
 }
 
-void QInputDialog_SetOptions(QInputDialog* self, int options) {
-	self->setOptions(static_cast<QInputDialog::InputDialogOptions>(options));
+void QInputDialog_SetOptions(QInputDialog* self, InputDialogOptions options) {
+	self->setOptions(options);
 }
 
-int QInputDialog_Options(const QInputDialog* self) {
-	QInputDialog::InputDialogOptions _ret = self->options();
-	return static_cast<int>(_ret);
+InputDialogOptions QInputDialog_Options(const QInputDialog* self) {
+	return self->options();
 }
 
 void QInputDialog_SetTextValue(QInputDialog* self, struct miqt_string text) {
@@ -687,12 +691,6 @@ double QInputDialog_GetDouble(QWidget* parent, struct miqt_string title, struct 
 	return QInputDialog::getDouble(parent, title_QString, label_QString);
 }
 
-double QInputDialog_GetDouble2(QWidget* parent, struct miqt_string title, struct miqt_string label, double value, double minValue, double maxValue, int decimals, bool* ok, int flags, double step) {
-	QString title_QString = QString::fromUtf8(title.data, title.len);
-	QString label_QString = QString::fromUtf8(label.data, label.len);
-	return QInputDialog::getDouble(parent, title_QString, label_QString, static_cast<double>(value), static_cast<double>(minValue), static_cast<double>(maxValue), static_cast<int>(decimals), ok, static_cast<Qt::WindowFlags>(flags), static_cast<double>(step));
-}
-
 void QInputDialog_SetDoubleStep(QInputDialog* self, double step) {
 	self->setDoubleStep(static_cast<double>(step));
 }
@@ -809,30 +807,8 @@ struct miqt_string QInputDialog_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QInputDialog_TrUtf82(const char* s, const char* c) {
-	QString _ret = QInputDialog::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QInputDialog_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QInputDialog::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QInputDialog_SetOption2(QInputDialog* self, int option, bool on) {
-	self->setOption(static_cast<QInputDialog::InputDialogOption>(option), on);
+void QInputDialog_SetOption2(QInputDialog* self, InputDialogOption option, bool on) {
+	self->setOption(option, on);
 }
 
 struct miqt_string QInputDialog_GetText4(QWidget* parent, struct miqt_string title, struct miqt_string label, int echo) {
@@ -1130,6 +1106,12 @@ double QInputDialog_GetDouble9(QWidget* parent, struct miqt_string title, struct
 	QString title_QString = QString::fromUtf8(title.data, title.len);
 	QString label_QString = QString::fromUtf8(label.data, label.len);
 	return QInputDialog::getDouble(parent, title_QString, label_QString, static_cast<double>(value), static_cast<double>(minValue), static_cast<double>(maxValue), static_cast<int>(decimals), ok, static_cast<Qt::WindowFlags>(flags));
+}
+
+double QInputDialog_GetDouble10(QWidget* parent, struct miqt_string title, struct miqt_string label, double value, double minValue, double maxValue, int decimals, bool* ok, int flags, double step) {
+	QString title_QString = QString::fromUtf8(title.data, title.len);
+	QString label_QString = QString::fromUtf8(label.data, label.len);
+	return QInputDialog::getDouble(parent, title_QString, label_QString, static_cast<double>(value), static_cast<double>(minValue), static_cast<double>(maxValue), static_cast<int>(decimals), ok, static_cast<Qt::WindowFlags>(flags), static_cast<double>(step));
 }
 
 void QInputDialog_override_virtual_MinimumSizeHint(void* self, intptr_t slot) {

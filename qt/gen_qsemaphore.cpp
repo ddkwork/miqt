@@ -1,3 +1,6 @@
+// +build ignore
+
+#include <QDeadlineTimer>
 #include <QSemaphore>
 #include <QSemaphoreReleaser>
 #include <qsemaphore.h>
@@ -6,7 +9,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QSemaphore* QSemaphore_new() {
 	return new QSemaphore();
@@ -28,12 +46,20 @@ bool QSemaphore_TryAcquire2(QSemaphore* self, int n, int timeout) {
 	return self->tryAcquire(static_cast<int>(n), static_cast<int>(timeout));
 }
 
+bool QSemaphore_TryAcquire3(QSemaphore* self, int n, QDeadlineTimer* timeout) {
+	return self->tryAcquire(static_cast<int>(n), *timeout);
+}
+
 void QSemaphore_Release(QSemaphore* self) {
 	self->release();
 }
 
 int QSemaphore_Available(const QSemaphore* self) {
 	return self->available();
+}
+
+bool QSemaphore_TryAcquire4(QSemaphore* self) {
+	return self->try_acquire();
 }
 
 void QSemaphore_Acquire1(QSemaphore* self, int n) {

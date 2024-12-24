@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QMetaMethod>
@@ -14,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTimer : public virtual QTimer {
 public:
@@ -228,23 +245,17 @@ struct miqt_string QTimer_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QTimer_TrUtf8(const char* s) {
-	QString _ret = QTimer::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QTimer_IsActive(const QTimer* self) {
 	return self->isActive();
 }
 
 int QTimer_TimerId(const QTimer* self) {
 	return self->timerId();
+}
+
+int QTimer_Id(const QTimer* self) {
+	Qt::TimerId _ret = self->id();
+	return static_cast<int>(_ret);
 }
 
 void QTimer_SetInterval(QTimer* self, int msec) {
@@ -301,28 +312,6 @@ struct miqt_string QTimer_Tr2(const char* s, const char* c) {
 
 struct miqt_string QTimer_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QTimer::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTimer_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTimer::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTimer_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTimer::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

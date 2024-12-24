@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBackingStore>
 #include <QPaintDevice>
 #include <QPoint>
@@ -10,7 +12,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QBackingStore* QBackingStore_new(QWindow* window) {
 	return new QBackingStore(window);

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEvent>
 #include <QGraphicsLayout>
 #include <QGraphicsLayoutItem>
@@ -9,7 +11,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQGraphicsLayout : public virtual QGraphicsLayout {
 public:
@@ -194,6 +211,28 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
+	intptr_t handle__IsEmpty = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual bool isEmpty() const override {
+		if (handle__IsEmpty == 0) {
+			return QGraphicsLayout::isEmpty();
+		}
+		
+
+		bool callback_return_value = miqt_exec_callback_QGraphicsLayout_IsEmpty(const_cast<MiqtVirtualQGraphicsLayout*>(this), handle__IsEmpty);
+
+		return callback_return_value;
+	}
+
+	// Wrapper to allow calling protected method
+	bool virtualbase_IsEmpty() const {
+
+		return QGraphicsLayout::isEmpty();
+
+	}
+
+	// cgo.Handle value for overwritten implementation
 	intptr_t handle__SizeHint = 0;
 
 	// Subclass to allow providing a Go implementation
@@ -325,6 +364,14 @@ void QGraphicsLayout_override_virtual_SetGeometry(void* self, intptr_t slot) {
 
 void QGraphicsLayout_virtualbase_SetGeometry(void* self, QRectF* rect) {
 	( (MiqtVirtualQGraphicsLayout*)(self) )->virtualbase_SetGeometry(rect);
+}
+
+void QGraphicsLayout_override_virtual_IsEmpty(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGraphicsLayout*>( (QGraphicsLayout*)(self) )->handle__IsEmpty = slot;
+}
+
+bool QGraphicsLayout_virtualbase_IsEmpty(const void* self) {
+	return ( (const MiqtVirtualQGraphicsLayout*)(self) )->virtualbase_IsEmpty();
 }
 
 void QGraphicsLayout_override_virtual_SizeHint(void* self, intptr_t slot) {

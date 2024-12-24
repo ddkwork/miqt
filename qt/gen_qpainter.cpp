@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QBrush>
 #include <QColor>
 #include <QFont>
@@ -8,7 +10,6 @@
 #include <QLine>
 #include <QLineF>
 #include <QList>
-#include <QMatrix>
 #include <QPaintDevice>
 #include <QPaintEngine>
 #include <QPainter>
@@ -35,7 +36,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QPainter* QPainter_new() {
 	return new QPainter();
@@ -61,17 +77,12 @@ bool QPainter_IsActive(const QPainter* self) {
 	return self->isActive();
 }
 
-void QPainter_InitFrom(QPainter* self, QPaintDevice* device) {
-	self->initFrom(device);
+void QPainter_SetCompositionMode(QPainter* self, CompositionMode mode) {
+	self->setCompositionMode(mode);
 }
 
-void QPainter_SetCompositionMode(QPainter* self, int mode) {
-	self->setCompositionMode(static_cast<QPainter::CompositionMode>(mode));
-}
-
-int QPainter_CompositionMode(const QPainter* self) {
-	QPainter::CompositionMode _ret = self->compositionMode();
-	return static_cast<int>(_ret);
+CompositionMode QPainter_CompositionMode(const QPainter* self) {
+	return self->compositionMode();
 }
 
 QFont* QPainter_Font(const QPainter* self) {
@@ -116,6 +127,14 @@ void QPainter_SetBrush(QPainter* self, QBrush* brush) {
 
 void QPainter_SetBrushWithStyle(QPainter* self, int style) {
 	self->setBrush(static_cast<Qt::BrushStyle>(style));
+}
+
+void QPainter_SetBrushWithColor(QPainter* self, QColor* color) {
+	self->setBrush(*color);
+}
+
+void QPainter_SetBrush2(QPainter* self, int color) {
+	self->setBrush(static_cast<Qt::GlobalColor>(color));
 }
 
 QBrush* QPainter_Brush(const QPainter* self) {
@@ -216,26 +235,6 @@ void QPainter_Restore(QPainter* self) {
 	self->restore();
 }
 
-void QPainter_SetMatrix(QPainter* self, QMatrix* matrix) {
-	self->setMatrix(*matrix);
-}
-
-QMatrix* QPainter_Matrix(const QPainter* self) {
-	const QMatrix& _ret = self->matrix();
-	// Cast returned reference into pointer
-	return const_cast<QMatrix*>(&_ret);
-}
-
-QMatrix* QPainter_DeviceMatrix(const QPainter* self) {
-	const QMatrix& _ret = self->deviceMatrix();
-	// Cast returned reference into pointer
-	return const_cast<QMatrix*>(&_ret);
-}
-
-void QPainter_ResetMatrix(QPainter* self) {
-	self->resetMatrix();
-}
-
 void QPainter_SetTransform(QPainter* self, QTransform* transform) {
 	self->setTransform(*transform);
 }
@@ -254,28 +253,6 @@ QTransform* QPainter_DeviceTransform(const QPainter* self) {
 
 void QPainter_ResetTransform(QPainter* self) {
 	self->resetTransform();
-}
-
-void QPainter_SetWorldMatrix(QPainter* self, QMatrix* matrix) {
-	self->setWorldMatrix(*matrix);
-}
-
-QMatrix* QPainter_WorldMatrix(const QPainter* self) {
-	const QMatrix& _ret = self->worldMatrix();
-	// Cast returned reference into pointer
-	return const_cast<QMatrix*>(&_ret);
-}
-
-QMatrix* QPainter_CombinedMatrix(const QPainter* self) {
-	return new QMatrix(self->combinedMatrix());
-}
-
-void QPainter_SetMatrixEnabled(QPainter* self, bool enabled) {
-	self->setMatrixEnabled(enabled);
-}
-
-bool QPainter_MatrixEnabled(const QPainter* self) {
-	return self->matrixEnabled();
 }
 
 void QPainter_SetWorldTransform(QPainter* self, QTransform* matrix) {
@@ -413,7 +390,7 @@ void QPainter_DrawLines(QPainter* self, QLineF* lines, int lineCount) {
 }
 
 void QPainter_DrawLinesWithLines(QPainter* self, struct miqt_array /* of QLineF* */  lines) {
-	QVector<QLineF> lines_QList;
+	QList<QLineF> lines_QList;
 	lines_QList.reserve(lines.len);
 	QLineF** lines_arr = static_cast<QLineF**>(lines.data);
 	for(size_t i = 0; i < lines.len; ++i) {
@@ -427,7 +404,7 @@ void QPainter_DrawLines2(QPainter* self, QPointF* pointPairs, int lineCount) {
 }
 
 void QPainter_DrawLinesWithPointPairs(QPainter* self, struct miqt_array /* of QPointF* */  pointPairs) {
-	QVector<QPointF> pointPairs_QList;
+	QList<QPointF> pointPairs_QList;
 	pointPairs_QList.reserve(pointPairs.len);
 	QPointF** pointPairs_arr = static_cast<QPointF**>(pointPairs.data);
 	for(size_t i = 0; i < pointPairs.len; ++i) {
@@ -441,7 +418,7 @@ void QPainter_DrawLines3(QPainter* self, QLine* lines, int lineCount) {
 }
 
 void QPainter_DrawLines4(QPainter* self, struct miqt_array /* of QLine* */  lines) {
-	QVector<QLine> lines_QList;
+	QList<QLine> lines_QList;
 	lines_QList.reserve(lines.len);
 	QLine** lines_arr = static_cast<QLine**>(lines.data);
 	for(size_t i = 0; i < lines.len; ++i) {
@@ -455,7 +432,7 @@ void QPainter_DrawLines5(QPainter* self, QPoint* pointPairs, int lineCount) {
 }
 
 void QPainter_DrawLines6(QPainter* self, struct miqt_array /* of QPoint* */  pointPairs) {
-	QVector<QPoint> pointPairs_QList;
+	QList<QPoint> pointPairs_QList;
 	pointPairs_QList.reserve(pointPairs.len);
 	QPoint** pointPairs_arr = static_cast<QPoint**>(pointPairs.data);
 	for(size_t i = 0; i < pointPairs.len; ++i) {
@@ -481,7 +458,7 @@ void QPainter_DrawRects(QPainter* self, QRectF* rects, int rectCount) {
 }
 
 void QPainter_DrawRectsWithRectangles(QPainter* self, struct miqt_array /* of QRectF* */  rectangles) {
-	QVector<QRectF> rectangles_QList;
+	QList<QRectF> rectangles_QList;
 	rectangles_QList.reserve(rectangles.len);
 	QRectF** rectangles_arr = static_cast<QRectF**>(rectangles.data);
 	for(size_t i = 0; i < rectangles.len; ++i) {
@@ -495,7 +472,7 @@ void QPainter_DrawRects2(QPainter* self, QRect* rects, int rectCount) {
 }
 
 void QPainter_DrawRects3(QPainter* self, struct miqt_array /* of QRect* */  rectangles) {
-	QVector<QRect> rectangles_QList;
+	QList<QRect> rectangles_QList;
 	rectangles_QList.reserve(rectangles.len);
 	QRect** rectangles_arr = static_cast<QRect**>(rectangles.data);
 	for(size_t i = 0; i < rectangles.len; ++i) {
@@ -596,18 +573,6 @@ void QPainter_DrawRoundedRect3(QPainter* self, QRect* rect, double xRadius, doub
 	self->drawRoundedRect(*rect, static_cast<qreal>(xRadius), static_cast<qreal>(yRadius));
 }
 
-void QPainter_DrawRoundRect(QPainter* self, QRectF* r) {
-	self->drawRoundRect(*r);
-}
-
-void QPainter_DrawRoundRect2(QPainter* self, int x, int y, int w, int h) {
-	self->drawRoundRect(static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h));
-}
-
-void QPainter_DrawRoundRectWithQRect(QPainter* self, QRect* r) {
-	self->drawRoundRect(*r);
-}
-
 void QPainter_DrawTiledPixmap(QPainter* self, QRectF* rect, QPixmap* pm) {
 	self->drawTiledPixmap(*rect, *pm);
 }
@@ -676,7 +641,7 @@ void QPainter_DrawPixmap11(QPainter* self, int x, int y, int w, int h, QPixmap* 
 	self->drawPixmap(static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h), *pm);
 }
 
-void QPainter_DrawPixmapFragments(QPainter* self, QPainter__PixmapFragment* fragments, int fragmentCount, QPixmap* pixmap) {
+void QPainter_DrawPixmapFragments(QPainter* self, const PixmapFragment* fragments, int fragmentCount, QPixmap* pixmap) {
 	self->drawPixmapFragments(fragments, static_cast<int>(fragmentCount), *pixmap);
 }
 
@@ -885,37 +850,24 @@ void QPainter_EraseRectWithQRect(QPainter* self, QRect* param1) {
 	self->eraseRect(*param1);
 }
 
-void QPainter_SetRenderHint(QPainter* self, int hint) {
-	self->setRenderHint(static_cast<QPainter::RenderHint>(hint));
+void QPainter_SetRenderHint(QPainter* self, RenderHint hint) {
+	self->setRenderHint(hint);
 }
 
-void QPainter_SetRenderHints(QPainter* self, int hints) {
-	self->setRenderHints(static_cast<QPainter::RenderHints>(hints));
+void QPainter_SetRenderHints(QPainter* self, RenderHints hints) {
+	self->setRenderHints(hints);
 }
 
-int QPainter_RenderHints(const QPainter* self) {
-	QPainter::RenderHints _ret = self->renderHints();
-	return static_cast<int>(_ret);
+RenderHints QPainter_RenderHints(const QPainter* self) {
+	return self->renderHints();
 }
 
-bool QPainter_TestRenderHint(const QPainter* self, int hint) {
-	return self->testRenderHint(static_cast<QPainter::RenderHint>(hint));
+bool QPainter_TestRenderHint(const QPainter* self, RenderHint hint) {
+	return self->testRenderHint(hint);
 }
 
 QPaintEngine* QPainter_PaintEngine(const QPainter* self) {
 	return self->paintEngine();
-}
-
-void QPainter_SetRedirected(QPaintDevice* device, QPaintDevice* replacement) {
-	QPainter::setRedirected(device, replacement);
-}
-
-QPaintDevice* QPainter_Redirected(QPaintDevice* device) {
-	return QPainter::redirected(device);
-}
-
-void QPainter_RestoreRedirected(QPaintDevice* device) {
-	QPainter::restoreRedirected(device);
 }
 
 void QPainter_BeginNativePainting(QPainter* self) {
@@ -946,16 +898,8 @@ void QPainter_SetClipPath2(QPainter* self, QPainterPath* path, int op) {
 	self->setClipPath(*path, static_cast<Qt::ClipOperation>(op));
 }
 
-void QPainter_SetMatrix2(QPainter* self, QMatrix* matrix, bool combine) {
-	self->setMatrix(*matrix, combine);
-}
-
 void QPainter_SetTransform2(QPainter* self, QTransform* transform, bool combine) {
 	self->setTransform(*transform, combine);
-}
-
-void QPainter_SetWorldMatrix2(QPainter* self, QMatrix* matrix, bool combine) {
-	self->setWorldMatrix(*matrix, combine);
 }
 
 void QPainter_SetWorldTransform2(QPainter* self, QTransform* matrix, bool combine) {
@@ -982,30 +926,6 @@ void QPainter_DrawRoundedRect42(QPainter* self, QRect* rect, double xRadius, dou
 	self->drawRoundedRect(*rect, static_cast<qreal>(xRadius), static_cast<qreal>(yRadius), static_cast<Qt::SizeMode>(mode));
 }
 
-void QPainter_DrawRoundRect22(QPainter* self, QRectF* r, int xround) {
-	self->drawRoundRect(*r, static_cast<int>(xround));
-}
-
-void QPainter_DrawRoundRect3(QPainter* self, QRectF* r, int xround, int yround) {
-	self->drawRoundRect(*r, static_cast<int>(xround), static_cast<int>(yround));
-}
-
-void QPainter_DrawRoundRect5(QPainter* self, int x, int y, int w, int h, int param5) {
-	self->drawRoundRect(static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h), static_cast<int>(param5));
-}
-
-void QPainter_DrawRoundRect6(QPainter* self, int x, int y, int w, int h, int param5, int param6) {
-	self->drawRoundRect(static_cast<int>(x), static_cast<int>(y), static_cast<int>(w), static_cast<int>(h), static_cast<int>(param5), static_cast<int>(param6));
-}
-
-void QPainter_DrawRoundRect23(QPainter* self, QRect* r, int xround) {
-	self->drawRoundRect(*r, static_cast<int>(xround));
-}
-
-void QPainter_DrawRoundRect32(QPainter* self, QRect* r, int xround, int yround) {
-	self->drawRoundRect(*r, static_cast<int>(xround), static_cast<int>(yround));
-}
-
 void QPainter_DrawTiledPixmap32(QPainter* self, QRectF* rect, QPixmap* pm, QPointF* offset) {
 	self->drawTiledPixmap(*rect, *pm, *offset);
 }
@@ -1022,8 +942,8 @@ void QPainter_DrawTiledPixmap33(QPainter* self, QRect* param1, QPixmap* param2, 
 	self->drawTiledPixmap(*param1, *param2, *param3);
 }
 
-void QPainter_DrawPixmapFragments4(QPainter* self, QPainter__PixmapFragment* fragments, int fragmentCount, QPixmap* pixmap, int hints) {
-	self->drawPixmapFragments(fragments, static_cast<int>(fragmentCount), *pixmap, static_cast<QPainter::PixmapFragmentHints>(hints));
+void QPainter_DrawPixmapFragments4(QPainter* self, const PixmapFragment* fragments, int fragmentCount, QPixmap* pixmap, PixmapFragmentHints hints) {
+	self->drawPixmapFragments(fragments, static_cast<int>(fragmentCount), *pixmap, hints);
 }
 
 void QPainter_DrawImage42(QPainter* self, QRectF* targetRect, QImage* image, QRectF* sourceRect, int flags) {
@@ -1087,20 +1007,12 @@ QRectF* QPainter_BoundingRect32(QPainter* self, QRectF* rect, struct miqt_string
 	return new QRectF(self->boundingRect(*rect, text_QString, *o));
 }
 
-void QPainter_SetRenderHint2(QPainter* self, int hint, bool on) {
-	self->setRenderHint(static_cast<QPainter::RenderHint>(hint), on);
+void QPainter_SetRenderHint2(QPainter* self, RenderHint hint, bool on) {
+	self->setRenderHint(hint, on);
 }
 
-void QPainter_SetRenderHints2(QPainter* self, int hints, bool on) {
-	self->setRenderHints(static_cast<QPainter::RenderHints>(hints), on);
-}
-
-void QPainter_SetRedirected3(QPaintDevice* device, QPaintDevice* replacement, QPoint* offset) {
-	QPainter::setRedirected(device, replacement, *offset);
-}
-
-QPaintDevice* QPainter_Redirected2(QPaintDevice* device, QPoint* offset) {
-	return QPainter::redirected(device, offset);
+void QPainter_SetRenderHints2(QPainter* self, RenderHints hints, bool on) {
+	self->setRenderHints(hints, on);
 }
 
 void QPainter_Delete(QPainter* self, bool isSubclass) {
@@ -1111,24 +1023,32 @@ void QPainter_Delete(QPainter* self, bool isSubclass) {
 	}
 }
 
-QPainter__PixmapFragment* QPainter__PixmapFragment_Create(QPointF* pos, QRectF* sourceRect) {
-	return new QPainter::PixmapFragment(QPainter::PixmapFragment::create(*pos, *sourceRect));
+QPainter__PixmapFragment* QPainter__PixmapFragment_new() {
+	return new QPainter::PixmapFragment();
 }
 
-QPainter__PixmapFragment* QPainter__PixmapFragment_Create3(QPointF* pos, QRectF* sourceRect, double scaleX) {
-	return new QPainter::PixmapFragment(QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX)));
+QPainter__PixmapFragment* QPainter__PixmapFragment_new2(const PixmapFragment* param1) {
+	return new QPainter::PixmapFragment(*param1);
 }
 
-QPainter__PixmapFragment* QPainter__PixmapFragment_Create4(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY) {
-	return new QPainter::PixmapFragment(QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX), static_cast<qreal>(scaleY)));
+PixmapFragment QPainter__PixmapFragment_Create(QPointF* pos, QRectF* sourceRect) {
+	return QPainter::PixmapFragment::create(*pos, *sourceRect);
 }
 
-QPainter__PixmapFragment* QPainter__PixmapFragment_Create5(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY, double rotation) {
-	return new QPainter::PixmapFragment(QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX), static_cast<qreal>(scaleY), static_cast<qreal>(rotation)));
+PixmapFragment QPainter__PixmapFragment_Create3(QPointF* pos, QRectF* sourceRect, double scaleX) {
+	return QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX));
 }
 
-QPainter__PixmapFragment* QPainter__PixmapFragment_Create6(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY, double rotation, double opacity) {
-	return new QPainter::PixmapFragment(QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX), static_cast<qreal>(scaleY), static_cast<qreal>(rotation), static_cast<qreal>(opacity)));
+PixmapFragment QPainter__PixmapFragment_Create4(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY) {
+	return QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX), static_cast<qreal>(scaleY));
+}
+
+PixmapFragment QPainter__PixmapFragment_Create5(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY, double rotation) {
+	return QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX), static_cast<qreal>(scaleY), static_cast<qreal>(rotation));
+}
+
+PixmapFragment QPainter__PixmapFragment_Create6(QPointF* pos, QRectF* sourceRect, double scaleX, double scaleY, double rotation, double opacity) {
+	return QPainter::PixmapFragment::create(*pos, *sourceRect, static_cast<qreal>(scaleX), static_cast<qreal>(scaleY), static_cast<qreal>(rotation), static_cast<qreal>(opacity));
 }
 
 void QPainter__PixmapFragment_Delete(QPainter__PixmapFragment* self, bool isSubclass) {

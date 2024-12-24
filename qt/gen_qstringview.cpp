@@ -1,6 +1,10 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChar>
 #include <QList>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -11,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QStringView* QStringView_new() {
 	return new QStringView();
@@ -33,9 +52,16 @@ ptrdiff_t QStringView_Size(const QStringView* self) {
 	return static_cast<ptrdiff_t>(_ret);
 }
 
-QChar* QStringView_Data(const QStringView* self) {
-	QStringView::const_pointer _ret = self->data();
-	return const_cast<QChar*>(static_cast<const QChar*>(_ret));
+const_pointer QStringView_Data(const QStringView* self) {
+	return self->data();
+}
+
+const_pointer QStringView_ConstData(const QStringView* self) {
+	return self->constData();
+}
+
+const storage_type* QStringView_Utf16(const QStringView* self) {
+	return (const storage_type*) self->utf16();
 }
 
 QChar* QStringView_OperatorSubscript(const QStringView* self, ptrdiff_t n) {
@@ -70,7 +96,7 @@ struct miqt_string QStringView_ToLocal8Bit(const QStringView* self) {
 }
 
 struct miqt_array /* of unsigned int */  QStringView_ToUcs4(const QStringView* self) {
-	QVector<uint> _ret = self->toUcs4();
+	QList<uint> _ret = self->toUcs4();
 	// Convert QList<> from C++ memory to manually-managed C memory
 	unsigned int* _arr = static_cast<unsigned int*>(malloc(sizeof(unsigned int) * _ret.length()));
 	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
@@ -98,7 +124,7 @@ int QStringView_CompareWithQChar(const QStringView* self, QChar* c) {
 	return self->compare(*c);
 }
 
-int QStringView_Compare2(const QStringView* self, QChar* c, int cs) {
+int QStringView_Compare3(const QStringView* self, QChar* c, int cs) {
 	return self->compare(*c, static_cast<Qt::CaseSensitivity>(cs));
 }
 
@@ -137,12 +163,44 @@ ptrdiff_t QStringView_LastIndexOf(const QStringView* self, QChar* c) {
 	return static_cast<ptrdiff_t>(_ret);
 }
 
+ptrdiff_t QStringView_LastIndexOf2(const QStringView* self, QChar* c, ptrdiff_t from) {
+	qsizetype _ret = self->lastIndexOf(*c, (qsizetype)(from));
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+ptrdiff_t QStringView_IndexOfWithRe(const QStringView* self, QRegularExpression* re) {
+	qsizetype _ret = self->indexOf(*re);
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+ptrdiff_t QStringView_LastIndexOf5(const QStringView* self, QRegularExpression* re, ptrdiff_t from) {
+	qsizetype _ret = self->lastIndexOf(*re, (qsizetype)(from));
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+bool QStringView_ContainsWithRe(const QStringView* self, QRegularExpression* re) {
+	return self->contains(*re);
+}
+
+ptrdiff_t QStringView_CountWithRe(const QStringView* self, QRegularExpression* re) {
+	qsizetype _ret = self->count(*re);
+	return static_cast<ptrdiff_t>(_ret);
+}
+
 bool QStringView_IsRightToLeft(const QStringView* self) {
 	return self->isRightToLeft();
 }
 
 bool QStringView_IsValidUtf16(const QStringView* self) {
 	return self->isValidUtf16();
+}
+
+bool QStringView_IsUpper(const QStringView* self) {
+	return self->isUpper();
+}
+
+bool QStringView_IsLower(const QStringView* self) {
+	return self->isLower();
 }
 
 int16_t QStringView_ToShort(const QStringView* self) {
@@ -190,24 +248,36 @@ double QStringView_ToDouble(const QStringView* self) {
 	return self->toDouble();
 }
 
-QChar* QStringView_Begin(const QStringView* self) {
-	QStringView::const_iterator _ret = self->begin();
-	return const_cast<QChar*>(static_cast<const QChar*>(_ret));
+const_iterator QStringView_Begin(const QStringView* self) {
+	return self->begin();
 }
 
-QChar* QStringView_End(const QStringView* self) {
-	QStringView::const_iterator _ret = self->end();
-	return const_cast<QChar*>(static_cast<const QChar*>(_ret));
+const_iterator QStringView_End(const QStringView* self) {
+	return self->end();
 }
 
-QChar* QStringView_Cbegin(const QStringView* self) {
-	QStringView::const_iterator _ret = self->cbegin();
-	return const_cast<QChar*>(static_cast<const QChar*>(_ret));
+const_iterator QStringView_Cbegin(const QStringView* self) {
+	return self->cbegin();
 }
 
-QChar* QStringView_Cend(const QStringView* self) {
-	QStringView::const_iterator _ret = self->cend();
-	return const_cast<QChar*>(static_cast<const QChar*>(_ret));
+const_iterator QStringView_Cend(const QStringView* self) {
+	return self->cend();
+}
+
+const_reverse_iterator QStringView_Rbegin(const QStringView* self) {
+	return self->rbegin();
+}
+
+const_reverse_iterator QStringView_Rend(const QStringView* self) {
+	return self->rend();
+}
+
+const_reverse_iterator QStringView_Crbegin(const QStringView* self) {
+	return self->crbegin();
+}
+
+const_reverse_iterator QStringView_Crend(const QStringView* self) {
+	return self->crend();
 }
 
 bool QStringView_Empty(const QStringView* self) {
@@ -222,6 +292,19 @@ QChar* QStringView_Back(const QStringView* self) {
 	return new QChar(self->back());
 }
 
+ptrdiff_t QStringView_MaxSize(const QStringView* self) {
+	qsizetype _ret = self->max_size();
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+const_iterator QStringView_ConstBegin(const QStringView* self) {
+	return self->constBegin();
+}
+
+const_iterator QStringView_ConstEnd(const QStringView* self) {
+	return self->constEnd();
+}
+
 bool QStringView_IsNull(const QStringView* self) {
 	return self->isNull();
 }
@@ -230,16 +313,22 @@ bool QStringView_IsEmpty(const QStringView* self) {
 	return self->isEmpty();
 }
 
-int QStringView_Length(const QStringView* self) {
-	return self->length();
+ptrdiff_t QStringView_Length(const QStringView* self) {
+	qsizetype _ret = self->length();
+	return static_cast<ptrdiff_t>(_ret);
 }
 
-QChar* QStringView_First(const QStringView* self) {
+QChar* QStringView_First2(const QStringView* self) {
 	return new QChar(self->first());
 }
 
-QChar* QStringView_Last(const QStringView* self) {
+QChar* QStringView_Last2(const QStringView* self) {
 	return new QChar(self->last());
+}
+
+ptrdiff_t QStringView_MaxSize2() {
+	qsizetype _ret = QStringView::maxSize();
+	return static_cast<ptrdiff_t>(_ret);
 }
 
 ptrdiff_t QStringView_IndexOf2(const QStringView* self, QChar* c, ptrdiff_t from) {
@@ -261,14 +350,33 @@ ptrdiff_t QStringView_Count2(const QStringView* self, QChar* c, int cs) {
 	return static_cast<ptrdiff_t>(_ret);
 }
 
-ptrdiff_t QStringView_LastIndexOf2(const QStringView* self, QChar* c, ptrdiff_t from) {
-	qsizetype _ret = self->lastIndexOf(*c, (qsizetype)(from));
+ptrdiff_t QStringView_LastIndexOf22(const QStringView* self, QChar* c, int cs) {
+	qsizetype _ret = self->lastIndexOf(*c, static_cast<Qt::CaseSensitivity>(cs));
 	return static_cast<ptrdiff_t>(_ret);
 }
 
-ptrdiff_t QStringView_LastIndexOf3(const QStringView* self, QChar* c, ptrdiff_t from, int cs) {
+ptrdiff_t QStringView_LastIndexOf32(const QStringView* self, QChar* c, ptrdiff_t from, int cs) {
 	qsizetype _ret = self->lastIndexOf(*c, (qsizetype)(from), static_cast<Qt::CaseSensitivity>(cs));
 	return static_cast<ptrdiff_t>(_ret);
+}
+
+ptrdiff_t QStringView_IndexOf24(const QStringView* self, QRegularExpression* re, ptrdiff_t from) {
+	qsizetype _ret = self->indexOf(*re, (qsizetype)(from));
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+ptrdiff_t QStringView_IndexOf34(const QStringView* self, QRegularExpression* re, ptrdiff_t from, QRegularExpressionMatch* rmatch) {
+	qsizetype _ret = self->indexOf(*re, (qsizetype)(from), rmatch);
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+ptrdiff_t QStringView_LastIndexOf35(const QStringView* self, QRegularExpression* re, ptrdiff_t from, QRegularExpressionMatch* rmatch) {
+	qsizetype _ret = self->lastIndexOf(*re, (qsizetype)(from), rmatch);
+	return static_cast<ptrdiff_t>(_ret);
+}
+
+bool QStringView_Contains24(const QStringView* self, QRegularExpression* re, QRegularExpressionMatch* rmatch) {
+	return self->contains(*re, rmatch);
 }
 
 int16_t QStringView_ToShort1(const QStringView* self, bool* ok) {

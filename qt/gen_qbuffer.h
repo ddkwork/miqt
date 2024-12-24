@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -17,81 +17,90 @@ extern "C" {
 #ifdef __cplusplus
 class QBuffer;
 class QIODevice;
+class QIODeviceBase;
 class QMetaMethod;
 class QMetaObject;
 class QObject;
+class _GUID;
+class type_info;
 #else
 typedef struct QBuffer QBuffer;
 typedef struct QIODevice QIODevice;
+typedef struct QIODeviceBase QIODeviceBase;
 typedef struct QMetaMethod QMetaMethod;
 typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QBuffer* QBuffer_new();
-QBuffer* QBuffer_new2(QObject* parent);
-void QBuffer_virtbase(QBuffer* src, QIODevice** outptr_QIODevice);
-QMetaObject* QBuffer_MetaObject(const QBuffer* self);
-void* QBuffer_Metacast(QBuffer* self, const char* param1);
-struct miqt_string QBuffer_Tr(const char* s);
-struct miqt_string QBuffer_TrUtf8(const char* s);
-struct miqt_string QBuffer_Buffer(QBuffer* self);
-struct miqt_string QBuffer_Buffer2(const QBuffer* self);
-void QBuffer_SetData(QBuffer* self, struct miqt_string data);
-void QBuffer_SetData2(QBuffer* self, const char* data, int lenVal);
-struct miqt_string QBuffer_Data(const QBuffer* self);
-bool QBuffer_Open(QBuffer* self, int openMode);
-void QBuffer_Close(QBuffer* self);
-long long QBuffer_Size(const QBuffer* self);
-long long QBuffer_Pos(const QBuffer* self);
-bool QBuffer_Seek(QBuffer* self, long long off);
-bool QBuffer_AtEnd(const QBuffer* self);
-bool QBuffer_CanReadLine(const QBuffer* self);
-void QBuffer_ConnectNotify(QBuffer* self, QMetaMethod* param1);
-void QBuffer_DisconnectNotify(QBuffer* self, QMetaMethod* param1);
-long long QBuffer_ReadData(QBuffer* self, char* data, long long maxlen);
-long long QBuffer_WriteData(QBuffer* self, const char* data, long long lenVal);
-struct miqt_string QBuffer_Tr2(const char* s, const char* c);
-struct miqt_string QBuffer_Tr3(const char* s, const char* c, int n);
-struct miqt_string QBuffer_TrUtf82(const char* s, const char* c);
-struct miqt_string QBuffer_TrUtf83(const char* s, const char* c, int n);
-void QBuffer_override_virtual_Open(void* self, intptr_t slot);
-bool QBuffer_virtualbase_Open(void* self, int openMode);
-void QBuffer_override_virtual_Close(void* self, intptr_t slot);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QBuffer* QBuffer_new();
+extern __declspec(dllexport) QBuffer* QBuffer_new2(QObject* parent);
+extern __declspec(dllexport) void QBuffer_virtbase(QBuffer* src, QIODevice** outptr_QIODevice);
+extern __declspec(dllexport) QMetaObject* QBuffer_MetaObject(const QBuffer* self);
+extern __declspec(dllexport) void* QBuffer_Metacast(QBuffer* self, const char* param1);
+extern __declspec(dllexport) struct miqt_string QBuffer_Tr(const char* s);
+extern __declspec(dllexport) struct miqt_string QBuffer_Buffer(QBuffer* self);
+extern __declspec(dllexport) struct miqt_string QBuffer_Buffer2(const QBuffer* self);
+extern __declspec(dllexport) void QBuffer_SetData(QBuffer* self, struct miqt_string data);
+extern __declspec(dllexport) void QBuffer_SetData2(QBuffer* self, const char* data, ptrdiff_t lenVal);
+extern __declspec(dllexport) struct miqt_string QBuffer_Data(const QBuffer* self);
+extern __declspec(dllexport) bool QBuffer_Open(QBuffer* self, OpenMode openMode);
+extern __declspec(dllexport) void QBuffer_Close(QBuffer* self);
+extern __declspec(dllexport) long long QBuffer_Size(const QBuffer* self);
+extern __declspec(dllexport) long long QBuffer_Pos(const QBuffer* self);
+extern __declspec(dllexport) bool QBuffer_Seek(QBuffer* self, long long off);
+extern __declspec(dllexport) bool QBuffer_AtEnd(const QBuffer* self);
+extern __declspec(dllexport) bool QBuffer_CanReadLine(const QBuffer* self);
+extern __declspec(dllexport) void QBuffer_ConnectNotify(QBuffer* self, QMetaMethod* param1);
+extern __declspec(dllexport) void QBuffer_DisconnectNotify(QBuffer* self, QMetaMethod* param1);
+extern __declspec(dllexport) long long QBuffer_ReadData(QBuffer* self, char* data, long long maxlen);
+extern __declspec(dllexport) long long QBuffer_WriteData(QBuffer* self, const char* data, long long lenVal);
+extern __declspec(dllexport) struct miqt_string QBuffer_Tr2(const char* s, const char* c);
+extern __declspec(dllexport) struct miqt_string QBuffer_Tr3(const char* s, const char* c, int n);
+extern __declspec(dllexport) void QBuffer_override_virtual_Open(void* self, intptr_t slot);
+bool QBuffer_virtualbase_Open(void* self, OpenMode openMode);
+extern __declspec(dllexport) void QBuffer_override_virtual_Close(void* self, intptr_t slot);
 void QBuffer_virtualbase_Close(void* self);
-void QBuffer_override_virtual_Size(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_Size(void* self, intptr_t slot);
 long long QBuffer_virtualbase_Size(const void* self);
-void QBuffer_override_virtual_Pos(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_Pos(void* self, intptr_t slot);
 long long QBuffer_virtualbase_Pos(const void* self);
-void QBuffer_override_virtual_Seek(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_Seek(void* self, intptr_t slot);
 bool QBuffer_virtualbase_Seek(void* self, long long off);
-void QBuffer_override_virtual_AtEnd(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_AtEnd(void* self, intptr_t slot);
 bool QBuffer_virtualbase_AtEnd(const void* self);
-void QBuffer_override_virtual_CanReadLine(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_CanReadLine(void* self, intptr_t slot);
 bool QBuffer_virtualbase_CanReadLine(const void* self);
-void QBuffer_override_virtual_ConnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_ConnectNotify(void* self, intptr_t slot);
 void QBuffer_virtualbase_ConnectNotify(void* self, QMetaMethod* param1);
-void QBuffer_override_virtual_DisconnectNotify(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_DisconnectNotify(void* self, intptr_t slot);
 void QBuffer_virtualbase_DisconnectNotify(void* self, QMetaMethod* param1);
-void QBuffer_override_virtual_ReadData(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_ReadData(void* self, intptr_t slot);
 long long QBuffer_virtualbase_ReadData(void* self, char* data, long long maxlen);
-void QBuffer_override_virtual_WriteData(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_WriteData(void* self, intptr_t slot);
 long long QBuffer_virtualbase_WriteData(void* self, const char* data, long long lenVal);
-void QBuffer_override_virtual_IsSequential(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_IsSequential(void* self, intptr_t slot);
 bool QBuffer_virtualbase_IsSequential(const void* self);
-void QBuffer_override_virtual_Reset(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_Reset(void* self, intptr_t slot);
 bool QBuffer_virtualbase_Reset(void* self);
-void QBuffer_override_virtual_BytesAvailable(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_BytesAvailable(void* self, intptr_t slot);
 long long QBuffer_virtualbase_BytesAvailable(const void* self);
-void QBuffer_override_virtual_BytesToWrite(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_BytesToWrite(void* self, intptr_t slot);
 long long QBuffer_virtualbase_BytesToWrite(const void* self);
-void QBuffer_override_virtual_WaitForReadyRead(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_WaitForReadyRead(void* self, intptr_t slot);
 bool QBuffer_virtualbase_WaitForReadyRead(void* self, int msecs);
-void QBuffer_override_virtual_WaitForBytesWritten(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_WaitForBytesWritten(void* self, intptr_t slot);
 bool QBuffer_virtualbase_WaitForBytesWritten(void* self, int msecs);
-void QBuffer_override_virtual_ReadLineData(void* self, intptr_t slot);
+extern __declspec(dllexport) void QBuffer_override_virtual_ReadLineData(void* self, intptr_t slot);
 long long QBuffer_virtualbase_ReadLineData(void* self, char* data, long long maxlen);
-void QBuffer_Delete(QBuffer* self, bool isSubclass);
+extern __declspec(dllexport) void QBuffer_override_virtual_SkipData(void* self, intptr_t slot);
+long long QBuffer_virtualbase_SkipData(void* self, long long maxSize);
+extern __declspec(dllexport) void QBuffer_Delete(QBuffer* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

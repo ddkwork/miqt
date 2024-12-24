@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QActionEvent>
 #include <QByteArray>
 #include <QCalendar>
@@ -9,6 +11,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -42,7 +45,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQCalendarWidget : public virtual QCalendarWidget {
 public:
@@ -219,7 +237,7 @@ public:
 	intptr_t handle__PaintCell = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void paintCell(QPainter* painter, const QRect& rect, const QDate& date) const override {
+	virtual void paintCell(QPainter* painter, const QRect& rect, QDate date) const override {
 		if (handle__PaintCell == 0) {
 			QCalendarWidget::paintCell(painter, rect, date);
 			return;
@@ -229,9 +247,7 @@ public:
 		const QRect& rect_ret = rect;
 		// Cast returned reference into pointer
 		QRect* sigval2 = const_cast<QRect*>(&rect_ret);
-		const QDate& date_ret = date;
-		// Cast returned reference into pointer
-		QDate* sigval3 = const_cast<QDate*>(&date_ret);
+		QDate* sigval3 = new QDate(date);
 
 		miqt_exec_callback_QCalendarWidget_PaintCell(const_cast<MiqtVirtualQCalendarWidget*>(this), handle__PaintCell, sigval1, sigval2, sigval3);
 
@@ -530,13 +546,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QCalendarWidget::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QCalendarWidget_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -544,7 +560,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QCalendarWidget::enterEvent(event);
 
@@ -866,7 +882,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QCalendarWidget::nativeEvent(eventType, message, result);
 		}
@@ -878,7 +894,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QCalendarWidget_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -886,10 +903,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QCalendarWidget::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QCalendarWidget::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -921,13 +938,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QCalendarWidget::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QCalendarWidget_Metric(const_cast<MiqtVirtualQCalendarWidget*>(this), handle__Metric, sigval1);
 
@@ -935,9 +951,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QCalendarWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QCalendarWidget::metric(param1);
 
 	}
 
@@ -1114,17 +1130,6 @@ struct miqt_string QCalendarWidget_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QCalendarWidget_TrUtf8(const char* s) {
-	QString _ret = QCalendarWidget::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 QSize* QCalendarWidget_SizeHint(const QCalendarWidget* self) {
 	return new QSize(self->sizeHint());
 }
@@ -1153,12 +1158,20 @@ void QCalendarWidget_SetMinimumDate(QCalendarWidget* self, QDate* date) {
 	self->setMinimumDate(*date);
 }
 
+void QCalendarWidget_ClearMinimumDate(QCalendarWidget* self) {
+	self->clearMinimumDate();
+}
+
 QDate* QCalendarWidget_MaximumDate(const QCalendarWidget* self) {
 	return new QDate(self->maximumDate());
 }
 
 void QCalendarWidget_SetMaximumDate(QCalendarWidget* self, QDate* date) {
 	self->setMaximumDate(*date);
+}
+
+void QCalendarWidget_ClearMaximumDate(QCalendarWidget* self) {
+	self->clearMaximumDate();
 }
 
 int QCalendarWidget_FirstDayOfWeek(const QCalendarWidget* self) {
@@ -1186,31 +1199,28 @@ void QCalendarWidget_SetCalendar(QCalendarWidget* self, QCalendar* calendar) {
 	self->setCalendar(*calendar);
 }
 
-int QCalendarWidget_SelectionMode(const QCalendarWidget* self) {
-	QCalendarWidget::SelectionMode _ret = self->selectionMode();
-	return static_cast<int>(_ret);
+SelectionMode QCalendarWidget_SelectionMode(const QCalendarWidget* self) {
+	return self->selectionMode();
 }
 
-void QCalendarWidget_SetSelectionMode(QCalendarWidget* self, int mode) {
-	self->setSelectionMode(static_cast<QCalendarWidget::SelectionMode>(mode));
+void QCalendarWidget_SetSelectionMode(QCalendarWidget* self, SelectionMode mode) {
+	self->setSelectionMode(mode);
 }
 
-int QCalendarWidget_HorizontalHeaderFormat(const QCalendarWidget* self) {
-	QCalendarWidget::HorizontalHeaderFormat _ret = self->horizontalHeaderFormat();
-	return static_cast<int>(_ret);
+HorizontalHeaderFormat QCalendarWidget_HorizontalHeaderFormat(const QCalendarWidget* self) {
+	return self->horizontalHeaderFormat();
 }
 
-void QCalendarWidget_SetHorizontalHeaderFormat(QCalendarWidget* self, int format) {
-	self->setHorizontalHeaderFormat(static_cast<QCalendarWidget::HorizontalHeaderFormat>(format));
+void QCalendarWidget_SetHorizontalHeaderFormat(QCalendarWidget* self, HorizontalHeaderFormat format) {
+	self->setHorizontalHeaderFormat(format);
 }
 
-int QCalendarWidget_VerticalHeaderFormat(const QCalendarWidget* self) {
-	QCalendarWidget::VerticalHeaderFormat _ret = self->verticalHeaderFormat();
-	return static_cast<int>(_ret);
+VerticalHeaderFormat QCalendarWidget_VerticalHeaderFormat(const QCalendarWidget* self) {
+	return self->verticalHeaderFormat();
 }
 
-void QCalendarWidget_SetVerticalHeaderFormat(QCalendarWidget* self, int format) {
-	self->setVerticalHeaderFormat(static_cast<QCalendarWidget::VerticalHeaderFormat>(format));
+void QCalendarWidget_SetVerticalHeaderFormat(QCalendarWidget* self, VerticalHeaderFormat format) {
+	self->setVerticalHeaderFormat(format);
 }
 
 QTextCharFormat* QCalendarWidget_HeaderTextFormat(const QCalendarWidget* self) {
@@ -1330,10 +1340,8 @@ void QCalendarWidget_Clicked(QCalendarWidget* self, QDate* date) {
 }
 
 void QCalendarWidget_connect_Clicked(QCalendarWidget* self, intptr_t slot) {
-	MiqtVirtualQCalendarWidget::connect(self, static_cast<void (QCalendarWidget::*)(const QDate&)>(&QCalendarWidget::clicked), self, [=](const QDate& date) {
-		const QDate& date_ret = date;
-		// Cast returned reference into pointer
-		QDate* sigval1 = const_cast<QDate*>(&date_ret);
+	MiqtVirtualQCalendarWidget::connect(self, static_cast<void (QCalendarWidget::*)(QDate)>(&QCalendarWidget::clicked), self, [=](QDate date) {
+		QDate* sigval1 = new QDate(date);
 		miqt_exec_callback_QCalendarWidget_Clicked(slot, sigval1);
 	});
 }
@@ -1343,10 +1351,8 @@ void QCalendarWidget_Activated(QCalendarWidget* self, QDate* date) {
 }
 
 void QCalendarWidget_connect_Activated(QCalendarWidget* self, intptr_t slot) {
-	MiqtVirtualQCalendarWidget::connect(self, static_cast<void (QCalendarWidget::*)(const QDate&)>(&QCalendarWidget::activated), self, [=](const QDate& date) {
-		const QDate& date_ret = date;
-		// Cast returned reference into pointer
-		QDate* sigval1 = const_cast<QDate*>(&date_ret);
+	MiqtVirtualQCalendarWidget::connect(self, static_cast<void (QCalendarWidget::*)(QDate)>(&QCalendarWidget::activated), self, [=](QDate date) {
+		QDate* sigval1 = new QDate(date);
 		miqt_exec_callback_QCalendarWidget_Activated(slot, sigval1);
 	});
 }
@@ -1376,28 +1382,6 @@ struct miqt_string QCalendarWidget_Tr2(const char* s, const char* c) {
 
 struct miqt_string QCalendarWidget_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QCalendarWidget::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCalendarWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QCalendarWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QCalendarWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QCalendarWidget::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1571,7 +1555,7 @@ void QCalendarWidget_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQCalendarWidget*>( (QCalendarWidget*)(self) )->handle__EnterEvent = slot;
 }
 
-void QCalendarWidget_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QCalendarWidget_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQCalendarWidget*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1683,7 +1667,7 @@ void QCalendarWidget_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQCalendarWidget*>( (QCalendarWidget*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QCalendarWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QCalendarWidget_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQCalendarWidget*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1699,7 +1683,7 @@ void QCalendarWidget_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQCalendarWidget*>( (QCalendarWidget*)(self) )->handle__Metric = slot;
 }
 
-int QCalendarWidget_virtualbase_Metric(const void* self, int param1) {
+int QCalendarWidget_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQCalendarWidget*)(self) )->virtualbase_Metric(param1);
 }
 

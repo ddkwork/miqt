@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../../libmiqt/libmiqt.h"
 
@@ -16,19 +16,27 @@ extern "C" {
 
 #ifdef __cplusplus
 class QSslEllipticCurve;
+class _GUID;
+class type_info;
 #else
 typedef struct QSslEllipticCurve QSslEllipticCurve;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QSslEllipticCurve* QSslEllipticCurve_new();
-QSslEllipticCurve* QSslEllipticCurve_new2(QSslEllipticCurve* param1);
-QSslEllipticCurve* QSslEllipticCurve_FromShortName(struct miqt_string name);
-QSslEllipticCurve* QSslEllipticCurve_FromLongName(struct miqt_string name);
-struct miqt_string QSslEllipticCurve_ShortName(const QSslEllipticCurve* self);
-struct miqt_string QSslEllipticCurve_LongName(const QSslEllipticCurve* self);
-bool QSslEllipticCurve_IsValid(const QSslEllipticCurve* self);
-bool QSslEllipticCurve_IsTlsNamedCurve(const QSslEllipticCurve* self);
-void QSslEllipticCurve_Delete(QSslEllipticCurve* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QSslEllipticCurve* QSslEllipticCurve_new();
+extern __declspec(dllexport) QSslEllipticCurve* QSslEllipticCurve_new2(QSslEllipticCurve* param1);
+extern __declspec(dllexport) QSslEllipticCurve* QSslEllipticCurve_FromShortName(struct miqt_string name);
+extern __declspec(dllexport) QSslEllipticCurve* QSslEllipticCurve_FromLongName(struct miqt_string name);
+extern __declspec(dllexport) struct miqt_string QSslEllipticCurve_ShortName(const QSslEllipticCurve* self);
+extern __declspec(dllexport) struct miqt_string QSslEllipticCurve_LongName(const QSslEllipticCurve* self);
+extern __declspec(dllexport) bool QSslEllipticCurve_IsValid(const QSslEllipticCurve* self);
+extern __declspec(dllexport) bool QSslEllipticCurve_IsTlsNamedCurve(const QSslEllipticCurve* self);
+extern __declspec(dllexport) void QSslEllipticCurve_Delete(QSslEllipticCurve* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

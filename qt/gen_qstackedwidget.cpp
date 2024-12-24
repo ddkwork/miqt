@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEvent>
 #include <QFrame>
 #include <QMetaObject>
@@ -9,6 +11,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QWidget>
 #include <qstackedwidget.h>
 #include "gen_qstackedwidget.h"
@@ -16,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQStackedWidget : public virtual QStackedWidget {
 public:
@@ -119,6 +137,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QStackedWidget::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QStackedWidget_InitStyleOption(const_cast<MiqtVirtualQStackedWidget*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QStackedWidget::initStyleOption(option);
+
+	}
+
 };
 
 QStackedWidget* QStackedWidget_new(QWidget* parent) {
@@ -143,17 +185,6 @@ void* QStackedWidget_Metacast(QStackedWidget* self, const char* param1) {
 
 struct miqt_string QStackedWidget_Tr(const char* s) {
 	QString _ret = QStackedWidget::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStackedWidget_TrUtf8(const char* s) {
-	QString _ret = QStackedWidget::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -225,6 +256,17 @@ void QStackedWidget_connect_WidgetRemoved(QStackedWidget* self, intptr_t slot) {
 	});
 }
 
+void QStackedWidget_WidgetAdded(QStackedWidget* self, int index) {
+	self->widgetAdded(static_cast<int>(index));
+}
+
+void QStackedWidget_connect_WidgetAdded(QStackedWidget* self, intptr_t slot) {
+	MiqtVirtualQStackedWidget::connect(self, static_cast<void (QStackedWidget::*)(int)>(&QStackedWidget::widgetAdded), self, [=](int index) {
+		int sigval1 = index;
+		miqt_exec_callback_QStackedWidget_WidgetAdded(slot, sigval1);
+	});
+}
+
 struct miqt_string QStackedWidget_Tr2(const char* s, const char* c) {
 	QString _ret = QStackedWidget::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -238,28 +280,6 @@ struct miqt_string QStackedWidget_Tr2(const char* s, const char* c) {
 
 struct miqt_string QStackedWidget_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QStackedWidget::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStackedWidget_TrUtf82(const char* s, const char* c) {
-	QString _ret = QStackedWidget::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QStackedWidget_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QStackedWidget::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -299,6 +319,14 @@ void QStackedWidget_override_virtual_ChangeEvent(void* self, intptr_t slot) {
 
 void QStackedWidget_virtualbase_ChangeEvent(void* self, QEvent* param1) {
 	( (MiqtVirtualQStackedWidget*)(self) )->virtualbase_ChangeEvent(param1);
+}
+
+void QStackedWidget_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQStackedWidget*>( (QStackedWidget*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QStackedWidget_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQStackedWidget*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QStackedWidget_Delete(QStackedWidget* self, bool isSubclass) {

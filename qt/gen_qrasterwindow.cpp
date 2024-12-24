@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEvent>
 #include <QExposeEvent>
 #include <QMetaObject>
@@ -7,6 +9,7 @@
 #include <QPaintEvent>
 #include <QPoint>
 #include <QRasterWindow>
+#include <QResizeEvent>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -18,7 +21,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQRasterWindow : public virtual QRasterWindow {
 public:
@@ -32,13 +50,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric metric) const override {
+	virtual int metric(PaintDeviceMetric metric) const override {
 		if (handle__Metric == 0) {
 			return QRasterWindow::metric(metric);
 		}
 		
-		QPaintDevice::PaintDeviceMetric metric_ret = metric;
-		int sigval1 = static_cast<int>(metric_ret);
+		PaintDeviceMetric sigval1 = metric;
 
 		int callback_return_value = miqt_exec_callback_QRasterWindow_Metric(const_cast<MiqtVirtualQRasterWindow*>(this), handle__Metric, sigval1);
 
@@ -46,9 +63,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int metric) const {
+	int virtualbase_Metric(PaintDeviceMetric metric) const {
 
-		return QRasterWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+		return QRasterWindow::metric(metric);
 
 	}
 
@@ -76,26 +93,26 @@ public:
 	}
 
 	// cgo.Handle value for overwritten implementation
-	intptr_t handle__PaintEvent = 0;
+	intptr_t handle__ResizeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void paintEvent(QPaintEvent* event) override {
-		if (handle__PaintEvent == 0) {
-			QRasterWindow::paintEvent(event);
+	virtual void resizeEvent(QResizeEvent* event) override {
+		if (handle__ResizeEvent == 0) {
+			QRasterWindow::resizeEvent(event);
 			return;
 		}
 		
-		QPaintEvent* sigval1 = event;
+		QResizeEvent* sigval1 = event;
 
-		miqt_exec_callback_QRasterWindow_PaintEvent(this, handle__PaintEvent, sigval1);
+		miqt_exec_callback_QRasterWindow_ResizeEvent(this, handle__ResizeEvent, sigval1);
 
 		
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_PaintEvent(QPaintEvent* event) {
+	void virtualbase_ResizeEvent(QResizeEvent* event) {
 
-		QRasterWindow::paintEvent(event);
+		QRasterWindow::resizeEvent(event);
 
 	}
 
@@ -120,6 +137,30 @@ public:
 	void virtualbase_ExposeEvent(QExposeEvent* param1) {
 
 		QRasterWindow::exposeEvent(param1);
+
+	}
+
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__PaintEvent = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void paintEvent(QPaintEvent* event) override {
+		if (handle__PaintEvent == 0) {
+			QRasterWindow::paintEvent(event);
+			return;
+		}
+		
+		QPaintEvent* sigval1 = event;
+
+		miqt_exec_callback_QRasterWindow_PaintEvent(this, handle__PaintEvent, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_PaintEvent(QPaintEvent* event) {
+
+		QRasterWindow::paintEvent(event);
 
 	}
 
@@ -179,17 +220,6 @@ struct miqt_string QRasterWindow_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QRasterWindow_TrUtf8(const char* s) {
-	QString _ret = QRasterWindow::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 struct miqt_string QRasterWindow_Tr2(const char* s, const char* c) {
 	QString _ret = QRasterWindow::tr(s, c);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
@@ -212,33 +242,11 @@ struct miqt_string QRasterWindow_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QRasterWindow_TrUtf82(const char* s, const char* c) {
-	QString _ret = QRasterWindow::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QRasterWindow_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QRasterWindow::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QRasterWindow_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQRasterWindow*>( (QRasterWindow*)(self) )->handle__Metric = slot;
 }
 
-int QRasterWindow_virtualbase_Metric(const void* self, int metric) {
+int QRasterWindow_virtualbase_Metric(const void* self, PaintDeviceMetric metric) {
 	return ( (const MiqtVirtualQRasterWindow*)(self) )->virtualbase_Metric(metric);
 }
 
@@ -250,12 +258,12 @@ QPaintDevice* QRasterWindow_virtualbase_Redirected(const void* self, QPoint* par
 	return ( (const MiqtVirtualQRasterWindow*)(self) )->virtualbase_Redirected(param1);
 }
 
-void QRasterWindow_override_virtual_PaintEvent(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQRasterWindow*>( (QRasterWindow*)(self) )->handle__PaintEvent = slot;
+void QRasterWindow_override_virtual_ResizeEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRasterWindow*>( (QRasterWindow*)(self) )->handle__ResizeEvent = slot;
 }
 
-void QRasterWindow_virtualbase_PaintEvent(void* self, QPaintEvent* event) {
-	( (MiqtVirtualQRasterWindow*)(self) )->virtualbase_PaintEvent(event);
+void QRasterWindow_virtualbase_ResizeEvent(void* self, QResizeEvent* event) {
+	( (MiqtVirtualQRasterWindow*)(self) )->virtualbase_ResizeEvent(event);
 }
 
 void QRasterWindow_override_virtual_ExposeEvent(void* self, intptr_t slot) {
@@ -264,6 +272,14 @@ void QRasterWindow_override_virtual_ExposeEvent(void* self, intptr_t slot) {
 
 void QRasterWindow_virtualbase_ExposeEvent(void* self, QExposeEvent* param1) {
 	( (MiqtVirtualQRasterWindow*)(self) )->virtualbase_ExposeEvent(param1);
+}
+
+void QRasterWindow_override_virtual_PaintEvent(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQRasterWindow*>( (QRasterWindow*)(self) )->handle__PaintEvent = slot;
+}
+
+void QRasterWindow_virtualbase_PaintEvent(void* self, QPaintEvent* event) {
+	( (MiqtVirtualQRasterWindow*)(self) )->virtualbase_PaintEvent(event);
 }
 
 void QRasterWindow_override_virtual_Event(void* self, intptr_t slot) {

@@ -1,10 +1,11 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QIODevice>
 #include <QList>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
-#include <QTextCodec>
 #include <QTextDocument>
 #include <QTextDocumentFragment>
 #include <QTextDocumentWriter>
@@ -14,7 +15,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTextDocumentWriter* QTextDocumentWriter_new() {
 	return new QTextDocumentWriter();
@@ -80,14 +96,6 @@ bool QTextDocumentWriter_Write(QTextDocumentWriter* self, QTextDocument* documen
 
 bool QTextDocumentWriter_WriteWithFragment(QTextDocumentWriter* self, QTextDocumentFragment* fragment) {
 	return self->write(*fragment);
-}
-
-void QTextDocumentWriter_SetCodec(QTextDocumentWriter* self, QTextCodec* codec) {
-	self->setCodec(codec);
-}
-
-QTextCodec* QTextDocumentWriter_Codec(const QTextDocumentWriter* self) {
-	return self->codec();
 }
 
 struct miqt_array /* of struct miqt_string */  QTextDocumentWriter_SupportedDocumentFormats() {

@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QArrayData>
 #include <qarraydata.h>
 #include "gen_qarraydata.h"
@@ -5,56 +7,56 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
 
-void* QArrayData_Data(QArrayData* self) {
-	return self->data();
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
 }
 
-const void* QArrayData_Data2(const QArrayData* self) {
-	return (const void*) self->data();
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
 }
 
-bool QArrayData_IsMutable(const QArrayData* self) {
-	return self->isMutable();
+ptrdiff_t QArrayData_AllocatedCapacity(QArrayData* self) {
+	qsizetype _ret = self->allocatedCapacity();
+	return static_cast<ptrdiff_t>(_ret);
 }
 
-size_t QArrayData_DetachCapacity(const QArrayData* self, size_t newSize) {
-	return self->detachCapacity(static_cast<size_t>(newSize));
+ptrdiff_t QArrayData_ConstAllocatedCapacity(const QArrayData* self) {
+	qsizetype _ret = self->constAllocatedCapacity();
+	return static_cast<ptrdiff_t>(_ret);
 }
 
-int QArrayData_DetachFlags(const QArrayData* self) {
-	QArrayData::AllocationOptions _ret = self->detachFlags();
-	return static_cast<int>(_ret);
+bool QArrayData_Ref(QArrayData* self) {
+	return self->ref();
 }
 
-int QArrayData_CloneFlags(const QArrayData* self) {
-	QArrayData::AllocationOptions _ret = self->cloneFlags();
-	return static_cast<int>(_ret);
+bool QArrayData_Deref(QArrayData* self) {
+	return self->deref();
 }
 
-QArrayData* QArrayData_Allocate(size_t objectSize, size_t alignment, size_t capacity) {
-	return QArrayData::allocate(static_cast<size_t>(objectSize), static_cast<size_t>(alignment), static_cast<size_t>(capacity));
+bool QArrayData_IsShared(const QArrayData* self) {
+	return self->isShared();
 }
 
-QArrayData* QArrayData_ReallocateUnaligned(QArrayData* data, size_t objectSize, size_t newCapacity) {
-	return QArrayData::reallocateUnaligned(data, static_cast<size_t>(objectSize), static_cast<size_t>(newCapacity));
+bool QArrayData_NeedsDetach(QArrayData* self) {
+	return self->needsDetach();
 }
 
-void QArrayData_Deallocate(QArrayData* data, size_t objectSize, size_t alignment) {
-	QArrayData::deallocate(data, static_cast<size_t>(objectSize), static_cast<size_t>(alignment));
+ptrdiff_t QArrayData_DetachCapacity(const QArrayData* self, ptrdiff_t newSize) {
+	qsizetype _ret = self->detachCapacity((qsizetype)(newSize));
+	return static_cast<ptrdiff_t>(_ret);
 }
 
-QArrayData* QArrayData_SharedNull() {
-	return QArrayData::sharedNull();
-}
-
-QArrayData* QArrayData_Allocate4(size_t objectSize, size_t alignment, size_t capacity, int options) {
-	return QArrayData::allocate(static_cast<size_t>(objectSize), static_cast<size_t>(alignment), static_cast<size_t>(capacity), static_cast<QArrayData::AllocationOptions>(options));
-}
-
-QArrayData* QArrayData_ReallocateUnaligned4(QArrayData* data, size_t objectSize, size_t newCapacity, int newOptions) {
-	return QArrayData::reallocateUnaligned(data, static_cast<size_t>(objectSize), static_cast<size_t>(newCapacity), static_cast<QArrayData::AllocationOptions>(newOptions));
+void QArrayData_Deallocate(QArrayData* data, ptrdiff_t objectSize, ptrdiff_t alignment) {
+	QArrayData::deallocate(data, (qsizetype)(objectSize), (qsizetype)(alignment));
 }
 
 void QArrayData_Delete(QArrayData* self, bool isSubclass) {

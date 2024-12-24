@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QHttp2Configuration>
 #include <qhttp2configuration.h>
 #include "gen_qhttp2configuration.h"
@@ -5,7 +7,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QHttp2Configuration* QHttp2Configuration_new() {
 	return new QHttp2Configuration();
@@ -57,6 +74,14 @@ bool QHttp2Configuration_SetMaxFrameSize(QHttp2Configuration* self, unsigned int
 
 unsigned int QHttp2Configuration_MaxFrameSize(const QHttp2Configuration* self) {
 	return self->maxFrameSize();
+}
+
+void QHttp2Configuration_SetMaxConcurrentStreams(QHttp2Configuration* self, unsigned int value) {
+	self->setMaxConcurrentStreams(static_cast<unsigned int>(value));
+}
+
+unsigned int QHttp2Configuration_MaxConcurrentStreams(const QHttp2Configuration* self) {
+	return self->maxConcurrentStreams();
 }
 
 void QHttp2Configuration_Swap(QHttp2Configuration* self, QHttp2Configuration* other) {

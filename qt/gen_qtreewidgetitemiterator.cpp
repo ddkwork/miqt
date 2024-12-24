@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <QTreeWidgetItemIterator>
@@ -7,7 +9,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 QTreeWidgetItemIterator* QTreeWidgetItemIterator_new(QTreeWidgetItemIterator* it) {
 	return new QTreeWidgetItemIterator(*it);
@@ -21,12 +38,12 @@ QTreeWidgetItemIterator* QTreeWidgetItemIterator_new3(QTreeWidgetItem* item) {
 	return new QTreeWidgetItemIterator(item);
 }
 
-QTreeWidgetItemIterator* QTreeWidgetItemIterator_new4(QTreeWidget* widget, int flags) {
-	return new QTreeWidgetItemIterator(widget, static_cast<QTreeWidgetItemIterator::IteratorFlags>(flags));
+QTreeWidgetItemIterator* QTreeWidgetItemIterator_new4(QTreeWidget* widget, IteratorFlags flags) {
+	return new QTreeWidgetItemIterator(widget, flags);
 }
 
-QTreeWidgetItemIterator* QTreeWidgetItemIterator_new5(QTreeWidgetItem* item, int flags) {
-	return new QTreeWidgetItemIterator(item, static_cast<QTreeWidgetItemIterator::IteratorFlags>(flags));
+QTreeWidgetItemIterator* QTreeWidgetItemIterator_new5(QTreeWidgetItem* item, IteratorFlags flags) {
+	return new QTreeWidgetItemIterator(item, flags);
 }
 
 void QTreeWidgetItemIterator_OperatorAssign(QTreeWidgetItemIterator* self, QTreeWidgetItemIterator* it) {

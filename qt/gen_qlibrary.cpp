@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QChildEvent>
 #include <QEvent>
 #include <QLibrary>
@@ -14,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLibrary : public virtual QLibrary {
 public:
@@ -266,17 +283,6 @@ struct miqt_string QLibrary_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QLibrary_TrUtf8(const char* s) {
-	QString _ret = QLibrary::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QLibrary_Load(QLibrary* self) {
 	return self->load();
 }
@@ -332,13 +338,12 @@ struct miqt_string QLibrary_ErrorString(const QLibrary* self) {
 	return _ms;
 }
 
-void QLibrary_SetLoadHints(QLibrary* self, int hints) {
-	self->setLoadHints(static_cast<QLibrary::LoadHints>(hints));
+void QLibrary_SetLoadHints(QLibrary* self, LoadHints hints) {
+	self->setLoadHints(hints);
 }
 
-int QLibrary_LoadHints(const QLibrary* self) {
-	QLibrary::LoadHints _ret = self->loadHints();
-	return static_cast<int>(_ret);
+LoadHints QLibrary_LoadHints(const QLibrary* self) {
+	return self->loadHints();
 }
 
 struct miqt_string QLibrary_Tr2(const char* s, const char* c) {
@@ -354,28 +359,6 @@ struct miqt_string QLibrary_Tr2(const char* s, const char* c) {
 
 struct miqt_string QLibrary_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QLibrary::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLibrary_TrUtf82(const char* s, const char* c) {
-	QString _ret = QLibrary::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLibrary_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QLibrary::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

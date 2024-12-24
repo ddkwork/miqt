@@ -6,7 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+//#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 #include "../libmiqt/libmiqt.h"
 
@@ -18,48 +18,63 @@ extern "C" {
 class QFont;
 class QFontDatabase;
 class QFontInfo;
+class _GUID;
+class type_info;
 #else
 typedef struct QFont QFont;
 typedef struct QFontDatabase QFontDatabase;
 typedef struct QFontInfo QFontInfo;
+typedef struct _GUID _GUID;
+typedef struct type_info type_info;
 #endif
 
-QFontDatabase* QFontDatabase_new();
-struct miqt_array /* of int */  QFontDatabase_StandardSizes();
-struct miqt_array /* of int */  QFontDatabase_WritingSystems(const QFontDatabase* self);
-struct miqt_array /* of int */  QFontDatabase_WritingSystemsWithFamily(const QFontDatabase* self, struct miqt_string family);
-struct miqt_array /* of struct miqt_string */  QFontDatabase_Families(const QFontDatabase* self);
-struct miqt_array /* of struct miqt_string */  QFontDatabase_Styles(const QFontDatabase* self, struct miqt_string family);
-struct miqt_array /* of int */  QFontDatabase_PointSizes(QFontDatabase* self, struct miqt_string family);
-struct miqt_array /* of int */  QFontDatabase_SmoothSizes(QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-struct miqt_string QFontDatabase_StyleString(QFontDatabase* self, QFont* font);
-struct miqt_string QFontDatabase_StyleStringWithFontInfo(QFontDatabase* self, QFontInfo* fontInfo);
-QFont* QFontDatabase_Font(const QFontDatabase* self, struct miqt_string family, struct miqt_string style, int pointSize);
-bool QFontDatabase_IsBitmapScalable(const QFontDatabase* self, struct miqt_string family);
-bool QFontDatabase_IsSmoothlyScalable(const QFontDatabase* self, struct miqt_string family);
-bool QFontDatabase_IsScalable(const QFontDatabase* self, struct miqt_string family);
-bool QFontDatabase_IsFixedPitch(const QFontDatabase* self, struct miqt_string family);
-bool QFontDatabase_Italic(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-bool QFontDatabase_Bold(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-int QFontDatabase_Weight(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-bool QFontDatabase_HasFamily(const QFontDatabase* self, struct miqt_string family);
-bool QFontDatabase_IsPrivateFamily(const QFontDatabase* self, struct miqt_string family);
-struct miqt_string QFontDatabase_WritingSystemName(int writingSystem);
-struct miqt_string QFontDatabase_WritingSystemSample(int writingSystem);
-int QFontDatabase_AddApplicationFont(struct miqt_string fileName);
-int QFontDatabase_AddApplicationFontFromData(struct miqt_string fontData);
-struct miqt_array /* of struct miqt_string */  QFontDatabase_ApplicationFontFamilies(int id);
-bool QFontDatabase_RemoveApplicationFont(int id);
-bool QFontDatabase_RemoveAllApplicationFonts();
-bool QFontDatabase_SupportsThreadedFontRendering();
-QFont* QFontDatabase_SystemFont(int typeVal);
-struct miqt_array /* of struct miqt_string */  QFontDatabase_Families1(const QFontDatabase* self, int writingSystem);
-struct miqt_array /* of int */  QFontDatabase_PointSizes2(QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-bool QFontDatabase_IsBitmapScalable2(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-bool QFontDatabase_IsSmoothlyScalable2(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-bool QFontDatabase_IsScalable2(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-bool QFontDatabase_IsFixedPitch2(const QFontDatabase* self, struct miqt_string family, struct miqt_string style);
-void QFontDatabase_Delete(QFontDatabase* self, bool isSubclass);
+extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
+
+extern __declspec(dllexport) void type_info_Delete(type_info* self, bool isSubclass);
+
+extern __declspec(dllexport) QFontDatabase* QFontDatabase_new();
+extern __declspec(dllexport) struct miqt_array /* of int */  QFontDatabase_StandardSizes();
+extern __declspec(dllexport) struct miqt_array /* of WritingSystem */  QFontDatabase_WritingSystems();
+extern __declspec(dllexport) struct miqt_array /* of WritingSystem */  QFontDatabase_WritingSystemsWithFamily(struct miqt_string family);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFontDatabase_Families();
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFontDatabase_Styles(struct miqt_string family);
+extern __declspec(dllexport) struct miqt_array /* of int */  QFontDatabase_PointSizes(struct miqt_string family);
+extern __declspec(dllexport) struct miqt_array /* of int */  QFontDatabase_SmoothSizes(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) struct miqt_string QFontDatabase_StyleString(QFont* font);
+extern __declspec(dllexport) struct miqt_string QFontDatabase_StyleStringWithFontInfo(QFontInfo* fontInfo);
+extern __declspec(dllexport) QFont* QFontDatabase_Font(struct miqt_string family, struct miqt_string style, int pointSize);
+extern __declspec(dllexport) bool QFontDatabase_IsBitmapScalable(struct miqt_string family);
+extern __declspec(dllexport) bool QFontDatabase_IsSmoothlyScalable(struct miqt_string family);
+extern __declspec(dllexport) bool QFontDatabase_IsScalable(struct miqt_string family);
+extern __declspec(dllexport) bool QFontDatabase_IsFixedPitch(struct miqt_string family);
+extern __declspec(dllexport) bool QFontDatabase_Italic(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) bool QFontDatabase_Bold(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) int QFontDatabase_Weight(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) bool QFontDatabase_HasFamily(struct miqt_string family);
+extern __declspec(dllexport) bool QFontDatabase_IsPrivateFamily(struct miqt_string family);
+extern __declspec(dllexport) struct miqt_string QFontDatabase_WritingSystemName(WritingSystem writingSystem);
+extern __declspec(dllexport) struct miqt_string QFontDatabase_WritingSystemSample(WritingSystem writingSystem);
+extern __declspec(dllexport) int QFontDatabase_AddApplicationFont(struct miqt_string fileName);
+extern __declspec(dllexport) int QFontDatabase_AddApplicationFontFromData(struct miqt_string fontData);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFontDatabase_ApplicationFontFamilies(int id);
+extern __declspec(dllexport) bool QFontDatabase_RemoveApplicationFont(int id);
+extern __declspec(dllexport) bool QFontDatabase_RemoveAllApplicationFonts();
+extern __declspec(dllexport) void QFontDatabase_AddApplicationFallbackFontFamily(int script, struct miqt_string familyName);
+extern __declspec(dllexport) bool QFontDatabase_RemoveApplicationFallbackFontFamily(int script, struct miqt_string familyName);
+extern __declspec(dllexport) void QFontDatabase_SetApplicationFallbackFontFamilies(int param1, struct miqt_array /* of struct miqt_string */  familyNames);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFontDatabase_ApplicationFallbackFontFamilies(int script);
+extern __declspec(dllexport) void QFontDatabase_AddApplicationEmojiFontFamily(struct miqt_string familyName);
+extern __declspec(dllexport) bool QFontDatabase_RemoveApplicationEmojiFontFamily(struct miqt_string familyName);
+extern __declspec(dllexport) void QFontDatabase_SetApplicationEmojiFontFamilies(struct miqt_array /* of struct miqt_string */  familyNames);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFontDatabase_ApplicationEmojiFontFamilies();
+extern __declspec(dllexport) QFont* QFontDatabase_SystemFont(SystemFont typeVal);
+extern __declspec(dllexport) struct miqt_array /* of struct miqt_string */  QFontDatabase_Families1(WritingSystem writingSystem);
+extern __declspec(dllexport) struct miqt_array /* of int */  QFontDatabase_PointSizes2(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) bool QFontDatabase_IsBitmapScalable2(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) bool QFontDatabase_IsSmoothlyScalable2(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) bool QFontDatabase_IsScalable2(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) bool QFontDatabase_IsFixedPitch2(struct miqt_string family, struct miqt_string style);
+extern __declspec(dllexport) void QFontDatabase_Delete(QFontDatabase* self, bool isSubclass);
 
 #ifdef __cplusplus
 } /* extern C */

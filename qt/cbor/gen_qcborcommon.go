@@ -1,15 +1,6 @@
 package cbor
 
-/*
-
-#include "gen_qcborcommon.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -75,55 +66,13 @@ const (
 )
 
 type QCborError struct {
-	h          *C.QCborError
+	h          uintptr
 	isSubclass bool
 }
 
-func (this *QCborError) cPointer() *C.QCborError {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QCborError) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQCborError constructs the type using only CGO pointers.
-func newQCborError(h *C.QCborError) *QCborError {
-	if h == nil {
-		return nil
-	}
-
-	return &QCborError{h: h}
-}
-
-// UnsafeNewQCborError constructs the type using only unsafe pointers.
-func UnsafeNewQCborError(h unsafe.Pointer) *QCborError {
-	return newQCborError((*C.QCborError)(h))
-}
-
 func (this *QCborError) ToString() string {
-	var _ms C.struct_miqt_string = C.QCborError_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QCborError_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
-}
-
-// Delete this object from C++ memory.
-func (this *QCborError) Delete() {
-	C.QCborError_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QCborError) GoGC() {
-	runtime.SetFinalizer(this, func(this *QCborError) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

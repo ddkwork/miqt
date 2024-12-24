@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QEvent>
 #include <QFrame>
 #include <QLCDNumber>
@@ -9,6 +11,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionFrame>
 #include <QWidget>
 #include <qlcdnumber.h>
 #include "gen_qlcdnumber.h"
@@ -16,7 +19,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQLCDNumber : public virtual QLCDNumber {
 public:
@@ -121,6 +139,30 @@ public:
 
 	}
 
+	// cgo.Handle value for overwritten implementation
+	intptr_t handle__InitStyleOption = 0;
+
+	// Subclass to allow providing a Go implementation
+	virtual void initStyleOption(QStyleOptionFrame* option) const override {
+		if (handle__InitStyleOption == 0) {
+			QLCDNumber::initStyleOption(option);
+			return;
+		}
+		
+		QStyleOptionFrame* sigval1 = option;
+
+		miqt_exec_callback_QLCDNumber_InitStyleOption(const_cast<MiqtVirtualQLCDNumber*>(this), handle__InitStyleOption, sigval1);
+
+		
+	}
+
+	// Wrapper to allow calling protected method
+	void virtualbase_InitStyleOption(QStyleOptionFrame* option) const {
+
+		QLCDNumber::initStyleOption(option);
+
+	}
+
 };
 
 QLCDNumber* QLCDNumber_new(QWidget* parent) {
@@ -162,17 +204,6 @@ struct miqt_string QLCDNumber_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QLCDNumber_TrUtf8(const char* s) {
-	QString _ret = QLCDNumber::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 bool QLCDNumber_SmallDecimalPoint(const QLCDNumber* self) {
 	return self->smallDecimalPoint();
 }
@@ -193,22 +224,20 @@ bool QLCDNumber_CheckOverflowWithNum(const QLCDNumber* self, int num) {
 	return self->checkOverflow(static_cast<int>(num));
 }
 
-int QLCDNumber_Mode(const QLCDNumber* self) {
-	QLCDNumber::Mode _ret = self->mode();
-	return static_cast<int>(_ret);
+Mode QLCDNumber_Mode(const QLCDNumber* self) {
+	return self->mode();
 }
 
-void QLCDNumber_SetMode(QLCDNumber* self, int mode) {
-	self->setMode(static_cast<QLCDNumber::Mode>(mode));
+void QLCDNumber_SetMode(QLCDNumber* self, Mode mode) {
+	self->setMode(mode);
 }
 
-int QLCDNumber_SegmentStyle(const QLCDNumber* self) {
-	QLCDNumber::SegmentStyle _ret = self->segmentStyle();
-	return static_cast<int>(_ret);
+SegmentStyle QLCDNumber_SegmentStyle(const QLCDNumber* self) {
+	return self->segmentStyle();
 }
 
-void QLCDNumber_SetSegmentStyle(QLCDNumber* self, int segmentStyle) {
-	self->setSegmentStyle(static_cast<QLCDNumber::SegmentStyle>(segmentStyle));
+void QLCDNumber_SetSegmentStyle(QLCDNumber* self, SegmentStyle segmentStyle) {
+	self->setSegmentStyle(segmentStyle);
 }
 
 double QLCDNumber_Value(const QLCDNumber* self) {
@@ -288,28 +317,6 @@ struct miqt_string QLCDNumber_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QLCDNumber_TrUtf82(const char* s, const char* c) {
-	QString _ret = QLCDNumber::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QLCDNumber_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QLCDNumber::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QLCDNumber_override_virtual_SizeHint(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__SizeHint = slot;
 }
@@ -340,6 +347,14 @@ void QLCDNumber_override_virtual_ChangeEvent(void* self, intptr_t slot) {
 
 void QLCDNumber_virtualbase_ChangeEvent(void* self, QEvent* param1) {
 	( (MiqtVirtualQLCDNumber*)(self) )->virtualbase_ChangeEvent(param1);
+}
+
+void QLCDNumber_override_virtual_InitStyleOption(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQLCDNumber*>( (QLCDNumber*)(self) )->handle__InitStyleOption = slot;
+}
+
+void QLCDNumber_virtualbase_InitStyleOption(const void* self, QStyleOptionFrame* option) {
+	( (const MiqtVirtualQLCDNumber*)(self) )->virtualbase_InitStyleOption(option);
 }
 
 void QLCDNumber_Delete(QLCDNumber* self, bool isSubclass) {

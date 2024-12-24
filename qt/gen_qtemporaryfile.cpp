@@ -1,6 +1,9 @@
+// +build ignore
+
 #include <QFile>
 #include <QFileDevice>
 #include <QIODevice>
+#include <QIODeviceBase>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
@@ -13,7 +16,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQTemporaryFile : public virtual QTemporaryFile {
 public:
@@ -59,13 +77,12 @@ public:
 	intptr_t handle__OpenWithFlags = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool open(QIODevice::OpenMode flags) override {
+	virtual bool open(OpenMode flags) override {
 		if (handle__OpenWithFlags == 0) {
 			return QTemporaryFile::open(flags);
 		}
 		
-		QIODevice::OpenMode flags_ret = flags;
-		int sigval1 = static_cast<int>(flags_ret);
+		OpenMode sigval1 = flags;
 
 		bool callback_return_value = miqt_exec_callback_QTemporaryFile_OpenWithFlags(this, handle__OpenWithFlags, sigval1);
 
@@ -73,9 +90,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_OpenWithFlags(int flags) {
+	bool virtualbase_OpenWithFlags(OpenMode flags) {
 
-		return QTemporaryFile::open(static_cast<QIODevice::OpenMode>(flags));
+		return QTemporaryFile::open(flags);
 
 	}
 
@@ -130,22 +147,21 @@ public:
 	intptr_t handle__Permissions = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QFileDevice::Permissions permissions() const override {
+	virtual Permissions permissions() const override {
 		if (handle__Permissions == 0) {
 			return QTemporaryFile::permissions();
 		}
 		
 
-		int callback_return_value = miqt_exec_callback_QTemporaryFile_Permissions(const_cast<MiqtVirtualQTemporaryFile*>(this), handle__Permissions);
+		Permissions callback_return_value = miqt_exec_callback_QTemporaryFile_Permissions(const_cast<MiqtVirtualQTemporaryFile*>(this), handle__Permissions);
 
-		return static_cast<QFileDevice::Permissions>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Permissions() const {
+	Permissions virtualbase_Permissions() const {
 
-		QFileDevice::Permissions _ret = QTemporaryFile::permissions();
-		return static_cast<int>(_ret);
+		return QTemporaryFile::permissions();
 
 	}
 
@@ -153,13 +169,12 @@ public:
 	intptr_t handle__SetPermissions = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool setPermissions(QFileDevice::Permissions permissionSpec) override {
+	virtual bool setPermissions(Permissions permissionSpec) override {
 		if (handle__SetPermissions == 0) {
 			return QTemporaryFile::setPermissions(permissionSpec);
 		}
 		
-		QFileDevice::Permissions permissionSpec_ret = permissionSpec;
-		int sigval1 = static_cast<int>(permissionSpec_ret);
+		Permissions sigval1 = permissionSpec;
 
 		bool callback_return_value = miqt_exec_callback_QTemporaryFile_SetPermissions(this, handle__SetPermissions, sigval1);
 
@@ -167,9 +182,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SetPermissions(int permissionSpec) {
+	bool virtualbase_SetPermissions(Permissions permissionSpec) {
 
-		return QTemporaryFile::setPermissions(static_cast<QFileDevice::Permissions>(permissionSpec));
+		return QTemporaryFile::setPermissions(permissionSpec);
 
 	}
 
@@ -207,17 +222,6 @@ void* QTemporaryFile_Metacast(QTemporaryFile* self, const char* param1) {
 
 struct miqt_string QTemporaryFile_Tr(const char* s) {
 	QString _ret = QTemporaryFile::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTemporaryFile_TrUtf8(const char* s) {
-	QString _ret = QTemporaryFile::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -271,15 +275,6 @@ bool QTemporaryFile_Rename(QTemporaryFile* self, struct miqt_string newName) {
 	return self->rename(newName_QString);
 }
 
-QTemporaryFile* QTemporaryFile_CreateLocalFile(struct miqt_string fileName) {
-	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
-	return QTemporaryFile::createLocalFile(fileName_QString);
-}
-
-QTemporaryFile* QTemporaryFile_CreateLocalFileWithFile(QFile* file) {
-	return QTemporaryFile::createLocalFile(*file);
-}
-
 QTemporaryFile* QTemporaryFile_CreateNativeFile(struct miqt_string fileName) {
 	QString fileName_QString = QString::fromUtf8(fileName.data, fileName.len);
 	return QTemporaryFile::createNativeFile(fileName_QString);
@@ -311,28 +306,6 @@ struct miqt_string QTemporaryFile_Tr3(const char* s, const char* c, int n) {
 	return _ms;
 }
 
-struct miqt_string QTemporaryFile_TrUtf82(const char* s, const char* c) {
-	QString _ret = QTemporaryFile::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QTemporaryFile_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QTemporaryFile::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
 void QTemporaryFile_override_virtual_FileName(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__FileName = slot;
 }
@@ -345,7 +318,7 @@ void QTemporaryFile_override_virtual_OpenWithFlags(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__OpenWithFlags = slot;
 }
 
-bool QTemporaryFile_virtualbase_OpenWithFlags(void* self, int flags) {
+bool QTemporaryFile_virtualbase_OpenWithFlags(void* self, OpenMode flags) {
 	return ( (MiqtVirtualQTemporaryFile*)(self) )->virtualbase_OpenWithFlags(flags);
 }
 
@@ -369,7 +342,7 @@ void QTemporaryFile_override_virtual_Permissions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__Permissions = slot;
 }
 
-int QTemporaryFile_virtualbase_Permissions(const void* self) {
+Permissions QTemporaryFile_virtualbase_Permissions(const void* self) {
 	return ( (const MiqtVirtualQTemporaryFile*)(self) )->virtualbase_Permissions();
 }
 
@@ -377,7 +350,7 @@ void QTemporaryFile_override_virtual_SetPermissions(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQTemporaryFile*>( (QTemporaryFile*)(self) )->handle__SetPermissions = slot;
 }
 
-bool QTemporaryFile_virtualbase_SetPermissions(void* self, int permissionSpec) {
+bool QTemporaryFile_virtualbase_SetPermissions(void* self, Permissions permissionSpec) {
 	return ( (MiqtVirtualQTemporaryFile*)(self) )->virtualbase_SetPermissions(permissionSpec);
 }
 

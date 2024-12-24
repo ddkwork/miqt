@@ -1,15 +1,6 @@
 package qt
 
-/*
-
-#include "gen_qkeysequence.h"
-#include <stdlib.h>
-
-*/
-import "C"
-
 import (
-	"runtime"
 	"unsafe"
 )
 
@@ -105,54 +96,26 @@ const (
 )
 
 type QKeySequence struct {
-	h          *C.QKeySequence
+	h          uintptr
 	isSubclass bool
-}
-
-func (this *QKeySequence) cPointer() *C.QKeySequence {
-	if this == nil {
-		return nil
-	}
-	return this.h
-}
-
-func (this *QKeySequence) UnsafePointer() unsafe.Pointer {
-	if this == nil {
-		return nil
-	}
-	return unsafe.Pointer(this.h)
-}
-
-// newQKeySequence constructs the type using only CGO pointers.
-func newQKeySequence(h *C.QKeySequence) *QKeySequence {
-	if h == nil {
-		return nil
-	}
-
-	return &QKeySequence{h: h}
-}
-
-// UnsafeNewQKeySequence constructs the type using only unsafe pointers.
-func UnsafeNewQKeySequence(h unsafe.Pointer) *QKeySequence {
-	return newQKeySequence((*C.QKeySequence)(h))
 }
 
 // NewQKeySequence constructs a new QKeySequence object.
 func NewQKeySequence() *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new())
+	ret := newQKeySequence(QKeySequence_new())
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence2 constructs a new QKeySequence object.
 func NewQKeySequence2(key string) *QKeySequence {
-	key_ms := C.struct_miqt_string{}
-	key_ms.data = C.CString(key)
-	key_ms.len = C.size_t(len(key))
-	defer C.free(unsafe.Pointer(key_ms.data))
+	key_ms := struct_miqt_string{}
+	key_ms.data = CString(key)
+	key_ms.len = size_t(len(key))
+	defer free(unsafe.Pointer(key_ms.data))
 
-	ret := newQKeySequence(C.QKeySequence_new2(key_ms))
+	ret := newQKeySequence(QKeySequence_new2(key_ms))
 	ret.isSubclass = true
 	return ret
 }
@@ -160,96 +123,128 @@ func NewQKeySequence2(key string) *QKeySequence {
 // NewQKeySequence3 constructs a new QKeySequence object.
 func NewQKeySequence3(k1 int) *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new3((C.int)(k1)))
+	ret := newQKeySequence(QKeySequence_new3((int)(k1)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence4 constructs a new QKeySequence object.
-func NewQKeySequence4(ks *QKeySequence) *QKeySequence {
+func NewQKeySequence4(k1 QKeyCombination) *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new4(ks.cPointer()))
+	ret := newQKeySequence(QKeySequence_new4(k1.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence5 constructs a new QKeySequence object.
-func NewQKeySequence5(key QKeySequence__StandardKey) *QKeySequence {
+func NewQKeySequence5(ks *QKeySequence) *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new5((C.int)(key)))
+	ret := newQKeySequence(QKeySequence_new5(ks.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence6 constructs a new QKeySequence object.
-func NewQKeySequence6(key string, format QKeySequence__SequenceFormat) *QKeySequence {
-	key_ms := C.struct_miqt_string{}
-	key_ms.data = C.CString(key)
-	key_ms.len = C.size_t(len(key))
-	defer C.free(unsafe.Pointer(key_ms.data))
+func NewQKeySequence6(key StandardKey) *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new6(key_ms, (C.int)(format)))
+	ret := newQKeySequence(QKeySequence_new6(key))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence7 constructs a new QKeySequence object.
-func NewQKeySequence7(k1 int, k2 int) *QKeySequence {
+func NewQKeySequence7(key string, format SequenceFormat) *QKeySequence {
+	key_ms := struct_miqt_string{}
+	key_ms.data = CString(key)
+	key_ms.len = size_t(len(key))
+	defer free(unsafe.Pointer(key_ms.data))
 
-	ret := newQKeySequence(C.QKeySequence_new7((C.int)(k1), (C.int)(k2)))
+	ret := newQKeySequence(QKeySequence_new7(key_ms, format))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence8 constructs a new QKeySequence object.
-func NewQKeySequence8(k1 int, k2 int, k3 int) *QKeySequence {
+func NewQKeySequence8(k1 int, k2 int) *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new8((C.int)(k1), (C.int)(k2), (C.int)(k3)))
+	ret := newQKeySequence(QKeySequence_new8((int)(k1), (int)(k2)))
 	ret.isSubclass = true
 	return ret
 }
 
 // NewQKeySequence9 constructs a new QKeySequence object.
-func NewQKeySequence9(k1 int, k2 int, k3 int, k4 int) *QKeySequence {
+func NewQKeySequence9(k1 int, k2 int, k3 int) *QKeySequence {
 
-	ret := newQKeySequence(C.QKeySequence_new9((C.int)(k1), (C.int)(k2), (C.int)(k3), (C.int)(k4)))
+	ret := newQKeySequence(QKeySequence_new9((int)(k1), (int)(k2), (int)(k3)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeySequence10 constructs a new QKeySequence object.
+func NewQKeySequence10(k1 int, k2 int, k3 int, k4 int) *QKeySequence {
+
+	ret := newQKeySequence(QKeySequence_new10((int)(k1), (int)(k2), (int)(k3), (int)(k4)))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeySequence11 constructs a new QKeySequence object.
+func NewQKeySequence11(k1 QKeyCombination, k2 QKeyCombination) *QKeySequence {
+
+	ret := newQKeySequence(QKeySequence_new11(k1.cPointer(), k2.cPointer()))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeySequence12 constructs a new QKeySequence object.
+func NewQKeySequence12(k1 QKeyCombination, k2 QKeyCombination, k3 QKeyCombination) *QKeySequence {
+
+	ret := newQKeySequence(QKeySequence_new12(k1.cPointer(), k2.cPointer(), k3.cPointer()))
+	ret.isSubclass = true
+	return ret
+}
+
+// NewQKeySequence13 constructs a new QKeySequence object.
+func NewQKeySequence13(k1 QKeyCombination, k2 QKeyCombination, k3 QKeyCombination, k4 QKeyCombination) *QKeySequence {
+
+	ret := newQKeySequence(QKeySequence_new13(k1.cPointer(), k2.cPointer(), k3.cPointer(), k4.cPointer()))
 	ret.isSubclass = true
 	return ret
 }
 
 func (this *QKeySequence) Count() int {
-	return (int)(C.QKeySequence_Count(this.h))
+	return (int)(QKeySequence_Count(this.h))
 }
 
 func (this *QKeySequence) IsEmpty() bool {
-	return (bool)(C.QKeySequence_IsEmpty(this.h))
+	return (bool)(QKeySequence_IsEmpty(this.h))
 }
 
 func (this *QKeySequence) ToString() string {
-	var _ms C.struct_miqt_string = C.QKeySequence_ToString(this.h)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	var _ms struct_miqt_string = QKeySequence_ToString(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
 func QKeySequence_FromString(str string) *QKeySequence {
-	str_ms := C.struct_miqt_string{}
-	str_ms.data = C.CString(str)
-	str_ms.len = C.size_t(len(str))
-	defer C.free(unsafe.Pointer(str_ms.data))
-	_goptr := newQKeySequence(C.QKeySequence_FromString(str_ms))
+	str_ms := struct_miqt_string{}
+	str_ms.data = CString(str)
+	str_ms.len = size_t(len(str))
+	defer free(unsafe.Pointer(str_ms.data))
+	_goptr := newQKeySequence(QKeySequence_FromString(str_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
 func QKeySequence_ListFromString(str string) []QKeySequence {
-	str_ms := C.struct_miqt_string{}
-	str_ms.data = C.CString(str)
-	str_ms.len = C.size_t(len(str))
-	defer C.free(unsafe.Pointer(str_ms.data))
-	var _ma C.struct_miqt_array = C.QKeySequence_ListFromString(str_ms)
+	str_ms := struct_miqt_string{}
+	str_ms.data = CString(str)
+	str_ms.len = size_t(len(str))
+	defer free(unsafe.Pointer(str_ms.data))
+	var _ma struct_miqt_array = QKeySequence_ListFromString(str_ms)
 	_ret := make([]QKeySequence, int(_ma.len))
-	_outCast := (*[0xffff]*C.QKeySequence)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]*QKeySequence)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_lv_goptr := newQKeySequence(_outCast[i])
 		_lv_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
@@ -259,36 +254,36 @@ func QKeySequence_ListFromString(str string) []QKeySequence {
 }
 
 func QKeySequence_ListToString(list []QKeySequence) string {
-	list_CArray := (*[0xffff]*C.QKeySequence)(C.malloc(C.size_t(8 * len(list))))
-	defer C.free(unsafe.Pointer(list_CArray))
+	list_CArray := (*[0xffff]*QKeySequence)(malloc(size_t(8 * len(list))))
+	defer free(unsafe.Pointer(list_CArray))
 	for i := range list {
 		list_CArray[i] = list[i].cPointer()
 	}
-	list_ma := C.struct_miqt_array{len: C.size_t(len(list)), data: unsafe.Pointer(list_CArray)}
-	var _ms C.struct_miqt_string = C.QKeySequence_ListToString(list_ma)
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	list_ma := struct_miqt_array{len: size_t(len(list)), data: unsafe.Pointer(list_CArray)}
+	var _ms struct_miqt_string = QKeySequence_ListToString(list_ma)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func (this *QKeySequence) Matches(seq *QKeySequence) QKeySequence__SequenceMatch {
-	return (QKeySequence__SequenceMatch)(C.QKeySequence_Matches(this.h, seq.cPointer()))
+func (this *QKeySequence) Matches(seq *QKeySequence) SequenceMatch {
+	xxxxxxxxx
 }
 
 func QKeySequence_Mnemonic(text string) *QKeySequence {
-	text_ms := C.struct_miqt_string{}
-	text_ms.data = C.CString(text)
-	text_ms.len = C.size_t(len(text))
-	defer C.free(unsafe.Pointer(text_ms.data))
-	_goptr := newQKeySequence(C.QKeySequence_Mnemonic(text_ms))
+	text_ms := struct_miqt_string{}
+	text_ms.data = CString(text)
+	text_ms.len = size_t(len(text))
+	defer free(unsafe.Pointer(text_ms.data))
+	_goptr := newQKeySequence(QKeySequence_Mnemonic(text_ms))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QKeySequence_KeyBindings(key QKeySequence__StandardKey) []QKeySequence {
-	var _ma C.struct_miqt_array = C.QKeySequence_KeyBindings((C.int)(key))
+func QKeySequence_KeyBindings(key StandardKey) []QKeySequence {
+	var _ma struct_miqt_array = QKeySequence_KeyBindings(key)
 	_ret := make([]QKeySequence, int(_ma.len))
-	_outCast := (*[0xffff]*C.QKeySequence)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]*QKeySequence)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_lv_goptr := newQKeySequence(_outCast[i])
 		_lv_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
@@ -297,71 +292,77 @@ func QKeySequence_KeyBindings(key QKeySequence__StandardKey) []QKeySequence {
 	return _ret
 }
 
-func (this *QKeySequence) OperatorSubscript(i uint) int {
-	return (int)(C.QKeySequence_OperatorSubscript(this.h, (C.uint)(i)))
+func (this *QKeySequence) OperatorSubscript(i uint) *QKeyCombination {
+	_goptr := newQKeyCombination(QKeySequence_OperatorSubscript(this.h, (uint)(i)))
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
 }
 
 func (this *QKeySequence) OperatorAssign(other *QKeySequence) {
-	C.QKeySequence_OperatorAssign(this.h, other.cPointer())
+	QKeySequence_OperatorAssign(this.h, other.cPointer())
 }
 
 func (this *QKeySequence) Swap(other *QKeySequence) {
-	C.QKeySequence_Swap(this.h, other.cPointer())
+	QKeySequence_Swap(this.h, other.cPointer())
 }
 
 func (this *QKeySequence) OperatorEqual(other *QKeySequence) bool {
-	return (bool)(C.QKeySequence_OperatorEqual(this.h, other.cPointer()))
+	return (bool)(QKeySequence_OperatorEqual(this.h, other.cPointer()))
 }
 
 func (this *QKeySequence) OperatorNotEqual(other *QKeySequence) bool {
-	return (bool)(C.QKeySequence_OperatorNotEqual(this.h, other.cPointer()))
+	return (bool)(QKeySequence_OperatorNotEqual(this.h, other.cPointer()))
 }
 
 func (this *QKeySequence) OperatorLesser(ks *QKeySequence) bool {
-	return (bool)(C.QKeySequence_OperatorLesser(this.h, ks.cPointer()))
+	return (bool)(QKeySequence_OperatorLesser(this.h, ks.cPointer()))
 }
 
 func (this *QKeySequence) OperatorGreater(other *QKeySequence) bool {
-	return (bool)(C.QKeySequence_OperatorGreater(this.h, other.cPointer()))
+	return (bool)(QKeySequence_OperatorGreater(this.h, other.cPointer()))
 }
 
 func (this *QKeySequence) OperatorLesserOrEqual(other *QKeySequence) bool {
-	return (bool)(C.QKeySequence_OperatorLesserOrEqual(this.h, other.cPointer()))
+	return (bool)(QKeySequence_OperatorLesserOrEqual(this.h, other.cPointer()))
 }
 
 func (this *QKeySequence) OperatorGreaterOrEqual(other *QKeySequence) bool {
-	return (bool)(C.QKeySequence_OperatorGreaterOrEqual(this.h, other.cPointer()))
+	return (bool)(QKeySequence_OperatorGreaterOrEqual(this.h, other.cPointer()))
 }
 
 func (this *QKeySequence) IsDetached() bool {
-	return (bool)(C.QKeySequence_IsDetached(this.h))
+	return (bool)(QKeySequence_IsDetached(this.h))
 }
 
-func (this *QKeySequence) ToString1(format QKeySequence__SequenceFormat) string {
-	var _ms C.struct_miqt_string = C.QKeySequence_ToString1(this.h, (C.int)(format))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+func (this *QKeySequence) DataPtr() *DataPtr {
+	xxxxxxxxx
+}
+
+func (this *QKeySequence) ToString1(format SequenceFormat) string {
+	var _ms struct_miqt_string = QKeySequence_ToString1(this.h, format)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
 }
 
-func QKeySequence_FromString2(str string, format QKeySequence__SequenceFormat) *QKeySequence {
-	str_ms := C.struct_miqt_string{}
-	str_ms.data = C.CString(str)
-	str_ms.len = C.size_t(len(str))
-	defer C.free(unsafe.Pointer(str_ms.data))
-	_goptr := newQKeySequence(C.QKeySequence_FromString2(str_ms, (C.int)(format)))
+func QKeySequence_FromString2(str string, format SequenceFormat) *QKeySequence {
+	str_ms := struct_miqt_string{}
+	str_ms.data = CString(str)
+	str_ms.len = size_t(len(str))
+	defer free(unsafe.Pointer(str_ms.data))
+	_goptr := newQKeySequence(QKeySequence_FromString2(str_ms, format))
 	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
 	return _goptr
 }
 
-func QKeySequence_ListFromString2(str string, format QKeySequence__SequenceFormat) []QKeySequence {
-	str_ms := C.struct_miqt_string{}
-	str_ms.data = C.CString(str)
-	str_ms.len = C.size_t(len(str))
-	defer C.free(unsafe.Pointer(str_ms.data))
-	var _ma C.struct_miqt_array = C.QKeySequence_ListFromString2(str_ms, (C.int)(format))
+func QKeySequence_ListFromString2(str string, format SequenceFormat) []QKeySequence {
+	str_ms := struct_miqt_string{}
+	str_ms.data = CString(str)
+	str_ms.len = size_t(len(str))
+	defer free(unsafe.Pointer(str_ms.data))
+	var _ma struct_miqt_array = QKeySequence_ListFromString2(str_ms, format)
 	_ret := make([]QKeySequence, int(_ma.len))
-	_outCast := (*[0xffff]*C.QKeySequence)(unsafe.Pointer(_ma.data)) // hey ya
+	_outCast := (*[0xffff]*QKeySequence)(unsafe.Pointer(_ma.data)) // hey ya
 	for i := 0; i < int(_ma.len); i++ {
 		_lv_goptr := newQKeySequence(_outCast[i])
 		_lv_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
@@ -370,29 +371,15 @@ func QKeySequence_ListFromString2(str string, format QKeySequence__SequenceForma
 	return _ret
 }
 
-func QKeySequence_ListToString2(list []QKeySequence, format QKeySequence__SequenceFormat) string {
-	list_CArray := (*[0xffff]*C.QKeySequence)(C.malloc(C.size_t(8 * len(list))))
-	defer C.free(unsafe.Pointer(list_CArray))
+func QKeySequence_ListToString2(list []QKeySequence, format SequenceFormat) string {
+	list_CArray := (*[0xffff]*QKeySequence)(malloc(size_t(8 * len(list))))
+	defer free(unsafe.Pointer(list_CArray))
 	for i := range list {
 		list_CArray[i] = list[i].cPointer()
 	}
-	list_ma := C.struct_miqt_array{len: C.size_t(len(list)), data: unsafe.Pointer(list_CArray)}
-	var _ms C.struct_miqt_string = C.QKeySequence_ListToString2(list_ma, (C.int)(format))
-	_ret := C.GoStringN(_ms.data, C.int(int64(_ms.len)))
-	C.free(unsafe.Pointer(_ms.data))
+	list_ma := struct_miqt_array{len: size_t(len(list)), data: unsafe.Pointer(list_CArray)}
+	var _ms struct_miqt_string = QKeySequence_ListToString2(list_ma, format)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
 	return _ret
-}
-
-// Delete this object from C++ memory.
-func (this *QKeySequence) Delete() {
-	C.QKeySequence_Delete(this.h, C.bool(this.isSubclass))
-}
-
-// GoGC adds a Go Finalizer to this pointer, so that it will be deleted
-// from C++ memory once it is unreachable from Go memory.
-func (this *QKeySequence) GoGC() {
-	runtime.SetFinalizer(this, func(this *QKeySequence) {
-		this.Delete()
-		runtime.KeepAlive(this.h)
-	})
 }

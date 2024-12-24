@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
@@ -9,6 +11,7 @@
 #include <QMetaObject>
 #include <QObject>
 #include <QRect>
+#include <QSize>
 #include <QString>
 #include <QByteArray>
 #include <cstring>
@@ -20,7 +23,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQImageIOHandler : public virtual QImageIOHandler {
 public:
@@ -28,34 +46,6 @@ public:
 	MiqtVirtualQImageIOHandler(): QImageIOHandler() {};
 
 	virtual ~MiqtVirtualQImageIOHandler() = default;
-
-	// cgo.Handle value for overwritten implementation
-	intptr_t handle__Name = 0;
-
-	// Subclass to allow providing a Go implementation
-	virtual QByteArray name() const override {
-		if (handle__Name == 0) {
-			return QImageIOHandler::name();
-		}
-		
-
-		struct miqt_string callback_return_value = miqt_exec_callback_QImageIOHandler_Name(const_cast<MiqtVirtualQImageIOHandler*>(this), handle__Name);
-		QByteArray callback_return_value_QByteArray(callback_return_value.data, callback_return_value.len);
-
-		return callback_return_value_QByteArray;
-	}
-
-	// Wrapper to allow calling protected method
-	struct miqt_string virtualbase_Name() const {
-
-		QByteArray _qb = QImageIOHandler::name();
-		struct miqt_string _ms;
-		_ms.len = _qb.length();
-		_ms.data = static_cast<char*>(malloc(_ms.len));
-		memcpy(_ms.data, _qb.data(), _ms.len);
-		return _ms;
-
-	}
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__CanRead = 0;
@@ -117,13 +107,12 @@ public:
 	intptr_t handle__Option = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QVariant option(QImageIOHandler::ImageOption option) const override {
+	virtual QVariant option(ImageOption option) const override {
 		if (handle__Option == 0) {
 			return QImageIOHandler::option(option);
 		}
 		
-		QImageIOHandler::ImageOption option_ret = option;
-		int sigval1 = static_cast<int>(option_ret);
+		ImageOption sigval1 = option;
 
 		QVariant* callback_return_value = miqt_exec_callback_QImageIOHandler_Option(const_cast<MiqtVirtualQImageIOHandler*>(this), handle__Option, sigval1);
 
@@ -131,9 +120,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	QVariant* virtualbase_Option(int option) const {
+	QVariant* virtualbase_Option(ImageOption option) const {
 
-		return new QVariant(QImageIOHandler::option(static_cast<QImageIOHandler::ImageOption>(option)));
+		return new QVariant(QImageIOHandler::option(option));
 
 	}
 
@@ -141,14 +130,13 @@ public:
 	intptr_t handle__SetOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void setOption(QImageIOHandler::ImageOption option, const QVariant& value) override {
+	virtual void setOption(ImageOption option, const QVariant& value) override {
 		if (handle__SetOption == 0) {
 			QImageIOHandler::setOption(option, value);
 			return;
 		}
 		
-		QImageIOHandler::ImageOption option_ret = option;
-		int sigval1 = static_cast<int>(option_ret);
+		ImageOption sigval1 = option;
 		const QVariant& value_ret = value;
 		// Cast returned reference into pointer
 		QVariant* sigval2 = const_cast<QVariant*>(&value_ret);
@@ -159,9 +147,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_SetOption(int option, QVariant* value) {
+	void virtualbase_SetOption(ImageOption option, QVariant* value) {
 
-		QImageIOHandler::setOption(static_cast<QImageIOHandler::ImageOption>(option), *value);
+		QImageIOHandler::setOption(option, *value);
 
 	}
 
@@ -169,13 +157,12 @@ public:
 	intptr_t handle__SupportsOption = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool supportsOption(QImageIOHandler::ImageOption option) const override {
+	virtual bool supportsOption(ImageOption option) const override {
 		if (handle__SupportsOption == 0) {
 			return QImageIOHandler::supportsOption(option);
 		}
 		
-		QImageIOHandler::ImageOption option_ret = option;
-		int sigval1 = static_cast<int>(option_ret);
+		ImageOption sigval1 = option;
 
 		bool callback_return_value = miqt_exec_callback_QImageIOHandler_SupportsOption(const_cast<MiqtVirtualQImageIOHandler*>(this), handle__SupportsOption, sigval1);
 
@@ -183,9 +170,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_SupportsOption(int option) const {
+	bool virtualbase_SupportsOption(ImageOption option) const {
 
-		return QImageIOHandler::supportsOption(static_cast<QImageIOHandler::ImageOption>(option));
+		return QImageIOHandler::supportsOption(option);
 
 	}
 
@@ -377,15 +364,6 @@ struct miqt_string QImageIOHandler_Format(const QImageIOHandler* self) {
 	return _ms;
 }
 
-struct miqt_string QImageIOHandler_Name(const QImageIOHandler* self) {
-	QByteArray _qb = self->name();
-	struct miqt_string _ms;
-	_ms.len = _qb.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _qb.data(), _ms.len);
-	return _ms;
-}
-
 bool QImageIOHandler_CanRead(const QImageIOHandler* self) {
 	return self->canRead();
 }
@@ -398,16 +376,16 @@ bool QImageIOHandler_Write(QImageIOHandler* self, QImage* image) {
 	return self->write(*image);
 }
 
-QVariant* QImageIOHandler_Option(const QImageIOHandler* self, int option) {
-	return new QVariant(self->option(static_cast<QImageIOHandler::ImageOption>(option)));
+QVariant* QImageIOHandler_Option(const QImageIOHandler* self, ImageOption option) {
+	return new QVariant(self->option(option));
 }
 
-void QImageIOHandler_SetOption(QImageIOHandler* self, int option, QVariant* value) {
-	self->setOption(static_cast<QImageIOHandler::ImageOption>(option), *value);
+void QImageIOHandler_SetOption(QImageIOHandler* self, ImageOption option, QVariant* value) {
+	self->setOption(option, *value);
 }
 
-bool QImageIOHandler_SupportsOption(const QImageIOHandler* self, int option) {
-	return self->supportsOption(static_cast<QImageIOHandler::ImageOption>(option));
+bool QImageIOHandler_SupportsOption(const QImageIOHandler* self, ImageOption option) {
+	return self->supportsOption(option);
 }
 
 bool QImageIOHandler_JumpToNextImage(QImageIOHandler* self) {
@@ -438,12 +416,8 @@ QRect* QImageIOHandler_CurrentImageRect(const QImageIOHandler* self) {
 	return new QRect(self->currentImageRect());
 }
 
-void QImageIOHandler_override_virtual_Name(void* self, intptr_t slot) {
-	dynamic_cast<MiqtVirtualQImageIOHandler*>( (QImageIOHandler*)(self) )->handle__Name = slot;
-}
-
-struct miqt_string QImageIOHandler_virtualbase_Name(const void* self) {
-	return ( (const MiqtVirtualQImageIOHandler*)(self) )->virtualbase_Name();
+bool QImageIOHandler_AllocateImage(QSize* size, int format, QImage* image) {
+	return QImageIOHandler::allocateImage(*size, static_cast<QImage::Format>(format), image);
 }
 
 void QImageIOHandler_override_virtual_CanRead(void* self, intptr_t slot) {
@@ -466,7 +440,7 @@ void QImageIOHandler_override_virtual_Option(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQImageIOHandler*>( (QImageIOHandler*)(self) )->handle__Option = slot;
 }
 
-QVariant* QImageIOHandler_virtualbase_Option(const void* self, int option) {
+QVariant* QImageIOHandler_virtualbase_Option(const void* self, ImageOption option) {
 	return ( (const MiqtVirtualQImageIOHandler*)(self) )->virtualbase_Option(option);
 }
 
@@ -474,7 +448,7 @@ void QImageIOHandler_override_virtual_SetOption(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQImageIOHandler*>( (QImageIOHandler*)(self) )->handle__SetOption = slot;
 }
 
-void QImageIOHandler_virtualbase_SetOption(void* self, int option, QVariant* value) {
+void QImageIOHandler_virtualbase_SetOption(void* self, ImageOption option, QVariant* value) {
 	( (MiqtVirtualQImageIOHandler*)(self) )->virtualbase_SetOption(option, value);
 }
 
@@ -482,7 +456,7 @@ void QImageIOHandler_override_virtual_SupportsOption(void* self, intptr_t slot) 
 	dynamic_cast<MiqtVirtualQImageIOHandler*>( (QImageIOHandler*)(self) )->handle__SupportsOption = slot;
 }
 
-bool QImageIOHandler_virtualbase_SupportsOption(const void* self, int option) {
+bool QImageIOHandler_virtualbase_SupportsOption(const void* self, ImageOption option) {
 	return ( (const MiqtVirtualQImageIOHandler*)(self) )->virtualbase_SupportsOption(option);
 }
 
@@ -562,9 +536,9 @@ public:
 	intptr_t handle__Capabilities = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual QImageIOPlugin::Capabilities capabilities(QIODevice* device, const QByteArray& format) const override {
+	virtual Capabilities capabilities(QIODevice* device, const QByteArray& format) const override {
 		if (handle__Capabilities == 0) {
-			return QImageIOPlugin::Capabilities(); // Pure virtual, there is no base we can call
+			return Capabilities(); // Pure virtual, there is no base we can call
 		}
 		
 		QIODevice* sigval1 = device;
@@ -575,9 +549,9 @@ public:
 		memcpy(format_ms.data, format_qb.data(), format_ms.len);
 		struct miqt_string sigval2 = format_ms;
 
-		int callback_return_value = miqt_exec_callback_QImageIOPlugin_Capabilities(const_cast<MiqtVirtualQImageIOPlugin*>(this), handle__Capabilities, sigval1, sigval2);
+		Capabilities callback_return_value = miqt_exec_callback_QImageIOPlugin_Capabilities(const_cast<MiqtVirtualQImageIOPlugin*>(this), handle__Capabilities, sigval1, sigval2);
 
-		return static_cast<QImageIOPlugin::Capabilities>(callback_return_value);
+		return callback_return_value;
 	}
 
 	// cgo.Handle value for overwritten implementation
@@ -806,21 +780,9 @@ struct miqt_string QImageIOPlugin_Tr(const char* s) {
 	return _ms;
 }
 
-struct miqt_string QImageIOPlugin_TrUtf8(const char* s) {
-	QString _ret = QImageIOPlugin::trUtf8(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-int QImageIOPlugin_Capabilities(const QImageIOPlugin* self, QIODevice* device, struct miqt_string format) {
+Capabilities QImageIOPlugin_Capabilities(const QImageIOPlugin* self, QIODevice* device, struct miqt_string format) {
 	QByteArray format_QByteArray(format.data, format.len);
-	QImageIOPlugin::Capabilities _ret = self->capabilities(device, format_QByteArray);
-	return static_cast<int>(_ret);
+	return self->capabilities(device, format_QByteArray);
 }
 
 QImageIOHandler* QImageIOPlugin_Create(const QImageIOPlugin* self, QIODevice* device, struct miqt_string format) {
@@ -841,28 +803,6 @@ struct miqt_string QImageIOPlugin_Tr2(const char* s, const char* c) {
 
 struct miqt_string QImageIOPlugin_Tr3(const char* s, const char* c, int n) {
 	QString _ret = QImageIOPlugin::tr(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QImageIOPlugin_TrUtf82(const char* s, const char* c) {
-	QString _ret = QImageIOPlugin::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QImageIOPlugin_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QImageIOPlugin::trUtf8(s, c, static_cast<int>(n));
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;

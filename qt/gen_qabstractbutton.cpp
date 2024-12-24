@@ -1,3 +1,5 @@
+// +build ignore
+
 #include <QAbstractButton>
 #include <QActionEvent>
 #include <QButtonGroup>
@@ -8,6 +10,7 @@
 #include <QDragLeaveEvent>
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QEnterEvent>
 #include <QEvent>
 #include <QFocusEvent>
 #include <QHideEvent>
@@ -41,7 +44,22 @@
 #ifndef _Bool
 #define _Bool bool
 #endif
-#include "_cgo_export.h"
+
+void _GUID_Delete(_GUID* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<_GUID*>( self );
+	} else {
+		delete self;
+	}
+}
+
+void type_info_Delete(type_info* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<type_info*>( self );
+	} else {
+		delete self;
+	}
+}
 
 class MiqtVirtualQAbstractButton : public virtual QAbstractButton {
 public:
@@ -586,13 +604,13 @@ public:
 	intptr_t handle__EnterEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual void enterEvent(QEvent* event) override {
+	virtual void enterEvent(QEnterEvent* event) override {
 		if (handle__EnterEvent == 0) {
 			QAbstractButton::enterEvent(event);
 			return;
 		}
 		
-		QEvent* sigval1 = event;
+		QEnterEvent* sigval1 = event;
 
 		miqt_exec_callback_QAbstractButton_EnterEvent(this, handle__EnterEvent, sigval1);
 
@@ -600,7 +618,7 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	void virtualbase_EnterEvent(QEvent* event) {
+	void virtualbase_EnterEvent(QEnterEvent* event) {
 
 		QAbstractButton::enterEvent(event);
 
@@ -922,7 +940,7 @@ public:
 	intptr_t handle__NativeEvent = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual bool nativeEvent(const QByteArray& eventType, void* message, long* result) override {
+	virtual bool nativeEvent(const QByteArray& eventType, void* message, qintptr* result) override {
 		if (handle__NativeEvent == 0) {
 			return QAbstractButton::nativeEvent(eventType, message, result);
 		}
@@ -934,7 +952,8 @@ public:
 		memcpy(eventType_ms.data, eventType_qb.data(), eventType_ms.len);
 		struct miqt_string sigval1 = eventType_ms;
 		void* sigval2 = message;
-		long* sigval3 = result;
+		qintptr* result_ret = result;
+		intptr_t* sigval3 = (intptr_t*)(result_ret);
 
 		bool callback_return_value = miqt_exec_callback_QAbstractButton_NativeEvent(this, handle__NativeEvent, sigval1, sigval2, sigval3);
 
@@ -942,10 +961,10 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, long* result) {
+	bool virtualbase_NativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
 		QByteArray eventType_QByteArray(eventType.data, eventType.len);
 
-		return QAbstractButton::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+		return QAbstractButton::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
 
 	}
 
@@ -953,13 +972,12 @@ public:
 	intptr_t handle__Metric = 0;
 
 	// Subclass to allow providing a Go implementation
-	virtual int metric(QPaintDevice::PaintDeviceMetric param1) const override {
+	virtual int metric(PaintDeviceMetric param1) const override {
 		if (handle__Metric == 0) {
 			return QAbstractButton::metric(param1);
 		}
 		
-		QPaintDevice::PaintDeviceMetric param1_ret = param1;
-		int sigval1 = static_cast<int>(param1_ret);
+		PaintDeviceMetric sigval1 = param1;
 
 		int callback_return_value = miqt_exec_callback_QAbstractButton_Metric(const_cast<MiqtVirtualQAbstractButton*>(this), handle__Metric, sigval1);
 
@@ -967,9 +985,9 @@ public:
 	}
 
 	// Wrapper to allow calling protected method
-	int virtualbase_Metric(int param1) const {
+	int virtualbase_Metric(PaintDeviceMetric param1) const {
 
-		return QAbstractButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
+		return QAbstractButton::metric(param1);
 
 	}
 
@@ -1137,17 +1155,6 @@ void* QAbstractButton_Metacast(QAbstractButton* self, const char* param1) {
 
 struct miqt_string QAbstractButton_Tr(const char* s) {
 	QString _ret = QAbstractButton::tr(s);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractButton_TrUtf8(const char* s) {
-	QString _ret = QAbstractButton::trUtf8(s);
 	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
 	QByteArray _b = _ret.toUtf8();
 	struct miqt_string _ms;
@@ -1330,32 +1337,6 @@ struct miqt_string QAbstractButton_Tr3(const char* s, const char* c, int n) {
 	_ms.data = static_cast<char*>(malloc(_ms.len));
 	memcpy(_ms.data, _b.data(), _ms.len);
 	return _ms;
-}
-
-struct miqt_string QAbstractButton_TrUtf82(const char* s, const char* c) {
-	QString _ret = QAbstractButton::trUtf8(s, c);
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-struct miqt_string QAbstractButton_TrUtf83(const char* s, const char* c, int n) {
-	QString _ret = QAbstractButton::trUtf8(s, c, static_cast<int>(n));
-	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-	QByteArray _b = _ret.toUtf8();
-	struct miqt_string _ms;
-	_ms.len = _b.length();
-	_ms.data = static_cast<char*>(malloc(_ms.len));
-	memcpy(_ms.data, _b.data(), _ms.len);
-	return _ms;
-}
-
-void QAbstractButton_AnimateClick1(QAbstractButton* self, int msec) {
-	self->animateClick(static_cast<int>(msec));
 }
 
 void QAbstractButton_Clicked1(QAbstractButton* self, bool checked) {
@@ -1553,7 +1534,7 @@ void QAbstractButton_override_virtual_EnterEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractButton*>( (QAbstractButton*)(self) )->handle__EnterEvent = slot;
 }
 
-void QAbstractButton_virtualbase_EnterEvent(void* self, QEvent* event) {
+void QAbstractButton_virtualbase_EnterEvent(void* self, QEnterEvent* event) {
 	( (MiqtVirtualQAbstractButton*)(self) )->virtualbase_EnterEvent(event);
 }
 
@@ -1665,7 +1646,7 @@ void QAbstractButton_override_virtual_NativeEvent(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractButton*>( (QAbstractButton*)(self) )->handle__NativeEvent = slot;
 }
 
-bool QAbstractButton_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
+bool QAbstractButton_virtualbase_NativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
 	return ( (MiqtVirtualQAbstractButton*)(self) )->virtualbase_NativeEvent(eventType, message, result);
 }
 
@@ -1673,7 +1654,7 @@ void QAbstractButton_override_virtual_Metric(void* self, intptr_t slot) {
 	dynamic_cast<MiqtVirtualQAbstractButton*>( (QAbstractButton*)(self) )->handle__Metric = slot;
 }
 
-int QAbstractButton_virtualbase_Metric(const void* self, int param1) {
+int QAbstractButton_virtualbase_Metric(const void* self, PaintDeviceMetric param1) {
 	return ( (const MiqtVirtualQAbstractButton*)(self) )->virtualbase_Metric(param1);
 }
 
