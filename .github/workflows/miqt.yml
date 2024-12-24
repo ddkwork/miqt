@@ -2,7 +2,8 @@ name: CI
 
 on:
   push:
-    branches: [ "**" purego]
+    branches: [ "purego" ]
+  #    branches: [ "**" purego]
   pull_request:
     branches: [ "**" ]
 
