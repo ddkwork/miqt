@@ -6,6 +6,7 @@ go.work
 go.work.sum
 golibrary
 update go workspace.cmd
+log.log
 
 
 
