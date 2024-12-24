@@ -12,8 +12,6 @@ typedef struct QLine QLine;
 typedef struct QLineF QLineF;
 typedef struct QPoint QPoint;
 typedef struct QPointF QPointF;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

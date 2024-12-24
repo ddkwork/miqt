@@ -17,8 +17,6 @@ typedef struct QObject QObject;
 typedef struct QProcess QProcess;
 typedef struct QProcess__CreateProcessArguments QProcess__CreateProcessArguments;
 typedef struct QProcessEnvironment QProcessEnvironment;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

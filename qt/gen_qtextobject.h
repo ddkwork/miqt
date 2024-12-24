@@ -35,8 +35,6 @@ typedef struct QTextLayout QTextLayout;
 typedef struct QTextLayout__FormatRange QTextLayout__FormatRange;
 typedef struct QTextList QTextList;
 typedef struct QTextObject QTextObject;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

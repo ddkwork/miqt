@@ -18,8 +18,6 @@ typedef struct QPartialOrdering QPartialOrdering;
 typedef struct partial_ordering partial_ordering;
 typedef struct strong_ordering strong_ordering;
 typedef struct weak_ordering weak_ordering;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

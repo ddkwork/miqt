@@ -21,8 +21,6 @@ typedef struct QTextObject QTextObject;
 typedef struct QTextTable QTextTable;
 typedef struct QTextTableCell QTextTableCell;
 typedef struct QTextTableFormat QTextTableFormat;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

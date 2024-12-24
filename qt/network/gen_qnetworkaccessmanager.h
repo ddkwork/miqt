@@ -28,8 +28,6 @@ typedef struct QSslConfiguration QSslConfiguration;
 typedef struct QSslError QSslError;
 typedef struct QSslPreSharedKeyAuthenticator QSslPreSharedKeyAuthenticator;
 typedef struct QTimerEvent QTimerEvent;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

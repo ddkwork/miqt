@@ -12,8 +12,6 @@ extern "C" {
 typedef QPageRanges::Range QPageRanges__Range;
 typedef struct QPageRanges QPageRanges;
 typedef struct QPageRanges__Range QPageRanges__Range;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

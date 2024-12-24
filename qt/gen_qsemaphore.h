@@ -11,8 +11,6 @@ extern "C" {
 typedef struct QDeadlineTimer QDeadlineTimer;
 typedef struct QSemaphore QSemaphore;
 typedef struct QSemaphoreReleaser QSemaphoreReleaser;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

@@ -10,8 +10,6 @@
 extern "C" {
 typedef struct QFlag QFlag;
 typedef struct QIncompatibleFlag QIncompatibleFlag;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

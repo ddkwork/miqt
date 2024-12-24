@@ -11,8 +11,6 @@ extern "C" {
 typedef struct QColor QColor;
 typedef struct QColorTransform QColorTransform;
 typedef struct QRgba64 QRgba64;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

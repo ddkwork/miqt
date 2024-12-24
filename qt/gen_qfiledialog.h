@@ -26,8 +26,6 @@ typedef struct QShowEvent QShowEvent;
 typedef struct QSize QSize;
 typedef struct QUrl QUrl;
 typedef struct QWidget QWidget;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

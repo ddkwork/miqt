@@ -11,8 +11,6 @@ extern "C" {
 typedef struct QDir QDir;
 typedef struct QDirIterator QDirIterator;
 typedef struct QFileInfo QFileInfo;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

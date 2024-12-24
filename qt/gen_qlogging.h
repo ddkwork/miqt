@@ -13,8 +13,6 @@ typedef struct QLoggingCategory QLoggingCategory;
 typedef struct QMessageLogContext QMessageLogContext;
 typedef struct QMessageLogger QMessageLogger;
 typedef struct QNoDebug QNoDebug;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

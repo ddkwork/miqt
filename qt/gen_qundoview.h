@@ -36,8 +36,6 @@ typedef struct QUndoStack QUndoStack;
 typedef struct QUndoView QUndoView;
 typedef struct QWheelEvent QWheelEvent;
 typedef struct QWidget QWidget;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

@@ -11,8 +11,6 @@ extern "C" {
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QtMocHelpers__NoType)
 typedef QtMocHelpers::NoType QtMocHelpers__NoType;
 typedef struct QtMocHelpers__NoType QtMocHelpers__NoType;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

@@ -21,8 +21,6 @@ typedef struct QDirListing__const_iterator QDirListing__const_iterator;
 typedef struct QDirListing__sentinel QDirListing__sentinel;
 typedef struct QFileInfo QFileInfo;
 typedef struct QTimeZone QTimeZone;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

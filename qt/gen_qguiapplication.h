@@ -24,8 +24,6 @@ typedef struct QScreen QScreen;
 typedef struct QSessionManager QSessionManager;
 typedef struct QStyleHints QStyleHints;
 typedef struct QWindow QWindow;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

@@ -11,8 +11,6 @@ extern "C" {
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_QNativeInterface__QWindowsScreen)
 typedef QNativeInterface::QWindowsScreen QNativeInterface__QWindowsScreen;
 typedef struct QNativeInterface__QWindowsScreen QNativeInterface__QWindowsScreen;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

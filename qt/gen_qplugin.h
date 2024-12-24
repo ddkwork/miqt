@@ -20,8 +20,6 @@ typedef struct QPluginMetaData__ElfNoteHeader QPluginMetaData__ElfNoteHeader;
 typedef struct QPluginMetaData__Header QPluginMetaData__Header;
 typedef struct QPluginMetaData__MagicHeader QPluginMetaData__MagicHeader;
 typedef struct QStaticPlugin QStaticPlugin;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

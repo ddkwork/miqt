@@ -10,9 +10,7 @@
 extern "C" {
 #if defined(WORKAROUND_INNER_CLASS_DEFINITION_qxp__nonesuch)
 typedef qxp::nonesuch qxp__nonesuch;
-typedef struct _GUID _GUID;
 typedef struct qxp__nonesuch qxp__nonesuch;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

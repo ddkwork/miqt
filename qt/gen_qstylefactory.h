@@ -10,8 +10,6 @@
 extern "C" {
 typedef struct QStyle QStyle;
 typedef struct QStyleFactory QStyleFactory;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

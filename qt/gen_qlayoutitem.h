@@ -17,8 +17,6 @@ typedef struct QSpacerItem QSpacerItem;
 typedef struct QWidget QWidget;
 typedef struct QWidgetItem QWidgetItem;
 typedef struct QWidgetItemV2 QWidgetItemV2;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

@@ -10,8 +10,6 @@
 extern "C" {
 typedef struct QKeyCombination QKeyCombination;
 typedef struct QKeySequence QKeySequence;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

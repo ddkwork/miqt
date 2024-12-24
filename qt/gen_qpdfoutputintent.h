@@ -11,8 +11,6 @@ extern "C" {
 typedef struct QColorSpace QColorSpace;
 typedef struct QPdfOutputIntent QPdfOutputIntent;
 typedef struct QUrl QUrl;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

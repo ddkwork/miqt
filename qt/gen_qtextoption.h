@@ -13,8 +13,6 @@ typedef QTextOption::Tab QTextOption__Tab;
 typedef struct QChar QChar;
 typedef struct QTextOption QTextOption;
 typedef struct QTextOption__Tab QTextOption__Tab;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

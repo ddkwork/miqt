@@ -671,6 +671,10 @@ extern "C" {
 		if cabiPreventStructDeclaration(ft) {
 			continue
 		}
+		switch cabiClassName(ft) {
+		case "type_info", "_GUID":
+			continue
+		}
 		ret.WriteString(`typedef struct ` + cabiClassName(ft) + " " + cabiClassName(ft) + ";\n")
 	}
 	ret.WriteString("\n")

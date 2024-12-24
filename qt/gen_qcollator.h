@@ -12,8 +12,6 @@ typedef struct QChar QChar;
 typedef struct QCollator QCollator;
 typedef struct QCollatorSortKey QCollatorSortKey;
 typedef struct QLocale QLocale;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

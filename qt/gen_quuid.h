@@ -17,8 +17,6 @@ typedef struct QByteArrayView QByteArrayView;
 typedef struct QUuid QUuid;
 typedef struct QUuid__Id128Bytes QUuid__Id128Bytes;
 typedef struct Disambiguated_t Disambiguated_t;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

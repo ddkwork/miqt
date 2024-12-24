@@ -15,8 +15,6 @@ typedef struct QPainter QPainter;
 typedef struct QPicture QPicture;
 typedef struct QPoint QPoint;
 typedef struct QRect QRect;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

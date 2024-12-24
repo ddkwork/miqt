@@ -11,8 +11,6 @@ extern "C" {
 typedef struct QQuaternion QQuaternion;
 typedef struct QVector3D QVector3D;
 typedef struct QVector4D QVector4D;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

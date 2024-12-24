@@ -10,8 +10,6 @@
 extern "C" {
 typedef struct QNetworkReply QNetworkReply;
 typedef struct QRestReply QRestReply;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

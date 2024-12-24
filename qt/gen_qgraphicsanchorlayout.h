@@ -17,8 +17,6 @@ typedef struct QMetaObject QMetaObject;
 typedef struct QObject QObject;
 typedef struct QRectF QRectF;
 typedef struct QSizeF QSizeF;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

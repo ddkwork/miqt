@@ -17,8 +17,6 @@ typedef struct QPropertyObserverBase QPropertyObserverBase;
 typedef struct QScopedPropertyUpdateGroup QScopedPropertyUpdateGroup;
 typedef struct QUntypedBindable QUntypedBindable;
 typedef struct QUntypedPropertyBinding QUntypedPropertyBinding;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

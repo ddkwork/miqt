@@ -15,8 +15,6 @@ typedef struct QDateTime QDateTime;
 typedef struct QLocale QLocale;
 typedef struct QTimeZone QTimeZone;
 typedef struct QTimeZone__OffsetData QTimeZone__OffsetData;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

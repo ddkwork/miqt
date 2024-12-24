@@ -16,8 +16,6 @@ typedef struct QLocationPermission QLocationPermission;
 typedef struct QMetaType QMetaType;
 typedef struct QMicrophonePermission QMicrophonePermission;
 typedef struct QPermission QPermission;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 

@@ -12,8 +12,6 @@ typedef struct QDeadlineTimer QDeadlineTimer;
 typedef struct QHostAddress QHostAddress;
 typedef struct QNetworkAddressEntry QNetworkAddressEntry;
 typedef struct QNetworkInterface QNetworkInterface;
-typedef struct _GUID _GUID;
-typedef struct type_info type_info;
 
 extern __declspec(dllexport) void _GUID_Delete(_GUID* self, bool isSubclass);
 
