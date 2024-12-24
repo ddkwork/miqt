@@ -2,10 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ "purego" ]
-  #    branches: [ "**" purego]
-  pull_request:
-    branches: [ "**" ]
+#    branches: [ "purego" ]
+#  #    branches: [ "**" ]
+#  pull_request:
+#    branches: [ "**" ]
 
 permissions:
   contents: write
