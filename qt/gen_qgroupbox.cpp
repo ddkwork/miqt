@@ -1,0 +1,207 @@
+// +build ignore
+
+#include <QChildEvent>
+#include <QEvent>
+#include <QFocusEvent>
+#include <QGroupBox>
+#include <QMetaObject>
+#include <QMouseEvent>
+#include <QObject>
+#include <QPaintDevice>
+#include <QPaintEvent>
+#include <QResizeEvent>
+#include <QSize>
+#include <QString>
+#include <QByteArray>
+#include <cstring>
+#include <QStyleOptionGroupBox>
+#include <QWidget>
+#include <qgroupbox.h>
+#include "gen_qgroupbox.h"
+class MiqtVirtualQGroupBox : public virtual QGroupBox {
+public:
+MiqtVirtualQGroupBox(QWidget* parent): QGroupBox(parent) {};
+MiqtVirtualQGroupBox(): QGroupBox() {};
+MiqtVirtualQGroupBox(const QString& title): QGroupBox(title) {};
+MiqtVirtualQGroupBox(const QString& title, QWidget* parent): QGroupBox(title, parent) {};
+
+virtual ~MiqtVirtualQGroupBox() = default;
+// cgo.Handle value for overwritten implementation
+	intptr_t handle__MetaObject = 0;
+// Subclass to allow providing a Go implementation
+	virtual const QMetaObject* metaObject() const override {
+if (handle__MetaObject == 0) {
+return QGroupBox::metaObject();
+}
+QMetaObject* callback_return_value = miqt_exec_callback_QGroupBox_MetaObject(const_cast<MiqtVirtualQGroupBox*>(this), handle__MetaObject);
+
+		return callback_return_value;
+	}
+// Wrapper to allow calling protected method
+	QMetaObject* virtualbase_MetaObject() const {
+
+		return (QMetaObject*) QGroupBox::metaObject();
+
+	}
+// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+if (handle__Metacast == 0) {
+return QGroupBox::qt_metacast(param1);
+}
+const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QGroupBox_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QGroupBox::qt_metacast(param1);
+
+	}
+};
+QGroupBox* QGroupBox_new(QWidget* parent) {
+return new MiqtVirtualQGroupBox(parent);
+}
+QGroupBox* QGroupBox_new2() {
+return new MiqtVirtualQGroupBox();
+}
+QGroupBox* QGroupBox_new3(struct miqt_string title) {
+QString title_QString = QString::fromUtf8(title.data, title.len);
+	return new MiqtVirtualQGroupBox(title_QString);
+}
+QGroupBox* QGroupBox_new4(struct miqt_string title, QWidget* parent) {
+QString title_QString = QString::fromUtf8(title.data, title.len);
+	return new MiqtVirtualQGroupBox(title_QString, parent);
+}
+void QGroupBox_virtbase(QGroupBox* src
+, QWidget** outptr_QWidget
+) {
+*outptr_QWidget = static_cast<QWidget*>(src);
+}
+QMetaObject* QGroupBox_MetaObject(const QGroupBox* self) {
+	return (QMetaObject*) self->metaObject();
+}
+void* QGroupBox_Metacast(QGroupBox* self, const char* param1) {
+	return self->qt_metacast(param1);
+}
+struct miqt_string QGroupBox_Tr(const char* s) {
+	QString _ret = QGroupBox::tr(s);
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+struct miqt_string QGroupBox_Title(const QGroupBox* self) {
+	QString _ret = self->title();
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+void QGroupBox_SetTitle(QGroupBox* self, struct miqt_string title) {
+	QString title_QString = QString::fromUtf8(title.data, title.len);
+	self->setTitle(title_QString);
+}
+int QGroupBox_Alignment(const QGroupBox* self) {
+	Qt::Alignment _ret = self->alignment();
+	return static_cast<int>(_ret);
+}
+void QGroupBox_SetAlignment(QGroupBox* self, int alignment) {
+	self->setAlignment(static_cast<int>(alignment));
+}
+QSize* QGroupBox_MinimumSizeHint(const QGroupBox* self) {
+	return new QSize(self->minimumSizeHint());
+}
+bool QGroupBox_IsFlat(const QGroupBox* self) {
+	return self->isFlat();
+}
+void QGroupBox_SetFlat(QGroupBox* self, bool flat) {
+	self->setFlat(flat);
+}
+bool QGroupBox_IsCheckable(const QGroupBox* self) {
+	return self->isCheckable();
+}
+void QGroupBox_SetCheckable(QGroupBox* self, bool checkable) {
+	self->setCheckable(checkable);
+}
+bool QGroupBox_IsChecked(const QGroupBox* self) {
+	return self->isChecked();
+}
+void QGroupBox_SetChecked(QGroupBox* self, bool checked) {
+	self->setChecked(checked);
+}
+void QGroupBox_Clicked(QGroupBox* self) {
+	self->clicked();
+}
+void QGroupBox_connect_Clicked(QGroupBox* self, intptr_t slot) {
+	MiqtVirtualQGroupBox::connect(self, static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked), self, [=]() {
+		miqt_exec_callback_QGroupBox_Clicked(slot);
+	});
+}
+void QGroupBox_Toggled(QGroupBox* self, bool param1) {
+	self->toggled(param1);
+}
+void QGroupBox_connect_Toggled(QGroupBox* self, intptr_t slot) {
+	MiqtVirtualQGroupBox::connect(self, static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::toggled), self, [=](bool param1) {
+		bool sigval1 = param1;
+		miqt_exec_callback_QGroupBox_Toggled(slot, sigval1);
+	});
+}
+struct miqt_string QGroupBox_Tr2(const char* s, const char* c) {
+	QString _ret = QGroupBox::tr(s, c);
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+struct miqt_string QGroupBox_Tr3(const char* s, const char* c, int n) {
+	QString _ret = QGroupBox::tr(s, c, static_cast<int>(n));
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+void QGroupBox_Clicked1(QGroupBox* self, bool checked) {
+	self->clicked(checked);
+}
+void QGroupBox_connect_Clicked1(QGroupBox* self, intptr_t slot) {
+	MiqtVirtualQGroupBox::connect(self, static_cast<void (QGroupBox::*)(bool)>(&QGroupBox::clicked), self, [=](bool checked) {
+		bool sigval1 = checked;
+		miqt_exec_callback_QGroupBox_Clicked1(slot, sigval1);
+	});
+}
+void QGroupBox_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGroupBox*>( (QGroupBox*)(self) )->handle__MetaObject = slot;
+}
+QMetaObject* QGroupBox_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQGroupBox*)(self) )->virtualbase_MetaObject();
+}
+void QGroupBox_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQGroupBox*>( (QGroupBox*)(self) )->handle__Metacast = slot;
+}
+void* QGroupBox_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQGroupBox*)(self) )->virtualbase_Metacast(param1);
+}
+void QGroupBox_Delete(QGroupBox* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<MiqtVirtualQGroupBox*>( self );
+	} else {
+		delete self;
+	}
+}

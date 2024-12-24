@@ -1,0 +1,20 @@
+// +build ignore
+
+#include <QAbstractNativeEventFilter>
+#include <QByteArray>
+#include <qabstractnativeeventfilter.h>
+#include "gen_qabstractnativeeventfilter.h"
+QAbstractNativeEventFilter* QAbstractNativeEventFilter_new() {
+return new QAbstractNativeEventFilter();
+}
+bool QAbstractNativeEventFilter_NativeEventFilter(QAbstractNativeEventFilter* self, struct miqt_string eventType, void* message, intptr_t* result) {
+	QByteArray eventType_QByteArray(eventType.data, eventType.len);
+	return self->nativeEventFilter(eventType_QByteArray, message, (qintptr*)(result));
+}
+void QAbstractNativeEventFilter_Delete(QAbstractNativeEventFilter* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<QAbstractNativeEventFilter*>( self );
+	} else {
+		delete self;
+	}
+}

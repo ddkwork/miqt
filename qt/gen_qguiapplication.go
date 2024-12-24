@@ -1,0 +1,662 @@
+package qt
+
+import (
+	"unsafe"
+)
+
+type QGuiApplication struct {
+	h          uintptr
+	isSubclass bool
+}
+
+// NewQGuiApplication constructs a new QGuiApplication object.
+func NewQGuiApplication(args []string) *QGuiApplication {
+	argcPtr := uintptr(unsafe.Pointer(&argc))
+	var argvPtr uintptr
+	if argv != nil && len(argv) > 0 {
+		argvPtr = uintptr(unsafe.Pointer(&argv[0])) // 获取argv的指针
+	} else {
+		argvPtr = 0 // 或者使用nil
+	}
+	g := newQGuiApplication(QGuiApplication_new())
+	g.isSubclass = true
+	return g
+}
+
+// NewQGuiApplication2 constructs a new QGuiApplication object.
+func NewQGuiApplication2(args []string, param3 int) *QGuiApplication {
+	argcPtr := uintptr(unsafe.Pointer(&argc))
+	var argvPtr uintptr
+	if argv != nil && len(argv) > 0 {
+		argvPtr = uintptr(unsafe.Pointer(&argv[0])) // 获取argv的指针
+	} else {
+		argvPtr = 0 // 或者使用nil
+	}
+	g := newQGuiApplication(QGuiApplication_new2((int)(param3)))
+	g.isSubclass = true
+	return g
+}
+
+func (this *QGuiApplication) MetaObject() *QMetaObject {
+	return newQMetaObject(QGuiApplication_MetaObject(this.h))
+}
+
+func (this *QGuiApplication) Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+	return (unsafe.Pointer)(QGuiApplication_Metacast(this.h, param1_Cstring))
+}
+
+func QGuiApplication_Tr(s string) string {
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	var _ms struct_miqt_string = QGuiApplication_Tr(s_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func QGuiApplication_SetApplicationDisplayName(name string) {
+	name_ms := struct_miqt_string{}
+	name_ms.data = CString(name)
+	name_ms.len = size_t(len(name))
+	defer free(unsafe.Pointer(name_ms.data))
+	QGuiApplication_SetApplicationDisplayName(name_ms)
+}
+
+func QGuiApplication_ApplicationDisplayName() string {
+	var _ms struct_miqt_string = QGuiApplication_ApplicationDisplayName()
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QGuiApplication) SetBadgeNumber(number int64) {
+	QGuiApplication_SetBadgeNumber(this.h, (longlong)(number))
+}
+
+func QGuiApplication_SetDesktopFileName(name string) {
+	name_ms := struct_miqt_string{}
+	name_ms.data = CString(name)
+	name_ms.len = size_t(len(name))
+	defer free(unsafe.Pointer(name_ms.data))
+	QGuiApplication_SetDesktopFileName(name_ms)
+}
+
+func QGuiApplication_DesktopFileName() string {
+	var _ms struct_miqt_string = QGuiApplication_DesktopFileName()
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func QGuiApplication_AllWindows() []*QWindow {
+	var _ma struct_miqt_array = QGuiApplication_AllWindows()
+	_ret := make([]*QWindow, int(_ma.len))
+	_outCast := (*[0xffff]*QWindow)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		_ret[i] = newQWindow(_outCast[i])
+	}
+	return _ret
+}
+
+func QGuiApplication_TopLevelWindows() []*QWindow {
+	var _ma struct_miqt_array = QGuiApplication_TopLevelWindows()
+	_ret := make([]*QWindow, int(_ma.len))
+	_outCast := (*[0xffff]*QWindow)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		_ret[i] = newQWindow(_outCast[i])
+	}
+	return _ret
+}
+
+func QGuiApplication_TopLevelAt(pos *QPoint) *QWindow {
+	return newQWindow(QGuiApplication_TopLevelAt(pos.cPointer()))
+}
+
+func QGuiApplication_SetWindowIcon(icon *QIcon) {
+	QGuiApplication_SetWindowIcon(icon.cPointer())
+}
+
+func QGuiApplication_WindowIcon() *QIcon {
+	_goptr := newQIcon(QGuiApplication_WindowIcon())
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QGuiApplication_PlatformName() string {
+	var _ms struct_miqt_string = QGuiApplication_PlatformName()
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func QGuiApplication_ModalWindow() *QWindow {
+	return newQWindow(QGuiApplication_ModalWindow())
+}
+
+func QGuiApplication_FocusWindow() *QWindow {
+	return newQWindow(QGuiApplication_FocusWindow())
+}
+
+func QGuiApplication_FocusObject() *QObject {
+	return newQObject(QGuiApplication_FocusObject())
+}
+
+func QGuiApplication_PrimaryScreen() *QScreen {
+	return newQScreen(QGuiApplication_PrimaryScreen())
+}
+
+func QGuiApplication_Screens() []*QScreen {
+	var _ma struct_miqt_array = QGuiApplication_Screens()
+	_ret := make([]*QScreen, int(_ma.len))
+	_outCast := (*[0xffff]*QScreen)(unsafe.Pointer(_ma.data)) // hey ya
+	for i := 0; i < int(_ma.len); i++ {
+		_ret[i] = newQScreen(_outCast[i])
+	}
+	return _ret
+}
+
+func QGuiApplication_ScreenAt(point *QPoint) *QScreen {
+	return newQScreen(QGuiApplication_ScreenAt(point.cPointer()))
+}
+
+func (this *QGuiApplication) DevicePixelRatio() float64 {
+	return (float64)(QGuiApplication_DevicePixelRatio(this.h))
+}
+
+func QGuiApplication_OverrideCursor() *QCursor {
+	return newQCursor(QGuiApplication_OverrideCursor())
+}
+
+func QGuiApplication_SetOverrideCursor(overrideCursor *QCursor) {
+	QGuiApplication_SetOverrideCursor(overrideCursor.cPointer())
+}
+
+func QGuiApplication_ChangeOverrideCursor(param1 *QCursor) {
+	QGuiApplication_ChangeOverrideCursor(param1.cPointer())
+}
+
+func QGuiApplication_RestoreOverrideCursor() {
+	QGuiApplication_RestoreOverrideCursor()
+}
+
+func QGuiApplication_Font() *QFont {
+	_goptr := newQFont(QGuiApplication_Font())
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QGuiApplication_SetFont(font *QFont) {
+	QGuiApplication_SetFont(font.cPointer())
+}
+
+func QGuiApplication_Clipboard() *QClipboard {
+	return newQClipboard(QGuiApplication_Clipboard())
+}
+
+func QGuiApplication_Palette() *QPalette {
+	_goptr := newQPalette(QGuiApplication_Palette())
+	_goptr.GoGC() // Qt uses pass-by-value semantics for this type. Mimic with finalizer
+	return _goptr
+}
+
+func QGuiApplication_SetPalette(pal *QPalette) {
+	QGuiApplication_SetPalette(pal.cPointer())
+}
+
+func QGuiApplication_KeyboardModifiers() KeyboardModifier {
+	return (KeyboardModifier)(QGuiApplication_KeyboardModifiers())
+}
+
+func QGuiApplication_QueryKeyboardModifiers() KeyboardModifier {
+	return (KeyboardModifier)(QGuiApplication_QueryKeyboardModifiers())
+}
+
+func QGuiApplication_MouseButtons() MouseButton {
+	return (MouseButton)(QGuiApplication_MouseButtons())
+}
+
+func QGuiApplication_SetLayoutDirection(direction LayoutDirection) {
+	QGuiApplication_SetLayoutDirection((int)(direction))
+}
+
+func QGuiApplication_LayoutDirection() LayoutDirection {
+	return (LayoutDirection)(QGuiApplication_LayoutDirection())
+}
+
+func QGuiApplication_IsRightToLeft() bool {
+	return (bool)(QGuiApplication_IsRightToLeft())
+}
+
+func QGuiApplication_IsLeftToRight() bool {
+	return (bool)(QGuiApplication_IsLeftToRight())
+}
+
+func QGuiApplication_StyleHints() *QStyleHints {
+	return newQStyleHints(QGuiApplication_StyleHints())
+}
+
+func QGuiApplication_SetDesktopSettingsAware(on bool) {
+	QGuiApplication_SetDesktopSettingsAware((bool)(on))
+}
+
+func QGuiApplication_DesktopSettingsAware() bool {
+	return (bool)(QGuiApplication_DesktopSettingsAware())
+}
+
+func QGuiApplication_InputMethod() *QInputMethod {
+	return newQInputMethod(QGuiApplication_InputMethod())
+}
+
+func QGuiApplication_SetQuitOnLastWindowClosed(quit bool) {
+	QGuiApplication_SetQuitOnLastWindowClosed((bool)(quit))
+}
+
+func QGuiApplication_QuitOnLastWindowClosed() bool {
+	return (bool)(QGuiApplication_QuitOnLastWindowClosed())
+}
+
+func QGuiApplication_ApplicationState() ApplicationState {
+	return (ApplicationState)(QGuiApplication_ApplicationState())
+}
+
+func QGuiApplication_SetHighDpiScaleFactorRoundingPolicy(policy HighDpiScaleFactorRoundingPolicy) {
+	QGuiApplication_SetHighDpiScaleFactorRoundingPolicy((int)(policy))
+}
+
+func QGuiApplication_HighDpiScaleFactorRoundingPolicy() HighDpiScaleFactorRoundingPolicy {
+	return (HighDpiScaleFactorRoundingPolicy)(QGuiApplication_HighDpiScaleFactorRoundingPolicy())
+}
+
+func QGuiApplication_Exec() int {
+	return (int)(QGuiApplication_Exec())
+}
+
+func (this *QGuiApplication) Notify(param1 *QObject, param2 *QEvent) bool {
+	return (bool)(QGuiApplication_Notify(this.h, param1.cPointer(), param2.cPointer()))
+}
+
+func (this *QGuiApplication) IsSessionRestored() bool {
+	return (bool)(QGuiApplication_IsSessionRestored(this.h))
+}
+
+func (this *QGuiApplication) SessionId() string {
+	var _ms struct_miqt_string = QGuiApplication_SessionId(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QGuiApplication) SessionKey() string {
+	var _ms struct_miqt_string = QGuiApplication_SessionKey(this.h)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QGuiApplication) IsSavingSession() bool {
+	return (bool)(QGuiApplication_IsSavingSession(this.h))
+}
+
+func QGuiApplication_Sync() {
+	QGuiApplication_Sync()
+}
+
+func (this *QGuiApplication) FontDatabaseChanged() {
+	QGuiApplication_FontDatabaseChanged(this.h)
+}
+
+func (this *QGuiApplication) OnFontDatabaseChanged(slot func()) {
+	QGuiApplication_connect_FontDatabaseChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_FontDatabaseChanged
+func miqt_exec_callback_QGuiApplication_FontDatabaseChanged(cb intptr_t) {
+	gofunc, ok := cgo.Handle(cb).Value().(func())
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	gofunc()
+}
+
+func (this *QGuiApplication) ScreenAdded(screen *QScreen) {
+	QGuiApplication_ScreenAdded(this.h, screen.cPointer())
+}
+
+func (this *QGuiApplication) OnScreenAdded(slot func(screen *QScreen)) {
+	QGuiApplication_connect_ScreenAdded(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_ScreenAdded
+func miqt_exec_callback_QGuiApplication_ScreenAdded(cb intptr_t, screen *QScreen) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(screen *QScreen))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQScreen(screen)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) ScreenRemoved(screen *QScreen) {
+	QGuiApplication_ScreenRemoved(this.h, screen.cPointer())
+}
+
+func (this *QGuiApplication) OnScreenRemoved(slot func(screen *QScreen)) {
+	QGuiApplication_connect_ScreenRemoved(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_ScreenRemoved
+func miqt_exec_callback_QGuiApplication_ScreenRemoved(cb intptr_t, screen *QScreen) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(screen *QScreen))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQScreen(screen)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) PrimaryScreenChanged(screen *QScreen) {
+	QGuiApplication_PrimaryScreenChanged(this.h, screen.cPointer())
+}
+
+func (this *QGuiApplication) OnPrimaryScreenChanged(slot func(screen *QScreen)) {
+	QGuiApplication_connect_PrimaryScreenChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_PrimaryScreenChanged
+func miqt_exec_callback_QGuiApplication_PrimaryScreenChanged(cb intptr_t, screen *QScreen) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(screen *QScreen))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQScreen(screen)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) LastWindowClosed() {
+	QGuiApplication_LastWindowClosed(this.h)
+}
+
+func (this *QGuiApplication) OnLastWindowClosed(slot func()) {
+	QGuiApplication_connect_LastWindowClosed(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_LastWindowClosed
+func miqt_exec_callback_QGuiApplication_LastWindowClosed(cb intptr_t) {
+	gofunc, ok := cgo.Handle(cb).Value().(func())
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	gofunc()
+}
+
+func (this *QGuiApplication) FocusObjectChanged(focusObject *QObject) {
+	QGuiApplication_FocusObjectChanged(this.h, focusObject.cPointer())
+}
+
+func (this *QGuiApplication) OnFocusObjectChanged(slot func(focusObject *QObject)) {
+	QGuiApplication_connect_FocusObjectChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_FocusObjectChanged
+func miqt_exec_callback_QGuiApplication_FocusObjectChanged(cb intptr_t, focusObject *QObject) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(focusObject *QObject))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQObject(focusObject)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) FocusWindowChanged(focusWindow *QWindow) {
+	QGuiApplication_FocusWindowChanged(this.h, focusWindow.cPointer())
+}
+
+func (this *QGuiApplication) OnFocusWindowChanged(slot func(focusWindow *QWindow)) {
+	QGuiApplication_connect_FocusWindowChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_FocusWindowChanged
+func miqt_exec_callback_QGuiApplication_FocusWindowChanged(cb intptr_t, focusWindow *QWindow) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(focusWindow *QWindow))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQWindow(focusWindow)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) ApplicationStateChanged(state ApplicationState) {
+	QGuiApplication_ApplicationStateChanged(this.h, (int)(state))
+}
+
+func (this *QGuiApplication) OnApplicationStateChanged(slot func(state ApplicationState)) {
+	QGuiApplication_connect_ApplicationStateChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_ApplicationStateChanged
+func miqt_exec_callback_QGuiApplication_ApplicationStateChanged(cb intptr_t, state int) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(state ApplicationState))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := (ApplicationState)(state)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) LayoutDirectionChanged(direction LayoutDirection) {
+	QGuiApplication_LayoutDirectionChanged(this.h, (int)(direction))
+}
+
+func (this *QGuiApplication) OnLayoutDirectionChanged(slot func(direction LayoutDirection)) {
+	QGuiApplication_connect_LayoutDirectionChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_LayoutDirectionChanged
+func miqt_exec_callback_QGuiApplication_LayoutDirectionChanged(cb intptr_t, direction int) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(direction LayoutDirection))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := (LayoutDirection)(direction)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) CommitDataRequest(sessionManager *QSessionManager) {
+	QGuiApplication_CommitDataRequest(this.h, sessionManager.cPointer())
+}
+
+func (this *QGuiApplication) OnCommitDataRequest(slot func(sessionManager *QSessionManager)) {
+	QGuiApplication_connect_CommitDataRequest(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_CommitDataRequest
+func miqt_exec_callback_QGuiApplication_CommitDataRequest(cb intptr_t, sessionManager *QSessionManager) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(sessionManager *QSessionManager))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQSessionManager(sessionManager)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) SaveStateRequest(sessionManager *QSessionManager) {
+	QGuiApplication_SaveStateRequest(this.h, sessionManager.cPointer())
+}
+
+func (this *QGuiApplication) OnSaveStateRequest(slot func(sessionManager *QSessionManager)) {
+	QGuiApplication_connect_SaveStateRequest(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_SaveStateRequest
+func miqt_exec_callback_QGuiApplication_SaveStateRequest(cb intptr_t, sessionManager *QSessionManager) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(sessionManager *QSessionManager))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQSessionManager(sessionManager)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) ApplicationDisplayNameChanged() {
+	QGuiApplication_ApplicationDisplayNameChanged(this.h)
+}
+
+func (this *QGuiApplication) OnApplicationDisplayNameChanged(slot func()) {
+	QGuiApplication_connect_ApplicationDisplayNameChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_ApplicationDisplayNameChanged
+func miqt_exec_callback_QGuiApplication_ApplicationDisplayNameChanged(cb intptr_t) {
+	gofunc, ok := cgo.Handle(cb).Value().(func())
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	gofunc()
+}
+
+func (this *QGuiApplication) PaletteChanged(pal *QPalette) {
+	QGuiApplication_PaletteChanged(this.h, pal.cPointer())
+}
+
+func (this *QGuiApplication) OnPaletteChanged(slot func(pal *QPalette)) {
+	QGuiApplication_connect_PaletteChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_PaletteChanged
+func miqt_exec_callback_QGuiApplication_PaletteChanged(cb intptr_t, pal *QPalette) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(pal *QPalette))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQPalette(pal)
+
+	gofunc(slotval1)
+}
+
+func (this *QGuiApplication) FontChanged(font *QFont) {
+	QGuiApplication_FontChanged(this.h, font.cPointer())
+}
+
+func (this *QGuiApplication) OnFontChanged(slot func(font *QFont)) {
+	QGuiApplication_connect_FontChanged(this.h, intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_FontChanged
+func miqt_exec_callback_QGuiApplication_FontChanged(cb intptr_t, font *QFont) {
+	gofunc, ok := cgo.Handle(cb).Value().(func(font *QFont))
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	// Convert all CABI parameters to Go parameters
+	slotval1 := newQFont(font)
+
+	gofunc(slotval1)
+}
+
+func QGuiApplication_Tr2(s string, c string) string {
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QGuiApplication_Tr2(s_Cstring, c_Cstring)
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func QGuiApplication_Tr3(s string, c string, n int) string {
+	s_Cstring := CString(s)
+	defer free(unsafe.Pointer(s_Cstring))
+	c_Cstring := CString(c)
+	defer free(unsafe.Pointer(c_Cstring))
+	var _ms struct_miqt_string = QGuiApplication_Tr3(s_Cstring, c_Cstring, (int)(n))
+	_ret := GoStringN(_ms.data, int(int64(_ms.len)))
+	free(unsafe.Pointer(_ms.data))
+	return _ret
+}
+
+func (this *QGuiApplication) callVirtualBase_MetaObject() *QMetaObject {
+	return newQMetaObject(QGuiApplication_virtualbase_MetaObject(unsafe.Pointer(this.h)))
+}
+
+func (this *QGuiApplication) OnMetaObject(slot func(super func() *QMetaObject) *QMetaObject) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QGuiApplication_override_virtual_MetaObject(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_MetaObject
+func miqt_exec_callback_QGuiApplication_MetaObject(self QGuiApplication, cb intptr_t) *QMetaObject {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func() *QMetaObject) *QMetaObject)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+
+	virtualReturn := gofunc((&QGuiApplication{h: self}).callVirtualBase_MetaObject)
+
+	return virtualReturn.cPointer()
+}
+
+func (this *QGuiApplication) callVirtualBase_Metacast(param1 string) unsafe.Pointer {
+	param1_Cstring := CString(param1)
+	defer free(unsafe.Pointer(param1_Cstring))
+
+	return (unsafe.Pointer)(QGuiApplication_virtualbase_Metacast(unsafe.Pointer(this.h), param1_Cstring))
+}
+
+func (this *QGuiApplication) OnMetacast(slot func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer) {
+	if !this.isSubclass {
+		panic("miqt: can only override virtual methods for directly constructed types")
+	}
+	QGuiApplication_override_virtual_Metacast(unsafe.Pointer(this.h), intptr_t(cgo.NewHandle(slot)))
+}
+
+//export miqt_exec_callback_QGuiApplication_Metacast
+func miqt_exec_callback_QGuiApplication_Metacast(self QGuiApplication, cb intptr_t, param1 *const_char) unsafe.Pointer {
+	gofunc, ok := cgo.Handle(cb).Value().(func(super func(param1 string) unsafe.Pointer, param1 string) unsafe.Pointer)
+	if !ok {
+		panic("miqt: callback of non-callback type (heap corruption?)")
+	}
+	// Convert all CABI parameters to Go parameters
+	param1_ret := param1
+	slotval1 := GoString(param1_ret)
+	virtualReturn := gofunc((&QGuiApplication{h: self}).callVirtualBase_Metacast, slotval1)
+
+	return virtualReturn
+}

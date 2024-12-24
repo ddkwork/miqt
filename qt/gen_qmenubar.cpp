@@ -1,0 +1,225 @@
+// +build ignore
+
+#include <QAction>
+#include <QActionEvent>
+#include <QEvent>
+#include <QFocusEvent>
+#include <QIcon>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QMenuBar>
+#include <QMetaObject>
+#include <QMouseEvent>
+#include <QObject>
+#include <QPaintDevice>
+#include <QPaintEvent>
+#include <QPoint>
+#include <QRect>
+#include <QResizeEvent>
+#include <QSize>
+#include <QString>
+#include <QByteArray>
+#include <cstring>
+#include <QStyleOptionMenuItem>
+#include <QTimerEvent>
+#include <QWidget>
+#include <qmenubar.h>
+#include "gen_qmenubar.h"
+class MiqtVirtualQMenuBar : public virtual QMenuBar {
+public:
+MiqtVirtualQMenuBar(QWidget* parent): QMenuBar(parent) {};
+MiqtVirtualQMenuBar(): QMenuBar() {};
+
+virtual ~MiqtVirtualQMenuBar() = default;
+// cgo.Handle value for overwritten implementation
+	intptr_t handle__MetaObject = 0;
+// Subclass to allow providing a Go implementation
+	virtual const QMetaObject* metaObject() const override {
+if (handle__MetaObject == 0) {
+return QMenuBar::metaObject();
+}
+QMetaObject* callback_return_value = miqt_exec_callback_QMenuBar_MetaObject(const_cast<MiqtVirtualQMenuBar*>(this), handle__MetaObject);
+
+		return callback_return_value;
+	}
+// Wrapper to allow calling protected method
+	QMetaObject* virtualbase_MetaObject() const {
+
+		return (QMetaObject*) QMenuBar::metaObject();
+
+	}
+// cgo.Handle value for overwritten implementation
+	intptr_t handle__Metacast = 0;
+// Subclass to allow providing a Go implementation
+	virtual void* qt_metacast(const char* param1) override {
+if (handle__Metacast == 0) {
+return QMenuBar::qt_metacast(param1);
+}
+const char* sigval1 = (const char*) param1;
+
+		void* callback_return_value = miqt_exec_callback_QMenuBar_Metacast(this, handle__Metacast, sigval1);
+
+		return callback_return_value;
+	}
+// Wrapper to allow calling protected method
+	void* virtualbase_Metacast(const char* param1) {
+
+		return QMenuBar::qt_metacast(param1);
+
+	}
+};
+QMenuBar* QMenuBar_new(QWidget* parent) {
+return new MiqtVirtualQMenuBar(parent);
+}
+QMenuBar* QMenuBar_new2() {
+return new MiqtVirtualQMenuBar();
+}
+void QMenuBar_virtbase(QMenuBar* src
+, QWidget** outptr_QWidget
+) {
+*outptr_QWidget = static_cast<QWidget*>(src);
+}
+QMetaObject* QMenuBar_MetaObject(const QMenuBar* self) {
+	return (QMetaObject*) self->metaObject();
+}
+void* QMenuBar_Metacast(QMenuBar* self, const char* param1) {
+	return self->qt_metacast(param1);
+}
+struct miqt_string QMenuBar_Tr(const char* s) {
+	QString _ret = QMenuBar::tr(s);
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+QAction* QMenuBar_AddMenu(QMenuBar* self, QMenu* menu) {
+	return self->addMenu(menu);
+}
+QMenu* QMenuBar_AddMenuWithTitle(QMenuBar* self, struct miqt_string title) {
+	QString title_QString = QString::fromUtf8(title.data, title.len);
+	return self->addMenu(title_QString);
+}
+QMenu* QMenuBar_AddMenu2(QMenuBar* self, QIcon* icon, struct miqt_string title) {
+	QString title_QString = QString::fromUtf8(title.data, title.len);
+	return self->addMenu(*icon, title_QString);
+}
+QAction* QMenuBar_AddSeparator(QMenuBar* self) {
+	return self->addSeparator();
+}
+QAction* QMenuBar_InsertSeparator(QMenuBar* self, QAction* before) {
+	return self->insertSeparator(before);
+}
+QAction* QMenuBar_InsertMenu(QMenuBar* self, QAction* before, QMenu* menu) {
+	return self->insertMenu(before, menu);
+}
+void QMenuBar_Clear(QMenuBar* self) {
+	self->clear();
+}
+QAction* QMenuBar_ActiveAction(const QMenuBar* self) {
+	return self->activeAction();
+}
+void QMenuBar_SetActiveAction(QMenuBar* self, QAction* action) {
+	self->setActiveAction(action);
+}
+void QMenuBar_SetDefaultUp(QMenuBar* self, bool defaultUp) {
+	self->setDefaultUp(defaultUp);
+}
+bool QMenuBar_IsDefaultUp(const QMenuBar* self) {
+	return self->isDefaultUp();
+}
+QSize* QMenuBar_SizeHint(const QMenuBar* self) {
+	return new QSize(self->sizeHint());
+}
+QSize* QMenuBar_MinimumSizeHint(const QMenuBar* self) {
+	return new QSize(self->minimumSizeHint());
+}
+int QMenuBar_HeightForWidth(const QMenuBar* self, int param1) {
+	return self->heightForWidth(static_cast<int>(param1));
+}
+QRect* QMenuBar_ActionGeometry(const QMenuBar* self, QAction* param1) {
+	return new QRect(self->actionGeometry(param1));
+}
+QAction* QMenuBar_ActionAt(const QMenuBar* self, QPoint* param1) {
+	return self->actionAt(*param1);
+}
+void QMenuBar_SetCornerWidget(QMenuBar* self, QWidget* w) {
+	self->setCornerWidget(w);
+}
+QWidget* QMenuBar_CornerWidget(const QMenuBar* self) {
+	return self->cornerWidget();
+}
+bool QMenuBar_IsNativeMenuBar(const QMenuBar* self) {
+	return self->isNativeMenuBar();
+}
+void QMenuBar_SetNativeMenuBar(QMenuBar* self, bool nativeMenuBar) {
+	self->setNativeMenuBar(nativeMenuBar);
+}
+void QMenuBar_SetVisible(QMenuBar* self, bool visible) {
+	self->setVisible(visible);
+}
+void QMenuBar_Triggered(QMenuBar* self, QAction* action) {
+	self->triggered(action);
+}
+void QMenuBar_connect_Triggered(QMenuBar* self, intptr_t slot) {
+	MiqtVirtualQMenuBar::connect(self, static_cast<void (QMenuBar::*)(QAction*)>(&QMenuBar::triggered), self, [=](QAction* action) {
+		QAction* sigval1 = action;
+		miqt_exec_callback_QMenuBar_Triggered(slot, sigval1);
+	});
+}
+void QMenuBar_Hovered(QMenuBar* self, QAction* action) {
+	self->hovered(action);
+}
+void QMenuBar_connect_Hovered(QMenuBar* self, intptr_t slot) {
+	MiqtVirtualQMenuBar::connect(self, static_cast<void (QMenuBar::*)(QAction*)>(&QMenuBar::hovered), self, [=](QAction* action) {
+		QAction* sigval1 = action;
+		miqt_exec_callback_QMenuBar_Hovered(slot, sigval1);
+	});
+}
+struct miqt_string QMenuBar_Tr2(const char* s, const char* c) {
+	QString _ret = QMenuBar::tr(s, c);
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+struct miqt_string QMenuBar_Tr3(const char* s, const char* c, int n) {
+	QString _ret = QMenuBar::tr(s, c, static_cast<int>(n));
+	// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+	QByteArray _b = _ret.toUtf8();
+	struct miqt_string _ms;
+	_ms.len = _b.length();
+	_ms.data = static_cast<char*>(malloc(_ms.len));
+	memcpy(_ms.data, _b.data(), _ms.len);
+	return _ms;
+}
+void QMenuBar_SetCornerWidget2(QMenuBar* self, QWidget* w, int corner) {
+	self->setCornerWidget(w, static_cast<Qt::Corner>(corner));
+}
+QWidget* QMenuBar_CornerWidget1(const QMenuBar* self, int corner) {
+	return self->cornerWidget(static_cast<Qt::Corner>(corner));
+}
+void QMenuBar_override_virtual_MetaObject(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMenuBar*>( (QMenuBar*)(self) )->handle__MetaObject = slot;
+}
+QMetaObject* QMenuBar_virtualbase_MetaObject(const void* self) {
+	return ( (const MiqtVirtualQMenuBar*)(self) )->virtualbase_MetaObject();
+}
+void QMenuBar_override_virtual_Metacast(void* self, intptr_t slot) {
+	dynamic_cast<MiqtVirtualQMenuBar*>( (QMenuBar*)(self) )->handle__Metacast = slot;
+}
+void* QMenuBar_virtualbase_Metacast(void* self, const char* param1) {
+	return ( (MiqtVirtualQMenuBar*)(self) )->virtualbase_Metacast(param1);
+}
+void QMenuBar_Delete(QMenuBar* self, bool isSubclass) {
+	if (isSubclass) {
+		delete dynamic_cast<MiqtVirtualQMenuBar*>( self );
+	} else {
+		delete self;
+	}
+}
