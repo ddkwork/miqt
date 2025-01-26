@@ -1,4 +1,4 @@
-//go:build androi
+//go:build android
 // +build android
 
 package main
