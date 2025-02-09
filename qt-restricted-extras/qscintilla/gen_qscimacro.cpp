@@ -52,12 +52,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_play() {
-
-		QsciMacro::play();
-
-	}
+	friend void QsciMacro_virtualbase_play(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__startRecording = 0;
@@ -75,12 +70,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_startRecording() {
-
-		QsciMacro::startRecording();
-
-	}
+	friend void QsciMacro_virtualbase_startRecording(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__endRecording = 0;
@@ -98,12 +88,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_endRecording() {
-
-		QsciMacro::endRecording();
-
-	}
+	friend void QsciMacro_virtualbase_endRecording(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -121,12 +106,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QsciMacro::event(event);
-
-	}
+	friend bool QsciMacro_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -145,12 +125,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QsciMacro::eventFilter(watched, event);
-
-	}
+	friend bool QsciMacro_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -169,12 +144,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QsciMacro::timerEvent(event);
-
-	}
+	friend void QsciMacro_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -193,12 +163,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QsciMacro::childEvent(event);
-
-	}
+	friend void QsciMacro_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -217,12 +182,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QsciMacro::customEvent(event);
-
-	}
+	friend void QsciMacro_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -243,12 +203,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QsciMacro::connectNotify(*signal);
-
-	}
+	friend void QsciMacro_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -269,13 +224,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QsciMacro_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QsciMacro::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QsciMacro_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QsciMacro_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QsciMacro_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QsciMacro_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QsciMacro* QsciMacro_new(QsciScintilla* parent) {
@@ -408,7 +363,9 @@ bool QsciMacro_override_virtual_play(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_play(void* self) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_play();
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::play();
+
 }
 
 bool QsciMacro_override_virtual_startRecording(void* self, intptr_t slot) {
@@ -422,7 +379,9 @@ bool QsciMacro_override_virtual_startRecording(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_startRecording(void* self) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_startRecording();
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::startRecording();
+
 }
 
 bool QsciMacro_override_virtual_endRecording(void* self, intptr_t slot) {
@@ -436,7 +395,9 @@ bool QsciMacro_override_virtual_endRecording(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_endRecording(void* self) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_endRecording();
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::endRecording();
+
 }
 
 bool QsciMacro_override_virtual_event(void* self, intptr_t slot) {
@@ -450,7 +411,9 @@ bool QsciMacro_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QsciMacro_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQsciMacro*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::event(event);
+
 }
 
 bool QsciMacro_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -464,7 +427,9 @@ bool QsciMacro_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QsciMacro_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQsciMacro*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::eventFilter(watched, event);
+
 }
 
 bool QsciMacro_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -478,7 +443,9 @@ bool QsciMacro_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::timerEvent(event);
+
 }
 
 bool QsciMacro_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -492,7 +459,9 @@ bool QsciMacro_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::childEvent(event);
+
 }
 
 bool QsciMacro_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -506,7 +475,9 @@ bool QsciMacro_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::customEvent(event);
+
 }
 
 bool QsciMacro_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -520,7 +491,9 @@ bool QsciMacro_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::connectNotify(*signal);
+
 }
 
 bool QsciMacro_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -534,7 +507,61 @@ bool QsciMacro_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QsciMacro_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQsciMacro*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQsciMacro*)(self) )->MiqtVirtualQsciMacro::disconnectNotify(*signal);
+
+}
+
+QObject* QsciMacro_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQsciMacro* self_cast = dynamic_cast<MiqtVirtualQsciMacro*>( (QsciMacro*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QsciMacro_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQsciMacro* self_cast = dynamic_cast<MiqtVirtualQsciMacro*>( (QsciMacro*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QsciMacro_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQsciMacro* self_cast = dynamic_cast<MiqtVirtualQsciMacro*>( (QsciMacro*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QsciMacro_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQsciMacro* self_cast = dynamic_cast<MiqtVirtualQsciMacro*>( (QsciMacro*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QsciMacro_delete(QsciMacro* self) {

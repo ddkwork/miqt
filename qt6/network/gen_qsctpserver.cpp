@@ -58,12 +58,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_incomingConnection(intptr_t handle) {
-
-		QSctpServer::incomingConnection((qintptr)(handle));
-
-	}
+	friend void QSctpServer_virtualbase_incomingConnection(void* self, intptr_t handle);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hasPendingConnections = 0;
@@ -80,12 +75,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_hasPendingConnections() const {
-
-		return QSctpServer::hasPendingConnections();
-
-	}
+	friend bool QSctpServer_virtualbase_hasPendingConnections(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__nextPendingConnection = 0;
@@ -102,12 +92,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QTcpSocket* virtualbase_nextPendingConnection() {
-
-		return QSctpServer::nextPendingConnection();
-
-	}
+	friend QTcpSocket* QSctpServer_virtualbase_nextPendingConnection(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -125,12 +110,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QSctpServer::event(event);
-
-	}
+	friend bool QSctpServer_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -149,12 +129,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QSctpServer::eventFilter(watched, event);
-
-	}
+	friend bool QSctpServer_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -173,12 +148,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QSctpServer::timerEvent(event);
-
-	}
+	friend void QSctpServer_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -197,12 +167,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QSctpServer::childEvent(event);
-
-	}
+	friend void QSctpServer_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -221,12 +186,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QSctpServer::customEvent(event);
-
-	}
+	friend void QSctpServer_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -247,12 +207,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QSctpServer::connectNotify(*signal);
-
-	}
+	friend void QSctpServer_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -273,13 +228,14 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QSctpServer_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QSctpServer::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend void QSctpServer_protectedbase_addPendingConnection(bool* _dynamic_cast_ok, void* self, QTcpSocket* socket);
+	friend QObject* QSctpServer_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QSctpServer_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QSctpServer_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QSctpServer_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QSctpServer* QSctpServer_new() {
@@ -358,7 +314,9 @@ bool QSctpServer_override_virtual_incomingConnection(void* self, intptr_t slot) 
 }
 
 void QSctpServer_virtualbase_incomingConnection(void* self, intptr_t handle) {
-	( (MiqtVirtualQSctpServer*)(self) )->virtualbase_incomingConnection(handle);
+
+	( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::incomingConnection((qintptr)(handle));
+
 }
 
 bool QSctpServer_override_virtual_hasPendingConnections(void* self, intptr_t slot) {
@@ -372,7 +330,9 @@ bool QSctpServer_override_virtual_hasPendingConnections(void* self, intptr_t slo
 }
 
 bool QSctpServer_virtualbase_hasPendingConnections(const void* self) {
-	return ( (const MiqtVirtualQSctpServer*)(self) )->virtualbase_hasPendingConnections();
+
+	return ( (const MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::hasPendingConnections();
+
 }
 
 bool QSctpServer_override_virtual_nextPendingConnection(void* self, intptr_t slot) {
@@ -386,7 +346,9 @@ bool QSctpServer_override_virtual_nextPendingConnection(void* self, intptr_t slo
 }
 
 QTcpSocket* QSctpServer_virtualbase_nextPendingConnection(void* self) {
-	return ( (MiqtVirtualQSctpServer*)(self) )->virtualbase_nextPendingConnection();
+
+	return ( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::nextPendingConnection();
+
 }
 
 bool QSctpServer_override_virtual_event(void* self, intptr_t slot) {
@@ -400,7 +362,9 @@ bool QSctpServer_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QSctpServer_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQSctpServer*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::event(event);
+
 }
 
 bool QSctpServer_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -414,7 +378,9 @@ bool QSctpServer_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QSctpServer_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQSctpServer*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::eventFilter(watched, event);
+
 }
 
 bool QSctpServer_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -428,7 +394,9 @@ bool QSctpServer_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QSctpServer_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQSctpServer*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::timerEvent(event);
+
 }
 
 bool QSctpServer_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -442,7 +410,9 @@ bool QSctpServer_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QSctpServer_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQSctpServer*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::childEvent(event);
+
 }
 
 bool QSctpServer_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -456,7 +426,9 @@ bool QSctpServer_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QSctpServer_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQSctpServer*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::customEvent(event);
+
 }
 
 bool QSctpServer_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -470,7 +442,9 @@ bool QSctpServer_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QSctpServer_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSctpServer*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::connectNotify(*signal);
+
 }
 
 bool QSctpServer_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -484,7 +458,74 @@ bool QSctpServer_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QSctpServer_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSctpServer*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQSctpServer*)(self) )->MiqtVirtualQSctpServer::disconnectNotify(*signal);
+
+}
+
+void QSctpServer_protectedbase_addPendingConnection(bool* _dynamic_cast_ok, void* self, QTcpSocket* socket) {
+	MiqtVirtualQSctpServer* self_cast = dynamic_cast<MiqtVirtualQSctpServer*>( (QSctpServer*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->addPendingConnection(socket);
+
+}
+
+QObject* QSctpServer_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSctpServer* self_cast = dynamic_cast<MiqtVirtualQSctpServer*>( (QSctpServer*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QSctpServer_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSctpServer* self_cast = dynamic_cast<MiqtVirtualQSctpServer*>( (QSctpServer*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QSctpServer_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQSctpServer* self_cast = dynamic_cast<MiqtVirtualQSctpServer*>( (QSctpServer*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QSctpServer_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQSctpServer* self_cast = dynamic_cast<MiqtVirtualQSctpServer*>( (QSctpServer*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QSctpServer_delete(QSctpServer* self) {

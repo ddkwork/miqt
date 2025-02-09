@@ -27,6 +27,7 @@
 #include <QListView>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QMargins>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMimeData>
@@ -206,12 +207,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QListWidgetItem* virtualbase_clone() const {
-
-		return QListWidgetItem::clone();
-
-	}
+	friend QListWidgetItem* QListWidgetItem_virtualbase_clone(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__data = 0;
@@ -229,12 +225,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_data(int role) const {
-
-		return new QVariant(QListWidgetItem::data(static_cast<int>(role)));
-
-	}
+	friend QVariant* QListWidgetItem_virtualbase_data(const void* self, int role);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setData = 0;
@@ -256,12 +247,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setData(int role, QVariant* value) {
-
-		QListWidgetItem::setData(static_cast<int>(role), *value);
-
-	}
+	friend void QListWidgetItem_virtualbase_setData(void* self, int role, QVariant* value);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__operatorLesser = 0;
@@ -281,12 +267,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_operatorLesser(QListWidgetItem* other) const {
-
-		return QListWidgetItem::operator<(*other);
-
-	}
+	friend bool QListWidgetItem_virtualbase_operatorLesser(const void* self, QListWidgetItem* other);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__read = 0;
@@ -307,12 +288,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_read(QDataStream* in) {
-
-		QListWidgetItem::read(*in);
-
-	}
+	friend void QListWidgetItem_virtualbase_read(void* self, QDataStream* in);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__write = 0;
@@ -333,12 +309,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_write(QDataStream* out) const {
-
-		QListWidgetItem::write(*out);
-
-	}
+	friend void QListWidgetItem_virtualbase_write(const void* self, QDataStream* out);
 
 };
 
@@ -589,7 +560,9 @@ bool QListWidgetItem_override_virtual_clone(void* self, intptr_t slot) {
 }
 
 QListWidgetItem* QListWidgetItem_virtualbase_clone(const void* self) {
-	return ( (const MiqtVirtualQListWidgetItem*)(self) )->virtualbase_clone();
+
+	return ( (const MiqtVirtualQListWidgetItem*)(self) )->MiqtVirtualQListWidgetItem::clone();
+
 }
 
 bool QListWidgetItem_override_virtual_data(void* self, intptr_t slot) {
@@ -603,7 +576,9 @@ bool QListWidgetItem_override_virtual_data(void* self, intptr_t slot) {
 }
 
 QVariant* QListWidgetItem_virtualbase_data(const void* self, int role) {
-	return ( (const MiqtVirtualQListWidgetItem*)(self) )->virtualbase_data(role);
+
+	return new QVariant(( (const MiqtVirtualQListWidgetItem*)(self) )->MiqtVirtualQListWidgetItem::data(static_cast<int>(role)));
+
 }
 
 bool QListWidgetItem_override_virtual_setData(void* self, intptr_t slot) {
@@ -617,7 +592,9 @@ bool QListWidgetItem_override_virtual_setData(void* self, intptr_t slot) {
 }
 
 void QListWidgetItem_virtualbase_setData(void* self, int role, QVariant* value) {
-	( (MiqtVirtualQListWidgetItem*)(self) )->virtualbase_setData(role, value);
+
+	( (MiqtVirtualQListWidgetItem*)(self) )->MiqtVirtualQListWidgetItem::setData(static_cast<int>(role), *value);
+
 }
 
 bool QListWidgetItem_override_virtual_operatorLesser(void* self, intptr_t slot) {
@@ -631,7 +608,9 @@ bool QListWidgetItem_override_virtual_operatorLesser(void* self, intptr_t slot) 
 }
 
 bool QListWidgetItem_virtualbase_operatorLesser(const void* self, QListWidgetItem* other) {
-	return ( (const MiqtVirtualQListWidgetItem*)(self) )->virtualbase_operatorLesser(other);
+
+	return ( (const MiqtVirtualQListWidgetItem*)(self) )->MiqtVirtualQListWidgetItem::operator<(*other);
+
 }
 
 bool QListWidgetItem_override_virtual_read(void* self, intptr_t slot) {
@@ -645,7 +624,9 @@ bool QListWidgetItem_override_virtual_read(void* self, intptr_t slot) {
 }
 
 void QListWidgetItem_virtualbase_read(void* self, QDataStream* in) {
-	( (MiqtVirtualQListWidgetItem*)(self) )->virtualbase_read(in);
+
+	( (MiqtVirtualQListWidgetItem*)(self) )->MiqtVirtualQListWidgetItem::read(*in);
+
 }
 
 bool QListWidgetItem_override_virtual_write(void* self, intptr_t slot) {
@@ -659,7 +640,9 @@ bool QListWidgetItem_override_virtual_write(void* self, intptr_t slot) {
 }
 
 void QListWidgetItem_virtualbase_write(const void* self, QDataStream* out) {
-	( (const MiqtVirtualQListWidgetItem*)(self) )->virtualbase_write(out);
+
+	( (const MiqtVirtualQListWidgetItem*)(self) )->MiqtVirtualQListWidgetItem::write(*out);
+
 }
 
 void QListWidgetItem_delete(QListWidgetItem* self) {
@@ -691,12 +674,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setSelectionModel(QItemSelectionModel* selectionModel) {
-
-		QListWidget::setSelectionModel(selectionModel);
-
-	}
+	friend void QListWidget_virtualbase_setSelectionModel(void* self, QItemSelectionModel* selectionModel);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dropEvent = 0;
@@ -715,12 +693,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dropEvent(QDropEvent* event) {
-
-		QListWidget::dropEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_dropEvent(void* self, QDropEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -738,12 +711,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* e) {
-
-		return QListWidget::event(e);
-
-	}
+	friend bool QListWidget_virtualbase_event(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mimeTypes = 0;
@@ -767,28 +735,7 @@ public:
 		return callback_return_value_QList;
 	}
 
-	// Wrapper to allow calling protected method
-	struct miqt_array /* of struct miqt_string */  virtualbase_mimeTypes() const {
-
-		QStringList _ret = QListWidget::mimeTypes();
-		// Convert QList<> from C++ memory to manually-managed C memory
-		struct miqt_string* _arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.length()));
-		for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-			QString _lv_ret = _ret[i];
-			// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
-			QByteArray _lv_b = _lv_ret.toUtf8();
-			struct miqt_string _lv_ms;
-			_lv_ms.len = _lv_b.length();
-			_lv_ms.data = static_cast<char*>(malloc(_lv_ms.len));
-			memcpy(_lv_ms.data, _lv_b.data(), _lv_ms.len);
-			_arr[i] = _lv_ms;
-		}
-		struct miqt_array _out;
-		_out.len = _ret.length();
-		_out.data = static_cast<void*>(_arr);
-		return _out;
-
-	}
+	friend struct miqt_array /* of struct miqt_string */  QListWidget_virtualbase_mimeTypes(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mimeData = 0;
@@ -815,18 +762,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QMimeData* virtualbase_mimeData(struct miqt_array /* of QListWidgetItem* */  items) const {
-		QList<QListWidgetItem *> items_QList;
-		items_QList.reserve(items.len);
-		QListWidgetItem** items_arr = static_cast<QListWidgetItem**>(items.data);
-		for(size_t i = 0; i < items.len; ++i) {
-			items_QList.push_back(items_arr[i]);
-		}
-
-		return QListWidget::mimeData(items_QList);
-
-	}
+	friend QMimeData* QListWidget_virtualbase_mimeData(const void* self, struct miqt_array /* of QListWidgetItem* */  items);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dropMimeData = 0;
@@ -847,12 +783,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_dropMimeData(int index, QMimeData* data, int action) {
-
-		return QListWidget::dropMimeData(static_cast<int>(index), data, static_cast<Qt::DropAction>(action));
-
-	}
+	friend bool QListWidget_virtualbase_dropMimeData(void* self, int index, QMimeData* data, int action);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__supportedDropActions = 0;
@@ -869,13 +800,7 @@ public:
 		return static_cast<Qt::DropActions>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_supportedDropActions() const {
-
-		Qt::DropActions _ret = QListWidget::supportedDropActions();
-		return static_cast<int>(_ret);
-
-	}
+	friend int QListWidget_virtualbase_supportedDropActions(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__visualRect = 0;
@@ -895,12 +820,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QRect* virtualbase_visualRect(QModelIndex* index) const {
-
-		return new QRect(QListWidget::visualRect(*index));
-
-	}
+	friend QRect* QListWidget_virtualbase_visualRect(const void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__scrollTo = 0;
@@ -923,12 +843,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_scrollTo(QModelIndex* index, int hint) {
-
-		QListWidget::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
-
-	}
+	friend void QListWidget_virtualbase_scrollTo(void* self, QModelIndex* index, int hint);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__indexAt = 0;
@@ -948,12 +863,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_indexAt(QPoint* p) const {
-
-		return new QModelIndex(QListWidget::indexAt(*p));
-
-	}
+	friend QModelIndex* QListWidget_virtualbase_indexAt(const void* self, QPoint* p);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__doItemsLayout = 0;
@@ -971,12 +881,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_doItemsLayout() {
-
-		QListWidget::doItemsLayout();
-
-	}
+	friend void QListWidget_virtualbase_doItemsLayout(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__reset = 0;
@@ -994,12 +899,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_reset() {
-
-		QListWidget::reset();
-
-	}
+	friend void QListWidget_virtualbase_reset(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setRootIndex = 0;
@@ -1020,12 +920,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setRootIndex(QModelIndex* index) {
-
-		QListWidget::setRootIndex(*index);
-
-	}
+	friend void QListWidget_virtualbase_setRootIndex(void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__scrollContentsBy = 0;
@@ -1045,12 +940,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_scrollContentsBy(int dx, int dy) {
-
-		QListWidget::scrollContentsBy(static_cast<int>(dx), static_cast<int>(dy));
-
-	}
+	friend void QListWidget_virtualbase_scrollContentsBy(void* self, int dx, int dy);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dataChanged = 0;
@@ -1084,18 +974,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dataChanged(QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-		QList<int> roles_QList;
-		roles_QList.reserve(roles.len);
-		int* roles_arr = static_cast<int*>(roles.data);
-		for(size_t i = 0; i < roles.len; ++i) {
-			roles_QList.push_back(static_cast<int>(roles_arr[i]));
-		}
-
-		QListWidget::dataChanged(*topLeft, *bottomRight, roles_QList);
-
-	}
+	friend void QListWidget_virtualbase_dataChanged(void* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__rowsInserted = 0;
@@ -1118,12 +997,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_rowsInserted(QModelIndex* parent, int start, int end) {
-
-		QListWidget::rowsInserted(*parent, static_cast<int>(start), static_cast<int>(end));
-
-	}
+	friend void QListWidget_virtualbase_rowsInserted(void* self, QModelIndex* parent, int start, int end);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__rowsAboutToBeRemoved = 0;
@@ -1146,12 +1020,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_rowsAboutToBeRemoved(QModelIndex* parent, int start, int end) {
-
-		QListWidget::rowsAboutToBeRemoved(*parent, static_cast<int>(start), static_cast<int>(end));
-
-	}
+	friend void QListWidget_virtualbase_rowsAboutToBeRemoved(void* self, QModelIndex* parent, int start, int end);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseMoveEvent = 0;
@@ -1170,12 +1039,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseMoveEvent(QMouseEvent* e) {
-
-		QListWidget::mouseMoveEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_mouseMoveEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseReleaseEvent = 0;
@@ -1194,12 +1058,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseReleaseEvent(QMouseEvent* e) {
-
-		QListWidget::mouseReleaseEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__wheelEvent = 0;
@@ -1218,12 +1077,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_wheelEvent(QWheelEvent* e) {
-
-		QListWidget::wheelEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_wheelEvent(void* self, QWheelEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -1242,12 +1096,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* e) {
-
-		QListWidget::timerEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_timerEvent(void* self, QTimerEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__resizeEvent = 0;
@@ -1266,12 +1115,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_resizeEvent(QResizeEvent* e) {
-
-		QListWidget::resizeEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_resizeEvent(void* self, QResizeEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragMoveEvent = 0;
@@ -1290,12 +1134,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragMoveEvent(QDragMoveEvent* e) {
-
-		QListWidget::dragMoveEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragLeaveEvent = 0;
@@ -1314,12 +1153,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragLeaveEvent(QDragLeaveEvent* e) {
-
-		QListWidget::dragLeaveEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__startDrag = 0;
@@ -1339,12 +1173,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_startDrag(int supportedActions) {
-
-		QListWidget::startDrag(static_cast<Qt::DropActions>(supportedActions));
-
-	}
+	friend void QListWidget_virtualbase_startDrag(void* self, int supportedActions);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initViewItemOption = 0;
@@ -1363,12 +1192,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initViewItemOption(QStyleOptionViewItem* option) const {
-
-		QListWidget::initViewItemOption(option);
-
-	}
+	friend void QListWidget_virtualbase_initViewItemOption(const void* self, QStyleOptionViewItem* option);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEvent = 0;
@@ -1387,12 +1211,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_paintEvent(QPaintEvent* e) {
-
-		QListWidget::paintEvent(e);
-
-	}
+	friend void QListWidget_virtualbase_paintEvent(void* self, QPaintEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__horizontalOffset = 0;
@@ -1409,12 +1228,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_horizontalOffset() const {
-
-		return QListWidget::horizontalOffset();
-
-	}
+	friend int QListWidget_virtualbase_horizontalOffset(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__verticalOffset = 0;
@@ -1431,12 +1245,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_verticalOffset() const {
-
-		return QListWidget::verticalOffset();
-
-	}
+	friend int QListWidget_virtualbase_verticalOffset(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__moveCursor = 0;
@@ -1457,12 +1266,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_moveCursor(int cursorAction, int modifiers) {
-
-		return new QModelIndex(QListWidget::moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifiers>(modifiers)));
-
-	}
+	friend QModelIndex* QListWidget_virtualbase_moveCursor(void* self, int cursorAction, int modifiers);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setSelection = 0;
@@ -1485,12 +1289,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setSelection(QRect* rect, int command) {
-
-		QListWidget::setSelection(*rect, static_cast<QItemSelectionModel::SelectionFlags>(command));
-
-	}
+	friend void QListWidget_virtualbase_setSelection(void* self, QRect* rect, int command);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__visualRegionForSelection = 0;
@@ -1510,12 +1309,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QRegion* virtualbase_visualRegionForSelection(QItemSelection* selection) const {
-
-		return new QRegion(QListWidget::visualRegionForSelection(*selection));
-
-	}
+	friend QRegion* QListWidget_virtualbase_visualRegionForSelection(const void* self, QItemSelection* selection);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectedIndexes = 0;
@@ -1538,21 +1332,7 @@ public:
 		return callback_return_value_QList;
 	}
 
-	// Wrapper to allow calling protected method
-	struct miqt_array /* of QModelIndex* */  virtualbase_selectedIndexes() const {
-
-		QModelIndexList _ret = QListWidget::selectedIndexes();
-		// Convert QList<> from C++ memory to manually-managed C memory
-		QModelIndex** _arr = static_cast<QModelIndex**>(malloc(sizeof(QModelIndex*) * _ret.length()));
-		for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-			_arr[i] = new QModelIndex(_ret[i]);
-		}
-		struct miqt_array _out;
-		_out.len = _ret.length();
-		_out.data = static_cast<void*>(_arr);
-		return _out;
-
-	}
+	friend struct miqt_array /* of QModelIndex* */  QListWidget_virtualbase_selectedIndexes(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__updateGeometries = 0;
@@ -1570,12 +1350,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_updateGeometries() {
-
-		QListWidget::updateGeometries();
-
-	}
+	friend void QListWidget_virtualbase_updateGeometries(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__isIndexHidden = 0;
@@ -1595,12 +1370,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_isIndexHidden(QModelIndex* index) const {
-
-		return QListWidget::isIndexHidden(*index);
-
-	}
+	friend bool QListWidget_virtualbase_isIndexHidden(const void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectionChanged = 0;
@@ -1624,12 +1394,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_selectionChanged(QItemSelection* selected, QItemSelection* deselected) {
-
-		QListWidget::selectionChanged(*selected, *deselected);
-
-	}
+	friend void QListWidget_virtualbase_selectionChanged(void* self, QItemSelection* selected, QItemSelection* deselected);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__currentChanged = 0;
@@ -1653,12 +1418,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_currentChanged(QModelIndex* current, QModelIndex* previous) {
-
-		QListWidget::currentChanged(*current, *previous);
-
-	}
+	friend void QListWidget_virtualbase_currentChanged(void* self, QModelIndex* current, QModelIndex* previous);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewportSizeHint = 0;
@@ -1675,12 +1435,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_viewportSizeHint() const {
-
-		return new QSize(QListWidget::viewportSizeHint());
-
-	}
+	friend QSize* QListWidget_virtualbase_viewportSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyboardSearch = 0;
@@ -1706,13 +1461,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyboardSearch(struct miqt_string search) {
-		QString search_QString = QString::fromUtf8(search.data, search.len);
-
-		QListWidget::keyboardSearch(search_QString);
-
-	}
+	friend void QListWidget_virtualbase_keyboardSearch(void* self, struct miqt_string search);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHintForRow = 0;
@@ -1730,12 +1479,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_sizeHintForRow(int row) const {
-
-		return QListWidget::sizeHintForRow(static_cast<int>(row));
-
-	}
+	friend int QListWidget_virtualbase_sizeHintForRow(const void* self, int row);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHintForColumn = 0;
@@ -1753,12 +1497,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_sizeHintForColumn(int column) const {
-
-		return QListWidget::sizeHintForColumn(static_cast<int>(column));
-
-	}
+	friend int QListWidget_virtualbase_sizeHintForColumn(const void* self, int column);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__itemDelegateForIndex = 0;
@@ -1778,12 +1517,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QAbstractItemDelegate* virtualbase_itemDelegateForIndex(QModelIndex* index) const {
-
-		return QListWidget::itemDelegateForIndex(*index);
-
-	}
+	friend QAbstractItemDelegate* QListWidget_virtualbase_itemDelegateForIndex(const void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodQuery = 0;
@@ -1802,12 +1536,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_inputMethodQuery(int query) const {
-
-		return new QVariant(QListWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-
-	}
+	friend QVariant* QListWidget_virtualbase_inputMethodQuery(const void* self, int query);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectAll = 0;
@@ -1825,12 +1554,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_selectAll() {
-
-		QListWidget::selectAll();
-
-	}
+	friend void QListWidget_virtualbase_selectAll(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__updateEditorData = 0;
@@ -1848,12 +1572,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_updateEditorData() {
-
-		QListWidget::updateEditorData();
-
-	}
+	friend void QListWidget_virtualbase_updateEditorData(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__updateEditorGeometries = 0;
@@ -1871,12 +1590,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_updateEditorGeometries() {
-
-		QListWidget::updateEditorGeometries();
-
-	}
+	friend void QListWidget_virtualbase_updateEditorGeometries(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__verticalScrollbarAction = 0;
@@ -1895,12 +1609,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_verticalScrollbarAction(int action) {
-
-		QListWidget::verticalScrollbarAction(static_cast<int>(action));
-
-	}
+	friend void QListWidget_virtualbase_verticalScrollbarAction(void* self, int action);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__horizontalScrollbarAction = 0;
@@ -1919,12 +1628,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_horizontalScrollbarAction(int action) {
-
-		QListWidget::horizontalScrollbarAction(static_cast<int>(action));
-
-	}
+	friend void QListWidget_virtualbase_horizontalScrollbarAction(void* self, int action);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__verticalScrollbarValueChanged = 0;
@@ -1943,12 +1647,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_verticalScrollbarValueChanged(int value) {
-
-		QListWidget::verticalScrollbarValueChanged(static_cast<int>(value));
-
-	}
+	friend void QListWidget_virtualbase_verticalScrollbarValueChanged(void* self, int value);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__horizontalScrollbarValueChanged = 0;
@@ -1967,12 +1666,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_horizontalScrollbarValueChanged(int value) {
-
-		QListWidget::horizontalScrollbarValueChanged(static_cast<int>(value));
-
-	}
+	friend void QListWidget_virtualbase_horizontalScrollbarValueChanged(void* self, int value);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__closeEditor = 0;
@@ -1993,12 +1687,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_closeEditor(QWidget* editor, int hint) {
-
-		QListWidget::closeEditor(editor, static_cast<QAbstractItemDelegate::EndEditHint>(hint));
-
-	}
+	friend void QListWidget_virtualbase_closeEditor(void* self, QWidget* editor, int hint);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__commitData = 0;
@@ -2017,12 +1706,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_commitData(QWidget* editor) {
-
-		QListWidget::commitData(editor);
-
-	}
+	friend void QListWidget_virtualbase_commitData(void* self, QWidget* editor);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__editorDestroyed = 0;
@@ -2041,12 +1725,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_editorDestroyed(QObject* editor) {
-
-		QListWidget::editorDestroyed(editor);
-
-	}
+	friend void QListWidget_virtualbase_editorDestroyed(void* self, QObject* editor);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__edit2 = 0;
@@ -2069,12 +1748,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_edit2(QModelIndex* index, int trigger, QEvent* event) {
-
-		return QListWidget::edit(*index, static_cast<QAbstractItemView::EditTrigger>(trigger), event);
-
-	}
+	friend bool QListWidget_virtualbase_edit2(void* self, QModelIndex* index, int trigger, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectionCommand = 0;
@@ -2095,13 +1769,7 @@ public:
 		return static_cast<QItemSelectionModel::SelectionFlags>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_selectionCommand(QModelIndex* index, QEvent* event) const {
-
-		QItemSelectionModel::SelectionFlags _ret = QListWidget::selectionCommand(*index, event);
-		return static_cast<int>(_ret);
-
-	}
+	friend int QListWidget_virtualbase_selectionCommand(const void* self, QModelIndex* index, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusNextPrevChild = 0;
@@ -2119,12 +1787,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_focusNextPrevChild(bool next) {
-
-		return QListWidget::focusNextPrevChild(next);
-
-	}
+	friend bool QListWidget_virtualbase_focusNextPrevChild(void* self, bool next);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewportEvent = 0;
@@ -2142,12 +1805,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_viewportEvent(QEvent* event) {
-
-		return QListWidget::viewportEvent(event);
-
-	}
+	friend bool QListWidget_virtualbase_viewportEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mousePressEvent = 0;
@@ -2166,12 +1824,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mousePressEvent(QMouseEvent* event) {
-
-		QListWidget::mousePressEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_mousePressEvent(void* self, QMouseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseDoubleClickEvent = 0;
@@ -2190,12 +1843,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseDoubleClickEvent(QMouseEvent* event) {
-
-		QListWidget::mouseDoubleClickEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragEnterEvent = 0;
@@ -2214,12 +1862,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragEnterEvent(QDragEnterEvent* event) {
-
-		QListWidget::dragEnterEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusInEvent = 0;
@@ -2238,12 +1881,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusInEvent(QFocusEvent* event) {
-
-		QListWidget::focusInEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_focusInEvent(void* self, QFocusEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusOutEvent = 0;
@@ -2262,12 +1900,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusOutEvent(QFocusEvent* event) {
-
-		QListWidget::focusOutEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_focusOutEvent(void* self, QFocusEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyPressEvent = 0;
@@ -2286,12 +1919,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyPressEvent(QKeyEvent* event) {
-
-		QListWidget::keyPressEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_keyPressEvent(void* self, QKeyEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodEvent = 0;
@@ -2310,12 +1938,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_inputMethodEvent(QInputMethodEvent* event) {
-
-		QListWidget::inputMethodEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -2334,12 +1957,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* object, QEvent* event) {
-
-		return QListWidget::eventFilter(object, event);
-
-	}
+	friend bool QListWidget_virtualbase_eventFilter(void* self, QObject* object, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__minimumSizeHint = 0;
@@ -2356,12 +1974,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_minimumSizeHint() const {
-
-		return new QSize(QListWidget::minimumSizeHint());
-
-	}
+	friend QSize* QListWidget_virtualbase_minimumSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHint = 0;
@@ -2378,12 +1991,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_sizeHint() const {
-
-		return new QSize(QListWidget::sizeHint());
-
-	}
+	friend QSize* QListWidget_virtualbase_sizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setupViewport = 0;
@@ -2402,12 +2010,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setupViewport(QWidget* viewport) {
-
-		QListWidget::setupViewport(viewport);
-
-	}
+	friend void QListWidget_virtualbase_setupViewport(void* self, QWidget* viewport);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__contextMenuEvent = 0;
@@ -2426,12 +2029,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_contextMenuEvent(QContextMenuEvent* param1) {
-
-		QListWidget::contextMenuEvent(param1);
-
-	}
+	friend void QListWidget_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__changeEvent = 0;
@@ -2450,12 +2048,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_changeEvent(QEvent* param1) {
-
-		QListWidget::changeEvent(param1);
-
-	}
+	friend void QListWidget_virtualbase_changeEvent(void* self, QEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initStyleOption = 0;
@@ -2474,12 +2067,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initStyleOption(QStyleOptionFrame* option) const {
-
-		QListWidget::initStyleOption(option);
-
-	}
+	friend void QListWidget_virtualbase_initStyleOption(const void* self, QStyleOptionFrame* option);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__devType = 0;
@@ -2496,12 +2084,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_devType() const {
-
-		return QListWidget::devType();
-
-	}
+	friend int QListWidget_virtualbase_devType(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setVisible = 0;
@@ -2520,12 +2103,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setVisible(bool visible) {
-
-		QListWidget::setVisible(visible);
-
-	}
+	friend void QListWidget_virtualbase_setVisible(void* self, bool visible);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__heightForWidth = 0;
@@ -2543,12 +2121,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_heightForWidth(int param1) const {
-
-		return QListWidget::heightForWidth(static_cast<int>(param1));
-
-	}
+	friend int QListWidget_virtualbase_heightForWidth(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hasHeightForWidth = 0;
@@ -2565,12 +2138,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_hasHeightForWidth() const {
-
-		return QListWidget::hasHeightForWidth();
-
-	}
+	friend bool QListWidget_virtualbase_hasHeightForWidth(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEngine = 0;
@@ -2587,12 +2155,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintEngine* virtualbase_paintEngine() const {
-
-		return QListWidget::paintEngine();
-
-	}
+	friend QPaintEngine* QListWidget_virtualbase_paintEngine(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyReleaseEvent = 0;
@@ -2611,12 +2174,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyReleaseEvent(QKeyEvent* event) {
-
-		QListWidget::keyReleaseEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_keyReleaseEvent(void* self, QKeyEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__enterEvent = 0;
@@ -2635,12 +2193,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_enterEvent(QEnterEvent* event) {
-
-		QListWidget::enterEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_enterEvent(void* self, QEnterEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__leaveEvent = 0;
@@ -2659,12 +2212,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_leaveEvent(QEvent* event) {
-
-		QListWidget::leaveEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_leaveEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__moveEvent = 0;
@@ -2683,12 +2231,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_moveEvent(QMoveEvent* event) {
-
-		QListWidget::moveEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_moveEvent(void* self, QMoveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__closeEvent = 0;
@@ -2707,12 +2250,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_closeEvent(QCloseEvent* event) {
-
-		QListWidget::closeEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_closeEvent(void* self, QCloseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__tabletEvent = 0;
@@ -2731,12 +2269,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_tabletEvent(QTabletEvent* event) {
-
-		QListWidget::tabletEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_tabletEvent(void* self, QTabletEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__actionEvent = 0;
@@ -2755,12 +2288,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_actionEvent(QActionEvent* event) {
-
-		QListWidget::actionEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_actionEvent(void* self, QActionEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__showEvent = 0;
@@ -2779,12 +2307,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_showEvent(QShowEvent* event) {
-
-		QListWidget::showEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_showEvent(void* self, QShowEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hideEvent = 0;
@@ -2803,12 +2326,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_hideEvent(QHideEvent* event) {
-
-		QListWidget::hideEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_hideEvent(void* self, QHideEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__nativeEvent = 0;
@@ -2834,13 +2352,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_nativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
-		QByteArray eventType_QByteArray(eventType.data, eventType.len);
-
-		return QListWidget::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
-
-	}
+	friend bool QListWidget_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__metric = 0;
@@ -2859,12 +2371,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_metric(int param1) const {
-
-		return QListWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
-
-	}
+	friend int QListWidget_virtualbase_metric(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initPainter = 0;
@@ -2883,12 +2390,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initPainter(QPainter* painter) const {
-
-		QListWidget::initPainter(painter);
-
-	}
+	friend void QListWidget_virtualbase_initPainter(const void* self, QPainter* painter);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__redirected = 0;
@@ -2906,12 +2408,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintDevice* virtualbase_redirected(QPoint* offset) const {
-
-		return QListWidget::redirected(offset);
-
-	}
+	friend QPaintDevice* QListWidget_virtualbase_redirected(const void* self, QPoint* offset);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sharedPainter = 0;
@@ -2928,12 +2425,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPainter* virtualbase_sharedPainter() const {
-
-		return QListWidget::sharedPainter();
-
-	}
+	friend QPainter* QListWidget_virtualbase_sharedPainter(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -2952,12 +2444,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QListWidget::childEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -2976,12 +2463,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QListWidget::customEvent(event);
-
-	}
+	friend void QListWidget_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -3002,12 +2484,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QListWidget::connectNotify(*signal);
-
-	}
+	friend void QListWidget_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -3028,13 +2505,36 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QListWidget_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QListWidget::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend void QListWidget_protectedbase_resizeContents(bool* _dynamic_cast_ok, void* self, int width, int height);
+	friend QSize* QListWidget_protectedbase_contentsSize(bool* _dynamic_cast_ok, const void* self);
+	friend QRect* QListWidget_protectedbase_rectForIndex(bool* _dynamic_cast_ok, const void* self, QModelIndex* index);
+	friend void QListWidget_protectedbase_setPositionForIndex(bool* _dynamic_cast_ok, void* self, QPoint* position, QModelIndex* index);
+	friend int QListWidget_protectedbase_state(bool* _dynamic_cast_ok, const void* self);
+	friend void QListWidget_protectedbase_setState(bool* _dynamic_cast_ok, void* self, int state);
+	friend void QListWidget_protectedbase_scheduleDelayedItemsLayout(bool* _dynamic_cast_ok, void* self);
+	friend void QListWidget_protectedbase_executeDelayedItemsLayout(bool* _dynamic_cast_ok, void* self);
+	friend void QListWidget_protectedbase_setDirtyRegion(bool* _dynamic_cast_ok, void* self, QRegion* region);
+	friend void QListWidget_protectedbase_scrollDirtyRegion(bool* _dynamic_cast_ok, void* self, int dx, int dy);
+	friend QPoint* QListWidget_protectedbase_dirtyRegionOffset(bool* _dynamic_cast_ok, const void* self);
+	friend void QListWidget_protectedbase_startAutoScroll(bool* _dynamic_cast_ok, void* self);
+	friend void QListWidget_protectedbase_stopAutoScroll(bool* _dynamic_cast_ok, void* self);
+	friend void QListWidget_protectedbase_doAutoScroll(bool* _dynamic_cast_ok, void* self);
+	friend int QListWidget_protectedbase_dropIndicatorPosition(bool* _dynamic_cast_ok, const void* self);
+	friend void QListWidget_protectedbase_setViewportMargins(bool* _dynamic_cast_ok, void* self, int left, int top, int right, int bottom);
+	friend QMargins* QListWidget_protectedbase_viewportMargins(bool* _dynamic_cast_ok, const void* self);
+	friend void QListWidget_protectedbase_drawFrame(bool* _dynamic_cast_ok, void* self, QPainter* param1);
+	friend void QListWidget_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self);
+	friend void QListWidget_protectedbase_create(bool* _dynamic_cast_ok, void* self);
+	friend void QListWidget_protectedbase_destroy(bool* _dynamic_cast_ok, void* self);
+	friend bool QListWidget_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self);
+	friend bool QListWidget_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self);
+	friend QObject* QListWidget_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QListWidget_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QListWidget_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QListWidget_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QListWidget* QListWidget_new(QWidget* parent) {
@@ -3419,7 +2919,9 @@ bool QListWidget_override_virtual_setSelectionModel(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_setSelectionModel(void* self, QItemSelectionModel* selectionModel) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_setSelectionModel(selectionModel);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::setSelectionModel(selectionModel);
+
 }
 
 bool QListWidget_override_virtual_dropEvent(void* self, intptr_t slot) {
@@ -3433,7 +2935,9 @@ bool QListWidget_override_virtual_dropEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_dropEvent(void* self, QDropEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_dropEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::dropEvent(event);
+
 }
 
 bool QListWidget_override_virtual_event(void* self, intptr_t slot) {
@@ -3447,7 +2951,9 @@ bool QListWidget_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_event(e);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::event(e);
+
 }
 
 bool QListWidget_override_virtual_mimeTypes(void* self, intptr_t slot) {
@@ -3461,7 +2967,25 @@ bool QListWidget_override_virtual_mimeTypes(void* self, intptr_t slot) {
 }
 
 struct miqt_array /* of struct miqt_string */  QListWidget_virtualbase_mimeTypes(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_mimeTypes();
+
+	QStringList _ret = ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::mimeTypes();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	struct miqt_string* _arr = static_cast<struct miqt_string*>(malloc(sizeof(struct miqt_string) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		QString _lv_ret = _ret[i];
+		// Convert QString from UTF-16 in C++ RAII memory to UTF-8 in manually-managed C memory
+		QByteArray _lv_b = _lv_ret.toUtf8();
+		struct miqt_string _lv_ms;
+		_lv_ms.len = _lv_b.length();
+		_lv_ms.data = static_cast<char*>(malloc(_lv_ms.len));
+		memcpy(_lv_ms.data, _lv_b.data(), _lv_ms.len);
+		_arr[i] = _lv_ms;
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+
 }
 
 bool QListWidget_override_virtual_mimeData(void* self, intptr_t slot) {
@@ -3475,7 +2999,15 @@ bool QListWidget_override_virtual_mimeData(void* self, intptr_t slot) {
 }
 
 QMimeData* QListWidget_virtualbase_mimeData(const void* self, struct miqt_array /* of QListWidgetItem* */  items) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_mimeData(items);
+	QList<QListWidgetItem *> items_QList;
+	items_QList.reserve(items.len);
+	QListWidgetItem** items_arr = static_cast<QListWidgetItem**>(items.data);
+	for(size_t i = 0; i < items.len; ++i) {
+		items_QList.push_back(items_arr[i]);
+	}
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::mimeData(items_QList);
+
 }
 
 bool QListWidget_override_virtual_dropMimeData(void* self, intptr_t slot) {
@@ -3489,7 +3021,9 @@ bool QListWidget_override_virtual_dropMimeData(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_dropMimeData(void* self, int index, QMimeData* data, int action) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_dropMimeData(index, data, action);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::dropMimeData(static_cast<int>(index), data, static_cast<Qt::DropAction>(action));
+
 }
 
 bool QListWidget_override_virtual_supportedDropActions(void* self, intptr_t slot) {
@@ -3503,7 +3037,10 @@ bool QListWidget_override_virtual_supportedDropActions(void* self, intptr_t slot
 }
 
 int QListWidget_virtualbase_supportedDropActions(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_supportedDropActions();
+
+	Qt::DropActions _ret = ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::supportedDropActions();
+	return static_cast<int>(_ret);
+
 }
 
 bool QListWidget_override_virtual_visualRect(void* self, intptr_t slot) {
@@ -3517,7 +3054,9 @@ bool QListWidget_override_virtual_visualRect(void* self, intptr_t slot) {
 }
 
 QRect* QListWidget_virtualbase_visualRect(const void* self, QModelIndex* index) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_visualRect(index);
+
+	return new QRect(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::visualRect(*index));
+
 }
 
 bool QListWidget_override_virtual_scrollTo(void* self, intptr_t slot) {
@@ -3531,7 +3070,9 @@ bool QListWidget_override_virtual_scrollTo(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_scrollTo(void* self, QModelIndex* index, int hint) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_scrollTo(index, hint);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::scrollTo(*index, static_cast<MiqtVirtualQListWidget::ScrollHint>(hint));
+
 }
 
 bool QListWidget_override_virtual_indexAt(void* self, intptr_t slot) {
@@ -3545,7 +3086,9 @@ bool QListWidget_override_virtual_indexAt(void* self, intptr_t slot) {
 }
 
 QModelIndex* QListWidget_virtualbase_indexAt(const void* self, QPoint* p) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_indexAt(p);
+
+	return new QModelIndex(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::indexAt(*p));
+
 }
 
 bool QListWidget_override_virtual_doItemsLayout(void* self, intptr_t slot) {
@@ -3559,7 +3102,9 @@ bool QListWidget_override_virtual_doItemsLayout(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_doItemsLayout(void* self) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_doItemsLayout();
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::doItemsLayout();
+
 }
 
 bool QListWidget_override_virtual_reset(void* self, intptr_t slot) {
@@ -3573,7 +3118,9 @@ bool QListWidget_override_virtual_reset(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_reset(void* self) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_reset();
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::reset();
+
 }
 
 bool QListWidget_override_virtual_setRootIndex(void* self, intptr_t slot) {
@@ -3587,7 +3134,9 @@ bool QListWidget_override_virtual_setRootIndex(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_setRootIndex(void* self, QModelIndex* index) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_setRootIndex(index);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::setRootIndex(*index);
+
 }
 
 bool QListWidget_override_virtual_scrollContentsBy(void* self, intptr_t slot) {
@@ -3601,7 +3150,9 @@ bool QListWidget_override_virtual_scrollContentsBy(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_scrollContentsBy(void* self, int dx, int dy) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_scrollContentsBy(dx, dy);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::scrollContentsBy(static_cast<int>(dx), static_cast<int>(dy));
+
 }
 
 bool QListWidget_override_virtual_dataChanged(void* self, intptr_t slot) {
@@ -3615,7 +3166,15 @@ bool QListWidget_override_virtual_dataChanged(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_dataChanged(void* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_dataChanged(topLeft, bottomRight, roles);
+	QList<int> roles_QList;
+	roles_QList.reserve(roles.len);
+	int* roles_arr = static_cast<int*>(roles.data);
+	for(size_t i = 0; i < roles.len; ++i) {
+		roles_QList.push_back(static_cast<int>(roles_arr[i]));
+	}
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::dataChanged(*topLeft, *bottomRight, roles_QList);
+
 }
 
 bool QListWidget_override_virtual_rowsInserted(void* self, intptr_t slot) {
@@ -3629,7 +3188,9 @@ bool QListWidget_override_virtual_rowsInserted(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_rowsInserted(void* self, QModelIndex* parent, int start, int end) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_rowsInserted(parent, start, end);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::rowsInserted(*parent, static_cast<int>(start), static_cast<int>(end));
+
 }
 
 bool QListWidget_override_virtual_rowsAboutToBeRemoved(void* self, intptr_t slot) {
@@ -3643,7 +3204,9 @@ bool QListWidget_override_virtual_rowsAboutToBeRemoved(void* self, intptr_t slot
 }
 
 void QListWidget_virtualbase_rowsAboutToBeRemoved(void* self, QModelIndex* parent, int start, int end) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_rowsAboutToBeRemoved(parent, start, end);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::rowsAboutToBeRemoved(*parent, static_cast<int>(start), static_cast<int>(end));
+
 }
 
 bool QListWidget_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
@@ -3657,7 +3220,9 @@ bool QListWidget_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_mouseMoveEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_mouseMoveEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::mouseMoveEvent(e);
+
 }
 
 bool QListWidget_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
@@ -3671,7 +3236,9 @@ bool QListWidget_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_mouseReleaseEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::mouseReleaseEvent(e);
+
 }
 
 bool QListWidget_override_virtual_wheelEvent(void* self, intptr_t slot) {
@@ -3685,7 +3252,9 @@ bool QListWidget_override_virtual_wheelEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_wheelEvent(void* self, QWheelEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_wheelEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::wheelEvent(e);
+
 }
 
 bool QListWidget_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -3699,7 +3268,9 @@ bool QListWidget_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_timerEvent(void* self, QTimerEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_timerEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::timerEvent(e);
+
 }
 
 bool QListWidget_override_virtual_resizeEvent(void* self, intptr_t slot) {
@@ -3713,7 +3284,9 @@ bool QListWidget_override_virtual_resizeEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_resizeEvent(void* self, QResizeEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_resizeEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::resizeEvent(e);
+
 }
 
 bool QListWidget_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
@@ -3727,7 +3300,9 @@ bool QListWidget_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_dragMoveEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::dragMoveEvent(e);
+
 }
 
 bool QListWidget_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
@@ -3741,7 +3316,9 @@ bool QListWidget_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_dragLeaveEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::dragLeaveEvent(e);
+
 }
 
 bool QListWidget_override_virtual_startDrag(void* self, intptr_t slot) {
@@ -3755,7 +3332,9 @@ bool QListWidget_override_virtual_startDrag(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_startDrag(void* self, int supportedActions) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_startDrag(supportedActions);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::startDrag(static_cast<Qt::DropActions>(supportedActions));
+
 }
 
 bool QListWidget_override_virtual_initViewItemOption(void* self, intptr_t slot) {
@@ -3769,7 +3348,9 @@ bool QListWidget_override_virtual_initViewItemOption(void* self, intptr_t slot) 
 }
 
 void QListWidget_virtualbase_initViewItemOption(const void* self, QStyleOptionViewItem* option) {
-	( (const MiqtVirtualQListWidget*)(self) )->virtualbase_initViewItemOption(option);
+
+	( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::initViewItemOption(option);
+
 }
 
 bool QListWidget_override_virtual_paintEvent(void* self, intptr_t slot) {
@@ -3783,7 +3364,9 @@ bool QListWidget_override_virtual_paintEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_paintEvent(void* self, QPaintEvent* e) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_paintEvent(e);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::paintEvent(e);
+
 }
 
 bool QListWidget_override_virtual_horizontalOffset(void* self, intptr_t slot) {
@@ -3797,7 +3380,9 @@ bool QListWidget_override_virtual_horizontalOffset(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_horizontalOffset(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_horizontalOffset();
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::horizontalOffset();
+
 }
 
 bool QListWidget_override_virtual_verticalOffset(void* self, intptr_t slot) {
@@ -3811,7 +3396,9 @@ bool QListWidget_override_virtual_verticalOffset(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_verticalOffset(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_verticalOffset();
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::verticalOffset();
+
 }
 
 bool QListWidget_override_virtual_moveCursor(void* self, intptr_t slot) {
@@ -3825,7 +3412,9 @@ bool QListWidget_override_virtual_moveCursor(void* self, intptr_t slot) {
 }
 
 QModelIndex* QListWidget_virtualbase_moveCursor(void* self, int cursorAction, int modifiers) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_moveCursor(cursorAction, modifiers);
+
+	return new QModelIndex(( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::moveCursor(static_cast<MiqtVirtualQListWidget::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifiers>(modifiers)));
+
 }
 
 bool QListWidget_override_virtual_setSelection(void* self, intptr_t slot) {
@@ -3839,7 +3428,9 @@ bool QListWidget_override_virtual_setSelection(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_setSelection(void* self, QRect* rect, int command) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_setSelection(rect, command);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::setSelection(*rect, static_cast<QItemSelectionModel::SelectionFlags>(command));
+
 }
 
 bool QListWidget_override_virtual_visualRegionForSelection(void* self, intptr_t slot) {
@@ -3853,7 +3444,9 @@ bool QListWidget_override_virtual_visualRegionForSelection(void* self, intptr_t 
 }
 
 QRegion* QListWidget_virtualbase_visualRegionForSelection(const void* self, QItemSelection* selection) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_visualRegionForSelection(selection);
+
+	return new QRegion(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::visualRegionForSelection(*selection));
+
 }
 
 bool QListWidget_override_virtual_selectedIndexes(void* self, intptr_t slot) {
@@ -3867,7 +3460,18 @@ bool QListWidget_override_virtual_selectedIndexes(void* self, intptr_t slot) {
 }
 
 struct miqt_array /* of QModelIndex* */  QListWidget_virtualbase_selectedIndexes(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_selectedIndexes();
+
+	QModelIndexList _ret = ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::selectedIndexes();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QModelIndex** _arr = static_cast<QModelIndex**>(malloc(sizeof(QModelIndex*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = new QModelIndex(_ret[i]);
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+
 }
 
 bool QListWidget_override_virtual_updateGeometries(void* self, intptr_t slot) {
@@ -3881,7 +3485,9 @@ bool QListWidget_override_virtual_updateGeometries(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_updateGeometries(void* self) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_updateGeometries();
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::updateGeometries();
+
 }
 
 bool QListWidget_override_virtual_isIndexHidden(void* self, intptr_t slot) {
@@ -3895,7 +3501,9 @@ bool QListWidget_override_virtual_isIndexHidden(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_isIndexHidden(const void* self, QModelIndex* index) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_isIndexHidden(index);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::isIndexHidden(*index);
+
 }
 
 bool QListWidget_override_virtual_selectionChanged(void* self, intptr_t slot) {
@@ -3909,7 +3517,9 @@ bool QListWidget_override_virtual_selectionChanged(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_selectionChanged(void* self, QItemSelection* selected, QItemSelection* deselected) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_selectionChanged(selected, deselected);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::selectionChanged(*selected, *deselected);
+
 }
 
 bool QListWidget_override_virtual_currentChanged(void* self, intptr_t slot) {
@@ -3923,7 +3533,9 @@ bool QListWidget_override_virtual_currentChanged(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_currentChanged(void* self, QModelIndex* current, QModelIndex* previous) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_currentChanged(current, previous);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::currentChanged(*current, *previous);
+
 }
 
 bool QListWidget_override_virtual_viewportSizeHint(void* self, intptr_t slot) {
@@ -3937,7 +3549,9 @@ bool QListWidget_override_virtual_viewportSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QListWidget_virtualbase_viewportSizeHint(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_viewportSizeHint();
+
+	return new QSize(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::viewportSizeHint());
+
 }
 
 bool QListWidget_override_virtual_keyboardSearch(void* self, intptr_t slot) {
@@ -3951,7 +3565,10 @@ bool QListWidget_override_virtual_keyboardSearch(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_keyboardSearch(void* self, struct miqt_string search) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_keyboardSearch(search);
+	QString search_QString = QString::fromUtf8(search.data, search.len);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::keyboardSearch(search_QString);
+
 }
 
 bool QListWidget_override_virtual_sizeHintForRow(void* self, intptr_t slot) {
@@ -3965,7 +3582,9 @@ bool QListWidget_override_virtual_sizeHintForRow(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_sizeHintForRow(const void* self, int row) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_sizeHintForRow(row);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::sizeHintForRow(static_cast<int>(row));
+
 }
 
 bool QListWidget_override_virtual_sizeHintForColumn(void* self, intptr_t slot) {
@@ -3979,7 +3598,9 @@ bool QListWidget_override_virtual_sizeHintForColumn(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_sizeHintForColumn(const void* self, int column) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_sizeHintForColumn(column);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::sizeHintForColumn(static_cast<int>(column));
+
 }
 
 bool QListWidget_override_virtual_itemDelegateForIndex(void* self, intptr_t slot) {
@@ -3993,7 +3614,9 @@ bool QListWidget_override_virtual_itemDelegateForIndex(void* self, intptr_t slot
 }
 
 QAbstractItemDelegate* QListWidget_virtualbase_itemDelegateForIndex(const void* self, QModelIndex* index) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_itemDelegateForIndex(index);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::itemDelegateForIndex(*index);
+
 }
 
 bool QListWidget_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
@@ -4007,7 +3630,9 @@ bool QListWidget_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
 }
 
 QVariant* QListWidget_virtualbase_inputMethodQuery(const void* self, int query) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_inputMethodQuery(query);
+
+	return new QVariant(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+
 }
 
 bool QListWidget_override_virtual_selectAll(void* self, intptr_t slot) {
@@ -4021,7 +3646,9 @@ bool QListWidget_override_virtual_selectAll(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_selectAll(void* self) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_selectAll();
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::selectAll();
+
 }
 
 bool QListWidget_override_virtual_updateEditorData(void* self, intptr_t slot) {
@@ -4035,7 +3662,9 @@ bool QListWidget_override_virtual_updateEditorData(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_updateEditorData(void* self) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_updateEditorData();
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::updateEditorData();
+
 }
 
 bool QListWidget_override_virtual_updateEditorGeometries(void* self, intptr_t slot) {
@@ -4049,7 +3678,9 @@ bool QListWidget_override_virtual_updateEditorGeometries(void* self, intptr_t sl
 }
 
 void QListWidget_virtualbase_updateEditorGeometries(void* self) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_updateEditorGeometries();
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::updateEditorGeometries();
+
 }
 
 bool QListWidget_override_virtual_verticalScrollbarAction(void* self, intptr_t slot) {
@@ -4063,7 +3694,9 @@ bool QListWidget_override_virtual_verticalScrollbarAction(void* self, intptr_t s
 }
 
 void QListWidget_virtualbase_verticalScrollbarAction(void* self, int action) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_verticalScrollbarAction(action);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::verticalScrollbarAction(static_cast<int>(action));
+
 }
 
 bool QListWidget_override_virtual_horizontalScrollbarAction(void* self, intptr_t slot) {
@@ -4077,7 +3710,9 @@ bool QListWidget_override_virtual_horizontalScrollbarAction(void* self, intptr_t
 }
 
 void QListWidget_virtualbase_horizontalScrollbarAction(void* self, int action) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_horizontalScrollbarAction(action);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::horizontalScrollbarAction(static_cast<int>(action));
+
 }
 
 bool QListWidget_override_virtual_verticalScrollbarValueChanged(void* self, intptr_t slot) {
@@ -4091,7 +3726,9 @@ bool QListWidget_override_virtual_verticalScrollbarValueChanged(void* self, intp
 }
 
 void QListWidget_virtualbase_verticalScrollbarValueChanged(void* self, int value) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_verticalScrollbarValueChanged(value);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::verticalScrollbarValueChanged(static_cast<int>(value));
+
 }
 
 bool QListWidget_override_virtual_horizontalScrollbarValueChanged(void* self, intptr_t slot) {
@@ -4105,7 +3742,9 @@ bool QListWidget_override_virtual_horizontalScrollbarValueChanged(void* self, in
 }
 
 void QListWidget_virtualbase_horizontalScrollbarValueChanged(void* self, int value) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_horizontalScrollbarValueChanged(value);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::horizontalScrollbarValueChanged(static_cast<int>(value));
+
 }
 
 bool QListWidget_override_virtual_closeEditor(void* self, intptr_t slot) {
@@ -4119,7 +3758,9 @@ bool QListWidget_override_virtual_closeEditor(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_closeEditor(void* self, QWidget* editor, int hint) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_closeEditor(editor, hint);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::closeEditor(editor, static_cast<QAbstractItemDelegate::EndEditHint>(hint));
+
 }
 
 bool QListWidget_override_virtual_commitData(void* self, intptr_t slot) {
@@ -4133,7 +3774,9 @@ bool QListWidget_override_virtual_commitData(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_commitData(void* self, QWidget* editor) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_commitData(editor);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::commitData(editor);
+
 }
 
 bool QListWidget_override_virtual_editorDestroyed(void* self, intptr_t slot) {
@@ -4147,7 +3790,9 @@ bool QListWidget_override_virtual_editorDestroyed(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_editorDestroyed(void* self, QObject* editor) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_editorDestroyed(editor);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::editorDestroyed(editor);
+
 }
 
 bool QListWidget_override_virtual_edit2(void* self, intptr_t slot) {
@@ -4161,7 +3806,9 @@ bool QListWidget_override_virtual_edit2(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_edit2(void* self, QModelIndex* index, int trigger, QEvent* event) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_edit2(index, trigger, event);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::edit(*index, static_cast<MiqtVirtualQListWidget::EditTrigger>(trigger), event);
+
 }
 
 bool QListWidget_override_virtual_selectionCommand(void* self, intptr_t slot) {
@@ -4175,7 +3822,10 @@ bool QListWidget_override_virtual_selectionCommand(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_selectionCommand(const void* self, QModelIndex* index, QEvent* event) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_selectionCommand(index, event);
+
+	QItemSelectionModel::SelectionFlags _ret = ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::selectionCommand(*index, event);
+	return static_cast<int>(_ret);
+
 }
 
 bool QListWidget_override_virtual_focusNextPrevChild(void* self, intptr_t slot) {
@@ -4189,7 +3839,9 @@ bool QListWidget_override_virtual_focusNextPrevChild(void* self, intptr_t slot) 
 }
 
 bool QListWidget_virtualbase_focusNextPrevChild(void* self, bool next) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_focusNextPrevChild(next);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::focusNextPrevChild(next);
+
 }
 
 bool QListWidget_override_virtual_viewportEvent(void* self, intptr_t slot) {
@@ -4203,7 +3855,9 @@ bool QListWidget_override_virtual_viewportEvent(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_viewportEvent(void* self, QEvent* event) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_viewportEvent(event);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::viewportEvent(event);
+
 }
 
 bool QListWidget_override_virtual_mousePressEvent(void* self, intptr_t slot) {
@@ -4217,7 +3871,9 @@ bool QListWidget_override_virtual_mousePressEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_mousePressEvent(void* self, QMouseEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_mousePressEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::mousePressEvent(event);
+
 }
 
 bool QListWidget_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slot) {
@@ -4231,7 +3887,9 @@ bool QListWidget_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slo
 }
 
 void QListWidget_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_mouseDoubleClickEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::mouseDoubleClickEvent(event);
+
 }
 
 bool QListWidget_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
@@ -4245,7 +3903,9 @@ bool QListWidget_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_dragEnterEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::dragEnterEvent(event);
+
 }
 
 bool QListWidget_override_virtual_focusInEvent(void* self, intptr_t slot) {
@@ -4259,7 +3919,9 @@ bool QListWidget_override_virtual_focusInEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_focusInEvent(void* self, QFocusEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_focusInEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::focusInEvent(event);
+
 }
 
 bool QListWidget_override_virtual_focusOutEvent(void* self, intptr_t slot) {
@@ -4273,7 +3935,9 @@ bool QListWidget_override_virtual_focusOutEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_focusOutEvent(void* self, QFocusEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_focusOutEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::focusOutEvent(event);
+
 }
 
 bool QListWidget_override_virtual_keyPressEvent(void* self, intptr_t slot) {
@@ -4287,7 +3951,9 @@ bool QListWidget_override_virtual_keyPressEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_keyPressEvent(void* self, QKeyEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_keyPressEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::keyPressEvent(event);
+
 }
 
 bool QListWidget_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
@@ -4301,7 +3967,9 @@ bool QListWidget_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_inputMethodEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::inputMethodEvent(event);
+
 }
 
 bool QListWidget_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -4315,7 +3983,9 @@ bool QListWidget_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_eventFilter(void* self, QObject* object, QEvent* event) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_eventFilter(object, event);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::eventFilter(object, event);
+
 }
 
 bool QListWidget_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
@@ -4329,7 +3999,9 @@ bool QListWidget_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QListWidget_virtualbase_minimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_minimumSizeHint();
+
+	return new QSize(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::minimumSizeHint());
+
 }
 
 bool QListWidget_override_virtual_sizeHint(void* self, intptr_t slot) {
@@ -4343,7 +4015,9 @@ bool QListWidget_override_virtual_sizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QListWidget_virtualbase_sizeHint(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_sizeHint();
+
+	return new QSize(( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::sizeHint());
+
 }
 
 bool QListWidget_override_virtual_setupViewport(void* self, intptr_t slot) {
@@ -4357,7 +4031,9 @@ bool QListWidget_override_virtual_setupViewport(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_setupViewport(void* self, QWidget* viewport) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_setupViewport(viewport);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::setupViewport(viewport);
+
 }
 
 bool QListWidget_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
@@ -4371,7 +4047,9 @@ bool QListWidget_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* param1) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_contextMenuEvent(param1);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::contextMenuEvent(param1);
+
 }
 
 bool QListWidget_override_virtual_changeEvent(void* self, intptr_t slot) {
@@ -4385,7 +4063,9 @@ bool QListWidget_override_virtual_changeEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_changeEvent(void* self, QEvent* param1) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_changeEvent(param1);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::changeEvent(param1);
+
 }
 
 bool QListWidget_override_virtual_initStyleOption(void* self, intptr_t slot) {
@@ -4399,7 +4079,9 @@ bool QListWidget_override_virtual_initStyleOption(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_initStyleOption(const void* self, QStyleOptionFrame* option) {
-	( (const MiqtVirtualQListWidget*)(self) )->virtualbase_initStyleOption(option);
+
+	( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::initStyleOption(option);
+
 }
 
 bool QListWidget_override_virtual_devType(void* self, intptr_t slot) {
@@ -4413,7 +4095,9 @@ bool QListWidget_override_virtual_devType(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_devType(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_devType();
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::devType();
+
 }
 
 bool QListWidget_override_virtual_setVisible(void* self, intptr_t slot) {
@@ -4427,7 +4111,9 @@ bool QListWidget_override_virtual_setVisible(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_setVisible(void* self, bool visible) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_setVisible(visible);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::setVisible(visible);
+
 }
 
 bool QListWidget_override_virtual_heightForWidth(void* self, intptr_t slot) {
@@ -4441,7 +4127,9 @@ bool QListWidget_override_virtual_heightForWidth(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_heightForWidth(const void* self, int param1) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_heightForWidth(param1);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::heightForWidth(static_cast<int>(param1));
+
 }
 
 bool QListWidget_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
@@ -4455,7 +4143,9 @@ bool QListWidget_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_hasHeightForWidth(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_hasHeightForWidth();
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::hasHeightForWidth();
+
 }
 
 bool QListWidget_override_virtual_paintEngine(void* self, intptr_t slot) {
@@ -4469,7 +4159,9 @@ bool QListWidget_override_virtual_paintEngine(void* self, intptr_t slot) {
 }
 
 QPaintEngine* QListWidget_virtualbase_paintEngine(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_paintEngine();
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::paintEngine();
+
 }
 
 bool QListWidget_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
@@ -4483,7 +4175,9 @@ bool QListWidget_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_keyReleaseEvent(void* self, QKeyEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_keyReleaseEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::keyReleaseEvent(event);
+
 }
 
 bool QListWidget_override_virtual_enterEvent(void* self, intptr_t slot) {
@@ -4497,7 +4191,9 @@ bool QListWidget_override_virtual_enterEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_enterEvent(void* self, QEnterEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_enterEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::enterEvent(event);
+
 }
 
 bool QListWidget_override_virtual_leaveEvent(void* self, intptr_t slot) {
@@ -4511,7 +4207,9 @@ bool QListWidget_override_virtual_leaveEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_leaveEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_leaveEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::leaveEvent(event);
+
 }
 
 bool QListWidget_override_virtual_moveEvent(void* self, intptr_t slot) {
@@ -4525,7 +4223,9 @@ bool QListWidget_override_virtual_moveEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_moveEvent(void* self, QMoveEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_moveEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::moveEvent(event);
+
 }
 
 bool QListWidget_override_virtual_closeEvent(void* self, intptr_t slot) {
@@ -4539,7 +4239,9 @@ bool QListWidget_override_virtual_closeEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_closeEvent(void* self, QCloseEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_closeEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::closeEvent(event);
+
 }
 
 bool QListWidget_override_virtual_tabletEvent(void* self, intptr_t slot) {
@@ -4553,7 +4255,9 @@ bool QListWidget_override_virtual_tabletEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_tabletEvent(void* self, QTabletEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_tabletEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::tabletEvent(event);
+
 }
 
 bool QListWidget_override_virtual_actionEvent(void* self, intptr_t slot) {
@@ -4567,7 +4271,9 @@ bool QListWidget_override_virtual_actionEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_actionEvent(void* self, QActionEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_actionEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::actionEvent(event);
+
 }
 
 bool QListWidget_override_virtual_showEvent(void* self, intptr_t slot) {
@@ -4581,7 +4287,9 @@ bool QListWidget_override_virtual_showEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_showEvent(void* self, QShowEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_showEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::showEvent(event);
+
 }
 
 bool QListWidget_override_virtual_hideEvent(void* self, intptr_t slot) {
@@ -4595,7 +4303,9 @@ bool QListWidget_override_virtual_hideEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_hideEvent(void* self, QHideEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_hideEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::hideEvent(event);
+
 }
 
 bool QListWidget_override_virtual_nativeEvent(void* self, intptr_t slot) {
@@ -4609,7 +4319,10 @@ bool QListWidget_override_virtual_nativeEvent(void* self, intptr_t slot) {
 }
 
 bool QListWidget_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
-	return ( (MiqtVirtualQListWidget*)(self) )->virtualbase_nativeEvent(eventType, message, result);
+	QByteArray eventType_QByteArray(eventType.data, eventType.len);
+
+	return ( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
+
 }
 
 bool QListWidget_override_virtual_metric(void* self, intptr_t slot) {
@@ -4623,7 +4336,9 @@ bool QListWidget_override_virtual_metric(void* self, intptr_t slot) {
 }
 
 int QListWidget_virtualbase_metric(const void* self, int param1) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_metric(param1);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::metric(static_cast<MiqtVirtualQListWidget::PaintDeviceMetric>(param1));
+
 }
 
 bool QListWidget_override_virtual_initPainter(void* self, intptr_t slot) {
@@ -4637,7 +4352,9 @@ bool QListWidget_override_virtual_initPainter(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_initPainter(const void* self, QPainter* painter) {
-	( (const MiqtVirtualQListWidget*)(self) )->virtualbase_initPainter(painter);
+
+	( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::initPainter(painter);
+
 }
 
 bool QListWidget_override_virtual_redirected(void* self, intptr_t slot) {
@@ -4651,7 +4368,9 @@ bool QListWidget_override_virtual_redirected(void* self, intptr_t slot) {
 }
 
 QPaintDevice* QListWidget_virtualbase_redirected(const void* self, QPoint* offset) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_redirected(offset);
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::redirected(offset);
+
 }
 
 bool QListWidget_override_virtual_sharedPainter(void* self, intptr_t slot) {
@@ -4665,7 +4384,9 @@ bool QListWidget_override_virtual_sharedPainter(void* self, intptr_t slot) {
 }
 
 QPainter* QListWidget_virtualbase_sharedPainter(const void* self) {
-	return ( (const MiqtVirtualQListWidget*)(self) )->virtualbase_sharedPainter();
+
+	return ( (const MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::sharedPainter();
+
 }
 
 bool QListWidget_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -4679,7 +4400,9 @@ bool QListWidget_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::childEvent(event);
+
 }
 
 bool QListWidget_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -4693,7 +4416,9 @@ bool QListWidget_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::customEvent(event);
+
 }
 
 bool QListWidget_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -4707,7 +4432,9 @@ bool QListWidget_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::connectNotify(*signal);
+
 }
 
 bool QListWidget_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -4721,7 +4448,362 @@ bool QListWidget_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QListWidget_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQListWidget*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQListWidget*)(self) )->MiqtVirtualQListWidget::disconnectNotify(*signal);
+
+}
+
+void QListWidget_protectedbase_resizeContents(bool* _dynamic_cast_ok, void* self, int width, int height) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->resizeContents(static_cast<int>(width), static_cast<int>(height));
+
+}
+
+QSize* QListWidget_protectedbase_contentsSize(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QSize(self_cast->contentsSize());
+
+}
+
+QRect* QListWidget_protectedbase_rectForIndex(bool* _dynamic_cast_ok, const void* self, QModelIndex* index) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QRect(self_cast->rectForIndex(*index));
+
+}
+
+void QListWidget_protectedbase_setPositionForIndex(bool* _dynamic_cast_ok, void* self, QPoint* position, QModelIndex* index) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setPositionForIndex(*position, *index);
+
+}
+
+int QListWidget_protectedbase_state(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return (int)(0);
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	MiqtVirtualQListWidget::State _ret = self_cast->state();
+	return static_cast<int>(_ret);
+
+}
+
+void QListWidget_protectedbase_setState(bool* _dynamic_cast_ok, void* self, int state) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setState(static_cast<MiqtVirtualQListWidget::State>(state));
+
+}
+
+void QListWidget_protectedbase_scheduleDelayedItemsLayout(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->scheduleDelayedItemsLayout();
+
+}
+
+void QListWidget_protectedbase_executeDelayedItemsLayout(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->executeDelayedItemsLayout();
+
+}
+
+void QListWidget_protectedbase_setDirtyRegion(bool* _dynamic_cast_ok, void* self, QRegion* region) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setDirtyRegion(*region);
+
+}
+
+void QListWidget_protectedbase_scrollDirtyRegion(bool* _dynamic_cast_ok, void* self, int dx, int dy) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->scrollDirtyRegion(static_cast<int>(dx), static_cast<int>(dy));
+
+}
+
+QPoint* QListWidget_protectedbase_dirtyRegionOffset(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QPoint(self_cast->dirtyRegionOffset());
+
+}
+
+void QListWidget_protectedbase_startAutoScroll(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->startAutoScroll();
+
+}
+
+void QListWidget_protectedbase_stopAutoScroll(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->stopAutoScroll();
+
+}
+
+void QListWidget_protectedbase_doAutoScroll(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->doAutoScroll();
+
+}
+
+int QListWidget_protectedbase_dropIndicatorPosition(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return (int)(0);
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	MiqtVirtualQListWidget::DropIndicatorPosition _ret = self_cast->dropIndicatorPosition();
+	return static_cast<int>(_ret);
+
+}
+
+void QListWidget_protectedbase_setViewportMargins(bool* _dynamic_cast_ok, void* self, int left, int top, int right, int bottom) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setViewportMargins(static_cast<int>(left), static_cast<int>(top), static_cast<int>(right), static_cast<int>(bottom));
+
+}
+
+QMargins* QListWidget_protectedbase_viewportMargins(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QMargins(self_cast->viewportMargins());
+
+}
+
+void QListWidget_protectedbase_drawFrame(bool* _dynamic_cast_ok, void* self, QPainter* param1) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->drawFrame(param1);
+
+}
+
+void QListWidget_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->updateMicroFocus();
+
+}
+
+void QListWidget_protectedbase_create(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->create();
+
+}
+
+void QListWidget_protectedbase_destroy(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->destroy();
+
+}
+
+bool QListWidget_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusNextChild();
+
+}
+
+bool QListWidget_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusPreviousChild();
+
+}
+
+QObject* QListWidget_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QListWidget_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QListWidget_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QListWidget_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQListWidget* self_cast = dynamic_cast<MiqtVirtualQListWidget*>( (QListWidget*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QListWidget_delete(QListWidget* self) {

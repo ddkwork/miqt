@@ -67,12 +67,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QSpatialSound::event(event);
-
-	}
+	friend bool QSpatialSound_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -91,12 +86,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QSpatialSound::eventFilter(watched, event);
-
-	}
+	friend bool QSpatialSound_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -115,12 +105,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QSpatialSound::timerEvent(event);
-
-	}
+	friend void QSpatialSound_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -139,12 +124,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QSpatialSound::childEvent(event);
-
-	}
+	friend void QSpatialSound_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -163,12 +143,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QSpatialSound::customEvent(event);
-
-	}
+	friend void QSpatialSound_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -189,12 +164,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QSpatialSound::connectNotify(*signal);
-
-	}
+	friend void QSpatialSound_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -215,13 +185,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QSpatialSound_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QSpatialSound::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QSpatialSound_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QSpatialSound_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QSpatialSound_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QSpatialSound_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QSpatialSound* QSpatialSound_new(QAudioEngine* engine) {
@@ -553,7 +523,9 @@ bool QSpatialSound_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QSpatialSound_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::event(event);
+
 }
 
 bool QSpatialSound_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -567,7 +539,9 @@ bool QSpatialSound_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QSpatialSound_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::eventFilter(watched, event);
+
 }
 
 bool QSpatialSound_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -581,7 +555,9 @@ bool QSpatialSound_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QSpatialSound_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::timerEvent(event);
+
 }
 
 bool QSpatialSound_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -595,7 +571,9 @@ bool QSpatialSound_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QSpatialSound_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::childEvent(event);
+
 }
 
 bool QSpatialSound_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -609,7 +587,9 @@ bool QSpatialSound_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QSpatialSound_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::customEvent(event);
+
 }
 
 bool QSpatialSound_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -623,7 +603,9 @@ bool QSpatialSound_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QSpatialSound_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::connectNotify(*signal);
+
 }
 
 bool QSpatialSound_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -637,7 +619,61 @@ bool QSpatialSound_override_virtual_disconnectNotify(void* self, intptr_t slot) 
 }
 
 void QSpatialSound_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSpatialSound*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQSpatialSound*)(self) )->MiqtVirtualQSpatialSound::disconnectNotify(*signal);
+
+}
+
+QObject* QSpatialSound_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSpatialSound* self_cast = dynamic_cast<MiqtVirtualQSpatialSound*>( (QSpatialSound*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QSpatialSound_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSpatialSound* self_cast = dynamic_cast<MiqtVirtualQSpatialSound*>( (QSpatialSound*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QSpatialSound_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQSpatialSound* self_cast = dynamic_cast<MiqtVirtualQSpatialSound*>( (QSpatialSound*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QSpatialSound_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQSpatialSound* self_cast = dynamic_cast<MiqtVirtualQSpatialSound*>( (QSpatialSound*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QSpatialSound_delete(QSpatialSound* self) {

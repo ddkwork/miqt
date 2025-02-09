@@ -75,12 +75,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QStylePlugin::event(event);
-
-	}
+	friend bool QStylePlugin_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -99,12 +94,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QStylePlugin::eventFilter(watched, event);
-
-	}
+	friend bool QStylePlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -123,12 +113,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QStylePlugin::timerEvent(event);
-
-	}
+	friend void QStylePlugin_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -147,12 +132,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QStylePlugin::childEvent(event);
-
-	}
+	friend void QStylePlugin_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -171,12 +151,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QStylePlugin::customEvent(event);
-
-	}
+	friend void QStylePlugin_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -197,12 +172,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QStylePlugin::connectNotify(*signal);
-
-	}
+	friend void QStylePlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -223,13 +193,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QStylePlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QStylePlugin::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QStylePlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QStylePlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QStylePlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QStylePlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QStylePlugin* QStylePlugin_new() {
@@ -311,7 +281,9 @@ bool QStylePlugin_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QStylePlugin_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::event(event);
+
 }
 
 bool QStylePlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -325,7 +297,9 @@ bool QStylePlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QStylePlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::eventFilter(watched, event);
+
 }
 
 bool QStylePlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -339,7 +313,9 @@ bool QStylePlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QStylePlugin_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::timerEvent(event);
+
 }
 
 bool QStylePlugin_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -353,7 +329,9 @@ bool QStylePlugin_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QStylePlugin_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::childEvent(event);
+
 }
 
 bool QStylePlugin_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -367,7 +345,9 @@ bool QStylePlugin_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QStylePlugin_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::customEvent(event);
+
 }
 
 bool QStylePlugin_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -381,7 +361,9 @@ bool QStylePlugin_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QStylePlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::connectNotify(*signal);
+
 }
 
 bool QStylePlugin_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -395,7 +377,61 @@ bool QStylePlugin_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QStylePlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQStylePlugin*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQStylePlugin*)(self) )->MiqtVirtualQStylePlugin::disconnectNotify(*signal);
+
+}
+
+QObject* QStylePlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQStylePlugin* self_cast = dynamic_cast<MiqtVirtualQStylePlugin*>( (QStylePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QStylePlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQStylePlugin* self_cast = dynamic_cast<MiqtVirtualQStylePlugin*>( (QStylePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QStylePlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQStylePlugin* self_cast = dynamic_cast<MiqtVirtualQStylePlugin*>( (QStylePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QStylePlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQStylePlugin* self_cast = dynamic_cast<MiqtVirtualQStylePlugin*>( (QStylePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QStylePlugin_delete(QStylePlugin* self) {

@@ -103,12 +103,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QScriptExtensionPlugin::event(event);
-
-	}
+	friend bool QScriptExtensionPlugin_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -127,12 +122,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QScriptExtensionPlugin::eventFilter(watched, event);
-
-	}
+	friend bool QScriptExtensionPlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -151,12 +141,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QScriptExtensionPlugin::timerEvent(event);
-
-	}
+	friend void QScriptExtensionPlugin_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -175,12 +160,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QScriptExtensionPlugin::childEvent(event);
-
-	}
+	friend void QScriptExtensionPlugin_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -199,12 +179,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QScriptExtensionPlugin::customEvent(event);
-
-	}
+	friend void QScriptExtensionPlugin_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -225,12 +200,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QScriptExtensionPlugin::connectNotify(*signal);
-
-	}
+	friend void QScriptExtensionPlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -251,13 +221,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QScriptExtensionPlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QScriptExtensionPlugin::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QScriptExtensionPlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QScriptExtensionPlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QScriptExtensionPlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QScriptExtensionPlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QScriptExtensionPlugin* QScriptExtensionPlugin_new() {
@@ -408,7 +378,9 @@ bool QScriptExtensionPlugin_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QScriptExtensionPlugin_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::event(event);
+
 }
 
 bool QScriptExtensionPlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -422,7 +394,9 @@ bool QScriptExtensionPlugin_override_virtual_eventFilter(void* self, intptr_t sl
 }
 
 bool QScriptExtensionPlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::eventFilter(watched, event);
+
 }
 
 bool QScriptExtensionPlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -436,7 +410,9 @@ bool QScriptExtensionPlugin_override_virtual_timerEvent(void* self, intptr_t slo
 }
 
 void QScriptExtensionPlugin_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::timerEvent(event);
+
 }
 
 bool QScriptExtensionPlugin_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -450,7 +426,9 @@ bool QScriptExtensionPlugin_override_virtual_childEvent(void* self, intptr_t slo
 }
 
 void QScriptExtensionPlugin_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::childEvent(event);
+
 }
 
 bool QScriptExtensionPlugin_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -464,7 +442,9 @@ bool QScriptExtensionPlugin_override_virtual_customEvent(void* self, intptr_t sl
 }
 
 void QScriptExtensionPlugin_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::customEvent(event);
+
 }
 
 bool QScriptExtensionPlugin_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -478,7 +458,9 @@ bool QScriptExtensionPlugin_override_virtual_connectNotify(void* self, intptr_t 
 }
 
 void QScriptExtensionPlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::connectNotify(*signal);
+
 }
 
 bool QScriptExtensionPlugin_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -492,7 +474,61 @@ bool QScriptExtensionPlugin_override_virtual_disconnectNotify(void* self, intptr
 }
 
 void QScriptExtensionPlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQScriptExtensionPlugin*)(self) )->MiqtVirtualQScriptExtensionPlugin::disconnectNotify(*signal);
+
+}
+
+QObject* QScriptExtensionPlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQScriptExtensionPlugin* self_cast = dynamic_cast<MiqtVirtualQScriptExtensionPlugin*>( (QScriptExtensionPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QScriptExtensionPlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQScriptExtensionPlugin* self_cast = dynamic_cast<MiqtVirtualQScriptExtensionPlugin*>( (QScriptExtensionPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QScriptExtensionPlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQScriptExtensionPlugin* self_cast = dynamic_cast<MiqtVirtualQScriptExtensionPlugin*>( (QScriptExtensionPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QScriptExtensionPlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQScriptExtensionPlugin* self_cast = dynamic_cast<MiqtVirtualQScriptExtensionPlugin*>( (QScriptExtensionPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QScriptExtensionPlugin_delete(QScriptExtensionPlugin* self) {

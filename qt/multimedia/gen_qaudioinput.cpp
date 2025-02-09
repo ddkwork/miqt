@@ -59,12 +59,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QAudioInput::event(event);
-
-	}
+	friend bool QAudioInput_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -83,12 +78,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QAudioInput::eventFilter(watched, event);
-
-	}
+	friend bool QAudioInput_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -107,12 +97,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QAudioInput::timerEvent(event);
-
-	}
+	friend void QAudioInput_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -131,12 +116,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QAudioInput::childEvent(event);
-
-	}
+	friend void QAudioInput_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -155,12 +135,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QAudioInput::customEvent(event);
-
-	}
+	friend void QAudioInput_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -181,12 +156,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QAudioInput::connectNotify(*signal);
-
-	}
+	friend void QAudioInput_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -207,13 +177,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QAudioInput_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QAudioInput::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QAudioInput_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QAudioInput_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QAudioInput_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QAudioInput_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QAudioInput* QAudioInput_new() {
@@ -432,7 +402,9 @@ bool QAudioInput_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QAudioInput_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQAudioInput*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::event(event);
+
 }
 
 bool QAudioInput_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -446,7 +418,9 @@ bool QAudioInput_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QAudioInput_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQAudioInput*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::eventFilter(watched, event);
+
 }
 
 bool QAudioInput_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -460,7 +434,9 @@ bool QAudioInput_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QAudioInput_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQAudioInput*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::timerEvent(event);
+
 }
 
 bool QAudioInput_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -474,7 +450,9 @@ bool QAudioInput_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QAudioInput_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQAudioInput*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::childEvent(event);
+
 }
 
 bool QAudioInput_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -488,7 +466,9 @@ bool QAudioInput_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QAudioInput_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQAudioInput*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::customEvent(event);
+
 }
 
 bool QAudioInput_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -502,7 +482,9 @@ bool QAudioInput_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QAudioInput_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQAudioInput*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::connectNotify(*signal);
+
 }
 
 bool QAudioInput_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -516,7 +498,61 @@ bool QAudioInput_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QAudioInput_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQAudioInput*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQAudioInput*)(self) )->MiqtVirtualQAudioInput::disconnectNotify(*signal);
+
+}
+
+QObject* QAudioInput_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQAudioInput* self_cast = dynamic_cast<MiqtVirtualQAudioInput*>( (QAudioInput*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QAudioInput_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQAudioInput* self_cast = dynamic_cast<MiqtVirtualQAudioInput*>( (QAudioInput*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QAudioInput_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQAudioInput* self_cast = dynamic_cast<MiqtVirtualQAudioInput*>( (QAudioInput*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QAudioInput_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQAudioInput* self_cast = dynamic_cast<MiqtVirtualQAudioInput*>( (QAudioInput*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QAudioInput_delete(QAudioInput* self) {

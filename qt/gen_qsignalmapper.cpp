@@ -59,12 +59,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QSignalMapper::event(event);
-
-	}
+	friend bool QSignalMapper_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -83,12 +78,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QSignalMapper::eventFilter(watched, event);
-
-	}
+	friend bool QSignalMapper_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -107,12 +97,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QSignalMapper::timerEvent(event);
-
-	}
+	friend void QSignalMapper_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -131,12 +116,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QSignalMapper::childEvent(event);
-
-	}
+	friend void QSignalMapper_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -155,12 +135,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QSignalMapper::customEvent(event);
-
-	}
+	friend void QSignalMapper_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -181,12 +156,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QSignalMapper::connectNotify(*signal);
-
-	}
+	friend void QSignalMapper_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -207,13 +177,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QSignalMapper_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QSignalMapper::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QSignalMapper_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QSignalMapper_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QSignalMapper_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QSignalMapper_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QSignalMapper* QSignalMapper_new() {
@@ -463,7 +433,9 @@ bool QSignalMapper_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QSignalMapper_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::event(event);
+
 }
 
 bool QSignalMapper_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -477,7 +449,9 @@ bool QSignalMapper_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QSignalMapper_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::eventFilter(watched, event);
+
 }
 
 bool QSignalMapper_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -491,7 +465,9 @@ bool QSignalMapper_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QSignalMapper_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::timerEvent(event);
+
 }
 
 bool QSignalMapper_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -505,7 +481,9 @@ bool QSignalMapper_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QSignalMapper_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::childEvent(event);
+
 }
 
 bool QSignalMapper_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -519,7 +497,9 @@ bool QSignalMapper_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QSignalMapper_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::customEvent(event);
+
 }
 
 bool QSignalMapper_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -533,7 +513,9 @@ bool QSignalMapper_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QSignalMapper_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::connectNotify(*signal);
+
 }
 
 bool QSignalMapper_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -547,7 +529,61 @@ bool QSignalMapper_override_virtual_disconnectNotify(void* self, intptr_t slot) 
 }
 
 void QSignalMapper_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSignalMapper*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQSignalMapper*)(self) )->MiqtVirtualQSignalMapper::disconnectNotify(*signal);
+
+}
+
+QObject* QSignalMapper_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSignalMapper* self_cast = dynamic_cast<MiqtVirtualQSignalMapper*>( (QSignalMapper*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QSignalMapper_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSignalMapper* self_cast = dynamic_cast<MiqtVirtualQSignalMapper*>( (QSignalMapper*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QSignalMapper_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQSignalMapper* self_cast = dynamic_cast<MiqtVirtualQSignalMapper*>( (QSignalMapper*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QSignalMapper_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQSignalMapper* self_cast = dynamic_cast<MiqtVirtualQSignalMapper*>( (QSignalMapper*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QSignalMapper_delete(QSignalMapper* self) {

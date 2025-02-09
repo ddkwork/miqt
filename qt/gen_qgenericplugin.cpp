@@ -82,12 +82,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QGenericPlugin::event(event);
-
-	}
+	friend bool QGenericPlugin_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -106,12 +101,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QGenericPlugin::eventFilter(watched, event);
-
-	}
+	friend bool QGenericPlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -130,12 +120,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QGenericPlugin::timerEvent(event);
-
-	}
+	friend void QGenericPlugin_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -154,12 +139,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QGenericPlugin::childEvent(event);
-
-	}
+	friend void QGenericPlugin_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -178,12 +158,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QGenericPlugin::customEvent(event);
-
-	}
+	friend void QGenericPlugin_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -204,12 +179,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QGenericPlugin::connectNotify(*signal);
-
-	}
+	friend void QGenericPlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -230,13 +200,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QGenericPlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QGenericPlugin::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QGenericPlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QGenericPlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QGenericPlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QGenericPlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QGenericPlugin* QGenericPlugin_new() {
@@ -352,7 +322,9 @@ bool QGenericPlugin_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QGenericPlugin_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::event(event);
+
 }
 
 bool QGenericPlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -366,7 +338,9 @@ bool QGenericPlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QGenericPlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::eventFilter(watched, event);
+
 }
 
 bool QGenericPlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -380,7 +354,9 @@ bool QGenericPlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QGenericPlugin_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::timerEvent(event);
+
 }
 
 bool QGenericPlugin_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -394,7 +370,9 @@ bool QGenericPlugin_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QGenericPlugin_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::childEvent(event);
+
 }
 
 bool QGenericPlugin_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -408,7 +386,9 @@ bool QGenericPlugin_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QGenericPlugin_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::customEvent(event);
+
 }
 
 bool QGenericPlugin_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -422,7 +402,9 @@ bool QGenericPlugin_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QGenericPlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::connectNotify(*signal);
+
 }
 
 bool QGenericPlugin_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -436,7 +418,61 @@ bool QGenericPlugin_override_virtual_disconnectNotify(void* self, intptr_t slot)
 }
 
 void QGenericPlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQGenericPlugin*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQGenericPlugin*)(self) )->MiqtVirtualQGenericPlugin::disconnectNotify(*signal);
+
+}
+
+QObject* QGenericPlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQGenericPlugin* self_cast = dynamic_cast<MiqtVirtualQGenericPlugin*>( (QGenericPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QGenericPlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQGenericPlugin* self_cast = dynamic_cast<MiqtVirtualQGenericPlugin*>( (QGenericPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QGenericPlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQGenericPlugin* self_cast = dynamic_cast<MiqtVirtualQGenericPlugin*>( (QGenericPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QGenericPlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQGenericPlugin* self_cast = dynamic_cast<MiqtVirtualQGenericPlugin*>( (QGenericPlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QGenericPlugin_delete(QGenericPlugin* self) {

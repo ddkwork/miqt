@@ -138,13 +138,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QValidator::fixup(param1_QString);
-
-	}
+	friend void QValidator_virtualbase_fixup(const void* self, struct miqt_string param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -162,12 +156,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QValidator::event(event);
-
-	}
+	friend bool QValidator_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -186,12 +175,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QValidator::eventFilter(watched, event);
-
-	}
+	friend bool QValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -210,12 +194,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QValidator::timerEvent(event);
-
-	}
+	friend void QValidator_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -234,12 +213,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QValidator::childEvent(event);
-
-	}
+	friend void QValidator_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -258,12 +232,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QValidator::customEvent(event);
-
-	}
+	friend void QValidator_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -284,12 +253,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QValidator::connectNotify(*signal);
-
-	}
+	friend void QValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -310,13 +274,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QValidator::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QValidator* QValidator_new() {
@@ -455,7 +419,10 @@ bool QValidator_override_virtual_fixup(void* self, intptr_t slot) {
 }
 
 void QValidator_virtualbase_fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQValidator*)(self) )->virtualbase_fixup(param1);
+	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+
+	( (const MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::fixup(param1_QString);
+
 }
 
 bool QValidator_override_virtual_event(void* self, intptr_t slot) {
@@ -469,7 +436,9 @@ bool QValidator_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QValidator_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQValidator*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::event(event);
+
 }
 
 bool QValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -483,7 +452,9 @@ bool QValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQValidator*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::eventFilter(watched, event);
+
 }
 
 bool QValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -497,7 +468,9 @@ bool QValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QValidator_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::timerEvent(event);
+
 }
 
 bool QValidator_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -511,7 +484,9 @@ bool QValidator_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QValidator_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::childEvent(event);
+
 }
 
 bool QValidator_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -525,7 +500,9 @@ bool QValidator_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QValidator_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::customEvent(event);
+
 }
 
 bool QValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -539,7 +516,9 @@ bool QValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::connectNotify(*signal);
+
 }
 
 bool QValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -553,7 +532,61 @@ bool QValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQValidator*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQValidator*)(self) )->MiqtVirtualQValidator::disconnectNotify(*signal);
+
+}
+
+QObject* QValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQValidator* self_cast = dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQValidator* self_cast = dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQValidator* self_cast = dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQValidator* self_cast = dynamic_cast<MiqtVirtualQValidator*>( (QValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QValidator_delete(QValidator* self) {
@@ -594,14 +627,7 @@ public:
 		return static_cast<QValidator::State>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_validate(struct miqt_string param1, int* param2) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QValidator::State _ret = QIntValidator::validate(param1_QString, static_cast<int&>(*param2));
-		return static_cast<int>(_ret);
-
-	}
+	friend int QIntValidator_virtualbase_validate(const void* self, struct miqt_string param1, int* param2);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__fixup = 0;
@@ -627,13 +653,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_fixup(struct miqt_string input) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
-
-		QIntValidator::fixup(input_QString);
-
-	}
+	friend void QIntValidator_virtualbase_fixup(const void* self, struct miqt_string input);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setRange = 0;
@@ -653,12 +673,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setRange(int bottom, int top) {
-
-		QIntValidator::setRange(static_cast<int>(bottom), static_cast<int>(top));
-
-	}
+	friend void QIntValidator_virtualbase_setRange(void* self, int bottom, int top);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -676,12 +691,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QIntValidator::event(event);
-
-	}
+	friend bool QIntValidator_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -700,12 +710,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QIntValidator::eventFilter(watched, event);
-
-	}
+	friend bool QIntValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -724,12 +729,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QIntValidator::timerEvent(event);
-
-	}
+	friend void QIntValidator_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -748,12 +748,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QIntValidator::childEvent(event);
-
-	}
+	friend void QIntValidator_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -772,12 +767,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QIntValidator::customEvent(event);
-
-	}
+	friend void QIntValidator_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -798,12 +788,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QIntValidator::connectNotify(*signal);
-
-	}
+	friend void QIntValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -824,13 +809,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QIntValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QIntValidator::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QIntValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QIntValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QIntValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QIntValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QIntValidator* QIntValidator_new() {
@@ -991,7 +976,11 @@ bool QIntValidator_override_virtual_validate(void* self, intptr_t slot) {
 }
 
 int QIntValidator_virtualbase_validate(const void* self, struct miqt_string param1, int* param2) {
-	return ( (const MiqtVirtualQIntValidator*)(self) )->virtualbase_validate(param1, param2);
+	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+
+	MiqtVirtualQIntValidator::State _ret = ( (const MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::validate(param1_QString, static_cast<int&>(*param2));
+	return static_cast<int>(_ret);
+
 }
 
 bool QIntValidator_override_virtual_fixup(void* self, intptr_t slot) {
@@ -1005,7 +994,10 @@ bool QIntValidator_override_virtual_fixup(void* self, intptr_t slot) {
 }
 
 void QIntValidator_virtualbase_fixup(const void* self, struct miqt_string input) {
-	( (const MiqtVirtualQIntValidator*)(self) )->virtualbase_fixup(input);
+	QString input_QString = QString::fromUtf8(input.data, input.len);
+
+	( (const MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::fixup(input_QString);
+
 }
 
 bool QIntValidator_override_virtual_setRange(void* self, intptr_t slot) {
@@ -1019,7 +1011,9 @@ bool QIntValidator_override_virtual_setRange(void* self, intptr_t slot) {
 }
 
 void QIntValidator_virtualbase_setRange(void* self, int bottom, int top) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_setRange(bottom, top);
+
+	( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::setRange(static_cast<int>(bottom), static_cast<int>(top));
+
 }
 
 bool QIntValidator_override_virtual_event(void* self, intptr_t slot) {
@@ -1033,7 +1027,9 @@ bool QIntValidator_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QIntValidator_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQIntValidator*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::event(event);
+
 }
 
 bool QIntValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -1047,7 +1043,9 @@ bool QIntValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QIntValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQIntValidator*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::eventFilter(watched, event);
+
 }
 
 bool QIntValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -1061,7 +1059,9 @@ bool QIntValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QIntValidator_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::timerEvent(event);
+
 }
 
 bool QIntValidator_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -1075,7 +1075,9 @@ bool QIntValidator_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QIntValidator_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::childEvent(event);
+
 }
 
 bool QIntValidator_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -1089,7 +1091,9 @@ bool QIntValidator_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QIntValidator_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::customEvent(event);
+
 }
 
 bool QIntValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -1103,7 +1107,9 @@ bool QIntValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QIntValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::connectNotify(*signal);
+
 }
 
 bool QIntValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -1117,7 +1123,61 @@ bool QIntValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) 
 }
 
 void QIntValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQIntValidator*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQIntValidator*)(self) )->MiqtVirtualQIntValidator::disconnectNotify(*signal);
+
+}
+
+QObject* QIntValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQIntValidator* self_cast = dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QIntValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQIntValidator* self_cast = dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QIntValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQIntValidator* self_cast = dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QIntValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQIntValidator* self_cast = dynamic_cast<MiqtVirtualQIntValidator*>( (QIntValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QIntValidator_delete(QIntValidator* self) {
@@ -1158,14 +1218,7 @@ public:
 		return static_cast<QValidator::State>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_validate(struct miqt_string param1, int* param2) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QValidator::State _ret = QDoubleValidator::validate(param1_QString, static_cast<int&>(*param2));
-		return static_cast<int>(_ret);
-
-	}
+	friend int QDoubleValidator_virtualbase_validate(const void* self, struct miqt_string param1, int* param2);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setRange = 0;
@@ -1186,12 +1239,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setRange(double bottom, double top, int decimals) {
-
-		QDoubleValidator::setRange(static_cast<double>(bottom), static_cast<double>(top), static_cast<int>(decimals));
-
-	}
+	friend void QDoubleValidator_virtualbase_setRange(void* self, double bottom, double top, int decimals);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__fixup = 0;
@@ -1217,13 +1265,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QDoubleValidator::fixup(param1_QString);
-
-	}
+	friend void QDoubleValidator_virtualbase_fixup(const void* self, struct miqt_string param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -1241,12 +1283,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QDoubleValidator::event(event);
-
-	}
+	friend bool QDoubleValidator_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1265,12 +1302,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QDoubleValidator::eventFilter(watched, event);
-
-	}
+	friend bool QDoubleValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -1289,12 +1321,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QDoubleValidator::timerEvent(event);
-
-	}
+	friend void QDoubleValidator_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -1313,12 +1340,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QDoubleValidator::childEvent(event);
-
-	}
+	friend void QDoubleValidator_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -1337,12 +1359,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QDoubleValidator::customEvent(event);
-
-	}
+	friend void QDoubleValidator_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -1363,12 +1380,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QDoubleValidator::connectNotify(*signal);
-
-	}
+	friend void QDoubleValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -1389,13 +1401,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QDoubleValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QDoubleValidator::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QDoubleValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QDoubleValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QDoubleValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QDoubleValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QDoubleValidator* QDoubleValidator_new() {
@@ -1591,7 +1603,11 @@ bool QDoubleValidator_override_virtual_validate(void* self, intptr_t slot) {
 }
 
 int QDoubleValidator_virtualbase_validate(const void* self, struct miqt_string param1, int* param2) {
-	return ( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_validate(param1, param2);
+	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+
+	MiqtVirtualQDoubleValidator::State _ret = ( (const MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::validate(param1_QString, static_cast<int&>(*param2));
+	return static_cast<int>(_ret);
+
 }
 
 bool QDoubleValidator_override_virtual_setRange(void* self, intptr_t slot) {
@@ -1605,7 +1621,9 @@ bool QDoubleValidator_override_virtual_setRange(void* self, intptr_t slot) {
 }
 
 void QDoubleValidator_virtualbase_setRange(void* self, double bottom, double top, int decimals) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_setRange(bottom, top, decimals);
+
+	( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::setRange(static_cast<double>(bottom), static_cast<double>(top), static_cast<int>(decimals));
+
 }
 
 bool QDoubleValidator_override_virtual_fixup(void* self, intptr_t slot) {
@@ -1619,7 +1637,10 @@ bool QDoubleValidator_override_virtual_fixup(void* self, intptr_t slot) {
 }
 
 void QDoubleValidator_virtualbase_fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQDoubleValidator*)(self) )->virtualbase_fixup(param1);
+	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+
+	( (const MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::fixup(param1_QString);
+
 }
 
 bool QDoubleValidator_override_virtual_event(void* self, intptr_t slot) {
@@ -1633,7 +1654,9 @@ bool QDoubleValidator_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QDoubleValidator_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::event(event);
+
 }
 
 bool QDoubleValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -1647,7 +1670,9 @@ bool QDoubleValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QDoubleValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::eventFilter(watched, event);
+
 }
 
 bool QDoubleValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -1661,7 +1686,9 @@ bool QDoubleValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QDoubleValidator_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::timerEvent(event);
+
 }
 
 bool QDoubleValidator_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -1675,7 +1702,9 @@ bool QDoubleValidator_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QDoubleValidator_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::childEvent(event);
+
 }
 
 bool QDoubleValidator_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -1689,7 +1718,9 @@ bool QDoubleValidator_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QDoubleValidator_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::customEvent(event);
+
 }
 
 bool QDoubleValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -1703,7 +1734,9 @@ bool QDoubleValidator_override_virtual_connectNotify(void* self, intptr_t slot) 
 }
 
 void QDoubleValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::connectNotify(*signal);
+
 }
 
 bool QDoubleValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -1717,7 +1750,61 @@ bool QDoubleValidator_override_virtual_disconnectNotify(void* self, intptr_t slo
 }
 
 void QDoubleValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQDoubleValidator*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQDoubleValidator*)(self) )->MiqtVirtualQDoubleValidator::disconnectNotify(*signal);
+
+}
+
+QObject* QDoubleValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQDoubleValidator* self_cast = dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QDoubleValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQDoubleValidator* self_cast = dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QDoubleValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQDoubleValidator* self_cast = dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QDoubleValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQDoubleValidator* self_cast = dynamic_cast<MiqtVirtualQDoubleValidator*>( (QDoubleValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QDoubleValidator_delete(QDoubleValidator* self) {
@@ -1758,14 +1845,7 @@ public:
 		return static_cast<QValidator::State>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_validate(struct miqt_string input, int* pos) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
-
-		QValidator::State _ret = QRegExpValidator::validate(input_QString, static_cast<int&>(*pos));
-		return static_cast<int>(_ret);
-
-	}
+	friend int QRegExpValidator_virtualbase_validate(const void* self, struct miqt_string input, int* pos);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__fixup = 0;
@@ -1791,13 +1871,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QRegExpValidator::fixup(param1_QString);
-
-	}
+	friend void QRegExpValidator_virtualbase_fixup(const void* self, struct miqt_string param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -1815,12 +1889,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QRegExpValidator::event(event);
-
-	}
+	friend bool QRegExpValidator_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1839,12 +1908,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QRegExpValidator::eventFilter(watched, event);
-
-	}
+	friend bool QRegExpValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -1863,12 +1927,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QRegExpValidator::timerEvent(event);
-
-	}
+	friend void QRegExpValidator_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -1887,12 +1946,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QRegExpValidator::childEvent(event);
-
-	}
+	friend void QRegExpValidator_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -1911,12 +1965,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QRegExpValidator::customEvent(event);
-
-	}
+	friend void QRegExpValidator_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -1937,12 +1986,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QRegExpValidator::connectNotify(*signal);
-
-	}
+	friend void QRegExpValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -1963,13 +2007,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QRegExpValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QRegExpValidator::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QRegExpValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QRegExpValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QRegExpValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QRegExpValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QRegExpValidator* QRegExpValidator_new() {
@@ -2106,7 +2150,11 @@ bool QRegExpValidator_override_virtual_validate(void* self, intptr_t slot) {
 }
 
 int QRegExpValidator_virtualbase_validate(const void* self, struct miqt_string input, int* pos) {
-	return ( (const MiqtVirtualQRegExpValidator*)(self) )->virtualbase_validate(input, pos);
+	QString input_QString = QString::fromUtf8(input.data, input.len);
+
+	MiqtVirtualQRegExpValidator::State _ret = ( (const MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::validate(input_QString, static_cast<int&>(*pos));
+	return static_cast<int>(_ret);
+
 }
 
 bool QRegExpValidator_override_virtual_fixup(void* self, intptr_t slot) {
@@ -2120,7 +2168,10 @@ bool QRegExpValidator_override_virtual_fixup(void* self, intptr_t slot) {
 }
 
 void QRegExpValidator_virtualbase_fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQRegExpValidator*)(self) )->virtualbase_fixup(param1);
+	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+
+	( (const MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::fixup(param1_QString);
+
 }
 
 bool QRegExpValidator_override_virtual_event(void* self, intptr_t slot) {
@@ -2134,7 +2185,9 @@ bool QRegExpValidator_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QRegExpValidator_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::event(event);
+
 }
 
 bool QRegExpValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -2148,7 +2201,9 @@ bool QRegExpValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QRegExpValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::eventFilter(watched, event);
+
 }
 
 bool QRegExpValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -2162,7 +2217,9 @@ bool QRegExpValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QRegExpValidator_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::timerEvent(event);
+
 }
 
 bool QRegExpValidator_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -2176,7 +2233,9 @@ bool QRegExpValidator_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QRegExpValidator_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::childEvent(event);
+
 }
 
 bool QRegExpValidator_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -2190,7 +2249,9 @@ bool QRegExpValidator_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QRegExpValidator_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::customEvent(event);
+
 }
 
 bool QRegExpValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -2204,7 +2265,9 @@ bool QRegExpValidator_override_virtual_connectNotify(void* self, intptr_t slot) 
 }
 
 void QRegExpValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::connectNotify(*signal);
+
 }
 
 bool QRegExpValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -2218,7 +2281,61 @@ bool QRegExpValidator_override_virtual_disconnectNotify(void* self, intptr_t slo
 }
 
 void QRegExpValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQRegExpValidator*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQRegExpValidator*)(self) )->MiqtVirtualQRegExpValidator::disconnectNotify(*signal);
+
+}
+
+QObject* QRegExpValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQRegExpValidator* self_cast = dynamic_cast<MiqtVirtualQRegExpValidator*>( (QRegExpValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QRegExpValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQRegExpValidator* self_cast = dynamic_cast<MiqtVirtualQRegExpValidator*>( (QRegExpValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QRegExpValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQRegExpValidator* self_cast = dynamic_cast<MiqtVirtualQRegExpValidator*>( (QRegExpValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QRegExpValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQRegExpValidator* self_cast = dynamic_cast<MiqtVirtualQRegExpValidator*>( (QRegExpValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QRegExpValidator_delete(QRegExpValidator* self) {
@@ -2259,14 +2376,7 @@ public:
 		return static_cast<QValidator::State>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_validate(struct miqt_string input, int* pos) const {
-		QString input_QString = QString::fromUtf8(input.data, input.len);
-
-		QValidator::State _ret = QRegularExpressionValidator::validate(input_QString, static_cast<int&>(*pos));
-		return static_cast<int>(_ret);
-
-	}
+	friend int QRegularExpressionValidator_virtualbase_validate(const void* self, struct miqt_string input, int* pos);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__fixup = 0;
@@ -2292,13 +2402,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_fixup(struct miqt_string param1) const {
-		QString param1_QString = QString::fromUtf8(param1.data, param1.len);
-
-		QRegularExpressionValidator::fixup(param1_QString);
-
-	}
+	friend void QRegularExpressionValidator_virtualbase_fixup(const void* self, struct miqt_string param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -2316,12 +2420,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QRegularExpressionValidator::event(event);
-
-	}
+	friend bool QRegularExpressionValidator_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -2340,12 +2439,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QRegularExpressionValidator::eventFilter(watched, event);
-
-	}
+	friend bool QRegularExpressionValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -2364,12 +2458,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QRegularExpressionValidator::timerEvent(event);
-
-	}
+	friend void QRegularExpressionValidator_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -2388,12 +2477,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QRegularExpressionValidator::childEvent(event);
-
-	}
+	friend void QRegularExpressionValidator_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -2412,12 +2496,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QRegularExpressionValidator::customEvent(event);
-
-	}
+	friend void QRegularExpressionValidator_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -2438,12 +2517,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QRegularExpressionValidator::connectNotify(*signal);
-
-	}
+	friend void QRegularExpressionValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -2464,13 +2538,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QRegularExpressionValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QRegularExpressionValidator::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QRegularExpressionValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QRegularExpressionValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QRegularExpressionValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QRegularExpressionValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QRegularExpressionValidator* QRegularExpressionValidator_new() {
@@ -2605,7 +2679,11 @@ bool QRegularExpressionValidator_override_virtual_validate(void* self, intptr_t 
 }
 
 int QRegularExpressionValidator_virtualbase_validate(const void* self, struct miqt_string input, int* pos) {
-	return ( (const MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_validate(input, pos);
+	QString input_QString = QString::fromUtf8(input.data, input.len);
+
+	MiqtVirtualQRegularExpressionValidator::State _ret = ( (const MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::validate(input_QString, static_cast<int&>(*pos));
+	return static_cast<int>(_ret);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_fixup(void* self, intptr_t slot) {
@@ -2619,7 +2697,10 @@ bool QRegularExpressionValidator_override_virtual_fixup(void* self, intptr_t slo
 }
 
 void QRegularExpressionValidator_virtualbase_fixup(const void* self, struct miqt_string param1) {
-	( (const MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_fixup(param1);
+	QString param1_QString = QString::fromUtf8(param1.data, param1.len);
+
+	( (const MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::fixup(param1_QString);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_event(void* self, intptr_t slot) {
@@ -2633,7 +2714,9 @@ bool QRegularExpressionValidator_override_virtual_event(void* self, intptr_t slo
 }
 
 bool QRegularExpressionValidator_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::event(event);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -2647,7 +2730,9 @@ bool QRegularExpressionValidator_override_virtual_eventFilter(void* self, intptr
 }
 
 bool QRegularExpressionValidator_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::eventFilter(watched, event);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -2661,7 +2746,9 @@ bool QRegularExpressionValidator_override_virtual_timerEvent(void* self, intptr_
 }
 
 void QRegularExpressionValidator_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::timerEvent(event);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -2675,7 +2762,9 @@ bool QRegularExpressionValidator_override_virtual_childEvent(void* self, intptr_
 }
 
 void QRegularExpressionValidator_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::childEvent(event);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -2689,7 +2778,9 @@ bool QRegularExpressionValidator_override_virtual_customEvent(void* self, intptr
 }
 
 void QRegularExpressionValidator_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::customEvent(event);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -2703,7 +2794,9 @@ bool QRegularExpressionValidator_override_virtual_connectNotify(void* self, intp
 }
 
 void QRegularExpressionValidator_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::connectNotify(*signal);
+
 }
 
 bool QRegularExpressionValidator_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -2717,7 +2810,61 @@ bool QRegularExpressionValidator_override_virtual_disconnectNotify(void* self, i
 }
 
 void QRegularExpressionValidator_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQRegularExpressionValidator*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQRegularExpressionValidator*)(self) )->MiqtVirtualQRegularExpressionValidator::disconnectNotify(*signal);
+
+}
+
+QObject* QRegularExpressionValidator_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQRegularExpressionValidator* self_cast = dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QRegularExpressionValidator_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQRegularExpressionValidator* self_cast = dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QRegularExpressionValidator_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQRegularExpressionValidator* self_cast = dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QRegularExpressionValidator_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQRegularExpressionValidator* self_cast = dynamic_cast<MiqtVirtualQRegularExpressionValidator*>( (QRegularExpressionValidator*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QRegularExpressionValidator_delete(QRegularExpressionValidator* self) {

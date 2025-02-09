@@ -98,12 +98,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QScriptEngine::event(event);
-
-	}
+	friend bool QScriptEngine_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -122,12 +117,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QScriptEngine::eventFilter(watched, event);
-
-	}
+	friend bool QScriptEngine_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -146,12 +136,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QScriptEngine::timerEvent(event);
-
-	}
+	friend void QScriptEngine_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -170,12 +155,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QScriptEngine::childEvent(event);
-
-	}
+	friend void QScriptEngine_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -194,12 +174,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QScriptEngine::customEvent(event);
-
-	}
+	friend void QScriptEngine_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -220,12 +195,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QScriptEngine::connectNotify(*signal);
-
-	}
+	friend void QScriptEngine_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -246,13 +216,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QScriptEngine_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QScriptEngine::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QScriptEngine_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QScriptEngine_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QScriptEngine_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QScriptEngine_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QScriptEngine* QScriptEngine_new() {
@@ -652,7 +622,9 @@ bool QScriptEngine_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QScriptEngine_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::event(event);
+
 }
 
 bool QScriptEngine_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -666,7 +638,9 @@ bool QScriptEngine_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QScriptEngine_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::eventFilter(watched, event);
+
 }
 
 bool QScriptEngine_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -680,7 +654,9 @@ bool QScriptEngine_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QScriptEngine_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::timerEvent(event);
+
 }
 
 bool QScriptEngine_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -694,7 +670,9 @@ bool QScriptEngine_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QScriptEngine_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::childEvent(event);
+
 }
 
 bool QScriptEngine_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -708,7 +686,9 @@ bool QScriptEngine_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QScriptEngine_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::customEvent(event);
+
 }
 
 bool QScriptEngine_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -722,7 +702,9 @@ bool QScriptEngine_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QScriptEngine_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::connectNotify(*signal);
+
 }
 
 bool QScriptEngine_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -736,7 +718,61 @@ bool QScriptEngine_override_virtual_disconnectNotify(void* self, intptr_t slot) 
 }
 
 void QScriptEngine_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQScriptEngine*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQScriptEngine*)(self) )->MiqtVirtualQScriptEngine::disconnectNotify(*signal);
+
+}
+
+QObject* QScriptEngine_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQScriptEngine* self_cast = dynamic_cast<MiqtVirtualQScriptEngine*>( (QScriptEngine*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QScriptEngine_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQScriptEngine* self_cast = dynamic_cast<MiqtVirtualQScriptEngine*>( (QScriptEngine*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QScriptEngine_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQScriptEngine* self_cast = dynamic_cast<MiqtVirtualQScriptEngine*>( (QScriptEngine*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QScriptEngine_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQScriptEngine* self_cast = dynamic_cast<MiqtVirtualQScriptEngine*>( (QScriptEngine*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QScriptEngine_delete(QScriptEngine* self) {

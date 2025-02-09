@@ -186,12 +186,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setCurrentIndex(QModelIndex* index, int command) {
-
-		QItemSelectionModel::setCurrentIndex(*index, static_cast<QItemSelectionModel::SelectionFlags>(command));
-
-	}
+	friend void QItemSelectionModel_virtualbase_setCurrentIndex(void* self, QModelIndex* index, int command);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__select = 0;
@@ -214,12 +209,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_select(QModelIndex* index, int command) {
-
-		QItemSelectionModel::select(*index, static_cast<QItemSelectionModel::SelectionFlags>(command));
-
-	}
+	friend void QItemSelectionModel_virtualbase_select(void* self, QModelIndex* index, int command);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__select2 = 0;
@@ -242,12 +232,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_select2(QItemSelection* selection, int command) {
-
-		QItemSelectionModel::select(*selection, static_cast<QItemSelectionModel::SelectionFlags>(command));
-
-	}
+	friend void QItemSelectionModel_virtualbase_select2(void* self, QItemSelection* selection, int command);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__clear = 0;
@@ -265,12 +250,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_clear() {
-
-		QItemSelectionModel::clear();
-
-	}
+	friend void QItemSelectionModel_virtualbase_clear(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__reset = 0;
@@ -288,12 +268,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_reset() {
-
-		QItemSelectionModel::reset();
-
-	}
+	friend void QItemSelectionModel_virtualbase_reset(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__clearCurrentIndex = 0;
@@ -311,12 +286,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_clearCurrentIndex() {
-
-		QItemSelectionModel::clearCurrentIndex();
-
-	}
+	friend void QItemSelectionModel_virtualbase_clearCurrentIndex(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -334,12 +304,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QItemSelectionModel::event(event);
-
-	}
+	friend bool QItemSelectionModel_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -358,12 +323,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QItemSelectionModel::eventFilter(watched, event);
-
-	}
+	friend bool QItemSelectionModel_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -382,12 +342,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QItemSelectionModel::timerEvent(event);
-
-	}
+	friend void QItemSelectionModel_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -406,12 +361,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QItemSelectionModel::childEvent(event);
-
-	}
+	friend void QItemSelectionModel_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -430,12 +380,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QItemSelectionModel::customEvent(event);
-
-	}
+	friend void QItemSelectionModel_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -456,12 +401,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QItemSelectionModel::connectNotify(*signal);
-
-	}
+	friend void QItemSelectionModel_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -482,13 +422,14 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QItemSelectionModel_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QItemSelectionModel::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend void QItemSelectionModel_protectedbase_emitSelectionChanged(bool* _dynamic_cast_ok, void* self, QItemSelection* newSelection, QItemSelection* oldSelection);
+	friend QObject* QItemSelectionModel_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QItemSelectionModel_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QItemSelectionModel_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QItemSelectionModel_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QItemSelectionModel* QItemSelectionModel_new() {
@@ -787,7 +728,9 @@ bool QItemSelectionModel_override_virtual_setCurrentIndex(void* self, intptr_t s
 }
 
 void QItemSelectionModel_virtualbase_setCurrentIndex(void* self, QModelIndex* index, int command) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_setCurrentIndex(index, command);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::setCurrentIndex(*index, static_cast<MiqtVirtualQItemSelectionModel::SelectionFlags>(command));
+
 }
 
 bool QItemSelectionModel_override_virtual_select(void* self, intptr_t slot) {
@@ -801,7 +744,9 @@ bool QItemSelectionModel_override_virtual_select(void* self, intptr_t slot) {
 }
 
 void QItemSelectionModel_virtualbase_select(void* self, QModelIndex* index, int command) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_select(index, command);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::select(*index, static_cast<MiqtVirtualQItemSelectionModel::SelectionFlags>(command));
+
 }
 
 bool QItemSelectionModel_override_virtual_select2(void* self, intptr_t slot) {
@@ -815,7 +760,9 @@ bool QItemSelectionModel_override_virtual_select2(void* self, intptr_t slot) {
 }
 
 void QItemSelectionModel_virtualbase_select2(void* self, QItemSelection* selection, int command) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_select2(selection, command);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::select(*selection, static_cast<MiqtVirtualQItemSelectionModel::SelectionFlags>(command));
+
 }
 
 bool QItemSelectionModel_override_virtual_clear(void* self, intptr_t slot) {
@@ -829,7 +776,9 @@ bool QItemSelectionModel_override_virtual_clear(void* self, intptr_t slot) {
 }
 
 void QItemSelectionModel_virtualbase_clear(void* self) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_clear();
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::clear();
+
 }
 
 bool QItemSelectionModel_override_virtual_reset(void* self, intptr_t slot) {
@@ -843,7 +792,9 @@ bool QItemSelectionModel_override_virtual_reset(void* self, intptr_t slot) {
 }
 
 void QItemSelectionModel_virtualbase_reset(void* self) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_reset();
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::reset();
+
 }
 
 bool QItemSelectionModel_override_virtual_clearCurrentIndex(void* self, intptr_t slot) {
@@ -857,7 +808,9 @@ bool QItemSelectionModel_override_virtual_clearCurrentIndex(void* self, intptr_t
 }
 
 void QItemSelectionModel_virtualbase_clearCurrentIndex(void* self) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_clearCurrentIndex();
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::clearCurrentIndex();
+
 }
 
 bool QItemSelectionModel_override_virtual_event(void* self, intptr_t slot) {
@@ -871,7 +824,9 @@ bool QItemSelectionModel_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QItemSelectionModel_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::event(event);
+
 }
 
 bool QItemSelectionModel_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -885,7 +840,9 @@ bool QItemSelectionModel_override_virtual_eventFilter(void* self, intptr_t slot)
 }
 
 bool QItemSelectionModel_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::eventFilter(watched, event);
+
 }
 
 bool QItemSelectionModel_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -899,7 +856,9 @@ bool QItemSelectionModel_override_virtual_timerEvent(void* self, intptr_t slot) 
 }
 
 void QItemSelectionModel_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::timerEvent(event);
+
 }
 
 bool QItemSelectionModel_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -913,7 +872,9 @@ bool QItemSelectionModel_override_virtual_childEvent(void* self, intptr_t slot) 
 }
 
 void QItemSelectionModel_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::childEvent(event);
+
 }
 
 bool QItemSelectionModel_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -927,7 +888,9 @@ bool QItemSelectionModel_override_virtual_customEvent(void* self, intptr_t slot)
 }
 
 void QItemSelectionModel_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::customEvent(event);
+
 }
 
 bool QItemSelectionModel_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -941,7 +904,9 @@ bool QItemSelectionModel_override_virtual_connectNotify(void* self, intptr_t slo
 }
 
 void QItemSelectionModel_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::connectNotify(*signal);
+
 }
 
 bool QItemSelectionModel_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -955,7 +920,74 @@ bool QItemSelectionModel_override_virtual_disconnectNotify(void* self, intptr_t 
 }
 
 void QItemSelectionModel_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQItemSelectionModel*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQItemSelectionModel*)(self) )->MiqtVirtualQItemSelectionModel::disconnectNotify(*signal);
+
+}
+
+void QItemSelectionModel_protectedbase_emitSelectionChanged(bool* _dynamic_cast_ok, void* self, QItemSelection* newSelection, QItemSelection* oldSelection) {
+	MiqtVirtualQItemSelectionModel* self_cast = dynamic_cast<MiqtVirtualQItemSelectionModel*>( (QItemSelectionModel*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->emitSelectionChanged(*newSelection, *oldSelection);
+
+}
+
+QObject* QItemSelectionModel_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQItemSelectionModel* self_cast = dynamic_cast<MiqtVirtualQItemSelectionModel*>( (QItemSelectionModel*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QItemSelectionModel_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQItemSelectionModel* self_cast = dynamic_cast<MiqtVirtualQItemSelectionModel*>( (QItemSelectionModel*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QItemSelectionModel_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQItemSelectionModel* self_cast = dynamic_cast<MiqtVirtualQItemSelectionModel*>( (QItemSelectionModel*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QItemSelectionModel_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQItemSelectionModel* self_cast = dynamic_cast<MiqtVirtualQItemSelectionModel*>( (QItemSelectionModel*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QItemSelectionModel_delete(QItemSelectionModel* self) {

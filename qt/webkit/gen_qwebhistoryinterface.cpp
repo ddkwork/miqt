@@ -98,12 +98,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QWebHistoryInterface::event(event);
-
-	}
+	friend bool QWebHistoryInterface_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -122,12 +117,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QWebHistoryInterface::eventFilter(watched, event);
-
-	}
+	friend bool QWebHistoryInterface_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -146,12 +136,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QWebHistoryInterface::timerEvent(event);
-
-	}
+	friend void QWebHistoryInterface_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -170,12 +155,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QWebHistoryInterface::childEvent(event);
-
-	}
+	friend void QWebHistoryInterface_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -194,12 +174,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QWebHistoryInterface::customEvent(event);
-
-	}
+	friend void QWebHistoryInterface_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -220,12 +195,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QWebHistoryInterface::connectNotify(*signal);
-
-	}
+	friend void QWebHistoryInterface_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -246,13 +216,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QWebHistoryInterface_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QWebHistoryInterface::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QWebHistoryInterface_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QWebHistoryInterface_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QWebHistoryInterface_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QWebHistoryInterface_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QWebHistoryInterface* QWebHistoryInterface_new() {
@@ -390,7 +360,9 @@ bool QWebHistoryInterface_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QWebHistoryInterface_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::event(event);
+
 }
 
 bool QWebHistoryInterface_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -404,7 +376,9 @@ bool QWebHistoryInterface_override_virtual_eventFilter(void* self, intptr_t slot
 }
 
 bool QWebHistoryInterface_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::eventFilter(watched, event);
+
 }
 
 bool QWebHistoryInterface_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -418,7 +392,9 @@ bool QWebHistoryInterface_override_virtual_timerEvent(void* self, intptr_t slot)
 }
 
 void QWebHistoryInterface_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::timerEvent(event);
+
 }
 
 bool QWebHistoryInterface_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -432,7 +408,9 @@ bool QWebHistoryInterface_override_virtual_childEvent(void* self, intptr_t slot)
 }
 
 void QWebHistoryInterface_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::childEvent(event);
+
 }
 
 bool QWebHistoryInterface_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -446,7 +424,9 @@ bool QWebHistoryInterface_override_virtual_customEvent(void* self, intptr_t slot
 }
 
 void QWebHistoryInterface_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::customEvent(event);
+
 }
 
 bool QWebHistoryInterface_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -460,7 +440,9 @@ bool QWebHistoryInterface_override_virtual_connectNotify(void* self, intptr_t sl
 }
 
 void QWebHistoryInterface_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::connectNotify(*signal);
+
 }
 
 bool QWebHistoryInterface_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -474,7 +456,61 @@ bool QWebHistoryInterface_override_virtual_disconnectNotify(void* self, intptr_t
 }
 
 void QWebHistoryInterface_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQWebHistoryInterface*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQWebHistoryInterface*)(self) )->MiqtVirtualQWebHistoryInterface::disconnectNotify(*signal);
+
+}
+
+QObject* QWebHistoryInterface_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQWebHistoryInterface* self_cast = dynamic_cast<MiqtVirtualQWebHistoryInterface*>( (QWebHistoryInterface*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QWebHistoryInterface_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQWebHistoryInterface* self_cast = dynamic_cast<MiqtVirtualQWebHistoryInterface*>( (QWebHistoryInterface*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QWebHistoryInterface_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQWebHistoryInterface* self_cast = dynamic_cast<MiqtVirtualQWebHistoryInterface*>( (QWebHistoryInterface*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QWebHistoryInterface_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQWebHistoryInterface* self_cast = dynamic_cast<MiqtVirtualQWebHistoryInterface*>( (QWebHistoryInterface*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QWebHistoryInterface_delete(QWebHistoryInterface* self) {

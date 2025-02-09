@@ -96,12 +96,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QGesture::event(event);
-
-	}
+	friend bool QGesture_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -120,12 +115,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QGesture::eventFilter(watched, event);
-
-	}
+	friend bool QGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -144,12 +134,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QGesture::timerEvent(event);
-
-	}
+	friend void QGesture_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -168,12 +153,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QGesture::childEvent(event);
-
-	}
+	friend void QGesture_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -192,12 +172,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QGesture::customEvent(event);
-
-	}
+	friend void QGesture_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -218,12 +193,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QGesture::connectNotify(*signal);
-
-	}
+	friend void QGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -244,13 +214,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QGesture::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QGesture* QGesture_new() {
@@ -352,7 +322,9 @@ bool QGesture_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QGesture_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQGesture*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::event(event);
+
 }
 
 bool QGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -366,7 +338,9 @@ bool QGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQGesture*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::eventFilter(watched, event);
+
 }
 
 bool QGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -380,7 +354,9 @@ bool QGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QGesture_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQGesture*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::timerEvent(event);
+
 }
 
 bool QGesture_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -394,7 +370,9 @@ bool QGesture_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QGesture_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQGesture*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::childEvent(event);
+
 }
 
 bool QGesture_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -408,7 +386,9 @@ bool QGesture_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QGesture_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQGesture*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::customEvent(event);
+
 }
 
 bool QGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -422,7 +402,9 @@ bool QGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQGesture*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::connectNotify(*signal);
+
 }
 
 bool QGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -436,7 +418,61 @@ bool QGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQGesture*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQGesture*)(self) )->MiqtVirtualQGesture::disconnectNotify(*signal);
+
+}
+
+QObject* QGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQGesture* self_cast = dynamic_cast<MiqtVirtualQGesture*>( (QGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQGesture* self_cast = dynamic_cast<MiqtVirtualQGesture*>( (QGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQGesture* self_cast = dynamic_cast<MiqtVirtualQGesture*>( (QGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQGesture* self_cast = dynamic_cast<MiqtVirtualQGesture*>( (QGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QGesture_delete(QGesture* self) {
@@ -467,12 +503,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QPanGesture::event(event);
-
-	}
+	friend bool QPanGesture_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -491,12 +522,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QPanGesture::eventFilter(watched, event);
-
-	}
+	friend bool QPanGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -515,12 +541,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QPanGesture::timerEvent(event);
-
-	}
+	friend void QPanGesture_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -539,12 +560,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QPanGesture::childEvent(event);
-
-	}
+	friend void QPanGesture_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -563,12 +579,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QPanGesture::customEvent(event);
-
-	}
+	friend void QPanGesture_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -589,12 +600,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QPanGesture::connectNotify(*signal);
-
-	}
+	friend void QPanGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -615,13 +621,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QPanGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QPanGesture::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QPanGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QPanGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QPanGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QPanGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QPanGesture* QPanGesture_new() {
@@ -717,7 +723,9 @@ bool QPanGesture_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QPanGesture_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQPanGesture*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::event(event);
+
 }
 
 bool QPanGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -731,7 +739,9 @@ bool QPanGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QPanGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQPanGesture*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::eventFilter(watched, event);
+
 }
 
 bool QPanGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -745,7 +755,9 @@ bool QPanGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QPanGesture_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQPanGesture*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::timerEvent(event);
+
 }
 
 bool QPanGesture_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -759,7 +771,9 @@ bool QPanGesture_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QPanGesture_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQPanGesture*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::childEvent(event);
+
 }
 
 bool QPanGesture_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -773,7 +787,9 @@ bool QPanGesture_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QPanGesture_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQPanGesture*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::customEvent(event);
+
 }
 
 bool QPanGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -787,7 +803,9 @@ bool QPanGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QPanGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQPanGesture*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::connectNotify(*signal);
+
 }
 
 bool QPanGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -801,7 +819,61 @@ bool QPanGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QPanGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQPanGesture*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQPanGesture*)(self) )->MiqtVirtualQPanGesture::disconnectNotify(*signal);
+
+}
+
+QObject* QPanGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQPanGesture* self_cast = dynamic_cast<MiqtVirtualQPanGesture*>( (QPanGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QPanGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQPanGesture* self_cast = dynamic_cast<MiqtVirtualQPanGesture*>( (QPanGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QPanGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQPanGesture* self_cast = dynamic_cast<MiqtVirtualQPanGesture*>( (QPanGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QPanGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQPanGesture* self_cast = dynamic_cast<MiqtVirtualQPanGesture*>( (QPanGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QPanGesture_delete(QPanGesture* self) {
@@ -832,12 +904,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QPinchGesture::event(event);
-
-	}
+	friend bool QPinchGesture_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -856,12 +923,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QPinchGesture::eventFilter(watched, event);
-
-	}
+	friend bool QPinchGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -880,12 +942,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QPinchGesture::timerEvent(event);
-
-	}
+	friend void QPinchGesture_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -904,12 +961,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QPinchGesture::childEvent(event);
-
-	}
+	friend void QPinchGesture_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -928,12 +980,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QPinchGesture::customEvent(event);
-
-	}
+	friend void QPinchGesture_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -954,12 +1001,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QPinchGesture::connectNotify(*signal);
-
-	}
+	friend void QPinchGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -980,13 +1022,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QPinchGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QPinchGesture::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QPinchGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QPinchGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QPinchGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QPinchGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QPinchGesture* QPinchGesture_new() {
@@ -1149,7 +1191,9 @@ bool QPinchGesture_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QPinchGesture_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::event(event);
+
 }
 
 bool QPinchGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -1163,7 +1207,9 @@ bool QPinchGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QPinchGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::eventFilter(watched, event);
+
 }
 
 bool QPinchGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -1177,7 +1223,9 @@ bool QPinchGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QPinchGesture_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::timerEvent(event);
+
 }
 
 bool QPinchGesture_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -1191,7 +1239,9 @@ bool QPinchGesture_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QPinchGesture_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::childEvent(event);
+
 }
 
 bool QPinchGesture_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -1205,7 +1255,9 @@ bool QPinchGesture_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QPinchGesture_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::customEvent(event);
+
 }
 
 bool QPinchGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -1219,7 +1271,9 @@ bool QPinchGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QPinchGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::connectNotify(*signal);
+
 }
 
 bool QPinchGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -1233,7 +1287,61 @@ bool QPinchGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) 
 }
 
 void QPinchGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQPinchGesture*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQPinchGesture*)(self) )->MiqtVirtualQPinchGesture::disconnectNotify(*signal);
+
+}
+
+QObject* QPinchGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQPinchGesture* self_cast = dynamic_cast<MiqtVirtualQPinchGesture*>( (QPinchGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QPinchGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQPinchGesture* self_cast = dynamic_cast<MiqtVirtualQPinchGesture*>( (QPinchGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QPinchGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQPinchGesture* self_cast = dynamic_cast<MiqtVirtualQPinchGesture*>( (QPinchGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QPinchGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQPinchGesture* self_cast = dynamic_cast<MiqtVirtualQPinchGesture*>( (QPinchGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QPinchGesture_delete(QPinchGesture* self) {
@@ -1264,12 +1372,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QSwipeGesture::event(event);
-
-	}
+	friend bool QSwipeGesture_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1288,12 +1391,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QSwipeGesture::eventFilter(watched, event);
-
-	}
+	friend bool QSwipeGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -1312,12 +1410,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QSwipeGesture::timerEvent(event);
-
-	}
+	friend void QSwipeGesture_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -1336,12 +1429,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QSwipeGesture::childEvent(event);
-
-	}
+	friend void QSwipeGesture_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -1360,12 +1448,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QSwipeGesture::customEvent(event);
-
-	}
+	friend void QSwipeGesture_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -1386,12 +1469,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QSwipeGesture::connectNotify(*signal);
-
-	}
+	friend void QSwipeGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -1412,13 +1490,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QSwipeGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QSwipeGesture::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QSwipeGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QSwipeGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QSwipeGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QSwipeGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QSwipeGesture* QSwipeGesture_new() {
@@ -1504,7 +1582,9 @@ bool QSwipeGesture_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QSwipeGesture_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::event(event);
+
 }
 
 bool QSwipeGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -1518,7 +1598,9 @@ bool QSwipeGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QSwipeGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::eventFilter(watched, event);
+
 }
 
 bool QSwipeGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -1532,7 +1614,9 @@ bool QSwipeGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QSwipeGesture_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::timerEvent(event);
+
 }
 
 bool QSwipeGesture_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -1546,7 +1630,9 @@ bool QSwipeGesture_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QSwipeGesture_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::childEvent(event);
+
 }
 
 bool QSwipeGesture_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -1560,7 +1646,9 @@ bool QSwipeGesture_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QSwipeGesture_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::customEvent(event);
+
 }
 
 bool QSwipeGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -1574,7 +1662,9 @@ bool QSwipeGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QSwipeGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::connectNotify(*signal);
+
 }
 
 bool QSwipeGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -1588,7 +1678,61 @@ bool QSwipeGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) 
 }
 
 void QSwipeGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSwipeGesture*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQSwipeGesture*)(self) )->MiqtVirtualQSwipeGesture::disconnectNotify(*signal);
+
+}
+
+QObject* QSwipeGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSwipeGesture* self_cast = dynamic_cast<MiqtVirtualQSwipeGesture*>( (QSwipeGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QSwipeGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSwipeGesture* self_cast = dynamic_cast<MiqtVirtualQSwipeGesture*>( (QSwipeGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QSwipeGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQSwipeGesture* self_cast = dynamic_cast<MiqtVirtualQSwipeGesture*>( (QSwipeGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QSwipeGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQSwipeGesture* self_cast = dynamic_cast<MiqtVirtualQSwipeGesture*>( (QSwipeGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QSwipeGesture_delete(QSwipeGesture* self) {
@@ -1619,12 +1763,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QTapGesture::event(event);
-
-	}
+	friend bool QTapGesture_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1643,12 +1782,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QTapGesture::eventFilter(watched, event);
-
-	}
+	friend bool QTapGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -1667,12 +1801,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QTapGesture::timerEvent(event);
-
-	}
+	friend void QTapGesture_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -1691,12 +1820,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QTapGesture::childEvent(event);
-
-	}
+	friend void QTapGesture_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -1715,12 +1839,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QTapGesture::customEvent(event);
-
-	}
+	friend void QTapGesture_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -1741,12 +1860,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QTapGesture::connectNotify(*signal);
-
-	}
+	friend void QTapGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -1767,13 +1881,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QTapGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QTapGesture::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QTapGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QTapGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QTapGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QTapGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QTapGesture* QTapGesture_new() {
@@ -1848,7 +1962,9 @@ bool QTapGesture_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QTapGesture_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQTapGesture*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::event(event);
+
 }
 
 bool QTapGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -1862,7 +1978,9 @@ bool QTapGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QTapGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQTapGesture*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::eventFilter(watched, event);
+
 }
 
 bool QTapGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -1876,7 +1994,9 @@ bool QTapGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QTapGesture_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQTapGesture*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::timerEvent(event);
+
 }
 
 bool QTapGesture_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -1890,7 +2010,9 @@ bool QTapGesture_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QTapGesture_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQTapGesture*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::childEvent(event);
+
 }
 
 bool QTapGesture_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -1904,7 +2026,9 @@ bool QTapGesture_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QTapGesture_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQTapGesture*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::customEvent(event);
+
 }
 
 bool QTapGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -1918,7 +2042,9 @@ bool QTapGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QTapGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTapGesture*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::connectNotify(*signal);
+
 }
 
 bool QTapGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -1932,7 +2058,61 @@ bool QTapGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QTapGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTapGesture*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQTapGesture*)(self) )->MiqtVirtualQTapGesture::disconnectNotify(*signal);
+
+}
+
+QObject* QTapGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTapGesture* self_cast = dynamic_cast<MiqtVirtualQTapGesture*>( (QTapGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QTapGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTapGesture* self_cast = dynamic_cast<MiqtVirtualQTapGesture*>( (QTapGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QTapGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQTapGesture* self_cast = dynamic_cast<MiqtVirtualQTapGesture*>( (QTapGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QTapGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQTapGesture* self_cast = dynamic_cast<MiqtVirtualQTapGesture*>( (QTapGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QTapGesture_delete(QTapGesture* self) {
@@ -1963,12 +2143,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QTapAndHoldGesture::event(event);
-
-	}
+	friend bool QTapAndHoldGesture_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1987,12 +2162,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QTapAndHoldGesture::eventFilter(watched, event);
-
-	}
+	friend bool QTapAndHoldGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -2011,12 +2181,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QTapAndHoldGesture::timerEvent(event);
-
-	}
+	friend void QTapAndHoldGesture_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -2035,12 +2200,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QTapAndHoldGesture::childEvent(event);
-
-	}
+	friend void QTapAndHoldGesture_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -2059,12 +2219,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QTapAndHoldGesture::customEvent(event);
-
-	}
+	friend void QTapAndHoldGesture_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -2085,12 +2240,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QTapAndHoldGesture::connectNotify(*signal);
-
-	}
+	friend void QTapAndHoldGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -2111,13 +2261,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QTapAndHoldGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QTapAndHoldGesture::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QTapAndHoldGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QTapAndHoldGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QTapAndHoldGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QTapAndHoldGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QTapAndHoldGesture* QTapAndHoldGesture_new() {
@@ -2200,7 +2350,9 @@ bool QTapAndHoldGesture_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QTapAndHoldGesture_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::event(event);
+
 }
 
 bool QTapAndHoldGesture_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -2214,7 +2366,9 @@ bool QTapAndHoldGesture_override_virtual_eventFilter(void* self, intptr_t slot) 
 }
 
 bool QTapAndHoldGesture_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::eventFilter(watched, event);
+
 }
 
 bool QTapAndHoldGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -2228,7 +2382,9 @@ bool QTapAndHoldGesture_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QTapAndHoldGesture_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::timerEvent(event);
+
 }
 
 bool QTapAndHoldGesture_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -2242,7 +2398,9 @@ bool QTapAndHoldGesture_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QTapAndHoldGesture_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::childEvent(event);
+
 }
 
 bool QTapAndHoldGesture_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -2256,7 +2414,9 @@ bool QTapAndHoldGesture_override_virtual_customEvent(void* self, intptr_t slot) 
 }
 
 void QTapAndHoldGesture_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::customEvent(event);
+
 }
 
 bool QTapAndHoldGesture_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -2270,7 +2430,9 @@ bool QTapAndHoldGesture_override_virtual_connectNotify(void* self, intptr_t slot
 }
 
 void QTapAndHoldGesture_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::connectNotify(*signal);
+
 }
 
 bool QTapAndHoldGesture_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -2284,7 +2446,61 @@ bool QTapAndHoldGesture_override_virtual_disconnectNotify(void* self, intptr_t s
 }
 
 void QTapAndHoldGesture_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTapAndHoldGesture*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQTapAndHoldGesture*)(self) )->MiqtVirtualQTapAndHoldGesture::disconnectNotify(*signal);
+
+}
+
+QObject* QTapAndHoldGesture_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTapAndHoldGesture* self_cast = dynamic_cast<MiqtVirtualQTapAndHoldGesture*>( (QTapAndHoldGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QTapAndHoldGesture_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTapAndHoldGesture* self_cast = dynamic_cast<MiqtVirtualQTapAndHoldGesture*>( (QTapAndHoldGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QTapAndHoldGesture_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQTapAndHoldGesture* self_cast = dynamic_cast<MiqtVirtualQTapAndHoldGesture*>( (QTapAndHoldGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QTapAndHoldGesture_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQTapAndHoldGesture* self_cast = dynamic_cast<MiqtVirtualQTapAndHoldGesture*>( (QTapAndHoldGesture*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QTapAndHoldGesture_delete(QTapAndHoldGesture* self) {
@@ -2316,12 +2532,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setAccepted(bool accepted) {
-
-		QGestureEvent::setAccepted(accepted);
-
-	}
+	friend void QGestureEvent_virtualbase_setAccepted(void* self, bool accepted);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__clone = 0;
@@ -2338,12 +2549,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QEvent* virtualbase_clone() const {
-
-		return QGestureEvent::clone();
-
-	}
+	friend QEvent* QGestureEvent_virtualbase_clone(const void* self);
 
 };
 
@@ -2463,7 +2669,9 @@ bool QGestureEvent_override_virtual_setAccepted(void* self, intptr_t slot) {
 }
 
 void QGestureEvent_virtualbase_setAccepted(void* self, bool accepted) {
-	( (MiqtVirtualQGestureEvent*)(self) )->virtualbase_setAccepted(accepted);
+
+	( (MiqtVirtualQGestureEvent*)(self) )->MiqtVirtualQGestureEvent::setAccepted(accepted);
+
 }
 
 bool QGestureEvent_override_virtual_clone(void* self, intptr_t slot) {
@@ -2477,7 +2685,9 @@ bool QGestureEvent_override_virtual_clone(void* self, intptr_t slot) {
 }
 
 QEvent* QGestureEvent_virtualbase_clone(const void* self) {
-	return ( (const MiqtVirtualQGestureEvent*)(self) )->virtualbase_clone();
+
+	return ( (const MiqtVirtualQGestureEvent*)(self) )->MiqtVirtualQGestureEvent::clone();
+
 }
 
 void QGestureEvent_delete(QGestureEvent* self) {

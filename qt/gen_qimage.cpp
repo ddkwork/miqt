@@ -66,12 +66,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_devType() const {
-
-		return QImage::devType();
-
-	}
+	friend int QImage_virtualbase_devType(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEngine = 0;
@@ -88,12 +83,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintEngine* virtualbase_paintEngine() const {
-
-		return QImage::paintEngine();
-
-	}
+	friend QPaintEngine* QImage_virtualbase_paintEngine(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__metric = 0;
@@ -112,12 +102,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_metric(int metric) const {
-
-		return QImage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-
-	}
+	friend int QImage_virtualbase_metric(const void* self, int metric);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initPainter = 0;
@@ -136,12 +121,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initPainter(QPainter* painter) const {
-
-		QImage::initPainter(painter);
-
-	}
+	friend void QImage_virtualbase_initPainter(const void* self, QPainter* painter);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__redirected = 0;
@@ -159,12 +139,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintDevice* virtualbase_redirected(QPoint* offset) const {
-
-		return QImage::redirected(offset);
-
-	}
+	friend QPaintDevice* QImage_virtualbase_redirected(const void* self, QPoint* offset);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sharedPainter = 0;
@@ -181,13 +156,16 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPainter* virtualbase_sharedPainter() const {
+	friend QPainter* QImage_virtualbase_sharedPainter(const void* self);
 
-		return QImage::sharedPainter();
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QImage* QImage_protectedbase_mirroredHelper(bool* _dynamic_cast_ok, const void* self, bool horizontal, bool vertical);
+	friend QImage* QImage_protectedbase_rgbSwappedHelper(bool* _dynamic_cast_ok, const void* self);
+	friend void QImage_protectedbase_mirroredInplace(bool* _dynamic_cast_ok, void* self, bool horizontal, bool vertical);
+	friend void QImage_protectedbase_rgbSwappedInplace(bool* _dynamic_cast_ok, void* self);
+	friend QImage* QImage_protectedbase_convertToFormatHelper(bool* _dynamic_cast_ok, const void* self, int format, int flags);
+	friend bool QImage_protectedbase_convertToFormatInplace(bool* _dynamic_cast_ok, void* self, int format, int flags);
+	friend QImage* QImage_protectedbase_smoothScaled(bool* _dynamic_cast_ok, const void* self, int w, int h);
 };
 
 QImage* QImage_new() {
@@ -842,7 +820,9 @@ bool QImage_override_virtual_devType(void* self, intptr_t slot) {
 }
 
 int QImage_virtualbase_devType(const void* self) {
-	return ( (const MiqtVirtualQImage*)(self) )->virtualbase_devType();
+
+	return ( (const MiqtVirtualQImage*)(self) )->MiqtVirtualQImage::devType();
+
 }
 
 bool QImage_override_virtual_paintEngine(void* self, intptr_t slot) {
@@ -856,7 +836,9 @@ bool QImage_override_virtual_paintEngine(void* self, intptr_t slot) {
 }
 
 QPaintEngine* QImage_virtualbase_paintEngine(const void* self) {
-	return ( (const MiqtVirtualQImage*)(self) )->virtualbase_paintEngine();
+
+	return ( (const MiqtVirtualQImage*)(self) )->MiqtVirtualQImage::paintEngine();
+
 }
 
 bool QImage_override_virtual_metric(void* self, intptr_t slot) {
@@ -870,7 +852,9 @@ bool QImage_override_virtual_metric(void* self, intptr_t slot) {
 }
 
 int QImage_virtualbase_metric(const void* self, int metric) {
-	return ( (const MiqtVirtualQImage*)(self) )->virtualbase_metric(metric);
+
+	return ( (const MiqtVirtualQImage*)(self) )->MiqtVirtualQImage::metric(static_cast<MiqtVirtualQImage::PaintDeviceMetric>(metric));
+
 }
 
 bool QImage_override_virtual_initPainter(void* self, intptr_t slot) {
@@ -884,7 +868,9 @@ bool QImage_override_virtual_initPainter(void* self, intptr_t slot) {
 }
 
 void QImage_virtualbase_initPainter(const void* self, QPainter* painter) {
-	( (const MiqtVirtualQImage*)(self) )->virtualbase_initPainter(painter);
+
+	( (const MiqtVirtualQImage*)(self) )->MiqtVirtualQImage::initPainter(painter);
+
 }
 
 bool QImage_override_virtual_redirected(void* self, intptr_t slot) {
@@ -898,7 +884,9 @@ bool QImage_override_virtual_redirected(void* self, intptr_t slot) {
 }
 
 QPaintDevice* QImage_virtualbase_redirected(const void* self, QPoint* offset) {
-	return ( (const MiqtVirtualQImage*)(self) )->virtualbase_redirected(offset);
+
+	return ( (const MiqtVirtualQImage*)(self) )->MiqtVirtualQImage::redirected(offset);
+
 }
 
 bool QImage_override_virtual_sharedPainter(void* self, intptr_t slot) {
@@ -912,7 +900,100 @@ bool QImage_override_virtual_sharedPainter(void* self, intptr_t slot) {
 }
 
 QPainter* QImage_virtualbase_sharedPainter(const void* self) {
-	return ( (const MiqtVirtualQImage*)(self) )->virtualbase_sharedPainter();
+
+	return ( (const MiqtVirtualQImage*)(self) )->MiqtVirtualQImage::sharedPainter();
+
+}
+
+QImage* QImage_protectedbase_mirroredHelper(bool* _dynamic_cast_ok, const void* self, bool horizontal, bool vertical) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QImage(self_cast->mirrored_helper(horizontal, vertical));
+
+}
+
+QImage* QImage_protectedbase_rgbSwappedHelper(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QImage(self_cast->rgbSwapped_helper());
+
+}
+
+void QImage_protectedbase_mirroredInplace(bool* _dynamic_cast_ok, void* self, bool horizontal, bool vertical) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->mirrored_inplace(horizontal, vertical);
+
+}
+
+void QImage_protectedbase_rgbSwappedInplace(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->rgbSwapped_inplace();
+
+}
+
+QImage* QImage_protectedbase_convertToFormatHelper(bool* _dynamic_cast_ok, const void* self, int format, int flags) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QImage(self_cast->convertToFormat_helper(static_cast<MiqtVirtualQImage::Format>(format), static_cast<Qt::ImageConversionFlags>(flags)));
+
+}
+
+bool QImage_protectedbase_convertToFormatInplace(bool* _dynamic_cast_ok, void* self, int format, int flags) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->convertToFormat_inplace(static_cast<MiqtVirtualQImage::Format>(format), static_cast<Qt::ImageConversionFlags>(flags));
+
+}
+
+QImage* QImage_protectedbase_smoothScaled(bool* _dynamic_cast_ok, const void* self, int w, int h) {
+	MiqtVirtualQImage* self_cast = dynamic_cast<MiqtVirtualQImage*>( (QImage*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QImage(self_cast->smoothScaled(static_cast<int>(w), static_cast<int>(h)));
+
 }
 
 void QImage_delete(QImage* self) {

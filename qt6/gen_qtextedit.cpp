@@ -18,6 +18,7 @@
 #include <QInputMethodEvent>
 #include <QKeyEvent>
 #include <QList>
+#include <QMargins>
 #include <QMenu>
 #include <QMetaMethod>
 #include <QMetaObject>
@@ -155,12 +156,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_loadResource(int type, QUrl* name) {
-
-		return new QVariant(QTextEdit::loadResource(static_cast<int>(type), *name));
-
-	}
+	friend QVariant* QTextEdit_virtualbase_loadResource(void* self, int type, QUrl* name);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodQuery = 0;
@@ -179,12 +175,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_inputMethodQuery(int property) const {
-
-		return new QVariant(QTextEdit::inputMethodQuery(static_cast<Qt::InputMethodQuery>(property)));
-
-	}
+	friend QVariant* QTextEdit_virtualbase_inputMethodQuery(const void* self, int property);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -202,12 +193,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* e) {
-
-		return QTextEdit::event(e);
-
-	}
+	friend bool QTextEdit_virtualbase_event(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -226,12 +212,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* e) {
-
-		QTextEdit::timerEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_timerEvent(void* self, QTimerEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyPressEvent = 0;
@@ -250,12 +231,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyPressEvent(QKeyEvent* e) {
-
-		QTextEdit::keyPressEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_keyPressEvent(void* self, QKeyEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyReleaseEvent = 0;
@@ -274,12 +250,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyReleaseEvent(QKeyEvent* e) {
-
-		QTextEdit::keyReleaseEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_keyReleaseEvent(void* self, QKeyEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__resizeEvent = 0;
@@ -298,12 +269,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_resizeEvent(QResizeEvent* e) {
-
-		QTextEdit::resizeEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_resizeEvent(void* self, QResizeEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEvent = 0;
@@ -322,12 +288,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_paintEvent(QPaintEvent* e) {
-
-		QTextEdit::paintEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_paintEvent(void* self, QPaintEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mousePressEvent = 0;
@@ -346,12 +307,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mousePressEvent(QMouseEvent* e) {
-
-		QTextEdit::mousePressEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_mousePressEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseMoveEvent = 0;
@@ -370,12 +326,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseMoveEvent(QMouseEvent* e) {
-
-		QTextEdit::mouseMoveEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_mouseMoveEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseReleaseEvent = 0;
@@ -394,12 +345,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseReleaseEvent(QMouseEvent* e) {
-
-		QTextEdit::mouseReleaseEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseDoubleClickEvent = 0;
@@ -418,12 +364,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseDoubleClickEvent(QMouseEvent* e) {
-
-		QTextEdit::mouseDoubleClickEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusNextPrevChild = 0;
@@ -441,12 +382,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_focusNextPrevChild(bool next) {
-
-		return QTextEdit::focusNextPrevChild(next);
-
-	}
+	friend bool QTextEdit_virtualbase_focusNextPrevChild(void* self, bool next);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__contextMenuEvent = 0;
@@ -465,12 +401,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_contextMenuEvent(QContextMenuEvent* e) {
-
-		QTextEdit::contextMenuEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragEnterEvent = 0;
@@ -489,12 +420,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragEnterEvent(QDragEnterEvent* e) {
-
-		QTextEdit::dragEnterEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragLeaveEvent = 0;
@@ -513,12 +439,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragLeaveEvent(QDragLeaveEvent* e) {
-
-		QTextEdit::dragLeaveEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragMoveEvent = 0;
@@ -537,12 +458,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragMoveEvent(QDragMoveEvent* e) {
-
-		QTextEdit::dragMoveEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dropEvent = 0;
@@ -561,12 +477,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dropEvent(QDropEvent* e) {
-
-		QTextEdit::dropEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_dropEvent(void* self, QDropEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusInEvent = 0;
@@ -585,12 +496,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusInEvent(QFocusEvent* e) {
-
-		QTextEdit::focusInEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_focusInEvent(void* self, QFocusEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusOutEvent = 0;
@@ -609,12 +515,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusOutEvent(QFocusEvent* e) {
-
-		QTextEdit::focusOutEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_focusOutEvent(void* self, QFocusEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__showEvent = 0;
@@ -633,12 +534,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_showEvent(QShowEvent* param1) {
-
-		QTextEdit::showEvent(param1);
-
-	}
+	friend void QTextEdit_virtualbase_showEvent(void* self, QShowEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__changeEvent = 0;
@@ -657,12 +553,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_changeEvent(QEvent* e) {
-
-		QTextEdit::changeEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_changeEvent(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__wheelEvent = 0;
@@ -681,12 +572,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_wheelEvent(QWheelEvent* e) {
-
-		QTextEdit::wheelEvent(e);
-
-	}
+	friend void QTextEdit_virtualbase_wheelEvent(void* self, QWheelEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__createMimeDataFromSelection = 0;
@@ -703,12 +589,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QMimeData* virtualbase_createMimeDataFromSelection() const {
-
-		return QTextEdit::createMimeDataFromSelection();
-
-	}
+	friend QMimeData* QTextEdit_virtualbase_createMimeDataFromSelection(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__canInsertFromMimeData = 0;
@@ -726,12 +607,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_canInsertFromMimeData(QMimeData* source) const {
-
-		return QTextEdit::canInsertFromMimeData(source);
-
-	}
+	friend bool QTextEdit_virtualbase_canInsertFromMimeData(const void* self, QMimeData* source);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__insertFromMimeData = 0;
@@ -750,12 +626,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_insertFromMimeData(QMimeData* source) {
-
-		QTextEdit::insertFromMimeData(source);
-
-	}
+	friend void QTextEdit_virtualbase_insertFromMimeData(void* self, QMimeData* source);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodEvent = 0;
@@ -774,12 +645,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_inputMethodEvent(QInputMethodEvent* param1) {
-
-		QTextEdit::inputMethodEvent(param1);
-
-	}
+	friend void QTextEdit_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__scrollContentsBy = 0;
@@ -799,12 +665,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_scrollContentsBy(int dx, int dy) {
-
-		QTextEdit::scrollContentsBy(static_cast<int>(dx), static_cast<int>(dy));
-
-	}
+	friend void QTextEdit_virtualbase_scrollContentsBy(void* self, int dx, int dy);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__doSetTextCursor = 0;
@@ -825,12 +686,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_doSetTextCursor(QTextCursor* cursor) {
-
-		QTextEdit::doSetTextCursor(*cursor);
-
-	}
+	friend void QTextEdit_virtualbase_doSetTextCursor(void* self, QTextCursor* cursor);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__minimumSizeHint = 0;
@@ -847,12 +703,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_minimumSizeHint() const {
-
-		return new QSize(QTextEdit::minimumSizeHint());
-
-	}
+	friend QSize* QTextEdit_virtualbase_minimumSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHint = 0;
@@ -869,12 +720,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_sizeHint() const {
-
-		return new QSize(QTextEdit::sizeHint());
-
-	}
+	friend QSize* QTextEdit_virtualbase_sizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setupViewport = 0;
@@ -893,12 +739,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setupViewport(QWidget* viewport) {
-
-		QTextEdit::setupViewport(viewport);
-
-	}
+	friend void QTextEdit_virtualbase_setupViewport(void* self, QWidget* viewport);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -917,12 +758,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* param1, QEvent* param2) {
-
-		return QTextEdit::eventFilter(param1, param2);
-
-	}
+	friend bool QTextEdit_virtualbase_eventFilter(void* self, QObject* param1, QEvent* param2);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewportEvent = 0;
@@ -940,12 +776,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_viewportEvent(QEvent* param1) {
-
-		return QTextEdit::viewportEvent(param1);
-
-	}
+	friend bool QTextEdit_virtualbase_viewportEvent(void* self, QEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewportSizeHint = 0;
@@ -962,12 +793,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_viewportSizeHint() const {
-
-		return new QSize(QTextEdit::viewportSizeHint());
-
-	}
+	friend QSize* QTextEdit_virtualbase_viewportSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initStyleOption = 0;
@@ -986,12 +812,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initStyleOption(QStyleOptionFrame* option) const {
-
-		QTextEdit::initStyleOption(option);
-
-	}
+	friend void QTextEdit_virtualbase_initStyleOption(const void* self, QStyleOptionFrame* option);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__devType = 0;
@@ -1008,12 +829,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_devType() const {
-
-		return QTextEdit::devType();
-
-	}
+	friend int QTextEdit_virtualbase_devType(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setVisible = 0;
@@ -1032,12 +848,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setVisible(bool visible) {
-
-		QTextEdit::setVisible(visible);
-
-	}
+	friend void QTextEdit_virtualbase_setVisible(void* self, bool visible);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__heightForWidth = 0;
@@ -1055,12 +866,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_heightForWidth(int param1) const {
-
-		return QTextEdit::heightForWidth(static_cast<int>(param1));
-
-	}
+	friend int QTextEdit_virtualbase_heightForWidth(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hasHeightForWidth = 0;
@@ -1077,12 +883,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_hasHeightForWidth() const {
-
-		return QTextEdit::hasHeightForWidth();
-
-	}
+	friend bool QTextEdit_virtualbase_hasHeightForWidth(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEngine = 0;
@@ -1099,12 +900,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintEngine* virtualbase_paintEngine() const {
-
-		return QTextEdit::paintEngine();
-
-	}
+	friend QPaintEngine* QTextEdit_virtualbase_paintEngine(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__enterEvent = 0;
@@ -1123,12 +919,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_enterEvent(QEnterEvent* event) {
-
-		QTextEdit::enterEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_enterEvent(void* self, QEnterEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__leaveEvent = 0;
@@ -1147,12 +938,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_leaveEvent(QEvent* event) {
-
-		QTextEdit::leaveEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_leaveEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__moveEvent = 0;
@@ -1171,12 +957,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_moveEvent(QMoveEvent* event) {
-
-		QTextEdit::moveEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_moveEvent(void* self, QMoveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__closeEvent = 0;
@@ -1195,12 +976,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_closeEvent(QCloseEvent* event) {
-
-		QTextEdit::closeEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_closeEvent(void* self, QCloseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__tabletEvent = 0;
@@ -1219,12 +995,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_tabletEvent(QTabletEvent* event) {
-
-		QTextEdit::tabletEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_tabletEvent(void* self, QTabletEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__actionEvent = 0;
@@ -1243,12 +1014,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_actionEvent(QActionEvent* event) {
-
-		QTextEdit::actionEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_actionEvent(void* self, QActionEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hideEvent = 0;
@@ -1267,12 +1033,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_hideEvent(QHideEvent* event) {
-
-		QTextEdit::hideEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_hideEvent(void* self, QHideEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__nativeEvent = 0;
@@ -1298,13 +1059,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_nativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
-		QByteArray eventType_QByteArray(eventType.data, eventType.len);
-
-		return QTextEdit::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
-
-	}
+	friend bool QTextEdit_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__metric = 0;
@@ -1323,12 +1078,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_metric(int param1) const {
-
-		return QTextEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
-
-	}
+	friend int QTextEdit_virtualbase_metric(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initPainter = 0;
@@ -1347,12 +1097,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initPainter(QPainter* painter) const {
-
-		QTextEdit::initPainter(painter);
-
-	}
+	friend void QTextEdit_virtualbase_initPainter(const void* self, QPainter* painter);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__redirected = 0;
@@ -1370,12 +1115,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintDevice* virtualbase_redirected(QPoint* offset) const {
-
-		return QTextEdit::redirected(offset);
-
-	}
+	friend QPaintDevice* QTextEdit_virtualbase_redirected(const void* self, QPoint* offset);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sharedPainter = 0;
@@ -1392,12 +1132,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPainter* virtualbase_sharedPainter() const {
-
-		return QTextEdit::sharedPainter();
-
-	}
+	friend QPainter* QTextEdit_virtualbase_sharedPainter(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -1416,12 +1151,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QTextEdit::childEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -1440,12 +1170,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QTextEdit::customEvent(event);
-
-	}
+	friend void QTextEdit_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -1466,12 +1191,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QTextEdit::connectNotify(*signal);
-
-	}
+	friend void QTextEdit_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -1492,13 +1212,22 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QTextEdit_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QTextEdit::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend void QTextEdit_protectedbase_zoomInF(bool* _dynamic_cast_ok, void* self, float range);
+	friend void QTextEdit_protectedbase_setViewportMargins(bool* _dynamic_cast_ok, void* self, int left, int top, int right, int bottom);
+	friend QMargins* QTextEdit_protectedbase_viewportMargins(bool* _dynamic_cast_ok, const void* self);
+	friend void QTextEdit_protectedbase_drawFrame(bool* _dynamic_cast_ok, void* self, QPainter* param1);
+	friend void QTextEdit_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self);
+	friend void QTextEdit_protectedbase_create(bool* _dynamic_cast_ok, void* self);
+	friend void QTextEdit_protectedbase_destroy(bool* _dynamic_cast_ok, void* self);
+	friend bool QTextEdit_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self);
+	friend bool QTextEdit_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self);
+	friend QObject* QTextEdit_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QTextEdit_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QTextEdit_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QTextEdit_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QTextEdit* QTextEdit_new(QWidget* parent) {
@@ -2126,7 +1855,9 @@ bool QTextEdit_override_virtual_loadResource(void* self, intptr_t slot) {
 }
 
 QVariant* QTextEdit_virtualbase_loadResource(void* self, int type, QUrl* name) {
-	return ( (MiqtVirtualQTextEdit*)(self) )->virtualbase_loadResource(type, name);
+
+	return new QVariant(( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::loadResource(static_cast<int>(type), *name));
+
 }
 
 bool QTextEdit_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
@@ -2140,7 +1871,9 @@ bool QTextEdit_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
 }
 
 QVariant* QTextEdit_virtualbase_inputMethodQuery(const void* self, int property) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_inputMethodQuery(property);
+
+	return new QVariant(( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::inputMethodQuery(static_cast<Qt::InputMethodQuery>(property)));
+
 }
 
 bool QTextEdit_override_virtual_event(void* self, intptr_t slot) {
@@ -2154,7 +1887,9 @@ bool QTextEdit_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QTextEdit_virtualbase_event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQTextEdit*)(self) )->virtualbase_event(e);
+
+	return ( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::event(e);
+
 }
 
 bool QTextEdit_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -2168,7 +1903,9 @@ bool QTextEdit_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_timerEvent(void* self, QTimerEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_timerEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::timerEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_keyPressEvent(void* self, intptr_t slot) {
@@ -2182,7 +1919,9 @@ bool QTextEdit_override_virtual_keyPressEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_keyPressEvent(void* self, QKeyEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_keyPressEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::keyPressEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
@@ -2196,7 +1935,9 @@ bool QTextEdit_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_keyReleaseEvent(void* self, QKeyEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_keyReleaseEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::keyReleaseEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_resizeEvent(void* self, intptr_t slot) {
@@ -2210,7 +1951,9 @@ bool QTextEdit_override_virtual_resizeEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_resizeEvent(void* self, QResizeEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_resizeEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::resizeEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_paintEvent(void* self, intptr_t slot) {
@@ -2224,7 +1967,9 @@ bool QTextEdit_override_virtual_paintEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_paintEvent(void* self, QPaintEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_paintEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::paintEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_mousePressEvent(void* self, intptr_t slot) {
@@ -2238,7 +1983,9 @@ bool QTextEdit_override_virtual_mousePressEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_mousePressEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_mousePressEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::mousePressEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
@@ -2252,7 +1999,9 @@ bool QTextEdit_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_mouseMoveEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_mouseMoveEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::mouseMoveEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
@@ -2266,7 +2015,9 @@ bool QTextEdit_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_mouseReleaseEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::mouseReleaseEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slot) {
@@ -2280,7 +2031,9 @@ bool QTextEdit_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slot)
 }
 
 void QTextEdit_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_mouseDoubleClickEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::mouseDoubleClickEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_focusNextPrevChild(void* self, intptr_t slot) {
@@ -2294,7 +2047,9 @@ bool QTextEdit_override_virtual_focusNextPrevChild(void* self, intptr_t slot) {
 }
 
 bool QTextEdit_virtualbase_focusNextPrevChild(void* self, bool next) {
-	return ( (MiqtVirtualQTextEdit*)(self) )->virtualbase_focusNextPrevChild(next);
+
+	return ( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::focusNextPrevChild(next);
+
 }
 
 bool QTextEdit_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
@@ -2308,7 +2063,9 @@ bool QTextEdit_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_contextMenuEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::contextMenuEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
@@ -2322,7 +2079,9 @@ bool QTextEdit_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_dragEnterEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::dragEnterEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
@@ -2336,7 +2095,9 @@ bool QTextEdit_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_dragLeaveEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::dragLeaveEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
@@ -2350,7 +2111,9 @@ bool QTextEdit_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_dragMoveEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::dragMoveEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_dropEvent(void* self, intptr_t slot) {
@@ -2364,7 +2127,9 @@ bool QTextEdit_override_virtual_dropEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_dropEvent(void* self, QDropEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_dropEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::dropEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_focusInEvent(void* self, intptr_t slot) {
@@ -2378,7 +2143,9 @@ bool QTextEdit_override_virtual_focusInEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_focusInEvent(void* self, QFocusEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_focusInEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::focusInEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_focusOutEvent(void* self, intptr_t slot) {
@@ -2392,7 +2159,9 @@ bool QTextEdit_override_virtual_focusOutEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_focusOutEvent(void* self, QFocusEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_focusOutEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::focusOutEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_showEvent(void* self, intptr_t slot) {
@@ -2406,7 +2175,9 @@ bool QTextEdit_override_virtual_showEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_showEvent(void* self, QShowEvent* param1) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_showEvent(param1);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::showEvent(param1);
+
 }
 
 bool QTextEdit_override_virtual_changeEvent(void* self, intptr_t slot) {
@@ -2420,7 +2191,9 @@ bool QTextEdit_override_virtual_changeEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_changeEvent(void* self, QEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_changeEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::changeEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_wheelEvent(void* self, intptr_t slot) {
@@ -2434,7 +2207,9 @@ bool QTextEdit_override_virtual_wheelEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_wheelEvent(void* self, QWheelEvent* e) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_wheelEvent(e);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::wheelEvent(e);
+
 }
 
 bool QTextEdit_override_virtual_createMimeDataFromSelection(void* self, intptr_t slot) {
@@ -2448,7 +2223,9 @@ bool QTextEdit_override_virtual_createMimeDataFromSelection(void* self, intptr_t
 }
 
 QMimeData* QTextEdit_virtualbase_createMimeDataFromSelection(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_createMimeDataFromSelection();
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::createMimeDataFromSelection();
+
 }
 
 bool QTextEdit_override_virtual_canInsertFromMimeData(void* self, intptr_t slot) {
@@ -2462,7 +2239,9 @@ bool QTextEdit_override_virtual_canInsertFromMimeData(void* self, intptr_t slot)
 }
 
 bool QTextEdit_virtualbase_canInsertFromMimeData(const void* self, QMimeData* source) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_canInsertFromMimeData(source);
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::canInsertFromMimeData(source);
+
 }
 
 bool QTextEdit_override_virtual_insertFromMimeData(void* self, intptr_t slot) {
@@ -2476,7 +2255,9 @@ bool QTextEdit_override_virtual_insertFromMimeData(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_insertFromMimeData(void* self, QMimeData* source) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_insertFromMimeData(source);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::insertFromMimeData(source);
+
 }
 
 bool QTextEdit_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
@@ -2490,7 +2271,9 @@ bool QTextEdit_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* param1) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_inputMethodEvent(param1);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::inputMethodEvent(param1);
+
 }
 
 bool QTextEdit_override_virtual_scrollContentsBy(void* self, intptr_t slot) {
@@ -2504,7 +2287,9 @@ bool QTextEdit_override_virtual_scrollContentsBy(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_scrollContentsBy(void* self, int dx, int dy) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_scrollContentsBy(dx, dy);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::scrollContentsBy(static_cast<int>(dx), static_cast<int>(dy));
+
 }
 
 bool QTextEdit_override_virtual_doSetTextCursor(void* self, intptr_t slot) {
@@ -2518,7 +2303,9 @@ bool QTextEdit_override_virtual_doSetTextCursor(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_doSetTextCursor(void* self, QTextCursor* cursor) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_doSetTextCursor(cursor);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::doSetTextCursor(*cursor);
+
 }
 
 bool QTextEdit_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
@@ -2532,7 +2319,9 @@ bool QTextEdit_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QTextEdit_virtualbase_minimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_minimumSizeHint();
+
+	return new QSize(( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::minimumSizeHint());
+
 }
 
 bool QTextEdit_override_virtual_sizeHint(void* self, intptr_t slot) {
@@ -2546,7 +2335,9 @@ bool QTextEdit_override_virtual_sizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QTextEdit_virtualbase_sizeHint(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_sizeHint();
+
+	return new QSize(( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::sizeHint());
+
 }
 
 bool QTextEdit_override_virtual_setupViewport(void* self, intptr_t slot) {
@@ -2560,7 +2351,9 @@ bool QTextEdit_override_virtual_setupViewport(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_setupViewport(void* self, QWidget* viewport) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_setupViewport(viewport);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::setupViewport(viewport);
+
 }
 
 bool QTextEdit_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -2574,7 +2367,9 @@ bool QTextEdit_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QTextEdit_virtualbase_eventFilter(void* self, QObject* param1, QEvent* param2) {
-	return ( (MiqtVirtualQTextEdit*)(self) )->virtualbase_eventFilter(param1, param2);
+
+	return ( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::eventFilter(param1, param2);
+
 }
 
 bool QTextEdit_override_virtual_viewportEvent(void* self, intptr_t slot) {
@@ -2588,7 +2383,9 @@ bool QTextEdit_override_virtual_viewportEvent(void* self, intptr_t slot) {
 }
 
 bool QTextEdit_virtualbase_viewportEvent(void* self, QEvent* param1) {
-	return ( (MiqtVirtualQTextEdit*)(self) )->virtualbase_viewportEvent(param1);
+
+	return ( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::viewportEvent(param1);
+
 }
 
 bool QTextEdit_override_virtual_viewportSizeHint(void* self, intptr_t slot) {
@@ -2602,7 +2399,9 @@ bool QTextEdit_override_virtual_viewportSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QTextEdit_virtualbase_viewportSizeHint(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_viewportSizeHint();
+
+	return new QSize(( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::viewportSizeHint());
+
 }
 
 bool QTextEdit_override_virtual_initStyleOption(void* self, intptr_t slot) {
@@ -2616,7 +2415,9 @@ bool QTextEdit_override_virtual_initStyleOption(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_initStyleOption(const void* self, QStyleOptionFrame* option) {
-	( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_initStyleOption(option);
+
+	( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::initStyleOption(option);
+
 }
 
 bool QTextEdit_override_virtual_devType(void* self, intptr_t slot) {
@@ -2630,7 +2431,9 @@ bool QTextEdit_override_virtual_devType(void* self, intptr_t slot) {
 }
 
 int QTextEdit_virtualbase_devType(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_devType();
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::devType();
+
 }
 
 bool QTextEdit_override_virtual_setVisible(void* self, intptr_t slot) {
@@ -2644,7 +2447,9 @@ bool QTextEdit_override_virtual_setVisible(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_setVisible(void* self, bool visible) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_setVisible(visible);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::setVisible(visible);
+
 }
 
 bool QTextEdit_override_virtual_heightForWidth(void* self, intptr_t slot) {
@@ -2658,7 +2463,9 @@ bool QTextEdit_override_virtual_heightForWidth(void* self, intptr_t slot) {
 }
 
 int QTextEdit_virtualbase_heightForWidth(const void* self, int param1) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_heightForWidth(param1);
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::heightForWidth(static_cast<int>(param1));
+
 }
 
 bool QTextEdit_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
@@ -2672,7 +2479,9 @@ bool QTextEdit_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
 }
 
 bool QTextEdit_virtualbase_hasHeightForWidth(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_hasHeightForWidth();
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::hasHeightForWidth();
+
 }
 
 bool QTextEdit_override_virtual_paintEngine(void* self, intptr_t slot) {
@@ -2686,7 +2495,9 @@ bool QTextEdit_override_virtual_paintEngine(void* self, intptr_t slot) {
 }
 
 QPaintEngine* QTextEdit_virtualbase_paintEngine(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_paintEngine();
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::paintEngine();
+
 }
 
 bool QTextEdit_override_virtual_enterEvent(void* self, intptr_t slot) {
@@ -2700,7 +2511,9 @@ bool QTextEdit_override_virtual_enterEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_enterEvent(void* self, QEnterEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_enterEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::enterEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_leaveEvent(void* self, intptr_t slot) {
@@ -2714,7 +2527,9 @@ bool QTextEdit_override_virtual_leaveEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_leaveEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_leaveEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::leaveEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_moveEvent(void* self, intptr_t slot) {
@@ -2728,7 +2543,9 @@ bool QTextEdit_override_virtual_moveEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_moveEvent(void* self, QMoveEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_moveEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::moveEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_closeEvent(void* self, intptr_t slot) {
@@ -2742,7 +2559,9 @@ bool QTextEdit_override_virtual_closeEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_closeEvent(void* self, QCloseEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_closeEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::closeEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_tabletEvent(void* self, intptr_t slot) {
@@ -2756,7 +2575,9 @@ bool QTextEdit_override_virtual_tabletEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_tabletEvent(void* self, QTabletEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_tabletEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::tabletEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_actionEvent(void* self, intptr_t slot) {
@@ -2770,7 +2591,9 @@ bool QTextEdit_override_virtual_actionEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_actionEvent(void* self, QActionEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_actionEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::actionEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_hideEvent(void* self, intptr_t slot) {
@@ -2784,7 +2607,9 @@ bool QTextEdit_override_virtual_hideEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_hideEvent(void* self, QHideEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_hideEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::hideEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_nativeEvent(void* self, intptr_t slot) {
@@ -2798,7 +2623,10 @@ bool QTextEdit_override_virtual_nativeEvent(void* self, intptr_t slot) {
 }
 
 bool QTextEdit_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
-	return ( (MiqtVirtualQTextEdit*)(self) )->virtualbase_nativeEvent(eventType, message, result);
+	QByteArray eventType_QByteArray(eventType.data, eventType.len);
+
+	return ( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
+
 }
 
 bool QTextEdit_override_virtual_metric(void* self, intptr_t slot) {
@@ -2812,7 +2640,9 @@ bool QTextEdit_override_virtual_metric(void* self, intptr_t slot) {
 }
 
 int QTextEdit_virtualbase_metric(const void* self, int param1) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_metric(param1);
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::metric(static_cast<MiqtVirtualQTextEdit::PaintDeviceMetric>(param1));
+
 }
 
 bool QTextEdit_override_virtual_initPainter(void* self, intptr_t slot) {
@@ -2826,7 +2656,9 @@ bool QTextEdit_override_virtual_initPainter(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_initPainter(const void* self, QPainter* painter) {
-	( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_initPainter(painter);
+
+	( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::initPainter(painter);
+
 }
 
 bool QTextEdit_override_virtual_redirected(void* self, intptr_t slot) {
@@ -2840,7 +2672,9 @@ bool QTextEdit_override_virtual_redirected(void* self, intptr_t slot) {
 }
 
 QPaintDevice* QTextEdit_virtualbase_redirected(const void* self, QPoint* offset) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_redirected(offset);
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::redirected(offset);
+
 }
 
 bool QTextEdit_override_virtual_sharedPainter(void* self, intptr_t slot) {
@@ -2854,7 +2688,9 @@ bool QTextEdit_override_virtual_sharedPainter(void* self, intptr_t slot) {
 }
 
 QPainter* QTextEdit_virtualbase_sharedPainter(const void* self) {
-	return ( (const MiqtVirtualQTextEdit*)(self) )->virtualbase_sharedPainter();
+
+	return ( (const MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::sharedPainter();
+
 }
 
 bool QTextEdit_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -2868,7 +2704,9 @@ bool QTextEdit_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::childEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -2882,7 +2720,9 @@ bool QTextEdit_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::customEvent(event);
+
 }
 
 bool QTextEdit_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -2896,7 +2736,9 @@ bool QTextEdit_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::connectNotify(*signal);
+
 }
 
 bool QTextEdit_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -2910,7 +2752,178 @@ bool QTextEdit_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QTextEdit_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQTextEdit*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQTextEdit*)(self) )->MiqtVirtualQTextEdit::disconnectNotify(*signal);
+
+}
+
+void QTextEdit_protectedbase_zoomInF(bool* _dynamic_cast_ok, void* self, float range) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->zoomInF(static_cast<float>(range));
+
+}
+
+void QTextEdit_protectedbase_setViewportMargins(bool* _dynamic_cast_ok, void* self, int left, int top, int right, int bottom) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setViewportMargins(static_cast<int>(left), static_cast<int>(top), static_cast<int>(right), static_cast<int>(bottom));
+
+}
+
+QMargins* QTextEdit_protectedbase_viewportMargins(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QMargins(self_cast->viewportMargins());
+
+}
+
+void QTextEdit_protectedbase_drawFrame(bool* _dynamic_cast_ok, void* self, QPainter* param1) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->drawFrame(param1);
+
+}
+
+void QTextEdit_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->updateMicroFocus();
+
+}
+
+void QTextEdit_protectedbase_create(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->create();
+
+}
+
+void QTextEdit_protectedbase_destroy(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->destroy();
+
+}
+
+bool QTextEdit_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusNextChild();
+
+}
+
+bool QTextEdit_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusPreviousChild();
+
+}
+
+QObject* QTextEdit_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QTextEdit_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QTextEdit_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QTextEdit_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQTextEdit* self_cast = dynamic_cast<MiqtVirtualQTextEdit*>( (QTextEdit*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QTextEdit_delete(QTextEdit* self) {

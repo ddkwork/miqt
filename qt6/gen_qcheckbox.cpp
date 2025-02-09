@@ -125,12 +125,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_sizeHint() const {
-
-		return new QSize(QCheckBox::sizeHint());
-
-	}
+	friend QSize* QCheckBox_virtualbase_sizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__minimumSizeHint = 0;
@@ -147,12 +142,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_minimumSizeHint() const {
-
-		return new QSize(QCheckBox::minimumSizeHint());
-
-	}
+	friend QSize* QCheckBox_virtualbase_minimumSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -170,12 +160,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* e) {
-
-		return QCheckBox::event(e);
-
-	}
+	friend bool QCheckBox_virtualbase_event(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hitButton = 0;
@@ -195,12 +180,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_hitButton(QPoint* pos) const {
-
-		return QCheckBox::hitButton(*pos);
-
-	}
+	friend bool QCheckBox_virtualbase_hitButton(const void* self, QPoint* pos);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__checkStateSet = 0;
@@ -218,12 +198,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_checkStateSet() {
-
-		QCheckBox::checkStateSet();
-
-	}
+	friend void QCheckBox_virtualbase_checkStateSet(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__nextCheckState = 0;
@@ -241,12 +216,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_nextCheckState() {
-
-		QCheckBox::nextCheckState();
-
-	}
+	friend void QCheckBox_virtualbase_nextCheckState(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEvent = 0;
@@ -265,12 +235,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_paintEvent(QPaintEvent* param1) {
-
-		QCheckBox::paintEvent(param1);
-
-	}
+	friend void QCheckBox_virtualbase_paintEvent(void* self, QPaintEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseMoveEvent = 0;
@@ -289,12 +254,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseMoveEvent(QMouseEvent* param1) {
-
-		QCheckBox::mouseMoveEvent(param1);
-
-	}
+	friend void QCheckBox_virtualbase_mouseMoveEvent(void* self, QMouseEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initStyleOption = 0;
@@ -313,12 +273,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initStyleOption(QStyleOptionButton* option) const {
-
-		QCheckBox::initStyleOption(option);
-
-	}
+	friend void QCheckBox_virtualbase_initStyleOption(const void* self, QStyleOptionButton* option);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyPressEvent = 0;
@@ -337,12 +292,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyPressEvent(QKeyEvent* e) {
-
-		QCheckBox::keyPressEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_keyPressEvent(void* self, QKeyEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyReleaseEvent = 0;
@@ -361,12 +311,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyReleaseEvent(QKeyEvent* e) {
-
-		QCheckBox::keyReleaseEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_keyReleaseEvent(void* self, QKeyEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mousePressEvent = 0;
@@ -385,12 +330,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mousePressEvent(QMouseEvent* e) {
-
-		QCheckBox::mousePressEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_mousePressEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseReleaseEvent = 0;
@@ -409,12 +349,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseReleaseEvent(QMouseEvent* e) {
-
-		QCheckBox::mouseReleaseEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusInEvent = 0;
@@ -433,12 +368,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusInEvent(QFocusEvent* e) {
-
-		QCheckBox::focusInEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_focusInEvent(void* self, QFocusEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusOutEvent = 0;
@@ -457,12 +387,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusOutEvent(QFocusEvent* e) {
-
-		QCheckBox::focusOutEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_focusOutEvent(void* self, QFocusEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__changeEvent = 0;
@@ -481,12 +406,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_changeEvent(QEvent* e) {
-
-		QCheckBox::changeEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_changeEvent(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -505,12 +425,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* e) {
-
-		QCheckBox::timerEvent(e);
-
-	}
+	friend void QCheckBox_virtualbase_timerEvent(void* self, QTimerEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__devType = 0;
@@ -527,12 +442,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_devType() const {
-
-		return QCheckBox::devType();
-
-	}
+	friend int QCheckBox_virtualbase_devType(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setVisible = 0;
@@ -551,12 +461,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setVisible(bool visible) {
-
-		QCheckBox::setVisible(visible);
-
-	}
+	friend void QCheckBox_virtualbase_setVisible(void* self, bool visible);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__heightForWidth = 0;
@@ -574,12 +479,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_heightForWidth(int param1) const {
-
-		return QCheckBox::heightForWidth(static_cast<int>(param1));
-
-	}
+	friend int QCheckBox_virtualbase_heightForWidth(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hasHeightForWidth = 0;
@@ -596,12 +496,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_hasHeightForWidth() const {
-
-		return QCheckBox::hasHeightForWidth();
-
-	}
+	friend bool QCheckBox_virtualbase_hasHeightForWidth(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEngine = 0;
@@ -618,12 +513,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintEngine* virtualbase_paintEngine() const {
-
-		return QCheckBox::paintEngine();
-
-	}
+	friend QPaintEngine* QCheckBox_virtualbase_paintEngine(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseDoubleClickEvent = 0;
@@ -642,12 +532,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseDoubleClickEvent(QMouseEvent* event) {
-
-		QCheckBox::mouseDoubleClickEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__wheelEvent = 0;
@@ -666,12 +551,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_wheelEvent(QWheelEvent* event) {
-
-		QCheckBox::wheelEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_wheelEvent(void* self, QWheelEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__enterEvent = 0;
@@ -690,12 +570,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_enterEvent(QEnterEvent* event) {
-
-		QCheckBox::enterEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_enterEvent(void* self, QEnterEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__leaveEvent = 0;
@@ -714,12 +589,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_leaveEvent(QEvent* event) {
-
-		QCheckBox::leaveEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_leaveEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__moveEvent = 0;
@@ -738,12 +608,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_moveEvent(QMoveEvent* event) {
-
-		QCheckBox::moveEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_moveEvent(void* self, QMoveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__resizeEvent = 0;
@@ -762,12 +627,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_resizeEvent(QResizeEvent* event) {
-
-		QCheckBox::resizeEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_resizeEvent(void* self, QResizeEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__closeEvent = 0;
@@ -786,12 +646,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_closeEvent(QCloseEvent* event) {
-
-		QCheckBox::closeEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_closeEvent(void* self, QCloseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__contextMenuEvent = 0;
@@ -810,12 +665,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_contextMenuEvent(QContextMenuEvent* event) {
-
-		QCheckBox::contextMenuEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__tabletEvent = 0;
@@ -834,12 +684,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_tabletEvent(QTabletEvent* event) {
-
-		QCheckBox::tabletEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_tabletEvent(void* self, QTabletEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__actionEvent = 0;
@@ -858,12 +703,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_actionEvent(QActionEvent* event) {
-
-		QCheckBox::actionEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_actionEvent(void* self, QActionEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragEnterEvent = 0;
@@ -882,12 +722,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragEnterEvent(QDragEnterEvent* event) {
-
-		QCheckBox::dragEnterEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragMoveEvent = 0;
@@ -906,12 +741,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragMoveEvent(QDragMoveEvent* event) {
-
-		QCheckBox::dragMoveEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragLeaveEvent = 0;
@@ -930,12 +760,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragLeaveEvent(QDragLeaveEvent* event) {
-
-		QCheckBox::dragLeaveEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dropEvent = 0;
@@ -954,12 +779,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dropEvent(QDropEvent* event) {
-
-		QCheckBox::dropEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_dropEvent(void* self, QDropEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__showEvent = 0;
@@ -978,12 +798,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_showEvent(QShowEvent* event) {
-
-		QCheckBox::showEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_showEvent(void* self, QShowEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hideEvent = 0;
@@ -1002,12 +817,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_hideEvent(QHideEvent* event) {
-
-		QCheckBox::hideEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_hideEvent(void* self, QHideEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__nativeEvent = 0;
@@ -1033,13 +843,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_nativeEvent(struct miqt_string eventType, void* message, intptr_t* result) {
-		QByteArray eventType_QByteArray(eventType.data, eventType.len);
-
-		return QCheckBox::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
-
-	}
+	friend bool QCheckBox_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__metric = 0;
@@ -1058,12 +862,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_metric(int param1) const {
-
-		return QCheckBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
-
-	}
+	friend int QCheckBox_virtualbase_metric(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initPainter = 0;
@@ -1082,12 +881,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initPainter(QPainter* painter) const {
-
-		QCheckBox::initPainter(painter);
-
-	}
+	friend void QCheckBox_virtualbase_initPainter(const void* self, QPainter* painter);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__redirected = 0;
@@ -1105,12 +899,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintDevice* virtualbase_redirected(QPoint* offset) const {
-
-		return QCheckBox::redirected(offset);
-
-	}
+	friend QPaintDevice* QCheckBox_virtualbase_redirected(const void* self, QPoint* offset);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sharedPainter = 0;
@@ -1127,12 +916,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPainter* virtualbase_sharedPainter() const {
-
-		return QCheckBox::sharedPainter();
-
-	}
+	friend QPainter* QCheckBox_virtualbase_sharedPainter(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodEvent = 0;
@@ -1151,12 +935,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_inputMethodEvent(QInputMethodEvent* param1) {
-
-		QCheckBox::inputMethodEvent(param1);
-
-	}
+	friend void QCheckBox_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodQuery = 0;
@@ -1175,12 +954,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_inputMethodQuery(int param1) const {
-
-		return new QVariant(QCheckBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(param1)));
-
-	}
+	friend QVariant* QCheckBox_virtualbase_inputMethodQuery(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusNextPrevChild = 0;
@@ -1198,12 +972,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_focusNextPrevChild(bool next) {
-
-		return QCheckBox::focusNextPrevChild(next);
-
-	}
+	friend bool QCheckBox_virtualbase_focusNextPrevChild(void* self, bool next);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1222,12 +991,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QCheckBox::eventFilter(watched, event);
-
-	}
+	friend bool QCheckBox_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -1246,12 +1010,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QCheckBox::childEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -1270,12 +1029,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QCheckBox::customEvent(event);
-
-	}
+	friend void QCheckBox_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -1296,12 +1050,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QCheckBox::connectNotify(*signal);
-
-	}
+	friend void QCheckBox_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -1322,13 +1071,18 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QCheckBox_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QCheckBox::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend void QCheckBox_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self);
+	friend void QCheckBox_protectedbase_create(bool* _dynamic_cast_ok, void* self);
+	friend void QCheckBox_protectedbase_destroy(bool* _dynamic_cast_ok, void* self);
+	friend bool QCheckBox_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self);
+	friend bool QCheckBox_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self);
+	friend QObject* QCheckBox_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QCheckBox_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QCheckBox_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QCheckBox_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QCheckBox* QCheckBox_new(QWidget* parent) {
@@ -1445,7 +1199,9 @@ bool QCheckBox_override_virtual_sizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QCheckBox_virtualbase_sizeHint(const void* self) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_sizeHint();
+
+	return new QSize(( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::sizeHint());
+
 }
 
 bool QCheckBox_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
@@ -1459,7 +1215,9 @@ bool QCheckBox_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QCheckBox_virtualbase_minimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_minimumSizeHint();
+
+	return new QSize(( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::minimumSizeHint());
+
 }
 
 bool QCheckBox_override_virtual_event(void* self, intptr_t slot) {
@@ -1473,7 +1231,9 @@ bool QCheckBox_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QCheckBox_virtualbase_event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQCheckBox*)(self) )->virtualbase_event(e);
+
+	return ( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::event(e);
+
 }
 
 bool QCheckBox_override_virtual_hitButton(void* self, intptr_t slot) {
@@ -1487,7 +1247,9 @@ bool QCheckBox_override_virtual_hitButton(void* self, intptr_t slot) {
 }
 
 bool QCheckBox_virtualbase_hitButton(const void* self, QPoint* pos) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_hitButton(pos);
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::hitButton(*pos);
+
 }
 
 bool QCheckBox_override_virtual_checkStateSet(void* self, intptr_t slot) {
@@ -1501,7 +1263,9 @@ bool QCheckBox_override_virtual_checkStateSet(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_checkStateSet(void* self) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_checkStateSet();
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::checkStateSet();
+
 }
 
 bool QCheckBox_override_virtual_nextCheckState(void* self, intptr_t slot) {
@@ -1515,7 +1279,9 @@ bool QCheckBox_override_virtual_nextCheckState(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_nextCheckState(void* self) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_nextCheckState();
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::nextCheckState();
+
 }
 
 bool QCheckBox_override_virtual_paintEvent(void* self, intptr_t slot) {
@@ -1529,7 +1295,9 @@ bool QCheckBox_override_virtual_paintEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_paintEvent(void* self, QPaintEvent* param1) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_paintEvent(param1);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::paintEvent(param1);
+
 }
 
 bool QCheckBox_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
@@ -1543,7 +1311,9 @@ bool QCheckBox_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_mouseMoveEvent(void* self, QMouseEvent* param1) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_mouseMoveEvent(param1);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::mouseMoveEvent(param1);
+
 }
 
 bool QCheckBox_override_virtual_initStyleOption(void* self, intptr_t slot) {
@@ -1557,7 +1327,9 @@ bool QCheckBox_override_virtual_initStyleOption(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_initStyleOption(const void* self, QStyleOptionButton* option) {
-	( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_initStyleOption(option);
+
+	( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::initStyleOption(option);
+
 }
 
 bool QCheckBox_override_virtual_keyPressEvent(void* self, intptr_t slot) {
@@ -1571,7 +1343,9 @@ bool QCheckBox_override_virtual_keyPressEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_keyPressEvent(void* self, QKeyEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_keyPressEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::keyPressEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
@@ -1585,7 +1359,9 @@ bool QCheckBox_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_keyReleaseEvent(void* self, QKeyEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_keyReleaseEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::keyReleaseEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_mousePressEvent(void* self, intptr_t slot) {
@@ -1599,7 +1375,9 @@ bool QCheckBox_override_virtual_mousePressEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_mousePressEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_mousePressEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::mousePressEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
@@ -1613,7 +1391,9 @@ bool QCheckBox_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_mouseReleaseEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::mouseReleaseEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_focusInEvent(void* self, intptr_t slot) {
@@ -1627,7 +1407,9 @@ bool QCheckBox_override_virtual_focusInEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_focusInEvent(void* self, QFocusEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_focusInEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::focusInEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_focusOutEvent(void* self, intptr_t slot) {
@@ -1641,7 +1423,9 @@ bool QCheckBox_override_virtual_focusOutEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_focusOutEvent(void* self, QFocusEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_focusOutEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::focusOutEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_changeEvent(void* self, intptr_t slot) {
@@ -1655,7 +1439,9 @@ bool QCheckBox_override_virtual_changeEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_changeEvent(void* self, QEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_changeEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::changeEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -1669,7 +1455,9 @@ bool QCheckBox_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_timerEvent(void* self, QTimerEvent* e) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_timerEvent(e);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::timerEvent(e);
+
 }
 
 bool QCheckBox_override_virtual_devType(void* self, intptr_t slot) {
@@ -1683,7 +1471,9 @@ bool QCheckBox_override_virtual_devType(void* self, intptr_t slot) {
 }
 
 int QCheckBox_virtualbase_devType(const void* self) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_devType();
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::devType();
+
 }
 
 bool QCheckBox_override_virtual_setVisible(void* self, intptr_t slot) {
@@ -1697,7 +1487,9 @@ bool QCheckBox_override_virtual_setVisible(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_setVisible(void* self, bool visible) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_setVisible(visible);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::setVisible(visible);
+
 }
 
 bool QCheckBox_override_virtual_heightForWidth(void* self, intptr_t slot) {
@@ -1711,7 +1503,9 @@ bool QCheckBox_override_virtual_heightForWidth(void* self, intptr_t slot) {
 }
 
 int QCheckBox_virtualbase_heightForWidth(const void* self, int param1) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_heightForWidth(param1);
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::heightForWidth(static_cast<int>(param1));
+
 }
 
 bool QCheckBox_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
@@ -1725,7 +1519,9 @@ bool QCheckBox_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
 }
 
 bool QCheckBox_virtualbase_hasHeightForWidth(const void* self) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_hasHeightForWidth();
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::hasHeightForWidth();
+
 }
 
 bool QCheckBox_override_virtual_paintEngine(void* self, intptr_t slot) {
@@ -1739,7 +1535,9 @@ bool QCheckBox_override_virtual_paintEngine(void* self, intptr_t slot) {
 }
 
 QPaintEngine* QCheckBox_virtualbase_paintEngine(const void* self) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_paintEngine();
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::paintEngine();
+
 }
 
 bool QCheckBox_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slot) {
@@ -1753,7 +1551,9 @@ bool QCheckBox_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slot)
 }
 
 void QCheckBox_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_mouseDoubleClickEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::mouseDoubleClickEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_wheelEvent(void* self, intptr_t slot) {
@@ -1767,7 +1567,9 @@ bool QCheckBox_override_virtual_wheelEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_wheelEvent(void* self, QWheelEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_wheelEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::wheelEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_enterEvent(void* self, intptr_t slot) {
@@ -1781,7 +1583,9 @@ bool QCheckBox_override_virtual_enterEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_enterEvent(void* self, QEnterEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_enterEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::enterEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_leaveEvent(void* self, intptr_t slot) {
@@ -1795,7 +1599,9 @@ bool QCheckBox_override_virtual_leaveEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_leaveEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_leaveEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::leaveEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_moveEvent(void* self, intptr_t slot) {
@@ -1809,7 +1615,9 @@ bool QCheckBox_override_virtual_moveEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_moveEvent(void* self, QMoveEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_moveEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::moveEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_resizeEvent(void* self, intptr_t slot) {
@@ -1823,7 +1631,9 @@ bool QCheckBox_override_virtual_resizeEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_resizeEvent(void* self, QResizeEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_resizeEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::resizeEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_closeEvent(void* self, intptr_t slot) {
@@ -1837,7 +1647,9 @@ bool QCheckBox_override_virtual_closeEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_closeEvent(void* self, QCloseEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_closeEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::closeEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
@@ -1851,7 +1663,9 @@ bool QCheckBox_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_contextMenuEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::contextMenuEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_tabletEvent(void* self, intptr_t slot) {
@@ -1865,7 +1679,9 @@ bool QCheckBox_override_virtual_tabletEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_tabletEvent(void* self, QTabletEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_tabletEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::tabletEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_actionEvent(void* self, intptr_t slot) {
@@ -1879,7 +1695,9 @@ bool QCheckBox_override_virtual_actionEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_actionEvent(void* self, QActionEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_actionEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::actionEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
@@ -1893,7 +1711,9 @@ bool QCheckBox_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_dragEnterEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::dragEnterEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
@@ -1907,7 +1727,9 @@ bool QCheckBox_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_dragMoveEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::dragMoveEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
@@ -1921,7 +1743,9 @@ bool QCheckBox_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_dragLeaveEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::dragLeaveEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_dropEvent(void* self, intptr_t slot) {
@@ -1935,7 +1759,9 @@ bool QCheckBox_override_virtual_dropEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_dropEvent(void* self, QDropEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_dropEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::dropEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_showEvent(void* self, intptr_t slot) {
@@ -1949,7 +1775,9 @@ bool QCheckBox_override_virtual_showEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_showEvent(void* self, QShowEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_showEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::showEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_hideEvent(void* self, intptr_t slot) {
@@ -1963,7 +1791,9 @@ bool QCheckBox_override_virtual_hideEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_hideEvent(void* self, QHideEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_hideEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::hideEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_nativeEvent(void* self, intptr_t slot) {
@@ -1977,7 +1807,10 @@ bool QCheckBox_override_virtual_nativeEvent(void* self, intptr_t slot) {
 }
 
 bool QCheckBox_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, intptr_t* result) {
-	return ( (MiqtVirtualQCheckBox*)(self) )->virtualbase_nativeEvent(eventType, message, result);
+	QByteArray eventType_QByteArray(eventType.data, eventType.len);
+
+	return ( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::nativeEvent(eventType_QByteArray, message, (qintptr*)(result));
+
 }
 
 bool QCheckBox_override_virtual_metric(void* self, intptr_t slot) {
@@ -1991,7 +1824,9 @@ bool QCheckBox_override_virtual_metric(void* self, intptr_t slot) {
 }
 
 int QCheckBox_virtualbase_metric(const void* self, int param1) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_metric(param1);
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::metric(static_cast<MiqtVirtualQCheckBox::PaintDeviceMetric>(param1));
+
 }
 
 bool QCheckBox_override_virtual_initPainter(void* self, intptr_t slot) {
@@ -2005,7 +1840,9 @@ bool QCheckBox_override_virtual_initPainter(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_initPainter(const void* self, QPainter* painter) {
-	( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_initPainter(painter);
+
+	( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::initPainter(painter);
+
 }
 
 bool QCheckBox_override_virtual_redirected(void* self, intptr_t slot) {
@@ -2019,7 +1856,9 @@ bool QCheckBox_override_virtual_redirected(void* self, intptr_t slot) {
 }
 
 QPaintDevice* QCheckBox_virtualbase_redirected(const void* self, QPoint* offset) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_redirected(offset);
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::redirected(offset);
+
 }
 
 bool QCheckBox_override_virtual_sharedPainter(void* self, intptr_t slot) {
@@ -2033,7 +1872,9 @@ bool QCheckBox_override_virtual_sharedPainter(void* self, intptr_t slot) {
 }
 
 QPainter* QCheckBox_virtualbase_sharedPainter(const void* self) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_sharedPainter();
+
+	return ( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::sharedPainter();
+
 }
 
 bool QCheckBox_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
@@ -2047,7 +1888,9 @@ bool QCheckBox_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* param1) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_inputMethodEvent(param1);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::inputMethodEvent(param1);
+
 }
 
 bool QCheckBox_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
@@ -2061,7 +1904,9 @@ bool QCheckBox_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
 }
 
 QVariant* QCheckBox_virtualbase_inputMethodQuery(const void* self, int param1) {
-	return ( (const MiqtVirtualQCheckBox*)(self) )->virtualbase_inputMethodQuery(param1);
+
+	return new QVariant(( (const MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::inputMethodQuery(static_cast<Qt::InputMethodQuery>(param1)));
+
 }
 
 bool QCheckBox_override_virtual_focusNextPrevChild(void* self, intptr_t slot) {
@@ -2075,7 +1920,9 @@ bool QCheckBox_override_virtual_focusNextPrevChild(void* self, intptr_t slot) {
 }
 
 bool QCheckBox_virtualbase_focusNextPrevChild(void* self, bool next) {
-	return ( (MiqtVirtualQCheckBox*)(self) )->virtualbase_focusNextPrevChild(next);
+
+	return ( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::focusNextPrevChild(next);
+
 }
 
 bool QCheckBox_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -2089,7 +1936,9 @@ bool QCheckBox_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QCheckBox_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQCheckBox*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::eventFilter(watched, event);
+
 }
 
 bool QCheckBox_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -2103,7 +1952,9 @@ bool QCheckBox_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::childEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -2117,7 +1968,9 @@ bool QCheckBox_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::customEvent(event);
+
 }
 
 bool QCheckBox_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -2131,7 +1984,9 @@ bool QCheckBox_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::connectNotify(*signal);
+
 }
 
 bool QCheckBox_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -2145,7 +2000,126 @@ bool QCheckBox_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QCheckBox_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQCheckBox*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQCheckBox*)(self) )->MiqtVirtualQCheckBox::disconnectNotify(*signal);
+
+}
+
+void QCheckBox_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->updateMicroFocus();
+
+}
+
+void QCheckBox_protectedbase_create(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->create();
+
+}
+
+void QCheckBox_protectedbase_destroy(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->destroy();
+
+}
+
+bool QCheckBox_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusNextChild();
+
+}
+
+bool QCheckBox_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusPreviousChild();
+
+}
+
+QObject* QCheckBox_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QCheckBox_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QCheckBox_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QCheckBox_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQCheckBox* self_cast = dynamic_cast<MiqtVirtualQCheckBox*>( (QCheckBox*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QCheckBox_delete(QCheckBox* self) {

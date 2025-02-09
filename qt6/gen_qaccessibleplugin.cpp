@@ -76,12 +76,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QAccessiblePlugin::event(event);
-
-	}
+	friend bool QAccessiblePlugin_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -100,12 +95,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QAccessiblePlugin::eventFilter(watched, event);
-
-	}
+	friend bool QAccessiblePlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -124,12 +114,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QAccessiblePlugin::timerEvent(event);
-
-	}
+	friend void QAccessiblePlugin_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -148,12 +133,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QAccessiblePlugin::childEvent(event);
-
-	}
+	friend void QAccessiblePlugin_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -172,12 +152,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QAccessiblePlugin::customEvent(event);
-
-	}
+	friend void QAccessiblePlugin_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -198,12 +173,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QAccessiblePlugin::connectNotify(*signal);
-
-	}
+	friend void QAccessiblePlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -224,13 +194,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QAccessiblePlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QAccessiblePlugin::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QAccessiblePlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QAccessiblePlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QAccessiblePlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QAccessiblePlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QAccessiblePlugin* QAccessiblePlugin_new() {
@@ -312,7 +282,9 @@ bool QAccessiblePlugin_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QAccessiblePlugin_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::event(event);
+
 }
 
 bool QAccessiblePlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -326,7 +298,9 @@ bool QAccessiblePlugin_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QAccessiblePlugin_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::eventFilter(watched, event);
+
 }
 
 bool QAccessiblePlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -340,7 +314,9 @@ bool QAccessiblePlugin_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QAccessiblePlugin_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::timerEvent(event);
+
 }
 
 bool QAccessiblePlugin_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -354,7 +330,9 @@ bool QAccessiblePlugin_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QAccessiblePlugin_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::childEvent(event);
+
 }
 
 bool QAccessiblePlugin_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -368,7 +346,9 @@ bool QAccessiblePlugin_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QAccessiblePlugin_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::customEvent(event);
+
 }
 
 bool QAccessiblePlugin_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -382,7 +362,9 @@ bool QAccessiblePlugin_override_virtual_connectNotify(void* self, intptr_t slot)
 }
 
 void QAccessiblePlugin_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::connectNotify(*signal);
+
 }
 
 bool QAccessiblePlugin_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -396,7 +378,61 @@ bool QAccessiblePlugin_override_virtual_disconnectNotify(void* self, intptr_t sl
 }
 
 void QAccessiblePlugin_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQAccessiblePlugin*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQAccessiblePlugin*)(self) )->MiqtVirtualQAccessiblePlugin::disconnectNotify(*signal);
+
+}
+
+QObject* QAccessiblePlugin_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQAccessiblePlugin* self_cast = dynamic_cast<MiqtVirtualQAccessiblePlugin*>( (QAccessiblePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QAccessiblePlugin_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQAccessiblePlugin* self_cast = dynamic_cast<MiqtVirtualQAccessiblePlugin*>( (QAccessiblePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QAccessiblePlugin_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQAccessiblePlugin* self_cast = dynamic_cast<MiqtVirtualQAccessiblePlugin*>( (QAccessiblePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QAccessiblePlugin_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQAccessiblePlugin* self_cast = dynamic_cast<MiqtVirtualQAccessiblePlugin*>( (QAccessiblePlugin*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QAccessiblePlugin_delete(QAccessiblePlugin* self) {

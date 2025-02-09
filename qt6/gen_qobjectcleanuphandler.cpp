@@ -49,12 +49,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QObjectCleanupHandler::event(event);
-
-	}
+	friend bool QObjectCleanupHandler_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -73,12 +68,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QObjectCleanupHandler::eventFilter(watched, event);
-
-	}
+	friend bool QObjectCleanupHandler_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -97,12 +87,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QObjectCleanupHandler::timerEvent(event);
-
-	}
+	friend void QObjectCleanupHandler_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -121,12 +106,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QObjectCleanupHandler::childEvent(event);
-
-	}
+	friend void QObjectCleanupHandler_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -145,12 +125,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QObjectCleanupHandler::customEvent(event);
-
-	}
+	friend void QObjectCleanupHandler_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -171,12 +146,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QObjectCleanupHandler::connectNotify(*signal);
-
-	}
+	friend void QObjectCleanupHandler_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -197,13 +167,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QObjectCleanupHandler_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QObjectCleanupHandler::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QObjectCleanupHandler_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QObjectCleanupHandler_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QObjectCleanupHandler_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QObjectCleanupHandler_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QObjectCleanupHandler* QObjectCleanupHandler_new() {
@@ -282,7 +252,9 @@ bool QObjectCleanupHandler_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QObjectCleanupHandler_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::event(event);
+
 }
 
 bool QObjectCleanupHandler_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -296,7 +268,9 @@ bool QObjectCleanupHandler_override_virtual_eventFilter(void* self, intptr_t slo
 }
 
 bool QObjectCleanupHandler_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::eventFilter(watched, event);
+
 }
 
 bool QObjectCleanupHandler_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -310,7 +284,9 @@ bool QObjectCleanupHandler_override_virtual_timerEvent(void* self, intptr_t slot
 }
 
 void QObjectCleanupHandler_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::timerEvent(event);
+
 }
 
 bool QObjectCleanupHandler_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -324,7 +300,9 @@ bool QObjectCleanupHandler_override_virtual_childEvent(void* self, intptr_t slot
 }
 
 void QObjectCleanupHandler_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::childEvent(event);
+
 }
 
 bool QObjectCleanupHandler_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -338,7 +316,9 @@ bool QObjectCleanupHandler_override_virtual_customEvent(void* self, intptr_t slo
 }
 
 void QObjectCleanupHandler_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::customEvent(event);
+
 }
 
 bool QObjectCleanupHandler_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -352,7 +332,9 @@ bool QObjectCleanupHandler_override_virtual_connectNotify(void* self, intptr_t s
 }
 
 void QObjectCleanupHandler_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::connectNotify(*signal);
+
 }
 
 bool QObjectCleanupHandler_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -366,7 +348,61 @@ bool QObjectCleanupHandler_override_virtual_disconnectNotify(void* self, intptr_
 }
 
 void QObjectCleanupHandler_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQObjectCleanupHandler*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQObjectCleanupHandler*)(self) )->MiqtVirtualQObjectCleanupHandler::disconnectNotify(*signal);
+
+}
+
+QObject* QObjectCleanupHandler_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQObjectCleanupHandler* self_cast = dynamic_cast<MiqtVirtualQObjectCleanupHandler*>( (QObjectCleanupHandler*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QObjectCleanupHandler_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQObjectCleanupHandler* self_cast = dynamic_cast<MiqtVirtualQObjectCleanupHandler*>( (QObjectCleanupHandler*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QObjectCleanupHandler_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQObjectCleanupHandler* self_cast = dynamic_cast<MiqtVirtualQObjectCleanupHandler*>( (QObjectCleanupHandler*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QObjectCleanupHandler_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQObjectCleanupHandler* self_cast = dynamic_cast<MiqtVirtualQObjectCleanupHandler*>( (QObjectCleanupHandler*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QObjectCleanupHandler_delete(QObjectCleanupHandler* self) {

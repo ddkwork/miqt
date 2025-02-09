@@ -20,6 +20,7 @@
 #include <QItemSelectionModel>
 #include <QKeyEvent>
 #include <QList>
+#include <QMargins>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QModelIndex>
@@ -39,6 +40,7 @@
 #include <QString>
 #include <QByteArray>
 #include <cstring>
+#include <QStyleOptionHeader>
 #include <QStyleOptionViewItem>
 #include <QTabletEvent>
 #include <QTimerEvent>
@@ -182,12 +184,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setModel(QAbstractItemModel* model) {
-
-		QHeaderView::setModel(model);
-
-	}
+	friend void QHeaderView_virtualbase_setModel(void* self, QAbstractItemModel* model);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHint = 0;
@@ -204,12 +201,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_sizeHint() const {
-
-		return new QSize(QHeaderView::sizeHint());
-
-	}
+	friend QSize* QHeaderView_virtualbase_sizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setVisible = 0;
@@ -228,12 +220,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setVisible(bool v) {
-
-		QHeaderView::setVisible(v);
-
-	}
+	friend void QHeaderView_virtualbase_setVisible(void* self, bool v);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__doItemsLayout = 0;
@@ -251,12 +238,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_doItemsLayout() {
-
-		QHeaderView::doItemsLayout();
-
-	}
+	friend void QHeaderView_virtualbase_doItemsLayout(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__reset = 0;
@@ -274,12 +256,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_reset() {
-
-		QHeaderView::reset();
-
-	}
+	friend void QHeaderView_virtualbase_reset(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__currentChanged = 0;
@@ -303,12 +280,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_currentChanged(QModelIndex* current, QModelIndex* old) {
-
-		QHeaderView::currentChanged(*current, *old);
-
-	}
+	friend void QHeaderView_virtualbase_currentChanged(void* self, QModelIndex* current, QModelIndex* old);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__event = 0;
@@ -326,12 +298,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* e) {
-
-		return QHeaderView::event(e);
-
-	}
+	friend bool QHeaderView_virtualbase_event(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEvent = 0;
@@ -350,12 +317,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_paintEvent(QPaintEvent* e) {
-
-		QHeaderView::paintEvent(e);
-
-	}
+	friend void QHeaderView_virtualbase_paintEvent(void* self, QPaintEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mousePressEvent = 0;
@@ -374,12 +336,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mousePressEvent(QMouseEvent* e) {
-
-		QHeaderView::mousePressEvent(e);
-
-	}
+	friend void QHeaderView_virtualbase_mousePressEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseMoveEvent = 0;
@@ -398,12 +355,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseMoveEvent(QMouseEvent* e) {
-
-		QHeaderView::mouseMoveEvent(e);
-
-	}
+	friend void QHeaderView_virtualbase_mouseMoveEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseReleaseEvent = 0;
@@ -422,12 +374,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseReleaseEvent(QMouseEvent* e) {
-
-		QHeaderView::mouseReleaseEvent(e);
-
-	}
+	friend void QHeaderView_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__mouseDoubleClickEvent = 0;
@@ -446,12 +393,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_mouseDoubleClickEvent(QMouseEvent* e) {
-
-		QHeaderView::mouseDoubleClickEvent(e);
-
-	}
+	friend void QHeaderView_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewportEvent = 0;
@@ -469,12 +411,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_viewportEvent(QEvent* e) {
-
-		return QHeaderView::viewportEvent(e);
-
-	}
+	friend bool QHeaderView_virtualbase_viewportEvent(void* self, QEvent* e);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintSection = 0;
@@ -497,12 +434,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_paintSection(QPainter* painter, QRect* rect, int logicalIndex) const {
-
-		QHeaderView::paintSection(painter, *rect, static_cast<int>(logicalIndex));
-
-	}
+	friend void QHeaderView_virtualbase_paintSection(const void* self, QPainter* painter, QRect* rect, int logicalIndex);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sectionSizeFromContents = 0;
@@ -520,12 +452,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_sectionSizeFromContents(int logicalIndex) const {
-
-		return new QSize(QHeaderView::sectionSizeFromContents(static_cast<int>(logicalIndex)));
-
-	}
+	friend QSize* QHeaderView_virtualbase_sectionSizeFromContents(const void* self, int logicalIndex);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__horizontalOffset = 0;
@@ -542,12 +469,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_horizontalOffset() const {
-
-		return QHeaderView::horizontalOffset();
-
-	}
+	friend int QHeaderView_virtualbase_horizontalOffset(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__verticalOffset = 0;
@@ -564,12 +486,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_verticalOffset() const {
-
-		return QHeaderView::verticalOffset();
-
-	}
+	friend int QHeaderView_virtualbase_verticalOffset(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__updateGeometries = 0;
@@ -587,12 +504,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_updateGeometries() {
-
-		QHeaderView::updateGeometries();
-
-	}
+	friend void QHeaderView_virtualbase_updateGeometries(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__scrollContentsBy = 0;
@@ -612,12 +524,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_scrollContentsBy(int dx, int dy) {
-
-		QHeaderView::scrollContentsBy(static_cast<int>(dx), static_cast<int>(dy));
-
-	}
+	friend void QHeaderView_virtualbase_scrollContentsBy(void* self, int dx, int dy);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dataChanged = 0;
@@ -651,18 +558,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dataChanged(QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-		QVector<int> roles_QList;
-		roles_QList.reserve(roles.len);
-		int* roles_arr = static_cast<int*>(roles.data);
-		for(size_t i = 0; i < roles.len; ++i) {
-			roles_QList.push_back(static_cast<int>(roles_arr[i]));
-		}
-
-		QHeaderView::dataChanged(*topLeft, *bottomRight, roles_QList);
-
-	}
+	friend void QHeaderView_virtualbase_dataChanged(void* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__rowsInserted = 0;
@@ -685,12 +581,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_rowsInserted(QModelIndex* parent, int start, int end) {
-
-		QHeaderView::rowsInserted(*parent, static_cast<int>(start), static_cast<int>(end));
-
-	}
+	friend void QHeaderView_virtualbase_rowsInserted(void* self, QModelIndex* parent, int start, int end);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__visualRect = 0;
@@ -710,12 +601,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QRect* virtualbase_visualRect(QModelIndex* index) const {
-
-		return new QRect(QHeaderView::visualRect(*index));
-
-	}
+	friend QRect* QHeaderView_virtualbase_visualRect(const void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__scrollTo = 0;
@@ -738,12 +624,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_scrollTo(QModelIndex* index, int hint) {
-
-		QHeaderView::scrollTo(*index, static_cast<QAbstractItemView::ScrollHint>(hint));
-
-	}
+	friend void QHeaderView_virtualbase_scrollTo(void* self, QModelIndex* index, int hint);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__indexAt = 0;
@@ -763,12 +644,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_indexAt(QPoint* p) const {
-
-		return new QModelIndex(QHeaderView::indexAt(*p));
-
-	}
+	friend QModelIndex* QHeaderView_virtualbase_indexAt(const void* self, QPoint* p);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__isIndexHidden = 0;
@@ -788,12 +664,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_isIndexHidden(QModelIndex* index) const {
-
-		return QHeaderView::isIndexHidden(*index);
-
-	}
+	friend bool QHeaderView_virtualbase_isIndexHidden(const void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__moveCursor = 0;
@@ -814,12 +685,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QModelIndex* virtualbase_moveCursor(int param1, int param2) {
-
-		return new QModelIndex(QHeaderView::moveCursor(static_cast<QAbstractItemView::CursorAction>(param1), static_cast<Qt::KeyboardModifiers>(param2)));
-
-	}
+	friend QModelIndex* QHeaderView_virtualbase_moveCursor(void* self, int param1, int param2);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setSelection = 0;
@@ -842,12 +708,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setSelection(QRect* rect, int flags) {
-
-		QHeaderView::setSelection(*rect, static_cast<QItemSelectionModel::SelectionFlags>(flags));
-
-	}
+	friend void QHeaderView_virtualbase_setSelection(void* self, QRect* rect, int flags);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__visualRegionForSelection = 0;
@@ -867,12 +728,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QRegion* virtualbase_visualRegionForSelection(QItemSelection* selection) const {
-
-		return new QRegion(QHeaderView::visualRegionForSelection(*selection));
-
-	}
+	friend QRegion* QHeaderView_virtualbase_visualRegionForSelection(const void* self, QItemSelection* selection);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setSelectionModel = 0;
@@ -891,12 +747,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setSelectionModel(QItemSelectionModel* selectionModel) {
-
-		QHeaderView::setSelectionModel(selectionModel);
-
-	}
+	friend void QHeaderView_virtualbase_setSelectionModel(void* self, QItemSelectionModel* selectionModel);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyboardSearch = 0;
@@ -922,13 +773,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyboardSearch(struct miqt_string search) {
-		QString search_QString = QString::fromUtf8(search.data, search.len);
-
-		QHeaderView::keyboardSearch(search_QString);
-
-	}
+	friend void QHeaderView_virtualbase_keyboardSearch(void* self, struct miqt_string search);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHintForRow = 0;
@@ -946,12 +791,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_sizeHintForRow(int row) const {
-
-		return QHeaderView::sizeHintForRow(static_cast<int>(row));
-
-	}
+	friend int QHeaderView_virtualbase_sizeHintForRow(const void* self, int row);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sizeHintForColumn = 0;
@@ -969,12 +809,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_sizeHintForColumn(int column) const {
-
-		return QHeaderView::sizeHintForColumn(static_cast<int>(column));
-
-	}
+	friend int QHeaderView_virtualbase_sizeHintForColumn(const void* self, int column);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodQuery = 0;
@@ -993,12 +828,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QVariant* virtualbase_inputMethodQuery(int query) const {
-
-		return new QVariant(QHeaderView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-
-	}
+	friend QVariant* QHeaderView_virtualbase_inputMethodQuery(const void* self, int query);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setRootIndex = 0;
@@ -1019,12 +849,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setRootIndex(QModelIndex* index) {
-
-		QHeaderView::setRootIndex(*index);
-
-	}
+	friend void QHeaderView_virtualbase_setRootIndex(void* self, QModelIndex* index);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectAll = 0;
@@ -1042,12 +867,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_selectAll() {
-
-		QHeaderView::selectAll();
-
-	}
+	friend void QHeaderView_virtualbase_selectAll(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__rowsAboutToBeRemoved = 0;
@@ -1070,12 +890,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_rowsAboutToBeRemoved(QModelIndex* parent, int start, int end) {
-
-		QHeaderView::rowsAboutToBeRemoved(*parent, static_cast<int>(start), static_cast<int>(end));
-
-	}
+	friend void QHeaderView_virtualbase_rowsAboutToBeRemoved(void* self, QModelIndex* parent, int start, int end);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectionChanged = 0;
@@ -1099,12 +914,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_selectionChanged(QItemSelection* selected, QItemSelection* deselected) {
-
-		QHeaderView::selectionChanged(*selected, *deselected);
-
-	}
+	friend void QHeaderView_virtualbase_selectionChanged(void* self, QItemSelection* selected, QItemSelection* deselected);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__updateEditorData = 0;
@@ -1122,12 +932,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_updateEditorData() {
-
-		QHeaderView::updateEditorData();
-
-	}
+	friend void QHeaderView_virtualbase_updateEditorData(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__updateEditorGeometries = 0;
@@ -1145,12 +950,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_updateEditorGeometries() {
-
-		QHeaderView::updateEditorGeometries();
-
-	}
+	friend void QHeaderView_virtualbase_updateEditorGeometries(void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__verticalScrollbarAction = 0;
@@ -1169,12 +969,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_verticalScrollbarAction(int action) {
-
-		QHeaderView::verticalScrollbarAction(static_cast<int>(action));
-
-	}
+	friend void QHeaderView_virtualbase_verticalScrollbarAction(void* self, int action);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__horizontalScrollbarAction = 0;
@@ -1193,12 +988,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_horizontalScrollbarAction(int action) {
-
-		QHeaderView::horizontalScrollbarAction(static_cast<int>(action));
-
-	}
+	friend void QHeaderView_virtualbase_horizontalScrollbarAction(void* self, int action);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__verticalScrollbarValueChanged = 0;
@@ -1217,12 +1007,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_verticalScrollbarValueChanged(int value) {
-
-		QHeaderView::verticalScrollbarValueChanged(static_cast<int>(value));
-
-	}
+	friend void QHeaderView_virtualbase_verticalScrollbarValueChanged(void* self, int value);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__horizontalScrollbarValueChanged = 0;
@@ -1241,12 +1026,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_horizontalScrollbarValueChanged(int value) {
-
-		QHeaderView::horizontalScrollbarValueChanged(static_cast<int>(value));
-
-	}
+	friend void QHeaderView_virtualbase_horizontalScrollbarValueChanged(void* self, int value);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__closeEditor = 0;
@@ -1267,12 +1047,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_closeEditor(QWidget* editor, int hint) {
-
-		QHeaderView::closeEditor(editor, static_cast<QAbstractItemDelegate::EndEditHint>(hint));
-
-	}
+	friend void QHeaderView_virtualbase_closeEditor(void* self, QWidget* editor, int hint);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__commitData = 0;
@@ -1291,12 +1066,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_commitData(QWidget* editor) {
-
-		QHeaderView::commitData(editor);
-
-	}
+	friend void QHeaderView_virtualbase_commitData(void* self, QWidget* editor);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__editorDestroyed = 0;
@@ -1315,12 +1085,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_editorDestroyed(QObject* editor) {
-
-		QHeaderView::editorDestroyed(editor);
-
-	}
+	friend void QHeaderView_virtualbase_editorDestroyed(void* self, QObject* editor);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectedIndexes = 0;
@@ -1343,21 +1108,7 @@ public:
 		return callback_return_value_QList;
 	}
 
-	// Wrapper to allow calling protected method
-	struct miqt_array /* of QModelIndex* */  virtualbase_selectedIndexes() const {
-
-		QModelIndexList _ret = QHeaderView::selectedIndexes();
-		// Convert QList<> from C++ memory to manually-managed C memory
-		QModelIndex** _arr = static_cast<QModelIndex**>(malloc(sizeof(QModelIndex*) * _ret.length()));
-		for (size_t i = 0, e = _ret.length(); i < e; ++i) {
-			_arr[i] = new QModelIndex(_ret[i]);
-		}
-		struct miqt_array _out;
-		_out.len = _ret.length();
-		_out.data = static_cast<void*>(_arr);
-		return _out;
-
-	}
+	friend struct miqt_array /* of QModelIndex* */  QHeaderView_virtualbase_selectedIndexes(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__edit2 = 0;
@@ -1380,12 +1131,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_edit2(QModelIndex* index, int trigger, QEvent* event) {
-
-		return QHeaderView::edit(*index, static_cast<QAbstractItemView::EditTrigger>(trigger), event);
-
-	}
+	friend bool QHeaderView_virtualbase_edit2(void* self, QModelIndex* index, int trigger, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__selectionCommand = 0;
@@ -1406,13 +1152,7 @@ public:
 		return static_cast<QItemSelectionModel::SelectionFlags>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_selectionCommand(QModelIndex* index, QEvent* event) const {
-
-		QItemSelectionModel::SelectionFlags _ret = QHeaderView::selectionCommand(*index, event);
-		return static_cast<int>(_ret);
-
-	}
+	friend int QHeaderView_virtualbase_selectionCommand(const void* self, QModelIndex* index, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__startDrag = 0;
@@ -1432,12 +1172,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_startDrag(int supportedActions) {
-
-		QHeaderView::startDrag(static_cast<Qt::DropActions>(supportedActions));
-
-	}
+	friend void QHeaderView_virtualbase_startDrag(void* self, int supportedActions);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewOptions = 0;
@@ -1454,12 +1189,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QStyleOptionViewItem* virtualbase_viewOptions() const {
-
-		return new QStyleOptionViewItem(QHeaderView::viewOptions());
-
-	}
+	friend QStyleOptionViewItem* QHeaderView_virtualbase_viewOptions(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusNextPrevChild = 0;
@@ -1477,12 +1207,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_focusNextPrevChild(bool next) {
-
-		return QHeaderView::focusNextPrevChild(next);
-
-	}
+	friend bool QHeaderView_virtualbase_focusNextPrevChild(void* self, bool next);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragEnterEvent = 0;
@@ -1501,12 +1226,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragEnterEvent(QDragEnterEvent* event) {
-
-		QHeaderView::dragEnterEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragMoveEvent = 0;
@@ -1525,12 +1245,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragMoveEvent(QDragMoveEvent* event) {
-
-		QHeaderView::dragMoveEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dragLeaveEvent = 0;
@@ -1549,12 +1264,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dragLeaveEvent(QDragLeaveEvent* event) {
-
-		QHeaderView::dragLeaveEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__dropEvent = 0;
@@ -1573,12 +1283,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_dropEvent(QDropEvent* event) {
-
-		QHeaderView::dropEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_dropEvent(void* self, QDropEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusInEvent = 0;
@@ -1597,12 +1302,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusInEvent(QFocusEvent* event) {
-
-		QHeaderView::focusInEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_focusInEvent(void* self, QFocusEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__focusOutEvent = 0;
@@ -1621,12 +1321,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_focusOutEvent(QFocusEvent* event) {
-
-		QHeaderView::focusOutEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_focusOutEvent(void* self, QFocusEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyPressEvent = 0;
@@ -1645,12 +1340,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyPressEvent(QKeyEvent* event) {
-
-		QHeaderView::keyPressEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_keyPressEvent(void* self, QKeyEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__resizeEvent = 0;
@@ -1669,12 +1359,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_resizeEvent(QResizeEvent* event) {
-
-		QHeaderView::resizeEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_resizeEvent(void* self, QResizeEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -1693,12 +1378,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QHeaderView::timerEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__inputMethodEvent = 0;
@@ -1717,12 +1397,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_inputMethodEvent(QInputMethodEvent* event) {
-
-		QHeaderView::inputMethodEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -1741,12 +1416,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* object, QEvent* event) {
-
-		return QHeaderView::eventFilter(object, event);
-
-	}
+	friend bool QHeaderView_virtualbase_eventFilter(void* self, QObject* object, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__viewportSizeHint = 0;
@@ -1763,12 +1433,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_viewportSizeHint() const {
-
-		return new QSize(QHeaderView::viewportSizeHint());
-
-	}
+	friend QSize* QHeaderView_virtualbase_viewportSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__minimumSizeHint = 0;
@@ -1785,12 +1450,7 @@ public:
 		return *callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QSize* virtualbase_minimumSizeHint() const {
-
-		return new QSize(QHeaderView::minimumSizeHint());
-
-	}
+	friend QSize* QHeaderView_virtualbase_minimumSizeHint(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__setupViewport = 0;
@@ -1809,12 +1469,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_setupViewport(QWidget* viewport) {
-
-		QHeaderView::setupViewport(viewport);
-
-	}
+	friend void QHeaderView_virtualbase_setupViewport(void* self, QWidget* viewport);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__wheelEvent = 0;
@@ -1833,12 +1488,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_wheelEvent(QWheelEvent* param1) {
-
-		QHeaderView::wheelEvent(param1);
-
-	}
+	friend void QHeaderView_virtualbase_wheelEvent(void* self, QWheelEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__contextMenuEvent = 0;
@@ -1857,12 +1507,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_contextMenuEvent(QContextMenuEvent* param1) {
-
-		QHeaderView::contextMenuEvent(param1);
-
-	}
+	friend void QHeaderView_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__changeEvent = 0;
@@ -1881,12 +1526,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_changeEvent(QEvent* param1) {
-
-		QHeaderView::changeEvent(param1);
-
-	}
+	friend void QHeaderView_virtualbase_changeEvent(void* self, QEvent* param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__devType = 0;
@@ -1903,12 +1543,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_devType() const {
-
-		return QHeaderView::devType();
-
-	}
+	friend int QHeaderView_virtualbase_devType(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__heightForWidth = 0;
@@ -1926,12 +1561,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_heightForWidth(int param1) const {
-
-		return QHeaderView::heightForWidth(static_cast<int>(param1));
-
-	}
+	friend int QHeaderView_virtualbase_heightForWidth(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hasHeightForWidth = 0;
@@ -1948,12 +1578,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_hasHeightForWidth() const {
-
-		return QHeaderView::hasHeightForWidth();
-
-	}
+	friend bool QHeaderView_virtualbase_hasHeightForWidth(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__paintEngine = 0;
@@ -1970,12 +1595,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintEngine* virtualbase_paintEngine() const {
-
-		return QHeaderView::paintEngine();
-
-	}
+	friend QPaintEngine* QHeaderView_virtualbase_paintEngine(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__keyReleaseEvent = 0;
@@ -1994,12 +1614,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_keyReleaseEvent(QKeyEvent* event) {
-
-		QHeaderView::keyReleaseEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_keyReleaseEvent(void* self, QKeyEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__enterEvent = 0;
@@ -2018,12 +1633,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_enterEvent(QEvent* event) {
-
-		QHeaderView::enterEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_enterEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__leaveEvent = 0;
@@ -2042,12 +1652,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_leaveEvent(QEvent* event) {
-
-		QHeaderView::leaveEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_leaveEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__moveEvent = 0;
@@ -2066,12 +1671,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_moveEvent(QMoveEvent* event) {
-
-		QHeaderView::moveEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_moveEvent(void* self, QMoveEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__closeEvent = 0;
@@ -2090,12 +1690,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_closeEvent(QCloseEvent* event) {
-
-		QHeaderView::closeEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_closeEvent(void* self, QCloseEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__tabletEvent = 0;
@@ -2114,12 +1709,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_tabletEvent(QTabletEvent* event) {
-
-		QHeaderView::tabletEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_tabletEvent(void* self, QTabletEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__actionEvent = 0;
@@ -2138,12 +1728,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_actionEvent(QActionEvent* event) {
-
-		QHeaderView::actionEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_actionEvent(void* self, QActionEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__showEvent = 0;
@@ -2162,12 +1747,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_showEvent(QShowEvent* event) {
-
-		QHeaderView::showEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_showEvent(void* self, QShowEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__hideEvent = 0;
@@ -2186,12 +1766,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_hideEvent(QHideEvent* event) {
-
-		QHeaderView::hideEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_hideEvent(void* self, QHideEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__nativeEvent = 0;
@@ -2216,13 +1791,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_nativeEvent(struct miqt_string eventType, void* message, long* result) {
-		QByteArray eventType_QByteArray(eventType.data, eventType.len);
-
-		return QHeaderView::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
-
-	}
+	friend bool QHeaderView_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, long* result);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__metric = 0;
@@ -2241,12 +1810,7 @@ public:
 		return static_cast<int>(callback_return_value);
 	}
 
-	// Wrapper to allow calling protected method
-	int virtualbase_metric(int param1) const {
-
-		return QHeaderView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(param1));
-
-	}
+	friend int QHeaderView_virtualbase_metric(const void* self, int param1);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__initPainter = 0;
@@ -2265,12 +1829,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_initPainter(QPainter* painter) const {
-
-		QHeaderView::initPainter(painter);
-
-	}
+	friend void QHeaderView_virtualbase_initPainter(const void* self, QPainter* painter);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__redirected = 0;
@@ -2288,12 +1847,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPaintDevice* virtualbase_redirected(QPoint* offset) const {
-
-		return QHeaderView::redirected(offset);
-
-	}
+	friend QPaintDevice* QHeaderView_virtualbase_redirected(const void* self, QPoint* offset);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__sharedPainter = 0;
@@ -2310,12 +1864,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	QPainter* virtualbase_sharedPainter() const {
-
-		return QHeaderView::sharedPainter();
-
-	}
+	friend QPainter* QHeaderView_virtualbase_sharedPainter(const void* self);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -2334,12 +1883,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QHeaderView::childEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -2358,12 +1902,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QHeaderView::customEvent(event);
-
-	}
+	friend void QHeaderView_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -2384,12 +1923,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QHeaderView::connectNotify(*signal);
-
-	}
+	friend void QHeaderView_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -2410,13 +1944,44 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QHeaderView_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QHeaderView::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend void QHeaderView_protectedbase_updateSection(bool* _dynamic_cast_ok, void* self, int logicalIndex);
+	friend void QHeaderView_protectedbase_resizeSections2(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_sectionsInserted(bool* _dynamic_cast_ok, void* self, QModelIndex* parent, int logicalFirst, int logicalLast);
+	friend void QHeaderView_protectedbase_sectionsAboutToBeRemoved(bool* _dynamic_cast_ok, void* self, QModelIndex* parent, int logicalFirst, int logicalLast);
+	friend void QHeaderView_protectedbase_initialize(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_initializeSections(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_initializeSections2(bool* _dynamic_cast_ok, void* self, int start, int end);
+	friend void QHeaderView_protectedbase_initStyleOption(bool* _dynamic_cast_ok, const void* self, QStyleOptionHeader* option);
+	friend void QHeaderView_protectedbase_setHorizontalStepsPerItem(bool* _dynamic_cast_ok, void* self, int steps);
+	friend int QHeaderView_protectedbase_horizontalStepsPerItem(bool* _dynamic_cast_ok, const void* self);
+	friend void QHeaderView_protectedbase_setVerticalStepsPerItem(bool* _dynamic_cast_ok, void* self, int steps);
+	friend int QHeaderView_protectedbase_verticalStepsPerItem(bool* _dynamic_cast_ok, const void* self);
+	friend int QHeaderView_protectedbase_state(bool* _dynamic_cast_ok, const void* self);
+	friend void QHeaderView_protectedbase_setState(bool* _dynamic_cast_ok, void* self, int state);
+	friend void QHeaderView_protectedbase_scheduleDelayedItemsLayout(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_executeDelayedItemsLayout(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_setDirtyRegion(bool* _dynamic_cast_ok, void* self, QRegion* region);
+	friend void QHeaderView_protectedbase_scrollDirtyRegion(bool* _dynamic_cast_ok, void* self, int dx, int dy);
+	friend QPoint* QHeaderView_protectedbase_dirtyRegionOffset(bool* _dynamic_cast_ok, const void* self);
+	friend void QHeaderView_protectedbase_startAutoScroll(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_stopAutoScroll(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_doAutoScroll(bool* _dynamic_cast_ok, void* self);
+	friend int QHeaderView_protectedbase_dropIndicatorPosition(bool* _dynamic_cast_ok, const void* self);
+	friend void QHeaderView_protectedbase_setViewportMargins(bool* _dynamic_cast_ok, void* self, int left, int top, int right, int bottom);
+	friend QMargins* QHeaderView_protectedbase_viewportMargins(bool* _dynamic_cast_ok, const void* self);
+	friend void QHeaderView_protectedbase_drawFrame(bool* _dynamic_cast_ok, void* self, QPainter* param1);
+	friend void QHeaderView_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_create(bool* _dynamic_cast_ok, void* self);
+	friend void QHeaderView_protectedbase_destroy(bool* _dynamic_cast_ok, void* self);
+	friend bool QHeaderView_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self);
+	friend bool QHeaderView_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self);
+	friend QObject* QHeaderView_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QHeaderView_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QHeaderView_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QHeaderView_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QHeaderView* QHeaderView_new(int orientation) {
@@ -2914,7 +2479,9 @@ bool QHeaderView_override_virtual_setModel(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_setModel(void* self, QAbstractItemModel* model) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_setModel(model);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::setModel(model);
+
 }
 
 bool QHeaderView_override_virtual_sizeHint(void* self, intptr_t slot) {
@@ -2928,7 +2495,9 @@ bool QHeaderView_override_virtual_sizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QHeaderView_virtualbase_sizeHint(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_sizeHint();
+
+	return new QSize(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::sizeHint());
+
 }
 
 bool QHeaderView_override_virtual_setVisible(void* self, intptr_t slot) {
@@ -2942,7 +2511,9 @@ bool QHeaderView_override_virtual_setVisible(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_setVisible(void* self, bool v) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_setVisible(v);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::setVisible(v);
+
 }
 
 bool QHeaderView_override_virtual_doItemsLayout(void* self, intptr_t slot) {
@@ -2956,7 +2527,9 @@ bool QHeaderView_override_virtual_doItemsLayout(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_doItemsLayout(void* self) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_doItemsLayout();
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::doItemsLayout();
+
 }
 
 bool QHeaderView_override_virtual_reset(void* self, intptr_t slot) {
@@ -2970,7 +2543,9 @@ bool QHeaderView_override_virtual_reset(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_reset(void* self) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_reset();
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::reset();
+
 }
 
 bool QHeaderView_override_virtual_currentChanged(void* self, intptr_t slot) {
@@ -2984,7 +2559,9 @@ bool QHeaderView_override_virtual_currentChanged(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_currentChanged(void* self, QModelIndex* current, QModelIndex* old) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_currentChanged(current, old);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::currentChanged(*current, *old);
+
 }
 
 bool QHeaderView_override_virtual_event(void* self, intptr_t slot) {
@@ -2998,7 +2575,9 @@ bool QHeaderView_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_event(void* self, QEvent* e) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_event(e);
+
+	return ( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::event(e);
+
 }
 
 bool QHeaderView_override_virtual_paintEvent(void* self, intptr_t slot) {
@@ -3012,7 +2591,9 @@ bool QHeaderView_override_virtual_paintEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_paintEvent(void* self, QPaintEvent* e) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_paintEvent(e);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::paintEvent(e);
+
 }
 
 bool QHeaderView_override_virtual_mousePressEvent(void* self, intptr_t slot) {
@@ -3026,7 +2607,9 @@ bool QHeaderView_override_virtual_mousePressEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_mousePressEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_mousePressEvent(e);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::mousePressEvent(e);
+
 }
 
 bool QHeaderView_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
@@ -3040,7 +2623,9 @@ bool QHeaderView_override_virtual_mouseMoveEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_mouseMoveEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_mouseMoveEvent(e);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::mouseMoveEvent(e);
+
 }
 
 bool QHeaderView_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
@@ -3054,7 +2639,9 @@ bool QHeaderView_override_virtual_mouseReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_mouseReleaseEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_mouseReleaseEvent(e);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::mouseReleaseEvent(e);
+
 }
 
 bool QHeaderView_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slot) {
@@ -3068,7 +2655,9 @@ bool QHeaderView_override_virtual_mouseDoubleClickEvent(void* self, intptr_t slo
 }
 
 void QHeaderView_virtualbase_mouseDoubleClickEvent(void* self, QMouseEvent* e) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_mouseDoubleClickEvent(e);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::mouseDoubleClickEvent(e);
+
 }
 
 bool QHeaderView_override_virtual_viewportEvent(void* self, intptr_t slot) {
@@ -3082,7 +2671,9 @@ bool QHeaderView_override_virtual_viewportEvent(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_viewportEvent(void* self, QEvent* e) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_viewportEvent(e);
+
+	return ( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::viewportEvent(e);
+
 }
 
 bool QHeaderView_override_virtual_paintSection(void* self, intptr_t slot) {
@@ -3096,7 +2687,9 @@ bool QHeaderView_override_virtual_paintSection(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_paintSection(const void* self, QPainter* painter, QRect* rect, int logicalIndex) {
-	( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_paintSection(painter, rect, logicalIndex);
+
+	( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::paintSection(painter, *rect, static_cast<int>(logicalIndex));
+
 }
 
 bool QHeaderView_override_virtual_sectionSizeFromContents(void* self, intptr_t slot) {
@@ -3110,7 +2703,9 @@ bool QHeaderView_override_virtual_sectionSizeFromContents(void* self, intptr_t s
 }
 
 QSize* QHeaderView_virtualbase_sectionSizeFromContents(const void* self, int logicalIndex) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_sectionSizeFromContents(logicalIndex);
+
+	return new QSize(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::sectionSizeFromContents(static_cast<int>(logicalIndex)));
+
 }
 
 bool QHeaderView_override_virtual_horizontalOffset(void* self, intptr_t slot) {
@@ -3124,7 +2719,9 @@ bool QHeaderView_override_virtual_horizontalOffset(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_horizontalOffset(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_horizontalOffset();
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::horizontalOffset();
+
 }
 
 bool QHeaderView_override_virtual_verticalOffset(void* self, intptr_t slot) {
@@ -3138,7 +2735,9 @@ bool QHeaderView_override_virtual_verticalOffset(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_verticalOffset(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_verticalOffset();
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::verticalOffset();
+
 }
 
 bool QHeaderView_override_virtual_updateGeometries(void* self, intptr_t slot) {
@@ -3152,7 +2751,9 @@ bool QHeaderView_override_virtual_updateGeometries(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_updateGeometries(void* self) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_updateGeometries();
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::updateGeometries();
+
 }
 
 bool QHeaderView_override_virtual_scrollContentsBy(void* self, intptr_t slot) {
@@ -3166,7 +2767,9 @@ bool QHeaderView_override_virtual_scrollContentsBy(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_scrollContentsBy(void* self, int dx, int dy) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_scrollContentsBy(dx, dy);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::scrollContentsBy(static_cast<int>(dx), static_cast<int>(dy));
+
 }
 
 bool QHeaderView_override_virtual_dataChanged(void* self, intptr_t slot) {
@@ -3180,7 +2783,15 @@ bool QHeaderView_override_virtual_dataChanged(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_dataChanged(void* self, QModelIndex* topLeft, QModelIndex* bottomRight, struct miqt_array /* of int */  roles) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_dataChanged(topLeft, bottomRight, roles);
+	QVector<int> roles_QList;
+	roles_QList.reserve(roles.len);
+	int* roles_arr = static_cast<int*>(roles.data);
+	for(size_t i = 0; i < roles.len; ++i) {
+		roles_QList.push_back(static_cast<int>(roles_arr[i]));
+	}
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::dataChanged(*topLeft, *bottomRight, roles_QList);
+
 }
 
 bool QHeaderView_override_virtual_rowsInserted(void* self, intptr_t slot) {
@@ -3194,7 +2805,9 @@ bool QHeaderView_override_virtual_rowsInserted(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_rowsInserted(void* self, QModelIndex* parent, int start, int end) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_rowsInserted(parent, start, end);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::rowsInserted(*parent, static_cast<int>(start), static_cast<int>(end));
+
 }
 
 bool QHeaderView_override_virtual_visualRect(void* self, intptr_t slot) {
@@ -3208,7 +2821,9 @@ bool QHeaderView_override_virtual_visualRect(void* self, intptr_t slot) {
 }
 
 QRect* QHeaderView_virtualbase_visualRect(const void* self, QModelIndex* index) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_visualRect(index);
+
+	return new QRect(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::visualRect(*index));
+
 }
 
 bool QHeaderView_override_virtual_scrollTo(void* self, intptr_t slot) {
@@ -3222,7 +2837,9 @@ bool QHeaderView_override_virtual_scrollTo(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_scrollTo(void* self, QModelIndex* index, int hint) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_scrollTo(index, hint);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::scrollTo(*index, static_cast<MiqtVirtualQHeaderView::ScrollHint>(hint));
+
 }
 
 bool QHeaderView_override_virtual_indexAt(void* self, intptr_t slot) {
@@ -3236,7 +2853,9 @@ bool QHeaderView_override_virtual_indexAt(void* self, intptr_t slot) {
 }
 
 QModelIndex* QHeaderView_virtualbase_indexAt(const void* self, QPoint* p) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_indexAt(p);
+
+	return new QModelIndex(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::indexAt(*p));
+
 }
 
 bool QHeaderView_override_virtual_isIndexHidden(void* self, intptr_t slot) {
@@ -3250,7 +2869,9 @@ bool QHeaderView_override_virtual_isIndexHidden(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_isIndexHidden(const void* self, QModelIndex* index) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_isIndexHidden(index);
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::isIndexHidden(*index);
+
 }
 
 bool QHeaderView_override_virtual_moveCursor(void* self, intptr_t slot) {
@@ -3264,7 +2885,9 @@ bool QHeaderView_override_virtual_moveCursor(void* self, intptr_t slot) {
 }
 
 QModelIndex* QHeaderView_virtualbase_moveCursor(void* self, int param1, int param2) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_moveCursor(param1, param2);
+
+	return new QModelIndex(( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::moveCursor(static_cast<MiqtVirtualQHeaderView::CursorAction>(param1), static_cast<Qt::KeyboardModifiers>(param2)));
+
 }
 
 bool QHeaderView_override_virtual_setSelection(void* self, intptr_t slot) {
@@ -3278,7 +2901,9 @@ bool QHeaderView_override_virtual_setSelection(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_setSelection(void* self, QRect* rect, int flags) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_setSelection(rect, flags);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::setSelection(*rect, static_cast<QItemSelectionModel::SelectionFlags>(flags));
+
 }
 
 bool QHeaderView_override_virtual_visualRegionForSelection(void* self, intptr_t slot) {
@@ -3292,7 +2917,9 @@ bool QHeaderView_override_virtual_visualRegionForSelection(void* self, intptr_t 
 }
 
 QRegion* QHeaderView_virtualbase_visualRegionForSelection(const void* self, QItemSelection* selection) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_visualRegionForSelection(selection);
+
+	return new QRegion(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::visualRegionForSelection(*selection));
+
 }
 
 bool QHeaderView_override_virtual_setSelectionModel(void* self, intptr_t slot) {
@@ -3306,7 +2933,9 @@ bool QHeaderView_override_virtual_setSelectionModel(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_setSelectionModel(void* self, QItemSelectionModel* selectionModel) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_setSelectionModel(selectionModel);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::setSelectionModel(selectionModel);
+
 }
 
 bool QHeaderView_override_virtual_keyboardSearch(void* self, intptr_t slot) {
@@ -3320,7 +2949,10 @@ bool QHeaderView_override_virtual_keyboardSearch(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_keyboardSearch(void* self, struct miqt_string search) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_keyboardSearch(search);
+	QString search_QString = QString::fromUtf8(search.data, search.len);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::keyboardSearch(search_QString);
+
 }
 
 bool QHeaderView_override_virtual_sizeHintForRow(void* self, intptr_t slot) {
@@ -3334,7 +2966,9 @@ bool QHeaderView_override_virtual_sizeHintForRow(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_sizeHintForRow(const void* self, int row) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_sizeHintForRow(row);
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::sizeHintForRow(static_cast<int>(row));
+
 }
 
 bool QHeaderView_override_virtual_sizeHintForColumn(void* self, intptr_t slot) {
@@ -3348,7 +2982,9 @@ bool QHeaderView_override_virtual_sizeHintForColumn(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_sizeHintForColumn(const void* self, int column) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_sizeHintForColumn(column);
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::sizeHintForColumn(static_cast<int>(column));
+
 }
 
 bool QHeaderView_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
@@ -3362,7 +2998,9 @@ bool QHeaderView_override_virtual_inputMethodQuery(void* self, intptr_t slot) {
 }
 
 QVariant* QHeaderView_virtualbase_inputMethodQuery(const void* self, int query) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_inputMethodQuery(query);
+
+	return new QVariant(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+
 }
 
 bool QHeaderView_override_virtual_setRootIndex(void* self, intptr_t slot) {
@@ -3376,7 +3014,9 @@ bool QHeaderView_override_virtual_setRootIndex(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_setRootIndex(void* self, QModelIndex* index) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_setRootIndex(index);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::setRootIndex(*index);
+
 }
 
 bool QHeaderView_override_virtual_selectAll(void* self, intptr_t slot) {
@@ -3390,7 +3030,9 @@ bool QHeaderView_override_virtual_selectAll(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_selectAll(void* self) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_selectAll();
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::selectAll();
+
 }
 
 bool QHeaderView_override_virtual_rowsAboutToBeRemoved(void* self, intptr_t slot) {
@@ -3404,7 +3046,9 @@ bool QHeaderView_override_virtual_rowsAboutToBeRemoved(void* self, intptr_t slot
 }
 
 void QHeaderView_virtualbase_rowsAboutToBeRemoved(void* self, QModelIndex* parent, int start, int end) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_rowsAboutToBeRemoved(parent, start, end);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::rowsAboutToBeRemoved(*parent, static_cast<int>(start), static_cast<int>(end));
+
 }
 
 bool QHeaderView_override_virtual_selectionChanged(void* self, intptr_t slot) {
@@ -3418,7 +3062,9 @@ bool QHeaderView_override_virtual_selectionChanged(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_selectionChanged(void* self, QItemSelection* selected, QItemSelection* deselected) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_selectionChanged(selected, deselected);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::selectionChanged(*selected, *deselected);
+
 }
 
 bool QHeaderView_override_virtual_updateEditorData(void* self, intptr_t slot) {
@@ -3432,7 +3078,9 @@ bool QHeaderView_override_virtual_updateEditorData(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_updateEditorData(void* self) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_updateEditorData();
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::updateEditorData();
+
 }
 
 bool QHeaderView_override_virtual_updateEditorGeometries(void* self, intptr_t slot) {
@@ -3446,7 +3094,9 @@ bool QHeaderView_override_virtual_updateEditorGeometries(void* self, intptr_t sl
 }
 
 void QHeaderView_virtualbase_updateEditorGeometries(void* self) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_updateEditorGeometries();
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::updateEditorGeometries();
+
 }
 
 bool QHeaderView_override_virtual_verticalScrollbarAction(void* self, intptr_t slot) {
@@ -3460,7 +3110,9 @@ bool QHeaderView_override_virtual_verticalScrollbarAction(void* self, intptr_t s
 }
 
 void QHeaderView_virtualbase_verticalScrollbarAction(void* self, int action) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_verticalScrollbarAction(action);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::verticalScrollbarAction(static_cast<int>(action));
+
 }
 
 bool QHeaderView_override_virtual_horizontalScrollbarAction(void* self, intptr_t slot) {
@@ -3474,7 +3126,9 @@ bool QHeaderView_override_virtual_horizontalScrollbarAction(void* self, intptr_t
 }
 
 void QHeaderView_virtualbase_horizontalScrollbarAction(void* self, int action) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_horizontalScrollbarAction(action);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::horizontalScrollbarAction(static_cast<int>(action));
+
 }
 
 bool QHeaderView_override_virtual_verticalScrollbarValueChanged(void* self, intptr_t slot) {
@@ -3488,7 +3142,9 @@ bool QHeaderView_override_virtual_verticalScrollbarValueChanged(void* self, intp
 }
 
 void QHeaderView_virtualbase_verticalScrollbarValueChanged(void* self, int value) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_verticalScrollbarValueChanged(value);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::verticalScrollbarValueChanged(static_cast<int>(value));
+
 }
 
 bool QHeaderView_override_virtual_horizontalScrollbarValueChanged(void* self, intptr_t slot) {
@@ -3502,7 +3158,9 @@ bool QHeaderView_override_virtual_horizontalScrollbarValueChanged(void* self, in
 }
 
 void QHeaderView_virtualbase_horizontalScrollbarValueChanged(void* self, int value) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_horizontalScrollbarValueChanged(value);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::horizontalScrollbarValueChanged(static_cast<int>(value));
+
 }
 
 bool QHeaderView_override_virtual_closeEditor(void* self, intptr_t slot) {
@@ -3516,7 +3174,9 @@ bool QHeaderView_override_virtual_closeEditor(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_closeEditor(void* self, QWidget* editor, int hint) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_closeEditor(editor, hint);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::closeEditor(editor, static_cast<QAbstractItemDelegate::EndEditHint>(hint));
+
 }
 
 bool QHeaderView_override_virtual_commitData(void* self, intptr_t slot) {
@@ -3530,7 +3190,9 @@ bool QHeaderView_override_virtual_commitData(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_commitData(void* self, QWidget* editor) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_commitData(editor);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::commitData(editor);
+
 }
 
 bool QHeaderView_override_virtual_editorDestroyed(void* self, intptr_t slot) {
@@ -3544,7 +3206,9 @@ bool QHeaderView_override_virtual_editorDestroyed(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_editorDestroyed(void* self, QObject* editor) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_editorDestroyed(editor);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::editorDestroyed(editor);
+
 }
 
 bool QHeaderView_override_virtual_selectedIndexes(void* self, intptr_t slot) {
@@ -3558,7 +3222,18 @@ bool QHeaderView_override_virtual_selectedIndexes(void* self, intptr_t slot) {
 }
 
 struct miqt_array /* of QModelIndex* */  QHeaderView_virtualbase_selectedIndexes(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_selectedIndexes();
+
+	QModelIndexList _ret = ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::selectedIndexes();
+	// Convert QList<> from C++ memory to manually-managed C memory
+	QModelIndex** _arr = static_cast<QModelIndex**>(malloc(sizeof(QModelIndex*) * _ret.length()));
+	for (size_t i = 0, e = _ret.length(); i < e; ++i) {
+		_arr[i] = new QModelIndex(_ret[i]);
+	}
+	struct miqt_array _out;
+	_out.len = _ret.length();
+	_out.data = static_cast<void*>(_arr);
+	return _out;
+
 }
 
 bool QHeaderView_override_virtual_edit2(void* self, intptr_t slot) {
@@ -3572,7 +3247,9 @@ bool QHeaderView_override_virtual_edit2(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_edit2(void* self, QModelIndex* index, int trigger, QEvent* event) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_edit2(index, trigger, event);
+
+	return ( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::edit(*index, static_cast<MiqtVirtualQHeaderView::EditTrigger>(trigger), event);
+
 }
 
 bool QHeaderView_override_virtual_selectionCommand(void* self, intptr_t slot) {
@@ -3586,7 +3263,10 @@ bool QHeaderView_override_virtual_selectionCommand(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_selectionCommand(const void* self, QModelIndex* index, QEvent* event) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_selectionCommand(index, event);
+
+	QItemSelectionModel::SelectionFlags _ret = ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::selectionCommand(*index, event);
+	return static_cast<int>(_ret);
+
 }
 
 bool QHeaderView_override_virtual_startDrag(void* self, intptr_t slot) {
@@ -3600,7 +3280,9 @@ bool QHeaderView_override_virtual_startDrag(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_startDrag(void* self, int supportedActions) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_startDrag(supportedActions);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::startDrag(static_cast<Qt::DropActions>(supportedActions));
+
 }
 
 bool QHeaderView_override_virtual_viewOptions(void* self, intptr_t slot) {
@@ -3614,7 +3296,9 @@ bool QHeaderView_override_virtual_viewOptions(void* self, intptr_t slot) {
 }
 
 QStyleOptionViewItem* QHeaderView_virtualbase_viewOptions(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_viewOptions();
+
+	return new QStyleOptionViewItem(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::viewOptions());
+
 }
 
 bool QHeaderView_override_virtual_focusNextPrevChild(void* self, intptr_t slot) {
@@ -3628,7 +3312,9 @@ bool QHeaderView_override_virtual_focusNextPrevChild(void* self, intptr_t slot) 
 }
 
 bool QHeaderView_virtualbase_focusNextPrevChild(void* self, bool next) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_focusNextPrevChild(next);
+
+	return ( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::focusNextPrevChild(next);
+
 }
 
 bool QHeaderView_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
@@ -3642,7 +3328,9 @@ bool QHeaderView_override_virtual_dragEnterEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_dragEnterEvent(void* self, QDragEnterEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_dragEnterEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::dragEnterEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
@@ -3656,7 +3344,9 @@ bool QHeaderView_override_virtual_dragMoveEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_dragMoveEvent(void* self, QDragMoveEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_dragMoveEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::dragMoveEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
@@ -3670,7 +3360,9 @@ bool QHeaderView_override_virtual_dragLeaveEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_dragLeaveEvent(void* self, QDragLeaveEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_dragLeaveEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::dragLeaveEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_dropEvent(void* self, intptr_t slot) {
@@ -3684,7 +3376,9 @@ bool QHeaderView_override_virtual_dropEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_dropEvent(void* self, QDropEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_dropEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::dropEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_focusInEvent(void* self, intptr_t slot) {
@@ -3698,7 +3392,9 @@ bool QHeaderView_override_virtual_focusInEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_focusInEvent(void* self, QFocusEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_focusInEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::focusInEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_focusOutEvent(void* self, intptr_t slot) {
@@ -3712,7 +3408,9 @@ bool QHeaderView_override_virtual_focusOutEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_focusOutEvent(void* self, QFocusEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_focusOutEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::focusOutEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_keyPressEvent(void* self, intptr_t slot) {
@@ -3726,7 +3424,9 @@ bool QHeaderView_override_virtual_keyPressEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_keyPressEvent(void* self, QKeyEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_keyPressEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::keyPressEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_resizeEvent(void* self, intptr_t slot) {
@@ -3740,7 +3440,9 @@ bool QHeaderView_override_virtual_resizeEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_resizeEvent(void* self, QResizeEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_resizeEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::resizeEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -3754,7 +3456,9 @@ bool QHeaderView_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::timerEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
@@ -3768,7 +3472,9 @@ bool QHeaderView_override_virtual_inputMethodEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_inputMethodEvent(void* self, QInputMethodEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_inputMethodEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::inputMethodEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -3782,7 +3488,9 @@ bool QHeaderView_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_eventFilter(void* self, QObject* object, QEvent* event) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_eventFilter(object, event);
+
+	return ( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::eventFilter(object, event);
+
 }
 
 bool QHeaderView_override_virtual_viewportSizeHint(void* self, intptr_t slot) {
@@ -3796,7 +3504,9 @@ bool QHeaderView_override_virtual_viewportSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QHeaderView_virtualbase_viewportSizeHint(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_viewportSizeHint();
+
+	return new QSize(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::viewportSizeHint());
+
 }
 
 bool QHeaderView_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
@@ -3810,7 +3520,9 @@ bool QHeaderView_override_virtual_minimumSizeHint(void* self, intptr_t slot) {
 }
 
 QSize* QHeaderView_virtualbase_minimumSizeHint(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_minimumSizeHint();
+
+	return new QSize(( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::minimumSizeHint());
+
 }
 
 bool QHeaderView_override_virtual_setupViewport(void* self, intptr_t slot) {
@@ -3824,7 +3536,9 @@ bool QHeaderView_override_virtual_setupViewport(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_setupViewport(void* self, QWidget* viewport) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_setupViewport(viewport);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::setupViewport(viewport);
+
 }
 
 bool QHeaderView_override_virtual_wheelEvent(void* self, intptr_t slot) {
@@ -3838,7 +3552,9 @@ bool QHeaderView_override_virtual_wheelEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_wheelEvent(void* self, QWheelEvent* param1) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_wheelEvent(param1);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::wheelEvent(param1);
+
 }
 
 bool QHeaderView_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
@@ -3852,7 +3568,9 @@ bool QHeaderView_override_virtual_contextMenuEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_contextMenuEvent(void* self, QContextMenuEvent* param1) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_contextMenuEvent(param1);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::contextMenuEvent(param1);
+
 }
 
 bool QHeaderView_override_virtual_changeEvent(void* self, intptr_t slot) {
@@ -3866,7 +3584,9 @@ bool QHeaderView_override_virtual_changeEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_changeEvent(void* self, QEvent* param1) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_changeEvent(param1);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::changeEvent(param1);
+
 }
 
 bool QHeaderView_override_virtual_devType(void* self, intptr_t slot) {
@@ -3880,7 +3600,9 @@ bool QHeaderView_override_virtual_devType(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_devType(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_devType();
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::devType();
+
 }
 
 bool QHeaderView_override_virtual_heightForWidth(void* self, intptr_t slot) {
@@ -3894,7 +3616,9 @@ bool QHeaderView_override_virtual_heightForWidth(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_heightForWidth(const void* self, int param1) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_heightForWidth(param1);
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::heightForWidth(static_cast<int>(param1));
+
 }
 
 bool QHeaderView_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
@@ -3908,7 +3632,9 @@ bool QHeaderView_override_virtual_hasHeightForWidth(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_hasHeightForWidth(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_hasHeightForWidth();
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::hasHeightForWidth();
+
 }
 
 bool QHeaderView_override_virtual_paintEngine(void* self, intptr_t slot) {
@@ -3922,7 +3648,9 @@ bool QHeaderView_override_virtual_paintEngine(void* self, intptr_t slot) {
 }
 
 QPaintEngine* QHeaderView_virtualbase_paintEngine(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_paintEngine();
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::paintEngine();
+
 }
 
 bool QHeaderView_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
@@ -3936,7 +3664,9 @@ bool QHeaderView_override_virtual_keyReleaseEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_keyReleaseEvent(void* self, QKeyEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_keyReleaseEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::keyReleaseEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_enterEvent(void* self, intptr_t slot) {
@@ -3950,7 +3680,9 @@ bool QHeaderView_override_virtual_enterEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_enterEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_enterEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::enterEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_leaveEvent(void* self, intptr_t slot) {
@@ -3964,7 +3696,9 @@ bool QHeaderView_override_virtual_leaveEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_leaveEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_leaveEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::leaveEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_moveEvent(void* self, intptr_t slot) {
@@ -3978,7 +3712,9 @@ bool QHeaderView_override_virtual_moveEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_moveEvent(void* self, QMoveEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_moveEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::moveEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_closeEvent(void* self, intptr_t slot) {
@@ -3992,7 +3728,9 @@ bool QHeaderView_override_virtual_closeEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_closeEvent(void* self, QCloseEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_closeEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::closeEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_tabletEvent(void* self, intptr_t slot) {
@@ -4006,7 +3744,9 @@ bool QHeaderView_override_virtual_tabletEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_tabletEvent(void* self, QTabletEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_tabletEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::tabletEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_actionEvent(void* self, intptr_t slot) {
@@ -4020,7 +3760,9 @@ bool QHeaderView_override_virtual_actionEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_actionEvent(void* self, QActionEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_actionEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::actionEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_showEvent(void* self, intptr_t slot) {
@@ -4034,7 +3776,9 @@ bool QHeaderView_override_virtual_showEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_showEvent(void* self, QShowEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_showEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::showEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_hideEvent(void* self, intptr_t slot) {
@@ -4048,7 +3792,9 @@ bool QHeaderView_override_virtual_hideEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_hideEvent(void* self, QHideEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_hideEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::hideEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_nativeEvent(void* self, intptr_t slot) {
@@ -4062,7 +3808,10 @@ bool QHeaderView_override_virtual_nativeEvent(void* self, intptr_t slot) {
 }
 
 bool QHeaderView_virtualbase_nativeEvent(void* self, struct miqt_string eventType, void* message, long* result) {
-	return ( (MiqtVirtualQHeaderView*)(self) )->virtualbase_nativeEvent(eventType, message, result);
+	QByteArray eventType_QByteArray(eventType.data, eventType.len);
+
+	return ( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::nativeEvent(eventType_QByteArray, message, static_cast<long*>(result));
+
 }
 
 bool QHeaderView_override_virtual_metric(void* self, intptr_t slot) {
@@ -4076,7 +3825,9 @@ bool QHeaderView_override_virtual_metric(void* self, intptr_t slot) {
 }
 
 int QHeaderView_virtualbase_metric(const void* self, int param1) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_metric(param1);
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::metric(static_cast<MiqtVirtualQHeaderView::PaintDeviceMetric>(param1));
+
 }
 
 bool QHeaderView_override_virtual_initPainter(void* self, intptr_t slot) {
@@ -4090,7 +3841,9 @@ bool QHeaderView_override_virtual_initPainter(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_initPainter(const void* self, QPainter* painter) {
-	( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_initPainter(painter);
+
+	( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::initPainter(painter);
+
 }
 
 bool QHeaderView_override_virtual_redirected(void* self, intptr_t slot) {
@@ -4104,7 +3857,9 @@ bool QHeaderView_override_virtual_redirected(void* self, intptr_t slot) {
 }
 
 QPaintDevice* QHeaderView_virtualbase_redirected(const void* self, QPoint* offset) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_redirected(offset);
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::redirected(offset);
+
 }
 
 bool QHeaderView_override_virtual_sharedPainter(void* self, intptr_t slot) {
@@ -4118,7 +3873,9 @@ bool QHeaderView_override_virtual_sharedPainter(void* self, intptr_t slot) {
 }
 
 QPainter* QHeaderView_virtualbase_sharedPainter(const void* self) {
-	return ( (const MiqtVirtualQHeaderView*)(self) )->virtualbase_sharedPainter();
+
+	return ( (const MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::sharedPainter();
+
 }
 
 bool QHeaderView_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -4132,7 +3889,9 @@ bool QHeaderView_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::childEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -4146,7 +3905,9 @@ bool QHeaderView_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::customEvent(event);
+
 }
 
 bool QHeaderView_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -4160,7 +3921,9 @@ bool QHeaderView_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::connectNotify(*signal);
+
 }
 
 bool QHeaderView_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -4174,7 +3937,466 @@ bool QHeaderView_override_virtual_disconnectNotify(void* self, intptr_t slot) {
 }
 
 void QHeaderView_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQHeaderView*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQHeaderView*)(self) )->MiqtVirtualQHeaderView::disconnectNotify(*signal);
+
+}
+
+void QHeaderView_protectedbase_updateSection(bool* _dynamic_cast_ok, void* self, int logicalIndex) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->updateSection(static_cast<int>(logicalIndex));
+
+}
+
+void QHeaderView_protectedbase_resizeSections2(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->resizeSections();
+
+}
+
+void QHeaderView_protectedbase_sectionsInserted(bool* _dynamic_cast_ok, void* self, QModelIndex* parent, int logicalFirst, int logicalLast) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->sectionsInserted(*parent, static_cast<int>(logicalFirst), static_cast<int>(logicalLast));
+
+}
+
+void QHeaderView_protectedbase_sectionsAboutToBeRemoved(bool* _dynamic_cast_ok, void* self, QModelIndex* parent, int logicalFirst, int logicalLast) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->sectionsAboutToBeRemoved(*parent, static_cast<int>(logicalFirst), static_cast<int>(logicalLast));
+
+}
+
+void QHeaderView_protectedbase_initialize(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->initialize();
+
+}
+
+void QHeaderView_protectedbase_initializeSections(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->initializeSections();
+
+}
+
+void QHeaderView_protectedbase_initializeSections2(bool* _dynamic_cast_ok, void* self, int start, int end) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->initializeSections(static_cast<int>(start), static_cast<int>(end));
+
+}
+
+void QHeaderView_protectedbase_initStyleOption(bool* _dynamic_cast_ok, const void* self, QStyleOptionHeader* option) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->initStyleOption(option);
+
+}
+
+void QHeaderView_protectedbase_setHorizontalStepsPerItem(bool* _dynamic_cast_ok, void* self, int steps) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setHorizontalStepsPerItem(static_cast<int>(steps));
+
+}
+
+int QHeaderView_protectedbase_horizontalStepsPerItem(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->horizontalStepsPerItem();
+
+}
+
+void QHeaderView_protectedbase_setVerticalStepsPerItem(bool* _dynamic_cast_ok, void* self, int steps) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setVerticalStepsPerItem(static_cast<int>(steps));
+
+}
+
+int QHeaderView_protectedbase_verticalStepsPerItem(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->verticalStepsPerItem();
+
+}
+
+int QHeaderView_protectedbase_state(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return (int)(0);
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	MiqtVirtualQHeaderView::State _ret = self_cast->state();
+	return static_cast<int>(_ret);
+
+}
+
+void QHeaderView_protectedbase_setState(bool* _dynamic_cast_ok, void* self, int state) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setState(static_cast<MiqtVirtualQHeaderView::State>(state));
+
+}
+
+void QHeaderView_protectedbase_scheduleDelayedItemsLayout(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->scheduleDelayedItemsLayout();
+
+}
+
+void QHeaderView_protectedbase_executeDelayedItemsLayout(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->executeDelayedItemsLayout();
+
+}
+
+void QHeaderView_protectedbase_setDirtyRegion(bool* _dynamic_cast_ok, void* self, QRegion* region) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setDirtyRegion(*region);
+
+}
+
+void QHeaderView_protectedbase_scrollDirtyRegion(bool* _dynamic_cast_ok, void* self, int dx, int dy) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->scrollDirtyRegion(static_cast<int>(dx), static_cast<int>(dy));
+
+}
+
+QPoint* QHeaderView_protectedbase_dirtyRegionOffset(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QPoint(self_cast->dirtyRegionOffset());
+
+}
+
+void QHeaderView_protectedbase_startAutoScroll(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->startAutoScroll();
+
+}
+
+void QHeaderView_protectedbase_stopAutoScroll(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->stopAutoScroll();
+
+}
+
+void QHeaderView_protectedbase_doAutoScroll(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->doAutoScroll();
+
+}
+
+int QHeaderView_protectedbase_dropIndicatorPosition(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return (int)(0);
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	MiqtVirtualQHeaderView::DropIndicatorPosition _ret = self_cast->dropIndicatorPosition();
+	return static_cast<int>(_ret);
+
+}
+
+void QHeaderView_protectedbase_setViewportMargins(bool* _dynamic_cast_ok, void* self, int left, int top, int right, int bottom) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->setViewportMargins(static_cast<int>(left), static_cast<int>(top), static_cast<int>(right), static_cast<int>(bottom));
+
+}
+
+QMargins* QHeaderView_protectedbase_viewportMargins(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return new QMargins(self_cast->viewportMargins());
+
+}
+
+void QHeaderView_protectedbase_drawFrame(bool* _dynamic_cast_ok, void* self, QPainter* param1) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->drawFrame(param1);
+
+}
+
+void QHeaderView_protectedbase_updateMicroFocus(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->updateMicroFocus();
+
+}
+
+void QHeaderView_protectedbase_create(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->create();
+
+}
+
+void QHeaderView_protectedbase_destroy(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return ;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	self_cast->destroy();
+
+}
+
+bool QHeaderView_protectedbase_focusNextChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusNextChild();
+
+}
+
+bool QHeaderView_protectedbase_focusPreviousChild(bool* _dynamic_cast_ok, void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->focusPreviousChild();
+
+}
+
+QObject* QHeaderView_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QHeaderView_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QHeaderView_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QHeaderView_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQHeaderView* self_cast = dynamic_cast<MiqtVirtualQHeaderView*>( (QHeaderView*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QHeaderView_delete(QHeaderView* self) {

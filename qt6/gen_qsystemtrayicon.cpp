@@ -57,12 +57,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_event(QEvent* event) {
-
-		return QSystemTrayIcon::event(event);
-
-	}
+	friend bool QSystemTrayIcon_virtualbase_event(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__eventFilter = 0;
@@ -81,12 +76,7 @@ public:
 		return callback_return_value;
 	}
 
-	// Wrapper to allow calling protected method
-	bool virtualbase_eventFilter(QObject* watched, QEvent* event) {
-
-		return QSystemTrayIcon::eventFilter(watched, event);
-
-	}
+	friend bool QSystemTrayIcon_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__timerEvent = 0;
@@ -105,12 +95,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_timerEvent(QTimerEvent* event) {
-
-		QSystemTrayIcon::timerEvent(event);
-
-	}
+	friend void QSystemTrayIcon_virtualbase_timerEvent(void* self, QTimerEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__childEvent = 0;
@@ -129,12 +114,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_childEvent(QChildEvent* event) {
-
-		QSystemTrayIcon::childEvent(event);
-
-	}
+	friend void QSystemTrayIcon_virtualbase_childEvent(void* self, QChildEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__customEvent = 0;
@@ -153,12 +133,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_customEvent(QEvent* event) {
-
-		QSystemTrayIcon::customEvent(event);
-
-	}
+	friend void QSystemTrayIcon_virtualbase_customEvent(void* self, QEvent* event);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__connectNotify = 0;
@@ -179,12 +154,7 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_connectNotify(QMetaMethod* signal) {
-
-		QSystemTrayIcon::connectNotify(*signal);
-
-	}
+	friend void QSystemTrayIcon_virtualbase_connectNotify(void* self, QMetaMethod* signal);
 
 	// cgo.Handle value for overwritten implementation
 	intptr_t handle__disconnectNotify = 0;
@@ -205,13 +175,13 @@ public:
 		
 	}
 
-	// Wrapper to allow calling protected method
-	void virtualbase_disconnectNotify(QMetaMethod* signal) {
+	friend void QSystemTrayIcon_virtualbase_disconnectNotify(void* self, QMetaMethod* signal);
 
-		QSystemTrayIcon::disconnectNotify(*signal);
-
-	}
-
+	// Wrappers to allow calling protected methods:
+	friend QObject* QSystemTrayIcon_protectedbase_sender(bool* _dynamic_cast_ok, const void* self);
+	friend int QSystemTrayIcon_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self);
+	friend int QSystemTrayIcon_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal);
+	friend bool QSystemTrayIcon_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal);
 };
 
 QSystemTrayIcon* QSystemTrayIcon_new() {
@@ -398,7 +368,9 @@ bool QSystemTrayIcon_override_virtual_event(void* self, intptr_t slot) {
 }
 
 bool QSystemTrayIcon_virtualbase_event(void* self, QEvent* event) {
-	return ( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_event(event);
+
+	return ( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::event(event);
+
 }
 
 bool QSystemTrayIcon_override_virtual_eventFilter(void* self, intptr_t slot) {
@@ -412,7 +384,9 @@ bool QSystemTrayIcon_override_virtual_eventFilter(void* self, intptr_t slot) {
 }
 
 bool QSystemTrayIcon_virtualbase_eventFilter(void* self, QObject* watched, QEvent* event) {
-	return ( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_eventFilter(watched, event);
+
+	return ( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::eventFilter(watched, event);
+
 }
 
 bool QSystemTrayIcon_override_virtual_timerEvent(void* self, intptr_t slot) {
@@ -426,7 +400,9 @@ bool QSystemTrayIcon_override_virtual_timerEvent(void* self, intptr_t slot) {
 }
 
 void QSystemTrayIcon_virtualbase_timerEvent(void* self, QTimerEvent* event) {
-	( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_timerEvent(event);
+
+	( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::timerEvent(event);
+
 }
 
 bool QSystemTrayIcon_override_virtual_childEvent(void* self, intptr_t slot) {
@@ -440,7 +416,9 @@ bool QSystemTrayIcon_override_virtual_childEvent(void* self, intptr_t slot) {
 }
 
 void QSystemTrayIcon_virtualbase_childEvent(void* self, QChildEvent* event) {
-	( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_childEvent(event);
+
+	( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::childEvent(event);
+
 }
 
 bool QSystemTrayIcon_override_virtual_customEvent(void* self, intptr_t slot) {
@@ -454,7 +432,9 @@ bool QSystemTrayIcon_override_virtual_customEvent(void* self, intptr_t slot) {
 }
 
 void QSystemTrayIcon_virtualbase_customEvent(void* self, QEvent* event) {
-	( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_customEvent(event);
+
+	( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::customEvent(event);
+
 }
 
 bool QSystemTrayIcon_override_virtual_connectNotify(void* self, intptr_t slot) {
@@ -468,7 +448,9 @@ bool QSystemTrayIcon_override_virtual_connectNotify(void* self, intptr_t slot) {
 }
 
 void QSystemTrayIcon_virtualbase_connectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_connectNotify(signal);
+
+	( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::connectNotify(*signal);
+
 }
 
 bool QSystemTrayIcon_override_virtual_disconnectNotify(void* self, intptr_t slot) {
@@ -482,7 +464,61 @@ bool QSystemTrayIcon_override_virtual_disconnectNotify(void* self, intptr_t slot
 }
 
 void QSystemTrayIcon_virtualbase_disconnectNotify(void* self, QMetaMethod* signal) {
-	( (MiqtVirtualQSystemTrayIcon*)(self) )->virtualbase_disconnectNotify(signal);
+
+	( (MiqtVirtualQSystemTrayIcon*)(self) )->MiqtVirtualQSystemTrayIcon::disconnectNotify(*signal);
+
+}
+
+QObject* QSystemTrayIcon_protectedbase_sender(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSystemTrayIcon* self_cast = dynamic_cast<MiqtVirtualQSystemTrayIcon*>( (QSystemTrayIcon*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return nullptr;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->sender();
+
+}
+
+int QSystemTrayIcon_protectedbase_senderSignalIndex(bool* _dynamic_cast_ok, const void* self) {
+	MiqtVirtualQSystemTrayIcon* self_cast = dynamic_cast<MiqtVirtualQSystemTrayIcon*>( (QSystemTrayIcon*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->senderSignalIndex();
+
+}
+
+int QSystemTrayIcon_protectedbase_receivers(bool* _dynamic_cast_ok, const void* self, const char* signal) {
+	MiqtVirtualQSystemTrayIcon* self_cast = dynamic_cast<MiqtVirtualQSystemTrayIcon*>( (QSystemTrayIcon*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return 0;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->receivers(signal);
+
+}
+
+bool QSystemTrayIcon_protectedbase_isSignalConnected(bool* _dynamic_cast_ok, const void* self, QMetaMethod* signal) {
+	MiqtVirtualQSystemTrayIcon* self_cast = dynamic_cast<MiqtVirtualQSystemTrayIcon*>( (QSystemTrayIcon*)(self) );
+	if (self_cast == nullptr) {
+		*_dynamic_cast_ok = false;
+		return false;
+	}
+	
+	*_dynamic_cast_ok = true;
+	
+	return self_cast->isSignalConnected(*signal);
+
 }
 
 void QSystemTrayIcon_delete(QSystemTrayIcon* self) {
