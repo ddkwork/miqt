@@ -204,7 +204,7 @@ jobs:
 
 
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: android-build-debug.apk
         path: examples/android/android-build/build/outputs/apk/debug/android-build-debug.apk
