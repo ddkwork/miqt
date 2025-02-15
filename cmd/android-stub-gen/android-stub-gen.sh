@@ -81,7 +81,7 @@ EOF
 	elif [[ $ARG_QTVERSION == '--qt6' ]] ; then
 	
         # QT_ANDROID is already pre-set in our docker container environment. Does NOT include trailing slash
-        QT_ANDROID=${QT_ANDROID:-/opt/Qt/6.6.1/android_arm64_v8a}
+        QT_ANDROID=${QT_ANDROID:-/opt/Qt/6.8.0/android_arm64_v8a}
         echo "- Found Qt path: ${QT_ANDROID}"
         
         # There is no AndroidExtras in Qt 6
