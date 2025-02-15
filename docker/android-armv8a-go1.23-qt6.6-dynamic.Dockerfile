@@ -28,8 +28,8 @@ RUN mkdir -p /opt/Qt/6.8.0/android_arm64_v8a/lib/pkgconfig/ && \
 RUN ln -s /opt/Qt/6.8.0/gcc_64/bin/androiddeployqt /usr/local/bin/androiddeployqt
 
 ENV PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/Qt/Tools/CMake/bin:/opt/Qt/Tools/Ninja:/opt/Qt/6.8.0/android_arm64_v8a/bin:/opt/android-sdk/cmdline-tools/10.0/bin:/opt/android-sdk/platform-tools
-ENV CC=/opt/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang
-ENV CXX=/opt/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android33-clang++
+ENV CC=/opt/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang
+ENV CXX=/opt/android-sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android34-clang++
 ENV CGO_ENABLED=1
 ENV GOOS=android
 ENV GOARCH=arm64
