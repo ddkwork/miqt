@@ -201,3 +201,11 @@ jobs:
 
     - name: Verify that package exists
       run: test -f examples/android6/android-build/build/outputs/apk/debug/android-build-debug.apk
+
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: android-build-debug.apk
+        path: examples/android/android-build/build/outputs/apk/debug/android-build-debug.apk
+        retention-days: 7
